@@ -1,0 +1,15 @@
+abricot;230,126,48
+absinthe;127,221,76
+acajou;136,66,29
+acier;58,142,186
+argent;206,206,206
+argile;239,239,239
+azur;116,208,241
+baillet;174,100,45
+balais;196,105,143
+banane;209,182,6
+barbeau;84,114,174
+blond;226,188,116
+orange acidulé;252,182,30
+orange;237,169,21
+vanille;225,206,154

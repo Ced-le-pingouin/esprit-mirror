@@ -1,0 +1,23 @@
+Editeur
+
+- Ajouter ce lien pour afficher l'éditeur
+  
+  
+  <a href="javascript: void(0);" onclick="editeur('FRM_GENERAL','formation_description','editeur')" onfocus="blur()">Editeur</a> 
+  
+  * 'FRM_GENERAL', le nom du formulaire
+  * 'formation_description', le nom de l'élément du formulaire
+  * 'editeur', le titre de la boîte de dialogue contenant l'éditeur
+
+- Récupérer le texte après avoir validé
+  
+  La page qui contient le lien qui ouvre la fenêtre de l'éditeur, doit contenir
+  une fonction de rappel se nommant 'editeur_callback'.
+  
+  <script type="text/javascript" language="javascript">
+  <!--
+  function editeur_callback(v_sForm,v_sElem,v_sTexte) {
+  }
+  //-->
+  </script>
+

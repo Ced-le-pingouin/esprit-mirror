@@ -1,0 +1,123 @@
+body, a, div, table, td, h1, h3, h4, h5, h6, p, .normal, ol, li, ul, span
+{
+	color: #222222;
+	font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
+	font-size: 9pt;
+}
+
+body
+{
+	background-color: rgb(251,249,238);
+	background-image: none;
+	
+	scrollbar-face-color: rgb(231,225,212);
+	scrollbar-highlight-color: rgb(251,249,238);
+	scrollbar-shadow-color: rgb(251,249,238);
+	scrollbar-3dlight-color: rgb(251,249,238);
+	scrollbar-arrow-color: rgb(174,166,138);
+	scrollbar-track-color: rgb(251,249,238);
+	scrollbar-darkshadow-color: rgb(251,249,238);
+}
+
+body.liste
+{
+	background-color: rgb(255,255,255);
+	background-image: url('../pixel_noir.gif');
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: repeat-y;	
+}
+
+body.modif
+{
+	background-color: rgb(231,225,212);
+	background-image: url('../pixel_noir.gif');
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
+}
+
+body.popup
+{
+	background-color: rgb(231,225,212);
+}
+
+
+body.menumodif
+{
+	background-color: rgb(174,165,138);
+	background-image: url('../pixel_noir.gif');
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
+}
+
+body.menumodifbas
+{
+	background-color: rgb(202,195,177);
+	background-image: url('../pixel_noir.gif');
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
+}
+
+body.formsup
+{	
+	background-color: rgb(255,255,255);
+	background-image: url('../pixel_noir.gif');
+	background-position: top left;
+	background-attachment: fixed;
+	background-repeat: repeat-y;
+}
+
+
+.listeForm
+{
+	  width:100%;
+	  border:1px solid black; /*Cette propriété n'a d'effet que sous netscape*/
+}
+
+fieldset
+{
+	  /*Cette fonction n'a des effet que sous netscape*/
+	  border:1px solid rgb(208,208,191);
+	  color:rgb(111,105,87);  
+}
+
+form.formFormulaire
+{
+	background-color: rgb(249,251,251);
+	border: 1px dashed rgb(220,230,230);
+	
+	line-height: 11.5pt;
+	padding: 20px;
+}
+
+/* :link permet de définir les propriétés des liens */
+a:link
+{
+    color : rgb(63,67,34) ;
+    text-decoration : none ;
+}
+
+/* :visited permet de définir les propriétés des liens déjà visités */
+a:visited
+{
+    color : rgb(63,67,34) ;
+    text-decoration : none ;
+}
+
+/* :active permet de définir les propriétés d'un lien actif - qui vient d'être cliqué */
+a:active
+{
+    color : rgb(63,67,34) ;
+    text-decoration : none ;
+}
+
+/* :hover permet de définir les propriétés du lien quand le curseur le survole */
+a:hover
+{
+    color : rgb(63,67,34) ;
+    text-decoration : underline ;
+}
+

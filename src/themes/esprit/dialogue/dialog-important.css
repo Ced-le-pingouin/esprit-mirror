@@ -1,0 +1,5 @@
+body { background-color: rgb(253,249,238); padding: 5px; }
+p.titre { border: rgb(174,165,138) none 1px; border-bottom-style: dashed; font-weight: bold; }
+td.message { font-size: 10pt; text-align: center; }
+div.message { text-align: center; }
+td.question { font-size: 10pt; font-weight: bold; text-align: center; }

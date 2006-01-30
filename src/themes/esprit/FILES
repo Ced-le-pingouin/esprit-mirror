@@ -1,0 +1,20 @@
++- esprit
+   +- css
+   |  |-globals.css
+   |  |-bloc_menu.css
+   |  `-dialog-menu.css
+   +- images
+   |  |- logo.gif
+   |  |- menu-1x1.gif
+   |  |- menu-1x2.gif
+   |  |- menu-1x3.gif
+   |  |- menu-3x1.gif
+   |  |- menu-3x2.gif
+   |  `- menu-3x3.gif
+   +- templates
+   |  |- dialog-menu.tpl
+   |  |- dialog-titre.tpl
+   |  |- dialog-index.tpl
+   |  |- dialog-gauche.tpl
+   |  |- dialog_menu-bloc.tpl
+   

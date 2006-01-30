@@ -1,0 +1,12 @@
+<?php
+// @file collecticiel.lang
+// @category Collecticiel
+// @Description Traduction des textes du collecticiel.
+// @lang fr
+// @author Filippo PORCO <filippo.porco@umh.ac.be>
+// @modified 05/10/2005
+define("TXT_TRANSFERER_DES_FICHIERS_ETAPE_1","1. Choisissez les fichiers que vous voulez transférer vers un autre collecticiel");
+define("TXT_TRANSFERER_DES_FICHIERS_ETAPE_2","2. Choisissez un collecticiel de destination");
+define("TXT_TRANSFERER_DES_FICHIERS_ETAPE_3","3. Commencez le transfert");
+define("TXT_TRANSFERER_DES_FICHIERS_TITRE","Transférer des fichiers");
+?>

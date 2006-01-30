@@ -1,0 +1,24 @@
+var ttAbove       = false;        // tooltip above mousepointer? Alternative: true
+var ttBgColor     = "#e6ecff";
+var ttBgImg       = "";           // path to background image;
+var ttBorderColor = "#003399";
+var ttBorderWidth = 1;
+var ttDelay       = 500;          // time span until tooltip shows up [milliseconds]
+var ttFontColor   = "#000066";
+var ttFontFace    = "arial,helvetica,sans-serif";
+var ttFontSize    = "11px";
+var ttFontWeight  = "normal";     // alternative: "bold";
+var ttLeft        = false;        // tooltip on the left of the mouse? Alternative: true
+var ttOffsetX     = 12;           // horizontal offset of left-top corner from mousepointer
+var ttOffsetY     = 15;           // vertical offset                   "
+var ttOpacity     = 100;          // opacity of tooltip in percent (must be integer between 0 and 100)
+var ttPadding     = 3;            // spacing between border and content
+var ttShadowColor = "";
+var ttShadowWidth = 0;
+var ttStatic      = false;        // tooltip NOT move with the mouse? Alternative: true
+var ttSticky      = false;        // do NOT hide tooltip on mouseout? Alternative: true
+var ttTemp        = 0;            // time span after which the tooltip disappears; 0 (zero) means "infinite timespan"
+var ttTextAlign   = "left";
+var ttTitleColor  = "#ffff00";    // color of caption text
+var ttWidth       = 300;
+

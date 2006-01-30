@@ -1,0 +1,16 @@
+body { background-color: rgb(255,255,255); margin-left: 30px; }
+a.Formation, .Formation { font-size: 11pt; font-weight: bold; }
+.Cours { font-weight: bold; }
+#id_editer { position: absolute; left: 0px; top: 0px; width: 16px; height: 16px; visibility: hidden; }
+
+span.module_intitule { font-weight: 9pt; font-weight: bold; }
+hr.module { border: rgb(242,242,242) solid 1px; color: rgb(242,242,242); }
+
+span.rubrique_intitule { font-weight: 8pt; font-weight: bold; }
+
+div.formation { padding: 0px 0px 0px 0px; white-space: nowrap; }
+div.module { padding: 10px 0px 0px 20px; white-space: nowrap; }
+div.rubrique { padding: 5px 0px 5px 20px; white-space: nowrap; }
+div.activite { padding-top: 5px; padding-left: 20px; white-space: nowrap; }
+div.sous_activite { padding-top: 5px; padding-left: 20px; white-space: nowrap; }
+

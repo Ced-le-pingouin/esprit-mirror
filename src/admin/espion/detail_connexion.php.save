@@ -1,0 +1,120 @@
+<?php
+
+/*
+** Fichier ................: detail_connexion.php
+** Description ............: 
+** Date de création .......: 25-02-2003
+** Dernière modification ..: 10-03-2003
+** Auteurs ................: Filippo PORCO
+** Emails .................: ute@umh.ac.be
+**
+** Copyright (c) 2001-2002 UTE. All rights reserved.
+**
+*/
+
+require_once("globals.inc.php");
+require_once(dir_database("evenement.tbl.php"));
+
+$oProjet = new CProjet();
+$oEvenement = new CEvenement($oProjet->oBdd);
+
+$url_iIdPers = (isset($HTTP_GET_VARS["IDPERS"]) ? $HTTP_GET_VARS["IDPERS"] : 0);
+
+$url_iTri = (isset($HTTP_GET_VARS["tri"]) ? $HTTP_GET_VARS["tri"] : $oEvenement->TRI_CONNEXION);
+$url_bSensTri = (isset($HTTP_GET_VARS["sens"]) ? $HTTP_GET_VARS["sens"] : $oEvenement->TRI_DESCENDANT);
+
+$sContenuTable = NULL;
+
+$sFlecheVersHaut = "&nbsp;<img src=\"".dir_theme("sort-incr.gif")."\" border=\"0\">";
+$sFlecheVersBas = "&nbsp;<img src=\"".dir_theme("sort-desc.gif")."\" border=\"0\">";
+
+$oEvenement->defPersonne($url_iIdPers);
+$oEvenement->defModeTri($url_iTri);
+$oEvenement->defTriAscendant($url_bSensTri);
+
+$iNbrEven = $oEvenement->initEvenements();
+
+// --------------------------------
+// En-têtes du tableau
+// --------------------------------
+
+$asTitres = array(
+	array("#",FALSE,NULL),
+	array("Connexion",TRUE,$oEvenement->TRI_CONNEXION),
+	array("Déconnexion",TRUE,$oEvenement->TRI_DECONNEXION),
+	array("Durée",TRUE,$oEvenement->TRI_TEMPS_CONNEXION));
+
+$sContenuTable .= "<tr>";
+
+for ($i=0; $i<count($asTitres); $i++)
+{
+	$sContenuTable .= "<td class=\"Fond_Cellule_Sous_Titre\">";
+	
+	if ($asTitres[$i][1])
+		$sContenuTable .= "<a class=\"Lien_Sous_Titre\" href=\"javascript: self.location='detail_connexion.php"
+		."?tri={$asTitres[$i][2]}"
+		."&sens=".($url_iTri == $asTitres[$i][2] && $url_bSensTri == $oEvenement->TRI_ASCENDANT ? 0 : 1).""
+		."&IDPERS={$url_iIdPers}';\""
+		." target=\"_self\">"
+		.$asTitres[$i][0]
+		."</a>"
+		.($url_iTri == $asTitres[$i][2] ? ($url_bSensTri == $oEvenement->TRI_ASCENDANT ? $sFlecheVersHaut : $sFlecheVersBas) : NULL);
+	else
+		$sContenuTable .= "<span class=\"Texte_Sous_Titre\">{$asTitres[$i][0]}</span>";
+		
+	$sContenuTable .= "</td>";
+}
+
+$sContenuTable .= "</tr>";
+
+// --------------------------------
+// Liste des connexions
+// --------------------------------
+
+$sNomClasseCss = NULL;
+
+for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
+{
+	$sNomClasseCss = (isset($sNomClasseCss) ? NULL : " class=\"Fond_Cellule_Clair\"");
+	$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"Fond_Cellule_Fonce\"" : " class=\"Fond_Cellule_Clair\"");
+
+	$sContenuTable .= "<tr>"
+		."<td width=\"1%\" class=\"Fond_Cellule_Sous_Titre\" align=\"right\">".($iIdxEven+1)."</td>"
+		."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+		.$oEvenement->aoEvenements[$iIdxEven]->retConnexion()
+		."</td>"
+		."<td".($url_iTri == $oEvenement->TRI_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+		.$oEvenement->aoEvenements[$iIdxEven]->retDeconnexion()
+		."</td>"
+		."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\" width=\"1%\">"
+		."&nbsp;".$oEvenement->aoEvenements[$iIdxEven]->retTempsConnexion()."&nbsp;"
+		."</td>"
+		."</tr>\n";
+}
+
+// --------------------------------
+// Durée totale des connexions
+// --------------------------------
+
+$sContenuTable .= "<tr>"
+	."<td colspan=\"3\" align=\"right\">"
+	."<strong>Dur&eacute;e totale des connexions&nbsp;:</strong>"
+	."</td>"
+	."<td align=\"center\" width=\"1%\" style=\"border: #000000 none 1px; border-top-style: solid;\"><span class=\"Attention\">"
+	."&nbsp;".$oEvenement->retDureeTotaleConnexions()."&nbsp;"
+	."</span></td>"
+	."</tr>\n";
+
+$oProjet->terminer();
+
+?>
+<html>
+<head>
+<?php lierFichiersCSS(); ?>
+</head>
+<body>
+<table border="0" cellpadding="2" cellspacing="1" width="100%">
+<?=$sContenuTable?>
+</table>
+</body>
+</html>

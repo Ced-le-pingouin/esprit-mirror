@@ -1,0 +1,20 @@
+/* Frame du titre */
+td.dialog_logo { }
+div.dialog_titre_principal { }
+/*div.dialog_sous_titre {	left: 220px; }*/
+
+/* Frame des tuteurs */
+body.tuteurs { background-color: rgb(236,233,216); }
+a.tuteur { border: rgb(236,233,216) solid 1px; padding: 2px; }
+a.tuteur:hover { background-color: rgb(193,210,238); border-color: rgb(49,106,197); color: rgb(0,0,0); text-decoration: none; }
+
+/* Frame principale */
+hr { border-style: solid; border-color: rgb(174,165,138); border-width: 1px; }
+.Message { text-align: center; color: rgb(0,0,0); font-weight: bold; }
+.Etat_Document, .Commentaire { color: rgb(0,0,0); font-weight: bold; text-align: right; }
+.Evaluation { padding: 5px;	text-align: center; }
+.Commentaire { vertical-align: top; }
+p.commentaire, p.appreciation { text-align: left; font-weight: normal; border: rgb(174,165,138) none 1px; border-bottom-style: dotted; padding: 5px; }
+td.cellule_clair { text-align: center; }
+div.pas_encore_evaluer { background-color: rgb(202,195,177); border: rgb(111,105,87) solid 1px; font-weight: bold; text-align: center; padding: 10px; width: 90%; }
+

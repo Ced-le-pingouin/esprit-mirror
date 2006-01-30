@@ -1,0 +1,35 @@
+/*
+** Fichier .................: wizard.css
+** Description .............: 
+** Date de création ........: 24-07-2002
+** Dernière modification ...: 25-07-2002
+** Auteurs .................: Filippo Porco
+** Emails ..................: <ute@umh.ac.be>
+**
+** Copyright (c) 2001-2002 UTE. All rights reserved.
+**
+*/
+
+body 
+{
+	background: #ECECEC none;
+}
+
+.Wizard_Titre_Principal
+{
+	color: #373B3D; 
+	font-size: 15pt; 
+	font-weight: bold;
+}
+
+.Wizard_Lien_actif
+{
+	font-weight: normal;
+}
+
+.Wizard_Lien_Inactif
+{
+	color: #888888;
+	font-weight: normal;
+	text-decoration: italic;
+}

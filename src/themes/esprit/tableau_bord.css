@@ -1,0 +1,25 @@
+body { background-color: rgb(238,234,221); }
+
+h1 { background-color: rgb(49,106,197); border: rgb(31,82,126) solid 1px; color: rgb(255,255,255); font-size: 12pt; padding: 5px; }
+h2 { color: rgb(111,105,87); font-size: 10pt; margin: 5px; padding: 15px; }
+
+table { background-color: rgb(240,240,240); border: rgb(127,157,185) solid 1px; padding: 1px; margin-right: 5px; }
+th small { color: rgb(174,165,138); }
+td { background-color: rgb(255,255,255); font-size: 8pt; }
+
+small { font-size: 7pt; }
+
+#barre_outils { text-align: right; }
+
+.largeur_1_pourcent { width: 1%; }
+.cellule_modalite { text-align: center; font-style: italic; color: rgb(150,150,150); }
+.cellule_equipe { font-weight: bold; font-style: italic; }
+.cellule_etudiant { border: rgb(255,255,255) solid 1px; }
+.cellule_valeur { border: rgb(255,255,255) solid 1px; }
+.cellule_valeur_surbrillance, .cellule_valeur_en_evidence { background-color: rgb(250,250,250); border: rgb(250,250,250) solid 1px; color: rgb(0,0,0); }
+.cellule_valeur_en_evidence { border: rgb(193,210,238) solid 1px; color: rgb(204,102,0); }
+
+.aucune_equipe_trouvee { font-size: 8pt; text-align: center; }
+
+.ligne_en_evidence { background-color: rgb(224,232,246); color: rgb(31,82,126);  border-width: 1px; border-right-style: solid; border-right-color: rgb(204,102,0); }
+

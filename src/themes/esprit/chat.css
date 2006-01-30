@@ -1,0 +1,15 @@
+body.couleurs { background-image: none; }
+
+td.dialog_logo { width: 211px; }
+
+div.dialog_titre_principal { left: 220px; }
+
+a.dialog_menu
+{
+	background-color: rgb(231,225,212);
+	color: rgb(111,105,87);
+	border: rgb(202,195,177) solid 1px;
+	padding: 2px;
+}
+
+.intitule { text-align: right; }

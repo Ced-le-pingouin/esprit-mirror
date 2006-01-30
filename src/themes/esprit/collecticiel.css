@@ -1,0 +1,47 @@
+body { background-color: rgb(255,255,255); }
+#consigne { background-color: rgb(249,251,251); border: rgb(220,230,230) none 2px; border-top-style: solid; border-bottom-style: solid; font-size: 8pt; margin: 20px; padding: 20px; }
+#fichier_de_base { margin-bottom: 30px; }
+#sans_collecticiel { margin-top: 50px; text-align: center; font-weight: bold; }
+td.cellule_sous_titre { font-size: 8pt; }
+
+/* Barre des icônes */
+/* Document du collecticiel */
+div.titre a { font-size: 8pt; }
+a.titre { font-size: 8pt; }
+
+div.auteur { text-align: center; font-size: 8pt; }
+
+div.date { text-align: center; font-size: 8pt; }
+a.date { font-size: 8pt; }
+
+div.statut { text-align: center; font-size: 8pt; }
+a.statut { font-size: 8pt; }
+
+div.evalue { text-align: center; font-size: 8pt; }
+a.evalue {  }
+
+div.texte_associe { text-align: center; font-size: 8pt; }
+a.texte_associe {}
+
+div.sans_document { text-align: center; font-size: 8pt; }
+
+div.gestion_documents_gauche, div.gestion_documents_droite {
+	margin: 10px 5px 0px 5px;
+	font-size: 7pt;
+	color: rgb(200,200,200);
+	}
+div.gestion_documents_gauche a, div.gestion_documents_droite a { font-size: 7pt; }
+div.gestion_documents_gauche { float: left; }
+div.gestion_documents_droite { float: right; }
+div.spacer { clear: both; margin: 5px;  }
+
+td.titre {}
+td.auteur {}
+td.date {}
+td.statut {}
+td.evalue {}
+td.texte_associe {}
+
+/* ''' Couleurs des états des documents */
+span.en_cours { font-size: 8pt; }
+/* ''' */

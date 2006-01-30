@@ -1,0 +1,104 @@
+body.haut { background: rgb(255,255,255) url("dialog-titre-fond.gif") repeat-x; }
+
+td.dialog_logo
+{
+	background-color: rgb(202,195,177);
+	text-align: right;
+	width: 125px;
+}
+
+.dialog_titre_2 { 
+	color: rgb(0,0,0);
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+div.dialog_titre_principal, .titre_haut
+{
+	position: absolute;
+	left: 130px;
+	top: 37px;
+	height: 20px;
+}
+
+div.dialog_titre_image_1, div.dialog_titre_image_2
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	text-align: right;
+}
+
+span#titre_principal
+{
+	color: rgb(0,0,0);
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+div.dialog_sous_titre
+{
+	position: absolute;
+	left: 0px;
+	height: 20px;
+	top: 57px;
+	width: 100%;
+	text-align: center;
+}
+
+span#sous_titre
+{
+	color: rgb(83,93,51);
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+body.gauche
+{
+	background-color: rgb(251,249,238);
+	background-image: none;
+}
+
+td.gauche_titre_principal { background-color: rgb(240,240,240); }
+
+td.gauche_menu { background-color: rgb(255,255,255); }
+
+td.gauche_menu_lien { background-color: rgb(245,245,245); }
+
+/*  M E N U  */
+td.dialog_menu_fond { background-color: rgb(111,105,87); }
+
+td.dialog_menu_titre
+{
+	background-color: rgb(111,105,87);
+	color: rgb(255,255,255);
+	font-size: 10pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+td.dialog_menu_intitule
+{
+	background-color: rgb(231,225,212);
+	color: rgb(0,0,0);
+	font-size: 10pt;
+	font-weight: normal;
+	text-align: center;
+}
+
+td.dialog_menu
+{
+	background-color: rgb(202,195,177);
+	color: rgb(0,0,0);
+	font-size: 10pt;
+	font-weight: normal;
+	text-align: center;
+}
+
+/* Dialogue sous-menu */
+body.dialog_sous_menu { background-color: rgb(202,195,177); border: rgb(0,0,0) none 1px; border-top-style: solid; }
+
+table.dialog_sous_menu {}
+
+a.dialog_sous_menu { color: rgb(63,67,34); font-size: 8pt; font-weight: normal; }

@@ -1,0 +1,7 @@
+td.description { background-color: rgb(249,251,251); border: rgb(220,230,230) none 2px; border-top-style: solid; border-bottom-style: solid; }
+div.consigne { border: rgb(203,203,203) none 1px; border-top-style: dotted; font-size: 7pt; font-style: italic; margin: 5 0 0 0; }
+a.formulaire_base { font-size: 8pt; color: rgb(136,37,37); }
+a.soumettre_passif { font-size: 7pt; color: rgb(200,200,200); }
+a.soumettre { font-size: 7pt; color: rgb(136,37,37); }
+a.exporter_donnees { color: rgb(151,6,35); }
+

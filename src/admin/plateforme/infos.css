@@ -1,0 +1,14 @@
+html, body { margin: 0; }
+h1 { font-size: 24pt; }
+h1 p { text-align: right; border: rgb(136,37,37) none 1px; border-bottom-style: solid; }
+div, p { font-style: italic; font-size: 8pt; }
+#logo { float: left; padding-top: 20px; width: 200px; text-align: center; }
+#informations { margin-left: 0px; padding: 15px; }
+span#chat_port, span#awareness_port { font-style: normal; font-weight: bold; }
+span.administrateur { font-style: normal; font-weight: bold; }
+span.administrateur_courriel { padding: 7px; }
+#courriel { font-weight: bold; }
+
+#session_responsables { border: rgb(104,108,71) none 1px; border-bottom-style: dashed; }
+#session_serveur_chat { border: rgb(104,108,71) none 1px; border-bottom-style: dashed; padding-top: 5px; padding-bottom: 10px; }
+#session_serveur_awareness { border: rgb(104,108,71) none 1px; border-bottom-style: dashed; padding-top: 5px; padding-bottom: 10px; }

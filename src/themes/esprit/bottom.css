@@ -1,0 +1,25 @@
+body
+{
+	background-image: url('bottom_fond.gif');
+	background-repeat: repeat-x;
+	color: rgb(0,0,0);
+}
+
+td
+{
+	color: #606A5D;
+	padding-top: 1px;
+}
+
+a
+{
+	color: rgb(250,251,252);
+	text-decoration: normal;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+a.hover
+{
+	text-decoration: underline;	
+}

@@ -1,0 +1,11 @@
+? ne plus afficher le formulaire (php) en cas de soumission réussie avec enreg dans la base (car fermeture de la fenêtre)
+
++ supprimer la notion en cours/terminé
++ ajouter un champ Nom pour le formulaire, pour différencier le nom du titre
++ pour les listes de formulaires à afficher dans le générateur: plus tard, filtre pour voir seulement les siens ?
++ permissions pour voir un formulaire/formulaire complété (et façon d'afficher si tuteur/étudiant non autorisé) ?
+
+- indiquer où se trouve la question non remplie (par focus ou par clignotement,...?)
+- frames en haut et en bas ?
+- plus Formulaire, mais Générateur d'activités (reste dans la fenêtre d'éval. de Fil, et toute la partie Admin)
+- faire la validation de formulaire aussi en php

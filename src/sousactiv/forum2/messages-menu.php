@@ -1,0 +1,111 @@
+<?php
+
+/*
+** Fichier ................: messages-menu.php
+** Description ............: 
+** Date de création .......: 14/05/2004
+** Dernière modification ..: 14/04/2005
+** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
+**
+** Unité de Technologie de l'Education
+** 18, Place du Parc
+** 7000 MONS
+*/
+
+require_once("globals.inc.php");
+
+$oProjet = new CProjet();
+$oProjet->initSousActivCourante();
+
+// ---------------------
+// Récupérer les variables de l'url
+// ---------------------
+$url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
+$url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_iNbMessages = (empty($HTTP_GET_VARS["nbMessages"]) ? 0 : $HTTP_GET_VARS["nbMessages"]);
+
+// ---------------------
+// Initialiser
+// ---------------------
+$oSujet = new CSujetForum($oProjet->oBdd,$url_iIdSujet);
+
+$iIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
+
+// ---------------------
+// Permissions
+// ---------------------
+$bPeutGererTousMessages  = $oProjet->verifPermission("PERM_MOD_MESSAGES_FORUMS");
+$bPeutGererTousMessages |= ($oProjet->verifPermission("PERM_MOD_MESSAGES_FORUM") && $oProjet->verifModifierModule());
+
+$bPeutAjtMessage = FALSE;
+
+if (!$bPeutGererTousMessages)
+{
+	if (($bPeutAjtMessage = $oProjet->verifPermission("PERM_AJT_MESSAGE_FORUM")) &&
+		$url_iIdEquipe > 0)
+	{
+		$oForum = new CForum($oProjet->oBdd,$oSujet->retIdParent());
+		
+		if (MODALITE_PAR_EQUIPE_COLLABORANTE == $oForum->retModalite())
+		{
+			// Vérifier que cette personne est inscrite dans une équipe
+			$bPeutAjtMessage = $oProjet->verifEquipe($url_iIdEquipe);
+		}
+		else
+		{
+			// Si c'est un forum par équipe, vérifier que cette personne
+			// est inscrite dans cette équipe
+			$oEquipeMembre = new CEquipe_Membre($oProjet->oBdd,$url_iIdEquipe);
+			$bPeutAjtMessage = $oEquipeMembre->verifMembre($iIdPers);
+			unset($oEquipeMembre);
+		}
+		
+		unset($oForum);
+	}
+}
+
+// ---------------------
+// Template
+// ---------------------
+$sMenuMessages = NULL;
+
+$oTpl = new Template("messages-menu.tpl");
+
+$oSetAjtMessageEquipes = $oTpl->defVariable("SET_MENU_AJOUTER_EQUIPES");
+$oSetAjtMessage        = $oTpl->defVariable("SET_MENU_AJOUTER");
+$oSetMdfMessage        = $oTpl->defVariable("SET_MENU_MODIFIER");
+$oSetSupMessage        = $oTpl->defVariable("SET_MENU_SUPPRIMER");
+$oSetSansMenu          = $oTpl->defVariable("SET_SANS_MENU");
+$oSetMenuSeparateur    = $oTpl->defVariable("SET_MENU_SEPARATEUR");
+
+if ($url_iIdSujet > 0)
+{
+	if ($bPeutGererTousMessages && $oSujet->estPourTous())
+		$sMenuMessages .= $oSetAjtMessageEquipes;
+	
+	if ($bPeutGererTousMessages || $bPeutAjtMessage)
+		$sMenuMessages .= $oSetAjtMessage;
+	
+	if ($url_iNbMessages > 0)
+	{
+		$sMenuMessages .= (isset($sMenuMessages) ? $oSetMenuSeparateur : NULL)
+			.$oSetMdfMessage;
+		
+		$sMenuMessages .= (isset($sMenuMessages) ? $oSetMenuSeparateur : NULL)
+			.$oSetSupMessage;
+	}
+}
+else
+{
+	$sMenuMessages = $oSetSansMenu;
+}
+
+$oTpl->remplacer("{menu_messages}",$sMenuMessages);
+$oTpl->remplacer("{message->equipe->id}",($bPeutGererTousMessages || $bPeutAjtMessage ? 0 : $url_iIdEquipe));
+
+$oTpl->afficher();
+
+$oProjet->terminer();
+
+?>
+

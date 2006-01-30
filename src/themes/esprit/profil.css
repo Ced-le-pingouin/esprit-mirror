@@ -1,0 +1,6 @@
+body { background-image: none; }
+.intitule { text-align: right; width: 165px; }
+.largeur_fixe { width: 100%; }
+.champs_obligatoires { color: rgb(206,109,14); font-size: 7pt; font-weight: bold; }
+span#id_erreur, .erreur { color: rgb(149,6,35); font-size: 7pt; }
+

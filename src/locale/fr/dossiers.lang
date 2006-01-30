@@ -1,0 +1,16 @@
+<?php
+
+// @file dossiers.lang
+// @dtd
+// @Description Traduction des dossiers de formations.
+// @lang fr
+// @author Filippo PORCO <filippo.porco@umh.ac.be>
+// @modified 29/09/2005
+
+define("TITRE","Dossiers");
+define("TITRE_CREER_MODIFIER_DOSSIER","Créer/Modifier un dossier");
+
+define("BTN_CREER_MODIFIER_DOSSIER","Créer/Modifier un dossier");
+define("TXT_REMARQUE","Pour changer de dossier actif, sélectionnez un dossier et cliquez sur le lien \"Valider\". Pour modifier un dossier ou en créer un nouveau, cliquez sur \"Créer/Modifier un dossier\".");
+
+?>

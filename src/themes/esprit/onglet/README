@@ -1,0 +1,15 @@
+Q. COMMENT UTILISE-T-ON LE TEMPLATE "ONGLET" ?
+
+   - Pour commencer ouvrez le fichier template qui devra contenir un onglet
+   - Rajoutez dans ce fichier, à l'endroit prévu, un nouveau bloc vide du type :
+       [BLOCK_ONGLET_LISTE_PERSONNES+][BLOCK_ONGLET_LISTE_PERSONNES-]
+   - Maintenant, vous devez ouvrir le fichier php et ajoutez ceci :
+       $oTpl_onglet = new Template(dir_theme("onglet/onglet.tpl",TRUE));
+	   
+	   $oSet_onglet_liste_personnes = $oTpl_onglet->defVariable("SET_ONGLET");
+	   
+	   $oBloc_onglet_liste_personnes = new TPL_Block("BLOCK_ONGLET_LISTE_PERSONNES",$oTpl);
+	   $oBloc_onglet_liste_personnes->ajouter($oSet_onglet_liste_personnes);
+	   $oBloc_onglet_liste_personnes->remplacer("{onglet->titre}","Titre du onglet");
+	   $oBloc_onglet_liste_personnes->afficher();
+   - Et voilà, le tour est joué.

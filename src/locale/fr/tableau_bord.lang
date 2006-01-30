@@ -1,0 +1,29 @@
+<?php
+
+// @file tableau_bord.lang
+// @category Tableau de bord
+// @Description Traduction de l'interface du "Tableau de bord".
+// @lang fr
+// @author Filippo PORCO <filippo.porco@umh.ac.be>
+// @modified 28/09/2005
+
+define("TITRE","Tableau de bord");
+
+// {{{ Labels
+define("LBL_UNITE","[TXT_UNITE] :");
+// }}}
+
+// {{{ Textes
+define("TXT_ETUDIANTS_INSCRITS_AU_COURS","Etudiants inscrits au cours");
+// }}}
+
+// {{{ Tooltips
+define("TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE","{chat.messages.nombre} message(s) déposé(s) sur {chat.archives.nombre} archive(s)");
+define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL","Cliquer ici pour accéder au collecticiel");
+define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE","Cliquer ici pour accéder à l'AEL");
+define("TLT_FORUM_NOMBRE_MESSAGES_FORUM","{forum.messages.nombre} message(s) déposé(s) dans ce forum");
+define("TLT_PAS_ARCHIVE_TROUVEE_CHAT","Pas d'archive trouvée dans ce chat");
+define("TLT_PAS_MESSAGE_TROUVE_FORUM","Pas de message trouvé dans ce forum");
+// }}}
+
+?>

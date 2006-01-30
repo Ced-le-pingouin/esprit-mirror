@@ -1,0 +1,8 @@
+.onglet_ligne_inferieure { border: rgb(222,230,230) none 1px; border-bottom-style: solid; vertical-align: bottom; }
+.onglet_1x2 { color: rgb(0,70,213); font-size: 9pt; font-weight: normal; text-align: center; }
+.onglet_tab_1x2 { background: rgb(255,255,255) url('onglet_tab-1x2.gif') repeat-x top left; color: rgb(72,94,165); font-size: 8pt; font-weight: bold; text-align: center; }
+.onglet_tab_rect_1x2 {
+	background-image: url('onglet_tab_rect-1x2.gif');
+	background-repeat: repeat-x;
+	background-position: bottom left;
+}

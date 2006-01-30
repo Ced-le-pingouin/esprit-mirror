@@ -1,0 +1,54 @@
+/* Les menus de gauche */
+td.menu_titre_colonne
+{
+	background-color: rgb(111,105,87);
+	color: rgb(255,255,255);
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+td.menu_intitule
+{
+	background-color: rgb(202,195,177);
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+}
+
+div.pas_de_message
+{
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+}
+body.dialog_sous_titre
+{
+	background-color: rgb(111,105,87);
+	border: rgb(0,0,0) none 1px;
+	border-bottom-style: solid;
+	color: rgb(255,255,255);
+	padding: 5px;
+	text-align: center;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+/* Les menus du bas */
+td.annuler { text-align: left; padding-left: 5px; }
+td.nouveau_forum { text-align: right; padding-right: 5px; }
+td.nouveau_message { text-align: right; padding-right: 5px; }
+td.nouveau_sujet { text-align: right; padding-right: 5px; }
+td.menu_general { width: 1%; }
+td.quitter { padding-left: 5px; width: 1%; }
+td.remonter { padding-left: 5px; width: 1%; }
+td.valider { text-align: right; padding-right: 5px; }
+td.envoyer { text-align: right; padding-right: 5px; }
+td.fermer { text-align: right; padding-right: 5px; }
+td.modifier { text-align: right; padding-right: 5px; }
+
+/* Nouveau sujet */
+body.nouveau_sujet { background-image: none; }
+
+td.sujet_titre_principal { background-color: rgb(111,105,87);  color: rgb(255,255,255); text-align: center; font-weight: bold; padding: 3px; }
+.sujet_date { font-size: 8pt; }

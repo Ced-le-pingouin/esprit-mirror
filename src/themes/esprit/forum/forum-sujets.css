@@ -1,0 +1,9 @@
+html { margin: 0; height: 190px; }
+body { background-color: rgb(255,255,255); background-image: none; }
+a { font-size: 7pt; }
+.intitule, select { font-size: 7pt; }
+
+td.menu_ajouter_sujet_pour_tous { text-align: center; }
+td.menu_ajouter_sujet { width: 99%; text-align: right; }
+td.menu_modifier_sujet { width: 1%; }
+td.menu_supprimer_sujet { width: 1%; }

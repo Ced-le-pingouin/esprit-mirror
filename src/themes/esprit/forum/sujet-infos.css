@@ -1,0 +1,16 @@
+body {
+	background: rgb(248,249,251) url('sujet_infos-fond.gif') repeat-x;
+	
+	/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
+	scrollbar-face-color: rgb(230,240,243);
+	scrollbar-shadow-color: rgb(230,240,243);
+	scrollbar-3dlight-color: rgb(248,249,251);
+	scrollbar-arrow-color: rgb(255,255,255);
+	scrollbar-track-color: rgb(248,249,251);
+	scrollbar-highlight-color: rgb(248,249,251);
+	scrollbar-darkshadow-color: rgb(248,249,251);
+}
+table.sujet_infos { }
+td.sujet_titre { color: rgb(51,51,102); font-size: 11pt; font-weight: bold; }
+td.sujet_infos { font-size: 7pt; text-align: right; }
+

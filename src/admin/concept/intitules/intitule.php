@@ -1,0 +1,132 @@
+<?php
+
+/*
+** Fichier ................: intitule.php
+** Description ............: 
+** Date de création .......: 15/04/2003
+** Dernière modification ..: 23/06/2004
+** Auteurs ................: Filippo PORCO
+** Emails .................: ute@umh.ac.be
+**
+*/
+
+require_once("globals.inc.php");
+
+$oProjet = new CProjet();
+
+// ---------------------
+// ---------------------
+$sFonctionInit = NULL;
+
+if (isset($HTTP_GET_VARS["MODE"]))
+{
+	$url_iIdIntitule   = (empty($HTTP_GET_VARS["ID_INTITULE"]) ? NULL : $HTTP_GET_VARS["ID_INTITULE"]);
+	$url_sNomIntitule  = (empty($HTTP_GET_VARS["NOM_INTITULE"]) ? NULL : $HTTP_GET_VARS["NOM_INTITULE"]);
+	$url_iTypeIntitule = (empty($HTTP_GET_VARS["TYPE_INTITULE"]) ? NULL : $HTTP_GET_VARS["TYPE_INTITULE"]);
+	
+	$oIntitule = new CIntitule($oProjet->oBdd,$url_iIdIntitule);
+	
+	$oIntitule->defNom($url_sNomIntitule);
+	
+	if (AJOUTER_INTITULE == $HTTP_GET_VARS["MODE"])
+	{
+		$oIntitule->defType($url_iTypeIntitule);
+		$oIntitule->ajouter();
+		$url_iIdIntitule = $oIntitule->retId();
+	}
+	else if ($url_iIdIntitule > 0)
+	{
+		if (MODIFIER_INTITULE == $HTTP_GET_VARS["MODE"])
+		{
+			$oIntitule->enregistrer();
+		}
+		else if (SUPPRIMER_INTITULE == $HTTP_GET_VARS["MODE"])
+		{
+			if ($url_iTypeIntitule == TYPE_RUBRIQUE)
+				$oObj = new CModule_Rubrique($oProjet->oBdd);
+			else if ($url_iTypeIntitule == TYPE_MODULE)
+				$oObj = new CModule($oProjet->oBdd);
+			else
+				$oObj = NULL;
+			
+			if (is_object($oObj) && $oObj->peutSupprimerIntitule($url_iIdIntitule))
+			{
+				$oIntitule->supprimer();
+				$url_iIdIntitule = $url_sNomIntitule = NULL;
+			}
+			else
+			{
+				$sFonctionInit = "\tdocument.getElementById('idInfos').style.visibility = 'visible';";
+			}
+			
+			$oObj = NULL;
+		}
+	}
+}
+else
+{
+	$url_iTypeIntitule = (isset($HTTP_GET_VARS) ? $HTTP_GET_VARS["TYPE_INTITULE"] : NULL);
+}
+
+if (!isset($url_iTypeIntitule))
+	exit();
+
+if ($oProjet->verifPermission("PERM_MOD_TOUTES_SESSIONS"))
+	$bGestionIntitule = TRUE;
+else
+	$bGestionIntitule = FALSE;
+
+// ---------------------
+// Rechercher toutes les intitulés
+// ---------------------
+$oIntitules = new CIntitule($oProjet->oBdd);
+$iNbrIntitules = $oIntitules->initIntitules($url_iTypeIntitule);
+
+// ---------------------
+// Template
+// ---------------------
+$oTpl = new Template("intitule.tpl");
+
+$oTpl->remplacer("{fonction->init}",$sFonctionInit);
+
+$oBloc_Intitule = new TPL_Block("BLOCK_INTITULE",$oTpl);
+$oBloc_Intitule->beginLoop();
+
+$oSet_Menu_Modif = $oTpl->defVariable("SET_MENU_MODIF");
+$oSet_Menu_Vide  = $oTpl->defVariable("SET_MENU_VIDE");
+
+$oSet_Fond_Clair = $oTpl->defVariable("SET_FOND_CELLULE_CLAIR");
+$oSet_Fond_Fonce = $oTpl->defVariable("SET_FOND_CELLULE_FONCE");
+
+$sListeIntitules = NULL;
+$sNomClassCss = $oSet_Fond_Clair;
+
+foreach ($oIntitules->aoIntitules as $oIntitule)
+{
+	$sNomIntitule = $oIntitule->retNom(FALSE);
+	$sListeIntitules .= (isset($sListeIntitules) ? ";" : NULL)
+		.rawurlencode($sNomIntitule);
+	
+	$sMenus = ($bGestionIntitule ? $oSet_Menu_Modif : $oSet_Menu_Vide);
+	
+	// Insérer une nouvelle ligne
+	$oBloc_Intitule->nextLoop();
+	$oBloc_Intitule->remplacer("{intitule->style->classe}"," ".$sNomClassCss);
+	$oBloc_Intitule->remplacer("{gestion_intitule}",$sMenus);
+	$oBloc_Intitule->remplacer("{intitule->id}",$oIntitule->retId());
+	$oBloc_Intitule->remplacer("{intitule->nom}",htmlentities($sNomIntitule));
+	
+	// Changer la couleur de la ligne de la table
+	$sNomClassCss = ($oSet_Fond_Clair == $sNomClassCss
+		? $oSet_Fond_Fonce
+		: $oSet_Fond_Clair);
+}
+
+$oTpl->remplacer("{liste->intitules}",$sListeIntitules);
+
+$oBloc_Intitule->afficher();
+$oTpl->afficher();
+
+$oProjet->terminer();
+?>
+

@@ -1,0 +1,6 @@
+body { background-color: rgb(255,255,255); background-image: none; font-size: 8pt; }
+td { border: rgb(198,220,225) none 1px; border-bottom-style: dashed; }
+.sujet_numero_ligne { color: rgb(72,94,165); font-size: 7pt; font-weight: bold; }
+.sujet_titre { font-size: 8pt; }
+.sujet_nombre_messages { color: rgb(72,94,165); font-size: 7pt; white-space: nowrap; }
+.sujet_date_dernier_message { color: rgb(72,94,165); font-size: 7pt; }

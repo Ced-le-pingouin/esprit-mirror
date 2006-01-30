@@ -1,0 +1,18 @@
+body { background: rgb(255,255,255) url('zone_menu-fond.gif') repeat-x fixed top left; margin: 0px; }
+
+#logo { position: relative; background-image: url('zone_menu-logo.gif'); width: 225px; height: 116px; }
+#zone { color: rgb(255,255,255); font-size: 13pt; position: absolute; left: 0px; top: 67px; width: 225px; text-align: center; }
+
+/* ''' Utilisateur */
+#utilisateur { position: absolute; left: 0px; top: 50px; width: 100%; text-align: right; }
+#utilisateur span { color: rgb(255,255,255); font-size: 7pt; }
+#infos_utilisateur { cursor: help; }
+#prenom { text-transform: capitalize; }
+#nom { text-transform: uppercase; }
+#pseudo { text-transform: lowercase; }
+#statut { text-transform: none; }
+/* ''' */
+
+#titre { font-size: 8pt; font-weight: bold; position: absolute; left: 235px; top: 70px; }
+#sous_titre { font-size: 8pt; background-image: url('indice.gif'); background-position: center left; padding-left: 13px; padding-bottom: 2px; background-repeat: no-repeat; position: absolute; left: 250px; top: 95px; }
+

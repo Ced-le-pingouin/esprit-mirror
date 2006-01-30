@@ -1,0 +1,28 @@
+.bloc_menu_titre
+{
+	background-image: url("menu-1x2.gif");
+	background-repeat: repeat-x;
+	background-position: top center;
+	border: rgb(151,6,35) none 1px;
+	border-bottom-style: solid;
+	color: rgb(77,75,71);
+	font-size: 9pt;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+}
+
+.bloc_menu_coins_haut
+{
+	background-image: url("menu-1x2.gif");
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+
+.bloc_menu_coins_bas
+{
+	background-image: url("menu-3x2.gif");
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+

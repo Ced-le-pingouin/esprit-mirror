@@ -1,0 +1,16 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="theme://tableaudebord.css">
+<script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
+<script type="text/javascript" language="javascript" src="javascript://window.js"></script>
+<script type="text/javascript" language="javascript" src="javascript://sous_activ.js"></script>
+</head>
+<body>
+<div id="consigne">
+{consigne}
+<div id="tableau_de_bord">{tableau_de_bord}</div>
+</div>
+</body>
+</html>
+

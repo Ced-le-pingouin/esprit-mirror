@@ -1,0 +1,12 @@
+input, select, .label { display: block; float: left; margin-bottom: 5px; text-align: left; }
+.label { margin-left: 5px; font-size: 8pt; font-weight: bold; text-align: right; width: 120px; padding-top: 2px; padding-right: 10px; }
+br { clear: left; }
+
+#idDossierNom { width: 260px; }
+#idDossierNumeroOrdre { }
+
+/* ''' Suppression */
+#suppression { text-align: center; }
+#suppression_confirmer { font-weight: bold; }
+/* ''' */
+

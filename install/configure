@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# configure
+#
+# Unité de Technologie de l'Education
+# 18, Place du Parc
+# 7000 MONS
+
+UTILISATEUR_ESPRIT=porco
+GROUPE_ESPRIT=esprit
+
+UTILISATEUR_HTTP=nobody
+GROUPE_HTTP=nobody
+
+ESPRIT=..
+chown -R $UTILISATEUR_ESPRIT.$GROUPE_ESPRIT $ESPRIT/.
+
+# Initialiser le répertoire qui contiendra toutes
+# les formations.
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/formation $ESPRIT/tmp
+chmod a-rwx $ESPRIT/formation $ESPRIT/tmp
+chmod u+w $ESPRIT/formation $ESPRIT/tmp
+chmod a+rx $ESPRIT/formation $ESPRIT/tmp
+
+# Fichier log
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/admin/console/log
+
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/include/def $ESPRIT/bin
+
+chmod u+x $ESPRIT/bin/linux/unzip
+
+find $ESPRIT/. -group $GROUPE_ESPRIT -exec chmod g+w {} \;
+find $ESPRIT/. -type d -a -group $GROUPE_ESPRIT -exec chmod g+s {} \;
+
+echo "Configuration terminée"
+

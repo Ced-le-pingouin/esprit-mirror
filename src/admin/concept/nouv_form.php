@@ -1,0 +1,230 @@
+<?php
+
+/*
+** Fichier ................: nouv_form.php
+** Description ............:
+** Date de création .......: 03/06/2002
+** Dernière modification ..: 06/06/2005
+** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
+**
+** Unité de Technologie de l'Education
+** 18, Place du Parc
+** 7000 MONS
+*/
+
+require_once("globals.inc.php");
+require_once("admin_globals.inc.php");
+require_once(dir_include("dialog.class.php"));
+
+$oProjet = new CProjet();
+
+$oProjet->verifPeutUtiliserOutils("PERM_AJT_SESSION");
+
+// ---------------------
+// Déclarer les constantes locales
+// ---------------------
+define("NOUVELLE_FORMATION",0);
+define("COPIER_FORMATION",1);
+
+// ---------------------
+// Récupération des valeurs des formulaires ou des l'urls
+// ---------------------
+$etape    = isset($HTTP_POST_VARS["ETAPE"]) ? $HTTP_POST_VARS["ETAPE"] : "1";
+$filtre   = isset($HTTP_POST_VARS["FILTRE"]) ? $HTTP_POST_VARS["FILTRE"] : NULL;
+$fonction = isset($HTTP_POST_VARS["FONCTION"]) ? $HTTP_POST_VARS["FONCTION"] : NULL;
+$bInit    = isset($HTTP_POST_VARS["INIT"]) ? 0 : 1;
+
+// Informations de la formation
+$type     = isset($HTTP_POST_VARS["TYPE"]) ? $HTTP_POST_VARS["TYPE"] : NOUVELLE_FORMATION;
+$iIdForm  = (empty($HTTP_POST_VARS["ID_FORM"]) ? (empty($HTTP_GET_VARS["ID_FORM"]) ? 0 : $HTTP_GET_VARS["ID_FORM"]) : $HTTP_POST_VARS["ID_FORM"]);
+
+$url_iInscrSpontForm = isset($HTTP_POST_VARS["InscrSpontForm"]) ? $HTTP_POST_VARS["InscrSpontForm"] : 1;
+
+$url_sNomForm = empty($HTTP_POST_VARS["formation_nom"])
+	? (empty($HTTP_POST_VARS["NOM_FORM"])
+		? INTITULE_FORMATION." sans nom"
+		: $HTTP_POST_VARS["NOM_FORM"])
+	: $HTTP_POST_VARS["formation_nom"];
+
+$url_sDescrForm = empty($HTTP_POST_VARS["formation_description"])
+	? (empty($HTTP_POST_VARS["DESCR_FORM"])
+		? NULL
+		: $HTTP_POST_VARS["DESCR_FORM"])
+	: $HTTP_POST_VARS["formation_description"];
+
+if ($etape < 3 && $type == COPIER_FORMATION)
+{
+	$url_sNomForm = $url_sDescrForm = NULL;
+}
+else
+{
+	$url_sNomForm   = htmlentities(stripslashes($url_sNomForm));
+	$url_sDescrForm = htmlentities(stripslashes($url_sDescrForm));
+}
+
+// ---------------------
+// Initialisations
+// ---------------------
+$bConfirmation = FALSE;
+
+$MAX_PALLIER = ($type == NOUVELLE_FORMATION ? 3 : 4);
+
+if (isset($fonction))
+{
+	switch ($fonction)
+	{
+		case "precedent":
+			$etape--;
+			if ($etape < 1)
+				$etape = "1";
+			break;
+			
+		case "suivant":
+			$etape++;
+			if ($etape > $MAX_PALLIER)
+				$etape = $MAX_PALLIER;
+			break;
+			
+		case "valider":
+			$bConfirmation = TRUE;
+			break;
+	}
+}
+
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Ajouter une nouvelle formation</title>
+<?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('outils_admin.js')?>"></script>
+<script type="text/javascript" language="javascript">
+<!--
+
+var g_iFiltre = 1;
+var g_sTri = null;
+var g_iSensTri = false;
+
+function init(v_iLargeurFenetre,v_iHauteurFenetre,v_bInitFen,v_bCentrerFen)
+{ // v2.0
+	if (v_bInitFen)
+	{
+		if (v_iHauteurFenetre < 1)
+			v_iHauteurFenetre = self.document.height+25;
+		
+		self.resizeTo(v_iLargeurFenetre,v_iHauteurFenetre);
+		
+		if (v_bCentrerFen)
+		{
+			var iCentrerHorizontalement = (screen.width-v_iLargeurFenetre)/2;
+			var iCentrerVerticalement = (screen.height-v_iHauteurFenetre)/2;
+			
+			self.moveTo(iCentrerHorizontalement,iCentrerVerticalement);
+		}
+		
+		self.focus();
+	}
+}
+
+function changerType(v_sType)
+{
+	document.forms["FRM_GENERAL"].TYPE.value = v_sType;
+}
+
+function rechargerListe(v_oObject,v_sType)
+{
+	var sParamsUrl = "";
+	
+	switch(v_sType)
+	{
+		case "filtre":
+			g_iFiltre = v_oObject.options[v_oObject.selectedIndex].value;
+			sParamsUrl = '?FILTRE=' + g_iFiltre;
+			break;
+		
+		case "trier_types":
+			if (g_sTri != "trier_types")
+			{
+				g_sTri = "trier_types";
+				g_iSensTri = false;
+			}
+			else
+				g_iSensTri = !g_iSensTri;
+				
+			sParamsUrl = '?FILTRE=' + g_iFiltre + '&TRI=types&SENS_TRI=' + (g_iSensTri ? 'DESC' : 'ASC');
+			break;
+			
+		case "trier_noms":
+			if (g_sTri != "trier_noms")
+			{
+				g_sTri = "trier_noms";
+				g_iSensTri = false;
+			}
+			else
+				g_iSensTri = !g_iSensTri;
+			sParamsUrl = '?FILTRE=' + g_iFiltre + '&TRI=noms&SENS_TRI=' + (g_iSensTri ? 'DESC' : 'ASC');
+			break;
+	}
+	
+	top.frames['main'].frames['IFRAME_LISTE'].location = 'nvfrm_lst.php' + sParamsUrl;
+}
+
+function afficherMenu()
+{
+	top.frames['menu'].location = "nouv_form_menu.php"
+		+ "<?php echo ($bConfirmation ? "?fin=1" : "?etape={$etape}&etapes={$MAX_PALLIER}"); ?>";
+}
+
+function editeur_callback(v_sForm,v_sElem,v_sTexte) { document.forms[v_sForm].elements[v_sElem].value = v_sTexte; }
+//-->
+</script>
+</head>
+<body onload="afficherMenu()">
+<form name="FRM_GENERAL" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td align="left" valign="top">
+<?php
+switch ($etape)
+{
+	case "4":
+		include_once("nvfrm_pg4.inc.php");
+		break;
+		
+	case "3":
+		if ($type == COPIER_FORMATION)
+			include_once("nvfrm_cp_pg3.php");
+		else
+			include_once("nvfrm_pg4.inc.php");
+		break;
+		
+	case "2":
+		if ($type == NOUVELLE_FORMATION)
+			include_once("nvfrm_nv_pg3.php");
+		else
+			include_once("nvfrm_pg2.php");
+		break;
+		
+	default:
+		include_once("nvfrm_pg1.php");
+}
+
+?>
+</td>
+</tr>
+</table>
+<input type="hidden" name="ETAPE" value="<?=$etape?>">
+<input type="hidden" name="FONCTION" value="">
+<input type="hidden" name="INIT" value="0">
+
+<input type="hidden" name="ID_FORM" value="<?=$iIdForm?>">
+<input type="hidden" name="TYPE" value="<?=$type?>">
+<input type="hidden" name="NOM_FORM" value="<?=$url_sNomForm?>">
+<input type="hidden" name="DESCR_FORM" value="<?=$url_sDescrForm?>">
+
+</form>
+</body>
+</html>
+<?php $oProjet->terminer(); ?>

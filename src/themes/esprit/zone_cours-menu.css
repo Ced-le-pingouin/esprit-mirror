@@ -1,0 +1,42 @@
+body { background: rgb(251,249,238); background-image: none; }
+
+td.bloque
+{
+	background-image: url("menu-1x2.gif");
+	background-repeat: repeat-x;
+	background-position: top center;
+	border: rgb(151,6,35) none 2px;
+	border-bottom-style: dotted;
+}
+
+.bloque
+{
+	color: rgb(0,0,0);
+	font-size: 11pt;
+	font-weight: bold;
+	text-align: left;
+	padding: 5px;
+}
+
+.element_actif, .element_equipe
+{
+	color: rgb(0,0,0);
+	background-color: rgb(251,249,238);
+	font-size: 10pt;
+	font-weight: normal;
+	text-align: left;
+	padding: 3px;
+}
+
+.element_equipe
+{
+	text-align: right;
+}
+
+#indice
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	visibility: hidden;
+}

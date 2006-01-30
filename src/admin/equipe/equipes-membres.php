@@ -1,0 +1,126 @@
+<?php
+
+/*
+** Fichier ................: equipes-membres.php
+** Description ............: 
+** Date de création .......: 01/01/2003
+** Dernière modification ..: 15/08/2004
+** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
+**
+** Unité de Technologie de l'Education
+** 18, Place du Parc
+** 7000 MONS
+*/
+
+require_once("globals.inc.php");
+
+$oProjet = new CProjet();
+
+// ---------------------
+// Récupérer les variables de l'url
+// ---------------------
+if (!empty($HTTP_GET_VARS["ID_EQUIPE"]))
+	$url_iIdEquipe = $HTTP_GET_VARS["ID_EQUIPE"];
+else if (!empty($HTTP_POST_VARS["ID_EQUIPE"]))
+	$url_iIdEquipe = $HTTP_POST_VARS["ID_EQUIPE"];
+else
+	$url_iIdEquipe = 0;
+
+if (!empty($HTTP_GET_VARS["NIVEAU"]))
+	$url_iNiveau = $HTTP_GET_VARS["NIVEAU"];
+else if (!empty($HTTP_POST_VARS["NIVEAU"]))
+	$url_iNiveau = $HTTP_POST_VARS["NIVEAU"];
+else
+	$url_iNiveau = 0;
+
+//echo "ID_EQUIPE={$url_iIdEquipe}<br>NIVEAU={$url_iNiveau}<hr>";
+
+// *************************************
+// Retirer un membre de l'équipe
+// *************************************
+
+$sCorpFonctionInit = NULL;
+
+if (isset($HTTP_POST_VARS["ID_PERS"]) && $url_iIdEquipe > 0)
+{
+	$oEquipeMembre = new CEquipe_Membre($oProjet->oBdd,$url_iIdEquipe);
+	$oEquipeMembre->effacerMembres($HTTP_POST_VARS["ID_PERS"]);
+	$sCorpFonctionInit = "\n\ttop.oEtudiants().envoyer();\n";
+}
+
+// *************************************
+//
+// *************************************
+
+$oEquipe = new CEquipe($oProjet->oBdd,$url_iIdEquipe);
+
+$iNbMembres = $oEquipe->initMembres();
+
+$sCorpHtml = NULL;
+$sRepIcone = dir_theme_commun("icones");
+
+for ($iIdxMembre=0; $iIdxMembre<$iNbMembres; $iIdxMembre++)
+	$sCorpHtml .= "<tr>"
+		."<td>"
+		."<input type=\"radio\""
+		." name=\"ID_PERS\""
+		." value=\"".$oEquipe->aoMembres[$iIdxMembre]->retId()."\""
+		." onfocus=\"blur()\""
+		.">"
+		."</td>"
+		."<td><img src=\"{$sRepIcone}/".($oEquipe->aoMembres[$iIdxMembre]->retSexe() == "F" ? "girl.gif" : "boy.gif")."\" border=\"0\"></td>"
+		."<td width=\"99%\" style=\"border: rgb(240,240,240) none 1px; border-bottom-style: dashed;\">"
+		."&nbsp;&nbsp;"
+		."<a"
+		." href=\"javascript: profil('?idPers=".$oEquipe->aoMembres[$iIdxMembre]->retId()."'); void(0);\""
+		." onclick=\"blur()\""
+		.">".$oEquipe->aoMembres[$iIdxMembre]->retNomComplet(TRUE)."</a>"
+		."<br>&nbsp;&nbsp;"
+		."<small>".$oEquipe->aoMembres[$iIdxMembre]->retPseudo()."</small>"
+		."</td>"
+		."</tr>\n";
+
+if (empty($sCorpHtml))
+{
+	$asTypes = array(NULL,"cette formation","ce cours",NULL,"cette unit&eacute;");
+	
+	$sCorpHtml .= "<tr>"
+			."<td>"
+			."<div class=\"Attention\" align=\"center\">"
+			.($url_iIdEquipe < 1 && $url_iNiveau < 1 ? "Il n'y a pas d'&eacute;quipe pour l'instant &agrave; ce niveau" : "Il n'y aucun &eacute;tudiant d'affect&eacute; dans cette &eacute;quipe")
+			."</div>"
+			."</td>"
+			."</tr>\n";
+}
+
+?>
+<html>
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="NO-CACHE">
+<?php inserer_feuille_style("equipes.css"); ?>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?=dir_javascript('outils_admin.js')?>"></script>
+<script type="text/javascript" language="javascript">
+<!--
+
+function init()
+{<?php echo $sCorpFonctionInit; ?>
+}
+
+function enlever() { document.forms[0].submit(); }
+
+//-->
+</script>
+
+</head>
+<body class="membres" onload="init()">
+<form method="post">
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+<?=$sCorpHtml?>
+</table>
+<input type="hidden" name="ID_EQUIPE" value="<?=$url_iIdEquipe?>">
+<input type="hidden" name="NIVEAU" value="<?=$url_iNiveau?>">
+</form>
+</body>
+</html>
