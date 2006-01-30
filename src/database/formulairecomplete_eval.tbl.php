@@ -4,7 +4,7 @@
 ** Fichier ................: formulairecomplete_eval.tbl.php
 ** Description ............: 
 ** Date de création .......: 05/11/2004
-** Dernière modification ..: 09/11/2004
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
 ** Unité de Technologie de l'Education
@@ -96,7 +96,7 @@ class CFormulaireComplete_Evaluation
 	function retIdFC () { return (empty($this->oEnregBdd) ? 0 : $this->oEnregBdd->IdFC); }
 	function retStatut () { return (empty($this->oEnregBdd) ? STATUT_RES_APPROF : $this->oEnregBdd->StatutFormSousActiv); }
 	function retIdEvaluateur () { return $this->iIdPers; }
-	function retDate () { return (empty($this->oEnregBdd->DateEval) ? date("d/m/y") : retDateFormatter($this->oEnregBdd->DateEval)); }
+	function retDate () { return (empty($this->oEnregBdd->DateEval) ? date("d/m/y") : formatterDate($this->oEnregBdd->DateEval)); }
 	function retAppreciation () { return (isset($this->oEnregBdd->AppreciationEval) ? $this->oEnregBdd->AppreciationEval : NULL); }
 	function retCommentaire () { return (isset($this->oEnregBdd->CommentaireEval) ? $this->oEnregBdd->CommentaireEval : NULL); }
 	// }}}

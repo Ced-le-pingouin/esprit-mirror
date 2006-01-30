@@ -195,10 +195,7 @@ class CCollecticiel
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function deverrouillerTables ()
-	{
-		$this->oBdd->executerRequete("UNLOCK TABLES");
-	}
+	function deverrouillerTables () { $this->oBdd->executerRequete("UNLOCK TABLES"); }
 }
 
 ?>

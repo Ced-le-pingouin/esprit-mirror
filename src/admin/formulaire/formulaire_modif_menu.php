@@ -22,126 +22,33 @@ else if (isset($HTTP_POST_VARS))
 ?>
 
 <html>
-
 <head>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript("window.js")?>"></script>
-<script type="text/javascript">
-<!--
-function ajoutobj(idformulaire)
-{
-	PopupCenter('formulaire_modif_ajout.php?idformulaire='+idformulaire,'WinAjoutObjForm',450,150,'location=no,status=no,toolbar=no,scrollbars=no');
-}
-
-function supobj(idobj,idformulaire) 
-{
-	if (confirm('Voulez-vous supprimer l\'objet sélectionné ?'))
-	{
-		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_sup.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	}
-}
-	
-function modifposobj(idobj,idformulaire)
-{
-	PopupCenter('position_objet.php?idobj='+idobj+'&idformulaire='+idformulaire,'WinModifPosObjForm',300,150,'location=no,status=no,toolbar=no,scrollbars=no');
-}
-
-function copieobj(idobj,idformulaire) 
-{
-	if (confirm('Voulez-vous copier l\'objet sélectionné ?'))
-	{
-		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_copie.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	}
-}
-
-function modifaxeform(idformulaire)
-{
-	PopupCenter('formulaire_axe_index.php?idformulaire='+idformulaire,'WinModifAxesForm',450,300,'location=no,status=no,toolbar=no,scrollbars=yes');
-}
-//-->
-</script>
-
-
 <link type="text/css" rel="stylesheet" href="<?=dir_theme("formulaire/formulaire.css");?>">
-
 </head>
 
 <?php
 echo "<body class=\"menumodif\">\n";
 echo "<TABLE style=\"border-top:1px solid black; border-bottom:1px solid black\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"100%\">\n";
 
+// affichage du n° d'ordre et du type de l'élément courant
 echo "<tr><td style=\"text-align : left\">&nbsp\n";
-
-echo "Elément : ";
-
-if ($v_iIdFormulaire > 0)
+if ($v_iIdObjForm > 0)
 {
-	//echo "<a href=\"javascript: ajoutobj($v_iIdFormulaire);\">Ajouter un élément</a>\n";
-	echo "<a href=\"javascript: ajoutobj($v_iIdFormulaire);\">Ajouter</a>\n";
+	$oObjForm = new CObjetFormulaire($oProjet->oBdd, $v_iIdObjForm);
+	$oTypeObj = new CTypeObjetForm($oProjet->oBdd, $oObjForm->retIdType());
+	
+	echo "<b>Elément";
+	echo " ".$oObjForm->retOrdre();
+	echo " (".$oTypeObj->retDescCourte().")";
+	echo "</b>";
 }
 else
 {
-	echo "<font color = red>";
-	echo "Ajouter"; // un élément";
-	echo "</font>\n";
+	echo "<b>Options du formulaire</b>";
 }
+echo "</td>";
 
-echo " - ";
-
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire uniquement pour pouvoir recharger la liste après la suppression
-{
-	//echo "<a href=\"javascript: supobj($v_iIdObjForm,$v_iIdFormulaire);\">Supprimer l'élément</a>\n";
-	echo "<a href=\"javascript: supobj($v_iIdObjForm,$v_iIdFormulaire);\">Supprimer</a>\n";
-}
-else
-{
-	echo "<font color = red>";
-	echo "Supprimer"; // l'élément";
-	echo "</font>\n";
-}
-
-echo " - ";
-
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste après le déplacement
-{
-	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">Déplacer l'élément</a>\n";
-	echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">Déplacer</a>\n";
-}
-else
-{
-	echo "<font color = red>";
-	echo "Déplacer";// l'élément";
-	echo "</font>\n";
-}
-
-echo " - ";
-
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste après le déplacement
-{
-	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">Copier l'élément</a>\n";
-	echo "<a href=\"javascript: copieobj($v_iIdObjForm,$v_iIdFormulaire);\">Copier</a>\n";
-}
-else
-{
-	echo "<font color = red>";
-	echo "Copier";// l'élément";
-	echo "</font>\n";
-}
-
-echo "</td><td style=\"text-align : right\">";
-
-
-if ($v_iIdFormulaire > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste après le déplacement
-{
-	echo "<a href=\"javascript: modifaxeform($v_iIdFormulaire);\">Définir les axes de ce formulaire</a>\n";
-}
-else
-{
-	echo "<font color = red>";
-	echo "Définir les axes de ce formulaire";
-	echo "</font>\n";
-}
-
-echo "&nbsp</td></tr>\n";
+echo "</tr>\n";
 echo "</TABLE>\n";
 echo "</body>\n";
 }//Verification de la permission d'utiliser le concepteur de formulaire

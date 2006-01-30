@@ -59,14 +59,14 @@ if (isset($HTTP_GET_VARS['valider']))
 	{
 		echo "<p align=\"center\">";
 		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Aucun Axe n'a été selectionné pour ce formulaire";
+		echo "<br>Aucun axe n'a été selectionné pour ce formulaire";
 		echo "</p>";
 	}
 	else
 	{
 		echo "<p align=\"center\">";
 		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Nombre d'axe sélectionné au total : ".$iNbAxesForm;
+		echo "<br>Nombre d'axes sélectionné au total : ".$iNbAxesForm;
 		echo "</p>";
 		
 		$oTpl = new Template("formulaire_axe_2.tpl");

@@ -4,7 +4,7 @@
 ** Fichier ................: ressource_sous_activ.tbl.php
 ** Description ............: 
 ** Date de création .......: 01/06/2001
-** Dernière modification ..: 15/07/2005
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
@@ -315,7 +315,7 @@ class CRessourceSousActiv
 	
 	function initVotants ()
 	{
-		$iIdxVote = 0;
+		$iIdxVotant = 0;
 		
 		$this->aoVotants = array();
 		
@@ -327,17 +327,18 @@ class CRessourceSousActiv
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$this->aoVotants[$iIdxVote] = new CPersonne($this->oBdd);
-			$this->aoVotants[$iIdxVote]->init($oEnreg);
-			$iIdxVote++;
+			$this->aoVotants[$iIdxVotant] = new CPersonne($this->oBdd);
+			$this->aoVotants[$iIdxVotant]->init($oEnreg);
+			$iIdxVotant++;
 		}
 		
 		$this->oBdd->libererResult($hResult);
 		
-		return $iIdxVote;
+		return $iIdxVotant;
 	}
 	
 	function retIdSousActiv () { return $this->oEnregBdd->IdSousActiv; }
+	function retDateModifStatut () { return $this->oEnregBdd->DateModifStatut; }
 	
 	function initEvaluations ()
 	{
@@ -358,23 +359,23 @@ class CRessourceSousActiv
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function retTexteStatut ($v_iStatut=NULL)
+	function retTexteStatut ($v_iIdStatut=NULL)
 	{
-		if (empty($v_iStatut))
-			$v_iStatut = $this->retStatut();
+		if (empty($v_iIdStatut))
+			$v_iIdStatut = $this->retStatut();
 		
-		switch ($v_iStatut)
+		switch ($v_iIdStatut)
 		{
-			case STATUT_RES_ORIGINAL: $r_sTexteStatut = "original"; break;
-			case STATUT_RES_EN_COURS: $r_sTexteStatut = ($this->retNbVotants() > 0 ? "vote en cours" : "en cours"); break;
-			case STATUT_RES_SOUMISE: $r_sTexteStatut = "soumis"; break;
-			case STATUT_RES_APPROF: $r_sTexteStatut = "à approfondir"; break;
-			case STATUT_RES_ACCEPTEE: $r_sTexteStatut = "accepté"; break;
-			case STATUT_RES_TRANSFERE: $r_sTexteStatut = "transféré"; break;
-			default: $r_sTexteStatut = "-";
+			case STATUT_RES_ORIGINAL: $sTexteStatut = "original"; break;
+			case STATUT_RES_EN_COURS: $sTexteStatut = ($this->retNbVotants() > 0 ? "vote en cours" : "en cours"); break;
+			case STATUT_RES_SOUMISE: $sTexteStatut = "soumis"; break;
+			case STATUT_RES_APPROF: $sTexteStatut = "à approfondir"; break;
+			case STATUT_RES_ACCEPTEE: $sTexteStatut = "accepté"; break;
+			case STATUT_RES_TRANSFERE: $sTexteStatut = "transféré"; break;
+			default: $sTexteStatut = "-";
 		}
 		
-		return $r_sTexteStatut;
+		return $sTexteStatut;
 	}
 	
 	function retTransfere ()
@@ -392,15 +393,17 @@ class CRessourceSousActiv
 	
 	function retEstSoumise ()
 	{
-		return ($this->retStatut() == STATUT_RES_SOUMISE ||
-				$this->retStatut() == STATUT_RES_APPROF ||
-				$this->retStatut() == STATUT_RES_ACCEPTEE);
+		$iIdStatut = $this->retStatut();
+		return (STATUT_RES_SOUMISE == $iIdStatut
+			|| STATUT_RES_APPROF == $iIdStatut
+			|| STATUT_RES_ACCEPTEE == $iIdStatut);
 	}
 	
 	function retEstEvaluee ()
 	{
-		return ($this->retStatut() == STATUT_RES_APPROF ||
-				$this->retStatut() == STATUT_RES_ACCEPTEE);
+		$iIdStatut = $this->retStatut();
+		return (STATUT_RES_APPROF == $iIdStatut
+			|| STATUT_RES_ACCEPTEE == $iIdStatut);
 	}
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0);  }
@@ -445,10 +448,7 @@ class CRessourceSousActiv
 		return $this->oEquipe->initEquipe($this->retIdExped(),$this->retIdSousActiv(),TYPE_SOUS_ACTIVITE,$v_bInitMembres);
 	}
 	
-	function retRepertoire ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE)
-	{
-		return dir_collecticiel($this->aiIdsParent[TYPE_FORMATION],$this->aiIdsParent[TYPE_ACTIVITE],$v_sFichierAInclure,$v_bCheminAbsolu);
-	}
+	function retRepertoire ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_collecticiel($this->aiIdsParent[TYPE_FORMATION],$this->aiIdsParent[TYPE_ACTIVITE],$v_sFichierAInclure,$v_bCheminAbsolu); }
 }
 
 ?>

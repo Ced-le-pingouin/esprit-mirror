@@ -108,32 +108,41 @@ function cHtmlMPSeparateur()
 }
 
 
-function cHtmlMPSeparateurModif($v_iIdObjForm,$v_iIdFormulaire)
+	function cHtmlMPSeparateurModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-	global $HTTP_POST_VARS, $HTTP_GET_VARS;
-	
-	//initialisation des messages d'erreurs à 'vide' et de la variable servant a detecter
-	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
-	$sMessageErreur1="";
-	$iFlagErreur=0;
-	
-	if (isset($HTTP_POST_VARS['envoyer'])) 
+		global $HTTP_POST_VARS, $HTTP_GET_VARS;
+		
+		$oObjetFormulaire = new CObjetFormulaire($this->oBdd, $v_iIdObjForm);
+		
+		//initialisation des messages d'erreurs à 'vide' et de la variable servant a detecter
+		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
+		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
+		$sMessageErreur1="";
+		$iFlagErreur=0;
+		
+		if (isset($HTTP_POST_VARS['envoyer'])) 
 		{
-			   //Récupération des variables transmises par le formulaire
-			   $this->oEnregBdd->LargeurMPS = $HTTP_POST_VARS['Largeur'];
-			   $this->oEnregBdd->TypeLargMPS = $HTTP_POST_VARS['TypeLarg'];
-			   $this->oEnregBdd->AlignMPS = $HTTP_POST_VARS['Align'];
+			//Récupération des variables transmises par le formulaire
+			$this->oEnregBdd->LargeurMPS = $HTTP_POST_VARS['Largeur'];
+			$this->oEnregBdd->TypeLargMPS = $HTTP_POST_VARS['TypeLarg'];
+			$this->oEnregBdd->AlignMPS = $HTTP_POST_VARS['Align'];
+			
+			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			if (!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			
+			if ($iFlagErreur == 0)
+			{
+				$oObjetFormulaire->verrouillerTablesQuestion();
+				// enregistrement de la position de l'objet
+				$oObjetFormulaire->DeplacerObjet($HTTP_POST_VARS["selOrdreObjet"], FALSE);
+				// enregistrement des données spécifiques à ce type d'élément/objet
+				$this->enregistrer();
+				$oObjetFormulaire->deverrouillerTablesQuestion();
 				
-			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			   if (!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			   
-			   if ($iFlagErreur == 0)
-					{		$this->enregistrer();
-					  		echo "<script>\n";
-							echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
-						  	echo "</script>\n";
-					} //si pas d'erreur, enregistrement physique
+				echo "<script>\n";
+				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
+				echo "</script>\n";
+			} //si pas d'erreur, enregistrement physique
 		}
 	
 	
@@ -157,22 +166,25 @@ function cHtmlMPSeparateurModif($v_iIdObjForm,$v_iIdFormulaire)
 	
 	$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
 	
-	$sCodeHtml ="<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">"
-		   ."<fieldset><legend><b>Mise en page de type \"séparateur\"</b></legend>"
-		   ."<TABLE>"
+	$sCodeHtml =
+			"<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">"
+			.$oObjetFormulaire->cHtmlNumeroOrdre()
+		   ."<fieldset><legend>&nbsp;Mise en page de type \"séparateur\"&nbsp;</legend>"
+		   
+		   ."<TABLE BORDER=\"0\" WIDTH=\"99%\"><TR><TD ALIGN=\"right\">"
+				."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"left\" $ae1 ID=\"idAlignG\"><label for=\"idAlignG\">Gauche</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"right\" $ae2 ID=\"idAlignD\"><label for=\"idAlignD\">Droite</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"center\" $ae3 ID=\"idAlignC\"><label for=\"idAlignC\">Centrer</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"justify\" $ae4 ID=\"idAlignJ\"><label for=\"idAlignJ\">Justifier</label>\n"
+			."</TD></TR></TABLE>"
+		   ."</TABLE>"
+		   
+		   ."<TABLE width=\"99%\">"
 		   ."<TR>"
-		   ."<TD>$sMessageErreur1 Largeur :</TD>"
+		   ."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur1 Largeur&nbsp;:&nbsp;&nbsp;</TD>"
 		   ."<TD><input type=\"text\" size=\"4\" maxlength=\"4\" name=\"Largeur\" Value=\"{$this->oEnregBdd->LargeurMPS}\" onblur=\"verifNumeric(this)\">"
-		   ."&nbsp <INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"P\" $sAR1>pourcents"
+		   	."&nbsp <INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"P\" $sAR1>pourcents"
 		   ."<INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"N\" $sAR2>pixels"
-		   ."</TD>"
-			."</TR>"
-		   ."<TR>"
-		   ."<TD>Alignement :</TD>"
-		   ."<TD><INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"left\" $ae1>Gauche"
-		   ."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"right\" $ae2>Droite"
-		   ."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"center\" $ae3>Centrer"
-		   ."<INPUT TYPE=\"radio\" NAME=\"Align\" VALUE=\"justify\" $ae4>Justifier"
 		   ."</TD>"
 		   ."</TR>"
 		   ."</TABLE>"

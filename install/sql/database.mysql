@@ -1,6 +1,6 @@
 # MySQL dump 7.1
 #
-# Host: localhost    Database: ipfhainaut_dev
+# Host: localhost    Database: esprit 
 #--------------------------------------------------------
 # Server version	3.23.58-log
 
@@ -682,6 +682,7 @@ CREATE TABLE Ressource_SousActiv (
   IdSousActiv int(10) unsigned DEFAULT '0' NOT NULL,
   IdRes int(10) unsigned DEFAULT '0' NOT NULL,
   StatutResSousActiv tinyint(4),
+  DateModifStatut datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
   IdDest int(10) unsigned DEFAULT '0' NOT NULL,
   IdResSousActivSource int(10) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (IdResSousActiv)

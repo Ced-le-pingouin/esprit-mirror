@@ -35,6 +35,52 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 
 <script type="text/javascript">
 <!--
+
+// tableau qui contiendra les objets SELECT permettant de modifier l'ordre
+// des propositions dans les questions de type Liste/Radios/Cases
+var g_aoSelects = new Array();
+
+// initialiser le tableau de SELECT en fonction du nom
+function init()
+{
+	var i, j;
+	var sNomSelectOrdre = 'selOrdreProposition';
+	var iTailleNomSelectOrdre = sNomSelectOrdre.length;
+	
+	aoSelects = document.getElementsByTagName('select');
+	for (i = 0, j = 0; i < aoSelects.length; i++)
+	{
+		if (aoSelects[i].name.substr(0, iTailleNomSelectOrdre) == sNomSelectOrdre)
+		{
+			g_aoSelects[j] = aoSelects[i];
+			g_aoSelects[j].onchange = changerOrdreProposition;
+			g_aoSelects[j].selectedIndexCopy = g_aoSelects[j].selectedIndex;
+			j++;
+		}
+	}
+}
+
+// quand l'ordre d'une proposition est modifié, il faut s'assurer que la nouvelle 
+// valeur n'existe pas pour une autre proposition (auquel cas on lui attribue l'ancienne 
+// (valeur de la position qui vient d'être modifiée)
+function changerOrdreProposition()
+{
+	var i;
+	
+	for (i = 0; i < g_aoSelects.length; i++)
+	{
+		if (g_aoSelects[i] != this && g_aoSelects[i].selectedIndex == this.selectedIndex)
+		{
+			g_aoSelects[i].selectedIndex = this.selectedIndexCopy;
+			g_aoSelects[i].selectedIndexCopy = this.selectedIndexCopy;
+			break;
+		}
+	}
+	
+	this.selectedIndexCopy = this.selectedIndex;
+}
+
+
 function soumettre(TypeAct,Parametre)
 {
 	document.forms['formmodif'].typeaction.value=TypeAct;
@@ -46,12 +92,30 @@ function soumettre(TypeAct,Parametre)
 	
 	document.forms['formmodif'].submit();
 }
+
+function afficherAxes(v_iIdProposition, v_iAffichage)
+{
+	sIdDiv = 'divPanneauAxes' + v_iIdProposition;
+	oObj = document.getElementById(sIdDiv);
+	
+	if (v_iAffichage == 1)
+		oObj.style.display = "block";
+	else if (v_iAffichage == 0)
+		oObj.style.display = "none";
+	else if (v_iAffichage == -1)
+	{
+		if (oObj.style.display == "block")
+			oObj.style.display = "none"
+		else if (oObj.style.display == "none")
+			oObj.style.display = "block"
+	}
+}
 //-->
 </script>
 
 </head>
 
-<body class="modif">
+<body class="modif" onLoad="init();">
 	
 <?php
 	//echo "Idobj = ".$v_iIdObjForm;
@@ -73,7 +137,6 @@ function soumettre(TypeAct,Parametre)
 				
 			case 2:
 				//echo "Objet de type 2<br>";
-					
 				$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
 				echo $oQTexteCourt->cHtmlQTexteCourtModif($v_iIdObjForm,$v_iIdFormulaire);
 				
@@ -81,7 +144,6 @@ function soumettre(TypeAct,Parametre)
 				
 			case 3:
 				//echo "Objet de type 3<br>";
-				
 				$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
 				echo $oQNombre->cHtmlQNombreModif($v_iIdObjForm,$v_iIdFormulaire);
 				

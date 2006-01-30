@@ -142,10 +142,11 @@ class CQTexteLong
 	{
 		global $HTTP_POST_VARS, $HTTP_GET_VARS;
 		
+		$oObjetFormulaire = new CObjetFormulaire($this->oBdd, $v_iIdObjForm);
+		
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affichage d'une astérisque à l'endroit de l'erreur)
-		
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
 		$iFlagErreur=0;
 		
@@ -165,7 +166,13 @@ class CQTexteLong
 			
 			if ($iFlagErreur == 0) 
 			{
+				$oObjetFormulaire->verrouillerTablesQuestion();
+				// enregistrement de la position de l'objet
+				$oObjetFormulaire->DeplacerObjet($HTTP_POST_VARS["selOrdreObjet"], FALSE);
+				// enregistrement des données spécifiques à ce type d'élément/objet
 				$this->enregistrer();
+				$oObjetFormulaire->deverrouillerTablesQuestion();
+				
 				echo "<script>\n";
 				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
 				echo "</script>\n";
@@ -180,41 +187,39 @@ class CQTexteLong
 			  
 		$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
 		
-		$sCodeHtml ="<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
-			   ."<fieldset><legend><b>ENONCE</b></legend>\n"
-			   ."<TABLE>\n"
+		$sCodeHtml =
+				"<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
+				.$oObjetFormulaire->cHtmlNumeroOrdre()
+				."<fieldset><legend>&nbsp;Enoncé&nbsp;</legend>\n"
+				."<TABLE BORDER=\"0\" WIDTH=\"99%\"><TR><TD ALIGN=\"right\">"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1 ID=\"idAlignEnonG\"><label for=\"idAlignEnonG\">Gauche</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2 ID=\"idAlignEnonD\"><label for=\"idAlignEnonD\">Droite</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3 ID=\"idAlignEnonC\"><label for=\"idAlignEnonC\">Centrer</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4 ID=\"idAlignEnonJ\"><label for=\"idAlignEnonJ\">Justifier</label>\n"
+				."</TD></TR></TABLE>"
+			   ."<TABLE width=\"99%\">\n"
 			   ."<TR>\n"
-			   ."<TD>$sMessageErreur1 Enoncé :</TD>\n"
-			   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQTL}</textarea></TD>\n"
-			   ."</TR>\n"
-			   
-			   ."<TR>\n"
-			   ."<TD>Alignement énoncé :</TD>\n"
-			   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4>Justifier\n"
-			   ."</TD>\n"
+			   ."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur1 Enoncé&nbsp;:&nbsp;&nbsp;</TD>\n"
+			   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\" style=\"width: 100%\">{$this->oEnregBdd->EnonQTL}</textarea></TD>\n"
 			   ."</TR>\n"
 			   ."</TABLE>\n"
 			   ."</fieldset>\n"
 			   
-			   ."<fieldset><legend><b>REPONSE</b></legend>\n"
-			   ."<TABLE>\n"
+			   ."<fieldset><legend>&nbsp;Zone réponse&nbsp;</legend>\n"
+				."<TABLE BORDER=\"0\" WIDTH=\"99%\"><TR><TD ALIGN=\"right\">"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1 ID=\"idAlignRepG\"><label for=\"idAlignRepG\">Gauche</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2 ID=\"idAlignRepD\"><label for=\"idAlignRepD\">Droite</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3 ID=\"idAlignRepC\"><label for=\"idAlignRepC\">Centrer</label>\n"
+					."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4 ID=\"idAlignRepJ\"><label for=\"idAlignRepJ\">Justifier</label>\n"
+				."</TD></TR></TABLE>"
+			   ."<TABLE width=\"99%\">\n"
 			   ."<TR>\n"
-			   ."<TD>$sMessageErreur2 Largeur de la boîte de texte :</TD>\n"
+			   ."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur2 Largeur&nbsp;de&nbsp;la&nbsp;boîte&nbsp;de&nbsp;texte&nbsp;:&nbsp;&nbsp;</TD>\n"
 			   ."<TD><input type=\"text\" size=\"3\" maxlength=\"10\" name=\"Largeur\" Value=\"{$this->oEnregBdd->LargeurQTL}\" onblur=\"verifNumeric(this)\"></TD>\n"
 			   ."</TR><TR>\n"
-			   ."<TD>$sMessageErreur3 Hauteur de la boîte de texte :</TD>\n"
+			   ."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur3 Hauteur&nbsp;de&nbsp;la&nbsp;boîte&nbsp;de&nbsp;texte&nbsp;:&nbsp;&nbsp;</TD>\n"
 			   ."<TD><input type=\"text\" size=\"3\" maxlength=\"10\" name=\"Hauteur\" Value=\"{$this->oEnregBdd->HauteurQTL}\" onblur=\"verifNumeric(this)\"></TD>\n"
-			   ."</TR><TR>\n"
-			   ."<TD>Alignement Réponse :</TD>\n"
-			   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
-			   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4>Justifier\n"
-			   ."</TD>\n"
-			   ."</TR>\n"
+			   ."</TR>"
 			   ."</TABLE>\n"
 			   ."</fieldset>\n"
 			   

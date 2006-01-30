@@ -23,7 +23,17 @@ $oProjet = new CProjet();
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <title>Conception de formulaires en ligne - Unite de Technologie de l'Education</title>
 <script language="javascript">
-	function defTexteStatut(v_sTitle) {	top.frames["menu"].document.getElementById("id_status").innerHTML = unescape(v_sTitle); }
+function defTexteStatut(v_sTitre)
+{
+	//top.frames["menu"].document.getElementById("id_status").innerHTML = unescape(v_sTitre);
+}
+
+function defTitre(v_sTitre)
+{
+	if (top.frames["FORMFRAMETITRE"].document && typeof(top.frames["FORMFRAMETITRE"].document.getElementById("titre_principal")) == 'object')
+		top.frames["FORMFRAMETITRE"].document.getElementById("titre_principal").innerHTML = unescape(v_sTitre);
+}
+
 </script>
 </head>
 

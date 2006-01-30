@@ -1,5 +1,4 @@
 <?php
-
 /*
 ** Fichier ................: formulaire.tbl.php
 ** Description ............: 
@@ -78,7 +77,7 @@ class CFormulaire
 			."  AND fa.IdAxe=a.IdAxe"
 			." ORDER BY a.IdAxe"
 			;
-			
+		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
@@ -210,7 +209,9 @@ class CFormulaire
 	*/
 	function ajouter ($iIdPers)
 	{
-		$sRequeteSql = "INSERT INTO Formulaire SET IdForm=NULL, Titre='Nouveau Formulaire', Encadrer=1, IdPers='$iIdPers';";
+		$sTitre = 'Nouveau Formulaire';
+		$sNom = $sTitre;
+		$sRequeteSql = "INSERT INTO Formulaire SET IdForm=NULL, Nom='$sNom', Titre='$sTitre', Encadrer=1, IdPers='$iIdPers';";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return ($this->iId = $this->oBdd->retDernierId());
@@ -233,24 +234,37 @@ class CFormulaire
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
 		
-		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 ="";
+		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
 		$iFlagErreur=0;
 		
 		if (isset($HTTP_POST_VARS['envoyer'])) 
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->Titre = stripslashes($HTTP_POST_VARS['Titre']);
-			$this->oEnregBdd->Encadrer = $HTTP_POST_VARS['Encadrer'];
-			$this->oEnregBdd->Largeur = $HTTP_POST_VARS['Largeur'];
+			$this->defNom(stripslashes($HTTP_POST_VARS['Nom']));
+			$this->defCommentaire(stripslashes($HTTP_POST_VARS['Commentaire']));
 			$this->oEnregBdd->TypeLarg = $HTTP_POST_VARS['TypeLarg'];
-			$this->oEnregBdd->InterElem = $HTTP_POST_VARS['InterElem'];
-			$this->oEnregBdd->InterEnonRep = $HTTP_POST_VARS['InterEnonRep'];
 			$this->defRemplirTout($HTTP_POST_VARS['RemplirTout']);
+			$this->defActiverScores($HTTP_POST_VARS['ActiverScores']);
+			$this->defScoreBonParDefaut(stripslashes($HTTP_POST_VARS['ScoreBonParDefaut']));
+			$this->defScoreMauvaisParDefaut(stripslashes($HTTP_POST_VARS['ScoreMauvaisParDefaut']));
+			$this->defScoreNeutreParDefaut(stripslashes($HTTP_POST_VARS['ScoreNeutreParDefaut']));
+			$this->defActiverAxes($HTTP_POST_VARS['ActiverAxes']);
+			
+			$this->defTitre(stripslashes($HTTP_POST_VARS['Titre']));
+			$this->oEnregBdd->Encadrer = $HTTP_POST_VARS['Encadrer'];
+			
+			$this->oEnregBdd->Largeur = stripslashes($HTTP_POST_VARS['Largeur']);
+			$this->oEnregBdd->InterElem = stripslashes($HTTP_POST_VARS['InterElem']);
+			$this->oEnregBdd->InterEnonRep = stripslashes($HTTP_POST_VARS['InterEnonRep']);
+			
 			$this->oEnregBdd->Statut = 1; //$HTTP_POST_VARS['Statut'];
 			$this->oEnregBdd->Type = $HTTP_POST_VARS['Type'];
 				
 				
 			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			if (strlen($HTTP_POST_VARS['Nom']) < 1)
+				{ $sMessageErreurNom="<font color =\"red\">*</font>"; $iFlagErreur=1; }
+			
 			if (strlen($HTTP_POST_VARS['Titre']) < 1)
 				{ $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1; }
 			
@@ -308,62 +322,108 @@ class CFormulaire
 		else
 			$sRemplirToutSel = "";
 		
+		if ($this->retActiverScores())
+			$sActiverScoresSel = "CHECKED";
+		else
+			$sActiverScoresSel = "";
+		
+		if ($this->retActiverAxes())
+			$sActiverAxesSel = "CHECKED";
+		else
+			$sActiverAxesSel = "";
+		
 		$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
 		
-		$sCodeHtml = "<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
-			."<fieldset><legend><b>Titre du formulaire</b></legend>\n"
-			."<TABLE>\n"
+		$sCodeHtml =
+			"<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
+			
+			."<fieldset><legend>&nbsp;Propriétés du formulaire&nbsp;</legend>\n"
+			."<TABLE border=\"0\" width=\"99%\">\n"
 			."<TR>\n"
-			."<TD>$sMessageErreur1 Titre :</TD>\n"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"100\" name=\"Titre\" Value=\"{$this->oEnregBdd->Titre}\"></TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">$sMessageErreurNom Nom&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><input type=\"text\" size=\"70\" maxlength=\"100\" style=\"width: 100%\" name=\"Nom\" Value=\"{$this->oEnregBdd->Nom}\"></TD>\n"
 			."</TR>\n"
 			."<TR>\n"
-			."<TD>Encadrer :</TD>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Commentaire&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><textarea cols=\"50\" rows=\"3\" style=\"width: 100%\" name=\"Commentaire\">{$this->oEnregBdd->Commentaire}</textarea></TD>\n"
+			."</TR>\n"
+			/*."<TR>\n"
+			."<TD>Statut : </TD>\n"
+			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"0\" $sStatut1>En cours"
+			  ."&nbsp;<INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"1\" $sStatut2>Terminé</TD>\n"
+			."</TR>\n"*/			
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Type&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"prive\" $sType1>Privé"
+			  ."&nbsp;<INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"public\" $sType2>Public</TD>\n"
+			."</TR>\n"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Tous&nbsp;les&nbsp;champs&nbsp;&nbsp;<br>doivent&nbsp;être&nbsp;remplis&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD VALIGN=\"bottom\"><INPUT TYPE=\"checkbox\" NAME=\"RemplirTout\" VALUE=\"1\" $sRemplirToutSel></TD>\n"
+			."</TR>\n"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Scores&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD>"
+			."<INPUT TYPE=\"checkbox\" NAME=\"ActiverScores\" VALUE=\"1\" $sActiverScoresSel>"
+				."<DIV STYLE=\"padding-left: 10px;\">Valeurs par défaut</DIV>"
+				."<DIV STYLE=\"padding-left: 25px;\"><TABLE>"
+				."<TR>"
+				."<TD><IMG SRC=\"".dir_theme_commun('icones/v.gif')."\"></TD>"
+				."<TD><INPUT TYPE=\"text\" SIZE=\"5\" MAXLENGTH=\"20\" NAME=\"ScoreBonParDefaut\" VALUE=\"{$this->oEnregBdd->ScoreBonParDefaut}\"></TD>"
+				."</TR>"
+				."<TR>"
+				."<TD><IMG SRC=\"".dir_theme_commun('icones/x.gif')."\"></TD>"
+				."<TD><INPUT TYPE=\"text\" SIZE=\"5\" MAXLENGTH=\"20\" NAME=\"ScoreMauvaisParDefaut\" VALUE=\"{$this->oEnregBdd->ScoreMauvaisParDefaut}\"></TD>"
+				."</TR>"
+				."<TR>"
+				."<TD><IMG SRC=\"".dir_theme_commun('icones/-.gif')."\"></TD>"
+				."<TD><INPUT TYPE=\"text\" SIZE=\"5\" MAXLENGTH=\"20\" NAME=\"ScoreNeutreParDefaut\" VALUE=\"{$this->oEnregBdd->ScoreNeutreParDefaut}\"></TD>"
+				."</TR>"
+				."</TABLE></DIV>"
+			."</TD>"
+			."</TR>"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Axes&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><INPUT TYPE=\"checkbox\" NAME=\"ActiverAxes\" VALUE=\"1\" $sActiverAxesSel></TD>\n"
+			."</TR>\n"
+			."</TABLE>\n"
+			."</fieldset>\n"
+			
+			."<fieldset><legend>&nbsp;Titre&nbsp;</legend>\n"
+			."<TABLE border=\"0\" width=\"99%\">\n"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">$sMessageErreur1 Titre&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><input type=\"text\" size=\"70\" maxlength=\"100\" style=\"width: 100%\" name=\"Titre\" Value=\"{$this->oEnregBdd->Titre}\"></TD>\n"
+			."</TR>\n"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">&nbsp;Encadrer&nbsp;:&nbsp;&nbsp;</TD>\n"
 			."<TD><INPUT TYPE=\"radio\" NAME=\"Encadrer\" VALUE=\"1\" $sEncadr1>Oui\n"
-			."<INPUT TYPE=\"radio\" NAME=\"Encadrer\" VALUE=\"0\" $sEncadr2>Non\n"
+			  ."<INPUT TYPE=\"radio\" NAME=\"Encadrer\" VALUE=\"0\" $sEncadr2>Non\n"
 			."</TD>\n"
 			."</TR>\n"
 			."</TABLE>\n"
 			."</fieldset>\n"
 			
-			."<fieldset><legend><b>Mise en page</b></legend>\n"
-			."<TABLE>\n"
+			."<fieldset><legend>&nbsp;Mise en page&nbsp;</legend>\n"
+			."<TABLE border=\"0\">\n"
 			."<TR>\n"
-			."<TD>$sMessageErreur2 Largeur des marges :</TD>\n"
-			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"Largeur\" Value=\"{$this->oEnregBdd->Largeur}\"></TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"P\" $sTypeLargeur1>pourcents\n"
-			."<INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"N\" $sTypeLargeur2>pixels\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">$sMessageErreur2 Largeur&nbsp;des&nbsp;marges&nbsp;:&nbsp;&nbsp;</TD>\n"
+			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"Largeur\" Value=\"{$this->oEnregBdd->Largeur}\">\n"
+			  ."&nbsp;<INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"P\" $sTypeLargeur1>pourcents\n"
+			  ."&nbsp;<INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"N\" $sTypeLargeur2>pixels\n"
 			."</TD>\n"
 			."</TR>\n"
 			."<TR>\n"
-			."<TD>$sMessageErreur3 Interligne éléments :</TD>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">$sMessageErreur3 Interligne&nbsp;éléments&nbsp;:&nbsp;&nbsp;</TD>\n"
 			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterElem\" Value=\"{$this->oEnregBdd->InterElem}\"></TD>\n"
-			."</TR><TR>\n"
-			."<TD>$sMessageErreur4 Interligne énoncé-réponse :</TD>\n"
+			."</TR>\n"
+			."<TR>\n"
+			."<TD align=\"right\" valign=\"top\" width=\"1\">$sMessageErreur4 Interligne&nbsp;énoncé-réponse&nbsp;:&nbsp;&nbsp;</TD>\n"
 			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterEnonRep\" Value=\"{$this->oEnregBdd->InterEnonRep}\"></TD>\n"
 			."</TR>\n"
 			."</TABLE>\n"
 			."</fieldset>\n"			
 			
-			."<fieldset><legend><b>Options supplémentaires</b></legend>\n"
-			."<TABLE>\n"
-			/*."<TR>\n"
-			."<TD>Statut : </TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"0\" $sStatut1>En cours</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"1\" $sStatut2>Terminé</TD>\n"
-			."</TR>\n"*/			
-			."<TR>\n"
-			."<TD>Type : </TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"prive\" $sType1>Privé</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"public\" $sType2>Public</TD>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>Tous les champs doivent être remplis : </TD>\n"
-			."<TD COLSPAN=\"2\"><INPUT TYPE=\"checkbox\" NAME=\"RemplirTout\" VALUE=\"1\" $sRemplirToutSel></TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
-			."</fieldset>\n"
-
 			//Le champ caché ci-dessous permet de "simuler" le fait d'appuyer 
 			//sur le bouton submit et ainsi permettre l'enregistrement dans la BD
 			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"   
@@ -385,15 +445,30 @@ class CFormulaire
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sTitre = validerTexte($this->oEnregBdd->Titre);
+		$sNom = validerTexte($this->oEnregBdd->Nom);
+		$sCommentaire = validerTexte($this->oEnregBdd->Commentaire);
+		$fScoreBonParDefaut = validerTexte($this->oEnregBdd->ScoreBonParDefaut);
+		$fScoreMauvaisParDefaut = validerTexte($this->oEnregBdd->ScoreMauvaisParDefaut);
+		$fScoreNeutreParDefaut = validerTexte($this->oEnregBdd->ScoreNeutreParDefaut);
+		$iLargeur = validerTexte($this->oEnregBdd->Largeur);
+		$iInterElem = validerTexte($this->oEnregBdd->InterElem);
+		$iInterEnonRep = validerTexte($this->oEnregBdd->InterEnonRep);
 		
 		$sRequeteSql = ($this->retId() > 0 ? "UPDATE Formulaire SET" : 
 									  "INSERT INTO Formulaire SET")
-			." Titre='{$sTitre}'"
+			." Nom='{$sNom}'"
+			.", Commentaire='{$sCommentaire}'"
+			.", ActiverScores='{$this->oEnregBdd->ActiverScores}'"
+			.", ScoreBonParDefaut='{$fScoreBonParDefaut}'"
+			.", ScoreMauvaisParDefaut='{$fScoreMauvaisParDefaut}'"
+			.", ScoreNeutreParDefaut='{$fScoreNeutreParDefaut}'"
+			.", ActiverAxes='{$this->oEnregBdd->ActiverAxes}'"
+			.", Titre='{$sTitre}'"
 			.", Encadrer='{$this->oEnregBdd->Encadrer}'"
-			.", Largeur='{$this->oEnregBdd->Largeur}'"
+			.", Largeur='{$iLargeur}'"
 			.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
-			.", InterElem='{$this->oEnregBdd->InterElem}'"
-			.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
+			.", InterElem='{$iInterElem}'"
+			.", InterEnonRep='{$iInterEnonRep}'"
 			.", RemplirTout='".$this->retRemplirTout()."'"
 			.", Statut='{$this->oEnregBdd->Statut}'"
 			.", Type='{$this->oEnregBdd->Type}'"
@@ -425,9 +500,11 @@ class CFormulaire
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		// de les stocker dans la BD sans erreur 
 		$sTitre = "Copie de ".validerTexte($this->oEnregBdd->Titre);
+		$sNom = "Copie de ".validerTexte(enleverBaliseMeta($this->oEnregBdd->Nom));
 		
 		$sRequeteSql = "INSERT INTO Formulaire SET"
-			." Titre='{$sTitre}'"
+			."  Nom='{$sNom}'"
+			.", Titre='{$sTitre}'"
 			.", Encadrer='{$this->oEnregBdd->Encadrer}'"
 			.", Largeur='{$this->oEnregBdd->Largeur}'"
 			.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
@@ -528,6 +605,13 @@ class CFormulaire
 
 	//Fonctions de définition
 	function defTitre ($v_sTitre) { $this->oEnregBdd->Titre = trim($v_sTitre); }
+	function defNom ($v_sNom) { $this->oEnregBdd->Nom = trim($v_sNom); }
+	function defCommentaire ($v_sCommentaire) { $this->oEnregBdd->Commentaire = $v_sCommentaire; }
+	function defActiverScores ($v_bActiver) { $this->oEnregBdd->ActiverScores = $v_bActiver; }
+	function defScoreBonParDefaut ($v_fScore) { $this->oEnregBdd->ScoreBonParDefaut = $v_fScore; }
+	function defScoreMauvaisParDefaut ($v_fScore) { $this->oEnregBdd->ScoreMauvaisParDefaut = $v_fScore; }
+	function defScoreNeutreParDefaut ($v_fScore) { $this->oEnregBdd->ScoreNeutreParDefaut = $v_fScore; }
+	function defActiverAxes ($v_bActiver) { $this->oEnregBdd->ActiverAxes = $v_bActiver; }
 	function defEncadrer ($v_iEncadrer) { $this->oEnregBdd->Encadrer = $v_iEncadrer; }
 	function defLargeur ($v_iLargeur) { $this->oEnregBdd->Largeur = $v_iLargeur; }
 	function defTypeLarg ($v_sTypeLarg) { $this->oEnregBdd->TypeLarg = trim($v_sTypeLarg); }
@@ -540,6 +624,13 @@ class CFormulaire
 	
 	//Fonctions de retour
 	function retId () { return $this->oEnregBdd->IdForm; }
+	function retNom () { return $this->oEnregBdd->Nom; }
+	function retCommentaire () { return $this->oEnregBdd->Commentaire; }
+	function retActiverScores () { return $this->oEnregBdd->ActiverScores; }
+	function retScoreBonParDefaut () { return $this->oEnregBdd->ScoreBonParDefaut; }
+	function retScoreMauvaisParDefaut () { return $this->oEnregBdd->ScoreMauvaisParDefaut; }
+	function retScoreNeutreParDefaut () { return $this->oEnregBdd->ScoreNeutreParDefaut; }
+	function retActiverAxes () { return $this->oEnregBdd->ActiverAxes; }
 	function retTitre () { return $this->oEnregBdd->Titre; }
 	function retEncadrer () { return $this->oEnregBdd->Encadrer; }
 	function retLargeur () { return $this->oEnregBdd->Largeur; }

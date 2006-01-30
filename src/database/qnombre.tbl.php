@@ -148,10 +148,11 @@ class CQNombre
 	{
 		global $HTTP_POST_VARS, $HTTP_GET_VARS;
 		
+		$oObjetFormulaire = new CObjetFormulaire($this->oBdd, $v_iIdObjForm);
+		
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
-		
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
 		$iFlagErreur=0;
 		
@@ -175,7 +176,13 @@ class CQNombre
 				
 			if ($iFlagErreur == 0) 
 			{
+				$oObjetFormulaire->verrouillerTablesQuestion();
+				// enregistrement de la position de l'objet
+				$oObjetFormulaire->DeplacerObjet($HTTP_POST_VARS["selOrdreObjet"], FALSE);
+				// enregistrement des données spécifiques à ce type d'élément/objet
 				$this->enregistrer();
+				$oObjetFormulaire->deverrouillerTablesQuestion();
+				
 				echo "<script>\n";
 				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
 				echo "</script>\n";
@@ -192,47 +199,59 @@ class CQNombre
 		
 		$sCodeHtml = 
 			"<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">"
-			."<fieldset><legend><b>ENONCE</b></legend>"
-			."<TABLE>"
+			.$oObjetFormulaire->cHtmlNumeroOrdre()
+			."<fieldset><legend>&nbsp;Enoncé&nbsp;</legend>"
+			."<TABLE BORDER=\"0\" WIDTH=\"99%\"><TR><TD ALIGN=\"right\">"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1 ID=\"idAlignEnonG\"><label for=\"idAlignEnonG\">Gauche</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2 ID=\"idAlignEnonD\"><label for=\"idAlignEnonD\">Droite</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3 ID=\"idAlignEnonC\"><label for=\"idAlignEnonC\">Centrer</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4 ID=\"idAlignEnonJ\"><label for=\"idAlignEnonJ\">Justifier</label>\n"
+			."</TD></TR></TABLE>"
+			."<TABLE width=\"99%\">"
 			."<TR>"
-			."<TD>$sMessageErreur1 Enoncé :</TD>"
-			."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQN}</textarea></TD>"
-			."</TR><TR>"
-			."<TD>Alignement énoncé :</TD>"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4>Justifier"
-			."</TD>"
+			."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur1 Enoncé&nbsp;:&nbsp;&nbsp;</TD>"
+			."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\" style=\"width: 100%\">{$this->oEnregBdd->EnonQN}</textarea></TD>"
 			."</TR>"
 			."</TABLE>"
 			."</fieldset>"
 		   
-			."<fieldset><legend><b>REPONSE</b></legend>"
-			."<TABLE>"
+			."<fieldset><legend>&nbsp;Zone réponse&nbsp;</legend>"
+			."<TABLE BORDER=\"0\" WIDTH=\"99%\"><TR><TD ALIGN=\"right\">"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1 ID=\"idAlignRepG\"><label for=\"idAlignRepG\">Gauche</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2 ID=\"idAlignRepD\"><label for=\"idAlignRepD\">Droite</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3 ID=\"idAlignRepC\"><label for=\"idAlignRepC\">Centrer</label>\n"
+				."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4 ID=\"idAlignRepJ\"><label for=\"idAlignRepJ\">Justifier</label>\n"
+			."</TD></TR></TABLE>"
+
+			."<TABLE BORDER=\"0\" WIDTH=\"99%\">\n"
+			."<TR>\n"
+				."<TD WIDTH=\"45%\">"
+					."<textarea cols=\"40\" rows=\"2\" name=\"TxtAv\" style=\"width: 100%;\">{$this->oEnregBdd->TxtAvQN}</textarea>"
+				."</TD>\n"
+				."<TD STYLE=\"text-align: center; vertical-align: middle; font-weight: bold; "
+				  ."background-color: rgb(255,255,255); color: rgb(153,73,89); border: 1px solid rgb(127,157,185);\">"
+					."Zone<br>réponse"
+				."</TD>"
+				."<TD WIDTH=\"45%\">"
+					."<textarea cols=\"40\" rows=\"2\" name=\"TxtAp\" style=\"width: 100%;\">{$this->oEnregBdd->TxtApQN}</textarea>"
+				."</TD>\n"
+			."</TR>\n"
+			."</TABLE>\n"
+			
+			."<TABLE width=\"99%\">"
 			."<TR>"
-			."<TD>Texte avant la réponse :</TD>"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQN}\"></TR>"
-			."</TR><TR>"
-			."<TD>Texte après la réponse :</TD>"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQN}\"></TR>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur2 Nombre minimum :</TD>"
+			."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur2 Nombre&nbsp;minimum&nbsp;:&nbsp;&nbsp;</TD>"
 			."<TD><input type=\"text\" size=\"10\" maxlength=\"9\" name=\"NbMin\" Value=\"{$this->oEnregBdd->NbMinQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur3 Nombre maximum :</TD>"
-			."<TD><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"NbMax\" Value=\"{$this->oEnregBdd->NbMaxQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur4 Coefficient multiplicateur :</TD>"
-			."<TD><input type=\"text\" size=\"5\" maxlength=\"10\" name=\"Multi\" Value=\"{$this->oEnregBdd->MultiQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>Alignement Réponse :</TD>"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4>Justifier"
-			."</TD>"
 			."</TR>"
+			."<TR>"
+			."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur3 Nombre&nbsp;maximum&nbsp;:&nbsp;&nbsp;</TD>"
+			."<TD><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"NbMax\" Value=\"{$this->oEnregBdd->NbMaxQN}\" onblur=\"verifNumeric(this)\"></TD>"
+			."</TR>"
+			."<TR>"
+			."<TD width=\"1\" align=\"right\" valign=\"top\">$sMessageErreur4 Coefficient&nbsp;multiplicateur&nbsp;:&nbsp;&nbsp;</TD>"
+			."<TD><input type=\"text\" size=\"5\" maxlength=\"10\" name=\"Multi\" Value=\"{$this->oEnregBdd->MultiQN}\" onblur=\"verifNumeric(this)\"></TD>"
+			."</TR>"
+			
 			."</TABLE>"
 			."</fieldset>"
 			

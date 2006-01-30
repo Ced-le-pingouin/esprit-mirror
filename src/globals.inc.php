@@ -4,7 +4,7 @@
 ** Fichier ................: globals.inc.php
 ** Description ............: 
 ** Date de création .......: 17/09/2001
-** Dernière modification ..: 14/11/2005
+** Dernière modification ..: 30/01/2006
 ** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **                           Jérôme TOUZE
@@ -370,7 +370,8 @@ function convertLien ($v_sLienConvertir,$v_sId=NULL)
 				."?idNiveau={tableaudebord.niveau.id}"
 				."&typeNiveau={tableaudebord.niveau.type}"
 				."&idType=0"
-				."&idModal=".MODALITE_INDIVIDUEL."\""
+				."&idModal=".MODALITE_INDIVIDUEL
+			."\""
 			." onclick=\"return tableau_de_bord(this)\""
 			." onfocus=\"blur()\""
 			." target=\"_blank\""
@@ -382,7 +383,20 @@ function convertLien ($v_sLienConvertir,$v_sId=NULL)
 				."?idNiveau={tableaudebord.niveau.id}"
 				."&typeNiveau={tableaudebord.niveau.type}"
 				."&idType=0"
-				."&idModal=".MODALITE_PAR_EQUIPE."\""
+				."&idModal=".MODALITE_PAR_EQUIPE
+			."\""
+			." onclick=\"return tableau_de_bord(this)\""
+			." onfocus=\"blur()\""
+			." target=\"_blank\""
+			.">Tableau de bord</a>";
+	else if (strstr($v_sLienConvertir,"[tableaudebord]"))
+		return "<a"
+			.(isset($v_sId) ? " id=\"{$v_sId}\"": NULL)
+			." href=\"racine://admin/tableaubord/tableau_bord-index.php"
+				."?idNiveau={tableaudebord.niveau.id}"
+				."&typeNiveau={tableaudebord.niveau.type}"
+				."&idType=0"
+			."\""
 			." onclick=\"return tableau_de_bord(this)\""
 			." onfocus=\"blur()\""
 			." target=\"_blank\""
@@ -480,6 +494,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	// Tableau de bord
 	$v_sTexte = str_replace("[tableaudebord /i]",convertLien("[tableaudebord /i]"),$v_sTexte);
 	$v_sTexte = str_replace("[tableaudebord /e]",convertLien("[tableaudebord /e]"),$v_sTexte);
+	$v_sTexte = str_replace("[tableaudebord]",convertLien("[tableaudebord]"),$v_sTexte);
 	
 	return nl2br($v_sTexte);
 }
@@ -516,7 +531,8 @@ function enleverBaliseMeta ($v_sTexte)
 
 function emailValide ($v_sEmail) { return ereg('^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+'.'@'.'[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.'.'[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$',$v_sEmail); }
 
-function retDateFormatter ($v_sDate,$v_sFormatterDate="d/m/y")
+
+function formatterDate ($v_sDate,$v_sFormatterDate="d/m/y")
 {
 	list($sDate,$sTime) = explode(" ",$v_sDate);
 	$asDate = explode("-",$sDate);

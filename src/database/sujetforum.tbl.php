@@ -4,7 +4,7 @@
 ** Fichier ................: sujetforum.tbl.php
 ** Description ............: 
 ** Date de création .......: 14/05/2004
-** Dernière modification ..: 12/10/2005
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **                           Jérôme TOUZE
 **
@@ -272,7 +272,7 @@ class CSujetForum
 		return $iNbMessages;
 	}
 	
-	function retDate ($v_sFormatterDate="d/m/y H:i") { return retDateFormatter($this->oEnregBdd->DateSujetForum,$v_sFormatterDate); }
+	function retDate ($v_sFormatterDate="d/m/y H:i") { return formatterDate($this->oEnregBdd->DateSujetForum,$v_sFormatterDate); }
 	function retForum () { return new CForum($this->oBdd,$this->retIdParent()); }
 	
 	function estPourTous ()
@@ -327,7 +327,7 @@ class CSujetForum
 		$this->oBdd->libererResult($hResult);
 		
 		if (isset($oEnregBdd->DateDernierMessagePoster))
-			return retDateFormatter($oEnregBdd->DateDernierMessagePoster,$v_sFormatterDate);
+			return formatterDate($oEnregBdd->DateDernierMessagePoster,$v_sFormatterDate);
 		else
 			return "&#8212;";
 	}

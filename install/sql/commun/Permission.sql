@@ -1,9 +1,17 @@
+# MySQL dump 7.1
+#
+# Host: localhost    Database: ipfhainaut_dev
+#--------------------------------------------------------
+# Server version	3.23.58-log
 
+#
+# Dumping data for table 'Permission'
+#
 
 INSERT INTO Permission VALUES (1,'PERM_OUTIL_PERMISSION','Peut remplir la table des permissions');
 INSERT INTO Permission VALUES (2,'PERM_OUTIL_STATUT','Peut créer le fichier des statuts');
-INSERT INTO Permission VALUES (3,'PERM_DESIGNE_RESPONSABLES_SESSION','Désigne les responsables de formation potentiels');
-INSERT INTO Permission VALUES (4,'PERM_DESIGNE_CONCEPTEURS','Désigne les concepteurs potentiels');
+INSERT INTO Permission VALUES (3,'PERM_DESIGNE_RESPONSABLES_SESSION','Peut désigne les responsables de formation potentiels');
+INSERT INTO Permission VALUES (4,'PERM_DESIGNE_CONCEPTEURS','Peut désigner les concepteurs potentiels');
 INSERT INTO Permission VALUES (5,'PERM_VOIR_CONNECTES','Voit la liste des personnes connectées');
 INSERT INTO Permission VALUES (6,'PERM_AJT_SESSION','Peut créer une nouvelle session');
 INSERT INTO Permission VALUES (7,'PERM_ASS_RESP_SESSION','Peut associer un nouveau responsable à \"sa\" session');
@@ -103,5 +111,4 @@ INSERT INTO Permission VALUES (100,'PERM_VOIR_TOUS_COLLECTICIELS','Peut voir tou
 INSERT INTO Permission VALUES (101,'PERM_CLASSER_FORMATIONS','Peut Classer ses formations dans des dossiers');
 INSERT INTO Permission VALUES (102,'PERM_COMPOSER_GALERIE','Peut associer des documents à la galerie');
 INSERT INTO Permission VALUES (103,'PERM_FORUM_EXPORTER_CSV','Peut exporter un forum vers un fichier csv');
-INSERT INTO Permission VALUES (104,'PERM_OUTIL_TABLEAU_DE_BORD','Peut accèder au tableau de bord');
 

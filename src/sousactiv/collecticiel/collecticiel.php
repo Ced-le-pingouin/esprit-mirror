@@ -4,7 +4,7 @@
 ** Fichier ................: collecticiel.php
 ** Description ............:
 ** Date de création .......: 11/04/2005
-** Dernière modification ..: 21/11/2005
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
 ** Unité de Technologie de l'Education
@@ -305,8 +305,8 @@ if (count($aaCollecticiels) > 0)
 					, "{$g_sFichierTelecharger}?f=".rawurlencode($g_sRepRessources.$oRessource->retUrl())
 						."&fn=1"
 					, htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom())
-					, retDateFormatter($oRessource->retDate())
-					, retDateFormatter($oRessource->retDate(),"H:i:s")
+					, formatterDate($oRessource->retDate())
+					, formatterDate($oRessource->retDate(),"H:i:s")
 					, $oRessource->retTexteStatut()
 					, $sEvaluer
 					, (strlen($oRessource->retDescr()) ? $sSetNote : "-")

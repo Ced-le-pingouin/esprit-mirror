@@ -5,18 +5,21 @@ $oProjet = new CProjet();
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))
 {
 	if (isset($HTTP_GET_VARS['idformulaire']))
-	{
 		$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
-	}
 	else if (isset($HTTP_POST_VARS['idformulaire']))
-	{
 		$v_iIdFomulaire = $HTTP_POST_VARS['idformulaire'];
-	}
 	/*else
 	{
 		echo "Pas de formulaire a supprimer";	
 		$v_iIdFormulaire = 0;
 	}*/
+	
+	if (!empty($v_iIdFormulaire) && isset($HTTP_GET_VARS['idobj']))
+		$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
+	else
+		$v_iIdObjForm = 0;
+	
+	$bMesForms = $HTTP_GET_VARS['cbMesForms'];
 	
 	if ($HTTP_GET_VARS['typeaction']=='supprimer')
 	{
@@ -165,14 +168,19 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	
 	//Affichage du menu//
 	$iIdPersCourant = $oProjet->oUtilisateur->retId();
-	$oFormulaire = new CFormulaire($oProjet->oBdd);
-	if ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))  //Si administrateur -> on voit tout les formulaires
-		$aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles(NULL, NULL, NULL, TRUE);
+	$oFormulaireSel = new CFormulaire($oProjet->oBdd, $v_iIdFormulaire);
+	if ($bMesForms)
+		$aoFormulairesVisibles = $oFormulaireSel->retListeFormulairesVisibles($iIdPersCourant);
+	else if (!$oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))  //Si administrateur -> on voit tout les formulaires
+		$aoFormulairesVisibles = $oFormulaireSel->retListeFormulairesVisibles($iIdPersCourant, 'public');
 	else //Si concepteur -> on voit tout ses formulaires + les formulaires publics
-		$aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles($iIdPersCourant, 'public');
+		$aoFormulairesVisibles = $oFormulaireSel->retListeFormulairesVisibles(NULL, NULL, NULL, TRUE);
 	
 	$oTpl = new Template("formulaire_menu.tpl");
 	$oBlock = new TPL_Block("BLOCK_FORM",$oTpl);
+
+	$oTpl->remplacer("{id_obj}", $v_iIdObjForm);
+	$oTpl->remplacer("{cbMesFormsCoche}", ($bMesForms?" CHECKED":""));
 	
 	$iLargeurMax = 28;
 	$sSymboleDejaUtilise = "(!)";
@@ -184,7 +192,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		{
 			$oBlock->nextLoop();
 			
-			$sNomFormulaire = enleverBaliseMeta($oFormulaireCourant->retTitre());
+			$sNomFormulaire = enleverBaliseMeta($oFormulaireCourant->retNom());
 			if ($oFormulaireCourant->retNbUtilisationsDsSessions() || $oFormulaireCourant->retNbRemplisDsSessions())
 				$sNomFormulaire = $sSymboleDejaUtilise.$sNomFormulaire;
 			
@@ -197,6 +205,10 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 			
 			$oBlock->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire));
 			$oBlock->remplacer("{id_formulaire}",$oFormulaireCourant->retId());
+			if ($oFormulaireCourant->retId() == $oFormulaireSel->retId())
+				$oBlock->remplacer("{select_form}", "SELECTED");
+			else
+				$oBlock->remplacer("{select_form}", "");
 			
 			if ($iIdPersCourant == $oFormulaireCourant->retIdPers())
 			{
@@ -212,6 +224,46 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	{
 		$oBlock->effacer();
 	}
+	
+	$sTitreHaut = "Formulaires";
+	$oBlocForm = new TPL_Block("BLOC_FORM_COURANT", $oTpl);
+	if ($oFormulaireSel->retId())
+	{
+		$oBlocForm->remplacer("{nom_form_courant}", $oFormulaireSel->retNom());
+		$oBlocForm->afficher();
+		
+		$oTpl->remplacer("{id_formulaire_sel}", $oFormulaireSel->retId());
+		$sTitreHaut .= " (".$oFormulaireSel->retNom();
+	}
+	else
+		$oBlocForm->effacer();
+	
+	$oBlocElem = new TPL_Block("BLOC_ELEM_COURANT", $oTpl);
+	if ($oFormulaireSel->retId())
+	{
+		$oBlocElemLiens = new TPL_Block("BLOC_ELEM_COURANT_LIENS", $oBlocElem);
+		if ($v_iIdObjForm)
+		{
+			$oObjFormSel = new CObjetFormulaire($oProjet->oBdd, $v_iIdObjForm);
+			$oTypeObj = new CTypeObjetForm($oProjet->oBdd, $oObjFormSel->retIdType());
+			
+			$oBlocElem->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre()."<br>(".$oTypeObj->retDescCourte().")");
+			$oBlocElemLiens->afficher();
+			$sTitreHaut .= " &raquo; Elément ".$oObjFormSel->retOrdre().")";
+		}
+		else
+		{
+			$oBlocElem->remplacer("{nom_elem_courant}", "-");
+			$oBlocElemLiens->effacer();
+			$sTitreHaut .= " &raquo; Options du formulaire)";
+		}
+		
+		$oBlocElem->afficher();
+	}
+	else
+		$oBlocElem->effacer();
+	
+	$oTpl->remplacer("{titre_haut}", addslashes($sTitreHaut));
 	$oTpl->afficher();
 	
 	$oProjet->terminer();  //Ferme la connection avec la base de données

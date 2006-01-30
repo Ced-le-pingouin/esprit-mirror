@@ -20,17 +20,17 @@ class CReponse
 	function CReponse(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-							//si 0 crée un objet presque vide sinon 
-							//rempli l'objet avec les données de la table Reponse
-							//de l'elément ayant l'Id passé en argument 
-							//(ou avec l'objet passé en argument mais sans passer par le constructeur)
+							// si 0 crée un objet presque vide sinon 
+							// rempli l'objet avec les données de la table Reponse
+							// de l'elément ayant l'Id passé en argument 
+							// (ou avec l'objet passé en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
-	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
-	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
+	// INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
+	// On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	// Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
 	function init ($v_oEnregExistant = NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -76,7 +76,7 @@ class CReponse
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function ajouter () 	//Cette fonction ajoute une réponse avec tous ses champs vide, en fin de table
+	function ajouter () 	// cette fonction ajoute une réponse avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO QReponse SET IdReponse=NULL;";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -86,8 +86,9 @@ class CReponse
 	function enregistrer ($v_bModifOrdre = TRUE)
 	{
 		$sTexteReponse = validerTexte($this->oEnregBdd->TexteReponse);
-
-		//Quand on envoie false cela veut dire que l'on ne modifie ni l'ordre, ni l'Id de l'objet auquel
+		$sFeedbackReponse = validerTexte($this->oEnregBdd->FeedbackReponse);
+		
+		// quand on envoie false cela veut dire que l'on ne modifie ni l'ordre, ni l'Id de l'objet auquel
 		// se rapporte la réponse
 		if ($v_bModifOrdre)
 		{
@@ -99,6 +100,8 @@ class CReponse
 			($this->retId() > 0 ? "UPDATE Reponse SET":"INSERT INTO Reponse SET")
 			." IdReponse='{$this->oEnregBdd->IdReponse}'"
 			." , TexteReponse='{$sTexteReponse}'"
+			." , FeedbackReponse='{$sFeedbackReponse}'"
+			." , CorrectionReponse='{$this->oEnregBdd->CorrectionReponse}'"
 			.$sModifOrdre
 			.$sModifIdObjForm
 			.($this->oEnregBdd->IdReponse > 0 ? " WHERE IdReponse='{$this->oEnregBdd->IdReponse}'" : NULL);
@@ -115,12 +118,15 @@ class CReponse
 			return;
 		
 		$sTexteReponse = validerTexte($this->oEnregBdd->TexteReponse);
+		$sFeedbackReponse = validerTexte($this->oEnregBdd->FeedbackReponse);
 		
 		$sRequeteSql =
 			"  INSERT INTO Reponse SET"
 			//." IdReponse='{$this->oEnregBdd->IdReponse}'"
 			." TexteReponse='{$sTexteReponse}'"
 			." , OrdreReponse='{$this->oEnregBdd->OrdreReponse}'"
+			." , FeedbackReponse='{$sFeedbackReponse}'"
+			." , CorrectionReponse='{$this->oEnregBdd->CorrectionReponse}'"
 			." , IdObjForm='{$v_iIdObjForm}'";
 									
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -178,12 +184,12 @@ class CReponse
 		$sRequeteSql = "LOCK TABLES Reponse WRITE, Reponse_Axe WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$sRequeteSqlSelect = "SELECT" 
-	  						." IdReponse"
+		$sRequeteSqlSelect = " SELECT" 
+	  						."   IdReponse"
 							." FROM" 
-							." Reponse"
+							."   Reponse"
 							." WHERE"
-							." IdObjForm = '{$v_iIdObjForm}'";
+							."   IdObjForm = '{$v_iIdObjForm}'";
 							
 		$hResult = $this->oBdd->executerRequete($sRequeteSqlSelect);
 		$iNbEnreg = $this->oBdd->retNbEnregsDsResult();
@@ -218,18 +224,24 @@ class CReponse
 		return TRUE;
 	}
 	
-	//Fonctions de définition
+	// Fonctions de définition
 	function defId ($v_iIdReponse) { $this->oEnregBdd->IdReponse = $v_iIdReponse; } //Ne pas confondre IdObfForm[Multi] et IdReponse[Unique] - Fonction pas utile car auto_increment ?
 	function defTexteReponse ($v_sTexteReponse) { $this->oEnregBdd->TexteReponse = $v_sTexteReponse; }
+	function defTexte($v_sTexteReponse) { $this->defTexteReponse($v_sTexteReponse); }
 	function defOrdreReponse ($v_iOrdreReponse) { $this->oEnregBdd->OrdreReponse = $v_iOrdreReponse; }
+	function defOrdre($v_iOrdreReponse) { $this->defOrdreReponse($v_iOrdreReponse); }
+	function defFeedback($v_sFeedback) { $this->oEnregBdd->FeedbackReponse = $v_sFeedback; }
+	function defCorrection($v_sCorrection) { $this->oEnregBdd->CorrectionReponse = $v_sCorrection; }
 	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; } //Ne pas confondre IdObfForm[Multi] et IdReponse[Unique] 
 	
-	//Fonctions de retour
+	// Fonctions de retour
 	function retId () { return $this->oEnregBdd->IdReponse; }
 	function retTexteReponse () { return $this->oEnregBdd->TexteReponse; }
 	function retTexte() { return $this->retTexteReponse(); }
 	function retOrdreReponse () { return $this->oEnregBdd->OrdreReponse; }
 	function retOrdre() { return $this->retOrdreReponse(); }
+	function retFeedback() { return $this->oEnregBdd->FeedbackReponse; }
+	function retCorrection() { return $this->oEnregBdd->CorrectionReponse; }
 	function retIdObjForm () { return $this->oEnregBdd->IdObjForm; }
 }
 ?>

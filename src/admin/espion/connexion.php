@@ -4,7 +4,7 @@
 ** Fichier ................: connexion.php
 ** Description ............: 
 ** Date de création .......: 24/02/2003
-** Dernière modification ..: 03/09/2004
+** Dernière modification ..: 19/12/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
 ** Unité de Technologie de l'Education
@@ -106,7 +106,7 @@ for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
 		.$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retPseudo()
 		."</td>"
 		."<td".($url_iTri == $oEvenement->TRI_NBR_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\">"
-		.$oEvenement->aoEvenements[$iIdxEven]->retNbrConnexion()
+		.$oEvenement->aoEvenements[$iIdxEven]->retNbConnexions()
 		."</td>"
 		."<td".($url_iTri == $oEvenement->TRI_DERNIERE_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\" nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->retDateDerniereConnexion()

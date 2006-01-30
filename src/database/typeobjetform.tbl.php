@@ -79,9 +79,12 @@ function defDescTypeObj ($v_sDescTypeObj)
 
 //Fonctions de retour
 
-function retId () { return $this->oEnregBdd->IdTypeObj; }
-function retNomTypeObj () { return $this->oEnregBdd->NomTypeObj; }
-function retDescTypeObj () { return $this->oEnregBdd->DescTypeObj; }
+function retId() { return $this->oEnregBdd->IdTypeObj; }
+function retNomTypeObj() { return $this->oEnregBdd->NomTypeObj; }
+function retNom() { return $this->retNomTypeObj(); }
+function retDescTypeObj() { return $this->oEnregBdd->DescTypeObj; }
+function retDesc() { return $this->retDescTypeObj(); }
+function retDescCourte() { return $this->oEnregBdd->DescCourteTypeObj; }
 
 /*
 function enregistrer ()

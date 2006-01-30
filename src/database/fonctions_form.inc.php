@@ -10,17 +10,19 @@
 */
 
 
-	/*
-	** Fonction 		: Alignement
-	** Description		: Sert à cocher les cases concernant l'alignement d'un enonce
-	**                    et de sa réponse
-	** Entrée			: $sAlignEnon,$sAlignRep : contiennent la chaine de caractères 
-	**										{left,right,center ou justify)
-	** Sortie			: $ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4
-	**					Une chaîne de caractère $aeX contient "CHECKED" et les autres ""	
-	**					Une chaîne de caractère $arX contient "CHECKED" et les autres ""
-	*/
-	
+define("LARGEUR_CASE_PROP", 30);
+
+/*
+** Fonction 		: Alignement
+** Description		: Sert à cocher les cases concernant l'alignement d'un enonce
+**                    et de sa réponse
+** Entrée			: $sAlignEnon,$sAlignRep : contiennent la chaine de caractères 
+**										{left,right,center ou justify)
+** Sortie			: $ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4
+**					Une chaîne de caractère $aeX contient "CHECKED" et les autres ""	
+**					Une chaîne de caractère $arX contient "CHECKED" et les autres ""
+*/
+
 function Alignement($sAlignEnon,$sAlignRep)
 {
 	$sAE1 = $sAE2 = $sAE3 = $sAE4 = "";
@@ -62,7 +64,7 @@ function validerTexte($v_sTexte)
 	** Sortie			: Code Html contenant le(s) poids + mise en page + modification possible
 	*/
 
-function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
+function RetourPoidsReponse($v_iIdFormulaire, $v_iIdObjForm, $v_iIdReponse, $v_bMontrerAxes = FALSE)
 {
 	/*
 	Utilisation de l'objet CBdd bcp plus léger pour faire les requêtes qu'un objet Projet
@@ -100,22 +102,30 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 	
 	//echo "<br><br>$sRequeteSqlAxes";
 	$hResultAxe = $oCBdd2->executerRequete($sRequeteSqlAxes);
-
-	$CodeHtml="";
-
+	
+	if ($v_bUtiliserAxes)
+		$sDisplay = "block";
+	else
+		$sDisplay = "none";
+	
+	$CodeHtml .= "<DIV ID=\"divPanneauAxes{$v_iIdReponse}\" STYLE=\"display: $sDisplay;\"><TABLE BORDER=\"0\">";
 	while ($oEnreg = $oCBdd2->retEnregSuiv($hResultAxe))
 	{
-		//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
+		// Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
 		$iPoids= $oEnreg->Poids;
 		$iIdAxe = $oEnreg->IdAxe;
 		$iIdReponse = $oEnreg->IdReponse;
 		$sDescAxe = $oEnreg->DescAxe;
-	
-		$CodeHtml.="<TR><TD></TD><TD>\n"
-				  ."<TABLE><TR><TD width=200> &#149 $sDescAxe</TD><TD><input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" Value=\"$iPoids\" onblur=\"verifNumeric(this)\"></TD></TR></TABLE>\n"
-				  ."</TD></TR>\n"; 
+		
+		$CodeHtml .=
+			 "<TR>"
+			."<TD> &#149 {$sDescAxe}&nbsp;</TD>"
+			."<TD><input type=\"text\" size=\"4\" maxlength=\"4\""
+			." name=\"repAxe[$iIdReponse][$iIdAxe]\" Value=\"$iPoids\" onblur=\"verifNumeric(this)\"></TD>"
+			."</TR>\n"
+			; 
 	}
+	$CodeHtml .= "</TABLE></DIV>";
 
 	return "$CodeHtml";
 }

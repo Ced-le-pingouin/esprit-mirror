@@ -89,13 +89,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	
 	if ($v_iIdFormulaire > 0) //sert uniquement lors du 1er appel de la page (affichage du logo)
 	{
-	
-		//On vérifie si la personne peut voir OU modifier le formulaire ! les modifs se font a 2 endroits
+		// on vérifie si la personne peut voir OU modifier le formulaire ! les modifs se font a 2 endroits
 		$iIdPers = $oProjet->oUtilisateur->retId();
 		
 		// si $v_iIdObjForm = 0 cela veut dire que l'on vient de selectionner le formulaire via le menu et alors :
 		// on charge la modif du titre formulaire dans la frame du dessous[modif] uniquement si on est le propriétaire du formulaire où
-		//si l'on est administrateur
+		// si l'on est administrateur
 		if ($HTTP_GET_VARS["verifUtilisation"] == 1)
 		{
 			$iNbUtilisations = $oFormulaire->retNbUtilisationsDsSessions();
@@ -142,7 +141,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$sCocher="";
 			
 			if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
-				$sSelectModif = "<INPUT TYPE=\"radio\" NAME=\"objet\" VALUE=$iIdObjActuel onClick =\"selectionobj($iIdObjActuel,$v_iIdFormulaire)\" $sCocher><b>$iOrdreObjForm</b>";
+				$sSelectModif = "<INPUT TYPE=\"radio\" NAME=\"objet\" VALUE=\"$iIdObjActuel\" onClick =\"selectionobj($iIdObjActuel,$v_iIdFormulaire)\" $sCocher><b>$iOrdreObjForm</b>";
 			else 
 				$sSelectModif = "";
 			

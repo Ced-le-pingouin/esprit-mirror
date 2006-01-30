@@ -1,99 +1,92 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css">
+<script type="text/javascript" src="javascript://window.js"></script>
+<script type="text/javascript" src="formulaire.js"></script>
+<script type="text/javascript" src="objetformulaire.js"></script>
+<style type="text/css">
+p { margin: 0px; }
 
-<SCRIPT language="JavaScript">
-<!--
-function suppression(TypeAct)
+.bloc
 {
-	if (document.listeformulaire.idformulaire.selectedIndex == -1)
-	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
-	}
-	else
-	{
-		if(confirm('Voulez-vous supprimer le formulaire sélectionné ?'))
-		{
-			document.forms['listeformulaire'].typeaction.value=TypeAct;
-			document.forms['listeformulaire'].action='formulaire_menu.php';
-			document.forms['listeformulaire'].target='_self';
-			document.forms['listeformulaire'].submit();
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			parent.FORMFRAMEMODIF.location.replace('formulaire_modif.php');
-			parent.FORMFRAMEMODIFMENU.location.replace('formulaire_modif_menu.php');
-		}
-	}
+	margin: 0px 3px 12px 3px;
+	background-color: rgb(111,105,87);
+	padding: 2px;
+	text-align: center;
 }
 
-function copie(TypeAct)
+.bloc h3
 {
-	if (document.listeformulaire.idformulaire.selectedIndex == -1)
-	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
-	}
-	else
-	{
-		if(confirm('Voulez-vous copier le formulaire sélectionné ?'))
-		{
-			document.forms['listeformulaire'].typeaction.value=TypeAct;
-			document.forms['listeformulaire'].action='formulaire_menu.php';
-			document.forms['listeformulaire'].target='_self';
-			document.forms['listeformulaire'].submit();
-			parent.FORMFRAMEMODIF.location.replace('formulaire_modif.php');
-			parent.FORMFRAMEMODIFMENU.location.replace('formulaire_modif_menu.php')
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			//-> de preference pointer vers la copie
-		}
-	}
+	margin: 0px;
+	padding: 2px 0px;
+	
+	font-size: 12px;
+	font-weight: bold;
+	
+	color: rgb(250,250,250);
 }
--->
-</SCRIPT>
+
+.bloc .nom
+{
+	margin: 1px 0px;
+	background-color: rgb(231,225,212);
+	padding: 4px 0px;
+}
+
+.bloc .liens
+{
+	background-color: rgb(202,195,177);
+	padding: 4px 0px;
+}
+
+.bloc .liens a { font-size: 11px; }
+</style>
 </head>
 
-<body>
+<body onLoad="top.defTitre(escape('{titre_haut}'));">
 
 <form name="listeformulaire" action="formulaire_liste.php" target="FORMFRAMELISTE" method ="get">
-
+<input type="checkbox" name="cbMesForms" id="cbMesForms" value="1" onChange="selectionFormulaire();" {cbMesFormsCoche}><label for="cbMesForms">uniquement mes formulaires</label>
 <table border="0" cellpadding="0" cellspacing="2" width="100%">
-<tr>
-<td colspan=2>
-<select class="listeForm" name="idformulaire" onchange="javascript: this.form.submit();" SIZE="5" border="0" style="width: 100%;">
-
-[BLOCK_FORM+]
-<OPTION {couleur} VALUE="{id_formulaire}" TITLE="{infobulle_formulaire}" onMouseover="top.defTexteStatut(escape(this.title));" onMouseout="top.defTexteStatut('&nbsp;');">{nom_formulaire}
-[BLOCK_FORM-]
-</SELECT>
-<INPUT TYPE="hidden" NAME="typeaction" VALUE="">
-<INPUT TYPE="hidden" NAME="idobj" VALUE="0">
-<INPUT TYPE="hidden" NAME="verifUtilisation" VALUE="1">
-
-</td>
-</tr>
-<tr>
-<td style="text-align : left">
-<a 
-	href="javascript: suppression('supprimer');">Supprimer
-</a>
-</td>
-<td style="text-align : right">
-<a 
-	href="javascript: copie('copier');">Copier
-</a>
-</td>
-</tr>
+	<tr><td>
+		<select class="listeForm" name="idformulaire" onChange="selectionFormulaire();" SIZE="1" border="0" style="width: 99%;">
+			<OPTION VALUE="0">[Veuillez choisir un formulaire]</OPTION>
+			[BLOCK_FORM+]
+			<OPTION {couleur} VALUE="{id_formulaire}" TITLE="{infobulle_formulaire}" onMouseover="top.defTexteStatut(escape(this.title));" onMouseout="top.defTexteStatut('&nbsp;');" {select_form}>{nom_formulaire}</OPTION>
+			[BLOCK_FORM-]
+		</SELECT>
+		<INPUT TYPE="hidden" NAME="typeaction" VALUE="">
+		<INPUT TYPE="hidden" NAME="idobj" VALUE="{id_obj}">
+		<INPUT TYPE="hidden" NAME="verifUtilisation" VALUE="1">
+	</td></tr>
 </table>
-</FORM>
+</form>
 
-<br>
-<div align="center">
-<a
-	href="javascript: void(0);" 
-	onClick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">
-    Créer un formulaire
-</a>
+[BLOC_FORM_COURANT+]
+<div class="bloc">
+<h3>Formulaire</h3>
+<p class="nom">{nom_form_courant}</p>
+<p class="liens">
+	<a href="javascript: void(0);" onClick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">Nouveau</a>
+	| <a href="javascript: suppression('supprimer');">Supprimer</a>
+	| <a href="javascript: copie('copier');">Copier</a>
+</p>
 </div>
+[BLOC_FORM_COURANT-]
+
+[BLOC_ELEM_COURANT+]
+<div class="bloc">
+<h3>Elément</h3>
+<p class="nom">{nom_elem_courant}</p>
+<p class="liens">
+	<a href="javascript: ajoutobj({id_formulaire_sel});">Nouveau</a>
+	[BLOC_ELEM_COURANT_LIENS+]
+	| <a href="javascript: supobj({id_obj}, {id_formulaire_sel});">Supprimer</a>
+	| <a href="javascript: copieobj({id_obj}, {id_formulaire_sel});">Copier</a>
+	[BLOC_ELEM_COURANT_LIENS-]
+</p>
+</div>
+[BLOC_ELEM_COURANT-]
 
 </body>
 </html>

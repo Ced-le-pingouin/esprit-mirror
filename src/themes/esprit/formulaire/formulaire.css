@@ -74,14 +74,22 @@ body.formsup
 .listeForm
 {
 	  width:100%;
-	  border:1px solid black; /*Cette propriété n'a d'effet que sous netscape*/
+	  border:1px solid black; /* cette propriété n'a d'effet que sous netscape */
 }
 
 fieldset
 {
-	  /*Cette fonction n'a des effet que sous netscape*/
+	  /* cette fonction n'a d'effet que sous netscape */
 	  border:1px solid rgb(208,208,191);
 	  color:rgb(111,105,87);  
+}
+
+.titreModif { color: rgb(111,105,87); font-weight: bold; }
+
+.labelModif, body.modif legend
+{
+	color: rgb(153,73,89);
+	font-weight: bold;
 }
 
 form.formFormulaire
@@ -93,31 +101,30 @@ form.formFormulaire
 	padding: 20px;
 }
 
-/* :link permet de définir les propriétés des liens */
-a:link
+/* liens */
+a:link, a:visited, a:active, a:hover
 {
-    color : rgb(63,67,34) ;
-    text-decoration : none ;
-}
-
-/* :visited permet de définir les propriétés des liens déjà visités */
-a:visited
-{
-    color : rgb(63,67,34) ;
-    text-decoration : none ;
-}
-
-/* :active permet de définir les propriétés d'un lien actif - qui vient d'être cliqué */
-a:active
-{
-    color : rgb(63,67,34) ;
-    text-decoration : none ;
+    color: rgb(63,67,34);
+    text-decoration: none;
 }
 
 /* :hover permet de définir les propriétés du lien quand le curseur le survole */
 a:hover
 {
-    color : rgb(63,67,34) ;
-    text-decoration : underline ;
+    text-decoration: underline;
 }
 
+/* liens dans la partie "modification d'un objet" */
+A.lienModif:link, A.lienModif:active, A.lienModif:visited, A.lienModif:hover
+{
+	font-familiy: Arial;
+	font-size: 7pt;
+	color: rgb(0,70,213);
+	font-weight: normal;
+	text-decoration: none;
+}
+
+A.lienModif:hover
+{
+	text-decoration: underline;
+}

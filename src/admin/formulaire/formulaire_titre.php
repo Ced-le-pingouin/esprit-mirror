@@ -1,26 +1,18 @@
-<?php 
-//echo "formulaire_titre.php" 
+<?php
+
+require_once("globals.inc.php");
+
+$sLienCSS = lien_feuille_style("concept.css");
+
+$oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
+
+$oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
+$oBlock_Head->ajouter($sLienCSS);
+$oBlock_Head->afficher();
+
+$oTpl->remplacer("{titre_principal}","Formulaires");
+$oTpl->remplacer("{sous_titre}","");
+$oTpl->afficher();
+
 ?>
-<html>
-<head>
-<style type="text/css">
-<!--
-body
-{
-	background: rgb(255,255,255) url("/esprit/themes/esprit/fond-titre-zdc.gif") repeat-x;
-}
-//-->
-</style>
-</head>
 
-
-
-<body>
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr>
-<td><img src="/esprit/themes/esprit/logo-titre-zdc.gif" width="210" height="116" border="0"></td>
-</tr>
-</table>
-
-</body>
-</html>

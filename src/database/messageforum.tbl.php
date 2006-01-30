@@ -4,7 +4,7 @@
 ** Fichier ................: messageforum.tbl.php
 ** Description ............: 
 ** Date de création .......: 14/05/2004
-** Dernière modification ..: 12/10/2005
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **                           Jérôme TOUZE
 **
@@ -121,10 +121,7 @@ class CMessageForum
 	function initAuteur () { $this->oAuteur = $this->retAuteur(); }
 	function retAuteur (){ return new CPersonne($this->oBdd,$this->oEnregBdd->IdPers); }
 	
-	function retDate ($v_sFormatterDate="d/m/y H:i")
-	{
-		return retDateFormatter($this->oEnregBdd->DateMessageForum,$v_sFormatterDate);
-	}
+	function retDate ($v_sFormatterDate="d/m/y H:i") { return formatterDate($this->oEnregBdd->DateMessageForum,$v_sFormatterDate); }
 	
 	/**
 	 * Rechercher les fichiers attachés à ce message

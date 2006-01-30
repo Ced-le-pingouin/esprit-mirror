@@ -138,7 +138,7 @@ class CFormulaire_Axe
 		if ($v_iIdNvForm < 1)
 			return;
 		
-		$sRequeteSql = "INSERT INTO Formulaire_Axe SET"									  
+		$sRequeteSql = "INSERT INTO Formulaire_Axe SET"
 			." IdForm='{$v_iIdNvForm}'"
 			.", IdAxe='{$this->oEnregBdd->IdAxe}'";
 			

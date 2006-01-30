@@ -4,7 +4,7 @@
 ** Fichier ................: formulairecomplete.tbl.php
 ** Description ............: 
 ** Date de création .......: 
-** Dernière modification ..: 09/11/2004
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Ludovic FLAMME
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
@@ -237,7 +237,7 @@ class CFormulaireComplete
 			case STATUT_RES_EN_COURS: return "en cours";
 			case STATUT_RES_SOUMISE: return "soumis";
 			case STATUT_RES_APPROF: return "à approfondir";
-			case STATUT_RES_ACCEPTEE: return "accepter";
+			case STATUT_RES_ACCEPTEE: return "accepté";
 		}
 	}
 	
@@ -292,7 +292,7 @@ class CFormulaireComplete
 	function retTitre () { return $this->oEnregBdd->TitreFC; }
 	function retIdParent () { return $this->oEnregBdd->IdSousActiv; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
-	function retDate () { return retDateFormatter($this->oEnregBdd->DateFC); }
+	function retDate () { return formatterDate($this->oEnregBdd->DateFC); }
 	function retIdForm () { return $this->oEnregBdd->IdForm; }
 	function retStatut () { return (isset($this->oEnregBdd->StatutFormSousActiv) ? $this->oEnregBdd->StatutFormSousActiv : STATUT_RES_EN_COURS); }
 	// }}}

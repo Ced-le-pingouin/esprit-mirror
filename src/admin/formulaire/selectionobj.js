@@ -1,7 +1,11 @@
-function selectionobj(idobj,idformulaire) 
+function selectionobj(idobj, idformulaire, v_sTitre)
 {
+	// barre horizontale centrale
 	parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	// écran inférieur (modif options de l'élément)
 	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	// menu gauche
+	rechargermenugauche(idobj, idformulaire);
 }
 
 function rechargerliste(idobj,idformulaire) 
@@ -10,10 +14,15 @@ function rechargerliste(idobj,idformulaire)
 	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro
 }
 
-function rechargermenugauche()
+function rechargermenugauche(idobj, idformulaire)
 {
-	//alert ("je suis dans rechargermenugauche");
-	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php"); 
+	var bMesForms = (parent.FORMFRAMEMENU.document.forms['listeformulaire'].cbMesForms.checked?1:0);
+	
+	//alert ("je suis dans rechargermenugauche: "+bMesForms);
+	if (!arguments.length)
+		parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?cbMesForms="+bMesForms);
+	else
+		parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idobj="+idobj+"&idformulaire="+idformulaire+"&cbMesForms="+bMesForms);
 }
 
 function rechargerlistepopup(idobj,idformulaire) 

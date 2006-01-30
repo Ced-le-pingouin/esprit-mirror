@@ -76,7 +76,10 @@ class CReponse_Axe
 		   ." FROM ObjetFormulaire, Reponse, Reponse_Axe"
 		   ." WHERE ObjetFormulaire.IdForm = '$v_iIdFormulaire' AND Reponse.IdObjForm = ObjetFormulaire.IdObjForm"
 		   ." AND Reponse_Axe.IdReponse = Reponse.IdReponse"
-		   ." AND Reponse_Axe.IdAxe NOT IN($v_sListeAxes)";
+		 ;
+		 
+		 if (!empty($v_sListeAxes))
+			 $sRequeteSql .= " AND Reponse_Axe.IdAxe NOT IN ($v_sListeAxes)";
 		
 		/* Cette requête a été abandonnée car il était obligatoire de locker également les alias
 		$sRequeteSql ="SELECT ra.*"

@@ -4,11 +4,13 @@
 ** Fichier .................: evenement.tbl.php
 ** Description .............:
 ** Date de création ........: 01/03/2002
-** Dernière modification ...: 06/05/2004
+** Dernière modification ...: 19/12/2005
 ** Auteurs .................: Filippo PORCO
 ** Emails ..................: ute@umh.ac.be
 **
 */
+
+require_once(dir_database("evenement_detail.tbl.php"));
 
 define("ERREUR_CONNEXION",1);
 define("PERSONNE_CONNECTE",2);
@@ -69,13 +71,24 @@ class CEvenement
 		}
 		else
 		{
-			$sRequeteSql = "SELECT Evenement.* FROM Evenement"
+			$sRequeteSql = "SELECT Evenement.*"
+				." FROM Evenement"
 				." WHERE Evenement.IdEven='{$this->iId}'";
 			
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
+	}
+	
+	function initEvenementsPersonne ($v_iIdPers,$v_iIdForm)
+	{
+		$this->iIdPers = $v_iIdPers;
+		$this->iIdForm = $v_iIdForm;
+		$this->iModeTri = $this->TRI_CONNEXION;
+		$this->bTriAscendant = $this->TRI_DESCENDANT;
+		
+		return $this->initEvenements();
 	}
 	
 	function effacer ()
@@ -104,15 +117,8 @@ class CEvenement
 		}
 	}
 	
-	function defIdFormation ($v_iIdForm)
-	{
-		$this->iIdForm = $v_iIdForm;
-	}
-	
-	function defParFormations ($v_bParFormations=FALSE)
-	{
-		$this->bParFormations = $v_bParFormations;
-	}
+	function defIdFormation ($v_iIdForm) { $this->iIdForm = $v_iIdForm; }
+	function defParFormations ($v_bParFormations=FALSE) { $this->bParFormations = $v_bParFormations; }
 	
 	function retListeConnectes ()
 	{
@@ -142,20 +148,9 @@ class CEvenement
 		return $asNomConnectes;
 	}
 	
-	function defPersonne ($v_iIdPers=NULL)
-	{
-		$this->iIdPers = $v_iIdPers;
-	}
-	
-	function retPersonne ()
-	{
-		return $this->iIdPers;
-	}
-	
-	function defModeTri ($v_iModeTri)
-	{
-		$this->iModeTri = $v_iModeTri;
-	}
+	function defPersonne ($v_iIdPers=NULL) { $this->iIdPers = $v_iIdPers; }
+	function retPersonne () { return $this->iIdPers; }
+	function defModeTri ($v_iModeTri) { $this->iModeTri = $v_iModeTri; }
 	
 	function retModeTri ()
 	{
@@ -173,20 +168,17 @@ class CEvenement
 		return ($asModeTri[$this->iModeTri]." ".($this->bTriAscendant ? "ASC" : "DESC"));
 	}
 	
-	function defTriAscendant ($v_bTriAscendant=TRUE)
-	{
-		$this->bTriAscendant = $v_bTriAscendant;
-	}
+	function defTriAscendant ($v_bTriAscendant=TRUE) { $this->bTriAscendant = $v_bTriAscendant; }
 	
 	function requeteParFormations ()
 	{
 		return "SELECT Evenement_Detail.*"
-			.", Evenement_Detail.MomentEven AS MomentEven"
-			.", Evenement_Detail.SortiMomentEven AS SortiMomentEven"
-			.", SEC_TO_TIME("
-			."UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven)"
-			.") AS TempsEven"
-			.", Formation.NomForm AS NomForm"
+				.", Evenement_Detail.MomentEven AS MomentEven"
+				.", Evenement_Detail.SortiMomentEven AS SortiMomentEven"
+				.", SEC_TO_TIME("
+					."UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven)"
+				.") AS TempsEven"
+				.", Formation.NomForm AS NomForm"
 			." FROM Evenement_Detail"
 			." LEFT JOIN Evenement USING (IdEven)"
 			." LEFT JOIN Formation ON Evenement_Detail.IdForm=Formation.IdForm"
@@ -200,25 +192,25 @@ class CEvenement
 		$this->bParFormations = TRUE;
 		
 		return "SELECT Evenement.*"
-			.", Evenement_Detail.MomentEven"
-			.", Evenement_Detail.SortiMomentEven"
-			.", SEC_TO_TIME(UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven)) AS TempsEven"
+				.", Evenement_Detail.MomentEven"
+				.", Evenement_Detail.SortiMomentEven"
+				.", SEC_TO_TIME(UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven)) AS TempsEven"
 			." FROM Evenement_Detail"
 			." LEFT JOIN Evenement USING (IdEven)"
 			." LEFT JOIN Personne USING (IdPers)"
 			." WHERE Evenement_Detail.IdForm='{$this->iIdForm}'"
-			." AND Evenement.IdPers='{$this->iIdPers}'"
+				." AND Evenement.IdPers='{$this->iIdPers}'"
 			." ORDER BY ".$this->retModeTri();
 	}
 	
 	function requeteParProjet ()
 	{
 		return "SELECT *, UPPER(Nom) AS Nom"
-			.", COUNT(Evenement.IdPers) AS NbrConnexion"
-			.", MAX(Evenement.MomentEven) AS MomentEven"
-			.", MAX(Evenement.SortiMomentEven) AS SortiMomentEven"
-			.", SEC_TO_TIME(UNIX_TIMESTAMP(MAX(SortiMomentEven)) - UNIX_TIMESTAMP(MAX(MomentEven))) AS TempsEven"
-			.", SEC_TO_TIME(SUM(UNIX_TIMESTAMP(SortiMomentEven) - UNIX_TIMESTAMP(MomentEven))) AS DureeTotaleConnexions"
+				.", COUNT(Evenement.IdPers) AS NbrConnexion"
+				.", MAX(Evenement.MomentEven) AS MomentEven"
+				.", MAX(Evenement.SortiMomentEven) AS SortiMomentEven"
+				.", SEC_TO_TIME(UNIX_TIMESTAMP(MAX(SortiMomentEven)) - UNIX_TIMESTAMP(MAX(MomentEven))) AS TempsEven"
+				.", SEC_TO_TIME(SUM(UNIX_TIMESTAMP(SortiMomentEven) - UNIX_TIMESTAMP(MomentEven))) AS DureeTotaleConnexions"
 			." FROM Evenement"
 			." LEFT JOIN Personne USING (IdPers)"
 			." WHERE Evenement.IdPers IS NOT NULL"
@@ -229,11 +221,11 @@ class CEvenement
 	function requeteParEvenForm ()
 	{
 		return "SELECT *, UPPER(Nom) AS Nom"
-			.", COUNT(Evenement.IdPers) AS NbrConnexion"
-			.", MAX(Evenement_Detail.MomentEven) AS MaxMomentEven"
-			.", MAX(Evenement_Detail.SortiMomentEven) AS MaxSortiMomentEven"
-			.", SEC_TO_TIME(UNIX_TIMESTAMP(MAX(Evenement_Detail.SortiMomentEven)) - UNIX_TIMESTAMP(MAX(Evenement_Detail.MomentEven))) AS TempsEven"
-			.", SEC_TO_TIME(SUM(UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven))) AS DureeTotaleConnexions"
+				.", COUNT(Evenement.IdPers) AS NbrConnexion"
+				.", MAX(Evenement_Detail.MomentEven) AS MaxMomentEven"
+				.", MAX(Evenement_Detail.SortiMomentEven) AS MaxSortiMomentEven"
+				.", SEC_TO_TIME(UNIX_TIMESTAMP(MAX(Evenement_Detail.SortiMomentEven)) - UNIX_TIMESTAMP(MAX(Evenement_Detail.MomentEven))) AS TempsEven"
+				.", SEC_TO_TIME(SUM(UNIX_TIMESTAMP(Evenement_Detail.SortiMomentEven) - UNIX_TIMESTAMP(Evenement_Detail.MomentEven))) AS DureeTotaleConnexions"
 			." FROM Evenement_Detail"
 			." LEFT JOIN Evenement USING (IdEven)"
 			." LEFT JOIN Personne USING (IdPers)"
@@ -244,10 +236,6 @@ class CEvenement
 	
 	function initEvenements ()
 	{
-		$iIdxEven = 0;
-		
-		$this->aoEvenements = array();
-		
 		if ($this->bParFormations)
 			$sRequeteSql = $this->requeteParFormations();
 		else if ($this->iIdPers > 0)
@@ -256,6 +244,9 @@ class CEvenement
 			$sRequeteSql =  $this->requeteParEvenForm();
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		
+		$iIdxEven = 0;
+		$this->aoEvenements = array();
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
@@ -269,15 +260,9 @@ class CEvenement
 		return $iIdxEven;
 	}
 	
-	function retNbrConnexion ()
-	{
-		return $this->oEnregBdd->NbrConnexion;
-	}
-	
-	function retConnexion ($v_bFormatDateCours=TRUE,$v_bFormatHeureCours=FALSE)
-	{
-		return retDateLocale($this->oEnregBdd->MomentEven,$v_bFormatDateCours,$v_bFormatHeureCours);
-	}
+	function retMomentEven () { return $this->oEnregBdd->MomentEven; }
+	function retNbConnexions () { return $this->oEnregBdd->NbrConnexion; }
+	function retConnexion ($v_bFormatDateCours=TRUE,$v_bFormatHeureCours=FALSE) { return retDateLocale($this->oEnregBdd->MomentEven,$v_bFormatDateCours,$v_bFormatHeureCours); }
 	
 	function retDeconnexion ($v_bFormatDateCours=TRUE,$v_bFormatHeureCours=FALSE)
 	{
@@ -309,10 +294,7 @@ class CEvenement
 		return $sDureeConnexion;
 	}
 	
-	function retNavigateur ()
-	{
-		return $this->oEnregBdd->DonneesEven;
-	}
+	function retNavigateur () { return $this->oEnregBdd->DonneesEven; }
 	
 	function retDateDerniereConnexion ($v_bFormatDateCours=TRUE,$v_bFormatHeureCours=TRUE)
 	{
@@ -448,130 +430,6 @@ function retDateLocale ($v_sDate,$v_bFormatDateCours=FALSE,$v_bFormatHeureCours=
 	}
 	
 	return $sDateLocale;
-}
-
-class CEvenement_Detail
-{
-	var $oBdd;
-	var $iId;
-	
-	var $iIdForm;
-	
-	var $sErreur;
-	
-	function CEvenement_Detail ($v_oBdd,$v_iId,$v_iIdForm=NULL)
-	{
-		$this->oBdd = &$v_oBdd;
-		
-		$this->sErreur = NULL;
-		$this->iId = $v_iId;
-		$this->iIdForm = $v_iIdForm;
-	}
-	
-	function optimiserTable()
-	{
-		$this->oBdd->executerRequete("OPTIMIZE TABLE Evenement_Detail");
-	}
-	
-	function effacerParFormation ($v_bOptimiserTable=TRUE)
-	{
-		$sRequeteSql = "DELETE FROM Evenement_Detail"
-			." WHERE IdForm='{$this->iIdForm}'";
-		
-		$this->oBdd->executerRequete($sRequeteSql);
-		
-		if ($v_bOptimiserTable)
-			$this->optimiserTable();
-	}
-	
-	function retIdsEvensParFormation ()
-	{
-		$aiIdsEvens = array();
-		
-		$sRequeteSql = "SELECT IdEven FROM Evenement_Detail"
-			." WHERE IdForm='{$this->iIdForm}'"
-			." AND MomentEven IS NOT NULL"
-			." AND SortiMomentEven IS NOT NULL"
-			." GROUP BY IdEven";
-		
-		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-			$aiIdsEvens[] = $oEnreg->IdEven;
-		
-		$this->oBdd->libererResult($hResult);
-		
-		return $aiIdsEvens;
-	}
-	
-	function dejaEntrerFormation ()
-	{
-		$sRequeteSql = "SELECT Evenement_Detail.IdEven FROM Evenement_Detail"
-			." WHERE Evenement_Detail.IdEven='{$this->iId}'"
-			." AND Evenement_Detail.IdForm='{$this->iIdForm}'"
-			." AND Evenement_Detail.SortiMomentEven IS NULL";
-		
-		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		$bDejaEntrerFormation = ($this->oBdd->retEnregSuiv($hResult) != NULL);
-		$this->oBdd->libererResult($hResult);
-		
-		return $bDejaEntrerFormation;
-	}
-	
-	function entrerFormation ($v_iIdForm=NULL)
-	{
-		$this->sErreur = NULL;
-		
-		if ($v_iIdForm > 0)
-			$this->iIdForm = $v_iIdForm;
-		
-		if ($this->iId < 1 || $this->iIdForm < 1)
-		{
-			$this->sErreur = "CEvenement_Detail.entrerFormation: IdEven < 1 OR IdForm < 1";
-			return FALSE;
-		}
-		
-		if ($this->dejaEntrerFormation())
-			return TRUE;
-		
-		$sRequeteSql = "INSERT INTO Evenement_Detail"
-			." (IdEven,MomentEven,SortiMomentEven,IdForm)"
-			." VALUES"
-			." ('{$this->iId}',NOW(),NULL,'{$this->iIdForm}')";
-		
-		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
-	}
-	
-	function sortirFormation ($v_iIdForm=NULL)
-	{
-		$this->sErreur = NULL;
-		
-		if ($v_iIdForm > 0)
-			$this->iIdForm = $v_iIdForm;
-		
-		if ($this->iId < 1 || $this->iIdForm < 1)
-		{
-			$this->sErreur = "CEvenement_Detail.sortirFormation: IdEven < 1 OR IdForm < 1";
-			return FALSE;
-		}
-		
-		$sRequeteSql = "UPDATE Evenement_Detail"
-			." SET SortiMomentEven=NOW()"
-			." WHERE IdEven='{$this->iId}'"
-			." AND IdForm='{$this->iIdForm}'"
-			." AND SortiMomentEven IS NULL";
-		
-		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
-	}
-	
-	function retErreur ()
-	{
-		return $this->sErreur;
-	}
 }
 
 ?>

@@ -141,14 +141,14 @@ class CObjetFormulaire
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 
-	function DeplacerObjet($v_iNouvPos)
+	function DeplacerObjet($v_iNouvPos, $v_bVerrouillerTables = TRUE)
 	{
-		//Verrouillage de la table ObjetFormulaire
-		$sRequeteSql = "LOCK TABLES ObjetFormulaire WRITE";
-		$this->oBdd->executerRequete($sRequeteSql);
-		
-		if ($v_iNouvPos==$this->oEnregBdd->OrdreObjForm)
+		if (empty($v_iNouvPos) || $v_iNouvPos == $this->oEnregBdd->OrdreObjForm)
 			return false;
+
+		// Verrouillage de la table ObjetFormulaire
+		if ($v_bVerrouillerTables)
+			$this->oBdd->executerRequete("LOCK TABLES ObjetFormulaire WRITE");
 		
 		if ($v_iNouvPos > $this->oEnregBdd->OrdreObjForm)
 		{
@@ -184,7 +184,8 @@ class CObjetFormulaire
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		// déverrouillage de la table ObjetFormulaire
-		$this->oBdd->executerRequete("UNLOCK TABLES");
+		if ($v_bVerrouillerTables)
+			$this->oBdd->executerRequete("UNLOCK TABLES");
 		
 		return true;
 	}
@@ -198,7 +199,7 @@ class CObjetFormulaire
 	** Sortie			:
 	**					nombre total d'objets pour ce formulaire
 	*/
-	function NbObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurais pu etre pratique
+	function NbObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurait pu etre pratique
 	{
 		$sRequeteSql =
 			"  SELECT * FROM ObjetFormulaire"
@@ -219,7 +220,7 @@ class CObjetFormulaire
 	** Sortie			:
 	**					le plus grand numéro d'ordre pour ce formulaire
 	*/
-	function OrdreMaxObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurais pu etre pratique
+	function OrdreMaxObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurait pu etre pratique
 	{
 		$sRequeteSql =
 			"  SELECT MAX(OrdreObjForm) as OrdreMax FROM ObjetFormulaire"
@@ -233,6 +234,28 @@ class CObjetFormulaire
 		
 		//echo "<br>nb objet : ".$iMaxOrdreObjForm;
 		return $iMaxOrdreObjForm;
+	}
+
+	function cHtmlNumeroOrdre()
+	{
+		$sCodeHtml = "";
+		
+		$sCodeHtml .= "<div style=\"padding: 0px 0px 8px 0px;\">\n";
+		$sCodeHtml .= "<span class=\"titreModif\">Numéro d'ordre&nbsp;:&nbsp;</span>";
+		$iNbObjets = $this->OrdreMaxObjForm($this->retIdForm());
+		$sCodeHtml .= "<select name=\"selOrdreObjet\">\n";
+		for ($iIndexOrdreObjet = 1; $iIndexOrdreObjet <= $iNbObjets; $iIndexOrdreObjet++)
+		{
+			if ($this->retOrdre() != $iIndexOrdreObjet)
+				$sSelect = "";
+			else
+				$sSelect = "SELECTED";
+			$sCodeHtml .= "\t<option value=\"{$iIndexOrdreObjet}\" $sSelect>$iIndexOrdreObjet</option>\n";
+		}
+		$sCodeHtml .= "</select>\n";
+		$sCodeHtml .= "</div>\n";
+		
+		return $sCodeHtml;
 	}
 
 	function enregistrer()
@@ -320,6 +343,30 @@ class CObjetFormulaire
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return TRUE;
+	}
+	
+	function verrouillerTablesQuestion()
+	{
+		$this->oBdd->executerRequete
+		(
+			"LOCK TABLES"
+			." ObjetFormulaire WRITE"
+			." , Reponse WRITE"
+			." , Reponse_Axe WRITE"
+			." , QCocher WRITE"
+			." , QRadio WRITE"
+			." , QListeDeroul WRITE"
+			." , QTexteCourt WRITE"
+			." , QTexteLong WRITE"
+			." , QNombre WRITE"
+			." , MPSeparateur WRITE"
+			." , MPTexte WRITE"
+		);
+	}
+	
+	function deverrouillerTablesQuestion()
+	{
+		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
 	// Fonctions de définitions
