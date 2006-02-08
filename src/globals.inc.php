@@ -43,12 +43,18 @@ function dir_definition ($v_sFichierAInclure=NULL) { return dir_include("def/$v_
 // ---------------------
 function dir_code_lib ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
-	return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/new/$v_sFichierAInclure";
+	$v_sFichierAInclure = "code_lib/{$v_sFichierAInclure}";
+	if ($v_bCheminHttp)
+		return dir_http_plateform(dir_lib($v_sFichierAInclure, FALSE));
+	else
+		return dir_lib($v_sFichierAInclure,$v_bCheminAbsolu);
+	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/new/$v_sFichierAInclure";
 }
 
 function dir_code_lib_ced ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
-	return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/$v_sFichierAInclure";
+	return dir_code_lib($v_sFichierAInclure, $v_bCheminHttp, $v_bCheminAbsolu);
+	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/$v_sFichierAInclure";
 }
 
 /**
@@ -95,7 +101,6 @@ function dir_http_plateform ($v_sFichierAInclure=NULL)
  */
 function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
-	// $sChemin = '/usr/local/apache-1.3.31/htdocs/esprit/';
 	$sChemin = str_replace("\\","/",realpath(dirname(__FILE__))."/");
 	if (!$v_bCheminAbsolu) $sChemin = str_replace(dir_document_root(),"/",$sChemin);
 	return "{$sChemin}{$v_sFichierAInclure}";
