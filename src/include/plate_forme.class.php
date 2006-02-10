@@ -287,7 +287,7 @@ class CProjet
 		global $g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd;
 		
 		// init 'simples' des propriétés, càd sans accès à la bdd
-		$this->sCheminWeb     = dirname($HTTP_SERVER_VARS["PHP_SELF"]);
+		$this->sCheminWeb     = str_replace('\\', '/', dirname($HTTP_SERVER_VARS["PHP_SELF"]));
 		$this->sCheminComplet = $HTTP_SERVER_VARS["DOCUMENT_ROOT"].$this->sCheminWeb;
 		$this->sNomRep        = $g_sNomBdd;
 		$this->sUrlLogin      = "http://".$HTTP_SERVER_VARS["HTTP_HOST"].$this->sCheminWeb."/"."login-index.php";
