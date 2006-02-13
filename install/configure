@@ -6,7 +6,7 @@
 # 18, Place du Parc
 # 7000 MONS
 
-UTILISATEUR_ESPRIT=porco
+UTILISATEUR_ESPRIT=esprit
 GROUPE_ESPRIT=esprit
 
 UTILISATEUR_HTTP=nobody
