@@ -12,25 +12,26 @@ GROUPE_ESPRIT=esprit
 UTILISATEUR_HTTP=nobody
 GROUPE_HTTP=nobody
 
-ESPRIT=..
-chown -R $UTILISATEUR_ESPRIT.$GROUPE_ESPRIT $ESPRIT/.
+ESPRIT_RACINE=..
+ESPRIT_SRC=../src
+chown -R $UTILISATEUR_ESPRIT.$GROUPE_ESPRIT $ESPRIT_RACINE
 
 # Initialiser le répertoire qui contiendra toutes
 # les formations.
-chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/formation $ESPRIT/tmp
-chmod a-rwx $ESPRIT/formation $ESPRIT/tmp
-chmod u+w $ESPRIT/formation $ESPRIT/tmp
-chmod a+rx $ESPRIT/formation $ESPRIT/tmp
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT_SRC/formation $ESPRIT_SRC/tmp
+chmod a-rwx $ESPRIT_SRC/formation $ESPRIT_SRC/tmp
+chmod u+w $ESPRIT_SRC/formation $ESPRIT_SRC/tmp
+chmod a+rx $ESPRIT_SRC/formation $ESPRIT_SRC/tmp
 
 # Fichier log
-chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/admin/console/log
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT_SRC/admin/console/log
 
-chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT/include/def $ESPRIT/bin
+chown -R $UTILISATEUR_HTTP.$GROUPE_HTTP $ESPRIT_SRC/include/def $ESPRIT_SRC/bin
 
-chmod u+x $ESPRIT/bin/linux/unzip
+chmod u+x $ESPRIT_SRC/bin/linux/unzip
 
-find $ESPRIT/. -group $GROUPE_ESPRIT -exec chmod g+w {} \;
-find $ESPRIT/. -type d -a -group $GROUPE_ESPRIT -exec chmod g+s {} \;
+find $ESPRIT_RACINE -group $GROUPE_ESPRIT -exec chmod g+w {} \;
+find $ESPRIT_RACINE -type d -a -group $GROUPE_ESPRIT -exec chmod g+s {} \;
 
 echo "Configuration terminée"
 

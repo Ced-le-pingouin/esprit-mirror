@@ -24,7 +24,7 @@ find .. -mindepth 2 -maxdepth 2 -path "$REPERT_A_SAUVER/src/formation/f*" -a -ty
 find .. -mindepth 2 -maxdepth 2 -path "$REPERT_A_SAUVER/src/themes/*" -a -type d -a ! \( -name 'commun' -o -name 'esprit' \) -printf './%P\n' >> $FICHIER_EXCLUSIONS
 
 # éviter les fichiers SQL non-officiels d'Esprit
-find .. -mindepth 3 -maxdepth 3 -path "$REPERT_A_SAUVER/install/sql/*" -a -type d -a ! \( -name 'commun' -o -name 'esprit' \) -printf './%P\n' >> $FICHIER_EXCLUSIONS
+find .. -mindepth 3 -maxdepth 3 -path "$REPERT_A_SAUVER/setup/sql/*" -a -type d -a ! \( -name 'commun' -o -name 'esprit' \) -printf './%P\n' >> $FICHIER_EXCLUSIONS
 
 # éviter le répertoire tmp, qui contient les mots de passe décryptés
 echo './src/tmp/*' >> $FICHIER_EXCLUSIONS
@@ -36,14 +36,14 @@ echo './src/tmp/*' >> $FICHIER_EXCLUSIONS
 # éviter les config.inc* qui sont propres à l'installation courante (mots de passe DB !), sauf le .dist qui doit être fourni
 find .. -path "$REPERT_A_SAUVER/src/include/config.inc*" -a ! -name 'config.inc.dist' -printf './%P\n' >> $FICHIER_EXCLUSIONS
 
-# éviter les fichiers temporaires d'inscription (dans install/inscriptions)
-find .. -path "$REPERT_A_SAUVER/install/inscriptions/*" -a \( -name '*.sql' -o -name '*.csv' \) -printf './%P\n' >> $FICHIER_EXCLUSIONS
+# éviter les fichiers temporaires d'inscription (dans setup/inscriptions)
+find .. -path "$REPERT_A_SAUVER/setup/inscriptions/*" -a \( -name '*.sql' -o -name '*.csv' \) -printf './%P\n' >> $FICHIER_EXCLUSIONS
 
 # éviter le fichier tar lui-même, puisqu'il sera construit en même temps
-echo "./install/$FICHIER_ARCHIVE.$EXT_ARCHIVE" >> $FICHIER_EXCLUSIONS
+echo "./setup/$FICHIER_ARCHIVE.$EXT_ARCHIVE" >> $FICHIER_EXCLUSIONS
 
 # mais aussi le fichier temporaire de ce script, qui contient les chemins à exclure
-echo "./install/$FICHIER_EXCLUSIONS" >> $FICHIER_EXCLUSIONS
+echo "./setup/$FICHIER_EXCLUSIONS" >> $FICHIER_EXCLUSIONS
 
 # éviter tous les répertoires Subversion
 echo '*/.svn' >> $FICHIER_EXCLUSIONS

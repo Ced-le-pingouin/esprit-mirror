@@ -13,7 +13,7 @@ d'Esprit, dans l'ordre :
 3) créer un user MySQL qui a les droits sur la BdD
 (select/insert/update/delete/lock devraient suffire).
 
-4) faire une copie du fichier ./install/config.inc.dist sous le nom
+4) faire une copie du fichier ./setup/config.inc.dist sous le nom
 "./src/include/config.inc", et modifier les user et mot de passe pour
 permettre l'accès à la BdD esprit (donc les user/mot de passe créés en
 (3) ). Il y a une deuxième mention à un couple user/mot de passe dans
