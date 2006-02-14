@@ -1,0 +1,41 @@
+Pour que la plate-forme soit opérationnelle, voilà la marche à suivre :
+
+1) créer une base de données (BdD) vide, par ex... esprit :-) .
+
+2) créer les tables et insérer les données par défaut, en exécutant
+dans cette BdD les fichiers suivants, se trouvant dans les sources
+d'Esprit, dans l'ordre :
+ - dist/sql/database.mysql ;
+ - dist/sql/commun/ : tous les fichiers .sql , sauf ceux dont le nom
+     débute par i18n, qui ne fonctionnent pas ;
+ - dist/sql/esprit/Projet.sql .
+
+3) créer un user MySQL qui a les droits sur la BdD
+(select/insert/update/delete/lock devraient suffire).
+
+4) faire une copie du fichier ./install/config.inc.dist sous le nom
+"./src/include/config.inc", et modifier les user et mot de passe pour
+permettre l'accès à la BdD esprit (donc les user/mot de passe créés en
+(3) ). Il y a une deuxième mention à un couple user/mot de passe dans
+ce fichier, il s'agit de l'accès root, mais il n'est pas nécessaire
+sauf si on utilise un outil particulier appelé "transfert", dans la
+plate-forme.
+
+5) créer un sous-répertoire "tmp" dans la racine de la plate-forme
+Esprit, ainsi qu'un fichier vide nommé "mdpncpte", non lisible au
+niveau des droits d'accès, mais avec au moins l'accès en écriture pour
+le php/webserver.
+
+6) voilà, maintenant, si on se rend avec le navigateur sur l'url
+localhost/esprit/ (par ex.), le login par défaut est "admin", et le
+mot de passe "mdp".
+
+7) une fois entré en admin, on peut créer une formation de test, en
+cliquant sur "Outils", qui se trouve dans la barre inférieure du site,
+puis en se rendant de l'outil de conception de cours eConcept.
+
+
+
+PRÉREQUIS :
+
+- PHP4 avec browscap.ini (pour l'identification des navigateurs)
