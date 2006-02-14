@@ -1,5 +1,6 @@
 //
-// This file is part of "Esprit", a web-based Learning Management System.
+// This file is part of Esprit, a web Learning Management System, developped
+// by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
 // 
 // Esprit is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License version 2, as 
@@ -15,5 +16,5 @@
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // 
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
-// Universite de Mons-Hainaut, Belgium.
+//                          Universite de Mons-Hainaut, Belgium.
 // 
