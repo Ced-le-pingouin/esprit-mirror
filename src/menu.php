@@ -55,24 +55,24 @@ foreach ($asOutils as $sOutil)
 // Composer le menu
 // ---------------------
 $sMenu = ($bPersInscrite
-		? "<a href=\"javascript: void(0);\" onclick=\"profil(); return false;\" onfocus=\"blur()\">Profil</a>&nbsp;|&nbsp;"
+		  ? "<a href=\"javascript: void(0);\" onclick=\"profil(); return false;\" onfocus=\"blur()\">",_("Profil"),"</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($iNbrStatuts > 1
-		? "<a href=\"javascript: void(0);\" onclick=\"changer_statut(); return false;\" onfocus=\"blur()\">Statuts</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"changer_statut(); return false;\" onfocus=\"blur()\">",_("Statuts"),"</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($bPersInscrite
-		? "<a href=\"javascript: void(0);\" onclick=\"liste_connectes(); return false;\" onfocus=\"blur()\">Awareness</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"liste_connectes(); return false;\" onfocus=\"blur()\">",_("Awareness"),"</a>&nbsp;|&nbsp;"
 		: NULL)
 	/*.($iIdRubrique < 1 && $oProjet->verifPermission("PERM_CLASSER_FORMATIONS")
-		? "<a href=\"javascript: void(0);\" onclick=\"changer_dossier(); return false;\" onfocus=\"blur()\">Dossier</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"changer_dossier(); return false;\" onfocus=\"blur()\">",_("Dossier"),"</a>&nbsp;|&nbsp;"
 		: NULL)*/
 	.($iIdForm > 0
-		? "<a href=\"javascript: void(0);\" onclick=\"connexion(); return false;\" onfocus=\"blur()\">Traces</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"connexion(); return false;\" onfocus=\"blur()\">",_("Traces"),"</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($iNbrOutils > 0
-		? "<a href=\"javascript: void(0);\" onclick=\"outils(); return false;\" onfocus=\"blur()\">Outils</a>&nbsp;|&nbsp;" 
+		? "<a href=\"javascript: void(0);\" onclick=\"outils(); return false;\" onfocus=\"blur()\">",_("Outils"),"</a>&nbsp;|&nbsp;" 
 		: NULL)
-	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">Rafra&icirc;chir</a>";
+	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">",_("Rafra&icirc;chir"),"</a>";
 
 // ---------------------
 // Template

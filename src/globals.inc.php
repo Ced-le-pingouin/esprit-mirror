@@ -19,6 +19,7 @@
 // ---------------------
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
+require_once(dir_include("gettext.inc.php"));
 
 /**
  * Description....
@@ -359,10 +360,10 @@ function retParams ($v_iForm=0,$v_iMod=0,$v_iRubrique=0,$v_iUnite=0,$v_iActiv=0,
 
 function erreurFatale ($v_sMessageErreur=NULL)
 {
-	echo "<html>"
-		."<body>"
-		."<div align=\"center\"><pre>Une erreur fatale est survenue&nbsp;:<br>"
-		."<b>".htmlentities($v_sMessageErreur)."</b></pre></div></body></html>";
+	echo "<html>",
+		"<body>",
+		"<div align=\"center\"><pre>",gettext('Une erreur fatale est survenue&nbsp;:'),"<br>",
+		"<b>",htmlentities($v_sMessageErreur),"</b></pre></div></body></html>";
 	exit();
 }
 
@@ -420,7 +421,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = ereg_replace("\[http://([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"http://\\1\\2\" target=\"_blank\" onfocus=\"blur()\">http://\\1\\2</a>", $v_sTexte);
 	
 	// Ecrire un e-mail
-	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"Envoyer un e-mail\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);
+	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"".gettext("Envoyer un e-mail")."\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);
 	
 	// Alignements du texte:
 	// - à gauche

@@ -217,8 +217,7 @@ class CConstantes
 			{
 				// écriture balise php début + 'define's + balise php fin, puis fermeture
 				fputs($hFichier,"<?php\n\n");
-				fputs($hFichier,"// Ce fichier a été généré (".date("d M Y").") automatiquement par la plate-forme\n\n");
-
+				fputs($hFichier,sprintf("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n",date ("d M Y")));
 				while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 				{
 					$commentaire = $oEnreg->DescrTxt;
@@ -431,7 +430,7 @@ class CProjet
 						fwrite($fp,$sLigne,strlen($sLigne));
 						fclose($fp);
 						
-						chmod($sNomFichier,0200);
+						//chmod($sNomFichier,0200);
 					}
 				}
 				else
@@ -1686,7 +1685,7 @@ class CProjet
 		{
 			// écriture balise php début + 'define's + balise php fin, puis fermeture
 			fputs($hFichier,"<?php\n\n");
-			fputs($hFichier,"// Ce fichier a été généré (".date ("d M Y").") automatiquement par la plate-forme\n\n");
+			fputs($hFichier,sprintf("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n",date ("d M Y")));
 			fputs($hFichier,"define(\"STATUT_POTENTIEL\", 1000);\n\n");
 			
 			$aFirst = reset($aListeStatut);
@@ -1826,16 +1825,16 @@ function retListeStatuts ($v_sGenre="F")
 {
 	if (strtoupper($v_sGenre) == "M")
 		return array(
-			array(STATUT_FERME,"Fermé"),
-			array(STATUT_OUVERT,"Ouvert"),
-			array(STATUT_INVISIBLE,"Invisible"),
-			array(STATUT_ARCHIVE,"Archivé"));
+			array(STATUT_FERME,_("Fermé")),
+			array(STATUT_OUVERT,_("Ouvert")),
+			array(STATUT_INVISIBLE,_("Invisible")),
+			array(STATUT_ARCHIVE,_("Archivé")));
 	else
 		return array(
-			array(STATUT_FERME,"Fermée"),
-			array(STATUT_OUVERT,"Ouverte"),
-			array(STATUT_INVISIBLE,"Invisible"),
-			array(STATUT_ARCHIVE,"Archivé"));
+			array(STATUT_FERME,_("Fermée")),
+			array(STATUT_OUVERT,_("Ouverte")),
+			array(STATUT_INVISIBLE,_("Invisible")),
+			array(STATUT_ARCHIVE,_("Archivé")));
 }
 
 ?>
