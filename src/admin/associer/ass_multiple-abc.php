@@ -19,32 +19,16 @@ td.cellule_sous_titre { height: 20px; }
 <body>
 <table border="1" cellspacing="0" cellpadding="0" width="100%">
 <tr><td>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('A',oFramePersonnes());">A</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('B',oFramePersonnes());">B</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('C',oFramePersonnes());">C</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('D',oFramePersonnes());">D</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('E',oFramePersonnes());">E</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('F',oFramePersonnes());">F</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('G',oFramePersonnes());">G</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('H',oFramePersonnes());">H</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('I',oFramePersonnes());">I</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('J',oFramePersonnes());">J</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('K',oFramePersonnes());">K</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('L',oFramePersonnes());">L</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('N',oFramePersonnes());">N</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('M',oFramePersonnes());">M</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('O',oFramePersonnes());">O</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('P',oFramePersonnes());">P</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('Q',oFramePersonnes());">Q</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('R',oFramePersonnes());">R</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('S',oFramePersonnes());">S</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('T',oFramePersonnes());">T</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('U',oFramePersonnes());">U</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('V',oFramePersonnes());">V</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('W',oFramePersonnes());">W</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('X',oFramePersonnes());">X</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('Y',oFramePersonnes());">Y</a>&nbsp;</td></tr>
-<tr><td class="cellule_sous_titre" align="center">&nbsp;<a href="javascript: sePlacerPersonne('Z',oFramePersonnes());">Z</a>&nbsp;</td></tr>
+<?php
+{
+	$l = "ABCDEFGHIJKLMNOPQRSTVWY";
+	$i = 0;
+	while ($i<strlen($l)) {
+		echo "<tr><td class=\"cellule_sous_titre\" align=\"center\">&nbsp;<a href=\"javascript: sePlacerPersonne('$l[$i]',oFramePersonnes());\">$l[$i]</a>&nbsp;</td></tr>";
+		$i++;
+	}
+}
+?>
 </table>
 </body>
 </html>
