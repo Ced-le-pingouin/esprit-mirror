@@ -217,7 +217,7 @@ class CConstantes
 			{
 				// écriture balise php début + 'define's + balise php fin, puis fermeture
 				fputs($hFichier,"<?php\n\n");
-				fputs($hFichier,sprintf("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n",date ("d M Y")));
+				fputs($hFichier,sprintf(_("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
 				while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 				{
 					$commentaire = $oEnreg->DescrTxt;
@@ -1685,7 +1685,7 @@ class CProjet
 		{
 			// écriture balise php début + 'define's + balise php fin, puis fermeture
 			fputs($hFichier,"<?php\n\n");
-			fputs($hFichier,sprintf("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n",date ("d M Y")));
+			fputs($hFichier,sprintf(_("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
 			fputs($hFichier,"define(\"STATUT_POTENTIEL\", 1000);\n\n");
 			
 			$aFirst = reset($aListeStatut);

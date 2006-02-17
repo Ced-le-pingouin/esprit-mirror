@@ -76,8 +76,8 @@ unset($asStatutPers,$url_iSelectStatut);
 // *************************************
 
 $asToolTip = array(
-	"Ajouter une/des personne(s) &agrave; la liste des personnes inscrites",
-	"Enlever une personne de la liste des personnes inscrites"
+	_("Ajouter une/des personne(s) &agrave; la liste des personnes inscrites"),
+	_("Enlever une personne de la liste des personnes inscrites")
 );
 
 ?>

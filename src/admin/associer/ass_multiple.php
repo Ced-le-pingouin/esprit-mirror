@@ -13,13 +13,13 @@ $url_iIdStatut = (empty($HTTP_GET_VARS["STATUT_PERS"]) ? 0 : $HTTP_GET_VARS["STA
 switch ($url_iIdStatut)
 {
 	case STATUT_PERS_CONCEPTEUR:
-		$sTitreOngletPersonnes = "Liste&nbsp;des&nbsp;concepteurs";
+		$sTitreOngletPersonnes = _("Liste&nbsp;des&nbsp;concepteurs");
 		break;
 	case STATUT_PERS_TUTEUR:
-		$sTitreOngletPersonnes = "Liste&nbsp;des&nbsp;tuteurs";
+		$sTitreOngletPersonnes = _("Liste&nbsp;des&nbsp;tuteurs");
 		break;
 	case STATUT_PERS_ETUDIANT:
-		$sTitreOngletPersonnes = "Liste&nbsp;des&nbsp;&eacute;tudiants";
+		$sTitreOngletPersonnes = _("Liste&nbsp;des&nbsp;&eacute;tudiants");
 		break;
 		
 	default:

@@ -5,7 +5,7 @@
 lierFichiersCSS("dialog.css");
 
 if (!isset($sDialogueTitre))
-	$sDialogueTitre = "Bo&icirc;te de dialogue sans titre";
+	$sDialogueTitre = _("Bo&icirc;te de dialogue sans titre");
 
 if (isset($sDialogueLogo))
 	$sDialogueLogo = "<img src=\"".dir_theme($sDialogueLogo)."\" border=\"0\">";

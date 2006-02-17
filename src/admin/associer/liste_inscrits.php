@@ -78,17 +78,18 @@ $sNomsInscrits = NULL;
 $sMajListeCours = NULL;
 $iNbrInscrits = 0;
 
+$strPas = _("Pas de %s trouvé");
 $asPasDePersonnesTrouvees = array(
 		NULL,
 		NULL,
-		"Pas de ".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE_POTENTIEL,"M"))." trouvé",
-		"Pas de ".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"))." trouvé",
-		"Pas de ".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR_POTENTIEL,"M"))." trouvé",
-		"Pas de ".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"))." trouvé",
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE_POTENTIEL,"M"))),
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"))),
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR_POTENTIEL,"M"))),
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"))),
 		NULL,
-		"Pas de ".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"))." trouvé",
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"))),
 		NULL,
-		"Pas d'".strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"))." trouvé",
+		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"))),
 		NULL
 	);
 

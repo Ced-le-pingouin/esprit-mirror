@@ -10,7 +10,7 @@ $url_iIdStatut = (isset($HTTP_GET_VARS["STATUT_PERS"]) ? $HTTP_GET_VARS["STATUT_
 // ---------------------
 // Template
 // ---------------------
-$sTitrePrincipal = "Association multiple";
+$sTitrePrincipal = _("Association multiple");
 
 $oTpl = new Template("ass_multiple-index.tpl");
 $oTpl->remplacer("{fenetre->titre}",htmlentities($sTitrePrincipal));

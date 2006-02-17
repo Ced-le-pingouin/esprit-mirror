@@ -122,7 +122,7 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 			break;
 			
 		default:
-			$sErrPers = "La table contenant les personnes est vide";
+			$sErrPers = _("La table contenant les personnes est vide");
 	}
 }
 
@@ -170,7 +170,7 @@ for ($i=0; $i<$iNbrPers; $i++)
 		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)."</span>"
 		."</a>"
 		."</td>\n"
-		."<td{$sClassTR}>&nbsp;Infos&nbsp;</td>"
+		."<td{$sClassTR}>&nbsp;".("Infos")."&nbsp;</td>"
 		."</tr>\n";
 
 if ($i < 1)

@@ -153,7 +153,7 @@ switch ($iIdStatut)
 					.($bAutoInscription ? " readonly" : NULL)
 					.">"
 					."&nbsp;"
-					.($aoModules[$i]->estMembre ? "<span class=\"Attention\" style=\"cursor: help;\" title=\"Associ&eacute; &agrave; une &eacute;quipe\">$sNomModule</span>" : $sNomModule)
+					.($aoModules[$i]->estMembre ? "<span class=\"Attention\" style=\"cursor: help;\" title=\""._("Associ&eacute; &agrave; une &eacute;quipe")."\">$sNomModule</span>" : $sNomModule)
 					."</td>"
 					."</tr>\n";
 			}

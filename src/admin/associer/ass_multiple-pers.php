@@ -82,19 +82,19 @@ switch ($url_iIdStatut)
 	case STATUT_PERS_CONCEPTEUR:
 		$oFormation->initConcepteurs($sOrdreTri);
 		$aoPersonnes = &$oFormation->aoConcepteurs;
-		$sTitreColonne = "La liste des concepteurs";
+		$sTitreColonne = _("La liste des concepteurs");
 		break;
 		
 	case STATUT_PERS_TUTEUR:
 		$oFormation->initTuteurs($sOrdreTri);
 		$aoPersonnes = &$oFormation->aoTuteurs;
-		$sTitreColonne = "La liste des tuteurs";
+		$sTitreColonne = _("La liste des tuteurs");
 		break;
 		
 	case STATUT_PERS_ETUDIANT:
 		$oFormation->initInscrits($sOrdreTri);
 		$aoPersonnes = &$oFormation->aoInscrits;
-		$sTitreColonne = "La liste des &eacute;tudiants";
+		$sTitreColonne = _("La liste des &eacute;tudiants");
 		break;
 		
 	default:

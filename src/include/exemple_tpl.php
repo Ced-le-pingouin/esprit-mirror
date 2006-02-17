@@ -148,6 +148,6 @@ if($oProjet->VerifPermission("PERM_MODIF_PERMISSION"))
 }
 else
 {
-	echo "<html><body><b>Vous n'avez pas les droits pour afficher cette page.</b></body></html>";	
+	echo "<html><body><b>",_("Vous n'avez pas les droits pour afficher cette page."),"</b></body></html>";	
 }
 ?>
