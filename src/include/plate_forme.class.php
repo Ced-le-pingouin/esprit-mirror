@@ -1,8 +1,9 @@
 <?php
 /**
+ * @file	plate_forme.class.php
+ * 
  * Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les "traductions".
  * 
- * @file	plate_forme.class.php
  * @date	06/09/2001
  * 
  * @author	Cédric FLOQUET
@@ -11,20 +12,17 @@
  * @author	Ludovic FLAMME
  */
 
-// *************************************
-// Les n° 1 à 3 des constantes 'LOGIN' sont dans la base, dans les tables
-// 'TxtErreursxxx', qui ont été traduites en un fichier
-// 'include/constantes.def.php' à l'aidede la classe 'CConstantes' définie
-// dans ce fichier
-// *************************************
+
+/** @name Constantes - état d'identification utilisateur */
+//@{
 define("LOGIN_OK"				, 0);
 define("LOGIN_MDP_INCORRECT"	, 8);
 define("LOGIN_PAS_ENCORE_ID"	, 9);
 define("LOGIN_PERSONNE_INCONNUE", 10);
+//@}
 
-// ---------------------
-// Déclaration de constantes des cookies
-// ---------------------
+/** @name Constantes - éléments de la session enregistrée dans le cookie */
+//@{
 define("SESSION_DEBUT"				, 0);
 define("SESSION_PSEUDO"				, 0);	/// Pseudo de la personne															@enum SESSION_PSEUDO
 define("SESSION_NOM"				, 1);	/// Nom de la personne																@enum SESSION_NOM
@@ -43,17 +41,17 @@ define("SESSION_UID"				, 13);	/// Numéro ID unique donné par la table 'Evenemen
 define("SESSION_DOSSIER_FORMS"		, 14);	/// Numéro du dossier de formations													@enum SESSION_DOSSIER_FORMS
 define("SESSION_LANG"				, 15);	/// Langue de l'interface de l'utilisateur											@enum SESSION_LANG
 define("SESSION_FIN"				, 14);
+//@}
 
-// ---------------------
-// Déclaration de constantes de l'états du login
-// ---------------------
+/** @name Constantes - types d'événements (à logger) */
+//@{
 define("TYPE_EVEN_LOGIN_RATE"	, 1);
 define("TYPE_EVEN_LOGIN_REUSSI"	, 2);
 define("TYPE_EVEN_DECONNEXION"	, 3);
+//@}
 
-// ---------------------
-// Déclaration de constantes qui définissent le fonctionnement d'un lien
-// ---------------------
+/** @name Constantes - types de "liens", en fait les types de sous-activités possibles (dans la colonne de gauche d'une rubrique) */
+//@{
 define("LIEN_PAGE_HTML"				, 1);
 define("LIEN_DOCUMENT_TELECHARGER"	, 2);
 define("LIEN_SITE_INTERNET"			, 3);
@@ -66,19 +64,19 @@ define("LIEN_FORMULAIRE"			, 9);	/// questionnaire = AEL (activité en ligne)		@e
 define("LIEN_TEXTE_FORMATTE"		, 10);
 define("LIEN_GLOSSAIRE"				, 11);
 define("LIEN_TABLEAU_DE_BORD"		, 12);
+//@}
 
-// ---------------------
-// Mode de fonctionnement d'un lien
-// ---------------------
+/** @name Constantes - modalités d'affichage pour certains liens HTML de la plate-forme */
+//@{
 define("FRAME_CENTRALE_DIRECT"		, 1);	/// Affichage immédiat dans la frame centrale														@enum FRAME_CENTRALE_DIRECT
 define("FRAME_CENTRALE_INDIRECT"	, 2);	/// Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans la frame centrale		@enum FRAME_CENTRALE_INDIRECT
 define("NOUVELLE_FENETRE_DIRECT"	, 3);	/// Affichage immédiat dans une nouvelle fenêtre de navigateur										@enum NOUVELLE_FENETRE_DIRECT
 define("NOUVELLE_FENETRE_INDIRECT"	, 4);	/// Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans une nouvelle fenêtre	@enum NOUVELLE_FENETRE_INDIRECT
 define("MODE_LIEN_TELECHARGER"		, 5);	/// Force le téléchargement de la cible du lien														@enum MODE_LIEN_TELECHARGER
+//@}
 
-// ---------------------
-// Déclaration de constantes qui définit les différents types
-// ---------------------
+/** @name Constantes - éléments de "structure" de formation */
+//@{
 define("TYPE_INCONNU"		, 0);
 define("TYPE_FORMATION"		, 1);
 define("TYPE_MODULE"		, 2);
@@ -86,7 +84,10 @@ define("TYPE_RUBRIQUE"		, 3);
 define("TYPE_UNITE"			, 4);
 define("TYPE_ACTIVITE"		, 5);
 define("TYPE_SOUS_ACTIVITE"	, 6);
+//@}
 
+/** @name Constantes - statuts/disponibilité des éléments de structure */
+//@{
 define("STATUT_FERME"			, 1);	/// Le lien est visible mais pas accessible															@enum STATUT_FERME
 define("STATUT_OUVERT"			, 2);	/// Le lien est visible et accessible																@enum STATUT_OUVERT
 define("STATUT_INVISIBLE"		, 3);	/// Le lien n'est pas affiché																		@enum STATUT_INVISIBLE
@@ -96,20 +97,20 @@ define("STATUT_IDEM_PARENT"		, 6);
 define("STATUT_LECTURE_SEULE"	, 7);	/// Le lien est visible, cliquable mais nous ne pouvons pas modifier quoique ce soit				@enum STATUT_LECTURE_SEULE
 
 //define("STATUT_USER",3);
+//@}
 
-// ---------------------
-// Modalité
-// ---------------------
+/** @name Constantes - modalités individuelles ou par équipes pour certaines sous-activités */
+//@{
 define("MODALITE_IDEM_PARENT"				,0);
 define("MODALITE_INDIVIDUEL"				,1);
 define("MODALITE_PAR_EQUIPE"				,2);	/// (isolée)         ==> Les équipes ne voient pas les autres équipes										@enum MODALITE_PAR_EQUIPE
 define("MODALITE_POUR_TOUS"					,3);
 define("MODALITE_PAR_EQUIPE_INTERCONNECTEE"	,4);	/// (interconnectée) ==> Les équipes voient les autres équipes mais ne peuvent pas collaborer entre elles	@enum MODALITE_PAR_EQUIPE_INTERCONNECTEE	
 define("MODALITE_PAR_EQUIPE_COLLABORANTE"	,5);	/// (collaborante)   ==> Les équipes voient les autres équipes et peuvent collaborer						@enum MODALITE_PAR_EQUIPE_COLLABORANTE
+//@}
 
-// ---------------------
-// "Objets" de formulaire (éléments)
-// ---------------------
+/** @name Constantes - types d'éléments dans les formulaires */
+//@{
 define("OBJFORM_QTEXTELONG"		, 1);
 define("OBJFORM_QTEXTECOURT"	, 2);
 define("OBJFORM_QNOMBRE"		, 3);
@@ -118,13 +119,17 @@ define("OBJFORM_QRADIO"			, 5);
 define("OBJFORM_QCOCHER"		, 6);
 define("OBJFORM_MPTEXTE"		, 7);
 define("OBJFORM_MPSEPARATEUR"	, 8);
+//@}
 
 // ---------------------
 // Utiliser dans les formulaires, lorsqu'un tuteur décide que le document de
 // l'étudiant est soumis automatiquement ou pas au tuteur
 // ---------------------
+/** @name Constantes - */
+//@{
 define("SOUMISSION_MANUELLE"	, 0);
 define("SOUMISSION_AUTOMATIQUE"	, 1);
+//@}
 
 // ---------------------
 // Tri
@@ -1946,7 +1951,7 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le répertoire images de l'activité courante, relatif à la racine de la plate-forme.
+	 * Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme.
 	 * 
 	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné.
 	 * 
@@ -1958,7 +1963,7 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le répertoire ressources de l'activité courante, relatif à la racine de la plate-forme.
+	 * Retourne le chemin du répertoire ressources de l'activité courante.
 	 * 
 	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné.
 	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif.
@@ -1971,18 +1976,27 @@ class CProjet
 	}
 	
 	/**
-	 * 
+	 * Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme.
 	 * 
 	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné.
 	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif.
 	 * 
-	 * @return	
+	 * @return	le chemin vers le répertoire rubriques pour la formation courante.
 	 */
 	function retRepRubriques($v_sFichierInclure = NULL, $v_bCheminAbsolu = FALSE)
 	{
 		return $this->dir_formation("rubriques/{$v_sFichierInclure}", $v_bCheminAbsolu);
 	}
 	
+	/**
+	 * Vérifie qu'un utilisateur a le statut de tuteur
+	 * 
+	 * @param	v_iIdPers	l'id de l'utilisateur. S'il est absent, l'utilisateur connecté sera pris pour la 
+	 * 						vérification
+	 * 
+	 * @return	\c true si l'utilisateur est tuteur, \c false si ce n'est pas le cas \e ou que l'utilisateur à vérifier 
+	 * 			est invalide
+	 */
 	function verifTuteur($v_iIdPers = 0)
 	{		
 		$bEstTuteur = FALSE;
@@ -2007,6 +2021,16 @@ class CProjet
 		return $bEstTuteur;
 	}
 	
+	/**
+	 * Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres
+	 * 
+	 * @param	v_sLien			l'url du lien
+	 * @param	v_sIntitule		le texte à utiliser pour afficher le lien
+	 * @param	v_iMode			le mode d'affichage de l'url lorsque le lien sera cliqué
+	 * @param	v_sInfoBulle
+	 * 
+	 * @return	
+	 */
 	function retLien($v_sLien = NULL, $v_sIntitule = NULL, $v_iMode = NULL, $v_sInfoBulle = NULL)
 	{
 		$sCheminAbsolu = dir_document_root();
