@@ -70,10 +70,10 @@ $iModaliteForum = $oForum->retModalite();
 
 switch ($iModaliteForum)
 {
-	case MODALITE_POUR_TOUS: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission(PERM_COURRIEL_FORUM_POUR_TOUS); break;
-	case MODALITE_PAR_EQUIPE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission(PERM_COURRIEL_FORUM_EQUIPE_ISOLEE); break;
-	case MODALITE_PAR_EQUIPE_INTERCONNECTEE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission(PERM_COURRIEL_FORUM_EQUIPE_INTERCONNECTEE); break;
-	case MODALITE_PAR_EQUIPE_COLLABORANTE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission(PERM_COURRIEL_FORUM_EQUIPE_COLLABORANTE); break;
+	case MODALITE_POUR_TOUS: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission("PERM_COURRIEL_FORUM_POUR_TOUS"); break;
+	case MODALITE_PAR_EQUIPE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission("PERM_COURRIEL_FORUM_EQUIPE_ISOLEE"); break;
+	case MODALITE_PAR_EQUIPE_INTERCONNECTEE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission("PERM_COURRIEL_FORUM_EQUIPE_INTERCONNECTEE"); break;
+	case MODALITE_PAR_EQUIPE_COLLABORANTE: $bAfficherLienEnvoiCourriel = $oProjet->verifPermission("PERM_COURRIEL_FORUM_EQUIPE_COLLABORANTE"); break;
 	default: $bAfficherLienEnvoiCourriel = FALSE;
 }
 
