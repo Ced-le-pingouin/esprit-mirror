@@ -170,7 +170,7 @@ for ($i=0; $i<$iNbrPers; $i++)
 		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)."</span>"
 		."</a>"
 		."</td>\n"
-		."<td{$sClassTR}>&nbsp;".("Infos")."&nbsp;</td>"
+		."<td{$sClassTR}>&nbsp;"._("Infos")."&nbsp;</td>"
 		."</tr>\n";
 
 if ($i < 1)

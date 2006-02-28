@@ -21,7 +21,7 @@ td.cellule_sous_titre { height: 20px; }
 <tr><td>&nbsp;</td></tr>
 <?php
 {
-	$l = "ABCDEFGHIJKLMNOPQRSTVWY";
+	$l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	$i = 0;
 	while ($i<strlen($l)) {
 		echo "<tr><td class=\"cellule_sous_titre\" align=\"center\">&nbsp;<a href=\"javascript: sePlacerPersonne('$l[$i]',oFramePersonnes());\">$l[$i]</a>&nbsp;</td></tr>";
