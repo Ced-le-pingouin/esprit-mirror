@@ -2,9 +2,9 @@
 /**
  * @file	plate_forme.class.php
  * 
- * Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les "traductions".
+ * Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les "traductions"
  * 
- * @date	06/09/2001
+ * @date	2001/09/06
  * 
  * @author	Cédric FLOQUET
  * @author	Filippo PORCO
