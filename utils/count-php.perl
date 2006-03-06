@@ -2,6 +2,11 @@
 # use File::Find;
 use Getopt::Std;
 
+my %c_block=(
+	     "outside" => 0,
+	     "first_line" => 1,
+	     "inside" =>2 
+	     );
 
 sub usage()
     {
@@ -12,7 +17,8 @@ sub usage()
     usage: $0 [-f file]
 
      -h        : this (help) message
-     -c        : comments
+     -c        : + display comments lines
+     -s        : score : display a single count of "effective" PHP code
      -f file   : code file to be parsed
 
     example: $0 -f class_include.php
@@ -26,10 +32,11 @@ my $presentation="Counts PHP lines, comments...\n";
 my $Filename;
 my %options=();
 my $line=$phpline=0;
-my $com_FP_line=$com_double_slash_line=0;
+my $com_OEC_line=$com_double_slash_line=$com_doxy_line=$com_c_block_line=0;
 my $b_inPHP=0;
+my $t_c_block=$c_block{"outside"};
 
-getopts("hcf:",\%options);
+getopts("shcf:",\%options);
 
 if (defined $options{h} )
     { usage(); }
@@ -53,20 +60,44 @@ open FILE,"<", $Filename or die "Unable to open $Filename (read mode).\n";
 
 while (<FILE>) 
 { $line++;
-  if (/^<\?php/)
+
+  if (/^<\?php.*?\?>\s*$/)  # one single line <?php ....  ?>
+	{ $phpline++;
+        }
+  elsif (/^<\?php/)         # entering PHP
 	{ $b_inPHP=1;
 	  $phpline++;
         }
-  elsif (/^\?>/)
+  elsif (/^\?>/)            # and exit
         { $b_inPHP=0;
 	  $phpline++;
       }
-  elsif ($b_inPHP)
+  elsif ($b_inPHP)          # inside : seeking for comments...
         { $phpline++;
-	  if ( /^\/\*/ || /\*\*/ || /^\*\// )
-	     {$com_FP_line++;
+
+	  if ( /^\/\*\*/ || /^ \* / || /^ \*\// )   # Doxygen style
+	     {$com_doxy_line++;
              }
-	   if ( /\/\//  )
+	  elsif ( /^\/\*[^*].*?\*\s*$/ )  # single line /* foo bar */
+	     {$com_c_block_line++;
+             }	 
+	  elsif ( /^\/\*[^*]/ )  # Entering /* block
+	     {$com_c_block_line++;
+	      $t_c_block=$c_block{"first_line"};
+             }	  
+	  elsif ( /^\*\// )      # Exit block */
+	     {$com_c_block_line++;
+	      $t_c_block=$c_block{"outside"};
+             }	  
+	  elsif ( /^\*\*/ )  # Old Esprit Copyright style
+	     {$com_OEC_line++;
+	      if ($t_c_block == $c_block{"first_line"})
+	         { $com_OEC_line+=2;
+		   $com_c_block_line-=2;
+		   $t_c_block = $c_block{"inside"}
+	         }
+             }
+	  elsif ( /^\/\//  )                           # C++ style (//)
 	     {$com_double_slash_line++;
              }
 	  
@@ -74,10 +105,13 @@ while (<FILE>)
 	
 } # end while(<FILE>)
 
-
-print "$Filename  P=$phpline  T=$line";
-print "    CFP=$com_FP_line  C//=$com_double_slash_line" if (defined $options{c});
-
+$score = $phpline - 
+    ($com_doxy_line + $com_OEC_line + $com_double_slash_line + $com_c_block_line);
+printf("%4d   ",$score) if (defined $options{s}); 
+print "$Filename  ";
+print "P=$phpline  T=$line" if (! defined $options{s});
+print "    Coec=$com_OEC_line  C/*=$com_c_block_line ".
+      "C//=$com_double_slash_line  Cdoxy=$com_doxy_line" if (defined $options{c});
 
 print "\n";
 
