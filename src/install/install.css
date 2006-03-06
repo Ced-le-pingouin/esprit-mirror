@@ -1,0 +1,17 @@
+h3 {
+  margin-top: 5ex;
+}
+
+pre {
+  padding: 1em;
+  border: 1px dashed #FFB53A;
+  color: black;
+  background-color: #f9f9f9;
+  line-height: 1.4em;
+}
+
+input {
+  position: relative;
+  top: 6px;
+  margin: 3px 0;
+}
