@@ -2,19 +2,20 @@
 // Ce fichier fait partie d'Esprit, une plate-forme pédagogique web développée
 // par l'Unité Technologie de l'Education de l'Université de Mons, Belgique.
 // 
-// Esprit est un logiciel libre ; vous pouvez le redistribuer ou le modifier selon
-// les termes de la Licence Publique Générale GNU (GNU GPL) version 2, telle que 
-// publiée par la Free Software Foundation.
+// Esprit est un logiciel libre ; vous pouvez le redistribuer ou le modifier 
+// selon les termes de la Licence Publique Générale GNU (GNU GPL) version 2, 
+// telle que publiée par la Free Software Foundation.
 // 
 // Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS
 // AUCUNE GARANTIE ; sans même une garantie implicite de COMMERCIABILITE
-// ou DE CONFORMITE A UNE UTILISATION PARTICULIERE. Voir la Licence
-// Publique Générale GNU pour plus de détails.
+// ou DE CONFORMITE A UNE UTILISATION PARTICULIERE.
+// Pour plus de détails, voir la Licence Publique Générale.
 // 
 // Vous devriez avoir reçu avec ce programme un exemplaire de la Licence 
-// Publique Générale GNU ; si ce n'est pas le cas, écrivez à la Free Software 
-// Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+// Publique Générale GNU ; si ce n'est pas le cas, vous pouvez en obtenir 
+// une à l'adresse web : http://www.gnu.org/licenses/gpl.html
 // 
-// Copyright (C) 2001-2006  Unité de Technologie de l'Education, 
-//                          Université de Mons-Hainaut, Belgique.
+// Copyright :
+// (C) 2001-2006 Unité de Technologie de l'Education, 
+//               Université de Mons-Hainaut, Belgique.
 // 
