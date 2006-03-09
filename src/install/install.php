@@ -140,14 +140,14 @@ case 2:
 case 3:
 	$buffer = "// Fichier de configuration généré automatiquement par install.php\n\n"
 	          . "// {{{ Base de données\n" 
-	          . '$g_sNomBdd = '. $_POST['base'] ."; // Nom de la base de données\n"
-	          . '$g_sNomServeur = '. $_POST['host'] ."; // Nom du serveur\n"
-	          . '$g_sNomProprietaire = '. $_POST['user'] ."; // Nom du propriétaire de la base de données MySQL\n"
-	          . '$g_sMotDePasse = '. $_POST['password'] ."; // Mot de passe de la base de données MySQL\n"
+	          . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de données\n"
+	          . '$g_sNomServeur = \''. $_POST['host'] ."'; // Nom du serveur\n"
+	          . '$g_sNomProprietaire = \''. $_POST['user'] ."'; // Nom du propriétaire de la base de données MySQL\n"
+	          . '$g_sMotDePasse = \''. $_POST['password'] ."'; // Mot de passe de la base de données MySQL\n"
 	          . "// }}}\n\n";
 
 	$buffer .= "// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes\n"
-	           . '$g_sNomServeurTransfert = '. $_POST['host'] .";\n"
+	           . '$g_sNomServeurTransfert = \''. $_POST['host'] ."\';\n"
 	           . '$g_sNomProprietaireTransfert = "root";' ."\n"
 	           . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
 	           . "// }}}\n\n";
@@ -157,8 +157,8 @@ case 3:
 	           . "// }}}\n\n";
 
 	$buffer .= '// {{{ Adresse courrielle
-//		 Cette adresse courriel sert, dans le cas d\'un problème ou autre
-//		 (forum), à envoyer un message aux administrateurs de la plate-forme
+//     Cette adresse courriel sert, dans le cas d\'un problème ou autre
+//     (forum), à envoyer un message aux administrateurs de la plate-forme
 define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","\'"
        . \'ute@umh.ac.be\'
        . "\'");
