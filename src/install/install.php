@@ -18,6 +18,7 @@
 // 
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
+//                          Grenoble Universités
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,7 +35,6 @@
   Installateur d'Esprit (en cours, très partiellement testé)
   Reste à faire :
     - tester
-    - placer les .sql dans le répertoire
     - modifier /INSTALL et /setup (en distinguant installation manuelle et automatique)
 */
 
@@ -109,7 +109,8 @@ case 2:
     exit;
   }
   // filling the database
-  $files = glob("*.sql");
+  $files = glob("sql/*.sql");
+  sort($files);
   foreach ($files as $filename) {
     if (!load_mysql_dump($filename)) {
       echo "<P>Connexion réussie à la base de donnée, mais erreur lors de l'importation.</P>";
