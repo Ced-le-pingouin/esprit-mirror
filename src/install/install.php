@@ -114,6 +114,7 @@ case 2:
 	foreach ($files as $filename) {
 		if (!load_mysql_dump($filename)) {
 			echo "<P>Connexion réussie à la base de donnée, mais erreur lors de l'importation.</P>";
+			echo "<code>", mysql_error(), "</code>";
 			echo '</body></html>';
 			exit;
 		}
@@ -237,12 +238,12 @@ function load_mysql_dump($path, $ignoreerrors = false) {
 			if (preg_match("/;\s*$/", $sql_line)) { // end of sql command
 				$result = mysql_query($query);
 				if (!$result && !$ignoreerrors)
-					return(mysql_error());
+					return FALSE;
 				$query = "";
 			}
 		}
 	}
-	return false;
+	return TRUE;
 }
 
 // This one already exists in PHP5, but not in PHP4
