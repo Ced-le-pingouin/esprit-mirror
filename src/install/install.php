@@ -36,16 +36,18 @@
 	Reste à faire :
 		- tester
 		- modifier /INSTALL et /setup (en distinguant installation manuelle et automatique)
+		- écrire une fonction javascript qui vérifie les données du formulaire (pb de SÉCURITÉ en particulier)
 */
 
 $step=1;
 if (isset($_GET['step']) || isset($_POST['step'])) {
+	$step=($_GET['step']?$_GET['step']:$_POST['step']);
+} else {
 	if (file_exists('../include/config.inc')) {
 		echo "<P>Configuration interrompue : Esprit semble déjà configuré.</P>";
 		echo '</body></html>';
 		exit;
 	}
-	$step=($_GET['step']?$_GET['step']:$_POST['step']);
 }
 ?>
 		<h2>Étape <?= $step ?></h2>
@@ -53,7 +55,6 @@ if (isset($_GET['step']) || isset($_POST['step'])) {
 <?php
 switch ($step) {
 // ******************* Getting database info *******************
-//! \todo test the form fields with javascript
 case 1:
 ?>
 <p>Avant de commencer l'installation, vous devez avoir créé une base de donnée pour Esprit et un utilisateur MySQL associé.
@@ -122,23 +123,13 @@ case 2:
 ?>
 <p>La base de donnée a été remplie avec succès.
 </p>
-<form action="install.php" method="post">
-<p>
-	<INPUT name="base" value="<?= $_POST['base'] ?>" type="hidden" />
-	<INPUT name="host" value="<?= $_POST['host'] ?>" type="hidden" />
-	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
-	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
-	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
-	<INPUT type="submit" value="Étape suivante" />
-</p>
-</form>
-
-
 <?php
+	show_next_step();
 	break;
+
 // ******************* creating config file *******************
 case 3:
-	$buffer = "// Fichier de configuration généré automatiquement par install.php\n\n"
+	$buffer = "<?php\n// Fichier de configuration généré automatiquement par install.php\n\n"
 	          . "// {{{ Base de données\n" 
 	          . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de données\n"
 	          . '$g_sNomServeur = \''. $_POST['host'] ."'; // Nom du serveur\n"
@@ -147,7 +138,7 @@ case 3:
 	          . "// }}}\n\n";
 
 	$buffer .= "// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes\n"
-	           . '$g_sNomServeurTransfert = \''. $_POST['host'] ."\';\n"
+	           . '$g_sNomServeurTransfert = \''. $_POST['host'] ."';\n"
 	           . '$g_sNomProprietaireTransfert = "root";' ."\n"
 	           . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
 	           . "// }}}\n\n";
@@ -159,16 +150,14 @@ case 3:
 	$buffer .= '// {{{ Adresse courrielle
 //     Cette adresse courriel sert, dans le cas d\'un problème ou autre
 //     (forum), à envoyer un message aux administrateurs de la plate-forme
-define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","\'"
-       . \'ute@umh.ac.be\'
-       . "\'");
+define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","ute@umh.ac.be");
 // }}}'
 	           ."\n\n";
 
 	$buffer .= '// {{{ Thèmes
 define("THEME","esprit");
 // }}}
-';
+?>';
 
 	if (file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
 		echo '<p>Erreur lors de l\'écriture du fichier de configuration.</p>';
@@ -179,9 +168,10 @@ define("THEME","esprit");
 ?>
 <p>Le fichier de configuration a été écrit avec succès.
 </p>
-
 <?php
+	show_next_step();
 	break;
+
 // ******************* directories and permissions *******************
 case 4:
 	if (!is_dir('../tmp')) {
@@ -199,10 +189,10 @@ case 4:
 ?>
 <p>Les permissions d'accès aux fichiers ont été contrôlées avec succès.
 </p>
-
-
 <?php
+	show_next_step();
 	break;
+
 // ******************* this is the end, my little friend, the end *******************
 case 5:
 	$DocName = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF']; 
@@ -228,6 +218,23 @@ case 5:
 </html>
 
 <?php
+
+function show_next_step() {
+	global $step;
+?>
+<form action="install.php" method="post">
+<p>
+	<INPUT name="base" value="<?= $_POST['base'] ?>" type="hidden" />
+	<INPUT name="host" value="<?= $_POST['host'] ?>" type="hidden" />
+	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
+	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
+	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
+	<INPUT type="submit" value="Étape suivante" />
+</p>
+</form>
+<?php
+}
+
 function load_mysql_dump($path, $ignoreerrors = false) {
 	$file_content = file($path);
 	$query = "";
