@@ -162,6 +162,7 @@ define("THEME","esprit");
 	if (file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
 		echo '<p>Erreur lors de l\'écriture du fichier de configuration.</p>';
 		echo '<p>Vérifiez que les accès en écriture sont autorisés dans le répertoire <em>include</em>.</p>';
+		redo_step();
 		echo '</body></html>';
 		exit;
 	}
@@ -183,6 +184,7 @@ case 4:
 	if (!is_writable('../tmp/mdpcnte')) {
 		echo '<p>Erreur : le fichier tmp/mdpcnte n\'est pas accessible en écriture.<p>';
 		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce fichier et le répertoire tmp/</p>';
+		redo_step();
 		echo '</body></html>';
 		exit;
 	}
@@ -195,11 +197,13 @@ case 4:
 
 // ******************* this is the end, my little friend, the end *******************
 case 5:
-	$DocName = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF']; 
+	$DocName = "http://" . $_SERVER['SERVER_NAME'] .
+	           ($_SERVER['SERVER_PORT']==80?"":":".$_SERVER['SERVER_PORT']) .
+	           $_SERVER['PHP_SELF']; 
 	$DirUp = dirname(dirname($DocName));
 ?>
 
-<p>L'installation est terminée. Il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
+<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
 </p>
 
 <p>Vous pouvez désormais vous rendre sur votre <a href="<?= $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
@@ -230,6 +234,22 @@ function show_next_step() {
 	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
 	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
 	<INPUT type="submit" value="Étape suivante" />
+</p>
+</form>
+<?php
+}
+
+function redo_step() {
+	global $step;
+?>
+<form action="install.php" method="post">
+<p>
+	<INPUT name="base" value="<?= $_POST['base'] ?>" type="hidden" />
+	<INPUT name="host" value="<?= $_POST['host'] ?>" type="hidden" />
+	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
+	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
+	<INPUT name="step" value="<?= $step ?>" type="hidden" />
+	<INPUT type="submit" value="Refaire cette étape" />
 </p>
 </form>
 <?php
