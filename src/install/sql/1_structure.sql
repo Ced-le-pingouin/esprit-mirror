@@ -468,7 +468,7 @@ CREATE TABLE Personne (
   NumTel varchar(20),
   Email varchar(80),
   UrlPerso varchar(100),
-  Mdp varchar(32),
+  Mdp varchar(80),
   PRIMARY KEY (IdPers),
   UNIQUE Pseudo (Pseudo)
 );
