@@ -57,7 +57,7 @@ function init()
 {
 	var sIndice = null;
 	
-	// Mettre à jour le menu après chargement complète de cette page
+	// Mettre Ã  jour le menu aprÃ¨s chargement complÃ¨te de cette page
 	top.frames["ADMINFRAMEMODIF"].location = "admin_modif.php{url.params}";
 	top.frames["ADMINFRAMEMENU"].location = "admin_menu.php{url.params}";
 	

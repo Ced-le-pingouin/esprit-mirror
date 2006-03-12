@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: admin_modif.inc.php
 ** Description ............: 
-** Date de création .......: 04/06/2004
-** Dernière modification ..: 07/06/2004
+** Date de crÃ©ation .......: 04/06/2004
+** DerniÃ¨re modification ..: 07/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

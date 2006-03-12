@@ -22,9 +22,9 @@
 /*
 ** Fichier ................: module_inscrit.tbl.php
 ** Description ............: 
-** Date de création .......: 18-09-2002
-** Dernière modification ..: 12-02-2003
-** Auteurs ................: Filippo PORCO, Cédric FLOQUET
+** Date de crÃ©ation .......: 18-09-2002
+** DerniÃ¨re modification ..: 12-02-2003
+** Auteurs ................: Filippo PORCO, CÃ©dric FLOQUET
 ** Emails .................: ute@umh.ac.be
 **
 ** Copyright (c) 2001-2002 UTE. All rights reserved.

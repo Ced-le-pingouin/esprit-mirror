@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: reponse_axe.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,9 +39,9 @@ class CReponse_Axe
 	function CReponse_Axe(&$v_oBdd, $v_iIdReponse = 0, $v_iIdAxe = 0) 
 	{
 		$this->oBdd = &$v_oBdd;
-					//si 0 crée un objet presque vide sinon 
-					//rempli l'objet avec les données de la table Axe
-					//de l'elément ayant l'Id passé en argument
+					//si 0 crÃ©e un objet presque vide sinon 
+					//rempli l'objet avec les donnÃ©es de la table Axe
+					//de l'elÃ©ment ayant l'Id passÃ© en argument
 		
 		$this->iIdReponse = $v_iIdReponse;
 		$this->iIdAxe = $v_iIdAxe;
@@ -64,7 +64,7 @@ class CReponse_Axe
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdReponse; //Attention clé multiple -> incomplète
+		$this->iId = $this->oEnregBdd->IdReponse; //Attention clÃ© multiple -> incomplÃ¨te
 	}
 
 	function ajouter()  //Cette fonction ajoute un Objet Axe, avec le champ Poids vide
@@ -78,10 +78,10 @@ class CReponse_Axe
 
 	/*
 	** Fonction 		: VerifierValidite
-	** Description		: supprime le(s) poids des réponses d'un formulaire pour lesquels 1(ou plusieurs) axe a été supprimé
-	** Entrée			:
-							$v_iIdFormulaire : Id du formulaire à traiter
-							$v_sListeAxes : liste des Id des Axes présent dans le formulaire( cette liste se présente comme ceci ex : 1,5,8)
+	** Description		: supprime le(s) poids des rÃ©ponses d'un formulaire pour lesquels 1(ou plusieurs) axe a Ã©tÃ© supprimÃ©
+	** EntrÃ©e			:
+							$v_iIdFormulaire : Id du formulaire Ã  traiter
+							$v_sListeAxes : liste des Id des Axes prÃ©sent dans le formulaire( cette liste se prÃ©sente comme ceci ex : 1,5,8)
 	** Sortie			: 
 	*/
 	function VerifierValidite($v_iIdFormulaire,$v_sListeAxes)
@@ -89,15 +89,15 @@ class CReponse_Axe
 		$sRequeteSql = "LOCK TABLES ObjetFormulaire READ, Reponse READ, Reponse_Axe WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		//Cette requête donne les enregistrements de la table réponse_axe qui ne sont plus valables 
-		//car le/les axes ont été supprimé du formulaire
+		//Cette requÃªte donne les enregistrements de la table rÃ©ponse_axe qui ne sont plus valables 
+		//car le/les axes ont Ã©tÃ© supprimÃ© du formulaire
 		$sRequeteSql ="SELECT Reponse_Axe.*"
 		   ." FROM ObjetFormulaire, Reponse, Reponse_Axe"
 		   ." WHERE ObjetFormulaire.IdForm = '$v_iIdFormulaire' AND Reponse.IdObjForm = ObjetFormulaire.IdObjForm"
 		   ." AND Reponse_Axe.IdReponse = Reponse.IdReponse"
 		   ." AND Reponse_Axe.IdAxe NOT IN($v_sListeAxes)";
 		
-		/* Cette requête a été abandonnée car il était obligatoire de locker également les alias
+		/* Cette requÃªte a Ã©tÃ© abandonnÃ©e car il Ã©tait obligatoire de locker Ã©galement les alias
 		$sRequeteSql ="SELECT ra.*"
 		   ." FROM ObjetFormulaire as of, Reponse as r, Reponse_Axe as ra"
 		   ." WHERE of.IdForm = '$v_iIdFormulaire' AND r.IdObjForm = of.IdObjForm"
@@ -166,7 +166,7 @@ class CReponse_Axe
 		return $iIdNvReponse;
 	}
 	
-	//Fonctions de définitions
+	//Fonctions de dÃ©finitions
 	function defIdReponse($v_iIdReponse) { $this->oEnregBdd->IdReponse = $v_iIdReponse; }
 	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdAxe = $v_iIdAxe; }
 	function defPoids($v_iPoids) { $this->oEnregBdd->Poids = $v_iPoids; }

@@ -2,7 +2,7 @@
 require_once("globals.inc.php");
 
 // Permet de sauvegarder les variables du formulaire
-// que la page login a envoyée
+// que la page login a envoyÃ©e
 $oProjet = new CProjet();
 $sNomPlateforme = htmlentities($oProjet->retNom());
 $oProjet->terminer();

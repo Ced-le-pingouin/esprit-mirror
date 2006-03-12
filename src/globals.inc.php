@@ -22,19 +22,19 @@
 /*
 ** Fichier ................: globals.inc.php
 ** Description ............: 
-** Date de création .......: 17/09/2001
-** Dernière modification ..: 14/11/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 17/09/2001
+** DerniÃ¨re modification ..: 14/11/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
 // ---------------------
-// Déclaration des fichiers à inclure
+// DÃ©claration des fichiers Ã  inclure
 // ---------------------
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
@@ -86,7 +86,7 @@ function dir_code_lib_ced ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bChe
 function dir_lib ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_root_plateform("lib/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
 function dir_tmp ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_root_plateform("tmp/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
 
-// {{{ Base de données
+// {{{ Base de donnÃ©es
 function dir_database ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
 	return dir_root_plateform("database/{$v_sFichierAInclure}",$v_bCheminAbsolu);
@@ -113,7 +113,7 @@ function dir_http_plateform ($v_sFichierAInclure=NULL)
 }
 
 /**
- * Cette méthode retourne le chemin absolue du répertoire racine de la
+ * Cette mÃ©thode retourne le chemin absolue du rÃ©pertoire racine de la
  * plate-forme
  * @param $v_sFichierAInclure string
  * @param $v_bCheminAbsolu    boolean
@@ -191,7 +191,7 @@ function dir_admin ($v_sTypeAdmin=NULL,$v_sFichierAInclure=NULL,$v_bCheminAbsolu
 	return dir_root_plateform("{$sChemin}/{$v_sFichierAInclure}",$v_bCheminAbsolu);
 }
 
-// {{{ Méthodes des thèmes
+// {{{ MÃ©thodes des thÃ¨mes
 function dir_theme ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=FALSE)
 {	
 	$sCheminTheme = "themes/".THEME."/$v_sFichierAInclure";
@@ -220,13 +220,13 @@ function dir_modeles ($v_sTypeModele,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=F
 }
 // }}}
 
-// {{{ Méthodes des chats
+// {{{ MÃ©thodes des chats
 function dir_chat ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_sousactiv(LIEN_CHAT,$v_sFichierAInclure,$v_bCheminAbsolu); }
 function dir_chat_client ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_chat("client/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
 function dir_chat_serveur ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_chat("server/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
 
 /*
- * Cette méthode est devenue obsolète. Veuillez utiliser la nouvelle méthode
+ * Cette mÃ©thode est devenue obsolÃ¨te. Veuillez utiliser la nouvelle mÃ©thode
  * "dir_chat_archives"
  */
 function dir_chat_log ($v_iIdActiv,$v_iIdForm,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=FALSE) { return dir_cours($v_iIdActiv,$v_iIdForm,"chatlog/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
@@ -260,7 +260,7 @@ function dir_document_root ($v_sFichierAInclure=NULL)
 }
 
 // *************************************
-// Répertoires des formations
+// RÃ©pertoires des formations
 // *************************************
 
 function dir_root_formation ($v_sFichierAInclure=NULL)
@@ -270,7 +270,7 @@ function dir_root_formation ($v_sFichierAInclure=NULL)
 }
 
 // *************************************
-// Répertoire des fonctions globales en JavaScript
+// RÃ©pertoire des fonctions globales en JavaScript
 // *************************************
 
 function dir_javascript ($v_sFichierAInclure=NULL)
@@ -339,7 +339,7 @@ function unzip ($v_sDestination,$v_sFichierDecompresser)
 }
 
 /**
- * Cette fonction insére une ligne de deboggage dans le fichier "errors.log".
+ * Cette fonction insÃ©re une ligne de deboggage dans le fichier "errors.log".
  *
  * @param v_sMessage
  * @param v_sNomFichierSource
@@ -350,7 +350,7 @@ function debug ($v_sMessage,$v_sNomFichierSource=NULL,$v_iNumLigne=0)
 	$v_sMessage = trim($v_sMessage);
 	
 	if (empty($v_sMessage))
-		$v_sMessage = "Chaîne vide";
+		$v_sMessage = "ChaÃ®ne vide";
 	
 	if (isset($v_sNomFichierSource))
 		$v_sNomFichierSource = str_replace(dir_document_root(),"/",$v_sNomFichierSource);
@@ -443,7 +443,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"".gettext("Envoyer un e-mail")."\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);
 	
 	// Alignements du texte:
-	// - à gauche
+	// - Ã  gauche
 	$v_sTexte = str_replace("[l]", "<div style='text-align: left;'>", $v_sTexte);
 	$v_sTexte = str_replace("[/l]", "</div>", $v_sTexte);
 	
@@ -451,15 +451,15 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = str_replace("[c]", "<div style='text-align: center;'>", $v_sTexte);
 	$v_sTexte = str_replace("[/c]", "</div>", $v_sTexte);
 	
-	// - à droite
+	// - Ã  droite
 	$v_sTexte = str_replace("[r]", "<div style='text-align: right;'>", $v_sTexte);
 	$v_sTexte = str_replace("[/r]", "</div>", $v_sTexte);
 	
-	// - justifié
+	// - justifiÃ©
 	$v_sTexte = str_replace("[j]", "<div style='text-align: justify;'>", $v_sTexte);
 	$v_sTexte = str_replace("[/j]", "</div>", $v_sTexte);
 	
-	// Ajouter un retour à la ligne
+	// Ajouter un retour Ã  la ligne
 	$v_sTexte = str_replace("[nl]", "<br>", $v_sTexte);
 	
 	// Liste
@@ -473,7 +473,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 		
 		$sBaliseDepart = substr($v_sTexte,$iDepart,($iFin-$iDepart));
 		
-		// Récupérer le contenu de la balise liste
+		// RÃ©cupÃ©rer le contenu de la balise liste
 		$sContenuBalise = trim(substr($v_sTexte,$iFin,($iFin2-$iFin)));
 		
 		// Composer la liste

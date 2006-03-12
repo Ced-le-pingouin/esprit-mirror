@@ -3,14 +3,14 @@
 /*
 ** Fichier ................: intitule-index.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 30/06/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 30/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
 */
 
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 $url_iType = (empty($HTTP_GET_VARS) ? NULL : $HTTP_GET_VARS["TYPE_INTITULE"]);
 
 if (!isset($url_iType))

@@ -30,9 +30,9 @@ class CQCocher
  	/*
 	** Fonction 	: CQCocher
 	** Description	: constructeur
-	** Entrée		: 
-	**	 		&$v_oBdd : référence de l'objet Bdd appartenant a l'objet Projet
-	**			$v_iId : identifiant d'un objet question de type "case à cocher"
+	** EntrÃ©e		: 
+	**	 		&$v_oBdd : rÃ©fÃ©rence de l'objet Bdd appartenant a l'objet Projet
+	**			$v_iId : identifiant d'un objet question de type "case Ã  cocher"
 	** Sortie		: 
 	*/
 
@@ -48,11 +48,11 @@ class CQCocher
 	** Fonction 	: init
 	** Description	: permet d'initialiser l'objet QCocher soit en lui passant
 	**					  un enregistrement provenant de la BD, soit en effectuant 
-	**					  directement une requête dans la BD avec 
-	**                	  l'id passé via la constructeur
-	** Entrée		:
-	**			$v_oEnregExistant=NULL : enregistrement représentant une question 
-	**			de type "case à cocher"
+	**					  directement une requÃªte dans la BD avec 
+	**                	  l'id passÃ© via la constructeur
+	** EntrÃ©e		:
+	**			$v_oEnregExistant=NULL : enregistrement reprÃ©sentant une question 
+	**			de type "case Ã  cocher"
 	** Sortie		: 
 	*/
 
@@ -78,9 +78,9 @@ class CQCocher
 
  	/*
 	** Fonction 	: ajouter
-	** Description	: crée un enregistrement dans la table QCocher en initialisant l'ID
-	** Entrée		:
-	** Sortie		: Id renvoyé par la BD
+	** Description	: crÃ©e un enregistrement dans la table QCocher en initialisant l'ID
+	** EntrÃ©e		:
+	** Sortie		: Id renvoyÃ© par la BD
 	*/
 
  function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type checkbox,
@@ -92,7 +92,7 @@ class CQCocher
  }
 
 
- 	/* Fonctions de définition */
+ 	/* Fonctions de dÃ©finition */
 
  function defIdObjForm ($v_iIdObjForm)
 {
@@ -155,19 +155,19 @@ function retMessMaxQC () { return $this->oEnregBdd->MessMaxQC; }
 
 	/*
 	** Fonction 	: RetourReponseQC
-	** Description	: va rechercher dans la table réponse les réponses correspondant
+	** Description	: va rechercher dans la table rÃ©ponse les rÃ©ponses correspondant
 	**		a la question de type checkbox en cours de traitement 
-	**		+ mise en page de ces réponses (affichage horizontal ou vertical)
-	** Entrée		:
-	**		$NbRepMaxQCTemp : nombre de maximum de réponses que l'on peut cocher
+	**		+ mise en page de ces rÃ©ponses (affichage horizontal ou vertical)
+	** EntrÃ©e		:
+	**		$NbRepMaxQCTemp : nombre de maximum de rÃ©ponses que l'on peut cocher
 	**		$MessMaxQCTemp : message d'erreur lorsque l'utilisateur coche trop de cases
-	** Sortie		: Code Html contenant les réponses et leur mise en page
+	** Sortie		: Code Html contenant les rÃ©ponses et leur mise en page
 	*/
 
 function RetourReponseQC($NbRepMaxQCTemp,$MessMaxQCTemp)
 {
 
-//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
+//SÃ©lection de toutes les rÃ©ponses concernant l'objet QRadio en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 $hResultRRQC = $this->oBdd->executerRequete($sRequeteSql);
@@ -188,7 +188,7 @@ $CodeHtml="<TABLE cellspacing=\"0\" cellpadding=\"0\">";
 	$IdReponseTemp = $oReponse->retId();
 	$IdObjFormTemp = $oReponse->retIdObjForm();
 	$IdObjFormTemp = $IdObjFormTemp."[]"; 
-		//utilise un tableau pour stocker les differents résultats possibles
+		//utilise un tableau pour stocker les differents rÃ©sultats possibles
 	
 	$CodeHtml.="<TR><TD><INPUT TYPE=\"checkbox\" NAME=\"$IdObjFormTemp\" "
 	."VALUE=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\"></TD><TD>$TexteTemp</TD></TR>\n";
@@ -210,7 +210,7 @@ else
 		  $IdReponseTemp = $oReponse->retId();
 		  $IdObjFormTemp = $oReponse->retIdObjForm();
 		  $IdObjFormTemp = $IdObjFormTemp."[]"; 
-		  		//utilise un tableau pour stocker les differents résultats possibles
+		  		//utilise un tableau pour stocker les differents rÃ©sultats possibles
 		  
 		  $CodeHtml.="<INPUT TYPE=\"checkbox\" NAME=\"$IdObjFormTemp\" "
 				  ."VALUE=\"$IdReponseTemp\" onclick=\"verifNbQocher('$this->oEnregBdd->NbRepMaxQC','$this->oEnregBdd->MessMaxQC')\">$TexteTemp\n";
@@ -224,7 +224,7 @@ return "$CodeHtml";
 
 function cHtmlQCocher()
 	{
-	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adÃ©quat)
 	$this->oEnregBdd->EnonQC = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQC);
 	
 	
@@ -240,7 +240,7 @@ function cHtmlQCocher()
 			$this->oEnregBdd->TxtApQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQC);
 		}
 	
-	//Genération du code html représentant l'objet
+	//GenÃ©ration du code html reprÃ©sentant l'objet
 	$sCodeHtml="\n<!--QCocher : {$this->oEnregBdd->IdObjForm} -->\n"
 		."<div align={$this->oEnregBdd->AlignEnonQC}>{$this->oEnregBdd->EnonQC}</div>\n"
 		."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQC}>\n"
@@ -255,17 +255,17 @@ function cHtmlQCocher()
 
 	/*
 	** Fonction 		: RetourReponseQCModif
-	** Description		: va rechercher dans la table réponse les réponses correspondant
-	**				  a la question de type case à cocher en cours de traitement 
-	**				  + mise en page de ces réponses avec possibilité de modification
-	** Entrée			:
-	** Sortie			: Code Html contenant les réponses + mise en page 
+	** Description		: va rechercher dans la table rÃ©ponse les rÃ©ponses correspondant
+	**				  a la question de type case Ã  cocher en cours de traitement 
+	**				  + mise en page de ces rÃ©ponses avec possibilitÃ© de modification
+	** EntrÃ©e			:
+	** Sortie			: Code Html contenant les rÃ©ponses + mise en page 
 	**				  + modification possible
 	*/
 
 function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 {
-//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
+//SÃ©lection de toutes les rÃ©ponses concernant l'objet QRadio en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 
@@ -312,10 +312,10 @@ return "$CodeHtml";
 
 	/*
 	** Fonction 	: cHtmlQCocherModif
-	** Description	: renvoie le code html qui permet de modifier les caractéristiques 
-	**		 d'une question de type "case à cocher", vérifie les données transmises 
-	**	  	 par l'utilisateur afin de permettre un enregistrement ultérieur dans la BD
-	** Entrée			:
+	** Description	: renvoie le code html qui permet de modifier les caractÃ©ristiques 
+	**		 d'une question de type "case Ã  cocher", vÃ©rifie les donnÃ©es transmises 
+	**	  	 par l'utilisateur afin de permettre un enregistrement ultÃ©rieur dans la BD
+	** EntrÃ©e			:
 	**				$v_iIdObjForm
 	**				$v_iIdFormulaire
 	** Sortie			:
@@ -330,7 +330,7 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 	
 	if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
 		{
-			//Récupération des variables transmises par le formulaire
+			//RÃ©cupÃ©ration des variables transmises par le formulaire
 			$this->oEnregBdd->EnonQC = stripslashes($HTTP_POST_VARS['Enonce']);
 			$this->oEnregBdd->AlignEnonQC = $HTTP_POST_VARS['AlignEnon'];
 			$this->oEnregBdd->AlignRepQC = $HTTP_POST_VARS['AlignRep'];
@@ -340,13 +340,13 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 			$this->oEnregBdd->NbRepMaxQC = $HTTP_POST_VARS['NbRepMax'];		
 			$this->oEnregBdd->MessMaxQC = $HTTP_POST_VARS['MessMax'];
 			
-			//Test des données reçues et marquage des erreurs(astérisque) dans le formulaire
+			//Test des donnÃ©es reÃ§ues et marquage des erreurs(astÃ©risque) dans le formulaire
 			if (!(int)$HTTP_POST_VARS['NbRepMax']) 
 				{ $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			
 			if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
 				{		
-				   //Enregistrement des réponses et de leurs poids pour les différents axes
+				   //Enregistrement des rÃ©ponses et de leurs poids pour les diffÃ©rents axes
 				   if (isset($HTTP_POST_VARS["rep"])) 	
 					  {
 					  foreach ($HTTP_POST_VARS["rep"] as $v_iIdReponse => $v_sTexteTemp) 
@@ -358,8 +358,8 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 							$oReponse->enregistrer(FALSE);
 
 							if (isset($HTTP_POST_VARS["repAxe"])) 	
-									//Vérification pour ne pas effectuer le traitement si 
-									//aucun axe n'est défini pour ce formulaire
+									//VÃ©rification pour ne pas effectuer le traitement si 
+									//aucun axe n'est dÃ©fini pour ce formulaire
 								{
 								   $tab = $HTTP_POST_VARS["repAxe"];
 								   foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
@@ -381,9 +381,9 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 				//Enregistrement de l'objet QCocher actuel dans la BD
 				$this->enregistrer();
 					  		
-				//Lorsque la question est bien enregistrée dans la BD 
-				//(Pour cela on a cliqué sur le bouton 'Appliquer les changements')
-				//on rafraîchit la liste en cochant l'objet en cours de traitement
+				//Lorsque la question est bien enregistrÃ©e dans la BD 
+				//(Pour cela on a cliquÃ© sur le bouton 'Appliquer les changements')
+				//on rafraÃ®chit la liste en cochant l'objet en cours de traitement
 							
 				echo "<script>\n";
 				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
@@ -392,12 +392,12 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		}
 		
 		
-	//Si on a cliqué sur le lien 'Ajouter' cela affecte, via javascript, 
-	//au champ caché ['typeaction']la valeur 'ajouter' et 
-	//au champ caché ['parametre'] la valeur '0'.
-	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
-	//un enregistrement d'office dans la BD des modifications déjà effectuées sur 
-	//l'objet en cours. (avec les vérifications d'usage avant enregistrement dans la BD)
+	//Si on a cliquÃ© sur le lien 'Ajouter' cela affecte, via javascript, 
+	//au champ cachÃ© ['typeaction']la valeur 'ajouter' et 
+	//au champ cachÃ© ['parametre'] la valeur '0'.
+	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique Ã©galement 
+	//un enregistrement d'office dans la BD des modifications dÃ©jÃ  effectuÃ©es sur 
+	//l'objet en cours. (avec les vÃ©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='ajouter')
 		  {
 			  $sRequeteSql = "SELECT MAX(OrdreReponse) AS OrdreMax "
@@ -413,25 +413,25 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 			  $oReponse->defOrdreReponse($iOrdreMax);
 			  
 			  /*
-			  La réponse qui sera créée ici contiendra :
+			  La rÃ©ponse qui sera crÃ©Ã©e ici contiendra :
 					le numero de l'objet auquel elle appartient
-					l'ordre dans lequel elle sera affichée (toujours en dernière place)
-					son numéro d'identifiant sera attribué automatiquement par MySql
-			  le texte de la réponse sera attribué par après.
+					l'ordre dans lequel elle sera affichÃ©e (toujours en derniÃ¨re place)
+					son numÃ©ro d'identifiant sera attribuÃ© automatiquement par MySql
+			  le texte de la rÃ©ponse sera attribuÃ© par aprÃ¨s.
 			  */
 			  $oReponse->enregistrer();
 			  $this->oBdd->libererResult($hResultInt2);
 		  }
 		  
-	//Si on a cliqué sur le lien 'Supprimer' cela affecte, via javascript, 
-	//au champ caché ['typeaction']la valeur 'supprimer' et 
-	//au champ caché ['parametre'] l'id de la réponse a supprimer.
-	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
-	//un enregistrement d'office dans la BD des modifications déjà effectuées sur 
-	//l'objet en cours.(avec les vérifications d'usage avant enregistrement dans la BD)
+	//Si on a cliquÃ© sur le lien 'Supprimer' cela affecte, via javascript, 
+	//au champ cachÃ© ['typeaction']la valeur 'supprimer' et 
+	//au champ cachÃ© ['parametre'] l'id de la rÃ©ponse a supprimer.
+	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique Ã©galement 
+	//un enregistrement d'office dans la BD des modifications dÃ©jÃ  effectuÃ©es sur 
+	//l'objet en cours.(avec les vÃ©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='supprimer')
 		  {
-			  //echo "<br>je suis passé par supprimer";
+			  //echo "<br>je suis passÃ© par supprimer";
 			  $v_iIdReponse = $HTTP_POST_VARS['parametre'];
 			  $oReponse = new CReponse($this->oBdd,$v_iIdReponse);
 			  $oReponse->effacer();
@@ -439,8 +439,8 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		  
 		  
 	//La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-	//et les 6 autres contiennent une chaîne vide
-	// aeX = alignement enoncé, arX = alignement réponse
+	//et les 6 autres contiennent une chaÃ®ne vide
+	// aeX = alignement enoncÃ©, arX = alignement rÃ©ponse
 	list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
 		Alignement($this->oEnregBdd->AlignEnonQC,$this->oEnregBdd->AlignRepQC);
 	
@@ -455,11 +455,11 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>ENONCE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>$sMessageErreur1 Enoncé :</TD>\n"
+		   ."<TD>$sMessageErreur1 EnoncÃ© :</TD>\n"
 		   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQC}</textarea></TD>\n"
 		   ."</TR>\n"
 		   ."<TR>\n"
-		   ."<TD>Alignement énoncé :</TD>\n"
+		   ."<TD>Alignement Ã©noncÃ© :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
@@ -472,10 +472,10 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>REPONSE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>Texte avant la réponse :</TD>\n"
+		   ."<TD>Texte avant la rÃ©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQC}\"></TR>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>Texte après la réponse :</TD>\n"
+		   ."<TD>Texte aprÃ¨s la rÃ©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQC}\"></TR>\n"
 		   ."</TR><TR>\n"
 		   ."<TD>Disposition :</TD>\n"
@@ -483,19 +483,19 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<INPUT TYPE=\"radio\" NAME=\"Disp\" VALUE=\"Ver\" $d2>Verticale\n"
 		   ."</TD>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>Réponse(s) :\n"
+		   ."<TD>RÃ©ponse(s) :\n"
 		   ."<a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a>\n"
 		   ."</TD>\n"
 		   .$this->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire) 
 		   ."<TR>\n"
-		   ."<TD>$sMessageErreur2 Nombre de réponses max :</TD>\n"
+		   ."<TD>$sMessageErreur2 Nombre de rÃ©ponses max :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"2\" maxlength=\"2\" name=\"NbRepMax\" Value=\"{$this->oEnregBdd->NbRepMaxQC}\" onblur=\"verifNumeric(this)\"></TR>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>Message \"Maximum dépassé\"</TD>\n"
+		   ."<TD>Message \"Maximum dÃ©passÃ©\"</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"MessMax\" Value=\"{$this->oEnregBdd->MessMaxQC}\"></TR>\n"
 		   ."</TR>\n"
 		   ."<TR>\n"
-		   ."<TD>Alignement Réponse :</TD>\n"
+		   ."<TD>Alignement RÃ©ponse :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
@@ -506,7 +506,7 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."</fieldset>\n"
 			."<INPUT TYPE=\"hidden\" NAME=\"typeaction\" VALUE=\"\">\n"
 			."<INPUT TYPE=\"hidden\" NAME=\"parametre\" VALUE=\"\">\n"
-		   //Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit 
+		   //Le champ cachÃ© ci-dessous "simule" le fait d'appuyer sur le bouton submit 
 		   //(qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
 		   ."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
 		   ."</form>\n";
@@ -517,8 +517,8 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 
 	/*
 	** Fonction 		: enregistrer
-	** Description		: enregistre les données de l'objet courant dans la BD
-	** Entrée			:
+	** Description		: enregistre les donnÃ©es de l'objet courant dans la BD
+	** EntrÃ©e			:
 	** Sortie			:
 	*/
 
@@ -526,7 +526,7 @@ function enregistrer ()
 {
 	if ($this->oEnregBdd->IdObjForm !=NULL)
 	   {	
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQC = validerTexte($this->oEnregBdd->EnonQC);
 		$sTxtAvQC = validerTexte($this->oEnregBdd->TxtAvQC);
@@ -558,10 +558,10 @@ function enregistrer ()
 	** Fonction 		: copier
 	** Description		: permet de faire une copie de l'objet courant au sein
 	**			
-	** Entrée			:
+	** EntrÃ©e			:
 	**				$v_iIdNvObjForm : identifiant du parent
 	** Sortie			:
-	**				$iIdObjForm : identifiant de la copie, renvoyé par la BD
+	**				$iIdObjForm : identifiant de la copie, renvoyÃ© par la BD
 	*/
 
 function copier ($v_iIdNvObjForm)
@@ -569,7 +569,7 @@ function copier ($v_iIdNvObjForm)
 	if ($v_iIdNvObjForm < 1)
 		return;
 		
-	// Les variables contenant du "texte" doivent être formatées, cela permet 
+	// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 	//de les stocker dans la BD sans erreur 
 	$sEnonQC = validerTexte($this->oEnregBdd->EnonQC);
 	$sTxtAvQC = validerTexte($this->oEnregBdd->TxtAvQC);
@@ -597,7 +597,7 @@ function copier ($v_iIdNvObjForm)
 	/*
 	** Fonction 		: effacer
 	** Description		: efface de la BD l'enregistrement concernant l'objet courant
-	** Entrée			:
+	** EntrÃ©e			:
 	** Sortie			:
 	*/
 

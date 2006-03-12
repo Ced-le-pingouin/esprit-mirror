@@ -22,11 +22,11 @@
 /*
 ** Fichier .................: nouv_form.inc.php
 ** Description .............: 
-** Date de création ........: 04/06/2002
-** Dernière modification ...: 22/02/2005
+** Date de crÃ©ation ........: 04/06/2002
+** DerniÃ¨re modification ...: 22/02/2005
 ** Auteurs .................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -44,7 +44,7 @@ unset($oFormation);
 ?>
 <h5>Etape 1&nbsp;: Choisissez l'option qui convient</h5>
 <?php
-$asTexte = array("Créer une nouvelle formation","Construire une formation à partir d'une formation existante");
+$asTexte = array("CrÃ©er une nouvelle formation","Construire une formation Ã  partir d'une formation existante");
 
 if ($iNbrFormations == 0)
 	unset($asTexte[1]);

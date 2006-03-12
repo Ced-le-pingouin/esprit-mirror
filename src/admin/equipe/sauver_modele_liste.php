@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: sauver_modele_liste.php
 ** Description ............: 
-** Date de création .......: 14-01-2003
-** Dernière modification ..: 10-02-2003
+** Date de crÃ©ation .......: 14-01-2003
+** DerniÃ¨re modification ..: 10-02-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -60,7 +60,7 @@ foreach ($amVariablesUrl as $amVariableUrl)
 }
 
 // *************************************
-// Rechercher les équipes ainsi que leurs membres
+// Rechercher les Ã©quipes ainsi que leurs membres
 // *************************************
 
 $oEquipe = new CEquipe($oProjet->oBdd);

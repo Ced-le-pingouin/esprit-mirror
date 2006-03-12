@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: glossaire_composer-sous_menu.php
 ** Description ............:
-** Date de création .......: 29/07/2004
-** Dernière modification ..: 12/08/2004
+** Date de crÃ©ation .......: 29/07/2004
+** DerniÃ¨re modification ..: 12/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -49,7 +49,7 @@ if ($url_bAfficherMenu)
 	$oBloc_SousMenu->remplacer("{href->javascript}","top.oPrincipale().envoyer()");
 	$oBloc_SousMenu->remplacer("{href->label}","Appliquer les changements");
 	
-	// Séparateur de menu
+	// SÃ©parateur de menu
 	$oBloc_SousMenu->ajouter($oSet_MenuSeparateur);
 	
 	// Annuler

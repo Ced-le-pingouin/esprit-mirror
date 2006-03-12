@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: csv.class.php
 ** Description ............:
-** Date de création .......: 12/10/2005
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 12/10/2005
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,8 +35,8 @@ class CCSV
 {
 	function doubler_guillemets ($v_sTexte)
 	{
-		// Mettre un espace au début du message dans le cas où il y aurait un tiret :
-		// c'est à cause de cet imbécil de Microsoft Excel
+		// Mettre un espace au dÃ©but du message dans le cas oÃ¹ il y aurait un tiret :
+		// c'est Ã  cause de cet imbÃ©cil de Microsoft Excel
 		if ("-" == substr($v_sTexte,0,1))
 			$v_sTexte = " {$v_sTexte}";
 		

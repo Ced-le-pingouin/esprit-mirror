@@ -2,7 +2,7 @@
 
 var GLOBALS = new Array();
 
-/* ''' Répertoires */
+/* ''' RÃ©pertoires */
 GLOBALS["racine"] = "<?=dir_root_plateform(NULL,FALSE)?>";
 GLOBALS["theme"] = "<?=dir_theme()?>";
 GLOBALS["theme_commun"] = "<?=dir_theme_commun()?>";

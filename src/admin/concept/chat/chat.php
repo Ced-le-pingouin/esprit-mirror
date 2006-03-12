@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: chat.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 15/10/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 15/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ require_once(dir_database("ids.class.php"));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdChat = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
 
@@ -81,7 +81,7 @@ unset($oObjNiveau);
 $oProjet->terminer();
 
 // ---------------------
-// Liste des numéris d'ordre
+// Liste des numÃ©ris d'ordre
 // ---------------------
 $sNumerosOrdre = NULL;
 
@@ -103,7 +103,7 @@ $sMessageDePatience_1 = "<table border='0' cellspacing='0' cellpadding='0' width
 	."<tr><td align='center' valign='middle'>"
 	."<img src='".dir_theme("barre-de-progression.gif")."' border='0'>"
 	."<br>"
-	."Mise à jour..."
+	."Mise Ã  jour..."
 	."</td></tr>"
 	."</table>";
 
@@ -171,9 +171,9 @@ if ($url_iIdChat < 1)
 		."Cliquez sur &laquo;&nbsp;"
 		."<a"
 		." href=\"javascript: top.oListe().ajouter(); void(0);\""
-		." title=\"Cliquez ici pour créer un nouveau chat\""
+		." title=\"Cliquez ici pour crÃ©er un nouveau chat\""
 		.">Ajouter</a>"
-		."&nbsp;&raquo; pour en créer un.</b></div>"
+		."&nbsp;&raquo; pour en crÃ©er un.</b></div>"
 		."</td></tr></table></td></tr></table></div>"
 		."</body>\n</html>";
 	exit();

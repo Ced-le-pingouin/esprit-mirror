@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: archives-index.php
 ** Description ............:
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 03/10/2005
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 03/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once(dir_database("bdd.class.php"));
 require_once(dir_database("chat.tbl.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdChat = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
 

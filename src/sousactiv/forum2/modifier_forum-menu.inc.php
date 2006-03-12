@@ -1,6 +1,6 @@
 <?php
 if ($url_sModaliteFenetre == "ajouter")
-	$aMenus = array(array("Déposer","top.modifier_forum()"), array("Annuler","top.close()"));
+	$aMenus = array(array("DÃ©poser","top.modifier_forum()"), array("Annuler","top.close()"));
 else if ($url_sModaliteFenetre == "modifier")
 	$aMenus = array(array("Valider","top.modifier_forum()"), array("Annuler","top.close()"));
 else if ($url_sModaliteFenetre == "supprimer")

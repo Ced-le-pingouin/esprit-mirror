@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: description.php
 ** Description ............:
-** Date de création .......: 28/06/2004
-** Dernière modification ..: 14/11/2005
+** Date de crÃ©ation .......: 28/06/2004
+** DerniÃ¨re modification ..: 14/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 $oProjet->initStatutsUtilisateur(TRUE);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -79,7 +79,7 @@ BLOC_HTML_HEAD;
 // ---------------------
 $oTpl = new Template(dir_theme("description.tpl",FALSE,TRUE));
 
-// Bloc d'en-tête de la page html
+// Bloc d'en-tÃªte de la page html
 $oBlocHtmlHead = new TPL_Block("BLOCK_HTML_HEAD",$oTpl);
 
 if (TYPE_FORMATION == $url_iTypeNiveau)
@@ -154,7 +154,7 @@ if (isset($sDescription))
 else
 	$oBlocDescription->effacer();
 
-// {{{ Paramètres du tableau de bord
+// {{{ ParamÃ¨tres du tableau de bord
 $asRechTpl = array("{tableaudebord.niveau.id}","{tableaudebord.niveau.type}");
 $amReplTpl = array($oIds->retIdRubrique(),TYPE_RUBRIQUE);
 $oTpl->remplacer($asRechTpl,$amReplTpl);

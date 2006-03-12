@@ -22,12 +22,12 @@
 /*
 ** Fichier .................: admin_fonction.inc.php
 ** Description .............: 
-** Date de création ........: 02/05/2002
-** Dernière modification ...: 26/10/2004
+** Date de crÃ©ation ........: 02/05/2002
+** DerniÃ¨re modification ...: 26/10/2004
 ** Auteurs .................: Filippo PORCO <filippo.porco@umh.ac.be>
 ** Emails ..................: ute@umh.ac.be
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ function ajouter_repertoire ($v_sNomRepertoire)
 	if (is_dir($v_sNomRepertoire))
 		return;
 	
-	// Créer le nouveau répertoire
+	// CrÃ©er le nouveau rÃ©pertoire
 	mkdir($v_sNomRepertoire,0744);
 	
 	// Copier le fichier qui va permettre d'afficher les pages html,
@@ -283,7 +283,7 @@ function ajouter_activite ()
 	$type = TYPE_ACTIVITE;
 	$g_iSousActiv = 0;
 	
-	// Créer le répertoire
+	// CrÃ©er le rÃ©pertoire
 	if ($g_iFormation > 0 && $g_iActiv > 0)
 	{
 		$sRepActiv = dir_cours($g_iActiv,$g_iFormation,NULL,TRUE);

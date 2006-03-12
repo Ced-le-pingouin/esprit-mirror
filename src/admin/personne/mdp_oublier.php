@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mdp_oublier.php
 ** Description ............:
-** Date de création .......: 21/12/2004
-** Dernière modification ..: 24/02/2005
+** Date de crÃ©ation .......: 21/12/2004
+** DerniÃ¨re modification ..: 24/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Définition des constantes locales
+// DÃ©finition des constantes locales
 // ---------------------
 define("ERREUR_OK",0);
 define("ERREUR_NOM_PRENOM_INCORRECT",1);
@@ -44,7 +44,7 @@ define("ERREUR_AUCUNE_ADRESSE_COURRIELLE",2);
 define("ERREUR_ENVOI_COURRIEL",3);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sNomPers    = (empty($HTTP_GET_VARS["nomPers"]) ? NULL : stripslashes(trim($HTTP_GET_VARS["nomPers"])));
 $url_sPrenomPers = (empty($HTTP_GET_VARS["prenomPers"]) ? NULL : stripslashes(trim($HTTP_GET_VARS["prenomPers"])));
@@ -79,7 +79,7 @@ if (isset($url_sNomPers) && isset($url_sPrenomPers))
 		
 		if (emailValide($sEmail))
 		{
-			// {{{ Récupérer les mots de passe des utilisateurs
+			// {{{ RÃ©cupÃ©rer les mots de passe des utilisateurs
 			$asLignesFichierMdp = array();
 			$sFichierMdp = dir_tmp("mdpncpte",TRUE);
 			
@@ -167,8 +167,8 @@ else
 	$oBlocEntrerInformations->remplacer("{personne->nom}",$url_sNomPers);
 	$oBlocEntrerInformations->remplacer("{personne->prenom}",$url_sPrenomPers);
 	
-	// Dans le cas où deux personnes ont le même nom et prénom, la plate-forme
-	// demandera à l'utilisateur d'entrer son adresse courriel
+	// Dans le cas oÃ¹ deux personnes ont le mÃªme nom et prÃ©nom, la plate-forme
+	// demandera Ã  l'utilisateur d'entrer son adresse courriel
 	if (isset($iNbPersTrouvees) && $iNbPersTrouvees > 1)
 		$oBlocAdresseCourriel->afficher();
 	else

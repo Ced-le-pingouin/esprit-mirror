@@ -19,7 +19,7 @@ function gestionaxes()
 <TABLE border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
 <tr><td align="left" valign="top">
 		<FORM NAME="formaxe" ACTION="formulaire_axe.php" method ="GET" onLoad="self.focus()">
-		<fieldset><legend><b>Sélection des "axes/tendances" applicables au formulaire</b></legend>
+		<fieldset><legend><b>SÃ©lection des "axes/tendances" applicables au formulaire</b></legend>
 		[BLOCK_AXES+]
 		<INPUT TYPE="checkbox" name="axes[]" value="{id_axe}" {chk}>{couleur_police1}{desc_axe}{couleur_police2}<br>
 		[BLOCK_AXES-]
@@ -34,7 +34,7 @@ function gestionaxes()
 		</FORM>
 		<br>
 		<div align="center">
-		Les axes présents actuellement dans le formulaire sont écrits en <i>italique</i>
+		Les axes prÃ©sents actuellement dans le formulaire sont Ã©crits en <i>italique</i>
 		</div>
 </td></tr>
 </table>

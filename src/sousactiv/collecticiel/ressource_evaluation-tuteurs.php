@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ressource_evaluation-tuteurs.php
 ** Description ............:
-** Date de création .......: 04/04/2005
-** Dernière modification ..: 26/04/2005
+** Date de crÃ©ation .......: 04/04/2005
+** DerniÃ¨re modification ..: 26/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers  = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
 $url_iIdResSA = (empty($HTTP_GET_VARS["idResSA"]) ? 0 : $HTTP_GET_VARS["idResSA"]);
@@ -52,7 +52,7 @@ if (STATUT_PERS_ETUDIANT != $oProjet->retStatutUtilisateur())
 }
 else
 {
-	// Les étudiants ne verront que les tuteurs qui ont évalué ce document
+	// Les Ã©tudiants ne verront que les tuteurs qui ont Ã©valuÃ© ce document
 	$oRessourceSousActiv = new CRessourceSousActiv($oProjet->oBdd,$url_iIdResSA);
 	$oRessourceSousActiv->initTuteurs();
 	$poTuteurs = &$oRessourceSousActiv->aoTuteurs;
@@ -93,7 +93,7 @@ foreach ($poTuteurs as $oTuteur)
 
 $oBlocTuteur->afficher();
 
-// Sélectionner le tuteur par défaut
+// SÃ©lectionner le tuteur par dÃ©faut
 $oTpl->remplacer("{tuteur.id}",$iIdPremierTuteur);
 $oTpl->remplacer("{ressource.id}",$url_iIdResSA);
 

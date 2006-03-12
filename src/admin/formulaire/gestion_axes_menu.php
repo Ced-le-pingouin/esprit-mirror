@@ -21,7 +21,7 @@
 
 require_once("globals.inc.php");
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_cours.php
 ** Description ............:
-** Date de création .......: 18/09/2002
-** Dernière modification ..: 13/10/2004
+** Date de crÃ©ation .......: 18/09/2002
+** DerniÃ¨re modification ..: 13/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $iIdForm   = (empty($HTTP_GET_VARS["idform"]) ? 0 : $HTTP_GET_VARS["idform"]);
 $iIdPers   = (empty($HTTP_GET_VARS["IDPERS"]) ? 0 : $HTTP_GET_VARS["IDPERS"]);
@@ -145,7 +145,7 @@ switch ($iIdStatut)
 			
 			if (!$aoModules[$i]->estSelectionne && $aoModules[$i]->estMembre)
 			{
-				// Effacer ce membre associé à une équipe de type module
+				// Effacer ce membre associÃ© Ã  une Ã©quipe de type module
 				$oEquipe_Membre->effacerMembre($iIdPers,TYPE_MODULE,$aoModules[$i]->retId());
 				$aoModules[$i]->estMembre = FALSE;
 			}

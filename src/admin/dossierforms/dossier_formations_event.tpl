@@ -15,7 +15,7 @@
 [BLOCK_MODIFIER_DOSSIER-]
 [BLOCK_SUPPRIMER_DOSSIER+]
 <div id="suppression">
-<p id="suppression_message">Vous êtes sur le point de supprimer le dossier<br>&laquo;&nbsp;<span id="titre_dossier">{dossier.nom}</span>&nbsp;&raquo;</p>
+<p id="suppression_message">Vous Ãªtes sur le point de supprimer le dossier<br>&laquo;&nbsp;<span id="titre_dossier">{dossier.nom}</span>&nbsp;&raquo;</p>
 <p id="suppression_confirmer">Voulez-vous continuer&nbsp;?</p>
 </div>
 [BLOCK_SUPPRIMER_DOSSIER-]

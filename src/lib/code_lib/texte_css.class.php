@@ -37,7 +37,7 @@ class CTexte_CSS
 	var $Fond;
 	var $Bord;
 	
-	// Déclarations des constantes
+	// DÃ©clarations des constantes
 	var $ALIGNER_GAUCHE="left";
 	var $CENTRER_HORIZONTALEMENT="center";
 	var $ALIGNER_DROITE="right";

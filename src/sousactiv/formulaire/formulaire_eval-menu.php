@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_bEvalFC = (empty($HTTP_GET_VARS["evalFC"]) ? 0 : $HTTP_GET_VARS["evalFC"]);
 

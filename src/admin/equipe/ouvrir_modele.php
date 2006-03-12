@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: ouvrir_modele.php
 ** Description ............: 
-** Date de création .......: 16-01-2003
-** Dernière modification ..: 11-02-2003
+** Date de crÃ©ation .......: 16-01-2003
+** DerniÃ¨re modification ..: 11-02-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -79,7 +79,7 @@ include_once(dir_database("ids.class.php"));
 				
 		$aiInscrits = array();
 		
-		// Ajouter une nouvelle équipe
+		// Ajouter une nouvelle Ã©quipe
 		$oEquipe = new CEquipe($oProjet->oBdd);
 		
 		for ($iModeleEquipe=0; $iModeleEquipe<$iNbrEquipes; $iModeleEquipe++)
@@ -161,12 +161,12 @@ include_once(dir_database("ids.class.php"));
 		$sCorpTableUtilisateurs .= "<tr><td colspan=\"3\">&nbsp;</td></tr>";
 	}
 
-	$sCorpInformations = "<tr><td class=\"Cellule_Sous_Titre\" colspan=\"4\">Informations générales</td></tr>\n"
+	$sCorpInformations = "<tr><td class=\"Cellule_Sous_Titre\" colspan=\"4\">Informations gÃ©nÃ©rales</td></tr>\n"
 		."<tr>"
 		."<td class=\"cellule_sous_titre\">&nbsp;Nom de l'auteur&nbsp;</td>"
-		."<td class=\"cellule_sous_titre\">&nbsp;Date de création&nbsp;</td>"
-		."<td class=\"cellule_sous_titre\">Nombre d'équipes</td>"
-		."<td class=\"cellule_sous_titre\">Nombre d'étudiants</td>"
+		."<td class=\"cellule_sous_titre\">&nbsp;Date de crÃ©ation&nbsp;</td>"
+		."<td class=\"cellule_sous_titre\">Nombre d'Ã©quipes</td>"
+		."<td class=\"cellule_sous_titre\">Nombre d'Ã©tudiants</td>"
 		."</tr>\n"
 		."<tr>"
 		."<td><b>".$oModele->sAuteur."</b></td>"
@@ -189,7 +189,7 @@ else
 
 if (!isset($url_sFichierModele))
 {
-	$sNomFichier = "<div class=\"Cellule_Sous_Titre\" align=\"center\">Sélectionner un fichier modèle dans la liste de gauche.</div>";
+	$sNomFichier = "<div class=\"Cellule_Sous_Titre\" align=\"center\">SÃ©lectionner un fichier modÃ¨le dans la liste de gauche.</div>";
 	$sCorpConsigne = NULL;
 	$sCorpInformations = NULL;
 	$sCorpTableUtilisateurs = NULL;
@@ -218,8 +218,8 @@ function effacerModele()
 	var sNomModele = "<?=$url_sFichierModele?>";
 	
 	if (sNomModele.length < 1)
-		alert("Avant d'effacer un modèle d'équipe choisissez un modèle dans la liste ci-dessus.");
-	else if (confirm("Êtes-vous certain de vouloir supprimer ce modèle d'équipe\n(" + sNomModele + ")."))
+		alert("Avant d'effacer un modÃ¨le d'Ã©quipe choisissez un modÃ¨le dans la liste ci-dessus.");
+	else if (confirm("ÃŠtes-vous certain de vouloir supprimer ce modÃ¨le d'Ã©quipe\n(" + sNomModele + ")."))
 	{
 		document.forms[0].elements["ACTION"].value = "supprimer";
 		document.forms[0].submit();

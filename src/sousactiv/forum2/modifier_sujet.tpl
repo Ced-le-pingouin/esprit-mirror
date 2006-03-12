@@ -74,7 +74,7 @@ textarea.editeur_texte { width: 100%; height: 320px; }
 [BLOCK_TITRE_SUJET_MESSAGE+]
 <tr>
 <td>&nbsp;</td>
-<td width="99%" style="font-size: 7pt;">Cette fenêtre vous permet de créer un nouveau sujet et non un nouveau message. Fermez cette fenêtre et cliquez sur le lien &laquo;&nbsp;Nouveau message&nbsp;&raquo; après avoir sélectionné le sujet ad hoc si votre intention est de déposer un message et non d'ajouter un nouveau sujet. La création d'un nouveau sujet ne devrait se faire que lorsqu'aucun sujet actuellement disponible ne convient. Faites-le donc avec retenue. Trop de sujets dans un forum rend le forum confus et difficile à utiliser.</td>
+<td width="99%" style="font-size: 7pt;">Cette fenÃªtre vous permet de crÃ©er un nouveau sujet et non un nouveau message. Fermez cette fenÃªtre et cliquez sur le lien &laquo;&nbsp;Nouveau message&nbsp;&raquo; aprÃ¨s avoir sÃ©lectionnÃ© le sujet ad hoc si votre intention est de dÃ©poser un message et non d'ajouter un nouveau sujet. La crÃ©ation d'un nouveau sujet ne devrait se faire que lorsqu'aucun sujet actuellement disponible ne convient. Faites-le donc avec retenue. Trop de sujets dans un forum rend le forum confus et difficile Ã  utiliser.</td>
 </tr>
 [BLOCK_TITRE_SUJET_MESSAGE-]
 </table>

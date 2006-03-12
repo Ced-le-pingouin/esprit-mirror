@@ -1,10 +1,10 @@
 <!--
   -- Editeur
   --
-  -- Dernière modification: 05/04/2005
+  -- DerniÃ¨re modification: 05/04/2005
   -- Auteur: Filippo PORCO <filippo.porco@umh.ac.be>
   --
-  -- Unité de Technologie de l'Education
+  -- UnitÃ© de Technologie de l'Education
   -- 18, Place du Parc
   -- 7000 MONS
   --
@@ -40,8 +40,8 @@
 </td>
 <td>&nbsp;&nbsp;&nbsp;</td>
 <td>
-<a href="javascript: void(0);" onclick="list_ul()" onfocus="blur()" title="Liste à puce"><img src="icones://list_ul.gif" width="22" height="22" border="0" hspace="0"></a>
-<a href="javascript: void(0);" onclick="list()" onfocus="blur()" title="Liste numérotée"><img src="icones://list.gif" width="22" height="22" border="0" hspace="0"></a>
+<a href="javascript: void(0);" onclick="list_ul()" onfocus="blur()" title="Liste Ã  puce"><img src="icones://list_ul.gif" width="22" height="22" border="0" hspace="0"></a>
+<a href="javascript: void(0);" onclick="list()" onfocus="blur()" title="Liste numÃ©rotÃ©e"><img src="icones://list.gif" width="22" height="22" border="0" hspace="0"></a>
 <a href="javascript: void(0);" onclick="list_ol()" onfocus="blur()" title="Liste"><img src="icones://list_ol.gif" width="22" height="22" border="0" hspace="0"></a>
 </td>
 <td>&nbsp;&nbsp;&nbsp;</td>
@@ -62,7 +62,7 @@
 </td>
 [BLOCK_TABLEAU_DE_BORD+]<td>&nbsp;&nbsp;&nbsp;</td>
 <td><a href="javascript: tableau_de_bord('/i')" onfocus="blur()" title="Lien vers le tableau de bord individuel"><img src="commun://icones/24x24/tableaubord.gif"></a></td>
-<td><a href="javascript: tableau_de_bord('/e')" onfocus="blur()" title="Lien vers le tableau de bord par équipe"><img src="commun://icones/24x24/tableaubord.gif"></a></td>[BLOCK_TABLEAU_DE_BORD-]
+<td><a href="javascript: tableau_de_bord('/e')" onfocus="blur()" title="Lien vers le tableau de bord par Ã©quipe"><img src="commun://icones/24x24/tableaubord.gif"></a></td>[BLOCK_TABLEAU_DE_BORD-]
 </tr>
 </table>
 <table id="id_table_editeur_texte" border="0" cellspacing="0" cellpadding="0" width="100%">

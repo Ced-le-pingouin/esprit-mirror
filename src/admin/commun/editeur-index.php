@@ -37,7 +37,7 @@ function valider()
 		top.close();
 	}
 	else
-		alert("La fonction 'editeur_callback' n'a pas été trouvée");
+		alert("La fonction 'editeur_callback' n'a pas Ã©tÃ© trouvÃ©e");
 }
 function exporter()
 {

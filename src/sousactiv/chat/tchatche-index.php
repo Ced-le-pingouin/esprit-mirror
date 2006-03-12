@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tchatche-index.php
 ** Description ............:
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 17/09/2004
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 17/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,7 +35,7 @@ require_once("globals.inc.php");
 require_once(dir_database("bdd.class.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -71,7 +71,7 @@ unset($oBdd);
 $sParamsUrl = "?idNiveau={$url_iIdNiveau }&typeNiveau={$url_iTypeNiveau}";
 
 // ---------------------
-// Bloc d'en-tête de la page html
+// Bloc d'en-tÃªte de la page html
 // ---------------------
 $sBlockHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">

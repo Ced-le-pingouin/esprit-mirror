@@ -23,7 +23,7 @@ require_once("globals.inc.php");
 require_once(dir_locale("globals.lang"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $sParamsUrl = NULL;
 

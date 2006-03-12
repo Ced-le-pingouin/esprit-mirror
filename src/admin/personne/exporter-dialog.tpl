@@ -21,7 +21,7 @@ function exporter()
 </head>
 <body>
 <form action="export-fichier.php" method="post">
-<p>Sélectionnez dans la liste ci-dessous, les champs dont vous avez besoin.</p>
+<p>SÃ©lectionnez dans la liste ci-dessous, les champs dont vous avez besoin.</p>
 [BLOCK_ONGLET_CHAMPS+][BLOCK_ONGLET_CHAMPS-]
 <br>
 [BLOCK_ONGLET_TYPE_FICHIERS+][BLOCK_ONGLET_TYPE_FICHIERS-]
@@ -31,7 +31,7 @@ function exporter()
 </body>
 </html>
 [SET_CHAMPS_EXPORTER+]
-<p>Sélectionner le champs &agrave; exporter&nbsp;:</p>
+<p>SÃ©lectionner le champs &agrave; exporter&nbsp;:</p>
 <iframe name="CHAMPS" src="exporter-liste_champs.php" width="100%" height="100" frameborder="0" marginwidth="5" marginheight="5"></iframe>
 <table border="0" cellspacing="0" cellpadding="2">
 <tr><td>&nbsp;<input type="checkbox" name="ENVOYER_NOMS_CHAMPS" checked></td><td>Envoyez-moi les noms des champs</td></tr>

@@ -44,7 +44,7 @@ function envoyer(v_iMode)
 			case id_menu_ajouter:
 				sMessage = "Voulez-vous ajouter"
 					+ " \"" + document.forms[0].elements["NOM_INTITULE"].value + "\""
-					+ " dans la liste des intitulés ?";
+					+ " dans la liste des intitulÃ©s ?";
 				bEnvoyer = confirm(sMessage);
 				break;
 				
@@ -60,7 +60,7 @@ function envoyer(v_iMode)
 			case id_menu_supprimer:
 				sMessage = "Voulez-vous supprimer"
 					+ " \"" + document.forms[0].elements["NOM_INTITULE"].value + "\""
-					+ " de la liste des intitulés ?";
+					+ " de la liste des intitulÃ©s ?";
 				bEnvoyer = confirm(sMessage);
 				break;
 		}

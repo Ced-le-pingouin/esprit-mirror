@@ -40,10 +40,10 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	
 	if ($HTTP_GET_VARS['typeaction']=='supprimer')
 	{
-		if ($v_iIdFormulaire == Null)  //Si on n'a pas sélectionné de formulaire dans la liste
+		if ($v_iIdFormulaire == Null)  //Si on n'a pas sÃ©lectionnÃ© de formulaire dans la liste
 		{
 			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner un formulaire dans la liste');";
+			  echo "alert('Veuillez sÃ©lectionner un formulaire dans la liste');";
 			  echo "</SCRIPT>";
 		}
 		else
@@ -52,11 +52,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 			$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 			$iIdPersForm = $oFormulaire->retIdPers();
 			
-			//Vérification si la personne peut supprimer le formulaire; on ne peut supprimer que ces propres formulaires
+			//VÃ©rification si la personne peut supprimer le formulaire; on ne peut supprimer que ces propres formulaires
 			//sauf l'administrateur qui peut tout supprimer
 			if ( ($iIdPersCourant == $iIdPersForm) or ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) )
 			{
-				//Effacement des poids des réponses du formulaire
+				//Effacement des poids des rÃ©ponses du formulaire
 				$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
 				$v_sListeAxes = "0";
 				$oReponse_Axe->VerifierValidite($v_iIdFormulaire,$v_sListeAxes);
@@ -144,7 +144,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 				$oFormulaire->effacer();
 				
 				echo"<SCRIPT language=\"JavaScript\">";
-				echo "alert('Le formulaire a été supprimé avec succès');";
+				echo "alert('Le formulaire a Ã©tÃ© supprimÃ© avec succÃ¨s');";
 				echo "</SCRIPT>";
 			}
 			else //Cas ou l'on a pas le droit de supprimer un formulaire 
@@ -163,7 +163,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		if($v_iIdFormulaire == Null)
 		{
 			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner un formulaire dans la liste');";
+			  echo "alert('Veuillez sÃ©lectionner un formulaire dans la liste');";
 			  echo "</SCRIPT>";
 		}
 		else
@@ -171,7 +171,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 			  if(CopierUnFormulaire($oProjet->oBdd,$v_iIdFormulaire,$iIdPersCourant))
 			  {	
 				  echo"<SCRIPT language=\"JavaScript\">";
-				  echo "alert('La copie s\\'est correctement réalisée !');";
+				  echo "alert('La copie s\\'est correctement rÃ©alisÃ©e !');";
 				  echo "</SCRIPT>";
 			  }
 			  else
@@ -234,6 +234,6 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	}
 	$oTpl->afficher();
 	
-	$oProjet->terminer();  //Ferme la connection avec la base de données
+	$oProjet->terminer();  //Ferme la connection avec la base de donnÃ©es
 }//Verification de la permission d'utiliser le concepteur de formulaire
 ?>

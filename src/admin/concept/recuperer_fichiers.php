@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: recuperer_fichiers.php
 ** Description ............: 
-** Date de création .......: 22-08-2002
-** Dernière modification ..: 10-10-2002
+** Date de crÃ©ation .......: 22-08-2002
+** DerniÃ¨re modification ..: 10-10-2002
 ** Auteurs ................: Filippo Porco
 ** Emails .................: ute@umh.ac.be
 **
@@ -49,9 +49,9 @@ require_once ("globals.inc.php");
 
 <head>
 
-<title>Récupérer des fichiers relatifs à ce bloc</title>
+<title>RÃ©cupÃ©rer des fichiers relatifs Ã  ce bloc</title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <?=inserer_feuille_style()?>
 
@@ -85,7 +85,7 @@ function init(v_iLargeur,v_iHauteur)
 ?>
 <form name="FRM_RECUPERER_FICHIERS" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
 
-<p>Choisissez dans la liste ci-dessous, le fichier que vous désirez récupérer.</p>
+<p>Choisissez dans la liste ci-dessous, le fichier que vous dÃ©sirez rÃ©cupÃ©rer.</p>
 
 <iframe src="recuperer_fichiers_liste.php<?php echo "?FORM=$IdForm&ACTIV=$IdActiv"; ?>" 
 	name="FRAME_LISTE"
@@ -99,7 +99,7 @@ function init(v_iLargeur,v_iHauteur)
 </iframe>
 <div style="text-align: right;">
 <hr>
-<!--<input type="button" value="Récupérer" onclick="frames[0].document.forms[0].submit()">-->
+<!--<input type="button" value="RÃ©cupÃ©rer" onclick="frames[0].document.forms[0].submit()">-->
 <input type="button" value="Rafra&icirc;chir" onclick="top.frames['FRAME_LISTE'].location.reload(true)">
 <input type="button" value="Fermer" onclick="self.close()">
 </div>

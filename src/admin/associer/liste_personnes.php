@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_personnes.php
 ** Description ............:
-** Date de création .......: 16/09/2002
-** Dernière modification ..: 27/01/2005
+** Date de crÃ©ation .......: 16/09/2002
+** DerniÃ¨re modification ..: 27/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -119,25 +119,25 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 		case STATUT_PERS_RESPONSABLE:
 			$sErrPers = "Pas de "
 				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"))
-				." trouvé";
+				." trouvÃ©";
 			break;
 			
 		case STATUT_PERS_CONCEPTEUR:
 			$sErrPers = "Pas de "
 				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"))
-				." trouvé";
+				." trouvÃ©";
 			break;
 			
 		case STATUT_PERS_TUTEUR:
 			$sErrPers = "Pas de "
 				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"))
-				." trouvé";
+				." trouvÃ©";
 			break;
 			
 		case STATUT_PERS_ETUDIANT:
 			$sErrPers = "Pas d'"
 				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"))
-				." trouvé";
+				." trouvÃ©";
 			break;
 			
 		default:
@@ -156,7 +156,7 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 <script language="javascript" type="text/javascript">
 <!--
 
-// {{{ Ces variables globales sont utilisées par la fonction "rechPersonne"
+// {{{ Ces variables globales sont utilisÃ©es par la fonction "rechPersonne"
 var g_sRech = null;
 var g_asListeRech = null;
 var g_iPosDerniereRech = -1;

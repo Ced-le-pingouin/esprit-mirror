@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: collecticiel.php
 ** Description ............:
-** Date de création .......: 11/04/2005
-** Dernière modification ..: 21/11/2005
+** Date de crÃ©ation .......: 11/04/2005
+** DerniÃ¨re modification ..: 21/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -40,7 +40,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPersEquipe       = (empty($HTTP_GET_VARS["sltPersEquipe"]) ? 0 : $HTTP_GET_VARS["sltPersEquipe"]);
 $url_iIdStatutDocument   = (empty($HTTP_GET_VARS["sltStatutDoc"]) ? 0 : $HTTP_GET_VARS["sltStatutDoc"]);
@@ -72,7 +72,7 @@ if (MODALITE_PAR_EQUIPE == $g_iIdModalite)
 	if ($g_iIdEquipe == 0 && !$g_bResponsable)
 	{
 		// Cette personne n'est pas inscrite pour ce collecticiel
-		$sErreur = htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit dans une équipe.");
+		$sErreur = htmlentities("Vous ne pouvez pas rÃ©aliser cette activitÃ© pour le moment car vous n'Ãªtes pas encore inscrit dans une Ã©quipe.");
 		$oTplErreur = new Template(dir_theme_commun("erreur.tpl",FALSE,TRUE));
 		$oTplErreur->remplacer("{message_erreur.texte}",$sErreur);
 		$oTplErreur->afficher();
@@ -99,7 +99,7 @@ else
 	else
 	{
 		// Cette personne n'est pas inscrite dans cette formation
-		$sErreur = htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit comme étudiant dans cette formation.");
+		$sErreur = htmlentities("Vous ne pouvez pas rÃ©aliser cette activitÃ© pour le moment car vous n'Ãªtes pas encore inscrit comme Ã©tudiant dans cette formation.");
 		$oTplErreur = new Template(dir_theme_commun("erreur.tpl",FALSE,TRUE));
 		$oTplErreur->remplacer("{message_erreur.texte}",$sErreur);
 		$oTplErreur->afficher();
@@ -110,7 +110,7 @@ else
 
 if (!$g_bResponsable)
 {
-	// Un étudiant ne voit que son collecticiel
+	// Un Ã©tudiant ne voit que son collecticiel
 	$url_iIdPersEquipe       = (MODALITE_PAR_EQUIPE == $g_iIdModalite ? $g_iIdEquipe : $g_iIdPers);
 	$url_bAfficherBlocsVides = ($g_iIdPers > 0);
 }
@@ -236,7 +236,7 @@ if (count($aaCollecticiels) > 0)
 		$oBlocCollecticiel->remplacer("{onglet->titre}",$amCollecticiel["nom"]);
 		$oBlocCollecticiel->remplacer("{onglet->texte}",$sSetDocument);
 		
-		// {{{ Les en-têtes de la table des documents
+		// {{{ Les en-tÃªtes de la table des documents
 		$asRech = array(
 			"titre" => "{entete.tri_titre}"
 			, "auteur" => "{entete.tri_auteur}"
@@ -276,7 +276,7 @@ if (count($aaCollecticiels) > 0)
 		$oBlocCollecticiel->remplacer("{entete.selection}",$asSetSelection[$g_bResponsable]);
 		// }}}
 		
-		// {{{ Liste des documents déposés
+		// {{{ Liste des documents dÃ©posÃ©s
 		$iNbResEnCours = 0;
 		
 		$oBlocDocument     = new TPL_Block("BLOCK_DOCUMENT",$oBlocCollecticiel);
@@ -305,7 +305,7 @@ if (count($aaCollecticiels) > 0)
 					$iNbDocsEnCours++;
 				}
 				
-				// {{{ Accéder ou pas la fenêtre de l'évaluation
+				// {{{ AccÃ©der ou pas la fenÃªtre de l'Ã©valuation
 				if ($oRessource->retEstSoumise())
 				{
 					if ($oRessource->retEstEvaluee())
@@ -367,7 +367,7 @@ if (count($aaCollecticiels) > 0)
 				if ($g_iIdEquipe == $amCollecticiel["id"])
 					$bPeutAjouterDocuments = TRUE;
 				
-				$sBarreOutils .= $asTableOutils[1]; 			// Liste des équipes
+				$sBarreOutils .= $asTableOutils[1]; 			// Liste des Ã©quipes
 			}
 			else
 			{
@@ -379,7 +379,7 @@ if (count($aaCollecticiels) > 0)
 				$sBarreOutils .= $asTableOutils[0];	 			// Profil
 			}
 			
-			$sBarreOutils .= $asTableOutils[2];					// Boîte courrielle
+			$sBarreOutils .= $asTableOutils[2];					// BoÃ®te courrielle
 			
 			$sBarreOutils = str_replace("{courriel.modalite}",$sParamsUrlCourriel,$sBarreOutils);
 			

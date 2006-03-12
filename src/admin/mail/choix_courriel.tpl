@@ -33,7 +33,7 @@ function valider()
 				document.forms[0].elements["idPers"].value += (document.forms[0].elements["idPers"].value.length > 0 ? "x" : "")
 					+ oElems[i].value;
 		}
-	// Rafraîchir le menu
+	// RafraÃ®chir le menu
 	top.rafraichir_menu('');
 	
 	// Envoyer le formulaire
@@ -64,7 +64,7 @@ function init()
 <table border="0" cellspacing="0" cellpadding="1" width="100%">
 <tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['plateforme'].value}" checked="checked"></td><td>Celle de la plate-forme</td></tr>
 [BLOCK_UTILISER_BOITE_COURRIELLE_PC+]<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['os'].value}"></td><td>Celle de votre ordinateur</td></tr>[BLOCK_UTILISER_BOITE_COURRIELLE_PC-]
-<tr><td>&nbsp;</td><td style="font-size: 7pt;">! Veuillez noter qu'une copie des courriels est enregistr&eacute;e afin de pouvoir réaliser une analyse statistique du déroulement de la formation. Cette analyse est confidentielle. Si vous ne désirez pas laisser de trace, utilisez votre gestionnaire habituel de courriels (Outlook, Eudora, Yahoo, Hotmail...).</td></tr>
+<tr><td>&nbsp;</td><td style="font-size: 7pt;">! Veuillez noter qu'une copie des courriels est enregistr&eacute;e afin de pouvoir rÃ©aliser une analyse statistique du dÃ©roulement de la formation. Cette analyse est confidentielle. Si vous ne dÃ©sirez pas laisser de trace, utilisez votre gestionnaire habituel de courriels (Outlook, Eudora, Yahoo, Hotmail...).</td></tr>
 </table>
 [VAR_TEXTE-]
 [BLOCK_CHOISIR_BOITE_COURRIEL-]

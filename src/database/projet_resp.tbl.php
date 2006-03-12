@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: projet_resp.tbl.php
 ** Description ............: 
-** Date de création .......: 20-09-2002
-** Dernière modification ..: 24-09-2002
+** Date de crÃ©ation .......: 20-09-2002
+** DerniÃ¨re modification ..: 24-09-2002
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

@@ -25,7 +25,7 @@ require_once(dir_database("chat.tbl.php"));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_GET_VARS["idNiveau"]))
 	$url_iIdNiveau = $HTTP_GET_VARS["idNiveau"];
@@ -176,7 +176,7 @@ function ajouter()
 
 function supprimer()
 {
-	if (confirm("Êtes-vous certain de vouloir supprimer ce salon ?"))
+	if (confirm("ÃŠtes-vous certain de vouloir supprimer ce salon ?"))
 	{
 		document.forms[0].elements["action"].value = "supprimer";
 		envoyer();

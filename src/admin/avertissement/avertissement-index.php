@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: avertissement-index.php
 ** Description ............:
-** Date de création .......: 08/07/2005
-** Dernière modification ..: 12/07/2005
+** Date de crÃ©ation .......: 08/07/2005
+** DerniÃ¨re modification ..: 12/07/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -47,7 +47,7 @@ $oEnreg = $oProjet->oBdd->retEnregSuiv($hResult);
 $sAvertissementLogin = rawurlencode($oEnreg->AvertissementLogin);
 $oProjet->oBdd->libererResult($hResult);
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
 <!--

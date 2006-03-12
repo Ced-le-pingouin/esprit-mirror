@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))

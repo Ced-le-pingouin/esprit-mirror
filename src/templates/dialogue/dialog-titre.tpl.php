@@ -22,11 +22,11 @@
 /*
 ** Template ...............: dialog-titre.tpl.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 24/12/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 24/12/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sTitre     = (empty($HTTP_GET_VARS["tp"]) ? (empty($sTitrePrincipal) ? NULL : $sTitrePrincipal) : $HTTP_GET_VARS["tp"]);
 $url_sSousTitre = (empty($HTTP_GET_VARS["st"]) ? (empty($sSousTitre) ? NULL : $sSousTitre) : $HTTP_GET_VARS["st"]);
@@ -47,7 +47,7 @@ $url_sSousTitre = htmlentities(stripslashes($url_sSousTitre));
 // ---------------------
 $oTpl = new Template(dir_theme("dialog-titre.tpl",FALSE,TRUE));
 
-// {{{ Afficher/Effacer l'en-tête de la page html
+// {{{ Afficher/Effacer l'en-tÃªte de la page html
 $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 
 if (isset($sHead))

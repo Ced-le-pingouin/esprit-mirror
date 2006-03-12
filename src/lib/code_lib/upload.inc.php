@@ -30,7 +30,7 @@ function retTexteErreurChargement ($v_iCodeErreur)
 	switch ($v_iCodeErreur)
 	{
 		case UPLOAD_OK :
-			return "Chargement du fichier vers le serveur a réussi";
+			return "Chargement du fichier vers le serveur a rÃ©ussi";
 			break;
 			
 		case UPLOAD_ERREUR :
@@ -38,7 +38,7 @@ function retTexteErreurChargement ($v_iCodeErreur)
 			break;
 			
 		case UPLOAD_EXTENSION_INTERDITE :
-			return "L'extension de ce fichier n'est pas autorisé";
+			return "L'extension de ce fichier n'est pas autorisÃ©";
 			break;
 	}
 	
@@ -47,9 +47,9 @@ function retTexteErreurChargement ($v_iCodeErreur)
 
 /*
 ** Fonction .....: retNomFichierUnique ()
-** Description ..: Cette fonction vérifie si un fichier du même nom existe, dans ce cas,
-**                 il lui attribue un numéro de quatre chiffre incrémenté de 1.
-** Variables d'entrée ........: $v_sNomFichier - Donner le nom du fichier à uploader (Ex.: FileXYZ.EXT)
+** Description ..: Cette fonction vÃ©rifie si un fichier du mÃªme nom existe, dans ce cas,
+**                 il lui attribue un numÃ©ro de quatre chiffre incrÃ©mentÃ© de 1.
+** Variables d'entrÃ©e ........: $v_sNomFichier - Donner le nom du fichier Ã  uploader (Ex.: FileXYZ.EXT)
 ** Return .......: $newFile - Retourne un nom de fichier unique (Ex.: FileXYZ-0023.EXT)
 **
 */
@@ -98,11 +98,11 @@ function retNomFichierUnique ($v_sNomFichier,$v_sNomRepertoire=NULL,$v_bAjouterZ
 
 /*
 ** Fonction ............: chargerFichier ()
-** Description .........: Cette fonction copie le fichier qui se trouve dans le répertoire temporaire du serveur
-**                        vers le sa destination du côté serveur.
-** Variables d'entrée ..: - $v_sNomFichierTmpCharger, nom du fichier temporaire;
-**                        - $v_sNomFichierCharger, nom du fichier + le répertoire de destination.
-** Variable de retour ..: chargerFichier () renvoie UPLOAD_OK en cas de succès, UPLOAD_FAIL sinon.
+** Description .........: Cette fonction copie le fichier qui se trouve dans le rÃ©pertoire temporaire du serveur
+**                        vers le sa destination du cÃ´tÃ© serveur.
+** Variables d'entrÃ©e ..: - $v_sNomFichierTmpCharger, nom du fichier temporaire;
+**                        - $v_sNomFichierCharger, nom du fichier + le rÃ©pertoire de destination.
+** Variable de retour ..: chargerFichier () renvoie UPLOAD_OK en cas de succÃ¨s, UPLOAD_FAIL sinon.
 **
 ** Exemple .............: chargerFichier ("FH102JHG","ressources/documents/doc-0010.doc");
 **

@@ -22,8 +22,8 @@
 /*
 ** Classe .................: CBody_CSS
 ** Description ............: Classe de la balise <BODY>
-** Date de création .......: 11-01-2002
-** Dernière modification ..: 11-01-2002
+** Date de crÃ©ation .......: 11-01-2002
+** DerniÃ¨re modification ..: 11-01-2002
 ** Auteur .................: Fili//0: Porco
 ** Email ..................: filippo.porco@umh.ac.be
 **
@@ -37,7 +37,7 @@ class CBody_CSS extends CCss
 	{
 		$this->CCss ("BODY, DIV, TABLE, TH, TR, TD, H1, H2, H3, H4, H5, H6, P, A, SPAN");
 		
-		// Police de caractères
+		// Police de caractÃ¨res
 		$this->Texte->FamillePolices (((defined ("BODY_FONT_FAMILY")) ? BODY_FONT_FAMILY : NULL ));
 		$this->Texte->TaillePolice (((defined ("BODY_FONT_SIZE")) ? BODY_FONT_SIZE : NULL ));
 

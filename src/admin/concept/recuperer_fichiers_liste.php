@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: recuperer_fichiers_liste.php
 ** Description ............: 
-** Date de création .......: 22-08-2002
-** Dernière modification ..: 10-10-2002
+** Date de crÃ©ation .......: 22-08-2002
+** DerniÃ¨re modification ..: 10-10-2002
 ** Auteurs ................: Filippo Porco
 ** Emails .................: ute@umh.ac.be
 **

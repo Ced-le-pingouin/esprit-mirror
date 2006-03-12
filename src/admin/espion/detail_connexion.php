@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: detail_connexion.php
 ** Description ............:
-** Date de création .......: 25/02/2003
-** Dernière modification ..: 16/07/2004
+** Date de crÃ©ation .......: 25/02/2003
+** DerniÃ¨re modification ..: 16/07/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -74,14 +74,14 @@ while ($g_iIdxEven < $iNbrEven)
 	$iCompteur = 1;
 	
 	// --------------------------------
-	// En-têtes du tableau
+	// En-tÃªtes du tableau
 	// --------------------------------
 	
 	$asTitres = array(
 		array("&nbsp;&nbsp;&nbsp;&nbsp;#",FALSE,NULL),
 		array("Connexion",TRUE,$oEvenement->TRI_CONNEXION),
-		array("Déconnexion",TRUE,$oEvenement->TRI_DECONNEXION),
-		array("Durée",TRUE,$oEvenement->TRI_TEMPS_CONNEXIONS));
+		array("DÃ©connexion",TRUE,$oEvenement->TRI_DECONNEXION),
+		array("DurÃ©e",TRUE,$oEvenement->TRI_TEMPS_CONNEXIONS));
 	
 	$sContenuTable .= "<tr>";
 	
@@ -137,7 +137,7 @@ while ($g_iIdxEven < $iNbrEven)
 	}
 	
 	// --------------------------------
-	// Durée totale des connexions par projet/par formations
+	// DurÃ©e totale des connexions par projet/par formations
 	// --------------------------------
 	
 	$sContenuTable .= "<tr>"
@@ -156,7 +156,7 @@ while ($g_iIdxEven < $iNbrEven)
 if ($g_iIdxEven < 1)
 	$sContenuTable .= "<tr>"
 		."<td colspan=\"4\" align=\"center\">"
-		."<strong>Pas de trace de connexion trouvé</strong>"
+		."<strong>Pas de trace de connexion trouvÃ©</strong>"
 		."</td>"
 		."</tr>\n";
 

@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: ressource_evaluation.php
 ** Description ............:
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 29/11/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 29/11/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers = (isset($HTTP_GET_VARS["idPers"]) ? $HTTP_GET_VARS["idPers"] : 0);
 
@@ -49,7 +49,7 @@ $g_iIdPers = $oProjet->retIdUtilisateur();
 
 $g_bModeEdition = ($url_iIdPers == $g_iIdPers) && $oProjet->verifPermission("PERM_EVALUER_COLLECTICIEL");
 
-// Récupérer le répertoire de destination
+// RÃ©cupÃ©rer le rÃ©pertoire de destination
 $g_sRepDest = dir_collecticiel($oProjet->oFormationCourante->retId()
 	,$oProjet->oActivCourante->retId()
 	,NULL
@@ -61,7 +61,7 @@ $g_sRepDestRelatif = dir_collecticiel($oProjet->oFormationCourante->retId()
 	,FALSE);
 
 // ---------------------
-// Déclaration des fonctions locales
+// DÃ©claration des fonctions locales
 // ---------------------
 function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 {
@@ -84,7 +84,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 	
 	if ($v_bEditable)
 	{
-		// Donner le statut "Accepté" par défaut
+		// Donner le statut "AcceptÃ©" par dÃ©faut
 		if (STATUT_RES_SOUMISE == ($iStatutActuelDocument = $oResSA->retStatut()))
 			$iStatutActuelDocument = STATUT_RES_ACCEPTEE;
 		
@@ -199,7 +199,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 			."<br>"
 			."<input type=\"file\" name=\"evaluation_fichier\" size=\"50\" style=\"width: 100%;\">"
 			."<br>"
-			.(isset($sLienRessource) ? "<small>Fichier&nbsp;actuel&nbsp;: </small>{$sLienRessource}" : "<small>Pas de document trouvé</small>")
+			.(isset($sLienRessource) ? "<small>Fichier&nbsp;actuel&nbsp;: </small>{$sLienRessource}" : "<small>Pas de document trouvÃ©</small>")
 			.(isset($sLienRessource) && strlen($oResSA->oRessourceAttache->retUrl()) > 0 ? "<div style=\"color: rgb(127,157,185); text-align: right;\">[&nbsp;<a href=\"javascript: effacer_ressource(); void(0);\">Effacer</a>&nbsp;]</div>" : NULL)
 			."</fieldset>"
 			."</td>"
@@ -251,7 +251,7 @@ function changerSousTitre(v_sSousTitre)
 
 function effacer_ressource()
 {
-	if (confirm("Etes-vous certain de vouloir effacer ce documment attaché ?"))
+	if (confirm("Etes-vous certain de vouloir effacer ce documment attachÃ© ?"))
 	{
 		top.oMenu().location = "ressource_evaluation-menu.php";
 		document.forms[0].elements["ressource_attache_effacer"].value = "1";
@@ -330,7 +330,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 		echo "<p>&nbsp;</p>"
 			."<div align=\"center\">"
 			."<div class=\"pas_encore_evaluer\">"
-			.htmlentities("Ce tuteur n'a pas encore évalué ce document")
+			.htmlentities("Ce tuteur n'a pas encore Ã©valuÃ© ce document")
 			."</div>\n"
 			."</div>\n";
 		echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n"
@@ -345,7 +345,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 else if ($HTTP_POST_VARS["ressource_attache_effacer"] == "1")
 {
 	// ---------------------
-	// Effacer un document attaché
+	// Effacer un document attachÃ©
 	// ---------------------
 	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$HTTP_POST_VARS["idResSA"]);
 	$oResSA->effacerRessourceAttache($g_sRepDest);
@@ -354,14 +354,14 @@ else if ($HTTP_POST_VARS["ressource_attache_effacer"] == "1")
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".htmlentities("Le document attaché a bien été effacé")."</h3>"
+		."<h3>".htmlentities("Le document attachÃ© a bien Ã©tÃ© effacÃ©")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }
 else if (isset($HTTP_POST_VARS["idResSA"]))
 {
 	// ---------------------
-	// Uploader le document attaché à une évaluation
+	// Uploader le document attachÃ© Ã  une Ã©valuation
 	// ---------------------
 	$sNomFichier = trim(stripslashes($HTTP_POST_FILES["evaluation_fichier"]["name"]));
 	
@@ -369,7 +369,7 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 	{
 		include_once(dir_code_lib("upload.inc.php"));
 		
-		// Copier le fichier du répertoire temporaire vers sa destination
+		// Copier le fichier du rÃ©pertoire temporaire vers sa destination
 		$sNomFichierNouv = retNomFichierUnique($sNomFichier,$g_sRepDest);
 		
 		if (@move_uploaded_file($HTTP_POST_FILES["evaluation_fichier"]["tmp_name"],$sNomFichierNouv))
@@ -385,13 +385,13 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 				$oResAttache->defUrl(basename($sNomFichierNouv));
 				$oResAttache->defIdExped($g_iIdPers);
 				
-				// Attacher cette ressource à cette évaluation
+				// Attacher cette ressource Ã  cette Ã©valuation
 				if (($iIdRes = $oResAttache->ajouter()) > 0)
 					$oResSA->ajouterRessourceAttache($iIdRes);
 			}
 			else
 			{
-				// Effacer l'ancien fichier attaché à cette évaluation
+				// Effacer l'ancien fichier attachÃ© Ã  cette Ã©valuation
 				@unlink($g_sRepDest.$oResSA->oRessourceAttache->retUrl());
 				
 				$oResSA->oRessourceAttache->defNom($sNomFichier);
@@ -402,7 +402,7 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 	}
 	
 	// ---------------------
-	// Enregistrer l'évaluation
+	// Enregistrer l'Ã©valuation
 	// ---------------------
 	$oProjet->oSousActivCourante->enregistrerEvaluation($HTTP_POST_VARS["idResSA"],
 		$g_iIdPers,
@@ -419,7 +419,7 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".htmlentities("L'évaluation a été enregistrée")."</h3>"
+		."<h3>".htmlentities("L'Ã©valuation a Ã©tÃ© enregistrÃ©e")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }

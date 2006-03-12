@@ -55,7 +55,7 @@ if (!$url_bTerminer)
 	echo "<td class=\"dialogue_menu\" align=\"right\">";
 	
 	if ($url_iEtape > 1)
-		echo "<a href=\"javascript: precedent();\">&#8249;&nbsp;Précédent</a>&nbsp;|&nbsp;";
+		echo "<a href=\"javascript: precedent();\">&#8249;&nbsp;PrÃ©cÃ©dent</a>&nbsp;|&nbsp;";
 	
 	if ($url_iEtape < $url_iNbEtapes)
 		echo "<a href=\"javascript: suivant();\">Suivant&nbsp;&#8250;</a>&nbsp;";

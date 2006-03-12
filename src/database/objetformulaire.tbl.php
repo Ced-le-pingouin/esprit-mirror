@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: objetformulaire.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -42,9 +42,9 @@ class CObjetFormulaire
 	function CObjetFormulaire(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-								  //si 0 crée un objet presque vide sinon 
-								  //rempli l'objet avec les données de la table Formulaire
-								  //de l'elément ayant l'Id passé en argument
+								  //si 0 crÃ©e un objet presque vide sinon 
+								  //rempli l'objet avec les donnÃ©es de la table Formulaire
+								  //de l'elÃ©ment ayant l'Id passÃ© en argument
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
@@ -111,7 +111,7 @@ class CObjetFormulaire
 				break;
 				
 			default:
-				//echo "Erreur: numéro d'objet de formulaire incorrect !<br>";
+				//echo "Erreur: numÃ©ro d'objet de formulaire incorrect !<br>";
 				break;
 		}
 	}
@@ -202,7 +202,7 @@ class CObjetFormulaire
 		//echo "<br>replacement du nouveau : ".$sRequeteSql;
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		// déverrouillage de la table ObjetFormulaire
+		// dÃ©verrouillage de la table ObjetFormulaire
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 		
 		return true;
@@ -212,8 +212,8 @@ class CObjetFormulaire
 	/*
 	** Fonction 		: NbObjForm
 	** Description		: renvoie le nombre total d'objet que comprend un formulaire
-	** Entrée			: 
-	**					$v_iNumForm	: numéro du formulaire à traiter
+	** EntrÃ©e			: 
+	**					$v_iNumForm	: numÃ©ro du formulaire Ã  traiter
 	** Sortie			:
 	**					nombre total d'objets pour ce formulaire
 	*/
@@ -232,11 +232,11 @@ class CObjetFormulaire
 
 	/*
 	** Fonction 		: OrdreMaxObjForm
-	** Description		: renvoie le plus grand numéro d'ordre (objet) que comprend un formulaire
-	** Entrée			: 
-	**					$v_iNumForm	: numéro du formulaire à traiter
+	** Description		: renvoie le plus grand numÃ©ro d'ordre (objet) que comprend un formulaire
+	** EntrÃ©e			: 
+	**					$v_iNumForm	: numÃ©ro du formulaire Ã  traiter
 	** Sortie			:
-	**					le plus grand numéro d'ordre pour ce formulaire
+	**					le plus grand numÃ©ro d'ordre pour ce formulaire
 	*/
 	function OrdreMaxObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurais pu etre pratique
 	{
@@ -265,7 +265,7 @@ class CObjetFormulaire
 			.($this->oEnregBdd->IdObjForm > 0 ? " WHERE IdForm='{$this->oEnregBdd->IdObjForm}'" : NULL);
 		//echo "<br>enregistrer : ".$sRequeteSql;
 		$this->oBdd->executerRequete($sRequeteSql);
-		$this->defIdObjForm($this->oBdd->retDernierId()); //On place dans l'objet créé son Id
+		$this->defIdObjForm($this->oBdd->retDernierId()); //On place dans l'objet crÃ©Ã© son Id
 		
 		return TRUE;
 	}
@@ -322,9 +322,9 @@ class CObjetFormulaire
 
 	/*
 	** Fonction 		: reorganiser
-	** Description		: modifie l'ordre des objets d'un formulaire après suppression d'un de ces objets.
-								  Cette fonction s'appelle uniquement après un effacement
-	** Entrée			:
+	** Description		: modifie l'ordre des objets d'un formulaire aprÃ¨s suppression d'un de ces objets.
+								  Cette fonction s'appelle uniquement aprÃ¨s un effacement
+	** EntrÃ©e			:
 	** Sortie			:
 	*/	
 	function reorganiser()
@@ -341,7 +341,7 @@ class CObjetFormulaire
 		return TRUE;
 	}
 	
-	// Fonctions de définitions
+	// Fonctions de dÃ©finitions
 	function defIdObjForm($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
 	function defOrdreObjForm($v_iOrdre) { $this->oEnregBdd->OrdreObjForm = $v_iOrdre; }
 	function defIdTypeObj($v_iTypeObj) { $this->oEnregBdd->IdTypeObj = $v_iTypeObj; }

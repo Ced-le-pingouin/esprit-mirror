@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: formulaire_axe.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,9 +39,9 @@ class CFormulaire_Axe
 	function CFormulaire_Axe(&$v_oBdd,$v_iIdFormulaire=0,$v_iIdAxe=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-						  //si 0 crée un objet presque vide sinon 
-						  //rempli l'objet avec les données de la table Axe
-						  //de l'elément ayant l'Id passé en argument
+						  //si 0 crÃ©e un objet presque vide sinon 
+						  //rempli l'objet avec les donnÃ©es de la table Axe
+						  //de l'elÃ©ment ayant l'Id passÃ© en argument
 		
 		$this->iIdForm = $v_iIdFormulaire;
 		$this->iIdAxe = $v_iIdAxe;
@@ -65,11 +65,11 @@ class CFormulaire_Axe
 			$this->oBdd->libererResult($hResult);
 		}
 		
-		$this->iId = $this->oEnregBdd->IdForm;  //Attention clé multiple -> incomplète
+		$this->iId = $this->oEnregBdd->IdForm;  //Attention clÃ© multiple -> incomplÃ¨te
 	}
 
 	function ajouter()  		//Cette fonction ajoute un Objet Formulaire_Axe en fin de table
-								//Les arguments ont été passé lors de la création de l'objet
+								//Les arguments ont Ã©tÃ© passÃ© lors de la crÃ©ation de l'objet
 	{
 		$sRequeteSql = "INSERT INTO Formulaire_Axe SET IdForm='{$this->iIdForm}', IdAxe='{$this->iIdAxe}';";
 		//echo "<br>ajouter() : ".$sRequeteSql;
@@ -79,11 +79,11 @@ class CFormulaire_Axe
 
 	/*
 	** Fonction 		: AxesDsFormulaire
-	** Description		: renvoie les  IdAxe des axes présent dans le formulaire dont on lui a envoyé l'Id
-	** Entrée			: 
-	**					$v_iIdForm	: numéro du formulaire à traiter
+	** Description		: renvoie les  IdAxe des axes prÃ©sent dans le formulaire dont on lui a envoyÃ© l'Id
+	** EntrÃ©e			: 
+	**					$v_iIdForm	: numÃ©ro du formulaire Ã  traiter
 	** Sortie			:
-	**					$TabAxesForm[] :un tableau contenant les Id des axes utilisés pour ce formulaire
+	**					$TabAxesForm[] :un tableau contenant les Id des axes utilisÃ©s pour ce formulaire
 	*/
 	
 	function AxesDsFormulaire($v_iIdFormulaire)
@@ -96,7 +96,7 @@ class CFormulaire_Axe
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultInt))
 		{
 			$TabAxesForm[$i] = $oEnreg->IdAxe;
-			//echo "<br>L'axe ".$TabAxesForm[$i]." == ".$oEnreg->IdAxe." est présent dans le formulaire ".$v_iIdFormulaire;
+			//echo "<br>L'axe ".$TabAxesForm[$i]." == ".$oEnreg->IdAxe." est prÃ©sent dans le formulaire ".$v_iIdFormulaire;
 			$i++;
 		}
 		
@@ -108,9 +108,9 @@ class CFormulaire_Axe
 
 	/*
 	** Fonction 		: NomsFormulaires
-	** Description		: renvoie le/les nom(s) de(s) formulaire(s) dans le ou lesquels l'axe, dont on a recu l'Id, est présent 
-	** Entrée			: 
-	**					$v_iIdAxe	: numéro de l'axe à traiter
+	** Description		: renvoie le/les nom(s) de(s) formulaire(s) dans le ou lesquels l'axe, dont on a recu l'Id, est prÃ©sent 
+	** EntrÃ©e			: 
+	**					$v_iIdAxe	: numÃ©ro de l'axe Ã  traiter
 	** Sortie			:
 	**					$TabNomsForm[] :un tableau contenant les noms des formulaires qui utilisent cet axe
 	*/
@@ -137,9 +137,9 @@ class CFormulaire_Axe
 
 	/*
 	** Fonction 		: effacerAxesForm
-	** Description		: efface tous les axes d'un formulaire donné
-	** Entrée			: 
-	**					$v_iIdFormulaire	: numéro du formulaire à traiter
+	** Description		: efface tous les axes d'un formulaire donnÃ©
+	** EntrÃ©e			: 
+	**					$v_iIdFormulaire	: numÃ©ro du formulaire Ã  traiter
 	** Sortie			:
 	*/
 	function effacerAxesForm($v_iIdFormulaire)
@@ -168,7 +168,7 @@ class CFormulaire_Axe
 		return $v_iIdNvForm;
 	}
 	
-	//Fonctions de définitions
+	//Fonctions de dÃ©finitions
 	function defIdForm($v_iIdFormulaire) { $this->oEnregBdd->IdForm = $v_iIdFormulaire; }
 	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdAxe = $v_iIdAxe; }
 	

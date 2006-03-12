@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: formulaire.sousactiv.php
 ** Description ............: 
-** Date de création .......: 01/03/2002
-** Dernière modification ..: 25/11/2005
+** Date de crÃ©ation .......: 01/03/2002
+** DerniÃ¨re modification ..: 25/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Cédric FLOQUET <cedric.floquet@umh.ac.be>
+**                           CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -75,7 +75,7 @@ $g_sRepTheme = dir_theme();
 $sIntitule = htmlentities($sIntitule);
 
 // Mettre dans un tableau la liste des fichiers qui se
-// trouvent dans la racine du bloc d'activité
+// trouvent dans la racine du bloc d'activitÃ©
 $asFichiers = array();
 
 $sDestination = dir_cours($g_iActiv,$g_iFormation);
@@ -172,10 +172,10 @@ for ($i=0; $i<count($asFichiers); $i++)
 </div>
 <!-- Affichage d'une page HTML ]]-->
 
-<!--[[ Document à télécharger (<?=LIEN_DOCUMENT_TELECHARGER?>) -->
+<!--[[ Document Ã  tÃ©lÃ©charger (<?=LIEN_DOCUMENT_TELECHARGER?>) -->
 <div id="lien_document_telecharger" class="Cacher">
 <fieldset>
-<legend>&nbsp;Document à télécharger&nbsp;</legend>
+<legend>&nbsp;Document Ã  tÃ©lÃ©charger&nbsp;</legend>
 <table border="0" cellspacing="0" cellpadding="2">
 <tr>
 <td width="200"><div class="intitule">Choisir le document&nbsp;:</div></td>
@@ -192,20 +192,20 @@ for ($i=0; $i<count($asFichiers); $i++)
 <?=boutonDeposer()?>
 </td>
 </tr>
-<!-- Modalité d'affichage -->
+<!-- ModalitÃ© d'affichage -->
 <tr>
 <td><div class="intitule">Modalit&eacute; d'affichage&nbsp;:</div></td>
 <td>
 <select name="MODALITE_AFFICHAGE[<?php echo LIEN_DOCUMENT_TELECHARGER; ?>]"  onchange="javascript: MontrerCacher('div_description',this.selectedIndex);" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
-<option value="<?php echo FRAME_CENTRALE_DIRECT; ?>">Directe (téléchargement en 1 temps)</option>
-<option value="<?php echo FRAME_CENTRALE_INDIRECT; ?>"<?php echo ($url_iMode == FRAME_CENTRALE_INDIRECT ? " selected" : NULL); ?>>Indirecte (téléchargement en 2 temps)</option>
+<option value="<?php echo FRAME_CENTRALE_DIRECT; ?>">Directe (tÃ©lÃ©chargement en 1 temps)</option>
+<option value="<?php echo FRAME_CENTRALE_INDIRECT; ?>"<?php echo ($url_iMode == FRAME_CENTRALE_INDIRECT ? " selected" : NULL); ?>>Indirecte (tÃ©lÃ©chargement en 2 temps)</option>
 </select>
 </td>
 </tr>
 </table>
 </fieldset>
 </div>
-<!-- Document à télécharger ]]-->
+<!-- Document Ã  tÃ©lÃ©charger ]]-->
 
 <!--[[ Site Internet (<?=LIEN_SITE_INTERNET?>) -->
 <div id="lien_site_internet" class="Cacher">
@@ -222,7 +222,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 </div>
 <!-- Site Internet ]]-->
 
-<!--[[ Texte formaté (<?=LIEN_TEXTE_FORMATTE?>) -->
+<!--[[ Texte formatÃ© (<?=LIEN_TEXTE_FORMATTE?>) -->
 <?php $iTypeLien = LIEN_TEXTE_FORMATTE; ?>
 <div id="lien_texte_formate" class="Cacher">
 <fieldset>
@@ -242,7 +242,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 </table>
 </fieldset>
 </div>
-<!-- Texte formaté ]]-->
+<!-- Texte formatÃ© ]]-->
 
 <!--[[ Collecticiel (<?=LIEN_COLLECTICIEL?>) -->
 <div id="lien_collecticiel" class="Cacher">
@@ -265,7 +265,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 		.">$asFichiers[$i]</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleCollecticiel = htmlentities("Fichier de base à télécharger");
+	$sIntituleCollecticiel = htmlentities("Fichier de base Ã  tÃ©lÃ©charger");
 else
 	$sIntituleCollecticiel = $sIntitule;
 ?>
@@ -274,7 +274,7 @@ else
 </td>
 </tr>
 <tr>
-<td><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
+<td><div class="intitule">IntitulÃ©&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
 <td><input type="text" size="50" name="INTITULE[<?php echo LIEN_COLLECTICIEL; ?>]" value="<?php echo $sIntituleCollecticiel; ?>"<?php echo ($g_bModifier ? NULL : " disabled"); ?>></td>
 </tr>
 <?php entrerDescription(("DESCRIPTION[".LIEN_COLLECTICIEL."]"),$descr,"Consignes",urlencode(addslashes($sNomSousActiv))); ?>
@@ -328,7 +328,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 <!--[[ Formulaire (<?=LIEN_FORMULAIRE?>) -->
 <div id="lien_formulaire" class="Cacher">
 <fieldset>
-<legend>&nbsp;Activités en ligne&nbsp;</legend>
+<legend>&nbsp;ActivitÃ©s en ligne&nbsp;</legend>
 <table border="0" cellspacing="4" cellpadding="0">
 <tr>
 <td><div class="intitule">Modalit&eacute;&nbsp;:&nbsp;</div></td>
@@ -344,7 +344,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 <select name="DONNEES[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
 <option value="">Pas de questionnaire actuellement</option>
 <?php
-// on peut inclure aux activités ses propres formulaires, ou des formulaires publics, A CONDITION que leur statut soit TERMINE
+// on peut inclure aux activitÃ©s ses propres formulaires, ou des formulaires publics, A CONDITION que leur statut soit TERMINE
 $oFormulaire = new CFormulaire($oProjet->oBdd);
 // retourne les formulaires de l'utilisateur, et ceux dont le statut est 'public'
 $aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles($g_iIdUtilisateur, 'public', NULL); // , 1);
@@ -354,7 +354,7 @@ foreach($aoFormulairesVisibles as $oFormulaireCourant)
 	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleFormulaire = htmlentities("Questionnaire de base à compléter");
+	$sIntituleFormulaire = htmlentities("Questionnaire de base Ã  complÃ©ter");
 else
 	$sIntituleFormulaire = $sIntitule;
 ?>
@@ -362,7 +362,7 @@ else
 </td>
 </tr>
 <tr>
-<td><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
+<td><div class="intitule">IntitulÃ©&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
 <td><input type="text" size="50" name="INTITULE[<?php echo LIEN_FORMULAIRE; ?>]" value="<?php echo $sIntituleFormulaire; ?>" <?php echo ($g_bModifier ? NULL : " disabled"); ?>></td>
 </tr>
 <?php entrerDescription(("DESCRIPTION[".LIEN_FORMULAIRE."]"),$descr,"Consignes"); ?>
@@ -388,21 +388,21 @@ switch ($oProjet->oSousActivCourante->retType())
 
 ?>
 
-<!-- :DEBUT: Description des intitulés -->
+<!-- :DEBUT: Description des intitulÃ©s -->
 <div id="div_description" class="<?php echo $sClassDescription; ?>">
 <br>
 <fieldset>
-<legend>&nbsp;Modalité d'affichage indirect&nbsp;</legend>
+<legend>&nbsp;ModalitÃ© d'affichage indirect&nbsp;</legend>
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr>
-<td width="200"><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
+<td width="200"><div class="intitule">IntitulÃ©&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
 <td><input type="text" size="55" name="INTITULE[0]" value="<?php echo $sIntitule; ?>"<?php echo ($g_bModifier ? NULL : " disabled"); ?>></td>
 </tr>
-<?php entrerDescription("DESCRIPTION[0]",$descr,"Description&nbsp;de&nbsp;l'intitulé",urlencode(addslashes($sNomSousActiv))); ?>
+<?php entrerDescription("DESCRIPTION[0]",$descr,"Description&nbsp;de&nbsp;l'intitulÃ©",urlencode(addslashes($sNomSousActiv))); ?>
 </table>
 </fieldset>
 </div>
-<!-- :FIN: Description des intitulés -->
+<!-- :FIN: Description des intitulÃ©s -->
 <?php echo div_forum(); echo div_galerie(); echo div_glossaire(); // {{{ Tableau de bord
 $sTableauDeBord = file_get_contents("tableau_de_bord.inc.htm");
 echo str_replace(

@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: sous_activite.tbl.php
 ** Description ............:
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 16/11/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 01/06/2001
+** DerniÃ¨re modification ..: 16/11/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -270,9 +270,9 @@ class CSousActiv
 	}
 	
 	/**
-	 * Associer un glossaire à la sous-activité
+	 * Associer un glossaire Ã  la sous-activitÃ©
 	 *
-	 * @param v_iIdGlossaire Numéro d'identifiant du glossaire
+	 * @param v_iIdGlossaire NumÃ©ro d'identifiant du glossaire
 	 */
 	function associerGlossaire ($v_iIdGlossaire)
 	{
@@ -445,10 +445,10 @@ class CSousActiv
 				unset($oIdsParents,$sFichierASupprimer,$sNomFichier);
 		}
 		
-		// Effacer les équipes
+		// Effacer les Ã©quipes
 		$this->effacerEquipes();
 		
-		// Effacer cette sous-activité
+		// Effacer cette sous-activitÃ©
 		$this->effacerSousActiv();
 		
 		$this->redistNumsOrdre();
@@ -500,7 +500,7 @@ class CSousActiv
 				." AND IdPers='{$v_iIdPers}'";
 			$this->oBdd->executerRequete($sRequeteSql);
 			
-			// Vérifier que d'autres tuteurs n'ont pas déposés eux aussi un commentaire
+			// VÃ©rifier que d'autres tuteurs n'ont pas dÃ©posÃ©s eux aussi un commentaire
 			$sRequeteSql = "SELECT COUNT(*)"
 				." FROM Ressource_SousActiv_Evaluation"
 				." WHERE IdResSousActiv='{$v_iIdResSousActiv}'";
@@ -510,8 +510,8 @@ class CSousActiv
 			
 			if ($iNbEvals < 1)
 			{
-				// Dans le cas où il n'y a plus de commentaire
-				// modifié l'état du document en "Soumis au tuteur"
+				// Dans le cas oÃ¹ il n'y a plus de commentaire
+				// modifiÃ© l'Ã©tat du document en "Soumis au tuteur"
 				$sRequeteSql = "UPDATE Ressource_SousActiv"
 					." SET StatutResSousActiv='".STATUT_RES_SOUMISE."'"
 					." WHERE IdResSousActiv='{$v_iIdResSousActiv}'";
@@ -520,7 +520,7 @@ class CSousActiv
 		}
 		else
 		{*/
-			// Retourner le nombre d'évaluations
+			// Retourner le nombre d'Ã©valuations
 			$sRequeteSql = "SELECT COUNT(*)"
 				." FROM Ressource_SousActiv_Evaluation"
 				." WHERE IdResSousActiv='{$v_iIdResSousActiv}'"
@@ -694,16 +694,16 @@ class CSousActiv
 		if ($v_iIdResSousActiv < 1)
 			return;
 		
-		// le vote se passe en plusieurs étapes et on utilise plusieurs tables
-		// pendant l'opération, donc on les locke (on est obligé de locker TOUS les
-		// alias d'une même table)
+		// le vote se passe en plusieurs Ã©tapes et on utilise plusieurs tables
+		// pendant l'opÃ©ration, donc on les locke (on est obligÃ© de locker TOUS les
+		// alias d'une mÃªme table)
 		$sRequeteSql = "LOCK TABLES"
 			." Ressource_SousActiv READ"
 			.", Ressource_SousActiv_Vote WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		// on efface tous éventuels votes de cette personne pour des documents
-		// de cette sous-activité, car il n'y a qu'un vote par personne par sous-activité
+		// on efface tous Ã©ventuels votes de cette personne pour des documents
+		// de cette sous-activitÃ©, car il n'y a qu'un vote par personne par sous-activitÃ©
 		$sRequeteSql = "SELECT Ressource_SousActiv.IdResSousActiv"
 			." FROM Ressource_SousActiv"
 			." LEFT JOIN Ressource_SousActiv_Vote USING (IdResSousActiv)"
@@ -728,14 +728,14 @@ class CSousActiv
 		}
 		
 		// quand il n'y a plus de votes de cette personne pour un document de ce
-		// collecticiel, on insère le nouveau vote
+		// collecticiel, on insÃ¨re le nouveau vote
 		$sRequeteSql = "INSERT INTO Ressource_SousActiv_Vote"
 			." (IdResSousActiv, IdPers)"
 			." VALUES"
 			." ('{$v_iIdResSousActiv}', '{$v_iIdVotant}')";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		// quand on a fini ces multiples opération, on unlocke
+		// quand on a fini ces multiples opÃ©ration, on unlocke
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 		
 		// ensuite, on va modifier le statut du document en fonction de
@@ -812,9 +812,9 @@ class CSousActiv
 	
 	function retVotesMinReels ()
 	{
-		// Combien de votes nécessaires pour soumettre un document ?
-		// = [nb de membres de l'équipe de l'utilisateur connecté] * ([%tage requis] / 100)
-		// si on obtient des décimales, on arrondit à 1 vote supplémentaire
+		// Combien de votes nÃ©cessaires pour soumettre un document ?
+		// = [nb de membres de l'Ã©quipe de l'utilisateur connectÃ©] * ([%tage requis] / 100)
+		// si on obtient des dÃ©cimales, on arrondit Ã  1 vote supplÃ©mentaire
 		$iNbMembres = count($this->oEquipe->aoMembres);
 		$iNbVotes = ceil($iNbMembres * ($this->retVotesMin() / 100));
 		return ($iNbVotes > 0 ? $iNbVotes : 1);
@@ -1009,7 +1009,7 @@ class CSousActiv
 			return FALSE;
 		
 		// *************************************
-		// Ajouter dans ce tableau les ids et les numéros d'ordre
+		// Ajouter dans ce tableau les ids et les numÃ©ros d'ordre
 		// *************************************
 		
 		$aoNumsOrdre = array();
@@ -1018,7 +1018,7 @@ class CSousActiv
 			$aoNumsOrdre[$i] = array($this->aoSousActivs[$i]->IdSousActiv,$this->aoSousActivs[$i]->OrdreSousActiv);
 		
 		// *************************************
-		// Mettre à jour dans la table
+		// Mettre Ã  jour dans la table
 		// *************************************
 		
 		if ($v_iNouveauNumOrdre > 0)
@@ -1056,7 +1056,7 @@ class CSousActiv
 	
 	function initAuteur () { $this->oAuteur = new CPersonne($this->oBdd,$this->retIdPers()); }
 	
-	// {{{ Inscrits non autorisés
+	// {{{ Inscrits non autorisÃ©s
 	function ajouterInscritsNonAutorises ($v_aiIdInscritsNonAutorises)
 	{
 		$iIdSousActiv = $this->retId();
@@ -1066,7 +1066,7 @@ class CSousActiv
 			." WHERE IdSousActiv='{$iIdSousActiv}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		// Inscrire les personnes qui n'ont pas le droit de cliquer sur cette sous-activité
+		// Inscrire les personnes qui n'ont pas le droit de cliquer sur cette sous-activitÃ©
 		$sValeursRequete = NULL;
 		
 		if (isset($v_aiIdInscritsNonAutorises))
@@ -1111,7 +1111,7 @@ class CSousActiv
 	function retListeModalites ()
 	{
 		return array(
-			array(MODALITE_IDEM_PARENT,"même modalité que le ".strtolower(INTITULE_ACTIV))
+			array(MODALITE_IDEM_PARENT,"mÃªme modalitÃ© que le ".strtolower(INTITULE_ACTIV))
 			/*, array(MODALITE_INDIVIDUEL,"individuel")
 			, array(MODALITE_PAR_EQUIPE,"par &eacute;quipe")*/
 		);
@@ -1133,15 +1133,15 @@ class CSousActiv
 	{
 		return array(
 			  array(LIEN_PAGE_HTML,"Choisissez un type pour cette ".strtolower(INTITULE_SOUS_ACTIV))
-			, array(LIEN_PAGE_HTML,"Affichage d'un document déposé sur le serveur")
-			, array(LIEN_TEXTE_FORMATTE,"Texte formaté")
-			, array(LIEN_DOCUMENT_TELECHARGER,"Document à télécharger")
+			, array(LIEN_PAGE_HTML,"Affichage d'un document dÃ©posÃ© sur le serveur")
+			, array(LIEN_TEXTE_FORMATTE,"Texte formatÃ©")
+			, array(LIEN_DOCUMENT_TELECHARGER,"Document Ã  tÃ©lÃ©charger")
 			, array(LIEN_SITE_INTERNET,"Lien vers un site Internet")
 			, array(LIEN_COLLECTICIEL,"Collecticiel")
 			, array(LIEN_GALERIE,"Galerie")
 			, array(LIEN_CHAT,"Chat")
 			, array(LIEN_FORUM,"Forum")
-			, array(LIEN_FORMULAIRE,"Activités en ligne")
+			, array(LIEN_FORMULAIRE,"ActivitÃ©s en ligne")
 			/*, array(LIEN_GLOSSAIRE,"Glossaire")*/
 			, array(LIEN_TABLEAU_DE_BORD,"Tableau de bord")
 		);
@@ -1150,10 +1150,10 @@ class CSousActiv
 	function retListeStatuts ()
 	{
 		return array(
-			  array(STATUT_FERME,"Fermé")
+			  array(STATUT_FERME,"FermÃ©")
 			, array(STATUT_OUVERT,"Ouvert")
 			, array(STATUT_INVISIBLE,"Invisible")
-			, array(STATUT_IDEM_PARENT,"Même statut que le ".strtolower(INTITULE_ACTIV))
+			, array(STATUT_IDEM_PARENT,"MÃªme statut que le ".strtolower(INTITULE_ACTIV))
 		);
 	}
 	
@@ -1162,8 +1162,8 @@ class CSousActiv
 		return array(
 			  array(FRAME_CENTRALE_DIRECT,"Zone de cours (1 temps)",0)
 			, array(FRAME_CENTRALE_INDIRECT,"Zone de cours (2 temps)",1)
-			, array(NOUVELLE_FENETRE_DIRECT,"Nouvelle fenêtre (1 temps)",0)
-			, array(NOUVELLE_FENETRE_INDIRECT,"Nouvelle fenêtre (2 temps)",1)
+			, array(NOUVELLE_FENETRE_DIRECT,"Nouvelle fenÃªtre (1 temps)",0)
+			, array(NOUVELLE_FENETRE_INDIRECT,"Nouvelle fenÃªtre (2 temps)",1)
 		);
 	}
 	
@@ -1172,7 +1172,7 @@ class CSousActiv
 		list(,$bSoumissionManuelle) = explode(";",$this->oEnregBdd->DonneesSousActiv);
 		return array(
 			array(SOUMISSION_AUTOMATIQUE,"en un seul temps",($bSoumissionManuelle == SOUMISSION_AUTOMATIQUE))
-			/*, array(SOUMISSION_MANUELLE,"en deux temps (par défaut)",(empty($bSoumissionManuelle) || $bSoumissionManuelle == SOUMISSION_MANUELLE))*/
+			/*, array(SOUMISSION_MANUELLE,"en deux temps (par dÃ©faut)",(empty($bSoumissionManuelle) || $bSoumissionManuelle == SOUMISSION_MANUELLE))*/
 		);
 	}
 }

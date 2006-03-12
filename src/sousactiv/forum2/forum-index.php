@@ -20,16 +20,16 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Sous-activité ..........: forum-index.php
+** Sous-activitÃ© ..........: forum-index.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 10/10/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 10/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 ** Exemples ...............: <a href="/sousactiv/forum/forum-index.php?idForum={idForum}">Forum de la rubrique 1</a>
 **                           <a href="/sousactiv/forum/forum-index.php?idNiveau={ID_RUBRIQUE}&typeNiveau={TYPE_RUBRIQUE}">Forum de la rubrique 1</a>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ require_once("globals.inc.php");
 require_once(dir_database("bdd.class.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForum    = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);

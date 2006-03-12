@@ -31,18 +31,18 @@ function init()
 </html>
 
 [SET_ENVOI_COURRIEL_REUSSI+]
-<p>Le courriel a bien été envoyé au membre de cette liste.</p>
+<p>Le courriel a bien Ã©tÃ© envoyÃ© au membre de cette liste.</p>
 [SET_ENVOI_COURRIEL_REUSSI-]
 
 [SET_ENVOI_COURRIEL_ECHOUE+]
 [VAR_ERREUR_PARTIELLE+]
-<p>Votre courriel a bien été envoyé aux personnes suivantes&nbsp;:</p>
+<p>Votre courriel a bien Ã©tÃ© envoyÃ© aux personnes suivantes&nbsp;:</p>
 <form>
 <select name="listeDestinatairesErrones" size="10" style="width: 260px;">
 </select>
 </form>
 [VAR_ERREUR_PARTIELLE-]
 
-[VAR_ERREUR_COMPLETE+]Tous les membres de la liste n'ont pas reçu le courriel.[VAR_ERREUR_COMPLETE-]
+[VAR_ERREUR_COMPLETE+]Tous les membres de la liste n'ont pas reÃ§u le courriel.[VAR_ERREUR_COMPLETE-]
 {envoi_courriel->message}
 [SET_ENVOI_COURRIEL_ECHOUE-]

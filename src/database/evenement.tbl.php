@@ -22,8 +22,8 @@
 /*
 ** Fichier .................: evenement.tbl.php
 ** Description .............:
-** Date de création ........: 01/03/2002
-** Dernière modification ...: 06/05/2004
+** Date de crÃ©ation ........: 01/03/2002
+** DerniÃ¨re modification ...: 06/05/2004
 ** Auteurs .................: Filippo PORCO
 ** Emails ..................: ute@umh.ac.be
 **
@@ -420,8 +420,8 @@ class CEvenement
 			.";\"Sexe\""
 			.";\"Connexion (date)\""
 			.";\"Connexion (heure)\""
-			.";\"Déconnexion (heure)\""
-			.";\"Durée\""
+			.";\"DÃ©connexion (heure)\""
+			.";\"DurÃ©e\""
 			.";\"Navigateur\""
 			."\r\n";
 		

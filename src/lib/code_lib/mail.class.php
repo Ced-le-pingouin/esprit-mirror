@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mail.class.php
 ** Description ............:
-** Date de création .......: 07/12/2004
-** Dernière modification ..: 01/07/2005
+** Date de crÃ©ation .......: 07/12/2004
+** DerniÃ¨re modification ..: 01/07/2005
 ** Auteurs ................: filippo.porco@umh.ac.be
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

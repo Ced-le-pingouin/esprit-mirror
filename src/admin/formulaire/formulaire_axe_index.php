@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -47,7 +47,7 @@ $sAdressePage= "formulaire_axe.php?idformulaire=".$v_iIdFormulaire;
    "http://www.w3.org/TR/REC-html40/frameset.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Gestion des Axes</title>
 </head>
 </html>

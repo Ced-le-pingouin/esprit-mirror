@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: copie_courriel-index.php
 ** Description ............: 
-** Date de création .......: 29/11/2004
-** Dernière modification ..: 07/12/2004
+** Date de crÃ©ation .......: 29/11/2004
+** DerniÃ¨re modification ..: 07/12/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $sParamsUrl = NULL;
 
@@ -52,7 +52,7 @@ $sFramePrincipale = <<<BLOC_FRAME_PRINCIPALE
 BLOC_FRAME_PRINCIPALE;
 
 // ---------------------
-// Insérer ces lignes dans l'en-tête de la page html
+// InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 // ---------------------
 $sBlockHeader = <<<BLOC_HTML_HEADER
 <script type="text/javascript" language="javascript">

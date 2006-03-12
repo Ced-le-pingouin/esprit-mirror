@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: upload.inc.php
 ** Description ............: 
-** Date de création .......: 06/10/2004
-** Dernière modification ..: 20/10/2004
+** Date de crÃ©ation .......: 06/10/2004
+** DerniÃ¨re modification ..: 20/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,7 +35,7 @@ require_once("globals.inc.php");
 
 function retNomFichierUnique ($v_sNomFichier,$v_sNomRepertoire=NULL,$v_bAjouterZero=TRUE,$v_bAssocierRepertoire=FALSE)
 { // v1.01
-	// Nettoyer le fichier de caractères indésirable
+	// Nettoyer le fichier de caractÃ¨res indÃ©sirable
 	$v_sNomFichier = retNomFichierPropre($v_sNomFichier);
 	
 	$pos  = strrpos($v_sNomFichier,".");

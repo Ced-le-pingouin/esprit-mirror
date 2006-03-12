@@ -22,17 +22,17 @@
 /*
 ** Classe .................: econcept.liste.forms.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 23/03/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 23/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
 // ---------------------
-// Rechercher les formations de l'utilisateur par rapport à son statut dominant
+// Rechercher les formations de l'utilisateur par rapport Ã  son statut dominant
 // ---------------------
 $iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE);
 

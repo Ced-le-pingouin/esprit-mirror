@@ -24,7 +24,7 @@ $oProjet = new CProjet();
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 {
 	//************************************************
-	//*       Récupération des variables             *
+	//*       RÃ©cupÃ©ration des variables             *
 	//************************************************
 	
 	if (isset($HTTP_GET_VARS))
@@ -44,7 +44,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	}
 	
 	//***********************************************************************************
-	//*   Lecture de la table formulaire pour y récupérer les données de mise en page   *
+	//*   Lecture de la table formulaire pour y rÃ©cupÃ©rer les donnÃ©es de mise en page   *
 	//***********************************************************************************
 	
 	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
@@ -56,19 +56,19 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	$iInterEnonRep = $oFormulaire->retInterEnonRep();
 	$iIdPersForm = $oFormulaire->retIdPers();
 	
-	if ($iTypeLarg=="P")					//ajoute % ou px a la largeur pour ainsi créer une chaine de car
+	if ($iTypeLarg=="P")					//ajoute % ou px a la largeur pour ainsi crÃ©er une chaine de car
 		$sLargeur=$iLargeur."%";
 	else
 		$sLargeur=$iLargeur."px";
 	
-	if ($iEncadrer==1)						//Vérifie s'il faut encadrer le titre ou non et compose le code html
+	if ($iEncadrer==1)						//VÃ©rifie s'il faut encadrer le titre ou non et compose le code html
 		$sEncadrer = " style=\"border:1px solid black;\" ";
 	else
 		$sEncadrer="";
 	
 	echo "<html>\n";
 	echo "<head>\n";
-	echo "<title>Mettre en forme les formulaires et les éléments de formulaires avec les CSS</title>\n";
+	echo "<title>Mettre en forme les formulaires et les Ã©lÃ©ments de formulaires avec les CSS</title>\n";
 	
 	echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";
 	echo "<script language=\"Javascript\" src=\"/code_lib/general.js\"></script>\n";
@@ -94,9 +94,9 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		echo ".p";
 		echo "  {line-height:10.5pt font-family:Arial,sans-serif; font-size:10pt; color:black; margin-top:6px; margin-bottom:6px; }\n";
 		echo ".InterER";
-		echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels séparant les énoncés des réponses
+		echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels sÃ©parant les Ã©noncÃ©s des rÃ©ponses
 		echo ".InterObj";
-		echo "  {margin-top:{$iInterElem}px; }\n"; //Espace en pixels séparant les objets
+		echo "  {margin-top:{$iInterElem}px; }\n"; //Espace en pixels sÃ©parant les objets
 		echo "-->\n";
 		echo "</style>\n";
 	}
@@ -110,11 +110,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	if ($v_iIdFormulaire > 0) //sert uniquement lors du 1er appel de la page (affichage du logo)
 	{
 	
-		//On vérifie si la personne peut voir OU modifier le formulaire ! les modifs se font a 2 endroits
+		//On vÃ©rifie si la personne peut voir OU modifier le formulaire ! les modifs se font a 2 endroits
 		$iIdPers = $oProjet->oUtilisateur->retId();
 		
 		// si $v_iIdObjForm = 0 cela veut dire que l'on vient de selectionner le formulaire via le menu et alors :
-		// on charge la modif du titre formulaire dans la frame du dessous[modif] uniquement si on est le propriétaire du formulaire où
+		// on charge la modif du titre formulaire dans la frame du dessous[modif] uniquement si on est le propriÃ©taire du formulaire oÃ¹
 		//si l'on est administrateur
 		if ($HTTP_GET_VARS["verifUtilisation"] == 1)
 		{
@@ -133,10 +133,10 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		
 		echo "<FORM NAME=\"selection\" CLASS=\"formFormulaire\">";
 		
-		if ($v_iIdObjForm == 0) {$sCocher='CHECKED';} else {$sCocher="";}  //utile si on arrive sur la liste après suppression d'un objet par exemple
+		if ($v_iIdObjForm == 0) {$sCocher='CHECKED';} else {$sCocher="";}  //utile si on arrive sur la liste aprÃ¨s suppression d'un objet par exemple
 																								 //cela permet de cocher le bouton radio devant le titre sans intervention de l'utilisateur
-		//Si on clique sur le titre on envoie à la page 'formulaire_modif.php' via javascript 
-		//idobj=0 et le numéro de formulaire 
+		//Si on clique sur le titre on envoie Ã  la page 'formulaire_modif.php' via javascript 
+		//idobj=0 et le numÃ©ro de formulaire 
 		if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) or ($iIdPersForm == $iIdPers) )
 			$sSelectModifTitre="<INPUT TYPE=\"radio\" NAME=\"objet\" VALUE=\"TitreFormulaire\" onClick =\"selectionobj(0,$v_iIdFormulaire)\" $sCocher>\n";
 		else

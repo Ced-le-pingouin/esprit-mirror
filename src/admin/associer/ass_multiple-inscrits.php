@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ass_multiple-inscrits.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 30/08/2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 30/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_INSCRIPTION");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm   = (empty($HTTP_GET_VARS["ID_FORM"]) ? 0 : $HTTP_GET_VARS["ID_FORM"]);
 $url_iIdStatut = (empty($HTTP_GET_VARS["STATUT_PERS"]) ? 0 : $HTTP_GET_VARS["STATUT_PERS"]);

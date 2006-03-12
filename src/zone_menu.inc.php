@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: zone_menu.inc.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 30/11/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 30/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 ** 
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -54,7 +54,7 @@ $bPeutVoirModuleInv   = ($bPeutVoirTousModules | $oProjet->verifPermission("PERM
 // }}}
 
 // --------------------------
-// Vérifier que la formation actuelle est encore dans la liste des formations
+// VÃ©rifier que la formation actuelle est encore dans la liste des formations
 // --------------------------
 $bRechercher = TRUE;
 
@@ -98,19 +98,19 @@ if ($iIdFormRech > 0)
 }
 
 // --------------------------
-// Rechercher la première formation ayant une description ou sinon se placer
+// Rechercher la premiÃ¨re formation ayant une description ou sinon se placer
 // sur le premier module disponible
 // --------------------------
 if ($bRechercher)
 {
-	// Réinitialiser les variables
+	// RÃ©initialiser les variables
 	$iIdForm = 0;
 	$iIdMod  = 0;
 	
 	foreach ($oProjet->aoFormations as $oFormation)
 	{
-		// SI la formation ne possède pas de description OU de modules ALORS
-		//     PASSER à la formation suivante
+		// SI la formation ne possÃ¨de pas de description OU de modules ALORS
+		//     PASSER Ã  la formation suivante
 		// FINSI
 		$iLongueurDescr = strlen($oFormation->retDescr());
 		

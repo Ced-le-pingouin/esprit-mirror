@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: info_bulle.php
 ** Description ............:
-** Date de création .......: 10/06/2004
-** Dernière modification ..: 10/06/2004
+** Date de crÃ©ation .......: 10/06/2004
+** DerniÃ¨re modification ..: 10/06/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education (UTE)
+** UnitÃ© de Technologie de l'Education (UTE)
 **
 */
 

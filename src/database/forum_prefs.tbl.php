@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: forum_prefs.tbl.php
 ** Description ............:
-** Date de création .......: 26/11/2004
-** Dernière modification ..: 21/02/2005
+** Date de crÃ©ation .......: 26/11/2004
+** DerniÃ¨re modification ..: 21/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -162,7 +162,7 @@ class CForumPrefs extends CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	// {{{ Liste des équipes sélectionnées pour les copies courriel
+	// {{{ Liste des Ã©quipes sÃ©lectionnÃ©es pour les copies courriel
 	function initEquipes ()
 	{
 		$iIdxEquipe = 0;
@@ -192,9 +192,9 @@ class CForumPrefs extends CForum
 	}
 	
 	/**
-	 * Cette méthode efface les enregistrements de la table
-	 * "ForumPrefs_CopieCourrielEquipe" contenant les équipes qui sont attachées
-	 * à la table "ForumPrefs".
+	 * Cette mÃ©thode efface les enregistrements de la table
+	 * "ForumPrefs_CopieCourrielEquipe" contenant les Ã©quipes qui sont attachÃ©es
+	 * Ã  la table "ForumPrefs".
 	 */
 	function effacerEquipes ()
 	{
@@ -204,9 +204,9 @@ class CForumPrefs extends CForum
 	}
 	
 	/**
-	 * Cette méthode va insérer dans la table une liste des équipes
-	 * sélectionnées par l'utilisateur.
-	 * @param $v_aiIdsEquipes array Liste de numéros d'identifiants des équipes
+	 * Cette mÃ©thode va insÃ©rer dans la table une liste des Ã©quipes
+	 * sÃ©lectionnÃ©es par l'utilisateur.
+	 * @param $v_aiIdsEquipes array Liste de numÃ©ros d'identifiants des Ã©quipes
 	 */
 	function defEquipes ($v_aiIdsEquipes)
 	{
@@ -296,7 +296,7 @@ class CForumPrefs extends CForum
 		$oMail->defExpediteur($v_sAdresseElectronique,$v_sExpediteur);
 		$oMail->ajouterDestinataire("undisclosed-recipients:;");
 		
-		// Permet d'envoyer une copie cachée à l'administrateur de la plate-forme
+		// Permet d'envoyer une copie cachÃ©e Ã  l'administrateur de la plate-forme
 		/*if (defined("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN") &&
 			strlen(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN))
 			$oMail->defCopieCarboneInvisible(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN);*/
@@ -323,7 +323,7 @@ class CForumPrefs extends CForum
 	
 	function verrouillerTables ($v_bVerrouillerTables=TRUE)
 	{
-		// Vérrouiller les tables
+		// VÃ©rrouiller les tables
 		if ($v_bVerrouillerTables)
 			$sRequeteSql = "LOCK TABLES ".$this->STRING_LOCK_TABLES();
 		else
@@ -332,13 +332,13 @@ class CForumPrefs extends CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	// {{{ Méthodes de retour
+	// {{{ MÃ©thodes de retour
 	function retIdForumPrefs () { return is_numeric($this->iIdForumPrefs) ? $this->iIdForumPrefs : 0; }
 	function retCopieCourriel () { return $this->oEnregBdd->CopieCourriel; }
 	function retIdPersForumPrefs () { return $this->oEnregBdd->IdPersForumPrefs; }
 	// }}}
 	
-	// {{{ Méthodes d'entrée
+	// {{{ MÃ©thodes d'entrÃ©e
 	function defCopieCourriel ($v_iCopieCourriel) { $this->oEnregBdd->CopieCourriel = (int)$v_iCopieCourriel; }
 	// }}}
 	

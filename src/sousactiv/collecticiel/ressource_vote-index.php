@@ -34,7 +34,7 @@ foreach ($HTTP_GET_VARS as $sCle => $sValeur)
 // Titre
 // ---------------------
 $sFrameSrcTitre = "ressource_vote-titre.php";
-$sTitrePrincipal = "Soumettre un document pour évaluation";
+$sTitrePrincipal = "Soumettre un document pour Ã©valuation";
 
 // ---------------------
 // ---------------------

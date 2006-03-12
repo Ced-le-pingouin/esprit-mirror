@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: deposer_fichiers.php
 ** Description ............: 
-** Date de création .......: 25/01/2005
-** Dernière modification ..: 26/01/2005
+** Date de crÃ©ation .......: 25/01/2005
+** DerniÃ¨re modification ..: 26/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,9 +35,9 @@ require_once("globals.inc.php");
 require_once(dir_lib("systeme_fichiers.lib.php",TRUE));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
-$url_sTitrePrincipalFenetre = (empty($HTTP_GET_VARS["tpf"]) ? "Déposer des fichiers" : stripslashes(rawurldecode($HTTP_GET_VARS["tpf"])));
+$url_sTitrePrincipalFenetre = (empty($HTTP_GET_VARS["tpf"]) ? "DÃ©poser des fichiers" : stripslashes(rawurldecode($HTTP_GET_VARS["tpf"])));
 $url_sRepDestination        = (empty($HTTP_GET_VARS["repDest"]) ? NULL : rawurldecode($HTTP_GET_VARS["repDest"]));
 $url_bEffacerFichiers       = (empty($HTTP_GET_VARS["effFichiers"]) ? FALSE : $HTTP_GET_VARS["effFichiers"]);
 $url_bDezippe               = (empty($HTTP_GET_VARS["dezipFichier"]) ? TRUE : $HTTP_GET_VARS["dezipFichier"]);
@@ -49,7 +49,7 @@ $asRepertoiresCopie = array();
 
 $sRepAbsDestination = dir_document_root($url_sRepDestination);
 
-// Rechercher les répertoires de copie
+// Rechercher les rÃ©pertoires de copie
 if (!is_dir($sRepAbsDestination))
 	mkdirr($sRepAbsDestination,0744);
 

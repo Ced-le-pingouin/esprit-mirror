@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: choix_courriel.php
 ** Description ............:
-** Date de création .......: 17/01/2005
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 17/01/2005
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -47,15 +47,15 @@ if ($g_iIdPers < 1)
 include_once(dir_database("personnes.class.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_aiIdStatuts = (empty($HTTP_GET_VARS["idStatuts"])
 	? NULL
 	: explode("x",$HTTP_GET_VARS["idStatuts"]));
 
-// Pour afficher toutes les équipes :
+// Pour afficher toutes les Ã©quipes :
 // > choix_courriel-liste.php?idEquipes=tous
-// Pour afficher certaine équipe :
+// Pour afficher certaine Ã©quipe :
 // > choix_courriel-liste.php?idEquipes=15&10&16&22
 $url_aiIdEquipes = (empty($HTTP_GET_VARS["idEquipes"])
 	? NULL
@@ -72,7 +72,7 @@ $url_bSelectionnerPers = (empty($HTTP_GET_VARS["select"]) ? FALSE : $HTTP_GET_VA
 // ---------------------
 $iNbStatuts = (is_array($url_aiIdStatuts) ? count($url_aiIdStatuts) : 0);
 
-// {{{ Rechercher les personnes inscrites dans des équipes
+// {{{ Rechercher les personnes inscrites dans des Ã©quipes
 $iNbEquipes = 0;
 
 if (is_array($url_aiIdEquipes))
@@ -92,7 +92,7 @@ if (is_array($url_aiIdEquipes))
 }
 // }}}
 
-// {{{ Rechercher les personnes inscrites à la plate-forme
+// {{{ Rechercher les personnes inscrites Ã  la plate-forme
 $iNbPersonnes = 0;
 
 if (is_array($url_aiIdPers))
@@ -175,7 +175,7 @@ else
 	$oBlocListeStatuts->effacer();
 
 // ---------------------
-// Liste des équipes
+// Liste des Ã©quipes
 // ---------------------
 $oBlocListeEquipes = new TPL_Block("BLOCK_LISTE_EQUIPES",$oTpl);
 
@@ -240,7 +240,7 @@ if ($iNbEquipes > 0)
 	
 	$oBlocEquipe->afficher();
 	
-	// Toutes les équipes
+	// Toutes les Ã©quipes
 	$oBlocListeEquipes->remplacer("{equipe.nom}",$oBlocListeEquipes->defVariable("VAR_ELEMENT"));
 	$oBlocListeEquipes->afficher();
 }
@@ -250,7 +250,7 @@ else
 }
 
 // ---------------------
-// Liste des personnes inscrites à la plate-forme
+// Liste des personnes inscrites Ã  la plate-forme
 // ---------------------
 $oBlocListePersonnes = new TPL_Block("BLOCK_LISTE_PERSONNES",$oTpl);
 

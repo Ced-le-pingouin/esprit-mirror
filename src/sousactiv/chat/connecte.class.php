@@ -93,7 +93,7 @@ class CConnecte
 					if ($iIdPers != $v_iIdPers)
 						$sIdsPers .= (isset($sIdsPers) ? "," : NULL).$iIdPers;
 				
-				// Dans le cas où il n'y a plus de personne connectée
+				// Dans le cas oÃ¹ il n'y a plus de personne connectÃ©e
 				// nous devons supprimer la ligne du salon du fichier
 				if (!isset($sIdsPers))
 					continue;

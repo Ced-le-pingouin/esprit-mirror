@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: dossier_formations_event-menu.php
 ** Description ............: 
-** Date de création .......: 24/05/2005
-** Dernière modification ..: 30/05/2005
+** Date de crÃ©ation .......: 24/05/2005
+** DerniÃ¨re modification ..: 30/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sEvent = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
 
@@ -42,7 +42,7 @@ $url_sEvent = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
 // Initialiser
 // ---------------------
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHead = <<<BLOCK_HTML_HEAD
 BLOCK_HTML_HEAD;
 // }}}

@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: editeur_importer.php
 ** Description ............:
-** Date de création .......: 30/06/2004
-** Dernière modification ..: 01/07/2004
+** Date de crÃ©ation .......: 30/06/2004
+** DerniÃ¨re modification ..: 01/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -73,7 +73,7 @@ if (isset($HTTP_POST_FILES["fichier"]))
 			."</head>\n"
 			."<body onload=\"init()\">\n"
 			."<div style=\"text-align: center;\"><h1>"
-			.htmlentities("Ce type de fichier n'est pas accepté. Seuls les fichiers qui ont une extension txt sont acceptés")
+			.htmlentities("Ce type de fichier n'est pas acceptÃ©. Seuls les fichiers qui ont une extension txt sont acceptÃ©s")
 			."</h1></div>"
 			."</body>\n"
 			."</html>\n";

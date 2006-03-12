@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: axe.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 05-05-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 05-05-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -38,9 +38,9 @@ class CAxe
 	function CAxe(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-						  //si 0 crée un objet presque vide sinon 
-						  //rempli l'objet avec les données de la table Axe
-						  //de l'elément ayant l'Id passé en argument
+						  //si 0 crÃ©e un objet presque vide sinon 
+						  //rempli l'objet avec les donnÃ©es de la table Axe
+						  //de l'elÃ©ment ayant l'Id passÃ© en argument
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
@@ -75,7 +75,7 @@ class CAxe
 	/*
 	** Fonction 		: IdMaxAxe
 	** Description		: renvoie la plus grande valeur de IdAxe de la table Axe
-	** Entrée			: 
+	** EntrÃ©e			: 
 	** Sortie			:
 	**					la plus grande valeur de IdAxe de la table Axe
 	*/
@@ -97,7 +97,7 @@ class CAxe
 	{
 		if ($v_bVerification)
 		{
-			//Avant d'effacer on vérifie que l'axe n'est utilisé par aucun formulaire
+			//Avant d'effacer on vÃ©rifie que l'axe n'est utilisÃ© par aucun formulaire
 			$sRequeteSql = "Select * FROM Formulaire_Axe WHERE IdAxe ='{$this->oEnregBdd->IdAxe}'";
 			$this->oBdd->executerRequete($sRequeteSql);
 			$iNbFormUtiliseAxe = $this->oBdd->retNbEnregsDsResult();
@@ -107,13 +107,13 @@ class CAxe
 				$sRequeteSql = "DELETE FROM Axe WHERE IdAxe ='{$this->oEnregBdd->IdAxe}'";
 				//echo "<br>effacer Axe() : ".$sRequeteSql;
 				$this->oBdd->executerRequete($sRequeteSql);
-				echo "<h4 align=\"center\"><br>L'axe <br>{$this->oEnregBdd->DescAxe}<br> a été supprimé</h4>";
+				echo "<h4 align=\"center\"><br>L'axe <br>{$this->oEnregBdd->DescAxe}<br> a Ã©tÃ© supprimÃ©</h4>";
 			}
 			else
 			{
-				echo "<h4 align=\"center\"><br>Suppression impossible car cet axe est utilisé dans : </h4>";
+				echo "<h4 align=\"center\"><br>Suppression impossible car cet axe est utilisÃ© dans : </h4>";
 				
-				//On recherche et affiche le nom du/des formulaire(s) où l'axe est utilisé
+				//On recherche et affiche le nom du/des formulaire(s) oÃ¹ l'axe est utilisÃ©
 				$sRequeteSql =
 					"  SELECT f.Titre, fa.IdAxe"
 					." FROM Formulaire as f, Formulaire_Axe as fa"
@@ -128,7 +128,7 @@ class CAxe
 				$this->oBdd->libererResult($hResultInt);
 			}
 		}
-		else 	//Effacement sans vérification
+		else 	//Effacement sans vÃ©rification
 		{
 			$sRequeteSql = "DELETE FROM Axe WHERE IdAxe ='{$this->oEnregBdd->IdAxe}'";
 			//echo "<br>effacer Axe() : ".$sRequeteSql;
@@ -146,7 +146,7 @@ class CAxe
 		
 		if ($iNbFormUtiliseAxe > 0)
 		{
-			//On recherche et affiche le nom du/des formulaire(s) où l'axe est utilisé
+			//On recherche et affiche le nom du/des formulaire(s) oÃ¹ l'axe est utilisÃ©
 			$sRequeteSql =
 				"  SELECT f.Titre, fa.IdAxe"
 				." FROM Formulaire as f, Formulaire_Axe as fa"
@@ -176,7 +176,7 @@ class CAxe
 		return TRUE;
 	}
 	
-	//Fonctions de définitions
+	//Fonctions de dÃ©finitions
 	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdObjForm = $v_iIdAxe; }
 	function defDescAxe($v_sDescAxe) { $this->oEnregBdd->DescAxe = $v_sDescAxe; }
 	

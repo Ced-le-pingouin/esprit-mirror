@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: glossaire.tbl.php
 ** Description ............:
-** Date de création .......: 24/07/2004
-** Dernière modification ..: 31/07/2004
+** Date de crÃ©ation .......: 24/07/2004
+** DerniÃ¨re modification ..: 31/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 **

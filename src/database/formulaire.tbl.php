@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: formulaire.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -44,8 +44,8 @@ class CFormulaire
 	/*
 	** Fonction 		: CFormulaire
 	** Description	: constructeur
-	** Entrée			: 
-	**	 			&$v_oBdd : référence de l'objet Bdd appartenant a l'objet Projet
+	** EntrÃ©e			: 
+	**	 			&$v_oBdd : rÃ©fÃ©rence de l'objet Bdd appartenant a l'objet Projet
 	**				$v_iId : identifiant d'un objet formulaire
 	** Sortie			: 
 	*/
@@ -60,10 +60,10 @@ class CFormulaire
 	/*
 	** Fonction 		: init
 	** Description	: permet d'initialiser l'objet formulaire soit en lui passant un enregistrement
-	**					  provenant de la BD, soit en effectuant directement une requête dans la BD avec 
-	**                l'id passé via la constructeur
-	** Entrée			:
-	**				$v_oEnregExistant=NULL : enregistrement représentant un formulaire
+	**					  provenant de la BD, soit en effectuant directement une requÃªte dans la BD avec 
+	**                l'id passÃ© via la constructeur
+	** EntrÃ©e			:
+	**				$v_oEnregExistant=NULL : enregistrement reprÃ©sentant un formulaire
 	** Sortie			: 
 	*/
 	function init ($v_oEnregExistant=NULL)  
@@ -164,28 +164,28 @@ class CFormulaire
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	// pour l'instant, prépare seulement l'exportation des listes, radios, et cases à cocher.
-	// les axes, objets, réponses possibles, et valeurs par axe doivent tous être initialisés pour que ça fonctionne
+	// pour l'instant, prÃ©pare seulement l'exportation des listes, radios, et cases Ã  cocher.
+	// les axes, objets, rÃ©ponses possibles, et valeurs par axe doivent tous Ãªtre initialisÃ©s pour que Ã§a fonctionne
 	function determinerDonneesAExporter($v_iValeurAxeNeutreMin = 0, $v_iValeurAxeNeutreMax = 0)
 	{
-		// effacement d'éventuelles données d'exportation existantes
+		// effacement d'Ã©ventuelles donnÃ©es d'exportation existantes
 		unset($this->oExportation->abExporterAxeObjet);
 		unset($this->oExportation->abExporterObjetSansAxe);
 		
-		// certaines valeurs peuvent être considérées comme neutres, dans ce cas elles ne seront pas exportées
-		// (on calcule aussi la moyenne de la valeur neutre, pour éventuellement l'utiliser plus tard (assigner une valeur par défaut ?))
+		// certaines valeurs peuvent Ãªtre considÃ©rÃ©es comme neutres, dans ce cas elles ne seront pas exportÃ©es
+		// (on calcule aussi la moyenne de la valeur neutre, pour Ã©ventuellement l'utiliser plus tard (assigner une valeur par dÃ©faut ?))
 		$this->oExportation->iValeurAxeNeutreMin = $v_iValeurAxeNeutreMin;
 		$this->oExportation->iValeurAxeNeutreMax = $v_iValeurAxeNeutreMax;
 		$this->oExportation->iValeurAxeNeutre = $v_iValeurAxeNeutreMin + ( ($v_iValeurAxeNeutreMax - $v_iValeurAxeNeutreMin) / 2 );
 		
-		// on "marque" pour l'exportation les éléments
+		// on "marque" pour l'exportation les Ã©lÃ©ments
 		foreach ($this->aoObjets as $oObjet)
 		{
-			// dans le cas des questions liste, radio, et cases à cocher, on doit déterminer si on exporte en fonction des axes ou pas (alors, on exporte le texte)
+			// dans le cas des questions liste, radio, et cases Ã  cocher, on doit dÃ©terminer si on exporte en fonction des axes ou pas (alors, on exporte le texte)
 			if ($oObjet->retIdType() == OBJFORM_QLISTEDEROUL || $oObjet->retIdType() == OBJFORM_QRADIO || $oObjet->retIdType() == OBJFORM_QCOCHER)
 			{
 				$bAucuneReponseAxe = TRUE;
-				// s'il y a bien des axes dans le formulaire, on va exporter la valeur/axe des réponses (mode 1)
+				// s'il y a bien des axes dans le formulaire, on va exporter la valeur/axe des rÃ©ponses (mode 1)
 				if (count($this->aoAxes))
 				{
 					foreach ($oObjet->aoReponsesPossibles as $oReponsePossible)
@@ -204,14 +204,14 @@ class CFormulaire
 					}
 				}
 				
-				// s'il n'y a pas d'axes au formulaire, ou que toutes les réponses sont neutres pour tous les axes, on exportera
-				// le contenu de la réponse au lieu de la valeur/axe ( = mode 2)
+				// s'il n'y a pas d'axes au formulaire, ou que toutes les rÃ©ponses sont neutres pour tous les axes, on exportera
+				// le contenu de la rÃ©ponse au lieu de la valeur/axe ( = mode 2)
 				if ($bAucuneReponseAxe)
 				{
 					$this->oExportation->abExporterObjetSansAxe[$oObjet->retId()] = TRUE;
 				}
 			}
-			// dans le cas des questions ouvertes (texte à taper), on exporte en mode 2, càd le texte (donc pas de valeur/axe)
+			// dans le cas des questions ouvertes (texte Ã  taper), on exporte en mode 2, cÃ d le texte (donc pas de valeur/axe)
 			else if ($oObjet->retIdType() == OBJFORM_QTEXTELONG || $oObjet->retIdType() == OBJFORM_QTEXTECOURT || $oObjet->retIdType() == OBJFORM_QNOMBRE)
 			{
 				$this->oExportation->abExporterObjetSansAxe[$oObjet->retId()] = TRUE;
@@ -221,11 +221,11 @@ class CFormulaire
 	
 	/*
 	** Fonction 		: ajouter
-	** Description	: créer un enregistrement dans la table Formulaire en initialisant certaines valeurs et
-	**				     surtout le propriétaire du formulaire créé
-	** Entrée			:
-	**				$iIdPers : identifiant du propriétaire du nouveau formulaire
-	** Sortie			: Id renvoyé par la BD
+	** Description	: crÃ©er un enregistrement dans la table Formulaire en initialisant certaines valeurs et
+	**				     surtout le propriÃ©taire du formulaire crÃ©Ã©
+	** EntrÃ©e			:
+	**				$iIdPers : identifiant du propriÃ©taire du nouveau formulaire
+	** Sortie			: Id renvoyÃ© par la BD
 	*/
 	function ajouter ($iIdPers)
 	{
@@ -237,9 +237,9 @@ class CFormulaire
 	
 	/*
 	** Fonction 		: cHtmlFormulaireModif
-	** Description	: renvoie le code html du formulaire qui permet de modifier les caractéristiques d'un formulaire,
-	**				     vérifie les données transmises par l'utilisateur afin de permettre un enregistrement ultérieur dans la BD
-	** Entrée			:
+	** Description	: renvoie le code html du formulaire qui permet de modifier les caractÃ©ristiques d'un formulaire,
+	**				     vÃ©rifie les donnÃ©es transmises par l'utilisateur afin de permettre un enregistrement ultÃ©rieur dans la BD
+	** EntrÃ©e			:
 	**				$v_iIdObjForm
 	**				$v_iIdFormulaire
 	** Sortie			:
@@ -248,16 +248,16 @@ class CFormulaire
 	{
 		global $HTTP_POST_VARS, $HTTP_GET_VARS;
 	
-		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
+		//initialisation des messages d'erreurs Ã  'vide' et de la variable servant a dÃ©tecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
+		//de celui-ci dans la base de donnÃ©es + affiche d'une astÃ©risque Ã  l'endroit de l'erreur)
 		
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 ="";
 		$iFlagErreur=0;
 		
 		if (isset($HTTP_POST_VARS['envoyer'])) 
 		{
-			//Récupération des variables transmises par le formulaire
+			//RÃ©cupÃ©ration des variables transmises par le formulaire
 			$this->oEnregBdd->Titre = stripslashes($HTTP_POST_VARS['Titre']);
 			$this->oEnregBdd->Encadrer = $HTTP_POST_VARS['Encadrer'];
 			$this->oEnregBdd->Largeur = $HTTP_POST_VARS['Largeur'];
@@ -269,7 +269,7 @@ class CFormulaire
 			$this->oEnregBdd->Type = $HTTP_POST_VARS['Type'];
 				
 				
-			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			//Test des donnÃ©es reÃ§ues et marquage des erreurs Ã  l'aide d'une astÃ©risque dans le formulaire
 			if (strlen($HTTP_POST_VARS['Titre']) < 1)
 				{ $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1; }
 			
@@ -297,7 +297,7 @@ class CFormulaire
 			} 
 		}
 	
-		//Les instructions suivantes permettent de cocher les cases en fonction des données de l'objet en cours
+		//Les instructions suivantes permettent de cocher les cases en fonction des donnÃ©es de l'objet en cours
 		$sEncadr1 = $sEncadr2 = "";	  
 		if ($this->oEnregBdd->Encadrer==1)
 			$sEncadr1="CHECKED";
@@ -355,35 +355,35 @@ class CFormulaire
 			."</TD>\n"
 			."</TR>\n"
 			."<TR>\n"
-			."<TD>$sMessageErreur3 Interligne éléments :</TD>\n"
+			."<TD>$sMessageErreur3 Interligne Ã©lÃ©ments :</TD>\n"
 			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterElem\" Value=\"{$this->oEnregBdd->InterElem}\"></TD>\n"
 			."</TR><TR>\n"
-			."<TD>$sMessageErreur4 Interligne énoncé-réponse :</TD>\n"
+			."<TD>$sMessageErreur4 Interligne Ã©noncÃ©-rÃ©ponse :</TD>\n"
 			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterEnonRep\" Value=\"{$this->oEnregBdd->InterEnonRep}\"></TD>\n"
 			."</TR>\n"
 			."</TABLE>\n"
 			."</fieldset>\n"			
 			
-			."<fieldset><legend><b>Options supplémentaires</b></legend>\n"
+			."<fieldset><legend><b>Options supplÃ©mentaires</b></legend>\n"
 			."<TABLE>\n"
 			/*."<TR>\n"
 			."<TD>Statut : </TD>\n"
 			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"0\" $sStatut1>En cours</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"1\" $sStatut2>Terminé</TD>\n"
+			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"1\" $sStatut2>TerminÃ©</TD>\n"
 			."</TR>\n"*/			
 			."<TR>\n"
 			."<TD>Type : </TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"prive\" $sType1>Privé</TD>\n"
+			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"prive\" $sType1>PrivÃ©</TD>\n"
 			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"public\" $sType2>Public</TD>\n"
 			."</TR>\n"
 			."<TR>\n"
-			."<TD>Tous les champs doivent être remplis : </TD>\n"
+			."<TD>Tous les champs doivent Ãªtre remplis : </TD>\n"
 			."<TD COLSPAN=\"2\"><INPUT TYPE=\"checkbox\" NAME=\"RemplirTout\" VALUE=\"1\" $sRemplirToutSel></TD>\n"
 			."</TR>\n"
 			."</TABLE>\n"
 			."</fieldset>\n"
 
-			//Le champ caché ci-dessous permet de "simuler" le fait d'appuyer 
+			//Le champ cachÃ© ci-dessous permet de "simuler" le fait d'appuyer 
 			//sur le bouton submit et ainsi permettre l'enregistrement dans la BD
 			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"   
 			."</form>\n";
@@ -394,14 +394,14 @@ class CFormulaire
 	
 	  /*
 	  ** Fonction 		: enregistrer
-	  ** Description	: enregistre les données de l'objet courant dans la BD
-	  ** Entrée			:
+	  ** Description	: enregistre les donnÃ©es de l'objet courant dans la BD
+	  ** EntrÃ©e			:
 	  ** Sortie			:
 	  */
 	 
 	function enregistrer ()
 	{
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sTitre = validerTexte($this->oEnregBdd->Titre);
 		
@@ -428,12 +428,12 @@ class CFormulaire
 	  /*
 	  ** Fonction 		: copier
 	  ** Description	: permet de faire une copie de l'objet courant au sein de la BD tout en lui
-	  **					  affectant un nouveau propriétaire
-	  ** Entrée			:
-	  					$v_iIdParent : identifiant du formulaire parent (uniquement présent à titre de contrôle)
-						$v_iIdPers : identifiant de la personne qui sera propriétaire de la copie
+	  **					  affectant un nouveau propriÃ©taire
+	  ** EntrÃ©e			:
+	  					$v_iIdParent : identifiant du formulaire parent (uniquement prÃ©sent Ã  titre de contrÃ´le)
+						$v_iIdPers : identifiant de la personne qui sera propriÃ©taire de la copie
 	  ** Sortie			:
-	  **				$iIdForm : identifiant de la copie, renvoyé par la BD
+	  **				$iIdForm : identifiant de la copie, renvoyÃ© par la BD
 	  */
 
 	  function copier ($v_iIdParent,$v_iIdPers)
@@ -441,7 +441,7 @@ class CFormulaire
 		if ($v_iIdParent < 1)
 			return;
 		
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		// de les stocker dans la BD sans erreur 
 		$sTitre = "Copie de ".validerTexte($this->oEnregBdd->Titre);
 		
@@ -467,7 +467,7 @@ class CFormulaire
      /*
 	  ** Fonction 		: effacer
 	  ** Description	: efface de la BD l'enregistrement concernant l'objet courant
-	  ** Entrée			:
+	  ** EntrÃ©e			:
 	  ** Sortie			:
 	  */
 
@@ -482,7 +482,7 @@ class CFormulaire
 	}
 	
 	
-	function retListeFormulairesVisibles($v_iIdAuteur = NULL , $v_sType = NULL, $v_iStatut = NULL, $v_bToutMontrer = FALSE) // Statut 1 = terminé
+	function retListeFormulairesVisibles($v_iIdAuteur = NULL , $v_sType = NULL, $v_iStatut = NULL, $v_bToutMontrer = FALSE) // Statut 1 = terminÃ©
 	{
 		$sRequeteSql = "SELECT * FROM Formulaire";
 		
@@ -545,7 +545,7 @@ class CFormulaire
 		return $iNb;
 	}
 
-	//Fonctions de définition
+	//Fonctions de dÃ©finition
 	function defTitre ($v_sTitre) { $this->oEnregBdd->Titre = trim($v_sTitre); }
 	function defEncadrer ($v_iEncadrer) { $this->oEnregBdd->Encadrer = $v_iEncadrer; }
 	function defLargeur ($v_iLargeur) { $this->oEnregBdd->Largeur = $v_iLargeur; }

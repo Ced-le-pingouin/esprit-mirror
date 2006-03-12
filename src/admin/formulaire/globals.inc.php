@@ -21,7 +21,7 @@
 
 require_once("../../globals.inc.php");
 
-require_once(dir_database("fonctions_form.inc.php")); //AJOUTE PAR LUDO -> contient des fc communes à plusieurs .tbl concernant les formulaire
+require_once(dir_database("fonctions_form.inc.php")); //AJOUTE PAR LUDO -> contient des fc communes Ã  plusieurs .tbl concernant les formulaire
 
 require_once(dir_database("formulaire.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("objetformulaire.tbl.php")); //AJOUTE PAR LUDO

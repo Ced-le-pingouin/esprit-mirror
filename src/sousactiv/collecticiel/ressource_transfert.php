@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: transferer_fichiers.php
 ** Description ............:
-** Date de création .......: 27/11/2002
-** Dernière modification ..: 05/10/2005
+** Date de crÃ©ation .......: 27/11/2002
+** DerniÃ¨re modification ..: 05/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers   = (isset($HTTP_GET_VARS["idPers"]) ? $HTTP_GET_VARS["idPers"] : (isset($HTTP_POST_VARS["idPers"]) ? $HTTP_POST_VARS["idPers"] : 0));
 $url_iModalite = (empty($HTTP_GET_VARS["idModalite"]) ? NULL : $HTTP_GET_VARS["idModalite"]);
@@ -59,7 +59,7 @@ if (!is_object($oProjet->oSousActivCourante))
 		."<body>"
 		."<div align=\"center\">"
 		."<p class=\"Texte_Negatif\"><b>Erreur</b>&nbsp;:</p>"
-		."<pre>Veuillez fermer cette fenêtre</pre>"
+		."<pre>Veuillez fermer cette fenÃªtre</pre>"
 		."</div>"
 		."</body></html>\n";
 	
@@ -141,8 +141,8 @@ for ($i=0; $i<$iNbrRessources; $i++)
 	$sListeFichiersCollecticiel .= "<td class=\"$sNomClassCss\" align=\"center\" width=\"1%\">";
 	
 	if ($poRessources[$i]->retStatut() == STATUT_RES_TRANSFERE)
-		// On ne peut pas vérifier qu'un fichier transféré
-		// a été lui aussi transféré vers un autre collecticiel
+		// On ne peut pas vÃ©rifier qu'un fichier transfÃ©rÃ©
+		// a Ã©tÃ© lui aussi transfÃ©rÃ© vers un autre collecticiel
 		$sListeFichiersCollecticiel .= "-";
 	else if ($bFichierExiste)
 		$sListeFichiersCollecticiel .= ($bTransfere ? "oui" : "<span class=\"Texte_Negatif\">non</span>");
@@ -172,7 +172,7 @@ for ($i=0; $i<$iNbrRessources; $i++)
 }
 
 if ($iNbrRessources < 1)
-	$sListeFichiersCollecticiel .= "<tr><td class=\"cellule_clair\" colspan=\"5\"><div style=\"text-align: center;\"><small>Aucun document à transférer</small></div></td></tr>\n";
+	$sListeFichiersCollecticiel .= "<tr><td class=\"cellule_clair\" colspan=\"5\"><div style=\"text-align: center;\"><small>Aucun document Ã  transfÃ©rer</small></div></td></tr>\n";
 		
 $sListeFichiersCollecticiel .= "</table>\n";
 
@@ -190,7 +190,7 @@ $iCptCollect = 0;
 
 for ($i=0; $i<$iNbrCollecticiels; $i++)
 {
-	// Ne pas afficher le collecticiel de cette sous-activité
+	// Ne pas afficher le collecticiel de cette sous-activitÃ©
 	if ($oProjet->oRubriqueCourante->aoCollecticiels[$i]->retId() == $oProjet->oSousActivCourante->retId())
 		continue;
 	
@@ -224,7 +224,7 @@ if ($iCptRes > 0 && $iCptCollect > 0)
 		."<td>&nbsp;&nbsp;</td>"
 		."<td>"
 		."<a href=\"javascript: document.forms[0].submit();\" onfocus=\"blur()\">"
-		."Cliquez ici, pour transférer les fichiers sélectionnés"
+		."Cliquez ici, pour transfÃ©rer les fichiers sÃ©lectionnÃ©s"
 		."</a>"
 		."</td>"
 		."</tr>"
@@ -239,7 +239,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style(); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js'); ?>"></script>
 <script type="text/javascript" language="javascript">
@@ -273,7 +273,7 @@ if (isset($HTTP_POST_VARS["TRANSFERT"]))
 <body onload="init()">
 <?php if (isset($sTransfert)) echo $sTransfert; ?>
 <form action="ressource_transfert.php" method="post" target="_self">
-<h4>1.&nbsp;&nbsp;Choisissez les fichiers que vous voulez transférer vers un autre collecticiel</h4>
+<h4>1.&nbsp;&nbsp;Choisissez les fichiers que vous voulez transfÃ©rer vers un autre collecticiel</h4>
 <?php echo $sListeFichiersCollecticiel; ?>
 <h4>2.&nbsp;&nbsp;Choisissez un collecticiel de destination</h4>
 <?php echo $sListeCollecticielEquipe; ?>

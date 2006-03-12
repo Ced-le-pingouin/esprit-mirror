@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: 
 ** Description ............: 
-** Date de création .......: 31-05-2002
-** Dernière modification ..: 
+** Date de crÃ©ation .......: 31-05-2002
+** DerniÃ¨re modification ..: 
 ** Auteur .................: Filippo PORCO
 ** Email ..................: ute@umh.ac.be
 **

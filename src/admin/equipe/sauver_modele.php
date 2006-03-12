@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: sauver_modele.php
 ** Description ............: 
-** Date de création .......: 14-01-2003
-** Dernière modification ..: 10-02-2003
+** Date de crÃ©ation .......: 14-01-2003
+** DerniÃ¨re modification ..: 10-02-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -72,9 +72,9 @@ function Enregistrer()
 
 </head>
 <body>
-<p>Nous vous conseillons d'entrer un nom simple: sans espaces et sans lettres accentuées.</p>
+<p>Nous vous conseillons d'entrer un nom simple: sans espaces et sans lettres accentuÃ©es.</p>
 <form action="sauver_modele_liste.php" target="liste" method="post">
-<p><b>Nom du fichier du modèle d'équipe&nbsp;:</b><br><input type="text" name="NOM_FICHIER" size="50"></p>
+<p><b>Nom du fichier du modÃ¨le d'Ã©quipe&nbsp;:</b><br><input type="text" name="NOM_FICHIER" size="50"></p>
 <p><b>Description&nbsp;:</b><br><textarea name="DESCRIPTION" rows="10" cols="50"></textarea></p>
 <input type="hidden" name="NIVEAU" value="<?=$HTTP_GET_VARS['NIVEAU']?>">
 <input type="hidden" name="ID_NIVEAU" value="<?=$HTTP_GET_VARS['ID_NIVEAU']?>">

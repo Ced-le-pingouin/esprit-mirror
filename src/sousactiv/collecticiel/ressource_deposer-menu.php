@@ -30,7 +30,7 @@ if (isset($HTTP_GET_VARS["menu"]))
 	{
 		case "deposer":
 			$aMenus = array(
-				array("Déposer","top.frames['Principale'].envoyer();"),
+				array("DÃ©poser","top.frames['Principale'].envoyer();"),
 				array("Annuler","top.close();")
 			);
 			break;

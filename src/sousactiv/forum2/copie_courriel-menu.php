@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: copie_courriel-menu.php
 ** Description ............: 
-** Date de création .......: 29/11/2004
-** Dernière modification ..: 31/05/2005
+** Date de crÃ©ation .......: 29/11/2004
+** DerniÃ¨re modification ..: 31/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
 
@@ -43,7 +43,7 @@ $url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
 // ---------------------
 
 // ---------------------
-// Insérer ces lignes dans l'en-tête de la page html
+// InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 // ---------------------
 $sBlockHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: choix_formation.php
 ** Description ............: 
-** Date de création .......: 18/09/2002
-** Dernière modification ..: 04/04/2005
+** Date de crÃ©ation .......: 18/09/2002
+** DerniÃ¨re modification ..: 04/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet->initStatutsUtilisateur(FALSE);
 $oProjet->verifPeutUtiliserOutils();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm = (empty($HTTP_GET_VARS["idForm"]) ? 0 : $HTTP_GET_VARS["idForm"]);
 $url_sFiltre = (empty($HTTP_GET_VARS["filtre"]) ? NULL : $HTTP_GET_VARS["filtre"]);
@@ -94,7 +94,7 @@ if (($iNbrFormations = $oProjet->initFormationsUtilisateur()) > 0)
 	}
 }
 
-// Afficher un message d'erreur si la plate-forme n'a pas trouvé de formation
+// Afficher un message d'erreur si la plate-forme n'a pas trouvÃ© de formation
 if (empty($sListeFormations))
 	$sMessage = &$sVarSansFormation;
 

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: menu.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 28/09/2005
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 28/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $iIdForm      = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retId() : 0);
 $iIdMod       = (is_object($oProjet->oModuleCourant) ? $oProjet->oModuleCourant->retId() : 0);
@@ -91,7 +91,7 @@ $sMenu = ($bPersInscrite
 	.($iNbrOutils > 0
 		? "<a href=\"javascript: void(0);\" onclick=\"outils(); return false;\" onfocus=\"blur()\">"._("Outils")."</a>&nbsp;|&nbsp;" 
 		: NULL)
-	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
+	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("RafraÃ®chir")."</a>";
 
 // ---------------------
 // Template
@@ -99,7 +99,7 @@ $sMenu = ($bPersInscrite
 $oTpl = new Template(dir_theme("menu.tpl",FALSE,TRUE));
 
 // ---------------------
-// Menu par défaut
+// Menu par dÃ©faut
 // ---------------------
 $oTpl->remplacer("{liste_outils}",$sMenu);
 $oTpl->remplacer("{deconnexion}","deconnexion.php");

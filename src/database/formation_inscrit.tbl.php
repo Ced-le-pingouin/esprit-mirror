@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: formation_inscrit.tbl.php
 ** Description ............: 
-** Date de création .......: 17-09-2002
-** Dernière modification ..: 13-02-2003
+** Date de crÃ©ation .......: 17-09-2002
+** DerniÃ¨re modification ..: 13-02-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

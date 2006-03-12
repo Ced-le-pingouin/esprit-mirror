@@ -26,7 +26,7 @@ class CBord_CSS
 	
 	var $Couleur;
 	
-	// Déclarations des constantes
+	// DÃ©clarations des constantes
 	var $SANS="none";
 	var $POINTILLE="dotted";
 	var $A_TIRET="dashed";

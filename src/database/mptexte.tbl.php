@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: mptexte.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,16 +39,16 @@ class CMPTexte
  function CMPTexte(&$v_oBdd,$v_iId=0) 
  {
    			$this->oBdd = &$v_oBdd;  
-								  //si 0 crée un objet presque vide sinon 
-								  //rempli l'objet avec les données de la table MPTEXTE
-								  //de l'elément ayant l'Id passé en argument 
-								  //(ou avec l'objet passé en argument mais sans passer par le constructeur)
+								  //si 0 crÃ©e un objet presque vide sinon 
+								  //rempli l'objet avec les donnÃ©es de la table MPTEXTE
+								  //de l'elÃ©ment ayant l'Id passÃ© en argument 
+								  //(ou avec l'objet passÃ© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
  }
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requÃªte sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
  function init ($v_oEnregExistant=NULL)  
  {
@@ -78,7 +78,7 @@ class CMPTexte
  }
 
 
-//Fonctions de définition
+//Fonctions de dÃ©finition
 
  function defIdObjForm ($v_iIdObjForm)
 {
@@ -107,7 +107,7 @@ function cHtmlMPTexte()
 	//Mise en page du texte
 	$this->oEnregBdd->TexteMPT = convertBaliseMetaVersHtml($this->oEnregBdd->TexteMPT);
 	
-	//Genération du code html représentant l'objet
+	//GenÃ©ration du code html reprÃ©sentant l'objet
 	$sCodeHtml="<div align={$this->oEnregBdd->AlignMPT}>{$this->oEnregBdd->TexteMPT}</div>";
 	return $sCodeHtml;	
 }
@@ -119,19 +119,19 @@ function cHtmlMPTexteModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 	global $HTTP_POST_VARS, $HTTP_GET_VARS;
 	
-	//initialisation des messages d'erreurs à 'vide' et de la variable servant a detecter
+	//initialisation des messages d'erreurs Ã  'vide' et de la variable servant a detecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
+	//de celui-ci dans la base de donnÃ©es + affiche d'une astÃ©risque Ã  l'endroit de l'erreur)
 	$sMessageErreur1="";
 	$iFlagErreur=0;
 	
 	if (isset($HTTP_POST_VARS['envoyer'])) 
 		{
-			   //Récupération des variables transmises par le formulaire
+			   //RÃ©cupÃ©ration des variables transmises par le formulaire
 			   $this->oEnregBdd->AlignMPT = $HTTP_POST_VARS['Align'];
 			   $this->oEnregBdd->TexteMPT = stripslashes($HTTP_POST_VARS['Texte']);
 			   
-			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			   //Test des donnÃ©es reÃ§ues et marquage des erreurs Ã  l'aide d'une astÃ©risque dans le formulaire
 			   if ($this->oEnregBdd->TexteMPT == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			   
 			   if ($iFlagErreur == 0) 
@@ -144,7 +144,7 @@ function cHtmlMPTexteModif($v_iIdObjForm,$v_iIdFormulaire)
 	
 	
 	//La fonction alignement renvoie 1 variable de type string contenant "CHECKED" 
-	//et les 7 autres contiennent une chaîne vide
+	//et les 7 autres contiennent une chaÃ®ne vide
 	list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
 		Alignement($this->oEnregBdd->AlignMPT," ");
 	
@@ -169,7 +169,7 @@ function cHtmlMPTexteModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."</TR>"
 		   ."</TABLE>"
 		   ."</fieldset>"
-		   //Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
+		   //Le champ cachÃ© ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
 		   ."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
 		   ."</form>";
 
@@ -182,7 +182,7 @@ function enregistrer ()
 	{
 	if ($this->oEnregBdd->IdObjForm !=NULL)
 	   {	
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sTexteMPT = validerTexte($this->oEnregBdd->TexteMPT);
 		
@@ -207,7 +207,7 @@ function copier ($v_iIdNvObjForm)
 		if ($v_iIdNvObjForm < 1)
 			return;
 		
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sTexteMPT = validerTexte($this->oEnregBdd->TexteMPT);
 		

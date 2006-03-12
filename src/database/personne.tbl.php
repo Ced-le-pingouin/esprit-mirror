@@ -22,13 +22,13 @@
 /*
 ** Fichier ................: personne.tbl.php
 ** Description ............:
-** Date de création .......: 06/09/2001
-** Dernière modification ..: 13/10/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 06/09/2001
+** DerniÃ¨re modification ..: 13/10/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -169,7 +169,7 @@ class CPersonne
 	{
 		$bEstUnique = TRUE;
 		
-		// Vérifier seulement dans le cas d'un ajout
+		// VÃ©rifier seulement dans le cas d'un ajout
 		// d'un nouvel utilisateur
 		$sRequeteSql = "SELECT IdPers FROM Personne"
 			." WHERE Pseudo='{$this->oEnregBdd->Pseudo}'";

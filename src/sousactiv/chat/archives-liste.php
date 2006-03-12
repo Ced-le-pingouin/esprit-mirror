@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: archives-liste.php
 ** Description ............: 
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 03/10/2005
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 03/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ require_once("archive.class.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -54,7 +54,7 @@ $oChat = new CChat($oProjet->oBdd,$url_iIdChat);
 
 $bPeutEffacerArchive = $oChat->peutEffacerArchives($oProjet->retStatutUtilisateur());
 
-// Répertoire des archives
+// RÃ©pertoire des archives
 $oIds  = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
 $amParams = array("idForm" => $oIds->retIdForm()
 	, "idActiv" => $oIds->retIdActiv()
@@ -70,7 +70,7 @@ if (isset($HTTP_POST_VARS["archives"]))
 		@unlink($sArchivesRep.$sArchiveNom);
 
 // ---------------------
-// Rechercher le nom de l'équipe
+// Rechercher le nom de l'Ã©quipe
 // ---------------------
 $sEquipeNom = NULL;
 
@@ -84,8 +84,8 @@ if (CHAT_PAR_EQUIPE == $oChat->retModalite())
 // {{{ Rechercher toutes les archives
 $sFiltre = retIdUniqueChat($url_iIdChat,urlencode($sEquipeNom));
 
-// Permet de rechercher toutes les archives de toutes les équipes d'un chat
-// par équipe
+// Permet de rechercher toutes les archives de toutes les Ã©quipes d'un chat
+// par Ã©quipe
 if ($url_iIdEquipe == 0 && $url_iIdPers > 0)
 	$sFiltre = substr($sFiltre,1);
 
@@ -153,7 +153,7 @@ for ($i=$iNbArchives; $i>=0; $i--)
 	$oBlockCellIntitule->afficher();
 }
 
-// {{{ Pas d'archive trouvé
+// {{{ Pas d'archive trouvÃ©
 if ($iNbArchives == -1)
 {
 	$oBlockRowIntitule->nextLoop();
@@ -183,7 +183,7 @@ $oBlockMenu->afficher();
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("dialog.css; archives.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
@@ -213,11 +213,11 @@ function effacerArchives()
 	
 	if (bOk)
 	{
-		if (confirm("Vous êtes-vous sur le point d'effacer ces archives.\nVoulez-vous continuer ?"))
+		if (confirm("Vous Ãªtes-vous sur le point d'effacer ces archives.\nVoulez-vous continuer ?"))
 			document.forms[0].submit();
 	}
 	else
-		alert("Vous devez sélectionner au moins une archive avant de supprimer");
+		alert("Vous devez sÃ©lectionner au moins une archive avant de supprimer");
 }
 
 //-->

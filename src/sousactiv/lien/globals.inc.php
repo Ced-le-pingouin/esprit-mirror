@@ -3,8 +3,8 @@
 /*
 ** Fichier ................: globals.inc.php
 ** Description ............: 
-** Date de création .......: 24-12-2002
-** Dernière modification ..: 24-12-2002
+** Date de crÃ©ation .......: 24-12-2002
+** DerniÃ¨re modification ..: 24-12-2002
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

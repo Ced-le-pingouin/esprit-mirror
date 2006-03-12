@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: rubrique.tbl.php
 ** Description ............: Ouvrir une connexion avec la table des rubriques.
-** Date de création .......: 18/02/2002
-** Dernière modification ..: 10/10/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 18/02/2002
+** DerniÃ¨re modification ..: 10/10/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,7 +35,7 @@
 require_once(dir_database("activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
 
-define("INTITULE_RUBRIQUE","Unité");
+define("INTITULE_RUBRIQUE","UnitÃ©");
 
 class CModule_Rubrique
 {
@@ -84,7 +84,7 @@ class CModule_Rubrique
 			$this->oBdd->libererResult($hResult);
 		}
 		
-		// Rechercher l'intitulé de la rubrique
+		// Rechercher l'intitulÃ© de la rubrique
 		$this->initIntitule();
 		
 		$this->initIdsParents();
@@ -194,17 +194,17 @@ class CModule_Rubrique
 	
 	function ajouterEquipes ()
 	{
-		// Effacer des équipes qui ont été supprimées de la table "ModeleEquipe"
+		// Effacer des Ã©quipes qui ont Ã©tÃ© supprimÃ©es de la table "ModeleEquipe"
 		$oEquipe = new CEquipe($this->oBdd);
 		$oEquipe->nettoyer();
 		unset($oEquipe);
 		
-		// Rechercher toutes les activités de modalité "par équipe" de cette rubrique
+		// Rechercher toutes les activitÃ©s de modalitÃ© "par Ã©quipe" de cette rubrique
 		$iNbrActivs = $this->initActivs(NULL,MODALITE_PAR_EQUIPE);
 		
 		$oModeleEquipe = new CModeleEquipe($this->oBdd);
 		
-		// Ajouter les équipes qui ne font pas encore parties de cette rubrique
+		// Ajouter les Ã©quipes qui ne font pas encore parties de cette rubrique
 		$sValeursRequete = NULL;
 		
 		for ($iIdxActiv=0; $iIdxActiv<$iNbrActivs; $iIdxActiv++)
@@ -286,11 +286,11 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Retourner les informations du module précédent.
+	 * Retourner les informations du module prÃ©cÃ©dent.
 	 */
 	function retInfosIntituleRubPrecedente ()
 	{
-		$asInfosIntituleRubPrecedente = array("IdIntitule" => "2" // Unité
+		$asInfosIntituleRubPrecedente = array("IdIntitule" => "2" // UnitÃ©
 			,"NumDepartIntitule" => "1");
 		
 		$sRequeteSql = "SELECT IdIntitule, NumDepartIntitule"
@@ -395,7 +395,7 @@ class CModule_Rubrique
 	
 	function retNbrEquipes ()
 	{
-		// Vérifier si au moins une activité a été associé à une équipe
+		// VÃ©rifier si au moins une activitÃ© a Ã©tÃ© associÃ© Ã  une Ã©quipe
 		$iNbrEquipes = 0;
 		$this->initActivs(NULL,MODALITE_PAR_EQUIPE);
 		for ($iIdxActiv=0; $iIdxActiv<count($this->aoActivs); $iIdxActiv++)
@@ -480,10 +480,10 @@ class CModule_Rubrique
 		if ($v_iIdRubrique == NULL)
 			return FALSE;
 		
-		// Effacer les équipes
+		// Effacer les Ã©quipes
 		$this->effacerEquipes();
 		
-		// Effacer les activités de la rubrique
+		// Effacer les activitÃ©s de la rubrique
 		$this->effacerActivs();
 		
 		// Effacer le forum de la rubrique
@@ -562,7 +562,7 @@ class CModule_Rubrique
 	{
 		$sNomRubrique = trim($this->oEnregBdd->NomRubrique);
 		if (empty($sNomRubrique))
-			$sNomRubrique = "Rubrique/unité sans nom";
+			$sNomRubrique = "Rubrique/unitÃ© sans nom";
 		return ($v_bHtmlEntities
 			? htmlentities($sNomRubrique)
 			: $sNomRubrique);
@@ -580,7 +580,7 @@ class CModule_Rubrique
 	// }}}
 	
 	// ---------------------
-	// Donnée de la rubrique
+	// DonnÃ©e de la rubrique
 	// ---------------------
 	function defDonnee ($v_sDonnee)
 	{
@@ -608,7 +608,7 @@ class CModule_Rubrique
 	function retTypeNiveau () { return TYPE_RUBRIQUE; }
 	
 	// ---------------------
-	// Numéro d'ordre de la rubrique
+	// NumÃ©ro d'ordre de la rubrique
 	// ---------------------
 	function defNumOrdre ($v_iNumOrdre)
 	{
@@ -669,8 +669,8 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Cette méthode recherche tous les chats attachés aux activités qui sont
-	 * attachées à cette rubrique.
+	 * Cette mÃ©thode recherche tous les chats attachÃ©s aux activitÃ©s qui sont
+	 * attachÃ©es Ã  cette rubrique.
 	 */
 	function initChats2 ($v_iIdModalite=NULL)
 	{
@@ -719,7 +719,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Ne plus utiliser cette méthode.
+	 * Ne plus utiliser cette mÃ©thode.
 	 *
 	 * @see retTableauTypes
 	 */
@@ -729,7 +729,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Cette méthode retourne un tableau contenant la liste des différents types
+	 * Cette mÃ©thode retourne un tableau contenant la liste des diffÃ©rents types
 	 * pour la rubrique.
 	 */
 	function retListeTypes ()
@@ -754,10 +754,10 @@ class CModule_Rubrique
 		$iStatutRubrique = $this->oEnregBdd->StatutRubrique;
 		
 		$aaStatuts = array(
-				// array(identifiant,nom,statut séléctionné)
+				// array(identifiant,nom,statut sÃ©lÃ©ctionnÃ©)
 				array(STATUT_OUVERT,"Ouvert",($iStatutRubrique == STATUT_OUVERT))
 				, array(STATUT_LECTURE_SEULE,"Consultable",($iStatutRubrique == STATUT_LECTURE_SEULE))
-				, array(STATUT_FERME,"Fermé",($iStatutRubrique == STATUT_FERME))
+				, array(STATUT_FERME,"FermÃ©",($iStatutRubrique == STATUT_FERME))
 				, array(STATUT_INVISIBLE,"Invisible",($iStatutRubrique == STATUT_INVISIBLE))
 			);
 		
@@ -806,7 +806,7 @@ class CModule_Rubrique
 		$iNumOrdre = $this->retNumOrdre();
 		
 		// *************************************
-		// Ajouter dans ce tableau les ids et les numéros d'ordre
+		// Ajouter dans ce tableau les ids et les numÃ©ros d'ordre
 		// *************************************
 		
 		$aoNumsOrdre = array();
@@ -815,7 +815,7 @@ class CModule_Rubrique
 			$aoNumsOrdre[$i] = array($this->aoRubriques[$i]->IdRubrique,$this->aoRubriques[$i]->OrdreRubrique);
 		
 		// *************************************
-		// Mettre à jour dans la table Module_Rubrique
+		// Mettre Ã  jour dans la table Module_Rubrique
 		// *************************************
 		
 		if ($v_iNouveauNumOrdre > 0)

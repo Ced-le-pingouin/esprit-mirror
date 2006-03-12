@@ -19,7 +19,7 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-$sTitreFenetre = "Gestion des équipes";
+$sTitreFenetre = "Gestion des Ã©quipes";
 
 $sParamsUrl = NULL;
 

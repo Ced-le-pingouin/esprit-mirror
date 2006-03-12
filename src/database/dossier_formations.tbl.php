@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: dossier_formations.tbl.php
 ** Description ............:
-** Date de création .......: 18/05/2005
-** Dernière modification ..: 29/09/2005
+** Date de crÃ©ation .......: 18/05/2005
+** DerniÃ¨re modification ..: 29/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -263,7 +263,7 @@ class CDossierForms
 	
 	function verrouillerTables () { $this->oBdd->executerRequete("LOCK TABLES DossierFormations WRITE, DossierFormations_Formation WRITE"); }
 	
-	// {{{ Méthodes de la table DossierFormations_Formation
+	// {{{ MÃ©thodes de la table DossierFormations_Formation
 	function initFormations ($v_aiIdForms,$v_bFormationsSelectionnees=TRUE)
 	{
 		$iIdxForm = 0;

@@ -16,9 +16,10 @@
 // along with this program; if not, you can get one from the web page
 // http://www.gnu.org/licenses/gpl.html
 // 
-// Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
-//                          Universite de Mons-Hainaut, Belgium. 
-//                          Grenoble Universités
+// Copyright:
+// (C) 2001-2006 Unite de Technologie de l'Education, 
+//               Universite de Mons-Hainaut, Belgium. 
+// (C) 2006 Grenoble UniversitÃ©s
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,11 +33,11 @@
 		<h1>Installation d'Esprit</h1>
 <?php
 /*
-	Installateur d'Esprit (en cours, très partiellement testé)
-	Reste à faire :
+	Installateur d'Esprit (en cours, trÃ¨s partiellement testÃ©)
+	Reste Ã  faire :
 		- tester
 		- modifier /INSTALL et /setup (en distinguant installation manuelle et automatique)
-		- écrire une fonction javascript qui vérifie les données du formulaire (pb de SÉCURITÉ en particulier)
+		- Ã©crire une fonction javascript qui vÃ©rifie les donnÃ©es du formulaire (pb de SÃCURITÃ en particulier)
 */
 
 $step=1;
@@ -44,24 +45,24 @@ if (isset($_GET['step']) || isset($_POST['step'])) {
 	$step=($_GET['step']?$_GET['step']:$_POST['step']);
 } else {
 	if (file_exists('../include/config.inc')) {
-		echo "<P>Configuration interrompue : Esprit semble déjà configuré.</P>";
+		echo "<P>Configuration interrompue : Esprit semble dÃ©jÃ  configurÃ©.</P>";
 		echo '</body></html>';
 		exit;
 	}
 }
 ?>
-		<h2>Étape <?= $step ?></h2>
+		<h2>Ãtape <?= $step ?></h2>
 
 <?php
 switch ($step) {
 // ******************* Getting database info *******************
 case 1:
 ?>
-<p>Avant de commencer l'installation, vous devez avoir créé une base de donnée pour Esprit et un utilisateur MySQL associé.
+<p>Avant de commencer l'installation, vous devez avoir crÃ©Ã© une base de donnÃ©e pour Esprit et un utilisateur MySQL associÃ©.
 </p>
 
 <p>
-Par exemple, les commandes suivantes sous Linux créent une table <em>esprit</em> administrée par <em>esprit-admin</em>&nbsp;:
+Par exemple, les commandes suivantes sous Linux crÃ©ent une table <em>esprit</em> administrÃ©e par <em>esprit-admin</em>&nbsp;:
 <pre>
 # mysql -u root -p
 &gt; CREATE DATABASE esprit;
@@ -69,21 +70,21 @@ Par exemple, les commandes suivantes sous Linux créent une table <em>esprit</em
 &gt; quit
 # mysqladmin -u root -p reload
 </pre>
-Vous pouvez également utiliser phpmyadmin s'il est installé.
+Vous pouvez Ã©galement utiliser phpmyadmin s'il est installÃ©.
 </p>
 
 <h3>Saisie</h3>
 
-<p>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.
+<p>Veuillez saisir ci-dessous le nom de la base crÃ©Ã©e et de son utilisateur MySQL.
 </p>
 <form action="install.php" method="post">
 <p>
-	Base de donnée : <INPUT type="text" name="base" /><br />
+	Base de donnÃ©e : <INPUT type="text" name="base" /><br />
 	Serveur BdD : <INPUT type="text" name="host" value="localhost" /><br />
 	Login de l'utilisateur : <INPUT type="text" name="user" /><br />
 	Mot de passe de l'utilisateur : <INPUT type="password" name="password" /><br /><br />
 	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
-	<INPUT type="submit" value="Étape suivante" />
+	<INPUT type="submit" value="Ãtape suivante" />
 </p>
 </form>
 
@@ -92,20 +93,20 @@ Vous pouvez également utiliser phpmyadmin s'il est installé.
 // ******************* Filling up the database *******************
 case 2:
 	if (!isset($_POST['base']) || !isset($_POST['user']) || !isset($_POST['password'])) {
-		echo '<p>Informations incomplètes, retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
+		echo '<p>Informations incomplÃ¨tes, retournez Ã  <a href="install.php?step=1">l\'Ã©tape prÃ©cÃ©dente</a>.</p>';
 		echo '</body></html>';
 		exit;
 	}
 	$link = mysql_connect($_POST['host'],$_POST['user'],$_POST['password']);
 	if (! $link) {
-		echo "<P>Erreur de connexion à la base de données.</P>";
-		echo '<p>Retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
+		echo "<P>Erreur de connexion Ã  la base de donnÃ©es.</P>";
+		echo '<p>Retournez Ã  <a href="install.php?step=1">l\'Ã©tape prÃ©cÃ©dente</a>.</p>';
 		echo '</body></html>';
 		exit;
 	}
 	if (! mysql_selectdb($_POST['base'])) {
-		echo "<P>Connexion réussie, mais erreur d'accès à la base de données.</P>";
-		echo '<p>Retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
+		echo "<P>Connexion rÃ©ussie, mais erreur d'accÃ¨s Ã  la base de donnÃ©es.</P>";
+		echo '<p>Retournez Ã  <a href="install.php?step=1">l\'Ã©tape prÃ©cÃ©dente</a>.</p>';
 		echo '</body></html>';
 		exit;
 	}
@@ -114,14 +115,14 @@ case 2:
 	sort($files);
 	foreach ($files as $filename) {
 		if (!load_mysql_dump($filename)) {
-			echo "<P>Connexion réussie à la base de donnée, mais erreur lors de l'importation.</P>";
+			echo "<P>Connexion rÃ©ussie Ã  la base de donnÃ©e, mais erreur lors de l'importation.</P>";
 			echo "<code>", mysql_error(), "</code>";
 			echo '</body></html>';
 			exit;
 		}
 	}
 ?>
-<p>La base de donnée a été remplie avec succès.
+<p>La base de donnÃ©e a Ã©tÃ© remplie avec succÃ¨s.
 </p>
 <?php
 	show_next_step();
@@ -129,15 +130,15 @@ case 2:
 
 // ******************* creating config file *******************
 case 3:
-	$buffer = "<?php\n// Fichier de configuration généré automatiquement par install.php\n\n"
-	          . "// {{{ Base de données\n" 
-	          . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de données\n"
+	$buffer = "<?php\n// Fichier de configuration gÃ©nÃ©rÃ© automatiquement par install.php\n\n"
+	          . "// {{{ Base de donnÃ©es\n" 
+	          . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de donnÃ©es\n"
 	          . '$g_sNomServeur = \''. $_POST['host'] ."'; // Nom du serveur\n"
-	          . '$g_sNomProprietaire = \''. $_POST['user'] ."'; // Nom du propriétaire de la base de données MySQL\n"
-	          . '$g_sMotDePasse = \''. $_POST['password'] ."'; // Mot de passe de la base de données MySQL\n"
+	          . '$g_sNomProprietaire = \''. $_POST['user'] ."'; // Nom du propriÃ©taire de la base de donnÃ©es MySQL\n"
+	          . '$g_sMotDePasse = \''. $_POST['password'] ."'; // Mot de passe de la base de donnÃ©es MySQL\n"
 	          . "// }}}\n\n";
 
-	$buffer .= "// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes\n"
+	$buffer .= "// {{{ Informations BdD nÃ©cessaires au transfert de formations entre deux plateformes\n"
 	           . '$g_sNomServeurTransfert = \''. $_POST['host'] ."';\n"
 	           . '$g_sNomProprietaireTransfert = "root";' ."\n"
 	           . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
@@ -148,26 +149,26 @@ case 3:
 	           . "// }}}\n\n";
 
 	$buffer .= '// {{{ Adresse courrielle
-//     Cette adresse courriel sert, dans le cas d\'un problème ou autre
-//     (forum), à envoyer un message aux administrateurs de la plate-forme
+//     Cette adresse courriel sert, dans le cas d\'un problÃ¨me ou autre
+//     (forum), Ã  envoyer un message aux administrateurs de la plate-forme
 define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","ute@umh.ac.be");
 // }}}'
 	           ."\n\n";
 
-	$buffer .= '// {{{ Thèmes
+	$buffer .= '// {{{ ThÃ¨mes
 define("THEME","esprit");
 // }}}
 ?>';
 
 	if (file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
-		echo '<p>Erreur lors de l\'écriture du fichier de configuration.</p>';
-		echo '<p>Vérifiez que les accès en écriture sont autorisés dans le répertoire <em>include</em>.</p>';
+		echo '<p>Erreur lors de l\'Ã©criture du fichier de configuration.</p>';
+		echo '<p>VÃ©rifiez que les accÃ¨s en Ã©criture sont autorisÃ©s dans le rÃ©pertoire <em>include</em>.</p>';
 		redo_step();
 		echo '</body></html>';
 		exit;
 	}
 ?>
-<p>Le fichier de configuration a été écrit avec succès.
+<p>Le fichier de configuration a Ã©tÃ© Ã©crit avec succÃ¨s.
 </p>
 <?php
 	show_next_step();
@@ -182,14 +183,14 @@ case 4:
 		touch('../tmp/mdpcnte');
 	}
 	if (!is_writable('../tmp/mdpcnte')) {
-		echo '<p>Erreur : le fichier tmp/mdpcnte n\'est pas accessible en écriture.<p>';
-		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce fichier et le répertoire tmp/</p>';
+		echo '<p>Erreur : le fichier tmp/mdpcnte n\'est pas accessible en Ã©criture.<p>';
+		echo '<p>VÃ©rifiez que le serveur web a bien des droits d\'Ã©criture sur ce fichier et le rÃ©pertoire tmp/</p>';
 		redo_step();
 		echo '</body></html>';
 		exit;
 	}
 ?>
-<p>Les permissions d'accès aux fichiers ont été contrôlées avec succès.
+<p>Les permissions d'accÃ¨s aux fichiers ont Ã©tÃ© contrÃ´lÃ©es avec succÃ¨s.
 </p>
 <?php
 	show_next_step();
@@ -203,13 +204,13 @@ case 5:
 	$DirUp = dirname(dirname($DocName));
 ?>
 
-<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
+<p>L'installation est terminÃ©e. Pour des <strong>raisons de sÃ©curitÃ©</strong>, il est maintenant recommandÃ© d'effacer le rÃ©pertoire <em>install/</em> de votre serveur web.
 </p>
 
-<p>Vous pouvez désormais vous rendre sur votre <a href="<?= $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
+<p>Vous pouvez dÃ©sormais vous rendre sur votre <a href="<?= $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par dÃ©faut est <em>admin</em>, et le mot de passe <em>mdp</em>.
 </p>
 
-<p>Une fois connecté en tant qu'<em>admin</em>, vous pouvez créer une formation de test, en cliquant sur <em>Outils</em> qui se trouve dans la barre inférieure du site, puis en vous choisissant l'outil de conception de cours eConcept.
+<p>Une fois connectÃ© en tant qu'<em>admin</em>, vous pouvez crÃ©er une formation de test, en cliquant sur <em>Outils</em> qui se trouve dans la barre infÃ©rieure du site, puis en vous choisissant l'outil de conception de cours eConcept.
 </p>
 
 
@@ -233,7 +234,7 @@ function show_next_step() {
 	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
 	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
 	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
-	<INPUT type="submit" value="Étape suivante" />
+	<INPUT type="submit" value="Ãtape suivante" />
 </p>
 </form>
 <?php
@@ -249,7 +250,7 @@ function redo_step() {
 	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
 	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
 	<INPUT name="step" value="<?= $step ?>" type="hidden" />
-	<INPUT type="submit" value="Refaire cette étape" />
+	<INPUT type="submit" value="Refaire cette Ã©tape" />
 </p>
 </form>
 <?php
@@ -276,7 +277,7 @@ function load_mysql_dump($path, $ignoreerrors = false) {
 // This one already exists in PHP5, but not in PHP4
 function file_put_contents($filename, $content) {
 	if (file_exists($filename)) {
-		echo "Le fichier ($filename) existe déjà";
+		echo "Le fichier ($filename) existe dÃ©jÃ ";
 		return FALSE;
 	}
 	$handle = fopen($filename, 'w');
@@ -287,7 +288,7 @@ function file_put_contents($filename, $content) {
 	$written = fwrite($handle, $content);
 	fclose($handle);
 	if (!$written) {
-		echo "Impossible d'écrire dans le fichier ($filename)";
+		echo "Impossible d'Ã©crire dans le fichier ($filename)";
 		return FALSE;
 	}
 	return $written;

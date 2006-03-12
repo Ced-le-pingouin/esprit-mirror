@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: editeur-exporter.php
 ** Description ............:
-** Date de création .......: 29/06/2004
-** Dernière modification ..: 30/06/2004
+** Date de crÃ©ation .......: 29/06/2004
+** DerniÃ¨re modification ..: 30/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

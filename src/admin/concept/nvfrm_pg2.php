@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: nvfrm_pg2.php
 ** Description ............: 
-** Date de création .......: 04-06-2002
-** Dernière modification ..: 17-04-2003
+** Date de crÃ©ation .......: 04-06-2002
+** DerniÃ¨re modification ..: 17-04-2003
 ** Auteurs ................: Filippo Porco
 ** Emails .................: <ute@umh.ac.be>
 **
@@ -38,8 +38,8 @@ echo "<table border=\"0\" cellpadding=\"0\" cellspacing=\"2\" width=\"100%\">\n"
 
 $asFiltre = array("Toutes les formations"
 	,"Une formation par type"
-	,"Année en cours (".date("01-01-Y")." au ".date("31-12-Y").")"
-	,"Deux dernières années (".date("01-01-".(date("Y")-1))." au ".date("31-12-Y").")");
+	,"AnnÃ©e en cours (".date("01-01-Y")." au ".date("31-12-Y").")"
+	,"Deux derniÃ¨res annÃ©es (".date("01-01-".(date("Y")-1))." au ".date("31-12-Y").")");
 
 for ($i=0; $i<count($asFiltre); $i++)
 	echo "<option name=\"CHOIX_FILTRE\" value=\"".($i+1)."\"".(($filtre == $i+1) ? " selected": NULL).">{$asFiltre[$i]}</option>\n";

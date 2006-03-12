@@ -24,7 +24,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSousActiv = (empty($HTTP_GET_VARS["idSA"]) ? 0 : $HTTP_GET_VARS["idSA"]);
 $url_aiIdResSA    = (empty($HTTP_GET_VARS["idResSA"]) ? NULL : explode("x",$HTTP_GET_VARS["idResSA"]));
@@ -36,7 +36,7 @@ $url_iErreur      = (empty($HTTP_GET_VARS["err"]) ? NULL : $HTTP_GET_VARS["err"]
 $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 
 // ---------------------
-// Construire la liste des documents non transféré
+// Construire la liste des documents non transfÃ©rÃ©
 // ---------------------
 if (isset($url_aiIdResSA))
 {
@@ -45,7 +45,7 @@ if (isset($url_aiIdResSA))
 	$sListeTransfert .= "<tr>"
 		."<td class=\"cellule_sous_titre\">&nbsp;Fichier source&nbsp;</td>"
 		."<td class=\"cellule_sous_titre\">&nbsp;Collecticiel de&nbsp;destination&nbsp;</td>"
-		."<td class=\"cellule_sous_titre\">&nbsp;Déposé par&nbsp;</td>"
+		."<td class=\"cellule_sous_titre\">&nbsp;DÃ©posÃ© par&nbsp;</td>"
 		."<td class=\"cellule_sous_titre\">&nbsp;Transf&eacute;r&eacute;&nbsp;</td>"
 		."</tr>";
 	
@@ -92,7 +92,7 @@ switch ($url_iErreur)
 			."</h3>"
 			."<br><br>"
 			.$sListeTransfert
-			."<br><br><div align=\"center\"><h3>Vérifier que les étudiants associés à ces fichiers<br>sont bien inscrits dans le collecticiel cible.</h3></div>";
+			."<br><br><div align=\"center\"><h3>VÃ©rifier que les Ã©tudiants associÃ©s Ã  ces fichiers<br>sont bien inscrits dans le collecticiel cible.</h3></div>";
 		
 		break;
 		
@@ -103,7 +103,7 @@ switch ($url_iErreur)
 			."</h3>"
 			."<br><br>"
 			.$sListeTransfert
-			."<br><br><div align=\"center\"><h3>Vérifier que les étudiants associés à ces fichiers<br>sont bien inscrits dans le collecticiel cible.</h3></div>";
+			."<br><br><div align=\"center\"><h3>VÃ©rifier que les Ã©tudiants associÃ©s Ã  ces fichiers<br>sont bien inscrits dans le collecticiel cible.</h3></div>";
 		
 		break;
 		

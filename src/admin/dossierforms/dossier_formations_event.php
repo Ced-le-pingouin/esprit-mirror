@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: dossier_formations_event.php
 ** Description ............:
-** Date de création .......: 24/05/2005
-** Dernière modification ..: 29/09/2005
+** Date de crÃ©ation .......: 24/05/2005
+** DerniÃ¨re modification ..: 29/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -41,7 +41,7 @@ $oProjet = new CProjet();
 $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sEvent          = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
 $url_iIdDossierForms = (empty($HTTP_GET_VARS["idDossierForms"]) ? NULL : $HTTP_GET_VARS["idDossierForms"]);
@@ -80,7 +80,7 @@ else if ("supp" == $sEvent)
 	$url_iIdDossierForms = 0;
 }
 
-// Mettre à jour le cookie
+// Mettre Ã  jour le cookie
 if (!empty($sEvent))
 {
 	if ($oProjet->retInfosSession(SESSION_DOSSIER_FORMS) != $url_iIdDossierForms)

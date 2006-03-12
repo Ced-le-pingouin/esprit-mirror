@@ -21,7 +21,7 @@ td.cellule_sous_titre { text-align: left; }
 <tr>
 <td>&nbsp;</td>
 <td><img src="theme://onglet/onglet_tab-1x1.gif" border="0"></td>
-<td class="onglet_tab_1x2">&nbsp;Liste&nbsp;à&nbsp;exporter&nbsp;</td>
+<td class="onglet_tab_1x2">&nbsp;Liste&nbsp;Ã &nbsp;exporter&nbsp;</td>
 <td><img src="theme://onglet/onglet_tab-1x3.gif" border="0"></td>
 </tr>
 </table>

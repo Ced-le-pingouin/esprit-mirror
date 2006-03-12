@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: gestion_activ.php
 ** Description ............: 
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 14/09/2004
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 14/09/2004
 ** Auteur .................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

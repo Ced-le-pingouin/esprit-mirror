@@ -21,7 +21,7 @@ function changerTitreFenetre()
 
 function envoyer()
 {
-	// Retirer les espaces supplémentaires
+	// Retirer les espaces supplÃ©mentaires
 	var sSujetCourriel = document.forms[0].elements["sujetCourriel"].value.trim();
 	document.forms[0].elements["sujetCourriel"].value = sSujetCourriel;
 	
@@ -30,7 +30,7 @@ function envoyer()
 	
 	if (sMessageCourriel.length < 1)
 	{
-		alert("Vous avez oublié d'introduire votre message");
+		alert("Vous avez oubliÃ© d'introduire votre message");
 		top.oPrincipale().document.forms[0].elements["messageCourriel"].focus();
 		return;
 	}
@@ -42,22 +42,22 @@ function envoyer()
 	if (typeof(oEmails.length) == "undefined")
 		oEmails = new Array(self.frames["emails"].document.forms[0].elements["destinataireCourriel[]"]);
 	
-	// Vérifier qu'au moins une personne a été sélectionné
+	// VÃ©rifier qu'au moins une personne a Ã©tÃ© sÃ©lectionnÃ©
 	for (i=0; i<oEmails.length; i++)
 		if (oEmails[i].checked) iCompteurEmailsSelect++;
 	
 	// Envoyer le courriel
 	if (iCompteurEmailsSelect > 0)
 	{
-		// Placer les nouveaux éléments dans le div caché
+		// Placer les nouveaux Ã©lÃ©ments dans le div cachÃ©
 		var oDiv = document.getElementById("id_emails");
 		
-		// Récupérer le message
+		// RÃ©cupÃ©rer le message
 		document.forms[0].elements["messageCourriel"].value = sMessageCourriel
 			+ "\r\n\r\n"
 			+ document.forms[0].elements["messageCourriel"].value;
 		
-		// Récupérer la liste des destinataires
+		// RÃ©cupÃ©rer la liste des destinataires
 		var oInput;
 		
 		for (i=0; i<oEmails.length; i++)
@@ -72,7 +72,7 @@ function envoyer()
 	}
 	else
 	{
-		alert("Pour envoyer un courriel, il faut au moins sélectionner une personne");
+		alert("Pour envoyer un courriel, il faut au moins sÃ©lectionner une personne");
 	}
 }
 //-->

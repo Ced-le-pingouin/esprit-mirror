@@ -3,8 +3,8 @@
 /*
 ** Fichier ................: detail_connexion.php
 ** Description ............: 
-** Date de création .......: 25-02-2003
-** Dernière modification ..: 10-03-2003
+** Date de crÃ©ation .......: 25-02-2003
+** DerniÃ¨re modification ..: 10-03-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -35,14 +35,14 @@ $oEvenement->defTriAscendant($url_bSensTri);
 $iNbrEven = $oEvenement->initEvenements();
 
 // --------------------------------
-// En-têtes du tableau
+// En-tÃªtes du tableau
 // --------------------------------
 
 $asTitres = array(
 	array("#",FALSE,NULL),
 	array("Connexion",TRUE,$oEvenement->TRI_CONNEXION),
-	array("Déconnexion",TRUE,$oEvenement->TRI_DECONNEXION),
-	array("Durée",TRUE,$oEvenement->TRI_TEMPS_CONNEXION));
+	array("DÃ©connexion",TRUE,$oEvenement->TRI_DECONNEXION),
+	array("DurÃ©e",TRUE,$oEvenement->TRI_TEMPS_CONNEXION));
 
 $sContenuTable .= "<tr>";
 
@@ -93,7 +93,7 @@ for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
 }
 
 // --------------------------------
-// Durée totale des connexions
+// DurÃ©e totale des connexions
 // --------------------------------
 
 $sContenuTable .= "<tr>"

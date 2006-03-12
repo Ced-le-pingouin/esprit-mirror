@@ -10,7 +10,7 @@
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
 <script type="text/javascript" language="javascript">
 <!--
-// [0] => identifiant du radio et [1] => identifiant de l'ÈlÈment
+// [0] => identifiant du radio et [1] => identifiant de l'√©l√©ment
 var g_amMessageSelect = new Array(2);
 function init()
 {
@@ -89,7 +89,7 @@ function select_deselect_message(v_sElem)
 [SET_MESSAGE-]
 
 [SET_EMAIL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}'); return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel">{personne->pseudo}</a>[SET_EMAIL-]
-[SET_SANS_EMAIL+]<span class="sans_email" title="Pas díadresse email disponible">{personne->pseudo}</span>[SET_SANS_EMAIL-]
+[SET_SANS_EMAIL+]<span class="sans_email" title="Pas d¬íadresse email disponible">{personne->pseudo}</span>[SET_SANS_EMAIL-]
 
 [SET_SELECTIONNER_MESSAGE+]<input type="radio" name="idMessage" value="{message->id}" onclick="select_deselect_message('id_message_{message->id}')" onfocus="blur()">[SET_SELECTIONNER_MESSAGE-]
 
@@ -99,5 +99,5 @@ function select_deselect_message(v_sElem)
 
 [SET_IMAGE_FEMME+]<span title="{personne->nom_complet}" style="cursor: help;"><img src="theme://icones/girl.gif" width="14" height="26" border="0" hspace="0" align="left"></span>[SET_IMAGE_FEMME-]
 
-[SET_FICHIER_ATTACHE+]<img src="commun://espacer.gif" width="100%" height="20" border="0"><div style="border: rgb(230,238,243) none 1px; padding: 3px; border-top-style: dashed; text-align: right;"><img src="commun://icones/12x12/disquette.gif" width="12" height="12" border="0">&nbsp;<a href="{a['fichier_attache']->href}" title="Cliquer ici pour tÈlÈcharger le fichier" onfocus="blur()" target="_parent">{a['fichier_attache']->text}</a></div>[SET_FICHIER_ATTACHE-]
+[SET_FICHIER_ATTACHE+]<img src="commun://espacer.gif" width="100%" height="20" border="0"><div style="border: rgb(230,238,243) none 1px; padding: 3px; border-top-style: dashed; text-align: right;"><img src="commun://icones/12x12/disquette.gif" width="12" height="12" border="0">&nbsp;<a href="{a['fichier_attache']->href}" title="Cliquer ici pour t√©l√©charger le fichier" onfocus="blur()" target="_parent">{a['fichier_attache']->text}</a></div>[SET_FICHIER_ATTACHE-]
 

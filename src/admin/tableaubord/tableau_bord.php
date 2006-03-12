@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tableau_bord.php
 ** Description ............:
-** Date de création .......: 20/06/2005
-** Dernière modification ..: 18/11/2005
+** Date de crÃ©ation .......: 20/06/2005
+** DerniÃ¨re modification ..: 18/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -45,11 +45,11 @@ $g_iIdUtilisateur       = $oProjet->retIdUtilisateur();
 $g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
+$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par Ã©quipe
 $url_iIdType     = (empty($HTTP_GET_VARS["idType"]) ? 0 : $HTTP_GET_VARS["idType"]);
 
 // ---------------------
@@ -89,10 +89,10 @@ $oResSousActiv = new CRessourceSousActiv($oProjet->oBdd);
 
 $oEquipe = new CEquipe($oProjet->oBdd);
 
-// {{{ Rechercher les étudiants
+// {{{ Rechercher les Ã©tudiants
 if ($g_bModaliteParEquipe)
 {
-	// inscrits dans des équipes
+	// inscrits dans des Ã©quipes
 	$iIdxMembre = 0;
 	$aoInscrits = array();
 	
@@ -102,26 +102,26 @@ if ($g_bModaliteParEquipe)
 			$iIdEquipe  = $oEquipe->retId();
 			$sNomEquipe = $oEquipe->retNom();
 			
-			// Le premier membre de l'équipe recevra le nom de l'équipe
+			// Le premier membre de l'Ã©quipe recevra le nom de l'Ã©quipe
 			foreach ($oEquipe->aoMembres as $aoInscrits[$iIdxMembre])
 			{
 				$aoInscrits[$iIdxMembre]->IdEquipe = $iIdEquipe;
 				$aoInscrits[$iIdxMembre++]->NomEquipe = $sNomEquipe;
 				
-				// Le membre suivant de cette équipe n'aura pas le nom de l'équipe
+				// Le membre suivant de cette Ã©quipe n'aura pas le nom de l'Ã©quipe
 				$iIdEquipe = 0; $sNomEquipe = NULL;
 			}
 		}
 }
 else if ($oFormation->retInscrAutoModules())
 {
-	// inscrits à cette formation
+	// inscrits Ã  cette formation
 	$oFormation->initInscrits();
 	$aoInscrits = &$oFormation->aoInscrits;
 }
 else
 {
-	// inscrits à ce module
+	// inscrits Ã  ce module
 	$oModule->initInscrits();
 	$aoInscrits = &$oModule->aoInscrits;
 }
@@ -201,7 +201,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	$oBlocRubrique->remplacer("{rubrique.nom}",htmlentities($oRubrique->retNomComplet()));
 	
 	// ---------------------
-	// Afficher les entêtes du tableau
+	// Afficher les entÃªtes du tableau
 	// ---------------------
 	$iCol = 1;
 	$iIdRubr = $oRubrique->retId();
@@ -356,12 +356,12 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	$iNbColsEntete = $iCol;
 	
 	// ---------------------
-	// Afficher les informations par étudiant
+	// Afficher les informations par Ã©tudiant
 	// ---------------------
 	$iTotalCols = $iNbCollecticiels + $iNbFormulaires + $iNbForums + $iNbChats;
 	$iLigne = 1; $iCol = 1;
 	
-	// {{{ Afficher les informations pour chaque étudiant
+	// {{{ Afficher les informations pour chaque Ã©tudiant
 	$oBlocTableauBord = new TPL_Block("BLOCK_TABLEAU_BORD",$oBlocRubrique);
 	
 	$oBlocTableauBord->beginLoop();
@@ -373,7 +373,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		$oBlocTableauBord->nextLoop();
 		
-		// {{{ Afficher ou pas le nom de l'équipe
+		// {{{ Afficher ou pas le nom de l'Ã©quipe
 		$oBlocEquipe = new TPL_Block("BLOCK_EQUIPE",$oBlocTableauBord);
 		
 		if ($g_bModaliteParEquipe && isset($oInscrit->NomEquipe))
@@ -392,7 +392,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			$oBlocEquipe->effacer();
 		// }}}
 		
-		// {{{ Colonne de l'étudiant
+		// {{{ Colonne de l'Ã©tudiant
 		$oBlocTableauBord->remplacer(
 			array("{personne.td.id}","{personne.index}","{personne.id}","{personne.nom}","{personne.prenom}")
 			, array("u{$iIdRubr}l{$iLigne}",$iLigne,$iIdInscrit,strtoupper($oInscrit->retNom()),$oInscrit->retPrenom())
@@ -437,8 +437,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				
 				$aiStatutResPlusHaut = $oCollecticiel->retStatutResPlusHaut($aiIdPers);
 				
-				// Dans la modalité par équipe, il faut afficher qu'un seul
-				// document déposé par équipe
+				// Dans la modalitÃ© par Ã©quipe, il faut afficher qu'un seul
+				// document dÃ©posÃ© par Ã©quipe
 				if ($aiStatutResPlusHaut["StatutResPlusHautIdPers"] != $iIdInscrit)
 					$aiStatutResPlusHaut["StatutResPlusHaut"] = 0;
 				
@@ -603,7 +603,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	// }}}
 }
 
-// {{{ Dans le cas ou il n'y aurait pas d'équipe dans cette unité
+// {{{ Dans le cas ou il n'y aurait pas d'Ã©quipe dans cette unitÃ©
 $oBloc = new TPL_Block("BLOCK_MESSAGE",$oBlocRubrique);
 
 if ($iLigne > 1)

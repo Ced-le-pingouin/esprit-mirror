@@ -7,7 +7,7 @@
 
 <FORM onLoad="self.focus()">
 
-<fieldset><legend><b>"Axes/tendances" appliqué au formulaire</b></legend>
+<fieldset><legend><b>"Axes/tendances" appliquÃ© au formulaire</b></legend>
 <div align="center">
 [BLOCK_AXES+]
 {desc_axe}<br>

@@ -3,8 +3,8 @@
 /*
 ** Fichier ................: sauver_modele_index.php
 ** Description ............: 
-** Date de création .......: 16-01-2003
-** Dernière modification ..: 16-01-2003
+** Date de crÃ©ation .......: 16-01-2003
+** DerniÃ¨re modification ..: 16-01-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

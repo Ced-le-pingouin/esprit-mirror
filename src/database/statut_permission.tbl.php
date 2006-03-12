@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: statut_permission.tbl.php
 ** Description ............: 
-** Date de création .......: 18/03/2005
-** Dernière modification ..: 18/03/2005
+** Date de crÃ©ation .......: 18/03/2005
+** DerniÃ¨re modification ..: 18/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

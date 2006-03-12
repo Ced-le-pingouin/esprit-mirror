@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ressource_votants-index.php
 ** Description ............: 
-** Date de création .......: 26/11/2004
-** Dernière modification ..: 09/05/2005
+** Date de crÃ©ation .......: 26/11/2004
+** DerniÃ¨re modification ..: 09/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdResSA  = (empty($HTTP_GET_VARS["idResSA"]) ? 0 : $HTTP_GET_VARS["idResSA"]);
 $url_iIdEquipe = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);

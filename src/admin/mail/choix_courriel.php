@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: choix_courriel.php
 ** Description ............:
-** Date de création .......: 17/01/2005
-** Dernière modification ..: 16/02/2005
+** Date de crÃ©ation .......: 17/01/2005
+** DerniÃ¨re modification ..: 16/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ if (!is_object($oProjet->oUtilisateur))
 	exit("<html><body></body></html>");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $sParamsUrl = NULL;
 
@@ -63,7 +63,7 @@ $bPermisUtiliserBoiteCourriellePC = !$url_bToutesPersonnes & $oProjet->verifPerm
 // Initialiser
 // ---------------------
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 BLOCK_HTML_HEAD;
 // }}}

@@ -22,11 +22,11 @@
 /*
 ** Fichier .................: nvfrm_lst.php
 ** Description .............: 
-** Date de création ........: 04/06/2002
-** Dernière modification ...: 22/02/2005
+** Date de crÃ©ation ........: 04/06/2002
+** DerniÃ¨re modification ...: 22/02/2005
 ** Auteurs .................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once(dir_database("formation.tbl.php"));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupération des valeurs des formulaires ou des l'urls
+// RÃ©cupÃ©ration des valeurs des formulaires ou des l'urls
 // ---------------------
 $filtre   = isset($HTTP_GET_VARS["FILTRE"]) ? $HTTP_GET_VARS["FILTRE"] : NULL;
 $tri      = isset($HTTP_GET_VARS["TRI"]) ? $HTTP_GET_VARS["TRI"] : NULL;
@@ -89,7 +89,7 @@ function init()
 <td class="dialog_menu_intitule">&nbsp;</td>
 <!--<td class="dialog_menu_intitule" width="1%" align="center"><b>&nbsp;Tp.&nbsp;</b></td>-->
 <td class="dialog_menu_intitule" width="99%" align="center"><b>&nbsp;Nom&nbsp;</b></td>
-<td class="dialog_menu_intitule" align="center"><b>&nbsp;Détail&nbsp;</b></td>
+<td class="dialog_menu_intitule" align="center"><b>&nbsp;DÃ©tail&nbsp;</b></td>
 </tr>
 <?php
 

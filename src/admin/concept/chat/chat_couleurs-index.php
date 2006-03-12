@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: chat_couleurs-index.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 11/08/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 11/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

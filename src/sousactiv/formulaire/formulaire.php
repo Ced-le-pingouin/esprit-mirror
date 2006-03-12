@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: formulaire.php
 ** Description ............:
-** Date de création .......: 26/10/2004
-** Dernière modification ..: 22/09/2005
+** Date de crÃ©ation .......: 26/10/2004
+** DerniÃ¨re modification ..: 22/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initModuleCourant();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdActiv     = (empty($HTTP_GET_VARS["idActiv"]) ? 0 : $HTTP_GET_VARS["idActiv"]);
 $url_iIdSousActiv = (empty($HTTP_GET_VARS["idSousActiv"]) ? 0 : $HTTP_GET_VARS["idSousActiv"]);
@@ -52,13 +52,13 @@ $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 
 $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
-// Vérifier que cette personne a le droit d'évaluer les formulaires soumis
+// VÃ©rifier que cette personne a le droit d'Ã©valuer les formulaires soumis
 $bPeutEvaluerFormulaires  = $oProjet->verifModifierModule();
 $bPeutEvaluerFormulaires &= $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
 
 if ($bPeutEvaluerFormulaires)
 {
-	// Obtenir la liste des étudiants de ce module
+	// Obtenir la liste des Ã©tudiants de ce module
 	$oProjet->initInscritsModule();
 	
 	$aiIdPers = array();
@@ -103,7 +103,7 @@ $oTpl = new Template("formulaire.tpl");
 $oBlocFormulaire = new TPL_Block("BLOCK_FORMULAIRE",$oTpl);
 $oBlocFormulaire->beginLoop();
 
-// {{{ Liste des icônes
+// {{{ Liste des icÃ´nes
 $sSetListeIcones = $oTpl->defVariable("SET_LISTE_ICONES");
 
 $oBlocFormulaire->nextLoop();
@@ -175,7 +175,7 @@ if (empty($iDeroulement) || $iDeroulement != SOUMISSION_AUTOMATIQUE)
 	{
 		$iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,STATUT_RES_EN_COURS);
 		
-		// Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
+		// Si l'utilisateur est un Ã©tudiant alors il ne faut pas afficher l'onglet
 		// si celui-ci n'a pas soumis des documents
 		if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
 			break;
@@ -218,7 +218,7 @@ if (empty($iDeroulement) || $iDeroulement != SOUMISSION_AUTOMATIQUE)
 			$sListeDocuments .= str_replace($asRechercher,$amRemplacer,$sVarLigneDocument);
 		}
 		
-		// Ajouter dans le template la liste des documents trouvés
+		// Ajouter dans le template la liste des documents trouvÃ©s
 		$oBlocFormulaire->remplacer("{liste_documents}",$sListeDocuments);
 	}
 }
@@ -241,7 +241,7 @@ foreach ($aiIdPers as $iIdPers)
 	
 	$iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,array(STATUT_RES_SOUMISE,STATUT_RES_APPROF,STATUT_RES_ACCEPTEE));
 	
-	// Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
+	// Si l'utilisateur est un Ã©tudiant alors il ne faut pas afficher l'onglet
 	// si celui-ci n'a pas soumis des documents
 	if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
 		break;
@@ -295,14 +295,14 @@ foreach ($aiIdPers as $iIdPers)
 			// Initialiser l'auteur du formulaire
 			$oFormulaireComplete->initAuteur();
 			
-			// Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
-			// il faut que la personne est un tuteur ou que l'étudiant a dans sa
-			// liste un document qui a été évalué par son tuteur
+			// Pour pouvoir afficher le bouton "Evaluer/Obtenir l'Ã©valuation"
+			// il faut que la personne est un tuteur ou que l'Ã©tudiant a dans sa
+			// liste un document qui a Ã©tÃ© Ã©valuÃ© par son tuteur
 			if (empty($sBoutonEvaluer) &&
 				($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
 				$sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
 			
-			// Liste des éléments à remplacer
+			// Liste des Ã©lÃ©ments Ã  remplacer
 			$amRemplacer = array(
 				  ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC ? $sVarButonSelectionnerFormulaire : "&nbsp;")
 				, $oFormulaireComplete->retTitre()

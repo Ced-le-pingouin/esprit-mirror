@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: gestion_rubr.php
 ** Description ............: 
-** Date de création .......: 01/02/2001
-** Dernière modification ..: 23/09/2004
+** Date de crÃ©ation .......: 01/02/2001
+** DerniÃ¨re modification ..: 23/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -42,7 +42,7 @@ switch ($act)
 	//   ----------
 		$oRubrique = new CModule_Rubrique($oProjet->oBdd,$g_iRubrique);
 		
-		// {{{ Récupérer les variables de l'url
+		// {{{ RÃ©cupÃ©rer les variables de l'url
 		$url_iOrdreRubrique  = $HTTP_POST_VARS["ordre_rubrique"];
 		$url_iTypeRubrique   = $HTTP_POST_VARS["type_rubrique"];
 		$url_sNomRubrique    = $HTTP_POST_VARS["nom_rubrique"];
@@ -96,7 +96,7 @@ switch ($act)
 				}
 			}
 			
-			// Effacer l'ancien fichier qui se trouve dans le répertoire du serveur
+			// Effacer l'ancien fichier qui se trouve dans le rÃ©pertoire du serveur
 			list($sNomFichierEffacer) = explode(":",$oRubrique->retDonnee());
 			
 			@unlink($repDeposer.$sNomFichierEffacer);
@@ -104,7 +104,7 @@ switch ($act)
 			// Charger le fichier
 			chargerFichier($html_rubrique,$repDeposer.$html_rubrique_name);
 			
-			// Mettre à jour la base de données
+			// Mettre Ã  jour la base de donnÃ©es
 			if (file_exists($repDeposer.$html_rubrique_name))
 				$oRubrique->defDonnee($html_rubrique_name);
 			else
@@ -113,7 +113,7 @@ switch ($act)
 		// }}}
 		
 		// ---------------------
-		// Retourner l'identifiant unique de l'intitulé
+		// Retourner l'identifiant unique de l'intitulÃ©
 		// ---------------------
 		$oIntitule = new CIntitule($oProjet->oBdd);
 		$oIntitule->initParNom($url_sNomIntitule,TYPE_RUBRIQUE);
@@ -126,7 +126,7 @@ switch ($act)
 			{
 				case LIEN_FORUM: $url_sNomRubrique = "Forum"; break;
 				case LIEN_CHAT: $url_sNomRubrique = CHAT_NOM_DEFAUT; break;
-				case LIEN_TEXTE_FORMATTE: $url_sNomRubrique = "Texte formaté"; break;
+				case LIEN_TEXTE_FORMATTE: $url_sNomRubrique = "Texte formatÃ©"; break;
 			}
 		}
 		
@@ -143,7 +143,7 @@ switch ($act)
 		{
 			$sDonnees = (empty($HTTP_POST_VARS["LIEN_SITE_INTERNET"]) ? "" : $HTTP_POST_VARS["LIEN_SITE_INTERNET"]);
 			// Pourquoi un rawurlencode ?
-			// C'est à cause de ces deux points: "disc.vjf.inserm.fr(:)2010/basisrapports/psycho/psycho_ch10.pdf"
+			// C'est Ã  cause de ces deux points: "disc.vjf.inserm.fr(:)2010/basisrapports/psycho/psycho_ch10.pdf"
 			$oRubrique->defDonnee(rawurlencode($sDonnees));
 			$sDonnees = NULL;
 		}
@@ -158,15 +158,15 @@ switch ($act)
 			if ($oForum->retId() > 0)
 			{
 				// Le forum existe, il suffit de changer son nom
-				$oForum->defNom($url_sNomRubrique);			// Le forum doit avoir le même nom que la rubrique
-				$oForum->defStatut($url_iStatutRubrique);	// Le forum doit avoir le même statut que la rubrique
+				$oForum->defNom($url_sNomRubrique);			// Le forum doit avoir le mÃªme nom que la rubrique
+				$oForum->defStatut($url_iStatutRubrique);	// Le forum doit avoir le mÃªme statut que la rubrique
 				$oForum->defModalite($url_iModaliteForum);
 				$oForum->defAccessibleVisiteurs($url_bAccessibleVisiteursForum);
 				$oForum->enregistrer();
 			}
 			else
 			{
-				// Si le forum n'existe pas, il nous faudra, donc, en créer un nouveau
+				// Si le forum n'existe pas, il nous faudra, donc, en crÃ©er un nouveau
 				$oForum->Ajouter($url_sNomRubrique
 					,$url_iModaliteForum
 					,$url_iStatutRubrique

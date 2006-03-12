@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: reponse.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -40,16 +40,16 @@ class CReponse
 	function CReponse(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-							//si 0 crée un objet presque vide sinon 
-							//rempli l'objet avec les données de la table Reponse
-							//de l'elément ayant l'Id passé en argument 
-							//(ou avec l'objet passé en argument mais sans passer par le constructeur)
+							//si 0 crÃ©e un objet presque vide sinon 
+							//rempli l'objet avec les donnÃ©es de la table Reponse
+							//de l'elÃ©ment ayant l'Id passÃ© en argument 
+							//(ou avec l'objet passÃ© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requÃªte sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
 	function init ($v_oEnregExistant = NULL)
 	{
@@ -96,7 +96,7 @@ class CReponse
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function ajouter () 	//Cette fonction ajoute une réponse avec tous ses champs vide, en fin de table
+	function ajouter () 	//Cette fonction ajoute une rÃ©ponse avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO QReponse SET IdReponse=NULL;";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -108,7 +108,7 @@ class CReponse
 		$sTexteReponse = validerTexte($this->oEnregBdd->TexteReponse);
 
 		//Quand on envoie false cela veut dire que l'on ne modifie ni l'ordre, ni l'Id de l'objet auquel
-		// se rapporte la réponse
+		// se rapporte la rÃ©ponse
 		if ($v_bModifOrdre)
 		{
 			$sModifOrdre = ", OrdreReponse='{$this->oEnregBdd->OrdreReponse}'";
@@ -123,7 +123,7 @@ class CReponse
 			.$sModifIdObjForm
 			.($this->oEnregBdd->IdReponse > 0 ? " WHERE IdReponse='{$this->oEnregBdd->IdReponse}'" : NULL);
 		
-		//echo "Req enregistrer réponse : ".$sRequeteSql;
+		//echo "Req enregistrer rÃ©ponse : ".$sRequeteSql;
 		$this->oBdd->executerRequete($sRequeteSql);
 
 		return TRUE;
@@ -163,9 +163,9 @@ class CReponse
 
 	/*
 	** Fonction 		: effacerRepObj
-	** Description		: supprime TOUTES les réponses qui se rapportent à un objet formulaire 
-	** Entrée			:
-					$v_iIdObjForm : Id de l'objet formulaire à traiter
+	** Description		: supprime TOUTES les rÃ©ponses qui se rapportent Ã  un objet formulaire 
+	** EntrÃ©e			:
+					$v_iIdObjForm : Id de l'objet formulaire Ã  traiter
 	** Sortie			: 
 	*/
 	function effacerRepObj ($v_iIdObjForm)
@@ -179,9 +179,9 @@ class CReponse
 	
 	/*
 	** Fonction 		: effacerRepPoidsObj
-	** Description		: supprime TOUTES les réponses et leurs poids qui se rapportent à un objet formulaire 
-	** Entrée			:
-					$v_iIdObjForm : Id de l'objet formulaire à traiter
+	** Description		: supprime TOUTES les rÃ©ponses et leurs poids qui se rapportent Ã  un objet formulaire 
+	** EntrÃ©e			:
+					$v_iIdObjForm : Id de l'objet formulaire Ã  traiter
 	** Sortie			: 
 	*/
 	function effacerRepPoidsObj ($v_iIdObjForm)
@@ -219,7 +219,7 @@ class CReponse
 			
 			$this->oBdd->libererResult($hResult);
 			
-			//Ci-dessous : suppression de la virgule de trop a la fin de la chaîne de caractères
+			//Ci-dessous : suppression de la virgule de trop a la fin de la chaÃ®ne de caractÃ¨res
 			$sListeIdReponse = substr($sListeIdReponse,0,strlen($sListeIdReponse)-1);
 			
 			//Suppression des poids
@@ -227,7 +227,7 @@ class CReponse
 			//echo "<br>effacerRepPoidsObj()".$sRequeteSql;
 			$this->oBdd->executerRequete($sRequeteSql);
 			
-			//Suppression des réponses
+			//Suppression des rÃ©ponses
 			$sRequeteSql = "DELETE FROM Reponse WHERE IdObjForm ='$v_iIdObjForm'";
 			//echo "<br>effacerRepPoidsObj()".$sRequeteSql;
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -238,7 +238,7 @@ class CReponse
 		return TRUE;
 	}
 	
-	//Fonctions de définition
+	//Fonctions de dÃ©finition
 	function defId ($v_iIdReponse) { $this->oEnregBdd->IdReponse = $v_iIdReponse; } //Ne pas confondre IdObfForm[Multi] et IdReponse[Unique] - Fonction pas utile car auto_increment ?
 	function defTexteReponse ($v_sTexteReponse) { $this->oEnregBdd->TexteReponse = $v_sTexteReponse; }
 	function defOrdreReponse ($v_iOrdreReponse) { $this->oEnregBdd->OrdreReponse = $v_iOrdreReponse; }

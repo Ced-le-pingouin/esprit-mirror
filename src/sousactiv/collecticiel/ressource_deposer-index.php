@@ -32,7 +32,7 @@ $sParamUrl = NULL;
 // ---------------------
 
 $sFrameSrcTitre = "ressource_deposer-titre.php";
-$sTitrePrincipal = "Déposer un document";
+$sTitrePrincipal = "DÃ©poser un document";
 
 // ---------------------
 // Frame principal

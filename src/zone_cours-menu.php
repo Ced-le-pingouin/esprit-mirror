@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: zone_cours-menu.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 14/11/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 14/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Cédric FLOQUET <cedric.floquet.umh.ac.be>
+**                           CÃ©dric FLOQUET <cedric.floquet.umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,13 +38,13 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers   = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
 $url_iIdEquipe = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
 
 // ---------------------
-// Définitions
+// DÃ©finitions
 // ---------------------
 define("PREMIERE_PAGE_FRAME_PRINCIPALE",0);
 define("PREMIERE_PAGE_NOUVELLE_FENETRE",1);
@@ -74,7 +74,7 @@ $bVerifierAccessibilite = (STATUT_PERS_TUTEUR < $g_iIdStatutUtilisateur);
 $oTpl = new Template(dir_theme("zone_cours-menu.tpl",FALSE,TRUE));
 
 // --------------------------
-// Afficher les fichiers (css ou js) nécessaires à la plate-forme
+// Afficher les fichiers (css ou js) nÃ©cessaires Ã  la plate-forme
 // --------------------------
 $oBlock_Plateform_Header = new TPL_Block("BLOCK_HTML_HEAD",$oTpl);
 $oBlock_Plateform_Header->ajouter(<<<BLOCK_HTML_HEAD
@@ -84,12 +84,12 @@ BLOCK_HTML_HEAD
 );
 $oBlock_Plateform_Header->afficher();
 
-// Première page
+// PremiÃ¨re page
 $oBlock_Premiere_Page = new TPL_Block("BLOCK_FONCTION_INIT",$oTpl);
 
 $sTableauTitresActivs = ($iNbrActivs > 0 ? NULL : "&nbsp;");
 
-// Bloc des activités
+// Bloc des activitÃ©s
 $oBlock_Activ = new TPL_Block("BLOCK_BLOC",$oTpl);
 
 $oSet_Bloque_Vide          = $oTpl->defVariable("SET_SANS_SOUS_ACTIVITE");
@@ -112,10 +112,10 @@ $oSet_Glossaire            = $oTpl->defVariable("SET_GLOSSAIRE");
 $sSetFormulaire            = $oTpl->defVariable("SET_FORMULAIRE");
 $sSetTableauDeBord         = $oTpl->defVariable("SET_TABLEAU_DE_BORD");
 
-// Premières pages
-$iTypePremierePage = -1; // Pas de première page à lancer
+// PremiÃ¨res pages
+$iTypePremierePage = -1; // Pas de premiÃ¨re page Ã  lancer
 
-// Attention à l'ordre
+// Attention Ã  l'ordre
 $oSet_Premiere_Page = array();
 $oSet_Premiere_Page[] = $oTpl->defVariable("SET_PREMIERE_PAGE_FRAME_PRINCIPALE");
 $oSet_Premiere_Page[] = $oTpl->defVariable("SET_PREMIERE_PAGE_NOUVELLE_FENETRE");
@@ -125,7 +125,7 @@ $oSet_Premiere_Page[] = $oTpl->defVariable("SET_PREMIERE_PAGE_TEXTE_FORMATTE");
 $oSet_Premiere_Page[] = $oTpl->defVariable("SET_PREMIERE_TABLEAU_DE_BORD");
 
 // --------------------------
-// Remplacer des éléments globaux
+// Remplacer des Ã©lÃ©ments globaux
 // --------------------------
 $oTpl->remplacer("{texte_formatte.url}",dir_sousactiv(LIEN_PAGE_HTML,"description-index.php",FALSE));
 
@@ -151,7 +151,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 	
 	$oBlock_Activ->nextLoop();
 	
-	// Activité
+	// ActivitÃ©
 	$iIdActiv = $oActiv->retId();
 	
 	$oBlock_Activ->remplacer("{nom_bloc}",$oActiv->retNom());
@@ -162,15 +162,15 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 	{
 		if (STATUT_PERS_VISITEUR != $g_iIdStatutUtilisateur)
 		{
-			// Afficher la liste des tuteurs ainsi que la liste des équipes
-			// dans la cas où le statut de l'utilisateur est différent
+			// Afficher la liste des tuteurs ainsi que la liste des Ã©quipes
+			// dans la cas oÃ¹ le statut de l'utilisateur est diffÃ©rent
 			// du visiteur
 			$oBlockSousActiv->ajouter($oSet_Equipe);
 			$oBlockSousActiv->remplacer("{id_bloc}",$iIdActiv);
 		}
 	}
 	
-	// Sous-activité
+	// Sous-activitÃ©
 	$iNbrSousActivs = $oActiv->initSousActivs(($bVerifierAccessibilite ? $iIdPers : NULL));
 	$iIdSousActivPremierePage = ($g_iIdSousActiv > 0 ? $g_iIdSousActiv : $oActiv->retIdPremierePage());
 	
@@ -202,7 +202,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			}
 			
 			$sHref = $iTypePremierePageTmp = NULL;
-			$sSignet = "signet-{$iIdSousActiv}"; // Afficher le signet en face de la sous-activité
+			$sSignet = "signet-{$iIdSousActiv}"; // Afficher le signet en face de la sous-activitÃ©
 			$sHrefTitle = $oSousActiv->retInfoBulle(TRUE);
 			
 			$iTypePremierePageTmp = PREMIERE_PAGE_FRAME_PRINCIPALE;
@@ -215,7 +215,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				//   --------------
 					$sRepCours = $oActiv->retRepCours("html.php",TRUE);
 					
-					// Vérifier si le fichier existe
+					// VÃ©rifier si le fichier existe
 					if (!is_file($sRepCours))
 						@copy(dir_formation(NULL,"html.inc.php",TRUE),$sRepCours);
 					
@@ -258,8 +258,8 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 					
 				case LIEN_DOCUMENT_TELECHARGER:
 				//   -------------------------
-					// Il y a un ";" à la fin, dans le cas où il y aurait qu'une seule
-					// données
+					// Il y a un ";" Ã  la fin, dans le cas oÃ¹ il y aurait qu'une seule
+					// donnÃ©es
 					list($sFichier,$iType) = explode(";",$sDonnees);
 					
 					if ($iType == FRAME_CENTRALE_INDIRECT)
@@ -328,9 +328,9 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 					$sSignet = NULL;
 					$iTypePremierePageTmp = PREMIERE_PAGE_FORUM;
 					
-					// Vérifier que ce lien contient bien un forum.
+					// VÃ©rifier que ce lien contient bien un forum.
 					// Dans le cas contraire ajouter un forum de type
-					// sous-activité.
+					// sous-activitÃ©.
 					$oForum = new CForum($oProjet->oBdd);
 					$oForum->initForumParType(TYPE_SOUS_ACTIVITE,$iIdSousActiv);
 					$iIdForum = $oForum->retId();
@@ -427,7 +427,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			
 			if (isset($sHref))
 			{
-				// {{{ Afficher la première page
+				// {{{ Afficher la premiÃ¨re page
 				$sHrefPremierPage = $sHref
 					.(empty($url_iIdEquipe)
 						? (empty($url_iIdPers)
@@ -470,7 +470,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				// Bloc
 				$oBlockSousActiv->remplacer("{activ.id}",$iIdActiv);
 				
-				// Elément actif
+				// ElÃ©ment actif
 				$oBlockSousActiv->remplacer("{sousactiv.ordre}",(isset($sSignet) ? $iOrdreHistorique : "-1"));
 				
 				$oBlockSousActiv->remplacer("{sousactiv.id}",$iIdSousActiv);
@@ -503,7 +503,7 @@ else
 	$oTpl->remplacer("{tableau_historiques}","");
 
 // --------------------------
-// Première page
+// PremiÃ¨re page
 // --------------------------
 if ($iTypePremierePage > -1)
 	$oBlock_Premiere_Page->afficher();

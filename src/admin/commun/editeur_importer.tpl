@@ -18,7 +18,7 @@ div.barre_de_progression {
 </head>
 <body>
 <form action="editeur_importer.php" method="post" enctype="multipart/form-data">
-<p class="intitule">Rechercher le fichier à importer&nbsp;:<br><input type="file" name="fichier" size="50" style="width: 100%;"></p>
+<p class="intitule">Rechercher le fichier Ã  importer&nbsp;:<br><input type="file" name="fichier" size="50" style="width: 100%;"></p>
 <span style="font-size: 8pt;">Seuls les fichiers texte (extension &laquo;&nbsp;<i>txt</i>&nbsp;&raquo;) seront accept&eacute;s.</span>
 </form>
 [BLOCK_BARRE_DE_PROGRESSION+][BLOCK_BARRE_DE_PROGRESSION-]

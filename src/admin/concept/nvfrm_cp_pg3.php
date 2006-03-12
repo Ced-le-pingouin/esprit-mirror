@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: confirm_cp_form.inc.php
 ** Description ............: 
-** Date de création .......: 04-06-2002
-** Dernière modification ..: 15-10-2002
+** Date de crÃ©ation .......: 04-06-2002
+** DerniÃ¨re modification ..: 15-10-2002
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -36,7 +36,7 @@
 $oProjet->defFormationCourante($iIdForm);
 
 // *************************************
-// Copier entièrement la formation sélectionnée
+// Copier entiÃ¨rement la formation sÃ©lectionnÃ©e
 // *************************************
 
 if (isset($bConfirmation) && $bConfirmation)
@@ -128,5 +128,5 @@ echo "<tr>"
 	."</tr>";
 ?>
 </table>
-<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaîtra à l’écran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
-<p><b><u>Note</u></b>&nbsp;: Vous pouvez changer ces éléments à tout moment à partir d'eConcept.</p>
+<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaÃ®tra Ã  lÂ’Ã©cran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
+<p><b><u>Note</u></b>&nbsp;: Vous pouvez changer ces Ã©lÃ©ments Ã  tout moment Ã  partir d'eConcept.</p>

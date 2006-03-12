@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: dialog-menu.tpl.php
 ** Description ............:
-** Date de création .......: 15/06/2004
-** Dernière modification ..: 28/09/2005
+** Date de crÃ©ation .......: 15/06/2004
+** DerniÃ¨re modification ..: 28/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 **/
@@ -85,7 +85,7 @@ if (isset($aMenus) && is_array($aMenus))
 		$sMenu .= "<td style=\"{$sStyleColonne}\">{$sMenuColonne}</td>";
 }
 
-// Par défaut, afficher le bouton "fermer"
+// Par dÃ©faut, afficher le bouton "fermer"
 if (!isset($sMenu))
 	$sMenu = "<td align=\"right\"><a"
 		." href=\"javascript: top.close();\""

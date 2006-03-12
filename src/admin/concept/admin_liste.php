@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: admin_liste.php
 ** Description ............: 
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 31/03/2005
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 31/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_GET_VARS))
 {
@@ -118,7 +118,7 @@ if ($g_iFormation > 0)
 				{
 					$oBlocRubrique->nextLoop();
 					
-					// {{{ Activité
+					// {{{ ActivitÃ©
 					$oBlocActiv = new TPL_Block("BLOCK_ACTIVITE",$oBlocRubrique);
 					
 					if ($oRubrique->initActivs() > 0)
@@ -129,7 +129,7 @@ if ($g_iFormation > 0)
 						{
 							$oBlocActiv->nextLoop();
 							
-							// {{{ Sous-activité
+							// {{{ Sous-activitÃ©
 							$oBlocSousActiv = new TPL_Block("BLOCK_SOUS_ACTIVITE",$oBlocActiv);
 							
 							if ($oActiv->initSousActivs() > 0)

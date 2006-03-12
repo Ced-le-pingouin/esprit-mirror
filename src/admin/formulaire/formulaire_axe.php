@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -59,16 +59,16 @@ if (isset($HTTP_GET_VARS['valider']))
 	$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd);
 	$oFormulaire_Axe->effacerAxesForm($v_iIdFormulaire);
 	
-	$sListeAxes="";  //Va contenir une liste des axes du formulaire [variable string avec les valeurs séparées par des virgules]
+	$sListeAxes="";  //Va contenir une liste des axes du formulaire [variable string avec les valeurs sÃ©parÃ©es par des virgules]
 	for ($i = 0; $i < count($axes); $i++)
 	{
-		//echo "<br>Axe numéro ".$axes[$i]." sélectionné.";
+		//echo "<br>Axe numÃ©ro ".$axes[$i]." sÃ©lectionnÃ©.";
 		$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd,$v_iIdFormulaire,$axes[$i]);
 		$oFormulaire_Axe->ajouter();
 		$sListeAxes.="$axes[$i]".",";
 	}
 	
-	//Ci-dessous : suppression de la virgule de trop a la fin de la chaîne de caractères
+	//Ci-dessous : suppression de la virgule de trop a la fin de la chaÃ®ne de caractÃ¨res
 	$sListeAxes = subStr($sListeAxes,0,strlen($sListeAxes)-1);
 	
 	$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
@@ -78,15 +78,15 @@ if (isset($HTTP_GET_VARS['valider']))
 	if ($iNbAxesForm < 1)
 	{
 		echo "<p align=\"center\">";
-		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Aucun Axe n'a été selectionné pour ce formulaire";
+		echo "<br><b>Les changements ont bien Ã©tÃ© enregistrÃ©s</b>";
+		echo "<br>Aucun Axe n'a Ã©tÃ© selectionnÃ© pour ce formulaire";
 		echo "</p>";
 	}
 	else
 	{
 		echo "<p align=\"center\">";
-		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Nombre d'axe sélectionné au total : ".$iNbAxesForm;
+		echo "<br><b>Les changements ont bien Ã©tÃ© enregistrÃ©s</b>";
+		echo "<br>Nombre d'axe sÃ©lectionnÃ© au total : ".$iNbAxesForm;
 		echo "</p>";
 		
 		$oTpl = new Template("formulaire_axe_2.tpl");
@@ -100,7 +100,7 @@ if (isset($HTTP_GET_VARS['valider']))
 			for ($i = 0; $i < count($axes); $i++)
 			{
 				$oBlock->nextLoop();
-				$oAxe = new CAxe($oProjet->oBdd,$axes[$i]); //Crée un objet objet axe
+				$oAxe = new CAxe($oProjet->oBdd,$axes[$i]); //CrÃ©e un objet objet axe
 				
 				$oBlock->remplacer("{id_axe}",$oAxe->retId());
 				$oBlock->remplacer("{desc_axe}",$oAxe->retDescAxe());
@@ -114,7 +114,7 @@ if (isset($HTTP_GET_VARS['valider']))
 		}
 					
 		$oTpl->afficher();	  
-		$oProjet->terminer();  //Ferme la connection avec la base de données
+		$oProjet->terminer();  //Ferme la connection avec la base de donnÃ©es
 	}
 }
 else
@@ -138,13 +138,13 @@ else
 		while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		{
 			$oBlock->nextLoop();
-			$oAxe = new CAxe($oProjet->oBdd); //Crée un objet objetformulaire "presque vide"
-			$oAxe->init($oEnreg); //Remplit l'objet créé ci-dessus avec l'enreg en cours
+			$oAxe = new CAxe($oProjet->oBdd); //CrÃ©e un objet objetformulaire "presque vide"
+			$oAxe->init($oEnreg); //Remplit l'objet crÃ©Ã© ci-dessus avec l'enreg en cours
 			
 			$oBlock->remplacer("{id_axe}",$oAxe->retId());
 			$oBlock->remplacer("{desc_axe}",$oAxe->retDescAxe());
 			
-			//Permet de cocher la checkbox si l'axe en cours de traitement est présent dans le formulaire
+			//Permet de cocher la checkbox si l'axe en cours de traitement est prÃ©sent dans le formulaire
 			if(in_array($oAxe->retId(), $TabAxesForm)) 
 			{
 				$oBlock->remplacer("{chk}","CHECKED");
@@ -170,7 +170,7 @@ else
 	
 	$oTpl->afficher();	  
 	$oProjet->oBdd->libererResult($hResult);
-	$oProjet->terminer();  //Ferme la connection avec la base de données
+	$oProjet->terminer();  //Ferme la connection avec la base de donnÃ©es
 }
 //echo "</body>\n";
 //echo "</html>\n";

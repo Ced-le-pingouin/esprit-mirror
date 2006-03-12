@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tableau_bord-liste.php
 ** Description ............:
-** Date de création .......: 27/06/2005
-** Dernière modification ..: 08/11/2005
+** Date de crÃ©ation .......: 27/06/2005
+** DerniÃ¨re modification ..: 08/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -40,7 +40,7 @@ $oProjet = new CProjet();
 $oProjet->initModuleCourant();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm     = (empty($HTTP_GET_VARS["form"]) ? NULL : $HTTP_GET_VARS["form"]);
 $url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]);
@@ -90,7 +90,7 @@ if ($oFormation->initModules() > 0)
 						,htmlentities($oRubrique->retNomComplet()))
 				);
 				
-				// Mettre à -1, sinon on va placer des "selected" dans toutes les unités
+				// Mettre Ã  -1, sinon on va placer des "selected" dans toutes les unitÃ©s
 				if ($iPremierModule == $iIdMod)
 					$iPremierModule = -1;
 			}
@@ -134,7 +134,7 @@ foreach ($aiIdType as $iIdType)
 $oBloc->afficher();
 // }}}
 
-// {{{ Modalité
+// {{{ ModalitÃ©
 $asRechTpl = array("{modalite.individuel.selected}","{modalite.par_equipe.selected}");
 $amReplTpl = array(NULL,NULL);
 

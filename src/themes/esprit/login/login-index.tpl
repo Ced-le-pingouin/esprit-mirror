@@ -1,10 +1,10 @@
 <html>
 <head>
 <title>La page d'accueil d'Esprit</title>
-<meta name="Author" content="Unité de Technologie de l'Education de l'Université de Mons-Hainaut (Belgique)">
-<meta name="keywords" content="formation,distance,fad,plateforme,plate-forme,esprit,université,ouverte,campus,virtuel">
-<meta name="keyword" content="formation,distance,fad,plateforme,plate-forme,esprit,université,ouverte,campus,virtuel">
-<meta name="description" content="Esprit est une plateforme de formation à distance qui permet aux étudiants de réaliser des activités d'apprentissage, seuls ou en petits groupes, sous la supervision de tuteurs en ligne. Esprit permet à l'enseignant concepteur de créer son cours de manière autonome et totalement à distance. Ce cours est envisagé comme une série d'activités d'apprentissage structurées selon un scénario pédagogique. Des outils permettent aux tuteurs d'encadrer et d'animer le travail réalisé par les apprenants. Le travail collaboratif est nettement favorisé.">
+<meta name="Author" content="UnitÃ© de Technologie de l'Education de l'UniversitÃ© de Mons-Hainaut (Belgique)">
+<meta name="keywords" content="formation,distance,fad,plateforme,plate-forme,esprit,universitÃ©,ouverte,campus,virtuel">
+<meta name="keyword" content="formation,distance,fad,plateforme,plate-forme,esprit,universitÃ©,ouverte,campus,virtuel">
+<meta name="description" content="Esprit est une plateforme de formation Ã  distance qui permet aux Ã©tudiants de rÃ©aliser des activitÃ©s d'apprentissage, seuls ou en petits groupes, sous la supervision de tuteurs en ligne. Esprit permet Ã  l'enseignant concepteur de crÃ©er son cours de maniÃ¨re autonome et totalement Ã  distance. Ce cours est envisagÃ© comme une sÃ©rie d'activitÃ©s d'apprentissage structurÃ©es selon un scÃ©nario pÃ©dagogique. Des outils permettent aux tuteurs d'encadrer et d'animer le travail rÃ©alisÃ© par les apprenants. Le travail collaboratif est nettement favorisÃ©.">
 <link rel="Shortcut Icon" type="image/x-icon" href="/esprit/favicon.ico">
 </head>
 <frameset rows="*,51,23" border="0" frameborder="0" framespacing="0">

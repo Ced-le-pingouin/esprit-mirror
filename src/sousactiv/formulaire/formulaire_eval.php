@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: formulaire_eval.php
 ** Description ............:
-** Date de création .......: 05/11/2004
-** Dernière modification ..: 22/09/2005
+** Date de crÃ©ation .......: 05/11/2004
+** DerniÃ¨re modification ..: 22/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -41,7 +41,7 @@ $g_iIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId(
 $bAEteEvalue = FALSE;
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_POST_VARS["idFCSousActiv"]))
 {
@@ -68,7 +68,7 @@ else
 		$url_iIdPers = $g_iIdPers;
 	else if ($url_iIdPers < 1)
 	{
-		// Se positionner sur la permière évaluation
+		// Se positionner sur la permiÃ¨re Ã©valuation
 		$oProjet->oModuleCourant->initTuteurs();
 		$iIdPersDefaut = 0;
 		
@@ -125,7 +125,7 @@ else if ($url_bEvalFC)
 	$oTpl->remplacer("{formulaire_eval->id}",$url_iIdFCSousActiv);
 	$oTpl->remplacer("{personne->peutEvaluer}",$url_bEvalFC);
 	
-	// Initialiser le formulaire complété et évalué
+	// Initialiser le formulaire complÃ©tÃ© et Ã©valuÃ©
 	$oFCE = new CFormulaireComplete_Evaluation($oProjet->oBdd,$url_iIdFCSousActiv,$url_iIdPers);
 	$oFCE->initEvaluateur();
 	
@@ -139,11 +139,11 @@ else if ($url_bEvalFC)
 		."</select>\n";
 	$oTpl->remplacer("{etat->liste}",$sListeEtats);
 	
-	// Informations à propos de l'évaluateur
+	// Informations Ã  propos de l'Ã©valuateur
 	$oTpl->remplacer("{tuteur->nom_complet}",htmlentities($oFCE->oEvaluateur->retNomComplet()));
 	$oTpl->remplacer("{formulaire_eval->date}",$oFCE->retDate());
 	
-	// Appréciation
+	// ApprÃ©ciation
 	$oTpl->remplacer("{appreciation->input->name}","appreciationEvalFCE");
 	$oTpl->remplacer("{appreciation->texte}",htmlentities($oFCE->retAppreciation()));
 	
@@ -155,7 +155,7 @@ else if ($url_bEvalFC)
 }
 else
 {
-	// Initialiser le formulaire complété et évalué
+	// Initialiser le formulaire complÃ©tÃ© et Ã©valuÃ©
 	$oFCE = new CFormulaireComplete_Evaluation($oProjet->oBdd,$url_iIdFCSousActiv,$url_iIdPers);
 	$oFCE->initEvaluateur();
 	
@@ -169,11 +169,11 @@ else
 		
 		$oTpl->remplacer("{etat->liste}",str_replace(" ","&nbsp;",htmlentities($oFC->retTexteStatut($iStatutFCE))));
 		
-		// Informations à propos de l'évaluateur
+		// Informations Ã  propos de l'Ã©valuateur
 		$oTpl->remplacer("{tuteur->nom_complet}",htmlentities($oFCE->oEvaluateur->retNomComplet()));
 		$oTpl->remplacer("{formulaire_eval->date}",$oFCE->retDate());
 		
-		// Appréciation
+		// ApprÃ©ciation
 		$oTpl->remplacer("{appreciation->input->name}","appreciationEvalFCE");
 		$oTpl->remplacer("{appreciation->texte}",htmlentities($oFCE->retAppreciation()));
 		

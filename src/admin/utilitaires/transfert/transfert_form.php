@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: transfert_form.php
 ** Description ............:
-** Date de création .......: 18/08/2004
-** Dernière modification ..: 28/08/2004
+** Date de crÃ©ation .......: 18/08/2004
+** DerniÃ¨re modification ..: 28/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iNumPage   = $HTTP_GET_VARS["page"];
 $url_sNomBddSrc = empty($HTTP_GET_VARS["NOM_BDD_SRC"]) ? NULL : $HTTP_GET_VARS["NOM_BDD_SRC"];
@@ -46,7 +46,7 @@ $url_bCopierSujetsForums = empty($HTTP_GET_VARS["COPIER_SUJETS_FORUMS"]) ? 1 : $
 $url_bCopierChats        = empty($HTTP_GET_VARS["COPIER_CHATS"]) ? 1 :$HTTP_GET_VARS["COPIER_CHATS"];
 
 // ---------------------
-// Sélectionner la page qui doit être affichée par rapport au numéro
+// SÃ©lectionner la page qui doit Ãªtre affichÃ©e par rapport au numÃ©ro
 // de page
 // ---------------------
 $bOk = FALSE;

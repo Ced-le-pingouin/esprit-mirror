@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: admin_menu.php
 ** Description ............: 
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 21/03/2005
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 21/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once("admin_globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Déclaration des constantes
+// DÃ©claration des constantes
 // ---------------------
 define("AJT_FORMATION",1);
 define("SUP_FORMATION",2);
@@ -53,7 +53,7 @@ define("AJT_SOUS_ACTIVITE",11);
 define("SUP_SOUS_ACTIVITE",12);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $type = 0; $params = 0; $act = NULL;
 
@@ -100,7 +100,7 @@ $asIntitule = array(
 	);
 
 // ---------------------
-// Ajouter, modifier et supprimer un élément
+// Ajouter, modifier et supprimer un Ã©lÃ©ment
 // ---------------------
 if (isset ($act))
 {
@@ -188,7 +188,7 @@ if ($g_iRubrique > 0)
 }
 
 // ---------------------
-// Activité
+// ActivitÃ©
 // ---------------------
 if ($g_iActiv > 0)
 {
@@ -199,7 +199,7 @@ if ($g_iActiv > 0)
 }
 
 // ---------------------
-// Sous-activité
+// Sous-activitÃ©
 // ---------------------
 if ($g_iSousActiv > 0)
 {
@@ -240,14 +240,14 @@ $bPeutAjouterRub &= $bPeutModifierMod;
 $bPeutSupprimerRub  = $oProjet->verifPermission("PERM_SUP_RUBRIQUE");
 $bPeutSupprimerRub &= ($g_iActiv == 0 && $bPeutModifierMod);
 
-// Activité
+// ActivitÃ©
 $bPeutAjouterActiv  = $oProjet->verifPermission("PERM_AJT_BLOC");
 $bPeutAjouterActiv &= $bPeutModifierMod;
 
 $bPeutSupprimerActiv  = $oProjet->verifPermission("PERM_SUP_BLOC");
 $bPeutSupprimerActiv &= ($g_iSousActiv == 0 && $bPeutModifierMod);
 
-// Sous-activité
+// Sous-activitÃ©
 $bPeutAjouterSousActiv  = $oProjet->verifPermission("PERM_AJT_ELEMENT_ACTIF");
 $bPeutAjouterSousActiv &= $bPeutModifierMod;
 
@@ -255,13 +255,13 @@ $bPeutSupprimerSousActiv  = $oProjet->verifPermission("PERM_SUP_ELEMENT_ACTIF");
 $bPeutSupprimerSousActiv &= $bPeutModifierMod;
 
 // ---------------------
-// Mettre à jour
+// Mettre Ã  jour
 // ---------------------
 $params = implode(":",array($g_iFormation,$g_iModule,$g_iRubrique,0,$g_iActiv,$g_iSousActiv));
 
 if (isset($act) && $act != AJT_FORMATION)
 {
-	// Mettre à jour
+	// Mettre Ã  jour
 	echo "<html><head>\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"
 		."<!--\n\n"
@@ -278,7 +278,7 @@ if (isset($act) && $act != AJT_FORMATION)
 }
 
 // *************************************
-// Déclaration des fonctions locales
+// DÃ©claration des fonctions locales
 // *************************************
 
 function dessinerMenu ($v_asMenu,$v_sStyleExt=NULL)
@@ -382,12 +382,12 @@ if ($g_iModule > 0)
 		,$bPeutSupprimerMod
 	);
 	
-	// Bloc rubrique/unité
+	// Bloc rubrique/unitÃ©
 	// -------------------
 	$sTmpParams = ($g_iRubrique > 0 ? "?type=".TYPE_RUBRIQUE."&params={$g_iFormation}:{$g_iModule}:{$g_iRubrique}:0:0:0" : NULL);
 	$aoElementMenu[2][0] = array("Niv.&nbsp;3 (".INTITULE_RUBRIQUE.")",$asNoms[2],$sTmpParams);
 	
-	// Ajouter une rubrique/unité
+	// Ajouter une rubrique/unitÃ©
 	$aoElementMenu[2][] = array(
 		"Ajouter"
 		,AJT_RUBRIQUE
@@ -396,7 +396,7 @@ if ($g_iModule > 0)
 	);
 }
 
-// Supprimer une rubrique/unité
+// Supprimer une rubrique/unitÃ©
 if (isset($type) && $type >= TYPE_RUBRIQUE)
 	$aoElementMenu[2][] = array(
 		"Supprimer"
@@ -406,19 +406,19 @@ if (isset($type) && $type >= TYPE_RUBRIQUE)
 	);
 
 // ---------------------
-// Seules les rubriques de type "Unité"
-// peuvent ajouter/modifier/supprimer une activité
-// ou une sous-activité
+// Seules les rubriques de type "UnitÃ©"
+// peuvent ajouter/modifier/supprimer une activitÃ©
+// ou une sous-activitÃ©
 // ---------------------
 if (isset($oProjet->oRubriqueCourante) &&
 	$oProjet->oRubriqueCourante->retType() == LIEN_UNITE)
 {
-	// Bloc activité
+	// Bloc activitÃ©
 	// -------------
 	$sTmpParams = ($g_iActiv > 0 ? "?type=".TYPE_ACTIVITE."&params={$g_iFormation}:{$g_iModule}:{$g_iRubrique}:0:{$g_iActiv}:0" : NULL);
 	$aoElementMenu[4][0] = array("Niv.&nbsp;4 (".INTITULE_ACTIV.")",$asNoms[3],$sTmpParams);
 	
-	// Ajouter une activité
+	// Ajouter une activitÃ©
 	$aoElementMenu[4][] = array(
 		"Ajouter"
 		,AJT_ACTIVITE
@@ -428,7 +428,7 @@ if (isset($oProjet->oRubriqueCourante) &&
 
 	if ($g_iActiv > 0)
 	{
-		// Supprimer une activité
+		// Supprimer une activitÃ©
 		$aoElementMenu[4][] = array(
 			"Supprimer"
 			,SUP_ACTIVITE
@@ -436,12 +436,12 @@ if (isset($oProjet->oRubriqueCourante) &&
 			,$bPeutSupprimerActiv
 		);
 		
-		// Bloc sous-activité
+		// Bloc sous-activitÃ©
 		// ------------------
 		$sTmpParams = ($g_iSousActiv > 0 ? "?type=".TYPE_SOUS_ACTIVITE."&params={$g_iFormation}:{$g_iModule}:{$g_iRubrique}:0:{$g_iActiv}:{$g_iSousActiv}" : NULL);
 		$aoElementMenu[5][0] = array("Niv.&nbsp;5 (".INTITULE_SOUS_ACTIV.")",$asNoms[4],$sTmpParams);
 		
-		// Ajouter sous-activité
+		// Ajouter sous-activitÃ©
 		$aoElementMenu[5][] = array(
 			"Ajouter"
 			,AJT_SOUS_ACTIVITE
@@ -449,7 +449,7 @@ if (isset($oProjet->oRubriqueCourante) &&
 			,$bPeutAjouterSousActiv
 		);
 		
-		// Supprimer sous-activité
+		// Supprimer sous-activitÃ©
 		if (isset ($g_iSousActiv) && $g_iSousActiv>0)
 			$aoElementMenu[5][] = array(
 				"Supprimer"
@@ -541,7 +541,7 @@ html { border: rgb(240,240,240) none 1px; border-right-style: solid; }
 <?php
 
 // *************************************
-// Afficher les différents menu
+// Afficher les diffÃ©rents menu
 // *************************************
 
 for ($i=0; $i<=$type; $i++)

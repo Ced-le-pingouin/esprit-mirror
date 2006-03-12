@@ -55,11 +55,11 @@ if ($fonction == "valider")
 	
 	if ($iIdForm > 0)
 	{
-		// Nous allons créer le répertoire de la formation
+		// Nous allons crÃ©er le rÃ©pertoire de la formation
 		mkdir(dir_formation($iIdForm,NULL,TRUE));
 		
 		// Se placer sur la nouvelle formation dans eConcept et puis on ferme
-		// cette fenêtre
+		// cette fenÃªtre
 		echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 			."top.opener.top.location.replace('"
 			."econcept-index.php"
@@ -75,16 +75,16 @@ if ($fonction == "valider")
 
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td colspan="2"><h5>Etape <?=$etape?>&nbsp;: Modalité d'inscription des étudiants aux cours</h5></td></tr>
+<tr><td colspan="2"><h5>Etape <?=$etape?>&nbsp;: ModalitÃ© d'inscription des Ã©tudiants aux cours</h5></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td><img src="<?=dir_images_communes('espacer.gif')?>" width="20" height="1" border="0"></td><td><input type="radio" name="InscrSpontForm" value="1"<?=($url_iInscrSpontForm == 1 ? " checked" : NULL)?>>&nbsp;&nbsp;Tous les étudiants seront automatiquement inscrits à tous les cours de cette formation</td></tr>
-<tr><td>&nbsp;</td><td><input type="radio" name="InscrSpontForm" value="0"<?=($url_iInscrSpontForm == 1 ? NULL : " checked")?>>&nbsp;&nbsp;Certains étudiants seront inscrits à certains cours, d'autres pas</td></tr>
+<tr><td><img src="<?=dir_images_communes('espacer.gif')?>" width="20" height="1" border="0"></td><td><input type="radio" name="InscrSpontForm" value="1"<?=($url_iInscrSpontForm == 1 ? " checked" : NULL)?>>&nbsp;&nbsp;Tous les Ã©tudiants seront automatiquement inscrits Ã  tous les cours de cette formation</td></tr>
+<tr><td>&nbsp;</td><td><input type="radio" name="InscrSpontForm" value="0"<?=($url_iInscrSpontForm == 1 ? NULL : " checked")?>>&nbsp;&nbsp;Certains Ã©tudiants seront inscrits Ã  certains cours, d'autres pas</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td colspan="2">La première option vous dispense de devoir spécifier pour chaque étudiant les cours auxquels il est inscrit, ce qui peut s'avérer fastidieux.
- Choisissez donc cette option si vous vous trouvez dans un cas de figure où tous les étudiants doivent ou peuvent suivre tous les cours.
+<tr><td colspan="2">La premiÃ¨re option vous dispense de devoir spÃ©cifier pour chaque Ã©tudiant les cours auxquels il est inscrit, ce qui peut s'avÃ©rer fastidieux.
+ Choisissez donc cette option si vous vous trouvez dans un cas de figure oÃ¹ tous les Ã©tudiants doivent ou peuvent suivre tous les cours.
  Sinon, choisissez la seconde option.</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td colspan="2"><b><u>Note</u></b>&nbsp;: Vous pourrez modifier cette option à tout moment à partir d'eConcept</td></tr>
+<tr><td colspan="2"><b><u>Note</u></b>&nbsp;: Vous pourrez modifier cette option Ã  tout moment Ã  partir d'eConcept</td></tr>
 </table>

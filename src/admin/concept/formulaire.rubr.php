@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: form_rubr.php
 ** Description ............: 
-** Date de création .......: 01/02/2001
-** Dernière modification ..: 21/03/2005
+** Date de crÃ©ation .......: 01/02/2001
+** DerniÃ¨re modification ..: 21/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -95,7 +95,7 @@ for ($i=0; $i<count($asTypesUnite); $i++)
 <?php
 
 // *************************************
-// Afficher les éléments pour le rubrique de type 'Lien'
+// Afficher les Ã©lÃ©ments pour le rubrique de type 'Lien'
 // *************************************
 
 $sDonnee = explode(":",$oProjet->oRubriqueCourante->retDonnee());
@@ -112,13 +112,13 @@ $sFichierDeposer = strlen($sDonnee[0])
 	? "&nbsp;{$sDonnee[0]}"
 	: "Pas de fichier actuellement";
 
-echo "<!-- Donnée -->\n"
+echo "<!-- DonnÃ©e -->\n"
 	."<div id=\"div_donnee_".LIEN_PAGE_HTML."\" style=\"{$sStyle}\">\n"
 	."<fieldset>"
 	."<legend>&nbsp;Affichage d'une page HTML&nbsp;</legend>"
 	."<table border=\"0\" cellpadding=\"3\" cellspacing=\"1\">\n"
 	."<tr>"
-	."<td><div class=\"intitule\">Donnée&nbsp;:</div></td>\n"
+	."<td><div class=\"intitule\">DonnÃ©e&nbsp;:</div></td>\n"
 	."<td>"
 	.($g_bModifier ? "<input type=\"file\" name=\"fichier_rubrique[]\" size=\"38\">" : $sFichierDeposer)
 	."</td>"
@@ -184,7 +184,7 @@ $sFormSelect .= "</td>"
 	."</div>\n";
 
 // ---------------------
-// Rechercher la liste des intitulés des rubriques
+// Rechercher la liste des intitulÃ©s des rubriques
 // ---------------------
 $iIdIntituleActuel = $oProjet->oRubriqueCourante->retIdIntitule();
 
@@ -208,7 +208,7 @@ for ($i=0; $i<$iNbrIntitules; $i++)
 echo str_replace("[TPL_OPTIONS]",$sTplOptions,$sFormSelect);
 
 // ---------------------------
-// Document à télécharger
+// Document Ã  tÃ©lÃ©charger
 // ---------------------------
 $sStyle = "position: relative;"
 	." visibility: "
@@ -222,7 +222,7 @@ $sFichierDeposer = strlen($sDonnee[0])
 
 echo "<div id=\"div_donnee_".LIEN_DOCUMENT_TELECHARGER."\" style=\"{$sStyle}\">\n"
 	."<fieldset>"
-	."<legend>&nbsp;Document à télécharger&nbsp;</legend>"
+	."<legend>&nbsp;Document Ã  tÃ©lÃ©charger&nbsp;</legend>"
 	."<table border=\"0\" cellpadding=\"3\" cellspacing=\"1\">\n"
 	."<tr>\n"
 	."<td><div class=\"intitule\">Donn&eacute;e&nbsp;:</div></td>\n"
@@ -322,7 +322,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 
 ?>
 
-<!-- Début Lien vers un texte formaté -->
+<!-- DÃ©but Lien vers un texte formatÃ© -->
 <!-- Identifiant du type : <?=LIEN_TEXTE_FORMATTE?> -->
 <div id="div_donnee_<?=LIEN_TEXTE_FORMATTE?>" class="Cacher">
 <fieldset>
@@ -333,7 +333,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 </table>
 </fieldset>
 </div>
-<!-- Fin Lien vers un texte formaté -->
+<!-- Fin Lien vers un texte formatÃ© -->
 
 </td>
 </tr>

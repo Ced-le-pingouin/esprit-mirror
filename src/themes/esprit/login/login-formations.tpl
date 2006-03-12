@@ -1,5 +1,5 @@
 <!--
-  -- Ne pas oublier de vérifier le lien du script javascript:
+  -- Ne pas oublier de vÃ©rifier le lien du script javascript:
   -- <br><script type="text/javascript" language="javascript" src="/esprit/login-formations.php"></script><br>
   -->
 

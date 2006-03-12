@@ -22,7 +22,7 @@
 if ($url_sModaliteFenetre == "ajouter")
 {
 	$aMenus = array(
-		array("Déposer","top.oPrincipale().envoyer()")
+		array("DÃ©poser","top.oPrincipale().envoyer()")
 		, array("Annuler","top.close()")
 	);
 }

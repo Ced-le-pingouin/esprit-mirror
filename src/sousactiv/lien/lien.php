@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: lien.php
 ** Description ............: 
-** Date de création .......: 22/04/2002
-** Dernière modification ..: 21/11/2005
+** Date de crÃ©ation .......: 22/04/2002
+** DerniÃ¨re modification ..: 21/11/2005
 ** Auteurs ................: Filippo Porco <filippo.porco@umh.ac.be>
 ** 
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSousActiv = (empty($HTTP_GET_VARS["idSousActiv"]) ? 0 : $HTTP_GET_VARS["idSousActiv"]);
 
@@ -67,7 +67,7 @@ if (strlen($sDescription) > 0)
 	);
 }
 
-// Dans les sous-activités de type "lien", les paramètres sont stockés séparés par des ";"
+// Dans les sous-activitÃ©s de type "lien", les paramÃ¨tres sont stockÃ©s sÃ©parÃ©s par des ";"
 list($sLien,$iMode,$sIntitule) = explode(";",$oSousActiv->retDonnees());
 
 // ---------------------
@@ -78,7 +78,7 @@ $sLien = trim($sLien);
 
 if (!empty($sLien))
 {
-	// Pour une ouverture vers un site extérieur, il faut ajouter "http://"
+	// Pour une ouverture vers un site extÃ©rieur, il faut ajouter "http://"
 	switch ($oSousActiv->retType())
 	{
 		case LIEN_SITE_INTERNET:

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipes-index.php
 ** Description ............: 
-** Date de création .......: 01/01/2003
-** Dernière modification ..: 12/04/2005
+** Date de crÃ©ation .......: 01/01/2003
+** DerniÃ¨re modification ..: 12/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_GET_VARS["TP"]))
 	$sTitrePrincipal = rawurldecode($HTTP_GET_VARS["TP"]);

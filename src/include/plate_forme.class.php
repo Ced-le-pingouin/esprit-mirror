@@ -22,146 +22,146 @@
 /**
  * @file	plate_forme.class.php
  * 
- * Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les "traductions"
+ * Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisÃ©e pour les "traductions"
  * 
  * @date	2001/09/06
  * 
- * @author	Cédric FLOQUET
+ * @author	CÃ©dric FLOQUET
  * @author	Filippo PORCO
- * @author	Jérôme TOUZE
+ * @author	JÃ©rÃ´me TOUZE
  * @author	Ludovic FLAMME
  */
 
 
-/** @name Constantes - état d'identification utilisateur */
+/** @name Constantes - Ã©tat d'identification utilisateur */
 //@{
-define("LOGIN_OK"				, 0);	/// Le login s'est déroulé sans problème												@enum LOGIN_OK
-define("LOGIN_MDP_INCORRECT"	, 8);	/// Le mot de passe entré est invalide par rapport au pseudo							@enum LOGIN_MDP_INCORRECT
-define("LOGIN_PAS_ENCORE_ID"	, 9);	/// L'utilisateur ne s'est pas encore identifié											@enum LOGIN_PAS_ENCORE_ID
+define("LOGIN_OK"				, 0);	/// Le login s'est dÃ©roulÃ© sans problÃ¨me												@enum LOGIN_OK
+define("LOGIN_MDP_INCORRECT"	, 8);	/// Le mot de passe entrÃ© est invalide par rapport au pseudo							@enum LOGIN_MDP_INCORRECT
+define("LOGIN_PAS_ENCORE_ID"	, 9);	/// L'utilisateur ne s'est pas encore identifiÃ©											@enum LOGIN_PAS_ENCORE_ID
 define("LOGIN_PERSONNE_INCONNUE", 10);	/// L'utilisateur est inconnu (mauvais pseudo?)											@enum LOGIN_PERSONNE_INCONNUE
 //@}
 
-/** @name Constantes - éléments de la session enregistrée dans le cookie */
+/** @name Constantes - Ã©lÃ©ments de la session enregistrÃ©e dans le cookie */
 //@{
-define("SESSION_DEBUT"				, 0);	/// Représente toujours la 1ère constante de session (0); utilisée dans les boucles	@enum SESSION_DEBUT
+define("SESSION_DEBUT"				, 0);	/// ReprÃ©sente toujours la 1Ã¨re constante de session (0); utilisÃ©e dans les boucles	@enum SESSION_DEBUT
 define("SESSION_PSEUDO"				, 0);	/// Pseudo de la personne															@enum SESSION_PSEUDO
 define("SESSION_NOM"				, 1);	/// Nom de la personne																@enum SESSION_NOM
-define("SESSION_PRENOM"				, 2);	/// Prénom de la personne															@enum SESSION_PRENOM
+define("SESSION_PRENOM"				, 2);	/// PrÃ©nom de la personne															@enum SESSION_PRENOM
 define("SESSION_MDP"				, 3);	/// Mot de passe de la personne														@enum SESSION_MDP
 define("SESSION_STATUT_ABSOLU"		, 4);	/// Statut de l'utilisateur le plus important										@enum SESSION_STATUT_ABSOLU
 define("SESSION_STATUT_UTILISATEUR"	, 5);	/// Statut que l'utilisateur a choisit												@enum SESSION_STATUT_UTILISATEUR
-define("SESSION_FORM"				, 6);	/// Numéro de la formation courante													@enum SESSION_FORM
-define("SESSION_MOD"				, 7);	/// Numéro du module/cours courant													@enum SESSION_MOD
-define("SESSION_UNITE"				, 8);	/// Numéro de l'unité courante (plus utilisé)										@enum SESSION_UNITE
-define("SESSION_ACTIV"				, 9);	/// Numéro de l'activité															@enum SESSION_ACTIV
-define("SESSION_SOUSACTIV"			, 10);	/// Numéro de la sous-activité														@enum SESSION_SOUSACTIV
-define("SESSION_TRI_COLONNE"		, 11);	/// Pour les écrans où l'on peut trier des tableaux, la colonne de tri principale	@enum SESSION_TRI_COLONNE
-define("SESSION_TRI_DIRECTION"		, 12);	/// Toujours pour les mêmes écrans, tri croissant ou décroissant ?					@enum SESSION_TRI_DIRECTION
-define("SESSION_UID"				, 13);	/// Numéro ID unique donné par la table 'Evenement'									@enum SESSION_UID
-define("SESSION_DOSSIER_FORMS"		, 14);	/// Numéro du dossier de formations													@enum SESSION_DOSSIER_FORMS
+define("SESSION_FORM"				, 6);	/// NumÃ©ro de la formation courante													@enum SESSION_FORM
+define("SESSION_MOD"				, 7);	/// NumÃ©ro du module/cours courant													@enum SESSION_MOD
+define("SESSION_UNITE"				, 8);	/// NumÃ©ro de l'unitÃ© courante (plus utilisÃ©)										@enum SESSION_UNITE
+define("SESSION_ACTIV"				, 9);	/// NumÃ©ro de l'activitÃ©															@enum SESSION_ACTIV
+define("SESSION_SOUSACTIV"			, 10);	/// NumÃ©ro de la sous-activitÃ©														@enum SESSION_SOUSACTIV
+define("SESSION_TRI_COLONNE"		, 11);	/// Pour les Ã©crans oÃ¹ l'on peut trier des tableaux, la colonne de tri principale	@enum SESSION_TRI_COLONNE
+define("SESSION_TRI_DIRECTION"		, 12);	/// Toujours pour les mÃªmes Ã©crans, tri croissant ou dÃ©croissant ?					@enum SESSION_TRI_DIRECTION
+define("SESSION_UID"				, 13);	/// NumÃ©ro ID unique donnÃ© par la table 'Evenement'									@enum SESSION_UID
+define("SESSION_DOSSIER_FORMS"		, 14);	/// NumÃ©ro du dossier de formations													@enum SESSION_DOSSIER_FORMS
 define("SESSION_LANG"				, 15);	/// Langue de l'interface de l'utilisateur											@enum SESSION_LANG
-define("SESSION_FIN"				, 14);	/// Devrait toujours être identique à la dernière constante de session; utilisée dans les boucles	@enum SESSION_FIN
+define("SESSION_FIN"				, 14);	/// Devrait toujours Ãªtre identique Ã  la derniÃ¨re constante de session; utilisÃ©e dans les boucles	@enum SESSION_FIN
 //@}
 
-/** @name Constantes - types d'événements (à logger) */
+/** @name Constantes - types d'Ã©vÃ©nements (Ã  logger) */
 //@{
-define("TYPE_EVEN_LOGIN_RATE"	, 1);	/// La tentative de login a echoué					@enum TYPE_EVEN_LOGIN_RATE
-define("TYPE_EVEN_LOGIN_REUSSI"	, 2);	/// La tentative de login a réussi					@enum TYPE_EVEN_LOGIN_REUSSI
-define("TYPE_EVEN_DECONNEXION"	, 3);	/// L'utilisateur s'est explicitement déconnecté	@enum TYPE_EVEN_DECONNEXION
+define("TYPE_EVEN_LOGIN_RATE"	, 1);	/// La tentative de login a echouÃ©					@enum TYPE_EVEN_LOGIN_RATE
+define("TYPE_EVEN_LOGIN_REUSSI"	, 2);	/// La tentative de login a rÃ©ussi					@enum TYPE_EVEN_LOGIN_REUSSI
+define("TYPE_EVEN_DECONNEXION"	, 3);	/// L'utilisateur s'est explicitement dÃ©connectÃ©	@enum TYPE_EVEN_DECONNEXION
 //@}
 
-/** @name Constantes - types de "liens", en fait les types de sous-activités possibles (dans la colonne de gauche d'une rubrique) */
+/** @name Constantes - types de "liens", en fait les types de sous-activitÃ©s possibles (dans la colonne de gauche d'une rubrique) */
 //@{
-define("LIEN_PAGE_HTML"				, 1);	/// Simple page HTML à afficher																		@enum LIEN_PAGE_HTML
-define("LIEN_DOCUMENT_TELECHARGER"	, 2);	/// Lien vers un document à télécharger																@enum LIEN_DOCUMENT_TELECHARGER
+define("LIEN_PAGE_HTML"				, 1);	/// Simple page HTML Ã  afficher																		@enum LIEN_PAGE_HTML
+define("LIEN_DOCUMENT_TELECHARGER"	, 2);	/// Lien vers un document Ã  tÃ©lÃ©charger																@enum LIEN_DOCUMENT_TELECHARGER
 define("LIEN_SITE_INTERNET"			, 3);	/// Lien externe vers un site web																	@enum LIEN_SITE_INTERNET
 define("LIEN_CHAT"					, 4);	/// Salon de discussion / Chat																		@enum LIEN_CHAT
 define("LIEN_FORUM"					, 5);	/// Forum																							@enum LIEN_FORUM
-define("LIEN_GALERIE"				, 6);	/// Galerie, servant à mettre en avant des travaux sélectionnés d'un collecticiel précédent			@enum LIEN_GALERIE
+define("LIEN_GALERIE"				, 6);	/// Galerie, servant Ã  mettre en avant des travaux sÃ©lectionnÃ©s d'un collecticiel prÃ©cÃ©dent			@enum LIEN_GALERIE
 define("LIEN_COLLECTICIEL"			, 7);	/// Collecticiel																					@enum LIEN_COLLECTICIEL
-define("LIEN_UNITE"					, 8);	/// Unité d'apprentissage																			@enum LIEN_UNITE	@todo mieux expliquer différence Rubrique/Unité
-define("LIEN_FORMULAIRE"			, 9);	/// Questionnaire = AEL (activité en ligne)															@enum LIEN_FORMULAIRE
-define("LIEN_TEXTE_FORMATTE"		, 10);	/// Texte avec possibilité de mise en forme	réduite par balises										@enum LIEN_TEXTE_FORMATTE
+define("LIEN_UNITE"					, 8);	/// UnitÃ© d'apprentissage																			@enum LIEN_UNITE	@todo mieux expliquer diffÃ©rence Rubrique/UnitÃ©
+define("LIEN_FORMULAIRE"			, 9);	/// Questionnaire = AEL (activitÃ© en ligne)															@enum LIEN_FORMULAIRE
+define("LIEN_TEXTE_FORMATTE"		, 10);	/// Texte avec possibilitÃ© de mise en forme	rÃ©duite par balises										@enum LIEN_TEXTE_FORMATTE
 define("LIEN_GLOSSAIRE"				, 11);	/// Glossaire																						@enum LIEN_GLOSSAIRE
-define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités			@enum LIEN_TABLEAU_DE_BORD
+define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperÃ§u de l'avancÃ©e des travaux d'Ã©tudiants dans les sous-activitÃ©s			@enum LIEN_TABLEAU_DE_BORD
 //@}
 
-/** @name Constantes - modalités d'affichage pour certains liens HTML de la plate-forme */
+/** @name Constantes - modalitÃ©s d'affichage pour certains liens HTML de la plate-forme */
 //@{
-define("FRAME_CENTRALE_DIRECT"		, 1);	/// Affichage immédiat dans la frame centrale														@enum FRAME_CENTRALE_DIRECT
-define("FRAME_CENTRALE_INDIRECT"	, 2);	/// Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans la frame centrale		@enum FRAME_CENTRALE_INDIRECT
-define("NOUVELLE_FENETRE_DIRECT"	, 3);	/// Affichage immédiat dans une nouvelle fenêtre de navigateur										@enum NOUVELLE_FENETRE_DIRECT
-define("NOUVELLE_FENETRE_INDIRECT"	, 4);	/// Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans une nouvelle fenêtre	@enum NOUVELLE_FENETRE_INDIRECT
-define("MODE_LIEN_TELECHARGER"		, 5);	/// Force le téléchargement de la cible du lien														@enum MODE_LIEN_TELECHARGER
+define("FRAME_CENTRALE_DIRECT"		, 1);	/// Affichage immÃ©diat dans la frame centrale														@enum FRAME_CENTRALE_DIRECT
+define("FRAME_CENTRALE_INDIRECT"	, 2);	/// Affichage d'une consigne prÃ©alable, contenant le lien, qui s'ouvrira dans la frame centrale		@enum FRAME_CENTRALE_INDIRECT
+define("NOUVELLE_FENETRE_DIRECT"	, 3);	/// Affichage immÃ©diat dans une nouvelle fenÃªtre de navigateur										@enum NOUVELLE_FENETRE_DIRECT
+define("NOUVELLE_FENETRE_INDIRECT"	, 4);	/// Affichage d'une consigne prÃ©alable, contenant le lien, qui s'ouvrira dans une nouvelle fenÃªtre	@enum NOUVELLE_FENETRE_INDIRECT
+define("MODE_LIEN_TELECHARGER"		, 5);	/// Force le tÃ©lÃ©chargement de la cible du lien														@enum MODE_LIEN_TELECHARGER
 //@}
 
-/** @name Constantes - éléments de "structure" de formation */
+/** @name Constantes - Ã©lÃ©ments de "structure" de formation */
 //@{
 define("TYPE_INCONNU"		, 0);	/// Type inconnu		@enum TYPE_INCONNU
 define("TYPE_FORMATION"		, 1);	/// Formation/Session	@enum TYPE_FORMATION
 define("TYPE_MODULE"		, 2);	/// Module/Cours		@enum TYPE_MODULE
 define("TYPE_RUBRIQUE"		, 3);	/// Rubrique			@enum TYPE_RUBRIQUE
-define("TYPE_UNITE"			, 4);	/// Unité				@enum TYPE_UNITE
-define("TYPE_ACTIVITE"		, 5);	/// Activité			@enum TYPE_ACTIVITE
-define("TYPE_SOUS_ACTIVITE"	, 6);	/// Sous-activité		@enum TYPE_SOUS_ACTIVITE
+define("TYPE_UNITE"			, 4);	/// UnitÃ©				@enum TYPE_UNITE
+define("TYPE_ACTIVITE"		, 5);	/// ActivitÃ©			@enum TYPE_ACTIVITE
+define("TYPE_SOUS_ACTIVITE"	, 6);	/// Sous-activitÃ©		@enum TYPE_SOUS_ACTIVITE
 //@}
 
-/** @name Constantes - statuts/disponibilité des éléments de structure */
+/** @name Constantes - statuts/disponibilitÃ© des Ã©lÃ©ments de structure */
 //@{
 define("STATUT_FERME"			, 1);	/// Le lien est visible mais pas accessible															@enum STATUT_FERME
 define("STATUT_OUVERT"			, 2);	/// Le lien est visible et accessible																@enum STATUT_OUVERT
-define("STATUT_INVISIBLE"		, 3);	/// Le lien n'est pas affiché																		@enum STATUT_INVISIBLE
-define("STATUT_ARCHIVE"			, 4);	/// Pas certain que cette constante est utilisée actuellement										@enum STATUT_ARCHIVE	@todo Confirmer cette description
-define("STATUT_EFFACE"			, 5);	/// L'élément est effacé logiquement, un admin pourra le récupérer dans l'outil Corbeille			@enum STATUT_EFFACE
-define("STATUT_IDEM_PARENT"		, 6);	/// Reprend le statut ouvert/fermé/etc de la structure parente										@enum STATUT_IDEM_PARENT
+define("STATUT_INVISIBLE"		, 3);	/// Le lien n'est pas affichÃ©																		@enum STATUT_INVISIBLE
+define("STATUT_ARCHIVE"			, 4);	/// Pas certain que cette constante est utilisÃ©e actuellement										@enum STATUT_ARCHIVE	@todo Confirmer cette description
+define("STATUT_EFFACE"			, 5);	/// L'Ã©lÃ©ment est effacÃ© logiquement, un admin pourra le rÃ©cupÃ©rer dans l'outil Corbeille			@enum STATUT_EFFACE
+define("STATUT_IDEM_PARENT"		, 6);	/// Reprend le statut ouvert/fermÃ©/etc de la structure parente										@enum STATUT_IDEM_PARENT
 define("STATUT_LECTURE_SEULE"	, 7);	/// Le lien est visible, cliquable mais l'utilisateur ne pourra plus rien modifier					@enum STATUT_LECTURE_SEULE
 
 //define("STATUT_USER",3);
 //@}
 
-/** @name Constantes - modalités individuelles ou par équipes pour certaines sous-activités */
+/** @name Constantes - modalitÃ©s individuelles ou par Ã©quipes pour certaines sous-activitÃ©s */
 //@{
-define("MODALITE_IDEM_PARENT"				,0);	/// Reprend la modalité de l'élément parent																	@enum MODALITE_IDEM_PARENT
-define("MODALITE_INDIVIDUEL"				,1);	/// Activité individuelle																					@enum MODALITE_INDIVIDUEL
-define("MODALITE_PAR_EQUIPE"				,2);	/// Isolée			==> Les équipes ne voient pas les autres équipes										@enum MODALITE_PAR_EQUIPE
-define("MODALITE_POUR_TOUS"					,3);	/// Tout le monde participe et voit la participation des autres, mais à titre individuel					@enum MODALITE_POUR_TOUS	@todo Confirmer cette description
-define("MODALITE_PAR_EQUIPE_INTERCONNECTEE"	,4);	/// Interconnectée	==> Les équipes voient les autres équipes mais ne peuvent pas collaborer entre elles	@enum MODALITE_PAR_EQUIPE_INTERCONNECTEE	
-define("MODALITE_PAR_EQUIPE_COLLABORANTE"	,5);	/// Collaborante	==> Les équipes voient les autres équipes et peuvent collaborer							@enum MODALITE_PAR_EQUIPE_COLLABORANTE
+define("MODALITE_IDEM_PARENT"				,0);	/// Reprend la modalitÃ© de l'Ã©lÃ©ment parent																	@enum MODALITE_IDEM_PARENT
+define("MODALITE_INDIVIDUEL"				,1);	/// ActivitÃ© individuelle																					@enum MODALITE_INDIVIDUEL
+define("MODALITE_PAR_EQUIPE"				,2);	/// IsolÃ©e			==> Les Ã©quipes ne voient pas les autres Ã©quipes										@enum MODALITE_PAR_EQUIPE
+define("MODALITE_POUR_TOUS"					,3);	/// Tout le monde participe et voit la participation des autres, mais Ã  titre individuel					@enum MODALITE_POUR_TOUS	@todo Confirmer cette description
+define("MODALITE_PAR_EQUIPE_INTERCONNECTEE"	,4);	/// InterconnectÃ©e	==> Les Ã©quipes voient les autres Ã©quipes mais ne peuvent pas collaborer entre elles	@enum MODALITE_PAR_EQUIPE_INTERCONNECTEE	
+define("MODALITE_PAR_EQUIPE_COLLABORANTE"	,5);	/// Collaborante	==> Les Ã©quipes voient les autres Ã©quipes et peuvent collaborer							@enum MODALITE_PAR_EQUIPE_COLLABORANTE
 //@}
 
-/** @name Constantes - types d'éléments dans les formulaires */
+/** @name Constantes - types d'Ã©lÃ©ments dans les formulaires */
 //@{
-define("OBJFORM_QTEXTELONG"		, 1);	/// Boîte de texte multi-lignes										@enum OBJFORM_QTEXTELONG
-define("OBJFORM_QTEXTECOURT"	, 2);	/// Boîte de texte mono-ligne										@enum OBJFORM_QTEXTECOURT
-define("OBJFORM_QNOMBRE"		, 3);	/// Boîte de texte où seuls les nombres sont autorisés				@enum OBJFORM_QNOMBRE
-define("OBJFORM_QLISTEDEROUL"	, 4);	/// Liste déroulante à choix unique									@enum OBJFORM_QLISTEDEROUL
-define("OBJFORM_QRADIO"			, 5);	/// Ensemble de boutons radio à choix unique						@enum OBJFORM_QRADIO
-define("OBJFORM_QCOCHER"		, 6);	/// Ensemble de cases à cocher à choix multiples					@enum OBJFORM_QCOCHER
-define("OBJFORM_MPTEXTE"		, 7);	/// Texte; élément de mise en page pure, pas de réponse à donner	@enum OBJFORM_MPTEXTE
-define("OBJFORM_MPSEPARATEUR"	, 8);	/// Ligne de séparation; élément de mise en page pure				@enum OBJFORM_MPSEPARATEUR
+define("OBJFORM_QTEXTELONG"		, 1);	/// BoÃ®te de texte multi-lignes										@enum OBJFORM_QTEXTELONG
+define("OBJFORM_QTEXTECOURT"	, 2);	/// BoÃ®te de texte mono-ligne										@enum OBJFORM_QTEXTECOURT
+define("OBJFORM_QNOMBRE"		, 3);	/// BoÃ®te de texte oÃ¹ seuls les nombres sont autorisÃ©s				@enum OBJFORM_QNOMBRE
+define("OBJFORM_QLISTEDEROUL"	, 4);	/// Liste dÃ©roulante Ã  choix unique									@enum OBJFORM_QLISTEDEROUL
+define("OBJFORM_QRADIO"			, 5);	/// Ensemble de boutons radio Ã  choix unique						@enum OBJFORM_QRADIO
+define("OBJFORM_QCOCHER"		, 6);	/// Ensemble de cases Ã  cocher Ã  choix multiples					@enum OBJFORM_QCOCHER
+define("OBJFORM_MPTEXTE"		, 7);	/// Texte; Ã©lÃ©ment de mise en page pure, pas de rÃ©ponse Ã  donner	@enum OBJFORM_MPTEXTE
+define("OBJFORM_MPSEPARATEUR"	, 8);	/// Ligne de sÃ©paration; Ã©lÃ©ment de mise en page pure				@enum OBJFORM_MPSEPARATEUR
 //@}
 
-/** @name Constantes - modalités de soumission d'un formulaire au tuteur */
+/** @name Constantes - modalitÃ©s de soumission d'un formulaire au tuteur */
 //@{
-define("SOUMISSION_MANUELLE"	, 0);	/// L'étudiant devra encore soumettre le document au tuteur quand il aura rempli le formulaire	@enum SOUMISSION_MANUELLE
-define("SOUMISSION_AUTOMATIQUE"	, 1);	/// Le formulaire est automatiquement soumis au tuteur dès que l'étudiant l'a complété			@enum SOUMISSION_AUTOMATIQUE
+define("SOUMISSION_MANUELLE"	, 0);	/// L'Ã©tudiant devra encore soumettre le document au tuteur quand il aura rempli le formulaire	@enum SOUMISSION_MANUELLE
+define("SOUMISSION_AUTOMATIQUE"	, 1);	/// Le formulaire est automatiquement soumis au tuteur dÃ¨s que l'Ã©tudiant l'a complÃ©tÃ©			@enum SOUMISSION_AUTOMATIQUE
 //@}
 
-/** @name Constantes - tri à effectuer lorsque des affichages en colonnes sont présents */
+/** @name Constantes - tri Ã  effectuer lorsque des affichages en colonnes sont prÃ©sents */
 //@{
 define("PAS_TRI"		, 0);	/// Aucun tri ne doit avoir lieu	@enum PAS_TRI
 define("TRI_CROISSANT"	, 1);	/// Tri par ordre croissant			@enum TRI_CROISSANT
-define("TRI_DECROISSANT", 2);	/// Tri par ordre décroissant		@enum TRI_DECROISSANT
+define("TRI_DECROISSANT", 2);	/// Tri par ordre dÃ©croissant		@enum TRI_DECROISSANT
 //@}
 
 // ---------------------
-// Déclaration des fichiers à inclure
+// DÃ©claration des fichiers Ã  inclure
 // ---------------------
-require_once(dir_code_lib("bdd_mysql.class.php"));		// Gérer la base de données
+require_once(dir_code_lib("bdd_mysql.class.php"));		// GÃ©rer la base de donnÃ©es
 
 $sDirInclude = dir_include();
-require_once("{$sDirInclude}theme.global.php");			// Thème de la plate-forme
-require_once("{$sDirInclude}config.inc");				// Informations à propos de la base de données
+require_once("{$sDirInclude}theme.global.php");			// ThÃ¨me de la plate-forme
+require_once("{$sDirInclude}config.inc");				// Informations Ã  propos de la base de donnÃ©es
 unset($sDirInclude);
 
 //require_once(dir_definition("i18n.def.php"));			// Internationalisation
@@ -179,20 +179,20 @@ unset($sDirDatabase);
 
 
 /**
- * Classe permettant de récupérer des constantes 'texte' (consignes, messages, etc) dans la base de données
+ * Classe permettant de rÃ©cupÃ©rer des constantes 'texte' (consignes, messages, etc) dans la base de donnÃ©es
  */
 class CConstantes
 {
-	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $oBdd;				///< Objet reprÃ©sentant la connexion Ã  la DB
 	var $sTableI18N;		///< Nom de la table DB (i18n) qui contient toutes les constantes des textes traduisibles
-	var $sTable;			///< Nom de la table DB (i18n_fr) qui contient toutes les traductions dans une langue donnée
+	var $sTable;			///< Nom de la table DB (i18n_fr) qui contient toutes les traductions dans une langue donnÃ©e
 	
 	/**
-	 * Constructeur. Initialise les paramètres de DB et de tables de l'objet
+	 * Constructeur. Initialise les paramÃ¨tres de DB et de tables de l'objet
 	 * 
-	 * @param	v_oBdd		l'objet CBdd qui représente la connexion à la DB
-	 * @param	v_sTable	le nom de la table correspondant à la langue voulue. C'est dans cette table que seront 
-	 * 						récupérées les traductions
+	 * @param	v_oBdd		l'objet CBdd qui reprÃ©sente la connexion Ã  la DB
+	 * @param	v_sTable	le nom de la table correspondant Ã  la langue voulue. C'est dans cette table que seront 
+	 * 						rÃ©cupÃ©rÃ©es les traductions
 	 */
 	function CConstantes(&$v_oBdd, $v_sTable)
 	{
@@ -202,13 +202,13 @@ class CConstantes
 	}
 	
 	/**
-	 * Récupère un texte traduit sur base de son id
+	 * RÃ©cupÃ¨re un texte traduit sur base de son id
 	 * 
-	 * @param	v_iId				l'id du texte à chercher
-	 * @param	v_bConversionHtml	si \c true, remplace les caractères qui le nécessitent par des entités HTML dans le 
-	 * 								texte retourné
+	 * @param	v_iId				l'id du texte Ã  chercher
+	 * @param	v_bConversionHtml	si \c true, remplace les caractÃ¨res qui le nÃ©cessitent par des entitÃ©s HTML dans le 
+	 * 								texte retournÃ©
 	 * 
-	 * @return	le texte associé à l'Id, dans la langue voulue (définie dans le constructeur par un nom de table 
+	 * @return	le texte associÃ© Ã  l'Id, dans la langue voulue (dÃ©finie dans le constructeur par un nom de table 
 	 * 			correspondant dans la DB)
 	 */
 	function retTexte($v_iId, $v_bConversionHtml = TRUE)
@@ -234,29 +234,29 @@ class CConstantes
 	}
 	
 	/**
-	 * Crée un fichier de constantes représentant les termes traduisibles
+	 * CrÃ©e un fichier de constantes reprÃ©sentant les termes traduisibles
 	 * 
-	 * Cette fonction doit être appelée lorsque de nouveaux termes à traduire ont été ajoutés dans la DB, sinon leur id 
+	 * Cette fonction doit Ãªtre appelÃ©e lorsque de nouveaux termes Ã  traduire ont Ã©tÃ© ajoutÃ©s dans la DB, sinon leur id 
 	 * sera inaccessible en PHP
 	 * 
-	 * @param	v_sNomFichier	le nom du fichier de constantes à créer. Si \c v_sNomFichier n'est pas spécifié, le 
-	 * 							fichier aura le même nom que la table utilisée pour la langue (voir #CConstantes())
+	 * @param	v_sNomFichier	le nom du fichier de constantes Ã  crÃ©er. Si \c v_sNomFichier n'est pas spÃ©cifiÃ©, le 
+	 * 							fichier aura le mÃªme nom que la table utilisÃ©e pour la langue (voir #CConstantes())
 	 */
 	function creerFichierConstantes ($v_sNomFichier = NULL)
 	{
 		if (!$v_sNomFichier)
 			$v_sNomFichier = dir_definition("{$this->sTable}.def.php");
 		
-		// récupération de TOUS les enregs de la table contenant les noms des constantes
+		// rÃ©cupÃ©ration de TOUS les enregs de la table contenant les noms des constantes
 		$hResult = $this->oBdd->executerRequete("SELECT * FROM {$this->sTableI18N} ORDER BY ConstTxt");
 		
 		if ($this->oBdd->retNbEnregsDsResult($hResult))
 		{
 			if ($hFichier = fopen($v_sNomFichier, "w+"))
 			{
-				// écriture balise PHP début + 'define's + balise PHP fin, puis fermeture
+				// Ã©criture balise PHP dÃ©but + 'define's + balise PHP fin, puis fermeture
 				fputs($hFichier,"<?php\n\n");
-				fputs($hFichier,sprintf(_("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
+				fputs($hFichier,sprintf(_("// Ce fichier a Ã©tÃ© gÃ©nÃ©rÃ© (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
 				while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 				{
 					$commentaire = $oEnreg->DescrTxt;
@@ -274,7 +274,7 @@ class CConstantes
 }
 
 /**
- * Classe principale de la plate-forme. Elle est utilisée dans la majorité des pages, et effectue diverses initialisations 
+ * Classe principale de la plate-forme. Elle est utilisÃ©e dans la majoritÃ© des pages, et effectue diverses initialisations 
  * sur les utilisateurs, statuts, formations, etc
  *
  * @see CPersonne
@@ -282,45 +282,45 @@ class CConstantes
  */
 class CProjet
 {
-	var $sCheminWeb;			///< Chemin du projet à partir de la racine du serveur web
-	var $sCheminComplet;		///< Chemin du projet sur le système de fichiers, à partir de la racine
-	var $sNomRep;				///< Uniquement le nom du répertoire du projet
-	//var $sCheminDocs;			///< Chemin (relatif) du répertoire de stockage des documents @deprecated ???
-	var $sNomCookie;			///< Nom du cookie utilisateur associé au projet
+	var $sCheminWeb;			///< Chemin du projet Ã  partir de la racine du serveur web
+	var $sCheminComplet;		///< Chemin du projet sur le systÃ¨me de fichiers, Ã  partir de la racine
+	var $sNomRep;				///< Uniquement le nom du rÃ©pertoire du projet
+	//var $sCheminDocs;			///< Chemin (relatif) du rÃ©pertoire de stockage des documents @deprecated ???
+	var $sNomCookie;			///< Nom du cookie utilisateur associÃ© au projet
 	var $asInfosSession;		///< Tableau des informations contenues dans le cookie utilisateur
-	var $bIdParFormulaire;		///< Les infos utilisateurs ont-elles été transmises par formulaire ? Sinon, c'est par cookie
-	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $bIdParFormulaire;		///< Les infos utilisateurs ont-elles Ã©tÃ© transmises par formulaire ? Sinon, c'est par cookie
+	var $oBdd;					///< Objet reprÃ©sentant la connexion Ã  la DB
 	var $sNom;					///< Nom complet du projet
-	var $sUrlAccueil;			///< URL complète de la page d'accueil du projet
+	var $sUrlAccueil;			///< URL complÃ¨te de la page d'accueil du projet
 	var $sUrlLogin;				///< URL de la page permettant de s'identifier
 	var $oErreurs;				///< :DEBUG: pour tester la classe CConstantes
 	var $aoAdmins;				///< Tableau contenant les administrateurs de la plate-forme
-	var $oUtilisateur;			///< Utilisateur actuellement connecté
-	var $oEquipe;				///< Equipe à laquelle l'utilisateur connecté appartient (si applicable)
-	var $aoFormations;			///< Tableau rempli par #initFormations(), qui contiendra les formations de la plate-forme, recherchées suivant certains critères
-	var $aoInscrits;			///< Tableau des inscrits à la formation courante
+	var $oUtilisateur;			///< Utilisateur actuellement connectÃ©
+	var $oEquipe;				///< Equipe Ã  laquelle l'utilisateur connectÃ© appartient (si applicable)
+	var $aoFormations;			///< Tableau rempli par #initFormations(), qui contiendra les formations de la plate-forme, recherchÃ©es suivant certains critÃ¨res
+	var $aoInscrits;			///< Tableau des inscrits Ã  la formation courante
 
-	var $oFormationCourante;	///< Formation actuellement initialisée
-	var $oModuleCourant;		///< Module actuellement initialisé pour cette formation
-	var $oRubriqueCourante;		///< Rubrique actuellement initialisée
-	var $oActivCourante;		///< Activité actuellement initialisée
-	var $oSousActivCourante;	///< Sous-activité actuellement initialisée
+	var $oFormationCourante;	///< Formation actuellement initialisÃ©e
+	var $oModuleCourant;		///< Module actuellement initialisÃ© pour cette formation
+	var $oRubriqueCourante;		///< Rubrique actuellement initialisÃ©e
+	var $oActivCourante;		///< ActivitÃ© actuellement initialisÃ©e
+	var $oSousActivCourante;	///< Sous-activitÃ© actuellement initialisÃ©e
 	
-	var $aoPersonnes;			///< Tableau rempli par #initPersonnes(), qui contiendra les utilisateurs de la PF, recherchés suivant certains critères
-	var $aoEquipes;				///< Tableau des équipes pour l'activité courante
-	var $abStatutsUtilisateur;	///< Statuts de l'utilisateur connecté dans le contexte actuel (administrateur du projet, tuteur du module, etc)
-	var $iStatutUtilisateur;	///< Parmi les statuts possibles, lequel est utilisé ?
+	var $aoPersonnes;			///< Tableau rempli par #initPersonnes(), qui contiendra les utilisateurs de la PF, recherchÃ©s suivant certains critÃ¨res
+	var $aoEquipes;				///< Tableau des Ã©quipes pour l'activitÃ© courante
+	var $abStatutsUtilisateur;	///< Statuts de l'utilisateur connectÃ© dans le contexte actuel (administrateur du projet, tuteur du module, etc)
+	var $iStatutUtilisateur;	///< Parmi les statuts possibles, lequel est utilisÃ© ?
 	var $oPermisUtilisateur;	///< Permissions par rapport au statut courant
-	var $iCodeEtat;				///< Contient le résultat/état du login (constantes LOGIN_)
+	var $iCodeEtat;				///< Contient le rÃ©sultat/Ã©tat du login (constantes LOGIN_)
 	
-	var $oI18N;					///< Objet CConstantes utilisé pour les traductions @deprecated Remplacé par le système \c gettext()
+	var $oI18N;					///< Objet CConstantes utilisÃ© pour les traductions @deprecated RemplacÃ© par le systÃ¨me \c gettext()
 	
 	/**
-	 * Constructeur. Initialise l'objet principal du projet, généralement unique et global
+	 * Constructeur. Initialise l'objet principal du projet, gÃ©nÃ©ralement unique et global
 	 * 
 	 * @param	v_bEffacerCookie		si \c true, le cookie actuel de l'utilisateur, contenant les infos de sa 
-	 * 									session, est effacé. Cela a pour effet, entre autres, de le déconnecter
-	 * @param	v_bRedirigerSiIncorrect	si \c true, en cas de problème d'identification, l'utilisateur est redirigé 
+	 * 									session, est effacÃ©. Cela a pour effet, entre autres, de le dÃ©connecter
+	 * @param	v_bRedirigerSiIncorrect	si \c true, en cas de problÃ¨me d'identification, l'utilisateur est redirigÃ© 
 	 * 									vers la page de login de la plate-forme
 	 */
 	function CProjet ($v_bEffacerCookie = FALSE, $v_bRedirigerSiIncorrect = FALSE)
@@ -329,17 +329,17 @@ class CProjet
 		global $g_sNomCookie;
 		global $g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd;
 		
-		// init 'simples' des propriétés, càd sans accès à la bdd
+		// init 'simples' des propriÃ©tÃ©s, cÃ d sans accÃ¨s Ã  la bdd
 		$this->sCheminWeb     = str_replace('\\', '/', dirname($HTTP_SERVER_VARS["PHP_SELF"]));
 		$this->sCheminComplet = $HTTP_SERVER_VARS["DOCUMENT_ROOT"].$this->sCheminWeb;
 		$this->sNomRep        = $g_sNomBdd;
 		$this->sUrlLogin      = "http://".$HTTP_SERVER_VARS["HTTP_HOST"].$this->sCheminWeb."/"."login-index.php";
 		$this->sNomCookie     = $g_sNomCookie;
 		
-		// connexion à la base de données du projet
+		// connexion Ã  la base de donnÃ©es du projet
 		$this->oBdd = new CBddMySql($g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd);
 		
-		// lecture de la config à partir des paramètres de l'URL ou du cookie
+		// lecture de la config Ã  partir des paramÃ¨tres de l'URL ou du cookie
 		$this->lireInfosSession();
 		
 		/*$pBdd = &$this->oBdd;
@@ -349,9 +349,9 @@ class CProjet
 		if (ACTIVER_RECREATION_FICHIER_I18N)
 			$this->oI18N->creerFichierConstantes(dir_definition("i18n.def.php"));*/
 		
-		// on a besoin des constantes définies pour ce projet
-		$this->init();										// init des propriétés à partir de la base
-		$this->initUtilisateur($v_bRedirigerSiIncorrect);	// init des infos sur la personne connectée
+		// on a besoin des constantes dÃ©finies pour ce projet
+		$this->init();										// init des propriÃ©tÃ©s Ã  partir de la base
+		$this->initUtilisateur($v_bRedirigerSiIncorrect);	// init des infos sur la personne connectÃ©e
 		$this->initFormationCourante();						// init de la formation courante
 		
 		if ($v_bEffacerCookie)
@@ -361,9 +361,9 @@ class CProjet
 	}
 	
 	/**
-	 * Libère les ressources utilisées par l'objet CProjet
+	 * LibÃ¨re les ressources utilisÃ©es par l'objet CProjet
 	 * 
-	 * Pour le moment, seule la connexion à la DB est explicitement fermée
+	 * Pour le moment, seule la connexion Ã  la DB est explicitement fermÃ©e
 	 */
 	function terminer()
 	{
@@ -372,7 +372,7 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise les variables membres avec les informations du projet (nom, n° du port pour les chats, etc)
+	 * Initialise les variables membres avec les informations du projet (nom, nÂ° du port pour les chats, etc)
 	 */
 	function init()
 	{
@@ -396,9 +396,9 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise les variables/objets représentant les admins du projet
+	 * Initialise les variables/objets reprÃ©sentant les admins du projet
 	 * 
-	 * @return	le nombre d'admins trouvés
+	 * @return	le nombre d'admins trouvÃ©s
 	 */
 	function initAdministrateurs()
 	{
@@ -423,19 +423,19 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise l'objet oUtilisateur en fonction des données d'identification disponibles. Les données d'id sont 
-	 * vérifiées dans le tableau \c asInfosSession, lui-même initialisé dans \c lireInfosSession()
+	 * Initialise l'objet oUtilisateur en fonction des donnÃ©es d'identification disponibles. Les donnÃ©es d'id sont 
+	 * vÃ©rifiÃ©es dans le tableau \c asInfosSession, lui-mÃªme initialisÃ© dans \c lireInfosSession()
 	 * 
-	 * @param	v_bRedirigerSiIncorrect	si \c true, et qu'un problème survient avec l'identification de l'utilisateur, 
-	 * 									on arrête le chargement de la page et on le renvoie à l'écran de login 
-	 * 									(redirection HTTP), ce qui signifie que tout appel de cette fonction doit être 
-	 * 									fait avant d'écrire quoi que ce soit dans la page HTML
+	 * @param	v_bRedirigerSiIncorrect	si \c true, et qu'un problÃ¨me survient avec l'identification de l'utilisateur, 
+	 * 									on arrÃªte le chargement de la page et on le renvoie Ã  l'Ã©cran de login 
+	 * 									(redirection HTTP), ce qui signifie que tout appel de cette fonction doit Ãªtre 
+	 * 									fait avant d'Ã©crire quoi que ce soit dans la page HTML
 	 */
 	function initUtilisateur($v_bRedirigerSiIncorrect = FALSE)
 	{
 		global $HTTP_SERVER_VARS;
 		
-		// on récupère les nom/prénom/pseudo/mdp du cookie
+		// on rÃ©cupÃ¨re les nom/prÃ©nom/pseudo/mdp du cookie
 		$sTmpNom = $sTmpPrenom = $sTmpPseudo = $sTmpMdp = NULL;
 		
 		if (!empty($this->asInfosSession[SESSION_NOM]))
@@ -472,7 +472,7 @@ class CProjet
 			{
 				$oEnreg = $this->oBdd->retEnregSuiv($hResult);
 				
-				// si mdp OK, on init la propriété 'Utilisateur'
+				// si mdp OK, on init la propriÃ©tÃ© 'Utilisateur'
 				if ($oEnreg->Mdp == $sTmpMdp)
 				{
 					$this->oUtilisateur = new CPersonne($this->oBdd);
@@ -514,17 +514,17 @@ class CProjet
 		}
 		else if ($this->bIdParFormulaire)
 		{
-			// si ID ok, on inscrit le login dans la table Evenement, mais seulement la 1ère
-			// fois (donc quand on vient de l'écran login, donc quand les infos proviennent 
+			// si ID ok, on inscrit le login dans la table Evenement, mais seulement la 1Ã¨re
+			// fois (donc quand on vient de l'Ã©cran login, donc quand les infos proviennent 
 			// du formulaire)
 			$this->ecrireEvenement(TYPE_EVEN_LOGIN_REUSSI,$HTTP_SERVER_VARS["HTTP_USER_AGENT"]);
 		}
 	}
 	
 	/**
-	 * Retourne l'id de l'utilisateur identifié
+	 * Retourne l'id de l'utilisateur identifiÃ©
 	 * 
-	 * @return	l'id de l'utilisateur s'il est identifié, sinon 0
+	 * @return	l'id de l'utilisateur s'il est identifiÃ©, sinon 0
 	 */
 	function retIdUtilisateur()
 	{
@@ -532,11 +532,11 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise les statuts de l'utilisateur connecté
+	 * Initialise les statuts de l'utilisateur connectÃ©
 	 *
-	 * @param	$v_bVerifierStatutForm	si \c true, les statuts seront déterminé par rapport à la formation	courante
+	 * @param	$v_bVerifierStatutForm	si \c true, les statuts seront dÃ©terminÃ© par rapport Ã  la formation	courante
 	 * 
-	 * @return	le nombre de statuts trouvés pour cet utilisateur
+	 * @return	le nombre de statuts trouvÃ©s pour cet utilisateur
 	 */
 	function initStatutsUtilisateur($v_bVerifierStatutForm = TRUE)
 	{
@@ -573,10 +573,10 @@ class CProjet
 	}
 	
 	/**
-	 * Effectue une redirection Http de l'utilisateur vers la page de login après avoir enregistré "l'événement"
+	 * Effectue une redirection Http de l'utilisateur vers la page de login aprÃ¨s avoir enregistrÃ© "l'Ã©vÃ©nement"
 	 * 
-	 * @param	v_sPrenom	le prénom de l'utilisateur concerné
-	 * @param	v_sNom		le nom de l'utilisateur concerné
+	 * @param	v_sPrenom	le prÃ©nom de l'utilisateur concernÃ©
+	 * @param	v_sNom		le nom de l'utilisateur concernÃ©
 	 */
 	function redirigerVersLogin($v_sPrenom = NULL, $v_sNom = NULL)
 	{
@@ -586,7 +586,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie qu'un visiteur connecté a le droit de se trouver dans la formation actuelle. Si ce n'est pas le cas, 
+	 * VÃ©rifie qu'un visiteur connectÃ© a le droit de se trouver dans la formation actuelle. Si ce n'est pas le cas, 
 	 * une redirection automatique vers le login a lieu
 	 */
 	function verifAccessibleVisiteurs()
@@ -605,7 +605,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté est admin du projet
+	 * VÃ©rifie que l'utilisateur connectÃ© est admin du projet
 	 *
 	 * @return	\c true si l'utilisateur est inscrit dans la table des administrateurs, \c false dans le cas contraire
 	 */
@@ -630,7 +630,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté est "responsable potentiel"
+	 * VÃ©rifie que l'utilisateur connectÃ© est "responsable potentiel"
 	 * 
 	 * @return	\c true si l'utilisateur est reponsable potentiel sur le projet
 	 */
@@ -659,7 +659,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté est "concepteur potentiel"
+	 * VÃ©rifie que l'utilisateur connectÃ© est "concepteur potentiel"
 	 * 
 	 * @return	\c true si l'utilisateur est concepteur potentiel sur le projet
 	 */
@@ -688,7 +688,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté est concepteur pour le module/cours courant
+	 * VÃ©rifie que l'utilisateur connectÃ© est concepteur pour le module/cours courant
 	 * 
 	 * @return	\c true si l'utilisateur est concepteur pour le module courant
 	 */
@@ -720,13 +720,13 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise les formations existantes du projet. Elles sont placées dans le tableau aoFormations. Par défaut, les 
-	 * formations avec le statut "effacée" (logiquement) ne sont pas récupérées
+	 * Initialise les formations existantes du projet. Elles sont placÃ©es dans le tableau aoFormations. Par dÃ©faut, les 
+	 * formations avec le statut "effacÃ©e" (logiquement) ne sont pas rÃ©cupÃ©rÃ©es
 	 * 
-	 * @param	v_sRequeteSql	requête à exécuter pour initialiser les formations. Si \c null, utilise la requête
+	 * @param	v_sRequeteSql	requÃªte Ã  exÃ©cuter pour initialiser les formations. Si \c null, utilise la requÃªte
 	 * 							standard
 	 * 
-	 * @return	le nombre de formations trouvées
+	 * @return	le nombre de formations trouvÃ©es
 	 */
 	function initFormations($v_sRequeteSql = NULL)
 	{
@@ -752,19 +752,19 @@ class CProjet
 	}
 	
 	/**
-	 * Remplit un tableau contenant les formations disponibles à l'utilisateur
+	 * Remplit un tableau contenant les formations disponibles Ã  l'utilisateur
 	 * 
 	 * @param	v_bRechStricte	si \c true, seules les formations pour lesquelles l'utilisateur a le statut exact
-	 * 							demandé seront retournées
-	 * 							si \c false, les formations pour lesquelles l'utilisateur a un statut inférieur à celui 
-	 * 							demandé seront aussi retournées
+	 * 							demandÃ© seront retournÃ©es
+	 * 							si \c false, les formations pour lesquelles l'utilisateur a un statut infÃ©rieur Ã  celui 
+	 * 							demandÃ© seront aussi retournÃ©es
 	 * @param	v_bStatutActuel	si \c true, recherche les formations par rapport au statut actuel de l'utilisateur, 
-	 * 							càd la variable \c iStatutUtilisateur, qui peut avoir changé par rapport au statut 
-	 * 							enregistré (cookie) pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], 
-	 * 							cette dernière étant utilisée si le paramètre est \c false.
+	 * 							cÃ d la variable \c iStatutUtilisateur, qui peut avoir changÃ© par rapport au statut 
+	 * 							enregistrÃ© (cookie) pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], 
+	 * 							cette derniÃ¨re Ã©tant utilisÃ©e si le paramÃ¨tre est \c false.
 	 * @param	v_bDossierForms	si \c true, les formations sont celles du dossier de formations de l'utilisateur
 	 * 
-	 * @return	le nombre de formations trouvées
+	 * @return	le nombre de formations trouvÃ©es
 	 * 
 	 * @see		CFormation
 	 */
@@ -780,7 +780,7 @@ class CProjet
 			}
 			else
 			{
-				// Utilisateur inscrit au moins à une formation
+				// Utilisateur inscrit au moins Ã  une formation
 				$sRequeteSql = "SELECT Formation.* FROM Formation"
 					." LEFT JOIN Module USING (IdForm)";
 				
@@ -894,7 +894,7 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté a le droit de modifier la formation courante
+	 * VÃ©rifie que l'utilisateur connectÃ© a le droit de modifier la formation courante
 	 * 
 	 * @return	\c true si l'utilisateur peut modifier la formation courante
 	 */
@@ -923,8 +923,8 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se 
-	 * rapporte à ce module (forum/chat/formulaire)
+	 * VÃ©rifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se 
+	 * rapporte Ã  ce module (forum/chat/formulaire)
 	 * 
 	 * @return	\c true si l'utilisateur a des droits sur le module actuel de la formation, \c false dans le cas 
 	 * 			contraire
@@ -959,9 +959,9 @@ class CProjet
 	
 	// {{{
 	/**
-	 * Définit la formation courante
+	 * DÃ©finit la formation courante
 	 * 
-	 * @param	$v_iIdForm	l'id de la formation à définir
+	 * @param	$v_iIdForm	l'id de la formation Ã  dÃ©finir
 	 * 
 	 * @see		#initFormationCourante()
 	 */
@@ -975,7 +975,7 @@ class CProjet
 	/**
 	 * Initialise la formation courante.
 	 * 
-	 * Les droits de l'utilisateur et l'accès au visiteur sont également réinitialisés.
+	 * Les droits de l'utilisateur et l'accÃ¨s au visiteur sont Ã©galement rÃ©initialisÃ©s.
 	 * 
 	 * @return	\c true si la formation courante est valide
 	 */
@@ -997,10 +997,10 @@ class CProjet
 	
 	// {{{ Module courant
 	/**
-	 * Définit le module courant
+	 * DÃ©finit le module courant
 	 * 
-	 * @param	v_iIdModule					l'id du module à définir
-	 * @param	v_bInitStatutsUtilisateur	si \c true, les statuts de l'utilisateur seront redéfinis en fonction du 
+	 * @param	v_iIdModule					l'id du module Ã  dÃ©finir
+	 * @param	v_bInitStatutsUtilisateur	si \c true, les statuts de l'utilisateur seront redÃ©finis en fonction du 
 	 * 										nouveau module
 	 * 
 	 * @see		#initModuleCourant()
@@ -1034,11 +1034,11 @@ class CProjet
 	}
 	// }}}
 	
-	// {{{ Rubrique/Unité courante
+	// {{{ Rubrique/UnitÃ© courante
 	/**
-	 * Définit la rubrique/unité courante.
+	 * DÃ©finit la rubrique/unitÃ© courante.
 	 * 
-	 * @param	v_iUnite	l'id de la rubrique/unité à définir
+	 * @param	v_iUnite	l'id de la rubrique/unitÃ© Ã  dÃ©finir
 	 * 
 	 * @see		#initRubriqueCourante()
 	 */
@@ -1049,9 +1049,9 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise l'unité courante
+	 * Initialise l'unitÃ© courante
 	 * 
-	 * @return	\c true si l'unité courante est valide
+	 * @return	\c true si l'unitÃ© courante est valide
 	 */
 	function initRubriqueCourante()
 	{
@@ -1063,16 +1063,16 @@ class CProjet
 	}
 	// }}}
 	
-	// {{{ Activité courante
+	// {{{ ActivitÃ© courante
 	/**
-	 * Définit l'activité courante
+	 * DÃ©finit l'activitÃ© courante
 	 * 
-	 * @param	v_iActiv	l'id de l'activité à définir
+	 * @param	v_iActiv	l'id de l'activitÃ© Ã  dÃ©finir
 	 * 
 	 * @see		#initActivCourante()
 	 * 
-	 * @note	Les éléments anciennement appelés \e activités, y compris dans la DB, sont maintenant appelés 
-	 * 			<em>blocs d'activités</em> dans la pratique
+	 * @note	Les Ã©lÃ©ments anciennement appelÃ©s \e activitÃ©s, y compris dans la DB, sont maintenant appelÃ©s 
+	 * 			<em>blocs d'activitÃ©s</em> dans la pratique
 	 */
 	function defActivCourante($v_iActiv)
 	{
@@ -1081,9 +1081,9 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise l'activité courante
+	 * Initialise l'activitÃ© courante
 	 * 
-	 * @return	\c true si l'activité courante est valide
+	 * @return	\c true si l'activitÃ© courante est valide
 	 */
 	function initActivCourante()
 	{
@@ -1095,16 +1095,16 @@ class CProjet
 	}
 	// }}}
 	
-	// {{{ Sous-activité courante
+	// {{{ Sous-activitÃ© courante
 	/**
-	 * Définit la sous-activité courante
+	 * DÃ©finit la sous-activitÃ© courante
 	 * 
-	 * @param	v_iSousActiv	l'id de la sous-activité à définir.
+	 * @param	v_iSousActiv	l'id de la sous-activitÃ© Ã  dÃ©finir.
 	 * 
 	 * @see		#initSousActivCourante()
 	 * 
-	 * @note	Les élémentes anciennement appelés <em>sous-activités</em>, y compris dans la DB, sont maintenant
-	 * 			appelés \e activités dans la pratique
+	 * @note	Les Ã©lÃ©mentes anciennement appelÃ©s <em>sous-activitÃ©s</em>, y compris dans la DB, sont maintenant
+	 * 			appelÃ©s \e activitÃ©s dans la pratique
 	 */
 	function defSousActivCourante($v_iSousActiv)
 	{
@@ -1113,9 +1113,9 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise la sous-activité courante
+	 * Initialise la sous-activitÃ© courante
 	 * 
-	 * @return	\c si la sous-activité courante est valide
+	 * @return	\c si la sous-activitÃ© courante est valide
 	 */
 	function initSousActivCourante()
 	{
@@ -1129,9 +1129,9 @@ class CProjet
 	// }}}
 	
 	/**
-	 * Initialise la liste des inscrits à la formation courante
+	 * Initialise la liste des inscrits Ã  la formation courante
 	 * 
-	 * @return	le nombre d'inscrits trouvés
+	 * @return	le nombre d'inscrits trouvÃ©s
 	 * 
 	 * @see		CFormation
 	 */
@@ -1152,10 +1152,10 @@ class CProjet
 	/**
 	 * Initialise la liste des inscrits au module courant
 	 * 
-	 * @param	v_bVerifInscrAutoModules	si \c true, vérifie si tous les inscrits à la formation courante
-	 * 										doivent automatiquement l'être à tous les modules de cette formation
+	 * @param	v_bVerifInscrAutoModules	si \c true, vÃ©rifie si tous les inscrits Ã  la formation courante
+	 * 										doivent automatiquement l'Ãªtre Ã  tous les modules de cette formation
 	 * 
-	 * @return	le nombre d'inscrits trouvés
+	 * @return	le nombre d'inscrits trouvÃ©s
 	 */
 	function initInscritsModule($v_bVerifInscrAutoModules = TRUE)
 	{
@@ -1175,11 +1175,11 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie qu'un utilisateur a le statut d'étudiant dans la formation courante
+	 * VÃ©rifie qu'un utilisateur a le statut d'Ã©tudiant dans la formation courante
 	 * 
-	 * @param	v_iIdPers	l'id de l'utilisateur à vérifier. Si \c null, c'est l'utilisateur connecté qui est vérifié
+	 * @param	v_iIdPers	l'id de l'utilisateur Ã  vÃ©rifier. Si \c null, c'est l'utilisateur connectÃ© qui est vÃ©rifiÃ©
 	 * 
-	 * @return	\c true si l'utilisateur a le statut d'étudiant dans la formation courante
+	 * @return	\c true si l'utilisateur a le statut d'Ã©tudiant dans la formation courante
 	 */
 	function verifEtudiant($v_iIdPers = NULL)
 	{
@@ -1198,18 +1198,18 @@ class CProjet
 		return FALSE;
 	}
 	
-	// {{{ Méthodes des équipes
+	// {{{ MÃ©thodes des Ã©quipes
 	/**
-	 * Initialise les équipes attachées à un élément déterminé d'une formation (la formation elle-même, module/cours, 
-	 * rubrique/unité, activité, sous-activité)
+	 * Initialise les Ã©quipes attachÃ©es Ã  un Ã©lÃ©ment dÃ©terminÃ© d'une formation (la formation elle-mÃªme, module/cours, 
+	 * rubrique/unitÃ©, activitÃ©, sous-activitÃ©)
 	 * 
-	 * @param	v_bInitMembres	si \c true, initialise également les membres des équipes
-	 * @param	v_iIdNiveau		l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend
-	 * 							du paramètre \c v_iTypeNiveau
-	 * @param	v_iTypeNiveau	le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd
-	 * 							formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_)
+	 * @param	v_bInitMembres	si \c true, initialise Ã©galement les membres des Ã©quipes
+	 * @param	v_iIdNiveau		l'id de l'Ã©lÃ©ment pour lequel on veut rÃ©cupÃ©rer les Ã©quipes. Sa signification dÃ©pend
+	 * 							du paramÃ¨tre \c v_iTypeNiveau
+	 * @param	v_iTypeNiveau	le numÃ©ro reprÃ©sentant le type d'Ã©lÃ©ment pour lequel on veut rÃ©cupÃ©rer les Ã©quipes, cÃ d
+	 * 							formation, module, rubrique, activitÃ©, sous-activitÃ© (voir les constantes TYPE_)
 	 * 
-	 * @return	le nombre d'équipes trouvées
+	 * @return	le nombre d'Ã©quipes trouvÃ©es
 	 */
 	function initEquipes($v_bInitMembres = FALSE, $v_iIdNiveau = NULL, $v_iTypeNiveau = NULL)
 	{
@@ -1229,12 +1229,12 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie qu'un utilisateur est membre d'une des équipes actuellement initialisées
+	 * VÃ©rifie qu'un utilisateur est membre d'une des Ã©quipes actuellement initialisÃ©es
 	 * 
-	 * @param	v_iIdPers	l'id de l'utilisateur concerné par la vérification. S'il est <= 0, l'utilisateur connecté
-	 * 						est pris pour la vérification
+	 * @param	v_iIdPers	l'id de l'utilisateur concernÃ© par la vÃ©rification. S'il est <= 0, l'utilisateur connectÃ©
+	 * 						est pris pour la vÃ©rification
 	 * 
-	 * @return	\c true si l'utilisateur est membre d'une des équipes actuellement initialisées
+	 * @return	\c true si l'utilisateur est membre d'une des Ã©quipes actuellement initialisÃ©es
 	 */
 	function verifMembre($v_iIdPers = 0)
 	{
@@ -1250,13 +1250,13 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise l'équipe d'un utilisateur dans le contexte/niveau/élément courant (formation, module, etc)
+	 * Initialise l'Ã©quipe d'un utilisateur dans le contexte/niveau/Ã©lÃ©ment courant (formation, module, etc)
 	 * 
-	 * @param	$v_bInitMembres	si \c true, initialise également les membres de l'équipe.
-	 * @param	$v_iIdPers		l'id de l'utilisateur dont on veut connaître l'équipe. S'il est <= 0, l'utilisateur 
-	 * 							connecté est pris pour la vérification
+	 * @param	$v_bInitMembres	si \c true, initialise Ã©galement les membres de l'Ã©quipe.
+	 * @param	$v_iIdPers		l'id de l'utilisateur dont on veut connaÃ®tre l'Ã©quipe. S'il est <= 0, l'utilisateur 
+	 * 							connectÃ© est pris pour la vÃ©rification
 	 * 
-	 * @return	\c true si l'utilisateur fait bien partie d'une équipe
+	 * @return	\c true si l'utilisateur fait bien partie d'une Ã©quipe
 	 */
 	function initEquipe($v_bInitMembres = FALSE, $v_iIdPers = NULL)
 	{
@@ -1282,12 +1282,12 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie qu'une équipe fait partie de la liste des équipes actuellement initialisées
+	 * VÃ©rifie qu'une Ã©quipe fait partie de la liste des Ã©quipes actuellement initialisÃ©es
 	 * 
-	 * @param	v_iIdEquipe	l'id de l'équipe à vérifier. S'il <= 0, l'équipe actuellement initialisée est prise pour la
-	 * 						vérification
+	 * @param	v_iIdEquipe	l'id de l'Ã©quipe Ã  vÃ©rifier. S'il <= 0, l'Ã©quipe actuellement initialisÃ©e est prise pour la
+	 * 						vÃ©rification
 	 * 
-	 * @return	\c true si l'équipe fait partie de la liste des équipes actuelles
+	 * @return	\c true si l'Ã©quipe fait partie de la liste des Ã©quipes actuelles
 	 */
 	function verifEquipe($v_iIdEquipe = 0)
 	{
@@ -1306,7 +1306,7 @@ class CProjet
 	/**
 	 * Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure formation->module->etc
 	 * 
-	 * @return	le numéro correspondant au (type de) niveau actuel (constantes TYPE_)
+	 * @return	le numÃ©ro correspondant au (type de) niveau actuel (constantes TYPE_)
 	 */
 	function retTypeNiveau()
 	{
@@ -1319,13 +1319,13 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne l'id de l'élément dans lequel on se trouve, par rapport au "niveau" (formation, module, rubrique, etc).
+	 * Retourne l'id de l'Ã©lÃ©ment dans lequel on se trouve, par rapport au "niveau" (formation, module, rubrique, etc).
 	 * 
-	 * @param	v_iTypeNiveau	le niveau pour lequel on désire recevoir un id d'élément. S'il est absent ou invalide, 
-	 * 							c'est le niveau le plus profond actuellement initialisé qui est utilisé (résultat de la 
+	 * @param	v_iTypeNiveau	le niveau pour lequel on dÃ©sire recevoir un id d'Ã©lÃ©ment. S'il est absent ou invalide, 
+	 * 							c'est le niveau le plus profond actuellement initialisÃ© qui est utilisÃ© (rÃ©sultat de la 
 	 * 							fonction #retTypeNiveau()
 	 * 
-	 * @return	l'id de l'élément initialisé qui se trouve au niveau demandé
+	 * @return	l'id de l'Ã©lÃ©ment initialisÃ© qui se trouve au niveau demandÃ©
 	 */
 	function retIdNiveau($v_iTypeNiveau = NULL)
 	{
@@ -1344,9 +1344,9 @@ class CProjet
 		}
 	}
 	
-	// {{{ Méthodes des statuts
+	// {{{ MÃ©thodes des statuts
 	/**
-	 * Remet à \c false tous les statuts de l'utilisateur, comme s'ils n'étaient pas initialisés (=>aucun statut)
+	 * Remet Ã  \c false tous les statuts de l'utilisateur, comme s'ils n'Ã©taient pas initialisÃ©s (=>aucun statut)
 	 */
 	function reinitStatuts()
 	{
@@ -1357,9 +1357,9 @@ class CProjet
 	}
 	
 	/**
-	 * Ajoute un statut à la liste des statuts de l'utilisateur
+	 * Ajoute un statut Ã  la liste des statuts de l'utilisateur
 	 * 
-	 * @param	v_iStatut	le numéro du statut à ajouter (voir constantes STATUT_PERS_)
+	 * @param	v_iStatut	le numÃ©ro du statut Ã  ajouter (voir constantes STATUT_PERS_)
 	 */
 	function ajouterStatut($v_iStatut)
 	{
@@ -1367,11 +1367,11 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté possède un statut spécifique
+	 * VÃ©rifie que l'utilisateur connectÃ© possÃ¨de un statut spÃ©cifique
 	 * 
-	 * @param	v_iStatut	le numéro du statut à vérifier
+	 * @param	v_iStatut	le numÃ©ro du statut Ã  vÃ©rifier
 	 * 
-	 * @return	\c true si l'utilisateur possède ce statut
+	 * @return	\c true si l'utilisateur possÃ¨de ce statut
 	 */
 	function verifStatut($v_iStatut)
 	{
@@ -1382,12 +1382,12 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le statut de l'utilisateur connecté
+	 * Retourne le statut de l'utilisateur connectÃ©
 	 * 
-	 * @param	v_bStatutActuel	si \c true, retourne le statut actuel de l'utilisateur, càd la variable \c 
-	 * 							iStatutUtilisateur, qui peut avoir changé par rapport au statut enregistré (cookie) 
-	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette dernière 
-	 * 							est utilisée si le paramètre est \c false
+	 * @param	v_bStatutActuel	si \c true, retourne le statut actuel de l'utilisateur, cÃ d la variable \c 
+	 * 							iStatutUtilisateur, qui peut avoir changÃ© par rapport au statut enregistrÃ© (cookie) 
+	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette derniÃ¨re 
+	 * 							est utilisÃ©e si le paramÃ¨tre est \c false
 	 * 
 	 * @return	le statut de l'utilisateur
 	 */
@@ -1402,10 +1402,10 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le statut "réel" de l'utilisateur, càd celui qui est enregistré pour la session dans la variable
+	 * Retourne le statut "rÃ©el" de l'utilisateur, cÃ d celui qui est enregistrÃ© pour la session dans la variable
 	 * asInfosSession. C'est le statut qui est choisi par l'utilisateur, et qui est transmis de page en page. 
-	 * Il se peut qu'on le change momentanément sur une page à l'aide de la variable iStatutUtilisateur, mais celui-ci 
-	 * ne sera pas enregistré dans la session tant qu'il n'a pas été également transféré dans asInfosSession
+	 * Il se peut qu'on le change momentanÃ©ment sur une page Ã  l'aide de la variable iStatutUtilisateur, mais celui-ci 
+	 * ne sera pas enregistrÃ© dans la session tant qu'il n'a pas Ã©tÃ© Ã©galement transfÃ©rÃ© dans asInfosSession
 	 * 
 	 * @return	le statut de l'utilisateur
 	 */
@@ -1415,9 +1415,9 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le statut le plus élevé que l'utilisateur possède dans le contexte (session) actuel
+	 * Retourne le statut le plus Ã©levÃ© que l'utilisateur possÃ¨de dans le contexte (session) actuel
 	 * 
-	 * @return	le statut le plus élevé pour l'utilisateur
+	 * @return	le statut le plus Ã©levÃ© pour l'utilisateur
 	 */
 	function retHautStatutUtilisateur()
 	{
@@ -1428,30 +1428,30 @@ class CProjet
 	// }}}
 	
 	/**
-	 * Retourne le nom de l'utilisateur connecté, ou visiteur/invité s'il est inconnu
+	 * Retourne le nom de l'utilisateur connectÃ©, ou visiteur/invitÃ© s'il est inconnu
 	 * 
-	 * @param	v_bStatutActuel	si \c true, utilise le statut actuel de l'utilisateur, càd la variable \c 
-	 * 							iStatutUtilisateur, qui peut avoir changé par rapport au statut enregistré (cookie) 
-	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette dernière 
-	 * 							est utilisée si le paramètre est \c false
+	 * @param	v_bStatutActuel	si \c true, utilise le statut actuel de l'utilisateur, cÃ d la variable \c 
+	 * 							iStatutUtilisateur, qui peut avoir changÃ© par rapport au statut enregistrÃ© (cookie) 
+	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette derniÃ¨re 
+	 * 							est utilisÃ©e si le paramÃ¨tre est \c false
 	 * 
-	 * @return	le nom de l'utilisateur s'il est idientifié, sinon "visiteur/invité"
+	 * @return	le nom de l'utilisateur s'il est idientifiÃ©, sinon "visiteur/invitÃ©"
 	 */
 	function retTexteUtilisateur($v_bStatutActuel = TRUE)
 	{
 		if ($this->retIdUtilisateur() > 0)
 			return $this->oUtilisateur->retNomComplet();
 		else
-			return (STATUT_PERS_VISITEUR == ($this->retStatutUtilisateur($v_bStatutActuel)) ? "Visiteur" : "Invité");
+			return (STATUT_PERS_VISITEUR == ($this->retStatutUtilisateur($v_bStatutActuel)) ? "Visiteur" : "InvitÃ©");
 	}
 	
 	/**
-	 * Retourne le terme correspondant à un statut, en tenant compte du sexe M/F
+	 * Retourne le terme correspondant Ã  un statut, en tenant compte du sexe M/F
 	 * 
 	 * @param	v_iStatut	le statut pour lequel on veut le terme
-	 * @param	v_sSexe		le genre à utiliser pour le terme
+	 * @param	v_sSexe		le genre Ã  utiliser pour le terme
 	 * 
-	 * @return	le terme employé pour désigner le statut
+	 * @return	le terme employÃ© pour dÃ©signer le statut
 	 */
 	function retTexteStatutUtilisateur($v_iStatut = NULL, $v_sSexe = NULL)
 	{
@@ -1470,8 +1470,8 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne une liste des termes employés pour désigner les différents statuts de l'utilisateur connecté. 
-	 * Cette liste est séparée par des &lt;BR&gt;
+	 * Retourne une liste des termes employÃ©s pour dÃ©signer les diffÃ©rents statuts de l'utilisateur connectÃ©. 
+	 * Cette liste est sÃ©parÃ©e par des &lt;BR&gt;
 	 * 
 	 * @return	la liste des statuts, sous forme textuelle
 	 */
@@ -1490,18 +1490,18 @@ class CProjet
 	}
 	
 	/**
-	 * Insère dans la DB une nouvelle ressource (fichier) associée à une sous-activité.
-	 * L'id utilisateur est celui de l'actuel connecté, et la sous-activité est celle qui est actuellement 
-	 * initialisée (logiquement celle dans laquelle l'utilisateur se trouve)
+	 * InsÃ¨re dans la DB une nouvelle ressource (fichier) associÃ©e Ã  une sous-activitÃ©.
+	 * L'id utilisateur est celui de l'actuel connectÃ©, et la sous-activitÃ© est celle qui est actuellement 
+	 * initialisÃ©e (logiquement celle dans laquelle l'utilisateur se trouve)
 	 * 
-	 * @param	v_sNom		le nom donné à la ressource (fichier) à insérer
+	 * @param	v_sNom		le nom donnÃ© Ã  la ressource (fichier) Ã  insÃ©rer
 	 * @param	v_sDescr	la description de la ressource
 	 * @param	v_sAuteur	l'auteur de la ressource, sous forme de texte (pas un id utilisateur)
 	 * @param	v_sUrl		le chemin de la ressource
 	 * 
-	 * @return	\c true si la ressource a bien été insérée, \c false si l'utilisateur courant n'est pas identifié, 
-	 * 			ou s'il ne se trouve pas dans une sous-activité (aucune initialisée), ou encore si un problème est 
-	 * 			survenu à l'insertion SQL
+	 * @return	\c true si la ressource a bien Ã©tÃ© insÃ©rÃ©e, \c false si l'utilisateur courant n'est pas identifiÃ©, 
+	 * 			ou s'il ne se trouve pas dans une sous-activitÃ© (aucune initialisÃ©e), ou encore si un problÃ¨me est 
+	 * 			survenu Ã  l'insertion SQL
 	 */
 	function insererRessource($v_sNom, $v_sDescr, $v_sAuteur, $v_sUrl)
 	{
@@ -1554,10 +1554,10 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne la colonne sur laquelle le tri est actuellement effectué, telle qu'enregistrée dans la session de 
-	 * l'utilisateur (cookie). Cette fonctionnalité est par exemple utilisée pour l'affichage des collecticiels
+	 * Retourne la colonne sur laquelle le tri est actuellement effectuÃ©, telle qu'enregistrÃ©e dans la session de 
+	 * l'utilisateur (cookie). Cette fonctionnalitÃ© est par exemple utilisÃ©e pour l'affichage des collecticiels
 	 * 
-	 * @return	la colonne sur lequel le tri est effectué, sous forme de chaîne de caractères (par ex "date")
+	 * @return	la colonne sur lequel le tri est effectuÃ©, sous forme de chaÃ®ne de caractÃ¨res (par ex "date")
 	 */
 	function retTriCol()
 	{
@@ -1565,8 +1565,8 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le sens (normal ou inversé) actuel du tri sur des colonnes. Cette fonctionnalité est par exemple 
-	 * utilisée pour l'affichage des collecticiels.
+	 * Retourne le sens (normal ou inversÃ©) actuel du tri sur des colonnes. Cette fonctionnalitÃ© est par exemple 
+	 * utilisÃ©e pour l'affichage des collecticiels.
 	 * 
 	 * @return	le sens du tri (voir constantes TRI_)
 	 */
@@ -1576,9 +1576,9 @@ class CProjet
 	}
 	
 	/**
-	 * Récupère les informations de la session actuelle de navigation de l'utilisateur. Cette lecture a lieu soit dans 
-	 * le cookie, soit à partir des paramètres de l'url, les données passées par cette dernière ayant priorité. 
-	 * Ces données sont par exemple le pseudo de l'utilisateur, le mot de passe associé, le statut actuel, les ids 
+	 * RÃ©cupÃ¨re les informations de la session actuelle de navigation de l'utilisateur. Cette lecture a lieu soit dans 
+	 * le cookie, soit Ã  partir des paramÃ¨tres de l'url, les donnÃ©es passÃ©es par cette derniÃ¨re ayant prioritÃ©. 
+	 * Ces donnÃ©es sont par exemple le pseudo de l'utilisateur, le mot de passe associÃ©, le statut actuel, les ids 
 	 * des formation/module/rubrique/etc dans lesquels l'utilisateur se trouve actuellement
 	 */
 	function lireInfosSession()
@@ -1609,7 +1609,7 @@ class CProjet
 				$this->iStatutUtilisateur = $this->asInfosSession[SESSION_STATUT_UTILISATEUR];
 		}
 		
-		// si certaines infos sont passées en paramètre de l'URL, elles priment
+		// si certaines infos sont passÃ©es en paramÃ¨tre de l'URL, elles priment
 		// sur celles contenues dans le cookie
 		if (isset($HTTP_GET_VARS["idForm"]))
 		{
@@ -1652,11 +1652,11 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne une donnée parmi celles enregistrées pour la session utilisateur
+	 * Retourne une donnÃ©e parmi celles enregistrÃ©es pour la session utilisateur
 	 * 
-	 * @param	v_iNumSession	le numéro de la donnée de session à récupérer (voir les constantes SESSION_)
+	 * @param	v_iNumSession	le numÃ©ro de la donnÃ©e de session Ã  rÃ©cupÃ©rer (voir les constantes SESSION_)
 	 * 
-	 * @return	la donnée provenant de la session
+	 * @return	la donnÃ©e provenant de la session
 	 */
 	function retInfosSession($v_iNumSession)
 	{
@@ -1666,16 +1666,16 @@ class CProjet
 	}
 	
 	/**
-	 * Modifie une donnée de la session utilisateur, et réenregistre éventuellement la session (cookie)
+	 * Modifie une donnÃ©e de la session utilisateur, et rÃ©enregistre Ã©ventuellement la session (cookie)
 	 * 
-	 * @param	v_iNumSession		le numéro de la donnée de session à modifier (voir constantes SESSION_)
-	 * @param	v_mValeurSession	la nouvelle valeur pour la donnée
-	 * @param	v_bEnregistrer		si \c true, la session \e complète sera réenregistrée dans un cookie
+	 * @param	v_iNumSession		le numÃ©ro de la donnÃ©e de session Ã  modifier (voir constantes SESSION_)
+	 * @param	v_mValeurSession	la nouvelle valeur pour la donnÃ©e
+	 * @param	v_bEnregistrer		si \c true, la session \e complÃ¨te sera rÃ©enregistrÃ©e dans un cookie
 	 * 
-	 * @return	\c true si le numéro de la donnée de session à enregistrer était correct
+	 * @return	\c true si le numÃ©ro de la donnÃ©e de session Ã  enregistrer Ã©tait correct
 	 * 
-	 * @note	Si on décide d'enregistrer la session, étant donné que cela implique l'écriture d'un cookie, il faut 
-	 * 			qu'aucune sortie HTML/PHP n'ai eu lieu dans la page; cette fonction doit donc être appelée avant tout 
+	 * @note	Si on dÃ©cide d'enregistrer la session, Ã©tant donnÃ© que cela implique l'Ã©criture d'un cookie, il faut 
+	 * 			qu'aucune sortie HTML/PHP n'ai eu lieu dans la page; cette fonction doit donc Ãªtre appelÃ©e avant tout 
 	 * 			affichage
 	 */
 	function modifierInfosSession($v_iNumSession, $v_mValeurSession, $v_bEnregistrer = FALSE)
@@ -1692,9 +1692,9 @@ class CProjet
 	}
 	
 	/**
-	 * Enregistre les données de session actuelles de l'utilisateur dans un cookie
+	 * Enregistre les donnÃ©es de session actuelles de l'utilisateur dans un cookie
 	 * 
-	 * @note	L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
+	 * @note	L'Ã©criture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
 	 * 			l'appel de la fonction
 	 */
 	function enregistrerInfosSession()
@@ -1713,9 +1713,9 @@ class CProjet
 	}
 	
 	/**
-	 * Enregistre la totalité des données de la session utilisateur, dans leur état actuel, dans le cookie
+	 * Enregistre la totalitÃ© des donnÃ©es de la session utilisateur, dans leur Ã©tat actuel, dans le cookie
 	 * 
-	 * @note	L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
+	 * @note	L'Ã©criture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
 	 * 			l'appel de la fonction
 	 */
 	function ecrireInfosSession()
@@ -1736,15 +1736,15 @@ class CProjet
 		if (is_object($this->oModuleCourant))
 			$this->asInfosSession[SESSION_MOD] = $this->oModuleCourant->retId();
 		
-		// Rubrique/Unité
+		// Rubrique/UnitÃ©
 		if (is_object($this->oRubriqueCourante))
 			$this->asInfosSession[SESSION_UNITE] = $this->oRubriqueCourante->retId();
 		
-		// Activité
+		// ActivitÃ©
 		if (is_object($this->oActivCourante))
 			$this->asInfosSession[SESSION_ACTIV] = $this->oActivCourante->retId();
 		
-		// Sous-activité
+		// Sous-activitÃ©
 		if (is_object($this->oSousActivCourante))
 			$this->asInfosSession[SESSION_SOUSACTIV] = $this->oSousActivCourante->retId();
 		
@@ -1752,15 +1752,15 @@ class CProjet
 		if (empty($this->asInfosSession[SESSION_STATUT_UTILISATEUR]))
 			$this->asInfosSession[SESSION_STATUT_UTILISATEUR] = $this->iStatutUtilisateur;
 		
-		// ensuite, on inscrit la totalité du cookie
+		// ensuite, on inscrit la totalitÃ© du cookie
 		$this->enregistrerInfosSession();
 	}
 	
 	/**
-	 * Efface complètement la session de l'utilisateur, ainsi que le cookie qui y est associé.
+	 * Efface complÃ¨tement la session de l'utilisateur, ainsi que le cookie qui y est associÃ©.
 	 * Cela a pour effet l'annulation de son identification
 	 * 
-	 * @note	L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
+	 * @note	L'Ã©criture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
 	 * 			l'appel de la fonction
 	 */
 	function effacerInfosSession()
@@ -1776,7 +1776,7 @@ class CProjet
 	}
 	
 	/**
-	 * Affiche toutes les informations de la session utilisateur dans leur état actuel, ligne par ligne (fonction 
+	 * Affiche toutes les informations de la session utilisateur dans leur Ã©tat actuel, ligne par ligne (fonction 
 	 * utilitaire)
 	 */
 	function afficherInfosSession()
@@ -1788,13 +1788,13 @@ class CProjet
 	/**
 	 * Modifie le statut actuel de l'utilisateur
 	 * 
-	 * @param	v_iStatutUtilisateur	le numéro du statut à activer
-	 * @param	v_bSauverDsCookie		si \c true, enregistre immédiatement les données \e complètes de la session 
+	 * @param	v_iStatutUtilisateur	le numÃ©ro du statut Ã  activer
+	 * @param	v_bSauverDsCookie		si \c true, enregistre immÃ©diatement les donnÃ©es \e complÃ¨tes de la session 
 	 * 									utilisateur, et donc le nouveau statut
 	 * 
-	 * @return	\c true si le numéro du statut demandé est valide
+	 * @return	\c true si le numÃ©ro du statut demandÃ© est valide
 	 * 
-	 * @note	L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
+	 * @note	L'Ã©criture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant 
 	 * 			l'appel de la fonction
 	 */
 	function changerStatutUtilisateur($v_iStatutUtilisateur, $v_bSauverDsCookie = TRUE)
@@ -1813,22 +1813,22 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne une version cryptée d'une chaîne de caractère (mot de passe)
+	 * Retourne une version cryptÃ©e d'une chaÃ®ne de caractÃ¨re (mot de passe)
 	 * 
-	 * @param	v_sMdp	la chaîne à crypter
+	 * @param	v_sMdp	la chaÃ®ne Ã  crypter
 	 * 
-	 * @return	la version cryptée de la chaîne \p v_sMdp
+	 * @return	la version cryptÃ©e de la chaÃ®ne \p v_sMdp
 	 * 
-	 * @todo	Pour le moment, le cryptage se fait par la fonction \c PASSWORD() de MySQL, ce qui était malheureusement 
-	 * 			une très mauvaise idée, car cette fonction ne devait être utilisée qu'en interne par MySQL, et a été 
-	 * 			modifiée dans MySQL 4.1, ce qui rendra les mots de passe déjà encodés incompatible avec la nouvelle 
+	 * @todo	Pour le moment, le cryptage se fait par la fonction \c PASSWORD() de MySQL, ce qui Ã©tait malheureusement 
+	 * 			une trÃ¨s mauvaise idÃ©e, car cette fonction ne devait Ãªtre utilisÃ©e qu'en interne par MySQL, et a Ã©tÃ© 
+	 * 			modifiÃ©e dans MySQL 4.1, ce qui rendra les mots de passe dÃ©jÃ  encodÃ©s incompatible avec la nouvelle 
 	 * 			version de la fonction
 	 * 
-	 * 			Idéalement, il faudrait donc crypter avec une fonction standard comme \c MD5() si on veut garder des 
-	 * 			mots de passe indécryptables ou des fonctions comme <code>AES_CRYPT()/AES_DECRYPT()</code> si on veut 
-	 * 			pouvoir récupérer le mot de passe à tout moment (ça éviterait le système tordu mis en place après coup, 
-	 * 			qui consiste à écrire une version décryptée du mot de passe de chaque utilisateur dans le fichier 
-	 * 			\c src/tmp/mdpncpte protégé contre la lecture, à chaque fois que quelqu'un se connecte et passe 
+	 * 			IdÃ©alement, il faudrait donc crypter avec une fonction standard comme \c MD5() si on veut garder des 
+	 * 			mots de passe indÃ©cryptables ou des fonctions comme <code>AES_CRYPT()/AES_DECRYPT()</code> si on veut 
+	 * 			pouvoir rÃ©cupÃ©rer le mot de passe Ã  tout moment (Ã§a Ã©viterait le systÃ¨me tordu mis en place aprÃ¨s coup, 
+	 * 			qui consiste Ã  Ã©crire une version dÃ©cryptÃ©e du mot de passe de chaque utilisateur dans le fichier 
+	 * 			\c src/tmp/mdpncpte protÃ©gÃ© contre la lecture, Ã  chaque fois que quelqu'un se connecte et passe 
 	 * 			le login
 	 */
 	function retMdpCrypte($v_sMdp)
@@ -1840,10 +1840,10 @@ class CProjet
 	}
 	
 	/**
-	 * Ecrit un "événement" dans la DB, pour le moment il s'agit des connexions/déconnexions des utilisateurs
+	 * Ecrit un "Ã©vÃ©nement" dans la DB, pour le moment il s'agit des connexions/dÃ©connexions des utilisateurs
 	 * 
-	 * @param	v_iTypeEven		le numéro du type d'événement (voir constantes TYPE_EVEN_)
-	 * @param	v_sDonneesEven	les données supplémentaires à associer à l'événement
+	 * @param	v_iTypeEven		le numÃ©ro du type d'Ã©vÃ©nement (voir constantes TYPE_EVEN_)
+	 * @param	v_sDonneesEven	les donnÃ©es supplÃ©mentaires Ã  associer Ã  l'Ã©vÃ©nement
 	 */
 	function ecrireEvenement($v_iTypeEven, $v_sDonneesEven = NULL)
 	{
@@ -1873,7 +1873,7 @@ class CProjet
 		
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		// Mettre à jour le cookie
+		// Mettre Ã  jour le cookie
 		if ($v_iTypeEven == TYPE_EVEN_LOGIN_REUSSI)
 		{
 			$this->asInfosSession[SESSION_UID] = $this->oBdd->retDernierId();
@@ -1884,7 +1884,7 @@ class CProjet
 	/**
 	 * Retourne le nom du projet
 	 * 
-	 * @return	le nom du projet, tel qu'enregistré dans la DB
+	 * @return	le nom du projet, tel qu'enregistrÃ© dans la DB
 	 */
 	function retNom()
 	{
@@ -1902,9 +1902,9 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le port TCP sur lequel est lancé le serveur de chat utilisé par les clients de la plate-forme
+	 * Retourne le port TCP sur lequel est lancÃ© le serveur de chat utilisÃ© par les clients de la plate-forme
 	 * 
-	 * @return	le port TCP associé au serveur chat
+	 * @return	le port TCP associÃ© au serveur chat
 	 */
 	function retNumPortChat()
 	{
@@ -1912,9 +1912,9 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le port TCP sur lequel est lancé le serveur d'awareness utilisé par les clients de la plate-forme
+	 * Retourne le port TCP sur lequel est lancÃ© le serveur d'awareness utilisÃ© par les clients de la plate-forme
 	 * 
-	 * @return	le port TCP associé au serveur d'awareness (JCVD-style :-D )
+	 * @return	le port TCP associÃ© au serveur d'awareness (JCVD-style :-D )
 	 */
 	function retNumPortAwareness()
 	{
@@ -1922,11 +1922,11 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne la langue de l'utilisateur connecté
+	 * Retourne la langue de l'utilisateur connectÃ©
 	 * 
-	 * @return	un code qui représente la langue actuelle de l'utilisateur
+	 * @return	un code qui reprÃ©sente la langue actuelle de l'utilisateur
 	 * 
-	 * @deprecated	Cette fonction ne semble pas utilisée pour le moment, et sera remplacée par le système \c gettext()
+	 * @deprecated	Cette fonction ne semble pas utilisÃ©e pour le moment, et sera remplacÃ©e par le systÃ¨me \c gettext()
 	 */
 	function retLanguage()
 	{
@@ -1934,12 +1934,12 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le chemin du répertoire qui abrite les fichiers de la formation actuelle (initialisée)
+	 * Retourne le chemin du rÃ©pertoire qui abrite les fichiers de la formation actuelle (initialisÃ©e)
 	 * 
-	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
-	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif
+	 * @param	v_sFichierInclure	le nom d'un Ã©ventuel fichier qui fera alors partie du chemin retournÃ©
+	 * @param	v_bCheminAbsolu		si \c true, le chemin retournÃ© sera absolu. Si \c false, il sera relatif
 	 * 
-	 * @return	le chemin vers le répertoire de la formation courante
+	 * @return	le chemin vers le rÃ©pertoire de la formation courante
 	 */
 	function dir_formation($v_sFichierInclure = NULL, $v_bCheminAbsolu = FALSE)
 	{
@@ -1947,12 +1947,12 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante
+	 * Retourne le chemin du rÃ©pertoire qui abrite les fichiers de l'activitÃ© courante
 	 * 
-	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
-	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif
+	 * @param	v_sFichierInclure	le nom d'un Ã©ventuel fichier qui fera alors partie du chemin retournÃ©
+	 * @param	v_bCheminAbsolu		si \c true, le chemin retournÃ© sera absolu. Si \c false, il sera relatif
 	 * 
-	 * @return	le chemin vers le répertoire de l'activité courante
+	 * @return	le chemin vers le rÃ©pertoire de l'activitÃ© courante
 	 */
 	function dir_cours($v_sFichierInclure = NULL, $v_bCheminAbsolu = FALSE)
 	{
@@ -1979,11 +1979,11 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme
+	 * Retourne le chemin du rÃ©pertoire images de l'activitÃ© courante, relatif Ã  la racine de la plate-forme
 	 * 
-	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
+	 * @param	v_sFichierInclure	le nom d'un Ã©ventuel fichier qui fera alors partie du chemin retournÃ©
 	 * 
-	 * @return	le chemin vers le répertoire images pour l'activité courante
+	 * @return	le chemin vers le rÃ©pertoire images pour l'activitÃ© courante
 	 */
 	function dir_images($v_sFichierInclure = NULL)
 	{
@@ -1991,12 +1991,12 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le chemin du répertoire ressources de l'activité courante
+	 * Retourne le chemin du rÃ©pertoire ressources de l'activitÃ© courante
 	 * 
-	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
-	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif
+	 * @param	v_sFichierInclure	le nom d'un Ã©ventuel fichier qui fera alors partie du chemin retournÃ©
+	 * @param	v_bCheminAbsolu		si \c true, le chemin retournÃ© sera absolu. Si \c false, il sera relatif
 	 * 
-	 * @return	le chemin vers le répertoire ressources pour l'activité courante
+	 * @return	le chemin vers le rÃ©pertoire ressources pour l'activitÃ© courante
 	 */
 	function dir_ressources($v_sFichierInclure = NULL, $v_bCheminAbsolu = TRUE)
 	{
@@ -2004,12 +2004,12 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme
+	 * Retourne le chemin du rÃ©pertoire rubriques de la formation courante, relatif Ã  la racine de la plate-forme
 	 * 
-	 * @param	v_sFichierInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
-	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif
+	 * @param	v_sFichierInclure	le nom d'un Ã©ventuel fichier qui fera alors partie du chemin retournÃ©
+	 * @param	v_bCheminAbsolu		si \c true, le chemin retournÃ© sera absolu. Si \c false, il sera relatif
 	 * 
-	 * @return	le chemin vers le répertoire rubriques pour la formation courante
+	 * @return	le chemin vers le rÃ©pertoire rubriques pour la formation courante
 	 */
 	function retRepRubriques($v_sFichierInclure = NULL, $v_bCheminAbsolu = FALSE)
 	{
@@ -2017,12 +2017,12 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie qu'un utilisateur a le statut de tuteur
+	 * VÃ©rifie qu'un utilisateur a le statut de tuteur
 	 * 
-	 * @param	v_iIdPers	l'id de l'utilisateur. S'il est absent, l'utilisateur connecté sera pris pour la 
-	 * 						vérification
+	 * @param	v_iIdPers	l'id de l'utilisateur. S'il est absent, l'utilisateur connectÃ© sera pris pour la 
+	 * 						vÃ©rification
 	 * 
-	 * @return	\c true si l'utilisateur est tuteur, \c false si ce n'est pas le cas \e ou que l'utilisateur à vérifier 
+	 * @return	\c true si l'utilisateur est tuteur, \c false si ce n'est pas le cas \e ou que l'utilisateur Ã  vÃ©rifier 
 	 * 			est invalide
 	 */
 	function verifTuteur($v_iIdPers = 0)
@@ -2050,34 +2050,34 @@ class CProjet
 	}
 	
 	/**
-	 * Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres
+	 * Retourne le code HTML nÃ©cessaire Ã  la reprÃ©sentation d'un lien, en fonction de diffÃ©rents paramÃ¨tres
 	 * 
 	 * @param	v_sLien			l'url du lien
-	 * @param	v_sIntitule		le texte à utiliser pour afficher le lien
-	 * @param	v_iMode			le mode d'affichage de l'url lorsque le lien sera cliqué (voir constantes)
-	 * @param	v_sInfoBulle	le texte à afficher dans l'infobulle du lien (attribut "title"). Si \p v_iMode vaut
+	 * @param	v_sIntitule		le texte Ã  utiliser pour afficher le lien
+	 * @param	v_iMode			le mode d'affichage de l'url lorsque le lien sera cliquÃ© (voir constantes)
+	 * @param	v_sInfoBulle	le texte Ã  afficher dans l'infobulle du lien (attribut "title"). Si \p v_iMode vaut
 	 * 							MODE_LIEN_TELECHARGER, l'infobulle sera automatiquement un message indiquant qu'il 
-	 * 							s'agit d'un téléchargement
+	 * 							s'agit d'un tÃ©lÃ©chargement
 	 * 
-	 * @return	le code HTML pour créer le lien demandé
+	 * @return	le code HTML pour crÃ©er le lien demandÃ©
 	 */
 	function retLien($v_sLien = NULL, $v_sIntitule = NULL, $v_iMode = NULL, $v_sInfoBulle = NULL)
 	{
 		$sCheminAbsolu = dir_document_root();
 		
 		if (empty($v_sLien) && empty($v_sIntitule))
-			return "<b>Pas de lien attribué</b>";
+			return "<b>Pas de lien attribuÃ©</b>";
 		
 		$err = FALSE;
 		
-		// si l'intitulé du lien n'est pas fourni, on utilise le lien lui-même
-		// à la place
+		// si l'intitulÃ© du lien n'est pas fourni, on utilise le lien lui-mÃªme
+		// Ã  la place
 		if (empty($v_sIntitule))
 			$v_sIntitule = rawurldecode($v_sLien);
 		
-		// le "mode" du lien spécifie si celui-ci passera par le "filtre" de
-		// téléchargement, s'il sera ouvert dans la fenêtre principale, ou 
-		// dans une nouvelle fenêtre
+		// le "mode" du lien spÃ©cifie si celui-ci passera par le "filtre" de
+		// tÃ©lÃ©chargement, s'il sera ouvert dans la fenÃªtre principale, ou 
+		// dans une nouvelle fenÃªtre
 		$ok = TRUE;
 		$sParamLien = NULL;
 		$sIcone = NULL;
@@ -2105,8 +2105,8 @@ class CProjet
 			case MODE_LIEN_TELECHARGER:
 				
 				// *************************************
-				// le nom du fichier à télécharger est passé en URL, donc il doit être
-				// encodé pour éviter les erreurs avec les caractères spéciaux
+				// le nom du fichier Ã  tÃ©lÃ©charger est passÃ© en URL, donc il doit Ãªtre
+				// encodÃ© pour Ã©viter les erreurs avec les caractÃ¨res spÃ©ciaux
 				// *************************************
 				
 				if (empty($v_sLien))
@@ -2149,12 +2149,12 @@ class CProjet
 	
 	
 	/**
-	 * Affiche un message de débuggage
+	 * Affiche un message de dÃ©buggage
 	 * 
-	 * @param	v_sMessage		le message à afficher
-	 * @param	v_iNumLigne		le numéro de ligne concerné (utiliser la constante magique PHP \c __LINE__ à l'appel)
+	 * @param	v_sMessage		le message Ã  afficher
+	 * @param	v_iNumLigne		le numÃ©ro de ligne concernÃ© (utiliser la constante magique PHP \c __LINE__ Ã  l'appel)
 	 * @param	v_sNomFichier	le fichier dans lequel on se trouve au moment du message (utiliser la constante magique 
-	 * 							PHP \c __FILE__ à l'appel)
+	 * 							PHP \c __FILE__ Ã  l'appel)
 	 */
 	function debug($v_sMessage , $v_iNumLigne = NULL, $v_sNomFichier = NULL)
 	{
@@ -2168,7 +2168,7 @@ class CProjet
 	/**
 	 * Retourne un tableau multi-dimensionnel contenant, pour chaque indice de premier niveau, les infos sur un statut 
 	 * sous forme d'indices textuels \c IdStatut (l'id dans la DB), \c NomStatut (statut sous forme texte, au masculin)
-	 * et \c TxtStatut (le nom de la constante représentant le statut)
+	 * et \c TxtStatut (le nom de la constante reprÃ©sentant le statut)
 	 * 
 	 * @return	un tableau contenant les infos sur les types de statuts
 	 */
@@ -2191,12 +2191,12 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise toutes les permissions de la personne par rapport à son statut actuel
+	 * Initialise toutes les permissions de la personne par rapport Ã  son statut actuel
 	 * 
-	 * @param	v_bStatutActuel	si \c true, utilise le statut actuel de l'utilisateur, càd la variable \c 
-	 * 							iStatutUtilisateur, qui peut avoir changé par rapport au statut enregistré (cookie) 
-	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette dernière 
-	 * 							est utilisée si le paramètre est \c false.
+	 * @param	v_bStatutActuel	si \c true, utilise le statut actuel de l'utilisateur, cÃ d la variable \c 
+	 * 							iStatutUtilisateur, qui peut avoir changÃ© par rapport au statut enregistrÃ© (cookie) 
+	 * 							pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], cette derniÃ¨re 
+	 * 							est utilisÃ©e si le paramÃ¨tre est \c false.
 	 */
 	function initPermisUtilisateur($v_bStatutActuel = TRUE)
 	{
@@ -2205,11 +2205,11 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur connecté dispose d'une permission particulière
+	 * VÃ©rifie que l'utilisateur connectÃ© dispose d'une permission particuliÃ¨re
 	 * 
-	 * @param	v_sNomPermis	la constante représentant la permission à vérifier, mais <b>sous forme de chaîne</b>
+	 * @param	v_sNomPermis	la constante reprÃ©sentant la permission Ã  vÃ©rifier, mais <b>sous forme de chaÃ®ne</b>
 	 * 
-	 * @return	\c true si l'utilisateur connecté dispose de la permission
+	 * @return	\c true si l'utilisateur connectÃ© dispose de la permission
 	 */
 	function verifPermission($v_sNomPermis)
 	{
@@ -2220,9 +2220,9 @@ class CProjet
 	}
 	
 	/**
-	 * Crée un fichier de définitions PHP représentant les statuts possibles pour les utilisateurs. Ce fichier doit 
-	 * être recréee lorsqu'on ajoute de nouveaux statuts, ce qui est rare. Par contre, on peut ajouter des permissions 
-	 * sans pour autant devoir régénérer ce fichier.
+	 * CrÃ©e un fichier de dÃ©finitions PHP reprÃ©sentant les statuts possibles pour les utilisateurs. Ce fichier doit 
+	 * Ãªtre recrÃ©ee lorsqu'on ajoute de nouveaux statuts, ce qui est rare. Par contre, on peut ajouter des permissions 
+	 * sans pour autant devoir rÃ©gÃ©nÃ©rer ce fichier.
 	 * 
 	 * @see	include/def/statut.def.php
 	 */
@@ -2230,12 +2230,12 @@ class CProjet
 	{
 		$aListeStatut = $this->retListeStatut();
 		
-		// ouverture du fichier en écriture
+		// ouverture du fichier en Ã©criture
 		if ($hFichier = fopen(dir_definition("statut.def.php"), "w+"))
 		{
-			// écriture balise PHP début + 'define's + balise PHP fin, puis fermeture
+			// Ã©criture balise PHP dÃ©but + 'define's + balise PHP fin, puis fermeture
 			fputs($hFichier,"<?php\n\n");
-			fputs($hFichier,sprintf(_("// Ce fichier a été généré (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
+			fputs($hFichier,sprintf(_("// Ce fichier a Ã©tÃ© gÃ©nÃ©rÃ© (%s) automatiquement par la plate-forme\n\n"),date ("d M Y")));
 			fputs($hFichier,"define(\"STATUT_POTENTIEL\", 1000);\n\n");
 			
 			$aFirst = reset($aListeStatut);
@@ -2254,14 +2254,14 @@ class CProjet
 	}
 	
 	/**
-	 * Vérifie que l'utilisateur a le droit d'utiliser les différents outils d'administration. Si l'utilisateur n'est 
-	 * pas identifié, est visiteur, ou n'a pas la permission requise, une page blanche est affichée
+	 * VÃ©rifie que l'utilisateur a le droit d'utiliser les diffÃ©rents outils d'administration. Si l'utilisateur n'est 
+	 * pas identifiÃ©, est visiteur, ou n'a pas la permission requise, une page blanche est affichÃ©e
 	 * 
-	 * @param	v_sNomPermission	la constante représentant la permission d'utiliser l'outil, mais <b>sous forme de 
-	 * 								chaîne</b>
+	 * @param	v_sNomPermission	la constante reprÃ©sentant la permission d'utiliser l'outil, mais <b>sous forme de 
+	 * 								chaÃ®ne</b>
 	 * 
-	 * @todo	Vérifier que \c bPeutUtiliserOutils ne devrait pas plutôt valoir \c false au cas où la constante passée 
-	 * 			en paramètre n'existe pas
+	 * @todo	VÃ©rifier que \c bPeutUtiliserOutils ne devrait pas plutÃ´t valoir \c false au cas oÃ¹ la constante passÃ©e 
+	 * 			en paramÃ¨tre n'existe pas
 	 */
 	function verifPeutUtiliserOutils($v_sNomPermission = NULL)
 	{
@@ -2278,13 +2278,13 @@ class CProjet
 	}
 	
 	/**
-	 * Remplit un tableau d'objets CPersonne selon des critères de statut
+	 * Remplit un tableau d'objets CPersonne selon des critÃ¨res de statut
 	 * 
-	 * @param	v_iIdStatutPers	la constante rerpésentant le statut désiré
-	 * @param	v_iIdForm		l'id de la session de formation à croiser avec le statut
-	 * @param	v_iIdMod		l'id du module à croiser avec le statut, n'est pas requis pour certains statuts
+	 * @param	v_iIdStatutPers	la constante rerpÃ©sentant le statut dÃ©sirÃ©
+	 * @param	v_iIdForm		l'id de la session de formation Ã  croiser avec le statut
+	 * @param	v_iIdMod		l'id du module Ã  croiser avec le statut, n'est pas requis pour certains statuts
 	 * 
-	 * @return	le nombre de personnes trouvées
+	 * @return	le nombre de personnes trouvÃ©es
 	 */
 	function initPersonnes($v_iIdStatutPers = NULL, $v_iIdForm = 0, $v_iIdMod = 0)
 	{
@@ -2387,10 +2387,10 @@ class CProjet
 }
 
 /**
- * Retourne un tableau de chaînes de caractères représentant la version textuelle d'un statut ouvert/fermé/etc pour les 
- * éléments des formations
+ * Retourne un tableau de chaÃ®nes de caractÃ¨res reprÃ©sentant la version textuelle d'un statut ouvert/fermÃ©/etc pour les 
+ * Ã©lÃ©ments des formations
  * 
- * @param	v_sGenre	la chaîne \c F pour obtenir la version au féminin du mot, \c M pour la version au masculin
+ * @param	v_sGenre	la chaÃ®ne \c F pour obtenir la version au fÃ©minin du mot, \c M pour la version au masculin
  * 
  * @return	le tableau contenant les versions texte des statuts, avec pour indices les constantes STATUT_ correspondantes
  */
@@ -2398,16 +2398,16 @@ function retListeStatuts($v_sGenre = "F")
 {
 	if (strtoupper($v_sGenre) == "M")
 		return array(
-			array(STATUT_FERME,_("Fermé")),
+			array(STATUT_FERME,_("FermÃ©")),
 			array(STATUT_OUVERT,_("Ouvert")),
 			array(STATUT_INVISIBLE,_("Invisible")),
-			array(STATUT_ARCHIVE,_("Archivé")));
+			array(STATUT_ARCHIVE,_("ArchivÃ©")));
 	else
 		return array(
-			array(STATUT_FERME,_("Fermée")),
+			array(STATUT_FERME,_("FermÃ©e")),
 			array(STATUT_OUVERT,_("Ouverte")),
 			array(STATUT_INVISIBLE,_("Invisible")),
-			array(STATUT_ARCHIVE,_("Archivé")));
+			array(STATUT_ARCHIVE,_("ArchivÃ©")));
 }
 
 ?>

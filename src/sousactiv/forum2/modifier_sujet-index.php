@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: modifier_sujet-index.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 25/10/2004
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 25/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 require_once(dir_database("bdd.class.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
 $url_iIdForum         = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
@@ -56,10 +56,10 @@ $bForumParEquipe = ($oForum->retModalite() != MODALITE_POUR_TOUS);
 unset($oForum);
 
 // ---------------------
-// Définir le titre de la fenêtre
+// DÃ©finir le titre de la fenÃªtre
 // ---------------------
 if ($url_sModaliteFenetre == "ajouter")
-	$sTitrePrincipal = "Nouveau sujet".($bForumParEquipe && $url_iIdEquipe == 0 ? " (toutes les équipes)" : NULL);
+	$sTitrePrincipal = "Nouveau sujet".($bForumParEquipe && $url_iIdEquipe == 0 ? " (toutes les Ã©quipes)" : NULL);
 else if ($url_sModaliteFenetre == "modifier")
 	$sTitrePrincipal = "Modifier le titre du sujet";
 else if ($url_sModaliteFenetre == "supprimer")

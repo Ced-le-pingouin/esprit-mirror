@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: inscription.php
 ** Description ............:
-** Date de création .......: 13/09/2002
-** Dernière modification ..: 21/03/2005
+** Date de crÃ©ation .......: 13/09/2002
+** DerniÃ¨re modification ..: 21/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_INSCRIPTION");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm       = (isset($HTTP_GET_VARS["idform"]) ? $HTTP_GET_VARS["idform"] : 0);
 $url_iSelectFiltre = (!empty($HTTP_GET_VARS["FILTRE"]) ? $HTTP_GET_VARS["FILTRE"] : -1);

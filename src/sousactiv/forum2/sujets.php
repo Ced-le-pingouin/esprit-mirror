@@ -20,14 +20,14 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Sous-activité ..........: sujets.php
+** Sous-activitÃ© ..........: sujets.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 21/03/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 21/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE <>
+**                           JÃ©rÃ´me TOUZE <>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForum  = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 $url_iIdSujet  = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
@@ -116,8 +116,8 @@ foreach ($oForum->aoSujets as $oSujetForum)
 
 $oBloc_Sujet->afficher();
 
-// Il faut vérifier que l'id du sujet est toujours valable (dans le cas de
-// changement d'équipe)
+// Il faut vÃ©rifier que l'id du sujet est toujours valable (dans le cas de
+// changement d'Ã©quipe)
 if (!$bIdSujetValide)
 	$url_iIdSujet = (count($oForum->aoSujets) > 0 ? $oForum->aoSujets[0]->retId() : 0);
 

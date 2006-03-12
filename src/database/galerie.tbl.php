@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: galerie.tbl.php
 ** Description ............: 
-** Date de création .......: 28/10/2002
-** Dernière modification ..: 07/10/2005
+** Date de crÃ©ation .......: 28/10/2002
+** DerniÃ¨re modification ..: 07/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -79,10 +79,10 @@ class CGalerie
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	// {{{ Collecticiels associés à la galerie
+	// {{{ Collecticiels associÃ©s Ã  la galerie
 	/**
 	 * @param $v_bInitRessources boolean
-	 * @param $v_bToutesRessources boolean Rechercher les ressources attachées à cette galerie + ceux qui ne sont pas attachées
+	 * @param $v_bToutesRessources boolean Rechercher les ressources attachÃ©es Ã  cette galerie + ceux qui ne sont pas attachÃ©es
 	 */
 	function initCollecticiels ($v_bInitRessources=FALSE,$v_bToutesRessources=FALSE)
 	{
@@ -192,7 +192,7 @@ class CGalerie
 		$this->aoRessources = array();
 		
 		if (empty($v_iIdSousActiv))
-			// Rechercher toutes les ressources attachées à cette galerie
+			// Rechercher toutes les ressources attachÃ©es Ã  cette galerie
 			$sRequeteSql = "SELECT Ressource_SousActiv.*"
 				.", Ressource.*"
 				." FROM SousActiv_Ressource_SousActiv"
@@ -212,7 +212,7 @@ class CGalerie
 					." WHERE SousActiv_SousActiv.IdSousActivRef='{$v_iIdSousActiv}'"
 						." AND SousActiv_SousActiv.IdSousActiv='{$iId}'";
 		else
-			// Rechercher toutes les ressources attachées à un collecticiel
+			// Rechercher toutes les ressources attachÃ©es Ã  un collecticiel
 			$sRequeteSql = "SELECT Ressource_SousActiv.*"
 				.", Ressource.*"
 				." FROM SousActiv_Ressource_SousActiv"

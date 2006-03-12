@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://zone_menu-menu.css">
 <link type="text/css" rel="stylesheet" href="theme://bloc_menu.css">
@@ -29,8 +29,8 @@ function changerTitres(v_iPosTableau,v_sIdSpan,v_sHistorique)
 	
 	if (typeof(v_sIdSpan) == "undefined")
 	{
-		// L'utilisateur a cliqué sur le nom de la formation, donc,
-		// masquons l'indice de cours et mettons en évidence le nom
+		// L'utilisateur a cliquÃ© sur le nom de la formation, donc,
+		// masquons l'indice de cours et mettons en Ã©vidence le nom
 		// de la formation.
 		masquerIndice("indice");
 		sDernierIdSpan = null;

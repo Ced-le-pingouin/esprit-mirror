@@ -65,12 +65,12 @@ function init() {
 
 function uninit()
 {
-	// Fermer toutes les fenêtres des chats
+	// Fermer toutes les fenÃªtres des chats
 	for (i=0; i<aoFenetresChats.length; i++)
 		if (!aoFenetresChats[i].closed)
 			aoFenetresChats[i].close();
 	
-	// Fermer toutes les fenêtres des archives
+	// Fermer toutes les fenÃªtres des archives
 	for (i=0; i<aoFenetresArchives.length; i++)
 		if (!aoFenetresArchives[i].closed)
 			aoFenetresArchives[i].close();
@@ -86,7 +86,7 @@ function uninit()
 </body>
 </html>
 
-[SET_PAS_CHAT_TROUVE+]<tr><td align="center"><img src="commun://espacer.gif" width="100%" height="50" border="0"><div class="attention" style="width: 70%;">Aucun chat n'a été créé dans cet espace</div></td></tr>[SET_PAS_CHAT_TROUVE-]
+[SET_PAS_CHAT_TROUVE+]<tr><td align="center"><img src="commun://espacer.gif" width="100%" height="50" border="0"><div class="attention" style="width: 70%;">Aucun chat n'a Ã©tÃ© crÃ©Ã© dans cet espace</div></td></tr>[SET_PAS_CHAT_TROUVE-]
 
 [SET_CHAT_ACTIF+]
 <tr><td><a class="acceder_salon" href="javascript: tchatche('{chat->id}','{equipe->id}','{chat->salon_prive}');" title="Cliquer ici pour acc&eacute;der au salon" onfocus="blur()">{chat->nom}</a></td><td class="mode_salon">&nbsp;{chat->modalite}&nbsp;</td></tr><tr><td class="cellule_clair" colspan="2" align="center"><span id="id_liste_connectes{chat->id}_{equipe->id}">Pas d'utilisateur connect&eacute;</span></td></tr><tr><td class="acceder">&nbsp;<a href="javascript: tchatche('{chat->id}','{equipe->id}','{chat->salon_prive}');" title="Cliquer ici pour acc&eacute;der au salon" onfocus="blur()">Acc&eacute;der</a></td><td class="archives">{archive}&nbsp;</td></tr>

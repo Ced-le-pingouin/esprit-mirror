@@ -9,9 +9,9 @@ function init()
 {
 	if (!top.opener || !top.opener.oFrmCours)
 	{
-		alert("Attention, cette fenêtre n'a plus de parenté avec"
-			+ " la fenêtre des inscriptions."
-			+ "\nNous vous conseillons de fermer cette fenêtre.");
+		alert("Attention, cette fenÃªtre n'a plus de parentÃ© avec"
+			+ " la fenÃªtre des inscriptions."
+			+ "\nNous vous conseillons de fermer cette fenÃªtre.");
 			
 		return;
 	}

@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: globals.inc.php
 ** Description ............: 
-** Date de création .......: 28-10-2002
-** Dernière modification ..: 10-12-2002
+** Date de crÃ©ation .......: 28-10-2002
+** DerniÃ¨re modification ..: 10-12-2002
 ** Auteurs ................: Filippo Porco
 ** Emails .................: ute@umh.ac.be
 **

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: galerie.php
 ** Description ............: 
-** Date de création .......: 08/09/2005
-** Dernière modification ..: 06/10/2005
+** Date de crÃ©ation .......: 08/09/2005
+** DerniÃ¨re modification ..: 06/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -165,7 +165,7 @@ if ($iNbCollecticiels > 0)
 				$asExpediteurEquipe["courriel"] = "idPers=".$oRessource->oExpediteur->retId();
 			}
 			
-			// {{{ Associer une icône à ce document
+			// {{{ Associer une icÃ´ne Ã  ce document
 			$asIcones = explode(".",$oRessource->retUrl());
 			$sExtension = $asIcones[count($asIcones)-1];
 			$sIcone = $asTypesMIME[(array_key_exists($sExtension,$asTypesMIME) ? $sExtension : "inconnu")];

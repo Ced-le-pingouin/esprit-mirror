@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: admin_modif-menu.php
 ** Description ............: 
-** Date de création .......: 25/04/2003
-** Dernière modification ..: 07/08/2004
+** Date de crÃ©ation .......: 25/04/2003
+** DerniÃ¨re modification ..: 07/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iType   = (empty($HTTP_GET_VARS["type"]) ? 0 : $HTTP_GET_VARS["type"]);
 $url_sParams = (empty($HTTP_GET_VARS["params"]) ? "0:0:0:0:0:0" : $HTTP_GET_VARS["params"]);

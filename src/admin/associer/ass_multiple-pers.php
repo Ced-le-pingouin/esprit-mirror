@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: ass_multiple-pers.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 09/07/2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 09/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,7 +39,7 @@ $url_iIdStatut = $HTTP_GET_VARS["STATUT_PERS"];
 $url_iModeTri  = TRI_CROISSANT;
 
 // ---------------------
-// Inscrire des personnes à un ou plusieurs cours
+// Inscrire des personnes Ã  un ou plusieurs cours
 // ---------------------
 if (!empty($HTTP_POST_VARS))
 {
@@ -47,7 +47,7 @@ if (!empty($HTTP_POST_VARS))
 	{
 		if (isset($HTTP_POST_VARS["ID_PERS"]))
 		{
-			// Récupérer les ids des modules
+			// RÃ©cupÃ©rer les ids des modules
 			$aiIdMod = explode(",",$HTTP_POST_VARS["IDS_ACTION"]);
 			
 			// Pour chaque module inscrire les nouvelles personnes
@@ -61,11 +61,11 @@ if (!empty($HTTP_POST_VARS))
 	else if ($HTTP_POST_VARS["ACTION"] == "retirer")
 	{
 		// 1:6,79,52;2:12,15
-		// + + +     +    +-- id de la troisième personne
-		// + + +     +-- id du deuxième module
+		// + + +     +    +-- id de la troisiÃ¨me personne
+		// + + +     +-- id du deuxiÃ¨me module
 		// + + +
-		// + + +-- id de la deuxième personne
-		// + +-- id de la première personne
+		// + + +-- id de la deuxiÃ¨me personne
+		// + +-- id de la premiÃ¨re personne
 		// +-- id du premier module
 		foreach (explode(";",$HTTP_POST_VARS["IDS_ACTION"]) as $s)
 		{
@@ -94,7 +94,7 @@ $sOrdreTri = ($url_iModeTri == TRI_CROISSANT ? "ASC" : "DESC");
 $oFormation = new CFormation($oProjet->oBdd,$url_iIdForm);
 
 // ---------------------
-// Rechercher les personnes inscrites d'après le statut
+// Rechercher les personnes inscrites d'aprÃ¨s le statut
 // ---------------------
 switch ($url_iIdStatut)
 {

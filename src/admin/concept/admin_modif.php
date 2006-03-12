@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: admin_modif.php
 ** Description ............:
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 26/01/2005
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 26/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Déclaration des fichiers à inclure
+// DÃ©claration des fichiers Ã  inclure
 // ---------------------
 include_once("admin_modif.inc.php");
 include_once(dir_code_lib("upload.inc.php"));
@@ -52,7 +52,7 @@ $g_bModifier = $g_bModifierStatut = FALSE;
 
 if (!empty($HTTP_POST_VARS))
 {
-	// Récupérer les variables du formulaire
+	// RÃ©cupÃ©rer les variables du formulaire
 	$type       = $HTTP_POST_VARS["type"];
 	$params     = $HTTP_POST_VARS["params"];
 	$rafraichir = (isset($HTTP_POST_VARS["rafraichir"]) ? $HTTP_POST_VARS["rafraichir"] : NULL);
@@ -60,7 +60,7 @@ if (!empty($HTTP_POST_VARS))
 }
 else if (!empty($HTTP_GET_VARS))
 {
-	// Récupérer les variables de l'url
+	// RÃ©cupÃ©rer les variables de l'url
 	$type   = $HTTP_GET_VARS["type"];
 	$params = $HTTP_GET_VARS["params"];
 }
@@ -84,7 +84,7 @@ if (isset($act))
 	$url_bModifier       = (empty($HTTP_POST_VARS["modifier"]) ? FALSE : $HTTP_POST_VARS["modifier"]);
 	$url_bModifierStatut = (empty($HTTP_POST_VARS["modifierStatut"]) ? FALSE : $HTTP_POST_VARS["modifierStatut"]);
 	
-	// {{{ Mettre à jour
+	// {{{ Mettre Ã  jour
 	$sRequeteSql = "LOCK TABLES"
 		." Formation WRITE"
 		.", Module WRITE"
@@ -199,7 +199,7 @@ else
 	$g_sSous_Titre = "(&nbsp;Accueil&nbsp;)";
 
 // *************************************
-// Déclaration des fonctions locales
+// DÃ©claration des fonctions locales
 // *************************************
 
 function afficherTitre ($v_sTitre,$v_sNom=NULL)
@@ -224,8 +224,8 @@ function afficherTitre ($v_sTitre,$v_sNom=NULL)
 		//." | <img src=\"images/effacer.gif\">&nbsp;<a href=\"javascript: Effacer(".($g_iType-1).");\">Supprimer</a>\n"
 		."</td>\n"
 		."<td class=\"admin_modif_outils\"  width=\"1%\" nowrap=\"1\">"
-		.(($g_iType >= TYPE_ACTIVITE && $g_bModifier) ? "<a href=\"javascript: DeposerFichiers();\">Déposer sur le serveur</a>" : "...")
-		.(($g_iType >= TYPE_ACTIVITE) ? "&nbsp;&#8226;&nbsp;<a href=\"javascript: RecupererFichiers();\">Récupérer du serveur</a>\n" : "")
+		.(($g_iType >= TYPE_ACTIVITE && $g_bModifier) ? "<a href=\"javascript: DeposerFichiers();\">DÃ©poser sur le serveur</a>" : "...")
+		.(($g_iType >= TYPE_ACTIVITE) ? "&nbsp;&#8226;&nbsp;<a href=\"javascript: RecupererFichiers();\">RÃ©cupÃ©rer du serveur</a>\n" : "")
 		."</td>\n"
 		."</tr>\n";
 	
@@ -273,7 +273,7 @@ function selectionnerNumeroOrdre ($v_sNomSelect,$v_iNbrNumOrdre,$v_iNumOrdreCour
 {
 	global $g_bModifier;
 	
-	echo "<!-- Numéro d'ordre -->\n\n"
+	echo "<!-- NumÃ©ro d'ordre -->\n\n"
 		."<tr>\n"
 		."<td nowrap=\"nowrap\" width=\"1%\"><div  class=\"intitule\">Num&eacute;ro d'ordre&nbsp;:</div></td>\n"
 		."<td>\n";
@@ -330,7 +330,7 @@ function selectionnerType ($v_sNom,$v_aoTypes,$v_iTypeActuel=0,$v_sParametres=NU
 {
 	global $g_bModifier;
 	
-	$sType = "\n<!-- Sélectionnez un type -->\n\n"
+	$sType = "\n<!-- SÃ©lectionnez un type -->\n\n"
 		."<tr>\n"
 		."<td><div class=\"intitule\">Type&nbsp;:</div></td>\n"
 		."<td>\n"
@@ -427,7 +427,7 @@ $sCheminJavascript = dir_javascript();
 <head>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?=inserer_feuille_style("onglet.css; concept.css")?>
 <script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}globals.js.php"?>"></script>
 <script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}window.js"?>"></script>
@@ -447,9 +447,9 @@ $sDeposerFichier = dir_admin("commun","deposer_fichiers.php",FALSE)
 	."?repDest=".rawurlencode(dir_cours($g_iActiv,$g_iFormation,NULL,FALSE));
 
 if ($g_iSousActiv > 0)
-	$sDeposerFichier .= "&tpf=".rawurlencode("Déposer des fichiers relatifs à l'élément actif");
+	$sDeposerFichier .= "&tpf=".rawurlencode("DÃ©poser des fichiers relatifs Ã  l'Ã©lÃ©ment actif");
 else if ($g_iActiv > 0)
-	$sDeposerFichier .= "&tpf=".rawurlencode("Déposer des fichiers relatifs à ce bloc");
+	$sDeposerFichier .= "&tpf=".rawurlencode("DÃ©poser des fichiers relatifs Ã  ce bloc");
 ?>
 	var sUrl     = "<?=$sDeposerFichier?>";
 	var iLargeur = 470;

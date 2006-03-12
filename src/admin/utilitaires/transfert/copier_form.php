@@ -22,11 +22,11 @@
 /*
 ** Fichier .................: copier_form.php
 ** Description ............:
-** Date de création .......: 24/08/2004
-** Dernière modification ..: 26/08/2004
+** Date de crÃ©ation .......: 24/08/2004
+** DerniÃ¨re modification ..: 26/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once(dir_lib("systeme_fichiers.lib.php",TRUE));
 require_once("copier_form.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sNomBddSrc = $HTTP_GET_VARS["bddSrc"];
 $url_sNomBddDst = $HTTP_GET_VARS["bddDst"];
@@ -87,13 +87,13 @@ function init() {
 <tr><td class="cellule_sous_titre" width="99%">&nbsp;Copier&nbsp;</td><td class="cellule_sous_titre">&nbsp;Statut&nbsp;</td></tr>
 <?php
 // ---------------------
-// Ouvrir une connexion avec le serveur de la base de données
+// Ouvrir une connexion avec le serveur de la base de donnÃ©es
 // ---------------------
 $hConnexion = mysql_connect($g_sNomServeurTransfert,$g_sNomProprietaireTransfert,$g_sMotDePasseTransfert);
 
 // ---------------------
-// Retourner le numéro d'ordre le plus haut
-// de la base de données de destination
+// Retourner le numÃ©ro d'ordre le plus haut
+// de la base de donnÃ©es de destination
 // ---------------------
 $sRequeteSql = "SELECT MAX(OrdreForm), MAX(TypeForm) FROM {$url_sNomBddDst}.Formation";
 $hResult = mysql_query($sRequeteSql,$hConnexion);
@@ -104,7 +104,7 @@ unset($aEnreg);
 mysql_free_result($hResult);
 
 // ---------------------
-// Rechercher la formation à copier
+// Rechercher la formation Ã  copier
 // ---------------------
 $sRequeteSql = "SELECT * FROM {$url_sNomBddSrc}.Formation"
 	." WHERE IdForm='{$url_iIdFormSrc}'"
@@ -120,7 +120,7 @@ afficher_col_copier(0,"Formation",$oFormSrc->NomForm);
 
 $sRequeteSql = "INSERT INTO {$url_sNomBddDst}.Formation SET"
 	." IdForm=NULL"
-	.", NomForm='".MySQLEscapeString($oFormSrc->NomForm)." (transférée)'"
+	.", NomForm='".MySQLEscapeString($oFormSrc->NomForm)." (transfÃ©rÃ©e)'"
 	.", DescrForm='".MySQLEscapeString($oFormSrc->DescrForm)."'"
 	.", DateDebForm=NOW()"
 	.", DateFinForm=NOW()"
@@ -161,13 +161,13 @@ mysql_free_result($hResult);
 
 foreach ($aoModulesSrc as $oModule)
 {
-	// Vérifier l'intitulé
+	// VÃ©rifier l'intitulÃ©
 	// -------------------
 	if (isset($oModule->IdIntitule))
 	{
 		if ($oModule->IdIntitule > 0)
 		{
-			// Récupérer le nom de l'intitulé source
+			// RÃ©cupÃ©rer le nom de l'intitulÃ© source
 			$sRequeteSql = "SELECT * FROM {$url_sNomBddSrc}.Intitule"
 				." WHERE IdIntitule='{$oModule->IdIntitule}'"
 				." AND TypeIntitule='".TYPE_MODULE."'"
@@ -178,7 +178,7 @@ foreach ($aoModulesSrc as $oModule)
 			
 			$sNomIntitule = $oEnreg->NomIntitule;
 			
-			// Vérifier si il n'existe pas dans les intitulés de destination
+			// VÃ©rifier si il n'existe pas dans les intitulÃ©s de destination
 			$sRequeteSql = "SELECT * FROM {$url_sNomBddDst}.Intitule"
 				." WHERE NomIntitule='".MySQLEscapeString($sNomIntitule)."'"
 				." AND TypeIntitule='".TYPE_MODULE."'"
@@ -194,7 +194,7 @@ foreach ($aoModulesSrc as $oModule)
 			{
 				mysql_free_result($hResult);
 				
-				// Rajouter l'intitulé de destination
+				// Rajouter l'intitulÃ© de destination
 				$sRequeteSql = "INSERT INTO {$url_sNomBddDst}.Intitule SET"
 					." IdIntitule=NULL"
 					.", NomIntitule='".MySQLEscapeString($sNomIntitule)."'"
@@ -244,13 +244,13 @@ foreach ($aoModulesSrc as $oModule)
 	{
 		$aaGaleries = array();
 		
-		// Vérifier l'intitulé
+		// VÃ©rifier l'intitulÃ©
 		// -------------------
 		if (isset($oRubrique->IdIntitule))
 		{
 			if ($oRubrique->IdIntitule > 0)
 			{
-				// Récupérer le nom de l'intitulé source
+				// RÃ©cupÃ©rer le nom de l'intitulÃ© source
 				$sRequeteSql = "SELECT * FROM {$url_sNomBddSrc}.Intitule"
 					." WHERE IdIntitule='{$oRubrique->IdIntitule}'"
 					." AND TypeIntitule='".TYPE_RUBRIQUE."'"
@@ -261,7 +261,7 @@ foreach ($aoModulesSrc as $oModule)
 				
 				$sNomIntitule = $oEnreg->NomIntitule;
 				
-				// Vérifier si il n'existe pas dans les intitulés de destination
+				// VÃ©rifier si il n'existe pas dans les intitulÃ©s de destination
 				$sRequeteSql = "SELECT * FROM {$url_sNomBddDst}.Intitule"
 					." WHERE NomIntitule='".MySQLEscapeString($sNomIntitule)."'"
 					." AND TypeIntitule='".TYPE_RUBRIQUE."'"
@@ -277,7 +277,7 @@ foreach ($aoModulesSrc as $oModule)
 				{
 					mysql_free_result($hResult);
 					
-					// Rajouter l'intitulé de destination
+					// Rajouter l'intitulÃ© de destination
 					$sRequeteSql = "INSERT INTO {$url_sNomBddDst}.Intitule SET"
 						." IdIntitule=NULL"
 						.", NomIntitule='".MySQLEscapeString($sNomIntitule)."'"
@@ -293,9 +293,9 @@ foreach ($aoModulesSrc as $oModule)
 			$oRubrique->NumDepartIntitule = $oRubrique->OrdreMod;
 		}
 		
-		// Copier la rubrique/unité
+		// Copier la rubrique/unitÃ©
 		// ------------------------
-		afficher_col_copier(2,"Rubrique/Unité",$oRubrique->NomRubrique);
+		afficher_col_copier(2,"Rubrique/UnitÃ©",$oRubrique->NomRubrique);
 		$sRequeteSql = "INSERT INTO {$url_sNomBddDst}.Module_Rubrique SET"
 			." IdRubrique=NULL"
 			.", NomRubrique='".MySQLEscapeString($oRubrique->NomRubrique)."'"
@@ -333,7 +333,7 @@ foreach ($aoModulesSrc as $oModule)
 		afficher_col_statut();
 		
 		// ---------------------
-		// Activités
+		// ActivitÃ©s
 		// ---------------------
 		$sRequeteSql = "SELECT * FROM {$url_sNomBddSrc}.Activ"
 			." WHERE IdRubrique='{$oRubrique->IdRubrique}'"
@@ -346,9 +346,9 @@ foreach ($aoModulesSrc as $oModule)
 		
 		foreach ($aoActivsSrc as $oActiv)
 		{
-			// Copier l'activité
+			// Copier l'activitÃ©
 			// -----------------
-			afficher_col_copier(3,"Activité",$oActiv->NomActiv);
+			afficher_col_copier(3,"ActivitÃ©",$oActiv->NomActiv);
 			$sRequeteSql = "INSERT INTO {$url_sNomBddDst}.Activ SET"
 				." IdActiv=NULL"
 				.", NomActiv='".MySQLEscapeString($oActiv->NomActiv)."'"
@@ -374,7 +374,7 @@ foreach ($aoModulesSrc as $oModule)
 			{
 				copier_repertoire($sRepActivSrc,$sRepActivDst);
 				
-				// Effacer les documents des étudiants du collecticiel
+				// Effacer les documents des Ã©tudiants du collecticiel
 				effacer_repertoire("{$sRepActivDst}ressources");
 				
 				// Effacer les archives de chat
@@ -384,7 +384,7 @@ foreach ($aoModulesSrc as $oModule)
 			afficher_col_statut();
 			
 			// ---------------------
-			// Sous-activités
+			// Sous-activitÃ©s
 			// ---------------------
 			$sRequeteSql = "SELECT * FROM {$url_sNomBddSrc}.SousActiv"
 				." WHERE IdActiv='{$oActiv->IdActiv}'"
@@ -397,9 +397,9 @@ foreach ($aoModulesSrc as $oModule)
 			
 			foreach ($aoSousActivsSrc as $oSousActiv)
 			{
-				// Copier l'activité
+				// Copier l'activitÃ©
 				// -----------------
-				afficher_col_copier(4,"Sous-activité",$oSousActiv->NomSousActiv);
+				afficher_col_copier(4,"Sous-activitÃ©",$oSousActiv->NomSousActiv);
 				$sRequeteSql = "INSERT INTO {$url_sNomBddDst}.SousActiv SET"
 					." IdSousActiv=NULL"
 					.", NomSousActiv='".MySQLEscapeString($oSousActiv->NomSousActiv)."'"
@@ -462,7 +462,7 @@ foreach ($aoModulesSrc as $oModule)
 }
 
 // ---------------------
-// Fermer la connexion avec la base de données
+// Fermer la connexion avec la base de donnÃ©es
 // ---------------------
 mysql_close($hConnexion);
 

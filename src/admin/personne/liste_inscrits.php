@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_inscrits.php
 ** Description ............:
-** Date de création .......: 02/09/2004
-** Dernière modification ..: 31/05/2005
+** Date de crÃ©ation .......: 02/09/2004
+** DerniÃ¨re modification ..: 31/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -49,11 +49,11 @@ $iIdPers           = ($bPeutEnvoyerEmail ? $oProjet->oUtilisateur->retId() : 0);
 $iIdForm           = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retId() : 0);
 $bInscrAutoModules = ($iIdForm > 0 ? $oProjet->oFormationCourante->retInscrAutoModules() : FALSE);
 
-// Rechercher que les étudiants inscrits à ce module, dans le cas où, ils ne
-// sont pas inscrits automatiquement à tous les modules
+// Rechercher que les Ã©tudiants inscrits Ã  ce module, dans le cas oÃ¹, ils ne
+// sont pas inscrits automatiquement Ã  tous les modules
 $iIdMod = (is_object($oProjet->oModuleCourant) ? $oProjet->oModuleCourant->retId() : 0);
 
-// En-tête de la page html
+// En-tÃªte de la page html
 $sBlocHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
@@ -95,10 +95,10 @@ $sSetOnglet = $oTplOnglet->defVariable("SET_ONGLET");
 // Afficher le nom du cours dans la page des titres
 $oTpl->remplacer("{module->nom}",rawurlencode($oProjet->oModuleCourant->retNom()));
 
-// Composer la liste des différents inscrits
+// Composer la liste des diffÃ©rents inscrits
 $aoComposerListes = array(
 	array(STATUT_PERS_TUTEUR,"Liste des tuteurs",$sSetListePersonnes,"{personnes->liste}")
-	, array(STATUT_PERS_ETUDIANT,"Liste des étudiants",$sSetListePersonnes /*.$sSetEnvoiCourrielInscrits*/,"{personnes->liste}")
+	, array(STATUT_PERS_ETUDIANT,"Liste des Ã©tudiants",$sSetListePersonnes /*.$sSetEnvoiCourrielInscrits*/,"{personnes->liste}")
 	, array(STATUT_PERS_RESPONSABLE,"Liste des responsables",$sSetListePersonnes,"{personnes->liste}")
 );
 
@@ -126,7 +126,7 @@ foreach ($aoComposerListes as $aListeStatut)
 	$oBlocListes->remplacer("{onglet->titre}",$aListeStatut[1]);
 	$oBlocListes->remplacer("{onglet->texte}",$aListeStatut[2]);
 	
-	// Ajouter un espace après ce onglet
+	// Ajouter un espace aprÃ¨s ce onglet
 	$oBlocListes->ajouter("<img src=\"commun://espacer.gif\" width=\"100%\" height=\"15\" border=\"0\">");
 	
 	// Composer la liste des inscrits
@@ -160,7 +160,7 @@ foreach ($aoComposerListes as $aListeStatut)
 	$oBlocListes->remplacer("{a['envoi_courriel'].href}","email('?idStatuts=".$aListeStatut[0]."'); return false;");
 }
 
-// Dans le cas où, il n'y aurait pas d'inscrits afficher un message
+// Dans le cas oÃ¹, il n'y aurait pas d'inscrits afficher un message
 if ($oBlocListes->caracteres() == 0)
 	$oBlocListes->ajouter($sSetAucunInscrit);
 

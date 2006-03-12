@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_GET_VARS["idNiveau"]))
 	$url_iIdParent = $HTTP_GET_VARS["idNiveau"];

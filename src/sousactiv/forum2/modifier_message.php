@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: modifier_message.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 29/11/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 29/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -54,7 +54,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 	{
 		$url_sMessage = trim($HTTP_POST_VARS["messageSujet"]);
 		
-		// Numéro d'identifiant de la personne
+		// NumÃ©ro d'identifiant de la personne
 		$iIdPers = $oProjet->oUtilisateur->retId();
 		
 		if (strlen($url_sMessage) > 0)
@@ -75,16 +75,16 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 				$oMessageForum->enregistrer();
 			}
 			
-			// Répertoire contenant les ressources du forum
+			// RÃ©pertoire contenant les ressources du forum
 			$oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
 			$sRepFichiersForum = dir_forum_ressources($oIds,$url_iTypeNiveau,NULL,TRUE);
 			$oMessageForum->defRepRessources($sRepFichiersForum);
 			
-			// Effacer l'ancien fichier attaché
+			// Effacer l'ancien fichier attachÃ©
 			if ($HTTP_POST_VARS["effacerFichierMessage"] == "on")
 				$oMessageForum->effacerRessources();
 			
-			// Déposer le fichier attaché sur le serveur
+			// DÃ©poser le fichier attachÃ© sur le serveur
 			if (!empty($HTTP_POST_FILES["fichierMessage"]["name"]) &&
 				$url_iIdNiveau > 0 &&
 				$url_iTypeNiveau > 0)
@@ -125,7 +125,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 }
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
 $url_iIdSujet         = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
@@ -145,7 +145,7 @@ $oTplBarreDeProgression = new Template(dir_theme("barre_de_progression.inc.tpl",
 $oTplMessageImportant = new Template(dir_theme("dialogue/dialog-important.inc.tpl",FALSE,TRUE));
 
 // ---------------------
-// Template de l'éditeur
+// Template de l'Ã©diteur
 // ---------------------
 $oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
 

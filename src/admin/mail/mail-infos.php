@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mail-infos.php
 ** Description ............:
-** Date de création .......: 14/12/2004
-** Dernière modification ..: 18/02/2005
+** Date de crÃ©ation .......: 14/12/2004
+** DerniÃ¨re modification ..: 18/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -52,7 +52,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 	$oMail = new CMail($url_sSujetCourriel,$url_sMessageCourriel);
 	$oMail->defExpediteur($url_sExpediteurCourriel);
 	
-	// Permet d'envoyer une copie cachée à l'administrateur de la plate-forme
+	// Permet d'envoyer une copie cachÃ©e Ã  l'administrateur de la plate-forme
 	if (defined("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN") &&
 		strlen(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN))
 		$oMail->defCopieCarboneInvisible(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN);
@@ -64,7 +64,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 		if (strstr($sDestinataire,"*"))
 			continue;
 		
-		// Envoyé la liste des personnes qui ONT bien RECU un courriel
+		// EnvoyÃ© la liste des personnes qui ONT bien RECU un courriel
 		$sListeDestinatairesErrones .= "<input type=\"hidden\" name=\"destinataireCourriel[]\" value=\"{$sDestinataire}\">\n";
 		
 		$oMail->ajouterDestinataire(urldecode($sDestinataire));
@@ -96,7 +96,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 }
 
 // ---------------------
-// Récupérer les variales de l'url
+// RÃ©cupÃ©rer les variales de l'url
 // ---------------------
 foreach ($HTTP_GET_VARS as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: copie_courriel-mail.inc.php
 ** Description ............: 
-** Date de création .......: 06/12/2004
-** Dernière modification ..: 03/03/2005
+** Date de crÃ©ation .......: 06/12/2004
+** DerniÃ¨re modification ..: 03/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -41,8 +41,8 @@ $oForumPrefs = new CForumPrefs($oProjet->oBdd);
 if ($iIdForumCopieCourriel > 0)
 	$oForumPrefs->initForum($iIdForumCopieCourriel);
 
-// Il faut envoyer le nouveau message par courriel à toutes les personnes qui
-// se sont inscrites et une copie courriel est envoyé automatiquement aux
+// Il faut envoyer le nouveau message par courriel Ã  toutes les personnes qui
+// se sont inscrites et une copie courriel est envoyÃ© automatiquement aux
 // administrateurs de la plate-forme
 if ($oForumPrefs->peutEnvoyerCopieCourrielForum() ||
 	(defined("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN") &&
@@ -70,7 +70,7 @@ if ($oForumPrefs->peutEnvoyerCopieCourrielForum() ||
 	$asTplRemplacer[] = $oProjet->oUtilisateur->retPseudo();
 	$asTplRemplacer[] = $oForumPrefs->retNom();
 	
-	// Template contenant les modéles de courriel
+	// Template contenant les modÃ©les de courriel
 	$oTpl = new Template(dir_admin("mail","sujet_msg_courriel.inc.tpl",TRUE));
 	
 	$oBlocCopieCourriel = new TPL_Block("BLOCK_COPIE_MESSAGE_FORUM",$oTpl);

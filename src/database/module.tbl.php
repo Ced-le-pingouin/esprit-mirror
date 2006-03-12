@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: module.tbl.php
 ** Description ............: 
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 15/07/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 01/06/2001
+** DerniÃ¨re modification ..: 15/07/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -86,7 +86,7 @@ class CModule
 			$this->oBdd->libererResult($hResult);
 		}
 		
-		// Rechercher l'intitulé du module
+		// Rechercher l'intitulÃ© du module
 		if (is_object($this->oEnregBdd))
 			$this->oIntitule = new CIntitule($this->oBdd,$this->oEnregBdd->IdIntitule);
 	}
@@ -164,7 +164,7 @@ class CModule
 	}
 	
 	/**
-	 * Retourner les informations du module précédent.
+	 * Retourner les informations du module prÃ©cÃ©dent.
 	 */
 	function retInfosIntituleModPrecedent ($v_iIdForm)
 	{
@@ -194,11 +194,11 @@ class CModule
 	}
 	
 	/**
-	 * Cette fonction permet d'ajouter un module à une formation.
+	 * Cette fonction permet d'ajouter un module Ã  une formation.
 	 *
-	 * @param v_iIdForm Numéro d'identifiant de la formation
-	 * @param v_iIdPers Numéro d'identifiant de la personne
-	 * @return Cette fonction retourne le numéro d'identifiant du nouveau module.
+	 * @param v_iIdForm NumÃ©ro d'identifiant de la formation
+	 * @param v_iIdPers NumÃ©ro d'identifiant de la personne
+	 * @return Cette fonction retourne le numÃ©ro d'identifiant du nouveau module.
 	 */
 	function ajouter ($v_iIdForm=NULL,$v_iIdPers=0)
 	{
@@ -230,7 +230,7 @@ class CModule
 	/**
 	 * Cette fonction inscrit la personne en tant que concepteur de ce module.
 	 *
-	 * @param v_iIdPers Numéro d'identifiant de la personne
+	 * @param v_iIdPers NumÃ©ro d'identifiant de la personne
 	 */
 	function associerConcepteur ($v_iIdPers)
 	{
@@ -611,13 +611,13 @@ class CModule
 		if (($cpt = $this->retListeModules()) < 0)
 			return FALSE;
 		
-		// Ajouter dans ce tableau les ids et les numéros d'ordre
+		// Ajouter dans ce tableau les ids et les numÃ©ros d'ordre
 		$aoNumsOrdre = array();
 		
 		for ($i=0; $i<$cpt; $i++)
 			$aoNumsOrdre[$i] = array($this->aoModules[$i]->IdMod,$this->aoModules[$i]->OrdreMod);
 		
-		// Mettre à jour dans la table Module avec les nouveaux numéros d'ordre
+		// Mettre Ã  jour dans la table Module avec les nouveaux numÃ©ros d'ordre
 		if ($v_iNouveauNumOrdre > 0)
 		{
 			$aoNumsOrdre = redistNumsOrdre($aoNumsOrdre,$this->retNumOrdre (),$v_iNouveauNumOrdre);
@@ -699,7 +699,7 @@ class CModule
 	}
 	
 	// ---------------------
-	// Inscrire des personnes en tant qu'étudiant/tuteur
+	// Inscrire des personnes en tant qu'Ã©tudiant/tuteur
 	// ---------------------
 	function inscrireEtudiants ($v_aiIdPers) { $this->inscrirePersonnes($v_aiIdPers,STATUT_PERS_ETUDIANT); }
 	function inscrireTuteurs ($v_aiIdPers) { $this->inscrirePersonnes($v_aiIdPers,STATUT_PERS_TUTEUR); }
@@ -737,8 +737,8 @@ class CModule
 	/**
 	 * Cette fonction retire des personnes inscrites de la table.
 	 *
-	 * \param v_aiIdPers cette variable contient la liste des personnes à retirer
-	 * \param v_iIdStatut numéro d'identifiant du statut de la personne.
+	 * \param v_aiIdPers cette variable contient la liste des personnes Ã  retirer
+	 * \param v_iIdStatut numÃ©ro d'identifiant du statut de la personne.
 	 */
 	function retirerPersonnes ($v_aiIdPers,$v_iIdStatut)
 	{

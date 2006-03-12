@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: glossaire_composer.php
 ** Description ............:
-** Date de création .......: 28/07/2004
-** Dernière modification ..: 29/07/2004
+** Date de crÃ©ation .......: 28/07/2004
+** DerniÃ¨re modification ..: 29/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdGlossaire = (empty($HTTP_GET_VARS["idGlossaire"]) ? 0 : $HTTP_GET_VARS["idGlossaire"]);
 

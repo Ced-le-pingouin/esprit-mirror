@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mail-erreur-index.php
 ** Description ............:
-** Date de création .......: 17/12/2004
-** Dernière modification ..: 20/01/2005
+** Date de crÃ©ation .......: 17/12/2004
+** DerniÃ¨re modification ..: 20/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,13 +35,13 @@ require_once("globals.inc.php");
 require_once(dir_template("dialogue/dialog_simple.class.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_asDestinatairesCourriel = (empty($HTTP_POST_VARS["destinataireCourriel"]) ? NULL : $HTTP_POST_VARS["destinataireCourriel"]);
 
 // ---------------------
 // Composer la liste des destinataires n'ayant pas ou que leur adresse courriel
-// est erronée
+// est erronÃ©e
 // ---------------------
 $oDialogSimple = new CDialogSimple("Message de confirmation");
 

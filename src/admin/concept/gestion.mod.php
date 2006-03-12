@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: gestion_mod.php
 ** Description ............: 
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 13/11/2004
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 13/11/2004
 ** Auteur .................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -44,7 +44,7 @@ else if ($act == "supprimer")
 }
 else if ($act == "modifier")
 {
-	// Déclaration d'un module
+	// DÃ©claration d'un module
 	$oModule = new CModule($oProjet->oBdd,$g_iModule);
 	
 	if ($url_bModifierStatut)
@@ -53,7 +53,7 @@ else if ($act == "modifier")
 	if (!$url_bModifier)
 		return;
 	
-	// {{{ Récupérer les variables de l'url
+	// {{{ RÃ©cupÃ©rer les variables de l'url
 	$url_iOrdreMod = $HTTP_POST_VARS["ordre_module"];
 	$url_sNomMod = $HTTP_POST_VARS["nom_module"];
 	$url_sDescriptionMod = $HTTP_POST_VARS["descr_module"];
@@ -62,7 +62,7 @@ else if ($act == "modifier")
 	$url_iNumDepart = $HTTP_POST_VARS["numdepart_module"];
 	// }}}
 	
-	// Retourner l'id de l'intitulé
+	// Retourner l'id de l'intitulÃ©
 	$oIntitule = new CIntitule($oProjet->oBdd);
 	$oIntitule->initParNom($url_sNomIntitule,TYPE_MODULE);
 	$iIdIntitule = $oIntitule->retId();

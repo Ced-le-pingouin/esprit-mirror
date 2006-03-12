@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipes-membres.php
 ** Description ............: 
-** Date de création .......: 01/01/2003
-** Dernière modification ..: 15/08/2004
+** Date de crÃ©ation .......: 01/01/2003
+** DerniÃ¨re modification ..: 15/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (!empty($HTTP_GET_VARS["ID_EQUIPE"]))
 	$url_iIdEquipe = $HTTP_GET_VARS["ID_EQUIPE"];
@@ -55,7 +55,7 @@ else
 //echo "ID_EQUIPE={$url_iIdEquipe}<br>NIVEAU={$url_iNiveau}<hr>";
 
 // *************************************
-// Retirer un membre de l'équipe
+// Retirer un membre de l'Ã©quipe
 // *************************************
 
 $sCorpFonctionInit = NULL;

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: sousactiv_inv.php
 ** Description ............:
-** Date de création .......: 16/11/2005
-** Dernière modification ..: 24/11/2005
+** Date de crÃ©ation .......: 16/11/2005
+** DerniÃ¨re modification ..: 24/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ if ($oProjet->retStatutUtilisateur() > STATUT_PERS_TUTEUR)
 	exit();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSousActiv = $HTTP_GET_VARS["idSousActiv"];
 
@@ -71,7 +71,7 @@ else if ($oModule->initInscrits() > 0)
 $iNbInscrits = count($aoInscrits);
 // }}}
 
-// {{{ Rechercher les inscrits non autorisés
+// {{{ Rechercher les inscrits non autorisÃ©s
 $oSousActiv->initInscritsNonAutorises();
 
 $aiIdsInscritsNonAutorises = array();

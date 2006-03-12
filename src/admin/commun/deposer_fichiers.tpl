@@ -1,6 +1,6 @@
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>{title}</title>
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
@@ -46,7 +46,7 @@ function activer_boutton_deposer()
 <tr><td><b>Rechercher le fichier&nbsp;:</b><br><input type="file" name="nomFichierCopier"><br><br><b>D&eacute;poser dans le r&eacute;pertoire&nbsp;:</b><br>
 <select name="nomRepertoireCopie">[BLOCK_NOM_REPERTOIRE_COPIE+]<option value="{option.value}">{option.label}</option>[BLOCK_NOM_REPERTOIRE_COPIE-]</select></td>
 <td valign="top"><table border="0" cellspacing="0" cellpadding="0">
-<tr><td><input type="button" name="btnDeposer" value="Déposer" onclick="envoyer()" style="width: 110px;"></td></tr>
+<tr><td><input type="button" name="btnDeposer" value="DÃ©poser" onclick="envoyer()" style="width: 110px;"></td></tr>
 <tr><td><input type="button" name="btnAnnuler" value="Annuler" onclick="self.close()" style="width: 110px;"></td></tr>
 </table></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: econcept-index.php
 ** Description ............:
-** Date de création .......: 01/09/2001
-** Dernière modification ..: 31/03/2005
+** Date de crÃ©ation .......: 01/09/2001
+** DerniÃ¨re modification ..: 31/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -68,7 +68,7 @@ $oProjet->terminer();
    "http://www.w3.org/TR/REC-html40/frameset.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title><?php echo $sTitrePrincipal; ?></title>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>

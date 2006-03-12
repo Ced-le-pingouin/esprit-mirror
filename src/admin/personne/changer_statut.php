@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: changer_statut.php
 ** Description ............: Changer de statut de l'utilisateur
-** Date de création .......: 27/02/2002
-** Dernière modification ..: 20/05/2005
+** Date de crÃ©ation .......: 27/02/2002
+** DerniÃ¨re modification ..: 20/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du parc
 ** 7000 MONS
 */
@@ -56,8 +56,8 @@ if (!empty($HTTP_POST_VARS["idStatut"]))
 	
 	$oProjet->changerStatutUtilisateur($HTTP_POST_VARS["idStatut"],TRUE);
 	
-	// Nous devons mettre à jour la fenêtre parente
-	// et fermer absolument cette fenêtre car elle sera orpheline.
+	// Nous devons mettre Ã  jour la fenÃªtre parente
+	// et fermer absolument cette fenÃªtre car elle sera orpheline.
 	echo "<html>"
 		."<header>"
 		."<script type=\"text/javascript\" language=\"javascript\">"

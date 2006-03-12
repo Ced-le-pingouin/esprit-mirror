@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: glossaire.php
 ** Description ............:
-** Date de création .......: 25/07/2004
-** Dernière modification ..: 27/07/2004
+** Date de crÃ©ation .......: 25/07/2004
+** DerniÃ¨re modification ..: 27/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 **
@@ -43,7 +43,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // Initialiser le glossaire
-// ainsi que les éléments attachés à ce glossaire
+// ainsi que les Ã©lÃ©ments attachÃ©s Ã  ce glossaire
 $oProjet->oSousActivCourante->initGlossaire(TRUE);
 
 // ---------------------
@@ -63,7 +63,7 @@ else
 $oTpl->remplacer("{glossaire->titre}",$sTitreGlossaire);
 
 // ---------------------
-// Eléments du glossaire
+// ElÃ©ments du glossaire
 // ---------------------
 $oSet_GlossaireElem = $oTpl->defVariable("SET_GLOSSAIRE_ELEMENT");
 $oSet_GlossaireSansElems = $oTpl->defVariable("SET_GLOSSAIRE_SANS_ELEMENTS");

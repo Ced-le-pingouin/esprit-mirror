@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: choix_courriel-valider.php
 ** Description ............:
-** Date de création .......: 19/01/2005
-** Dernière modification ..: 23/02/2005
+** Date de crÃ©ation .......: 19/01/2005
+** DerniÃ¨re modification ..: 23/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iBoiteEnvoi      = (empty($HTTP_POST_VARS["boiteCourrielle"]) ? BOITE_COURRIELLE_PLATEFORME : $HTTP_POST_VARS["boiteCourrielle"]);
 $url_sSujetCourriel   = (empty($HTTP_POST_VARS["sujetCourriel"]) ? NULL : $HTTP_POST_VARS["sujetCourriel"]);
@@ -89,7 +89,7 @@ $asSetJavascriptFunctionInit = array(
 
 if (BOITE_COURRIELLE_OS == $url_iBoiteEnvoi)
 {
-	// Pour récupérer la constante COURRIEL_MAX_UTILISATEURS
+	// Pour rÃ©cupÃ©rer la constante COURRIEL_MAX_UTILISATEURS
 	include_once(dir_code_lib("mail.class.php"));
 	
 	$oMail = new CMail();
@@ -99,9 +99,9 @@ if (BOITE_COURRIELLE_OS == $url_iBoiteEnvoi)
 	
 	if (($iNbPersonnes = count($oPersonnes->aoPersonnes)) < COURRIEL_MAX_UTILISATEURS)
 	{
-		// Dans le cas où, le nombre de personnes est inférieur au nombre maximum
-		// de personnes autorisées, on pourra lancer directement la boite d'envoi
-		// du système d'exploitation
+		// Dans le cas oÃ¹, le nombre de personnes est infÃ©rieur au nombre maximum
+		// de personnes autorisÃ©es, on pourra lancer directement la boite d'envoi
+		// du systÃ¨me d'exploitation
 		$oBlocBoiteEnvoiIndirecte->effacer();
 		
 		$sListeAdressesCourrielles = NULL;
@@ -162,8 +162,8 @@ if (BOITE_COURRIELLE_OS == $url_iBoiteEnvoi)
 }
 else
 {
-	// Par défaut ou dans le cas d'erreur dans l'envoi de paramètres, c'est
-	// la boîte courrielle de la plate-forme qui sera ouvert
+	// Par dÃ©faut ou dans le cas d'erreur dans l'envoi de paramÃ¨tres, c'est
+	// la boÃ®te courrielle de la plate-forme qui sera ouvert
 	$oBlocJavascriptFunctionInit->ajouter($asSetJavascriptFunctionInit["plateforme"]);
 	$oBlocBoiteEnvoiOs->effacer();
 }

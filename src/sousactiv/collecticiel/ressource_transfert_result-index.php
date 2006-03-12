@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ressource_transfert_result-index.php
 ** Description ............:
-** Date de création .......: 27/11/2002
-** Dernière modification ..: 22/06/2005
+** Date de crÃ©ation .......: 27/11/2002
+** DerniÃ¨re modification ..: 22/06/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -50,16 +50,16 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	
 	if (($iIdSADest = $HTTP_GET_VARS["idSADest"]) > 0)
 	{
-		// {{{ Répertoire source
+		// {{{ RÃ©pertoire source
 		$iIdForm = $oProjet->oFormationCourante->retId();
 		$sRepSrc = dir_collecticiel($iIdForm,$oProjet->oActivCourante->retId(),NULL,TRUE);
 		// }}}
 		
-		// {{{ Répertoire de destination
+		// {{{ RÃ©pertoire de destination
 		$oSousActiv = new CSousActiv($oProjet->oBdd,$iIdSADest);
 		$sRepDst = dir_collecticiel($iIdForm,$oSousActiv->retIdParent(),NULL,TRUE);
 		
-		// Déterminer le type de transfert
+		// DÃ©terminer le type de transfert
 		$iTypeTransfert = $oProjet->oActivCourante->retTypeTransfert($oSousActiv->retIdParent());
 		// }}}
 		
@@ -74,10 +74,10 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 			
 			if (TYPE_TRANSFERT_EI == $iTypeTransfert)
 			{
-				// Rechercher les membres de cette équipe
+				// Rechercher les membres de cette Ã©quipe
 				$oRessourceSousActiv->initEquipe(TRUE);
 				
-				// Pour chaque membre de l'équipe lui transférer le document
+				// Pour chaque membre de l'Ã©quipe lui transfÃ©rer le document
 				foreach ($oRessourceSousActiv->oEquipe->aoMembres as $oMembre)
 				{
 					$g_iIdPersDest = $oMembre->retId();
@@ -93,7 +93,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	}
 	
 	// ---------------------------
-	// Si le nombre de transfert échoué est égal au nombre de document à transférer
+	// Si le nombre de transfert Ã©chouÃ© est Ã©gal au nombre de document Ã  transfÃ©rer
 	// ---------------------------
 	if (count(explode("x",$HTTP_GET_VARS["idResSA"])) == count($aiIdResSA))
 		$iErr = TRANSFERT_ECHOUE;
@@ -105,7 +105,7 @@ else
 
 ?>
 <html>
-<head><title>Résultat des transferts</title></head>
+<head><title>RÃ©sultat des transferts</title></head>
 <frameset border="0" rows="*,24" frameborder="0">
 <frame src="ressource_transfert_result.php<?="?err={$iErr}"."&idSA={$iIdSADest}".(count($aiIdResSA) > 0 ? "&idResSA=".implode("x",$aiIdResSA) : NULL)?>" frameborder="0">
 <frame src="ressource_transfert-menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize>

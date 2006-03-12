@@ -22,11 +22,11 @@
 /*
 ** Fichier .................: modules.class.php
 ** Description .............: 
-** Date de création ........: 13/01/2005
-** Dernière modification ...: 23/03/2005
+** Date de crÃ©ation ........: 13/01/2005
+** DerniÃ¨re modification ...: 23/03/2005
 ** Auteurs .................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -65,7 +65,7 @@ class CModules
 	}
 	
 	/**
-	 * Cette méthode recherche tous les modules de la formation.
+	 * Cette mÃ©thode recherche tous les modules de la formation.
 	 * @param Aucun
 	 * @see CModules::initModules()
 	 */

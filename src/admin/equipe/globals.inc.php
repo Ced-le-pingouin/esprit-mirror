@@ -36,7 +36,7 @@ function format_sous_titre ($v_sType,$v_sSousTitre)
 }
 
 // *************************************
-// Classe pour lire/enregistrer les modéles équipes
+// Classe pour lire/enregistrer les modÃ©les Ã©quipes
 // *************************************
 
 class CModele 

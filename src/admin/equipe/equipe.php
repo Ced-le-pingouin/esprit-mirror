@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipe.php
 ** Description ............: 
-** Date de création .......: 01/01/2003
-** Dernière modification ..: 17/08/2004
+** Date de crÃ©ation .......: 01/01/2003
+** DerniÃ¨re modification ..: 17/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -85,8 +85,8 @@ if (count($HTTP_POST_VARS) > 0)
 			break;
 	}
 	
-	// Mettre à jour la liste des équipes et
-	// fermer directement cette fenêtre
+	// Mettre Ã  jour la liste des Ã©quipes et
+	// fermer directement cette fenÃªtre
 	echo "<html>\n"
 		."<head>\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"

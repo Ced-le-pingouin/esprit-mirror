@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: forum.tbl.php
 ** Description ............:
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 05/10/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 05/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -167,15 +167,15 @@ class CForum
 	 * Permet d'ajouter un nouveau forum dans la table
 	 *
 	 * @param v_sNomForum                 string  Nom du forum
-	 * @param v_iModaliteForum            integer Modalité du forum {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE}
+	 * @param v_iModaliteForum            integer ModalitÃ© du forum {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE}
 	 * @param v_iStatutForum              integer Statut du forum {STATUT_OUVERT | STATUT_LECTURE_SEULE | STATUT_FERME | STATUT_INVISIBLE}
 	 * @param v_bAccessibleVisiteursForum boolean Ce forum est-il accessible aux visiteurs ?
-	 * @param v_iIdMod                    integer Numéro d'identifiant du module
-	 * @param v_iIdRubrique               integer Numéro d'identifiant de la rubrique
-	 * @param v_iIdSousActiv              integer Numéro d'identifiant de la sous-activité
-	 * @param v_iIdForumParent            integer Numéro d'identifiant du forum parent
-	 * @param v_iIdPers                   integer Numéro d'identifiant de l'auteur du forum
-	 * @return Retourne le nouveau numéro d'identifiant du forum
+	 * @param v_iIdMod                    integer NumÃ©ro d'identifiant du module
+	 * @param v_iIdRubrique               integer NumÃ©ro d'identifiant de la rubrique
+	 * @param v_iIdSousActiv              integer NumÃ©ro d'identifiant de la sous-activitÃ©
+	 * @param v_iIdForumParent            integer NumÃ©ro d'identifiant du forum parent
+	 * @param v_iIdPers                   integer NumÃ©ro d'identifiant de l'auteur du forum
+	 * @return Retourne le nouveau numÃ©ro d'identifiant du forum
 	 */
 	function ajouter ($v_sNomForum,$v_iModaliteForum,$v_iStatutForum,$v_bAccessibleVisiteursForum,$v_iIdMod,$v_iIdRubrique,$v_iIdSousActiv,$v_iIdForumParent,$v_iIdPers)
 	{
@@ -242,7 +242,7 @@ class CForum
 		// Effacer tous les sous-forums
 		//$this->effacerSousForums();
 		
-		// Effacer les préférences du forum des utilisateurs
+		// Effacer les prÃ©fÃ©rences du forum des utilisateurs
 		//$this->effacerForumsPrefs();
 		
 		// Effacer les sujets de ce forum
@@ -306,9 +306,9 @@ class CForum
 	}
 	
 	/**
-	 * Rechercher tous les sujets qui appartiennent à ce forum.
+	 * Rechercher tous les sujets qui appartiennent Ã  ce forum.
 	 *
-	 * @return Retourne le nombre de sujets trouvés
+	 * @return Retourne le nombre de sujets trouvÃ©s
 	 * @see CSujet
 	 */
 	function initSujets ($v_iIdEquipe=0)
@@ -406,9 +406,9 @@ class CForum
 		$iModalite = $this->retModalite();
 		return array(
 			array(MODALITE_POUR_TOUS,"Pour tout le monde",($iModalite == MODALITE_POUR_TOUS))
-			, array(MODALITE_PAR_EQUIPE,"Par équipe (isolée)",($iModalite == MODALITE_PAR_EQUIPE))
-			, array(MODALITE_PAR_EQUIPE_INTERCONNECTEE,"Par équipe (interconnectée)",($iModalite == MODALITE_PAR_EQUIPE_INTERCONNECTEE))
-			, array(MODALITE_PAR_EQUIPE_COLLABORANTE,"Par équipe (collaborante)",($iModalite == MODALITE_PAR_EQUIPE_COLLABORANTE)));
+			, array(MODALITE_PAR_EQUIPE,"Par Ã©quipe (isolÃ©e)",($iModalite == MODALITE_PAR_EQUIPE))
+			, array(MODALITE_PAR_EQUIPE_INTERCONNECTEE,"Par Ã©quipe (interconnectÃ©e)",($iModalite == MODALITE_PAR_EQUIPE_INTERCONNECTEE))
+			, array(MODALITE_PAR_EQUIPE_COLLABORANTE,"Par Ã©quipe (collaborante)",($iModalite == MODALITE_PAR_EQUIPE_COLLABORANTE)));
 	}
 	
 	function defStatut ($v_iIdStatut) { $this->oEnregBdd->StatutForum = $v_iIdStatut; }
@@ -421,7 +421,7 @@ class CForum
 	
 	function verrouillerTables ($v_bVerrouillerTables=TRUE)
 	{
-		// Vérrouiller les tables
+		// VÃ©rrouiller les tables
 		if ($v_bVerrouillerTables)
 			$sRequeteSql = "LOCK TABLES ".$this->STRING_LOCK_TABLES();
 		else

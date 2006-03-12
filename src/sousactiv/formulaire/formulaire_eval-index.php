@@ -20,13 +20,13 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Sous-activité ..........: formulaire_eval-index.php
+** Sous-activitÃ© ..........: formulaire_eval-index.php
 ** Description ............: 
-** Date de création .......: 05/11/2004
-** Dernière modification ..: 09/11/2004
+** Date de crÃ©ation .......: 05/11/2004
+** DerniÃ¨re modification ..: 09/11/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initModuleCourant();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdFCSousActiv = (empty($HTTP_GET_VARS["idFCSousActiv"]) ? 0 : $HTTP_GET_VARS["idFCSousActiv"]);
 

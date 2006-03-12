@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: formulairecomplete.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 09/11/2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 09/11/2004
 ** Auteurs ................: Ludovic FLAMME
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -49,8 +49,8 @@ class CFormulaireComplete
  	/*
 	** Fonction 	: CFormulaireComplete
 	** Description	: constructeur
-	** Entrée		: 
-	**	 		&$v_oBdd : référence de l'objet Bdd appartenant a l'objet Projet
+	** EntrÃ©e		: 
+	**	 		&$v_oBdd : rÃ©fÃ©rence de l'objet Bdd appartenant a l'objet Projet
 	**			$v_iId : identifiant d'un objet "formulaire complete"
 	** Sortie		: 
 	*/
@@ -66,11 +66,11 @@ class CFormulaireComplete
 	** Fonction 	: init
 	** Description	: permet d'initialiser l'objet QCocher soit en lui passant
 	**					  un enregistrement provenant de la BD, soit en effectuant 
-	**					  directement une requête dans la BD avec 
-	**                	  l'id passé via la constructeur
-	** Entrée		:
-	**			$v_oEnregExistant=NULL : enregistrement représentant une question 
-	**			de type "case à cocher"
+	**					  directement une requÃªte dans la BD avec 
+	**                	  l'id passÃ© via la constructeur
+	** EntrÃ©e		:
+	**			$v_oEnregExistant=NULL : enregistrement reprÃ©sentant une question 
+	**			de type "case Ã  cocher"
 	** Sortie		: 
 	*/
 	
@@ -141,11 +141,11 @@ class CFormulaireComplete
 	
 	/*
 	** Fonction 	: ajouter
-	** Description	: crée un enregistrement dans la table FormulaireComplete
-	** Entrée		:
+	** Description	: crÃ©e un enregistrement dans la table FormulaireComplete
+	** EntrÃ©e		:
 				$v_iIdPers : identifiant de la personne qui a soumis le formulaire
 				$v_iIdForm : identifiant du formulaire de base
-	** Sortie		: Id renvoyé par la BD
+	** Sortie		: Id renvoyÃ© par la BD
 	*/
 	function ajouter ($v_iIdPers,$v_iIdForm)
 	{
@@ -187,7 +187,7 @@ class CFormulaireComplete
 			." IdFC='".$this->retId()."'"
 			.", IdSousActiv='{$v_iIdSousActiv}'"
 			.", StatutFormSousActiv='{$v_iStatutFormulaire}'";
-		//echo "<br>ajouter FC() à SousActiv: ".$sRequeteSql."<br>";
+		//echo "<br>ajouter FC() Ã  SousActiv: ".$sRequeteSql."<br>";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
@@ -198,8 +198,8 @@ class CFormulaireComplete
 	
 	/*
 	** Fonction 		: enregistrer
-	** Description		: enregistre les données de l'objet courant dans la BD
-	** Entrée			:
+	** Description		: enregistre les donnÃ©es de l'objet courant dans la BD
+	** EntrÃ©e			:
 	** Sortie			:
 	*/
 	function enregistrer ()
@@ -215,8 +215,8 @@ class CFormulaireComplete
 	/*
 	** Fonction 		: effacer
 	** Description		: efface de la BD l'enregistrement concernant l'objet courant
-						  et toutes les réponses correspondantes
-	** Entrée			:
+						  et toutes les rÃ©ponses correspondantes
+	** EntrÃ©e			:
 	** Sortie			:
 	*/
 	function effacer ()
@@ -255,7 +255,7 @@ class CFormulaireComplete
 		{
 			case STATUT_RES_EN_COURS: return "en cours";
 			case STATUT_RES_SOUMISE: return "soumis";
-			case STATUT_RES_APPROF: return "à approfondir";
+			case STATUT_RES_APPROF: return "Ã  approfondir";
 			case STATUT_RES_ACCEPTEE: return "accepter";
 		}
 	}
@@ -299,14 +299,14 @@ class CFormulaireComplete
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 
- 	// {{{ Méthodes de définition
+ 	// {{{ MÃ©thodes de dÃ©finition
 	function defId ($v_iIdFC) { $this->iId = $v_iIdFC; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	function defDate ($v_sDateFC) { $this->oEnregBdd->DateFC = $v_sDateFC; }
 	function defIdForm ($v_iIdForm) { $this->oEnregBdd->IdForm = $v_iIdForm; }
 	// }}}
 	
-	// {{{ Méthodes de retour
+	// {{{ MÃ©thodes de retour
 	function retId () { return $this->iId; }
 	function retTitre () { return $this->oEnregBdd->TitreFC; }
 	function retIdParent () { return $this->oEnregBdd->IdSousActiv; }
@@ -360,7 +360,7 @@ class CFormulaireComplete_SousActiv extends CFormulaireComplete
 	{
 	}*/
 	
-	// {{{ Méthodes de retour
+	// {{{ MÃ©thodes de retour
 	function retIdFCSA () { return (isset($this->iIdFCSA) ? $this->iIdFCSA : 0); }
 	//function retIdFC () { return (isset($this->oEnregBdd->IdFC) ? $this->oEnregBdd->IdFC : 0); }
 	//function retIdSousActiv () { return ; }

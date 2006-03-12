@@ -23,7 +23,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -36,7 +36,7 @@ else if (isset($HTTP_POST_VARS))
 }
 else
 {
-	echo "Erreur dans le passage des paramètres";
+	echo "Erreur dans le passage des paramÃ¨tres";
 }
 
 $iIdPers = $oProjet->oUtilisateur->retId();

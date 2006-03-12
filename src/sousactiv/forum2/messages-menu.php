@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: messages-menu.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 14/04/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 14/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
 $url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
@@ -67,13 +67,13 @@ if (!$bPeutGererTousMessages)
 		
 		if (MODALITE_PAR_EQUIPE_COLLABORANTE == $oForum->retModalite())
 		{
-			// Vérifier que cette personne est inscrite dans une équipe
+			// VÃ©rifier que cette personne est inscrite dans une Ã©quipe
 			$bPeutAjtMessage = $oProjet->verifEquipe($url_iIdEquipe);
 		}
 		else
 		{
-			// Si c'est un forum par équipe, vérifier que cette personne
-			// est inscrite dans cette équipe
+			// Si c'est un forum par Ã©quipe, vÃ©rifier que cette personne
+			// est inscrite dans cette Ã©quipe
 			$oEquipeMembre = new CEquipe_Membre($oProjet->oBdd,$url_iIdEquipe);
 			$bPeutAjtMessage = $oEquipeMembre->verifMembre($iIdPers);
 			unset($oEquipeMembre);

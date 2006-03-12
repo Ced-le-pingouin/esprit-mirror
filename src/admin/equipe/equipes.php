@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipes.php
 ** Description ............: 
-** Date de crÈation .......: DÈcembre 2002
-** DerniËre modification ..: 23/08/2004
+** Date de cr√©ation .......: D√©cembre 2002
+** Derni√®re modification ..: 23/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** UnitÈ de Technologie de l'Education
+** Unit√© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -64,7 +64,7 @@ $url_iIdEquipe = (empty($HTTP_POST_VARS["ID_EQUIPE"]) ? 0 : $HTTP_POST_VARS["ID_
 $url_iFiltre   = (empty($HTTP_POST_VARS["FILTRE_PERSONNES"]) ? PERSONNE_SANS_EQUIPE : $HTTP_POST_VARS["FILTRE_PERSONNES"]);
 
 // *************************************
-// Boite de sÈlection contenant toutes les Èquipes de la formation
+// Boite de s√©lection contenant toutes les √©quipes de la formation
 // *************************************
 
 $sSelectEquipes = "<select name=\"ID_EQUIPE\" onchange=\"afficherMembres(value)\">\n";
@@ -96,7 +96,7 @@ for ($iIdxNiveau=$url_iNiveau; $iIdxNiveau>=$iTypeNiveauFin; $iIdxNiveau--)
 			$iNbEquipes = $oEquipe->initEquipes($iIdNiveau,0);
 	}
 	
-	// Remplir le combobox avec les noms des Èquipes
+	// Remplir le combobox avec les noms des √©quipes
 	for ($iIdxEquipe=0; $iIdxEquipe<$iNbEquipes; $iIdxEquipe++)
 	{
 		if ($url_iIdEquipe == 0)
@@ -138,12 +138,12 @@ $sSelectEquipes .= "</select><br>"
 //
 // *************************************
 
-$asNiveau = array(NULL,"cette formation","ce cours","cette unitÈ");
+$asNiveau = array(NULL,"cette formation","ce cours","cette unit√©");
 
 $amFiltres = array(
-	array("non encore affectÈs",PERSONNE_SANS_EQUIPE),
-	array("dÈj‡ affectÈs",PERSONNE_DANS_EQUIPE),
-	array("inscrits ‡ ".$asNiveau[$url_iNiveau],PERSONNE_INSCRITE));
+	array("non encore affect√©s",PERSONNE_SANS_EQUIPE),
+	array("d√©j√† affect√©s",PERSONNE_DANS_EQUIPE),
+	array("inscrits √† ".$asNiveau[$url_iNiveau],PERSONNE_INSCRITE));
 
 $sSelectFiltrePersonnes = "<select name=\"FILTRE_PERSONNES\" onchange=\"afficherPersonnes(value)\">";
 
@@ -283,7 +283,7 @@ function afficherMembres(v_iIdEquipe)
 
 function equipe(v_sAction,v_bConfirmerAjouter)
 {
-	if (v_bConfirmerAjouter && !confirm("Attention, en crÈant une nouvelle Èquipe vous modifierez la composition des Èquipes hÈritÈe de la formation.\n\nVoulez-vous continuer ?"))
+	if (v_bConfirmerAjouter && !confirm("Attention, en cr√©ant une nouvelle √©quipe vous modifierez la composition des √©quipes h√©rit√©e de la formation.\n\nVoulez-vous continuer ?"))
 		return;
 	
 	var sCaracteristiques = centrerFenetre(430,150);

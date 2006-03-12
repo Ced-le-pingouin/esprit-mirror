@@ -20,18 +20,18 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 // ---------------------
-// Ouvrir une connexion avec le serveur de la base de données
+// Ouvrir une connexion avec le serveur de la base de donnÃ©es
 // ---------------------
 $hConnexion = @mysql_connect($g_sNomServeurTransfert,$g_sNomProprietaireTransfert,$g_sMotDePasseTransfert);
 
 if ($hConnexion === FALSE)
 {
-	echo "<p style=\"text-align: center\">Permission refusée</p>\n";
+	echo "<p style=\"text-align: center\">Permission refusÃ©e</p>\n";
 	return;
 }
 
 // ---------------------
-// Rechercher les bases de données disponibles
+// Rechercher les bases de donnÃ©es disponibles
 // ---------------------
 $aoBdds = array();
 
@@ -63,7 +63,7 @@ if (isset($hConnexion))
 mysql_close($hConnexion);
 
 // ---------------------
-// Composer la liste des bases de données source
+// Composer la liste des bases de donnÃ©es source
 // ---------------------
 $sOptionsBddsSrc = NULL;
 
@@ -71,7 +71,7 @@ $sBddValide = dir_document_root();
 
 for ($i=0; $i<count($aoBdds); $i++)
 {
-	// Vérifier que le répertoire de la plate-forme soit accessible
+	// VÃ©rifier que le rÃ©pertoire de la plate-forme soit accessible
 	if (is_dir("{$sBddValide}{$aoBdds[$i]}"))
 		$sOptionsBddsSrc .= "<option"
 			." value=\"".htmlentities($aoBdds[$i])."\""
@@ -99,7 +99,7 @@ top.afficher_etape();
 <tr>
 <td>
 <select name="select_bdd_src" onchange="document.forms[0].elements['NOM_BDD_SRC'].value=this.options[this.selectedIndex].value" style="width: 100%;">
-<option value="">Sélectionner une base de données source</option>
+<option value="">SÃ©lectionner une base de donnÃ©es source</option>
 <?=$sOptionsBddsSrc?>
 </select>
 </td>

@@ -22,53 +22,53 @@
 /*
 ** Fichier			: bdd_mysql.class.php
 ** Description		: classe formant une interface avec des base de
-**					  données MySQL
-** Création			: 04-09-2001 (Cédric FLOQUET, cedric.floquet@advalvas.be)
-** Dernière modif	: 02-04-2003
+**					  donnÃ©es MySQL
+** CrÃ©ation			: 04-09-2001 (CÃ©dric FLOQUET, cedric.floquet@advalvas.be)
+** DerniÃ¨re modif	: 02-04-2003
 **
-** (c) 2001 Unité de Technologie de l'Education. Tous droits réservés.
+** (c) 2001 UnitÃ© de Technologie de l'Education. Tous droits rÃ©servÃ©s.
 */
 
 
 /*
 ** Classe			: CBddMySql
 ** Description		: interface de base pour l'utilisation d'une base de 
-**					  données MySQL
+**					  donnÃ©es MySQL
 */
 class CBddMySql
 {
-	var $sHote; var $sLogin; var $sMdp;		// infos pour la connexion à la base
+	var $sHote; var $sLogin; var $sMdp;		// infos pour la connexion Ã  la base
 	var $sNom;								// nom de la base
 	var $hLien = 0;							// handle vers la base
-	var $sRequete = "";						// dernière requête 'tentée' (pas forcément réussie)
-	var $ahResult;							// handles de résultats de requêtes
+	var $sRequete = "";						// derniÃ¨re requÃªte 'tentÃ©e' (pas forcÃ©ment rÃ©ussie)
+	var $ahResult;							// handles de rÃ©sultats de requÃªtes
 
 
 	/*
 	** Fonction 		: CBddMySql (constructeur)
-	** Description		: effectue la connexion au serveur de BDD, puis la connexion à une
+	** Description		: effectue la connexion au serveur de BDD, puis la connexion Ã  une
 	**					  base en particulier
-	** Entrée			:
-	**					v_sHote			: nom du serveur de BDD ("localhost" par défaut)
+	** EntrÃ©e			:
+	**					v_sHote			: nom du serveur de BDD ("localhost" par dÃ©faut)
 	**					v_sLogin		: nom d'utilisateur pour la connexion
 	**					v_sMdp			: mot de passe pour la connexion
-	**					v_sNom			: nom de la base à utiliser
+	**					v_sNom			: nom de la base Ã  utiliser
 	** Sortie			: aucune
 	*/
 	function CBddMySql($v_sHote = "localhost", $v_sLogin, $v_sMdp, $v_sNom)
 	{
-		// les infos de connexion sont copiées dans les propriétés de la classe
+		// les infos de connexion sont copiÃ©es dans les propriÃ©tÃ©s de la classe
 		$this->sHote = $v_sHote;
 		$this->sLogin = $v_sLogin;
 		$this->sMdp = $v_sMdp;
 
-		// tente la connexion, si echec, on arrête directement
+		// tente la connexion, si echec, on arrÃªte directement
 		$this->hLien = mysql_connect($this->sHote, $this->sLogin, $this->sMdp) or die;
 
-		// connexion à la base voulue
+		// connexion Ã  la base voulue
 		mysql_select_db($v_sNom, $this->hLien) or $this->traiterErreur();
 
-		// connexion à la base réussie -> son nom est copié dans la propriété ad hoc
+		// connexion Ã  la base rÃ©ussie -> son nom est copiÃ© dans la propriÃ©tÃ© ad hoc
 		$this->sNom = $v_sNom;
 	}
 
@@ -76,7 +76,7 @@ class CBddMySql
 	/*
 	** Fonction 		: terminer (pseudo-destructeur)
 	** Description		: ferme la connexion au serveur de BDD
-	** Entrée			: aucune
+	** EntrÃ©e			: aucune
 	** Sortie			: aucune
 	*/
 	function terminer()
@@ -87,35 +87,35 @@ class CBddMySql
 	
 	/*
 	** Fonction 		: executerRequete
-	** Description		: exécute une requête SQL
-	** Entrée			:
-	**					v_sRequete		: texte de la requête SQL (sans point-virgule
-	**									  à la fin)
+	** Description		: exÃ©cute une requÃªte SQL
+	** EntrÃ©e			:
+	**					v_sRequete		: texte de la requÃªte SQL (sans point-virgule
+	**									  Ã  la fin)
 	** Sortie			:
-	**					si la requête réussit, le numéro du résultat correspondant
-	**					est retourné. Sinon, FALSE est retourné
+	**					si la requÃªte rÃ©ussit, le numÃ©ro du rÃ©sultat correspondant
+	**					est retournÃ©. Sinon, FALSE est retournÃ©
 	*/
 	function executerRequete($v_sRequete, $v_bAfficher = FALSE)
 	{
-		// si la requête n'est pas vide, on la copie dans la propriété ad hoc
+		// si la requÃªte n'est pas vide, on la copie dans la propriÃ©tÃ© ad hoc
 		if ($v_sRequete != "")
 			$this->sRequete = $v_sRequete;
 
-		// affiche le texte de la requête avant l'exécution
+		// affiche le texte de la requÃªte avant l'exÃ©cution
 		if ($v_bAfficher)
 			print $this->sRequete . "<br>";
 
-		// si la requête est valide...
+		// si la requÃªte est valide...
 		if ($hResult = mysql_query($this->sRequete, $this->hLien))
 		{
-			// ...on enregistre le handle du résultat à la fin de notre tableau...
+			// ...on enregistre le handle du rÃ©sultat Ã  la fin de notre tableau...
 			$this->ahResult[] = $hResult;
-			// ...on place le pointeur du tableau à la fin...
+			// ...on place le pointeur du tableau Ã  la fin...
 			end($this->ahResult);
-			// ...et on renvoie l'indice (donc le numéro) de ce résultat
+			// ...et on renvoie l'indice (donc le numÃ©ro) de ce rÃ©sultat
 			return key($this->ahResult);
 		}
-		// requête invalide -> erreur, retourne FALSE
+		// requÃªte invalide -> erreur, retourne FALSE
 		else
 			$this->traiterErreur();
 			
@@ -125,20 +125,20 @@ class CBddMySql
 
 	/*
 	** Fonction 		: retDernierId
-	** Description		: renvoie le dernier numéro inséré dans un champ AUTO_INCREMENT
-	** Entrée			: aucune
+	** Description		: renvoie le dernier numÃ©ro insÃ©rÃ© dans un champ AUTO_INCREMENT
+	** EntrÃ©e			: aucune
 	** Sortie			:
-	**					numéro créé lors de l'insertion du champ
+	**					numÃ©ro crÃ©Ã© lors de l'insertion du champ
 	*/
 	function retDernierId() { return mysql_insert_id($this->hLien); }
 
 
 	/*
 	** Fonction 		: retNbResults
-	** Description		: fonction d'accès au nombre actuel de résultats de requêtes
-	** Entrée			: aucune
+	** Description		: fonction d'accÃ¨s au nombre actuel de rÃ©sultats de requÃªtes
+	** EntrÃ©e			: aucune
 	** Sortie			:
-	**					nombre actuel de résultats de requêtes 'exploitables'
+	**					nombre actuel de rÃ©sultats de requÃªtes 'exploitables'
 	*/
 	function retNbResults() { return count($this->ahResult); }
 
@@ -146,15 +146,15 @@ class CBddMySql
 	/*
 	** Fonction 		: retNbEnregsDsResult
 	** Description		: renvoie le nombre total d'enregistrements contenus dans
-	**					  un résultat de requête donné
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
+	**					  un rÃ©sultat de requÃªte donnÃ©
+	** EntrÃ©e			:
+	**					v_iNumResult	: numÃ©ro du rÃ©sultat Ã  traiter
 	** Sortie			:
-	**					nombre total d'enregistrements pour ce résultat
+	**					nombre total d'enregistrements pour ce rÃ©sultat
 	*/
 	function retNbEnregsDsResult($v_iNumResult = NULL)
 	{
-		// si le numéro de résultat n'est pas fourni, on prend le dernier
+		// si le numÃ©ro de rÃ©sultat n'est pas fourni, on prend le dernier
 		if (empty($v_iNumResult))
 		{
 			end($this->ahResult);
@@ -167,17 +167,17 @@ class CBddMySql
 	
 	/*
 	** Fonction 		: retEnregSuivant
-	** Description		: renvoie l'enregistrement suivant d'un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
+	** Description		: renvoie l'enregistrement suivant d'un rÃ©sultat
+	** EntrÃ©e			:
+	**					v_iNumResult	: numÃ©ro du rÃ©sultat Ã  traiter
 	** Sortie			:
-	**					l'enregistrement est retourné sous forme d'objet, dont
-	**					les propriétés sont les différents champs. S'il n'y a 
-	**					plus d'enregistrement, NULL est retourné
+	**					l'enregistrement est retournÃ© sous forme d'objet, dont
+	**					les propriÃ©tÃ©s sont les diffÃ©rents champs. S'il n'y a 
+	**					plus d'enregistrement, NULL est retournÃ©
 	*/
 	function retEnregSuiv($v_iNumResult = NULL)
 	{
-		// si le numéro de résultat n'est pas fourni, on prend le dernier
+		// si le numÃ©ro de rÃ©sultat n'est pas fourni, on prend le dernier
 		if (empty($v_iNumResult))
 		{
 			end($this->ahResult);
@@ -190,17 +190,17 @@ class CBddMySql
 
 	/*
 	** Fonction 		: retEnregPrecis
-	** Description		: renvoie un enregistrement précis dans un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
-	**					v_iNumEnreg		: numéro de l'enregistrement
+	** Description		: renvoie un enregistrement prÃ©cis dans un rÃ©sultat
+	** EntrÃ©e			:
+	**					v_iNumResult	: numÃ©ro du rÃ©sultat Ã  traiter
+	**					v_iNumEnreg		: numÃ©ro de l'enregistrement
 	** Sortie			:
-	**					l'enregistrement est retourné sous forme de
-	**					tableau de champs (indicés à partir de 0)
+	**					l'enregistrement est retournÃ© sous forme de
+	**					tableau de champs (indicÃ©s Ã  partir de 0)
 	*/
 	function retEnregPrecis($v_iNumResult = NULL, $v_iNumEnreg = 0)
 	{
-		// si le numéro de résultat n'est pas fourni, on prend le dernier
+		// si le numÃ©ro de rÃ©sultat n'est pas fourni, on prend le dernier
 		if (empty($v_iNumResult))
 		{
 			end($this->ahResult);
@@ -213,23 +213,23 @@ class CBddMySql
 
 	/*
 	** Fonction 		: libererResult
-	** Description		: libère les ressources associées à un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
+	** Description		: libÃ¨re les ressources associÃ©es Ã  un rÃ©sultat
+	** EntrÃ©e			:
+	**					v_iNumResult	: numÃ©ro du rÃ©sultat Ã  traiter
 	** Sortie			: aucune
 	*/
 	function libererResult($v_iNumResult = NULL)
 	{
-		// si le numéro de résultat n'est pas fourni, on prend le dernier
+		// si le numÃ©ro de rÃ©sultat n'est pas fourni, on prend le dernier
 		if (empty($v_iNumResult))
 		{
 			end($this->ahResult);
 			$v_iNumResult = key($this->ahResult);
 		}
 
-		// on libère les ressources
+		// on libÃ¨re les ressources
 		mysql_free_result($this->ahResult[$v_iNumResult]);
-		// puis on supprime l'entrée correspondant au résultat dans notre tableau
+		// puis on supprime l'entrÃ©e correspondant au rÃ©sultat dans notre tableau
 		unset($this->ahResult[$v_iNumResult]);
 	}
 
@@ -245,20 +245,20 @@ class CBddMySql
 	
 	/*
 	** Fonction 		: traiterErreur
-	** Description		: affiche le message correspondant à la dernière erreur
-	**					  survenue pour la base de données
-	** Entrée			:
-	**					v_bEstFatale	: si TRUE (par défaut), l'erreur entraine
-	**									  l'arrêt immédiat du script PHP
+	** Description		: affiche le message correspondant Ã  la derniÃ¨re erreur
+	**					  survenue pour la base de donnÃ©es
+	** EntrÃ©e			:
+	**					v_bEstFatale	: si TRUE (par dÃ©faut), l'erreur entraine
+	**									  l'arrÃªt immÃ©diat du script PHP
 	** Sortie			: aucune
 	*/
 	function traiterErreur($v_bEstFatale = TRUE)
 	{
-		// si on est connecté, affiche le dernier message d'erreur
+		// si on est connectÃ©, affiche le dernier message d'erreur
 		if ($this->hLien)
 			print mysql_error($this->hLien);
 
-		// arrêt du script PHP si nécessaire
+		// arrÃªt du script PHP si nÃ©cessaire
 		if ($v_bEstFatale)
 			exit();
 	}

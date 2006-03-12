@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: exporter-liste.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 27/08/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 27/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -49,11 +49,11 @@ $oTpl->remplacer("{ORDRE_TRI->value}",$url_sOrdreTri);
 
 $oBloc_personne = new TPL_Block("BLOCK_PERSONNE",$oTpl);
 
-// Récupérer les icônes de tri croissant/décroissant
+// RÃ©cupÃ©rer les icÃ´nes de tri croissant/dÃ©croissant
 $oSet_icone_asc  = $oTpl->defVariable("SET_IMAGE_TRI_ASC");
 $oSet_icone_desc = $oTpl->defVariable("SET_IMAGE_TRI_DESC");
 
-// Placer l'icône de tri
+// Placer l'icÃ´ne de tri
 $asTrier = array("nom","prenom","pseudo");
 
 foreach ($asTrier as $sTrier)
@@ -80,7 +80,7 @@ foreach ($asTrier as $sTrier)
 
 if (isset($HTTP_POST_VARS["LISTE_IDPERS"]))
 {
-	// Définir le tri
+	// DÃ©finir le tri
 	if ($url_sTri == "prenom")
 		$oPersonnes->defTrierSur($oPersonnes->TRIER_PRENOM);
 	elseif ($url_sTri == "pseudo")

@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td class="intitule" width="1%" nowrap="1">Collecticiels associ&eacute;s&nbsp;:</td>
-<td>Pas de collecticiel trouvé<br><br></td>
+<td>Pas de collecticiel trouvÃ©<br><br></td>
 </tr>
 <tr>
 <td class="intitule">

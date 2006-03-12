@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: menu_menu.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 30/11/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 30/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 ** 
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -67,7 +67,7 @@ if ($g_iIdPers > 0)
 }
 else
 {
-	// Permissions, par défaut, des visiteurs
+	// Permissions, par dÃ©faut, des visiteurs
 	$bPeutVoirSessionFermee = $oProjet->verifPermission("PERM_VOIR_SESSION_FERMEE");
 	$bPeutVoirSessionInv    = $oProjet->verifPermission("PERM_VOIR_SESSION_INV");
 	
@@ -101,7 +101,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 	$iIdForm       = $oFormation->retId();
 	$sNomFormation = $oFormation->retNom();
 	
-	// {{{ Permissions par rapport à la formation et au statut que l'utilisateur a choisi
+	// {{{ Permissions par rapport Ã  la formation et au statut que l'utilisateur a choisi
 	if ($g_iIdPers > 0)
 	{
 		$oStatutUtilisateur->initStatuts($iIdForm);
@@ -111,7 +111,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 		$bPeutVoirSessionFermee = $oPermisUtilisateur->verifPermission("PERM_VOIR_SESSION_FERMEE");
 		$bPeutVoirSessionInv    = $oPermisUtilisateur->verifPermission("PERM_VOIR_SESSION_INV");
 		
-		// Cette variable est utilisée par la fonction initModules
+		// Cette variable est utilisÃ©e par la fonction initModules
 		$bPeutModifTousMod = $oPermisUtilisateur->verifPermission("PERM_MOD_TOUS_COURS");
 	}
 	// }}}
@@ -133,7 +133,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 	
 	$oBlocFormation->nextLoop();
 	
-	// Remplacement général
+	// Remplacement gÃ©nÃ©ral
 	$oBlocFormation->remplacer("{nom_formation}",$sNomFormation);
 	
 	$sTableauTitresFormation .= (isset($sTableauTitresFormation) ? "\n\t, " : NULL)
@@ -232,7 +232,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 			}
 			else
 			{
-				// Module fermé
+				// Module fermÃ©
 				$oBlocModule->remplacer("{cours}",$oSet_Cours_Fermer);
 				$oBlocModule->remplacer("{id_cours}",0);
 			}
@@ -271,7 +271,7 @@ if ($g_iIdFormCourante > 0 && $g_iIdModCourant == 0)
 	$oTmp = new TPL_Block("SET_MODULE_ONLOAD",$oTpl);
 	$oTmp->effacer();
 	
-	// Au démarrage, Afficher la description de la formation
+	// Au dÃ©marrage, Afficher la description de la formation
 	if (strlen($oProjet->oFormationCourante->retDescr()) > 0)
 	{
 		$oBlock_OnLoad->ajouter($oTpl->defVariable("SET_FORMATION_ONLOAD"));
@@ -291,7 +291,7 @@ else if ($g_iIdModCourant > 0)
 	$oTmp = new TPL_Block("SET_FORMATION_ONLOAD",$oTpl);
 	$oTmp->effacer();
 	
-	// Au démarrage, si la formation ne contient pas de description
+	// Au dÃ©marrage, si la formation ne contient pas de description
 	// alors, afficher le contenu du premier cours.
 	$oBlock_OnLoad->ajouter($oTpl->defVariable("SET_MODULE_ONLOAD"));
 	

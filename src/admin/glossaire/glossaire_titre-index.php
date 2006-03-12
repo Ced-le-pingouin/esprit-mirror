@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: glossaire_titre-index.php
 ** Description ............:
-** Date de création .......: 30/07/2004
-** Dernière modification ..: 31/07/2004
+** Date de crÃ©ation .......: 30/07/2004
+** DerniÃ¨re modification ..: 31/07/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 **

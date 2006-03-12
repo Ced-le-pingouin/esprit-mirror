@@ -42,12 +42,12 @@ function construireHtmlSelect ($v_sNomSelect,$v_sOnChange,$v_amListe,$v_mSelect)
 // ----------------------
 $amStatuts = array(
 		array(0,"Tous les documents"),
-		array(STATUT_RES_EVALUEE,"EvaluÈ"),
-		array(STATUT_RES_ACCEPTEE,"AcceptÈ"),
+		array(STATUT_RES_EVALUEE,"Evalu√©"),
+		array(STATUT_RES_ACCEPTEE,"Accept√©"),
 		array(STATUT_RES_APPROF,"Approfondir"),
-		array(STATUT_RES_SOUMISE,"Soumis pour Èvaluation"),
+		array(STATUT_RES_SOUMISE,"Soumis pour √©valuation"),
 		array(STATUT_RES_EN_COURS,"En cours"),
-		array(STATUT_RES_TRANSFERE,"TransfÈrÈ"));
+		array(STATUT_RES_TRANSFERE,"Transf√©r√©"));
 
 $sHtmlSelectStatut = construireHtmlSelect("SELECT_STATUT","document.forms[0].submit()",$amStatuts,$g_iStatut);
 
@@ -60,9 +60,9 @@ for ($i=0; $i<count($asNomsEspaces); $i++)
 	$asListes[] = array($aiIdsEspaces[$i],$asNomsEspaces[$i]);
 
 if ($iModalite == MODALITE_INDIVIDUEL)
-	$asListes[0] = array(0,($i > 0 ? "Tous les Ètudiants" : "Pas d'Ètudiant trouvÈ"));
+	$asListes[0] = array(0,($i > 0 ? "Tous les √©tudiants" : "Pas d'√©tudiant trouv√©"));
 else
-	$asListes[0] = array(0,($i > 0 ? "Toutes les Èquipes" : "Pas d'Èquipe trouvÈe"));
+	$asListes[0] = array(0,($i > 0 ? "Toutes les √©quipes" : "Pas d'√©quipe trouv√©e"));
 
 $sHtmlSelectPersonne = construireHtmlSelect("SELECT_PERSONNE","document.forms[0].submit()",$asListes,$g_iIdPers);
 

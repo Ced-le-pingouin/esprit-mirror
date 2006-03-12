@@ -1,13 +1,13 @@
 <?php
 /*
 ** Fichier			: pas_de_cache.inc.php
-** Description		: en-tête HTTP (à inclure AVANT toute sortie texte)
-**					  empêchant le navigateur de placer une page dans
+** Description		: en-tÃªte HTTP (Ã  inclure AVANT toute sortie texte)
+**					  empÃªchant le navigateur de placer une page dans
 **					  son cache
-** Création			: 31-01-2001 (Cédric FLOQUET, cedric.floquet@advalvas.be)
-** Dernière modif	: 06-09-2001
+** CrÃ©ation			: 31-01-2001 (CÃ©dric FLOQUET, cedric.floquet@advalvas.be)
+** DerniÃ¨re modif	: 06-09-2001
 **
-** (c) 2001 Unité de Technologie de l'Education. Tous droits réservés.
+** (c) 2001 UnitÃ© de Technologie de l'Education. Tous droits rÃ©servÃ©s.
 */
 
 

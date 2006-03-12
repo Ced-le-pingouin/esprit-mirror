@@ -22,7 +22,7 @@ td.avertissement_login { background-color: rgb(253,249,238); border: rgb(136,37,
 [BLOCK_ERREUR_LOGIN+]
 <tr><td colspan="2" class="erreur_login">Votre pseudo ou votre mot de passe est incorrect.</td></tr>
 [BLOCK_ERREUR_LOGIN-]
-<tr><td colspan="2">Si vous êtes inscrit, introduisez votre pseudo et mot de passe.</td></tr>
+<tr><td colspan="2">Si vous Ãªtes inscrit, introduisez votre pseudo et mot de passe.</td></tr>
 <!--<tr><td colspan="2">&nbsp;</td></tr>-->
 <tr><td colspan="2" style="text-align: right;"><a href="javascript: void(0);" onclick="return mdp_oublier()" onfocus="blur()" style="font-size: 7pt;">Oubli&eacute;&nbsp;?</a></td></tr>
 <tr><td align="right" valign="middle" width="99%">Pseudo&nbsp;:</td><td align="right" valign="middle"><input type="text" size="13" name="idPseudo"></td></tr>

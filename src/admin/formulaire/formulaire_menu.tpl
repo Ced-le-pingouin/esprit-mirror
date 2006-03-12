@@ -8,11 +8,11 @@ function suppression(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
 	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
+		alert('Veuillez sÃ©lectionner un formulaire dans la liste');
 	}
 	else
 	{
-		if(confirm('Voulez-vous supprimer le formulaire sélectionné ?'))
+		if(confirm('Voulez-vous supprimer le formulaire sÃ©lectionnÃ© ?'))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].action='formulaire_menu.php';
@@ -31,11 +31,11 @@ function copie(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
 	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
+		alert('Veuillez sÃ©lectionner un formulaire dans la liste');
 	}
 	else
 	{
-		if(confirm('Voulez-vous copier le formulaire sélectionné ?'))
+		if(confirm('Voulez-vous copier le formulaire sÃ©lectionnÃ© ?'))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].action='formulaire_menu.php';
@@ -91,7 +91,7 @@ function copie(TypeAct)
 <a
 	href="javascript: void(0);" 
 	onClick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">
-    Créer un formulaire
+    CrÃ©er un formulaire
 </a>
 </div>
 

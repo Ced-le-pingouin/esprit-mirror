@@ -22,11 +22,11 @@
 /*
 ** Fichier .................: liste_formations.php
 ** Description ............:
-** Date de création .......: 23/08/2004
-** Dernière modification ..: 23/08/2004
+** Date de crÃ©ation .......: 23/08/2004
+** DerniÃ¨re modification ..: 23/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,18 +34,18 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sNomBdd    = $HTTP_GET_VARS["bdd"];
 $url_iIdFormSrc = $HTTP_GET_VARS["idFormSrc"];
 
 // ---------------------
-// Ouvrir une connexion avec la base de données
+// Ouvrir une connexion avec la base de donnÃ©es
 // ---------------------
 $oBdd = new CBddMySql($g_sNomServeurTransfert,$g_sNomProprietaireTransfert,$g_sMotDePasseTransfert,$url_sNomBdd);
 
 // ---------------------
-// Rechercher toutes les formations appartenant à cette base de données
+// Rechercher toutes les formations appartenant Ã  cette base de donnÃ©es
 // ---------------------
 $sRequeteSql = "SELECT * FROM Formation"
 	." WHERE StatutForm<>'".STATUT_EFFACE."'"

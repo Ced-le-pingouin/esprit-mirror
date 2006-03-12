@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: zone_menu.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 18/11/2004
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 18/11/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet->initModuleCourant();
 include_once("zone_menu.inc.php");
 
 // ---------------------
-// Récupérer la description de la formation
+// RÃ©cupÃ©rer la description de la formation
 // ---------------------
 $iLongueurDescr = 0;
 

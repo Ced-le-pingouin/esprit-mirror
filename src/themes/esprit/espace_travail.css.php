@@ -44,7 +44,7 @@ $sTmpRepert = dirname($PHP_SELF);
 	background-color: transparent;
 }
 
-/* Les colonnes d'en-têtes */
+/* Les colonnes d'en-tÃªtes */
 .doc-header-color
 {
 	color: #B25A47;

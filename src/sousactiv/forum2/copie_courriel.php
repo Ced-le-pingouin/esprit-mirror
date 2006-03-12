@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: copie_courriel.php
 ** Description ............:
-** Date de création .......: 29/11/2004
-** Dernière modification ..: 21/03/2005
+** Date de crÃ©ation .......: 29/11/2004
+** DerniÃ¨re modification ..: 21/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -43,7 +43,7 @@ $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId
 $sMonEmail  = ($iMonIdPers > 0 ? $oProjet->oUtilisateur->retEmail() : NULL);
 
 // ---------------------
-// Mise à jour
+// Mise Ã  jour
 // ---------------------
 if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 {
@@ -59,7 +59,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 		
 		if ($oForumPrefs->initForumPrefs($url_iIdForum,$iMonIdPers))
 		{
-			// Mise à jour de la table "ForumPrefs"
+			// Mise Ã  jour de la table "ForumPrefs"
 			$oForumPrefs->defCopieCourriel($url_iCopieCourriel);
 			$oForumPrefs->enregistrer();
 		}
@@ -82,10 +82,10 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 				}
 				else
 				{
-					// Dans le cas où, la modalité du forum est un forum par équipe
-					// autre que "Equipe isolée", dès lors la personne doit être au
-					// courant (par mail) des messages déposés par n'importe quelles
-					// équipes.
+					// Dans le cas oÃ¹, la modalitÃ© du forum est un forum par Ã©quipe
+					// autre que "Equipe isolÃ©e", dÃ¨s lors la personne doit Ãªtre au
+					// courant (par mail) des messages dÃ©posÃ©s par n'importe quelles
+					// Ã©quipes.
 					$oProjet->initEquipes();
 					
 					foreach ($oProjet->aoEquipes as $oEquipe)
@@ -103,7 +103,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 }
 else
 {
-	// Récupérer les variables de l'url
+	// RÃ©cupÃ©rer les variables de l'url
 	$url_iIdForum  = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 }
 
@@ -141,14 +141,14 @@ $sJavascriptFunctionValider = NULL;
 
 if (empty($sMonEmail))
 {
-	// L'utilisateur n'a pas d'adresse électronique
+	// L'utilisateur n'a pas d'adresse Ã©lectronique
 	$sFrameMenuSrc .= "?menu=profil";
 	$oBlocJavascriptFunctionValider->effacer();
 	$oBlocCopieCourriel->ajouter($sVarSansEmail);
 }
 else if (!emailValide($sMonEmail))
 {
-	// L'adresse électronique de l'utilisateur n'est pas valide
+	// L'adresse Ã©lectronique de l'utilisateur n'est pas valide
 	$sFrameMenuSrc .= "?menu=profil";
 	$oBlocJavascriptFunctionValider->effacer();
 	$oBlocCopieCourriel->ajouter($sVarEmailErrone);
@@ -182,7 +182,7 @@ else if ($iMonIdPers > 0 && $bPeutUtiliserCopieCourriel)
 
 $oBlocCopieCourriel->remplacer("{copieCourriel->selectionne}",($oForumPrefs->retCopieCourriel() ? " checked=\"checked\"" : NULL));
 
-// Afficher la liste des équipes
+// Afficher la liste des Ã©quipes
 
 $oBlocCopieCourriel->afficher();
 

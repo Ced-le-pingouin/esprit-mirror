@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm   = (empty($HTTP_GET_VARS["ID_FORM"]) ? 0 : $HTTP_GET_VARS["ID_FORM"]);
 $url_iIdStatut = (empty($HTTP_GET_VARS["STATUT_PERS"]) ? 0 : $HTTP_GET_VARS["STATUT_PERS"]);

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mail-index.php
 ** Description ............:
-** Date de création .......: 14/12/2004
-** Dernière modification ..: 15/02/2005
+** Date de crÃ©ation .......: 14/12/2004
+** DerniÃ¨re modification ..: 15/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $sParamsUrl = NULL;
 

@@ -24,7 +24,7 @@ $oProjet = new CProjet();
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 {
 	//************************************************
-	//*       Récupération des variables             *
+	//*       RÃ©cupÃ©ration des variables             *
 	//************************************************
 	
 	if (isset($HTTP_GET_VARS))
@@ -143,21 +143,21 @@ function soumettre(TypeAct,Parametre)
 				break;
 				
 			default:
-				echo "Erreur: numéro d'objet d'activité en ligne incorrect.<br>";
+				echo "Erreur: numÃ©ro d'objet d'activitÃ© en ligne incorrect.<br>";
 		}
 	}
-	else if ($v_iIdFormulaire != 0 ) //Cas où on a cliqué sur le titre du formulaire
+	else if ($v_iIdFormulaire != 0 ) //Cas oÃ¹ on a cliquÃ© sur le titre du formulaire
 	{
 		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 		echo $oFormulaire->cHtmlFormulaireModif($v_iIdObjForm,$v_iIdFormulaire);
 	}
-	else	//Cas où aucune valeur n'a encore été envoyée (c-à-d chargement de la page)
+	else	//Cas oÃ¹ aucune valeur n'a encore Ã©tÃ© envoyÃ©e (c-Ã -d chargement de la page)
 	{
 		echo "<table border=\"10\" cellspacing=\"10\" cellpadding=\"10\" width=\"100%\" height=\"100%\">"
 			."<tr><td align=\"center\">"
 			."<img src=\"../../images/doc-vide.gif\" border=\"0\"><br>"
 			//."e&nbsp;C&nbsp;O&nbsp;N&nbsp;C&nbsp;E&nbsp;P&nbsp;T<font size=\"1\"><sup>&copy;</sup></font><br>"
-			."Générateur d'activités en ligne"
+			."GÃ©nÃ©rateur d'activitÃ©s en ligne"
 			."</td></tr>"
 			."<tr><td align=\"center\">Unit&eacute; de Technologie de l'&Eacute;ducation</td></tr>"
 			."</table>";

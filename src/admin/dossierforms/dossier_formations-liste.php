@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: dossier_formations-index.php
 ** Description ............:
-** Date de création .......: 04/04/2005
-** Dernière modification ..: 25/05/2005
+** Date de crÃ©ation .......: 04/04/2005
+** DerniÃ¨re modification ..: 25/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once(dir_database("dossier_formations.tbl.php"));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdDossierForms = (empty($HTTP_GET_VARS["idDossierForms"]) ? $oProjet->asInfosSession[SESSION_DOSSIER_FORMS] : $HTTP_GET_VARS["idDossierForms"]);
 

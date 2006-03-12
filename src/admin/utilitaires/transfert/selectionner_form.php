@@ -6,9 +6,9 @@
 top.afficher_etape();
 //-->
 </script>
-<small>Voici une liste de formations appartenant à la base de données source &laquo;&nbsp;<cite><?=$HTTP_GET_VARS['NOM_BDD_SRC']?></cite>&nbsp;&raquo;.</small>
+<small>Voici une liste de formations appartenant Ã  la base de donnÃ©es source &laquo;&nbsp;<cite><?=$HTTP_GET_VARS['NOM_BDD_SRC']?></cite>&nbsp;&raquo;.</small>
 <br><br>
-<small>Sélectionnez la formation qui sera copiée dans &laquo;&nbsp;<cite><?=$HTTP_GET_VARS['NOM_BDD_DST']?></cite>&nbsp;&raquo;.</small>
+<small>SÃ©lectionnez la formation qui sera copiÃ©e dans &laquo;&nbsp;<cite><?=$HTTP_GET_VARS['NOM_BDD_DST']?></cite>&nbsp;&raquo;.</small>
 </td>
 </tr>
 <tr>

@@ -34,7 +34,7 @@ function init()
 </head>
 <body onload="init()">
 <div id="tuteurs">Tuteurs&nbsp;:&nbsp;</div>
-[BLOCK_TUTEUR+][BLOCK_SEPARATEUR_TUTEURS+]<div class="cellule_separateur">::</div>[BLOCK_SEPARATEUR_TUTEURS-]<div id="id_tuteur_{tuteur.id}" class="cellule_icone_normale"><a href="javascript: void(0);" onclick="return changer_tuteur('?idPers={tuteur.id}&amp;idResSA={ressource.id}','id_tuteur_{tuteur.id}')" title="Cliquer ici pour voir l'évaluation de ce tuteur" onfocus="blur()">{tuteur.nom}&nbsp;{tuteur.prenom}</a></div>[BLOCK_TUTEUR-]
+[BLOCK_TUTEUR+][BLOCK_SEPARATEUR_TUTEURS+]<div class="cellule_separateur">::</div>[BLOCK_SEPARATEUR_TUTEURS-]<div id="id_tuteur_{tuteur.id}" class="cellule_icone_normale"><a href="javascript: void(0);" onclick="return changer_tuteur('?idPers={tuteur.id}&amp;idResSA={ressource.id}','id_tuteur_{tuteur.id}')" title="Cliquer ici pour voir l'Ã©valuation de ce tuteur" onfocus="blur()">{tuteur.nom}&nbsp;{tuteur.prenom}</a></div>[BLOCK_TUTEUR-]
 </body>
 </html>
 

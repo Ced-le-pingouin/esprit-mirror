@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: nvfrm_nv_pg3.php
 ** Description ............: 
-** Date de création .......: 04/06/2002
-** Dernière modification ..: 03/09/2004
+** Date de crÃ©ation .......: 04/06/2002
+** DerniÃ¨re modification ..: 03/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -46,7 +46,7 @@ if (isset($bConfirmation) && $bConfirmation)
 	{
 		$oProjet->defFormationCourante($iIdForm);
 		
-		// Créer un nouveau répertoire pour cette formation
+		// CrÃ©er un nouveau rÃ©pertoire pour cette formation
 		@mkdir(dir_formation($iIdForm),0744);
 		
 		echo "<script language=\"javascript\" type=\"text/javascript\">\n"
@@ -103,5 +103,5 @@ echo "<tr>"
 	."</tr>";
 ?>
 </table>
-<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaîtra à l’écran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
-<p><b><u>Note</u></b>&nbsp;: Vous pouvez changer ces éléments à tout moment à partir d'eConcept.</p>
+<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaÃ®tra Ã  lÂ’Ã©cran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
+<p><b><u>Note</u></b>&nbsp;: Vous pouvez changer ces Ã©lÃ©ments Ã  tout moment Ã  partir d'eConcept.</p>

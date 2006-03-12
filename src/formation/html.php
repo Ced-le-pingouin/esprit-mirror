@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: html.php
 ** Description ............: 
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 02/09/2004
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 02/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Cédric FLOQUET <cedric.floquet@umh.ac.be>
+**                           CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -53,7 +53,7 @@ if (!empty($url_sNomFichier))
 {
 	$sNomFichier = stripslashes(urldecode($url_sNomFichier));
 	
-	// Vérifie si le fichier existe
+	// VÃ©rifie si le fichier existe
 	if (file_exists($sNomFichier))
 	{
 		$bOk = TRUE;
@@ -81,7 +81,7 @@ if ($ext == ".htm" ||
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("zdc_frame_principale.css"); ?>
 </head>
 <?php 
@@ -122,7 +122,7 @@ include_once(dir_database("sous_activite.tbl.php"));
 				."<tr><td>"
 				."<table border=\"0\" cellspacing=\"0\" cellpadding=\"5\" width=\"100%\">\n"
 				."<tr><td style=\"background-color: #FFFFBB;\">"
-				."<div style=\"text-align: center;\"><a href=\"$sNomFichier\" onfocus=\"blur()\">Télécharger le fichier</a></div>"
+				."<div style=\"text-align: center;\"><a href=\"$sNomFichier\" onfocus=\"blur()\">TÃ©lÃ©charger le fichier</a></div>"
 				."</td></tr>\n</table>\n"
 				."</td></tr>\n</table>\n";
 			echo "<p>&nbsp;</p><p>&nbsp;</p></body>";

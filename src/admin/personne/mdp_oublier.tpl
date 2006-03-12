@@ -12,27 +12,27 @@ input { width: 100%; }
 function init() { top.document.getElementsByTagName("frame").item(2).setAttribute("src","mdp_oublier-menu.php?menu=valider"); }
 function valider()
 {
-	// Vérifier que le nom est entré
+	// VÃ©rifier que le nom est entrÃ©
 	if (document.forms[0].elements["nomPers"].value.length < 1)
 	{
-		alert("Vous avez oublié d'entrer votre nom.");
+		alert("Vous avez oubliÃ© d'entrer votre nom.");
 		document.forms[0].elements["nomPers"].focus();
 		return;
 	}
 	
-	// Vérifier que le prénom est entré
+	// VÃ©rifier que le prÃ©nom est entrÃ©
 	if (document.forms[0].elements["prenomPers"].value.length < 1)
 	{
-		alert("Vous avez oublié d'entrer votre prénom.");
+		alert("Vous avez oubliÃ© d'entrer votre prÃ©nom.");
 		document.forms[0].elements["prenomPers"].focus();
 		return;
 	}
 	
-	// Vérifier l'adresse courriel
+	// VÃ©rifier l'adresse courriel
 	if (document.forms[0].elements["emailPers"] &&
 		document.forms[0].elements["emailPers"].value.length < 1)
 	{
-		alert("Vous avez oublié d'entrer votre adresse courriel.");
+		alert("Vous avez oubliÃ© d'entrer votre adresse courriel.");
 		document.forms[0].elements["emailPers"].focus();
 		return;
 	}
@@ -62,14 +62,14 @@ function valider()
 [BLOCK_ENTRER_INFORMATIONS-]
 
 [BLOCK_COURRIEL_ENVOYER+]
-[VAR_OK+]<tr><td><img src="commun://icones/64x64/courriel_envoye.gif" width="64" height="64" alt="0" border="0"></td><td><p style="text-align: center; font-size: 9pt; font-weight: bold;">Votre pseudo ainsi que votre mot de passe vous ont été envoyés à l'adresse suivante&nbsp;: &laquo;&nbsp;<span style="color: rgb(64,64,153);">{personne->email}</span>&nbsp;&raquo;.</p></td></tr>[VAR_OK-]
+[VAR_OK+]<tr><td><img src="commun://icones/64x64/courriel_envoye.gif" width="64" height="64" alt="0" border="0"></td><td><p style="text-align: center; font-size: 9pt; font-weight: bold;">Votre pseudo ainsi que votre mot de passe vous ont Ã©tÃ© envoyÃ©s Ã  l'adresse suivante&nbsp;: &laquo;&nbsp;<span style="color: rgb(64,64,153);">{personne->email}</span>&nbsp;&raquo;.</p></td></tr>[VAR_OK-]
 [VAR_NOM_PRENOM_INCORRECT+]
 <tr>
 <td valign="top"><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="font-size: 9pt; font-weight: bold;">Le nom/prénom que vous avez indiqué n'a pas été reconnu par la plateforme.</p>
+<p style="font-size: 9pt; font-weight: bold;">Le nom/prÃ©nom que vous avez indiquÃ© n'a pas Ã©tÃ© reconnu par la plateforme.</p>
 <p style="font-size: 9pt;">Deux causes possibles&nbsp;:
-<ul><li>vous n'êtes pas inscrit à une formation hébergée par {plateforme.nom}, dans ce cas contactez votre enseignant.<br><br></li><li>vous avez mal introduit votre nom ou prénom. Essayez à nouveau.</li></ul></p>
+<ul><li>vous n'Ãªtes pas inscrit Ã  une formation hÃ©bergÃ©e par {plateforme.nom}, dans ce cas contactez votre enseignant.<br><br></li><li>vous avez mal introduit votre nom ou prÃ©nom. Essayez Ã  nouveau.</li></ul></p>
 </td>
 </tr>
 [VAR_NOM_PRENOM_INCORRECT-]
@@ -77,7 +77,7 @@ function valider()
 <tr>
 <td><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="text-align: center; font-size: 9pt; font-weight: bold;">Aucune adresse courrielle n'est associée à votre nom. Il nous est donc impossible de vous envoyer votre pseudo et mot de passe. Veuillez contacter votre enseignant.</p>
+<p style="text-align: center; font-size: 9pt; font-weight: bold;">Aucune adresse courrielle n'est associÃ©e Ã  votre nom. Il nous est donc impossible de vous envoyer votre pseudo et mot de passe. Veuillez contacter votre enseignant.</p>
 </td>
 </tr>
 [VAR_AUCUNE_ADRESSE-]
@@ -85,7 +85,7 @@ function valider()
 <tr>
 <td><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="text-align: center; font-size: 9pt; font-weight: bold;">Désolé notre système d'envoi de courriel a échoué. Essayez à nouveau.</p>
+<p style="text-align: center; font-size: 9pt; font-weight: bold;">DÃ©solÃ© notre systÃ¨me d'envoi de courriel a Ã©chouÃ©. Essayez Ã  nouveau.</p>
 </td>
 </tr>
 [VAR_ERREUR_ENVOI_COURRIEL-]

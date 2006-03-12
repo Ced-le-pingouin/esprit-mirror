@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: 
 ** Description ............: 
-** Date de création .......: 11-07-2002
-** Dernière modification ..: 17-07-2002
+** Date de crÃ©ation .......: 11-07-2002
+** DerniÃ¨re modification ..: 17-07-2002
 ** Auteur .................: Fili//0: Porco
 ** Email ..................: ute@umh.ac.be
 **

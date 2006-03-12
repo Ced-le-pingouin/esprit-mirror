@@ -28,7 +28,7 @@ if ($oRessourceSousActiv->verifDeposerDocuments($iTypeTransfert,$oProjet->aoEqui
 	if ($g_iIdPersDest > 0)
 		$oRessourceSousActiv->defIdExped($g_iIdPersDest);
 	
-	// Vérifier que le répertoire existe
+	// VÃ©rifier que le rÃ©pertoire existe
 	if (!is_dir(dirname($sNomFichierDst)))
 		creer_repertoire(dirname($sNomFichierDst));
 	

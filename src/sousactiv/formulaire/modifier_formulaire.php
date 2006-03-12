@@ -24,7 +24,7 @@ $oProjet = new CProjet();
 $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 $v_iIdFormulaire = ( isset($HTTP_GET_VARS["idFormulaire"])?$HTTP_GET_VARS["idFormulaire"]:($HTTP_POST_VARS["idFormulaire"]?$HTTP_POST_VARS["idFormulaire"]:NULL) );
@@ -63,7 +63,7 @@ else
 }
 
 //***********************************************************************************
-//*   Lecture de la table formulaire pour y récupérer les données de mise en page   *
+//*   Lecture de la table formulaire pour y rÃ©cupÃ©rer les donnÃ©es de mise en page   *
 //***********************************************************************************
 
 $oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
@@ -75,19 +75,19 @@ $iInterElem = $oFormulaire->retInterElem();
 $iInterEnonRep = $oFormulaire->retInterEnonRep();
 $iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
 
-if ($iTypeLarg=="P")					//ajoute % ou px a la largeur pour ainsi créer une chaine de car
+if ($iTypeLarg=="P")					//ajoute % ou px a la largeur pour ainsi crÃ©er une chaine de car
    $sLargeur=$iLargeur."%";
 else
    $sLargeur=$iLargeur."px";
 
-if ($iEncadrer==1)						//Vérifie s'il faut encadrer le titre ou non et compose le code html
+if ($iEncadrer==1)						//VÃ©rifie s'il faut encadrer le titre ou non et compose le code html
    $sEncadrer= " style=\"border:1px solid black;\" ";
 else
    $sEncadrer="";
 
 echo "<html>\n";
 echo "<head>\n";
-echo "<title>Activité en ligne</title>\n";
+echo "<title>ActivitÃ© en ligne</title>\n";
 
 //echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";
 echo "<script src=\"".dir_theme_commun("js/formulaire.js")."\" type=\"text/javascript\"></script>\n";
@@ -106,9 +106,9 @@ if ($v_iIdFormulaire > 0)
 	echo ".p";
 	echo "  {line-height:10.5pt font-family:Arial,sans-serif; font-size:10pt; color:black; margin-top:6px; margin-bottom:6px; }\n";
 	echo ".InterER";
-	echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels séparant les énoncés des réponses
+	echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels sÃ©parant les Ã©noncÃ©s des rÃ©ponses
 	echo ".InterObj";
-	echo "  {margin-top:{$iInterElem}px; }\n"; //Espace en pixels séparant les objets
+	echo "  {margin-top:{$iInterElem}px; }\n"; //Espace en pixels sÃ©parant les objets
 	echo "-->\n";
 	echo "</style>\n";
 }
@@ -148,8 +148,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 1:
 			///$oQTexteLong = new CQTexteLong($oProjet->oBdd);
 				
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -166,8 +166,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 2:
 			//$oQTexteCourt = new CQTexteCourt($oProjet->oBdd);
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -184,8 +184,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 3:
 			//$oQNombre = new CQNombre($oProjet->oBdd);
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -204,8 +204,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 4:
 			//$oQListeDeroul = new CQListeDeroul($oProjet->oBdd);
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -222,8 +222,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 5:
 			//$oQRadio = new CQRadio($oProjet->oBdd);
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -240,8 +240,8 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 		case 6:
 			//$oQCocher = new CQCocher($oProjet->oBdd);
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+			//Ces 2 lignes ci-dessous permettent de rÃ©afficher la rÃ©ponse fournie
+			//Celles-ci serviront pour afficher les questionnaires remplis par les Ã©tudiants
 			$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
 			if ($bSoumis)
 			{
@@ -271,7 +271,7 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			break;
 			
 		default:
-			echo "Erreur: numéro d'objet de formulaire incorrect !<br>";
+			echo "Erreur: numÃ©ro d'objet de formulaire incorrect !<br>";
 			break;
 	}
 	
@@ -280,7 +280,7 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 
 echo "<div align=\"center\">\n";
 echo "<INPUT TYPE=\"button\" VALUE=\"Valider\" name=\"soumettre\" onClick=\"validerFormulaire($iRemplirTout);\">\n";
-//echo "<input type=\"reset\" value=\"Réinitialiser le formulaire\">\n";
+//echo "<input type=\"reset\" value=\"RÃ©initialiser le formulaire\">\n";
 echo "</div>\n";
 echo "</FORM>\n";
 

@@ -20,8 +20,8 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 // ---------------------
-// fonctions factices au cas où gettext n'est pas installé sur la machine, ou activé en PHP (sous Windows par exemple).
-// Alors la plate-forme reste en français
+// fonctions factices au cas oÃ¹ gettext n'est pas installÃ© sur la machine, ou activÃ© en PHP (sous Windows par exemple).
+// Alors la plate-forme reste en franÃ§ais
 // ---------------------
 if (!function_exists('gettext'))
 {
@@ -32,12 +32,12 @@ if (!function_exists('gettext'))
 }
 
 // ---------------------
-// définition de la langue
+// dÃ©finition de la langue
 // ---------------------
 
 {
 	$lang = 'fr_FR';
-	$langWin = 'FRA'; // seulement pour Windows, qui supporte comme locales les codes ISO-Alpha-3 décrits ici : http://www.unicode.org/onlinedat/countries.html
+	$langWin = 'FRA'; // seulement pour Windows, qui supporte comme locales les codes ISO-Alpha-3 dÃ©crits ici : http://www.unicode.org/onlinedat/countries.html
 
 	putenv("LANG=$lang"); // optionnel
 	if (!setlocale(LC_ALL, $lang)) {

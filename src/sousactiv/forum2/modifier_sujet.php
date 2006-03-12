@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: modifier_sujet.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 02/03/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 02/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE <>
+**                           JÃ©rÃ´me TOUZE <>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -50,7 +50,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 	$url_iTypeNiveau      = (empty($HTTP_POST_VARS["typeNiveau"]) ? 0 : $HTTP_POST_VARS["typeNiveau"]);
 	$url_iIdEquipe        = (empty($HTTP_POST_VARS["idEquipe"]) ? 0 : $HTTP_POST_VARS["idEquipe"]);
 	
-	// Répertoire contenant les ressources du forum
+	// RÃ©pertoire contenant les ressources du forum
 	$oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
 	$sRepFichiersForum = dir_forum_ressources($oIds,$url_iTypeNiveau,NULL,TRUE);
 	
@@ -68,7 +68,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 				$oSujetForum = new CSujetForum($oProjet->oBdd);
 				$url_iIdSujet = $oSujetForum->ajouter($url_sTitreSujet,NULL,NULL,NULL,$url_iIdForum,$iIdPers);
 				
-				// Associer ce sujet à l'équipe
+				// Associer ce sujet Ã  l'Ã©quipe
 				if ($url_iIdSujet > 0 && $url_iIdEquipe > 0)
 					$oSujetForum->associerEquipe($url_iIdEquipe);
 				
@@ -78,7 +78,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 					$oMessageForum = new CMessageForum($oProjet->oBdd);
 					$oMessageForum->ajouter($url_sMessageSujet,$url_iIdSujet,$iIdPers);
 					
-					// Déposer le fichier attaché sur le serveur
+					// DÃ©poser le fichier attachÃ© sur le serveur
 					if (!empty($HTTP_POST_FILES["fichierMessage"]["name"]) &&
 						$url_iIdNiveau > 0 &&
 						$url_iTypeNiveau > 0)
@@ -127,7 +127,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 		$oSujetForum = NULL;
 		
 		// Lorsqu'on supprime un sujet nous devons afficher le dernier sujet
-		// entré
+		// entrÃ©
 		$oForum = new CForum($oProjet->oBdd,$url_iIdForum);
 		$oSujetForum = $oForum->retDernierSujets();
 		if (is_object($oSujetForum))
@@ -156,7 +156,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 }
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
 $url_iIdForum         = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
@@ -166,7 +166,7 @@ $url_iTypeNiveau      = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VAR
 $url_iIdEquipe        = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
 
 // ---------------------
-// Template de l'éditeur
+// Template de l'Ã©diteur
 // ---------------------
 $oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
 $oBlocVisualiseur = new TPL_Block("BLOCK_VISUALISEUR",$oTplEditeur);
@@ -205,7 +205,7 @@ if ($url_sModaliteFenetre == "ajouter")
 {
 	$oBlockStyleSheetErreur->effacer();
 	
-	// Template du fichier attaché
+	// Template du fichier attachÃ©
 	$oTplFichierAttache = new Template("fichier_attache.inc.tpl");
 	$oTplFichierAttache->remplacer("{input['file']->name}","fichierMessage");
 	
@@ -222,7 +222,7 @@ if ($url_sModaliteFenetre == "ajouter")
 	// Titre
 	$oBlockSujet->remplacer("{titre->valeur}","");
 	
-	// Afficher un message à l'utilisateur
+	// Afficher un message Ã  l'utilisateur
 	$oBlocTitreMessage = new TPL_Block("BLOCK_TITRE_SUJET_MESSAGE",$oBlockSujet);
 	$oBlocTitreMessage->afficher();
 	// }}}
@@ -255,7 +255,7 @@ else if ($url_sModaliteFenetre == "modifier")
 	// Titre
 	$oBlockSujet->remplacer("{titre->valeur}",htmlentities($oSujetForum->retTitre()));
 	
-	// Ne pas afficher le message à l'utilisateur
+	// Ne pas afficher le message Ã  l'utilisateur
 	$oBlocTitreMessage = new TPL_Block("BLOCK_TITRE_SUJET_MESSAGE",$oBlockSujet);
 	$oBlocTitreMessage->effacer();
 	// }}}
@@ -284,7 +284,7 @@ $oBlockSujet->afficher();
 $oTpl->remplacer("{barre_de_progression}",$oTplBarreDeProgression->defVariable("SET_BARRE_DE_PROGRESSION"));
 $oTpl->remplacer("{barre_de_progression->message}",$oTpl->defVariable("SET_BARRE_DE_PROGRESSION_MESSAGE"));
 
-// Remplir les éléments cachés du formation
+// Remplir les Ã©lÃ©ments cachÃ©s du formation
 $oTpl->remplacer("{fenetre->modalite}",$url_sModaliteFenetre);
 $oTpl->remplacer("{forum->id}",$url_iIdForum);
 $oTpl->remplacer("{sujet->id}",$url_iIdSujet);

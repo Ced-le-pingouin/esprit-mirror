@@ -22,17 +22,17 @@
 /*
 ** Fichier ................: archive.class.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 07/10/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 07/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
-// [Esprit:Chat par équipe:Equipe 1 - BA:delta_chat_14][09/12/2003][17:16:59]
-// Esprit:Chat par équipe:Equipe 1 - BA:delta_chat_14
+// [Esprit:Chat par Ã©quipe:Equipe 1 - BA:delta_chat_14][09/12/2003][17:16:59]
+// Esprit:Chat par Ã©quipe:Equipe 1 - BA:delta_chat_14
 
 function retParticipantsUnique ($v_aoParticipants)
 {
@@ -97,7 +97,7 @@ class CArchives
 			
 			if ($fp = fopen($sArchive,"r"))
 			{
-				// La première ligne doit correspondre au filtre
+				// La premiÃ¨re ligne doit correspondre au filtre
 				if (strstr(fgets($fp,255),$sFiltre))
 				{
 					// {{{ Rechercher les archives d'une/des personne(s) en particulier

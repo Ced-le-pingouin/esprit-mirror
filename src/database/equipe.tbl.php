@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipe.tbl.php
 ** Description ............: 
-** Date de création .......: 28/01/2003
-** Dernière modification ..: 04/11/2005
+** Date de crÃ©ation .......: 28/01/2003
+** DerniÃ¨re modification ..: 04/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -216,7 +216,7 @@ class CEquipe
 		$oIds = new CIds($this->oBdd,$v_iTypeNiveauDepart,$v_iIdNiveauDepart);
 		$aiIds = $oIds->retListeIds();
 		
-		// Rechercher les équipes par niveau
+		// Rechercher les Ã©quipes par niveau
 		for ($iIdxTypeNiveau=$v_iTypeNiveauDepart; $iIdxTypeNiveau>=TYPE_FORMATION; $iIdxTypeNiveau--)
 		{
 			if ($aiIds[$iIdxTypeNiveau] < 1)
@@ -340,7 +340,7 @@ class CEquipe
 		
 		$sValeursRequete = NULL;
 		
-		// Rechercher les équipes à effacer
+		// Rechercher les Ã©quipes Ã  effacer
 		$sRequeteSql = "SELECT IdEquipe FROM Equipe"
 			." WHERE {$sNomChamp}='{$v_iIdNiveau}'";
 		
@@ -424,7 +424,7 @@ class CEquipe
 			.dir_admin("equipe","liste_equipes-index.php")
 			."?idEquipe=".$this->retId()."'"
 			.",'WIN_INFO_EQUIPE','resizable=1,width=600,height=450,status=0'); void(0);\""
-			." title=\"".htmlentities("Cliquer ici pour voir les membres de cette équipe")."\""
+			." title=\"".htmlentities("Cliquer ici pour voir les membres de cette Ã©quipe")."\""
 			." onfocus=\"blur()\""
 			.">".$this->retNom()."</a>";
 	}

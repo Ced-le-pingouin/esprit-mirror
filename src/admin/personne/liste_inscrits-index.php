@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_inscrits-index.php
 ** Description ............:
-** Date de création .......: 02/09/2004
-** Dernière modification ..: 18/01/2005
+** Date de crÃ©ation .......: 02/09/2004
+** DerniÃ¨re modification ..: 18/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

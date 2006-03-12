@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ids.class.php
 ** Description ............: 
-** Date de création .......: 07/02/2003
-** Dernière modification ..: 19/04/2005
+** Date de crÃ©ation .......: 07/02/2003
+** DerniÃ¨re modification ..: 19/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

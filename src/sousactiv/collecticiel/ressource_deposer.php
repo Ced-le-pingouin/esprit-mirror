@@ -21,15 +21,15 @@
 
 /*
 ** Fichier ................: ressource_deposer.php
-** Description ............: Ouvre une fenêtre de dialogue et demande le titre
+** Description ............: Ouvre une fenÃªtre de dialogue et demande le titre
 **                           du documents, une description et sauvegarde le
-**                           tout dans la base de données.
-** Date de création .......: 03/07/2001
-** Dernière modification ..: 15/12/2003
+**                           tout dans la base de donnÃ©es.
+** Date de crÃ©ation .......: 03/07/2001
+** DerniÃ¨re modification ..: 15/12/2003
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Cédric FLOQUET <cedric.floquet@umh.ac.be>
+**                           CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@
 require_once("globals.inc.php");
 
 // *************************************
-// Déclaration du projet
+// DÃ©claration du projet
 // *************************************
 
 $oProjet = new CProjet();
@@ -49,7 +49,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // R E M A R Q U E :
-// Ne pas déplacer cette ligne. Le fichier "ressource_deposer.inc.php" 
+// Ne pas dÃ©placer cette ligne. Le fichier "ressource_deposer.inc.php" 
 // a besoin de la variable "$oProjet"
 include_once("ressource_deposer.inc.php");
 

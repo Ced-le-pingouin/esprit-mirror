@@ -21,9 +21,9 @@
 
 /*
 ** Classe .................: CFond_CSS
-** Description ............: Définit les quelques propriétés css pour les fonds.
-** Date de création .......: 11-01-2002
-** Dernière modification ..: 16-01-2002
+** Description ............: DÃ©finit les quelques propriÃ©tÃ©s css pour les fonds.
+** Date de crÃ©ation .......: 11-01-2002
+** DerniÃ¨re modification ..: 16-01-2002
 ** Auteur .................: Fili//0: Porco
 ** Email ..................: filippo.porco@umh.ac.be
 **

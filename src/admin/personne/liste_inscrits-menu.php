@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_inscrits-menu.php
 ** Description ............:
-** Date de création .......: 02/09/2004
-** Dernière modification ..: 31/05/2005
+** Date de crÃ©ation .......: 02/09/2004
+** DerniÃ¨re modification ..: 31/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_bMenu      = (empty($HTTP_GET_VARS["menu"]) ? FALSE : (bool)$HTTP_GET_VARS["menu"]);
 $url_iIdForm    = (empty($HTTP_GET_VARS["idForm"]) ? 0 : $HTTP_GET_VARS["idForm"]);

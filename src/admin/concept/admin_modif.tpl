@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/globals.css">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/onglet.css">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/concept.css">
@@ -76,7 +76,7 @@ function init()
 <tr>
 <td class="admin_modif_menu">
 &nbsp;</td>
-<td class="admin_modif_menu"  width="1%" nowrap="1"><a href="javascript: DeposerFichiers();">Déposer sur le serveur</a>&nbsp;&#8226;&nbsp;<a href="javascript: RecupererFichiers();">Récupérer du serveur</a>
+<td class="admin_modif_menu"  width="1%" nowrap="1"><a href="javascript: DeposerFichiers();">DÃ©poser sur le serveur</a>&nbsp;&#8226;&nbsp;<a href="javascript: RecupererFichiers();">RÃ©cupÃ©rer du serveur</a>
 </td>
 </tr>
 </table>
@@ -91,18 +91,18 @@ function init()
 <td><div class="intitule">Statut&nbsp;:</div></td>
 <td>
 <select name="STATUT">
-	<option value="1">Fermé</option>
+	<option value="1">FermÃ©</option>
 	<option value="2">Ouvert</option>
 	<option value="3">Invisible</option>
-	<option value="6" selected>Même statut que le bloc</option>
+	<option value="6" selected>MÃªme statut que le bloc</option>
 </select>
 </td>
 </tr>
 
-<!-- Date de départ et date de fin -->
+<!-- Date de dÃ©part et date de fin -->
 <!--
 <tr>
-<td align="right" style="text-align: right; white-space: no;" nowrap>Période de validité :</td>
+<td align="right" style="text-align: right; white-space: no;" nowrap>PÃ©riode de validitÃ© :</td>
 <td>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
@@ -123,7 +123,7 @@ function init()
 <select name="TYPE" onchange="choisirType(aoType,this.value)">
 	<option value="0">Choisissez un type pour cet &eacute;l&eacute;ment actif</option>
 	<option value="1" selected>Affichage du serveur (html, doc, ppt, gif, swf, pdf,...)</option>
-	<option value="2">Document à télécharger</option>
+	<option value="2">Document Ã  tÃ©lÃ©charger</option>
 	<option value="3">Lien vers un site Internet</option>
 	<option value="7">Collecticiel</option>
 	<option value="6">Galerie</option>
@@ -152,12 +152,12 @@ function init()
 <select name="DONNEES[1]">
 <option value="">Pas de fichier actuellement</option>
 <option value="Glossaire Finances provinciales.htm" style="background-color: #FFFFCC;" selected>Glossaire Finances provinciales.htm</option>
-<option value="questionnaire avis d'équipe.htm">questionnaire avis d'équipe.htm</option>
+<option value="questionnaire avis d'Ã©quipe.htm">questionnaire avis d'Ã©quipe.htm</option>
 </select>
 
 </td>
 </tr>
-<!-- Position ancien checkbox Première page -->
+<!-- Position ancien checkbox PremiÃ¨re page -->
 <tr>
 <td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[1]" onfocus="blur()"></td>
 <td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td>
@@ -169,8 +169,8 @@ function init()
 <select name="MODALITE_AFFICHAGE[1]" onchange="MontrerCacher('div_description',this.selectedIndex)">
 <option value="1" selected>Frame centrale (direct)</option>
 <option value="2">Frame centrale (indirect)</option>
-<option value="3">Nouvelle fenêtre (direct)</option>
-<option value="4">Nouvelle fenêtre (indirect)</option>
+<option value="3">Nouvelle fenÃªtre (direct)</option>
+<option value="4">Nouvelle fenÃªtre (indirect)</option>
 </select>
 </td>
 </tr>
@@ -181,7 +181,7 @@ function init()
 
 <!-- :FIN: Affichage d'une page HTML (du serveur) -->
 
-<!-- :DEBUT: Document à télécharger -->
+<!-- :DEBUT: Document Ã  tÃ©lÃ©charger -->
 
 <div id="lien_document_telecharger" class="Cacher">
 <table border="0" cellspacing="0" cellpadding="2">
@@ -192,25 +192,25 @@ function init()
 <select name="DONNEES[2]">
 <option value="">Pas de fichier actuellement</option>
 <option value="Glossaire Finances provinciales.htm" style="background-color: #FFFFCC;" selected>Glossaire Finances provinciales.htm</option>
-<option value="questionnaire avis d'équipe.htm">questionnaire avis d'équipe.htm</option>
+<option value="questionnaire avis d'Ã©quipe.htm">questionnaire avis d'Ã©quipe.htm</option>
 </select>
 [&nbsp;<a href="javascript: DeposerFichiers();">D&eacute;poser</a>&nbsp;]</td>
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<!-- Modalité d'affichage -->
+<!-- ModalitÃ© d'affichage -->
 <tr>
 <td class="intitule">Modalit&eacute; d'affichage&nbsp;:</td>
 <td>
 <select name="MODALITE_AFFICHAGE[2]"  onchange="javascript: MontrerCacher('div_description',this.selectedIndex);" >
-<option value="1">Direct (téléchargement immédiat)</option>
-<option value="2">Indirect (téléchargement en deux temps)</option>
+<option value="1">Direct (tÃ©lÃ©chargement immÃ©diat)</option>
+<option value="2">Indirect (tÃ©lÃ©chargement en deux temps)</option>
 </select>
 </td>
 </tr>
 </table>
 </div>
 
-<!-- :FIN: Document à télécharger -->
+<!-- :FIN: Document Ã  tÃ©lÃ©charger -->
 
 <!-- :DEBUT: Lien vers un site Internet -->
 
@@ -227,8 +227,8 @@ function init()
 <select name="MODALITE_AFFICHAGE[3]" onchange="MontrerCacher('div_description',this.selectedIndex)">
 <option value="1" selected>Frame centrale (direct)</option>
 <option value="2">Frame centrale (indirect)</option>
-<option value="3">Nouvelle fenêtre (direct)</option>
-<option value="4">Nouvelle fenêtre (indirect)</option>
+<option value="3">Nouvelle fenÃªtre (direct)</option>
+<option value="4">Nouvelle fenÃªtre (indirect)</option>
 </select>
 </td>
 </tr>
@@ -247,7 +247,7 @@ function init()
 <tr>
 <td><div class="intitule">Modalit&eacute;&nbsp;:</div></td>
 <td><select name="MODALITE[7]">
-<option value="0" selected>&nbsp;même modalité que le bloc&nbsp;</option>
+<option value="0" selected>&nbsp;mÃªme modalitÃ© que le bloc&nbsp;</option>
 </select>
 </td>
 </tr>
@@ -259,12 +259,12 @@ function init()
 <select name="DONNEES[7]" >
 <option value="">Pas de fichier actuellement</option>
 <option value="Glossaire Finances provinciales.htm" style="background-color: #FFFFCC;" selected>Glossaire Finances provinciales.htm</option>
-<option value="questionnaire avis d'équipe.htm">questionnaire avis d'équipe.htm</option>
+<option value="questionnaire avis d'Ã©quipe.htm">questionnaire avis d'Ã©quipe.htm</option>
 </select>
 [&nbsp;<a href="javascript: DeposerFichiers();">D&eacute;poser</a>&nbsp;]</td>
 </tr>
 <tr>
-<td><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:</div></td>
+<td><div class="intitule">IntitulÃ©&nbsp;du&nbsp;lien&nbsp;:</div></td>
 <td><input type="text" size="50" name="INTITULE[7]" value="Fichier de base &agrave; t&eacute;l&eacute;charger"></td>
 </tr>
 
@@ -283,37 +283,37 @@ function init()
 
 <!-- :DEBUT: Chat -->
 <div id="lien_chat" class="cacher">
-<img src="/ipfhainaut_dev/themes/ipfhainaut/signet-1.gif" border="0">&nbsp;<a href="javascript: composerChats('98'); top.frames['ADMINFRAMEMODIF'].document.forms[0].submit();">Cliquez ici, si vous désirez composer ou modifier vos &laquo;&nbsp;chat&nbsp;&raquo;</a></div>
+<img src="/ipfhainaut_dev/themes/ipfhainaut/signet-1.gif" border="0">&nbsp;<a href="javascript: composerChats('98'); top.frames['ADMINFRAMEMODIF'].document.forms[0].submit();">Cliquez ici, si vous dÃ©sirez composer ou modifier vos &laquo;&nbsp;chat&nbsp;&raquo;</a></div>
 <!-- :FIN: Chat -->
 
 
-<!-- :DEBUT: Description des intitulés -->
+<!-- :DEBUT: Description des intitulÃ©s -->
 
 <div id="div_description" class="Cacher">
 <br>
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr>
-<td class="intitule" width="200">Intitulé&nbsp;du&nbsp;lien&nbsp;:</td>
+<td class="intitule" width="200">IntitulÃ©&nbsp;du&nbsp;lien&nbsp;:</td>
 <td><input type="text" size="50" name="INTITULE[0]" value=""></td>
 </tr>
 
 <!-- Description -->
 
 <tr>
-<td class="intitule">Description&nbsp;de&nbsp;l'intitulé&nbsp;:</td>
+<td class="intitule">Description&nbsp;de&nbsp;l'intitulÃ©&nbsp;:</td>
 <td><textarea name="DESCRIPTION[0]" cols="55" rows="3"></textarea></td>
 </tr>
 
 </table>
 </div>
 
-<!-- :FIN: Description des intitulés -->
-<!-- :DEBUT: Forum --><div id="lien_forum" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td><div class="intitule">Modalit&eacute;&nbsp;:</div></td><td><select name="MODALITE[5]"><option value="0" selected>Même modalité que le parent</option><option value="3">Pour tous</option><option value="2">Par équipe</option></select></td></tr>
+<!-- :FIN: Description des intitulÃ©s -->
+<!-- :DEBUT: Forum --><div id="lien_forum" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td><div class="intitule">Modalit&eacute;&nbsp;:</div></td><td><select name="MODALITE[5]"><option value="0" selected>MÃªme modalitÃ© que le parent</option><option value="3">Pour tous</option><option value="2">Par Ã©quipe</option></select></td></tr>
 <tr><td class="intitule"><input type="checkbox" name="ACCESSIBLE_VISITEURS[5]" checked></td><td>J'autorise les visiteurs &agrave; consulter les messages de ce forum</td></tr>
 </table>
 </div>
 <!-- :FIN: Forum -->
-<!-- :DEBUT: Galerie --><div id="lien_galerie" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td class="intitule" width="1%">Consigne&nbsp;:</td><td><textarea rows="5" cols="50" name="DESCRIPTION[6]"></textarea></td></tr><tr><td class="intitule" width="1%" nowrap="1">Collecticiels associ&eacute;s&nbsp;:</td><td>Pas de collecticiel trouvé<br><br></td></tr><tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[6]"></td><td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table></div><!-- :FIN: Galerie -->
+<!-- :DEBUT: Galerie --><div id="lien_galerie" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td class="intitule" width="1%">Consigne&nbsp;:</td><td><textarea rows="5" cols="50" name="DESCRIPTION[6]"></textarea></td></tr><tr><td class="intitule" width="1%" nowrap="1">Collecticiels associ&eacute;s&nbsp;:</td><td>Pas de collecticiel trouvÃ©<br><br></td></tr><tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[6]"></td><td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table></div><!-- :FIN: Galerie -->
 
 <hr>
 
@@ -352,7 +352,7 @@ choisirType(aoType,"1");
 </body>
 </html>
 [SET_NUMERO_ORDRE+]
-<!-- Numéro d'ordre -->
+<!-- NumÃ©ro d'ordre -->
 <tr>
 <td nowrap="nowrap" width="1%"><div  class="intitule">Num&eacute;ro d'ordre&nbsp;:</div></td>
 <td>

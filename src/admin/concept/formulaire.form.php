@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: form_formation.php
 ** Description ............: 
-** Date de création .......: 01/02/2002
-** Dernière modification ..: 23/03/2005
+** Date de crÃ©ation .......: 01/02/2002
+** DerniÃ¨re modification ..: 23/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -58,7 +58,7 @@ if ($g_bModifier || $g_bModifierStatut)
 else
 	echo "<form>\n";
 
-// Autoriser visiteur à visiter cette formation
+// Autoriser visiteur Ã  visiter cette formation
 if ($oProjet->oFormationCourante->setVisiteurAutoriser())
 	$sVisiteurAutoriser = " checked";
 else

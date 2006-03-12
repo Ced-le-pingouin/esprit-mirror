@@ -1,6 +1,6 @@
 <html>
 <head>
-<TITLE>Ajouter un élément</TITLE>
+<TITLE>Ajouter un Ã©lÃ©ment</TITLE>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css">
 </head>
 

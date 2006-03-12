@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: infos-index.php
 ** Description ............:
-** Date de création .......: 10/05/2005
-** Dernière modification ..: 10/05/2005
+** Date de crÃ©ation .......: 10/05/2005
+** DerniÃ¨re modification ..: 10/05/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $sParamsUrl = NULL;
 
@@ -47,7 +47,7 @@ foreach ($HTTP_GET_VARS as $sCle => $sValeur)
 // ---------------------
 $sTitrePrincipal = "A propos d'Esprit";
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
 <!--

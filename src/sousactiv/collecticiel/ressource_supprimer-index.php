@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: ressource_supprimer-index.php
 ** Description ............:
-** Date de création .......: 05/12/2002
-** Dernière modification ..: 21/04/2005
+** Date de crÃ©ation .......: 05/12/2002
+** DerniÃ¨re modification ..: 21/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $sParamsUrl = NULL;
 
 if (isset($HTTP_GET_VARS["idResSA"]))
 {
-	// Supprimer les documents sélectionnés
+	// Supprimer les documents sÃ©lectionnÃ©s
 	$sParamsUrl = "?recharger=1";
 	
 	$oProjet = new CProjet();

@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: ressource_sous_activ.tbl.php
 ** Description ............: 
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 15/07/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 01/06/2001
+** DerniÃ¨re modification ..: 15/07/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -87,8 +87,8 @@ class CRessourceSousActiv
 	}
 	
 	/**
-	 * Une ressource attachée est un document que le tuteur aura déposé sur
-	 * le serveur et attaché avec l'évaluation de l'étudiant.
+	 * Une ressource attachÃ©e est un document que le tuteur aura dÃ©posÃ© sur
+	 * le serveur et attachÃ© avec l'Ã©valuation de l'Ã©tudiant.
 	 *
 	 */
 	function initRessourceAttache ()
@@ -209,7 +209,7 @@ class CRessourceSousActiv
 	{
 		if (($iIdResSousActiv = $this->retId()) > 0)
 		{
-			// Effacer le document attaché à l'évaluation
+			// Effacer le document attachÃ© Ã  l'Ã©valuation
 			$this->effacerRessourceAttache();
 			
 			$sRequeteSql = "LOCK TABLES"
@@ -387,9 +387,9 @@ class CRessourceSousActiv
 			case STATUT_RES_ORIGINAL: $r_sTexteStatut = "original"; break;
 			case STATUT_RES_EN_COURS: $r_sTexteStatut = ($this->retNbVotants() > 0 ? "vote en cours" : "en cours"); break;
 			case STATUT_RES_SOUMISE: $r_sTexteStatut = "soumis"; break;
-			case STATUT_RES_APPROF: $r_sTexteStatut = "à approfondir"; break;
-			case STATUT_RES_ACCEPTEE: $r_sTexteStatut = "accepté"; break;
-			case STATUT_RES_TRANSFERE: $r_sTexteStatut = "transféré"; break;
+			case STATUT_RES_APPROF: $r_sTexteStatut = "Ã  approfondir"; break;
+			case STATUT_RES_ACCEPTEE: $r_sTexteStatut = "acceptÃ©"; break;
+			case STATUT_RES_TRANSFERE: $r_sTexteStatut = "transfÃ©rÃ©"; break;
 			default: $r_sTexteStatut = "-";
 		}
 		

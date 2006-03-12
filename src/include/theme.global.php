@@ -21,11 +21,11 @@
 
 /*
 ** Fichier ................: theme.global.php
-** Description ............: Intègre les éléments globals à propos du design de 
-**                           la plate-forme et insére les thèmes que 
+** Description ............: IntÃ¨gre les Ã©lÃ©ments globals Ã  propos du design de 
+**                           la plate-forme et insÃ©re les thÃ¨mes que 
 **                           l'utilisateur a choisi.
-** Date de création .......: 10-07-2001
-** Dernière modification ..: 06-04-2004
+** Date de crÃ©ation .......: 10-07-2001
+** DerniÃ¨re modification ..: 06-04-2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -42,7 +42,7 @@ function lien_feuille_style ($v_sFichierAInclure)
 
 function inserer_feuille_style ($v_asFichiersCSS=NULL,$v_bAfficher=TRUE)
 {
-	// Le fichier "globals.css" est le premier feuille de style à afficher
+	// Le fichier "globals.css" est le premier feuille de style Ã  afficher
 	$sLienFichiersCSS = lien_feuille_style("globals.css");
 	
 	if ($v_asFichiersCSS != NULL)

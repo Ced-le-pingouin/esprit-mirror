@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste_equipes.php
 ** Description ............:
-** Date de création .......: 08/12/2002
-** Dernière modification ..: 28/09/2005
+** Date de crÃ©ation .......: 08/12/2002
+** DerniÃ¨re modification ..: 28/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ $oProjet->initSousActivCourante();
 $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_aiIdStatuts       = (empty($HTTP_GET_VARS["idStatuts"]) ? NULL : explode("x",$HTTP_GET_VARS["idStatuts"]));
 $url_aiIdEquipes       = (empty($HTTP_GET_VARS["idEquipes"]) ? NULL : explode("x",$HTTP_GET_VARS["idEquipes"]));
@@ -59,7 +59,7 @@ else
 	$iNbTuteurs = 0;
 // }}}
 
-// {{{ Rechercher les équipes
+// {{{ Rechercher les Ã©quipes
 $iNbEquipes = 0;
 
 if (isset($url_aiIdEquipes))
@@ -82,7 +82,7 @@ if (isset($url_aiIdEquipes))
 // }}}
 
 // ---------------------
-// Déclarer les fonctions locales
+// DÃ©clarer les fonctions locales
 // ---------------------
 function retFicheCompletee ($v_oPersonne)
 {
@@ -184,7 +184,7 @@ else
 	$oBlocTuteurs->effacer();
 // }}}
 
-// {{{ Liste des équipes
+// {{{ Liste des Ã©quipes
 $oBlocEquipes = new TPL_Block("BLOCK_EQUIPES",$oTpl);
 
 $asVarTitres = $oBlocEquipes->defVariable("VAR_TITRE",TRUE);
@@ -199,7 +199,7 @@ if ($iNbEquipes > 0)
 	{
 		$oBlocEquipes->nextLoop();
 		
-		// Composer la liste des membres de cette équipe
+		// Composer la liste des membres de cette Ã©quipe
 		$sListeMembres = NULL;
 		
 		foreach ($oEquipe->aoMembres as $oMembre)
@@ -230,7 +230,7 @@ else
 	$oBlocEquipes->effacer();
 // }}}
 
-// Afficher dans la zone de titre le nom de l'activité
+// Afficher dans la zone de titre le nom de l'activitÃ©
 $oTpl->remplacer("{activite.nom}",rawurlencode($sNomActiv));
 $oTpl->remplacer("{frame.menu.src}","liste_equipes-menu.php");
 

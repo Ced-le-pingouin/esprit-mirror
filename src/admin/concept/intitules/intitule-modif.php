@@ -22,14 +22,14 @@
 /*
 ** Fichier ................: intitule-modif.php
 ** Description ............: 
-** Date de création .......: 15/04/2003
-** Dernière modification ..: 16/06/2004
+** Date de crÃ©ation .......: 15/04/2003
+** DerniÃ¨re modification ..: 16/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
 ** Remarques ..............: Les personnes qui ont le droit de modifier
-** ......................... TOUTES LES SESSIONS ont la possibilités de
-** ......................... modifier/supprimer toutes les intitulés.
+** ......................... TOUTES LES SESSIONS ont la possibilitÃ©s de
+** ......................... modifier/supprimer toutes les intitulÃ©s.
 **
 */
 
@@ -40,7 +40,7 @@ $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdIntitule = $url_sNomIntitule = NULL;
 $url_iTypeIntitule = (isset($HTTP_GET_VARS["TYPE_INTITULE"]) ? $HTTP_GET_VARS["TYPE_INTITULE"] : TYPE_MODULE);

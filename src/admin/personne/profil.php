@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: personne.php
 ** Description ............: 
-** Date de crÈation .......: 12/08/2002
-** DerniËre modification ..: 04/04/2005
+** Date de cr√©ation .......: 12/08/2002
+** Derni√®re modification ..: 04/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** UnitÈ de Technologie de l'Education
+** Unit√© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,12 +36,12 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// RÈcupÈrer les variables de l'url
+// R√©cup√©rer les variables de l'url
 // ---------------------
 $url_bSauver = (empty($HTTP_POST_VARS["SAUVER"]) ? FALSE : TRUE);
 
 // ---------------------
-// DÈclaration des fonctions locales
+// D√©claration des fonctions locales
 // ---------------------
 function formatTexteErreur ($v_sTexteErreur)
 {
@@ -94,17 +94,17 @@ if ($iIdPers >= 0)
 		$sTmp = $oPersonne->retNom();
 		
 		if (empty($sTmp))
-			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas Ítre vide");
+			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas √™tre vide");
 		
-		// PrÈnom
+		// Pr√©nom
 		$oPersonne->defPrenom($HTTP_POST_VARS["PRENOM_PERS"]);
 		
 		$sTmp = $oPersonne->retPrenom();
 		
 		if (empty($sTmp))
-			$asErreurs["prenom"] = formatTexteErreur("Le prÈnom ne peut pas Ítre vide");
+			$asErreurs["prenom"] = formatTexteErreur("Le pr√©nom ne peut pas √™tre vide");
 		
-		// VÈrifier que le nom + prÈnom est unique dans la table
+		// V√©rifier que le nom + pr√©nom est unique dans la table
 		if (!$oPersonne->estUnique())
 		{
 			echo "<html>\n"
@@ -118,7 +118,7 @@ if ($iIdPers >= 0)
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
-					.htmlentities("Inscription impossible: une personne portant ces nom et prÈnom est dÈj‡ inscrite.")
+					.htmlentities("Inscription impossible: une personne portant ces nom et pr√©nom est d√©j√† inscrite.")
 					."</b>"
 				."</p>"
 				."<body>\n"
@@ -133,11 +133,11 @@ if ($iIdPers >= 0)
 		$sTmp = $oPersonne->retPseudo();
 		
 		if (empty($sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas Ítre vide");
+			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas √™tre vide");
 		/*else if (ereg("[^a-zA-Z0-9$]",$sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Les caractËres spÈciaux ne sont pas acceptÈs (ÈÍË‡...)");*/
+			$asErreurs["pseudo"] = formatTexteErreur("Les caract√®res sp√©ciaux ne sont pas accept√©s (√©√™√®√†...)");*/
 		else if (!$oPersonne->estPseudoUnique())
-			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a dÈj‡ ÈtÈ utilisÈ");
+			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d√©j√† √©t√© utilis√©");
 		
 		// Date de naissance (format: AAAA-MM-JJ)
 		$sDateNaiss = (empty($HTTP_POST_VARS["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $HTTP_POST_VARS["DATE_NAISS_ANNEE_PERS"])
@@ -155,12 +155,12 @@ if ($iIdPers >= 0)
 		// Adresse
 		$oPersonne->defAdresse($HTTP_POST_VARS["ADRESSE_PERS"]);
 		
-		// NumÈro de tÈlÈphone
+		// Num√©ro de t√©l√©phone
 		$oPersonne->defNumTel($HTTP_POST_VARS["TELEPHONE_PERS"]);
 		
 		// Email
 		if (!empty($HTTP_POST_VARS["EMAIL_PERS"]) && !emailValide($HTTP_POST_VARS["EMAIL_PERS"]))
-			$asErreurs["email"] = formatTexteErreur("Cette adresse Èlectronique n'est pas valable");
+			$asErreurs["email"] = formatTexteErreur("Cette adresse √©lectronique n'est pas valable");
 		
 		$oPersonne->defEmail($HTTP_POST_VARS["EMAIL_PERS"]);
 		
@@ -170,14 +170,14 @@ if ($iIdPers >= 0)
 		// Mot de passe de confirmation
 		$sMdpConfirm = trim($HTTP_POST_VARS["MDP_CONFIRM_PERS"]);
 		
-		// VÈrification des mots de passe
+		// V√©rification des mots de passe
 		if ($iIdPers < 1 && empty($sMdp))
 			// Un nouvel utilisateur doit absolument entrer un mot de passe
 			$asErreurs["mdp"] = formatTexteErreur("Mot de passe vide");
 		else if (!empty($sMdp) || !empty($sMdpConfirm))
 		{
 			if (ereg("[^a-zA-Z0-9$]",$sMdp))
-				$asErreurs["mdp"] = formatTexteErreur("Les caractËres spÈciaux ne sont pas acceptÈs (ÈÍË‡...)");
+				$asErreurs["mdp"] = formatTexteErreur("Les caract√®res sp√©ciaux ne sont pas accept√©s (√©√™√®√†...)");
 			else if ($sMdp !== $sMdpConfirm)
 				$asErreurs["mdp"] = formatTexteErreur("Mot de passe non identique");
 			else

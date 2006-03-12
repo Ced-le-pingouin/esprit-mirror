@@ -23,7 +23,7 @@
 [BLOCK_TABLE_VOTANTS_MANQUANTS+]
 <form action="ressource_votants.php" method="get">
 <h1>Liste des votants manquants</h1>
-<p>Pour pouvoir soumettre ce document, il vous suffit de sélectionner le/les membre(s) de l'équipe qui n'a(ont) pas encore voté(s). Puis de cliquer sur le lien &laquo;&nbsp;Je vote pour eux&nbsp;&raquo;.
+<p>Pour pouvoir soumettre ce document, il vous suffit de sÃ©lectionner le/les membre(s) de l'Ã©quipe qui n'a(ont) pas encore votÃ©(s). Puis de cliquer sur le lien &laquo;&nbsp;Je vote pour eux&nbsp;&raquo;.
 <div class="liste">
 [BLOCK_VOTANT_MANQUANT+]
 <input type="checkbox" name="idPers[]" value="{personne.id}">

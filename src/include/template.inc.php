@@ -22,26 +22,26 @@
 /**
  * @file	template.inc.php
  * 
- * DÈclaration des classes pour les templates
+ * D√©claration des classes pour les templates
  * 
  * @date	2002/03/21
  * 
- * @author	JÈrÙme TOUZE
- * @author	CÈdric FLOQUET
+ * @author	J√©r√¥me TOUZE
+ * @author	C√©dric FLOQUET
  * @author	Filippo PORCO
  */
 
 /**
- * Gestion de templates, avec possibilitÈ de remplacements de variables, de rÈpÈtition et masquage de blocs
+ * Gestion de templates, avec possibilit√© de remplacements de variables, de r√©p√©tition et masquage de blocs
  */
 class Template
 {
-	var $data = NULL;	///< Contenu textuel du template, avec les remplacements Èventuels
+	var $data = NULL;	///< Contenu textuel du template, avec les remplacements √©ventuels
 	
 	/**
-	 * Constructeur. Initialise le le template avec le contenu d'un fichier, thÈoriquement au format HTML
+	 * Constructeur. Initialise le le template avec le contenu d'un fichier, th√©oriquement au format HTML
 	 * 
-	 * @param	v_sTplFichier	le nom du fichier template ‡ charger
+	 * @param	v_sTplFichier	le nom du fichier template √† charger
 	 */
 	function Template($v_sTplFichier)
 	{
@@ -59,9 +59,9 @@ class Template
 	}
 	
 	/**
-	 * Ajoute le contenu d'un fichier template ‡ la fin du contenu actuel
+	 * Ajoute le contenu d'un fichier template √† la fin du contenu actuel
 	 * 
-	 * @param	v_sTplFichier	le nom du fichier template ‡ ajouter
+	 * @param	v_sTplFichier	le nom du fichier template √† ajouter
 	 */
 	function ajouterTemplate($v_sTplFichier)
 	{
@@ -69,12 +69,12 @@ class Template
 	}
 	
 	/**
-	 * Retourne une "variable de template", c‡d un bloc entre balises [bloc+][bloc-]. Par exemple si le template 
+	 * Retourne une "variable de template", c√†d un bloc entre balises [bloc+][bloc-]. Par exemple si le template 
 	 * contient un segment "[bloc+]contenu[bloc-]", un appel <code>defVariable("bloc")</code> renvoie le texte \c "contenu"
 	 * 
 	 * @param	looptag		le nom du bloc dont les balises entourent la variable de template
 	 * 
-	 * @return	la variable trouvÈe. S'il n'existe pas de variable dÈfinie par des blocs [looptag+][lopptag-], renvoie 
+	 * @return	la variable trouv√©e. S'il n'existe pas de variable d√©finie par des blocs [looptag+][lopptag-], renvoie 
 	 * 			\c null
 	 */
 	function defVariable($looptag)
@@ -98,12 +98,12 @@ class Template
 	}
 	
 	/**
-	 * Remplace "simplement" des morceaux de template par d'autres. UtilisÈ pour inclure des variables dans le template 
-	 * qui seront remplacÈes en PHP, par exemple un appel <code>remplacer("{utilisateur}", $oProjet->oUtilisateur->retPseudo())</code>
-	 * remplace toutes les chaÓnes \c "{utilisateur}" trouvÈes dans le template par le pseudo de l'utilisateur connectÈ
+	 * Remplace "simplement" des morceaux de template par d'autres. Utilis√© pour inclure des variables dans le template 
+	 * qui seront remplac√©es en PHP, par exemple un appel <code>remplacer("{utilisateur}", $oProjet->oUtilisateur->retPseudo())</code>
+	 * remplace toutes les cha√Ænes \c "{utilisateur}" trouv√©es dans le template par le pseudo de l'utilisateur connect√©
 	 * 
-	 * @param	in	la chaÓne de caractËre ‡ trouver dans le template
-	 * @param	out	la chaÓne par laquelle on veut remplacer toutes les occurences de \p in
+	 * @param	in	la cha√Æne de caract√®re √† trouver dans le template
+	 * @param	out	la cha√Æne par laquelle on veut remplacer toutes les occurences de \p in
 	 */
 	function remplacer($in, $out)
 	{
@@ -111,9 +111,9 @@ class Template
 	}
 	
 	/**
-	 * Affiche les donnÈes contenues actuellement dans le template. GÈnÈralement appelÈ ‡ la fin du script PHP qui 
+	 * Affiche les donn√©es contenues actuellement dans le template. G√©n√©ralement appel√© √† la fin du script PHP qui 
 	 * utilise le template. Un remplacement automatique se fait avant l'affichage, sur les faux protocoles <code>
-	 * "racine://", "admin://", "commun://", "theme://", "javascript://", et "lib://", qui sont remplacÈs par, 
+	 * "racine://", "admin://", "commun://", "theme://", "javascript://", et "lib://", qui sont remplac√©s par, 
 	 * respectivement, les resultats des appels aux fonctions globales dir_root_plateform(), dir_admin(), 
 	 * dir_theme_commun(), dir_theme(), dir_javascript(), et dir_lib()
 	 * 
@@ -129,11 +129,11 @@ class Template
 		echo $this->retDonnees();
 	}
 	
-	// {{{ AjoutÈ par Fil
+	// {{{ Ajout√© par Fil
 	/**
-	 * Retourne le contenu actuel du template, avec les remplacements et autres traitements de blocs Èventuels
+	 * Retourne le contenu actuel du template, avec les remplacements et autres traitements de blocs √©ventuels
 	 * 
-	 * @return	le contenu du template aprËs traitements
+	 * @return	le contenu du template apr√®s traitements
 	 */
 	function retDonnees()
 	{
@@ -141,10 +141,10 @@ class Template
 	}
 	
 	/**
-	 * Retourne le nombre de caractËres contenu dans le template, tel qu'il se trouve aprËs les Èventuels traitements 
+	 * Retourne le nombre de caract√®res contenu dans le template, tel qu'il se trouve apr√®s les √©ventuels traitements 
 	 * de blocs, remplacements, etc
 	 * 
-	 * @return	le nombre de caractËres contenus dans le template aprËs traitements
+	 * @return	le nombre de caract√®res contenus dans le template apr√®s traitements
 	 */
 	function caracteres()
 	{
@@ -154,21 +154,21 @@ class Template
 }
 
 /**
- * Gestion des blocs de templates, c‡d des parties masquables ou rÈpÈtables d'un template
+ * Gestion des blocs de templates, c√†d des parties masquables ou r√©p√©tables d'un template
  * 
- * @todo	Etudier la possibilitÈ de faire hÈriter cette classe de Template, car certaines fonctions sont identiques
+ * @todo	Etudier la possibilit√© de faire h√©riter cette classe de Template, car certaines fonctions sont identiques
  */
 class TPL_Block
 {
 	var $looptag;			///< Balise qui entourait le bloc dans le template parent
-	var $data;				///< Contenu textuel courant du bloc, donc avec les remplacements et rÈpÈtitions Èventuels
+	var $data;				///< Contenu textuel courant du bloc, donc avec les remplacements et r√©p√©titions √©ventuels
 	var $template_parent;	///< Objet Template parent, auquel appartient le bloc courant
-	var $copy_data;			///< Pendant une boucle, contient les donnÈes originales du bloc de template, sans aucun traitement, de faÁon ‡ la rÈcupÈrer au dÈbut de chaque itÈration
-	var $iNbLoops;			///< Nombre courant d'itÈration en cas de boucles sur un bloc
-	var $asData;			///< Tableau qui contient les donnÈes traitÈes (remplacements) pour chaque itÈration pendant une boucle
+	var $copy_data;			///< Pendant une boucle, contient les donn√©es originales du bloc de template, sans aucun traitement, de fa√ßon √† la r√©cup√©rer au d√©but de chaque it√©ration
+	var $iNbLoops;			///< Nombre courant d'it√©ration en cas de boucles sur un bloc
+	var $asData;			///< Tableau qui contient les donn√©es trait√©es (remplacements) pour chaque it√©ration pendant une boucle
 	
 	/**
-	 * Constructeur. Initialise la balise "nom du bloc", le template parent, et dÈbute le traitement sur ce dernier
+	 * Constructeur. Initialise la balise "nom du bloc", le template parent, et d√©bute le traitement sur ce dernier
 	 * 
 	 * @param	looptag		le nom des balises entourant le bloc de template
 	 * @param	template	l'objet Template parent
@@ -183,9 +183,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Initialise les donnÈes du bloc pour les prÈparer ‡ une boucle. Le bloc pourra Ítre rÈpÈtÈ plusieurs fois de suite
-	 * dans le template, ‡ son emplacement d'origine et avec des remplacements diffÈrents par itÈrations. UtilisÈ par 
-	 * exemple pour crÈer les lignes d'une table HTML
+	 * Initialise les donn√©es du bloc pour les pr√©parer √† une boucle. Le bloc pourra √™tre r√©p√©t√© plusieurs fois de suite
+	 * dans le template, √† son emplacement d'origine et avec des remplacements diff√©rents par it√©rations. Utilis√© par 
+	 * exemple pour cr√©er les lignes d'une table HTML
 	 */
 	function beginLoop()
 	{
@@ -195,8 +195,8 @@ class TPL_Block
 	}
 	
 	/**
-	 * Passe ‡ l'itÈration suivante d'une boucle sur un bloc de template. Les donnÈes ayant subi des traitements
-	 * (remplacements) dans l'itÈration courante sont sauvegardÈes d'abord
+	 * Passe √† l'it√©ration suivante d'une boucle sur un bloc de template. Les donn√©es ayant subi des traitements
+	 * (remplacements) dans l'it√©ration courante sont sauvegard√©es d'abord
 	 */
 	function nextLoop()
 	{
@@ -207,9 +207,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Retourne le nombre d'itÈrations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template
+	 * Retourne le nombre d'it√©rations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template
 	 * 
-	 * @return	le nombre actuel d'itÈrations dans un boucle sur un bloc de template
+	 * @return	le nombre actuel d'it√©rations dans un boucle sur un bloc de template
 	 */
 	function countLoops()
 	{
@@ -217,11 +217,11 @@ class TPL_Block
 	}
 	
 	/**
-	 * Remplace "simplement" des morceaux de bloc de template par d'autres. UtilisÈ pour inclure des variables dans le 
-	 * bloc de template, qui seront remplacÈes en PHP
+	 * Remplace "simplement" des morceaux de bloc de template par d'autres. Utilis√© pour inclure des variables dans le 
+	 * bloc de template, qui seront remplac√©es en PHP
 	 * 
-	 * @param	in	la chaÓne de caractËre ‡ trouver dans le bloc de template
-	 * @param	out	la chaÓne par laquelle on veut remplacer toutes les occurences de \p in
+	 * @param	in	la cha√Æne de caract√®re √† trouver dans le bloc de template
+	 * @param	out	la cha√Æne par laquelle on veut remplacer toutes les occurences de \p in
 	 * 
 	 * @see		Template#remplacer()
 	 */
@@ -231,8 +231,8 @@ class TPL_Block
 	}
 	
 	/**
-	 * "Extrait" le bloc de son template parent. Cela consiste ‡ remplacer dans ce dernier le bloc et son contenu par 
-	 * un texte temporaire, qui pourra ensuite Ítre remplacÈ par le bloc aprËs traitements comme les boucles et 
+	 * "Extrait" le bloc de son template parent. Cela consiste √† remplacer dans ce dernier le bloc et son contenu par 
+	 * un texte temporaire, qui pourra ensuite √™tre remplac√© par le bloc apr√®s traitements comme les boucles et 
 	 * remplacements.
 	 * 
 	 * Par exemple le bloc suivant :
@@ -246,9 +246,9 @@ class TPL_Block
 	 * [bloc-]
 	 * <code>
 	 * 
-	 * sera entiËrement remplacÈ, le temps des traitements sur le bloc (avant l'appel ‡ #afficher() donc), par 
-	 * \c [bloc_tmp] dans son template parent. Lorsque les traitements sont terminÈs et qu'on demande l'affichage 
-	 * du bloc rÈsultant, \c [bloc_tmp] sera remplacÈ dans le Template parent par ce bloc rÈsultant
+	 * sera enti√®rement remplac√©, le temps des traitements sur le bloc (avant l'appel √† #afficher() donc), par 
+	 * \c [bloc_tmp] dans son template parent. Lorsque les traitements sont termin√©s et qu'on demande l'affichage 
+	 * du bloc r√©sultant, \c [bloc_tmp] sera remplac√© dans le Template parent par ce bloc r√©sultant
 	 */
 	function extraire()
 	{
@@ -264,13 +264,13 @@ class TPL_Block
 		}
 	}
 	
-	// {{{ AjoutÈ par Fil
+	// {{{ Ajout√© par Fil
 	/**
 	 * Pas de description pour le moment
 	 * 
 	 * @param	v_iCycle
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function cycle($v_iCycle = NULL)
 	{
@@ -288,14 +288,14 @@ class TPL_Block
 	}
 	
 	/**
-	 * RÈcupËre les variables situÈes ‡ l'intÈrieur d'un bloc
+	 * R√©cup√®re les variables situ√©es √† l'int√©rieur d'un bloc
 	 * 
 	 * @param	string	$looptag
 	 * @param	boolean	$v_bRetTableau
 	 * 
-	 * @return	une chaÓne de caractËres ou un tableau de chaÓne de caractËres
+	 * @return	une cha√Æne de caract√®res ou un tableau de cha√Æne de caract√®res
 	 * 
-	 * @todo	VÈrifier cette description
+	 * @todo	V√©rifier cette description
 	 */
 	function defVariable($looptag, $v_bRetTableau = FALSE, $v_sSeparateur="###")
 	{
@@ -320,12 +320,12 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @param	looptag			A complÈter
-	 * @param	v_sSeparateur	A complÈter
+	 * @param	looptag			A compl√©ter
+	 * @param	v_sSeparateur	A compl√©ter
 	 * 
-	 * @return	A complÈter
+	 * @return	A compl√©ter
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function defTableau($looptag, $v_sSeparateur = ",")
 	{
@@ -335,9 +335,9 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @param	looptag		A complÈter
+	 * @param	looptag		A compl√©ter
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function effacerVariable($looptag)
 	{
@@ -347,9 +347,9 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @return	A complÈter
+	 * @return	A compl√©ter
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function retDonnees()
 	{
@@ -359,9 +359,9 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @param	v_sDonnees	A complÈter
+	 * @param	v_sDonnees	A compl√©ter
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function defDonnees($v_sDonnees)
 	{
@@ -371,9 +371,9 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @return	A complÈter
+	 * @return	A compl√©ter
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function caracteres()
 	{
@@ -386,7 +386,7 @@ class TPL_Block
 	 * 
 	 * @param	sTexteAjout
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function ajouter($sTexteAjout)
 	{
@@ -396,7 +396,7 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function effacer()
 	{
@@ -406,7 +406,7 @@ class TPL_Block
 	/**
 	 * Pas de description pour le moment
 	 * 
-	 * @todo	ComplÈter cette description
+	 * @todo	Compl√©ter cette description
 	 */
 	function afficher()
 	{

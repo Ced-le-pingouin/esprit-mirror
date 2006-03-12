@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: deposer_fichiers-valider.php
 ** Description ............: 
-** Date de création .......: 26/01/2005
-** Dernière modification ..: 16/03/2005
+** Date de crÃ©ation .......: 26/01/2005
+** DerniÃ¨re modification ..: 16/03/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,14 +35,14 @@ require_once("globals.inc.php");
 require_once(dir_code_lib("fichiers_permis.inc.php"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sNomFichierCopier = (empty($HTTP_POST_FILES["nomFichierCopier"]["name"]) ? "none" : $HTTP_POST_FILES["nomFichierCopier"]["name"]);
 $url_sRepDestination   = (empty($HTTP_POST_VARS["repDest"]) ? NULL : $HTTP_POST_VARS["repDest"]);
 $url_bDezippe          = (empty($HTTP_POST_VARS["dezipFichier"]) ? TRUE : FALSE);
 
 // ---------------------
-// Déposer un fichier
+// DÃ©poser un fichier
 // ---------------------
 if ($url_sNomFichierCopier != "none" && validerFichier($url_sNomFichierCopier))
 {
@@ -76,7 +76,7 @@ BLOC_PAGE_HTML;
 	
 	@chmod($sDestination.$url_sNomFichierCopier,0644);
 	
-	// Décompressé le fichier zip
+	// DÃ©compressÃ© le fichier zip
 	if ($url_bDezippe)
 		unzip($sDestination,$url_sNomFichierCopier);
 }
@@ -88,7 +88,7 @@ $sBlocPageHtml = <<<BLOC_PAGE_HTML
 </head>
 <body>
 <p>&nbsp;</p>
-<p style="text-align: center; font-weight: bold;">Ce type de fichier n'est pas autorisé par la plate-forme</p>
+<p style="text-align: center; font-weight: bold;">Ce type de fichier n'est pas autorisÃ© par la plate-forme</p>
 </body>
 </html>
 BLOC_PAGE_HTML;

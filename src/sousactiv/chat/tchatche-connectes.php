@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tchatche-connectes.php
 ** Description ............:
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 03/10/2005
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 03/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ require_once("archive.class.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -82,7 +82,7 @@ $aoChats = $oParent->aoChats;
 $oParent->initEquipes();
 $aoEquipes = &$oParent->aoEquipes;
 
-// Rechercher le répertoire des archives
+// Rechercher le rÃ©pertoire des archives
 $sRepArchives = dir_chat_archives($url_iTypeNiveau,$amParams,NULL,TRUE);
 unset($amParams);
 
@@ -175,7 +175,7 @@ function afficher_liste_connectes(v_iListeConnectes,v_sListeConnectes)
 	var idListeConnectes = "id_liste_connectes"
 		+ g_aListeChats[v_iListeConnectes][0]	// Identifiant du chat
 		+ "_"
-		+ g_aListeChats[v_iListeConnectes][1];	// Identifiant de l'équipe
+		+ g_aListeChats[v_iListeConnectes][1];	// Identifiant de l'Ã©quipe
 	
 	if (top.oPrincipal().document &&
 		top.oPrincipal().document.getElementById(idListeConnectes))

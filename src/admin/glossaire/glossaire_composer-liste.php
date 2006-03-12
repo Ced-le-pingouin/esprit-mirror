@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: glossaire_composer-liste.php
 ** Description ............:
-** Date de création .......: 28/07/2004
-** Dernière modification ..: 12/08/2004
+** Date de crÃ©ation .......: 28/07/2004
+** DerniÃ¨re modification ..: 12/08/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -50,7 +50,7 @@ $oTplMenuSimple = new Template(dir_theme("menu/menu-simple.itpl",FALSE,TRUE));
 $oBloc_MenuSimpleElement = new TPL_Block("BLOCK_ELEMENT",$oTplMenuSimple);
 $oBloc_MenuSimpleMenu = new TPL_Block("BLOCK_MENU",$oTplMenuSimple);
 
-// Définir
+// DÃ©finir
 $oSet_MenuLienActif = $oTpl->defVariable("SET_MENU_LIEN_ACTIF");
 $oSet_MenuSeparateur = $oTplMenuSimple->defVariable("SET_MENU_SEPARATEUR");
 
@@ -112,7 +112,7 @@ $oBloc_MenuSimpleMenu->remplacer("{menu}",$sMenu);
 $oBloc_MenuSimpleMenu->afficher();
 
 // ---------------------
-// Insérer le menu simple dans le template principal
+// InsÃ©rer le menu simple dans le template principal
 // ---------------------
 $oBloc_ListeGlossaires = new TPL_Block("BLOCK_LISTE_GLOSSAIRES",$oTpl);
 $oBloc_ListeGlossaires->ajouter($oTplMenuSimple->defVariable("SET_MENU_SIMPLE"));

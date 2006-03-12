@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: zone_menu.php
 ** Description ............: 
-** Date de création .......: 01/01/2004
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 01/01/2004
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 ** 
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -63,7 +63,7 @@ $bPeutVoirRubrInv    = $oProjet->verifPermission("PERM_VOIR_RUBRIQUE_INV");
 $bAccederForumParEquipe = ($bPeutGererTousSujets | $oProjet->verifEquipe());
 
 // ---------------------
-// Insérer ce bloc dans l'entête de la page html
+// InsÃ©rer ce bloc dans l'entÃªte de la page html
 // ---------------------
 $sBlocHtmlEntete = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
@@ -83,7 +83,7 @@ $sVarSeparateurIntitule = $oBlocTitreModule->defVariable("VAR_SEPARATEUR_INTITUL
 $oBlocDescriptionModule = new TPL_Block("BLOCK_DESCRIPTION",$oTpl);
 
 // ---------------------
-// Composer la liste des rubriques/unités
+// Composer la liste des rubriques/unitÃ©s
 // ---------------------
 $oBlock_Cours = new TPL_Block("BLOCK_COURS",$oTpl);
 
@@ -93,7 +93,7 @@ $oSet_Forum_Ouvert = $oTpl->defVariable("SET_FORUM_OUVERT");
 $oSet_Forum_Ferme  = $oTpl->defVariable("SET_FORUM_FERME");
 // }}}
 
-// {{{ Rubrique/Unité
+// {{{ Rubrique/UnitÃ©
 $oSet_Unite = $oTpl->defVariable("SET_UNITE");
 // }}}
 
@@ -109,7 +109,7 @@ $oSet_Site_Internet_Ouvert = $oTpl->defVariable("SET_SITE_INTERNET_OUVERT");
 $oSet_Site_Internet_Ferme  = $oTpl->defVariable("SET_SITE_INTERNET_FERME");
 // }}}
 
-// {{{ Document à télécharger
+// {{{ Document Ã  tÃ©lÃ©charger
 $oSet_Document_Telecharger        = $oTpl->defVariable("SET_DOCUMENT_TELECHARGER");
 $oSet_Document_Telecharger_Ouvert = $oTpl->defVariable("SET_DOCUMENT_TELECHARGER_OUVERT");
 $oSet_Document_Telecharger_Ferme  = $oTpl->defVariable("SET_DOCUMENT_TELECHARGER_FERME");
@@ -121,7 +121,7 @@ $oSet_Chat_Ouvert = $oTpl->defVariable("SET_CHAT_OUVERT");
 $oSet_Chat_Ferme  = $oTpl->defVariable("SET_CHAT_FERME");
 // }}}
 
-// {{{ Texte formatté
+// {{{ Texte formattÃ©
 $oSet_TexteFormatte        = $oTpl->defVariable("SET_TEXTE_FORMATTE");
 $oSet_TexteFormatte_Ouvert = $oTpl->defVariable("SET_TEXTE_FORMATTE_OUVERT");
 $oSet_TexteFormatte_Ferme  = $oTpl->defVariable("SET_TEXTE_FORMATTE_FERME");
@@ -177,7 +177,7 @@ if ($iIdMod > 0)
 		
 		$iIdRub = $aoRubriques[$r]->retId();
 		
-		// {{{ Mettre un espace entre les autres liens et les unités
+		// {{{ Mettre un espace entre les autres liens et les unitÃ©s
 		if ($r > 0 &&
 			(($aoRubriques[$r-1]->retType() == LIEN_UNITE && $aoRubriques[$r]->retType() != LIEN_UNITE) ||
 			($aoRubriques[$r-1]->retType() != LIEN_UNITE && $aoRubriques[$r]->retType() == LIEN_UNITE)))
@@ -198,8 +198,8 @@ if ($iIdMod > 0)
 				$iIdForum            = $oForum->retId();
 				$bAccessibleVisiteur = $oForum->retAccessibleVisiteurs();
 				
-				// {{{ Vérifier que cet utilisateur a le droit d'entrer dans un
-				//     forum par équipe
+				// {{{ VÃ©rifier que cet utilisateur a le droit d'entrer dans un
+				//     forum par Ã©quipe
 				if (MODALITE_POUR_TOUS != $oForum->retModalite() &&
 					!$bAccederForumParEquipe &&
 					!$bAccessibleVisiteur)
@@ -209,8 +209,8 @@ if ($iIdMod > 0)
 				if ($iIdForum < 1 || !$bStatutOuvert ||
 					($iIdPers < 1 && !$bAccessibleVisiteur))
 				{
-					// - Le forum n'a pas été créé
-					// - Le forum est fermé
+					// - Le forum n'a pas Ã©tÃ© crÃ©Ã©
+					// - Le forum est fermÃ©
 					// - Les visiteurs n'ont pas le droit de consulter ce forum
 					//   si ce forum n'est pas accessible
 					$oBlock_Cours->remplacer("{lien_forum}",$oSet_Forum_Ferme);
@@ -232,13 +232,13 @@ if ($iIdMod > 0)
 			//   ----------
 				$oBlock_Cours->ajouter($oSet_Unite);
 				
-				// {{{ Récupérer les variables de l'unité
+				// {{{ RÃ©cupÃ©rer les variables de l'unitÃ©
 				$asVarUnites     = $oBlock_Cours->defVariable("VAR_UNITE",TRUE);
 				$sVarUniteOuvert = $oBlock_Cours->defVariable("VAR_UNITE_OUVERT");
 				$sVarUniteFerme  = $oBlock_Cours->defVariable("VAR_UNITE_FERME");
 				// }}}
 				
-				// Récupérer l'intitulé de l'unité
+				// RÃ©cupÃ©rer l'intitulÃ© de l'unitÃ©
 				$sTexteIntitule = $aoRubriques[$r]->retTexteIntitule();
 				$bIntitule = (strlen($sTexteIntitule) > 0);
 				
@@ -260,7 +260,7 @@ if ($iIdMod > 0)
 				
 				if ($bIntitule)
 				{
-					// Afficher l'intitulé de l'unité
+					// Afficher l'intitulÃ© de l'unitÃ©
 					$oBlock_Cours->remplacer("{rubrique.intitule}",$sTexteIntitule);
 				}
 				
@@ -336,7 +336,7 @@ if ($iIdMod > 0)
 					break;
 		}
 		
-		// Nom de l'unité
+		// Nom de l'unitÃ©
 		$sNomUnite = htmlentities($aoRubriques[$r]->retNom());
 		$oBlock_Cours->remplacer("{rubrique.id}",$iIdRub);
 		$oBlock_Cours->remplacer("{rubrique.nom}",ereg_replace("[[:space:]]+\?","&nbsp;?",$sNomUnite));

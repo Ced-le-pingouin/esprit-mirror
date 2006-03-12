@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tchatche.php
 ** Description ............: 
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 03/10/2005
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 03/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -41,7 +41,7 @@ require_once("archive.class.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -67,7 +67,7 @@ switch ($url_iTypeNiveau)
 		break;
 }
 
-// Répertoire ou sont déposés les archives des chats
+// RÃ©pertoire ou sont dÃ©posÃ©s les archives des chats
 $sRepArchives = dir_chat_archives($url_iTypeNiveau,$amParams,NULL,TRUE);
 
 // Une personne inscrite ou visiteur ?
@@ -83,13 +83,13 @@ $oEquipes = new CEquipes($oProjet->oBdd,$url_iIdNiveau,$url_iTypeNiveau);
 
 if (retHautStatut($oProjet->retStatutUtilisateur()))
 {
-	// Rechercher toutes les équipes
+	// Rechercher toutes les Ã©quipes
 	$oEquipes->initEquipes(FALSE);
 	$aoEquipes = &$oEquipes->aoEquipes;
 }
 else
 {
-	// Rechercher l'équipe de cet utilisateur
+	// Rechercher l'Ã©quipe de cet utilisateur
 	$aoEquipes = array($oEquipes->initEquipeGraceIdPers($iIdPers));
 }
 
@@ -121,7 +121,7 @@ foreach ($oParent->aoChats as $oChat)
 	if ($iModalite == CHAT_PAR_EQUIPE)
 	{
 		// ---------------------
-		// Chat par équipe
+		// Chat par Ã©quipe
 		// ---------------------
 		for ($iIdxEquipe=0; $iIdxEquipe<$iTotalEquipes; $iIdxEquipe++)
 		{
@@ -226,7 +226,7 @@ foreach ($aaChats as $aChat)
 	$oBlocListeChats->remplacer("{chat->salon_prive}",$aChat["utiliserSalonPrive"]);
 	$oBlocListeChats->remplacer("{equipe->id}",$aChat["idEquipe"]);
 	
-	// Ajouter une séparation entre les chats
+	// Ajouter une sÃ©paration entre les chats
 	$oBlocListeChats->ajouter($sSetChatSeparateur);
 	// new Array("g_idListeConnectes36","idListeConnectes36_10","Equipe%20C1")
 	// new Array("chat.id","equipe.id","equipe.nom")

@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 //************************************************
-//*       RÈcupÈration des variables             *
+//*       R√©cup√©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -63,9 +63,9 @@ if (isset($HTTP_GET_VARS['supprimer']))
 	  echo "<body class=\"popup\">";
 	  
 	  $oAxe = new CAxe($oProjet->oBdd,$v_iIdAxeS);
-	  $oAxe->effacer(TRUE); //TRUE permet une vÈrification des dÈpendances avant effacement de l'axe
+	  $oAxe->effacer(TRUE); //TRUE permet une v√©rification des d√©pendances avant effacement de l'axe
 	  
-	  echo "<p align=center><a href=\"gestion_axes.php\">Retour page prÈcÈdente</a></p>";
+	  echo "<p align=center><a href=\"gestion_axes.php\">Retour page pr√©c√©dente</a></p>";
 	  echo "</body>\n";
 	  echo "</html>\n";
 }
@@ -85,7 +85,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 			  $oAxe = new CAxe($oProjet->oBdd,$v_iIdAxeM);
 			  $oAxe->defDescAxe($v_sDescAxeM);
 			  $oAxe->enregistrer();
-			  echo "<h4 align=\"center\"><br>Le nom de l'axe a ÈtÈ correctement modifiÈ</h4>";
+			  echo "<h4 align=\"center\"><br>Le nom de l'axe a √©t√© correctement modifi√©</h4>";
 			  
 			  $oAxe->verificationdependances();
 			  }
@@ -94,7 +94,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 					 echo "<h4 align=\"center\"><br>Le nom de l'axe n'est pas valide</h4>";
 			  }
 			  
-		  	  echo "<p align=center><a href=\"gestion_axes.php\">Retour page prÈcÈdente</a></p>";			  
+		  	  echo "<p align=center><a href=\"gestion_axes.php\">Retour page pr√©c√©dente</a></p>";			  
 			  echo "</body>\n";
 			  echo "</html>\n";
 		}
@@ -118,14 +118,14 @@ else if (isset($HTTP_GET_VARS['modifier']))
 							 $oAxe->defDescAxe($v_sDescAxeA);
 							 $oAxe->enregistrer();
 							
-							 echo "<h4 align=\"center\"><br>L'axe a  ÈtÈ correctement ajoutÈ</h4>";
+							 echo "<h4 align=\"center\"><br>L'axe a  √©t√© correctement ajout√©</h4>";
 						}
 						else
 						{
 							  echo "<h4 align=\"center\"><br>Le nom de l'axe n'est pas valide</h4>";
 						}
 					  
-					  echo "<p align=center><a href=\"gestion_axes.php\">Retour page prÈcÈdente</a></p>";
+					  echo "<p align=center><a href=\"gestion_axes.php\">Retour page pr√©c√©dente</a></p>";
 					  echo "</body>\n";
 					  echo "</html>\n";
 				}
@@ -145,8 +145,8 @@ else if (isset($HTTP_GET_VARS['modifier']))
 									 while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 									 {
 										 $oBlock->nextLoop();
-										 $oAxe = new CAxe($oProjet->oBdd); //CrÈe un objet objetformulaire "presque vide"
-										 $oAxe->init($oEnreg); //Remplit l'objet crÈÈ ci-dessus avec l'enreg en cours
+										 $oAxe = new CAxe($oProjet->oBdd); //Cr√©e un objet objetformulaire "presque vide"
+										 $oAxe->init($oEnreg); //Remplit l'objet cr√©√© ci-dessus avec l'enreg en cours
 					
 										 $oBlock->remplacer("{id_axe}",$oAxe->retId());
 										 $oBlock->remplacer("{desc_axe}",$oAxe->retDescAxe());
@@ -172,8 +172,8 @@ else if (isset($HTTP_GET_VARS['modifier']))
 									 while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 									 {
 										 $oBlock->nextLoop();
-										 $oAxe = new CAxe($oProjet->oBdd); //CrÈe un objet objetformulaire "presque vide"
-										 $oAxe->init($oEnreg); //Remplit l'objet crÈÈ ci-dessus avec l'enreg en cours
+										 $oAxe = new CAxe($oProjet->oBdd); //Cr√©e un objet objetformulaire "presque vide"
+										 $oAxe->init($oEnreg); //Remplit l'objet cr√©√© ci-dessus avec l'enreg en cours
 					
 										 $oBlock->remplacer("{id_axe2}",$oAxe->retId());
 										 $oBlock->remplacer("{desc_axe2js}",addslashes($oAxe->retDescAxe()));
@@ -193,7 +193,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 					
 						  $oTpl->afficher();	  
 						  $oProjet->oBdd->libererResult($hResult);
-						  $oProjet->terminer();  //Ferme la connection avec la base de donnÈes
+						  $oProjet->terminer();  //Ferme la connection avec la base de donn√©es
 					 }
 
 ?>

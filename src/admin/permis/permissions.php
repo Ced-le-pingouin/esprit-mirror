@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: permissions.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 18/03/2005
-** Auteurs ................: Jérome TOUZE
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 18/03/2005
+** Auteurs ................: JÃ©rome TOUZE
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 ** 
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,11 +36,11 @@ require_once("globals.inc.php");
 
 $oProjet = new CProjet();
 
-// Vérifier que cet utilisateur a le droit d'utiliser cet outil
+// VÃ©rifier que cet utilisateur a le droit d'utiliser cet outil
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_PERMISSION");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 if (isset($HTTP_GET_VARS["idStatut"]))
 	$url_iIdStatut = $HTTP_GET_VARS["idStatut"];
@@ -65,7 +65,7 @@ $oPermisUtilisateur = new CStatutPermission($oProjet->oBdd);
 
 if (count($url_aiIdsPerm) > 0)
 {
-	// Mettre à jour les permissions modifiées
+	// Mettre Ã  jour les permissions modifiÃ©es
 	foreach ($oPermission->aoPermissions as $oPermis)
 	{
 		$iIdPermis = $oPermis->retId();

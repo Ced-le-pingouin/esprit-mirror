@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: awareness.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 01/03/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 01/03/2005
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -34,7 +34,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Nettoyer le répertoire tmp
+// Nettoyer le rÃ©pertoire tmp
 // ---------------------
 $sRepTmp = dir_tmp(NULL,TRUE);
 

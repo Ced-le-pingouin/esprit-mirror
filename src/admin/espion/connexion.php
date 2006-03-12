@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: connexion.php
 ** Description ............: 
-** Date de création .......: 24/02/2003
-** Dernière modification ..: 03/09/2004
+** Date de crÃ©ation .......: 24/02/2003
+** DerniÃ¨re modification ..: 03/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 $oEvenement = new CEvenement($oProjet->oBdd);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iTri     = (isset($HTTP_GET_VARS["tri"]) ? $HTTP_GET_VARS["tri"] : $oEvenement->TRI_DERNIERE_CONNEXION);
 $url_bSensTri = (isset($HTTP_GET_VARS["sens"]) ? $HTTP_GET_VARS["sens"] : $oEvenement->TRI_DESCENDANT);
@@ -67,12 +67,12 @@ $iNbrEven = $oEvenement->initEvenements();
 $asTitres = array(
 	array("#",FALSE,NULL),
 	array("Nom",TRUE,$oEvenement->TRI_NOM),
-	array("Prénom",TRUE,$oEvenement->TRI_PRENOM),
+	array("PrÃ©nom",TRUE,$oEvenement->TRI_PRENOM),
 	array("Pseudo",TRUE,$oEvenement->TRI_PSEUDO),
 	array("Nombre de connexions",TRUE,$oEvenement->TRI_NBR_CONNEXIONS),
-	array("Dernière connexion",TRUE,$oEvenement->TRI_DERNIERE_CONNEXION),
-	array("Déconnexion",TRUE,$oEvenement->TRI_DERNIERE_DECONNEXION),
-	array("Durée",TRUE,$oEvenement->TRI_TEMPS_CONNEXIONS),
+	array("DerniÃ¨re connexion",TRUE,$oEvenement->TRI_DERNIERE_CONNEXION),
+	array("DÃ©connexion",TRUE,$oEvenement->TRI_DERNIERE_DECONNEXION),
+	array("DurÃ©e",TRUE,$oEvenement->TRI_TEMPS_CONNEXIONS),
 	array("-",FALSE,NULL));
 
 $sContenuTable .= "<tr>";
@@ -138,7 +138,7 @@ for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
 		."</td>"
 		."<td{$sNomClasseCss} width=\"1%\" align=\"center\">&nbsp;"
 		."<a href=\"javascript: details('".$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retId()."');\""
-		." title=\"Cliquez ici pour voir la liste complète des connexions\""
+		." title=\"Cliquez ici pour voir la liste complÃ¨te des connexions\""
 		." onfocus=\"blur()\">D&eacute;tails</a>"
 		."&nbsp;</td>"
 		."</tr>\n";

@@ -38,7 +38,7 @@ function valider()
 <td><p>La copie courriel vous permet d'obtenir une copie des nouveaux messages qui sont d&eacute;pos&eacute;s dans ce forum. Cette copie vous est transmise par courriel (mail).</p></td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td><p>Mais dans votre cas, nous remarquons qu'il n'y a pas d'adresse courriel associ&eacute;e à votre profil. Cliquez sur le lien &laquo;&nbsp;Profil&nbsp;&raquo; si vous d&eacute;sirez introduire une adresse et b&eacute;n&eacute;ficier de cette fonctionnalit&eacute;.</p></td></tr>
+<tr><td><p>Mais dans votre cas, nous remarquons qu'il n'y a pas d'adresse courriel associ&eacute;e Ã  votre profil. Cliquez sur le lien &laquo;&nbsp;Profil&nbsp;&raquo; si vous d&eacute;sirez introduire une adresse et b&eacute;n&eacute;ficier de cette fonctionnalit&eacute;.</p></td></tr>
 </table>
 [SET_SANS_EMAIL-]
 
@@ -51,18 +51,18 @@ function valider()
 <td><p>La copie courriel vous permet d'obtenir une copie des nouveaux messages qui sont d&eacute;pos&eacute;s dans ce forum. Cette copie vous est transmise par courriel (mail).</p></td>
 </tr>
 <tr><td>&nbsp;</td></tr>
-<tr><td><p>Mais dans votre cas, nous remarquons que l'adresse qui se trouve dans votre profil n'est pas une adresse &laquo;&nbsp;valable&raquo;&nbsp; (elle ne correspond pas à un format correct). Cliquez sur le lien &laquo;&nbsp;Profil&nbsp;&raquo; pour corriger votre adresse et b&eacute;n&eacute;ficier de cette fonctionnalit&eacute;.</p></td></tr>
+<tr><td><p>Mais dans votre cas, nous remarquons que l'adresse qui se trouve dans votre profil n'est pas une adresse &laquo;&nbsp;valable&raquo;&nbsp; (elle ne correspond pas Ã  un format correct). Cliquez sur le lien &laquo;&nbsp;Profil&nbsp;&raquo; pour corriger votre adresse et b&eacute;n&eacute;ficier de cette fonctionnalit&eacute;.</p></td></tr>
 </table>
 [SET_EMAIL_ERRONE-]
 
 [SET_MESSAGE_COMMUN+]
-<p>La copie courriel vous permet d'obtenir une copie des nouveaux messages qui sont d&eacute;pos&eacute;s dans un forum. Cette copie vous est transmise par courriel (mail) à l'adresse &laquo;&nbsp;{personne->email}&nbsp;&raquo;. Cliquez sur le lien Profil si vous d&eacute;sirez modifier cette adresse.</p>
+<p>La copie courriel vous permet d'obtenir une copie des nouveaux messages qui sont d&eacute;pos&eacute;s dans un forum. Cette copie vous est transmise par courriel (mail) Ã  l'adresse &laquo;&nbsp;{personne->email}&nbsp;&raquo;. Cliquez sur le lien Profil si vous d&eacute;sirez modifier cette adresse.</p>
 [SET_MESSAGE_COMMUN-]
 
 [SET_COPIE_COURRIEL+]
 <table border="0" cellspacing="3" cellpadding="0" width="100%">
 <tr><td colspan="2"><img src="commun://espacer.gif" width="1" height="20" border="0" alt=""></td></tr>
-<tr><td valign="top"><input type="checkbox" id="id_copie_courriel" name="copieCourriel" onfocus="blur()"{copieCourriel->selectionne}></td><td colspan="2" width="99%"><label for="id_copie_courriel">Je veux que l'on m'envoie une copie des nouveaux messages d&eacute;pos&eacute; dans ce forum à l'adresse indiqu&eacute;e dans mon profil.</label></td></tr>
+<tr><td valign="top"><input type="checkbox" id="id_copie_courriel" name="copieCourriel" onfocus="blur()"{copieCourriel->selectionne}></td><td colspan="2" width="99%"><label for="id_copie_courriel">Je veux que l'on m'envoie une copie des nouveaux messages d&eacute;pos&eacute; dans ce forum Ã  l'adresse indiqu&eacute;e dans mon profil.</label></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td>&nbsp;</td><td>{message_commun}</td></tr>
 </table>

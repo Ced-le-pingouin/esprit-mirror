@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: forum-menu.php
 ** Description ............: 
-** Date de création .......: 29/11/2004
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 29/11/2004
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,12 +39,12 @@ $oProjet = new CProjet();
 $iIdUtilisateur = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForum = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 
 // ---------------------
-// Insérer ces lignes dans l'en-tête de la page html
+// InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 // ---------------------
 $sBlockHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>

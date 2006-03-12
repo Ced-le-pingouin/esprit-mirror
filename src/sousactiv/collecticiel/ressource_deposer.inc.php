@@ -68,7 +68,7 @@ if ($sFichierTmp != "none")
 				."</head>\n"
 				."<body onload=\"init()\">\n"
 				."<br><br>\n"
-				."<div align=\"center\"><h4>".htmlentities("Ce fichier n'est pas autorisé à la copie.")."</h4></div>\n"
+				."<div align=\"center\"><h4>".htmlentities("Ce fichier n'est pas autorisÃ© Ã  la copie.")."</h4></div>\n"
 				."<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
 				."</table>\n"
 				."</body>\n"
@@ -90,7 +90,7 @@ if ($sFichierTmp != "none")
 				."</head>\n"
 				."<body onload=\"init()\">\n"
 				."<br><br>\n"
-				."<div align=\"center\"><h4>".htmlentities("Le transfert du fichier a échoué.")."</h4></div>\n"
+				."<div align=\"center\"><h4>".htmlentities("Le transfert du fichier a Ã©chouÃ©.")."</h4></div>\n"
 				."<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
 				."</table>\n"
 				."</body>\n"
@@ -100,11 +100,11 @@ if ($sFichierTmp != "none")
 			
 		default:
 			
-			// Informations à propos du document déposé
+			// Informations Ã  propos du document dÃ©posÃ©
 			$sNomRes = (strlen($sTitreFichier) <> 0 ? $sTitreFichier : $sNomFichier); 		// Nom de la ressource
 			$sDescrRes = (strlen($sDescriptionFichier) <> 0 ? $sDescriptionFichier : "");
 			$sAuteurRes = "auteur inconnu";													// Auteur
-			$sUrlRes = basename($dir_ressources);											// Dans quel répertoire se touve le document
+			$sUrlRes = basename($dir_ressources);											// Dans quel rÃ©pertoire se touve le document
 			
 			$bOk = $oProjet->insererRessource($sNomRes,$sDescrRes,$sAuteurRes,stripslashes($sUrlRes));
 			
@@ -133,7 +133,7 @@ if ($sFichierTmp != "none")
 					."<body onload=\"init()\">\n"
 					."<br><br>\n"
 					."<div align=\"center\">"
-					."<h4>".htmlentities("Le document \"{$sNomRes}\" n'a pas pu être déposé.")."</h4>"
+					."<h4>".htmlentities("Le document \"{$sNomRes}\" n'a pas pu Ãªtre dÃ©posÃ©.")."</h4>"
 					."</div>\n"
 					."</body>\n"
 					."</html>\n";

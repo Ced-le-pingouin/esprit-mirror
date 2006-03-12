@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: globals.icones.php
 ** Description ............: 
-** Date de création .......: 14/02/2005
-** Dernière modification ..: 13/04/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 14/02/2005
+** DerniÃ¨re modification ..: 13/04/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */

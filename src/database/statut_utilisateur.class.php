@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: statut_utilisateur.class.php
 ** Description ............: 
-** Date de création .......: 20/02/2003
-** Dernière modification ..: 29/06/2005
+** Date de crÃ©ation .......: 20/02/2003
+** DerniÃ¨re modification ..: 29/06/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -147,7 +147,7 @@ class CStatutUtilisateur
 		$this->aiStatuts[STATUT_PERS_COTUTEUR] = FALSE;
 		// }}}
 		
-		// {{{ Est-t-il étudiant ?
+		// {{{ Est-t-il Ã©tudiant ?
 		if ($v_iIdMod > 0 && !$v_bInscritAutoModules)
 			$sRequeteSql = "SELECT COUNT(Module_Inscrit.IdPers)"
 				." FROM Module_Inscrit"
@@ -168,7 +168,7 @@ class CStatutUtilisateur
 		$this->oBdd->libererResult($hResult);
 		// }}}
 		
-		// {{{ Visiteur par défaut
+		// {{{ Visiteur par dÃ©faut
 		$this->aiStatuts[STATUT_PERS_VISITEUR] = TRUE;
 		// }}}
 	}

@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: module_concepteur.tbl.php
 ** Description ............: 
-** Date de création .......: 23/09/2002
-** Dernière modification ..: 07/07/2004
+** Date de crÃ©ation .......: 23/09/2002
+** DerniÃ¨re modification ..: 07/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

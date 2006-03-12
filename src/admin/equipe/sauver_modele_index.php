@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: sauver_modele_index.php
 ** Description ............: 
-** Date de création .......: 14-01-2003
-** Dernière modification ..: 10-02-2003
+** Date de crÃ©ation .......: 14-01-2003
+** DerniÃ¨re modification ..: 10-02-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -64,11 +64,11 @@ function Enregistrer()
 {
 	if (oPrincipal().Enregistrer())
 	{
-	 	alert("Le fichier a bien été enregistrer");
+	 	alert("Le fichier a bien Ã©tÃ© enregistrer");
 		oListe().onload = top.close();
 	}
 	else
-		alert("Erreur: Vérifiez que vous avez entré un nom de fichier.");
+		alert("Erreur: VÃ©rifiez que vous avez entrÃ© un nom de fichier.");
 }
 
 function Annuler()

@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: activite.tbl.php
 ** Description ............: 
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 21/11/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation .......: 01/06/2001
+** DerniÃ¨re modification ..: 21/11/2005
+** Auteurs ................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -121,8 +121,8 @@ class CActiv
 			return 0;
 		
 		// -------------------
-		// Copier le répertoire de l'activité actuelle
-		// vers la nouvelle activité
+		// Copier le rÃ©pertoire de l'activitÃ© actuelle
+		// vers la nouvelle activitÃ©
 		// -------------------
 		$oActiv = new CActiv($this->oBdd,$iIdActiv);
 		
@@ -131,15 +131,15 @@ class CActiv
 		
 		copyTree($sRepSrc,$sRepDst);
 		
-		// Vider les répertoires contenant les fichiers
+		// Vider les rÃ©pertoires contenant les fichiers
 		// des collecticiels (sauf le document de base) et des chats
-		$oActiv->effacerRepDocuments(FALSE,"·*\-([0-9]{4})\..*");
+		$oActiv->effacerRepDocuments(FALSE,"Â·*\-([0-9]{4})\..*");
 		$oActiv->effacerRepChats(FALSE);
 		
 		unset($oActiv);
 		
 		// -------------------
-		// Copier les sous-activités
+		// Copier les sous-activitÃ©s
 		// -------------------
 		if ($v_bRecursive)
 			$this->copierSousActivites($iIdActiv);
@@ -247,17 +247,17 @@ class CActiv
 	{
 		$this->effacerEquipes();
 		
-		// Rechercher toutes les sous-activités
+		// Rechercher toutes les sous-activitÃ©s
 		$this->initSousActivs();
 		
-		// Effacer toutes les sous-activités
+		// Effacer toutes les sous-activitÃ©s
 		foreach ($this->aoSousActivs as $oSousActiv)
 			$oSousActiv->effacer();
 		
 		if (PHP_OS === "Linux")
 			exec("rm -rf ".dir_cours($this->retId(),$this->retIdFormation(),NULL,TRUE));
 		
-		// Effacer cette activité
+		// Effacer cette activitÃ©
 		$sRequeteSql = "DELETE FROM Activ"
 			." WHERE IdActiv='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -283,9 +283,9 @@ class CActiv
 	}
 	
 	/**
-	 * Effacer le répertoire qui contient toutes les archives des chats
+	 * Effacer le rÃ©pertoire qui contient toutes les archives des chats
 	 *
-	 * \param $v_bEffacerRepertoire Doit-on effacer le répertoire des chats ?
+	 * \param $v_bEffacerRepertoire Doit-on effacer le rÃ©pertoire des chats ?
 	 *
 	 */
 	function effacerRepChats ($v_bEffacerRepertoire=TRUE)
@@ -386,7 +386,7 @@ class CActiv
 				break;
 
 			case MODALITE_PAR_EQUIPE:
-				$r_sTexteModalite = "par équipe";
+				$r_sTexteModalite = "par Ã©quipe";
 				break;
 
 			default:
@@ -400,9 +400,9 @@ class CActiv
 	{
 		switch ($this->retStatut())
 		{
-			case STATUT_FERME: $r_sTexteStatut = "fermé"; break;
+			case STATUT_FERME: $r_sTexteStatut = "fermÃ©"; break;
 			case STATUT_OUVERT: $r_sTexteStatut = "ouvert"; break;
-			case STATUT_ARCHIVE: $r_sTexteStatut = "archivé"; break;
+			case STATUT_ARCHIVE: $r_sTexteStatut = "archivÃ©"; break;
 			default: $r_sTexteStatut = "[STATUT INCONNU]";
 		}
 		return $r_sTexteStatut;
@@ -429,7 +429,7 @@ class CActiv
 		{
 			$bEstDansEquipe = TRUE;
 			
-			// Vérifier que l'étudiant fait vraiment parti d'un groupe
+			// VÃ©rifier que l'Ã©tudiant fait vraiment parti d'un groupe
 			if (($oEnreg->IdActiv > 0 && $aiIds[TYPE_ACTIVITE] != $oEnreg->IdActiv) ||
 				($oEnreg->IdRubrique > 0 && $aiIds[TYPE_RUBRIQUE] != $oEnreg->IdRubrique) ||
 				($oEnreg->IdMod > 0 && $aiIds[TYPE_MODULE] != $oEnreg->IdMod) ||
@@ -595,7 +595,7 @@ class CActiv
 			return FALSE;
 
 		// *************************************
-		// Ajouter dans ce tableau les ids et les numéros d'ordre
+		// Ajouter dans ce tableau les ids et les numÃ©ros d'ordre
 		// *************************************
 
 		$aoNumsOrdre = array();
@@ -604,7 +604,7 @@ class CActiv
 			$aoNumsOrdre[$i] = array ($this->aoActivs[$i]->IdActiv,$this->aoActivs[$i]->OrdreActiv);
 
 		// *************************************
-		// Mettre à jour dans la table
+		// Mettre Ã  jour dans la table
 		// *************************************
 
 		if ($v_iNouveauNumOrdre > 0)

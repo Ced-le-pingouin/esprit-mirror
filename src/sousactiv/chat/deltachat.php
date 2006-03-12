@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: deltachat.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 04/10/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 04/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -40,7 +40,7 @@ require_once(dir_code_lib("repertoire.class.php"));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
@@ -90,7 +90,7 @@ if ($oChat->retModalite() == CHAT_PAR_EQUIPE)
 }
 
 // ---------------------
-// Définir le répertoire de sauvegarde des archives
+// DÃ©finir le rÃ©pertoire de sauvegarde des archives
 // ---------------------
 $sRepArchives = NULL;
 

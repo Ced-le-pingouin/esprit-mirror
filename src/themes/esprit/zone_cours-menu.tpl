@@ -23,8 +23,8 @@ function changerHistorique(v_iPosTableau,v_sIdSpan)
 	
 	if (typeof(v_sIdSpan) == "undefined")
 	{
-		// L'utilisateur a cliqué sur le nom de la formation, donc,
-		// masquons l'indice de cours et mettons en évidence le nom
+		// L'utilisateur a cliquÃ© sur le nom de la formation, donc,
+		// masquons l'indice de cours et mettons en Ã©vidence le nom
 		// de la formation.
 		masquerIndice("indice");
 		sDernierIdSpan = null;

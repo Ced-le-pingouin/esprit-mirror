@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: exporter-filtres.php
 ** Description ............:
-** Date de crÈation .......:
-** DerniËre modification ..: 22/02/2005
+** Date de cr√©ation .......:
+** Derni√®re modification ..: 22/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** UnitÈ de Technologie de l'Education
+** Unit√© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -43,7 +43,7 @@ $oTpl = new Template("exporter-filtres.tpl");
 
 $oBlocTypeStatutPers = new TPL_Block("BLOCK_STATUT_PERSONNE",$oTpl);
 
-$oTpl->remplacer("{onglet->titre}",htmlentities("Liste des personnes trouvÈes"));
+$oTpl->remplacer("{onglet->titre}",htmlentities("Liste des personnes trouv√©es"));
 
 // Liste de l'alphabet
 $sListeAlphabet = NULL;

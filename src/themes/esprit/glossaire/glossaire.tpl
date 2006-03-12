@@ -14,4 +14,4 @@
 <div style="text-align: center;"><a href="#top" onfocus="blur()">Retour</a></div>
 <hr>
 [SET_GLOSSAIRE_ELEMENT-]
-[SET_GLOSSAIRE_SANS_ELEMENTS+]<p style="text-align: center; font-weight: bold;">Pas d'élément trouvé</p>[SET_GLOSSAIRE_SANS_ELEMENTS-]
+[SET_GLOSSAIRE_SANS_ELEMENTS+]<p style="text-align: center; font-weight: bold;">Pas d'Ã©lÃ©ment trouvÃ©</p>[SET_GLOSSAIRE_SANS_ELEMENTS-]

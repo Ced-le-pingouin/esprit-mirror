@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: typestatutpers.tbl.php
 ** Description ............: 
-** Date de création .......: 22/02/2005
-** Dernière modification ..: 22/02/2005
+** Date de crÃ©ation .......: 22/02/2005
+** DerniÃ¨re modification ..: 22/02/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -67,7 +67,7 @@ class CTypeStatutPers
 		}
 	}
 	
-	// {{{ Méthodes de retour
+	// {{{ MÃ©thodes de retour
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retNomStatut () { return $this->oEnregBdd->TxtStatut; }
 	function retNomStatutMasculin () { return $this->oEnregBdd->NomMasculinStatut; }

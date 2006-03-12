@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: rubr_modif.inc.php
 ** Description ............: 
-** Date de création .......: 01-02-2001
-** Dernière modification ..: 04-09-2002
+** Date de crÃ©ation .......: 01-02-2001
+** DerniÃ¨re modification ..: 04-09-2002
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -48,17 +48,17 @@ if (isset ($g_iRubrique))
 	if ($html_rubrique != "none")
 	{
 		// *************************************
-		// Charger le fichier vers le répertoire du serveur
+		// Charger le fichier vers le rÃ©pertoire du serveur
 		// *************************************
 
 		$repDeposer = $oProjet->retRepRubriques ();
 
-		// Effacer l'ancien fichier qui se trouve dans le répertoire du serveur
+		// Effacer l'ancien fichier qui se trouve dans le rÃ©pertoire du serveur
 		$f = explode (":",$oModule_Rubrique->retDonnee ());
 
 		@unlink ($repDeposer.$f[0]);
 
-		// Charger le fichier et retourne une valeur booléenne: VRAI si réussi
+		// Charger le fichier et retourne une valeur boolÃ©enne: VRAI si rÃ©ussi
 		$bChargerFichier = (chargerFichier ($html_rubrique,$repDeposer.$html_rubrique_name,"html,htm") == 0);			
 	}		
 

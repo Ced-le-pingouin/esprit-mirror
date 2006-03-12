@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: changer_dossier-menu.php
 ** Description ............: 
-** Date de création .......: 02/06/2005
-** Dernière modification ..: 29/09/2005
+** Date de crÃ©ation .......: 02/06/2005
+** DerniÃ¨re modification ..: 29/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,7 +39,7 @@ $oProjet = new CProjet();
 $oProjet->initPermisUtilisateur(FALSE);
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
 
@@ -47,7 +47,7 @@ $url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
 // Initialiser
 // ---------------------
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>

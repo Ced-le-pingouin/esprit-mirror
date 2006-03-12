@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: intitule.php
 ** Description ............: 
-** Date de création .......: 15/04/2003
-** Dernière modification ..: 23/06/2004
+** Date de crÃ©ation .......: 15/04/2003
+** DerniÃ¨re modification ..: 23/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
@@ -96,7 +96,7 @@ else
 	$bGestionIntitule = FALSE;
 
 // ---------------------
-// Rechercher toutes les intitulés
+// Rechercher toutes les intitulÃ©s
 // ---------------------
 $oIntitules = new CIntitule($oProjet->oBdd);
 $iNbrIntitules = $oIntitules->initIntitules($url_iTypeIntitule);
@@ -128,7 +128,7 @@ foreach ($oIntitules->aoIntitules as $oIntitule)
 	
 	$sMenus = ($bGestionIntitule ? $oSet_Menu_Modif : $oSet_Menu_Vide);
 	
-	// Insérer une nouvelle ligne
+	// InsÃ©rer une nouvelle ligne
 	$oBloc_Intitule->nextLoop();
 	$oBloc_Intitule->remplacer("{intitule->style->classe}"," ".$sNomClassCss);
 	$oBloc_Intitule->remplacer("{gestion_intitule}",$sMenus);

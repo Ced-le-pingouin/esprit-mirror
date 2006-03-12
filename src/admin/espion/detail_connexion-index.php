@@ -30,14 +30,14 @@ $sParamUrl = (isset($HTTP_GET_VARS["idPers"]) ? "?idPers=".$HTTP_GET_VARS["idPer
 // ---------------------
 // Frame du Titre
 // ---------------------
-$sTitrePrincipal = "Détails de connexion";
+$sTitrePrincipal = "DÃ©tails de connexion";
 $sFrameSrcTitre = "detail_connexion-titre.php";
 
 // ---------------------
 // Frame principal
 // ---------------------
 
-// Fichier d'en-tête de la page html
+// Fichier d'en-tÃªte de la page html
 $sBlockHead =<<< BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
 <!--

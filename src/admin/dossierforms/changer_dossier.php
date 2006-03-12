@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: changer_dossier.php
 ** Description ............:
-** Date de création .......: 02/06/2005
-** Dernière modification ..: 28/11/2005
+** Date de crÃ©ation .......: 02/06/2005
+** DerniÃ¨re modification ..: 28/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -48,7 +48,7 @@ if (!$oProjet->verifPermission("PERM_CLASSER_FORMATIONS"))
 $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sEvent          = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
 $url_iIdDossierForms = (isset($url_sEvent) ? $HTTP_GET_VARS["idDossierForms"] : $oProjet->retInfosSession(SESSION_DOSSIER_FORMS));

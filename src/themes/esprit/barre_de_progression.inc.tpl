@@ -2,11 +2,11 @@
   -- Barre de progression
   -- 
   -- Auteur: Filippo PORCO <filippo.porco@umh.ac.be>
-  -- Dernière modification: 08/10/2004
+  -- DerniÃ¨re modification: 08/10/2004
   --
   -- div.barre_de_progression { background-color: rgb(255,255,255); position: absolute; top: 0; left: 5; width: 100%; height: 100%; visibility: hidden; }
   --
-  -- Unité de Technologie de l'Education
+  -- UnitÃ© de Technologie de l'Education
   -- 18, Place du Parc
   -- 7000 MONS
   -->

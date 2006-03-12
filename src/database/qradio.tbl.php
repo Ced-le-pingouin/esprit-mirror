@@ -21,13 +21,13 @@
 
 require_once (dir_database("bdd.class.php"));  	//permet d'utiliser la bdd sans creer un objet
 																//CProjet et ainsi cela permet de creer des objets
-																//d'une autre classe ‡ partir de celle-ci.
+																//d'une autre classe √† partir de celle-ci.
 
 /*
 ** Fichier ................: qradio.tbl.php
 ** Description ............: 
-** Date de crÈation .......: 
-** DerniËre modification ..: 22-06-2004
+** Date de cr√©ation .......: 
+** Derni√®re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -43,16 +43,16 @@ class CQRadio
  function CQRadio(&$v_oBdd,$v_iId=0) 
  {
    			$this->oBdd = &$v_oBdd;  
-								  //si 0 crÈe un objet presque vide sinon 
-								  //rempli l'objet avec les donnÈes de la table QRadio
-								  //de l'elÈment ayant l'Id passÈ en argument 
-								  //(ou avec l'objet passÈ en argument mais sans passer par le constructeur)
+								  //si 0 cr√©e un objet presque vide sinon 
+								  //rempli l'objet avec les donn√©es de la table QRadio
+								  //de l'el√©ment ayant l'Id pass√© en argument 
+								  //(ou avec l'objet pass√© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
  }
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requÍte sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requ√™te sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
  function init ($v_oEnregExistant=NULL)  
  {
@@ -82,7 +82,7 @@ class CQRadio
  }
 
 
-//Fonctions de dÈfinition
+//Fonctions de d√©finition
 
  function defIdObjForm ($v_iIdObjForm)
 {
@@ -132,10 +132,10 @@ function retDispQR () { return $this->oEnregBdd->DispQR; }
 
 	  /*
 	  ** Fonction 		: RetourReponseQLD
-	  ** Description	: renvoie le code html contenant la liste dÈroulante avec les rÈponses,
-	  **					  si $v_iIdFC la rÈponse fournie par l'Ètudiant sera prÈ-sÈlectionnÈe	
-	  ** EntrÈe			:
-	  **				$v_iIdFC : Id d'un formulaire complÈtÈ -> rÈcupÈration de la rÈponse dans la table correspondante
+	  ** Description	: renvoie le code html contenant la liste d√©roulante avec les r√©ponses,
+	  **					  si $v_iIdFC la r√©ponse fournie par l'√©tudiant sera pr√©-s√©lectionn√©e	
+	  ** Entr√©e			:
+	  **				$v_iIdFC : Id d'un formulaire compl√©t√© -> r√©cup√©ration de la r√©ponse dans la table correspondante
 	  ** Sortie			:
 	  **				code html
 	  */
@@ -145,7 +145,7 @@ function RetourReponseQLD($v_iIdFC=NULL)
 $iIdReponseEtu = "";
 if ($v_iIdFC != NULL)
 	{
-	//SÈlection de la rÈponse donnÈe par l'Ètudiant
+	//S√©lection de la r√©ponse donn√©e par l'√©tudiant
 	$sRequeteSql = "SELECT * FROM ReponseEntier"
 	." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->oEnregBdd->IdObjForm}'";
 	
@@ -154,7 +154,7 @@ if ($v_iIdFC != NULL)
 	$iIdReponseEtu = $oEnregRep->IdReponse;
 	}
 
-//SÈlection de toutes les rÈponses concernant l'objet QListeDeroul en cours de traitement
+//S√©lection de toutes les r√©ponses concernant l'objet QListeDeroul en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 $hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
@@ -174,7 +174,7 @@ $CodeHtml="<SELECT NAME=\"{$this->iId}\">\n";
 	
 	if ($iIdReponseEtu == $IdReponseTemp)
 		{
-			  //PrÈ-sÈlection de la rÈponse donnÈe par l'Ètudiant
+			  //Pr√©-s√©lection de la r√©ponse donn√©e par l'√©tudiant
 			  $CodeHtml.="<OPTION VALUE=\"$IdReponseTemp\" SELECTED>$TexteTemp\n";
 		}
 	else
@@ -190,12 +190,12 @@ return "$CodeHtml";
 
 	/*
 	** Fonction 		: RetourReponseQR
-	** Description		: va rechercher dans la table rÈponse les rÈponses correspondant
+	** Description		: va rechercher dans la table r√©ponse les r√©ponses correspondant
 	**				  a la question de type bouton Radio en cours de traitement 
-	**				  + mise en page de ces rÈponses,
-	**				  si $v_iIdFC la rÈponse fournie par l'Ètudiant sera prÈ-sÈlectionnÈe
-	** EntrÈe			:
-	**				  $v_iIdFC : Id d'un formulaire complÈtÈ -> rÈcupÈration de la rÈponse dans la table correspondante
+	**				  + mise en page de ces r√©ponses,
+	**				  si $v_iIdFC la r√©ponse fournie par l'√©tudiant sera pr√©-s√©lectionn√©e
+	** Entr√©e			:
+	**				  $v_iIdFC : Id d'un formulaire compl√©t√© -> r√©cup√©ration de la r√©ponse dans la table correspondante
 	** Sortie			: Code Html
 	*/
 
@@ -205,7 +205,7 @@ function RetourReponseQR($v_iIdFC=NULL)
 $iIdReponseEtu = "";
 if ($v_iIdFC != NULL)
 	{
-	//SÈlection de la rÈponse donnÈe par l'Ètudiant
+	//S√©lection de la r√©ponse donn√©e par l'√©tudiant
 	$sRequeteSql = "SELECT * FROM ReponseEntier"
 	." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->oEnregBdd->IdObjForm}'";
 	
@@ -215,12 +215,12 @@ if ($v_iIdFC != NULL)
 	}
 
 
-//SÈlection de toutes les rÈponses concernant l'objet QRadio en cours de traitement
+//S√©lection de toutes les r√©ponses concernant l'objet QRadio en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 $hResulRRQR = $this->oBdd->executerRequete($sRequeteSql);
 
-if ($this->oEnregBdd->DispQR == 'Ver')  //PrÈsentation sous forme de tableau
+if ($this->oEnregBdd->DispQR == 'Ver')  //Pr√©sentation sous forme de tableau
 {
 $CodeHtml="<TABLE cellspacing=\"0\" cellpadding=\"0\">";
 
@@ -244,7 +244,7 @@ $CodeHtml="<TABLE cellspacing=\"0\" cellpadding=\"0\">";
 	}
 $CodeHtml.="</TABLE>";
 }
-else //PrÈsentation en ligne
+else //Pr√©sentation en ligne
 	  {
 	  $CodeHtml="";
 	  
@@ -276,20 +276,20 @@ return "$CodeHtml";
 	  /*
 	  ** Fonction 		: cHtmlQRadio
 	  ** Description	: renvoie le code html qui permet d'afficher une question de type bouton radio,
-	  **				     si $v_iIdFC est passÈ en paramËtre il est envoyÈ ‡ la fonction RetourReponseQR qui permettra
-	  **					  de prÈ-sÈlectionner la rÈponse entrÈe par l'Ètudiant
-	  ** EntrÈe			:
-	  **				$v_iIdFC : Id d'un formulaire complÈtÈ
+	  **				     si $v_iIdFC est pass√© en param√®tre il est envoy√© √† la fonction RetourReponseQR qui permettra
+	  **					  de pr√©-s√©lectionner la r√©ponse entr√©e par l'√©tudiant
+	  ** Entr√©e			:
+	  **				$v_iIdFC : Id d'un formulaire compl√©t√©
 	  ** Sortie			:
 	  **				code html
 	  */
 
 function cHtmlQRadio($v_iIdFC=NULL)
 	{
-	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adÈquat)
+	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html ad√©quat)
 	$this->oEnregBdd->EnonQR = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQR);
 		
-	//Si alignement vertical alors suppression des textes avant et aprËs sinon mise en forme
+	//Si alignement vertical alors suppression des textes avant et apr√®s sinon mise en forme
 	if ($this->oEnregBdd->DispQR == 'Ver')
 		{
 		   $this->oEnregBdd->TxtAvQR = "";
@@ -301,13 +301,13 @@ function cHtmlQRadio($v_iIdFC=NULL)
 		   $this->oEnregBdd->TxtApQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQR);
 		}
 	
-	//GenÈration du code html reprÈsentant l'objet
+	//Gen√©ration du code html repr√©sentant l'objet
 	$sCodeHtml="\n<!--QRadio : {$this->oEnregBdd->IdObjForm} -->\n"
 		."<div align={$this->oEnregBdd->AlignEnonQR}>{$this->oEnregBdd->EnonQR}</div>\n"
 		."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQR}>\n"
 		."{$this->oEnregBdd->TxtAvQR} \n"
-		.$this->RetourReponseQR($v_iIdFC) 			//Appel de la fonction qui renvoie les rÈponses sous forme de bouton radio, 
-																//avec la rÈponse cochÈe par l'Ètudiant si IdFC est prÈsent
+		.$this->RetourReponseQR($v_iIdFC) 			//Appel de la fonction qui renvoie les r√©ponses sous forme de bouton radio, 
+																//avec la r√©ponse coch√©e par l'√©tudiant si IdFC est pr√©sent
 		." {$this->oEnregBdd->TxtApQR}\n"
 		."</div>\n";
 	
@@ -317,11 +317,11 @@ function cHtmlQRadio($v_iIdFC=NULL)
 
 	/*
 	** Fonction 		: RetourReponseQRModif
-	** Description		: va rechercher dans la table rÈponse les rÈponses correspondant
+	** Description		: va rechercher dans la table r√©ponse les r√©ponses correspondant
 	**				  a la question de type bouton Radio en cours de traitement 
-	**				  + mise en page de ces rÈponses avec possibilitÈ de modification
-	** EntrÈe			:
-	** Sortie			: Code Html contenant les rÈponses + mise en page + modification possible
+	**				  + mise en page de ces r√©ponses avec possibilit√© de modification
+	** Entr√©e			:
+	** Sortie			: Code Html contenant les r√©ponses + mise en page + modification possible
 	*/
 
 
@@ -329,11 +329,11 @@ function RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire)
 {
 
 /*
-Utilisation de l'objet CBdd bcp plus lÈger pour faire les requÍtes qu'un objet Projet
+Utilisation de l'objet CBdd bcp plus l√©ger pour faire les requ√™tes qu'un objet Projet
 Attention ne pas oublier le : require_once (dir_database("bdd.class.php"));
 */
 $oCBdd = new CBdd;
-//SÈlection de toutes les rÈponses concernant l'objet QRadio en cours de traitement
+//S√©lection de toutes les r√©ponses concernant l'objet QRadio en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 $hResultInt = $oCBdd->executerRequete($sRequeteSql);
@@ -350,9 +350,9 @@ $CodeHtml="";
 	$IdReponseTemp = $oReponse->retId();
 	$IdObjFormTemp = $oReponse->retIdObjForm();
 	
-	//Ici(modif) la propriÈtÈ name est l'Id de la rÈponse ce qui permet de les identifier pour les enregistrer
-	//mais ‡ l'affichage(liste) la propriÈtÈ name est l'Id de l'objet ce qui permet d'avoir le meme nom pour
-	//toutes les rÈponses et ainsi ne pas permettre de cocher +sieurs boutons radio
+	//Ici(modif) la propri√©t√© name est l'Id de la r√©ponse ce qui permet de les identifier pour les enregistrer
+	//mais √† l'affichage(liste) la propri√©t√© name est l'Id de l'objet ce qui permet d'avoir le meme nom pour
+	//toutes les r√©ponses et ainsi ne pas permettre de cocher +sieurs boutons radio
 	
 			  if ($CodeHtml =="")
 		  {
@@ -377,16 +377,16 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 	global $HTTP_POST_VARS, $HTTP_GET_VARS;
 	
-	//initialisation du messages d'erreur ‡ 'vide' et de la variable servant a dÈtecter
+	//initialisation du messages d'erreur √† 'vide' et de la variable servant a d√©tecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-	//de celui-ci dans la base de donnÈes + affiche d'une astÈrisque ‡ l'endroit de l'erreur)
+	//de celui-ci dans la base de donn√©es + affiche d'une ast√©risque √† l'endroit de l'erreur)
 	
 	$sMessageErreur1 = "";
 	$iFlagErreur=0;
 	
 	if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
 		{
-			   //RÈcupÈration des variables transmises par le formulaire
+			   //R√©cup√©ration des variables transmises par le formulaire
 			   $this->oEnregBdd->EnonQR = stripslashes($HTTP_POST_VARS['Enonce']);
 			   $this->oEnregBdd->AlignEnonQR = $HTTP_POST_VARS['AlignEnon'];
 				$this->oEnregBdd->AlignRepQR = $HTTP_POST_VARS['AlignRep'];
@@ -394,13 +394,13 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 				$this->oEnregBdd->TxtApQR = stripslashes($HTTP_POST_VARS['TxtAp']);
 				$this->oEnregBdd->DispQR = $HTTP_POST_VARS['Disp'];
 				
-			   //Test des donnÈes reÁues et marquage des erreurs ‡ l'aide d'une astÈrisque dans le formulaire
+			   //Test des donn√©es re√ßues et marquage des erreurs √† l'aide d'une ast√©risque dans le formulaire
 			   //if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 
 			   //if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
 					//{
 
-						   //Enregistrement des rÈponses et de leurs poids pour les differents axes
+						   //Enregistrement des r√©ponses et de leurs poids pour les differents axes
 							if (isset($HTTP_POST_VARS["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
 																			//sur ajouter, $HTTP_POST_VARS["rep"] n'existe pas 
 							{
@@ -412,8 +412,8 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 									$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 									$oReponse->enregistrer(FALSE);
 								
-									  if (isset($HTTP_POST_VARS["repAxe"])) 	//VÈrifier pour ne pas effectuer le traitement si aucun axe 
-									  														// n'est dÈfini pour ce formulaire
+									  if (isset($HTTP_POST_VARS["repAxe"])) 	//V√©rifier pour ne pas effectuer le traitement si aucun axe 
+									  														// n'est d√©fini pour ce formulaire
 									  {
 										  $tab = $HTTP_POST_VARS["repAxe"];
 										  foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
@@ -436,9 +436,9 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 						   //Enregistrement de l'objet QRadio actuel dans la BD
 						   $this->enregistrer();
 					  		
-						   //Lorsque la question est bien enregistrÈe dans la BD 
-						   //(Pour cela on a cliquÈ sur le bouton 'Appliquer les changements')
-						   //on rafraÓchit la liste en cochant l'objet que l'on est en train de traiter
+						   //Lorsque la question est bien enregistr√©e dans la BD 
+						   //(Pour cela on a cliqu√© sur le bouton 'Appliquer les changements')
+						   //on rafra√Æchit la liste en cochant l'objet que l'on est en train de traiter
 							
 							echo "<script>\n";
 							echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
@@ -447,14 +447,14 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 
 		}
 	
-	//Si on a cliquÈ sur le lien 'Ajouter' cela affecte, via javascript, au champ cachÈ ['typeaction']
-	//la valeur 'ajouter' et au champ cachÈ parametre la valeur '0'.
-	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique Ègalement 
-	//un enregistrement d'office dans la BD des modifications dÈj‡ effectuÈes sur l'objet en cours. 
-	//(avec les vÈrifications d'usage avant enregistrement dans la BD)
+	//Si on a cliqu√© sur le lien 'Ajouter' cela affecte, via javascript, au champ cach√© ['typeaction']
+	//la valeur 'ajouter' et au champ cach√© parametre la valeur '0'.
+	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique √©galement 
+	//un enregistrement d'office dans la BD des modifications d√©j√† effectu√©es sur l'objet en cours. 
+	//(avec les v√©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='ajouter')
 		  {
-		  //echo "je suis passÈ par ajouter";
+		  //echo "je suis pass√© par ajouter";
 		  
 					$hResultInt2 = $this->oBdd->executerRequete("SELECT MAX(OrdreReponse) AS OrdreMax FROM Reponse"
 					." WHERE IdObjForm = '{$this->oEnregBdd->IdObjForm}'");
@@ -467,32 +467,32 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 					$oReponse->defOrdreReponse($iOrdreMax);
 					
 					/*
-					La rÈponse qui sera crÈÈe ici contiendra :
+					La r√©ponse qui sera cr√©√©e ici contiendra :
 									le numero de l'objet auquel elle appartient
-									l'ordre dans lequel elle sera affichÈe (toujours en derniËre place)
-									son numÈro d'identifiant sera attribuÈ automatiquement par MySql
-					le texte de la rÈponse sera attribuÈ par aprËs.
+									l'ordre dans lequel elle sera affich√©e (toujours en derni√®re place)
+									son num√©ro d'identifiant sera attribu√© automatiquement par MySql
+					le texte de la r√©ponse sera attribu√© par apr√®s.
 					*/
 					$oReponse->enregistrer();
 					$this->oBdd->libererResult($hResultInt2);
 			  }
 		  
-	//Si on a cliquÈ sur le lien 'Supprimer' cela affecte, via javascript, au champ cachÈ ['typeaction']
-	//la valeur 'supprimer' et au champ cachÈ ['parametre'] l'id de la rÈponse a supprimer.
-	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique Ègalement 
-	//un enregistrement d'office dans la BD des modifications dÈj‡ effectuÈes sur l'objet en cours.
-	//(avec les vÈrifications d'usage avant enregistrement dans la BD)
+	//Si on a cliqu√© sur le lien 'Supprimer' cela affecte, via javascript, au champ cach√© ['typeaction']
+	//la valeur 'supprimer' et au champ cach√© ['parametre'] l'id de la r√©ponse a supprimer.
+	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique √©galement 
+	//un enregistrement d'office dans la BD des modifications d√©j√† effectu√©es sur l'objet en cours.
+	//(avec les v√©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='supprimer')
 		  {
-				 //echo "<br>je suis passÈ par supprimer";
+				 //echo "<br>je suis pass√© par supprimer";
 				 $v_iIdReponse = $HTTP_POST_VARS['parametre'];
 				 $oReponse = new CReponse($this->oBdd,$v_iIdReponse);
 				 $oReponse->effacer();
 		  }
 	
 	//La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-	//et les 6 autres contiennent une chaÓne vide
-	// aeX = alignement enoncÈ, arX = alignement rÈponse
+	//et les 6 autres contiennent une cha√Æne vide
+	// aeX = alignement enonc√©, arX = alignement r√©ponse
 	list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
 		Alignement($this->oEnregBdd->AlignEnonQR,$this->oEnregBdd->AlignRepQR);
 	
@@ -507,11 +507,11 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>ENONCE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>$sMessageErreur1 EnoncÈ :</TD>\n"
+		   ."<TD>$sMessageErreur1 Enonc√© :</TD>\n"
 		   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQR}</textarea></TD>\n"
 		   ."</TR>\n"
 		   ."<TR>\n"
-		   ."<TD>Alignement ÈnoncÈ :</TD>\n"
+		   ."<TD>Alignement √©nonc√© :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
@@ -524,10 +524,10 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>REPONSE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>Texte avant la rÈponse :</TD>\n"
+		   ."<TD>Texte avant la r√©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQR}\"></TR>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>Texte aprËs la rÈponse :</TD>\n"
+		   ."<TD>Texte apr√®s la r√©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQR}\"></TR>\n"
 		   ."</TR><TR>\n"
 		   ."<TD>Disposition :</TD>\n"
@@ -535,13 +535,13 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<INPUT TYPE=\"radio\" NAME=\"Disp\" VALUE=\"Ver\" $d2>Verticale\n"
 		   ."</TD>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>RÈponse(s) : \n"
+		   ."<TD>R√©ponse(s) : \n"
 			."<a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a>\n"
 			."</TD>\n"
 		   .$this->RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire) 
 		   ."</TR>\n"
 		   ."<TR>\n"
-		   ."<TD>Alignement RÈponse :</TD>\n"
+		   ."<TD>Alignement R√©ponse :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
@@ -552,7 +552,7 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."</fieldset>\n"
 		   ."<INPUT TYPE=\"hidden\" NAME=\"typeaction\" VALUE=\"\">\n"
 			."<INPUT TYPE=\"hidden\" NAME=\"parametre\" VALUE=\"\">\n"
-			//Le champ cachÈ ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
+			//Le champ cach√© ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
 		   ."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
 		   ."</form>\n";
 	
@@ -563,7 +563,7 @@ function enregistrer ()
 	{
 	if ($this->oEnregBdd->IdObjForm !=NULL)
 	   {	
-		// Les variables contenant du "texte" doivent Ítre formatÈes, cela permet 
+		// Les variables contenant du "texte" doivent √™tre format√©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQR = validerTexte($this->oEnregBdd->EnonQR);
 		$sTxtAvQR = validerTexte($this->oEnregBdd->TxtAvQR);
@@ -618,7 +618,7 @@ function copier ($v_iIdNvObjForm)
 		if ($v_iIdNvObjForm < 1)
 			return;
 		
-		// Les variables contenant du "texte" doivent Ítre formatÈes, cela permet 
+		// Les variables contenant du "texte" doivent √™tre format√©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQR = validerTexte($this->oEnregBdd->EnonQR);
 		$sTxtAvQR = validerTexte($this->oEnregBdd->TxtAvQR);

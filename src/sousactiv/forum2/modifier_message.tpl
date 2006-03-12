@@ -33,7 +33,7 @@ function valider()
 }
 function Annuler()
 {
-	// Desactiver le message sélectionné
+	// Desactiver le message sÃ©lectionnÃ©
 	if (top.opener && top.opener.top.oFrmMessages)
 		top.opener.top.oFrmMessages().deselect_message();
 	top.close();

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: nouv_form.php
 ** Description ............:
-** Date de création .......: 03/06/2002
-** Dernière modification ..: 06/06/2005
+** Date de crÃ©ation .......: 03/06/2002
+** DerniÃ¨re modification ..: 06/06/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -40,13 +40,13 @@ $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_AJT_SESSION");
 
 // ---------------------
-// Déclarer les constantes locales
+// DÃ©clarer les constantes locales
 // ---------------------
 define("NOUVELLE_FORMATION",0);
 define("COPIER_FORMATION",1);
 
 // ---------------------
-// Récupération des valeurs des formulaires ou des l'urls
+// RÃ©cupÃ©ration des valeurs des formulaires ou des l'urls
 // ---------------------
 $etape    = isset($HTTP_POST_VARS["ETAPE"]) ? $HTTP_POST_VARS["ETAPE"] : "1";
 $filtre   = isset($HTTP_POST_VARS["FILTRE"]) ? $HTTP_POST_VARS["FILTRE"] : NULL;
@@ -113,7 +113,7 @@ if (isset($fonction))
 ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Ajouter une nouvelle formation</title>
 <?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>

@@ -19,7 +19,7 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-// Ce fichier a été généré (31 Aug 2004) automatiquement par la plate-forme
+// Ce fichier a Ã©tÃ© gÃ©nÃ©rÃ© (31 Aug 2004) automatiquement par la plate-forme
 
 define("STATUT_POTENTIEL", 1000);
 

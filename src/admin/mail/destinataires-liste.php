@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: liste-destinataires.php
 ** Description ............:
-** Date de création .......: 14/12/2004
-** Dernière modification ..: 17/01/2005
+** Date de crÃ©ation .......: 14/12/2004
+** DerniÃ¨re modification ..: 17/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,25 +37,25 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 
-// Envoyer un email aux personnes correspondant aux statuts autorisés
+// Envoyer un email aux personnes correspondant aux statuts autorisÃ©s
 // Les statuts suivants seront pris en compte:
 //   > mail-index.php?idStatuts=3x7x9
-//                               | | +-- Les étudiants
+//                               | | +-- Les Ã©tudiants
 //                               | +-- Les tuteurs
 //                               +-- Les responsables de formation
 //   > mail-index.php?idStatuts=9
-//                               +-- Les étudiants
+//                               +-- Les Ã©tudiants
 $url_aiIdStatuts = (empty($HTTP_GET_VARS["idStatuts"]) ? NULL : explode("x",$HTTP_GET_VARS["idStatuts"]));
 
-// Envoyer un email à cette liste des équipes
+// Envoyer un email Ã  cette liste des Ã©quipes
 //   > mail-index.php?idEquipes=12x13x15x20
 //   > mail-index.php?idEquipes=15
 $url_aiIdEquipes = (empty($HTTP_GET_VARS["idEquipes"]) ? NULL : explode("x",$HTTP_GET_VARS["idEquipes"]));
 
-// Envoyer un email à cette liste de personnes
+// Envoyer un email Ã  cette liste de personnes
 //   > mail-index.php?idPers=tous
 //   > mail-index.php?idPers=1x15x27x14x500
 //   > mail-index.php?idPers=27
@@ -103,7 +103,7 @@ if (is_array($url_aiIdStatuts))
 
 if (is_array($url_aiIdEquipes))
 {
-	// Rechercher les personnes par rapport à l'équipe
+	// Rechercher les personnes par rapport Ã  l'Ã©quipe
 	foreach ($url_aiIdEquipes as $iIdEquipe)
 	{
 		$oEquipe = new CEquipe($oProjet->oBdd,$iIdEquipe);
@@ -142,7 +142,7 @@ if (isset($aoDestinataires) && is_array($aoDestinataires))
 }
 
 // ---------------------
-// Trier par rapport au nom et au prénom de l'utilisateur
+// Trier par rapport au nom et au prÃ©nom de l'utilisateur
 // ---------------------
 ksort($asDestinataires);
 
@@ -166,7 +166,7 @@ if (count($asDestinataires) > 0)
 		else
 		{
 			$oBlocDestinataire->ajouter($asVarDestinataire[0]);
-			$sEmail = "sans adresse électronique";
+			$sEmail = "sans adresse Ã©lectronique";
 		}
 		
 		$sTexte = "{$sNomComplet} <{$sEmail}>";

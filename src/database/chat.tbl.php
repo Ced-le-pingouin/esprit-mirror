@@ -22,11 +22,11 @@
 /*
 ** Classe .................: chat.tbl.php
 ** Description ............:
-** Date de création .......:
-** Dernière modification ..: 04/10/2005
+** Date de crÃ©ation .......:
+** DerniÃ¨re modification ..: 04/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -114,7 +114,7 @@ class CChat
 	
 	function remettreDelOrdre ()
 	{
-		// Rechercher tous les salons de cette sous-activité
+		// Rechercher tous les salons de cette sous-activitÃ©
 		$sRequeteSql = "SELECT IdChat FROM Chat"
 			." WHERE"
 			.($this->retTypeNiveau() == TYPE_SOUS_ACTIVITE ? " IdSousActiv='{$this->oEnregBdd->IdSousActiv}'" : NULL)
@@ -285,7 +285,7 @@ class CChat
 	
 	function ajouter (&$v_oObjNiveau)
 	{
-		// Attribuer un numéro ordre
+		// Attribuer un numÃ©ro ordre
 		$iOrdre = $this->retNombreChats($v_oObjNiveau)+1;
 		
 		// Ajouter dans la table

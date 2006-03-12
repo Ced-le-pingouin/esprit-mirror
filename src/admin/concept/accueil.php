@@ -9,9 +9,9 @@ if (isset($modifier) || isset($rafraichir))
 <td>
 <b>Bienvenue sur la page de modification</b>
 <br><br>
-Cette page permet de modifier, supprimer et ajouter des éléments à la formation.
+Cette page permet de modifier, supprimer et ajouter des Ã©lÃ©ments Ã  la formation.
 <br><br>
-Il vous suffit de cliquer sur un élément situer en haut de cette page, modifiez et cliquez sur le bouton 'Appliquer les changement' pour confirmer vos changements &#8230;
+Il vous suffit de cliquer sur un Ã©lÃ©ment situer en haut de cette page, modifiez et cliquez sur le bouton 'Appliquer les changement' pour confirmer vos changements &#8230;
 <br>
 </td>
 </tr>

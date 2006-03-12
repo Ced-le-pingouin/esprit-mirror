@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: intitule.tbl.php
 ** Description ............: 
-** Date de création .......: 12/04/2003
-** Dernière modification ..: 16/06/2004
+** Date de crÃ©ation .......: 12/04/2003
+** DerniÃ¨re modification ..: 16/06/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

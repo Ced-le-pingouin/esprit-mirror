@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: equipes-etudiants.php
 ** Description ............: 
-** Date de création .......: 01/01/2003
-** Dernière modification ..: 03/06/2005
+** Date de crÃ©ation .......: 01/01/2003
+** DerniÃ¨re modification ..: 03/06/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -77,7 +77,7 @@ $sReafficherMembres = NULL;
 $bAutoInscrit = $oProjet->oFormationCourante->retInscrAutoModules();
 
 // *************************************
-// Ajouter une personne dans une équipe
+// Ajouter une personne dans une Ã©quipe
 // *************************************
 
 if (isset($HTTP_POST_VARS["ID_PERS"]) && $url_iIdEquipe > 0)
@@ -123,8 +123,8 @@ if ($url_iFiltrePersonnes <> PERSONNE_INSCRITE)
 
 if ($url_iFiltrePersonnes == PERSONNE_INSCRITE || $url_iIdEquipe == 0)
 {
-	// Dans le cas où il n'y a pas équipe à ce niveau
-	// au lieu d'afficher "Pas d'étudiant" afficher la
+	// Dans le cas oÃ¹ il n'y a pas Ã©quipe Ã  ce niveau
+	// au lieu d'afficher "Pas d'Ã©tudiant" afficher la
 	// liste des personnes inscritent
 	if ($bAutoInscrit)
 	{

@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: qnombre.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,16 +39,16 @@ class CQNombre
 	function CQNombre(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-							  //si 0 crée un objet presque vide sinon 
-							  //rempli l'objet avec les données de la table QNombre
-							  //de l'elément ayant l'Id passé en argument 
-							  //(ou avec l'objet passé en argument mais sans passer par le constructeur)
+							  //si 0 crÃ©e un objet presque vide sinon 
+							  //rempli l'objet avec les donnÃ©es de la table QNombre
+							  //de l'elÃ©ment ayant l'Id passÃ© en argument 
+							  //(ou avec l'objet passÃ© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requÃªte sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
 	function init ($v_oEnregExistant=NULL)  
 	{
@@ -78,7 +78,7 @@ class CQNombre
 	}
 
 
-	//Fonctions de définition
+	//Fonctions de dÃ©finition
 	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
 	function defEnonQN ($v_sEnonQN) { $this->oEnregBdd->EnonQN = $v_sEnonQN; }
 	function defAlignEnonQN ($v_sAlignEnonQN) { $this->oEnregBdd->AlignEnonQN = $v_sAlignEnonQN; }
@@ -87,7 +87,7 @@ class CQNombre
 	function defTxtApQN ($v_sTxtApQN) { $this->oEnregBdd->TxtApQN = $v_sTxtApQN; }
 	function defNbMinQN ($v_iNbMinQN) { $this->oEnregBdd->NbMinQN = trim($v_iNbMinQN); }
 	function defNbMaxQN ($v_iNbMaxQN) { $this->oEnregBdd->NbMaxQN = trim($v_iNbMaxQN); }
-	function defMultiQN ($v_iMultiQN) { $this->oEnregBdd->NbMultiQN = trim($v_iMultiQN); } //Nombre réel
+	function defMultiQN ($v_iMultiQN) { $this->oEnregBdd->NbMultiQN = trim($v_iMultiQN); } //Nombre rÃ©el
 	
 	//Fonctions de retour
 	function retId () { return $this->oEnregBdd->IdObjForm; }
@@ -98,14 +98,14 @@ class CQNombre
 	function retTxtApQN () { return $this->oEnregBdd->TxtApQN; }
 	function retNbMinQN () { return $this->oEnregBdd->NbMinQN; }
 	function retNbMaxQN () { return $this->oEnregBdd->NbMaxQN; }
-	function retMultiQN () { return $this->oEnregBdd->MultiQN; } //Nombre réel
+	function retMultiQN () { return $this->oEnregBdd->MultiQN; } //Nombre rÃ©el
 
 	/*
 	** Fonction 		: cHtmlQNombre
 	** Description	: renvoie le code html qui permet d'afficher une question de type nombre,
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
+	**				     si $v_iIdFC est passÃ© en paramÃ¨tre la rÃ©ponse correspondante sera Ã©galement affichÃ©e
+	** EntrÃ©e			:
+	**				$v_iIdFC : Id d'un formulaire complÃ©tÃ© -> rÃ©cupÃ©ration de la rÃ©ponse dans la table correspondante
 	** Sortie			:
 	**				code html
 	*/
@@ -125,12 +125,12 @@ class CQNombre
 			$sValeur = $oEnregRep->Valeur;
 		}
 	
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adÃ©quat)
 		$this->oEnregBdd->EnonQN = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQN);
 		$this->oEnregBdd->TxtAvQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQN);
 		$this->oEnregBdd->TxtApQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQN);
 	
-		//Genération du code html représentant l'objet
+		//GenÃ©ration du code html reprÃ©sentant l'objet
 		//Ceci est le code COMPLET qui affiche toutes les valeurs -> pas utilisable 
 		//tel quel par les etudiants
 		$sCodeHtml="\n<!--QNombre : {$this->oEnregBdd->IdObjForm} -->\n"
@@ -148,10 +148,10 @@ class CQNombre
 	function cHtmlQTexteLong($v_iIdFC=NULL)
 	{
 	
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adÃ©quat)
 		$this->oEnregBdd->EnonQTL = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTL);
 		
-		//Genération du code html représentant l'objet
+		//GenÃ©ration du code html reprÃ©sentant l'objet
 		$sCodeHtml="\n<!--QTexteLong : {$this->oEnregBdd->IdObjForm} -->\n"
 			."<div align={$this->oEnregBdd->AlignEnonQTL}>{$this->oEnregBdd->EnonQTL}</div>\n"
 			."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQTL}>\n"
@@ -167,16 +167,16 @@ class CQNombre
 	{
 		global $HTTP_POST_VARS, $HTTP_GET_VARS;
 		
-		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
+		//initialisation des messages d'erreurs Ã  'vide' et de la variable servant a dÃ©tecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
+		//de celui-ci dans la base de donnÃ©es + affiche d'une astÃ©risque Ã  l'endroit de l'erreur)
 		
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
 		$iFlagErreur=0;
 		
 		if (isset($HTTP_POST_VARS['envoyer'])) 
 		{
-			//Récupération des variables transmises par le formulaire
+			//RÃ©cupÃ©ration des variables transmises par le formulaire
 			$this->oEnregBdd->EnonQN = stripslashes($HTTP_POST_VARS['Enonce']);
 			$this->oEnregBdd->AlignEnonQN = $HTTP_POST_VARS['AlignEnon'];
 			$this->oEnregBdd->AlignRepQN = $HTTP_POST_VARS['AlignRep'];
@@ -186,7 +186,7 @@ class CQNombre
 			$this->oEnregBdd->NbMaxQN = $HTTP_POST_VARS['NbMax'];
 			$this->oEnregBdd->MultiQN = $HTTP_POST_VARS['Multi'];
 				
-			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			//Test des donnÃ©es reÃ§ues et marquage des erreurs Ã  l'aide d'une astÃ©risque dans le formulaire
 			//if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			if (!is_numeric($HTTP_POST_VARS['NbMin'])) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			if (!is_numeric($HTTP_POST_VARS['NbMax'])) {$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
@@ -202,8 +202,8 @@ class CQNombre
 		}
 		
 		// La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-		// et les 6 autres contiennent une chaîne vide
-		// aeX = alignement enoncé, arX = alignement réponse
+		// et les 6 autres contiennent une chaÃ®ne vide
+		// aeX = alignement enoncÃ©, arX = alignement rÃ©ponse
 		list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
 		Alignement($this->oEnregBdd->AlignEnonQN,$this->oEnregBdd->AlignRepQN);
 		
@@ -214,10 +214,10 @@ class CQNombre
 			."<fieldset><legend><b>ENONCE</b></legend>"
 			."<TABLE>"
 			."<TR>"
-			."<TD>$sMessageErreur1 Enoncé :</TD>"
+			."<TD>$sMessageErreur1 EnoncÃ© :</TD>"
 			."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQN}</textarea></TD>"
 			."</TR><TR>"
-			."<TD>Alignement énoncé :</TD>"
+			."<TD>Alignement Ã©noncÃ© :</TD>"
 			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche"
 			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite"
 			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer"
@@ -230,10 +230,10 @@ class CQNombre
 			."<fieldset><legend><b>REPONSE</b></legend>"
 			."<TABLE>"
 			."<TR>"
-			."<TD>Texte avant la réponse :</TD>"
+			."<TD>Texte avant la rÃ©ponse :</TD>"
 			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQN}\"></TR>"
 			."</TR><TR>"
-			."<TD>Texte après la réponse :</TD>"
+			."<TD>Texte aprÃ¨s la rÃ©ponse :</TD>"
 			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQN}\"></TR>"
 			."</TR><TR>"
 			."<TD>$sMessageErreur2 Nombre minimum :</TD>"
@@ -245,7 +245,7 @@ class CQNombre
 			."<TD>$sMessageErreur4 Coefficient multiplicateur :</TD>"
 			."<TD><input type=\"text\" size=\"5\" maxlength=\"10\" name=\"Multi\" Value=\"{$this->oEnregBdd->MultiQN}\" onblur=\"verifNumeric(this)\"></TD>"
 			."</TR><TR>"
-			."<TD>Alignement Réponse :</TD>"
+			."<TD>Alignement RÃ©ponse :</TD>"
 			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche"
 			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite"
 			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer"
@@ -255,7 +255,7 @@ class CQNombre
 			."</TABLE>"
 			."</fieldset>"
 			
-			// Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
+			// Le champ cachÃ© ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
 			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
 			."</form>";
 			
@@ -266,13 +266,13 @@ class CQNombre
 	{
 		if ($this->oEnregBdd->IdObjForm !=NULL)
 		{
-			// Les variables contenant du "texte" doivent être formatées, cela permet 
+			// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 			// de les stocker dans la BD sans erreur 
 			$EnonQN = validerTexte($this->oEnregBdd->EnonQN);
 			$TxtAvQN = validerTexte($this->oEnregBdd->TxtAvQN);
 			$TxtApQN = validerTexte($this->oEnregBdd->TxtApQN);
 			
-			//Valeur par défaut de MaxCar c'est la valeur de LargeurQTC
+			//Valeur par dÃ©faut de MaxCar c'est la valeur de LargeurQTC
 			if (strlen($this->oEnregBdd->MultiQN) < 1)
 				$this->oEnregBdd->MultiQN = 1;
 				
@@ -323,7 +323,7 @@ class CQNombre
 		if ($v_iIdNvObjForm < 1)
 			return;
 		
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$EnonQN = validerTexte($this->oEnregBdd->EnonQN);
 		$TxtAvQN = validerTexte($this->oEnregBdd->TxtAvQN);

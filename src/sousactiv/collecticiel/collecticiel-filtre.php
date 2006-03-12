@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: collecticiel-filtre.php
 ** Description ............:
-** Date de création .......: 15/04/2005
-** Dernière modification ..: 21/09/2005
+** Date de crÃ©ation .......: 15/04/2005
+** DerniÃ¨re modification ..: 21/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers   = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
 $url_iIdEquipe = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
@@ -56,7 +56,7 @@ $oTpl = new Template("collecticiel-filtre.tpl");
 
 $oBlocPersonneEquipe =  new TPL_Block("BLOCK_EQUIPE_PERSONNE",$oTpl);
 
-// {{{ Sélectionner une personne ou une équipe
+// {{{ SÃ©lectionner une personne ou une Ã©quipe
 $sSetModaliteParEquipes = $oTpl->defVariable("SET_MODALITE_PAR_EQUIPES");
 $sSetModaliteIndividuel = $oTpl->defVariable("SET_MODALITE_INDIVIDUEL");
 
@@ -83,7 +83,7 @@ if (MODALITE_PAR_EQUIPE == $g_iModalite)
 	else
 	{
 		$oBlocPersonneEquipe->effacer();
-		$oTpl->remplacer("{sltPersEquipe.options.tous}","Pas d'équipe trouvée");
+		$oTpl->remplacer("{sltPersEquipe.options.tous}","Pas d'Ã©quipe trouvÃ©e");
 	}
 }
 else
@@ -109,12 +109,12 @@ else
 	else
 	{
 		$oBlocPersonneEquipe->effacer();
-		$oTpl->remplacer("{sltPersEquipe.options.tous}","Pas d'étudiant trouvé");
+		$oTpl->remplacer("{sltPersEquipe.options.tous}","Pas d'Ã©tudiant trouvÃ©");
 	}
 }
 // }}}
 
-// {{{ Sélectionner un statut des documents
+// {{{ SÃ©lectionner un statut des documents
 $asRechTpl = array(
 	"{sltStatutDoc.options.evalue}"
 	, "{sltStatutDoc.options.accepte}"
@@ -136,7 +136,7 @@ $aiReplTpl = array(
 $oTpl->remplacer($asRechTpl,$aiReplTpl);
 // }}}
 
-// {{{ Sélectionner une date
+// {{{ SÃ©lectionner une date
 $asRechTpl = array(
 	"{sltDateDoc.options.aujourdhui}"
 	, "{sltDateDoc.options.hier}"

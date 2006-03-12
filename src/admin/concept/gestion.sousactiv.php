@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: gestion_sousactiv.php
 ** Description ............:
-** Date de création .......: 01/03/2002
-** Dernière modification ..: 14/09/2005
+** Date de crÃ©ation .......: 01/03/2002
+** DerniÃ¨re modification ..: 14/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Cédric FLOQUET <cedric.floquet@umh.ac.be>
+**                           CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -54,7 +54,7 @@ switch ($act)
 		if (!$url_bModifier)
 			return;
 		
-		// Récupération des variables de l'url
+		// RÃ©cupÃ©ration des variables de l'url
 		$url_iNumOrdreSousActiv     = $HTTP_POST_VARS["ORDRE"];
 		$url_sNomSousActiv          = $HTTP_POST_VARS["NOM"];
 		$url_iTypeSousActiv         = $HTTP_POST_VARS["TYPE"];
@@ -89,7 +89,7 @@ switch ($act)
 			//   --------------
 				$url_sDonneesSousActiv = $HTTP_POST_VARS["DONNEES"][LIEN_PAGE_HTML];
 				
-				// Nous allons essayer de récupérer automatiquement le titre
+				// Nous allons essayer de rÃ©cupÃ©rer automatiquement le titre
 				// de la page html qui se trouve entre les balises "<title>"
 				if (($url_sNomSousActiv == NULL ||
 					$url_sNomSousActiv == INTITULE_SOUS_ACTIV." sans nom") &&
@@ -176,10 +176,10 @@ switch ($act)
 					$oGalerie = new CGalerie($oProjet->oBdd,$g_iSousActiv);
 					
 					// Vider la table contenant la liste des collecticiels
-					// associés
+					// associÃ©s
 					$oGalerie->effacerCollecticiels();
 					
-					// Réinsérer la nouvelle liste des collecticiels
+					// RÃ©insÃ©rer la nouvelle liste des collecticiels
 					$oGalerie->ajouterCollecticiels($HTTP_POST_VARS["COLLECTICIEL"]);
 					
 					$oGalerie = NULL;
@@ -193,7 +193,7 @@ switch ($act)
 					$url_sNomSousActiv == INTITULE_SOUS_ACTIV." sans nom"))
 					$oSousActiv->defNom(CHAT_NOM_DEFAUT);
 				
-				// Rechercher tous les chats de cette sous-activité
+				// Rechercher tous les chats de cette sous-activitÃ©
 				if ($oSousActiv->initChats() == 0)
 					$oSousActiv->ajouterChat();
 				
@@ -206,7 +206,7 @@ switch ($act)
 				$url_sIntitule    = $HTTP_POST_VARS["INTITULE"][LIEN_FORMULAIRE];
 				$url_iModalite    = $HTTP_POST_VARS["MODALITE"][LIEN_FORMULAIRE];
 				
-				// "{Formulaire.IdForm};{soumission automatique/manuelle};{Intitulé du lien}"
+				// "{Formulaire.IdForm};{soumission automatique/manuelle};{IntitulÃ© du lien}"
 				$oSousActiv->defDonnees("{$url_sDonnees};{$url_iDeroulement};{$url_sIntitule}");
 				$oSousActiv->defModalite($url_iModalite);
 				

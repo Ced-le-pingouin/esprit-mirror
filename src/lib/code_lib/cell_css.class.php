@@ -37,10 +37,10 @@ class CCell_CSS extends CTable_CSS
 
 	function CCell_CSS ($v_sNom=NULL,$v_sAlignement=NULL,$v_sVAlignement=NULL,$v_sEtirerColonne=NULL,$v_sEtirerLigne=NULL)
 	{
-		// Type de l'élément
+		// Type de l'Ã©lÃ©ment
 		$this->ID_ELEMENT = ID_TD;
 		
-		// Déterminer si le nom est de type classe ou identifiant
+		// DÃ©terminer si le nom est de type classe ou identifiant
 		if (strstr ($v_sNom,".") || strstr ($v_sNom,"#"))
 			$this->m_sNom = "TD{$v_sNom}";
 		else if (strlen ($v_sNom))
@@ -60,7 +60,7 @@ class CCell_CSS extends CTable_CSS
 
 
 	/* ********************************************************************** */
-	/* Définir les attributs des cellules                                     */
+	/* DÃ©finir les attributs des cellules                                     */
 	/* ********************************************************************** */
 	
 	/*
@@ -68,12 +68,12 @@ class CCell_CSS extends CTable_CSS
 	**
 	** Description
 	**
-	** 		Cette fonction assigne à une variable l'étendue de la cellule.
+	** 		Cette fonction assigne Ã  une variable l'Ã©tendue de la cellule.
 	**
-	** Entrée
+	** EntrÃ©e
 	**
-	** 		$v_sEtirerColonne: Valeur entière.Chiffre qui indique le nombre de cellule
-	** 		à étendre.
+	** 		$v_sEtirerColonne: Valeur entiÃ¨re.Chiffre qui indique le nombre de cellule
+	** 		Ã  Ã©tendre.
 	**
 	*/
 	
@@ -91,15 +91,15 @@ class CCell_CSS extends CTable_CSS
 	** Description
 	**
 	** 		Cette fonction permet d'indiquer aux navigateurs qu'il devra
-	** 		empêcher les retours à la ligne.
+	** 		empÃªcher les retours Ã  la ligne.
 	**
-	** Entrée
+	** EntrÃ©e
 	**
-	** 		$v_bRetourLigne: Valeur booléenne.
+	** 		$v_bRetourLigne: Valeur boolÃ©enne.
 	**
 	** Remarque
 	**
-	** 		Cet attribut a été déclaré obsolète par le W3C. Il est conseillé
+	** 		Cet attribut a Ã©tÃ© dÃ©clarÃ© obsolÃ¨te par le W3C. Il est conseillÃ©
 	** 		d'utiliser les styles tels que "white-space" (faut-il encore que 
 	** 		les navigateurs les supportes).
 	**
@@ -143,7 +143,7 @@ class CCell_CSS extends CTable_CSS
 						
 		$ImageFond = $this->Fond->Image ();
 
-		// Attributs de l'élément
+		// Attributs de l'Ã©lÃ©ment
 		$sAttributs .= aFond ($ImageFond)
 			.aAlignerHorizontalement ($this->m_sAlignement)
 			.aAlignerVerticalement ($this->m_sVAlignement)
@@ -166,7 +166,7 @@ class CCell_CSS extends CTable_CSS
 	{
 		$sStyle = NULL;
 		
-		// Styles de l'élément
+		// Styles de l'Ã©lÃ©ment
 		$tmp = $this->Fond->Couleur->Couleur ();
 
 		if (!isset ($tmp))
@@ -176,7 +176,7 @@ class CCell_CSS extends CTable_CSS
 			$sStyle .= CouleurFond ($tmp);
 
 		$sStyle .= CouleurTexte ($this->m_sColor);
-			//.sAlignerHorizontalement ($this->m_sAlignement)	// :NE PAS SUPPRIMER: Sera utilisé plus tard
+			//.sAlignerHorizontalement ($this->m_sAlignement)	// :NE PAS SUPPRIMER: Sera utilisÃ© plus tard
 			//.sAlignerVerticalement ($this->m_sVAlignement)		// Idem
 			//.sHauteur ($this->m_iHauteur);					// Idem
 

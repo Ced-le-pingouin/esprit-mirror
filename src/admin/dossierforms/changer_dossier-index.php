@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: changer_dossier-index.php
 ** Description ............:
-** Date de création .......: 02/06/2005
-** Dernière modification ..: 03/10/2005
+** Date de crÃ©ation .......: 02/06/2005
+** DerniÃ¨re modification ..: 03/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,7 +35,7 @@ require_once("globals.inc.php");
 require_once(dir_locale("dossiers.lang"));
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sParams = NULL;
 
@@ -48,7 +48,7 @@ foreach ($HTTP_GET_VARS as $sCle => $sValeur)
 // ---------------------
 $sTitrePrincipal = TITRE;
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
 <!--

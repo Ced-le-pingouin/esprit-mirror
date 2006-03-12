@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: composer_galerie.php
 ** Description ............: 
-** Date de création .......: 12/09/2005
-** Dernière modification ..: 06/10/2005
+** Date de crÃ©ation .......: 12/09/2005
+** DerniÃ¨re modification ..: 06/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -44,7 +44,7 @@ if (!$oProjet->verifPermission("PERM_COMPOSER_GALERIE"))
 	exit("Vous n'&ecirc;tes pas autoris&eacute; &agrave; utiliser l'outil 'Composer sa galerie'");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSousActiv    = (empty($HTTP_POST_VARS["idSA"]) ? (empty($HTTP_GET_VARS["idSA"]) ? 0 : $HTTP_GET_VARS["idSA"]) : $HTTP_POST_VARS["idSA"]);
 $url_sAction         = (empty($HTTP_POST_VARS["action"]) ? NULL : $HTTP_POST_VARS["action"]);

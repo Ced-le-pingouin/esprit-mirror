@@ -22,9 +22,9 @@
 /*
 ** Fichier ................: creer_fich_statut.php
 ** Description ............: 
-** Date de création .......: 03/09/2002
-** Dernière modification ..: 09/07/2004
-** Auteurs ................: Jérôme TOUZE, Filippo PORCO
+** Date de crÃ©ation .......: 03/09/2002
+** DerniÃ¨re modification ..: 09/07/2004
+** Auteurs ................: JÃ©rÃ´me TOUZE, Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **
 */

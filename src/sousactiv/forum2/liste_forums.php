@@ -20,11 +20,11 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Sous-activité ..........: liste-forums.php
+** Sous-activitÃ© ..........: liste-forums.php
 ** Description ............: 
-** Date de création .......: 28/05/2004
-** Dernière modification ..: 03/06/2004
-** Auteurs ................: Filippo PORCO, Jérôme TOUZE
+** Date de crÃ©ation .......: 28/05/2004
+** DerniÃ¨re modification ..: 03/06/2004
+** Auteurs ................: Filippo PORCO, JÃ©rÃ´me TOUZE
 ** Emails .................: ute@umh.ac.be
 **
 */
@@ -34,12 +34,12 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForum = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 
 // ---------------------
-// Déclarer les fonctions
+// DÃ©clarer les fonctions
 // ---------------------
 function retLienForum($v_oForum)
 {

@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: typeobjetform.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -39,16 +39,16 @@ class CTypeObjetForm
  function CTypeObjetForm(&$v_oBdd,$v_iId=0) 
  {
    			$this->oBdd = &$v_oBdd;  
-								  //si 0 crée un objet presque vide sinon 
-								  //rempli l'objet avec les données de la table TypeObjetForm
-								  //de l'elément ayant l'Id passé en argument 
-								  //(ou avec l'objet passé en argument mais sans passer par le constructeur)
+								  //si 0 crÃ©e un objet presque vide sinon 
+								  //rempli l'objet avec les donnÃ©es de la table TypeObjetForm
+								  //de l'elÃ©ment ayant l'Id passÃ© en argument 
+								  //(ou avec l'objet passÃ© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
  }
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requÃªte sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
  function init ($v_oEnregExistant=NULL)  
  {
@@ -78,7 +78,7 @@ class CTypeObjetForm
  }
 
 
-//Fonctions de définition
+//Fonctions de dÃ©finition
 
  function defIdTypeObj ($v_iIdTypeObj)
 {
@@ -108,13 +108,13 @@ function enregistrer ()
 	if ($this->oEnregBdd->IdObjForm !=NULL)
 	   {
 		
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQTC = validerTexte($this->oEnregBdd->EnonQTC);
 		$sTxtAvQTC = validerTexte($this->oEnregBdd->TxtAvQTC);
 		$sTxtApQTC = validerTexte($this->oEnregBdd->TxtApQTC);
 		
-		//Valeur par défaut de MaxCar c'est la valeur de LargeurQTC
+		//Valeur par dÃ©faut de MaxCar c'est la valeur de LargeurQTC
 		if (strlen($this->oEnregBdd->MaxCarQTC) < 1) 
 				{$this->oEnregBdd->MaxCarQTC = $this->oEnregBdd->LargeurQTC;}
 		

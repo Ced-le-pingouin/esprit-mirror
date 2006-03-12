@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -115,7 +115,7 @@ if ($v_iIdObjForm > 0)
 									$oMPSeparateur->effacer();
 									break;			   
 							 default:
-								 	echo "Numéro de l'objet a effacer incorrect<br>";
+								 	echo "NumÃ©ro de l'objet a effacer incorrect<br>";
 							 }
 	  $oObjetFormulaire->effacer();
 	  echo "<script>\n";

@@ -31,13 +31,13 @@ function suivant() {
 			top.frames[0].document.forms[0].elements["ID_FORM_SELECT"].value = "0";
 			
 			if (top.frames[0].document.forms[0].elements["NOM_BDD_SRC"].value.length < 1) {
-				alert("Avant de passer à l'étape suivante, sélectionnez une base de données source.");
+				alert("Avant de passer Ã  l'Ã©tape suivante, sÃ©lectionnez une base de donnÃ©es source.");
 				return;
 			}
 			break;
 		case 2:
 			if (top.frames[0].document.forms[0].elements["ID_FORM_SELECT"].value < 1) {
-				alert("Avant de passer à l'étape suivante, sélectionnez une formation dans la liste.");
+				alert("Avant de passer Ã  l'Ã©tape suivante, sÃ©lectionnez une formation dans la liste.");
 				return;
 			}
 			break;

@@ -22,17 +22,17 @@
 /*
 ** Fichier ................: bdd.class.php
 ** Description ............: 
-** Date de création .......: 05/12/2002
-** Dernière modification ..: 25/10/2005
+** Date de crÃ©ation .......: 05/12/2002
+** DerniÃ¨re modification ..: 25/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
 require_once(dir_code_lib("bdd_mysql.class.php"));
-require_once(dir_include("config.inc"));				// Information à propos de la base de données
+require_once(dir_include("config.inc"));				// Information Ã  propos de la base de donnÃ©es
 
 /**
  * Me documenter svp

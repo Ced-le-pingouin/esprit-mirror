@@ -66,7 +66,7 @@ function effacer()
 	var bOk = top.oPrincipal().effacerModele();
 
 	if (typeof(bOk) == "boolean" && bOk)
-		alert("Le fichier a été supprimé du serveur");
+		alert("Le fichier a Ã©tÃ© supprimÃ© du serveur");
 }
 
 function rafraichir()

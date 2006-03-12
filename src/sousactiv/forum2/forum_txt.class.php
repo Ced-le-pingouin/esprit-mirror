@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: forum_txt.class.php
 ** Description ............:
-** Date de création .......: 25/10/2005
-** Dernière modification ..: 31/10/2005
+** Date de crÃ©ation .......: 25/10/2005
+** DerniÃ¨re modification ..: 31/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -118,7 +118,7 @@ class CForumTXT extends CForum
 		else
 			foreach ($this->aoEquipes as $oEquipe)
 			{
-				// Envoyer le nom de l'équipe
+				// Envoyer le nom de l'Ã©quipe
 				echo CRLN."++"
 					.$oEquipe->retNom()
 					.CRLN;

@@ -21,9 +21,9 @@
 
 /*
 ** Fichier ................: deconnexion.php
-** Description ............: Se déconnecter de la plate-forme.
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 30/06/2004
+** Description ............: Se dÃ©connecter de la plate-forme.
+** Date de crÃ©ation .......: 01/06/2001
+** DerniÃ¨re modification ..: 30/06/2004
 ** Auteurs ................: Filippo Porco
 ** Emails .................: ute@umh.ac.be
 **

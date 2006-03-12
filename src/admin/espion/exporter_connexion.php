@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: exporter_connexion.php
 ** Description ............: 
-** Date de création .......: 26/02/2003
-** Dernière modification ..: 09/07/2004
+** Date de crÃ©ation .......: 26/02/2003
+** DerniÃ¨re modification ..: 09/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

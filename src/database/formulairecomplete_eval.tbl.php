@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: formulairecomplete_eval.tbl.php
 ** Description ............: 
-** Date de création .......: 05/11/2004
-** Dernière modification ..: 09/11/2004
+** Date de crÃ©ation .......: 05/11/2004
+** DerniÃ¨re modification ..: 09/11/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -46,7 +46,7 @@ class CFormulaireComplete_Evaluation
 	/**
 	 *
 	 * @param $v_iId integer Cette variable doit recevoir l'identifiant unique
-	 *        du formulaire complété de la sous-activité
+	 *        du formulaire complÃ©tÃ© de la sous-activitÃ©
 	 * 
 	 */
 	function CFormulaireComplete_Evaluation (&$v_oBdd,$v_iId=NULL,$v_iIdPers=NULL)
@@ -110,7 +110,7 @@ class CFormulaireComplete_Evaluation
 	
 	function initEvaluateur () { $this->oEvaluateur = new CPersonne($this->oBdd,$this->iIdPers); }
 	
-	// {{{ Méthodes de retour
+	// {{{ MÃ©thodes de retour
 	function retId () { return (empty($this->iId) ? 0 : $this->iId); }
 	function retIdFC () { return (empty($this->oEnregBdd) ? 0 : $this->oEnregBdd->IdFC); }
 	function retStatut () { return (empty($this->oEnregBdd) ? STATUT_RES_APPROF : $this->oEnregBdd->StatutFormSousActiv); }

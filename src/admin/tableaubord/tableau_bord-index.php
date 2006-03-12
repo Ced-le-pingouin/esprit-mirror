@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: tableau_bord-index.php
 ** Description ............:
-** Date de création .......: 23/06/2005
-** Dernière modification ..: 09/11/2005
+** Date de crÃ©ation .......: 23/06/2005
+** DerniÃ¨re modification ..: 09/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -39,10 +39,10 @@ $oProjet = new CProjet();
 $g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForm     = (empty($HTTP_GET_VARS["form"]) ? $oProjet->oFormationCourante->retId() : $HTTP_GET_VARS["form"]);
-$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
+$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par Ã©quipe
 
 $sParamsUrl = "?form={$url_iIdForm}";
 
@@ -60,7 +60,7 @@ $sSousTitre = $oFormation->retNom();
 
 unset($oFormation);
 
-// {{{ Insérer ces lignes dans l'en-tête de la page html
+// {{{ InsÃ©rer ces lignes dans l'en-tÃªte de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
 <!--

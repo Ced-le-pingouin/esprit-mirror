@@ -14,7 +14,7 @@
 </form>
 </body>
 </html>
-[SET_SANS_DOSSIER+]<p>Aucun dossier trouv&eacute;.</p><p>Commencez par créer un nouveau dossier. Dès que c'est fait, sélectionnez les formations dans la liste située à votre droite et n'oubliez pas d'enregistrer vos sélections.</p>[SET_SANS_DOSSIER-]
+[SET_SANS_DOSSIER+]<p>Aucun dossier trouv&eacute;.</p><p>Commencez par crÃ©er un nouveau dossier. DÃ¨s que c'est fait, sÃ©lectionnez les formations dans la liste situÃ©e Ã  votre droite et n'oubliez pas d'enregistrer vos sÃ©lections.</p>[SET_SANS_DOSSIER-]
 [SET_DOSSIER+]<a href="dossier_formations.php?idDossierForms={dossier_formation.id}" target="Principale">{dossier_formation.icone}</a><br><span class="titre">{dossier_formation.nom}</span>[SET_DOSSIER-]
 [SET_ICONE_AVEC_FORMATIONS+]<img src="commun://icones/48x48/dossier_forms.gif" width="48" height="48" border="0" alt="">[SET_ICONE_AVEC_FORMATIONS-]
 [SET_ICONE_AUCUNE_FORMATION+]<img src="commun://icones/48x48/dossier_forms-vide.gif" width="48" height="48" border="0" alt="">[SET_ICONE_AUCUNE_FORMATION-]

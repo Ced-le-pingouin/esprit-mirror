@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: modifier_forum-index.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 08/10/2004
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 08/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ $url_sModaliteFenetre = $HTTP_GET_VARS["modaliteFenetre"];
 $url_iIdForumParent   = (empty($HTTP_GET_VARS["idForumParent"]) ? "0" : $HTTP_GET_VARS["idForumParent"]);
 
 // ---------------------
-// Définir le titre de la fenêtre
+// DÃ©finir le titre de la fenÃªtre
 // ---------------------
 if ($url_sModaliteFenetre == "ajouter")
 	$sTitrePrincipal = "Ajouter un nouveau forum";

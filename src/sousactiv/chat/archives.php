@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: archives.php
 ** Description ............: 
-** Date de création .......: 01/03/2001
-** Dernière modification ..: 10/10/2005
+** Date de crÃ©ation .......: 01/03/2001
+** DerniÃ¨re modification ..: 10/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ require_once(dir_database("ids.class.php"));
 require_once("archive.class.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
 $url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);

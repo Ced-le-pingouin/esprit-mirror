@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: messageforum.tbl.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -85,7 +85,7 @@ class CMessageForum
 		$this->iId = $this->oBdd->retDernierId($hResult);
 		$this->init();
 		
-		// Associer le message à l'équipe
+		// Associer le message Ã  l'Ã©quipe
 		if ($v_iIdEquipe > 0)
 			$this->associerMessageEquipe($v_iIdEquipe);
 	}
@@ -146,7 +146,7 @@ class CMessageForum
 	}
 	
 	/**
-	 * Rechercher les fichiers attachés à ce message
+	 * Rechercher les fichiers attachÃ©s Ã  ce message
 	 */
 	function initRessources ()
 	{
@@ -198,7 +198,7 @@ class CMessageForum
 			.", IdFormat='0'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
-		// Récupérer l'id de la nouvelle ressource
+		// RÃ©cupÃ©rer l'id de la nouvelle ressource
 		$iIdRes = $this->oBdd->retDernierId($hResult);
 		
 		// Faire le lien entre le message du forum et sa ressource
@@ -236,7 +236,7 @@ class CMessageForum
 			$sListeRessources .= (isset($sListeRessources) ? ", " : NULL)
 				."'".$oRessource->retId()."'";
 			
-			// Dans la même occassion, supprimons la ressource
+			// Dans la mÃªme occassion, supprimons la ressource
 			if (isset($sRepRessources))
 				@unlink($sRepRessources.$oRessource->retUrl());
 		}

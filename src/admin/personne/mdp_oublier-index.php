@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: mdp_oublier-index.php
 ** Description ............:
-** Date de création .......: 21/12/2004
-** Dernière modification ..: 21/01/2005
+** Date de crÃ©ation .......: 21/12/2004
+** DerniÃ¨re modification ..: 21/01/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 // ---------------------
 // Initialiser
 // ---------------------
-$sTitrePrincipale = "Oublié ?";
+$sTitrePrincipale = "OubliÃ© ?";
 
 $sBlocEnteteHtml = <<<BLOC_HTML_HEAD
 <script type="text/javascript" language="javascript">

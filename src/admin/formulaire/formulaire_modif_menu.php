@@ -19,14 +19,14 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-//Ceci est ajoutÈ uniquement pour pouvoir effectuer un contrÙle de l'utilisateur
+//Ceci est ajout√© uniquement pour pouvoir effectuer un contr√¥le de l'utilisateur
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 {
 
 //************************************************
-//*       RÈcupÈration des variables             *
+//*       R√©cup√©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -54,7 +54,7 @@ function ajoutobj(idformulaire)
 
 function supobj(idobj,idformulaire) 
 {
-	if (confirm('Voulez-vous supprimer l\'objet sÈlectionnÈ ?'))
+	if (confirm('Voulez-vous supprimer l\'objet s√©lectionn√© ?'))
 	{
 		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_sup.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	}
@@ -67,7 +67,7 @@ function modifposobj(idobj,idformulaire)
 
 function copieobj(idobj,idformulaire) 
 {
-	if (confirm('Voulez-vous copier l\'objet sÈlectionnÈ ?'))
+	if (confirm('Voulez-vous copier l\'objet s√©lectionn√© ?'))
 	{
 		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_copie.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	}
@@ -91,73 +91,73 @@ echo "<TABLE style=\"border-top:1px solid black; border-bottom:1px solid black\"
 
 echo "<tr><td style=\"text-align : left\">&nbsp\n";
 
-echo "ElÈment : ";
+echo "El√©ment : ";
 
 if ($v_iIdFormulaire > 0)
 {
-	//echo "<a href=\"javascript: ajoutobj($v_iIdFormulaire);\">Ajouter un ÈlÈment</a>\n";
+	//echo "<a href=\"javascript: ajoutobj($v_iIdFormulaire);\">Ajouter un √©l√©ment</a>\n";
 	echo "<a href=\"javascript: ajoutobj($v_iIdFormulaire);\">Ajouter</a>\n";
 }
 else
 {
 	echo "<font color = red>";
-	echo "Ajouter"; // un ÈlÈment";
+	echo "Ajouter"; // un √©l√©ment";
 	echo "</font>\n";
 }
 
 echo " - ";
 
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire uniquement pour pouvoir recharger la liste aprËs la suppression
+if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire uniquement pour pouvoir recharger la liste apr√®s la suppression
 {
-	//echo "<a href=\"javascript: supobj($v_iIdObjForm,$v_iIdFormulaire);\">Supprimer l'ÈlÈment</a>\n";
+	//echo "<a href=\"javascript: supobj($v_iIdObjForm,$v_iIdFormulaire);\">Supprimer l'√©l√©ment</a>\n";
 	echo "<a href=\"javascript: supobj($v_iIdObjForm,$v_iIdFormulaire);\">Supprimer</a>\n";
 }
 else
 {
 	echo "<font color = red>";
-	echo "Supprimer"; // l'ÈlÈment";
+	echo "Supprimer"; // l'√©l√©ment";
 	echo "</font>\n";
 }
 
 echo " - ";
 
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste aprËs le dÈplacement
+if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste apr√®s le d√©placement
 {
-	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">DÈplacer l'ÈlÈment</a>\n";
-	echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">DÈplacer</a>\n";
+	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">D√©placer l'√©l√©ment</a>\n";
+	echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">D√©placer</a>\n";
 }
 else
 {
 	echo "<font color = red>";
-	echo "DÈplacer";// l'ÈlÈment";
+	echo "D√©placer";// l'√©l√©ment";
 	echo "</font>\n";
 }
 
 echo " - ";
 
-if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste aprËs le dÈplacement
+if ($v_iIdObjForm > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste apr√®s le d√©placement
 {
-	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">Copier l'ÈlÈment</a>\n";
+	//echo "<a href=\"javascript: modifposobj($v_iIdObjForm,$v_iIdFormulaire);\">Copier l'√©l√©ment</a>\n";
 	echo "<a href=\"javascript: copieobj($v_iIdObjForm,$v_iIdFormulaire);\">Copier</a>\n";
 }
 else
 {
 	echo "<font color = red>";
-	echo "Copier";// l'ÈlÈment";
+	echo "Copier";// l'√©l√©ment";
 	echo "</font>\n";
 }
 
 echo "</td><td style=\"text-align : right\">";
 
 
-if ($v_iIdFormulaire > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste aprËs le dÈplacement
+if ($v_iIdFormulaire > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste apr√®s le d√©placement
 {
-	echo "<a href=\"javascript: modifaxeform($v_iIdFormulaire);\">DÈfinir les axes de ce formulaire</a>\n";
+	echo "<a href=\"javascript: modifaxeform($v_iIdFormulaire);\">D√©finir les axes de ce formulaire</a>\n";
 }
 else
 {
 	echo "<font color = red>";
-	echo "DÈfinir les axes de ce formulaire";
+	echo "D√©finir les axes de ce formulaire";
 	echo "</font>\n";
 }
 

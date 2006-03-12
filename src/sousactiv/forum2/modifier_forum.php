@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: modifier_forum.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 08/10/2004
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 08/10/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -114,7 +114,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 }
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
 $url_iIdForum       = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
@@ -147,7 +147,7 @@ if ($url_sModaliteFenetre == "ajouter")
 	// Titre
 	$oBlock_Forum->remplacer("{titre->valeur}","");
 	
-	// Modalité
+	// ModalitÃ©
 	$oBlock_Forum->remplacer("{modalite->parent->selectionner}"," selected");
 	$oBlock_Forum->remplacer("{modalite->tous->selectionner}",NULL);
 	$oBlock_Forum->remplacer("{modalite->equipe->selectionner}",NULL);
@@ -180,7 +180,7 @@ else if ($url_sModaliteFenetre == "modifier")
 	// Titre
 	$oBlock_Forum->remplacer("{titre->valeur}",htmlentities($oSujetForum->retTitre()));
 	
-	// Modalité
+	// ModalitÃ©
 	$iModaliteParent = $oSujetForum->retModalite();
 	$oBlock_Forum->remplacer("{modalite->parent->selectionner}",($iModaliteParent == MODALITE_IDEM_PARENT ? " selected" : NULL));
 	$oBlock_Forum->remplacer("{modalite->tous->selectionner}",($iModaliteParent == MODALITE_POUR_TOUS ? " selected" : NULL));

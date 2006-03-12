@@ -22,12 +22,12 @@
 /*
 ** Fichier .................: ressource_vote.php
 ** Description .............: 
-** Date de création ........: 01/03/2001
-** Dernière modification ...: 25/04/2005
-** Auteurs .................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation ........: 01/03/2001
+** DerniÃ¨re modification ...: 25/04/2005
+** Auteurs .................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                            Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -42,11 +42,11 @@ if (!is_object($oProjet->oSousActivCourante) ||
 {
 	$oProjet->terminer();
 	
-	erreurFatale("Le numéro de l'activité/sous-activité est inférieur à 1");
+	erreurFatale("Le numÃ©ro de l'activitÃ©/sous-activitÃ© est infÃ©rieur Ã  1");
 }
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_aiIdResSAVotes = (empty($HTTP_GET_VARS["idResSAVotes"]) ? NULL : $HTTP_GET_VARS["idResSAVotes"]);
 $url_bVoter         = (empty($HTTP_GET_VARS["voter"]) ? FALSE : TRUE);
@@ -57,9 +57,9 @@ $url_bVoter         = (empty($HTTP_GET_VARS["voter"]) ? FALSE : TRUE);
 $g_iIdPers   = $oProjet->retIdUtilisateur();
 $g_iModalite = $oProjet->oSousActivCourante->retModalite(TRUE);
 
-// Rechercher la modalité de l'activité (individuel/par équipe)
-// Rechercher les membres de cette équipe car elle sera utilisée lors des votes
-// des étudiants
+// Rechercher la modalitÃ© de l'activitÃ© (individuel/par Ã©quipe)
+// Rechercher les membres de cette Ã©quipe car elle sera utilisÃ©e lors des votes
+// des Ã©tudiants
 if (MODALITE_PAR_EQUIPE == $g_iModalite)
 {
 	$oProjet->initEquipe(TRUE);
@@ -92,13 +92,13 @@ function annuler() {
 <body>
 <?php
 
-// {{{ L'édutiant a soumis son document
+// {{{ L'Ã©dutiant a soumis son document
 if ($url_bVoter && isset($url_aiIdResSAVotes))
 {
 	// Transformer en tableau
 	settype($url_aiIdResSAVotes,"array");
 	
-	// {{{ Enregistrer le vote de l'étudiant dans la base de données
+	// {{{ Enregistrer le vote de l'Ã©tudiant dans la base de donnÃ©es
 	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$url_aiIdResSAVotes[0]);
 	$bResSASoumis = $oProjet->oSousActivCourante->voterPourRessource($oResSA->retId(),$g_iIdPers);
 	unset($oResSA);
@@ -113,9 +113,9 @@ if ($url_bVoter && isset($url_aiIdResSAVotes))
 			echo htmlentities("Vous venez de voter pour ce document.")
 				."<br>"
 				.htmlentities("Celui-ci a obtenu le nombre de votes requis."
-				." Il a donc été soumis au tuteur pour évaluation.");
+				." Il a donc Ã©tÃ© soumis au tuteur pour Ã©valuation.");
 		else
-			echo htmlentities("Votre document a été soumis au tuteur pour évaluation");
+			echo htmlentities("Votre document a Ã©tÃ© soumis au tuteur pour Ã©valuation");
 		
 		echo "</p>\n"
 			."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
@@ -152,7 +152,7 @@ if ($g_iIdEquipe > 0)
 	echo "<TR>\n";
 	echo "<TD class=\"cellule_sous_titre\" align=\"center\" height=\"20\">Titre</TD>\n";
 	echo "<TD class=\"cellule_sous_titre\" align=\"center\" height=\"20\">Total votes</TD>\n";
-	echo "<TD class=\"cellule_sous_titre\" align=\"center\" height=\"20\">Qui a voté ?</TD>\n";
+	echo "<TD class=\"cellule_sous_titre\" align=\"center\" height=\"20\">Qui a votÃ© ?</TD>\n";
 	echo "<TD class=\"cellule_sous_titre\" align=\"center\" height=\"20\">Je vote</TD>\n";
 	echo "</TR>\n";
 	
@@ -173,7 +173,7 @@ if ($g_iIdEquipe > 0)
 		echo htmlentities($oResSA->retNom());
 		echo "</B>";
 		//echo "<BR>\n";
-		//echo "déposé par ".$oResSA->oExpediteur->retLienEmail();
+		//echo "dÃ©posÃ© par ".$oResSA->oExpediteur->retLienEmail();
 		echo "</TD>\n";
 		
 		$iNbVotes = count($oResSA->aoVotants);
@@ -218,7 +218,7 @@ if ($g_iIdEquipe > 0)
 	echo "<tr>"
 		."<td colspan=\"4\" align=\"right\">"
 		."<a href=\"javascript: voter();\">"
-			.htmlentities("Je vote pour ma sélection")
+			.htmlentities("Je vote pour ma sÃ©lection")
 		."</a>"
 		."</td>"
 		."</tr>\n";
@@ -232,9 +232,9 @@ if ($g_iIdEquipe > 0)
 	echo "<p>&nbsp;</p>"
 		."<div align=\"center\">"
 		."<p>"
-		."Un document doit obtenir <b>{$iPourcentVotes}%</b> des votes pour être soumis au tuteur."
+		."Un document doit obtenir <b>{$iPourcentVotes}%</b> des votes pour Ãªtre soumis au tuteur."
 		."<br>"
-		."Dans le cas de votre équipe, cela représente <b>{$iNbVotesRequis} vote".($iNbVotesRequis > 1 ? "s" : NULL)."</b>."
+		."Dans le cas de votre Ã©quipe, cela reprÃ©sente <b>{$iNbVotesRequis} vote".($iNbVotesRequis > 1 ? "s" : NULL)."</b>."
 		."</p>"
 		."</div>\n";
 }
@@ -242,8 +242,8 @@ else if ($g_iIdPers > 0)
 {
 	$oProjet->oSousActivCourante->initRessources("date",TRI_DECROISSANT,MODALITE_INDIVIDUEL,$g_iIdPers,STATUT_RES_EN_COURS);
 	
-	// ...si on n'a pas encore confirmé la soumission de son document (mais qu'il a
-	// été sélectionné)
+	// ...si on n'a pas encore confirmÃ© la soumission de son document (mais qu'il a
+	// Ã©tÃ© sÃ©lectionnÃ©)
 	if (isset($aiIdResSA))
 	{
 		echo "<form"
@@ -253,7 +253,7 @@ else if ($g_iIdPers > 0)
 			.">"; // <form>
 		
 		echo "<p align=\"center\">Voulez-vous soumettre ce fichier"
-			." au(x) tuteur(s) pour évaluation&nbsp;?</p>\n";
+			." au(x) tuteur(s) pour Ã©valuation&nbsp;?</p>\n";
 		
 		echo "<table width=\"70%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\" align=\"center\"><tr><td>\n";
 		echo "<table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"2\" cellspacing=\"0\"><tr><td align=\"center\">\n";
@@ -277,8 +277,8 @@ else if ($g_iIdPers > 0)
 	}
 	else
 	{
-		// ...si pas de vote, ni de document à soumettre sélectionné sur la page précédente => Erreur
-		echo "<p>&nbsp;</p><p align=\"center\">Aucun document n'a été sélectionné&nbsp;!</p>\n";
+		// ...si pas de vote, ni de document Ã  soumettre sÃ©lectionnÃ© sur la page prÃ©cÃ©dente => Erreur
+		echo "<p>&nbsp;</p><p align=\"center\">Aucun document n'a Ã©tÃ© sÃ©lectionnÃ©&nbsp;!</p>\n";
 		echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 			."top.frames['Bas'].location = 'ressource_vote-menu.php';"
 			."\n//--></script>";

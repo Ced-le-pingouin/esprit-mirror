@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))
@@ -73,7 +73,7 @@ if (isset($HTTP_GET_VARS['ajouter']))
 if ($v_iIdTypeObj > 0)
 	  {
 			 		  
-					  $oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$oObjetFormulaire); //$oObjetFormulaire a vérifier ????
+					  $oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$oObjetFormulaire); //$oObjetFormulaire a vÃ©rifier ????
 					  $oObjetFormulaire->defIdTypeObj($v_iIdTypeObj);
 					  $oObjetFormulaire->defIdForm($v_iIdFormulaire);
 					  
@@ -146,7 +146,7 @@ if ($v_iIdTypeObj > 0)
 							 
 							 break;			   
 							 default:
-								 echo "Il est où le chiffre hein ?<br>";
+								 echo "Il est oÃ¹ le chiffre hein ?<br>";
 							 }
 	  }
 echo "<body class=\"popup\" onLoad=\"popupajout($iIdObjetFormActuel,$v_iIdFormulaire); window.close ();\">";
@@ -168,8 +168,8 @@ else
 				 {
 					 $oBlock->nextLoop();
 					 
-					 $oTypeObjForm = new CTypeObjetForm($oProjet->oBdd); //Crée un objet formulaire "presque vide"
-					 $oTypeObjForm->init($oEnreg); //Remplit l'objet créé ci-dessus avec l'enreg en cours
+					 $oTypeObjForm = new CTypeObjetForm($oProjet->oBdd); //CrÃ©e un objet formulaire "presque vide"
+					 $oTypeObjForm->init($oEnreg); //Remplit l'objet crÃ©Ã© ci-dessus avec l'enreg en cours
 					 
 					 $oBlock->remplacer("{desc_type_obj}",$oTypeObjForm->retDescTypeObj());
 					 $oBlock->remplacer("{id_type_obj}",$oTypeObjForm->retId());
@@ -186,7 +186,7 @@ else
 	  $oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
 	  $oTpl->afficher();	  
 	  $oProjet->oBdd->libererResult($hResult);
-	  $oProjet->terminer();  //Ferme la connection avec la base de données
+	  $oProjet->terminer();  //Ferme la connection avec la base de donnÃ©es
 	  }
 
 ?>

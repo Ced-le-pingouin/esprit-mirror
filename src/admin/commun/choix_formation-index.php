@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sTitrePrincipal = (empty($HTTP_GET_VARS["tp"]) ? "Inscription" : stripslashes(rawurldecode($HTTP_GET_VARS["tp"])));
 

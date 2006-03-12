@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: sujet-messages.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 21/11/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 21/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once(dir_lib("systeme_fichiers.lib.php",TRUE,TRUE));
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
 $url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
@@ -61,7 +61,7 @@ $bPeutGererTousMessages |= ($oProjet->verifPermission("PERM_MOD_MESSAGES_FORUM")
 $bPeutGererSonMessage  = $oProjet->verifPermission("PERM_MOD_MESSAGE_FORUM");
 $bPeutGererSonMessage |= $oProjet->verifPermission("PERM_SUP_MESSAGE_FORUM");
 
-//echo "<span style=\"font-size: 7pt;\">[ Peut gérer tous les messages: {$bPeutGererTousMessages} | Peut gérer que son message: {$bPeutGererSonMessage} ]</span>";
+//echo "<span style=\"font-size: 7pt;\">[ Peut gÃ©rer tous les messages: {$bPeutGererTousMessages} | Peut gÃ©rer que son message: {$bPeutGererSonMessage} ]</span>";
 
 // ---------------------
 // Initialiser le sujet du forum
@@ -110,8 +110,8 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 	
 	$oBloc_Message->ajouter($oSet_Message);
 	
-	// Bouton permettant de sélectionner le message qui devra être modifié ou
-	// supprimé
+	// Bouton permettant de sÃ©lectionner le message qui devra Ãªtre modifiÃ© ou
+	// supprimÃ©
 	if ($bPeutGererTousMessages || ($bPeutGererSonMessage && $iIdxMessage == 0 && $iIdPersMsg == $iIdPers))
 	{
 		$oBloc_Message->remplacer("{message->bouton_selection}",$oSet_Message_Selectionner);
@@ -147,7 +147,7 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 	// Message
 	$oBloc_Message->remplacer("{message->texte}",convertBaliseMetaVersHtml($oMessageForum->retMessage()));
 	
-	// Affichier le/les fichiers attachés au message
+	// Affichier le/les fichiers attachÃ©s au message
 	$iNbFichiersAttaches = $oMessageForum->initRessources();
 	$sListeFichiersAttaches = NULL;
 	
@@ -175,7 +175,7 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 	
 	$oBloc_Message->remplacer("{message->ressources}",$sListeFichiersAttaches);
 	
-	// Ajouter une ligne de séparation entre deux sujets
+	// Ajouter une ligne de sÃ©paration entre deux sujets
 	$oBloc_Message->remplacer("{ligne_separation_sujets}",(++$iIdxMessage < $iNbMessages ? $oSet_LigneSeparationSujets : NULL));
 }
 

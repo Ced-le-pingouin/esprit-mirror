@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: modifier-menu.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 30/09/2004
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 30/09/2004
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -35,7 +35,7 @@
 require_once("globals.inc.php");
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
 $url_sMenu            = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);

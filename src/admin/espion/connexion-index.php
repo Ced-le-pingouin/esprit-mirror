@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: connexion.php
 ** Description ............: 
-** Date de création .......: 24/02/2003
-** Dernière modification ..: 26/10/2005
+** Date de crÃ©ation .......: 24/02/2003
+** DerniÃ¨re modification ..: 26/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdPers = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
 

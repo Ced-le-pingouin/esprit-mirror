@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: collecticiel.tbl.php
 ** Description ............:
-** Date de création .......: 12/06/2004
-** Dernière modification ..: 14/06/2004
+** Date de crÃ©ation .......: 12/06/2004
+** DerniÃ¨re modification ..: 14/06/2004
 **
 */
 
@@ -129,7 +129,7 @@ class CCollecticiel
 	}
 	
 	/**
-	 * Effacer les collecticiels qui ont été liés avec un ou plusieurs
+	 * Effacer les collecticiels qui ont Ã©tÃ© liÃ©s avec un ou plusieurs
 	 * galeries.
 	 *
 	 */
@@ -151,7 +151,7 @@ class CCollecticiel
 		
 		if (isset($sValeursRequete))
 		{
-			// Effacer les documents sélectionnés dans les collecticiels des 
+			// Effacer les documents sÃ©lectionnÃ©s dans les collecticiels des 
 			// galeries
 			$sRequeteSql = "DELETE FROM SousActiv_Ressource_SousActiv"
 				." WHERE IdResSousActiv IN ({$sValeursRequete})";

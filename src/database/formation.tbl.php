@@ -22,13 +22,13 @@
 /*
 ** Fichier .................: formation.tbl.php
 ** Description .............: 
-** Date de création ........: 01/03/2002
-** Dernière modification ...: 03/06/2005
-** Auteurs .................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
+** Date de crÃ©ation ........: 01/03/2002
+** DerniÃ¨re modification ...: 03/06/2005
+** Auteurs .................: CÃ©dric FLOQUET <cedric.floquet@umh.ac.be>
 **                            Filippo PORCO <filippo.porco@umh.ac.be>
-**                            Jérôme TOUZE <webmaster@guepard.org>
+**                            JÃ©rÃ´me TOUZE <webmaster@guepard.org>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -48,12 +48,12 @@ define("INTITULE_FORMATION","Formation");
  */
 class CFormation
 {
-	var $iId;				/**< Ce membre est de type ENTIER. Numéro d'identifiant unique de la formation. */
+	var $iId;				/**< Ce membre est de type ENTIER. NumÃ©ro d'identifiant unique de la formation. */
 	
 	var $oBdd;				/**< Ce membre est de type CBdd. @see CBdd */
 	var $oEnregBdd;
 	
-	var $oAuteur;			/**< Ce membre est de type CPersonne. Il contient les renseignements de la personne qui a créé cette formation. @see CPersonne */
+	var $oAuteur;			/**< Ce membre est de type CPersonne. Il contient les renseignements de la personne qui a crÃ©Ã© cette formation. @see CPersonne */
 	
 	var $aoFormations;		/**< Tableau contenant la liste de formations. */
 	var $aoModules;
@@ -70,7 +70,7 @@ class CFormation
 	
 	var $sTri;
 	
-	// Déclaration des pseudo-constantes
+	// DÃ©claration des pseudo-constantes
 	var $ORDRE=12;
 	var $TYPE=13;
 	
@@ -163,8 +163,8 @@ class CFormation
 	 *
 	 * @param v_sNomForm Nom de la formation;
 	 * @param v_sDescrForm Description de la formation;
-	 * @param v_iInscrSpontForm Si ce paramètre vaut 1 alors tous les étudiants sont inscrits automatiquement à tous les cours;
-	 * @param v_iIdPers Numéro d'identifiant de la personne qui vient de créer cette formation.
+	 * @param v_iInscrSpontForm Si ce paramÃ¨tre vaut 1 alors tous les Ã©tudiants sont inscrits automatiquement Ã  tous les cours;
+	 * @param v_iIdPers NumÃ©ro d'identifiant de la personne qui vient de crÃ©er cette formation.
 	 */
 	function ajouter ($v_sNomForm=NULL,$v_sDescrForm=NULL,$v_iInscrSpontForm=1,$v_iIdPers=0)
 	{
@@ -195,8 +195,8 @@ class CFormation
 	}
 	
 	/**
-	 * Cette méthode permet ajouter dans la table des reponsables de formation
-	 * la personne qui vient de créer une nouvelle formation.
+	 * Cette mÃ©thode permet ajouter dans la table des reponsables de formation
+	 * la personne qui vient de crÃ©er une nouvelle formation.
 	 *
 	 * @param v_iIdPers identifiant de la personne
 	 */
@@ -285,10 +285,10 @@ class CFormation
 		$this->effacerConcepteurs();
 		$this->effacerResponsables();
 		
-		// Effacer les équipes
+		// Effacer les Ã©quipes
 		$this->effacerEquipes();
 		
-		// Effacer tous les modules qui appartiennent à cette formation
+		// Effacer tous les modules qui appartiennent Ã  cette formation
 		$this->effacerModules();
 		
 		// Effacer cette formation
@@ -370,10 +370,10 @@ class CFormation
 	}
 	
 	/**
-	 * Cette fonction recherche la liste des glossaires appartenant à une formation.
+	 * Cette fonction recherche la liste des glossaires appartenant Ã  une formation.
 	 *
 	 * @brief Contruire une liste de glossaires.
-	 * @return integer La fonction renvoie le nombre totale de glossaires trouvés ou zéro dans le cas contraire.
+	 * @return integer La fonction renvoie le nombre totale de glossaires trouvÃ©s ou zÃ©ro dans le cas contraire.
 	 * @see CGlossaire
 	 */
 	function initGlossaires ()
@@ -701,9 +701,9 @@ class CFormation
 	 * Cette fonction remplit un tableau contenant la liste des modules
 	 * de l'utilisateur.
 	 *
-	 * @param v_iIdPers numéro d'identifiant de la personne ;
-	 * @param v_bPeutVoirTousModules ce paramètre reçoit TRUE si cette personne peut voir tous les modules ou FALSE dans le cas contraire ;
-	 * @param v_iIdStatutUtilisateur rechercher les formations par rapport à un statut.
+	 * @param v_iIdPers numÃ©ro d'identifiant de la personne ;
+	 * @param v_bPeutVoirTousModules ce paramÃ¨tre reÃ§oit TRUE si cette personne peut voir tous les modules ou FALSE dans le cas contraire ;
+	 * @param v_iIdStatutUtilisateur rechercher les formations par rapport Ã  un statut.
 	 */
 	function initModules ($v_iIdPers=0,$v_iIdStatutUtilisateur=NULL,$v_bRechStricte=FALSE)
 	{
@@ -871,7 +871,7 @@ class CFormation
 			return FALSE;
 		
 		// *************************************
-		// Ajouter dans ce tableau les ids et les numéros d'ordre
+		// Ajouter dans ce tableau les ids et les numÃ©ros d'ordre
 		// *************************************
 		
 		$aoNumsOrdre = array();
@@ -880,13 +880,13 @@ class CFormation
 			$aoNumsOrdre[$i] = array($this->aoFormations[$i]->retId(),$this->aoFormations[$i]->retNumOrdre());
 		
 		// *************************************
-		// Mettre à jour dans la table avec les nouveaux numéros d'ordre
+		// Mettre Ã  jour dans la table avec les nouveaux numÃ©ros d'ordre
 		// *************************************
 		
 		if ($v_iNouveauNumOrdre > 0)
 		{
 			// *************************************
-			// Appel à une fonction externe pour une redistribution des numéros d'ordre
+			// Appel Ã  une fonction externe pour une redistribution des numÃ©ros d'ordre
 			// *************************************
 			
 			$aoNumsOrdre = redistNumsOrdre($aoNumsOrdre,$this->retNumOrdre(),$v_iNouveauNumOrdre);
@@ -901,8 +901,8 @@ class CFormation
 		}
 		else
 		{
-			// Cette boucle est utilisée, par exemple, lorsqu'on efface une ligne de la table
-			// et nous voulons simplement remettre de l'ordre (de 1 à n)
+			// Cette boucle est utilisÃ©e, par exemple, lorsqu'on efface une ligne de la table
+			// et nous voulons simplement remettre de l'ordre (de 1 Ã  n)
 			for ($i=0; $i<$cpt; $i++)
 				$this->mettre_a_jour("OrdreForm",($i+1),$aoNumsOrdre[$i][0]);
 		}
@@ -972,7 +972,7 @@ class CFormation
 	function defType ($v_iType) { if (is_numeric($v_iType)) $this->mettre_a_jour("TypeForm",$v_iType); }
 	
 	/**
-	 * Cette fonction initialise les informations de la personne qui a créé cette formation.
+	 * Cette fonction initialise les informations de la personne qui a crÃ©Ã© cette formation.
 	 *
 	 * \see CFormation::$oAuteur
 	 */
@@ -1016,11 +1016,11 @@ class CFormation
 	}
 	
 	/**
-	 * Cette fonction vérifie que l'utilisateur a bien été inscrit en
-	 * temps que concepteur à un cours.
+	 * Cette fonction vÃ©rifie que l'utilisateur a bien Ã©tÃ© inscrit en
+	 * temps que concepteur Ã  un cours.
 	 *
-	 * \param v_iIdPers numéro d'identifiant de l'utilisateur
-	 * \param v_bAuMoinsUnCours l'utilisateur doit être au moins inscrit comme concepteur à un cours
+	 * \param v_iIdPers numÃ©ro d'identifiant de l'utilisateur
+	 * \param v_bAuMoinsUnCours l'utilisateur doit Ãªtre au moins inscrit comme concepteur Ã  un cours
 	 * \return cette fonction retourne TRUE si l'utilisateur est un concepteur de cours
 	 * ou FALSE dans le cas contraire.
 	 */
@@ -1114,11 +1114,11 @@ class CFormation
 	function retListeStatuts ()
 	{
 		return array(
-			array(STATUT_FERME,"Fermé"),
+			array(STATUT_FERME,"FermÃ©"),
 			array(STATUT_OUVERT,"Ouvert"),
 			array(STATUT_INVISIBLE,"Invisible"),
-			array(STATUT_LECTURE_SEULE,"Clôturé")
-			/*array(STATUT_ARCHIVE,"Archivé")*/);
+			array(STATUT_LECTURE_SEULE,"ClÃ´turÃ©")
+			/*array(STATUT_ARCHIVE,"ArchivÃ©")*/);
 	}
 }
 

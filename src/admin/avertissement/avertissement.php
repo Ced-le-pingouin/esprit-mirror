@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: avertissement.php
 ** Description ............:
-** Date de création .......: 08/07/2005
-** Dernière modification ..: 12/07/2005
+** Date de crÃ©ation .......: 08/07/2005
+** DerniÃ¨re modification ..: 12/07/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_sAvertissement        = (empty($HTTP_POST_VARS["avertissement"]) ? NULL : $HTTP_POST_VARS["avertissement"]);
 $url_bAppliquerChangements = (empty($HTTP_POST_VARS["f"]) ? FALSE : TRUE);

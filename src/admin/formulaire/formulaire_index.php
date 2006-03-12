@@ -1,10 +1,10 @@
 <?php
 
 /*
-** Fichier ................: formulaire_index.php modifié à partir de concept_index.php
+** Fichier ................: formulaire_index.php modifiÃ© Ã  partir de concept_index.php
 ** Description ............:
-** Date de création .......: 01-09-2001
-** Dernière modification ..: 02-02-2004
+** Date de crÃ©ation .......: 01-09-2001
+** DerniÃ¨re modification ..: 02-02-2004
 ** Auteurs ................: Ludovic Flamme
 ** Emails .................: ute@umh.ac.be
 **
@@ -20,7 +20,7 @@ $oProjet = new CProjet();
    "http://www.w3.org/TR/REC-html40/frameset.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Conception de formulaires en ligne - Unite de Technologie de l'Education</title>
 <script language="javascript">
 	function defTexteStatut(v_sTitle) {	top.frames["menu"].document.getElementById("id_status").innerHTML = unescape(v_sTitle); }

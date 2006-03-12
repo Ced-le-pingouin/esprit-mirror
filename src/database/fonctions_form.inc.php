@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: fonctions_form.inc.php
 ** Description ............: Ensemble de fonctions communes aux formulaires
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -32,13 +32,13 @@
 
 	/*
 	** Fonction 		: Alignement
-	** Description		: Sert à cocher les cases concernant l'alignement d'un enonce
-	**                    et de sa réponse
-	** Entrée			: $sAlignEnon,$sAlignRep : contiennent la chaine de caractères 
+	** Description		: Sert Ã  cocher les cases concernant l'alignement d'un enonce
+	**                    et de sa rÃ©ponse
+	** EntrÃ©e			: $sAlignEnon,$sAlignRep : contiennent la chaine de caractÃ¨res 
 	**										{left,right,center ou justify)
 	** Sortie			: $ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4
-	**					Une chaîne de caractère $aeX contient "CHECKED" et les autres ""	
-	**					Une chaîne de caractère $arX contient "CHECKED" et les autres ""
+	**					Une chaÃ®ne de caractÃ¨re $aeX contient "CHECKED" et les autres ""	
+	**					Une chaÃ®ne de caractÃ¨re $arX contient "CHECKED" et les autres ""
 	*/
 	
 function Alignement($sAlignEnon,$sAlignRep)
@@ -76,23 +76,23 @@ function validerTexte($v_sTexte)
 	
 	/*
 	** Fonction 		: RetourPoidsReponse
-	** Description		: renvoie pour chaque réponse appartenant a l'objet en cours de traitement
-	**				  le poids pour chaque axe du formulaire même si celui-ci est NULL 
-	** Entrée			: $v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse
+	** Description		: renvoie pour chaque rÃ©ponse appartenant a l'objet en cours de traitement
+	**				  le poids pour chaque axe du formulaire mÃªme si celui-ci est NULL 
+	** EntrÃ©e			: $v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse
 	** Sortie			: Code Html contenant le(s) poids + mise en page + modification possible
 	*/
 
 function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 {
 	/*
-	Utilisation de l'objet CBdd bcp plus léger pour faire les requêtes qu'un objet Projet
+	Utilisation de l'objet CBdd bcp plus lÃ©ger pour faire les requÃªtes qu'un objet Projet
 	Attention ne pas oublier le : require_once (dir_database("bdd.class.php"));
 	*/
 	$oCBdd2 = new CBdd;
 	/*
-	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
+	Cette requÃªte retourne pour chaque rÃ©ponse, n lignes reprÃ©sentant chaque axe du formulaire.
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
-	Exemple de partie de résultat :
+	Exemple de partie de rÃ©sultat :
 	+-------+---------------+-----------+--------------+--------------+-----------+--------+
 	| IdAxe | DescAxe       | IdReponse | TexteReponse | OrdreReponse | IdObjForm | Poids  |
 	+-------+---------------+-----------+--------------+--------------+-----------+--------+
@@ -146,7 +146,7 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 	
 	//Copie de formulaire
 	$oFormulaire = new CFormulaire($this->oBdd,$v_iIdFormulaire);
-	$v_iIdNvFormulaire = $oFormulaire->copier($v_iIdFormulaire,$iIdNvPers);  //On envoie l'Id du formulaire a copier et l'IdPers du futur propriétaire de la copie
+	$v_iIdNvFormulaire = $oFormulaire->copier($v_iIdFormulaire,$iIdNvPers);  //On envoie l'Id du formulaire a copier et l'IdPers du futur propriÃ©taire de la copie
 	
 	//Copie des axes du formulaires
 	CopieFormulaire_Axe($this->oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);

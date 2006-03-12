@@ -1,11 +1,11 @@
 <!--
   -- sujet_msg_courriel.inc.tpl
   --
-  -- Date de création .......: 04/02/2005
-  -- Dernière modification ..: 24/02/2005
+  -- Date de crÃ©ation .......: 04/02/2005
+  -- DerniÃ¨re modification ..: 24/02/2005
   -- Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
   --
-  -- Unité de Technologie de l'Education
+  -- UnitÃ© de Technologie de l'Education
   -- 18, Place du Parc
   -- 7000 MONS
   -->
@@ -14,7 +14,7 @@
 [VAR_SUJET_COURRIEL+]Envoi courriel ({plateforme.nom} - {formation.nom})[VAR_SUJET_COURRIEL-]
 [VAR_MESSAGE_COURRIEL+]
 ********************************************************************
-***** Courriel envoyé depuis la plateforme {plateforme.nom}
+***** Courriel envoyÃ© depuis la plateforme {plateforme.nom}
 *****
 ***** Par : {personne.nom} {personne.prenom} ({personne.pseudo})
 ***** Formation : {formation.nom}
@@ -29,16 +29,16 @@
 [VAR_SUJET_COURRIEL+]Copie message forum : {forum.nom} ({formation.nom})[VAR_SUJET_COURRIEL-]
 [VAR_MESSAGE_COURRIEL+]
 ********************************************************************
-***** Copie d'un message déposé sur un des forums de la plateforme {plateforme.nom}
+***** Copie d'un message dÃ©posÃ© sur un des forums de la plateforme {plateforme.nom}
 *****
 ***** Par : {personne.nom} {personne.prenom} ({personne.pseudo})
 ***** Formation : {formation.nom}
 ***** Cours : {module.nom}
 ***** Forum : {forum.nom}
 *****
-***** NE PAS répondre à ce courriel, il a été envoyé depuis la plateforme {plateforme.nom}.
-***** Pour répondre, connectez-vous à {plateforme.nom} ({plateforme.url}) et
-***** déposez un message sur le forum {forum.nom}.
+***** NE PAS rÃ©pondre Ã  ce courriel, il a Ã©tÃ© envoyÃ© depuis la plateforme {plateforme.nom}.
+***** Pour rÃ©pondre, connectez-vous Ã  {plateforme.nom} ({plateforme.url}) et
+***** dÃ©posez un message sur le forum {forum.nom}.
 ********************************************************************
 [VAR_MESSAGE_COURRIEL-]
 [BLOCK_COPIE_MESSAGE_FORUM-]

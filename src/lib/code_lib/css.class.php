@@ -19,11 +19,11 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-// Ces constantes permettent de donner une identité au classe.
-// Toutes les classes peuvent hériter d'une classe ou créer une instance d'une
-// autre classe. Le problème, est de connaître le type de cette classe, 
-// par exemple je suis une classe 'TABLE' par conséquent il reçoit comme
-// indice ID_TABLE. Elle va permettre à la classe ATTRIBUT d'afficher les
+// Ces constantes permettent de donner une identitÃ© au classe.
+// Toutes les classes peuvent hÃ©riter d'une classe ou crÃ©er une instance d'une
+// autre classe. Le problÃ¨me, est de connaÃ®tre le type de cette classe, 
+// par exemple je suis une classe 'TABLE' par consÃ©quent il reÃ§oit comme
+// indice ID_TABLE. Elle va permettre Ã  la classe ATTRIBUT d'afficher les
 // attributs pour le type TABLE.
 define ("ID_BODY",0);
 
@@ -57,14 +57,14 @@ class CCss
 {
 	var $m_sNom;		// Nom
 	
-	var $ID_ELEMENT;	// Donne une idée du type de l'élément
+	var $ID_ELEMENT;	// Donne une idÃ©e du type de l'Ã©lÃ©ment
 	
 	// Attributs
 	var $m_sAlignement;
 	var $m_sVAlignement;
 	var $m_sCouleurFond;
 	
-	// Définition des classes communs
+	// DÃ©finition des classes communs
 	var $Fond;
 	var $Couleur;
 	var $Texte;	

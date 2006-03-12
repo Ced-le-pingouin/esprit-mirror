@@ -19,14 +19,14 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-//Ceci est ajouté uniquement pour pouvoir effectuer un contrôle de l'utilisateur
+//Ceci est ajoutÃ© uniquement pour pouvoir effectuer un contrÃ´le de l'utilisateur
 require_once("globals.inc.php");
 $oProjet = new CProjet();
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 {
 
 //************************************************
-//*       Récupération des variables             *
+//*       RÃ©cupÃ©ration des variables             *
 //************************************************
 
 if (isset($HTTP_GET_VARS))

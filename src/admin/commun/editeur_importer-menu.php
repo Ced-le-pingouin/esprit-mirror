@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: editeur_importer-menu.php
 ** Description ............:
-** Date de création .......: 30/06/2004
-** Dernière modification ..: 01/07/2004
+** Date de crÃ©ation .......: 30/06/2004
+** DerniÃ¨re modification ..: 01/07/2004
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

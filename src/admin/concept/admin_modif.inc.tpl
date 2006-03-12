@@ -1,15 +1,15 @@
 <!--
   -- Template ...............: admin_modif.inc.tpl
   -- Description ............: 
-  -- Date de création .......: 02/07/2004
-  -- Dernière modification ..: 02/07/2004
+  -- Date de crÃ©ation .......: 02/07/2004
+  -- DerniÃ¨re modification ..: 02/07/2004
   -- Auteurs ................: Filippo PORCO
   -- Emails .................: ute@umh.ac.be
   --
   -->
 
 [SET_ECONCEPT_NUMERO_ORDRE+]
-<!-- Numéro d'ordre -->
+<!-- NumÃ©ro d'ordre -->
 <tr>
 <td nowrap="nowrap" width="1%"><div  class="intitule">Num&eacute;ro d'ordre&nbsp;:</div></td>
 <td>

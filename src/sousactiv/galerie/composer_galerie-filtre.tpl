@@ -18,7 +18,7 @@
 [BLOCK_STATUT+]<option value="{statut.id}">{statut.nom}</option>[BLOCK_STATUT-]
 </select>
 <select name="personne">
-<option value="0">Tous les étudiants</option>
+<option value="0">Tous les Ã©tudiants</option>
 [BLOCK_PERSONNE+]<option value="{personne.id}">{personne.nom}</option>[BLOCK_PERSONNE-]
 </select>
 <input type="hidden" name="idSA" value="{sousactiv.id}">

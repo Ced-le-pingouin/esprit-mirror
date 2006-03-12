@@ -7,7 +7,7 @@
 </table>
 <br>
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
-<!-- Numéro d'ordre -->
+<!-- NumÃ©ro d'ordre -->
 <tr>
 <td nowrap="nowrap" width="1%"><div  class="intitule">Num&eacute;ro d'ordre&nbsp;:</div></td>
 <td>
@@ -29,10 +29,10 @@
 <td><div class="intitule">Statut&nbsp;:</div></td>
 <td>
 <select name="statut_formation">
-	<option value="1">Fermé</option>
+	<option value="1">FermÃ©</option>
 	<option value="2" selected>Ouvert</option>
 	<option value="3">Invisible</option>
-	<option value="4">Archivé</option>
+	<option value="4">ArchivÃ©</option>
 </select>
 </td>
 </tr>
@@ -47,13 +47,13 @@
 <td class="intitule">Description&nbsp;:&nbsp;</td>
 <td><span style="text-align: right;"><textarea name="descr_formation" cols="55" rows="5">{formation->description}</textarea>&nbsp;&nbsp;[&nbsp;<a href="javascript: editeur('form_admin_modif','descr_formation','{formation->nom->encoder}'); void(0);" onfocus="blur()">Editeur</a>&nbsp;]</span></td>
 </tr>
-<tr><td colspan="2"><span class="intitule">&nbsp;Modalité d'inscription des étudiants aux cours&nbsp;:&nbsp;</span></td></tr>
+<tr><td colspan="2"><span class="intitule">&nbsp;ModalitÃ© d'inscription des Ã©tudiants aux cours&nbsp;:&nbsp;</span></td></tr>
 </table>
 
 <div style="padding-left: 20px;">
-<input type="radio" name="INSCR_AUTO_MODULES" value="1">&nbsp;&nbsp;Tous les étudiants participent à tous les cours
+<input type="radio" name="INSCR_AUTO_MODULES" value="1">&nbsp;&nbsp;Tous les Ã©tudiants participent Ã  tous les cours
 <br>
-<input type="radio" name="INSCR_AUTO_MODULES" value="0" checked>&nbsp;&nbsp;Les responsables DOIVENT inscrire les étudiants qui le désirent à chaque cours
+<input type="radio" name="INSCR_AUTO_MODULES" value="0" checked>&nbsp;&nbsp;Les responsables DOIVENT inscrire les Ã©tudiants qui le dÃ©sirent Ã  chaque cours
 </div>
 </fieldset>
 </td>

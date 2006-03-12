@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: debug.class.php
 ** Description ............: 
-** Date de création .......: 27-02-2002
-** Dernière modification ..: 27-02-2002
+** Date de crÃ©ation .......: 27-02-2002
+** DerniÃ¨re modification ..: 27-02-2002
 ** Auteur .................: Fili//0: Porco
 ** Email ..................: ute@umh.ac.be
 **

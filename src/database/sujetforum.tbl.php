@@ -22,12 +22,12 @@
 /*
 ** Fichier ................: sujetforum.tbl.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 12/10/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 12/10/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
+**                           JÃ©rÃ´me TOUZE
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -111,12 +111,12 @@ class CSujetForum
 	}
 	
 	/**
-	 * Cette méthode retourne le nombre de messages que la personne aura
-	 * déposés pour ce sujet.
+	 * Cette mÃ©thode retourne le nombre de messages que la personne aura
+	 * dÃ©posÃ©s pour ce sujet.
 	 *
 	 * @param v_iIdPers integer Identifiant unique de la personne
-	 * @param v_iIdEquipe integer Identifiant unique de l'équipe
-	 * @return Retourne le nombre de messages de ce sujet de la personne désiré.
+	 * @param v_iIdEquipe integer Identifiant unique de l'Ã©quipe
+	 * @return Retourne le nombre de messages de ce sujet de la personne dÃ©sirÃ©.
 	 */
 	function retNbMessagesDeposesPersonne ($v_iIdPers,$v_iIdEquipe=0)
 	{
@@ -210,7 +210,7 @@ class CSujetForum
 	
 	function verrouillerTables ($v_bVerrouillerTables=TRUE)
 	{
-		// Vérrouiller les tables
+		// VÃ©rrouiller les tables
 		if ($v_bVerrouillerTables)
 			$sRequeteSql = "LOCK TABLES ".$this->STRING_LOCK_TABLES();
 		else

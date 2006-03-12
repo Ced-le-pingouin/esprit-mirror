@@ -7,16 +7,16 @@
 <!--<div id="logo"><img src="theme://infos-logo.gif" border="0" alt="logo"></div>-->
 <div id="informations">
 <h1><img src="theme://infos-logo.gif" border="0" alt="logo"><p><a id="courriel" href="mailto:{plateforme.courriel}" onfocus="blur()">{plateforme.courriel}</a></p></h1>
-<p>ESPRIT a ÈtÈ dÈveloppÈ par l'UnitÈ de Technologie de L'Education de l'UniversitÈ de Mons-Hainaut (Belgique)</p>
-<p>Ont participÈ ‡ la conception et au dÈveloppement d'Esprit :</p>
+<p>ESPRIT a √©t√© d√©velopp√© par l'Unit√© de Technologie de L'Education de l'Universit√© de Mons-Hainaut (Belgique)</p>
+<p>Ont particip√© √† la conception et au d√©veloppement d'Esprit :</p>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td>Filippo Porco</td><td>DÈveloppement informatique, design</td></tr>
-<tr><td>CÈdric Floquet</td><td>Analyse et architecture informatique</td></tr>
-<tr><td>JÈrÙme TouzÈ</td><td>DÈveloppement du forum</td></tr>
-<tr><td>Jean-Jacques Quintin</td><td>Coordination, conception et design pÈdagogique</td></tr>
+<tr><td>Filippo Porco</td><td>D√©veloppement informatique, design</td></tr>
+<tr><td>C√©dric Floquet</td><td>Analyse et architecture informatique</td></tr>
+<tr><td>J√©r√¥me Touz√©</td><td>D√©veloppement du forum</td></tr>
+<tr><td>Jean-Jacques Quintin</td><td>Coordination, conception et design p√©dagogique</td></tr>
 </table>
-<p>Gr‚ce aux conseils et aux idÈes de Christian Depover, Bruno De LiËvre et Sandrine Decamps.</p>
-<p>Cette plateforme a bÈnÈficiÈ du soutien des programmes europÈens Interreg II et Interreg III.</p>
+<p>Gr√¢ce aux conseils et aux id√©es de Christian Depover, Bruno De Li√®vre et Sandrine Decamps.</p>
+<p>Cette plateforme a b√©n√©fici√© du soutien des programmes europ√©ens Interreg II et Interreg III.</p>
 <hr>
 <p>&nbsp;</p>
 <div id="session_responsables">Les responsables de la plate-forme&nbsp;:

@@ -26,7 +26,7 @@
 
 [SET_LISTE_ICONES+]
 [ARRAY_LISTE_ICONES+]
-<a href="{a.exporter.href}" class="exporter_donnees" onfocus="blur()" target="_self">Exporter les données</a>&nbsp;#@#
+<a href="{a.exporter.href}" class="exporter_donnees" onfocus="blur()" target="_self">Exporter les donnÃ©es</a>&nbsp;#@#
 <a href="javascript: void(0);" onclick="{a.choix_courriel.href}; return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel"><img src="commun://icones/24x24/courriel_envoye.gif" width="24" height="24" border="0"></a>&nbsp;
 [ARRAY_LISTE_ICONES-]
 <div style="width: 90%; height: 25px; text-align: right;">{liste_icones}</div>

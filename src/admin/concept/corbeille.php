@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: admin_index.php
 ** Description ............:
-** Date de création .......: 28-12-2002
-** Dernière modification ..: 29-12-2002
+** Date de crÃ©ation .......: 28-12-2002
+** DerniÃ¨re modification ..: 29-12-2002
 ** Auteurs ................: Filippo Porco
 ** Emails .................: ute@umh.ac.be
 **
@@ -65,7 +65,7 @@ for ($iIdxForm=0; $iIdxForm<count($oFormation->aoFormations); $iIdxForm++)
 }
 
 if ($iIdxForm > 0)
-	$sCorpHTML = "<p class=\"Cellule_Sous_Titre\">Attention, cette opération est dangereuse. Vous allez effacer définitivement la formation.</p>"
+	$sCorpHTML = "<p class=\"Cellule_Sous_Titre\">Attention, cette opÃ©ration est dangereuse. Vous allez effacer dÃ©finitivement la formation.</p>"
 		."<form action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\" method=\"post\">"
 		."<table border=\"0\" cellpadding=\"2\" cellspacing=\"0\" width=\"100%\">"
 		.$sCorpHTML
@@ -76,7 +76,7 @@ if ($iIdxForm > 0)
 else
 	$sCorpHTML = "<div align=\"center\">"
 		."<span class=\"Cellule_Sous_Titre\">"
-		."Corbeille à formations est vide"
+		."Corbeille Ã  formations est vide"
 		."</span>"
 		."</div>";
 

@@ -22,11 +22,11 @@
 /*
 ** Fichier ................: forum-sujets.php
 ** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 14/04/2005
+** Date de crÃ©ation .......: 14/05/2004
+** DerniÃ¨re modification ..: 14/04/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
@@ -37,7 +37,7 @@ $oProjet = new CProjet();
 $oProjet->initSousActivCourante();
 
 // ---------------------
-// Récupérer les variables de l'url
+// RÃ©cupÃ©rer les variables de l'url
 // ---------------------
 $url_iIdForum    = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
 $url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
@@ -66,7 +66,7 @@ $bIdEquipeCorrect = TRUE;
 // ---------------------
 $oForum = new CForum($oProjet->oBdd,$url_iIdForum);
 
-// Vérifier que cet utilisateur est bien associé à une équipe
+// VÃ©rifier que cet utilisateur est bien associÃ© Ã  une Ã©quipe
 if (($iModaliteForum = $oForum->retModalite()) != MODALITE_POUR_TOUS)
 {
 	if ($url_iIdEquipe < 1)
@@ -91,14 +91,14 @@ $bAccessibleVisiteurs = (!$bIdEquipeCorrect && $oForum->retAccessibleVisiteurs()
 // Compter le nombre de sujets de la personne
 $iNbSujets = $oForum->retNombreSujets(($bPeutGererTousSujets ? NULL : $iMonIdPers));
 
-// Vérifier si ce forum est un forum par équipe
+// VÃ©rifier si ce forum est un forum par Ã©quipe
 $bForumParEquipe = ($iModaliteForum != MODALITE_POUR_TOUS);
 
-// Cette variable va permettre à la plate-forme d'afficher ou non la liste
-// des équipes
+// Cette variable va permettre Ã  la plate-forme d'afficher ou non la liste
+// des Ã©quipes
 $bAfficherListeEquipes = ($bForumParEquipe & ($bPeutGererTousSujets | $iModaliteForum != MODALITE_PAR_EQUIPE | (!$bIdEquipeCorrect & $bAccessibleVisiteurs)));
 
-// Vérifier que cette personne est bien inscrite dans une équipe,
+// VÃ©rifier que cette personne est bien inscrite dans une Ã©quipe,
 // dans le cas contraire il ne pourra pas ajouter/modifier/supprimer un sujet
 if ($bForumParEquipe && !$bIdEquipeCorrect && !$bPeutGererTousSujets)
 	$bPeutAjtSujet = $bPeutModSujet = $bPeutSupSujet = FALSE;
@@ -177,7 +177,7 @@ if ($bAfficherListeEquipes)
 	{
 		$oBlocEquipe->remplacer("{equipe->id}",0);
 		$oBlocEquipe->remplacer("{option->selected}"," selected");
-		$oBlocEquipe->remplacer("{equipe->nom}",htmlentities("Pas d'équipe trouvée"));
+		$oBlocEquipe->remplacer("{equipe->nom}",htmlentities("Pas d'Ã©quipe trouvÃ©e"));
 	}
 	
 	$oBlocEquipe->afficher();

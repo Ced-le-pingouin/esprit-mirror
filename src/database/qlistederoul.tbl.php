@@ -21,12 +21,12 @@
 
 require_once (dir_database("bdd.class.php"));  	//permet d'utiliser la bdd sans creer un objet
 																//CProjet et ainsi cela permet de creer des objets
-																//d'une autre classe à partir de celle-ci.
+																//d'une autre classe Ã  partir de celle-ci.
 /*
 ** Fichier ................: qlistederoul.tbl.php
 ** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
+** Date de crÃ©ation .......: 
+** DerniÃ¨re modification ..: 22-06-2004
 ** Auteurs ................: Ludovic FLAMME
 ** Emails .................: ute@umh.ac.be
 **
@@ -42,16 +42,16 @@ class CQListeDeroul
  function CQListeDeroul(&$v_oBdd,$v_iId=0) 
  {
    			$this->oBdd = &$v_oBdd;  
-								  //si 0 crée un objet presque vide sinon 
-								  //rempli l'objet avec les données de la table Formulaire
-								  //de l'elément ayant l'Id passé en argument 
-								  //(ou avec l'objet passé en argument mais sans passer par le constructeur)
+								  //si 0 crÃ©e un objet presque vide sinon 
+								  //rempli l'objet avec les donnÃ©es de la table Formulaire
+								  //de l'elÃ©ment ayant l'Id passÃ© en argument 
+								  //(ou avec l'objet passÃ© en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
  }
 	
 	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
+	//On lui passe alors un objet obtenu par exemple en faisant une requÃªte sur une autre page.
 	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
  function init ($v_oEnregExistant=NULL)  
  {
@@ -72,7 +72,7 @@ class CQListeDeroul
 		$this->iId = $this->oEnregBdd->IdObjForm;
  }
 
- function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type liste déroulante, avec tous ses champs
+ function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type liste dÃ©roulante, avec tous ses champs
 				 							// vide, en fin de table
  {
    $sRequeteSql = "INSERT INTO QListeDeroul SET IdObjForm='{$v_iIdObjForm}'";
@@ -81,7 +81,7 @@ class CQListeDeroul
  }
 
 
-//Fonctions de définition
+//Fonctions de dÃ©finition
 
  function defIdObjForm ($v_iIdObjForm)
 {
@@ -127,10 +127,10 @@ function retTxtApQLD () { return $this->oEnregBdd->TxtApQLD; }
 
 	  /*
 	  ** Fonction 		: RetourReponseQLD
-	  ** Description	: renvoie le code html contenant la liste déroulante avec les réponses,
-	  **					  si $v_iIdFC la réponse fournie par l'étudiant sera pré-sélectionnée	
-	  ** Entrée			:
-	  **				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
+	  ** Description	: renvoie le code html contenant la liste dÃ©roulante avec les rÃ©ponses,
+	  **					  si $v_iIdFC la rÃ©ponse fournie par l'Ã©tudiant sera prÃ©-sÃ©lectionnÃ©e	
+	  ** EntrÃ©e			:
+	  **				$v_iIdFC : Id d'un formulaire complÃ©tÃ© -> rÃ©cupÃ©ration de la rÃ©ponse dans la table correspondante
 	  ** Sortie			:
 	  **				code html
 	  */
@@ -140,7 +140,7 @@ function RetourReponseQLD($v_iIdFC=NULL)
 $iIdReponseEtu = "";
 if ($v_iIdFC != NULL)
 	{
-	//Sélection de la réponse donnée par l'étudiant
+	//SÃ©lection de la rÃ©ponse donnÃ©e par l'Ã©tudiant
 	$sRequeteSql = "SELECT * FROM ReponseEntier"
 	." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->oEnregBdd->IdObjForm}'";
 	
@@ -149,7 +149,7 @@ if ($v_iIdFC != NULL)
 	$iIdReponseEtu = $oEnregRep->IdReponse;
 	}
 
-//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
+//SÃ©lection de toutes les rÃ©ponses concernant l'objet QListeDeroul en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 $hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
@@ -183,29 +183,29 @@ return "$CodeHtml";
 
 	  /*
 	  ** Fonction 		: cHtmlQListeDeroul
-	  ** Description	: renvoie le code html qui permet d'afficher une question de type liste déroulante,
-	  **				     si $v_iIdFC est passé en paramètre il est envoyé à la fonction RetourReponseQLD qui permettra
-	  **					  de pré-sélectionner la réponse entrée par l'étudiant
-	  ** Entrée			:
-	  **				$v_iIdFC : Id d'un formulaire complété
+	  ** Description	: renvoie le code html qui permet d'afficher une question de type liste dÃ©roulante,
+	  **				     si $v_iIdFC est passÃ© en paramÃ¨tre il est envoyÃ© Ã  la fonction RetourReponseQLD qui permettra
+	  **					  de prÃ©-sÃ©lectionner la rÃ©ponse entrÃ©e par l'Ã©tudiant
+	  ** EntrÃ©e			:
+	  **				$v_iIdFC : Id d'un formulaire complÃ©tÃ©
 	  ** Sortie			:
 	  **				code html
 	  */
 
 function cHtmlQListeDeroul($v_iIdFC=NULL)
 	{
-	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+	//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adÃ©quat)
 	$this->oEnregBdd->EnonQLD = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQLD);
 	$this->oEnregBdd->TxtAvQLD = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQLD);
 	$this->oEnregBdd->TxtApQLD = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQLD);
 	
-	//Genération du code html représentant l'objet
+	//GenÃ©ration du code html reprÃ©sentant l'objet
 	$sCodeHtml="\n<!--QListeDeroul : {$this->oEnregBdd->IdObjForm} -->\n"
 		."<div align={$this->oEnregBdd->AlignEnonQLD}>{$this->oEnregBdd->EnonQLD}</div>\n"
 		."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQLD}>\n"
 		."{$this->oEnregBdd->TxtAvQLD} \n"
-		.$this->RetourReponseQLD($v_iIdFC) 			//Appel de la fonction qui renvoie les réponses sous forme de liste déroulante, 
-																//avec la réponse sélectionnée par l'étudiant si IdFC est présent
+		.$this->RetourReponseQLD($v_iIdFC) 			//Appel de la fonction qui renvoie les rÃ©ponses sous forme de liste dÃ©roulante, 
+																//avec la rÃ©ponse sÃ©lectionnÃ©e par l'Ã©tudiant si IdFC est prÃ©sent
 		." {$this->oEnregBdd->TxtApQLD}\n"
 		."</div>\n";
 	
@@ -215,22 +215,22 @@ function cHtmlQListeDeroul($v_iIdFC=NULL)
 
 	  	  /*
 		  ** Fonction 		: RetourReponseQCModif
-		  ** Description		: va rechercher dans la table réponse les réponses correspondant
-		  **				  a la question de type liste déroulante en cours de traitement 
-		  **				  + mise en page de ces réponses avec possibilité de modification
-		  ** Entrée			:
-		  ** Sortie			: Code Html contenant les réponses + mise en page + modification possible
+		  ** Description		: va rechercher dans la table rÃ©ponse les rÃ©ponses correspondant
+		  **				  a la question de type liste dÃ©roulante en cours de traitement 
+		  **				  + mise en page de ces rÃ©ponses avec possibilitÃ© de modification
+		  ** EntrÃ©e			:
+		  ** Sortie			: Code Html contenant les rÃ©ponses + mise en page + modification possible
 		  */
 
 function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 {
 /*
-Utilisation de l'objet CBdd bcp plus léger pour faire les requêtes qu'un objet Projet
+Utilisation de l'objet CBdd bcp plus lÃ©ger pour faire les requÃªtes qu'un objet Projet
 Attention ne pas oublier le : require_once (dir_database("bdd.class.php"));
 */
 $oCBdd = new CBdd;
 
-//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
+//SÃ©lection de toutes les rÃ©ponses concernant l'objet QRadio en cours de traitement
 $sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 			." ORDER BY OrdreReponse";
 
@@ -273,29 +273,29 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 	global $HTTP_POST_VARS, $HTTP_GET_VARS;
 	
-	//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
+	//initialisation des messages d'erreurs Ã  'vide' et de la variable servant a dÃ©tecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
+	//de celui-ci dans la base de donnÃ©es + affiche d'une astÃ©risque Ã  l'endroit de l'erreur)
 	
 	$sMessageErreur1 = "";
 	$iFlagErreur=0;
 	
 	if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
 		{
-			   //Récupération des variables transmises par le formulaire
+			   //RÃ©cupÃ©ration des variables transmises par le formulaire
 			   $this->oEnregBdd->EnonQLD = stripslashes($HTTP_POST_VARS['Enonce']);
 			   $this->oEnregBdd->AlignEnonQLD = $HTTP_POST_VARS['AlignEnon'];
 				$this->oEnregBdd->AlignRepQLD = $HTTP_POST_VARS['AlignRep'];
 				$this->oEnregBdd->TxtAvQLD = stripslashes($HTTP_POST_VARS['TxtAv']);
 				$this->oEnregBdd->TxtApQLD = stripslashes($HTTP_POST_VARS['TxtAp']);
 				
-			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
+			   //Test des donnÃ©es reÃ§ues et marquage des erreurs Ã  l'aide d'une astÃ©risque dans le formulaire
 			   //if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 				
 			   //if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
 					//{		
 						   
-							//Enregistrement des réponses et de leurs poids pour les differents axes
+							//Enregistrement des rÃ©ponses et de leurs poids pour les differents axes
 							if (isset($HTTP_POST_VARS["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois, apres avoir cree l'objet, 
 																			//sur ajouter $HTTP_POST_VARS["rep"] n'existe pas 
 							{
@@ -307,8 +307,8 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 									$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 									$oReponse->enregistrer(FALSE);  //On utilise FALSE car on n'initialise (on ne connait pas sa position)
 								
-									  if (isset($HTTP_POST_VARS["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
-									  														// n'est défini pour ce formulaire
+									  if (isset($HTTP_POST_VARS["repAxe"])) 	//VÃ©rifier pour ne pas effectuer le traitement si aucun axe 
+									  														// n'est dÃ©fini pour ce formulaire
 									  {
 										  $tab = $HTTP_POST_VARS["repAxe"];
 										  foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
@@ -331,9 +331,9 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 						   //Enregistrement de l'objet QRadio actuel dans la BD
 						   $this->enregistrer();
 					  		
-						   //Lorsque la question est bien enregistrée dans la BD 
-						   //(Pour cela on a cliqué sur le bouton 'Appliquer les changements')
-						   //on rafraîchit la liste en cochant l'objet que l'on est en train de traiter
+						   //Lorsque la question est bien enregistrÃ©e dans la BD 
+						   //(Pour cela on a cliquÃ© sur le bouton 'Appliquer les changements')
+						   //on rafraÃ®chit la liste en cochant l'objet que l'on est en train de traiter
 							
 							echo "<script>\n";
 							echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
@@ -342,11 +342,11 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 		}
 		
 		
-	//Si on a cliqué sur le lien 'Ajouter' cela affecte, via javascript, au champ caché ['typeaction']
-	//la valeur 'ajouter' et au champ caché parametre la valeur '0'.
-	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
-	//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours. 
-	//(avec les vérifications d'usage avant enregistrement dans la BD)
+	//Si on a cliquÃ© sur le lien 'Ajouter' cela affecte, via javascript, au champ cachÃ© ['typeaction']
+	//la valeur 'ajouter' et au champ cachÃ© parametre la valeur '0'.
+	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique Ã©galement 
+	//un enregistrement d'office dans la BD des modifications dÃ©jÃ  effectuÃ©es sur l'objet en cours. 
+	//(avec les vÃ©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='ajouter')
 		  {
 				 $hResultInt2 = $this->oBdd->executerRequete("SELECT MAX(OrdreReponse) AS OrdreMax FROM Reponse"
@@ -360,21 +360,21 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 				 $oReponse->defOrdreReponse($iOrdreMax);
 
 				 /*
-				 La réponse qui sera créée ici contiendra :
+				 La rÃ©ponse qui sera crÃ©Ã©e ici contiendra :
 								le numero de l'objet auquel elle appartient
-								l'ordre dans lequel elle sera affichée (toujours en dernière place)
-								son numéro d'identifiant sera attribué automatiquement par MySql
-				 le texte de la réponse sera attribué par après.
+								l'ordre dans lequel elle sera affichÃ©e (toujours en derniÃ¨re place)
+								son numÃ©ro d'identifiant sera attribuÃ© automatiquement par MySql
+				 le texte de la rÃ©ponse sera attribuÃ© par aprÃ¨s.
 				 */
 				 $oReponse->enregistrer();
 				 $this->oBdd->libererResult($hResultInt2);
 		  }
 
-	//Si on a cliqué sur le lien 'Supprimer' cela affecte, via javascript, au champ caché ['typeaction']
-	//la valeur 'supprimer' et au champ caché ['parametre'] l'id de la réponse a supprimer.
-	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
-	//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.
-	//(avec les vérifications d'usage avant enregistrement dans la BD)
+	//Si on a cliquÃ© sur le lien 'Supprimer' cela affecte, via javascript, au champ cachÃ© ['typeaction']
+	//la valeur 'supprimer' et au champ cachÃ© ['parametre'] l'id de la rÃ©ponse a supprimer.
+	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique Ã©galement 
+	//un enregistrement d'office dans la BD des modifications dÃ©jÃ  effectuÃ©es sur l'objet en cours.
+	//(avec les vÃ©rifications d'usage avant enregistrement dans la BD)
 	if ($HTTP_POST_VARS['typeaction']=='supprimer')
 		  {
 				 $v_iIdReponse = $HTTP_POST_VARS['parametre'];
@@ -384,8 +384,8 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 		  
 		  
 	//La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-	//et les 6 autres contiennent une chaîne vide
-	// aeX = alignement enoncé, arX = alignement réponse
+	//et les 6 autres contiennent une chaÃ®ne vide
+	// aeX = alignement enoncÃ©, arX = alignement rÃ©ponse
 	list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
 		Alignement($this->oEnregBdd->AlignEnonQLD,$this->oEnregBdd->AlignRepQLD);
 	
@@ -396,11 +396,11 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>ENONCE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>$sMessageErreur1 Enoncé :</TD>\n"
+		   ."<TD>$sMessageErreur1 EnoncÃ© :</TD>\n"
 		   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQLD}</textarea></TD>\n"
 		   ."</TR>\n"
 		   ."<TR>\n"
-		   ."<TD>Alignement énoncé :</TD>\n"
+		   ."<TD>Alignement Ã©noncÃ© :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
@@ -413,18 +413,18 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<fieldset><legend><b>REPONSE</b></legend>\n"
 		   ."<TABLE>\n"
 		   ."<TR>\n"
-		   ."<TD>Texte avant la réponse :</TD>\n"
+		   ."<TD>Texte avant la rÃ©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQLD}\"></TR>\n"
 		   ."</TR><TR>\n"
-		   ."<TD>Texte après la réponse :</TD>\n"
+		   ."<TD>Texte aprÃ¨s la rÃ©ponse :</TD>\n"
 		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQLD}\"></TR>\n"
 		   ."</TR>"
-		   ."<TD>Réponse(s) :\n"
+		   ."<TD>RÃ©ponse(s) :\n"
 			."<a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a>\n"
 			."</TD>\n"
 		   .$this->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."<TR>\n"
-		   ."<TD>Alignement Réponse :</TD>\n"
+		   ."<TD>Alignement RÃ©ponse :</TD>\n"
 		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
 		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
@@ -435,7 +435,7 @@ function cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire)
 		   ."</fieldset>\n"
 			."<INPUT TYPE=\"hidden\" NAME=\"typeaction\" VALUE=\"\">\n"
 			."<INPUT TYPE=\"hidden\" NAME=\"parametre\" VALUE=\"\">\n"
-		   //Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
+		   //Le champ cachÃ© ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
 		   ."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
 		   ."</form>\n";
 	
@@ -447,7 +447,7 @@ function enregistrer ()
 {
 	  if ($this->oEnregBdd->IdObjForm !=NULL)
 	  {	
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQLD = validerTexte($this->oEnregBdd->EnonQLD);
 		$sTxtAvQLD = validerTexte($this->oEnregBdd->TxtAvQLD);
@@ -499,7 +499,7 @@ function copier ($v_iIdNvObjForm)
 		if ($v_iIdNvObjForm < 1)
 			return;
 		
-		// Les variables contenant du "texte" doivent être formatées, cela permet 
+		// Les variables contenant du "texte" doivent Ãªtre formatÃ©es, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sEnonQLD = validerTexte($this->oEnregBdd->EnonQLD);
 		$sTxtAvQLD = validerTexte($this->oEnregBdd->TxtAvQLD);

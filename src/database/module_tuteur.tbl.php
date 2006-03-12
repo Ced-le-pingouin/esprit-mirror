@@ -22,8 +22,8 @@
 /*
 ** Fichier ................: module_tuteur.tbl.php
 ** Description ............:
-** Date de création .......: 18-10-2002
-** Dernière modification ..: 24-10-2003
+** Date de crÃ©ation .......: 18-10-2002
+** DerniÃ¨re modification ..: 24-10-2003
 ** Auteurs ................: Filippo PORCO
 ** Emails .................: ute@umh.ac.be
 **

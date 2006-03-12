@@ -22,8 +22,8 @@
 /*
 ** Classe .................: CCouleur_CSS
 ** Description ............: 
-** Date de création .......: 11-01-2002
-** Dernière modification ..: 11-01-2002
+** Date de crÃ©ation .......: 11-01-2002
+** DerniÃ¨re modification ..: 11-01-2002
 ** Auteur .................: Fili//0: Porco
 ** Email ..................: filippo.porco@umh.ac.be
 **
