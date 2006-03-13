@@ -113,9 +113,9 @@ class Template
 	/**
 	 * Affiche les données contenues actuellement dans le template. Généralement appelé à la fin du script PHP qui 
 	 * utilise le template. Un remplacement automatique se fait avant l'affichage, sur les faux protocoles <code>
-	 * "racine://", "admin://", "commun://", "theme://", "javascript://", et "lib://", qui sont remplacés par, 
-	 * respectivement, les resultats des appels aux fonctions globales dir_root_plateform(), dir_admin(), 
-	 * dir_theme_commun(), dir_theme(), dir_javascript(), et dir_lib()
+	 * "racine://", "admin://", "commun://", "theme://", "javascript://",</code> et \c "lib://", qui sont remplacés par, 
+	 * respectivement, les resultats des appels aux fonctions globales <code>dir_root_plateform(), dir_admin(), 
+	 * dir_theme_commun(), dir_theme(), dir_javascript(),</code> et \c dir_lib()
 	 * 
 	 * @see	#retDonnees()
 	 */
@@ -237,14 +237,14 @@ class TPL_Block
 	 * 
 	 * Par exemple le bloc suivant :
 	 * 
-	 * <code>
+	 * @code
 	 * [bloc+]
 	 * <tr>
 	 *   <td>{nom_utilisateur}</td>
 	 *   <td>{prenom_utilisateur}</td>
 	 * </tr>
 	 * [bloc-]
-	 * <code>
+	 * @endcode
 	 * 
 	 * sera entièrement remplacé, le temps des traitements sur le bloc (avant l'appel à #afficher() donc), par 
 	 * \c [bloc_tmp] dans son template parent. Lorsque les traitements sont terminés et qu'on demande l'affichage 
@@ -266,11 +266,26 @@ class TPL_Block
 	
 	// {{{ Ajouté par Fil
 	/**
-	 * Pas de description pour le moment
+	 * Remplace, dans l'itération courante d'une boucle, une balise de type [CYCLE:] par sa valeur pour cette itération.
+	 * Voici un exemple de balise qui permettrait, pour chaque itération d'une une boucle créant des lignes de table 
+	 * HTML, de modifier la classe CSS de chaque ligne afin d'en alterner les couleurs (classes ligneImpaire et lignePaire) :
 	 * 
-	 * @param	v_iCycle
+	 * @code
+	 * [bloc+]
+	 * <tr class="[CYCLE:ligneImpaire|lignePaire]">
+	 *   <td>{nom_utilisateur}</td>
+	 *   <td>{prenom_utilisateur}</td>
+	 * </tr>
+	 * [bloc-]
+	 * @endcode
 	 * 
-	 * @todo	Compléter cette description
+	 * Les valeurs possibles pour les cycles sont donc séparées par un carcatère '|'.
+	 * 
+	 * @param	v_iCycle	l'index de la variable de cycle (la première ayant l'index zéro) qui remplacera la balise.
+	 * 						S'il est absent, on prend l'index résultant de l'opération : 
+	 * 							(index de l'itération courante    modulo    nb total de cycles possibles)
+	 * 						Ce qui entraînera un cycle croissant dans les valeurs possibles (pour l'exemple, cela donne 
+	 * 						ligneImpaire pour la 1ère itération, lignePaire pour la 2è, ligneImpaire pour la 3è, etc.
 	 */
 	function cycle($v_iCycle = NULL)
 	{
@@ -288,14 +303,32 @@ class TPL_Block
 	}
 	
 	/**
-	 * Récupère les variables situées à l'intérieur d'un bloc
+	 * Récupère les variables situées à l'intérieur d'un bloc. Les "variables" sont délimitées par des balises 
+	 * [bloc+][bloc-], mais le contenu des balises, plutôt que d'être considéré comme des données à afficher comme 
+	 * c'est le cas pour un véritable bloc, est retourné comme "variable", soit sous forme de chaîne (défaut), soit sous 
+	 * forme de tableau. Dans ce dernier cas, le contenu des balises doit comprendre des séparateurs, qui seront 
+	 * utilisés pour diviser le contenu en éléments de tableau. Au retour de la fonction, le bloc et son contenu sont 
+	 * effacés du template. Une variable ne peut donc être récupérée qu'une seule fois dans un template
 	 * 
-	 * @param	string	$looptag
-	 * @param	boolean	$v_bRetTableau
+	 * Exemple:
 	 * 
-	 * @return	une chaîne de caractères ou un tableau de chaîne de caractères
+	 * @code
+	 * [variable+]<img src="image1.gif">|<img src="image2.gif">[variable-]
+	 * @endcode
 	 * 
-	 * @todo	Vérifier cette description
+	 * Si le code ci-dessus se trouve dans un bloc de template représenté en PHP par l'objet \c $oBloc, un appel de type 
+	 * <code>$oBloc->defVariable("variable", $asTableau, '|');</code> retournera un tableau de deux éléments (chaînes), 
+	 * le premier contenant <code>&lt;img src="image1.gif"&gt;</code>, la seconde <code>&lt;img src="image2.gif"&gt;
+	 * </code>
+	 * 
+	 * @param	looptag			le nom du bloc "variable", tel qu'utilisé dans les balises de délimitation + et -
+	 * @param	v_bRetTableau	si \c true, le contenu devra être retourné sous forme de tableau
+	 * @param	v_sSeparateur	lorsque \p v_bRetTableau vaut \c true, ce paramètre est utilisé pour déterminer les
+	 * 							éléments à extraire
+	 * 
+	 * @return	une chaîne de caractères ou un tableau de chaîne de caractères représentant le contenu de la variable 
+	 * 			délimitée par le bloc
+	 * 
 	 */
 	function defVariable($looptag, $v_bRetTableau = FALSE, $v_sSeparateur="###")
 	{
@@ -304,8 +337,8 @@ class TPL_Block
 		if (strpos($this->data, "[$looptag-]"))
 		{
 			$debut = strpos($this->data, "[$looptag+]");
-			$fin = strpos($this->data, "[$looptag-]") + strlen("[$looptag-]"); // + taille de la balise finale
-			$sVariable = substr($this->data, $debut, ($fin-$debut));
+			$fin = strpos($this->data, "[$looptag-]", $debut) + strlen("[$looptag-]"); // + taille de la balise finale
+			$sVariable = substr($this->data, $debut, ($fin - $debut));
 			//effacement du bloc
 			$this->data = str_replace($sVariable, "", $this->data);
 			// enlevement des balises + et - ds le tableau
@@ -314,18 +347,19 @@ class TPL_Block
 			$sVariable = trim($sVariable);
 		}
 		
-		return ($v_bRetTableau && isset($sVariable) ? explode($v_sSeparateur,$sVariable) : $sVariable);
+		return ($v_bRetTableau && isset($sVariable) ? explode($v_sSeparateur, $sVariable) : $sVariable);
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Raccourci vers la fonction #defVariable() avec l'option tableau à \c true, et le séparateur par défaut à ','
 	 * 
-	 * @param	looptag			A compléter
-	 * @param	v_sSeparateur	A compléter
+	 * @param	looptag			le nom du bloc "variable", tel qu'utilisé dans les balises de délimitation + et -
+	 * @param	v_sSeparateur	la chaîne de caracères à utiliser pour séparer les éléments de la variables, qui seront
+	 * 							retournés sous forme de tableau
 	 * 
-	 * @return	A compléter
+	 * @return	un tableau de chaînes de caractères représentant le contenu de la variable délimitée par le bloc
 	 * 
-	 * @todo	Compléter cette description
+	 * @see		#defVariable()
 	 */
 	function defTableau($looptag, $v_sSeparateur = ",")
 	{
@@ -333,11 +367,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Efface complètement un bloc (variable) dans un bloc de template
 	 * 
-	 * @param	looptag		A compléter
-	 * 
-	 * @todo	Compléter cette description
+	 * @param	looptag		le nom du bloc contenant la variable, tel qu'utilisé dans les balises + et -
 	 */
 	function effacerVariable($looptag)
 	{
@@ -345,11 +377,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Retourne le contenu actuel du bloc de template, avec les remplacements et autres traitements de éventuels
 	 * 
-	 * @return	A compléter
-	 * 
-	 * @todo	Compléter cette description
+	 * @return	le contenu du bloc de template après traitements
 	 */
 	function retDonnees()
 	{
@@ -357,11 +387,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Définit le contenu du bloc de template. Cela écrase l'ancien contenu
 	 * 
-	 * @param	v_sDonnees	A compléter
-	 * 
-	 * @todo	Compléter cette description
+	 * @param	v_sDonnees	le texte représentant le nouveau contenu du bloc de template
 	 */
 	function defDonnees($v_sDonnees)
 	{
@@ -369,11 +397,9 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Retourne le nombre de caractères qui composent le contenu du bloc de template
 	 * 
-	 * @return	A compléter
-	 * 
-	 * @todo	Compléter cette description
+	 * @return	le nombre de cractères contenus dans le bloc
 	 */
 	function caracteres()
 	{
@@ -382,11 +408,9 @@ class TPL_Block
 	// }}}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Ajouter du texte à la suite du contenu actuel du bloc de template
 	 * 
-	 * @param	sTexteAjout
-	 * 
-	 * @todo	Compléter cette description
+	 * @param	sTexteAjout		le texte à ajouter
 	 */
 	function ajouter($sTexteAjout)
 	{
@@ -394,9 +418,8 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
-	 * 
-	 * @todo	Compléter cette description
+	 * Effacer complètement ce bloc dans le template parent. Cela qui implique l'effacement de la balise temporaire 
+	 * qui avait été créée dans le parent, pour la durée des traitements/remplacements
 	 */
 	function effacer()
 	{
@@ -404,9 +427,11 @@ class TPL_Block
 	}
 	
 	/**
-	 * Pas de description pour le moment
+	 * Affiche le contenu du bloc de tamplate dans son parent. Si le bloc est une boucle, cette fonction doit tout de
+	 * même n'être appelée qu'une seule fois, après la boucle (composée d'appels à #beginLoop(), #nextLoop(), 
+	 * #remplacer()), ce qui a pour effet d'afficher en une seule fois toutes les itérations de la boucle
 	 * 
-	 * @todo	Compléter cette description
+	 * @see	Template#afficher()
 	 */
 	function afficher()
 	{
