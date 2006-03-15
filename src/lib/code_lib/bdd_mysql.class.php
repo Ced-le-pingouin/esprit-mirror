@@ -19,42 +19,37 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier			: bdd_mysql.class.php
-** Description		: classe formant une interface avec des base de
-**					  données MySQL
-** Création			: 04-09-2001 (Cédric FLOQUET, cedric.floquet@advalvas.be)
-** Dernière modif	: 02-04-2003
-**
-** (c) 2001 Unité de Technologie de l'Education. Tous droits réservés.
-*/
+/**
+ * @file	bdd_mysql.class.php
+ * 
+ * Contient la classe de gestion de DB, ici MySQL
+ * 
+ * @date	2001/09/04
+ * 
+ * @author	Cédric FLOQUET
+ */
 
-
-/*
-** Classe			: CBddMySql
-** Description		: interface de base pour l'utilisation d'une base de 
-**					  données MySQL
-*/
+/**
+ * Interface avec une DB MySQL
+ */
 class CBddMySql
 {
-	var $sHote; var $sLogin; var $sMdp;		// infos pour la connexion à la base
-	var $sNom;								// nom de la base
-	var $hLien = 0;							// handle vers la base
-	var $sRequete = "";						// dernière requête 'tentée' (pas forcément réussie)
-	var $ahResult;							// handles de résultats de requêtes
-
-
-	/*
-	** Fonction 		: CBddMySql (constructeur)
-	** Description		: effectue la connexion au serveur de BDD, puis la connexion à une
-	**					  base en particulier
-	** Entrée			:
-	**					v_sHote			: nom du serveur de BDD ("localhost" par défaut)
-	**					v_sLogin		: nom d'utilisateur pour la connexion
-	**					v_sMdp			: mot de passe pour la connexion
-	**					v_sNom			: nom de la base à utiliser
-	** Sortie			: aucune
-	*/
+	var $sHote;			///< Paramètre "hôte" pour la connexion à la DB
+	var $sLogin;		///< Paramètre "username" pour la connexion à la DB
+	var $sMdp;			///< Paramètre "mot de passe" pour la connexion à la DB
+	var $sNom;			///< Nom de la DB de départ
+	var $hLien = 0;		///< Handle de la connexion établie à la DB
+	var $sRequete = "";	///< Dernière requête 'tentée' (pas forcément réussie)
+	var $ahResult;		///< Tableau des handles de résultats de requêtes
+	
+	/**
+	 * Constructeur. Effectue la connexion au serveur DB, et sélectionne automatiquement la DB spécifiée
+	 * 
+	 * @param	v_sHote		l'adresse du serveur DB
+	 * @param	v_sLogin	le username à utiliser pour la connexion
+	 * @param	v_sMdp		le mot de passe à utiliser pour la connexion
+	 * @param	v_sNom		le nom de la DB à sélectionner automatiquement
+	 */
 	function CBddMySql($v_sHote = "localhost", $v_sLogin, $v_sMdp, $v_sNom)
 	{
 		// les infos de connexion sont copiées dans les propriétés de la classe
@@ -71,30 +66,25 @@ class CBddMySql
 		// connexion à la base réussie -> son nom est copié dans la propriété ad hoc
 		$this->sNom = $v_sNom;
 	}
-
-
-	/*
-	** Fonction 		: terminer (pseudo-destructeur)
-	** Description		: ferme la connexion au serveur de BDD
-	** Entrée			: aucune
-	** Sortie			: aucune
-	*/
+	
+	/**
+	 * Pseudo-destructeur (doit être appelé explicitement). Ferme la connexion au serveur DB
+	 */
 	function terminer()
 	{
 		mysql_close($this->hLien) or $this->traiterErreur();
 	}
 
 	
-	/*
-	** Fonction 		: executerRequete
-	** Description		: exécute une requête SQL
-	** Entrée			:
-	**					v_sRequete		: texte de la requête SQL (sans point-virgule
-	**									  à la fin)
-	** Sortie			:
-	**					si la requête réussit, le numéro du résultat correspondant
-	**					est retourné. Sinon, FALSE est retourné
-	*/
+	/**
+	 * Exécute une requête SQL, et en cas de réussite enregistre le handle du résultat dans le tableau \c ahResult
+	 * 
+	 * @param	v_sRequete	le texte de la requête, sans point-virgule final. Une seule requête à la fois donc
+	 * @param	v_bAfficher	si \c true, le texte de la requête est affiché dans la page (debug)
+	 * 
+	 * @return	l'indice du handle de résultat dans le tableau \c ahResult en cas de réussite de la requête, \c false 
+	 * 			en cas d'échec (erreur de syntaxe ou autre)
+	 */
 	function executerRequete($v_sRequete, $v_bAfficher = FALSE)
 	{
 		// si la requête n'est pas vide, on la copie dans la propriété ad hoc
@@ -121,37 +111,31 @@ class CBddMySql
 			
 		return FALSE;
 	}
-
-
-	/*
-	** Fonction 		: retDernierId
-	** Description		: renvoie le dernier numéro inséré dans un champ AUTO_INCREMENT
-	** Entrée			: aucune
-	** Sortie			:
-	**					numéro créé lors de l'insertion du champ
-	*/
+	
+	
+	/**
+	 * Retourne l'id généré pour le dernier enregistrement inséré avec champ AUTO_INCREMENT
+	 * 
+	 * @return	l'id du dernier enregistrement inséré avec colonne AUTO_INCREMENT
+	 */
 	function retDernierId() { return mysql_insert_id($this->hLien); }
-
-
-	/*
-	** Fonction 		: retNbResults
-	** Description		: fonction d'accès au nombre actuel de résultats de requêtes
-	** Entrée			: aucune
-	** Sortie			:
-	**					nombre actuel de résultats de requêtes 'exploitables'
-	*/
+	
+	/**
+	 * Retourne le nombre de résultats de requêtes (tableau \c ahResult)
+	 * 
+	 * @return	le nombre de résultats de requêtes exploitables
+	 */
 	function retNbResults() { return count($this->ahResult); }
-
-
-	/*
-	** Fonction 		: retNbEnregsDsResult
-	** Description		: renvoie le nombre total d'enregistrements contenus dans
-	**					  un résultat de requête donné
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
-	** Sortie			:
-	**					nombre total d'enregistrements pour ce résultat
-	*/
+	
+	/**
+	 * Retourne le nombre d'enregistrements récupérés par une requête
+	 * 
+	 * @param	v_iNumResult	l'indice du handle de résultats à utiliser (plusieurs résultats peuvent être gardés, 
+	 * 							dans \c ahResult). Par défaut \c null, ce qui revient à traiter le résultat de la 
+	 * 							dernière requête réussie
+	 * 
+	 * @return	le nombre d'enregistrements récupérés dans le résultat de requête spécifié
+	 */
 	function retNbEnregsDsResult($v_iNumResult = NULL)
 	{
 		// si le numéro de résultat n'est pas fourni, on prend le dernier
@@ -163,18 +147,14 @@ class CBddMySql
 	
 		return mysql_num_rows($this->ahResult[$v_iNumResult]);
 	}
-
 	
-	/*
-	** Fonction 		: retEnregSuivant
-	** Description		: renvoie l'enregistrement suivant d'un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
-	** Sortie			:
-	**					l'enregistrement est retourné sous forme d'objet, dont
-	**					les propriétés sont les différents champs. S'il n'y a 
-	**					plus d'enregistrement, NULL est retourné
-	*/
+	/**
+	 * Retourne sous forme d'objet PHP l'enregistrement suivant dans un résultat de requête
+	 * 
+	 * @param	v_iNumResult	l'indice du résultat de requête à utiliser (voir #retNbEnregsDsResult())
+	 * 
+	 * @return	l'objet PHP contenant les champs de l'enregistrement suivant du résultat de la requête
+	 */
 	function retEnregSuiv($v_iNumResult = NULL)
 	{
 		// si le numéro de résultat n'est pas fourni, on prend le dernier
@@ -187,17 +167,18 @@ class CBddMySql
 		return mysql_fetch_object($this->ahResult[$v_iNumResult]);
 	}
 	
-
-	/*
-	** Fonction 		: retEnregPrecis
-	** Description		: renvoie un enregistrement précis dans un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
-	**					v_iNumEnreg		: numéro de l'enregistrement
-	** Sortie			:
-	**					l'enregistrement est retourné sous forme de
-	**					tableau de champs (indicés à partir de 0)
-	*/
+	/**
+	 * Retourne le premier champ d'un enregistrement donné dans un résultat de requête
+	 * 
+	 * @param	v_iNumResult	l'indice du résultat de requête à utiliser (voir #retNbEnregsDsResult())
+	 * @param	v_iNumEnreg		l'indice de l'enregistrement dans le résultat (le premier = 0)
+	 * 
+	 * @return	le premier champ de l'enregistrement spécifié, dans le résultat de requête voulu
+	 * 
+	 * @note	Cette fonction est limitée au premier champ, elle est surtout utilisée pour les requêtes SELECT dont 
+	 * 			le résultat n'a qu'un enregistrement et un seul champ non nommé, comme <code>SELECT MD5("blah")</code> 
+	 * 			ou <code>SELECT COUNT(*) FROM Table</code>
+	 */
 	function retEnregPrecis($v_iNumResult = NULL, $v_iNumEnreg = 0)
 	{
 		// si le numéro de résultat n'est pas fourni, on prend le dernier
@@ -209,15 +190,12 @@ class CBddMySql
 	
 		return mysql_result($this->ahResult[$v_iNumResult], $v_iNumEnreg);
 	}
-
-
-	/*
-	** Fonction 		: libererResult
-	** Description		: libère les ressources associées à un résultat
-	** Entrée			:
-	**					v_iNumResult	: numéro du résultat à traiter
-	** Sortie			: aucune
-	*/
+	
+	/**
+	 * Libère les ressources associées à un résultat de requête. Le résultat est également enlevé du tableau \c ahResult
+	 * 
+	 * @param	v_iNumResult	l'indice du résultat à libérer (voir #retNbEnregsDsResult())
+	 */
 	function libererResult($v_iNumResult = NULL)
 	{
 		// si le numéro de résultat n'est pas fourni, on prend le dernier
@@ -232,26 +210,33 @@ class CBddMySql
 		// puis on supprime l'entrée correspondant au résultat dans notre tableau
 		unset($this->ahResult[$v_iNumResult]);
 	}
-
-	function validerDonnee ($v_sDonnee)
+	
+	/**
+	 * Fonction utilitaire pour "nettoyer" une donnée texte. Pour le moment, il s'agit d'un trim suivi de l'enlèvement 
+	 * des backslashes
+	 * 
+	 * @param	v_sDonnee	le texte à nettoyer
+	 * 
+	 * @return	le texte nettoyé
+	 */
+	function validerDonnee($v_sDonnee)
 	{
 		return stripslashes(trim($v_sDonnee));
 	}
 	
-	function deverrouillerTables ()
+	/**
+	 * Exécute un "UNLOCK TABLES"
+	 */
+	function deverrouillerTables()
 	{
 		$this->executerRequete("UNLOCK TABLES");
 	}
 	
-	/*
-	** Fonction 		: traiterErreur
-	** Description		: affiche le message correspondant à la dernière erreur
-	**					  survenue pour la base de données
-	** Entrée			:
-	**					v_bEstFatale	: si TRUE (par défaut), l'erreur entraine
-	**									  l'arrêt immédiat du script PHP
-	** Sortie			: aucune
-	*/
+	/**
+	 * Affiche la dernière erreur SQL survenue et arrête éventuellement le script PHP courant
+	 * 
+	 * @param	v_bEstFatale	si \c true (défaut), le script PHP est stoppé
+	 */
 	function traiterErreur($v_bEstFatale = TRUE)
 	{
 		// si on est connecté, affiche le dernier message d'erreur

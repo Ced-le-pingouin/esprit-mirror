@@ -423,8 +423,8 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise l'objet oUtilisateur en fonction des données d'identification disponibles. Les données d'id sont 
-	 * vérifiées dans le tableau \c asInfosSession, lui-même initialisé dans \c lireInfosSession()
+	 * Initialise l'objet \c oUtilisateur en fonction des données d'identification disponibles. Les données d'id sont 
+	 * vérifiées dans le tableau \c asInfosSession, lui-même initialisé dans #lireInfosSession()
 	 * 
 	 * @param	v_bRedirigerSiIncorrect	si \c true, et qu'un problème survient avec l'identification de l'utilisateur, 
 	 * 									on arrête le chargement de la page et on le renvoie à l'écran de login 
@@ -1767,7 +1767,7 @@ class CProjet
 	{
 		$this->asInfosSession = array();
 		
-		for ($i=SESSION_DEBUT; $i<SESSION_FIN; $i++)
+		for ($i = SESSION_DEBUT; $i < SESSION_FIN; $i++)
 			$this->asInfosSession[$i] = 0;
 		
 		$this->oUtilisateur = NULL;

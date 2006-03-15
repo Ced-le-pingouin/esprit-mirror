@@ -22,7 +22,7 @@
 /**
  * @file	template.inc.php
  * 
- * Déclaration des classes pour les templates
+ * Contient les classes pour la gestion des templates
  * 
  * @date	2002/03/21
  * 
