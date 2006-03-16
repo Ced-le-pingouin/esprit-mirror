@@ -1,3 +1,30 @@
+Installation d'Esprit
+
+----------------------------------------------------------------------
+PRÉREQUIS
+
+- Apache
+- PHP4 avec browscap.ini (pour l'identification des navigateurs)
+- MySQL 4 (non testé avec MySQL 5)
+
+----------------------------------------------------------------------
+CONFIGURATION DU SERVEUR WEB
+
+Le répertoire src/ d'Esprit doit être placé sur le serveur web.  Le
+serveur web doit pouvoir accèder à ces fichiers, il peut donc être
+nécessaire de changer leur propriétaire à "nobody" ou "www-data" selon
+la configuration du serveur.
+
+Dans le cas où les fichiers seraient placés hors du serveur, il est
+nécessaire d'utiliser un Virtual Host. Un lien symbolique ne suffit
+pas. Voir l'ANNEXE A ci-dessous.
+
+----------------------------------------------------------------------
+INSTALLATION AUTOMATIQUE
+
+----------------------------------------------------------------------
+INSTALLATION MANUELLE
+
 Pour que la plate-forme soit opérationnelle, voilà la marche à suivre :
 
 1) créer une base de données (BdD) vide, par ex... esprit :-) .
@@ -34,8 +61,29 @@ mot de passe "mdp".
 cliquant sur "Outils", qui se trouve dans la barre inférieure du site,
 puis en se rendant de l'outil de conception de cours eConcept.
 
+----------------------------------------------------------------------
+ANNEXE A : VIRTUAL HOST
 
+Pour établir un virtual host qui déclarerait le répertoire
+/home/esprit/src comme serveur autonome nommé esprit.domaine.org, on
+peut suivre la procédure suivante.
 
-PRÉREQUIS :
+ - Insérer à la fin du fichier httpd.conf d'Apache le texte :
+NameVirtualHost 127.0.0.1
+<VirtualHost 127.0.0.1>
+    DocumentRoot /var/www/
+    ServerName localhost
+</VirtualHost>
+<VirtualHost 127.0.0.1>
+#    ServerAdmin webmaster@host.domaine.org
+    DocumentRoot /home/esprit/src/
+    ServerName esprit.local
+#    ErrorLog logs/host.domaine.org-error.log
+</VirtualHost>
 
-- PHP4 avec browscap.ini (pour l'identification des navigateurs)
+ - Déclarer un alias esprit.domaine.com vers la machine réelle.
+Soit en modifiant les fichiers hosts des machines concernées pour y
+insérer "XXX.XXX.XXX.XXX esprit esprit.domaine.org".
+Soit en modifiant le DNS.
+
+ - Redémarrer le serveur Apache.
