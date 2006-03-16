@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>La page d'accueil d'Esprit</title>
 <meta name="Author" content="Unité de Technologie de l'Education de l'Université de Mons-Hainaut (Belgique)">
 <meta name="keywords" content="formation,distance,fad,plateforme,plate-forme,esprit,université,ouverte,campus,virtuel">

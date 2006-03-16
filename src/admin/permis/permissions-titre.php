@@ -36,6 +36,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?=inserer_feuille_style("barre_outils.css")?>
 <style type="text/css">
 <!--

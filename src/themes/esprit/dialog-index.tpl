@@ -2,6 +2,7 @@
 	"http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>{titre_page_html}</title>
 [BLOCK_HEAD+][BLOCK_HEAD-]
 <script type="text/javascript" language="javascript">

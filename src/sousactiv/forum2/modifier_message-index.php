@@ -78,6 +78,7 @@ $sParamsUrl = "modifier_message.php"
    "http://www.w3.org/TR/REC-html40/frameset.dtd">
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title><?=htmlentities($sTitrePrincipal)?></title>
 <script type="text/javascript" language="javascript">
 <!--

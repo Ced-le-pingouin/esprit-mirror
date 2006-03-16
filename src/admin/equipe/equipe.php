@@ -89,6 +89,7 @@ if (count($HTTP_POST_VARS) > 0)
 	// fermer directement cette fenêtre
 	echo "<html>\n"
 		."<head>\n"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"
 		."<!--\n"
 		."top.opener.valider('$iIdEquipe');\ntop.close();\n"

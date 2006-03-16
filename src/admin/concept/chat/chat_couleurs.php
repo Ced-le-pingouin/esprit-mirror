@@ -56,6 +56,7 @@ while (@list(,$sLigne) = each($asTableau))
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("chat.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--

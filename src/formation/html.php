@@ -81,6 +81,7 @@ if ($ext == ".htm" ||
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("zdc_frame_principale.css"); ?>
 </head>

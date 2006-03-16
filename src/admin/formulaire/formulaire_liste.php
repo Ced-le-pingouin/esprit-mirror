@@ -68,6 +68,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	
 	echo "<html>\n";
 	echo "<head>\n";
+        echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
 	echo "<title>Mettre en forme les formulaires et les éléments de formulaires avec les CSS</title>\n";
 	
 	echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";

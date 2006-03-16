@@ -58,6 +58,7 @@ if ($sFichierTmp != "none")
 			
 			echo "<html>\n"
 				."<head>\n"
+			        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 				.inserer_feuille_style()
 				."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 				."function init()\n"

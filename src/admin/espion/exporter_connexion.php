@@ -49,6 +49,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Exporter le fichier des connexions</title>
 <script type="text/javascript" language="javascript">
 <!--

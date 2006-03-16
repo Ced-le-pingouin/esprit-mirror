@@ -105,7 +105,9 @@ else
 
 ?>
 <html>
-<head><title>Résultat des transferts</title></head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Résultat des transferts</title></head>
 <frameset border="0" rows="*,24" frameborder="0">
 <frame src="ressource_transfert_result.php<?="?err={$iErr}"."&idSA={$iIdSADest}".(count($aiIdResSA) > 0 ? "&idResSA=".implode("x",$aiIdResSA) : NULL)?>" frameborder="0">
 <frame src="ressource_transfert-menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize>

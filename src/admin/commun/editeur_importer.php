@@ -45,6 +45,7 @@ if (isset($HTTP_POST_FILES["fichier"]))
 		
 		echo "<html>\n"
 			."<head>\n"
+		        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 			."<script type=\"text/javascript\" language=\"javascript\">\n"
 			."<!--\n"
 			."function init() {\n"

@@ -1,6 +1,7 @@
 <?php $sIconeTitres = "<img src=\"".dir_theme("icone-titres.jpg")."\" width=\"10\" height=\"10\" border=\"0\">&nbsp;"; ?>
 <html>
 <head>
+<meta http-equiv=Content-Type content="text/html;  charset=utf-8">
 <title><?=$oArchive->retSalon()?></title>
 <?php inserer_feuille_style("archives.css"); ?>
 <script type="text/javascript" language="javascript">

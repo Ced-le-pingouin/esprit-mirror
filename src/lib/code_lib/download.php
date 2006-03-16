@@ -158,7 +158,9 @@ else
 {
 	// s'il y a eu erreur, on en affiche la raison
 	print "<html>\n"
-		."<head>\n<title>Téléchargement impossible !</title>\n</head>\n"
+		."<head>\n"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
+                ."<title>Téléchargement impossible !</title>\n</head>\n"
 		."<div style=\"text-align: center;\">\n"
 		."<center>\n"
 		."<h4>\n"

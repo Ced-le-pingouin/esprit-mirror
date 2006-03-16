@@ -263,6 +263,7 @@ if (isset($act) && $act != AJT_FORMATION)
 {
 	// Mettre à jour
 	echo "<html><head>\n"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"
 		."<!--\n\n"
 		."function reafficher()\n"

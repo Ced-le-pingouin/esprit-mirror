@@ -90,6 +90,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?=inserer_feuille_style("exporter-personnes.css")?>
 <script type="text/javascript" language="javascript">
 <!--

@@ -132,7 +132,9 @@ $oProjet->terminer();
 ?>
 
 <html>
-<head><?php inserer_feuille_style("menu"); ?></head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<?php inserer_feuille_style("menu"); ?></head>
 <body>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr><td style="background-color: #FFFFFF;">

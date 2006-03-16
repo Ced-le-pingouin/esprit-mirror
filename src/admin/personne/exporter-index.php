@@ -4,6 +4,7 @@ $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title><?=$sTitrePrincipal?></title>
 <script type="text/javascript" language="javascript">
 <!--

@@ -49,6 +49,7 @@ if ($url_sNomFichierCopier != "none" && validerFichier($url_sNomFichierCopier))
 $sBlocPageHtml = <<<BLOC_PAGE_HTML
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function init()

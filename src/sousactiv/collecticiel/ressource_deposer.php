@@ -56,6 +56,7 @@ include_once("ressource_deposer.inc.php");
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title></title>
 <?php inserer_feuille_style("dialog.css"); ?>
 <script type="text/javascript" language="javascript">

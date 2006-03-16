@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link tyle="text/css" rel="stylesheet" href="theme://globals.css">
 <link tyle="text/css" rel="stylesheet" href="theme://dialogue.css">
 <link tyle="text/css" rel="stylesheet" href="theme://forum_export.css">

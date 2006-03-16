@@ -57,6 +57,7 @@ else
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?=inserer_feuille_style("concept.css")?>
 <script type="text/javascript" language="javascript">
 <!--

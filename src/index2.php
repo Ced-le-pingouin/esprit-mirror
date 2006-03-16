@@ -12,6 +12,7 @@ $oProjet->terminer();
 <html>
 <head>
 <title><?=$sNomPlateforme?></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="Shortcut Icon" type="image/x-icon" href="/esprit/favicon.ico">
 <script type="text/javascript" language="javascript">
 <!--

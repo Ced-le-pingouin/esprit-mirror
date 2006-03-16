@@ -1,6 +1,7 @@
 <html>
 <head>
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="language" src="global.js"></script>
 <script type="text/javascript" language="language" src="ass_multiple.js"></script>
 <script type="text/javascript" language="language">

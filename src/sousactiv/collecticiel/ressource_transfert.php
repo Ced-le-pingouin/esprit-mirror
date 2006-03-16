@@ -55,7 +55,9 @@ $sTransfert = NULL;
 if (!is_object($oProjet->oSousActivCourante))
 {
 	echo "<html>"
-		."<head>".inserer_feuille_style()."</head>"
+		."<head>"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
+	        .inserer_feuille_style()."</head>"
 		."<body>"
 		."<div align=\"center\">"
 		."<p class=\"Texte_Negatif\"><b>Erreur</b>&nbsp;:</p>"

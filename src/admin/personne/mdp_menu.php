@@ -3,6 +3,7 @@
 <html>
 
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php link_theme (); echo LienVersFichierCSS ("bottom.css").LienVersFichierCSS ("dialogue.css"); ?>
 </head>
 

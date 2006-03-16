@@ -105,6 +105,7 @@ include_once(dir_database("ids.class.php"));
 		
 		echo "<html>"
 			."<head>"
+                        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 			."\n<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 			."function RafraichirFermer() "
 			."{ top.opener.location = top.opener.location;\n top.close(); }\n"

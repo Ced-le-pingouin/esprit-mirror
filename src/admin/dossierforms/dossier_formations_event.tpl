@@ -2,6 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="dossier_formations_event.css">
 <script type="text/javascript" language="javascript" src="dossier_formations_event.js"></script>

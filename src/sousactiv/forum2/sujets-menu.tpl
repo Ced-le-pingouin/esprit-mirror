@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/globals.css">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/forum/sujets-menu.css">
 <script type="text/javascript" language="javascript" src="/ipfhainaut_dev/js/dom.window.js"></script>

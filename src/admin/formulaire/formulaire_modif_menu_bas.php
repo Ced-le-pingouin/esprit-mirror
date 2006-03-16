@@ -44,7 +44,7 @@ else if (isset($HTTP_POST_VARS))
 echo "<html>\n";
 
 echo "<head>\n";
-
+echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
 echo "<script type=\"text/javascript\">\n";
 echo "<!--\n";
 

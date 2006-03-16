@@ -52,7 +52,7 @@ if ($dir = @opendir($sNomRepertoire))
 
 <html>
 <head>
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="Tue, 20 Aug 1996 14:25:27 GMT">
 

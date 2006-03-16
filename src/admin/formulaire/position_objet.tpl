@@ -1,6 +1,6 @@
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css">
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css"><meta http-equiv="content-type" content="text/html; charset=utf-8">
 <TITLE>Déplacer un élément</TITLE>
 </head>
 <body class="popup" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" marginwidth="0" marginheight="0">

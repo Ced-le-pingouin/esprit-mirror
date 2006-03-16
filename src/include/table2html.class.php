@@ -61,6 +61,7 @@ class CTable2HTML
 		
 		$document = "<html>\n"
 			."<head>\n"
+		        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 			."<style type=\"text/css\">\n"
 			."<!--\n"
 			."body, a, p, th, td { font-family: Arial, Helvetica, sans-serif; font-size: 8pt; }\n"

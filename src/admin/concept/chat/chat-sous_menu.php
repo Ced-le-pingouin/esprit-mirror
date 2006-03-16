@@ -22,6 +22,7 @@
 require_once("globals.inc.php"); ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("dialog.css"); ?>
 </head>
 <body class="dialog_sous_menu">

@@ -566,6 +566,7 @@ function fermerBoiteDialogue ($v_sLigneJavascript=NULL)
 {
 	echo "<html>\n"
 		."<head>\n"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"
 		."<!--\n"
 		."function fermer() { ".(isset($v_sLigneJavascript) ? "{$v_sLigneJavascript}; " : NULL)."top.close(); }\n"

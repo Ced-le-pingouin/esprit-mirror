@@ -225,6 +225,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("evaluation_ressource.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>

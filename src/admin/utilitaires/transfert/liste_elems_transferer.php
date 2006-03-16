@@ -3,6 +3,7 @@ require_once("globals.inc.php");
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?=inserer_feuille_style()?>
 <script type="text/javascript" language="javascript">
 function changer(v_sName)

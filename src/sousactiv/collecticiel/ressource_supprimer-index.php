@@ -74,7 +74,9 @@ else if ($HTTP_GET_VARS["nom"])
 }
 ?>
 <html>
-<head><title>Supprimer des documents</title></head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Supprimer des documents</title></head>
 <frameset rows="*,24">
 <frame name="principale" src="ressource_supprimer.php<?=$sParamsUrl?>" frameborder="0" scrolling="no" noresize="noresize">
 <frame name="menu" src="ressource_supprimer-menu.php" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">

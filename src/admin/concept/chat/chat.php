@@ -95,6 +95,7 @@ for ($i=1; $i<=$iNbrChats; $i++)
 
 $sMessageDePatience_0 = "<html>"
 	."<head>"
+        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 	."<link type='text/css' rel='stylesheet' href='".dir_theme("globals.css")."'>"
 	."</head>"
 	."<body>";

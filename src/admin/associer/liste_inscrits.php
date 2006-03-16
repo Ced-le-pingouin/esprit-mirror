@@ -281,6 +281,7 @@ if ($iNbrInscrits < 1)
 <html>
 <head>
 <?php inserer_feuille_style("associer_personnes.css"); ?>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>

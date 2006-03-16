@@ -19,6 +19,7 @@ $sParamsUrl = "?NIVEAU=".(empty($HTTP_GET_VARS["NIVEAU"]) ? 0 : $HTTP_GET_VARS["
 
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Ouvrir un mod&egrave;le</title>
 <script type="text/javascript" language="javascript">
 <!--

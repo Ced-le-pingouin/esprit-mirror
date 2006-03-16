@@ -75,6 +75,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 	
 	echo "<html>\n"
 		."<head>\n"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 		."<script type=\"text/javascript\" language=\"javascript\">\n"
 		."<!--\n"
 		."function init()"

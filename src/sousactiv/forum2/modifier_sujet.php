@@ -142,6 +142,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 	{
 		echo "<html>\n"
 			."<head>\n"
+		        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 			."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 			."function fermer() { top.opener.rafraichir_liste_sujets('{$url_iIdSujet}','$url_sModaliteFenetre'); top.close(); }\n"
 			."//--></script>\n"

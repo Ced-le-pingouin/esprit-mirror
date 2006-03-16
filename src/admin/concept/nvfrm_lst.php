@@ -46,6 +46,7 @@ $sens_tri = isset($HTTP_GET_VARS["SENS_TRI"]) ? $HTTP_GET_VARS["SENS_TRI"] : NUL
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--

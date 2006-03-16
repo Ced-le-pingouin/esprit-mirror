@@ -48,6 +48,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 <html>
 	
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="<?=dir_theme("formulaire/formulaire.css");?>">
 
 <script src="selectionobj.js" type="text/javascript">

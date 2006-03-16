@@ -19,6 +19,7 @@ if (!isset($url_iType))
 <html>
 <head>
 <title>Liste des intitul&eacute;s</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipal() { return frames["Principale"]; }

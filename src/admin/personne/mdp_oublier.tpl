@@ -1,6 +1,7 @@
 [BLOCK_ENTRER_INFORMATIONS+]
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <style type="text/css">
 <!--

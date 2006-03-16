@@ -166,6 +166,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("gestion_equipes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js')?>"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>

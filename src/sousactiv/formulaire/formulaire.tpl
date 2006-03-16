@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_zdc.css">

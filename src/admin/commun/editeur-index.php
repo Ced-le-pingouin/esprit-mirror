@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>Editeur</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--

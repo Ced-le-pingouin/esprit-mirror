@@ -19,6 +19,7 @@ $sParamsUrl = "?type=".(empty($HTTP_GET_VARS["type"]) ? 0 : $HTTP_GET_VARS["type
 <html>
 <head>
 <title>Confirmation</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipale() { return top.frames["principale"]; }

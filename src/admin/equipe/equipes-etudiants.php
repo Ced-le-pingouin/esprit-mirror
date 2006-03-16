@@ -180,6 +180,7 @@ $oProjet->terminer();
 <html>
 <head>
 <META HTTP-EQUIV="Pragma" CONTENT="NO-CACHE">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("equipes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>

@@ -76,6 +76,7 @@ $oBdd->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style(); ?>
 </head>
 <body style="background-image: none; background-color: rgb(251,249,238);">

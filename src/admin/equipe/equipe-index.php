@@ -35,6 +35,7 @@ if (isset($sParamsUrl))
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title><?=$sTitreFenetre?></title>
 <script type="text/javascript" language="javascript">
 <!--

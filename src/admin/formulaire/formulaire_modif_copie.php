@@ -46,6 +46,7 @@ else
 
 echo "<html>\n";
 echo "<head>\n";
+echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
 echo "<script src=\"selectionobj.js\" type=\"text/javascript\">";
 echo "</script>\n";
 

@@ -33,7 +33,7 @@ $a = $ev->retListeConnectes();
 <html>
 
 <head>
-
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style(); ?>
 
 <style type="text/css">

@@ -124,6 +124,7 @@ if ($url_iErreur == TRANSFERT_REUSSI || $url_iErreur == TRANSFERT_REUSSI_SAUF)
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style(); ?>
 </head>
 <body>

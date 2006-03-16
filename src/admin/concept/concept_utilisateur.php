@@ -27,7 +27,9 @@ $oProjet->terminer();
 
 ?>
 <html>
-<head><?php inserer_feuille_style(); ?></head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<?php inserer_feuille_style(); ?></head>
 <body class="cellule_fonce">
 <?php
 echo "<div align=\"center\">"

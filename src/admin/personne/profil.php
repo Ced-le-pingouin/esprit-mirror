@@ -109,6 +109,7 @@ if ($iIdPers >= 0)
 		{
 			echo "<html>\n"
 				."<head>"
+			        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 				.inserer_feuille_style("profil.css")
 				."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 				."function corriger() { top.frames[\"Bas\"].location = \"personne-bas.php?corriger=1\"; }\n"

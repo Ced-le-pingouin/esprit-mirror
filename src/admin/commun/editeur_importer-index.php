@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Importer</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function retour() {

@@ -122,6 +122,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv=Content-Type content="text/html;  charset=utf-8">
 <title><?="{$sChatNom} [{$sUtilisateurNomComplet}".(isset($sEquipeNom) ? " - {$sEquipeNom}" : NULL)."]"?></title>
 </head>
 <body style="background-color: black;" topmargin="1" leftmargin="1" rightmargin="1" bottommargin="1">

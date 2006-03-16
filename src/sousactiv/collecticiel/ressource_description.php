@@ -35,7 +35,9 @@ if (isset($HTTP_GET_VARS["idResSA"]) && $HTTP_GET_VARS["idResSA"] > 0)
 
 ?>
 <html>
-<head><?php inserer_feuille_style(); ?></head>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<?php inserer_feuille_style(); ?></head>
 <body>
 <p><?php echo (isset($sDescr) ? htmlentities($sDescr) : "Ce fichier ne contient pas de description !"); ?></p>
 </body>

@@ -47,6 +47,7 @@ $v_iIdFormulaire = $oFormulaire->ajouter($iIdPers);
 
 echo "<html>";
 echo "<head>";
+echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
 echo "<script src=\"selectionobj.js\" type=\"text/javascript\">";
 echo "</script>";
 echo "</head>";

@@ -115,6 +115,7 @@ if (empty($sCorpHtml))
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <META HTTP-EQUIV="Pragma" CONTENT="NO-CACHE">
 <?php inserer_feuille_style("equipes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>

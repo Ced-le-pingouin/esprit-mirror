@@ -55,6 +55,7 @@ if (isset($HTTP_GET_VARS['supprimer']))
 {
 	  echo "<html>\n";
 	  echo "<head>\n";
+	  echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
 	  echo "<TITLE>Gestion des Axes/Tendances</TITLE>";
 	  //CSS
 	  echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".dir_theme("formulaire/formulaire.css")."\">";

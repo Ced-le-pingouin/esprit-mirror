@@ -54,6 +54,7 @@ function collecticiel_erreur ($v_sMessageErreur)
 {
 	echo "<html>"
 		."<head>"
+	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 		.inserer_feuille_style(NULL,FALSE)
 		."</head>"
 		."<body>"

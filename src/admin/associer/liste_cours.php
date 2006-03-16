@@ -195,6 +195,7 @@ $oProjet->terminer();
 <html>
 <head>
 <?php inserer_feuille_style("associer_personnes.css"); ?>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="globals.js"></script>
 <script type="text/javascript" language="javascript">
 <!--

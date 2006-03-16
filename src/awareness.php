@@ -88,6 +88,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function voir_liste_connectes()

@@ -41,6 +41,7 @@ else
 <html>
 <head>
 <title>Les couleurs du monde</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipal() { return top.frames["principal"]; }

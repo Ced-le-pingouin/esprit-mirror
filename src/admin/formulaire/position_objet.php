@@ -53,6 +53,7 @@ if (isset($HTTP_GET_VARS['deplacer']))
 	$oObjetFormulaire->DeplacerObjet($v_iNouvPos);
 	echo "<html>\n";
 	echo "<head>\n";
+	echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
 	echo "<script language=\"javascript\" src=\"selectionobj.js\" type=\"text/javascript\"></script>";
 	echo "<script language=\"javascript\">\n";
 	echo "rechargerlistepopup($v_iIdObjForm,$v_iIdFormulaire)\n";
