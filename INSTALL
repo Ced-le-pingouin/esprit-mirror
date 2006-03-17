@@ -22,6 +22,10 @@ pas. Voir l'ANNEXE A ci-dessous.
 ----------------------------------------------------------------------
 INSTALLATION AUTOMATIQUE
 
+Rendez-vous avec  votre navigateur à l'adresse : 
+http://mon_site/repertoire__esprit/installation/installation.php
+Suivez la procédure d'installation.
+
 ----------------------------------------------------------------------
 INSTALLATION MANUELLE
 
@@ -31,11 +35,17 @@ Pour que la plate-forme soit opérationnelle, voilà la marche à suivre :
 
 2) créer les tables et insérer les données par défaut, en exécutant
 dans cette BdD les fichiers suivants, se trouvant dans les sources
-d'Esprit, dans l'ordre :
- - dist/sql/database.mysql ;
- - dist/sql/commun/ : tous les fichiers .sql , sauf ceux dont le nom
-     débute par i18n, qui ne fonctionnent pas ;
- - dist/sql/esprit/Projet.sql .
+d'Esprit (src/install/sql), dans l'ordre :
+ 
+1_structure.sql
+2_Permission.sql 
+2_Personne.sql    
+2_Projet_Admin.sql   
+2_Statut_Permission.sql  
+2_TypeSousActiv.sql    
+2_TypeStatutPers.sql  
+3_esprit-projet.sql
+
 
 3) créer un user MySQL qui a les droits sur la BdD
 (select/insert/update/delete/lock devraient suffire).
