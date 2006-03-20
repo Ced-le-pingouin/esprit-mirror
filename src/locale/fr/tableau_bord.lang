@@ -18,12 +18,12 @@ define("TXT_ETUDIANTS_INSCRITS_AU_COURS","Etudiants inscrits au cours");
 // }}}
 
 // {{{ Tooltips
-define("TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE","{chat.messages.nombre} message(s) déposé(s) sur {chat.archives.nombre} archive(s)");
-define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL","Cliquer ici pour accéder au collecticiel");
-define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE","Cliquer ici pour accéder à l'AEL");
-define("TLT_FORUM_NOMBRE_MESSAGES_FORUM","{forum.messages.nombre} message(s) déposé(s) dans ce forum");
-define("TLT_PAS_ARCHIVE_TROUVEE_CHAT","Pas d'archive trouvée dans ce chat");
-define("TLT_PAS_MESSAGE_TROUVE_FORUM","Pas de message trouvé dans ce forum");
+define("TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE","{chat.messages.nombre} message(s) dÃ©posÃ©(s) sur {chat.archives.nombre} archive(s)");
+define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL","Cliquer ici pour accÃ©der au collecticiel");
+define("TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE","Cliquer ici pour accÃ©der Ã  l'AEL");
+define("TLT_FORUM_NOMBRE_MESSAGES_FORUM","{forum.messages.nombre} message(s) dÃ©posÃ©(s) dans ce forum");
+define("TLT_PAS_ARCHIVE_TROUVEE_CHAT","Pas d'archive trouvÃ©e dans ce chat");
+define("TLT_PAS_MESSAGE_TROUVE_FORUM","Pas de message trouvÃ© dans ce forum");
 // }}}
 
 ?>

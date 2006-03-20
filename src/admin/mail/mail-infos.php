@@ -187,10 +187,10 @@ if (strlen($url_sTypeCourriel) > 0)
 }
 
 $sHtmlOptions = "<option>"
-	.htmlentities($oProjet->oUtilisateur->retNomComplet()." "."<".$oProjet->oUtilisateur->retEmail().">")
+	.htmlentities($oProjet->oUtilisateur->retNomComplet()." "."<".$oProjet->oUtilisateur->retEmail().">",ENT_COMPAT,"UTF-8")
 	."</option>"
 	.($oProjet->verifAdministrateur()
-		? "<option>".htmlentities($oProjet->retNom()." "."<".$oProjet->retEmail().">")."</option>"
+		? "<option>".htmlentities($oProjet->retNom()." "."<".$oProjet->retEmail().">",ENT_COMPAT,"UTF-8")."</option>"
 		: NULL);
 
 // ---------------------

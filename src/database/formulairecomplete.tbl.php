@@ -347,7 +347,6 @@ class CFormulaireComplete_SousActiv extends CFormulaireComplete
 				." LEFT JOIN FormulaireComplete ON FormulaireComplete.IdFC=FormulaireComplete_SousActiv.IdFC"
 				." FROM IdFCSousActiv='{$this->iIdFCSA}'"
 				." LIMIT 1";
-			$this->oBdd->executerRequete($hResult);
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);

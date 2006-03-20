@@ -1,7 +1,7 @@
 <?php
 
 // @file outils.lang
-// @Description Traduction des différents outils de la plateforme.
+// @Description Traduction des diffÃ©rents outils de la plateforme.
 // @lang fr
 // @author Filippo PORCO <filippo.porco@umh.ac.be>
 // @modified 07/12/2005
@@ -9,31 +9,31 @@
 // @dtd TXT_%_DESCRIPTION: <textarea name="TXT_%_DESCRIPTION">TXT_%_DESCRIPTION</textarea
 define("TXT_AVERTISSEMENT_LOGGIN_DESCRIPTION","Pour afficher un message d'avertissement en dessous du login, au niveau de la page d'accueil d'Esprit");
 define("TXT_AVERTISSEMENT_LOGGIN_TITRE","Avertissement loggin");
-define("TXT_CONSOLE_DESCRIPTION","Pour accéder à la console");
+define("TXT_CONSOLE_DESCRIPTION","Pour accÃ©der Ã  la console");
 define("TXT_CONSOLE_TITRE","Console");
-define("TXT_CORBEILLE_DESCRIPTION","Pour supprimer définitivement une formation effacée");
+define("TXT_CORBEILLE_DESCRIPTION","Pour supprimer dÃ©finitivement une formation effacÃ©e");
 define("TXT_CORBEILLE_TITRE","Corbeille");
 define("TXT_DOSSIERS_DESCRIPTION","Pour regrouper certaines formations sous forme de dossier");
 define("TXT_DOSSIERS_TITRE","Dossiers");
-define("TXT_ECONCEPT_DESCRIPTION","Pour créer ou modifier votre cours en ligne");
+define("TXT_ECONCEPT_DESCRIPTION","Pour crÃ©er ou modifier votre cours en ligne");
 define("TXT_ECONCEPT_TITRE","eConcept");
-define("TXT_ENVOI_COURRIEL_DESCRIPTION","Pour envoyer un courriel à toutes les personnes inscrites à la plateforme");
+define("TXT_ENVOI_COURRIEL_DESCRIPTION","Pour envoyer un courriel Ã  toutes les personnes inscrites Ã  la plateforme");
 define("TXT_ENVOI_COURRIEL_TITRE","Envoi courriel");
-define("TXT_EQUIPES_DESCRIPTION","Pour créer des équipes et y affecter des étudiants");
+define("TXT_EQUIPES_DESCRIPTION","Pour crÃ©er des Ã©quipes et y affecter des Ã©tudiants");
 define("TXT_EQUIPES_TITRE","Equipes");
-define("TXT_EXPORTER_INSCRITS_DESCRIPTION","Pour exporter sous forme csv ou html, une liste d’utilisateurs");
+define("TXT_EXPORTER_INSCRITS_DESCRIPTION","Pour exporter sous forme csv ou html, une liste dâ€™utilisateurs");
 define("TXT_EXPORTER_INSCRITS_TITRE","Exporter");
-define("TXT_FORMULAIRE_DESCRIPTION","Pour créer ou modifier des activités en ligne");
-define("TXT_FORMULAIRE_TITRE","Générateur d'activités en ligne");
-define("TXT_INSCRIPTION_DESCRIPTION","Pour inscrire les utilisateurs et leur donner un statut (étudiant, tuteur...)");
+define("TXT_FORMULAIRE_DESCRIPTION","Pour crÃ©er ou modifier des activitÃ©s en ligne");
+define("TXT_FORMULAIRE_TITRE","GÃ©nÃ©rateur d'activitÃ©s en ligne");
+define("TXT_INSCRIPTION_DESCRIPTION","Pour inscrire les utilisateurs et leur donner un statut (Ã©tudiant, tuteur...)");
 define("TXT_INSCRIPTION_TITRE","Inscription");
 define("TXT_OUTILS_TITRE","Outils");
-define("TXT_PERMISSIONS_DESCRIPTION","Pour modifier les autorisations de chacun des statuts (étudiants, tuteurs…)");
+define("TXT_PERMISSIONS_DESCRIPTION","Pour modifier les autorisations de chacun des statuts (Ã©tudiants, tuteursâ€¦)");
 define("TXT_PERMISSIONS_TITRE","Permissions");
 define("TXT_PLATEFORME_DESCRIPTION","A propos d'Esprit");
 define("TXT_PLATEFORME_TITRE","");
-define("TXT_STATUTS_DESCRIPTION","Pour créer un fichier de statuts");
-define("TXT_STATUTS_TITRE","Création du fichier des statuts");
-define("TXT_TRANSFERT_FORMATIONS_DESCRIPTION","Pour transférer des formations d’une autre base de données");
+define("TXT_STATUTS_DESCRIPTION","Pour crÃ©er un fichier de statuts");
+define("TXT_STATUTS_TITRE","CrÃ©ation du fichier des statuts");
+define("TXT_TRANSFERT_FORMATIONS_DESCRIPTION","Pour transfÃ©rer des formations dâ€™une autre base de donnÃ©es");
 define("TXT_TRANSFERT_FORMATIONS_TITRE","Transfert de formations");
 ?>

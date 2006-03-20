@@ -74,9 +74,9 @@ for ($i=0; $i<count($aoBdds); $i++)
 	// Vérifier que le répertoire de la plate-forme soit accessible
 	if (is_dir("{$sBddValide}{$aoBdds[$i]}"))
 		$sOptionsBddsSrc .= "<option"
-			." value=\"".htmlentities($aoBdds[$i])."\""
+			." value=\"".htmlentities($aoBdds[$i],ENT_COMPAT,"UTF-8")."\""
 			.($aoBdds[$i] == $url_sNomBddSrc ? " selected" : NULL)
-			.">".htmlentities($aoBdds[$i])."</option>\n";
+			.">".htmlentities($aoBdds[$i],ENT_COMPAT,"UTF-8")."</option>\n";
 }
 ?>
 <table border="0" cellspacing="0" cellpadding="7" width="100%">

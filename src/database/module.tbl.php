@@ -461,14 +461,14 @@ class CModule
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomMod) : $this->oEnregBdd->NomMod); }
+	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomMod,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomMod); }
 	
 	function retNomComplet ($v_bHtmlEntities=FALSE)
 	{
 		$sIntitule = $this->retTexteIntitule();
 		$sNomComplet = (strlen($sIntitule) > 0 ? "{$sIntitule} : " : NULL)
 			.$this->oEnregBdd->NomMod;
-		return ($v_bHtmlEntities ? htmlentities($sNomComplet) : $sNomComplet);
+		return ($v_bHtmlEntities ? htmlentities($sNomComplet,ENT_COMPAT,"UTF-8") : $sNomComplet);
 	}
 	
 	function retTexteIntitule ($v_bAfficherNumOrdre=TRUE)
@@ -481,7 +481,7 @@ class CModule
 				: NULL);
 	}
 	
-	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrMod) : $this->oEnregBdd->DescrMod); }
+	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrMod,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrMod); }
 	function retDateDeb () { return $this->oEnregBdd->DateDebMod; }
 	function retDateFin () { return $this->oEnregBdd->DateFinMod; }
 	

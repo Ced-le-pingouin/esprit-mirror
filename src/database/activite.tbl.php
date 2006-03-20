@@ -642,7 +642,7 @@ class CActiv
 	
 	function retNom ($v_bHtmlEntities=FALSE)
 	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomActiv) : $this->oEnregBdd->NomActiv);
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomActiv);
 	}
 	
 	function retIdPremierePage ()
@@ -670,7 +670,7 @@ class CActiv
 	
 	function retDescr ($v_bHtmlEntities=FALSE)
 	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrActiv) : $this->oEnregBdd->DescrActiv);
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrActiv);
 	}
 	
 	function retIdEnregPrecedent ()

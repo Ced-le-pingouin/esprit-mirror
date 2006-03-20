@@ -69,7 +69,7 @@ $oBlocHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlocHead->ajouter($sBlocHead);
 $oBlocHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal));
+$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
 $oTpl->remplacer("{frame_src_haut}","glossaire_composer-titre.php?tp=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","glossaire_composer-menu.php");

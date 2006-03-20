@@ -132,12 +132,12 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 	
 	if ($v_bEditable)
 		echo "<input type=\"text\" size=\"45\" name=\"appreciationEval\""
-			." value=\"".(isset($v_oEval) ? htmlentities($v_oEval->retAppreciation()) : NULL)."\""
+			." value=\"".(isset($v_oEval) ? htmlentities($v_oEval->retAppreciation(),ENT_COMPAT,"UTF-8") : NULL)."\""
 			." style=\"width: 100%;\""
 			.">";
 	else
 		echo "<p class=\"appreciation\">"
-			.htmlentities($v_oEval->retAppreciation())
+			.htmlentities($v_oEval->retAppreciation(),ENT_COMPAT,"UTF-8")
 			."</p>";
 	
 	echo "</td>\n";
@@ -150,7 +150,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 	
 	if ($v_bEditable)
 		echo "<textarea id=\"commentaire\" cols=\"45\" rows=\"12\" name=\"commentaireEval\" style=\"width: 100%;\">"
-			.(isset($v_oEval) ? htmlentities($v_oEval->retCommentaire()) : NULL)
+			.(isset($v_oEval) ? htmlentities($v_oEval->retCommentaire(),ENT_COMPAT,"UTF-8") : NULL)
 			."</textarea>"
 			."<br>\n"
 			."<div style=\"color: rgb(127,157,185); text-align: right;\">[&nbsp;"
@@ -193,7 +193,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 			."<fieldset>"
 			."<legend>"
 			."&nbsp;<span class=\"intitule\">"
-			.htmlentities("Attacher un document")."&nbsp;:"
+			.htmlentities("Attacher un document",ENT_COMPAT,"UTF-8")."&nbsp;:"
 			."</span>&nbsp;"
 			."</legend>"
 			."<br>"
@@ -331,7 +331,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 		echo "<p>&nbsp;</p>"
 			."<div align=\"center\">"
 			."<div class=\"pas_encore_evaluer\">"
-			.htmlentities("Ce tuteur n'a pas encore évalué ce document")
+			.htmlentities("Ce tuteur n'a pas encore évalué ce document",ENT_COMPAT,"UTF-8")
 			."</div>\n"
 			."</div>\n";
 		echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n"
@@ -355,7 +355,7 @@ else if ($HTTP_POST_VARS["ressource_attache_effacer"] == "1")
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".htmlentities("Le document attaché a bien été effacé")."</h3>"
+		."<h3>".htmlentities("Le document attaché a bien été effacé",ENT_COMPAT,"UTF-8")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }
@@ -420,7 +420,7 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".htmlentities("L'évaluation a été enregistrée")."</h3>"
+		."<h3>".htmlentities("L'évaluation a été enregistrée",ENT_COMPAT,"UTF-8")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }

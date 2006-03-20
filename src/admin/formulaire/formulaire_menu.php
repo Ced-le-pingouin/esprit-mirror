@@ -213,9 +213,9 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 			if (strlen($sNomFormulaireCourt) > $iLargeurMax)
 				$sNomFormulaireCourt = sprintf("%.".($iLargeurMax - 3)."s...", $sNomFormulaireCourt);
 			
-			$oBlock->remplacer("{nom_formulaire}", $sCodeHtml . htmlentities($sNomFormulaireCourt));
+			$oBlock->remplacer("{nom_formulaire}", $sCodeHtml . htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
 			
-			$oBlock->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire));
+			$oBlock->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire,ENT_COMPAT,"UTF-8"));
 			$oBlock->remplacer("{id_formulaire}",$oFormulaireCourant->retId());
 			
 			if ($iIdPersCourant == $oFormulaireCourant->retIdPers())

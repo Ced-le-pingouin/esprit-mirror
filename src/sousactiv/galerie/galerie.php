@@ -139,7 +139,7 @@ if ($iNbCollecticiels > 0)
 		
 		$oBlocGalerie->nextLoop();
 		
-		$oBlocGalerie->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom()));
+		$oBlocGalerie->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom(),ENT_COMPAT,"UTF-8"));
 		
 		$oBlocDocument = new TPL_Block("BLOCK_DOCUMENT",$oBlocGalerie);
 		$oBlocDocument->beginLoop();
@@ -173,9 +173,9 @@ if ($iNbCollecticiels > 0)
 			
 			$asReplTpl = array(
 				$sIcone
-				, htmlentities($oRessource->retNom())
+				, htmlentities($oRessource->retNom(),ENT_COMPAT,"UTF-8")
 				, $asExpediteurEquipe["icone"]
-				, htmlentities($asExpediteurEquipe["nom"])
+				, htmlentities($asExpediteurEquipe["nom"],ENT_COMPAT,"UTF-8")
 				, rawurlencode($sRepCollecticiel.$oRessource->retUrl())
 				  // {{{ Envoi courriel
 				, $asSetTplGlobal["ENVOI_COURRIEL"]
@@ -215,7 +215,7 @@ $asRechTpl = array(
 );
 
 $asReplTpl = array(
-	htmlentities(TXT_CLIQUER_ICI_POUR_TELECHARGER_DOCUMENT)
+	htmlentities(TXT_CLIQUER_ICI_POUR_TELECHARGER_DOCUMENT,ENT_COMPAT,"UTF-8")
 );
 
 $oTpl->remplacer($asRechTpl,$asReplTpl);

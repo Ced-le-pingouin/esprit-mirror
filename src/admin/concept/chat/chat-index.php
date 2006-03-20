@@ -75,7 +75,7 @@ $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->ajouter($sBlocHtmlHead);
 $oBlockHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal));
+$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
 $oTpl->remplacer("{frame_src_haut}","chat-titre.php?tp=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipal);
 $oTpl->remplacer("{frame_src_bas}","chat-menu.php");

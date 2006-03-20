@@ -58,7 +58,7 @@ if ($iNbrFormations > 0)
 			." onmouseover=\"top.status(escape(this.title))\""
 			." onmouseout=\"top.status('&nbsp;')\""
 			.$sOptionSelect
-			.">".htmlentities((strlen($sNomForm) > 23 ? sprintf("%.23s...",$sNomForm) : $sNomForm))."</option>\n";
+			.">".htmlentities((strlen($sNomForm) > 23 ? sprintf("%.23s...",$sNomForm) : $sNomForm),ENT_COMPAT,"UTF-8")."</option>\n";
 	}
 }
 

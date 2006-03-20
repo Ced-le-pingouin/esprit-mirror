@@ -1,7 +1,7 @@
 <?php
 // @file globals.lang
 // @category Globale
-// @Description Traduction des éléments globals à la plateforme.
+// @Description Traduction des Ã©lÃ©ments globals Ã  la plateforme.
 // @lang fr
 // @author Filippo PORCO <filippo.porco@umh.ac.be>
 // @modified 11/10/2005
@@ -10,46 +10,46 @@ define("BTN_ANNULER","Annuler");
 define("BTN_APPLIQUER_LES_CHANGEMENTS","Appliquer les changements");
 define("BTN_CHANGER_DE_FORMATION","Changer de formation");
 define("BTN_COPIE_COURRIEL","Copie courriel");
-define("BTN_CREER","Créer");
+define("BTN_CREER","CrÃ©er");
 define("BTN_ENREGISTRER_MODIFICATIONS","Enregistrer les modifications");
 define("BTN_EXPORTER","Exporter");
-define("BTN_EXPORTER_LES_DONNEES","Exporter les données");
+define("BTN_EXPORTER_LES_DONNEES","Exporter les donnÃ©es");
 define("BTN_FERMER","Fermer");
 define("BTN_MODIFIER","Modifier");
 define("BTN_NON","Non");
 define("BTN_OUI","Oui");
-define("BTN_RAFRAICHIR","Rafraîchir");
+define("BTN_RAFRAICHIR","RafraÃ®chir");
 define("BTN_RECHERCHER","Rechercher");
 define("BTN_SUPPRIMER","Supprimer");
 define("BTN_VALIDER","Valider");
 define("LBL_FILTRE","Filtre :");
 define("TLT_ENVOYER_COURRIEL","Cliquer ici pour envoyer un courriel");
 define("TXT_ACTIVITE","Groupe d'actions");
-define("TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE","Aucune équipe n'a été formée pour cette unité");
-define("TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE","Aucun inscrit n'a été trouvé dans cette unité");
+define("TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE","Aucune Ã©quipe n'a Ã©tÃ© formÃ©e pour cette unitÃ©");
+define("TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE","Aucun inscrit n'a Ã©tÃ© trouvÃ© dans cette unitÃ©");
 define("TXT_CHAT","Chat");
-define("TXT_CLIQUER_ICI_POUR_TELECHARGER_DOCUMENT","Cliquer ici pour télécharger ce document");
+define("TXT_CLIQUER_ICI_POUR_TELECHARGER_DOCUMENT","Cliquer ici pour tÃ©lÃ©charger ce document");
 define("TXT_COLLECTICIEL","Collecticiel");
-define("TXT_DEPOSE_PAR","Déposé par");
+define("TXT_DEPOSE_PAR","DÃ©posÃ© par");
 define("TXT_ETAT","Etat");
 define("TXT_FICHIER_ABSENT_DU_SERVEUR","Fichier absent du serveur");
 define("TXT_FORMATION","Formation");
-define("TXT_FORMULAIRE","Activité en ligne");
+define("TXT_FORMULAIRE","ActivitÃ© en ligne");
 define("TXT_FORUM","Forum");
 define("TXT_MODALITE_INDIVIDUELLE","Individuelle");
-define("TXT_MODALITE_PAR_EQUIPE","Par équipe");
+define("TXT_MODALITE_PAR_EQUIPE","Par Ã©quipe");
 define("TXT_MODULE","Cours");
 define("TXT_SOUS_ACTIVITE","Action");
 define("TXT_STATUT_ADMINISTRATEUR_F","Responsable de la plate-forme");
 define("TXT_STATUT_ADMINISTRATEUR_M","Responsable de la plate-forme");
-define("TXT_STATUT_CONCEPTEUR_F","Conceptrice associée");
-define("TXT_STATUT_CONCEPTEUR_M","Concepteur associé");
+define("TXT_STATUT_CONCEPTEUR_F","Conceptrice associÃ©e");
+define("TXT_STATUT_CONCEPTEUR_M","Concepteur associÃ©");
 define("TXT_STATUT_CONCEPTEUR_POTENTIEL_F","Conceptrice");
 define("TXT_STATUT_CONCEPTEUR_POTENTIEL_M","Concepteur");
 define("TXT_STATUT_ETUDIANT_F","Etudiante");
 define("TXT_STATUT_ETUDIANT_M","Etudiant");
-define("TXT_STATUT_RESPONSABLE_F","Responsable associée");
-define("TXT_STATUT_RESPONSABLE_M","Responsable associé");
+define("TXT_STATUT_RESPONSABLE_F","Responsable associÃ©e");
+define("TXT_STATUT_RESPONSABLE_M","Responsable associÃ©");
 define("TXT_STATUT_RESPONSABLE_POTENTIEL_F","Responsable de formations");
 define("TXT_STATUT_RESPONSABLE_POTENTIEL_M","Responsable de formations");
 define("TXT_STATUT_TUTEUR_F","Tutrice");
@@ -57,6 +57,6 @@ define("TXT_STATUT_TUTEUR_M","Tuteur");
 define("TXT_STATUT_VISITEUR_F","Visiteur");
 define("TXT_STATUT_VISITEUR_M","Visiteur");
 define("TXT_TITRE","Titre");
-define("TXT_TOUTES_LES_MODALITES","Toutes les modalités");
-define("TXT_UNITE","Unité");
+define("TXT_TOUTES_LES_MODALITES","Toutes les modalitÃ©s");
+define("TXT_UNITE","UnitÃ©");
 ?>

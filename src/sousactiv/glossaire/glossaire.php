@@ -53,7 +53,7 @@ $oTpl = new Template(dir_theme("glossaire/glossaire.tpl",FALSE,TRUE));
 $oBloc_GlossaireElems = new TPL_Block("BLOCK_GLOSSAIRE_ELEMENTS",$oTpl);
 
 if (is_object($oProjet->oSousActivCourante->oGlossaire))
-	$sTitreGlossaire = htmlentities($oProjet->oSousActivCourante->oGlossaire->retTitre());
+	$sTitreGlossaire = htmlentities($oProjet->oSousActivCourante->oGlossaire->retTitre(),ENT_COMPAT,"UTF-8");
 else
 	$sTitreGlossaire = "&nbsp;";
 

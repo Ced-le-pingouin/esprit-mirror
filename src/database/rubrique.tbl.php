@@ -564,7 +564,7 @@ class CModule_Rubrique
 		if (empty($sNomRubrique))
 			$sNomRubrique = "Rubrique/unité sans nom";
 		return ($v_bHtmlEntities
-			? htmlentities($sNomRubrique)
+			? htmlentities($sNomRubrique,ENT_COMPAT,"UTF-8")
 			: $sNomRubrique);
 	}
 	
@@ -590,7 +590,7 @@ class CModule_Rubrique
 	function retDonnee ($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
-			? htmlentities($this->oEnregBdd->DonneesRubrique)
+			? htmlentities($this->oEnregBdd->DonneesRubrique,ENT_COMPAT,"UTF-8")
 			: $this->oEnregBdd->DonneesRubrique);
 	}
 	
@@ -896,7 +896,7 @@ class CModule_Rubrique
 					$sLien = "<a href=\"http://".$sHref."\""
 						." target=\"_blank\""
 						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien)."</a>";
+						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
 				else if (!empty ($sNomLien))
 					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
 				
@@ -907,7 +907,7 @@ class CModule_Rubrique
 					$sLien = "<a href=\"".$v_sRepRubriques.rawurlencode($sHref)."\""
 						." target=\"_blank\""
 						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien)."</a>";
+						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
 				else if (!empty($sNomLien))
 					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
 				
@@ -917,7 +917,7 @@ class CModule_Rubrique
 				if (!empty($sHref) && $v_bStatut)
 					$sLien = "<a href=\"".dir_lib("download.php?f=".urlencode($v_sRepRubriques.$sHref))."\""
 						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien)."</a>";
+						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
 				else if (!empty($sNomLien))
 					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
 				

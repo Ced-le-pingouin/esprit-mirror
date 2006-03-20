@@ -143,7 +143,7 @@ if ($g_iFormation > 0)
 									$iId  = $oSousActiv->retId();
 									$sNom = $oSousActiv->retNom();
 									
-									$asReplTpl = array(TYPE_SOUS_ACTIVITE,$iId,$oSousActiv->retNumOrdre(),htmlentities($sNom),rawurlencode($sNom),($url_iType == TYPE_SOUS_ACTIVITE && $g_iSousActiv == $iId ? " id=\"idCible\"" : NULL));
+									$asReplTpl = array(TYPE_SOUS_ACTIVITE,$iId,$oSousActiv->retNumOrdre(),htmlentities($sNom,ENT_COMPAT,"UTF-8"),rawurlencode($sNom),($url_iType == TYPE_SOUS_ACTIVITE && $g_iSousActiv == $iId ? " id=\"idCible\"" : NULL));
 									
 									$oBlocSousActiv->remplacer($aaRechTpl["sousactivite"],$asReplTpl);
 								}
@@ -157,7 +157,7 @@ if ($g_iFormation > 0)
 							$iId  = $oActiv->retId();
 							$sNom = $oActiv->retNom();
 							
-							$asReplTpl = array(TYPE_ACTIVITE,$iId,$oActiv->retNumOrdre(),htmlentities($sNom),rawurlencode($sNom),($url_iType == TYPE_ACTIVITE && $g_iActiv == $iId ? " id=\"idCible\"" : NULL));
+							$asReplTpl = array(TYPE_ACTIVITE,$iId,$oActiv->retNumOrdre(),htmlentities($sNom,ENT_COMPAT,"UTF-8"),rawurlencode($sNom),($url_iType == TYPE_ACTIVITE && $g_iActiv == $iId ? " id=\"idCible\"" : NULL));
 							
 							$oBlocActiv->remplacer($aaRechTpl["activite"],$asReplTpl);
 						}
@@ -180,7 +180,7 @@ if ($g_iFormation > 0)
 							.$oRubrique->retNumDepart()
 							."&nbsp;:&nbsp;";
 					
-					$asReplTpl = array(TYPE_RUBRIQUE,$iId,htmlentities($sNom),rawurlencode($sNom),$sIntitule,$iIdxRubr++,($url_iType == TYPE_RUBRIQUE && $g_iRubrique == $iId ? " id=\"idCible\"" : NULL));
+					$asReplTpl = array(TYPE_RUBRIQUE,$iId,htmlentities($sNom,ENT_COMPAT,"UTF-8"),rawurlencode($sNom),$sIntitule,$iIdxRubr++,($url_iType == TYPE_RUBRIQUE && $g_iRubrique == $iId ? " id=\"idCible\"" : NULL));
 					$oBlocRubrique->remplacer($aaRechTpl["rubrique"],$asReplTpl);
 				}
 				
@@ -196,12 +196,12 @@ if ($g_iFormation > 0)
 			$sIntitule = NULL;
 			
 			if ($oModule->retNumDepart() > 0)
-				$sIntitule = htmlentities($oModule->oIntitule->retNom())
+				$sIntitule = htmlentities($oModule->oIntitule->retNom(),ENT_COMPAT,"UTF-8")
 					."&nbsp;"
 					.$oModule->retNumDepart()
 					."&nbsp;:&nbsp;";
 			
-			$asReplTpl = array(TYPE_MODULE,$iId,htmlentities($sNom),rawurlencode($sNom),$sIntitule,($url_iType == TYPE_MODULE && $g_iModule == $iId ? " id=\"idCible\"" : NULL));
+			$asReplTpl = array(TYPE_MODULE,$iId,htmlentities($sNom,ENT_COMPAT,"UTF-8"),rawurlencode($sNom),$sIntitule,($url_iType == TYPE_MODULE && $g_iModule == $iId ? " id=\"idCible\"" : NULL));
 			$oBlocModule->remplacer($aaRechTpl["module"],$asReplTpl);
 		}
 		
@@ -213,7 +213,7 @@ if ($g_iFormation > 0)
 	
 	$sNom = $oProjet->oFormationCourante->retNom();
 	
-	$asReplTpl = array(TYPE_FORMATION,$g_iFormation,htmlentities($sNom),rawurlencode($sNom),($url_iType == TYPE_FORMATION ? " id=\"idCible\"" : NULL));
+	$asReplTpl = array(TYPE_FORMATION,$g_iFormation,htmlentities($sNom,ENT_COMPAT,"UTF-8"),rawurlencode($sNom),($url_iType == TYPE_FORMATION ? " id=\"idCible\"" : NULL));
 	
 	$oBlocFormation->remplacer($aaRechTpl["formation"],$asReplTpl);
 	$oBlocFormation->afficher();

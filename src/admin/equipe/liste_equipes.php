@@ -208,7 +208,7 @@ if ($iNbEquipes > 0)
 		$oBlocEquipes->ajouter($sSetOnglet);
 		$oBlocEquipes->remplacer("{onglet->titre}",$asVarTitres[1]);
 		$oBlocEquipes->remplacer("{onglet->texte}",$oBlocEquipes->defVariable("VAR_MEMBRES"));
-		$oBlocEquipes->remplacer("{equipe.nom}",htmlentities($oEquipe->retNom()));
+		$oBlocEquipes->remplacer("{equipe.nom}",htmlentities($oEquipe->retNom(),ENT_COMPAT,"UTF-8"));
 		$oBlocEquipes->remplacer("{liste_membres}",$sListeMembres);
 		
 		$oBlocEquipes->effacerVariable("VAR_MEMBRE_NON_TROUVE");

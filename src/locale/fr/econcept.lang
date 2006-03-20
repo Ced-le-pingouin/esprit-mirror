@@ -3,17 +3,17 @@
 /*
 ** Fichier ................: econcept.lang
 ** Description ............:
-** Date de création .......: 20/09/2005
-** Dernière modification ..: 20/09/2005
+** Date de crÃ©ation .......: 20/09/2005
+** DerniÃ¨re modification ..: 20/09/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** Unité de Technologie de l'Education
+** UnitÃ© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
-define("BTN_DEPOSER_FICHIERS_SUR_LE_SERVEUR","Déposer sur le serveur");
-define("BTN_RECUPERER_FICHIERS_DU_SERVEUR","Récupérer du serveur");
+define("BTN_DEPOSER_FICHIERS_SUR_LE_SERVEUR","DÃ©poser sur le serveur");
+define("BTN_RECUPERER_FICHIERS_DU_SERVEUR","RÃ©cupÃ©rer du serveur");
 
 define("TXT_NIVEAU_1","Niv. 1 (TXT_FORMATION)");
 define("TXT_NIVEAU_2","Niv. 2 (TXT_MODULE)");

@@ -8,7 +8,7 @@
 define("TXT_CLIQUER_ICI_POUR_COMPOSER_LA_GALERIE","Cliquer ici pour composer la galerie");
 define("TXT_COMPOSER_SA_GALERIE_TITRE","Composer sa galerie");
 define("TXT_GALERIE_TITRE","Galerie");
-define("TXT_COMPOSER_SA_GALERIE_CONSIGNE","La galerie est un espace qui permet d'afficher une sélection de documents issus d'un ou plusieurs collecticiels. Ces documents seront vus par l'ensemble des étudiants qui ont accès à cette unité.
+define("TXT_COMPOSER_SA_GALERIE_CONSIGNE","La galerie est un espace qui permet d'afficher une sÃ©lection de documents issus d'un ou plusieurs collecticiels. Ces documents seront vus par l'ensemble des Ã©tudiants qui ont accÃ¨s Ã  cette unitÃ©.
 
-A partir de la liste ci-dessous, sélectionnez les documents à afficher dans la galerie.");
+A partir de la liste ci-dessous, sÃ©lectionnez les documents Ã  afficher dans la galerie.");
 ?>

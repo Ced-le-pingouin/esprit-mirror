@@ -61,7 +61,7 @@ if ($oProjet->initFormationsUtilisateur() > 0)
 				."?idForm=".$oFormation->retId()
 			."'"
 			." target='_top'"
-			.">".htmlentities($oFormation->retNom())."</a>";
+			.">".htmlentities($oFormation->retNom(),ENT_COMPAT,"UTF-8")."</a>";
 		$oBlocFormation->nextLoop();
 		$oBlocFormation->remplacer("{formation->url}",$sUrl);
 	}

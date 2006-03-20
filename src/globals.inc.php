@@ -375,14 +375,14 @@ function debug ($v_sMessage,$v_sNomFichierSource=NULL,$v_iNumLigne=0)
 	}
 }
 
-function retParams ($v_iForm=0,$v_iMod=0,$v_iRubrique=0,$v_iUnite=0,$v_iActiv=0,$v_iSousActiv=0) { return "{$v_iForm}:{$v_iMod}:{$v_iRubrique}:0:{$v_iActiv}:{$v_iSousActiv}"; }
+function retParams ($v_iForm=0,$v_iMod=0,$v_iRubrique=0,$v_iUnite=0,$v_iActiv=0,$v_iSousActiv=0) { return "{$v_iForm}:{$v_iMod}:{$v_iRubrique}:{$v_iUnite}:{$v_iActiv}:{$v_iSousActiv}"; }
 
 function erreurFatale ($v_sMessageErreur=NULL)
 {
 	echo "<html>",
 		"<body>",
 		"<div align=\"center\"><pre>",gettext('Une erreur fatale est survenue&nbsp;:'),"<br>",
-		"<b>",htmlentities($v_sMessageErreur),"</b></pre></div></body></html>";
+		"<b>",htmlentities($v_sMessageErreur,ENT_COMPAT,"UTF-8"),"</b></pre></div></body></html>";
 	exit();
 }
 
@@ -421,7 +421,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)));
+	$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
 	
 	$asMetaTrouver   = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center");
 	$asMetaRemplacer = array("h1","h2","h3","h4","h5","h6","b","u","i","s","blockquote","blockquote","center");
@@ -514,7 +514,7 @@ function enleverBaliseMeta ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	//$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)));
+	//$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
 	
 	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center", "n","l","c","r","j");
 	$asMetaUnique = array("[nl]","[hr]");

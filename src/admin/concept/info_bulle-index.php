@@ -38,7 +38,7 @@ $sParamsUrl = "?type=".$HTTP_GET_VARS["type"]
 	."&idType=".$HTTP_GET_VARS["idType"];
 
 $oTpl = new template(dir_theme("dialogue/dialog_simple-index.tpl",FALSE,TRUE));
-$oTpl->remplacer("{html->titre}",htmlentities("Info bulle"));
+$oTpl->remplacer("{html->titre}",htmlentities("Info bulle",ENT_COMPAT,"UTF-8"));
 $oTpl->remplacer("{frame['principale']->src}","info_bulle.php{$sParamsUrl}");
 $oTpl->remplacer("{frame['menu']->src}","");
 $oTpl->afficher();

@@ -844,7 +844,7 @@ class CSousActiv
 	function retDonnees ($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
-			? htmlentities($this->oEnregBdd->DonneesSousActiv)
+			? htmlentities($this->oEnregBdd->DonneesSousActiv,ENT_COMPAT,"UTF-8")
 			: "{$this->oEnregBdd->DonneesSousActiv};;;");
 	}
 	
@@ -909,9 +909,9 @@ class CSousActiv
 		}
 	}
 	
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomSousActiv) : $this->oEnregBdd->NomSousActiv); }
+	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomSousActiv); }
 	function retNumOrdre () { return $this->oEnregBdd->OrdreSousActiv; }
-	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrSousActiv) : $this->oEnregBdd->DescrSousActiv); }
+	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrSousActiv); }
 	function retIdParent () { return $this->oEnregBdd->IdActiv; }
 	
 	function defNom ($v_sNomSousActiv)
@@ -1035,7 +1035,7 @@ class CSousActiv
 		return TRUE;
 	}
 	
-	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->InfoBulleSousActiv) : $this->oEnregBdd->InfoBulleSousActiv); }
+	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->InfoBulleSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->InfoBulleSousActiv); }
 	
 	function defInfoBulle ($v_sInfoBulle=NULL) { $this->mettre_a_jour("InfoBulleSousActiv",$v_sInfoBulle); }
 	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteSousActiv",$v_iModalite); }

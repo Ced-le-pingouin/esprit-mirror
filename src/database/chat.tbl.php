@@ -181,7 +181,7 @@ class CChat
 	function retNom ($v_sMode=NULL)
 	{
 		if ($v_sMode == "html")
-			return htmlentities($this->oEnregBdd->NomChat);
+			return htmlentities($this->oEnregBdd->NomChat,ENT_COMPAT,"UTF-8");
 		else if ($v_sMode == "url")
 			return rawurlencode($this->oEnregBdd->NomChat);
 		else

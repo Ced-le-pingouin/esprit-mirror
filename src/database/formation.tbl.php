@@ -853,13 +853,13 @@ class CFormation
 	function retInscrSpontEquipe () { return $this->oEnregBdd->InscrSpontEquipeF; }
 	function retNbMaxDsEquipe () { return $this->oEnregBdd->NbMaxDsEquipeF; }
 	function retNumOrdre () { return $this->oEnregBdd->OrdreForm; }
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomForm) : $this->oEnregBdd->NomForm); }
+	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomForm,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomForm); }
 	
 	function retNomParDefaut () { return INTITULE_FORMATION." sans nom"; }
 	
 	function retDescr ($v_bHtmlEntities=FALSE)
 	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrForm) : $this->oEnregBdd->DescrForm);
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrForm,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrForm);
 	}
 	
 	function redistNumsOrdre ($v_iNouveauNumOrdre=NULL)

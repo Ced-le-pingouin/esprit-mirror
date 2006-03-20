@@ -1,5 +1,5 @@
 <?php
-$sTitrePrincipal = htmlentities("Exporter une liste de la table des personnes");
+$sTitrePrincipal = htmlentities("Exporter une liste de la table des personnes",ENT_COMPAT,"UTF-8");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 ?>
 <html>

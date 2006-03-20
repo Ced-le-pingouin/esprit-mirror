@@ -43,7 +43,7 @@ $oTpl = new Template("exporter-filtres.tpl");
 
 $oBlocTypeStatutPers = new TPL_Block("BLOCK_STATUT_PERSONNE",$oTpl);
 
-$oTpl->remplacer("{onglet->titre}",htmlentities("Liste des personnes trouvées"));
+$oTpl->remplacer("{onglet->titre}",htmlentities("Liste des personnes trouvées",ENT_COMPAT,"UTF-8"));
 
 // Liste de l'alphabet
 $sListeAlphabet = NULL;

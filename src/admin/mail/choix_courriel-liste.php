@@ -155,8 +155,8 @@ if ($iNbStatuts > 0)
 				$oBlocMembre->nextLoop();
 				$oBlocMembre->remplacer("{membre}",$sMembre);
 				$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
-				$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom()));
-				$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom()));
+				$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom(),ENT_COMPAT,"UTF-8"));
+				$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom(),ENT_COMPAT,"UTF-8"));
 				$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatut}" : NULL));
@@ -217,8 +217,8 @@ if ($iNbEquipes > 0)
 				$oBlocMembre->nextLoop();
 				$oBlocMembre->remplacer("{membre}",$sMembre);
 				$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
-				$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom()));
-				$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom()));
+				$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom(),ENT_COMPAT,"UTF-8"));
+				$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom(),ENT_COMPAT,"UTF-8"));
 				$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idEquipe" : NULL));
@@ -234,7 +234,7 @@ if ($iNbEquipes > 0)
 		else
 			$oBlocMembre->effacer();
 		
-		$oBlocEquipe->remplacer("{equipe.nom}",htmlentities($oEquipe->retNom()));
+		$oBlocEquipe->remplacer("{equipe.nom}",htmlentities($oEquipe->retNom(),ENT_COMPAT,"UTF-8"));
 		$oBlocEquipe->remplacer("{equipe.checked}",($iNbMembres == $iNbMembresSelectionnes ? " checked=\"checked\"" : NULL));
 	}
 	
@@ -278,8 +278,8 @@ if ($iNbPersonnes > 0)
 		$oBlocMembre->nextLoop();
 		$oBlocMembre->remplacer("{membre}",$sMembre);
 		$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
-		$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom()));
-		$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom()));
+		$oBlocMembre->remplacer("{membre.nom}",htmlentities($oPersonne->retNom(),ENT_COMPAT,"UTF-8"));
+		$oBlocMembre->remplacer("{membre.prenom}",htmlentities($oPersonne->retPrenom(),ENT_COMPAT,"UTF-8"));
 		$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
 		$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 		$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idPers" : NULL));

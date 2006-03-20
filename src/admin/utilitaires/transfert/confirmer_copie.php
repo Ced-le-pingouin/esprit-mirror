@@ -2,7 +2,7 @@
 $oBdd = new CBddMySql($g_sNomServeurTransfert,$g_sNomProprietaireTransfert,$g_sMotDePasseTransfert,$url_sNomBddSrc);
 
 $oFormation = new CFormation($oBdd,$url_iIdFormSrc);
-$sNomFormation = htmlentities($oFormation->retNom());
+$sNomFormation = htmlentities($oFormation->retNom(),ENT_COMPAT,"UTF-8");
 $oBdd->terminer();
 ?>
 <table border="0" cellspacing="0" cellpadding="7" width="100%">

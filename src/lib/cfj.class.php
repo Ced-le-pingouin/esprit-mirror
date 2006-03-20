@@ -37,7 +37,7 @@ class CBalisesCFJ
 	
 	function CBalisesCFJ ($v_sTexte)
 	{
-		$this->sTexte = nl2br(htmlentities(trim(stripslashes($v_sTexte))));
+		$this->sTexte = nl2br(htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8"));
 		$this->analyser();
 	}
 	

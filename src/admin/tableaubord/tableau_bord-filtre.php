@@ -87,7 +87,7 @@ if ($oFormation->initModules() > 0)
 						,"{rubrique.nom}")
 					, array($oRubrique->retId()
 						,($iPremierModule == $iIdMod ? "selected=\"selected\"" : NULL)
-						,htmlentities($oRubrique->retNomComplet()))
+						,htmlentities($oRubrique->retNomComplet(),ENT_COMPAT,"UTF-8"))
 				);
 				
 				// Mettre à -1, sinon on va placer des "selected" dans toutes les unités
@@ -123,7 +123,7 @@ $oBloc->beginLoop();
 foreach ($aiIdType as $iIdType)
 {
 	$amReplTpl = array(
-		htmlentities($oSousActiv->retTexteType($iIdType))
+		htmlentities($oSousActiv->retTexteType($iIdType),ENT_COMPAT,"UTF-8")
 		, $iIdType
 	);
 	

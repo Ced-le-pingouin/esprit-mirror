@@ -254,7 +254,7 @@ else if ($url_sModaliteFenetre == "modifier")
 	$oBlockSujet->remplacer("{onglet->texte}",$sSetTitreSujet);
 	
 	// Titre
-	$oBlockSujet->remplacer("{titre->valeur}",htmlentities($oSujetForum->retTitre()));
+	$oBlockSujet->remplacer("{titre->valeur}",htmlentities($oSujetForum->retTitre(),ENT_COMPAT,"UTF-8"));
 	
 	// Ne pas afficher le message à l'utilisateur
 	$oBlocTitreMessage = new TPL_Block("BLOCK_TITRE_SUJET_MESSAGE",$oBlockSujet);
@@ -274,7 +274,7 @@ else if ($url_sModaliteFenetre == "supprimer")
 	$oBlockSujet->ajouter($oTplMessageImportant->defVariable("SET_MESSAGE_IMPORTANT"));
 	$oBlockSujet->remplacer("{important->message}",($oSujetForum->estPourTous() ? $sSetMessageSupprimerSujetEquipes : $sSetMessageSupprimerSujet));
 	$oBlockSujet->remplacer("{important->question}",$sSetQuestionSupprimerSujet);
-	//$oBlockSujet->remplacer("{sujet->titre}",htmlentities($oSujetForum->retTitre()));
+	//$oBlockSujet->remplacer("{sujet->titre}",htmlentities($oSujetForum->retTitre(),ENT_COMPAT,"UTF-8"));
 	//$oBlockSujet->remplacer("{messages->total}",$oSujetForum->retNombreMessages());
 }
 

@@ -86,7 +86,7 @@ if (count($g_oDossierForms->aoDossierForms) > 0)
 			$sIcone = $asSetIcones["sans"];
 		
 		$oBlocDossierFormations->nextLoop();
-		$oBlocDossierFormations->remplacer($g_asRechTpl,array($oDossierForms->retId(),htmlentities($oDossierForms->retNom()),$sIcone));
+		$oBlocDossierFormations->remplacer($g_asRechTpl,array($oDossierForms->retId(),htmlentities($oDossierForms->retNom(),ENT_COMPAT,"UTF-8"),$sIcone));
 	}
 }
 else

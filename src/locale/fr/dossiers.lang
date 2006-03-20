@@ -8,9 +8,9 @@
 // @modified 29/09/2005
 
 define("TITRE","Dossiers");
-define("TITRE_CREER_MODIFIER_DOSSIER","Créer/Modifier un dossier");
+define("TITRE_CREER_MODIFIER_DOSSIER","CrÃ©er/Modifier un dossier");
 
-define("BTN_CREER_MODIFIER_DOSSIER","Créer/Modifier un dossier");
-define("TXT_REMARQUE","Pour changer de dossier actif, sélectionnez un dossier et cliquez sur le lien \"Valider\". Pour modifier un dossier ou en créer un nouveau, cliquez sur \"Créer/Modifier un dossier\".");
+define("BTN_CREER_MODIFIER_DOSSIER","CrÃ©er/Modifier un dossier");
+define("TXT_REMARQUE","Pour changer de dossier actif, sÃ©lectionnez un dossier et cliquez sur le lien \"Valider\". Pour modifier un dossier ou en crÃ©er un nouveau, cliquez sur \"CrÃ©er/Modifier un dossier\".");
 
 ?>

@@ -2,12 +2,12 @@
 
 // @file liste_equipes.lang
 // @category Equipe
-// @Description Traduction des éléments globals à la plateforme.
+// @Description Traduction des Ã©lÃ©ments globals Ã  la plateforme.
 // @lang fr
 // @author Filippo PORCO <filippo.porco@umh.ac.be>
 // @modified 28/09/2005
 
-define("TITRE","Composition des équipes");
+define("TITRE","Composition des Ã©quipes");
 
 ?>
 

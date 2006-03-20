@@ -77,8 +77,8 @@ if ($etape < 3 && $type == COPIER_FORMATION)
 }
 else
 {
-	$url_sNomForm   = htmlentities(stripslashes($url_sNomForm));
-	$url_sDescrForm = htmlentities(stripslashes($url_sDescrForm));
+	$url_sNomForm   = htmlentities(stripslashes($url_sNomForm),ENT_COMPAT,"UTF-8");
+	$url_sDescrForm = htmlentities(stripslashes($url_sDescrForm),ENT_COMPAT,"UTF-8");
 }
 
 // ---------------------
