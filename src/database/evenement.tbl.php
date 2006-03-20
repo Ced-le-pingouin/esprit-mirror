@@ -383,38 +383,49 @@ class CEvenement
 	/*function retIdFormation () { return $this->oEnregBdd->IdForm; }*/
 	/*function retNomFormation () { return $this->oEnregBdd->NomForm; }*/
 	
-	function initFichierExporter ($v_sNomFichierCSV=NULL)
+	function initFichierExporter ($v_sNomFichierCSV=NULL,$v_iIdForm=NULL)
 	{
-		if (isset($v_sNomFichierCSV))
-			$sFichier = $v_sNomFichierCSV;
-		else
+		if (empty($v_sNomFichierCSV))
 		{
 			$aDate = getDate();
 			
-			$sFichier = "even-"
+			$v_sNomFichierCSV = "even-"
 				.$aDate["mday"].$aDate["mon"].$aDate["year"]
 				."_"
 				.$aDate["hours"].$aDate["minutes"].$aDate["seconds"]
 				.".csv";
 		}
 		
-		$sFichierTmp = dir_tmp($sFichier,TRUE);
+		$v_sNomFichierCSV = dir_tmp($v_sNomFichierCSV,TRUE);
 		
-		$sRequeteSql = "SELECT *"
-			.", DATE_FORMAT(MomentEven,\"%d/%m/%y\") AS DateConnexion"
-			.", DATE_FORMAT(MomentEven,\"%H:%i:%s\") AS HeureConnexion"
-			.", DATE_FORMAT(SortiMomentEven,\"%H:%i:%s\") AS HeureDeconnexion"
-			.", SEC_TO_TIME(UNIX_TIMESTAMP(SortiMomentEven) - UNIX_TIMESTAMP(MomentEven)) AS DureeConnexion"
-			." FROM Evenement"
-			." LEFT JOIN Personne USING (IdPers)"
-			." WHERE Evenement.IdPers IS NOT NULL"
-			." ORDER BY Personne.Nom, Evenement.MomentEven DESC";
+		$sRequeteSql = "SELECT Personne.Nom"
+			.", Personne.Prenom"
+			.", Personne.Pseudo"
+			.", Personne.Sexe"
+			.", DATE_FORMAT(Evenement.MomentEven,\"%d/%m/%y\") AS DateConnexion"
+			.", DATE_FORMAT(Evenement.MomentEven,\"%H:%i:%s\") AS HeureConnexion"
+			.", DATE_FORMAT(Evenement.SortiMomentEven,\"%H:%i:%s\") AS HeureDeconnexion"
+			.", SEC_TO_TIME(UNIX_TIMESTAMP(Evenement.SortiMomentEven) - UNIX_TIMESTAMP(Evenement.MomentEven)) AS DureeConnexion"
+			.", Evenement.DonneesEven";
+		
+		if (isset($v_iIdForm))
+			$sRequeteSql .= " FROM Evenement_Detail"
+				." LEFT JOIN Evenement USING (IdEven)"
+				." LEFT JOIN Personne USING (IdPers)"
+				." WHERE Evenement_Detail.IdForm='{$v_iIdForm}'"
+					." AND Evenement.IdPers IS NOT NULL";
+		else
+			$sRequeteSql .= " FROM Evenement"
+				." LEFT JOIN Personne USING (IdPers)"
+				." WHERE Evenement.IdPers IS NOT NULL";
+		
+		$sRequeteSql .= " ORDER BY Personne.Nom, Evenement.MomentEven DESC";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
-		$fp = fopen($sFichierTmp,"w");
+		$fp = fopen($v_sNomFichierCSV,"w");
 		
-		$sTmp = "\"Nom\""
+		$sDonnees = "\"Nom\""
 			.";\"Prenom\""
 			.";\"Pseudo\""
 			.";\"Sexe\""
@@ -425,11 +436,11 @@ class CEvenement
 			.";\"Navigateur\""
 			."\r\n";
 		
-		fputs($fp,$sTmp);
+		fputs($fp,$sDonnees);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$sTmp = "\"{$oEnreg->Nom}\""
+			$sDonnees = "\"{$oEnreg->Nom}\""
 				.";\"{$oEnreg->Prenom}\""
 				.";\"{$oEnreg->Pseudo}\""
 				.";\"{$oEnreg->Sexe}\""
@@ -439,14 +450,14 @@ class CEvenement
 				.";\"{$oEnreg->DureeConnexion}\""
 				.";\"{$oEnreg->DonneesEven}\""
 				."\r\n";
-			fputs($fp,$sTmp);
+			fputs($fp,$sDonnees);
 		}
 		
 		fclose($fp);
 		
 		$this->oBdd->libererResult($hResult);
 		
-		return $sFichierTmp;
+		return $v_sNomFichierCSV;
 	}
 }
 

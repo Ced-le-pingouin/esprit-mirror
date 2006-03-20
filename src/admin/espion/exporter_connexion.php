@@ -41,7 +41,7 @@ $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_EXPORT_TABLE_EVENEMENT");
 $sNomFichierCSV = "even-".$oProjet->oUtilisateur->retPseudo().".csv";
 
 $oEvenement = new CEvenement($oProjet->oBdd);
-$sNomAExporter = $oEvenement->initFichierExporter($sNomFichierCSV);
+$sNomAExporter = $oEvenement->initFichierExporter($sNomFichierCSV,$oProjet->oFormationCourante->retId());
 
 $sFichierExporter = ereg_replace(dir_document_root(),"/",$sNomAExporter);
 
