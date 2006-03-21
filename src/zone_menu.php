@@ -368,8 +368,8 @@ $oTpl->remplacer("{chat.url}",dir_chat("tchatche-index.php"));
 $oTpl->remplacer("{texte_formatte.url}",dir_sousactiv(LIEN_PAGE_HTML,"description-index.php"));
 
 // {{{ Outils du cours
-if ($oProjet->verifPermission("PERM_OUTIL_TABLEAU_DE_BORD"))
-	$oTpl->remplacer("{outils.tableau_de_bord}",($iNbrRubriques > 0 ? "<a href=\"admin://tableaubord/tableau_bord-index.php\" onclick=\"return tableau_de_bord(this)\" target=\"_blank\" title=\"Tableau de bord\"><img src=\"commun://icones/24x24/tableaubord.gif\" width=\"24\" height=\"24\" border=\"0\"></a>" : NULL));
+if (!empty($iNbrRubriques) && $oProjet->verifPermission("PERM_OUTIL_TABLEAU_DE_BORD"))
+	$oTpl->remplacer("{outils.tableau_de_bord}","<a href=\"admin://tableaubord/tableau_bord-index.php\" onclick=\"return tableau_de_bord(this)\" target=\"_blank\" title=\"Tableau de bord\"><img src=\"commun://icones/24x24/tableaubord.gif\" width=\"24\" height=\"24\" border=\"0\"></a>");
 else
 	$oTpl->remplacer("{outils.tableau_de_bord}",NULL);
 
