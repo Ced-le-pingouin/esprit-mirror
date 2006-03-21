@@ -24,6 +24,7 @@
 [BLOCK_FORMULAIRE_NOM+]<th id="{formulaire.td.id}">{formulaire.nom}</th>[BLOCK_FORMULAIRE_NOM-]
 [BLOCK_FORUM_NOM+]<th id="{forum.td.id}">{forum.nom}</th>[BLOCK_FORUM_NOM-]
 [BLOCK_CHAT_NOM+]<th id="{chat.td.id}">{chat.parent.nom}<br><small>({chat.nom})</small></th>[BLOCK_CHAT_NOM-]
+<th id="{connexion.th.id}">Connexion</th>
 </tr>
 </thead>
 <tbody>
@@ -34,6 +35,7 @@
 [BLOCK_FORMULAIRE_MODALITE+]<td class="cellule_modalite">{formulaire.modalite}</td>[BLOCK_FORMULAIRE_MODALITE-]
 [BLOCK_FORUM_MODALITE+]<td class="cellule_modalite">{forum.modalite}</td>[BLOCK_FORUM_MODALITE-]
 [BLOCK_CHAT_MODALITE+]<td class="cellule_modalite">{chat.modalite}</td>[BLOCK_CHAT_MODALITE-]
+<td>&nbsp;</td>
 </tr>
 </tbody>
 [BLOCK_MESSAGE+]
@@ -59,10 +61,11 @@
 <tr>
 <th>&nbsp;{personne.index}&nbsp;</th>
 <td id="{personne.td.id}" class="cellule_etudiant"><a href="javascript: void(0);" onclick="choix_courriel('?idPers={personne.id}&select=1'); return false;" onfocus="blur()" title="[TLT_ENVOYER_COURRIEL]">{personne.nom}&nbsp;{personne.prenom}</a>[BLOCK_PERSONNE_INDICE+]&nbsp;<img src="theme://icones/etoile.gif" width="13" height="13" border="0">[BLOCK_PERSONNE_INDICE-]</td>
-[BLOCK_COLLECTICIEL+]<td id="{collecticiel.td.id}">{collecticiel}</td>[BLOCK_COLLECTICIEL-]
-[BLOCK_FORMULAIRE+]<td id="{formulaire.td.id}">{formulaire}</td>[BLOCK_FORMULAIRE-]
-[BLOCK_FORUM+]<td id="{forum.td.id}" title="[TLT_FORUM_NOMBRE_MESSAGES_FORUM]">{forum}</td>[BLOCK_FORUM-]
+[BLOCK_COLLECTICIEL+]<td id="{collecticiel.td.id}">{collecticiel}{collecticiel.date}</td>[BLOCK_COLLECTICIEL-]
+[BLOCK_FORMULAIRE+]<td id="{formulaire.td.id}">{formulaire}{formulaire.date}</td>[BLOCK_FORMULAIRE-]
+[BLOCK_FORUM+]<td id="{forum.td.id}" title="[TLT_FORUM_NOMBRE_MESSAGES_FORUM]">{forum}{forum.date}</td>[BLOCK_FORUM-]
 [BLOCK_CHAT+]<td id="{chat.td.id}" title="[TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE]">{chat}</td>[BLOCK_CHAT-]
+[BLOCK_CONNEXION+]<td id="{connexion.td.id}">{connexion}</td>[BLOCK_CONNEXION-]
 </tr>
 </tbody>
 [BLOCK_TABLEAU_BORD-]

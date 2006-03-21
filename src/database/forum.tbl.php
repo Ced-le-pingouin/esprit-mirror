@@ -464,17 +464,24 @@ class CForum
 	
 	function retNbMessages ($v_iIdPers=NULL)
 	{
-		$sRequeteSql = "SELECT COUNT(*)"
+		$amNbMessages = array();
+		
+		$sRequeteSql = "SELECT COUNT(*) AS NbMessagesForum"
+				.", MAX(MessageForum.DateMessageForum) AS DateDernierMessage"
 			." FROM Forum"
 			." LEFT JOIN SujetForum USING (IdForum)"
 			." LEFT JOIN MessageForum USING (IdSujetForum)"
 			." WHERE Forum.IdForum='".$this->retId()."'"
-			.(isset($v_iIdPers) ? " AND MessageForum.IdPers='{$v_iIdPers}'" : NULL);
+				.(isset($v_iIdPers) ? " AND MessageForum.IdPers='{$v_iIdPers}'" : NULL);
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		$iNbMessages = $this->oBdd->retEnregPrecis($hResult);
+		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		foreach ($oEnreg as $sCle => $sValeur)
+			$amNbMessages[$sCle] = $sValeur;
 		$this->oBdd->libererResult($hResult);
-		return $iNbMessages;
+		return $amNbMessages;
 	}
+	
+	function retDateDernierMessage () { return (isset($this->oEnregBdd->DateDernierMessage) ? $this->oEnregBdd->DateDernierMessage : NULL); }
 	
 	function STRING_LOCK_TABLES ()
 	{

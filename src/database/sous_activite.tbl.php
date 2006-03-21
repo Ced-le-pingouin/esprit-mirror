@@ -23,7 +23,7 @@
 ** Fichier ................: sous_activite.tbl.php
 ** Description ............:
 ** Date de création .......: 01/06/2001
-** Dernière modification ..: 16/11/2005
+** Dernière modification ..: 16/12/2005
 ** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
 **                           Filippo PORCO <filippo.porco@umh.ac.be>
 **
@@ -118,13 +118,13 @@ class CSousActiv
 			$sListeStatutsFC = "'{$v_mStatutFC}'";
 		
 		$sRequeteSql = "SELECT FormulaireComplete_SousActiv.IdFCSousActiv"
-			.", FormulaireComplete_SousActiv.StatutFormSousActiv"
-			.", FormulaireComplete.*"
+				.", FormulaireComplete_SousActiv.StatutFormSousActiv"
+				.", FormulaireComplete.*"
 			." FROM FormulaireComplete_SousActiv"
 			." LEFT JOIN FormulaireComplete USING (IdFC)"
 			." WHERE FormulaireComplete_SousActiv.IdSousActiv='".$this->retId()."'"
-			.($v_iIdPers > 0 ? " AND FormulaireComplete.IdPers='{$v_iIdPers}'" : NULL)
-			.(isset($v_mStatutFC) ? " AND FormulaireComplete_SousActiv.StatutFormSousActiv IN ({$sListeStatutsFC})" : NULL)
+				.($v_iIdPers > 0 ? " AND FormulaireComplete.IdPers='{$v_iIdPers}'" : NULL)
+				.(isset($v_mStatutFC) ? " AND FormulaireComplete_SousActiv.StatutFormSousActiv IN ({$sListeStatutsFC})" : NULL)
 			." ORDER BY FormulaireComplete.DateFC ASC";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
@@ -143,10 +143,13 @@ class CSousActiv
 		return $iIdxFC;
 	}
 	
-	function retStatutFormulairePlusHaut ($v_miIdPers=NULL)
+	function retStatutPlusHautFormulaire ($v_miIdPers=NULL)
 	{
 		$sListePers = NULL;
-		$iStatutResPlusHaut = 0;
+		
+		$oEnreg->MaxStatutFormSousActiv = NULL;
+		$oEnreg->CountStatutFormSousActiv = NULL;
+		$oEnreg->DateDernierFormulaireDepose = NULL;
 		
 		if (is_array($v_miIdPers))
 			foreach ($v_miIdPers as $iIdPers)
@@ -158,22 +161,21 @@ class CSousActiv
 		if (isset($sListePers))
 		{
 			$sRequeteSql = "SELECT StatutFormSousActiv"
-				.", MAX(StatutFormSousActiv) AS MaxStatutFormSousActiv"
-				.", COUNT(*) AS CountStatutFormSousActiv"
+					.", MAX(StatutFormSousActiv) AS MaxStatutFormSousActiv"
+					.", COUNT(*) AS CountStatutFormSousActiv"
+					.", MAX(FormulaireComplete.DateFC) AS DateDernierFormulaireDepose"
 				." FROM FormulaireComplete_SousActiv"
 				." LEFT JOIN FormulaireComplete USING (IdFC)"
 				." WHERE FormulaireComplete_SousActiv.IdSousActiv='".$this->retId()."'"
-				." AND FormulaireComplete.IdPers IN ({$sListePers})"
+					." AND FormulaireComplete.IdPers IN ({$sListePers})"
 				." GROUP BY FormulaireComplete_SousActiv.StatutFormSousActiv"
 				." ORDER BY FormulaireComplete_SousActiv.StatutFormSousActiv DESC";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
-			$iStatutResPlusHaut = $oEnreg->MaxStatutFormSousActiv;
-			$iNbStatutResPlusHaut = $oEnreg->CountStatutFormSousActiv;
 			$this->oBdd->libererResult($hResult);
 		}
 		
-		return array($iStatutResPlusHaut,$iNbStatutResPlusHaut);
+		return array($oEnreg->MaxStatutFormSousActiv,$oEnreg->CountStatutFormSousActiv,$oEnreg->DateDernierFormulaireDepose);
 	}
 	// }}}
 	
@@ -638,10 +640,14 @@ class CSousActiv
 	// {{{ Collecticiel
 	function initCollecticiel () { $this->oCollecticiel = new CCollecticiel($this->oBdd,$this->retId()); }
 	
-	function retStatutResPlusHaut ($v_miIdPers=NULL)
+	function retStatutPlusHautRes ($v_miIdPers=NULL)
 	{
 		$sListePers = NULL;
-		$iStatutResPlusHaut = 0;
+		
+		$oEnreg->MaxStatutResSousActiv = NULL;
+		$oEnreg->CountStatutResSousActiv = NULL;
+		$oEnreg->IdPersStatutResSousActiv = NULL;
+		$oEnreg->MaxRessourceDateRes = NULL;
 		
 		if (is_array($v_miIdPers))
 			foreach ($v_miIdPers as $iIdPers)
@@ -653,28 +659,27 @@ class CSousActiv
 		if (isset($sListePers))
 		{
 			$sRequeteSql = "SELECT StatutResSousActiv"
-				.", MAX(StatutResSousActiv) AS MaxStatutResSousActiv"
-				.", COUNT(*) AS CountStatutResSousActiv"
-				.", Ressource.IdPers AS IdPersStatutResSousActiv"
+					.", MAX(StatutResSousActiv) AS MaxStatutResSousActiv"
+					.", MAX(Ressource.DateRes) AS MaxRessourceDateRes"
+					.", COUNT(*) AS CountStatutResSousActiv"
+					.", Ressource.IdPers AS IdPersStatutResSousActiv"
 				." FROM Ressource_SousActiv"
 				." LEFT JOIN Ressource USING (IdRes)"
 				." WHERE Ressource_SousActiv.IdSousActiv='".$this->retId()."'"
-				." AND Ressource.IdPers IN ({$sListePers})"
-				." AND Ressource_SousActiv.StatutResSousActiv<>'".STATUT_RES_TRANSFERE."'"
+					." AND Ressource.IdPers IN ({$sListePers})"
+					." AND Ressource_SousActiv.StatutResSousActiv<>'".STATUT_RES_TRANSFERE."'"
 				." GROUP BY Ressource_SousActiv.StatutResSousActiv"
 				." ORDER BY Ressource_SousActiv.StatutResSousActiv DESC";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
-			$iStatutResPlusHaut = $oEnreg->MaxStatutResSousActiv;
-			$iNbStatutResPlusHaut = $oEnreg->CountStatutResSousActiv;
-			$iIdPersStatutResSousActiv = $oEnreg->IdPersStatutResSousActiv;
 			$this->oBdd->libererResult($hResult);
 		}
 		
 		return array(
-				"StatutResPlusHaut" => $iStatutResPlusHaut
-				,"StatutResPlusHautNb" => $iNbStatutResPlusHaut
-				,"StatutResPlusHautIdPers" => $iIdPersStatutResSousActiv
+				"StatutResPlusHaut" => $oEnreg->MaxStatutResSousActiv,
+				"StatutResPlusHautNb" => $oEnreg->CountStatutResSousActiv,
+				"StatutResPlusHautIdPers" => $oEnreg->IdPersStatutResSousActiv,
+				"StatutResDateRecente" => $oEnreg->MaxRessourceDateRes
 			);
 	}
 	// }}}
@@ -800,6 +805,7 @@ class CSousActiv
 			
 			$sRequeteSql = "UPDATE Ressource_SousActiv"
 				." SET StatutResSousActiv='".STATUT_RES_SOUMISE."'"
+					.", DateModifStatut=NOW()"
 				." WHERE IdResSousActiv='{$v_iIdResSousActiv}'"
 				." AND StatutResSousActiv='".STATUT_RES_EN_COURS."'";
 			$this->oBdd->executerRequete($sRequeteSql);

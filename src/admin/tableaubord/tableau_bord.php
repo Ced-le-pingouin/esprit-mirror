@@ -32,6 +32,7 @@
 */
 
 require_once("globals.inc.php");
+require_once(dir_database("evenement.tbl.php"));
 require_once(dir_locale("globals.lang"));
 require_once(dir_chat("archive.class.php",TRUE));
 
@@ -87,31 +88,45 @@ $oModule    = new CModule($oProjet->oBdd,$iIdMod);
 
 $oResSousActiv = new CRessourceSousActiv($oProjet->oBdd);
 
+$abModalites = array();
+
+// {{{ Initialiser les équipes
 $oEquipe = new CEquipe($oProjet->oBdd);
 
-// {{{ Rechercher les étudiants
+$_aiEquipes = array();
+
+if ($oProjet->initEquipes(TRUE,$url_iIdNiveau,$url_iTypeNiveau) > 0)
+	foreach ($oProjet->aoEquipes as $oEquipe)
+	{
+		$iIdEquipe = $oEquipe->retId();
+		
+		foreach ($oEquipe->aoMembres as $oMembre)
+			$_aiEquipes[$oMembre->retId()] = $iIdEquipe;
+	}
+// }}}
+
+// {{{ Rechercher les étudiants qui se trouvent dans les équipes
 if ($g_bModaliteParEquipe)
 {
 	// inscrits dans des équipes
 	$iIdxMembre = 0;
 	$aoInscrits = array();
 	
-	if ($oProjet->initEquipes(TRUE,$url_iIdNiveau,$url_iTypeNiveau) > 0)
-		foreach ($oProjet->aoEquipes as $oEquipe)
+	foreach ($oProjet->aoEquipes as $oEquipe)
+	{
+		$iIdEquipe  = $oEquipe->retId();
+		$sNomEquipe = $oEquipe->retNom();
+		
+		// Le premier membre de l'équipe recevra le nom de l'équipe
+		foreach ($oEquipe->aoMembres as $aoInscrits[$iIdxMembre])
 		{
-			$iIdEquipe  = $oEquipe->retId();
-			$sNomEquipe = $oEquipe->retNom();
+			$aoInscrits[$iIdxMembre]->IdEquipe = $iIdEquipe;
+			$aoInscrits[$iIdxMembre++]->NomEquipe = $sNomEquipe;
 			
-			// Le premier membre de l'équipe recevra le nom de l'équipe
-			foreach ($oEquipe->aoMembres as $aoInscrits[$iIdxMembre])
-			{
-				$aoInscrits[$iIdxMembre]->IdEquipe = $iIdEquipe;
-				$aoInscrits[$iIdxMembre++]->NomEquipe = $sNomEquipe;
-				
-				// Le membre suivant de cette équipe n'aura pas le nom de l'équipe
-				$iIdEquipe = 0; $sNomEquipe = NULL;
-			}
+			// Le membre suivant de cette équipe n'aura pas le nom de l'équipe
+			$iIdEquipe = 0; $sNomEquipe = NULL;
 		}
+	}
 }
 else if ($oFormation->retInscrAutoModules())
 {
@@ -220,12 +235,14 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		foreach ($oRubrique->aoCollecticiels as $oCollecticiel)
 		{
+			$abModalites[$iCol] = $oCollecticiel->retModalite(TRUE);
+			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{collecticiel.td.id}","u{$iIdRubr}c{$iCol}");
 			$aoBlocs["nom"]->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom(),ENT_COMPAT,"UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer("{collecticiel.modalite}",retTexteModalite(TXT_COLLECTICIEL,$oCollecticiel->retModalite(TRUE)));
+			$aoBlocs["modalite"]->remplacer("{collecticiel.modalite}",retTexteModalite(TXT_COLLECTICIEL,$abModalites[$iCol]));
 			
 			$iCol++;
 		}
@@ -254,12 +271,14 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		foreach ($oRubrique->aoFormulaires as $oFormulaire)
 		{
+			$abModalites[$iCol] = $oFormulaire->retModalite(TRUE);
+			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{formulaire.td.id}","u{$iIdRubr}c{$iCol}");
 			$aoBlocs["nom"]->remplacer("{formulaire.nom}",htmlentities($oFormulaire->retNom(),ENT_COMPAT,"UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer("{formulaire.modalite}",retTexteModalite("AEL",$oFormulaire->retModalite(TRUE)));
+			$aoBlocs["modalite"]->remplacer("{formulaire.modalite}",retTexteModalite("AEL",$abModalites[$iCol]));
 			
 			$iCol++;
 		}
@@ -292,12 +311,14 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		foreach ($oRubrique->aoForums as $oForum)
 		{
+			$abModalites[$iCol] = $oForum->retModalite();
+			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{forum.td.id}","u{$iIdRubr}c{$iCol}");
 			$aoBlocs["nom"]->remplacer("{forum.nom}",htmlentities($oForum->retNom(),ENT_COMPAT,"UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer("{forum.modalite}",retTexteModalite(TXT_FORUM,$oForum->retModalite()));
+			$aoBlocs["modalite"]->remplacer("{forum.modalite}",retTexteModalite(TXT_FORUM,$abModalites[$iCol]));
 			
 			$iCol++;
 		}
@@ -313,6 +334,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	// }}}
 	
 	// {{{ colonnes des chats
+	$aaChatDonnees = NULL;
+	
 	$iModaliteChat = (isset($url_iIdModalite)
 		? ($g_bModaliteParEquipe ? 1 : 0)
 		: NULL);
@@ -330,7 +353,84 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		foreach ($oRubrique->aoChats as $oChat)
 		{
+			$iIdChat = $oChat->retId();
+			$sNomChat = $oChat->retNom();
+			
+			$abModalites[$iCol] = $oChat->retModalite(TRUE);
+			
+			$bChatModalitePourTous = ($abModalites[$iCol] == MODALITE_INDIVIDUEL);
+			
 			$oChat->initParent();
+			
+			$sRepChatLog = dir_chat_log($oChat->oParent->retIdParent(),$iIdForm,NULL,TRUE);
+			
+			// {{{ Sauvegarder le nombre de messages par inscrits
+			$oArchives = new CArchives($sRepChatLog);
+			$oArchives->defFiltre("delta_chat_{$iIdChat}");
+			$oArchives->initArchives();
+			
+			$sNomFichierArchivePrecedent = NULL;
+			
+			foreach ($oArchives->aoArchives as $oArchive)
+			{
+				$sNomFichierArchive = $oArchive->retNomArchive();
+				$sNomEquipe = urldecode($oArchive->retEquipe());
+				$bEquipe = (strlen($sNomEquipe) > 0);
+				
+				if (($bChatModalitePourTous && $bEquipe)
+					|| (!$bChatModalitePourTous && !$bEquipe))
+					continue;
+				
+				$oArchive->initMessages();
+				
+				if ($bChatModalitePourTous)
+				{
+					foreach ($oArchive->aoMessages as $oMessage)
+					{
+						$sPseudo = $oMessage->retPseudo();
+						
+						if (empty($aaChatDonnees[$iIdChat][$sPseudo]))
+						{
+							$aaChatDonnees[$iIdChat][$sPseudo]["public"]["nb_archives"] = 1;
+							$aaChatDonnees[$iIdChat][$sPseudo]["public"]["nb_messages"] = 1;
+						}
+						else
+						{
+							if ($sNomFichierArchivePrecedent != $sNomFichierArchive)
+							{
+								$aaChatDonnees[$iIdChat][$sPseudo]["public"]["nb_archives"]++;
+								$sNomFichierArchivePrecedent = $sNomFichierArchive;
+							}
+							
+							$aaChatDonnees[$iIdChat][$sPseudo]["public"]["nb_messages"]++;
+						}
+					}
+				}
+				else
+				{
+					foreach ($oArchive->aoMessages as $oMessage)
+					{
+						$sPseudo = $oMessage->retPseudo();
+						
+						if (empty($aaChatDonnees[$iIdChat][$sPseudo]))
+						{
+							$aaChatDonnees[$iIdChat][$sPseudo]["equipe"]["nb_archives"] = 1;
+							$aaChatDonnees[$iIdChat][$sPseudo]["equipe"]["nb_messages"] = 1;
+						}
+						else
+						{
+							if ($sNomFichierArchivePrecedent != $sNomFichierArchive)
+							{
+								$aaChatDonnees[$iIdChat][$sPseudo]["equipe"]["nb_archives"]++;
+								$sNomFichierArchivePrecedent = $sNomFichierArchive;
+							}
+							
+							$aaChatDonnees[$iIdChat][$sPseudo]["equipe"]["nb_messages"]++;
+						}
+					}
+				}
+			}
+			// }}}
 			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{chat.td.id}","u{$iIdRubr}c{$iCol}");
@@ -338,7 +438,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			$aoBlocs["nom"]->remplacer("{chat.nom}",htmlentities($oChat->retNom(),ENT_COMPAT,"UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer("{chat.modalite}",retTexteModalite(TXT_CHAT,$oChat->retModalite(TRUE)));
+			$aoBlocs["modalite"]->remplacer("{chat.modalite}",retTexteModalite(TXT_CHAT,$abModalites[$iCol]));
 			
 			$iCol++;
 		}
@@ -353,12 +453,25 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	}
 	// }}}
 	
+	// {{{ Colonne des connexions
+	$oBlocConnexion = new TPL_Block("BLOCK_CONNEXION",$oTpl);
+	
+	if ($url_iIdType == 0)
+	{
+		$oBlocConnexion->remplacer("{connexion.th.id}","u{$iIdRubr}c{$iCol}");
+		$oBlocConnexion->afficher();
+		$iCol++;
+	}
+	else
+		$oBlocConnexion->effacer();
+	// }}}
+	
 	$iNbColsEntete = $iCol;
 	
 	// ---------------------
 	// Afficher les informations par étudiant
 	// ---------------------
-	$iTotalCols = $iNbCollecticiels + $iNbFormulaires + $iNbForums + $iNbChats;
+	//$iTotalCols = $iNbCollecticiels + $iNbFormulaires + $iNbForums + $iNbChats;
 	$iLigne = 1; $iCol = 1;
 	
 	// {{{ Afficher les informations pour chaque étudiant
@@ -383,7 +496,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$oBlocEquipe->remplacer(
 				array("{equipe.td.colspan}","{equipe.id}","{equipe.nom}")
-				, array($iTotalCols+1,$iIdEquipe,htmlentities($sNomEquipe,ENT_COMPAT,"UTF-8"))
+				, array($iNbColsEntete+1,$iIdEquipe,htmlentities($sNomEquipe,ENT_COMPAT,"UTF-8"))
 			);
 			
 			$oBlocEquipe->afficher();
@@ -435,17 +548,17 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				else
 					$aiIdPers[] = $iIdInscrit;
 				
-				$aiStatutResPlusHaut = $oCollecticiel->retStatutResPlusHaut($aiIdPers);
+				$aiStatutPlusHautRes = $oCollecticiel->retStatutPlusHautRes($aiIdPers);
 				
 				// Dans la modalité par équipe, il faut afficher qu'un seul
 				// document déposé par équipe
-				if ($aiStatutResPlusHaut["StatutResPlusHautIdPers"] != $iIdInscrit)
-					$aiStatutResPlusHaut["StatutResPlusHaut"] = 0;
+				if ($aiStatutPlusHautRes["StatutResPlusHautIdPers"] != $iIdInscrit)
+					$aiStatutPlusHautRes["StatutResPlusHaut"] = 0;
 				
-				$iStatutResPlusHaut  = $aiStatutResPlusHaut["StatutResPlusHaut"];
-				$sStatutResPlusHaut  = $oResSousActiv->retTexteStatut($iStatutResPlusHaut)
-					.($iStatutResPlusHaut > STATUT_RES_EN_COURS && $aiStatutResPlusHaut["StatutResPlusHautNb"] > 1
-						? "&nbsp;(".$aiStatutResPlusHaut["StatutResPlusHautNb"].")"
+				$iStatutPlusHautRes  = $aiStatutPlusHautRes["StatutResPlusHaut"];
+				$sStatutPlusHautRes  = $oResSousActiv->retTexteStatut($iStatutPlusHautRes)
+					.($iStatutPlusHautRes > STATUT_RES_EN_COURS && $aiStatutPlusHautRes["StatutResPlusHautNb"] > 1
+						? "&nbsp;(".$aiStatutPlusHautRes["StatutResPlusHautNb"].")"
 						: NULL);
 				
 				$oBloc->nextLoop();
@@ -453,9 +566,9 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
 					$oBloc->remplacer("{collecticiel}",$sSetCollecticiel);
 				
-				$oBloc->remplacer(array("{collecticiel.td.id}","{collecticiel}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutResPlusHaut));
+				$oBloc->remplacer(array("{collecticiel.td.id}","{collecticiel}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutPlusHautRes));
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oCollecticiel->retIdParent(),$oCollecticiel->retId(),$sParamsUrl));
-				
+				$oBloc->remplacer("{collecticiel.date}",($aiStatutPlusHautRes["StatutResPlusHautNb"] > 0 && $aiStatutPlusHautRes["StatutResPlusHaut"] != 0 ? "<br><small class=\"date\">".formatterDate($aiStatutPlusHautRes["StatutResDateRecente"])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -476,18 +589,18 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			{
 				$sParamsUrl = "&idPers={$iIdInscrit}";
 				
-				$aiStatutFormulairePlusHaut = $oFormulaire->retStatutFormulairePlusHaut($iIdInscrit);
-				$iStatutFormulairePlusHaut = $aiStatutFormulairePlusHaut[0];
-				$sStatutFormulairePlusHaut  = $oResSousActiv->retTexteStatut($iStatutFormulairePlusHaut)
-					.($iStatutResPlusHaut > STATUT_RES_EN_COURS && $aiStatutFormulairePlusHaut[1] > 1 ? "&nbsp;(".$aiStatutFormulairePlusHaut[1].")" : NULL);
-				
+				$aiStatutPlusHautFormulaire = $oFormulaire->retStatutPlusHautFormulaire($iIdInscrit);
+				$iStatutPlusHautFormulaire = $aiStatutPlusHautFormulaire[0];
+				$sStatutPlusHautFormulaire  = $oResSousActiv->retTexteStatut($iStatutPlusHautFormulaire)
+					/*.($iStatutPlusHautFormulaire > STATUT_RES_EN_COURS && $aiStatutPlusHautFormulaire[1] > 1 ? "&nbsp;(".$aiStatutPlusHautFormulaire[1].")" : NULL)*/;
 				$oBloc->nextLoop();
 				
 				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
 					$oBloc->remplacer("{formulaire}",$sSetFormulaire);
 				
-				$oBloc->remplacer(array("{formulaire.td.id}","{formulaire}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutFormulairePlusHaut));
+				$oBloc->remplacer(array("{formulaire.td.id}","{formulaire}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutPlusHautFormulaire));
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oFormulaire->retIdParent(),$oFormulaire->retId(),$sParamsUrl));
+				$oBloc->remplacer("{formulaire.date}",($aiStatutPlusHautFormulaire[0] > 0 ? "<br><small class=\"date\">".formatterDate($aiStatutPlusHautFormulaire[2])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -509,7 +622,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$iIdForum    = $oForum->retId();
 				$iIdNiveau   = $oForum->retIdNiveau();
 				$iTypeNiveau = $oForum->retTypeNiveau();
-				$iNbMessages = $oForum->retNbMessages($iIdInscrit);
+				$amNbMessages = $oForum->retNbMessages($iIdInscrit);
 				
 				$oBloc->nextLoop();
 				$oBloc->remplacer("{forum.td.id}","u{$iIdRubr}l{$iLigne}c{$iCol}");
@@ -518,9 +631,10 @@ foreach ($oModule->aoRubriques as $oRubrique)
 					$oBloc->remplacer("{forum}",$asTplGlobalCommun["url_forum"]);
 				else
 					$oBloc->remplacer("{forum}",$sSetForum);
-
-				$oBloc->remplacer(array("{forum.params}","{forum.params.fenetre_nom}"),array("?idForum={$iIdForum}&idNiveau={$iIdNiveau}&typeNiveau={$iTypeNiveau}","winForum{$iIdForum}"));
-				$oBloc->remplacer(array("{forum.nom}","{forum.messages.nombre}"),($iNbMessages > 0 ? $iNbMessages : array("-",0)));
+				
+				$oBloc->remplacer(array("{forum.params}","{forum.params.fenetre_nom}"),array("?idForum={$iIdForum}&idNiveau={$iIdNiveau}&typeNiveau={$iTypeNiveau}".($abModalites[$iCol] ? "&idEquipe={$_aiEquipes[$iIdInscrit]}" : NULL),"winForum{$iIdForum}"));
+				$oBloc->remplacer(array("{forum.nom}","{forum.messages.nombre}"),($amNbMessages["NbMessagesForum"] > 0 ? $amNbMessages["NbMessagesForum"] : array("-",0)));
+				$oBloc->remplacer("{forum.date}",($amNbMessages["NbMessagesForum"] > 0 ? "<br><small class=\"date\">".formatterDate($amNbMessages["DateDernierMessage"])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -541,36 +655,16 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			{
 				$iIdChat = $oChat->retId();
 				
-				$oIds = new CIds($oProjet->oBdd,$oChat->retTypeNiveau(),$oChat->retIdNiveau());
-				
-				switch ($oChat->retTypeNiveau())
+				if (CHAT_PAR_EQUIPE == $oChat->retModalite())
 				{
-					case TYPE_SOUS_ACTIVITE:
-						$sRepChatLog = dir_chat_log($oIds->retIdActiv(),$oIds->retIdForm(),NULL,TRUE);
-						break;
-				}
-				
-				unset($oIds);
-				
-				if (CHAT_PAR_EQUIPE == ($iModaliteChat = $oChat->retModalite()))
-				{
-					if ($oProjet->initEquipe(FALSE,$iIdInscrit))
-						$sNomEquipe = $oProjet->oEquipe->retNom();
-					else
-						$sNomEquipe = "/@##@/";
+					$iNbArchives = $aaChatDonnees[$iIdChat][$sPseudoInscrit]["equipe"]["nb_archives"];
+					$iNbMessages = $aaChatDonnees[$iIdChat][$sPseudoInscrit]["equipe"]["nb_messages"];
 				}
 				else
-					$sNomEquipe = NULL;
-				
-				// {{{ Compter le nombre de messages
-				$iNbMessages = 0;
-				$oArchives = new CArchives($sRepChatLog);
-				$oArchives->defFiltre((MODALITE_PAR_EQUIPE == $url_iIdModalite ? ":".urlencode($sNomEquipe).":" : NULL)."delta_chat_{$iIdChat}");
-				$iNbArchives = $oArchives->initArchives();
-				
-				foreach ($oArchives->aoArchives as $oArchive)
-					$iNbMessages += $oArchive->initMessages($sPseudoInscrit);
-				// }}}
+				{
+					$iNbArchives = $aaChatDonnees[$iIdChat][$sPseudoInscrit]["public"]["nb_archives"];
+					$iNbMessages = $aaChatDonnees[$iIdChat][$sPseudoInscrit]["public"]["nb_messages"];
+				}
 				
 				$oBloc->nextLoop();
 				$oBloc->remplacer("{chat.td.id}","u{$iIdRubr}l{$iLigne}c{$iCol}");
@@ -585,7 +679,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$oBloc->remplacer("{params.idChat}",$iIdChat);
 				$oBloc->remplacer("{params.idEquipe}",$iIdEquipe);
 				$oBloc->remplacer("{params.idPers}",$iIdInscrit);
-				$oBloc->remplacer("{chat_archives.nom}",($iNbArchives > 0 ? "{chat.messages.nombre} ({chat.archives.nombre})" : "-"));
+				$oBloc->remplacer("{chat_archives.nom}",(empty($iNbArchives) ? "-" : "{chat.messages.nombre} ({chat.archives.nombre})"));
 				$oBloc->remplacer(array("{chat.messages.nombre}","{chat.archives.nombre}"),array($iNbMessages,$iNbArchives));
 				$iCol++;
 			}
@@ -594,6 +688,22 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		}
 		else
 			$oBloc->effacer();
+		// }}}
+		
+		// {{{ Colonne des connexions
+		if ($url_iIdType == 0)
+		{
+			$oEven = new CEvenement($oProjet->oBdd);
+			$iNbConnexions = $oEven->initEvenementsPersonne($iIdInscrit,$iIdForm);
+			
+			if ($iNbConnexions > 0)
+				$sDate = formatterDate($oEven->aoEvenements[0]->retMomentEven())." ({$iNbConnexions})";
+			else
+				$sDate = "-";
+				
+			$oBlocTableauBord->remplacer(array("{connexion.td.id}","{connexion}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sDate));
+			$iCol++;
+		}
 		// }}}
 		
 		$iLigne++; $iCol = 1;
