@@ -19,33 +19,43 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: equipe.tbl.php
-** Description ............: 
-** Date de création .......: 28/01/2003
-** Dernière modification ..: 04/11/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	equipe.tbl.php
+ * 
+ * Contient les classes de gestion des équipes
+ * 
+ * @date	2003/01/28
+ * 
+ * @author	Filippo PORCO
+ */
 
 require_once(dir_database("ids.class.php"));
 
 /**
- * Cette classe...
- *
- * @class CEquipe
+ * Gestion des équipes, et encapsulation de la table Equipe de la DB
  */
 class CEquipe
 {
-	var $iId;
+	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id de l'équipe à récupérer dans la DB
 	
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;			///< Objet représentant la connexion à la DB
+	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	function CEquipe (&$v_oBdd,$v_iId=NULL,$v_bInitMembres=FALSE)
+	var $aoMembres;		///< Tableau d'objets CPersonne représentant les membres de l'équipe (rempli par #initMembres())
+	var $aoEquipes;
+	
+	/**
+	 * Constructeur
+	 * 
+	 * @param	v_oBdd			l'objet CBdd qui représente la connexion courante à la DB
+	 * @param	v_iId			l'id de l'équipe à récupérer dans la DB. S'il est omis ou si l'équipe demandée n'existe 
+	 * 							pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB
+	 * @param	v_bInitMembres	si \c true, les personnes composant l'équipe seront initialisées automatiquement dans 
+	 * 							le tableau \c aoMembres, sous forme d'objets CPersonne
+	 * 
+	 * @see	#init()
+	 */
+	function CEquipe(&$v_oBdd, $v_iId = NULL, $v_bInitMembres = FALSE)
 	{
 		$this->oBdd = &$v_oBdd;
 		$this->iId = $v_iId;
@@ -59,7 +69,10 @@ class CEquipe
 		}
 	}
 	
-	function init ($v_oEnregBdd=NULL)
+	/**
+	 * Voir CPersonne#init()
+	 */
+	function init($v_oEnregBdd = NULL)
 	{
 		if (isset($v_oEnregBdd))
 		{
@@ -68,7 +81,8 @@ class CEquipe
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM Equipe"
+			$sRequeteSql =
+				 " SELECT * FROM Equipe"
 				." WHERE IdEquipe='".$this->retId()."'"
 				." LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -77,28 +91,57 @@ class CEquipe
 		}
 	}
 	
-	function verrouillerTables ($v_bExecuterRequete=TRUE)
+	/**
+	 * Verrouille ou retourne les noms des tables généralement utilisées lors des requêtes relatives aux équipes
+	 * 
+	 * @param	v_bExecuterRequete	si \c true, la requête LOCK TABLES sur les tables utilisées pendant les requêtes 
+	 * 								concernant les équipes est réellement exécutée. Si \c false, les noms de ces tables 
+	 * 								nécessaires à une requête LOCK TABLES seront retournés, mais le lock ne sera pas 
+	 * 								exécuté
+	 * 
+	 * @return	les noms des tables utilisées pendant les requêtes concernant les équipes, suivi de WRITE et séparés par 
+	 * 			des virgules. La chaîne retournée pourra donc être utilisée pour composer une requête LOCK TABLES
+	 */
+	function verrouillerTables($v_bExecuterRequete = TRUE)
 	{
 		$sListeTables = "Equipe WRITE, Equipe_Membre WRITE";
 		if ($v_bExecuterRequete) $this->oBdd->executerRequete("LOCK TABLES {$sListeTables}");
 		return $sListeTables;
 	}
 	
-	function initEquipe ($v_iIdPers,$v_iIdNiveau,$v_iTypeNiveau,$v_bInitMembres=FALSE,$v_iIdNiveauDernier=TYPE_FORMATION)
+	/**
+	 * Initialise l'équipe d'un utilisateur dans un contexte/niveau/élément précis (formation, module, etc)
+	 * 
+	 * @param	v_iIdPers			l'id de l'utilisateur dont on veut connaître l'équipe
+	 * @param	v_iIdNiveau			l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend
+	 *								du paramètre \p v_iTypeNiveau
+	 * @param	v_iTypeNiveau		le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, 
+	 * 								càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_)
+	 * @param	v_bInitMembres		si \c true, initialise également les membres de l'équipe
+	 * @param	v_iIdNiveauDernier	le niveau maximum jusqu'auquel il faut "remonter" pour chercher l'équipe de 
+	 * 								l'utilisateur. Par défaut, la rechercher s'effectue jusqu'à la "racine", càd 
+	 * 								les équipes créées au niveau de la formation, en passant éventuellement par 
+	 * 								sous-activité, activité, rubrique, et module, car le niveau de départ (minimum) de 
+	 * 								la recherche dépend du paramètre \p v_iTypeNiveau
+	 * 
+	 * @return	\c true si l'utilisateur fait bien partie d'une équipe
+	 */
+	function initEquipe($v_iIdPers, $v_iIdNiveau, $v_iTypeNiveau, $v_bInitMembres = FALSE, $v_iIdNiveauDernier = TYPE_FORMATION)
 	{
-		$oIds = new CIds($this->oBdd,$v_iTypeNiveau,$v_iIdNiveau);
+		$oIds = new CIds($this->oBdd, $v_iTypeNiveau, $v_iIdNiveau);
 		$aiIds = $oIds->retTableIds();
 		
 		$bRemonter = TRUE;
-		$asChampsNiveaux = array(NULL,"IdForm","IdMod","IdRubrique","IdActiv","IdSousActiv");
+		$asChampsNiveaux = array(NULL, "IdForm", "IdMod", "IdRubrique", "IdActiv", "IdSousActiv");
 		
-		for ($iIdxNiveau=$v_iTypeNiveau; $iIdxNiveau>=$v_iIdNiveauDernier; $iIdxNiveau--)
+		for ($iIdxNiveau = $v_iTypeNiveau; $iIdxNiveau >= $v_iIdNiveauDernier; $iIdxNiveau--)
 		{
 			if ($aiIds[$iIdxNiveau] > 0 && isset($asChampsNiveaux[$iIdxNiveau]))
 			{
 				if ($bRemonter)
 				{
-					$sRequeteSql = "SELECT COUNT(*)"
+					$sRequeteSql = 
+						 " SELECT COUNT(*)"
 						." FROM Equipe"
 						." WHERE Equipe.".$asChampsNiveaux[$iIdxNiveau]."='".$aiIds[$iIdxNiveau]."'"
 						.(isset($asChampsNiveaux[$iIdxNiveau+1]) ? " AND Equipe.".$asChampsNiveaux[$iIdxNiveau+1]."='0'" : NULL)
@@ -111,11 +154,12 @@ class CEquipe
 				if ($bRemonter)
 					continue;
 				
-				$sRequeteSql = "SELECT Equipe.*"
+				$sRequeteSql =
+					 " SELECT Equipe.*"
 					." FROM Equipe_Membre"
-					." LEFT JOIN Equipe USING (IdEquipe)"
+					."  LEFT JOIN Equipe USING (IdEquipe)"
 					." WHERE Equipe_Membre.IdPers='{$v_iIdPers}'"
-					." AND Equipe.".$asChampsNiveaux[$iIdxNiveau]."='".$aiIds[$iIdxNiveau]."'"
+					."  AND Equipe.".$asChampsNiveaux[$iIdxNiveau]."='".$aiIds[$iIdxNiveau]."'"
 					.(isset($asChampsNiveaux[$iIdxNiveau+1]) ? " AND Equipe.".$asChampsNiveaux[$iIdxNiveau+1]."='0'" : NULL)
 					." LIMIT 1";
 				$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -139,13 +183,32 @@ class CEquipe
 		return FALSE;
 	}
 	
-	function initEquipes ($v_iIdForm=NULL,$v_iIdMod=NULL,$v_iIdRubrique=NULL,$v_iIdActiv=NULL,$v_iIdSousActiv=NULL,$v_bInitMembres=FALSE)
+	/**
+	 * Initialise un tableau d'équipes (\c aoEquipes) selon le niveau (formation/module/etc) où elles sont définies. 
+	 * Plusieurs niveaux peuvent être spécifiés en paramètres en même temps
+	 * 
+	 * @param	v_iIdForm		l'id de la formation dans laquelle il faut chercher les équipes à récupérer.
+	 * 							Si \c null (défaut), la recherche ne porte pas sur l'appartenance à une formation
+	 * @param	v_iIdMod		l'id du module dans lequel il faut chercher les équipes à récupérer.
+	 * 							Si \c null (défaut), la recherche ne porte pas sur l'appartenance à un module
+	 * @param	v_iIdRubrique	l'id de la rubrique dans laquelle il faut chercher les équipes à récupérer.
+	 * 							Si \c null (défaut), la recherche ne porte pas sur l'appartenance à une rubrique
+	 * @param	v_iIdActiv		l'id de l'activité dans laquelle il faut chercher les équipes à récupérer
+	 * 							Si \c null (défaut), la recherche ne porte pas sur l'appartenance à une activité
+	 * @param	v_iIdSousActiv	l'id de la sous-activité dans laquelle il faut chercher les équipes à récupérer.
+	 * 							Si \c null (défaut), la recherche ne porte pas sur l'appartenance à une sous-activité
+	 * @param	v_bInitMembres	si \c true, initialise également les membres de l'équipe (défaut à \c false)
+	 * 
+	 * @return	le nombre d'équipes trouvées
+	 */
+	function initEquipes($v_iIdForm = NULL, $v_iIdMod = NULL, $v_iIdRubrique = NULL, $v_iIdActiv = NULL, $v_iIdSousActiv = NULL, $v_bInitMembres = FALSE)
 	{
 		$iIdxEquipe = 0;
 		
 		$this->aoEquipes = array();
 		
-		$sRequeteSql = "SELECT * FROM Equipe WHERE (1=1)"
+		$sRequeteSql = 
+			 " SELECT * FROM Equipe WHERE (1=1)"
 			.(empty($v_iIdForm) ? NULL : " AND IdForm='{$v_iIdForm}'")
 			.(empty($v_iIdMod) ? NULL : " AND IdMod='{$v_iIdMod}'")
 			.(empty($v_iIdRubrique) ? NULL : " AND IdRubrique='{$v_iIdRubrique}'")
@@ -171,7 +234,25 @@ class CEquipe
 		return $iIdxEquipe;
 	}
 	
-	function initEquipesNiveau ($v_iTypeNiveau,$v_iIdNiveau,$v_bInitMembres=FALSE,$v_bNonEquipesEnfants=TRUE)
+	/**
+	 * Initialise un tableau d'équipes (\c aoEquipes) selon le niveau (formation/module/etc) où elles sont définies.
+	 * Un seul niveau est passé en paramètre, contrairement à #initEquipes(). Permet aussi de restreindre aux équipes 
+	 * qui sont explicitement définies au niveau spécifié (qui ne sont pas des équipes définie à un niveau plus élevé 
+	 * et "héritées"
+	 * 
+	 * @param	v_iTypeNiveau			le numéro représentant le type d'élément pour lequel on veut récupérer les 
+	 * 									équipes, càd formation, module, rubrique, activité, sous-activité (voir les 
+	 *									constantes TYPE_)
+	 * @param	v_iIdNiveau				l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification 
+	 * 									dépend du paramètre \p v_iTypeNiveau
+	 * @param	v_bInitMembres			si \c true, initialise également les membres de chaque équipe (défaut à \c false)
+	 * @param	v_bNonEquipesEnfants	si \c true, la recherche des équipes à initialiser se restreint aux équipes 
+	 * 									explicitement définies au niveau spécifié par \p v_iTypeNiveau, càd pas des 
+	 * 									équipes définies à un niveau plus élevé et héritée à ce niveau
+	 * 
+	 * @return	le nombre d'équipe trouvées, ou 0 si v_iTypeNiveau ou v_iIdNiveau sont < 1 ou invalides
+	 */
+	function initEquipesNiveau($v_iTypeNiveau, $v_iIdNiveau, $v_bInitMembres = FALSE, $v_bNonEquipesEnfants = TRUE)
 	{
 		$iIdxEquipe = 0;
 		$this->aoEquipes = array();
@@ -179,12 +260,13 @@ class CEquipe
 		if ($v_iTypeNiveau < 1 || $v_iIdNiveau < 1)
 			return $iIdxEquipe;
 		
-		$asRecherche = array(NULL,"IdForm","IdMod","IdRubrique",NULL,"IdActiv","IdSousActiv",NULL);
+		$asRecherche = array(NULL, "IdForm", "IdMod", "IdRubrique", NULL, "IdActiv", "IdSousActiv", NULL);
 		
 		if (!isset($asRecherche[$v_iTypeNiveau]))
 			return $iIdxEquipe;
 		
-		$sRequeteSql = "SELECT * FROM Equipe"
+		$sRequeteSql = 
+			 " SELECT * FROM Equipe"
 			." WHERE ".$asRecherche[$v_iTypeNiveau]."='{$v_iIdNiveau}'"
 			.($v_bNonEquipesEnfants && isset($asRecherche[$v_iTypeNiveau+1])
 				? " AND ".$asRecherche[$v_iTypeNiveau+1]."='0'"
@@ -211,18 +293,34 @@ class CEquipe
 		return $iIdxEquipe;
 	}
 	
-	function initEquipesEx ($v_iIdNiveauDepart,$v_iTypeNiveauDepart,$v_bInitMembres=FALSE)
+	/**
+	 * Initialise un tableau d'équipes (\c aoEquipes) en les cherchant à partir d'un certain niveau de la structure 
+	 * (formation/module/etc), tout en passant au niveau supérieur (parent) à chaque fois qu'aucune équipe n'est 
+	 * trouvée au niveau courant, et cela jusqu'au "dernier" niveau, càd TYPE_FORMATION. Si une ou plusieurs équipe 
+	 * sont trouvées à un niveau, la recherche s'arrête
+	 * 
+	 * @param	v_iIdNiveauDepart	l'id de l'élément de départ pour lequel on veut récupérer les équipes.
+	 * 								Sa signification dépend du paramètre \p v_iTypeNiveau
+	 * @param	v_iTypeNiveauDepart	le numéro représentant le type d'élément (formation/module/etc) par lequel on veut 
+	 * 								débuter la recherche des équipes à initialiser
+	 * @param	v_bInitMembres		si \c true, initialise également les membres de l'équipe (défaut à \c false)
+	 * 
+	 * @return	le nombre d'équipes trouvées
+	 * 
+	 * @see		#initEquipesNiveau()
+	 */
+	function initEquipesEx($v_iIdNiveauDepart, $v_iTypeNiveauDepart, $v_bInitMembres = FALSE)
 	{
-		$oIds = new CIds($this->oBdd,$v_iTypeNiveauDepart,$v_iIdNiveauDepart);
+		$oIds = new CIds($this->oBdd, $v_iTypeNiveauDepart, $v_iIdNiveauDepart);
 		$aiIds = $oIds->retListeIds();
 		
 		// Rechercher les équipes par niveau
-		for ($iIdxTypeNiveau=$v_iTypeNiveauDepart; $iIdxTypeNiveau>=TYPE_FORMATION; $iIdxTypeNiveau--)
+		for ($iIdxTypeNiveau = $v_iTypeNiveauDepart; $iIdxTypeNiveau >= TYPE_FORMATION; $iIdxTypeNiveau--)
 		{
 			if ($aiIds[$iIdxTypeNiveau] < 1)
 				continue;
 			
-			if ($this->initEquipesNiveau($iIdxTypeNiveau,$aiIds[$iIdxTypeNiveau],$v_bInitMembres) > 0)
+			if ($this->initEquipesNiveau($iIdxTypeNiveau, $aiIds[$iIdxTypeNiveau], $v_bInitMembres) > 0)
 				break;
 		}
 		
@@ -230,14 +328,20 @@ class CEquipe
 	}
 	
 	// {{{ Membres
-	function initMembres ()
+	/**
+	 * Initialise les membres de l'équipe (dans le tableau \c aoMembres - objets CPersonne)
+	 * 
+	 * @return	le nombre de membres de l'équipe
+	 */
+	function initMembres()
 	{
 		$iIdxPers = 0;
 		$this->aoMembres = array();
 		
-		$sRequeteSql = "SELECT Personne.*"
+		$sRequeteSql = 
+			 " SELECT Personne.*"
 			." FROM Equipe_Membre"
-			." LEFT JOIN Personne USING (IdPers)"
+			."  LEFT JOIN Personne USING (IdPers)"
 			." WHERE Equipe_Membre.IdEquipe='".$this->retId()."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
@@ -256,9 +360,25 @@ class CEquipe
 		return $iIdxPers;
 	}
 	
-	function retNbMembres () { return (isset($this->aoMembres) && is_array($this->aoMembres) ? count($this->aoMembres) : 0); }
+	/**
+	 * Retourne le nombre de personnes/membres composant l'équipe
+	 * 
+	 * @return	le nombre de membres de l'équipe, ou 0 si celle-ci n'a pas encore été initialisée par #initMembres()
+	 * 
+	 * @see	#initMembres()
+	 */
+	function retNbMembres() { return (isset($this->aoMembres) && is_array($this->aoMembres) ? count($this->aoMembres) : 0); }
 	
-	function verifMembre ($v_iIdPers,$v_iIdEquipe=NULL)
+	/**
+	 * Vérifier qu'une personne est membre de l'équipe (ou d'une équipe spécifique)
+	 * 
+	 * @param	v_iIdPers	l'id de la personne dont on veut vérifier l'appartenance à une équipe
+	 * @param	v_iIdEquipe	l'id de l'équipe dont on veut vérifier si elle comprend la personne spécifiée par v_iIdPers. 
+	 * 						Si \c null, c'est l'équipe actuellement initialisée qui est prise pour la vérification
+	 * 
+	 * @return	\c true si la personne est bien membre de l'équipe (courante ou spécifiée en paramètre)
+	 */
+	function verifMembre($v_iIdPers, $v_iIdEquipe = NULL)
 	{
 		$bVerifMembre = FALSE;
 		
@@ -267,9 +387,10 @@ class CEquipe
 		
 		if ($v_iIdPers > 0 && $v_iIdEquipe > 0)
 		{
-			$sRequeteSql = "SELECT IdPers FROM Equipe_Membre"
+			$sRequeteSql = 
+				 " SELECT IdPers FROM Equipe_Membre"
 				." WHERE IdEquipe='{$v_iIdEquipe}'"
-				." AND IdPers='{$v_iIdPers}'"
+				."  AND IdPers='{$v_iIdPers}'"
 				." LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			
@@ -283,23 +404,36 @@ class CEquipe
 	}
 	// }}}
 	
-	function initGraceIdEquipes ($v_aiIdEquipes)
+	/**
+	 * Initialise un tableau d'équipes (\c aoEquipes) en se basant sur une série d'ids d'équipes
+	 * 
+	 * @param	v_aiIdEquipes	un tableau contenant les ids des équipes qu'on veut initialiser et qui rempliront le 
+	 * 							tableau \c aoEquipes
+	 * 
+	 * @return	le nombre d'équipes initialisées
+	 */
+	function initGraceIdEquipes($v_aiIdEquipes)
 	{
 		$iIdxEquipe = 0;
 		$this->aoEquipes = array();
 		
 		foreach ($v_aiIdEquipes as $iIdEquipe)
-			$this->aoEquipes[$iIdxEquipe++] = new CEquipe($this->oBdd,$iIdEquipe);
+			$this->aoEquipes[$iIdxEquipe++] = new CEquipe($this->oBdd, $iIdEquipe);
 		
 		return $iIdxEquipe;
 	}
 	
 	// --------------------------------
-	
-	function ajouter ()
+	/**
+	 * Insère une nouvelle équipe dans la DB, en utilisant les champs Nom, IdFormation, IdModule, IdRubrique, IdActivite, 
+	 * IdSousActivite, et NumOrdre actuellement définis dans l'objet CEquipe (par les fonctions def...()). La fonction 
+	 * #init() est ensuite rappelée pour initialiser complètement l'objet courant
+	 */
+	function ajouter()
 	{
-		$sRequeteSql = "INSERT INTO Equipe SET"
-			." IdEquipe=NULL"
+		$sRequeteSql = 
+			 " INSERT INTO Equipe SET"
+			."  IdEquipe=NULL"
 			.", NomEquipe=\"".$this->retNom()."\""
 			.", IdForm=".$this->retIdFormation()
 			.", IdMod=".$this->retIdModule()
@@ -312,16 +446,24 @@ class CEquipe
 		$this->init();
 	}
 	
-	function effacer ()
+	/**
+	 * Efface de la DB l'équipe actuellement initialisée dans l'objet
+	 */
+	function effacer()
 	{
 		$iIdEquipe = $this->retId();
+		
+		$this->oBdd->executerRequete("LOCK TABLES Equipe_Membre WRITE, Equipe WRITE");
+		
 		$sRequeteSql = "DELETE FROM Equipe_Membre WHERE IdEquipe='{$iIdEquipe}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		$sRequeteSql = "DELETE FROM Equipe WHERE IdEquipe='{$iIdEquipe}'";
 		$this->oBdd->executerRequete($sRequeteSql);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
-	function effacerParNiveau ($v_iNiveau,$v_iIdNiveau)
+	function effacerParNiveau($v_iNiveau, $v_iIdNiveau)
 	{
 		if ($v_iIdNiveau < 1)
 			return;
@@ -341,7 +483,8 @@ class CEquipe
 		$sValeursRequete = NULL;
 		
 		// Rechercher les équipes à effacer
-		$sRequeteSql = "SELECT IdEquipe FROM Equipe"
+		$sRequeteSql = 
+			 " SELECT IdEquipe FROM Equipe"
 			." WHERE {$sNomChamp}='{$v_iIdNiveau}'";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -355,23 +498,26 @@ class CEquipe
 		if (isset($sValeursRequete))
 		{
 			// Effacer les enregistrements de la table "Equipe_Membre"
-			$sRequeteSql = "DELETE FROM Equipe_Membre"
+			$sRequeteSql = 
+				 " DELETE FROM Equipe_Membre"
 				." WHERE IdEquipe IN ({$sValeursRequete})";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
 			
 			// Effacer les enregistrements de la table "Equipe"
-			$sRequeteSql = "DELETE FROM Equipe"
+			$sRequeteSql = 
+				 " DELETE FROM Equipe"
 				." WHERE IdEquipe IN ({$sValeursRequete})";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
 	}
 	
-	function sauvegarder ()
+	function sauvegarder()
 	{
-		$sRequeteSql = "UPDATE Equipe SET"
-			." NomEquipe=\"".$this->retNom()."\""
+		$sRequeteSql = 
+			 " UPDATE Equipe SET"
+			."  NomEquipe=\"".$this->retNom()."\""
 			.", IdForm=".$this->retIdFormation()
 			.", IdMod=".$this->retIdModule()
 			.", IdRubrique=".$this->retIdRubrique()
@@ -383,23 +529,23 @@ class CEquipe
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function ajouterMembres ($v_aiIdPers)
+	function ajouterMembres($v_aiIdPers)
 	{
-		$oMembre = new CEquipe_Membre($this->oBdd,$this->retId());
+		$oMembre = new CEquipe_Membre($this->oBdd, $this->retId());
 		$oMembre->ajouterMembres($v_aiIdPers);
 	}
 	
-	function defNom ($v_sNomEquipe) { $this->oEnregBdd->NomEquipe = $v_sNomEquipe; }
+	function defNom($v_sNomEquipe) { $this->oEnregBdd->NomEquipe = $v_sNomEquipe; }
 	
-	function defIdFormation ($v_iIdFormation) { $this->oEnregBdd->IdForm = $v_iIdFormation; }
-	function defIdModule ($v_iIdModule) { $this->oEnregBdd->IdMod = $v_iIdModule; }
-	function defIdRubrique ($v_iIdRubrique) { $this->oEnregBdd->IdRubrique = $v_iIdRubrique; }
-	function defIdActivite ($v_iIdActiv) { $this->oEnregBdd->IdActiv = $v_iIdActiv; }
-	function defIdSousActivite ($v_iIdSousActiv) { $this->oEnregBdd->IdSousActiv = $v_iIdSousActiv; }
+	function defIdFormation($v_iIdFormation) { $this->oEnregBdd->IdForm = $v_iIdFormation; }
+	function defIdModule($v_iIdModule) { $this->oEnregBdd->IdMod = $v_iIdModule; }
+	function defIdRubrique($v_iIdRubrique) { $this->oEnregBdd->IdRubrique = $v_iIdRubrique; }
+	function defIdActivite($v_iIdActiv) { $this->oEnregBdd->IdActiv = $v_iIdActiv; }
+	function defIdSousActivite($v_iIdSousActiv) { $this->oEnregBdd->IdSousActiv = $v_iIdSousActiv; }
 	
-	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
+	function retId() { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	function retNom ($v_sMode=NULL)
+	function retNom($v_sMode = NULL)
 	{
 		if ($v_sMode == "html")
 			return htmlentities($this->oEnregBdd->NomEquipe,ENT_COMPAT,"UTF-8");
@@ -409,16 +555,16 @@ class CEquipe
 			return $this->oEnregBdd->NomEquipe;
 	}
 	
-	function retIdFormation () { return (empty($this->oEnregBdd->IdForm) ? 0 : $this->oEnregBdd->IdForm); }
-	function retIdModule () { return (empty($this->oEnregBdd->IdMod) ? 0 : $this->oEnregBdd->IdMod); }
-	function retIdRubrique () { return (empty($this->oEnregBdd->IdRubrique) ? 0 : $this->oEnregBdd->IdRubrique); }
-	function retIdActivite () { return (empty($this->oEnregBdd->IdActiv) ? 0 : $this->oEnregBdd->IdActiv); }
-	function retIdSousActivite () { return (empty($this->oEnregBdd->IdSousActiv) ? 0 : $this->oEnregBdd->IdSousActiv); }
-	function retNumOrdre () { return (empty($this->oEnregBdd->OrdreEquipe) ? 0 : $this->oEnregBdd->OrdreEquipe); }
+	function retIdFormation() { return (empty($this->oEnregBdd->IdForm) ? 0 : $this->oEnregBdd->IdForm); }
+	function retIdModule() { return (empty($this->oEnregBdd->IdMod) ? 0 : $this->oEnregBdd->IdMod); }
+	function retIdRubrique() { return (empty($this->oEnregBdd->IdRubrique) ? 0 : $this->oEnregBdd->IdRubrique); }
+	function retIdActivite() { return (empty($this->oEnregBdd->IdActiv) ? 0 : $this->oEnregBdd->IdActiv); }
+	function retIdSousActivite() { return (empty($this->oEnregBdd->IdSousActiv) ? 0 : $this->oEnregBdd->IdSousActiv); }
+	function retNumOrdre() { return (empty($this->oEnregBdd->OrdreEquipe) ? 0 : $this->oEnregBdd->OrdreEquipe); }
 	
 	// --------------------------------
 	
-	function retLien ()
+	function retLien()
 	{
 		return "<a href=\"javascript: open('"
 			.dir_admin("equipe","liste_equipes-index.php")
@@ -438,7 +584,7 @@ class CEquipe_Membre
 	var $aoMembres;
 	var $asNiveau;
 	
-	function CEquipe_Membre (&$v_oBdd,$v_iIdEquipe=NULL)
+	function CEquipe_Membre(&$v_oBdd, $v_iIdEquipe = NULL)
 	{
 		$this->oBdd = &$v_oBdd;
 		$this->iId = $v_iIdEquipe;
@@ -449,15 +595,16 @@ class CEquipe_Membre
 			$this->init();
 	}
 	
-	function init ()
+	function init()
 	{
 		$iIdxMembre = 0;
 		
 		$this->aoMembres = array();
 		
-		$sRequeteSql = "SELECT Personne.*"
+		$sRequeteSql = 
+			 " SELECT Personne.*"
 			." FROM Equipe_Membre"
-			." LEFT JOIN Personne USING (IdPers)"
+			."  LEFT JOIN Personne USING (IdPers)"
 			." WHERE Equipe_Membre.IdEquipe='".$this->retId()."'"
 			." ORDER BY Personne.Nom ASC";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -472,7 +619,7 @@ class CEquipe_Membre
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function initMembresDe ($v_iNiveau,$v_iIdNiveau,$v_bAppartenirEquipe=TRUE)
+	function initMembresDe($v_iNiveau, $v_iIdNiveau, $v_bAppartenirEquipe = TRUE)
 	{
 		$iIdxMembre = 0;
 		
@@ -480,14 +627,15 @@ class CEquipe_Membre
 		
 		$asIdParent = array(NULL,"IdForm","IdMod","IdRubrique","IdActiv","IdSousActiv",NULL);
 		
-		$sRequeteSql = "SELECT Personne.*"
+		$sRequeteSql = 
+			 " SELECT Personne.*"
 			." FROM Formation_Inscrit"
-			." LEFT JOIN Equipe_Membre ON Formation_Inscrit.IdPers=Equipe_Membre.IdPers"
-			." LEFT JOIN Equipe ON Formation_Inscrit.IdForm=Equipe.IdForm"
-			." LEFT JOIN Personne ON Formation_Inscrit.IdPers=Personne.IdPers"
+			."  LEFT JOIN Equipe_Membre ON Formation_Inscrit.IdPers=Equipe_Membre.IdPers"
+			."  LEFT JOIN Equipe ON Formation_Inscrit.IdForm=Equipe.IdForm"
+			."  LEFT JOIN Personne ON Formation_Inscrit.IdPers=Personne.IdPers"
 			." WHERE Equipe.".$asIdParent[$v_iNiveau]."='".$v_iIdNiveau."'"
 			.(isset($asIdParent[$v_iNiveau+1]) ? " AND Equipe.".$asIdParent[$v_iNiveau+1]."='0'" : NULL)
-			." AND Equipe_Membre.IdEquipe IS".($v_bAppartenirEquipe ? " NOT" : NULL)." NULL"
+			."  AND Equipe_Membre.IdEquipe IS".($v_bAppartenirEquipe ? " NOT" : NULL)." NULL"
 			." GROUP BY Formation_Inscrit.IdPers"
 			." ORDER BY Personne.Nom";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -504,7 +652,7 @@ class CEquipe_Membre
 		return $iIdxMembre;
 	}
 	
-	function verifMembre ($v_iIdPers)
+	function verifMembre($v_iIdPers)
 	{
 		if ($v_iIdPers > 0 && is_array($this->aoMembres))
 			foreach ($this->aoMembres as $oMembre)
@@ -515,7 +663,7 @@ class CEquipe_Membre
 	
 	// --------------------------------
 	
-	function ajouterMembres ($v_aiIdPers)
+	function ajouterMembres($v_aiIdPers)
 	{
 		settype($v_aiIdPers,"array");
 		
@@ -530,26 +678,29 @@ class CEquipe_Membre
 		
 		if (isset($sValeursRequete))
 		{
-			$sRequeteSql = "REPLACE INTO Equipe_Membre"
+			$sRequeteSql = 
+				 " REPLACE INTO Equipe_Membre"
 				." (IdEquipe,IdPers,OrdreEquipeMembre) VALUES {$sValeursRequete}";
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
 	}
 	
-	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
+	function retId() { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	function optimiserTable ()
+	function optimiserTable()
 	{
 		$this->oBdd->executerRequete("OPTIMIZE TABLE Equipe_Membre");
 	}
 	
-	function effacerMembre ($v_iIdPers,$v_iNiveau,$v_iIdNiveau)
+	function effacerMembre($v_iIdPers, $v_iNiveau, $v_iIdNiveau)
 	{
 		if ($v_iIdPers < 1)
 			return FALSE;
 		
-		$sRequeteSql = "SELECT Equipe.IdEquipe FROM Equipe"
-			." LEFT JOIN Equipe_Membre USING (IdEquipe)"
+		$sRequeteSql = 
+			 " SELECT Equipe.IdEquipe"
+			." FROM Equipe"
+			."  LEFT JOIN Equipe_Membre USING (IdEquipe)"
 			." WHERE Equipe_Membre.IdPers='{$v_iIdPers}'"
 			." AND Equipe.".$this->asNiveau[$v_iNiveau]."='".$v_iIdNiveau."'";
 		
@@ -565,7 +716,8 @@ class CEquipe_Membre
 		
 		if (isset($sValeursRequete))
 		{
-			$sRequeteSql = "DELETE FROM Equipe_Membre"
+			$sRequeteSql = 
+				 " DELETE FROM Equipe_Membre"
 				." WHERE IdEquipe IN ({$sValeursRequete}) AND IdPers='{$v_iIdPers}'";
 			$this->oBdd->executerRequete($sRequeteSql);
 			
@@ -575,7 +727,7 @@ class CEquipe_Membre
 		return TRUE;
 	}
 	
-	function effacerMembres ($v_aiIdPers)
+	function effacerMembres($v_aiIdPers)
 	{
 		settype($v_aiIdPers,"array");
 		
@@ -598,7 +750,7 @@ class CEquipe_Membre
 		return TRUE;
 	}
 	
-	function STRING_LOCK_TABLES () { return "Equipe WRITE, Equipe_Membre WRITE"; }
+	function STRING_LOCK_TABLES() { return "Equipe WRITE, Equipe_Membre WRITE"; }
 }
 
 ?>

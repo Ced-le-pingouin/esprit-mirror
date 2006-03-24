@@ -57,7 +57,11 @@ class CPersonne
 	 * @param	v_iId	l'id de la personne à récupérer dans la DB. S'il est omis ou si la personne demandée n'existe 
 	 * 					pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB
 	 * 
-	 * @see		#init()
+	 * @see	#init()
+	 * 
+	 * @note	Le fonctionnement du constructeur est similaire pour presque toutes les classes encapsulant une table 
+	 * 			de la DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter 
+	 * 			le principe général
 	 */
 	function CPersonne(&$v_oBdd, $v_iId = 0)
 	{
@@ -78,6 +82,10 @@ class CPersonne
 	 * 								rempli avec ce dernier (dans #oEnregBdd). En général, c'est ce qui se produit, et 
 	 * 								#iId a été rempli au préalable par le constructeur, qui appelle ensuite cette 
 	 * 								fonction
+	 * 
+	 * @note	Le fonctionnement de init() est similaire pour presque toutes les classes encapsulant une table de la 
+	 * 			DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter le 
+	 * 			principe général
 	 */
 	function init($v_oEnregExistant = NULL)
 	{

@@ -720,8 +720,8 @@ class CProjet
 	}
 	
 	/**
-	 * Initialise les formations existantes du projet. Elles sont placées dans le tableau aoFormations. Par défaut, les 
-	 * formations avec le statut "effacée" (logiquement) ne sont pas récupérées
+	 * Initialise les formations existantes du projet. Elles sont placées dans le tableau \c aoFormations. Par défaut, 
+	 * les formations avec le statut "effacée" (logiquement) ne sont pas récupérées
 	 * 
 	 * @param	v_sRequeteSql	requête à exécuter pour initialiser les formations. Si \c null, utilise la requête
 	 * 							standard
@@ -752,7 +752,7 @@ class CProjet
 	}
 	
 	/**
-	 * Remplit un tableau contenant les formations disponibles à l'utilisateur
+	 * Initialise un tableau (\c aoFormation) contenant les formations disponibles à l'utilisateur
 	 * 
 	 * @param	v_bRechStricte	si \c true, seules les formations pour lesquelles l'utilisateur a le statut exact
 	 * 							demandé seront retournées
@@ -1205,11 +1205,13 @@ class CProjet
 	 * 
 	 * @param	v_bInitMembres	si \c true, initialise également les membres des équipes
 	 * @param	v_iIdNiveau		l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend
-	 * 							du paramètre \c v_iTypeNiveau
+	 * 							du paramètre \p v_iTypeNiveau
 	 * @param	v_iTypeNiveau	le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd
 	 * 							formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_)
 	 * 
 	 * @return	le nombre d'équipes trouvées
+	 * 
+	 * @see	CEquipe#initEquipesEx()
 	 */
 	function initEquipes($v_bInitMembres = FALSE, $v_iIdNiveau = NULL, $v_iTypeNiveau = NULL)
 	{
@@ -1235,6 +1237,8 @@ class CProjet
 	 * 						est pris pour la vérification
 	 * 
 	 * @return	\c true si l'utilisateur est membre d'une des équipes actuellement initialisées
+	 * 
+	 * @see	CEquipe#verifMembre()
 	 */
 	function verifMembre($v_iIdPers = 0)
 	{
@@ -1257,6 +1261,8 @@ class CProjet
 	 * 							connecté est pris pour la vérification
 	 * 
 	 * @return	\c true si l'utilisateur fait bien partie d'une équipe
+	 * 
+	 * @see	CEquipe#initEquipe()
 	 */
 	function initEquipe($v_bInitMembres = FALSE, $v_iIdPers = NULL)
 	{
@@ -2278,7 +2284,7 @@ class CProjet
 	}
 	
 	/**
-	 * Remplit un tableau d'objets CPersonne selon des critères de statut
+	 * Initialise un tableau d'objets CPersonne (\c aoPersonnes) selon des critères de statut
 	 * 
 	 * @param	v_iIdStatutPers	la constante rerpésentant le statut désiré
 	 * @param	v_iIdForm		l'id de la session de formation à croiser avec le statut
