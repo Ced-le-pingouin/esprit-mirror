@@ -59,7 +59,7 @@ else
 	echo "<form>\n";
 
 // Autoriser visiteur à visiter cette formation
-if ($oProjet->oFormationCourante->setVisiteurAutoriser())
+if ($oProjet->oFormationCourante->accessibleVisiteurs())
 	$sVisiteurAutoriser = " checked";
 else
 	$sVisiteurAutoriser = NULL;
