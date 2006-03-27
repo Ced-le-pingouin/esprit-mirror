@@ -19,47 +19,47 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: module.tbl.php
-** Description ............: 
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 15/07/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
-**                           Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	module.tbl.php
+ * 
+ * Contient la classe de gestion des modules, en rapport avec la DB
+ * 
+ * @date	2001/06/01
+ * 
+ * @author	Cédric FLOQUET
+ * @author	Filippo PORCO
+ */
+
 
 require_once(dir_database("rubrique.tbl.php"));
 
-define("INTITULE_MODULE","Cours");
+define("INTITULE_MODULE","Cours"); /// Titre qui désigne le second niveau de la structure d'une formation 	@enum INTITULE_MODULE
 
 /**
- * Cette classe...
- *
- * @class CModule
- * @see CBddMySql
+ * Gestion des modules, et encapsulation de la table Module de la DB
  */
 class CModule
 {
-	var $iId;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id du module à récupérer dans la DB
 	
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $aoTuteurs;
-	var $aoInscrits;
+	var $aoTuteurs;				///< Tableau rempli par #initTuteurs(), contenant tous les tuteurs de ce module
+	var $aoInscrits;			///< Tableau rempli par #initInscrits(), contenant tous les personnes inscrites à cette formation
 	
-	var $aoModules;
-	var $oRubriqueCourante;
-	var $aoRubriques;
-	var $oIntitule;
+	var $aoModules;				///< Tableau rempli par #retListeModules(), contenant tous les modules d'une formation
+	var $oRubriqueCourante;		///< Objet de type CModule_Rubrique contenant une rubrique d'un module
+	var $aoRubriques;			///< Tableau rempli par #initRubriques(), contenant une liste des rubriques de ce module
+	var $oIntitule;				///< Objet de type CIntitule contenant l'intitulé de ce module
 	
-	var $aoForums;
-	var $aoCollecticiels;
+	var $aoForums;				///< Tableau rempli par #initForums(), contenant tous les forums du module
+	var $aoCollecticiels;		///< Tableau rempli par #initCollecticiels(), contenant tous les collecticiels du module
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CModule (&$v_oBdd,$v_iIdMod=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -69,6 +69,10 @@ class CModule
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -91,6 +95,11 @@ class CModule
 			$this->oIntitule = new CIntitule($this->oBdd,$this->oEnregBdd->IdIntitule);
 	}
 	
+	/**
+	 * Retourne le numero d'ordre maximum des modules
+	 * 
+	 * @return	le numéro d'ordre maximum
+	 */
 	function retNumOrdreMax ()
 	{
 		$sRequeteSql = "SELECT MAX(OrdreMod) FROM Module"
@@ -101,6 +110,14 @@ class CModule
 		return $iNumMax;
 	}
 	
+	/**
+	 * Copie le module courant vers une formation spécifique
+	 * 
+	 * @param	v_iIdForm		l'id de la formation
+	 * @param	v_bRecursive	si \c true, copie aussi les rubriques associées au module
+	 * 
+	 * @return	l'id du nouveau module
+	 */
 	function copier ($v_iIdForm,$v_bRecursive=TRUE)
 	{
 		$iIdMod = $this->copierModule($v_iIdForm);
@@ -111,6 +128,13 @@ class CModule
 		return $iIdMod;
 	}
 	
+	/**
+	 * Insère une copie d'un module dans la DB
+	 * 
+	 * @param	v_iIdForm l'id de la formation
+	 * 
+	 * @return	l'id du nouveau module
+	 */
 	function copierModule ($v_iIdForm)
 	{
 		if ($v_iIdForm < 1)
@@ -135,6 +159,11 @@ class CModule
 		return $this->oBdd->retDernierId();
 	}
 	
+	/**
+	 * Copie les rubriques du module courant dans un autre
+	 * 
+	 * @param	v_iIdMod l'id du module de destination
+	 */
 	function copierRubriques ($v_iIdMod)
 	{
 		$this->initRubriques();
@@ -143,11 +172,21 @@ class CModule
 		$this->aoRubriques = NULL;
 	}
 	
+	/**
+	 * Réinitialise l'objet \c oEnregBdd avec le module courant
+	 */
 	function rafraichir ()
 	{
 		if ($this->retId() > 0) $this->init();
 	}
 	
+	/**
+	 * Retourne le nombre de modules d'une formation
+	 * 
+	 * @param	v_iIdForm l'id de la formation
+	 * 
+	 * @return	le nombre de modules d'une formation
+	 */
 	function retNombreLignes ($v_iIdForm=NULL)
 	{
 		if ($v_iIdForm == NULL)
@@ -164,7 +203,11 @@ class CModule
 	}
 	
 	/**
-	 * Retourner les informations du module précédent.
+	 * Retourne l'intitulé du module précédent.
+	 * 
+	 * @param	v_iIdForm l'id de la formation
+	 * 
+	 * @return	un tableau avec l'intitulé du module précédent ou s'il n'existe pas, un intitulé de base.
 	 */
 	function retInfosIntituleModPrecedent ($v_iIdForm)
 	{
@@ -193,14 +236,16 @@ class CModule
 		return $asInfosIntituleModPrecedent;
 	}
 	
+
 	/**
-	 * Cette fonction permet d'ajouter un module à une formation.
-	 *
-	 * @param v_iIdForm Numéro d'identifiant de la formation
-	 * @param v_iIdPers Numéro d'identifiant de la personne
-	 * @return Cette fonction retourne le numéro d'identifiant du nouveau module.
+	 * Ajoute un nouveau module à la formation
+	 * 
+	 * @param	v_iIdForm	l'id de la formation
+	 * @param	v_iIdPers	l'id de la personne conceptrice du module
+	 * 
+	 * @return	l'id du nouveau module
 	 */
-	function ajouter ($v_iIdForm=NULL,$v_iIdPers=0)
+	 function ajouter ($v_iIdForm=NULL,$v_iIdPers=0)
 	{
 		$asInfosIntituleModPrecedent = $this->retInfosIntituleModPrecedent($v_iIdForm);
 		
@@ -228,9 +273,9 @@ class CModule
 	}
 	
 	/**
-	 * Cette fonction inscrit la personne en tant que concepteur de ce module.
-	 *
-	 * @param v_iIdPers Numéro d'identifiant de la personne
+	 * Inscrit la personne en tant que concepteur de ce module
+	 * 
+	 * @param	v_iIdPers l'id de la personne
 	 */
 	function associerConcepteur ($v_iIdPers)
 	{
@@ -251,6 +296,9 @@ class CModule
 		}
 	}
 	
+	/**
+	 * Efface la totalité d'un module
+	 */
 	function effacer ()
 	{
 		$this->effacerForums();
@@ -263,6 +311,9 @@ class CModule
 		$this->redistNumsOrdre();
 	}
 	
+	/**
+	 * Efface un module dans la DB
+	 */
 	function effacerModule ()
 	{
 		$sRequeteSql = "DELETE FROM Module"
@@ -270,6 +321,9 @@ class CModule
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface tous les forums associés à ce module
+	 */
 	function effacerForums ()
 	{
 		$this->initForums();
@@ -278,12 +332,18 @@ class CModule
 		$this->aoForums = NULL;
 	}
 	
+	/**
+	 * Efface les équipes associées à ce module
+	 */
 	function effacerEquipes ()
 	{
 		$oEquipe = new CEquipe($this->oBdd);
 		$oEquipe->effacerParNiveau(TYPE_MODULE,$this->retId());
 	}
 	
+	/**
+	 * Efface les étudiants associés à ce module
+	 */
 	function effacerEtudiants ()
 	{
 		$sRequeteSql = "DELETE FROM Module_Inscrit"
@@ -291,6 +351,9 @@ class CModule
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface les tuteurs associés à ce module
+	 */
 	function effacerTuteurs ()
 	{
 		$sRequeteSql = "DELETE FROM Module_Tuteur"
@@ -298,6 +361,9 @@ class CModule
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface les concepteurs associés à ce module
+	 */
 	function effacerConcepteurs ()
 	{
 		$sRequeteSql = "DELETE FROM Module_Concepteur"
@@ -305,6 +371,9 @@ class CModule
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface les rubriques associés à ce module
+	 */
 	function effacerRubriques ()
 	{
 		$iNbrRubriques = $this->initRubriques();
@@ -315,6 +384,11 @@ class CModule
 		$this->aoRubriques = NULL;
 	}
 	
+	/**
+	 * Initialise un tableau contenant tous les forums de ce module
+	 * 
+	 * @return	le nombre de forums de ce module
+	 */
 	function initForums ()
 	{
 		$iIdxForum = 0;
@@ -335,6 +409,11 @@ class CModule
 		return $iIdxForum;
 	}
 	
+	/**
+	 * Initialise un tableau avec les concepteurs (table Module_Concepteur) du module
+	 * 
+	 * @return	le nombre de personnes(concepteurs) insérées dans le tableau
+	 */
 	function initConcepteurs ()
 	{
 		$iIdxConcepteur = 0;
@@ -359,6 +438,11 @@ class CModule
 		return $iIdxConcepteur;
 	}
 	
+	/**
+	 * Initialise un tableau avec les tuteurs (table Module_Tuteur) du module
+	 * 
+	 * @return	le nombre de personnes(tuteurs) insérées dans le tableau
+	 */
 	function initTuteurs ()
 	{
 		$iIndexTuteur = 0;
@@ -383,8 +467,19 @@ class CModule
 		return $iIndexTuteur;
 	}
 	
+	/**
+	 * Retourne la constante qui définit le niveau "module", de la structure d'une formation
+	 * 
+	 * @return	la constante qui définit le niveau "module", de la structure d'une formation
+	 */
 	function retTypeNiveau () { return TYPE_MODULE; }
 	
+	
+	/**
+	 * Initialise un tableau avec les étudiants inscrits à ce module
+	 * 
+	 * @return	le nombre de personnes(étudiants) insérées dans le tableau
+	 */
 	function initInscrits ()
 	{
 		$iIdxInscrit = 0;
@@ -409,23 +504,25 @@ class CModule
 		return $iIdxInscrit;
 	}
 	
+	/**
+	 * Initialise la rubrique courant (\c oRubriqueCourante) du module
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique
+	 */
 	function initRubriqueCourante ($v_iIdRubrique=NULL)
 	{
 		if ($v_iIdRubrique > 0)
 			$this->oRubriqueCourante = new CModule_Rubrique($this->oBdd,$v_iIdRubrique);
 	}
 	
-	function initParIdModule ($v_iIdModule)
-	{
-		if ($v_iIdModule < 1)
-			return FALSE;
-		$sRequeteSql = "SELECT * FROM Module WHERE IdMod='{$v_iIdModule}'";
-		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
-		$this->oBdd->libererResult($hResult);
-		return ($this->retId() > 0);
-	}
 	
+	/**
+	 * Initialise un tableau contenant la liste des rubriques appartenant à ce module
+	 * 
+	 * @param	v_iTypeRubriques sélection sur le type de rubrique(optionnel)
+	 * 
+	 * @return	le nombre de rubrique insérés dans le tableau
+	 */
 	function initRubriques ($v_iTypeRubriques=NULL)
 	{
 		$iIdxRubriques = 0;
@@ -451,6 +548,12 @@ class CModule
 		return $iIdxRubriques;
 	}
 	
+	/**
+	 * Définit l'id du module et initialise l'objet(optionnel)
+	 * 
+	 * @param	v_iId	l'id du module
+	 * @param	v_bInit	si \c true(par défaut), initialise l'objet
+	 */
 	function defId ($v_iId,$v_bInit=TRUE)
 	{
 		$this->iId = $v_iId;
@@ -459,6 +562,8 @@ class CModule
 			$this->init();
 	}
 	
+	/** @name Fonctions de lecture des champs pour cette formation */
+	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
 	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomMod,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomMod); }
@@ -484,17 +589,24 @@ class CModule
 	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrMod,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrMod); }
 	function retDateDeb () { return $this->oEnregBdd->DateDebMod; }
 	function retDateFin () { return $this->oEnregBdd->DateFinMod; }
+	function retStatut () { return $this->oEnregBdd->StatutMod; }
+	function retInscrSpontEquipe () { return $this->oEnregBdd->InscrSpontEquipeM; }
+	function retNbMaxDsEquipe () { return $this->oEnregBdd->NbMaxDsEquipeM; }
+	function retIdParent () { return (is_numeric($this->oEnregBdd->IdForm) ? $this->oEnregBdd->IdForm : 0); }
+	function retIdIntitule () { return $this->oEnregBdd->IdIntitule; }
+	function retNumDepart () { return $this->oEnregBdd->NumDepartIntitule; }
+	function retNumOrdre () { return $this->oEnregBdd->OrdreMod; }
+	function retIdPers () { return $this->oEnregBdd->IdPers; }
+	//@}
 	
+	/** @name Fonctions de définition des champs pour cette formation */
+	//@{
 	function defStatut ($v_iStatut)
 	{
 		if (is_numeric($v_iStatut))
 			$this->mettre_a_jour("StatutMod",$v_iStatut);
 	}
 	
-	function retStatut () { return $this->oEnregBdd->StatutMod; }
-	function retInscrSpontEquipe () { return $this->oEnregBdd->InscrSpontEquipeM; }
-	function retNbMaxDsEquipe () { return $this->oEnregBdd->NbMaxDsEquipeM; }
-	function retIdParent () { return (is_numeric($this->oEnregBdd->IdForm) ? $this->oEnregBdd->IdForm : 0); }
 	
 	function defNumOrdre ($v_iNumOrdre)
 	{
@@ -503,16 +615,33 @@ class CModule
 	}
 	
 	function defIdIntitule ($v_iIdIntitule) { $this->mettre_a_jour("IdIntitule",$v_iIdIntitule); }
-	function retIdIntitule () { return $this->oEnregBdd->IdIntitule; }
-	function retNumDepart () { return $this->oEnregBdd->NumDepartIntitule; }
-	function retNumOrdre () { return $this->oEnregBdd->OrdreMod; }
 	
 	function defNumDepart ($v_iNumDepart)
 	{
 		if ($v_iNumDepart >= 0 && $v_iNumDepart <= 254)
 			$this->mettre_a_jour("NumDepartIntitule",$v_iNumDepart);
 	}
+
+	function defNom ($v_sNom)
+	{
+		$v_sNom = trim(stripslashes($v_sNom));
+		if (empty($v_sNom))
+			$v_sNom = INTITULE_MODULE." sans nom";
+		$this->mettre_a_jour("NomMod",$v_sNom);
+	}
 	
+	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrMod",trim(stripslashes($v_sDescr))); }
+	//@}
+	
+	/**
+	 * Met à jour un champ de la table Module
+	 * 
+	 * @param	v_sNomChamp		le nom du champ à mettre à jour
+	 * @param	v_mValeurChamp	la nouvelle valeur du champ
+	 * @param	v_iIdMod		l'id du module
+	 * 
+	 * @return	\c true si il a mis à jour le champ dans la DB
+	 */
 	function mettre_a_jour ($v_sNomChamp,$v_mValeurChamp,$v_iIdMod=0)
 	{
 		if ($v_iIdMod < 1)
@@ -530,16 +659,22 @@ class CModule
 		return TRUE;
 	}
 	
-	function defNom ($v_sNom)
-	{
-		$v_sNom = trim(stripslashes($v_sNom));
-		if (empty($v_sNom))
-			$v_sNom = INTITULE_MODULE." sans nom";
-		$this->mettre_a_jour("NomMod",$v_sNom);
-	}
-	
-	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrMod",trim(stripslashes($v_sDescr))); }
-	
+	/**
+	 * Initialise un tableau avec les étudiants inscrits à la formation
+	 * 
+	 * @param	v_bAppartenirEquipe	si \c true (par défaut) le tableau est rempli par les personnes qui appartiennent à 
+	 *								une équipe de ce module, si \c false voir paramètre \p v_bAutoInscrit
+	 * 
+	 * @param	v_bAutoInscrit		si \c true (par défaut) le tableau est rempli par les personnes qui sont inscrites à
+	 * 								la formation et qui n'appartiennent pas à une équipe de ce module. Utilsisé lorsque
+	 * 								les personnes sont automatiquement inscrites aux modules de la formation.
+	 * 								Si \c false il est rempli par les personnes qui sont inscrites au module et qui n'
+	 * 								appartiennent pas à une équipe de ce module
+	 * 
+	 * @param	v_iSensTri			indique si un tri doit être effectué ainsi que son sens (croissant par défaut)
+	 * 
+	 * @return	le nombre de personnes(étudiants) insérées dans le tableau
+	 */
 	function initMembres ($v_bAppartenirEquipe=TRUE,$v_bAutoInscrit=TRUE,$v_iSensTri=TRI_CROISSANT)
 	{
 		$iIdxMembre = 0;
@@ -586,8 +721,15 @@ class CModule
 		return $iIdxMembre;
 	}
 	
+	/**
+	 * Initialise un tableau contenant la liste des modules de la formation
+	 * 
+	 * @return	le nombre de modules insérés dans le tableau
+	 */
 	function retListeModules ()
 	{
+		$this->aoModules = array();
+		
 		$sRequeteSql = "SELECT * FROM Module"
 			." WHERE IdForm=".$this->retIdParent()
 			." ORDER BY OrdreMod ASC";
@@ -600,9 +742,16 @@ class CModule
 		
 		$this->oBdd->libererResult($hResult);
 		
-		return ($i-1);
+		return (count($this->aoModules));
 	}
 	
+	/**
+	 * Redistribue les numéros d'ordre des modules
+	 * 
+	 * @param	v_iNouveauNumOrdre le nouveau numéro d'ordre du module courant
+	 * 
+	 * @return	\c true si les numéros ont bien été modifiés
+	 */
 	function redistNumsOrdre ($v_iNouveauNumOrdre=NULL)
 	{
 		if ($v_iNouveauNumOrdre == $this->retNumOrdre())
@@ -639,7 +788,13 @@ class CModule
 		return TRUE;
 	}
 	
-	// --------------------------------
+	/**
+	 * Execute une requête sql et vérifie s'il elle retourne un enregistrement
+	 * 
+	 * @param	v_sRequeteSql la requête sql
+	 * 
+	 * @return	\c true s'il existe un enregistrement
+	 */
 	function verifInscrit ($v_sRequeteSql)
 	{
 		$bOk = FALSE;
@@ -650,6 +805,13 @@ class CModule
 		return $bOk;
 	}
 	
+	/**
+	 * Vérifie si la personne est "concepteur" du module
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne est "concepteur"
+	 */
 	function verifConcepteur ($v_iIdPers)
 	{
 		if ($v_iIdPers < 1 || $this->oEnregBdd->IdMod < 1)
@@ -663,6 +825,13 @@ class CModule
 		return $this->verifInscrit($sRequeteSql);
 	}
 	
+	/**
+	 * Vérifie si la personne est "tuteur" du module
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne est "tuteur"
+	 */
 	function verifTuteur ($v_iIdPers)
 	{
 		if ($v_iIdPers < 1 || $this->oEnregBdd->IdMod < 1)
@@ -676,6 +845,13 @@ class CModule
 		return $this->verifInscrit($sRequeteSql);
 	}
 	
+	/**
+	 * Vérifie si la personne est étudiante du module
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne est étudiante
+	 */
 	function verifEtudiant ($v_iIdPers)
 	{
 		$sRequeteSql = "SELECT COUNT(*) FROM Module_Inscrit"
@@ -688,6 +864,13 @@ class CModule
 		return $bEtudiant;
 	}
 	
+	/**
+	 * Vérifie si la personne est membre d'une équipe rattachée au module
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne est membre d'un équipe rattachée au module
+	 */
 	function verifMembre ($v_iIdPers)
 	{
 		$sRequeteSql = "SELECT Equipe_Membre.IdEquipe"
@@ -698,11 +881,28 @@ class CModule
 		return $this->verifInscrit($sRequeteSql);
 	}
 	
-	// ---------------------
-	// Inscrire des personnes en tant qu'étudiant/tuteur
-	// ---------------------
+	/**
+	 * Rajoute les personnes comme étudiantes rattachées au module
+	 * 
+	 * @param	v_aiIdPers tableau contenant les id des personnes
+	 */
 	function inscrireEtudiants ($v_aiIdPers) { $this->inscrirePersonnes($v_aiIdPers,STATUT_PERS_ETUDIANT); }
+	
+	/**
+	 * Rajoute les personnes comme tuteurs du module
+	 * 
+	 * @param	v_aiIdPers
+	 */
 	function inscrireTuteurs ($v_aiIdPers) { $this->inscrirePersonnes($v_aiIdPers,STATUT_PERS_TUTEUR); }
+	
+	/**
+	 * Inscrit les personnes comme soit étudiant, soit tuteur, ou soit concepteur d'un module
+	 * 
+	 * @param	v_aiIdPers	tableau contenat les id des personnes
+	 * @param	v_iIdStatut	le statut des personnes à inséré
+	 * 
+	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
+	 */
 	function inscrirePersonnes ($v_aiIdPers,$v_iIdStatut)
 	{
 		$sValeursRequete = NULL;
@@ -735,10 +935,12 @@ class CModule
 	}
 	
 	/**
-	 * Cette fonction retire des personnes inscrites de la table.
-	 *
-	 * \param v_aiIdPers cette variable contient la liste des personnes à retirer
-	 * \param v_iIdStatut numéro d'identifiant du statut de la personne.
+	 * Retire des personnes inscrites comme soit étudiant, soit tuteur, ou soit concepteur d'un module
+	 * 
+	 * @param	v_aiIdPers	tableau contenat les id des personnes
+	 * @param	v_iIdStatut	le statut des personnes à effacé
+	 * 
+	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
 	 */
 	function retirerPersonnes ($v_aiIdPers,$v_iIdStatut)
 	{
@@ -774,11 +976,11 @@ class CModule
 		}
 	}
 	
-	function retIdPers () { return $this->oEnregBdd->IdPers; }
-	
-	// ---------------------
-	// Chats
-	// ---------------------
+	/**
+	 * Initialise un tableau contenant la liste des chats du module
+	 * 
+	 * @return	le nombre de chats insérés dans le tableau
+	 */
 	function initChats ()
 	{
 		$oChat = new CChat($this->oBdd);
@@ -787,25 +989,44 @@ class CModule
 		return $iNbChats;
 	}
 	
+	/**
+	 * Retourne le nombre de chats du module
+	 * 
+	 * @return	le nombre de chats du module
+	 */
 	function retNombreChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->retNombreChats($this);
 	}
 	
+	/**
+	 * Ajoute un chat au module
+	 * 
+	 * @return	l'id du nouveau chat
+	 */
 	function ajouterChat ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->ajouter($this);
 	}
 	
+	/**
+	 * Efface tous les chats du module
+	 */
 	function effacerChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		$oChat->effacerChats($this);
 	}
 	
-	// --------------------------------
+	/**
+	 * Initialise un tableau contenant tous les collecticiels du module
+	 * 
+	 * @param	v_iModaliteSousActiv le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE_)
+	 * 
+	 * @return	le nombre de collecticiels insérés dans le tableau
+	 */
 	function initCollecticiels ($v_iModaliteSousActiv=NULL)
 	{
 		if (!isset($v_iModaliteSousActiv))
@@ -825,7 +1046,7 @@ class CModule
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$this->aoCollecticiels = new CSousActiv($oProjet->oBdd);
+			$this->aoCollecticiels = new CSousActiv($this->oBdd);
 			$this->aoCollecticiels[$iIndexCollecticiels]->init($oEnreg);
 			$iIndexCollecticiels++;
 		}
@@ -835,6 +1056,13 @@ class CModule
 		return $iIndexCollecticiels;
 	}
 	
+	/**
+	 * Vérifie si l'intitulé est utilisé par plusieurs modules
+	 * 
+	 * @param	v_iIdIntitule l'id de l'intitulé
+	 * 
+	 * @return	si \c true on peut supprimer l'intitulé
+	 */
 	function peutSupprimerIntitule ($v_iIdIntitule)
 	{
 		$bSupprimerIntitule = FALSE;
@@ -855,6 +1083,12 @@ class CModule
 		return $bSupprimerIntitule;
 	}
 	
+	/**
+	 * Retourne un tableau à 2 dimensions contenant l'intitulé d'un module
+	 * @todo ce système sera modifié pour l'internationalisation de la plate-forme
+	 * 
+	 * @return	le mot français utilisé pour désigner un module
+	 */
 	function retTypes ()
 	{
 		return array(array(0,INTITULE_MODULE));
