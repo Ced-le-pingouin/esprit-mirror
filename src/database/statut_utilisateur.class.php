@@ -183,10 +183,10 @@ class CStatutUtilisateur
 		$this->aiStatuts[STATUT_PERS_VISITEUR] = TRUE;
 	}
 	
-	function retSuperieurStatut ($v_iDepartStatutUtiliteur=STATUT_PERS_PREMIER)
+	function retSuperieurStatut ($v_iDepartStatutUtilisateur=STATUT_PERS_PREMIER)
 	{
-		for ($iIdxStatut=$v_iDepartStatutUtiliteur; $iIdxStatut<STATUT_PERS_DERNIER; $iIdxStatut++)
-			if ($this->aiStatuts[$iIdxStatut])
+		for ($iIdxStatut=$v_iDepartStatutUtilisateur; $iIdxStatut<STATUT_PERS_DERNIER; $iIdxStatut++)
+			if (isset($this->aiStatuts[$iIdxStatut]) && $this->aiStatuts[$iIdxStatut])
 				break;
 		return $iIdxStatut;
 	}
@@ -194,7 +194,7 @@ class CStatutUtilisateur
 	function retInferieurStatut ()
 	{
 		for ($iIdxStatut=STATUT_PERS_DERNIER; $iIdxStatut>STATUT_PERS_PREMIER; $iIdxStatut--)
-			if ($this->aiStatuts[$iIdxStatut])
+			if (isset($this->aiStatuts[$iIdxStatut]) && $this->aiStatuts[$iIdxStatut])
 				break;
 		return $iIdxStatut;
 	}
@@ -204,7 +204,7 @@ class CStatutUtilisateur
 		$iNbrStatuts = 0;
 		
 		for ($iIdxStatut=STATUT_PERS_PREMIER; $iIdxStatut<STATUT_PERS_DERNIER; $iIdxStatut++)
-			if ($this->aiStatuts[$iIdxStatut])
+			if (isset($this->aiStatuts[$iIdxStatut]) && $this->aiStatuts[$iIdxStatut])
 				$iNbrStatuts++;
 		
 		return $iNbrStatuts;
@@ -212,7 +212,7 @@ class CStatutUtilisateur
 	
 	function verifStatut ($v_iIdStatut)
 	{
-		if (is_array($this->aiStatuts) && isset($this->aiStatuts[$v_iIdStatut]))
+		if (isset($this->aiStatuts[$v_iIdStatut]))
 			return $this->aiStatuts[$v_iIdStatut];
 		else
 			return FALSE;
