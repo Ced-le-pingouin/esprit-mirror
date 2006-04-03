@@ -19,36 +19,43 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: activite.tbl.php
-** Description ............: 
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 21/11/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
-**                           Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	activite.tbl.php
+ * 
+ * Contient la classe de gestion des activités, en rapport avec la DB
+ * 
+ * @date	2001/06/01
+ * 
+ * @author	Cédric FLOQUET
+ * @author	Filippo PORCO
+ */
 
 require_once(dir_database("sous_activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
 
-define("INTITULE_ACTIV","Groupe d'actions");
+define("INTITULE_ACTIV","Groupe d'actions"); /// Titre qui désigne le quatrième niveau de la structure d'une formation 	@enum INTITULE_ACTIV
 
+/**
+ * Gestion des activités, et encapsulation de la table Activ de la DB
+ */
 class CActiv
 {
-	var $oBdd;
-	var $iId;
-	var $b_RemettreDeOrdre;
-	var $oEnregBdd;
-	var $oSousActivCourante;
-	var $aoSousActivs;
-	var $oEquipe;
-	var $aoEquipes;
-	var $aoActivs;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id de l'activité à récupérer dans la DB
+
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
+
+	var $b_RemettreDeOrdre;		///< Valeur booléenne indiquant s'il faut réorganiser les numéros d'ordre des activitées
+	var $oSousActivCourante;	///< Objet de type CSousActiv contenant une activité
+	var $aoSousActivs;			///< Tableau rempli par #initSousActivs(), contenant une liste des sous-activités de cette activité
+	var $oEquipe;				///< Objet de type CEquipe contenant une équipe
+	var $aoEquipes;				///< Tableau rempli par #initEquipes(), contenant une liste des équipes de cette activité
+	var $aoActivs;				///< Tableau rempli par #retListeActivs(), contenant une liste des activités de la rubrique
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CActiv (&$v_oBdd,$v_iIdActiv=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -58,6 +65,10 @@ class CActiv
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -80,6 +91,11 @@ class CActiv
 		}
 	}
 	
+	/**
+	 * Permet de connaître le numero d'ordre maximum des activités
+	 * 
+	 * @return	le numéro d'ordre maximum
+	 */
 	function retNumOrdreMax ()
 	{
 		$sRequeteSql = "SELECT MAX(OrdreActiv) FROM Activ";
@@ -89,30 +105,14 @@ class CActiv
 		return $iNumOrdreMax;
 	}
 	
-	function retIdFormation ()
-	{
-		if (!isset($this->oEnregBdd->IdForm))
-			$this->init();
-		return $this->oEnregBdd->IdForm;
-	}
-	
-	function retIdModule ()
-	{
-		if (!isset($this->oEnregBdd->IdMod))
-			$this->init();
-		return $this->oEnregBdd->IdMod;
-	}
-	
-	function retIdRubrique ()
-	{
-		return $this->oEnregBdd->IdRubrique ;
-	}
-	
-	function retTableauIdsParents ()
-	{
-		return array(NULL,$this->oEnregBdd->IdForm,$this->oEnregBdd->IdMod,$this->oEnregBdd->IdRubrique,NULL,$this->oEnregBdd->IdActiv,NULL);
-	}
-	
+	/**
+	 * Copie l'activité courante vers une rubrique spécifique
+	 * 
+	 * @param	v_iIdRubrique	l'id de la rubrique
+	 * @param	v_bRecursive	si \c true, copie aussi les sous-activités associées à l'activité
+	 * 
+	 * @return	l'id de la nouvelle activité
+	 */
 	function copier ($v_iIdRubrique,$v_bRecursive=TRUE)
 	{
 		$iIdActiv = $this->copierActivite($v_iIdRubrique);
@@ -147,6 +147,13 @@ class CActiv
 		return $iIdActiv;
 	}
 	
+	/**
+	 * Insère une copie d'une activité dans la DB
+	 * 
+	 * @param	v_iIdRubrique l'id de l'activité
+	 * 
+	 * @return	l'id de la nouvelle activité
+	 */
 	function copierActivite ($v_iIdRubrique)
 	{
 		if ($v_iIdRubrique < 1)
@@ -172,6 +179,11 @@ class CActiv
 		return $this->oBdd->retDernierId();
 	}
 	
+	/**
+	 * Copie les sous-activités de l'activité courante vers une autre
+	 * 
+	 * @param	v_iIdActiv l'id de l'activité de destination
+	 */
 	function copierSousActivites ($v_iIdActiv)
 	{
 		$this->initSousActivs();
@@ -180,17 +192,35 @@ class CActiv
 		$this->aoSousActivs = NULL;
 	}
 	
+	/**
+	 * Réinitialise l'objet \c oEnregBdd avec l'activité courante
+	 */
 	function rafraichir ()
 	{
 		if ($this->retId() > 0)
 			$this->init();
 	}
 	
+	/**
+	 * Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante
+	 * 
+	 * @param	v_sFichierAInclure	le nom d'un éventuel fichier qui fera alors partie du chemin retourné
+	 * @param	v_bCheminAbsolu		si \c true, le chemin retourné sera absolu. Si \c false, il sera relatif
+	 * 
+	 * @return	le chemin vers le repertoire de l'activité courante
+	 */
 	function retRepCours ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 	{
 		return dir_cours($this->iId,$this->oEnregBdd->IdForm,$v_sFichierAInclure,$v_bCheminAbsolu);
 	}
 	
+	/**
+	 * Retourne le nombre d'activités de cette rubrique
+	 * 
+	 * @param	v_iNumParent l'id de la rubrique
+	 * 
+	 * @return	le nombre d'activités de cette rubrique
+	 */
 	function retNombreLignes ($v_iNumParent=NULL)
 	{
 		if ($v_iNumParent == NULL)
@@ -211,6 +241,14 @@ class CActiv
 		return $iNbrLignes;
 	}
 	
+	/**
+	 * Ajoute une nouvelle activité à la rubrique
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique
+	 * @param	v_iIdUnite l'id de "l'unité", n'est plus utilisé, champs toujours à 0
+	 * 
+	 * @return	L'id de la nouvelle activité
+	 */
 	function Ajouter ($v_iIdRubrique,$v_iIdUnite=0)
 	{
 		$iNumOrdre = $this->retNombreLignes($v_iIdRubrique)+1;
@@ -233,16 +271,30 @@ class CActiv
 		return $this->oBdd->retDernierId();
 	}
 	
+	/**
+	 * Définit la variable booléenne \c v_bRemettreDeOrdre
+	 * 
+	 * @param	v_bRemettreDeOrdre valeur à définir: \c true(défaut) ou \c false
+	 */
 	function defRemettreDeOrdre ($v_bRemettreDeOrdre=TRUE)
 	{
 		$this->b_RemettreDeOrdre = $v_bRemettreDeOrdre;
 	}
 	
+	/**
+	 * Retourne la valeur de la variable booléenne \c v_bRemettreDeOrdre
+	 * 
+	 * @return	la valeur de la variable booléenne \c v_bRemettreDeOrdre
+	 */
 	function retRemettreDeOrdre ()
 	{
 		return (is_bool($this->b_RemettreDeOrdre) ? $this->b_RemettreDeOrdre : TRUE);
 	}
 	
+	
+	/**
+	 * Efface la totalité d'une activité (sous-activités comprises)
+	 */
 	function effacer ()
 	{
 		$this->effacerEquipes();
@@ -268,12 +320,21 @@ class CActiv
 		unset($this->iId,$this->oEnregBdd);
 	}
 	
+	/**
+	 * Efface les équipes de cette activité
+	 */
 	function effacerEquipes ()
 	{
 		$oEquipe = new CEquipe($this->oBdd);
 		$oEquipe->effacerParNiveau(TYPE_ACTIVITE,$this->iId);
 	}
 	
+	/**
+	 * Efface les documents (collecticiel) et son répertoire(optionnel)
+	 * 
+	 * @param	v_bEffacerRepertoire	si \c true(défaut), efface le répertoire
+	 * @param	sFiltreDocs				filtre pour conserver certains documents (filtre sur une partie du nom du fichier)
+	 */
 	function effacerRepDocuments ($v_bEffacerRepertoire=TRUE,$sFiltreDocs=NULL)
 	{
 		include_once(dir_lib("systeme_fichiers.lib.php",TRUE));
@@ -283,10 +344,9 @@ class CActiv
 	}
 	
 	/**
-	 * Effacer le répertoire qui contient toutes les archives des chats
-	 *
-	 * \param $v_bEffacerRepertoire Doit-on effacer le répertoire des chats ?
-	 *
+	 * Efface le répertoire(optionnel) et toutes les archives des chats
+	 * 
+	 * @param	v_bEffacerRepertoire si \c true(défaut), efface le répertoire
 	 */
 	function effacerRepChats ($v_bEffacerRepertoire=TRUE)
 	{
@@ -296,6 +356,12 @@ class CActiv
 		if ($v_bEffacerRepertoire) @unlink($sRepChats);
 	}
 	
+	
+	/**
+	 * Initialise la sous-activité courante
+	 * 
+	 * @param	v_iIdSousActiv l'id de la sous-activité
+	 */
 	function initSousActivCourante ($v_iIdSousActiv=NULL)
 	{
 		if ($v_iIdSousActiv>0)
@@ -329,6 +395,11 @@ class CActiv
 		}
 	}
 	
+	/**
+	 * Retourne le nombre d'équipes ratachées à cette activité
+	 * 
+	 * @return	le nombre d'équipes ratachées à cette activité
+	 */
 	function retNbrEquipes ()
 	{
 		$sRequeteSql = "SELECT COUNT(*) FROM Equipe"
@@ -343,6 +414,14 @@ class CActiv
 		return $iNbrEquipes;
 	}
 	
+	/**
+	 * Initialise un tableau contenant une liste des sous-activités. Si l'id de la personne est fournie, elle l'initialise
+	 * avec les sous-activités que cette personne peut voir
+	 * 
+	 * @param	v_iIdPers l'id de la personne(optionnel)
+	 * 
+	 * @return	le nombre de sous-activités insérés dans le tableau
+	 */
 	function initSousActivs ($v_iIdPers=NULL)
 	{
 		$iIndexSousActiv = 0;
@@ -377,6 +456,11 @@ class CActiv
 		return $iIndexSousActiv;
 	}
 	
+	/**
+	 * Retourne en français la modalité(constante MODALITE_) de l'activité 
+	 * 
+	 * @return	la modalité de l'activité
+	 */
 	function retTexteModalite ()
 	{
 		switch ($this->retModalite())
@@ -396,6 +480,11 @@ class CActiv
 		return $r_sTexteModalite;
 	}
 	
+	/**
+	 * Retourne le statut(constante STATUT_) de l'activité
+	 * 
+	 * @return	le statut de l'activité
+	 */
 	function retTexteStatut ()
 	{
 		switch ($this->retStatut())
@@ -408,6 +497,13 @@ class CActiv
 		return $r_sTexteStatut;
 	}
 	
+	/**
+	 * Initialise \c oEquipe avec l'équipe associée au niveau(activité->formation) auquel la personne, donnée en 
+	 * paramètre, appartient
+	 * 
+	 * @param	v_iIdMembre		l'id de la personne
+	 * @param	v_bInitMembres	si \c true, initialise les membres de l'équipe(\c false par défaut)
+	 */
 	function initEquipe ($v_iIdMembre,$v_bInitMembres=FALSE)
 	{
 		$this->oEquipe = NULL;
@@ -452,29 +548,54 @@ class CActiv
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function initEquipes ($v_bInitMembres=FALSE,$iDernierNiveau=TYPE_FORMATION)
+	/**
+	 * Initialise un tableau contenant les équipes de l'activité
+	 * 
+	 * @param	v_bInitMembres			si \c true, initialise également les membres de l'équipe (défaut à \c false)
+	 * @param	v_iTypeNiveauDepart		le numéro représentant le type d'élément (formation/module/etc) par lequel on veut 
+	 * 									débuter la recherche des équipes à initialiser
+	 * 
+	 * @return	le nombre d'équipes insérés dans le tableau
+	 */
+	function initEquipes ($v_bInitMembres=FALSE,$v_iTypeNiveauDepart=TYPE_ACTIVITE)
 	{
 		$oListeEquipes = new CEquipe($this->oBdd);
-		$oListeEquipes->initEquipesEx($this->retId(),TYPE_ACTIVITE,$v_bInitMembres);
+		$oListeEquipes->initEquipesEx($this->retId(),$v_iTypeNiveauDepart,$v_bInitMembres);
 		$this->aoEquipes = $oListeEquipes->aoEquipes;
 		return count($this->aoEquipes);
 	}
 	
+	/** @name Fonctions de lecture des champs pour cette formation */
+	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retDateDeb () { return $this->oEnregBdd->DateDebActiv; }
 	function retDateFin () { return $this->oEnregBdd->DateFinActiv; }
 	
 	function retModalite () { return $this->oEnregBdd->ModaliteActiv; }
-	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteActiv",$v_iModalite); }
-	
-	function retTypeNiveau () { return TYPE_ACTIVITE; }
-	
-	function defStatut ($v_iStatut)
+	function retIdFormation ()
 	{
-		if (is_numeric($v_iStatut))
-			$this->mettre_a_jour("StatutActiv",$v_iStatut);
+		if (!isset($this->oEnregBdd->IdForm))
+			$this->init();
+		return $this->oEnregBdd->IdForm;
 	}
 	
+	function retIdModule ()
+	{
+		if (!isset($this->oEnregBdd->IdMod))
+			$this->init();
+		return $this->oEnregBdd->IdMod;
+	}
+	
+	function retIdRubrique ()
+	{
+		return $this->oEnregBdd->IdRubrique ;
+	}
+	
+	function retTableauIdsParents ()
+	{
+		return array(NULL,$this->oEnregBdd->IdForm,$this->oEnregBdd->IdMod,$this->oEnregBdd->IdRubrique,NULL,$this->oEnregBdd->IdActiv,NULL);
+	}
+
 	function retStatut ()
 	{
 		return $this->oEnregBdd->StatutActiv;
@@ -489,6 +610,85 @@ class CActiv
 		return $this->oEnregBdd->IdRubrique;
 	}
 
+	function retNumOrdre ()
+	{
+		return $this->oEnregBdd->OrdreActiv;
+	}
+
+	function retAfficherModalite ()
+	{
+		return $this->oEnregBdd->AfficherModaliteActiv;
+	}
+
+	function retAfficherStatut ()
+	{
+		return $this->oEnregBdd->AfficherStatutActiv;
+	}
+	
+	function retNom ($v_bHtmlEntities=FALSE)
+	{
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomActiv);
+	}
+	
+	function retDescr ($v_bHtmlEntities=FALSE)
+	{
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrActiv);
+	}
+	//@}
+
+	/** @name Fonctions de définition des champs pour cette formation */
+	//@{
+	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteActiv",$v_iModalite); }
+
+	function defStatut ($v_iStatut)
+	{
+		if (is_numeric($v_iStatut))
+			$this->mettre_a_jour("StatutActiv",$v_iStatut);
+	}
+
+		function defNumOrdre ($v_iOrdre)
+	{
+		if (is_numeric($v_iOrdre))
+			$this->mettre_a_jour("OrdreActiv",$v_iOrdre);
+	}
+
+	function defAfficherModalite ($v_bAfficher)
+	{
+		if (is_bool($v_bAfficher))
+			$this->mettre_a_jour("AfficherModaliteActiv",$v_bAfficher);
+	}
+	
+	function defAfficherStatut ($v_bAfficher)
+	{
+		if (is_bool($v_bAfficher))
+			$this->mettre_a_jour("AfficherStatutActiv",$v_bAfficher);
+	}
+
+	function defNom ($v_sNomActiv)
+	{
+		$v_sNomActiv = trim(stripslashes($v_sNomActiv));
+		
+		if (empty($v_sNomActiv))
+			$v_sNomActiv = INTITULE_ACTIV." sans nom";
+		
+		$this->mettre_a_jour("NomActiv",$v_sNomActiv);
+	}
+	
+	function defDescr ($v_sDescrActiv)
+	{
+		$this->mettre_a_jour("DescrActiv",trim(stripslashes($v_sDescrActiv)));
+	}
+	//@}
+	
+	/**
+	 * Met à jour un champ de la table Activ
+	 * 
+	 * @param	v_sNomChamp		le nom du champ à mettre à jour
+	 * @param	v_mValeurChamp	la nouvelle valeur du champ
+	 * @param	v_iIdActiv		l'id de l'activité
+	 * 
+	 * @return	\c true si il a mis à jour le champ dans la DB
+	 */
 	function mettre_a_jour ($v_sNomChamp,$v_mValeurChamp,$v_iIdActiv=0)
 	{
 		if ($v_iIdActiv < 1)
@@ -506,6 +706,18 @@ class CActiv
 		return TRUE;
 	}
 
+	/**
+	 * Retourne la constante qui définit le niveau "activité", de la structure d'une formation
+	 * 
+	 * @return	la constante qui définit le niveau "activité", de la structure d'une formation
+	 */
+	function retTypeNiveau () { return TYPE_ACTIVITE; }
+	
+	/**
+	 * Initialise un tableau avec la liste des activités de la rubrique
+	 * 
+	 * @return	le nombre d'activités insérées dans le tableau
+	 */
 	function retListeActivs ()
 	{
 		$iIdParent = $this->retIdParent();
@@ -526,12 +738,22 @@ class CActiv
 		return ($i-1);
 	}
 
+	/**
+	 * Retourne un nombre representant le type de transfert entre l'activité courante et une activité dont l'id est 
+	 * passé en paramètre. Les transferts se font uniquement entre activités "collecticiels" et les 2 activités doivent
+	 * se situer dans la même rubrique. Les types de transfert se différencient par les combinaisons possibles des 
+	 * modalités des collecticiels(individuel ou par équipe)
+	 * 
+	 * @param	v_iIdActivDst l'id de l'activité
+	 * 
+	 * @return	le type de transfert du collecticiel
+	 */
 	function retTypeTransfert ($v_iIdActivDst)
 	{
-		$iTransfert_II = 5;
-		$iTransfert_IE = 9;
-		$iTransfert_EE = 10;
-		$iTransfert_EI = 6;
+		$iTransfert_II = 5;		// individuel -> individuel
+		$iTransfert_IE = 9;		// individuel -> équipe
+		$iTransfert_EE = 10;	// équipe -> équipe
+		$iTransfert_EI = 6;		// équipe -> individuel
 		
 		$oActiv = new CActiv($this->oBdd,$v_iIdActivDst);
 		
@@ -549,43 +771,13 @@ class CActiv
 		return 0;	
 	}
 
-	function defNumOrdre ($v_iOrdre)
-	{
-		if (is_numeric($v_iOrdre))
-			$this->mettre_a_jour("OrdreActiv",$v_iOrdre);
-	}
-
-	function retNumOrdre ()
-	{
-		return $this->oEnregBdd->OrdreActiv;
-	}
-
-	function retAfficherModalite ()
-	{
-		return $this->oEnregBdd->AfficherModaliteActiv;
-	}
-
-	function defAfficherModalite ($v_bAfficher)
-	{
-		if (is_bool($v_bAfficher))
-			$this->mettre_a_jour("AfficherModaliteActiv",$v_bAfficher);
-	}
-
-	// --------------------------
-	// Statut
-	// --------------------------
-
-	function retAfficherStatut ()
-	{
-		return $this->oEnregBdd->AfficherStatutActiv;
-	}
-
-	function defAfficherStatut ($v_bAfficher)
-	{
-		if (is_bool($v_bAfficher))
-			$this->mettre_a_jour("AfficherStatutActiv",$v_bAfficher);
-	}
-
+	/**
+	 * Redistribue les numéros d'ordre des activités
+	 * 
+	 * @param	v_iNouveauNumOrdre	le nouveau numéro d'ordre de l'activité courante
+	 * 
+	 * @return	\c true si les numéros ont bien été modifiés
+	 */
 	function redistNumsOrdre ($v_iNouveauNumOrdre=NULL)
 	{
 		if ($v_iNouveauNumOrdre == $this->retNumOrdre())
@@ -626,25 +818,11 @@ class CActiv
 		return TRUE;
 	}
 
-	// --------------------------
-	// Nom
-	// --------------------------
-	
-	function defNom ($v_sNomActiv)
-	{
-		$v_sNomActiv = trim(stripslashes($v_sNomActiv));
-		
-		if (empty($v_sNomActiv))
-			$v_sNomActiv = INTITULE_ACTIV." sans nom";
-		
-		$this->mettre_a_jour("NomActiv",$v_sNomActiv);
-	}
-	
-	function retNom ($v_bHtmlEntities=FALSE)
-	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomActiv);
-	}
-	
+	/**
+	 * Retourne l'id de la première sous-activité
+	 * 
+	 * @return	l'id de la première sous-activité
+	 */
 	function retIdPremierePage ()
 	{
 		$sRequeteSql = "SELECT SousActiv.IdSousActiv"
@@ -659,20 +837,11 @@ class CActiv
 		return (is_object($oEnreg) && $oEnreg->IdSousActiv > 0 ? $oEnreg->IdSousActiv : 0);
 	}
 	
-	// --------------------------
-	// Description
-	// --------------------------
-	
-	function defDescr ($v_sDescrActiv)
-	{
-		$this->mettre_a_jour("DescrActiv",trim(stripslashes($v_sDescrActiv)));
-	}
-	
-	function retDescr ($v_bHtmlEntities=FALSE)
-	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrActiv);
-	}
-	
+	/**
+	 * Retourne l'id de l'activité précédente celle-ci
+	 * 
+	 * @return	l'id de l'activité précédente celle-ci
+	 */
 	function retIdEnregPrecedent ()
 	{
 		if (($cpt = $this->retListeActivs()) < 0)
@@ -681,11 +850,22 @@ class CActiv
 		return ($cpt < 0 ?  0 : $this->aoActivs[$cpt]->IdActiv);
 	}
 	
+	/**
+	 * Retourne un tableau à 2 dimensions contenant l'intitulé d'une activité
+	 * @todo ce système sera modifié pour l'internationalisation de la plate-forme
+	 * 
+	 * @return	le mot français utilisé pour désigner une activité
+	 */
 	function retTypes ()
 	{
 		return array(array(0,INTITULE_ACTIV));
 	}
 	
+	/**
+	 * Retourne un tableau à 2 dimensions contenant les modalités d'une activité
+	 * 
+	 * @return	la liste des différentes modalités pour une activité
+	 */
 	function retListeModalites ()
 	{
 		return array(

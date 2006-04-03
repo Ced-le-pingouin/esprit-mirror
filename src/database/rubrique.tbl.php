@@ -19,45 +19,50 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: rubrique.tbl.php
-** Description ............: Ouvrir une connexion avec la table des rubriques.
-** Date de création .......: 18/02/2002
-** Dernière modification ..: 10/10/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
-**                           Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	rubrique.tbl.php
+ * 
+ * Contient la classe de gestion des rubriques, en rapport avec la DB
+ * 
+ * @date	2002/02/18
+ * 
+ * @author	Cédric FLOQUET
+ * @author	Filippo PORCO
+ */
 
 require_once(dir_database("activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
 
-define("INTITULE_RUBRIQUE","Unité");
+define("INTITULE_RUBRIQUE","Unité"); /// Titre qui désigne le troisième niveau de la structure d'une formation 	@enum INTITULE_RUBRIQUE
 
+/**
+ * Gestion des rubriques, et encapsulation de la table Module_Rubrique de la DB
+ */
 class CModule_Rubrique
 {
-	var $iId;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id du module à récupérer dans la DB
 	
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $oIdsParents;
+	var $iIdForm;				///< Objet initialisé par #initIdForm(), contient l'id de la formation
 	
-	var $aoRubriques;
-	var $aoUnites;
-	var $aoActivs;
+	var $aoRubriques;			///< Tableau rempli par #retListeRubriques(), contenant tous les rubriques d'un module
+	var $aoActivs;				///< Tableau rempli par #initActivs() , contenant tous les activités d'une rubrique
 	
-	var $aoCollecticiels;
-	var $aoChats;
+	var $aoCollecticiels;		///< Tableau rempli par #initCollecticiels(), contenant tous les collecticiels de la rubrique
+	var $aoChats;				///< Tableau rempli par #initChats() ou #initChats2(), contenant tous les chats de la rubrique
 	
-	var $aoEquipes;
-	var $aoMembres;
+	var $aoEquipes;				///< Tableau rempli par #initEquipes(), contenant tous les équipes de la rubrique
+	var $aoMembres;				///< Tableau rempli par #initMembres(), contenant les personnes rattachées à la rubrique
 	
-	var $oIntitule;
+	var $aoFormulaires;			///< Tableau rempli par #initFormulaires(), contenant les formulaires de la rubrique
+	var $oIntitule;				///< Objet de type CIntitule contenant l'intitulé de cette rubrique
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CModule_Rubrique (&$v_oBdd,$v_iId=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -67,6 +72,10 @@ class CModule_Rubrique
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -87,9 +96,16 @@ class CModule_Rubrique
 		// Rechercher l'intitulé de la rubrique
 		$this->initIntitule();
 		
-		$this->initIdsParents();
+		$this->initIdForm();
 	}
 	
+	/**
+	 * Initialise un tableau contenant les équipes de la rubrique
+	 * 
+	 * @param	v_bInitMembres	si \c true, initialise également les membres de l'équipe (défaut à \c false)
+	 * 
+	 * @return	le nombre d'équipes insérées dans le tableau
+	 */
 	function initEquipes ($v_bInitMembres=FALSE)
 	{
 		$oEquipe = new CEquipe($this->oBdd);
@@ -98,6 +114,11 @@ class CModule_Rubrique
 		return $iNbrEquipes;
 	}
 	
+	/**
+	 * Initialise l'objet \c oIntitule avec l'intitulé de la rubrique 
+	 * 
+	 * @return	\c true si l'objet a bien été initialisé
+	 */
 	function initIntitule ()
 	{
 		$this->oIntitule = NULL;
@@ -106,6 +127,13 @@ class CModule_Rubrique
 		return is_object($this->oIntitule);
 	}
 	
+	/**
+	 * Retourne le texte de l'intitulé avec son numéro d'ordre(optionnel)
+	 * 
+	 * @param	v_bAfficherNumOrdre si \c true(défaut) retourne aussi le numéro d'ordre
+	 * 
+	 * @return	le texte de l'intitulé
+	 */
 	function retTexteIntitule ($v_bAfficherNumOrdre=TRUE)
 	{
 		$sTexteIntitule = $this->oIntitule->retNom();
@@ -116,6 +144,11 @@ class CModule_Rubrique
 		return $sTexteIntitule;
 	}
 	
+	/**
+	 * Permet de connaître le numero d'ordre maximum des rubriques
+	 * 
+	 * @return	le numéro d'ordre maximum
+	 */
 	function retNumOrdreMax ()
 	{
 		$sRequeteSql = "SELECT MAX(OrdreRubrique) FROM Module_Rubrique";
@@ -125,6 +158,14 @@ class CModule_Rubrique
 		return $iMax;
 	}
 	
+	/**
+	 * Copie la rubrique courante vers un module spécifique
+	 * 
+	 * @param	v_iIdMod 		l'id du module
+	 * @param	v_bRecursive	si \c true, copie aussi les activités associées à la rubrique
+	 * 
+	 * @return	l'id de la nouvelle rubrique
+	 */
 	function copier ($v_iIdMod,$v_bRecursive=TRUE)
 	{
 		$iIdRubrique = $this->copierRubrique($v_iIdMod);
@@ -140,6 +181,13 @@ class CModule_Rubrique
 		return $iIdRubrique;
 	}
 	
+	/**
+	 * Insère une copie d'une rubrique dans la DB
+	 * 
+	 * @param	v_iIdMod l'id du module
+	 * 
+	 * @return	l'id de la nouvelle rubrique
+	 */
 	function copierRubrique ($v_iIdMod)
 	{
 		if ($v_iIdMod < 1)
@@ -164,6 +212,11 @@ class CModule_Rubrique
 		return $this->oBdd->retDernierId();
 	}
 	
+	/**
+	 * Copie toutes les activités de la rubrique vers une autre
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique de destination
+	 */
 	function copierActivites ($v_iIdRubrique)
 	{
 		$this->initActivs();
@@ -172,6 +225,11 @@ class CModule_Rubrique
 		$this->aoActivs = NULL;
 	}
 	
+	/**
+	 * Copie le forum(= rubrique) vers une autre rubrique
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique de destination
+	 */
 	function copierForum ($v_iIdRubrique)
 	{
 		if ($this->retType() != LIEN_FORUM && $v_iIdRubrique > 0)
@@ -192,11 +250,15 @@ class CModule_Rubrique
 		$oForum = NULL;
 	}
 	
+	/**
+	 *  @bug : plusieurs fonctions appelées n'existent pas!!!
+	 *
+	 */
 	function ajouterEquipes ()
 	{
 		// Effacer des équipes qui ont été supprimées de la table "ModeleEquipe"
 		$oEquipe = new CEquipe($this->oBdd);
-		$oEquipe->nettoyer();
+		$oEquipe->nettoyer(); 
 		unset($oEquipe);
 		
 		// Rechercher toutes les activités de modalité "par équipe" de cette rubrique
@@ -211,7 +273,7 @@ class CModule_Rubrique
 		{
 			$iIdActiv = $this->aoActivs[$iIdxActiv]->retId();
 			
-			$oModeleEquipe->initModeles($this->oIdsParents->IdForm,$iIdActiv);
+			$oModeleEquipe->initModeles($this->iIdForm,$iIdActiv);
 			
 			for ($iIdxModele=0; $iIdxModele<count($oModeleEquipe->aoModeles); $iIdxModele++)
 			{
@@ -237,12 +299,11 @@ class CModule_Rubrique
 		}
 	}
 	
-	function retTypeMenu () { return $this->oEnregBdd->TypeMenuUnite; }
-	function retNumeroterActiv () { return $this->oEnregBdd->NumeroActivUnite; }
-	function retIdParent () { return $this->oEnregBdd->IdMod; }
-	function defIdParent ($v_iIdModule) { $this->oEnregBdd->IdMod = $v_iIdModule; }
-	function retIdModule () { return $this->retIdParent(); }
-	
+	/**
+	 * Retourne le nombre de rubriques de ce module 
+	 * 
+	 * @return	le nombre de rubriques de ce module
+	 */
 	function retNombreLignes ()
 	{
 		$sRequeteSql ="SELECT COUNT(*) FROM Module_Rubrique"
@@ -253,6 +314,11 @@ class CModule_Rubrique
 		return $iNbrLignes;
 	}
 	
+	/**
+	 * Retourne le nombre de rubrique de type lien(LIEN_UNITE)
+	 * 
+	 * @return	le nombre de rubrique de type lien
+	 */
 	function retNbrUnites ()
 	{
 		$sRequeteSql ="SELECT COUNT(*) FROM Module_Rubrique"
@@ -264,29 +330,23 @@ class CModule_Rubrique
 		return $iNbrUnites;
 	}
 	
-	function retNumDepart ()
+	/**
+	 * Initialise la variable \c iIdForm avec l'id de la formation
+	 */
+	function initIdForm ()
 	{
-		return $this->oEnregBdd->NumDepartIntitule;
-	}
-	
-	function defNumDepart ($v_iNumDepart)
-	{
-		if ($v_iNumDepart >= 0 && $v_iNumDepart <= 254)
-			$this->mettre_a_jour("NumDepartIntitule",$v_iNumDepart);
-	}
-	
-	function initIdsParents ()
-	{
-		$sRequeteSql = "SELECT Formation.IdForm, Module.IdMod FROM Formation"
+		$sRequeteSql = "SELECT Formation.IdForm FROM Formation"
 			." LEFT JOIN Module USING (IdForm)"
 			." WHERE Module.IdMod=".$this->retIdParent();
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		$this->oIdsParents->IdForm = $this->oBdd->retEnregPrecis($hResult);
+		$this->iIdForm = $this->oBdd->retEnregPrecis($hResult);
 		$this->oBdd->libererResult($hResult);
 	}
 	
 	/**
-	 * Retourner les informations du module précédent.
+	 * Retourne un tableau contenant l'intitulé de la rubrique précedente
+	 * 
+	 * @return	un tableau contenant l'intitulé de la rubrique précedente
 	 */
 	function retInfosIntituleRubPrecedente ()
 	{
@@ -317,6 +377,11 @@ class CModule_Rubrique
 		return $asInfosIntituleRubPrecedente;
 	}
 	
+	/**
+	 * Insère une nouvelle rubrique
+	 * 
+	 * @return	l'id de la nouvelle rubrique
+	 */
 	function ajouter ()
 	{
 		$asInfosIntituleRubPrecedente = $this->retInfosIntituleRubPrecedente();
@@ -339,30 +404,14 @@ class CModule_Rubrique
 		return $this->retId();
 	}
 	
-	/*function ajouterForum ($v_iIdMod=NULL)
-	{
-		if (!isset($v_iIdMod))
-			$v_iIdMod = $this->retIdParent();
-
-		if ($v_iIdMod <= 0)
-			return;
-				
-		$sRequeteSql = "INSERT INTO Module_Rubrique SET"
-			." IdRubrique=NULL"
-			.", IdMod={$v_iIdMod}"
-			.", TypeRubrique=".LIEN_FORUM
-			.", OrdreRubrique=1"
-			.", NomRubrique=\"Forum du cours\""
-			.", StatutRubrique=".STATUT_OUVERT
-			.", DonneesRubrique=NULL"
-			.", TypeMenuUnite=0"
-			.", NumeroActivUnite=0";
-		
-		$this->oBdd->executerRequete ($sRequeteSql);
-	}*/
-	
-	function retIdRubrique () { return $this->retId(); }
-	
+	/**
+	 * Initialise un tableau contenant les activités de la rubrique
+	 * 
+	 * @param	v_iStatut	statut de la rubrique(optionnel)
+	 * @param	v_iModalite	modalité(optionnel)
+	 * 
+	 * @return	le nombre d'activités insérées dans le tableau
+	 */
 	function initActivs ($v_iStatut=NULL,$v_iModalite=NULL)
 	{
 		$iIndexActiv = 0;
@@ -393,6 +442,11 @@ class CModule_Rubrique
 		return $iIndexActiv;
 	}
 	
+	/**
+	 * Retourne le nombre d'équipes attachées à une rubrique
+	 * 
+	 * @return	le nombre d'équipes attachées à une rubrique
+	 */
 	function retNbrEquipes ()
 	{
 		// Vérifier si au moins une activité a été associé à une équipe
@@ -403,6 +457,13 @@ class CModule_Rubrique
 		return $iNbrEquipes;
 	}
 	
+	/**
+	 * Initialise un tableau contenant tous les collecticiels de la rubrique
+	 * 
+	 * @param	v_iModalite le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE_)
+	 * 
+	 * @return	le nombre de collecticiels insérés dans le tableau
+	 */
 	function initCollecticiels ($v_iModalite=NULL)
 	{
 		$iIdxCollect = 0;
@@ -432,6 +493,13 @@ class CModule_Rubrique
 		return $iIdxCollect;
 	}
 	
+	/**
+	 * Initialise un tableau contenant tous les forums de cette rubriqe
+	 * 
+	 * @param	v_miIdModalite liste des modalités(optionnel), il peut etre de type tableau ou entier
+	 * 
+	 * @return	le nombre de forums insérés dans le tableau
+	 */
 	function initForums ($v_miIdModalite=NULL)
 	{
 		$iIdxForum = 0;
@@ -472,6 +540,13 @@ class CModule_Rubrique
 		return $iIdxForum;
 	}
 	
+	/**
+	 * Efface la totalité d'une rubrique
+	 * 
+	 * @param	v_iIdRubrique
+	 * 
+	 * @return	\c true si la rubrique a bien été effacée
+	 */
 	function effacer ($v_iIdRubrique=NULL)
 	{
 		if ($v_iIdRubrique == NULL)
@@ -495,6 +570,11 @@ class CModule_Rubrique
 		return TRUE;
 	}
 	
+	/**
+	 * Efface unne rubrique dans la DB	
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique à effacer
+	 */
 	function effacerRubrique ($v_iIdRubrique)
 	{
 		$sRequeteSql = "DELETE FROM Module_Rubrique"
@@ -504,12 +584,18 @@ class CModule_Rubrique
 		$this->redistNumsOrdre();
 	}
 	
+	/**
+	 * Efface les équipes associées à cette rubrique
+	 */
 	function effacerEquipes ()
 	{
 		$oEquipe = new CEquipe($this->oBdd);
 		$oEquipe->effacerParNiveau(TYPE_RUBRIQUE,$this->iId);
 	}
 	
+	/**
+	 * Efface les activités de la rubrique
+	 */
 	function effacerActivs ()
 	{
 		if ($this->retType() == LIEN_UNITE)
@@ -524,6 +610,9 @@ class CModule_Rubrique
 		}
 	}
 	
+	/**
+	 * Efface les forums de la rubrique
+	 */
 	function effacerForum ()
 	{
 		$oForum = new CForum($this->oBdd);
@@ -532,6 +621,15 @@ class CModule_Rubrique
 		$oForum = NULL;
 	}
 	
+	/**
+	 * Met à jour un champ de la table Module_Rubrique
+	 * 
+	 * @param	v_sNomChamp		le nom du champ à mettre à jour
+	 * @param	v_mValeurChamp	la nouvelle valeur du champ
+	 * @param	v_iIdRubrique	l'id de la rubrique
+	 * 
+	 * @return	\c true si il a mis à jour le champ dans la DB
+	 */
 	function mettre_a_jour ($v_sNomChamp,$v_mValeurChamp,$v_iIdRubrique=0)
 	{
 		if ($v_iIdRubrique < 1)
@@ -548,16 +646,20 @@ class CModule_Rubrique
 		return TRUE;
 	}
 	
+	/** @name Fonctions de lecture des champs pour cette formation */
+	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
-	
-	// {{{ Nom de la rubrique
-	function defNom ($v_sNom)
-	{
-		$v_sNom = trim(stripslashes($v_sNom));
-		if (empty($v_sNom)) $v_sNom = INTITULE_RUBRIQUE." sans nom";
-		$this->mettre_a_jour("NomRubrique",$v_sNom);
-	}
-	
+	function retIdRubrique () { return $this->retId(); }
+	function retType () { return $this->oEnregBdd->TypeRubrique; }
+	function retStatut () { return $this->oEnregBdd->StatutRubrique; }
+	function retDescr () { return $this->oEnregBdd->DescrRubrique; }
+	function retIdPers () { return $this->oEnregBdd->IdPers; }
+	function retIdIntitule () { return $this->oEnregBdd->IdIntitule; }
+	function retTypeMenu () { return $this->oEnregBdd->TypeMenuUnite; }
+	function retNumeroterActiv () { return $this->oEnregBdd->NumeroActivUnite; }
+	function retIdParent () { return $this->oEnregBdd->IdMod; }
+	function retIdModule () { return $this->retIdParent(); }
+
 	function retNom ($v_bHtmlEntities=FALSE)
 	{
 		$sNomRubrique = trim($this->oEnregBdd->NomRubrique);
@@ -577,50 +679,82 @@ class CModule_Rubrique
 			.($iNumDepartIntitule > 0 ? "$iNumDepartIntitule : " : NULL)
 			.$this->oEnregBdd->NomRubrique;
 	}
-	// }}}
-	
-	// ---------------------
-	// Donnée de la rubrique
-	// ---------------------
-	function defDonnee ($v_sDonnee)
-	{
-		$this->mettre_a_jour("DonneesRubrique",trim(stripslashes($v_sDonnee)).":2");
-	}
-	
+
 	function retDonnee ($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
 			? htmlentities($this->oEnregBdd->DonneesRubrique,ENT_COMPAT,"UTF-8")
 			: $this->oEnregBdd->DonneesRubrique);
 	}
+
+
+	function retNumOrdre ()
+	{
+		return $this->oEnregBdd->OrdreRubrique;
+	}
+
+	function retNumDepart ()
+	{
+		return $this->oEnregBdd->NumDepartIntitule;
+	}
+	//@}
+
 	
-	// ---------------------
-	// Type de la rubrique
-	// ---------------------
+	/** @name Fonctions de définition des champs pour cette formation */
+	//@{
+	function defNom ($v_sNom)
+	{
+		$v_sNom = trim(stripslashes($v_sNom));
+		if (empty($v_sNom)) $v_sNom = INTITULE_RUBRIQUE." sans nom";
+		$this->mettre_a_jour("NomRubrique",$v_sNom);
+	}
+
+	function defDonnee ($v_sDonnee)
+	{
+		$this->mettre_a_jour("DonneesRubrique",trim(stripslashes($v_sDonnee)).":2");
+	}
+
 	function defType ($v_iType)
 	{
 		if (is_numeric($v_iType))
 			$this->mettre_a_jour("TypeRubrique",$v_iType);
 	}
-	
-	function retType () { return $this->oEnregBdd->TypeRubrique; }
-	
-	function retTypeNiveau () { return TYPE_RUBRIQUE; }
-	
-	// ---------------------
-	// Numéro d'ordre de la rubrique
-	// ---------------------
+
 	function defNumOrdre ($v_iNumOrdre)
 	{
 		if (is_numeric($v_iNumOrdre))
 			$this->mettre_a_jour("OrdreRubrique",$v_iNumOrdre);
 	}
-	
-	function retNumOrdre ()
+
+	function defStatut ($v_iStatut)
 	{
-		return $this->oEnregBdd->OrdreRubrique;
+		if (is_numeric($v_iStatut))
+			$this->mettre_a_jour("StatutRubrique",$v_iStatut);
+	}
+
+	function defNumDepart ($v_iNumDepart)
+	{
+		if ($v_iNumDepart >= 0 && $v_iNumDepart <= 254)
+			$this->mettre_a_jour("NumDepartIntitule",$v_iNumDepart);
 	}
 	
+	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrRubrique",$v_sDescr); }
+	function defIdParent ($v_iIdModule) { $this->oEnregBdd->IdMod = $v_iIdModule; }
+	function defIdIntitule ($v_iIdIntitule) { $this->mettre_a_jour("IdIntitule",$v_iIdIntitule); }
+	//@}
+	
+	/**
+	 * Retourne la constante qui définit le niveau "rubrique", de la structure d'une formation
+	 * 
+	 * @return	la constante qui définit le niveau "rubrique", de la structure d'une formation
+	 */
+	function retTypeNiveau () { return TYPE_RUBRIQUE; }
+		
+	/**
+	 * Retourne le numéro d'ordre des unités de type lien
+	 * 
+	 * @return	le numéro d'ordre des unités de type lien
+	 */
 	function retNumOrdreReel ()
 	{
 		$sRequeteSql = "SELECT * FROM Module_Rubrique WHERE"
@@ -646,20 +780,11 @@ class CModule_Rubrique
 		return $iNumOrdreReel;
 	}
 	
-	function defStatut ($v_iStatut)
-	{
-		if (is_numeric($v_iStatut))
-			$this->mettre_a_jour("StatutRubrique",$v_iStatut);
-	}
-	
-	function retStatut () { return $this->oEnregBdd->StatutRubrique; }
-	
-	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrRubrique",$v_sDescr); }
-	function retDescr () { return $this->oEnregBdd->DescrRubrique; }
-	
-	// ---------------------
-	// Chats
-	// ---------------------
+	/**
+	 * Initialise un tableau contenant la liste des chats de la rubrique
+	 * 
+	 * @return	le nombre de chats insérés dans le tableau
+	 */
 	function initChats ()
 	{
 		$oChat = new CChat($this->oBdd);
@@ -668,10 +793,14 @@ class CModule_Rubrique
 		return $iNbChats;
 	}
 	
-	/**
-	 * Cette méthode recherche tous les chats attachés aux activités qui sont
-	 * attachées à cette rubrique.
-	 */
+	 
+	 /**
+	  * Initialise un tableau contenant la liste des chats de la rubrique et ceux des sous-activités
+	  * 
+	  * @param	v_iIdModalite le numéro(optionnel) représentant le type de modalité pour l'activité (voir les constantes MODALITE_)
+	  * 
+	  * @return	le nombre de chats insérés dans le tableau
+	  */
 	function initChats2 ($v_iIdModalite=NULL)
 	{
 		$iIdxChat = 0;
@@ -700,38 +829,44 @@ class CModule_Rubrique
 		return $iIdxChat;
 	}
 	
+	/**
+	 * Retourne le nombre de chats de la rubrique
+	 * 
+	 * @return	le nombre de chats de la rubrique
+	 */
 	function retNombreChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->retNombreChats($this);
 	}
 	
+	/**
+	 * Ajoute un chat à la rubrique
+	 * 
+	 * @return	l'id du nouveau chat
+	 */
 	function ajouterChat ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->ajouter($this);
 	}
 	
+	/**
+	 * Efface tous les chats de la rubrique
+	 */
 	function effacerChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		$oChat->effacerChats($this);
 	}
 	
-	/**
-	 * Ne plus utiliser cette méthode.
-	 *
-	 * @see retTableauTypes
-	 */
-	function retTypesUnite ()
-	{
-		return $this->retListeTypes();
-	}
-	
-	/**
-	 * Cette méthode retourne un tableau contenant la liste des différents types
-	 * pour la rubrique.
-	 */
+	 /**
+	  * Retourne un tableau contenant la liste des différents types de rubrique. En fait, cette liste se présente elle-même
+	  * sous forme de tableaux, contenant chacun le type de rubrique(constante LIEN_), l'intitulé de ce type, et une
+	  * valeur booléenne indiquant si la rubrique courante est de ce type
+	  * 
+	  * @return	le tableau contenant la liste des différents types de rubrique
+	  */
 	function retListeTypes ()
 	{
 		$iTypeRubrique = $this->oEnregBdd->TypeRubrique;
@@ -749,6 +884,13 @@ class CModule_Rubrique
 		return $aoTypes;
 	}
 	
+	/**
+	 * Retourne un tableau contenant la liste des statuts possibles d'une rubrique. Cette liste se présente elle-même
+	 * sous forme de tableaux, contenant chacun un statut possible de la rubrique (constante STATUT_), l'intitulé de ce 
+	 * statut, et une valeur booléenne indiquant si la rubrique courante possède ce statut actuellement
+	 * 
+	 * @return	le tableau contenant la liste des statuts possibles d'une rubrique
+	 */
 	function retListeStatuts ()
 	{
 		$iStatutRubrique = $this->oEnregBdd->StatutRubrique;
@@ -764,6 +906,14 @@ class CModule_Rubrique
 		return $aaStatuts;
 	}
 	
+	/**
+	 * Initialise un tableau avec la liste des rubriques d'un module
+	 * 
+	 * @param	v_iIdMod		l'id du module
+	 * @param	v_iTypeRubrique	type des rubriques que l'on veut retourner(optionnel)
+	 * 
+	 * @return	le nombre de rubriques insérées dans le tableau
+	 */
 	function retListeRubriques ($v_iIdMod=NULL,$v_iTypeRubrique=NULL)
 	{
 		if ($v_iIdMod == NULL)
@@ -790,11 +940,21 @@ class CModule_Rubrique
 		return ($i-1);
 	}
 	
+	/**
+	 * Réinitialise l'objet \c oEnregBdd avec la rubrique courante
+	 */
 	function rafraichir ()
 	{
 		$this->init();
 	}
 	
+	/**
+	 * Redistribue les numéros d'ordre des rubriques
+	 * 
+	 * @param	v_iNouveauNumOrdre le nouveau numéro d'ordre de la rubrique courante
+	 * 
+	 * @return	\c true si les numéros ont bien été modifiés
+	 */
 	function redistNumsOrdre ($v_iNouveauNumOrdre=NULL)
 	{
 		if ($v_iNouveauNumOrdre == $this->retNumOrdre())
@@ -837,9 +997,12 @@ class CModule_Rubrique
 		return TRUE;
 	}
 	
-	function defIdIntitule ($v_iIdIntitule) { $this->mettre_a_jour("IdIntitule",$v_iIdIntitule); }
-	function retIdIntitule () { return $this->oEnregBdd->IdIntitule; }
-	
+	/**
+	 * Initialise l'activité courante
+	 * 
+	 * @param	v_iIdActiv l'id de l'activité. Si on essaie d'initialiser une activité qui n'appartient pas à cette 
+	 * rubrique, l'activité ne sera pas initialisée
+	 */
 	function initActivCourante ($v_iIdActiv=NULL)
 	{
 		if ($v_iIdActiv < 1)
@@ -849,6 +1012,13 @@ class CModule_Rubrique
 			unset($this->oActivCourante);
 	}
 	
+	/**
+	 * Vérifie si l'intitulé est utilisé par plusieurs rubriques
+	 * 
+	 * @param	v_iIdIntitule l'id de l'intitulé
+	 * 
+	 * @return	si \c true on peut supprimer l'intitulé
+	 */
 	function peutSupprimerIntitule ($v_iIdIntitule)
 	{
 		$bSupprimerIntitule = FALSE;
@@ -869,6 +1039,11 @@ class CModule_Rubrique
 		return $bSupprimerIntitule;
 	}
 	
+	/**
+	 * Retourne l'id de la rubrique précedent la courante
+	 * 
+	 * @return	l'id de la rubrique précedent la courante
+	 */
 	function retIdEnregPrecedent ()
 	{
 		if (($cpt = $this->retListeRubriques()) < 0)
@@ -879,58 +1054,33 @@ class CModule_Rubrique
 		return (($cpt < 0) ?  0 : $this->aoRubriques[$cpt]->IdRubrique);
 	}
 	
-	function retIdPers () { return $this->oEnregBdd->IdPers; }
-	
-	/*:06/09/2004:function retLien ($v_sRepRubriques=NULL,$v_bStatut=TRUE)
+	/**
+	 * Verifie si la personne qui a crée la rubrique est la même que celle passé en paramètre
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne qui a crée la rubrique est la même que celle passé en paramètre
+	 */
+	function verifSaRubrique ($v_iIdPers)
 	{
-		$sLien = NULL;
-		
-		$sNomLien = $this->retNom();
-		
-		list($sHref) = explode(":",$this->retDonnee());
-		
-		switch ($this->retType())
-		{
-			case LIEN_SITE_INTERNET:
-				if (!empty($sHref) && $v_bStatut)
-					$sLien = "<a href=\"http://".$sHref."\""
-						." target=\"_blank\""
-						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
-				else if (!empty ($sNomLien))
-					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
-				
-				break;
-				
-			case LIEN_PAGE_HTML:
-				if (!empty($sHref) && $v_bStatut)
-					$sLien = "<a href=\"".$v_sRepRubriques.rawurlencode($sHref)."\""
-						." target=\"_blank\""
-						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
-				else if (!empty($sNomLien))
-					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
-				
-				break;
-				
-			case LIEN_DOCUMENT_TELECHARGER:
-				if (!empty($sHref) && $v_bStatut)
-					$sLien = "<a href=\"".dir_lib("download.php?f=".urlencode($v_sRepRubriques.$sHref))."\""
-						." onfocus=\"blur()\""
-						.">".htmlentities($sNomLien,ENT_COMPAT,"UTF-8")."</a>";
-				else if (!empty($sNomLien))
-					$sLien = "<span class=\"cssLienDesactive\">{$sNomLien}</span>";
-				
-				break;
-		}
-		
-		return $sLien;
-	}*/
+		return ($v_iIdPers == $this->oEnregBdd->IdPers);
+	}
 	
-	function verifSaRubrique ($v_iIdPers) { return ($v_iIdPers == $this->oEnregBdd->IdPers); }
+	/**
+	 * Vérifie si la personne peut modifier la rubrique (concepteur(statut) ou créateur de la rubrique)
+	 * 
+	 * @param	v_iIdPers l'id de la personne
+	 * 
+	 * @return	\c true si la personne peut modifier la rubrique
+	 */
+	function peutModifier ($v_iIdPers)
+	{
+		return ($this->verifSaRubrique($v_iIdPers) | $this->verifConcepteur($v_iIdPers));
+	}
 	
-	function peutModifier ($v_iIdPers) { return ($this->verifSaRubrique($v_iIdPers) | $this->verifConcepteur($v_iIdPers)); }
-	
+	/**
+	 * @deprecated Ne semble pas/plus utilisé ???
+	 */
 	function retPremierePageUnite ()
 	{
 		$aiIdPremierePage = array();
@@ -956,6 +1106,20 @@ class CModule_Rubrique
 		return $aiIdPremierePage;
 	}
 	
+	/**
+	 * Initialise un tableau avec les étudiants inscrits à la formation
+	 * 
+	 * @param	v_bAppartenirEquipe	si \c true (par défaut) le tableau est rempli par les personnes qui appartiennent à 
+	 *								une équipe de cette rubrique, si \c false voir paramètre \p v_bAutoInscrit
+	 * @param	v_bAutoInscrit		si \c true (par défaut) le tableau est rempli par les personnes qui sont inscrites à
+	 * 								la formation et qui n'appartiennent pas à une équipe de cette rubrique. Utilisé lorsque
+	 * 								les personnes sont automatiquement inscrites aux rubriques de la formation.
+	 * 								Si \c false il est rempli par les personnes qui sont inscrites à cette rubrique et qui
+	 * 								n'appartiennent pas à une équipe de cette rubrique
+	 * @param	v_iSensTri			indique si un tri doit être effectué ainsi que son sens (croissant par défaut)
+	 * 
+	 * @return	le nombre de personnes(étudiants) insérées dans le tableau
+	 */
 	function initMembres ($v_bAppartenirEquipe=TRUE,$v_bAutoInscrit=TRUE,$v_iSensTri=TRI_CROISSANT)
 	{
 		$iIdxMembre = 0;
@@ -1004,7 +1168,13 @@ class CModule_Rubrique
 		return $iIdxMembre;
 	}
 	
-	// {{{ Formulaire
+	/**
+	 * Initialise un tableau contenant tous les formulaires
+	 * 
+	 * @param	v_iModalite le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE_)
+	 * 
+	 * @return	le nombre de formulaires insérés dans le tableau
+	 */
 	function initFormulaires ($v_iModalite=NULL)
 	{
 		$iIdxFormulaire = 0;
@@ -1033,7 +1203,7 @@ class CModule_Rubrique
 		
 		return $iIdxFormulaire;
 	}
-	// }}}
+
 }
 
 ?>

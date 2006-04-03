@@ -666,7 +666,7 @@ class CModule
 	 *								une équipe de ce module, si \c false voir paramètre \p v_bAutoInscrit
 	 * 
 	 * @param	v_bAutoInscrit		si \c true (par défaut) le tableau est rempli par les personnes qui sont inscrites à
-	 * 								la formation et qui n'appartiennent pas à une équipe de ce module. Utilsisé lorsque
+	 * 								la formation et qui n'appartiennent pas à une équipe de ce module. Utilisé lorsque
 	 * 								les personnes sont automatiquement inscrites aux modules de la formation.
 	 * 								Si \c false il est rempli par les personnes qui sont inscrites au module et qui n'
 	 * 								appartiennent pas à une équipe de ce module
