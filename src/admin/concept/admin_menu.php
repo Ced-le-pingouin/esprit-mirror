@@ -209,8 +209,6 @@ if ($g_iSousActiv > 0)
 	$asNoms[4] = $oProjet->oSousActivCourante->retNom();
 }
 
-// include_once("econcept.liste.forms.php");
-
 // ---------------------
 // Permissions
 // ---------------------
@@ -535,8 +533,6 @@ html { border: rgb(240,240,240) none 1px; border-right-style: solid; }
 <body class="gauche">
 <form name="menuForm" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
 <table border="0" cellpadding="0" celspacing="1" width="100%">
-<tr><td align="center"><?=$sSelectFormations?></td></tr>
-<tr><td><img src="<?=dir_theme_commun('espacer.gif')?>" width="1" height="1" border="0"></td></tr>
 <tr>
 <td>
 <?php
