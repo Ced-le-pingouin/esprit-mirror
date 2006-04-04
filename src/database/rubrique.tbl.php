@@ -251,55 +251,6 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 *  @bug : plusieurs fonctions appelées n'existent pas!!!
-	 *
-	 */
-	function ajouterEquipes ()
-	{
-		// Effacer des équipes qui ont été supprimées de la table "ModeleEquipe"
-		$oEquipe = new CEquipe($this->oBdd);
-		$oEquipe->nettoyer(); 
-		unset($oEquipe);
-		
-		// Rechercher toutes les activités de modalité "par équipe" de cette rubrique
-		$iNbrActivs = $this->initActivs(NULL,MODALITE_PAR_EQUIPE);
-		
-		$oModeleEquipe = new CModeleEquipe($this->oBdd);
-		
-		// Ajouter les équipes qui ne font pas encore parties de cette rubrique
-		$sValeursRequete = NULL;
-		
-		for ($iIdxActiv=0; $iIdxActiv<$iNbrActivs; $iIdxActiv++)
-		{
-			$iIdActiv = $this->aoActivs[$iIdxActiv]->retId();
-			
-			$oModeleEquipe->initModeles($this->iIdForm,$iIdActiv);
-			
-			for ($iIdxModele=0; $iIdxModele<count($oModeleEquipe->aoModeles); $iIdxModele++)
-			{
-				if ($oModeleEquipe->aoModeles[$iIdxModele]->retIdEquipe() <= 0)
-					$sValeursRequete .= (isset($sValeursRequete) ? "," : NULL)
-						." ("
-						."\"".$oModeleEquipe->aoModeles[$iIdxModele]->retNom()."\""
-						.",'".$oModeleEquipe->aoModeles[$iIdxModele]->retId()."'"
-						.",'$iIdActiv'"
-						.",'0'"
-						.")";
-			}
-		}
-		
-		if (isset($sValeursRequete))
-		{
-			$sRequeteSql = "REPLACE INTO Equipe"
-				." (NomEquipe,IdModeleEquipe,IdActiv,OrdreEquipe)"
-				." VALUES"
-				.$sValeursRequete;
-			$this->oBdd->executerRequete($sRequeteSql);
-			$this->oBdd->executerRequete("OPTIMIZE TABLE Equipe");
-		}
-	}
-	
-	/**
 	 * Retourne le nombre de rubriques de ce module 
 	 * 
 	 * @return	le nombre de rubriques de ce module

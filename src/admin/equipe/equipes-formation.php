@@ -38,29 +38,6 @@ $oProjet = new CProjet();
 $bInscritAuto = $oProjet->oFormationCourante->retInscrAutoModules();
 $iNbrModules = $oProjet->oFormationCourante->initModules();
 
-if (isset($HTTP_POST_VARS["APPLIQUER"]))
-{
-	if (is_array($oProjet->oFormationCourante->aoModules))
-	{
-		settype($HTTP_POST_VARS["NIVEAU_2"],"array");
-		
-		$poModules = &$oProjet->oFormationCourante->aoModules;
-		
-		for ($iIdxModule=0; $iIdxModule<count($poModules); $iIdxModule++)
-		{
-			$poModules[$iIdxModule]->initRubriques(LIEN_UNITE);
-			
-			$poRubriques = &$poModules[$iIdxModule]->aoRubriques;
-			
-			for ($iIdxRubrique=0; $iIdxRubrique<count($poRubriques); $iIdxRubrique++)
-				if (in_array($poRubriques[$iIdxRubrique]->retId(),$HTTP_POST_VARS["NIVEAU_2"]))
-					$poRubriques[$iIdxRubrique]->ajouterEquipes();
-				else
-					$poRubriques[$iIdxRubrique]->effacerEquipes();
-		}
-	}
-}
-
 // *************************************
 //
 // *************************************
@@ -292,9 +269,8 @@ body { background-image: none; }
 </style>
 </head>
 <body class="gauche" onload="init()">
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="post">
+<form>
 <?php $oTpl->afficher(); ?>
-<input type="hidden" name="APPLIQUER" value="1">
 </form>
 </body>
 </html>
