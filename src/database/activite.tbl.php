@@ -150,7 +150,7 @@ class CActiv
 	/**
 	 * Insère une copie d'une activité dans la DB
 	 * 
-	 * @param	v_iIdRubrique l'id de l'activité
+	 * @param	v_iIdRubrique l'id de la rubrique
 	 * 
 	 * @return	l'id de la nouvelle activité
 	 */

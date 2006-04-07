@@ -19,18 +19,16 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: sous_activite.tbl.php
-** Description ............:
-** Date de création .......: 01/06/2001
-** Dernière modification ..: 16/12/2005
-** Auteurs ................: Cédric FLOQUET <cedric.floquet@umh.ac.be>
-**                           Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	sous_activite.tbl.php
+ * 
+ * Contient la classe de gestion des sous-activités, en rapport avec la DB
+ * 
+ * @date	2001/06/01
+ * 
+ * @author	Cédric FLOQUET
+ * @author	Filippo PORCO
+ */
 
 require_once(dir_database("sous_activite.ressource.tbl.php"));
 require_once(dir_database("collecticiel.tbl.php"));
@@ -38,32 +36,39 @@ require_once(dir_database("galerie.tbl.php"));
 require_once(dir_database("glossaire.tbl.php"));
 require_once(dir_database("chat.tbl.php"));
 
-define("INTITULE_SOUS_ACTIV","Action");
+define("INTITULE_SOUS_ACTIV","Action");	/// Titre qui désigne le cinquième niveau de la structure d'une formation 	@enum INTITULE_SOUS_ACTIV
 
+/**
+ * Gestion des sous-activités, et encapsulation de la table SousActiv de la DB
+ */
 class CSousActiv
 {
-	var $iId;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id de la sous-activité à récupérer dans la DB
 	
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $aoRessources;
-	var $oActivParente = NULL;
-	var $aoSousActivs;
-	var $oIdsParents;
+	var $aoRessources;			///< Tableau rempli par #initRessources(), contenant une liste des ressources de cette sous-activité
+	var $oActivParente = NULL;	///< Objet de type CActiv contenant une activité
+	var $aoSousActivs;			///< Tableau rempli par #retListeSousActivs(), contenant une liste des sous-activités de l'activité
+	var $oIdsParents;			///< Objet contenant l'id de la formation, du module, de la rubrique et de l'activité
 	
-	var $oAuteur;
-	var $oEquipe;
-	var $aoEquipes;
+	var $oAuteur;				///< Objet de type Cpersonne contenant une personne
+	var $oEquipe;				///< Objet de type CEquipe contenant une équipe
+	var $aoEquipes;				///< Tableau rempli par #initEquipes(), contenant une liste des équipes de cette sous-activité
 	
-	var $oForum;
-	var $oCollecticiel;
-	var $oGalerie;
+	var $oForum;				///< Objet de type CForum contenant un forum
+	var $oCollecticiel;			///< Objet de type CCollecticiel contenant un collecticiel
+	var $oGalerie;				///< Objet de type CGalerie contenant un collecticiel
 	
-	var $aoChats;
+	var $aoChats;				///< Tableau rempli par #initChats(), contenant une liste des chats de cette sous-activité
 	
-	var $oGlossaire;
+	var $oGlossaire;			///< Objet de type CGlossaire contenant un glossaire
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CSousActiv (&$v_oBdd,$v_iIdSousActiv=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -73,8 +78,17 @@ class CSousActiv
 			$this->init();
 	}
 	
+	/**
+	 * Retourne la constante qui définit le niveau "sous-activité", de la structure d'une formation
+	 * 
+	 * @return	la constante qui définit le niveau "sous-activité", de la structure d'une formation
+	 */
 	function retTypeNiveau () { return TYPE_SOUS_ACTIVITE; }
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (is_object($v_oEnregExistant))
@@ -93,17 +107,42 @@ class CSousActiv
 		}
 	}
 	
-	function initEquipe ($v_iIdEquipe,$v_bInitMembres=FALSE) { $this->oEquipe = new CEquipe($this->oBdd,$v_iIdEquipe,$v_bInitMembres); }
+	/**
+	 * Initialise \c oEquipe avec l'équipe dont l'id est passé en paramètre
+	 * 
+	 * @param	v_iIdEquipe		l'id de l'équipe
+	 * @param	v_bInitMembres	si \c true, initialise les membres de l'équipe(\c false par défaut)
+	 */
+	function initEquipe ($v_iIdEquipe,$v_bInitMembres=FALSE) 
+	{
+		$this->oEquipe = new CEquipe($this->oBdd,$v_iIdEquipe,$v_bInitMembres);
+	}
 	
-	function initEquipes ($v_bInitMembres=FALSE,$iDernierNiveau=TYPE_FORMATION)
+	/**
+	 * Initialise un tableau contenant les équipes de la sous-activité
+	 * 
+	 * @param	v_bInitMembres		si \c true, initialise également les membres de l'équipe (défaut à \c false)
+	 * @param	v_iTypeNiveauDepart	le numéro représentant le type d'élément (formation/module/etc) par lequel on veut 
+	 * 								débuter la recherche des équipes à initialiser
+	 * 
+	 * @return	le nombre d'équipes insérés dans le tableau
+	 */
+	function initEquipes ($v_bInitMembres=FALSE,$v_iTypeNiveauDepart=TYPE_SOUS_ACTIVITE)
 	{
 		$oListeEquipes = new CEquipe($this->oBdd);
-		$oListeEquipes->initEquipesEx($this->retId(),TYPE_SOUS_ACTIVITE,$v_bInitMembres);
+		$oListeEquipes->initEquipesEx($this->retId(),$v_iTypeNiveauDepart,$v_bInitMembres);
 		$this->aoEquipes = $oListeEquipes->aoEquipes;
 		return count($this->aoEquipes);
 	}
 	
-	// {{{ Formulaire
+	/**
+	 * Initialise un tableau contenant les formulaires complétés de la sous-activité
+	 * 
+	 * @param	v_iIdPers	l'id de la personne(optionnel)
+	 * @param	v_mStatutFC	statut(optionnel) de la ressource(constantes STATUT_RES_)
+	 * 
+	 * @return	Le nombre de formulaires insérés dans le tableau
+	 */
 	function initFormulairesCompletes ($v_iIdPers=NULL,$v_mStatutFC=NULL)
 	{
 		$iIdxFC = 0;
@@ -143,6 +182,15 @@ class CSousActiv
 		return $iIdxFC;
 	}
 	
+	/**
+	 * Retourne des informations concernant les formulaires complétés de cette sous-activité ayant le statut le plus élevé,
+	 * et déposés par les personnes spécifiées
+	 * 
+	 * @param	v_miIdPers la liste des id des personnes ou l'id d'une seule personne
+	 * 
+	 * @return	un tableau contenant les informations suivantes: le statut le plus élevé des formulaires complétés 
+	 * (voir constantes STATUT_RES_), le nombre de formulaires ayant ce statut, et la date de dépôt du dernier de ces formulaires
+	 */
 	function retStatutPlusHautFormulaire ($v_miIdPers=NULL)
 	{
 		$sListePers = NULL;
@@ -160,8 +208,7 @@ class CSousActiv
 		
 		if (isset($sListePers))
 		{
-			$sRequeteSql = "SELECT StatutFormSousActiv"
-					.", MAX(StatutFormSousActiv) AS MaxStatutFormSousActiv"
+			$sRequeteSql = "SELECT MAX(StatutFormSousActiv) AS MaxStatutFormSousActiv"
 					.", COUNT(*) AS CountStatutFormSousActiv"
 					.", MAX(FormulaireComplete.DateFC) AS DateDernierFormulaireDepose"
 				." FROM FormulaireComplete_SousActiv"
@@ -169,7 +216,7 @@ class CSousActiv
 				." WHERE FormulaireComplete_SousActiv.IdSousActiv='".$this->retId()."'"
 					." AND FormulaireComplete.IdPers IN ({$sListePers})"
 				." GROUP BY FormulaireComplete_SousActiv.StatutFormSousActiv"
-				." ORDER BY FormulaireComplete_SousActiv.StatutFormSousActiv DESC";
+				." ORDER BY FormulaireComplete_SousActiv.StatutFormSousActiv DESC LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -177,8 +224,12 @@ class CSousActiv
 		
 		return array($oEnreg->MaxStatutFormSousActiv,$oEnreg->CountStatutFormSousActiv,$oEnreg->DateDernierFormulaireDepose);
 	}
-	// }}}
-	
+
+	/**
+	 * Permet de connaître le numero d'ordre maximum des sous-activités
+	 * 
+	 * @return	le numéro d'ordre maximum
+	 */
 	function retNumOrdreMax ()
 	{
 		$sRequeteSql = "SELECT MAX(OrdreSousActiv) FROM SousActiv"
@@ -189,6 +240,13 @@ class CSousActiv
 		return $iNumOrdreMax;
 	}
 	
+	/**
+	 * Copie la sous-activité courante dans une activité spécifiée
+	 * 
+	 * @param	v_iIdActiv l'id de l'activité de destination
+	 * 
+	 * @return	l'id de la nouvelle sous-activité
+	 */
 	function copier ($v_iIdActiv)
 	{
 		$iIdSousActiv = $this->copierSousActiv($v_iIdActiv);
@@ -205,6 +263,13 @@ class CSousActiv
 		return $iIdSousActiv;
 	}
 	
+	/**
+	 * Insère une copie d'une sous-activité dans la DB
+	 * 
+	 * @param	v_iIdActiv l'id de l'activité
+	 * 
+	 * @return	l'id de la nouvelle sous-activité
+	 */
 	function copierSousActiv ($v_iIdActiv)
 	{
 		if ($v_iIdActiv < 1)
@@ -230,6 +295,11 @@ class CSousActiv
 		return $this->oBdd->retDernierId();
 	}
 	
+	/**
+	 * Copie tout les chats de la sous-activité courante vers une autre
+	 * 
+	 * @param	v_iIdSousActiv l'id de la sous-activité de destination
+	 */
 	function copierChats ($v_iIdSousActiv)
 	{
 		if ($this->retType() != LIEN_CHAT && $v_iIdSousActiv < 1)
@@ -243,8 +313,16 @@ class CSousActiv
 		$this->aoChats = NULL;
 	}
 	
+	/**
+	 * Réinitialise l'objet \c oEnregBdd avec l'activité courante
+	 */
 	function rafraichir () { if ($this->retId() > 0) $this->init(); }
 	
+	/**
+	 * Initialise une sous-activité de type glossaire
+	 * 
+	 * @param	v_bInitElements si \true, inialise les éléments du glosaire (\c false par défaut)
+	 */
 	function initGlossaire ($v_bInitElements=FALSE)
 	{
 		$this->oGlossaire = NULL;
@@ -272,7 +350,7 @@ class CSousActiv
 	}
 	
 	/**
-	 * Associer un glossaire à la sous-activité
+	 * Associe un glossaire à la sous-activité
 	 *
 	 * @param v_iIdGlossaire Numéro d'identifiant du glossaire
 	 */
@@ -291,6 +369,9 @@ class CSousActiv
 		}
 	}
 	
+	/**
+	 * Efface un glossaire de la table SousActiv_Glossaire
+	 */
 	function effacerGlossaire ()
 	{
 		$sRequeteSql = "DELETE FROM SousActiv_Glossaire"
@@ -299,7 +380,18 @@ class CSousActiv
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	// {{{ Ressources
+	/**
+	 * Initialise un tableau contenant les ressources de la sous-activité
+	 * 
+	 * @param	v_sTri			le tri sera effectué sur ce champ
+	 * @param	v_iTypeTri		le le sens du tri (constante TRI_)
+	 * @param	v_iModalite		la modalité de la ressource
+	 * @param	v_iIdPers		l'id de la personne
+	 * @param	v_iStatut		le satut de la ressource (constante STATUT_RES_ et TRANSFERT_FICHIERS)
+	 * @param	v_sDate			la date(optionnelle) à partie de laquelle on recherche les ressources
+	 * 
+	 * @return	le nombre de ressources insérés dans le tableau
+	 */
 	function initRessources ($v_sTri="date",$v_iTypeTri=NULL,$v_iModalite=0,$v_iIdPers=0,$v_iStatut=0,$v_sDate=0)
 	{
 		$sTablesSupplementaire = NULL;
@@ -372,8 +464,14 @@ class CSousActiv
 		
 		return $iIdxRes;
 	}
-	// }}}
-	
+
+	/**
+	 * Ajoute une sous-activité dans une activité
+	 * 
+	 * @param	v_iIdActiv	l'id de l'activité
+	 * 
+	 * @return	l'id de la nouvelle sous-activité
+	 */
 	function ajouter ($v_iIdActiv)
 	{
 		$sRequeteSql = "INSERT INTO SousActiv SET"
@@ -394,6 +492,13 @@ class CSousActiv
 		return $this->retId();
 	}
 	
+	/**
+	 * Retourne le nombre de sous-activités de cette activité
+	 * 
+	 * @param	v_iNumParent	l'id de l'activité
+	 * 
+	 * @return	le nombre de sous-activités de cette activité
+	 */
 	function retNombreLignes ($v_iNumParent=NULL)
 	{
 		if ($v_iNumParent == NULL)
@@ -411,6 +516,11 @@ class CSousActiv
 		return $iNbrLignes;
 	}
 	
+	/**
+	 * Retourne un objet contenant les id des niveaux supérieurs de la sous-activité, dans la structure d'une formation 
+	 * 
+	 * @return	un objet qui contient: l'id de la formation, du module, de la rubrique, et de l'activité
+	 */
 	function initIdsParents ()
 	{
 		$sRequeteSql = "SELECT Module.IdForm"
@@ -429,6 +539,9 @@ class CSousActiv
 		return $this->oIdsParents;
 	}
 	
+	/**
+	 * Efface la sous-activité courante
+	 */
 	function effacer ()
 	{
 		switch ($this->retType())
@@ -456,6 +569,9 @@ class CSousActiv
 		$this->redistNumsOrdre();
 	}
 	
+	/**
+	 * Efface dans la DB la sous-activité courante
+	 */
 	function effacerSousActiv ()
 	{
 		$sRequeteSql = "DELETE FROM SousActiv"
@@ -463,6 +579,9 @@ class CSousActiv
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface le collecticiel
+	 */
 	function effacerCollecticiel ()
 	{
 		$this->initCollecticiel();
@@ -470,6 +589,9 @@ class CSousActiv
 		$this->oCollecticiel = NULL;
 	}
 	
+	/**
+	 * Efface la galerie
+	 */
 	function effacerGalerie ()
 	{
 		$this->initGalerie();
@@ -477,6 +599,9 @@ class CSousActiv
 		$this->oGalerie = NULL;
 	}
 	
+	/**
+	 * Efface les équipes de la sous-activités
+	 */
 	function effacerEquipes ()
 	{
 		$oEquipe = new CEquipe($this->oBdd);
@@ -484,6 +609,15 @@ class CSousActiv
 		$oEquipe = NULL;
 	}
 	
+	/**
+	 * Enregistre une évaluation d'une ressource
+	 * 
+	 * @param	v_iIdResSousActiv	l'id dela ressource de la sous-activité(table Ressource_Sous_activ)
+	 * @param	v_iIdPers			l'id de la personne
+	 * @param	v_sApprec			l'appréciation de la ressource
+	 * @param	v_sComment			le commentaire de l'évaluation
+	 * @param	v_iStatutRes 		le statut de la ressource(constante STATUT_RES_)
+	 */
 	function enregistrerEvaluation ($v_iIdResSousActiv,$v_iIdPers,$v_sApprec,$v_sComment,$v_iStatutRes)
 	{
 		$v_sApprec  = MySQLEscapeString($v_sApprec);
@@ -557,7 +691,9 @@ class CSousActiv
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
-	// {{{ Forum
+	/**
+	 * Ajoute un forum de type sous-activité
+	 */
 	function ajouterForum ()
 	{
 		$oForum = new CForum($this->oBdd);
@@ -574,12 +710,20 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Initialise le forum de type sous-activité
+	 */
 	function initForum ()
 	{
 		$this->oForum = new CForum($this->oBdd);
 		$this->oForum->initForumParType(TYPE_SOUS_ACTIVITE,$this->retId());
 	}
 	
+	/**
+	 * Copie le forum courant de type sous-activité dans une autre sous-activité
+	 * 
+	 * @param	v_iIdSousActiv	l'id de la sous-activité de destination
+	 */
 	function copierForum ($v_iIdSousActiv)
 	{
 		if ($this->retType() != LIEN_FORUM && $v_iIdSousActiv < 1)
@@ -600,6 +744,9 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Efface le forum de type sous-activité
+	 */
 	function effacerForum ()
 	{
 		$this->initForum();
@@ -607,9 +754,12 @@ class CSousActiv
 			$this->oForum->effacerForum();
 		$this->oForum = NULL;
 	}
-	// }}}
-	
-	// {{{ Chats
+
+	/**
+	 * Initialise un tableau contenant les chats de type sous-activité
+	 * 
+	 * @return	le nombre de chats insérés dans le tableau
+	 */
 	function initChats ()
 	{
 		$oChat = new CChat($this->oBdd);
@@ -618,28 +768,52 @@ class CSousActiv
 		return $iNbChats;
 	}
 	
+	/**
+	 * Retourne le nombre de chats de la sous-activité
+	 * 
+	 * @return	le nombre de chats de la sous-activité
+	 */
 	function retNombreChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->retNombreChats($this);
 	}
 	
+	/**
+	 * Ajoute un chat à la sous-activité
+	 * 
+	 * @return	l'id du nouveau chat
+	 */
 	function ajouterChat ()
 	{
 		$oChat = new CChat($this->oBdd);
 		return $oChat->ajouter($this);
 	}
 	
+	/**
+	 * Efface tout les chats de la sous-activité
+	 */
 	function effacerChats ()
 	{
 		$oChat = new CChat($this->oBdd);
 		$oChat->effacerChats($this);
 	}
-	// }}}
-	
-	// {{{ Collecticiel
+
+	/**
+	 * Initialise le collecticiel
+	 */
 	function initCollecticiel () { $this->oCollecticiel = new CCollecticiel($this->oBdd,$this->retId()); }
 	
+	/**
+	 * Retourne des informations concernant les ressources de cette sous-activité ayant le statut le plus élévé, et 
+	 * déposés par les personnes spécifiées
+	 * 
+	 * @param	v_miIdPers	la liste des id des personnes ou l'id d'une seule personne
+	 * 
+	 * @return	un tableau contenant les informations suivantes: le statut le plus élévé des ressources, 
+	 * le nombre de ressources ayant ce statut, la date du dépot du fichier le plus récent qui a ce statut là, la personne
+	 * qui a déposé ce fichier
+	 */
 	function retStatutPlusHautRes ($v_miIdPers=NULL)
 	{
 		$sListePers = NULL;
@@ -669,7 +843,7 @@ class CSousActiv
 					." AND Ressource.IdPers IN ({$sListePers})"
 					." AND Ressource_SousActiv.StatutResSousActiv<>'".STATUT_RES_TRANSFERE."'"
 				." GROUP BY Ressource_SousActiv.StatutResSousActiv"
-				." ORDER BY Ressource_SousActiv.StatutResSousActiv DESC";
+				." ORDER BY Ressource_SousActiv.StatutResSousActiv DESC LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -682,10 +856,17 @@ class CSousActiv
 				"StatutResDateRecente" => $oEnreg->MaxRessourceDateRes
 			);
 	}
-	// }}}
-	
+
+	/**
+	 * Initalise \c oGalerie avec la galerie(de type sous-activité)
+	 */
 	function initGalerie () { $this->oGalerie = new CGalerie($this->oBdd,$this->retId()); }
 	
+	/**
+	 * Retourne le statut du parent(activité)
+	 * 
+	 * @return	le statut du parent(activité)
+	 */
 	function retStatutReel ()
 	{
 		if (STATUT_IDEM_PARENT == ($iStatut = $this->retStatut()))
@@ -694,6 +875,14 @@ class CSousActiv
 			return $iStatut;
 	}
 	
+	/**
+	 * Insère un vote pour une ressource de la sous-activité
+	 * 
+	 * @param	v_iIdResSousActiv	l'id de la ressource de la sous-activité
+	 * @param	v_iIdVotant			l'id dela personne qui vote
+	 * 
+	 * @return	\c true si le document est soumis (votes suffisants)
+	 */
 	function voterPourRessource ($v_iIdResSousActiv,$v_iIdVotant)
 	{
 		if ($v_iIdResSousActiv < 1)
@@ -748,9 +937,15 @@ class CSousActiv
 		return $this->majStatutRessource($v_iIdResSousActiv);
 	}
 	
+	/**
+	 * Met à jour le statut de la ressource
+	 * 
+	 * @param	v_iIdResSousActiv	l'id de la ressource de la sous-activité
+	 * 
+	 * @return	\c true si le document est soumis (votes suffisants)
+	 */
 	function majStatutRessource ($v_iIdResSousActiv)
 	{
-		// la fonction retourna true si le document est soumis (votes suffisants)
 		$bSoumis   = FALSE;
 		$iModalite = $this->retModalite(TRUE);
 		
@@ -816,6 +1011,11 @@ class CSousActiv
 		return $bSoumis;
 	}
 	
+	/**
+	 * Retourne le nombre de vote minimum en nombre de personnes minimum votantes
+	 * 
+	 * @return	le nombre de vote minimum en nombre de personnes minimum votantes
+	 */
 	function retVotesMinReels ()
 	{
 		// Combien de votes nécessaires pour soumettre un document ?
@@ -826,6 +1026,15 @@ class CSousActiv
 		return ($iNbVotes > 0 ? $iNbVotes : 1);
 	}
 	
+	/**
+	 * Met à jour un champ de la table Activ
+	 * 
+	 * @param	v_sNomChamp		le nom du champ à mettre à jour
+	 * @param	v_mValeurChamp	la nouvelle valeur du champ
+	 * @param	v_iIdSousActiv	l'id de la sous-activité
+	 * 
+	 * @return	\c true si il a mis à jour le champ dans la DB
+	 */
 	function mettre_a_jour ($v_sNomChamp,$v_mValeurChamp,$v_iIdSousActiv=0)
 	{
 		if ($v_iIdSousActiv < 1)
@@ -842,10 +1051,19 @@ class CSousActiv
 		return TRUE;
 	}
 	
+	/** @name Fonctions de lecture des champs pour cette formation */
+	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
-	
 	function retIdPers () { return (is_numeric($this->oEnregBdd->IdPers) ? $this->oEnregBdd->IdPers : 0); }
-	function setIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers=$v_iIdPers; }
+	function retVotesMin () { return $this->oEnregBdd->VotesMinSousActiv; }
+	function retStatut () { return $this->oEnregBdd->StatutSousActiv; }
+	function retType () { return $this->oEnregBdd->IdTypeSousActiv; }
+	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomSousActiv); }
+	function retNumOrdre () { return $this->oEnregBdd->OrdreSousActiv; }
+	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrSousActiv); }
+	function retIdParent () { return $this->oEnregBdd->IdActiv; }
+	function retPremierePage () { return (bool)$this->oEnregBdd->PremierePageSousActiv; }
+	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->InfoBulleSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->InfoBulleSousActiv); }
 	
 	function retDonnees ($v_bHtmlEntities=FALSE)
 	{
@@ -854,18 +1072,81 @@ class CSousActiv
 			: "{$this->oEnregBdd->DonneesSousActiv};;;");
 	}
 	
-	function defDonnees ($v_sDonnees) {	$this->mettre_a_jour("DonneesSousActiv",$v_sDonnees); }
-	function retVotesMin () { return $this->oEnregBdd->VotesMinSousActiv; }
+	function retDateDeb ()
+	{
+		$sDateDeb = substr($this->oEnregBdd->DateDebSousActiv,0,10);
+		return ereg_replace('^([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})$','\\3-\\2-\\1',$sDateDeb);
+	}
 	
+	function retDateFin ()
+	{
+		$sDateFin = substr($this->oEnregBdd->DateFinSousActiv,0,10);
+		return ereg_replace('^([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})$','\\3-\\2-\\1',$sDateFin);
+	}
+
+	function retModalite ($v_bModaliteParente=FALSE)
+	{
+		$iIdModalite = $this->oEnregBdd->ModaliteSousActiv;
+		
+		if ($v_bModaliteParente && MODALITE_IDEM_PARENT == $iIdModalite)
+		{
+			$oActiv = new CActiv($this->oBdd,$this->retIdParent());
+			$iIdModalite = $oActiv->retModalite();
+		}
+		
+		return $iIdModalite;
+	}
+	//@}
+
+	/** @name Fonctions de définition des champs pour cette formation */
+	//@{
+	function setIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers=$v_iIdPers; }
+	function defDonnees ($v_sDonnees) {	$this->mettre_a_jour("DonneesSousActiv",$v_sDonnees); }
+	function defDescr ($v_sDescrSousActiv) { $this->mettre_a_jour("DescrSousActiv",trim(stripslashes($v_sDescrSousActiv))); }
+	function defNumOrdre ($v_iOrdre) { $this->mettre_a_jour("OrdreSousActiv",$v_iOrdre); }
+	function defInfoBulle ($v_sInfoBulle=NULL) { $this->mettre_a_jour("InfoBulleSousActiv",$v_sInfoBulle); }
+	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteSousActiv",$v_iModalite); }
+
 	function defStatut ($v_iStatut)
 	{
 		if (is_numeric($v_iStatut))
 			$this->mettre_a_jour("StatutSousActiv",$v_iStatut);
 	}
 	
-	function retStatut () { return $this->oEnregBdd->StatutSousActiv; }
-	function retType () { return $this->oEnregBdd->IdTypeSousActiv; }
+	function defDateDeb ($v_dDateDeb)
+	{
+		if (isset($v_dDateDeb))
+		{
+			$v_dDateDeb = ereg_replace('^([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})$','\\3-\\2-\\1', $v_dDateDeb);
+			$this->mettre_a_jour("DateDebSousActiv",$v_dDateDeb);
+		}
+	}
 	
+	function defDateFin ($v_dDateFin)
+	{
+		if (isset($v_dDateFin))
+		{
+			$v_dDateFin = ereg_replace('^([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})$','\\3-\\2-\\1', $v_dDateFin);
+			$this->mettre_a_jour("DateFinSousActiv",$v_dDateFin);
+		}
+	}
+
+	function defNom ($v_sNomSousActiv)
+	{
+		$v_sNomSousActiv = trim(stripslashes($v_sNomSousActiv));
+		
+		if (empty($v_sNomSousActiv))
+			$v_sNomSousActiv = INTITULE_SOUS_ACTIV." sans nom";
+		
+		if (isset($v_sNomSousActiv))
+			$this->mettre_a_jour("NomSousActiv",$v_sNomSousActiv);
+	}
+
+	/**
+	 * Définit le type de la sous-activité et efface l'ancien type s'il était initialisé
+	 * 
+	 * @param	v_iIdType le type de la sous-activité
+	 */
 	function defType ($v_iIdType)
 	{
 		if (!is_numeric($v_iIdType))
@@ -884,56 +1165,7 @@ class CSousActiv
 		}
 		$this->mettre_a_jour("IdTypeSousActiv",$v_iIdType);
 	}
-	
-	function retDateDeb ()
-	{
-		$sDateDeb = substr($this->oEnregBdd->DateDebSousActiv,0,10);
-		return ereg_replace('^([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})$','\\3-\\2-\\1',$sDateDeb);
-	}
-	
-	function defDateDeb ($v_dDateDeb)
-	{
-		if (isset($v_dDateDeb))
-		{
-			$v_dDateDeb = ereg_replace('^([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})$','\\3-\\2-\\1', $v_dDateDeb);
-			$this->mettre_a_jour("DateDebSousActiv",$v_dDateDeb);
-		}
-	}
-	
-	function retDateFin ()
-	{
-		$sDateFin = substr($this->oEnregBdd->DateFinSousActiv,0,10);
-		return ereg_replace('^([0-9]{2,4})-([0-9]{1,2})-([0-9]{1,2})$','\\3-\\2-\\1',$sDateFin);
-	}
-	
-	function defDateFin ($v_dDateFin)
-	{
-		if (isset($v_dDateFin))
-		{
-			$v_dDateFin = ereg_replace('^([0-9]{1,2})-([0-9]{1,2})-([0-9]{2,4})$','\\3-\\2-\\1', $v_dDateFin);
-			$this->mettre_a_jour("DateFinSousActiv",$v_dDateFin);
-		}
-	}
-	
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomSousActiv); }
-	function retNumOrdre () { return $this->oEnregBdd->OrdreSousActiv; }
-	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrSousActiv); }
-	function retIdParent () { return $this->oEnregBdd->IdActiv; }
-	
-	function defNom ($v_sNomSousActiv)
-	{
-		$v_sNomSousActiv = trim(stripslashes($v_sNomSousActiv));
-		
-		if (empty($v_sNomSousActiv))
-			$v_sNomSousActiv = INTITULE_SOUS_ACTIV." sans nom";
-		
-		if (isset($v_sNomSousActiv))
-			$this->mettre_a_jour("NomSousActiv",$v_sNomSousActiv);
-	}
-	
-	function defDescr ($v_sDescrSousActiv) { $this->mettre_a_jour("DescrSousActiv",trim(stripslashes($v_sDescrSousActiv))); }
-	function defNumOrdre ($v_iOrdre) { $this->mettre_a_jour("OrdreSousActiv",$v_iOrdre); }
-	
+
 	function defPremierePage ($v_bPremierePage,$v_iIdRubrique)
 	{
 		if ($v_bPremierePage == $this->retPremierePage() || $v_iIdRubrique < 1)
@@ -968,11 +1200,21 @@ class CSousActiv
 		if ($v_bPremierePage > 0)
 			$this->mettre_a_jour("PremierePageSousActiv",1);
 	}
+	//@}
 	
-	function retPremierePage () { return (bool)$this->oEnregBdd->PremierePageSousActiv; }
-	
+	/**
+	 * Initialise l'obje \c oActiveParente avec l'activité parente de la sous-activité
+	 */
 	function initActiv () { $this->oActivParente = new CActiv($this->oBdd,$this->retIdParent()); }
 	
+	/**
+	 * Initialise un tableau des sous-activités de l'activité
+	 * 
+	 * @param	v_iIdActiv			l'id de l'activité, si pas fourni, utilise l'id de l'activité parente
+	 * @param	v_iTypeSousActiv	le type de sous-activité(optionnel)
+	 * 
+	 * @return	le nombre de sous-activités insérés dans le tableau
+	 */
 	function retListeSousActivs ($v_iIdActiv=NULL,$v_iTypeSousActiv=NULL)
 	{
 		if ($v_iIdActiv == NULL)
@@ -998,6 +1240,11 @@ class CSousActiv
 		return ($i-1);
 	}
 	
+	/**
+	 * Retourne l'id de la sous-activité précédent celle-ci
+	 * 
+	 * @return	l'id de la sous-activité précédent celle-ci
+	 */
 	function retIdEnregPrecedent ()
 	{
 		if (($cpt = $this->retListeSousActivs()) < 0)
@@ -1006,6 +1253,13 @@ class CSousActiv
 		return (($cpt < 0) ?  0 : $this->aoSousActivs[$cpt]->IdSousActiv);
 	}
 	
+	/**
+	 * Redistribue les numéros d'ordre des sous-activités
+	 * 
+	 * @param	v_iNouveauNumOrdre	le nouveau numéro d'ordre de la sous-activité courante
+	 * 
+	 * @return	\c true si les numéros ont bien été modifiés
+	 */
 	function redistNumsOrdre ($v_iNouveauNumOrdre=NULL)
 	{
 		if ($v_iNouveauNumOrdre == $this->retNumOrdre())
@@ -1041,31 +1295,22 @@ class CSousActiv
 		return TRUE;
 	}
 	
-	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->InfoBulleSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->InfoBulleSousActiv); }
-	
-	function defInfoBulle ($v_sInfoBulle=NULL) { $this->mettre_a_jour("InfoBulleSousActiv",$v_sInfoBulle); }
-	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteSousActiv",$v_iModalite); }
-	
-	function retModalite ($v_bModaliteParente=FALSE)
-	{
-		$iIdModalite = $this->oEnregBdd->ModaliteSousActiv;
-		
-		if ($v_bModaliteParente && MODALITE_IDEM_PARENT == $iIdModalite)
-		{
-			$oActiv = new CActiv($this->oBdd,$this->retIdParent());
-			$iIdModalite = $oActiv->retModalite();
-		}
-		
-		return $iIdModalite;
-	}
-	
-	
+	/**
+	 * Initialise l'objet \c oAuteur de type CPersonne contenant la personne qui a dépossé la ressource
+	 */
 	function initAuteur () { $this->oAuteur = new CPersonne($this->oBdd,$this->retIdPers()); }
 	
-	// {{{ Inscrits non autorisés
+	/**
+	 * Définit les personnes passées en paramètre comme ne pouvant pas voir cette sous-activité
+	 * 
+	 * @param	v_aiIdInscritsNonAutorises liste des id des personnes
+	 */
 	function ajouterInscritsNonAutorises ($v_aiIdInscritsNonAutorises)
 	{
 		$iIdSousActiv = $this->retId();
+
+		$sRequeteSql = "LOCK TABLES SousActivInvisible WRITE";
+		$this->oBdd->executerRequete($sRequeteSql);
 		
 		// Vider la table
 		$sRequeteSql = "DELETE FROM SousActivInvisible"
@@ -1087,8 +1332,15 @@ class CSousActiv
 				." VALUES {$sValeursRequete}";
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
+		$sRequeteSql = "UNLOCK TABLES";
+		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Initialise le tableau contenant la liste des personnes ne pouvant pas voir cette sous-activité
+	 * 
+	 * @return	le nombre de personnes insérés dans le tableau
+	 */
 	function initInscritsNonAutorises ()
 	{
 		$iIdxInscritNonAutorise = 0;
@@ -1114,6 +1366,12 @@ class CSousActiv
 	}
 	// }}}
 	
+	/**
+	 * Retourne un tableau contenant les différents modalités d'une sous-activité. Il ne contient qu'un type de modalité,
+	 * car elle indique que la sous-activité à la modalité de l'activité parente.
+	 * 
+	 * @return Retourne un tableau contenant les différents modalités d'une sous activité
+	 */
 	function retListeModalites ()
 	{
 		return array(
@@ -1123,6 +1381,13 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Retourne le texte en français du type de sous-activité
+	 * 
+	 * @param	v_iType le type(optionnel) d'une sous-activité
+	 * 
+	 * @return	le texte du type de sous-activité
+	 */
 	function retTexteType ($v_iType=NULL)
 	{
 		if (empty($v_iType))
@@ -1135,7 +1400,12 @@ class CSousActiv
 				return $amTypes[1];
 	}
 	
-	function retListeTypes ($v_iIdRubrique=NULL)
+	/**
+	 * Retourne la liste des types de sous-activités
+	 * 
+	 * @return	la liste des types de sous-activités
+	 */
+	function retListeTypes ()
 	{
 		return array(
 			  array(LIEN_PAGE_HTML,"Choisissez un type pour cette ".strtolower(INTITULE_SOUS_ACTIV))
@@ -1153,6 +1423,11 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Retourne la liste des statuts possibles d'un sous-activité
+	 * 
+	 * @return	la liste des statuts possibles d'un sous-activité
+	 */
 	function retListeStatuts ()
 	{
 		return array(
@@ -1163,6 +1438,11 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Retourne la liste des modes d'ouverture d'une sous-activité
+	 * 
+	 * @return	la liste des modes d'ouverture d'une sous-activité
+	 */
 	function retListeModes ()
 	{
 		return array(
@@ -1173,6 +1453,11 @@ class CSousActiv
 		);
 	}
 	
+	/**
+	 * Retourne la liste des possibilités de soumission d'un document (constante SOUMISSION_)
+	 * 
+	 * @return	la liste des possibilités de soumission d'un document
+	 */
 	function retListeDeroulements ()
 	{
 		list(,$bSoumissionManuelle) = explode(";",$this->oEnregBdd->DonneesSousActiv);
