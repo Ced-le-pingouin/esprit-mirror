@@ -49,7 +49,7 @@ define("SESSION_NOM"				, 1);	/// Nom de la personne																@enum SESSIO
 define("SESSION_PRENOM"				, 2);	/// Prénom de la personne															@enum SESSION_PRENOM
 define("SESSION_MDP"				, 3);	/// Mot de passe de la personne														@enum SESSION_MDP
 define("SESSION_STATUT_ABSOLU"		, 4);	/// Statut de l'utilisateur le plus important										@enum SESSION_STATUT_ABSOLU
-define("SESSION_STATUT_UTILISATEUR"	, 5);	/// Statut que l'utilisateur a choisit												@enum SESSION_STATUT_UTILISATEUR
+define("SESSION_STATUT_UTILISATEUR"	, 5);	/// Statut que l'utilisateur a choisi												@enum SESSION_STATUT_UTILISATEUR
 define("SESSION_FORM"				, 6);	/// Numéro de la formation courante													@enum SESSION_FORM
 define("SESSION_MOD"				, 7);	/// Numéro du module/cours courant													@enum SESSION_MOD
 define("SESSION_UNITE"				, 8);	/// Numéro de l'unité courante (plus utilisé)										@enum SESSION_UNITE
