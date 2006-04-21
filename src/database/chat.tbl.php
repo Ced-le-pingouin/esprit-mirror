@@ -377,6 +377,14 @@ class CChat
 		
 		return $iNbChats;
 	}
-}
 
+	/**
+	 * @BUG Cette fonction est appelé mais ne fait rien
+	 */
+	function copier()
+	{
+		return TRUE;
+	}
+
+}
 ?>

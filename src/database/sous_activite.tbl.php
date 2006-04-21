@@ -254,7 +254,7 @@ class CSousActiv
 		if ($iIdSousActiv < 1)
 			return 0;
 		
-		switch ($this->retId())
+		switch ($this->retType())
 		{
 			case LIEN_FORUM: $this->copierForum($iIdSousActiv); break;
 			case LIEN_CHAT: $this->copierChats($iIdSousActiv); break;

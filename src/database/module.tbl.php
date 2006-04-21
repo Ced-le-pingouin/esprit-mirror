@@ -100,10 +100,12 @@ class CModule
 	 * 
 	 * @return	le numéro d'ordre maximum
 	 */
-	function retNumOrdreMax ()
+	function retNumOrdreMax ($v_iIdForm=NULL)
 	{
+		if ($v_iIdForm == NULL)
+			$v_iIdForm = $this->retIdParent();
 		$sRequeteSql = "SELECT MAX(OrdreMod) FROM Module"
-			." WHERE IdForm='".$this->retIdParent()."'";
+			." WHERE IdForm='".$v_iIdForm."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iNumMax = $this->oBdd->retEnregPrecis($hResult,0);
 		$this->oBdd->libererResult($hResult);
