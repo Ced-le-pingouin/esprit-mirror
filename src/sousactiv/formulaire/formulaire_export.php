@@ -163,18 +163,26 @@ if ($iNbFormulairesAcceptes)
 					{
 						$asReponseComplete = NULL;
 						
-						foreach($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse as $sReponseCourante)
+						// si la question n'a pas eu de réponse par l'étudiant, on place un " - " dans l'exportation
+						if (count($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse))
 						{
-							//$iIdReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse[0];
+							foreach($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse as $sReponseCourante)
+							{
+								//$iIdReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse[0];
+								
+								$iIdReponse = $sReponseCourante;
+								$sTexteReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->aoReponsesPossibles[$iIdReponse]->retTexte();
+								$asReponseComplete[] = $sTexteReponse;
+								
+								//$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($sTexteReponse).'"';
+							}
 							
-							$iIdReponse = $sReponseCourante;
-							$sTexteReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->aoReponsesPossibles[$iIdReponse]->retTexte();
-							$asReponseComplete[] = $sTexteReponse;
-							
-							//$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($sTexteReponse).'"';
+							$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv(implode(', ', $asReponseComplete)).'"';
 						}
-						
-						$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv(implode(', ', $asReponseComplete)).'"';
+						else
+						{
+							$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" - "';
+						}
 					}
 					else
 					{
