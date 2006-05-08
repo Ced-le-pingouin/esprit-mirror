@@ -19,35 +19,41 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: forum.tbl.php
-** Description ............:
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 05/10/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	forum.tbl.php
+ * 
+ * Contient la classe de gestin des forums
+ * 
+ * @date	2004/05/14
+ * 
+ * @author	Filippo PORCO
+ * @author	Jérôme TOUZE
+ */
 
 require_once(dir_database("forum_prefs.tbl.php"));
 require_once(dir_database("sujetforum.tbl.php"));
 
+/**
+ * Gestion des forums, et encapsulation de la table Forum de la DB
+ */
 class CForum
 {
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;			///< Objet représentant la connexion à la DB
+	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $iId;
+	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id du forum à récupérer dans la DB
 	
-	var $aoForumsPrefs;
-	var $aoSousForums;
-	var $aoSujets;
+	var $aoForumsPrefs;	///< Tableau rempli par #initForumsPrefs(), contenant les préférences des forums (CForumPrefs)
+	var $aoSousForums;	///< Tableau rempli par #initSousForums(), contenant les sous-forums
+	var $aoSujets;		///< Tableau rempli par #initSujets(), contenant les sujets des forums
 	
-	var $iIdTypeForum;
+	var $iIdTypeForum;	///< Variable de type entier, contenant le type des forums (rubrique ou sous-activité)
 	
+	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CForum (&$v_oBdd,$v_iId=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -57,6 +63,10 @@ class CForum
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -75,6 +85,9 @@ class CForum
 		}
 	}
 	
+	/**
+	 * Efface les valeurs contenues dans \c oBdd, \c oEnregBdd, \c iId, \c aoSousForums, \c aoSujets, \c iIdTypeForum
+	 */
 	function detruire ()
 	{
 		$this->oBdd = NULL;
@@ -85,6 +98,12 @@ class CForum
 		$this->iIdTypeForum = NULL;
 	}
 	
+	/**
+	 * Initialise l'objet avec un forum de type rubrique ou sous-activité
+	 * 
+	 * @param	v_iType		le type du forum (TYPE_RUBRIQUE ou TYPE_SOUS_ACTIVITE)
+	 * @param	v_iIdType	l'id de la rubrique ou de la sous-activité
+	 */
 	function initForumParType ($v_iType,$v_iIdType)
 	{
 		$sRequeteSql = NULL;
@@ -118,6 +137,11 @@ class CForum
 		}
 	}
 	
+	/**
+	 * Retourne le dernier sujet du forum
+	 * 
+	 * @return	le dernier sujet du forum, objet de type CSujetForum
+	 */
 	function retDernierSujets ()
 	{
 		$oSujetForum = NULL;
@@ -139,6 +163,15 @@ class CForum
 		return $oSujetForum;
 	}
 	
+	/**
+	 * Retourne le numéro d'ordre maximum des forums
+	 * 
+	 * @param	v_iIdMod		l'id du module
+	 * @param	v_iIdRubrique	l'id de la rubrique
+	 * @param	v_iIdSousActiv	l'id de la sous-activité
+	 * 
+	 * @return	le numéro d'ordre maximum
+	 */
 	function retNumOrdreMax ($v_iIdMod,$v_iIdRubrique,$v_iIdSousActiv)
 	{
 		$iNumOrdreMax = 1;
@@ -164,18 +197,18 @@ class CForum
 	}
 	
 	/**
-	 * Permet d'ajouter un nouveau forum dans la table
+	 * Ajoute un nouveau forum dans la table
 	 *
-	 * @param v_sNomForum                 string  Nom du forum
-	 * @param v_iModaliteForum            integer Modalité du forum {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE}
-	 * @param v_iStatutForum              integer Statut du forum {STATUT_OUVERT | STATUT_LECTURE_SEULE | STATUT_FERME | STATUT_INVISIBLE}
-	 * @param v_bAccessibleVisiteursForum boolean Ce forum est-il accessible aux visiteurs ?
-	 * @param v_iIdMod                    integer Numéro d'identifiant du module
-	 * @param v_iIdRubrique               integer Numéro d'identifiant de la rubrique
-	 * @param v_iIdSousActiv              integer Numéro d'identifiant de la sous-activité
-	 * @param v_iIdForumParent            integer Numéro d'identifiant du forum parent
-	 * @param v_iIdPers                   integer Numéro d'identifiant de l'auteur du forum
-	 * @return Retourne le nouveau numéro d'identifiant du forum
+	 * @param v_sNomForum                 nom du forum
+	 * @param v_iModaliteForum            modalité du forum {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE}
+	 * @param v_iStatutForum              statut du forum {STATUT_OUVERT | STATUT_LECTURE_SEULE | STATUT_FERME | STATUT_INVISIBLE}
+	 * @param v_bAccessibleVisiteursForum boolean, ce forum est-il accessible aux visiteurs ?
+	 * @param v_iIdMod                    numéro d'identifiant du module
+	 * @param v_iIdRubrique               numéro d'identifiant de la rubrique
+	 * @param v_iIdSousActiv              numéro d'identifiant de la sous-activité
+	 * @param v_iIdForumParent            numéro d'identifiant du forum parent
+	 * @param v_iIdPers                   numéro d'identifiant de l'auteur du forum
+	 * @return	le nouveau numéro d'identifiant du forum
 	 */
 	function ajouter ($v_sNomForum,$v_iModaliteForum,$v_iStatutForum,$v_bAccessibleVisiteursForum,$v_iIdMod,$v_iIdRubrique,$v_iIdSousActiv,$v_iIdForumParent,$v_iIdPers)
 	{
@@ -201,6 +234,9 @@ class CForum
 		return $this->iId;
 	}
 	
+	/**
+	 * Enregistre(update) dans la DB le forum courant
+	 */
 	function enregistrer ()
 	{
 		if ($this->iId < 1)
@@ -216,6 +252,9 @@ class CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Copie le forum courant dans un autre
+	 */
 	function copier ()
 	{
 		$this->ajouter($this->retNom()
@@ -230,6 +269,9 @@ class CForum
 		);
 	}
 	
+	/**
+	 * Efface le forum
+	 */
 	function effacer ()
 	{
 		$this->verrouillerTables();
@@ -237,6 +279,9 @@ class CForum
 		$this->verrouillerTables(FALSE);
 	}
 	
+	/**
+	 * Efface le forum ainsi que ses sujets
+	 */
 	function effacerForum ()
 	{
 		// Effacer tous les sous-forums
@@ -255,6 +300,9 @@ class CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface les préférences des forums
+	 */
 	function effacerForumsPrefs ()
 	{
 		$this->initForumsPrefs();
@@ -263,6 +311,9 @@ class CForum
 			$oForumPrefs->effacerForumPrefs();
 	}
 	
+	/**
+	 * Efface les sous-forums du forum courant
+	 */
 	function effacerSousForums ()
 	{
 		$this->initSousForums();
@@ -271,6 +322,9 @@ class CForum
 			$oSousForum->effacer();
 	}
 	
+	/**
+	 * Efface les sujets du forum courant
+	 */
 	function effacerSujets ()
 	{
 		// Rechercher tous les sujets
@@ -281,6 +335,11 @@ class CForum
 			$oSujet->effacer();
 	}
 	
+	/**
+	 * Initialise un tableau contenant les sous-forums du forum courant
+	 * 
+	 * @return	le nombre de sous-forums insérés dans le tableau
+	 */
 	function initSousForums ()
 	{
 		$iIdxSousForum = 0;
@@ -306,10 +365,11 @@ class CForum
 	}
 	
 	/**
-	 * Rechercher tous les sujets qui appartiennent à ce forum.
-	 *
-	 * @return Retourne le nombre de sujets trouvés
-	 * @see CSujet
+	 * Initialise un tableau contenant tous les sujets qui appartiennent au forum courant
+	 * 
+	 * @param	v_iIdEquipe	l'id de l'equipe (optionnel)
+	 * 
+	 * @return le nombre de sujets trouvés
 	 */
 	function initSujets ($v_iIdEquipe=0)
 	{
@@ -339,6 +399,11 @@ class CForum
 		return $iIdxSujet;
 	}
 	
+	/**
+	 * Initialise un tableau contenant la liste des préférences du forum
+	 * 
+	 * @return	le nombre d'éléments insérés dans le tableau
+	 */
 	function initForumsPrefs ()
 	{
 		$oForumPrefs = new CForumPrefs($this->oBdd);
@@ -347,9 +412,39 @@ class CForum
 		return count($this->aoForumsPrefs);
 	}
 	
+	
+	/** @name Fonctions de définition des champs pour ce forum */
+	//@{
+	function defNom ($v_sNomForum) { $this->oEnregBdd->NomForum = $v_sNomForum; }
+	function defModalite ($v_iIdModalite) { $this->oEnregBdd->ModaliteForum = $v_iIdModalite; }
+	function defStatut ($v_iIdStatut) { $this->oEnregBdd->StatutForum = $v_iIdStatut; }
+	function defAccessibleVisiteurs ($v_bAccessibleVisiteurs) { $this->oEnregBdd->AccessibleVisiteursForum = $v_bAccessibleVisiteurs; }
+	//@}
+
+
+	/** @name Fonctions de lecture des champs pour ce forum */
+	//@{
+	function retNom ()
+	{
+		if (is_string($this->oEnregBdd->NomForum))
+			return $this->oEnregBdd->NomForum;
+		else
+			return NULL;
+	}
+	function retModalite () { return (is_object($this->oEnregBdd) ? $this->oEnregBdd->ModaliteForum : MODALITE_POUR_TOUS); }
+	function retStatut () { return $this->oEnregBdd->StatutForum; }
+	function retAccessibleVisiteurs () { return (is_object($this->oEnregBdd) ? $this->oEnregBdd->AccessibleVisiteursForum : TRUE); }
+	function retIdPers () { return (is_numeric($this->oEnregBdd->IdPers) ? $this->oEnregBdd->IdPers : 0); }
+	function retDateDernierMessage () { return (isset($this->oEnregBdd->DateDernierMessage) ? $this->oEnregBdd->DateDernierMessage : NULL); }
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retIdParent () { return $this->retIdNiveau(); }
+	//@}
 	
+	/**
+	 * Retourne soit l'id du module, soit de la rubrique ou celui de la sous-activité parent(e)
+	 * 
+	 * @return	l'id du parent
+	 */
 	function retIdNiveau ()
 	{
 		if (is_object($this->oEnregBdd))
@@ -361,6 +456,11 @@ class CForum
 		return 0;
 	}
 	
+	/**
+	 * Retourne la constante qui définit le niveau actuel, de la structure d'une formation (module, rubrique ou sous-activité)
+	 * 
+	 * @return	la constante qui définit le niveau actuel, de la structure d'une formation
+	 */
 	function retTypeNiveau ()
 	{
 		if (is_object($this->oEnregBdd))
@@ -373,18 +473,11 @@ class CForum
 		return TYPE_INCONNU;
 	}
 	
-	function defNom ($v_sNomForum) { $this->oEnregBdd->NomForum = $v_sNomForum; }
-	function retNom ()
-	{
-		if (is_string($this->oEnregBdd->NomForum))
-			return $this->oEnregBdd->NomForum;
-		else
-			return NULL;
-	}
-	
-	function retModalite () { return (is_object($this->oEnregBdd) ? $this->oEnregBdd->ModaliteForum : MODALITE_POUR_TOUS); }
-	function defModalite ($v_iIdModalite) { $this->oEnregBdd->ModaliteForum = $v_iIdModalite; }
-	
+	/**
+	 * Retourne en français la modalité courante du forum
+	 * 
+	 * @return	en français la modalité courante du forum
+	 */
 	function retTexteModalite ($v_iIdModalite=NULL)
 	{
 		if (empty($v_iIdModalite))
@@ -399,8 +492,22 @@ class CForum
 		return $aamModalites[0][1];
 	}
 	
-	function estForumParEquipe () { return (MODALITE_POUR_TOUS != $this->retModalite()); }
+	/**
+	 * Vérifie que la modalité du forum est par équipe
+	 * 
+	 * @return	\c true si la modalité du forum est par équipe
+	 */
+	function estForumParEquipe () 
+	{ 
+		return (MODALITE_POUR_TOUS != $this->retModalite());
+	}
 	
+	/**
+	 * Retourne un tableau contenant en français les modalités, les constantes MODALITE_ et les variables booléennes qui
+	 * indiquent si c'est la modalité courante du forum 
+	 * 
+	 * @return	un tableau contenant les modalités 
+	 */
 	function retListeModalites ()
 	{
 		$iModalite = $this->retModalite();
@@ -411,14 +518,11 @@ class CForum
 			, array(MODALITE_PAR_EQUIPE_COLLABORANTE,"Par équipe (collaborante)",($iModalite == MODALITE_PAR_EQUIPE_COLLABORANTE)));
 	}
 	
-	function defStatut ($v_iIdStatut) { $this->oEnregBdd->StatutForum = $v_iIdStatut; }
-	function retStatut () { return $this->oEnregBdd->StatutForum; }
-	
-	function defAccessibleVisiteurs ($v_bAccessibleVisiteurs) { $this->oEnregBdd->AccessibleVisiteursForum = $v_bAccessibleVisiteurs; }
-	function retAccessibleVisiteurs () { return (is_object($this->oEnregBdd) ? $this->oEnregBdd->AccessibleVisiteursForum : TRUE); }
-	
-	function retIdPers () { return (is_numeric($this->oEnregBdd->IdPers) ? $this->oEnregBdd->IdPers : 0); }
-	
+	/**
+	 * Verrouille ou déverouille les tables de la DB
+	 * 
+	 * @param	v_bVerrouillerTables si \c true verrouille, sinon, déverouille les tables
+	 */
 	function verrouillerTables ($v_bVerrouillerTables=TRUE)
 	{
 		// Vérrouiller les tables
@@ -430,6 +534,9 @@ class CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Supprime la totalité du forum courant dans la DB
+	 */
 	function supprimer ()
 	{
 		// Effacer les sujets de ce forum
@@ -441,6 +548,9 @@ class CForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Supprime les sujets du forum courant
+	 */
 	function supprimerSujets ()
 	{
 		// Rechercher tous les sujets de ce forum
@@ -451,6 +561,13 @@ class CForum
 			$oSujet->supprimer();
 	}
 	
+	/**
+	 * Retourne le nombre de sujet du forum
+	 * 
+	 * @param	v_iIdPers si fourni, la fonction retournera le nombre de sujets de cette personne
+	 * 
+	 * @return le nombre de sujet du forum
+	 */
 	function retNombreSujets ($v_iIdPers=NULL)
 	{
 		$sRequeteSql = "SELECT COUNT(*) FROM SujetForum"
@@ -462,6 +579,13 @@ class CForum
 		return $iNbSujet;
 	}
 	
+	/**
+	 * Retourne le nombre de messages, ainsi que la date du plus récent du forum courant
+	 * 
+	 * @param	v_iIdPers si fourni, la fonction retournera le nombre de message (+date du plus récent) de cette personne
+	 * 
+	 * @return	le nombre de messages, ainsi que la date du plus récent du forum courant
+	 */
 	function retNbMessages ($v_iIdPers=NULL)
 	{
 		$amNbMessages = array();
@@ -481,8 +605,11 @@ class CForum
 		return $amNbMessages;
 	}
 	
-	function retDateDernierMessage () { return (isset($this->oEnregBdd->DateDernierMessage) ? $this->oEnregBdd->DateDernierMessage : NULL); }
-	
+	/**
+	 * Retourne les tables à verrouiller de la DB
+	 * 
+	 * @return	les tables à verrouiller de la DB
+	 */
 	function STRING_LOCK_TABLES ()
 	{
 		return "Forum WRITE"
@@ -490,5 +617,4 @@ class CForum
 			.", ".CSujetForum::STRING_LOCK_TABLES();
 	}
 }
-
 ?>

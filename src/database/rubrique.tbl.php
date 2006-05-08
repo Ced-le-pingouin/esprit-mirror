@@ -149,9 +149,11 @@ class CModule_Rubrique
 	 * 
 	 * @return	le numéro d'ordre maximum
 	 */
-	function retNumOrdreMax ()
+	function retNumOrdreMax ($v_iIdMod=NULL)
 	{
-		$sRequeteSql = "SELECT MAX(OrdreRubrique) FROM Module_Rubrique";
+		if ($v_iIdMod == NULL)
+			$v_iIdMod = $this->oEnregBdd->IdMod;
+		$sRequeteSql = "SELECT MAX(OrdreRubrique) FROM Module_Rubrique WHERE IdMod='".$v_iIdMod."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iMax = $this->oBdd->retEnregPrecis($hResult,0);
 		$this->oBdd->libererResult($hResult);
@@ -597,7 +599,7 @@ class CModule_Rubrique
 		return TRUE;
 	}
 	
-	/** @name Fonctions de lecture des champs pour cette formation */
+	/** @name Fonctions de lecture des champs pour cette rubrique */
 	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retIdRubrique () { return $this->retId(); }
@@ -651,7 +653,7 @@ class CModule_Rubrique
 	//@}
 
 	
-	/** @name Fonctions de définition des champs pour cette formation */
+	/** @name Fonctions de définition des champs pour cette rubrique */
 	//@{
 	function defNom ($v_sNom)
 	{

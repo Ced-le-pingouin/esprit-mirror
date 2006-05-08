@@ -564,7 +564,7 @@ class CModule
 			$this->init();
 	}
 	
-	/** @name Fonctions de lecture des champs pour cette formation */
+	/** @name Fonctions de lecture des champs pour ce module */
 	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
@@ -601,7 +601,7 @@ class CModule
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	//@}
 	
-	/** @name Fonctions de définition des champs pour cette formation */
+	/** @name Fonctions de définition des champs pour ce module */
 	//@{
 	function defStatut ($v_iStatut)
 	{

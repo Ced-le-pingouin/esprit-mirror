@@ -230,10 +230,12 @@ class CSousActiv
 	 * 
 	 * @return	le numéro d'ordre maximum
 	 */
-	function retNumOrdreMax ()
+	function retNumOrdreMax ($v_iIdActiv=NULL)
 	{
+		if ($v_iIdActiv == NULL)
+			$v_iIdActiv = $this->retIdParent();		
 		$sRequeteSql = "SELECT MAX(OrdreSousActiv) FROM SousActiv"
-			." WHERE IdActiv='".$this->retIdParent()."'";
+			." WHERE IdActiv='".$v_iIdActiv."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iNumOrdreMax = $this->oBdd->retEnregPrecis($hResult,0);
 		$this->oBdd->libererResult($hResult);
@@ -1051,7 +1053,7 @@ class CSousActiv
 		return TRUE;
 	}
 	
-	/** @name Fonctions de lecture des champs pour cette formation */
+	/** @name Fonctions de lecture des champs pour cette sous-activité */
 	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retIdPers () { return (is_numeric($this->oEnregBdd->IdPers) ? $this->oEnregBdd->IdPers : 0); }
@@ -1098,7 +1100,7 @@ class CSousActiv
 	}
 	//@}
 
-	/** @name Fonctions de définition des champs pour cette formation */
+	/** @name Fonctions de définition des champs pour cette sous-activité */
 	//@{
 	function setIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers=$v_iIdPers; }
 	function defDonnees ($v_sDonnees) {	$this->mettre_a_jour("DonneesSousActiv",$v_sDonnees); }

@@ -96,9 +96,11 @@ class CActiv
 	 * 
 	 * @return	le numéro d'ordre maximum
 	 */
-	function retNumOrdreMax ()
+	function retNumOrdreMax ($v_iIdRubrique=NULL)
 	{
-		$sRequeteSql = "SELECT MAX(OrdreActiv) FROM Activ";
+		if ($v_iIdRubrique == NULL)
+			$v_iIdRubrique = $this->oEnregBdd->IdRubrique;
+		$sRequeteSql = "SELECT MAX(OrdreActiv) FROM Activ WHERE IdRubrique='".$v_iIdRubrique."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iNumOrdreMax = $this->oBdd->retEnregPrecis($hResult);
 		$this->oBdd->libererResult($hResult);
@@ -565,7 +567,7 @@ class CActiv
 		return count($this->aoEquipes);
 	}
 	
-	/** @name Fonctions de lecture des champs pour cette formation */
+	/** @name Fonctions de lecture des champs pour cette activité */
 	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retDateDeb () { return $this->oEnregBdd->DateDebActiv; }
@@ -636,7 +638,7 @@ class CActiv
 	}
 	//@}
 
-	/** @name Fonctions de définition des champs pour cette formation */
+	/** @name Fonctions de définition des champs pour cette activité */
 	//@{
 	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteActiv",$v_iModalite); }
 

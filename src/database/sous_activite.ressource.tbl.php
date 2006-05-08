@@ -424,6 +424,7 @@ class CRessourceSousActiv
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0);  }
 	function retIdParent () { return $this->oEnregBdd->IdRes; }
+	function retIdRes () { return $this->oEnregBdd->IdRes; }
 	function retStatut () { return $this->oEnregBdd->StatutResSousActiv; }
 	function retIdResSousActivSource () { return $this->oEnregBdd->IdResSousActivSource; }
 	
