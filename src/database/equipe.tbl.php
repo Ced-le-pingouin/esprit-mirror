@@ -42,7 +42,7 @@ class CEquipe
 	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
 	var $aoMembres;		///< Tableau d'objets CPersonne représentant les membres de l'équipe (rempli par #initMembres())
-	var $aoEquipes;
+	var $aoEquipes;		///< Tableau d'objets CEquipe rempli par diverses fonctions d'initialisation sur des critères spécifiques
 	
 	/**
 	 * Constructeur

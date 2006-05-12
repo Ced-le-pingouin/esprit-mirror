@@ -96,6 +96,18 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 </tr>
 </table>
 </fieldset>
+<?php
+if ($oProjet->retIdUtilisateur())
+{
+	$oStatuts = new CStatutUtilisateur($oProjet->oBdd, $oProjet->retIdUtilisateur());
+	$oStatuts->initStatuts();
+	
+	if ($oStatuts->estAdministrateur())
+	{
+		print "<a href=\"exporter_formation.php?idForm=".$oProjet->oFormationCourante->retId()."\" target=\"_blank\">Exporter la formation en SQL</a>";
+	}
+}
+?>
 </td>
 </tr>
 </table>

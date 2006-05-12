@@ -38,7 +38,7 @@ define("INTITULE_FORMATION","Formation"); /// Titre qui désigne le niveau racin
 
 /**
  * Gestion des formations, et encapsulation de la table Formation de la DB
-*/
+ */
 class CFormation
 {
 	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB
@@ -240,39 +240,48 @@ class CFormation
 	 * 
 	 * @return	l'id de la nouvelle formation
 	 */
-	function copier ($v_bRecursive=TRUE)
+	function copier($v_bRecursive = TRUE, $v_bExportationSeule = FALSE)
 	{
-		$iIdForm = $this->copierFormation();
+		global $sSqlExportForm;
+		$sSqlExportForm = "";
 		
-		if ($iIdForm < 1)
+		$iIdForm = $this->copierFormation($v_bExportationSeule);
+		
+		if ($iIdForm < 1 && !$v_bExportationSeule)
 			return 0;
 		
-		// ---------------------
-		// Copier les ressources de la formation actuelle
-		// vers la nouvelle formation
-		// ---------------------
-		$srcRep = dir_formation($this->retId());
-		$dstRep = dir_formation($iIdForm);
-		
-		@mkdir($dstRep,0744);
-		
-		$handle = @opendir($srcRep);
-		
-		while ($fichier = @readdir($handle))
-			if ($fichier != "." &&
-				$fichier != ".." &&
-				!strstr($fichier,"activ_"))
-				copyTree(($srcRep.$fichier),($dstRep.$fichier));
-		
-		@closedir($handle);
+		if (!$v_bExportationSeule)
+		{
+			// ---------------------
+			// Copier les ressources de la formation actuelle
+			// vers la nouvelle formation
+			// ---------------------
+			$srcRep = dir_formation($this->retId());
+			$dstRep = dir_formation($iIdForm);
+			
+			@mkdir($dstRep,0744);
+			
+			$handle = @opendir($srcRep);
+			
+			while ($fichier = @readdir($handle))
+				if ($fichier != "." &&
+					$fichier != ".." &&
+					!strstr($fichier,"activ_"))
+					copyTree(($srcRep.$fichier),($dstRep.$fichier));
+			
+			@closedir($handle);
+		}
 		
 		// ---------------------
 		// Copier tous les modules
 		// ---------------------
 		if ($v_bRecursive)
-			$this->copierModules($iIdForm);
+			$this->copierModules($iIdForm, $v_bExportationSeule);
 		
-		return $iIdForm;
+		if (!$v_bExportationSeule)
+			return $iIdForm;
+		else
+			return $sSqlExportForm;
 	}
 	
 	/**
@@ -280,10 +289,12 @@ class CFormation
 	 * 
 	 * @return	l'id de la nouvelle formation
 	 */
-	function copierFormation ()
+	function copierFormation($v_bExportationSeule = FALSE)
 	{
+		global $sSqlExportForm;
+		
 		$sRequeteSql = "INSERT INTO Formation SET"
-			." IdForm=NULL"
+			." IdForm=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
 			.", NomForm='".MySQLEscapeString($this->retNom())."'"
 			.", DescrForm='".MySQLEscapeString($this->retDescr())."'"
 			.", DateDebForm=NOW()"
@@ -292,9 +303,20 @@ class CFormation
 			.", OrdreForm='".($this->retNumOrdreMax() + 1)."'"
 			.", TypeForm='".$this->retType()."'"
 			.", IdPers='{$this->oEnregBdd->IdPers}'";
-		$this->oBdd->executerRequete($sRequeteSql);
 		
-		return $this->oBdd->retDernierId();
+		if ($v_bExportationSeule)
+		{
+			$sSqlExportForm .= $sRequeteSql . ";\n\n";
+			$sSqlExportForm .= "SET @iIdFormationCourante := LAST_INSERT_ID();\n\n";
+			
+			return -1;
+		}
+		else
+		{
+			$this->oBdd->executerRequete($sRequeteSql);
+			
+			return $this->oBdd->retDernierId();
+		}
 	}
 	
 	/**
@@ -302,11 +324,11 @@ class CFormation
 	 * 
 	 * @param	v_iIdForm l'id de la formation de destination
 	 */
-	function copierModules ($v_iIdForm)
+	function copierModules($v_iIdForm, $v_bExportationSeule = FALSE)
 	{
 		$this->initModules();
 		foreach ($this->aoModules as $oModule)
-			$oModule->copier($v_iIdForm);
+			$oModule->copier($v_iIdForm, TRUE, $v_bExportationSeule);
 		$this->aoModules = NULL;
 	}
 	

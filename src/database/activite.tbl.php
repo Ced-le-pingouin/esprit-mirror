@@ -115,36 +115,39 @@ class CActiv
 	 * 
 	 * @return	l'id de la nouvelle activité
 	 */
-	function copier ($v_iIdRubrique,$v_bRecursive=TRUE)
+	function copier($v_iIdRubrique, $v_bRecursive = TRUE, $v_bExportationSeule = FALSE)
 	{
-		$iIdActiv = $this->copierActivite($v_iIdRubrique);
+		$iIdActiv = $this->copierActivite($v_iIdRubrique, $v_bExportationSeule);
 		
-		if ($iIdActiv < 1)
+		if ($iIdActiv < 1 && !$v_bExportationSeule)
 			return 0;
 		
-		// -------------------
-		// Copier le répertoire de l'activité actuelle
-		// vers la nouvelle activité
-		// -------------------
-		$oActiv = new CActiv($this->oBdd,$iIdActiv);
-		
-		$sRepSrc = dir_cours($this->retId(),$this->retIdFormation());
-		$sRepDst = dir_cours($iIdActiv,$oActiv->retIdFormation());
-		
-		copyTree($sRepSrc,$sRepDst);
-		
-		// Vider les répertoires contenant les fichiers
-		// des collecticiels (sauf le document de base) et des chats
-		$oActiv->effacerRepDocuments(FALSE,"·*\-([0-9]{4})\..*");
-		$oActiv->effacerRepChats(FALSE);
-		
-		unset($oActiv);
+		if (!$v_bExportationSeule)
+		{
+			// -------------------
+			// Copier le répertoire de l'activité actuelle
+			// vers la nouvelle activité
+			// -------------------
+			$oActiv = new CActiv($this->oBdd,$iIdActiv);
+			
+			$sRepSrc = dir_cours($this->retId(),$this->retIdFormation());
+			$sRepDst = dir_cours($iIdActiv,$oActiv->retIdFormation());
+			
+			copyTree($sRepSrc,$sRepDst);
+			
+			// Vider les répertoires contenant les fichiers
+			// des collecticiels (sauf le document de base) et des chats
+			$oActiv->effacerRepDocuments(FALSE,"·*\-([0-9]{4})\..*");
+			$oActiv->effacerRepChats(FALSE);
+			
+			unset($oActiv);
+		}
 		
 		// -------------------
 		// Copier les sous-activités
 		// -------------------
 		if ($v_bRecursive)
-			$this->copierSousActivites($iIdActiv);
+			$this->copierSousActivites($iIdActiv, $v_bExportationSeule);
 		
 		return $iIdActiv;
 	}
@@ -156,13 +159,15 @@ class CActiv
 	 * 
 	 * @return	l'id de la nouvelle activité
 	 */
-	function copierActivite ($v_iIdRubrique)
+	function copierActivite($v_iIdRubrique, $v_bExportationSeule = FALSE)
 	{
-		if ($v_iIdRubrique < 1)
+		global $sSqlExportForm;
+		
+		if ($v_iIdRubrique < 1 && !$v_bExportationSeule)
 			return 0;
 		
 		$sRequeteSql = "INSERT INTO Activ SET"
-			." IdActiv=NULL"
+			." IdActiv=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
 			.", NomActiv='".MySQLEscapeString($this->oEnregBdd->NomActiv)."'"
 			.", DescrActiv='".MySQLEscapeString($this->oEnregBdd->DescrActiv)."'"
 			.", DateDebActiv=NOW()"
@@ -173,12 +178,24 @@ class CActiv
 			.", AfficherModaliteActiv='{$this->oEnregBdd->AfficherModaliteActiv}'"
 			.", InscrSpontEquipeA='0'"
 			.", NbMaxDsEquipeA='0'"
-			.", IdRubrique='{$v_iIdRubrique}'"
+			//.", IdRubrique=".(!$v_bExportationSeule?"'{$v_iIdRubrique}'":"@iIdRubriqueCourante")
+			.", IdRubrique=".(!$v_bExportationSeule?"'{$v_iIdRubrique}'":"'".$this->retIdParent()."'")
 			.", IdUnite='0'"
 			.", OrdreActiv='{$this->oEnregBdd->OrdreActiv}'";
-		$this->oBdd->executerRequete($sRequeteSql);
 		
-		return $this->oBdd->retDernierId();
+		if ($v_bExportationSeule)
+		{
+			$sSqlExportForm .= $sRequeteSql . ";\n\n";
+			$sSqlExportForm .= "SET @iIdActiviteCourante := LAST_INSERT_ID();\n\n";
+			
+			return -1;
+		}
+		else
+		{
+			$this->oBdd->executerRequete($sRequeteSql);
+			
+			return $this->oBdd->retDernierId();
+		}
 	}
 	
 	/**
@@ -186,11 +203,11 @@ class CActiv
 	 * 
 	 * @param	v_iIdActiv l'id de l'activité de destination
 	 */
-	function copierSousActivites ($v_iIdActiv)
+	function copierSousActivites($v_iIdActiv, $v_bExportationSeule = FALSE)
 	{
 		$this->initSousActivs();
 		foreach ($this->aoSousActivs as $oSousActiv)
-			$oSousActiv->copier($v_iIdActiv);
+			$oSousActiv->copier($v_iIdActiv, TRUE, $v_bExportationSeule);
 		$this->aoSousActivs = NULL;
 	}
 	

@@ -168,17 +168,18 @@ class CModule_Rubrique
 	 * 
 	 * @return	l'id de la nouvelle rubrique
 	 */
-	function copier ($v_iIdMod,$v_bRecursive=TRUE)
+	function copier($v_iIdMod, $v_bRecursive = TRUE, $v_bExportationSeule = FALSE)
 	{
-		$iIdRubrique = $this->copierRubrique($v_iIdMod);
+		$iIdRubrique = $this->copierRubrique($v_iIdMod, $v_bExportationSeule);
 		
-		if ($iIdRubrique < 1)
+		if ($iIdRubrique < 1 && !$v_bExportationSeule)
 			return 0;
 		
-		$this->copierForum($iIdRubrique);
+		if (!$v_bExportationSeule)
+			$this->copierForum($iIdRubrique);
 		
 		if ($v_bRecursive)
-			$this->copierActivites($iIdRubrique);
+			$this->copierActivites($iIdRubrique, $v_bExportationSeule);
 		
 		return $iIdRubrique;
 	}
@@ -190,15 +191,18 @@ class CModule_Rubrique
 	 * 
 	 * @return	l'id de la nouvelle rubrique
 	 */
-	function copierRubrique ($v_iIdMod)
+	function copierRubrique($v_iIdMod, $v_bExportationSeule = FALSE)
 	{
-		if ($v_iIdMod < 1)
+		global $sSqlExportForm;
+		
+		if ($v_iIdMod < 1 && !$v_bExportationSeule)
 			return 0;
 			
 		$sRequeteSql = "INSERT INTO Module_Rubrique SET"
-			." IdRubrique=NULL"
+			." IdRubrique=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
 			.", NomRubrique='".MySQLEscapeString($this->retNom())."'"
-			.", IdMod='{$v_iIdMod}'"
+			//.", IdMod=".(!$v_bExportationSeule?"'{$v_iIdMod}'":"@iIdModuleCourant")
+			.", IdMod=".(!$v_bExportationSeule?"'{$v_iIdMod}'":"'".$this->retIdParent()."'")
 			.", TypeRubrique='{$this->oEnregBdd->TypeRubrique}'"
 			.", DescrRubrique='".MySQLEscapeString($this->oEnregBdd->DescrRubrique)."'"
 			.", DonneesRubrique='".MySQLEscapeString($this->oEnregBdd->DonneesRubrique)."'"
@@ -209,9 +213,20 @@ class CModule_Rubrique
 			.", IdIntitule='{$this->oEnregBdd->IdIntitule}'"
 			.", NumDepartIntitule='{$this->oEnregBdd->NumDepartIntitule}'"
 			.", IdPers='{$this->oEnregBdd->IdPers}'";
-		$this->oBdd->executerRequete ($sRequeteSql);
 		
-		return $this->oBdd->retDernierId();
+		if ($v_bExportationSeule)
+		{
+			$sSqlExportForm .= $sRequeteSql . ";\n\n";
+			$sSqlExportForm .= "SET @iIdRubriqueCourante := LAST_INSERT_ID();\n\n";
+			
+			return -1;
+		}
+		else
+		{
+			$this->oBdd->executerRequete ($sRequeteSql);
+			
+			return $this->oBdd->retDernierId();
+		}
 	}
 	
 	/**
@@ -219,11 +234,11 @@ class CModule_Rubrique
 	 * 
 	 * @param	v_iIdRubrique l'id de la rubrique de destination
 	 */
-	function copierActivites ($v_iIdRubrique)
+	function copierActivites($v_iIdRubrique, $v_bExportationSeule = FALSE)
 	{
 		$this->initActivs();
 		foreach ($this->aoActivs as $oActiv)
-			$oActiv->copier($v_iIdRubrique);
+			$oActiv->copier($v_iIdRubrique, TRUE, $v_bExportationSeule);
 		$this->aoActivs = NULL;
 	}
 	
