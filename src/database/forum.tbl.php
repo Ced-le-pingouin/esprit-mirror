@@ -22,7 +22,7 @@
 /**
  * @file	forum.tbl.php
  * 
- * Contient la classe de gestin des forums
+ * Contient la classe de gestion des forums
  * 
  * @date	2004/05/14
  * 

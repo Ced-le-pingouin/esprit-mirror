@@ -19,35 +19,41 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Classe .................: chat.tbl.php
-** Description ............:
-** Date de création .......:
-** Dernière modification ..: 04/10/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	chat.tbl.php
+ * 
+ * Contient la classe de gestion des chats, en rapport avec la DB
+ * 
+ * @date	2005/10/04
+ * 
+ * @author	Filippo PORCO
+ */
 
-define("CHAT_POUR_TOUS",0);
-define("CHAT_PAR_EQUIPE",1);
+define("CHAT_POUR_TOUS",0);															/// chat pour tout le monde							@enum CHAT_POUR_TOUS
+define("CHAT_PAR_EQUIPE",1);														/// chat par équipe									@enum CHAT_PAR_EQUIPE
 
-define("CHAT_NOM_DEFAUT","Chat");
-define("CHAT_NOM_COULEUR_DEFAUT","argent");
-define("CHAT_RVB_COULEUR_DEFAUT","206,206,206");
-define("CHAT_COULEUR_DEFAULT",CHAT_NOM_COULEUR_DEFAUT.";".CHAT_RVB_COULEUR_DEFAUT);
+define("CHAT_NOM_DEFAUT","Chat");													/// nom par défaut d'un chat						@enum CHAT_NOM_DEFAUT
+define("CHAT_NOM_COULEUR_DEFAUT","argent");											/// couleur en texte par défaut d'un chat			@enum CHAT_NOM_COULEUR_DEFAUT
+define("CHAT_RVB_COULEUR_DEFAUT","206,206,206");									/// couleur en rgb par défaut d'un chat				@enum CHAT_RVB_COULEUR_DEFAUT
+define("CHAT_COULEUR_DEFAULT",CHAT_NOM_COULEUR_DEFAUT.";".CHAT_RVB_COULEUR_DEFAUT);	/// couleur en texte + en rgb par défaut d'un chat	@enum CHAT_COULEUR_DEFAULT
 
+/**
+ * Gestion des chats, et encapsulation de la table Chat de la DB
+ */
 class CChat
 {
-	var $iId;
+	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id du chat à récupérer dans la DB
+
+	var $oBdd;			///< Objet représentant la connexion à la DB
+	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
+
+	var $aoChats;		///< Tableau rempli par #initChats(), contenant une liste de chats
+	var $oParent;		///< Objet (de type CModule_Rubrique ou CSousActiv) contenant le parent du chat
 	
-	var $oBdd;
-	var $oEnregBdd;
-	
-	var $aoChats;
-	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CChat (&$v_oBdd,$v_iId=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -57,6 +63,10 @@ class CChat
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -75,6 +85,11 @@ class CChat
 		}
 	}
 	
+	/**
+	 * Retourne soit l'id de la rubrique ou soit celui de la sous-activité parente
+	 * 
+	 * @return	l'id du parent
+	 */
 	function retIdNiveau ()
 	{
 		if ($this->oEnregBdd->IdSousActiv > 0)
@@ -85,6 +100,11 @@ class CChat
 			return 0;
 	}
 	
+	/**
+	 * Retourne la constante qui définit le niveau actuel, de la structure d'une formation (rubrique ou sous-activité)
+	 * 
+	 * @return	la constante qui définit le niveau actuel, de la structure d'une formation
+	 */
 	function retTypeNiveau ()
 	{
 		if ($this->oEnregBdd->IdSousActiv > 0)
@@ -95,6 +115,11 @@ class CChat
 			return NULL;
 	}
 	
+	/**
+	 * Initialise \c oParent avec un objet de type rubrique ou sous-activité
+	 * 
+	 * @return	\c true si l'objet a bien été initialisé
+	 */
 	function initParent ()
 	{
 		switch ($this->retTypeNiveau())
@@ -112,6 +137,9 @@ class CChat
 		return is_object($this->oParent);
 	}
 	
+	/**
+	 * Enlève les trous dans les numéros d'ordre des chats
+	 */
 	function remettreDelOrdre ()
 	{
 		// Rechercher tous les salons de cette sous-activité
@@ -143,6 +171,9 @@ class CChat
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
+	/**
+	 * Efface le chat de la DB
+	 */
 	function effacer ()
 	{
 		$sRequeteSql = "DELETE FROM Chat"
@@ -152,6 +183,9 @@ class CChat
 		$this->remettreDelOrdre();
 	}
 	
+	/**
+	 * Met à jour l'enregistrement dans la DB
+	 */
 	function enregistrer ()
 	{
 		$sRequeteSql = "UPDATE Chat SET"
@@ -166,8 +200,8 @@ class CChat
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function retId () {	return (is_numeric($this->iId) ? $this->iId : 0); }
-	
+	/** @name Fonctions de définition des champs pour ce chat */
+	//@{
 	function defNom ($v_sNomChat)
 	{
 		$v_sNomChat = MySQLEscapeString($v_sNomChat);
@@ -177,7 +211,29 @@ class CChat
 		
 		$this->oEnregBdd->NomChat = $v_sNomChat;
 	}
+
+	function defNumOrdre ($v_iNouvellePos)
+	{
+		if ($this->oEnregBdd->OrdreChat != $v_iNouvellePos)
+		{
+			$this->redistNumsOrdre($this->oEnregBdd->OrdreChat,$v_iNouvellePos);
+			$this->oEnregBdd->OrdreChat = $v_iNouvellePos;
+		}
+	}
 	
+	function defCouleur ($v_sCouleurChat) { $this->oEnregBdd->CouleurChat = $v_sCouleurChat; }
+	function defModalite ($v_bModaliteChat) { $this->oEnregBdd->ModaliteChat = $v_bModaliteChat; }
+	function defSalonPrive ($v_bSalonPriveChat) { $this->oEnregBdd->SalonPriveChat = ($v_bSalonPriveChat == "on" ? "1" : "0"); }
+	function defEnregConversation ($v_bEnregChat) { $this->oEnregBdd->EnregChat = ($v_bEnregChat == "on" ? "1" : "0"); }
+	function defIdSousActiv ($v_iIdSousActiv) { $this->oEnregBdd->IdSousActiv = $v_iIdSousActiv; }
+
+	//@}
+
+
+	/** @name Fonctions de lecture des champs pour ce chat */
+	//@{
+	function retId () {	return (is_numeric($this->iId) ? $this->iId : 0); }
+
 	function retNom ($v_sMode=NULL)
 	{
 		if ($v_sMode == "html")
@@ -187,28 +243,84 @@ class CChat
 		else
 			return $this->oEnregBdd->NomChat;
 	}
-	
-	function retNomDefaut () { return CHAT_NOM_DEFAUT; }
-	function defCouleur ($v_sCouleurChat) { $this->oEnregBdd->CouleurChat = $v_sCouleurChat; }
+
 	function retCouleur () { return $this->oEnregBdd->CouleurChat; }
-	function retCouleurDefaut () { return $this->retNomCouleurDefaut().";".$this->retValeurCouleurDefaut(); }
+
+	function retModalite ($v_bTransformer=FALSE)
+	{
+		if ($v_bTransformer)
+			return (CHAT_PAR_EQUIPE == $this->oEnregBdd->ModaliteChat ? MODALITE_PAR_EQUIPE : MODALITE_INDIVIDUEL);
+		else
+			return $this->oEnregBdd->ModaliteChat;
+	}
 	
+	function retEnregConversation () { return $this->oEnregBdd->EnregChat; }
+	function retNumOrdre () { return $this->oEnregBdd->OrdreChat; }
+	function retSalonPrive () { return $this->oEnregBdd->SalonPriveChat; }
+	function retIdRubrique () { return $this->oEnregBdd->IdRubrique; }
+	function retIdSousActiv () { return $this->oEnregBdd->IdSousActiv; }
+
+
 	function retNomCouleur ()
 	{
 		list($sNomCouleur) = split(";",$this->oEnregBdd->CouleurChat);
 		return $sNomCouleur;
 	}
-	
-	function retNomCouleurDefaut () { return CHAT_NOM_COULEUR_DEFAUT; }
-	
+
 	function retValeurCouleur ()
 	{
 		list(,$sValeurCouleur) = split(";",$this->oEnregBdd->CouleurChat);
 		return $sValeurCouleur;
 	}
+
+	//@}
+
+	/**
+	 * Retourne le nom par défaut d'un chat(constante CHAT_NOM_DEFAUT)
+	 * 
+	 * @return	le nom par défaut d'un chat
+	 */
+	function retNomDefaut ()
+	{
+		return CHAT_NOM_DEFAUT;
+	}
 	
-	function retValeurCouleurDefaut () { return CHAT_RVB_COULEUR_DEFAUT; }
+	/**
+	 * Retourne en français et en RVB la couleur par défaut d'un chat
+	 * 
+	 * @return	en français et en RVB la couleur par défaut d'un chat
+	 */
+	function retCouleurDefaut ()
+	{
+		return $this->retNomCouleurDefaut().";".$this->retValeurCouleurDefaut();
+	}
 	
+	/**
+	 * Retourne en français la couleur par défaut(constante CHAT_NOM_COULEUR_DEFAUT)
+	 * 
+	 * @return	en français la couleur par défaut
+	 */
+	function retNomCouleurDefaut ()
+	{
+		return CHAT_NOM_COULEUR_DEFAUT;
+	}
+	
+	/**
+	 * Retourne la couleur en RVB par défaut d'un chat(constante CHAT_RVB_COULEUR_DEFAUT)
+	 * 
+	 * @return	la couleur en RVB par défaut d'un chat
+	 */
+	function retValeurCouleurDefaut () 
+	{
+		return CHAT_RVB_COULEUR_DEFAUT;
+	}
+	
+	/**
+	 * Redistribue les numéros d'ordre des chats
+	 * 
+	 * @param	v_iAnciennePos	l'ancien numéro d'ordre du chat
+	 * @param	v_iNouvellePos	le nouveau numéro d'ordre du chat
+	 */
 	function redistNumsOrdre ($v_iAnciennePos,$v_iNouvellePos)
 	{
 		$v_iAnciennePos--; $v_iNouvellePos--;
@@ -249,33 +361,13 @@ class CChat
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function defNumOrdre ($v_iNouvellePos)
-	{
-		if ($this->oEnregBdd->OrdreChat != $v_iNouvellePos)
-		{
-			$this->redistNumsOrdre($this->oEnregBdd->OrdreChat,$v_iNouvellePos);
-			$this->oEnregBdd->OrdreChat = $v_iNouvellePos;
-		}
-	}
-	
-	function retNumOrdre () { return $this->oEnregBdd->OrdreChat; }
-	function defModalite ($v_bModaliteChat) { $this->oEnregBdd->ModaliteChat = $v_bModaliteChat; }
-	
-	function retModalite ($v_bTransformer=FALSE)
-	{
-		if ($v_bTransformer)
-			return (CHAT_PAR_EQUIPE == $this->oEnregBdd->ModaliteChat ? MODALITE_PAR_EQUIPE : MODALITE_INDIVIDUEL);
-		else
-			return $this->oEnregBdd->ModaliteChat;
-	}
-	
-	function defSalonPrive ($v_bSalonPriveChat) { $this->oEnregBdd->SalonPriveChat = ($v_bSalonPriveChat == "on" ? "1" : "0"); }
-	function retSalonPrive () { return $this->oEnregBdd->SalonPriveChat; }
-	function defEnregConversation ($v_bEnregChat) { $this->oEnregBdd->EnregChat = ($v_bEnregChat == "on" ? "1" : "0"); }
-	function retEnregConversation () { return $this->oEnregBdd->EnregChat; }
-	function defIdSousActiv ($v_iIdSousActiv) { $this->oEnregBdd->IdSousActiv = $v_iIdSousActiv; }
-	function retIdSousActiv () { return $this->oEnregBdd->IdSousActiv; }
-	
+	/**
+	 * Verifie si le statut donné peut effacer les archives des chats
+	 * 
+	 * @param	v_iIdStatutUtilisateur l'id du statut de la personne
+	 * 
+	 * @return	\c true si le statut peut effacer les archives
+	 */
 	function peutEffacerArchives ($v_iIdStatutUtilisateur)
 	{
 		return ($v_iIdStatutUtilisateur == STATUT_PERS_TUTEUR ||
@@ -283,6 +375,13 @@ class CChat
 				$v_iIdStatutUtilisateur == STATUT_PERS_ADMIN);
 	}
 	
+	/**
+	 * Ajoute un chat dans la DB
+	 * 
+	 * @param	v_oObjNiveau objet (CModule_Rubrique ou CSousActiv) du niveau auquel le chat appartient
+	 * 
+	 * @return	l'id du nouveau chat
+	 */
 	function ajouter (&$v_oObjNiveau)
 	{
 		// Attribuer un numéro ordre
@@ -304,6 +403,13 @@ class CChat
 		return $this->oBdd->retDernierId($hResult);
 	}
 	
+	/**
+	 * Initialise un tableau contenant la liste des chats de la sous-activité ou de la rubrique
+	 * 
+	 * @param	v_oObjNiveau objet (CModule_Rubrique ou CSousActiv) du niveau auquel le chat appartient
+	 * 
+	 * @return	le nombre de chats insérés dans le tableau
+	 */
 	function initChats (&$v_oObjNiveau)
 	{
 		$this->aoChats = array();
@@ -341,6 +447,11 @@ class CChat
 		return $iIdxChat;
 	}
 	
+	/**
+	 * Efface tous les chats appartenant à un niveau
+	 * 
+	 * @param	v_oObjNiveau objet (CModule_Rubrique ou CSousActiv) du niveau auquel le chat appartient
+	 */
 	function effacerChats (&$v_oObjNiveau)
 	{
 		$iTypeNiveau = $v_oObjNiveau->retTypeNiveau();
@@ -356,6 +467,13 @@ class CChat
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Retourne le nombre de chats appartenant au niveau de la formation
+	 * 
+	 * @param	v_oObjNiveau objet (CModule_Rubrique ou CSousActiv) du niveau auquel le chat appartient
+	 * 
+	 * @return	le nombre de chats
+	 */
 	function retNombreChats (&$v_oObjNiveau)
 	{
 		if ($v_oObjNiveau->retTypeNiveau() == TYPE_SOUS_ACTIVITE)
@@ -379,12 +497,24 @@ class CChat
 	}
 
 	/**
-	 * @BUG Cette fonction est appelé mais ne fait rien
+	 * Copie le chat courant d'un niveau vers un autre
+	 * 
+	 * @param	v_iNouvId l'id du niveau de destination
 	 */
-	function copier()
+	function copier($v_iNouvId)
 	{
-		return TRUE;
+		$sRequeteSql = "INSERT INTO Chat SET"
+			." IdChat=NULL"
+			.", NomChat='".$this->retNom()."'"
+			.", CouleurChat='".$this->retCouleur()."'"
+			.", ModaliteChat='".$this->retModalite()."'"
+			.", EnregChat='".$this->retEnregConversation()."'"
+			.", SalonPriveChat='".$this->retSalonPrive()."'"
+			.", OrdreChat='".$this->retNumOrdre()."'"
+			.", IdRubrique='".($this->retIdRubrique() > 0 ? $v_iNouvId : 0)."'"
+			.", IdSousActiv='".($this->retIdSousActiv() > 0 ? $v_iNouvId : 0)."'";
+			
+			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 	}
-
 }
 ?>
