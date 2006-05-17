@@ -19,33 +19,38 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: messageforum.tbl.php
-** Description ............: 
-** Date de création .......: 14/05/2004
-** Dernière modification ..: 12/10/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**                           Jérôme TOUZE
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	messageforum.tbl.php
+ * 
+ * Contient la classe de gestion des messages des forums
+ * 
+ * @date	2004/05/14
+ * 
+ * @author	Filippo PORCO
+ * @author	Jérôme TOUZE
+ */
 
 require_once(dir_database("ressource.tbl.php"));
 
+/**
+ * Gestion des messages des forums, et encapsulation de la table MessageForum de la DB
+ */
 class CMessageForum
 {
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $iId;
-	var $oAuteur;
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oAuteur;			///< Variable de type CPersonne, contenant l'auteur du message
 	
-	var $sRepRessources;
+	var $sRepRessources;	///< Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources
 	
-	var $aoRessources;
+	var $aoRessources;		///< Tableau rempli par initRessources(), contenant les ressources attachées au message
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CMessageForum (&$v_oBdd,$v_iId=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -55,6 +60,10 @@ class CMessageForum
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -73,6 +82,14 @@ class CMessageForum
 		}
 	}
 	
+	/**
+	 * Ajoute un message dans un sujet
+	 * 
+	 * @param	v_sMessage	le message
+	 * @param	v_iIdSujet	l'id du sujet
+	 * @param	v_iIdPers	l'id de la personne
+	 * @param	v_iIdEquipe	id de l'équipe(optionnel)
+	 */
 	function ajouter ($v_sMessage,$v_iIdSujet,$v_iIdPers,$v_iIdEquipe=0)
 	{
 		$sRequeteSql = "INSERT INTO MessageForum SET"
@@ -90,6 +107,11 @@ class CMessageForum
 			$this->associerMessageEquipe($v_iIdEquipe);
 	}
 	
+	/**
+	 * Associe un message à une équipe
+	 * 
+	 * @param	v_iIdEquipe	l'id de l'équipe
+	 */
 	function associerMessageEquipe ($v_iIdEquipe)
 	{
 		$iIdMessageForum = $this->retId();
@@ -97,6 +119,9 @@ class CMessageForum
 		$this->oBdd->executerRequete("REPLACE INTO MessageForum_Equipe (IdMessageForum,IdEquipe) VALUES ('{$iIdMessageForum}','{$v_iIdEquipe}')");
 	}
 	
+	/**
+	 *  Enregistre(update) dans la DB le message courant
+	 */
 	function enregistrer ()
 	{
 		$sRequeteSql = "UPDATE MessageForum SET"
@@ -106,8 +131,17 @@ class CMessageForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function effacer () { $this->effacerMessage(); }
+	/**
+	 * Efface le message
+	 */
+	function effacer () 
+	{
+		$this->effacerMessage();
+	}
 	
+	/**
+	 * Efface le message de la DB ainsi que les ressources et les équipes associées
+	 */
 	function effacerMessage ()
 	{
 		$this->effacerEquipesAssocieesMessage();
@@ -119,6 +153,9 @@ class CMessageForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Efface les équipes associés à un message
+	 */
 	function effacerEquipesAssocieesMessage ()
 	{
 		$sRequeteSql = "DELETE FROM MessageForum_Equipe"
@@ -126,27 +163,45 @@ class CMessageForum
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	/**
+	 * Optimise les tables MessageForum, Ressource et MessageForum_Ressource
+	 */
 	function optimiserTables ()
 	{
-		$this->oBdd->executerRequete("LOCK TABLES MessageForum WRITE, Ressource WRITE, MessageForum_Ressource WRITE");
 		$this->oBdd->executerRequete("OPTIMIZE TABLE MessageForum, Ressource, MessageForum_Ressource");
-		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
+	/** @name Fonctions de définition des champs pour ce message */
+	//@{
+	function defMessage ($v_sMessage) { $this->oEnregBdd->TexteMessageForum = $v_sMessage; }
+	function defRepRessources ($v_sRepRessources) { $this->sRepRessources = $v_sRepRessources; }
+	//@}
+	
+	/** @name Fonctions de lecture des champs pour ce message */
+	//@{
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	function retIdParent () { return (is_numeric($this->oEnregBdd->IdSujetForum) ? $this->oEnregBdd->IdSujetForum : 0); }
-	function defMessage ($v_sMessage) { $this->oEnregBdd->TexteMessageForum = $v_sMessage; }
 	function retMessage () { return $this->oEnregBdd->TexteMessageForum; }
-	function initAuteur () { $this->oAuteur = $this->retAuteur(); }
 	function retAuteur (){ return new CPersonne($this->oBdd,$this->oEnregBdd->IdPers); }
-	
+	function retRepRessources () { return (empty($this->sRepRessources) ? NULL : $this->sRepRessources); }
 	function retDate ($v_sFormatterDate="d/m/y H:i")
 	{
 		return retDateFormatter($this->oEnregBdd->DateMessageForum,$v_sFormatterDate);
 	}
+	//@}
 	
 	/**
-	 * Rechercher les fichiers attachés à ce message
+	 * Initialise \c oAuteur avec la personne qui a
+	 */
+	function initAuteur () 
+	{
+		$this->oAuteur = $this->retAuteur();
+	}
+	
+	/**
+	 * Initialise un tableau contenant les ressources attachées au message
+	 * 
+	 * @return	le nombre de ressources insérées dans le tableau
 	 */
 	function initRessources ()
 	{
@@ -174,6 +229,15 @@ class CMessageForum
 		return $iIdxRes;
 	}
 	
+	/**
+	 * Ajoute un ressource au message
+	 * 
+	 * @param	v_sNomRes	le nom de la ressource
+	 * @param	v_sUrlRes	l'url de la ressource
+	 * @param	v_iIdPers	l'id de la personne
+	 * 
+	 * @return	l'id de la ressource ajoutée
+	 */
 	function ajouterRessource ($v_sNomRes,$v_sUrlRes,$v_iIdPers)
 	{
 		$iIdMessageForum = $this->retId();
@@ -215,9 +279,9 @@ class CMessageForum
 		return $iIdRes;
 	}
 	
-	function retRepRessources () { return (empty($this->sRepRessources) ? NULL : $this->sRepRessources); }
-	function defRepRessources ($v_sRepRessources) { $this->sRepRessources = $v_sRepRessources; }
-	
+	/**
+	 * Efface les ressources liées au message
+	 */
 	function effacerRessources ()
 	{
 		$sRequeteSql = "LOCK TABLES"
@@ -255,7 +319,14 @@ class CMessageForum
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
-	function STRING_LOCK_TABLES () { return "MessageForum WRITE, MessageForum_Equipe WRITE, MessageForum_Ressource WRITE"; }
+	/**
+	 * Retourne les tables à verrouiller de la DB
+	 * 
+	 * @return	les tables à verrouiller de la DB
+	 */
+	function STRING_LOCK_TABLES ()
+	{ 
+		return "MessageForum WRITE, MessageForum_Equipe WRITE, MessageForum_Ressource WRITE";
+	}
 }
-
 ?>

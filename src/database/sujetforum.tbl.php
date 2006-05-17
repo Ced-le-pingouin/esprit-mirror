@@ -43,7 +43,7 @@ class CSujetForum
 	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
 	
 	var $aoMessages;		///< Tableau rempli par #initMessages(), contenant les mesages du sujet 
-	var $oAuteur;			///< Variable de type entier, contenant l'auteur du sujet
+	var $oAuteur;			///< Variable de type CPersonne, contenant l'auteur du sujet
 	
 	var $sRepRessources;	///< Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources
 	
