@@ -1,0 +1,78 @@
+body
+{
+	color: rgb(0,0,0);
+	font-family: Verdana,Tahoma,Arial,Times;
+	font-size: 13px;
+	text-decoration:none;
+	margin: 3px;
+	padding: 0;
+}
+
+a:link
+{
+	color: rgb(5,5,75);
+	font-size: 8pt;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+a:visited
+{
+	color: rgb(5,5,75);
+	font-size: 8pt;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+a:hover
+{
+	color: rgb(50,50,175);
+	font-size: 8pt;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#navmenu
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: rgb(174,165,138) url('dialog-menu-fond.gif');
+	height: 23px;
+	width: 100%;
+	padding: 0;
+}
+
+#navmenu a
+{
+	color: rgb(250,250,250);
+}
+
+fieldset
+{
+	margin: 10px;
+	width: 400px;
+	
+}
+
+#fermer, #annuler
+{
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#suivant, #valider, #menu
+{
+	float: right;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+h4
+{
+	margin: 3px;
+	font-size: 14px;
+}
