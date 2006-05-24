@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Esprit, a web Learning Management System, developped
 // by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
 // 
@@ -19,17 +18,16 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: login.php
-** Description ............:
-** Date de création .......:
-** Dernière modification ..: 12/07/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	copie_activ.php
+ * 
+ * Copie une activité d'une rubrique vers une autre
+ * 
+ * @date	2005/07/12
+ * 
+ * @author	Filippo PORCO <filippo.porco@umh.ac.be>
+ * @author	Jérôme TOUZE
+ */
 
 require_once("globals.inc.php");
 
@@ -46,6 +44,9 @@ $url_iCodeEtat = (empty($HTTP_GET_VARS["codeEtat"]) ? 0 : $HTTP_GET_VARS["codeEt
 $oTpl = new Template(dir_theme("login/login.tpl",FALSE,TRUE));
 $oBlocErreurLogin = new TPL_Block("BLOCK_ERREUR_LOGIN",$oTpl);
 $oBlocAvertissementLogin = new TPL_Block("BLOCK_AVERTISSEMENT_LOGIN",$oTpl);
+$oBlocInfosPlateforme = new TPL_Block("BLOCK_INFOS_PLATEFORME",$oTpl);
+$oBlocListeFormations = new TPL_Block("BLOCK_LISTE_FORMATIONS",$oBlocInfosPlateforme);
+$oBlocFormation       = new TPL_Block("BLOCK_FORMATION",$oBlocListeFormations);
 
 //  {{{ Afficher un message d'erreur lorsque le pseudo ou le mot de passe de
 //      l'utilisateur est incorrect
@@ -75,9 +76,33 @@ else
 $oTpl->remplacer(array("{form}","{/form}"), array("<form name=\"formulId\" action=\"index2.php\" method=\"post\" target=\"_top\">","</form>"));
 // }}}
 
+// {{{ Permet d'afficher que les formations accessibles qu'aux visiteurs
+$oProjet->oUtilisateur = NULL;
+$oProjet->asInfosSession[SESSION_FORM] = 0;
+// }}}
+$sRepHttpPlateforme = dir_http_plateform();
+
+if ($oProjet->initFormationsUtilisateur() > 0)
+{
+	$oBlocFormation->beginLoop();
+	
+	foreach ($oProjet->aoFormations as $oFormation)
+	{
+		$sUrl = "<a href='{$sRepHttpPlateforme}index2.php?idForm=".$oFormation->retId()."' target='_top'>".$oFormation->retNom()."</a>";
+		$oBlocFormation->nextLoop();
+		$oBlocFormation->remplacer("{formation->url}",$sUrl);
+	}
+	
+	$oBlocFormation->afficher();
+	$oBlocListeFormations->afficher();
+}
+else
+{
+	$oBlocListeFormations->effacer();
+}
+
+$oBlocInfosPlateforme->afficher();
 $oTpl->afficher();
 
 $oProjet->terminer();
-
 ?>
-

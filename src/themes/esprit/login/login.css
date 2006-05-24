@@ -1,0 +1,412 @@
+html
+{
+	height: 100%;
+	/* \*/ overflow: hidden; /**/
+}
+body
+{
+	background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
+	margin: 0;
+	padding: 0;
+	color: black;
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+h1
+{
+	font-size: 11px;
+	font-weight: bold;
+	font-style: normal;
+	color: white;
+	padding: 0;
+	margin: 0;
+	letter-spacing: 0.2em;
+	white-space: nowrap;
+}
+h2
+{
+	color: rgb(136,37,37);
+	font-weight: bold;
+	font-style: italic;
+	font-size: 18px;
+	text-align: center;
+}
+h3
+{
+	font-weight: bold;
+	font-size: 12px;
+}
+h4
+{
+	font-weight: bold;
+	font-size: 12px;
+	color: white;
+	background-color: rgb(104,108,71);
+	margin: 0 0 0 70px;
+	padding: 4px;
+}
+input
+{
+	background-color: rgb(255,255,255); 
+	color: black;
+	border: black solid 1px;
+	font-size: 11px;
+	width: 84px;
+}
+label
+{
+	padding-right: 3px;
+}
+a
+{
+	color: rgb(136,37,37);
+	font-weight: normal;
+	text-decoration: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+form
+{
+	padding: 0;
+	margin: 0;
+}
+.aligndroite
+{
+	text-align: right;
+}
+.BlockContent
+{
+	background-color: rgb(253,249,238);
+	padding: 2px;
+	margin: 3px 0 20px 3px;
+}
+.breve_separateur
+{
+	padding: 0 0 0 70px;
+	margin: 5px auto;
+	display: block;
+}
+.btn_ok 
+{ 
+	background-color: rgb(148,3,32);
+	color: rgb(255,255,255);
+	border: rgb(0,0,0) solid 1px;
+	width: 40px;
+}
+.imgpresentation
+{
+	float: left; 
+	margin: 5px;
+	padding: 0;
+}
+.news_texte
+{
+	font-style: normal;
+	font-weight: normal;
+	color: black;
+	background-color: rgb(255,245,213);
+	margin: 0 0 0 70px;
+	padding: 3px;
+}
+.touchesF
+{
+	font-weight: bold;
+	color: rgb(153,51,51);
+}
+#bandeau
+{
+	background-image: url('images/login-haut-fond.jpg');
+	background-repeat: repeat-x;
+	background-position: 228px 0;
+	background-color: rgb(104,101,96);
+	height: 18%;
+	width: 100%;
+	border-bottom-color: black;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+#bandeau-logo
+{
+	float: left;
+	background-image: url('images/login-haut-gauche.gif');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	height: 100%;
+	width: 228px;
+}
+#logo
+{
+	position: absolute;
+	top: 55px;
+	left: 90px;
+}
+#titre
+{
+	padding-top: 98px;
+	margin-left: 232px;
+	font-family: Arial,sans-serif;
+	font-stretch: ultra-expanded;
+}
+#contenu
+{
+	height: 73%;
+	overflow: auto;
+	margin: 0 0 1px 228px;
+	padding: 0;
+}
+#formations
+{
+	padding: 2px;
+	margin: 3px 0 20px 3px;
+}
+#plateforme
+{
+	background-image: url("images/Exercice1.gif");
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+#principes
+{
+	background-image: url("images/Exercice2.gif");
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+#conception
+{
+	background-image: url("images/Exercice4.gif");
+	background-repeat: no-repeat;
+	background-position: 5px 5px;
+}
+#plateforme p, #plateforme h3, #principes h3, #conception h3, #conception p
+{
+	margin: 5px 0 10px 92px;
+}
+#principes ul
+{
+	margin: 5px 0 10px 92px;
+	padding: 0 0 0 13px;
+}
+#principes li, #choix li
+{
+	margin: 7px 0;
+}
+#choix ul
+{
+	margin: 5px 0 10px 10px;
+	padding: 0 0 0 15px;
+}
+#breves, #ressources, #adresses, #actus
+{
+	margin: 3px 0 20px 0;
+	padding: 0;
+}
+#breves
+{
+	background-image: url("images/news.gif");
+	background-repeat: no-repeat;
+}
+#ressources
+{
+	background-image: url("images/ressources.gif");
+	background-repeat: no-repeat;
+}
+#adresses, #actus
+{
+	background-image: url("images/aide.gif");
+	background-repeat: no-repeat;
+}
+#ressources h4
+{
+	background-color: rgb(179,165,138);
+}
+#ressources p, #ressources ul, #adresses p, #actus p, #actus div
+{
+	margin: 7px 0 7px 70px;
+}
+#ressources a
+{
+	color: rgb(153,102,51);
+	font-size: 12px;
+	font-weight: normal;
+}
+#ressources .discret
+{
+	font-size: 10px;
+}
+#adresses a
+{
+	color: rgb(203,104,40);
+	font-size: 12px;
+	font-weight: bold;
+}
+#adresses a:visited
+{
+	color: rgb(203,176,159);
+}
+#formlogin
+{
+	font-size: 11px;
+	position: absolute;
+	top: 18%;
+	left: 26px;
+	width: 201px;
+	padding: 0;
+	margin: 0;
+}
+#formlogin a:link, #formlogin a:visited, #formlogin a:link
+{
+	color: rgb(255,255,255);
+}
+#formlogin p
+{
+	padding: 0;
+	margin: 4px;
+}
+p#erreur_login
+{
+	background-color: rgb(253,249,238);
+	border: rgb(136,37,37) dashed 1px;
+	color: rgb(136,37,37);
+	text-align: center;
+	padding: 5px;
+}
+p#avertissement_login
+{
+	background-color: rgb(253,249,238);
+	border: rgb(136,37,37) dashed 1px;
+	color: rgb(136,37,37);
+	padding: 4px;
+	margin: 25px 5px 15px 5px;
+}
+#tete
+{
+	margin: 0;
+	padding: 0;
+	border-bottom-color: black;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-color: black;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+#pieddepage
+{
+	background-image: url('images/login-bas-image.gif');
+	background-repeat: repeat-y;
+	background-position: 0 0;
+	background-color: rgb(220,217,210);
+	color: white;
+	height: 9%;
+	border-top-color: black;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+#hautpieddepage
+{
+	height: 60%;
+}
+#baspieddepage
+{
+	background-color: rgb(39,43,28);
+	text-align: center;
+	height: 40%;
+	padding: 1px;
+	margin: 0;
+}
+#baspieddepage a
+{
+	color: rgb(200,200,200);
+	font-size: 9px;
+	font-weight: bold;
+}
+
+.rss_box
+{
+	border: solid 2px #dcb478;
+	background-color:#ffffff;/*blanc*/
+	margin:0px;
+	width:100%;
+}
+.rss_title a
+{
+	background-color:#ffefce;/*marron*/
+	font-family:arial;
+	font-size: small; 
+	font-style:oblique; 
+	font-weight:bolder; 
+	color:#000000;/* noir*/
+	width :100%;/*30%*/
+	text-align:left;
+	text-decoration:blink;
+	margin-left:0px;
+	padding:0px;
+}
+.rss_title
+{
+	background-color:#ffefce;/*marron*/
+	font-family:arial;
+	font-size:70%;
+	font-weight:bolder; 
+	color:#dc1803;/*rouge-orangé*/
+	text-align:left;
+	margin-left:0px;
+	width:100%;
+	text-decoration :none;
+	padding:5px;
+}
+.rss_item a:visited
+{
+	font-family:arial;
+	font-size:80%;
+	color:#000000;/* noir*/
+	background-color:transparent;
+	margin-top :0px;
+	margin-left :0px;
+	text-decoration :none;
+	text-align: justify;
+}
+.rss_item a:hover
+{
+	font-family:arial;
+	font-size:80%;
+	color:#dc1803;/*rouge-orangé*/
+	background-color:transparent;
+	margin-top :0px;
+	margin-left :0px;
+	text-decoration :none;
+	text-align: justify;
+}
+.rss_item a:active
+{
+	font-family:arial;
+	font-size:80%;
+	color:#884da7;/*violet*/
+	background-color:transparent;
+	margin-top :0px;
+	margin-left :0px;
+	text-decoration :none;
+	text-align: justify;
+}
+.rss_items
+{
+/* E - Une nouvelle */
+	font-size: 100%;
+	margin-left: 25px;
+	margin-right:10px;
+	margin-top :0px;
+	margin-bottom :25px;
+	text-decoration :none;
+	text-align: justify;
+}
+
+.ntic_org_image {border-width: 0; text-align: left;}
+.ntic_org_tableau {background-color: white; border: none;}
+.ntic_org_td_image {background-color: white; border:  none; width: 0;}
+.ntic_org_td_nomfil {background-color: white; border: none; padding-top: 4px;  text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; color: #333333; text-decoration: none; margin-top: auto ; line-height: 10pt;}
+.ntic_org_titre {background-color: #ffe57f; border: none; padding-top: 4px;  text-align: justify; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; color: #333333; text-decoration: none; margin-top: auto ; line-height: 10pt;}
+.ntic_org_description {background-color: white; text-align: justify; border: none; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-style: normal; font-weight: normal; color: #333333; text-decoration: none; margin-top: auto ; line-height: 10pt;}
