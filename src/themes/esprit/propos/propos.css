@@ -1,0 +1,88 @@
+html
+{
+	height: 100%;
+	/* \*/ overflow: hidden; /**/
+}
+body
+{
+	margin: 0;
+	padding: 0;
+	color: black;
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+h1
+{
+	font-size: 13px;
+	position: absolute;
+	left: 167px;
+	top: 47px;
+	margin: 0;
+	padding: 0;
+}
+a { color: #0019CF; }
+dl
+{
+	margin-left: 15px;
+}
+dt
+{
+	float: left;
+	display: inline;
+}
+dd
+{
+	margin-left: 165px;
+}
+#bandeau
+{
+	background-image: url('../dialog-titre-fond.gif');
+	background-repeat: repeat-x;
+	background-color: rgb(111,105,87);
+	background-position: 0 10px;
+	width: 100%;
+	height: 16%;
+}
+#tete
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#contenu
+{
+	overflow: auto;
+	margin: 0;
+	padding: 5px;
+	height: 75%;
+}
+#pieddepage
+{
+	background-color: rgb(174,165,138);
+	color: white;
+	height: 9%;
+	border-top-color: black;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+#fermer
+{
+	float: right;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#pieddepage a
+{
+	font-size: 11px;
+	color: rgb(255,255,255);
+	font-weight: bold;
+	text-decoration:none;
+}
+#pieddepage a:hover
+{
+	text-decoration: underline;
+}

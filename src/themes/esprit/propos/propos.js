@@ -1,6 +1,6 @@
 function propos(v_sRepTheme)
 {
-	var sUrl = v_sRepTheme + "propos/propos-index.htm";
+	var sUrl = v_sRepTheme + "propos/propos.htm";
 	var sNom = "WinPropos";
 	var iLargeurFenetre = 640;
 	var iHauteurFenetre = 430;
