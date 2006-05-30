@@ -176,7 +176,15 @@ class CModule_Rubrique
 			return 0;
 		
 		if (!$v_bExportationSeule)
-			$this->copierForum($iIdRubrique);
+		{
+			switch ($this->retType())
+			{
+				case LIEN_FORUM:	$this->copierForum($iIdRubrique);
+									break;
+				case LIEN_CHAT:		$this->copierChats($iIdRubrique);
+									break;
+			}
+		}
 		
 		if ($v_bRecursive)
 			$this->copierActivites($iIdRubrique, $v_bExportationSeule);
@@ -240,6 +248,24 @@ class CModule_Rubrique
 		foreach ($this->aoActivs as $oActiv)
 			$oActiv->copier($v_iIdRubrique, TRUE, $v_bExportationSeule);
 		$this->aoActivs = NULL;
+	}
+	
+	/**
+	 * Copie tout les chats de la rubrique courante vers une autre
+	 * 
+	 * @param	v_iIdRubrique l'id de la rubrique de destination
+	 */
+	function copierChats($v_iIdRubrique)
+	{
+		if ( ($v_iIdRubrique < 1) || ($this->retType() != LIEN_CHAT) )
+			return;
+		
+		$this->initChats();
+		
+		foreach ($this->aoChats as $oChat)
+			$oChat->copier($v_iIdRubrique);
+		
+		$this->aoChats = NULL;
 	}
 	
 	/**
