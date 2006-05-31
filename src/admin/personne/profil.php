@@ -246,6 +246,7 @@ $asMois = $sTexteOption = $sValeurOption = NULL;
 ?>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("dialog.css; profil.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
 <script type="text/javascript" language="javascript">
