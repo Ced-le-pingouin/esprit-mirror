@@ -56,9 +56,9 @@ switch ($step) {
 // ******************* Getting database info *******************
 case 1:
 ?>
-<p><i>En cas de probl&egrave;me d'affichage de charact&egrave;res accentu&eacute;s sur cette page, veuillez v&eacute;rifier la configuration du serveur web (par exemple pour Apache, commenter la ligne <tt>AddDefaultCharset on</tt> dans <tt>httpd.conf</tt>).</i>
+<p><i>En cas de probl&egrave;me d'affichage de caract&egrave;res accentu&eacute;s sur cette page, veuillez v&eacute;rifier la configuration du serveur web (par exemple pour Apache, commenter la ligne <tt>AddDefaultCharset on</tt> dans <tt>httpd.conf</tt>). Normalement, l'encodage devrait &ecirc;tre en UTF-8.</i>
 </p>
-<p>Avant de commencer l'installation, vous devez avoir créé une base de donnée pour Esprit et un utilisateur MySQL associé.
+<p>Avant de commencer l'installation, vous devez avoir créé une base de données pour Esprit et un utilisateur MySQL associé.
 </p>
 
 <p>
@@ -79,7 +79,7 @@ Vous pouvez également utiliser phpmyadmin s'il est installé.
 </p>
 <form action="install.php" method="post">
 <p>
-	Base de donnée : <INPUT type="text" name="base" /><br />
+	Base de données : <INPUT type="text" name="base" /><br />
 	Serveur BdD : <INPUT type="text" name="host" value="localhost" /><br />
 	Login de l'utilisateur : <INPUT type="text" name="user" /><br />
 	Mot de passe de l'utilisateur : <INPUT type="password" name="password" /><br /><br />
