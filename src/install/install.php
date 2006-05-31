@@ -179,11 +179,11 @@ case 4:
 	if (!is_dir('../tmp')) {
 		mkdir('../tmp');
 	}
-	if (!file_exists('../tmp/mdpcnte')) {
-		touch('../tmp/mdpcnte');
+	if (!file_exists('../tmp/mdpncpte')) {
+		touch('../tmp/mdpncpte');
 	}
-	if (!is_writable('../tmp/mdpcnte')) {
-		echo '<p>Erreur : le fichier tmp/mdpcnte n\'est pas accessible en écriture.<p>';
+	if (!is_writable('../tmp/mdpncpte')) {
+		echo '<p>Erreur : le fichier tmp/mdpncpte n\'est pas accessible en écriture.<p>';
 		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce fichier et le répertoire tmp/</p>';
 		redo_step();
 		echo '</body></html>';
