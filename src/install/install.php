@@ -66,7 +66,8 @@ Par exemple, les commandes suivantes sous Linux créent une table <em>esprit</em
 <pre>
 # mysql -u root -p
 &gt; CREATE DATABASE esprit;
-&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON esprit.* TO 'esprit-admin'@localhost IDENTIFIED BY 'motdepasse';
+&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON esprit.* TO `esprit-admin`@localhost IDENTIFIED BY 'motdepasse';
+  (si vous disposez de MySQL 4.0.2 ou supérieur, vous devrez également ajouter le privilège LOCK TABLES)
 &gt; quit
 # mysqladmin -u root -p reload
 </pre>
