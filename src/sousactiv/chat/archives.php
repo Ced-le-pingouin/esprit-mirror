@@ -148,7 +148,7 @@ if (isset($url_sArchive))
 	
 	if (isset($sMessages))
 	{
-		$sFonctionInit = "if (top.oTitre().changerSousTitre)\n\t\ttop.oTitre().changerSousTitre(\"".rawurlencode(urldecode($oArchive->retSalon()))."\");\n";
+		$sFonctionInit = "if (top.oTitre().changerSousTitre)\n\t\ttop.oTitre().changerSousTitre(\"".phpString2js(urldecode($oArchive->retSalon()))."\");\n";
 		
 		$sEnteteTableau .= "<tr>"
 			."<td width=\"1%\" class=\"cellule_sous_titre\" align=\"center\">&nbsp;Heure&nbsp;</td>"

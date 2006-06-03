@@ -137,7 +137,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 	$oBlocFormation->remplacer("{nom_formation}",$sNomFormation);
 	
 	$sTableauTitresFormation .= (isset($sTableauTitresFormation) ? "\n\t, " : NULL)
-		."\"".rawurlencode(str_replace(" ","&nbsp;",$sNomFormation))."\"";
+	     ."\"".phpString2js(str_replace(" ","&nbsp;",$sNomFormation))."\"";
 	
 	$oBlock_Description_Formation = new TPL_Block("BLOCK_DESCRIPTION_FORMATION",$oBlocFormation);
 	
@@ -228,7 +228,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 				$oBlocModule->remplacer("{id_cours}",$iIdMod);
 				$oBlocModule->remplacer("{href_cours}","zone_menu.php?idForm={$iIdForm}&idMod={$iIdMod}");
 				$oBlocModule->remplacer("{index_formation}",$g_iIdxForm);
-				$oBlocModule->remplacer("{nom_cours_encoder}",rawurlencode($sIntitulePlusNomMod));
+				$oBlocModule->remplacer("{nom_cours_encoder}",phpString2js($sIntitulePlusNomMod));
 			}
 			else
 			{
@@ -238,7 +238,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 			}
 			
 			if ($g_iIdModCourant == $iIdMod)
-				$sNomModCourant = rawurlencode($sIntitulePlusNomMod);
+				$sNomModCourant = phpString2js($sIntitulePlusNomMod);
 			
 			$oBlocModuleIntitule = new TPL_Block("BLOCK_COURS_INTITULE",$oBlocModule);
 			
