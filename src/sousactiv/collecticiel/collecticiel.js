@@ -1,7 +1,7 @@
 /**
  * Afficher une aide en ligne dans le collecticiel actuel.
- * @param v_oObj object L'objet sélectionné ;
- * @param v_iIdCollecticiel integer numéro d'identifiant du collecticiel ;
+ * @param v_oObj object L'objet sÃ©lectionnÃ© ;
+ * @param v_iIdCollecticiel integer numÃ©ro d'identifiant du collecticiel ;
  * @param v_sTexte string
  */
 function aide_en_ligne(v_oObj,v_iIdCollecticiel,v_sTexte)

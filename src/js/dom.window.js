@@ -2,9 +2,9 @@
  * DOMWindow
  *
  * Auteur: Filippo PORCO <filippo.porco@umh.ac.be>
- * Dernière modification: 16/12/2004
+ * DerniÃ¨re modification: 16/12/2004
  *
- * Unité de Technologie de l'Education
+ * UnitÃ© de Technologie de l'Education
  * 18, Place du Parc
  * 7000 MONS
  */

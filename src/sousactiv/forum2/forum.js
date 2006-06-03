@@ -14,7 +14,7 @@ function popup_nouveau_sujet(v_iIdForum,v_iIdEquipeUtilisateur,v_bSujetPourTous)
 {
 	if (v_iIdEquipeUtilisateur > 0 && v_iIdEquipeUtilisateur != top.g_iIdEquipe)
 	{
-		alert("Vous ne pouvez pas déposer de sujet dans cette partie du forum,\ncar vous ne faites pas partie de l'équipe '" + ret_nom_equipe_selectionner() + "'.");
+		alert("Vous ne pouvez pas dÃ©poser de sujet dans cette partie du forum,\ncar vous ne faites pas partie de l'Ã©quipe '" + ret_nom_equipe_selectionner() + "'.");
 		return;
 	}
 	
@@ -39,7 +39,7 @@ function popup_modifier_sujet()
 	
 	if (iIdSujet == 0)
 	{
-		alert("Vous devez sélectionner un titre de sujet avant de modifier");
+		alert("Vous devez sÃ©lectionner un titre de sujet avant de modifier");
 		return;
 	}
 	
@@ -60,7 +60,7 @@ function popup_supprimer_sujet(v_bSujetEquipes)
 	
 	if (iIdSujet == 0)
 	{
-		alert("Vous devez sélectionner un titre de sujet avant de supprimer");
+		alert("Vous devez sÃ©lectionner un titre de sujet avant de supprimer");
 		return;
 	}
 	
@@ -97,7 +97,7 @@ function rafraichir_liste_sujets(v_iIdSujet,sSituation)
 	return false;
 }
 
-/* Les informations à propos du sujet */
+/* Les informations Ã  propos du sujet */
 function afficher_infos_sujet(v_iIdSujet)
 {
 	var oDOMWindow = new DOMWindow(self);
@@ -154,7 +154,7 @@ function popup_nouveau_message(v_iIdEquipeUtilisateur,v_bMessageEquipes)
 {
 	if (v_iIdEquipeUtilisateur > 0 && v_iIdEquipeUtilisateur != top.g_iIdEquipe)
 	{
-		alert("Vous ne pouvez pas déposer de message dans cette partie du forum,\ncar vous ne faites pas partie de l'équipe '" + ret_nom_equipe_selectionner() + "'.");
+		alert("Vous ne pouvez pas dÃ©poser de message dans cette partie du forum,\ncar vous ne faites pas partie de l'Ã©quipe '" + ret_nom_equipe_selectionner() + "'.");
 		return;
 	}
 	
@@ -183,7 +183,7 @@ function popup_modifier_message()
 	var aoObjs = oForm.elements["idMessage"];
 	var iIdMessage = ret_element_selectionner(aoObjs);
 	if (iIdMessage == 0) {
-		alert("Vous devez sélectionner un message avant de modifier");
+		alert("Vous devez sÃ©lectionner un message avant de modifier");
 		return;
 	}
 	var oMyDomWin = new DOMWindow(top.oFrmMessages());
@@ -200,7 +200,7 @@ function popup_supprimer_message()
 	
 	if (iIdMessage == 0)
 	{
-		alert("Vous devez sélectionner un message avant de supprimer");
+		alert("Vous devez sÃ©lectionner un message avant de supprimer");
 		return;
 	}
 	

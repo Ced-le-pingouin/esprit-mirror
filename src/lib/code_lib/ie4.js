@@ -1,7 +1,7 @@
 /**************************************************************************
-** Définitions de fonctions qui utilisent des méthodes spécifiques à
-** chaque navigateur. Elles DOIVENT donc avoir le même nom et le même
-** prototype pour tous les fichiers .JS qui représentent un navigateur
+** DÃ©finitions de fonctions qui utilisent des mÃ©thodes spÃ©cifiques Ã 
+** chaque navigateur. Elles DOIVENT donc avoir le mÃªme nom et le mÃªme
+** prototype pour tous les fichiers .JS qui reprÃ©sentent un navigateur
 ** particulier (pour l'instant IE4.JS, NS4.JS, NS6.JS)
 **************************************************************************/
 
@@ -151,7 +151,7 @@ function setObjClipSize(objID, v_iWidth, v_iHeight)
 
 /*
 ** Fonction .....: setObjVis
-** Description ..: Afficher/cacher un élément.
+** Description ..: Afficher/cacher un Ã©lÃ©ment.
 **
 */
 

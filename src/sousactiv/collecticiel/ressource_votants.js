@@ -12,7 +12,7 @@ function voter() {
 	if (top.voter)
 		document.forms[0].submit();
 	else
-		alert("Vous avez oublié de sélectionner un membre.");
+		alert("Vous avez oubliÃ© de sÃ©lectionner un membre.");
 	
 	return false;
 }

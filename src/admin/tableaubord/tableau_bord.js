@@ -17,7 +17,7 @@ function mettre_en_evidence_ligne(v_sLigneTable,v_sClasseCSS) {
 }
 
 function mettre_en_evidence(v_asLigne) {
-	var l  = "u" + v_asLigne[1] + "l" + v_asLigne[2];						// Ligne contenant toutes les données de l'étudiant
+	var l  = "u" + v_asLigne[1] + "l" + v_asLigne[2];						// Ligne contenant toutes les donnÃ©es de l'Ã©tudiant
 	var th = "u" + v_asLigne[1] + "c" + v_asLigne[3];						// Titre de la colonne
 	var lc = "u" + v_asLigne[1] + "l" + v_asLigne[2] + "c" + v_asLigne[3];	// Colonne contenant la valeur sous le pointeur de la souris
 	

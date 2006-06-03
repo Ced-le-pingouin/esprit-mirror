@@ -7,7 +7,7 @@ function DOMElement(v_sElem) {
 	this.offsetTop = 0;
 	this.height = 0;
 	
-	// Initialiser cet élément
+	// Initialiser cet Ã©lÃ©ment
 	this.DOMElementInit();
 }
 

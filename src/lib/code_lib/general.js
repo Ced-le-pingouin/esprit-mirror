@@ -15,13 +15,13 @@ var drag_obj = null;
 var evt_callBack = new Array();
 
 /**************************************************************************
-** DÈfinitions de fonctions gÈnÈriques
+** D√©finitions de fonctions g√©n√©riques
 **************************************************************************/
 
 function falseFct() { return false; }
 
 /**************************************************************************
-** DÈtection du navigateur et initialisations en consÈquence
+** D√©tection du navigateur et initialisations en cons√©quence
 **************************************************************************/
 
 if (!document.all && document.getElementById)
@@ -58,9 +58,9 @@ else if (document.layers)
 
 
 /**************************************************************************
-** DÈfinitions des fonctions d'ÈvÈnements de souris
+** D√©finitions des fonctions d'√©v√©nements de souris
 **************************************************************************/
-// *** EvÈnement "bouton de souris appuyÈ" ***
+// *** Ev√©nement "bouton de souris appuy√©" ***
 function evt_mouseDown(e)
 {
 	var ret = true;
@@ -84,7 +84,7 @@ function evt_mouseDown(e)
 	return ret;	
 }
 
-// *** EvÈnement "dÈplacement de la souris" ***
+// *** Ev√©nement "d√©placement de la souris" ***
 function evt_mouseMove(e)
 {
 	if (evt_callBack[getEventType(e)])
@@ -94,7 +94,7 @@ function evt_mouseMove(e)
 		setObjXY(drag_obj, getMouseX(e) - drag_diffX, getMouseY(e) - drag_diffY);
 }
 
-// *** EvÈnement "bouton de souris rel‚chÈ" ***
+// *** Ev√©nement "bouton de souris rel√¢ch√©" ***
 function evt_mouseUp(e)
 {
 	var ret = true;
@@ -114,14 +114,14 @@ function evt_mouseUp(e)
 	return ret;
 }
 
-// *** EvÈnement "le souris entre dans un objet" ***
+// *** Ev√©nement "le souris entre dans un objet" ***
 function evt_mouseOver(e)
 {
 	if (evt_callBack[getEventType(e)])
 		evt_callBack[getEventType(e)](e);
 }
 
-// *** EvÈnement "la souris sort d'un objet" ***
+// *** Ev√©nement "la souris sort d'un objet" ***
 function evt_mouseOut(e)
 {
 	if (evt_callBack[getEventType(e)])

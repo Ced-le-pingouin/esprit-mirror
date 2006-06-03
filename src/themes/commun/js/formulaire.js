@@ -9,7 +9,7 @@ function ret_formulaire_complete_selectionne()
 function formulaire_eval(v_sParamsUrl,v_sNomFenetre)
 {
 	var iIdFCSousActiv = ret_formulaire_complete_selectionne();
-	if (parseInt(iIdFCSousActiv) < 1) { alert("Vous n'avez pas sÈlectionnÈ de formulaire"); return false; }
+	if (parseInt(iIdFCSousActiv) < 1) { alert("Vous n'avez pas s√©lectionn√© de formulaire"); return false; }
 	var sUrl = "formulaire_eval-index.php";
 	v_sParamsUrl = "?idFCSousActiv=" + iIdFCSousActiv;
 	var iLargeurFenetre = 640;
@@ -22,7 +22,7 @@ function formulaire_eval(v_sParamsUrl,v_sNomFenetre)
 
 function verifNbQcocher(NbRepMaxQC,MessMaxQC) { ; }
 
-// !!! la fonction trim() est dÈfinie dans /code_lib/general.js, qui doit donc Ítre inclus avant ce fichier !!!
+// !!! la fonction trim() est d√©finie dans /code_lib/general.js, qui doit donc √™tre inclus avant ce fichier !!!
 function validerFormulaire(v_bRemplirTout)
 {
 	var oForm = document.forms['questionnaire'];
@@ -86,7 +86,7 @@ function validerFormulaire(v_bRemplirTout)
 	
 	if (oElementIncorrect != null)
 	{
-		alert("Le formulaire n'a pas ÈtÈ complËtement rempli. Veuillez complÈter les rÈponses manquantes.");
+		alert("Le formulaire n'a pas √©t√© compl√®tement rempli. Veuillez compl√©ter les r√©ponses manquantes.");
 		//alert('#ancre' + oElementIncorrect.name);
 		document.location = '#ancre' + oElementIncorrect.name;
 	}
@@ -99,14 +99,14 @@ function validerFormulaire(v_bRemplirTout)
 function validerQNombre(v_oCase)
 {
 	// il ne faut faire la validation des champs QNombre que lors du remplissage par
-	// un utilisateur, pas dans le concepteur de formulaire (les FORM n'ont pas le mÍme nom)
+	// un utilisateur, pas dans le concepteur de formulaire (les FORM n'ont pas le m√™me nom)
 	if (v_oCase.form.name != 'questionnaire')
 		return;
 	
 	var bErreur = false;
 	var fValeurCase = parseFloat(v_oCase.value);
 	
-	// l'Id d'une case QNombre est structurÈ come ceci: <idobjet>_<nbmin>_<nbmax>
+	// l'Id d'une case QNombre est structur√© come ceci: <idobjet>_<nbmin>_<nbmax>
 	var asParties = v_oCase.id.split('_');
 		
 	var fNbMin = parseFloat(asParties[1]);
@@ -128,7 +128,7 @@ function validerQNombre(v_oCase)
 		alert
 		(
 			"Attention! Cette case doit contenir un nombre compris entre " + fNbMin + " et " + fNbMax + ".\n\n"
-			+ "Sa valeur a ÈtÈ ramenÈe dans l'intervalle autorisÈ."
+			+ "Sa valeur a √©t√© ramen√©e dans l'intervalle autoris√©."
 		);
 	}
 }

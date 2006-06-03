@@ -1,4 +1,4 @@
-var asConfirm = new Array("cette formation","ce cours","cette rubrique","cette unité","ce block","cet élément actif");
+var asConfirm = new Array("cette formation","ce cours","cette rubrique","cette unitÃ©","ce block","cet Ã©lÃ©ment actif");
 
 function Ajouter()
 {
@@ -106,7 +106,7 @@ function reinitIntitules(v_amIntitule,v_sNomIntituleSelect)
 		options[i] = null;
 	}
 	
-	options[0] = new Option("Pas d'intitulé","",false,false);
+	options[0] = new Option("Pas d'intitulÃ©","",false,false);
 	
 	for (i=0; i<v_amIntitule.length; i++)
 	{

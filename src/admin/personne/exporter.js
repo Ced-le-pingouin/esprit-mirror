@@ -30,7 +30,7 @@ function ajouter_personnes_liste()
 					break;
 			
 			if (j == x.length)
-				// Element non trouvé dans la liste
+				// Element non trouvÃ© dans la liste
 				element.value += aiPersonnes[i].value + ",";
 			else
 				x.slice(j)
@@ -43,7 +43,7 @@ function exporter_liste_personnes()
 {
 	var winExport = window.open("","winExport",centrerFenetre(380,500) + ",menubar=0,resizable=0");
 	
-	// Envoyer la liste des personnes à cette fenêtre
+	// Envoyer la liste des personnes Ã  cette fenÃªtre
 	document.forms[0].action = "exporter-dialog-index.php";
 	document.forms[0].target = "winExport";
 	document.forms[0].method = "post";
@@ -70,7 +70,7 @@ function retirer_personnes_liste()
 	var element = document.forms[0].elements["LISTE_IDPERS"];
 	
 	// Attention, lorsqu'on retrouve 1 seul checkbox sur la page html,
-	// celui-ci n'est pas considéré comme un tableau de checkbox
+	// celui-ci n'est pas considÃ©rÃ© comme un tableau de checkbox
 	if (typeof(aiPersonnes.length) == "undefined")
 		aiPersonnes = new Array(aiPersonnes);
 	

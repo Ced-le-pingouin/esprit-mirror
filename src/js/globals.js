@@ -11,7 +11,7 @@ function table_ligne_surbrillance(v_oElement,v_bSurbrillance)
 }
 
 /**
- * Cette fonction permet de tout sélectionner/désélectionner les checkbox
+ * Cette fonction permet de tout sÃ©lectionner/dÃ©sÃ©lectionner les checkbox
  *
  * Exemple
  * <input type="checkbox" name="IDPERS" onclick="select_deselect_checkbox(this)">
@@ -28,7 +28,7 @@ function select_deselect_checkbox(v_oObj)
 }
 
 /**
- * Cette fonction permet séléctionner/désélectionner le checkbox principal
+ * Cette fonction permet sÃ©lÃ©ctionner/dÃ©sÃ©lectionner le checkbox principal
  *
  * Exemple
  * <input type="checkbox" name="IDPERS[]" onclick="verif_checkbox_principal(this)">

@@ -7,7 +7,7 @@ function selectionobj(idobj,idformulaire)
 function rechargerliste(idobj,idformulaire) 
 {
 	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj); 
-	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro
+	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numÃ©ro
 }
 
 function rechargermenugauche()
@@ -19,7 +19,7 @@ function rechargermenugauche()
 function rechargerlistepopup(idobj,idformulaire) 
 {
 	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj); 
-	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro depuis une popup
+	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numÃ©ro depuis une popup
 }
 
 function majmodifmenu(idobj,idformulaire)
@@ -40,7 +40,7 @@ function popupajout(idobj,idformulaire)
 	opener.parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
 }
 
-//Permet de vérifier si un champ est bien numérique
+//Permet de vÃ©rifier si un champ est bien numÃ©rique
 function verifNumeric(Num)
 { 
       if (isNaN(Num.value)) 
@@ -67,8 +67,8 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 	
 	if (v_iNbUtilisations > 0)
 	{
-		sMessage += "Ce formulaire est actuellement utilisé ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
-		sMessage += "Si vous le modifiez, il perdra peut-être son sens dans le contexte où il est en cours d'utilisation.\n";
+		sMessage += "Ce formulaire est actuellement utilisÃ© ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
+		sMessage += "Si vous le modifiez, il perdra peut-Ãªtre son sens dans le contexte oÃ¹ il est en cours d'utilisation.\n";
 		sMessage += "\n\n";
 	}
 
@@ -77,13 +77,13 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 		if (sMessage != "")
 			sMessage += "De plus, toujours dans le cadre des cours, ";
 		else
-			sMessage += "Ce formulaire a déjà été utilisé dans le cadre des cours sur la plate-forme, et";
+			sMessage += "Ce formulaire a dÃ©jÃ  Ã©tÃ© utilisÃ© dans le cadre des cours sur la plate-forme, et";
 		
-		sMessage += " il a déjà été complété par des étudiants ("+v_iNbRemplis+" fois).\n";
-		sMessage += "Si vous le modifiez, il se peut que les réponses déjà données par ces étudiants soient perdues.\n";
+		sMessage += " il a dÃ©jÃ  Ã©tÃ© complÃ©tÃ© par des Ã©tudiants ("+v_iNbRemplis+" fois).\n";
+		sMessage += "Si vous le modifiez, il se peut que les rÃ©ponses dÃ©jÃ  donnÃ©es par ces Ã©tudiants soient perdues.\n";
 		sMessage += "\n\n";
 	}
 	
 	if (sMessage != "")
-		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillé de faire une copie de ce formulaire, et de modifier cette copie.\n\n");
+		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillÃ© de faire une copie de ce formulaire, et de modifier cette copie.\n\n");
 }

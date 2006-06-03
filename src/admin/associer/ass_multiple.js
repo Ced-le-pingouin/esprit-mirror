@@ -10,7 +10,7 @@ function ajouterPersonnes()
 	if (oFormPersonnes().elements["IDS_ACTION"].value.length > 0)
 		oFormPersonnes().submit();
 	else
-		alert("Vous devez sélectionner, au moins, un cours"
+		alert("Vous devez sÃ©lectionner, au moins, un cours"
 			+ "\ndans la liste des cours.");
 }
 
