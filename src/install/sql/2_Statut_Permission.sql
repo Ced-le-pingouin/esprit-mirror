@@ -1,5 +1,3 @@
-
-
 INSERT INTO Statut_Permission VALUES (1,1);
 INSERT INTO Statut_Permission VALUES (2,1);
 INSERT INTO Statut_Permission VALUES (3,1);
@@ -375,4 +373,3 @@ INSERT INTO Statut_Permission VALUES (104,1);
 INSERT INTO Statut_Permission VALUES (104,2);
 INSERT INTO Statut_Permission VALUES (104,3);
 INSERT INTO Statut_Permission VALUES (104,7);
-

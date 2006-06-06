@@ -3,11 +3,11 @@
 # http://www.phpmyadmin.net
 #
 # Serveur: localhost
-# Généré le : Jeudi 06 Novembre 2003 à 15:38
+# GÃ©nÃ©rÃ© le : Jeudi 06 Novembre 2003 Ã  15:38
 # Version du serveur: 3.23.58
 # Version de PHP: 4.3.3
 # 
-# Base de données: `esprit`
+# Base de donnÃ©es: `esprit`
 # 
 
 #

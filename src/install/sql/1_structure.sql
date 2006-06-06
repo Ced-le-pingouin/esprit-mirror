@@ -460,7 +460,7 @@ CREATE TABLE Permission (
 CREATE TABLE Personne (
   IdPers int(10) unsigned NOT NULL auto_increment,
   Nom varchar(30) DEFAULT 'Sans nom' NOT NULL,
-  Prenom varchar(30) DEFAULT 'Sans prénom' NOT NULL,
+  Prenom varchar(30) DEFAULT 'Sans prÃ©nom' NOT NULL,
   Pseudo varchar(30),
   DateNaiss date,
   Sexe enum('F','M'),

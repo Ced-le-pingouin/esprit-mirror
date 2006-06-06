@@ -23,13 +23,13 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Installation d'Esprit</title>
-		<link rel="stylesheet" type="text/css" href="install.css" />
-	</head>
-	<body>
-		<h1>Installation d'Esprit</h1>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Installation d'Esprit</title>
+<link rel="stylesheet" type="text/css" href="install.css" />
+</head>
+<body>
+<h1>Installation d'Esprit</h1>
 <?php
 /*
 	Installateur d'Esprit (en cours, très partiellement testé)
@@ -43,8 +43,8 @@ if (isset($_GET['step']) || isset($_POST['step'])) {
 	$step=($_GET['step']?$_GET['step']:$_POST['step']);
 } else {
 	if (file_exists('../include/config.inc')) {
-		echo "<P>Configuration interrompue : Esprit semble déjà configuré.</P>";
-		echo '</body></html>';
+		echo "<p class='erreur'>Configuration interrompue : Esprit semble déjà configuré.</p>";
+		echo "</body></html>";
 		exit;
 	}
 }
@@ -56,36 +56,32 @@ switch ($step) {
 // ******************* Getting database info *******************
 case 1:
 ?>
-<p><i>En cas de probl&egrave;me d'affichage de caract&egrave;res accentu&eacute;s sur cette page, veuillez v&eacute;rifier la configuration du serveur web (par exemple pour Apache, commenter la ligne <tt>AddDefaultCharset on</tt> dans <tt>httpd.conf</tt>). Normalement, l'encodage devrait &ecirc;tre en UTF-8.</i>
+<p><i>En cas de problème d'affichage de caractères accentués sur cette page, veuillez vérifier la configuration du serveur 
+web (par exemple pour Apache, commenter la ligne <tt>AddDefaultCharset on</tt> dans <tt>httpd.conf</tt>). 
+Normalement, l'encodage devrait être en UTF-8.</i>
 </p>
-<p>Avant de commencer l'installation, vous devez avoir créé une base de données pour Esprit et un utilisateur MySQL associé.
-</p>
-
-<p>
-Par exemple, les commandes suivantes sous Linux créent une table <em>esprit</em> administrée par <em>esprit-admin</em>&nbsp;:
+<p>Avant de commencer l'installation, vous devez avoir créé une base de données pour Esprit et un utilisateur MySQL associé.</p>
+<p><strong>Vous devez disposer de la version 4.1 ou supérieure de MySQL</strong></p>
+<p>Par exemple, les commandes suivantes sous Linux créent une table <em>esprit</em> administrée par <em>esprit-admin</em>&nbsp;:</p>
 <pre>
 # mysql -u root -p
-&gt; CREATE DATABASE esprit;
-&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON esprit.* TO `esprit-admin`@localhost IDENTIFIED BY 'motdepasse';
-  (si vous disposez de MySQL 4.0.2 ou supérieur, vous devrez également ajouter le privilège LOCK TABLES)
+&gt; CREATE DATABASE esprit DEFAULT CHARACTER SET utf8;
+&gt; GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER,LOCK TABLES ON esprit.* TO `esprit-admin`@localhost IDENTIFIED BY 'motdepasse';
 &gt; quit
 # mysqladmin -u root -p reload
 </pre>
-Vous pouvez également utiliser phpmyadmin s'il est installé.
-</p>
+<p>Vous pouvez également utiliser phpmyadmin s'il est installé.</p>
 
 <h3>Saisie</h3>
-
-<p>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.
-</p>
+<p>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.</p>
 <form action="install.php" method="post">
 <p>
-	Base de données : <INPUT type="text" name="base" /><br />
-	Serveur BdD : <INPUT type="text" name="host" value="localhost" /><br />
-	Login de l'utilisateur : <INPUT type="text" name="user" /><br />
-	Mot de passe de l'utilisateur : <INPUT type="password" name="password" /><br /><br />
-	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
-	<INPUT type="submit" value="Étape suivante" />
+	<label for="base">Base de données :</label> <input type="text" name="base" id="base" /><br />
+	<label for="host">Serveur BdD :</label> <input type="text" name="host" id="host" value="localhost" /><br />
+	<label for="user">Login de l'utilisateur :</label> <input type="text" name="user" id="user" /><br />
+	<label for="password">Mot de passe de l'utilisateur :</label> <input type="password" name="password" id="password" /><br /><br />
+	<input name="step" value="<?= $step+1 ?>" type="hidden" />
+	<input type="submit" value="Étape suivante" />
 </p>
 </form>
 
@@ -94,21 +90,21 @@ Vous pouvez également utiliser phpmyadmin s'il est installé.
 // ******************* Filling up the database *******************
 case 2:
 	if (!isset($_POST['base']) || !isset($_POST['user']) || !isset($_POST['password'])) {
-		echo '<p>Informations incomplètes, retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
-		echo '</body></html>';
+		echo "<p class='erreur'>Informations incomplètes, retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
+		echo "</body></html>";
 		exit;
 	}
 	$link = mysql_connect($_POST['host'],$_POST['user'],$_POST['password']);
 	if (! $link) {
-		echo "<P>Erreur de connexion à la base de données.</P>";
-		echo '<p>Retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
-		echo '</body></html>';
+		echo "<p class='erreur'>Erreur de connexion à la base de données.</P>";
+		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
+		echo "</body></html>";
 		exit;
 	}
 	if (! mysql_selectdb($_POST['base'])) {
-		echo "<P>Connexion réussie, mais erreur d'accès à la base de données.</P>";
-		echo '<p>Retournez à <a href="install.php?step=1">l\'étape précédente</a>.</p>';
-		echo '</body></html>';
+		echo "<p class='erreur'>Connexion réussie, mais erreur d'accès à la base de données.</p>";
+		echo "<p>Retournez à <a href='install.php?step=1'>l\'étape précédente</a>.</p>";
+		echo "</body></html>";
 		exit;
 	}
 	// filling the database
@@ -162,7 +158,7 @@ define("THEME","esprit");
 ?>';
 
 	if (file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
-		echo '<p>Erreur lors de l\'écriture du fichier de configuration.</p>';
+		echo "<p class='erreur'>Erreur lors de l'écriture du fichier de configuration.</p>";
 		echo '<p>Vérifiez que les accès en écriture sont autorisés dans le répertoire <em>include</em>.</p>';
 		redo_step();
 		echo '</body></html>';
@@ -184,7 +180,7 @@ case 4:
 		touch('../tmp/mdpncpte');
 	}
 	if (!is_writable('../tmp/mdpncpte')) {
-		echo '<p>Erreur : le fichier tmp/mdpncpte n\'est pas accessible en écriture.<p>';
+		echo "<p class='erreur'>Erreur : le fichier tmp/mdpncpte n'est pas accessible en écriture.<p>";
 		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce fichier et le répertoire tmp/</p>';
 		redo_step();
 		echo '</body></html>';
@@ -230,12 +226,12 @@ function show_next_step() {
 ?>
 <form action="install.php" method="post">
 <p>
-	<INPUT name="base" value="<?= $_POST['base'] ?>" type="hidden" />
-	<INPUT name="host" value="<?= $_POST['host'] ?>" type="hidden" />
-	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
-	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
-	<INPUT name="step" value="<?= $step+1 ?>" type="hidden" />
-	<INPUT type="submit" value="Étape suivante" />
+	<input name="base" value="<?= $_POST['base'] ?>" type="hidden" />
+	<input name="host" value="<?= $_POST['host'] ?>" type="hidden" />
+	<input name="user" value="<?= $_POST['user'] ?>" type="hidden" />
+	<input name="password" value="<?= $_POST['password'] ?>" type="hidden" />
+	<input name="step" value="<?= $step+1 ?>" type="hidden" />
+	<input type="submit" value="Étape suivante" />
 </p>
 </form>
 <?php
@@ -246,12 +242,12 @@ function redo_step() {
 ?>
 <form action="install.php" method="post">
 <p>
-	<INPUT name="base" value="<?= $_POST['base'] ?>" type="hidden" />
-	<INPUT name="host" value="<?= $_POST['host'] ?>" type="hidden" />
-	<INPUT name="user" value="<?= $_POST['user'] ?>" type="hidden" />
-	<INPUT name="password" value="<?= $_POST['password'] ?>" type="hidden" />
-	<INPUT name="step" value="<?= $step ?>" type="hidden" />
-	<INPUT type="submit" value="Refaire cette étape" />
+	<input name="base" value="<?= $_POST['base'] ?>" type="hidden" />
+	<input name="host" value="<?= $_POST['host'] ?>" type="hidden" />
+	<input name="user" value="<?= $_POST['user'] ?>" type="hidden" />
+	<input name="password" value="<?= $_POST['password'] ?>" type="hidden" />
+	<input name="step" value="<?= $step ?>" type="hidden" />
+	<input type="submit" value="Refaire cette étape" />
 </p>
 </form>
 <?php

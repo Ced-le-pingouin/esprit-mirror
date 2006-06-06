@@ -1,17 +1,38 @@
+body
+{
+	background: rgb(251,249,238);
+	margin: 5px;
+	padding: 0;
+	color: black;
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+}
+
+h1
+{
+	border: 1px dotted #ABA18E;
+	padding: 5px;
+	width: 12em;
+}
+
 h3 {
   margin-top: 5ex;
 }
 
 pre {
-  padding: 1em;
-  border: 1px dashed #FFB53A;
-  color: black;
-  background-color: #f9f9f9;
-  line-height: 1.4em;
+	padding: 1em;
+	background-color: rgb(225,221,196);
+	border: rgb(136,37,37) dashed 1px;
+	line-height: 1.4em;
 }
 
 input {
   position: relative;
   top: 6px;
   margin: 3px 0;
+}
+
+.erreur {
+	color: rgb(136,37,37);
+	font-weight: bold;
 }
