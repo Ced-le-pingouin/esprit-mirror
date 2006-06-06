@@ -26,6 +26,8 @@ $url_iNbEtapes = (empty($HTTP_GET_VARS["etapes"]) ? 0 : $HTTP_GET_VARS["etapes"]
 $url_bTerminer = (empty($HTTP_GET_VARS["fin"]) ? FALSE : $HTTP_GET_VARS["fin"]);
 ?>
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php inserer_feuille_style("menu.css; dialog-menu.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--

@@ -462,6 +462,7 @@ if (isset($oProjet->oRubriqueCourante) &&
 ?>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php inserer_feuille_style("dialog.css; concept.css"); ?>
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript" src="<?=dir_admin('concept','admin_modif.js')?>"></script>
