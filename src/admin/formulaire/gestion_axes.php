@@ -76,6 +76,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 			  echo "<head>\n";
 			  echo "<TITLE>Gestion des Axes/Tendances</TITLE>";
 			  //CSS
+			  echo '<meta http-equiv="content-type" content="text/html; charset=utf-8">'."\n";
 			  echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".dir_theme("formulaire/formulaire.css")."\">";
 			  //FIN CSS
 			  echo "</head>\n";
@@ -105,6 +106,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 					  echo "<html>\n";
 					  echo "<head>\n";
 					  echo "<TITLE>Gestion des Axes/Tendances</TITLE>";
+					  echo '<meta http-equiv="content-type" content="text/html; charset=utf-8">'."\n";
 					  echo "<script src=\"selectionobj.js\" type=\"text/javascript\">";
 					  echo "</script>\n";
 					  //CSS
