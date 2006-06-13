@@ -61,6 +61,7 @@ if (isset($HTTP_GET_VARS['valider']))
 	$oFormulaire_Axe->effacerAxesForm($v_iIdFormulaire);
 	
 	$sListeAxes="";  //Va contenir une liste des axes du formulaire [variable string avec les valeurs séparées par des virgules]
+	$axes = $_REQUEST['axes'];
 	for ($i = 0; $i < count($axes); $i++)
 	{
 		//echo "<br>Axe numéro ".$axes[$i]." sélectionné.";
