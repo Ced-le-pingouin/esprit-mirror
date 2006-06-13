@@ -805,7 +805,6 @@ CREATE TABLE TypeObjetForm (
   IdTypeObj int(10) unsigned NOT NULL auto_increment,
   NomTypeObj varchar(25) DEFAULT '' NOT NULL,
   DescTypeObj varchar(100) DEFAULT '' NOT NULL,
-  DescCourteTypeObj varchar(50) DEFAULT '' NOT NULL,
   PRIMARY KEY (IdTypeObj)
 );
 
