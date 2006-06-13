@@ -95,8 +95,8 @@ for ($i=1; $i<=$iNbrChats; $i++)
 
 $sMessageDePatience_0 = "<html>"
 	."<head>"
-        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
-	."<link type='text/css' rel='stylesheet' href='".dir_theme("globals.css")."'>"
+        .'<meta http-equiv="content-type" content="text/html; charset=utf-8">'
+	.'<link type="text/css" rel="stylesheet" href="'.dir_theme("globals.css").'">'
 	."</head>"
 	."<body>";
 
@@ -125,7 +125,7 @@ function envoyer()
 	document.forms[0].submit();
 	
 	document.open("text/html","replace");
-	document.writeln("<?=$sMessageDePatience_0?>");
+	document.writeln('<?=$sMessageDePatience_0?>');
 	document.writeln("<?=$sMessageDePatience_1?>");
 	document.writeln("<?=$sMessageDePatience_2?>");
 	document.writeln("<?=$sMessageDePatience_3?>");
