@@ -694,7 +694,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		if ($url_iIdType == 0)
 		{
 			$oEven = new CEvenement($oProjet->oBdd);
-			$iNbConnexions = $oEven->initEvenementsPersonne($iIdInscrit,$iIdForm);
+			$iNbConnexions = $oEven->initEvenements($iIdInscrit,$iIdForm);
 			
 			if ($iNbConnexions > 0)
 				$sDate = formatterDate($oEven->aoEvenements[0]->retMomentEven())." ({$iNbConnexions})";
