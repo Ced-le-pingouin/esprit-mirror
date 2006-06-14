@@ -7,8 +7,8 @@
 // @modified 07/12/2005
 // @dtd TXT_%_TITRE: <input type="text" name="TXT_%_TITRE" value="TXT_%_TITRE">
 // @dtd TXT_%_DESCRIPTION: <textarea name="TXT_%_DESCRIPTION">TXT_%_DESCRIPTION</textarea
-define("TXT_AVERTISSEMENT_LOGGIN_DESCRIPTION","Pour afficher un message d'avertissement en dessous du login, au niveau de la page d'accueil d'Esprit");
-define("TXT_AVERTISSEMENT_LOGGIN_TITRE","Avertissement loggin");
+define("TXT_AVERTISSEMENT_LOGIN_DESCRIPTION","Pour afficher un message d'avertissement en dessous du login, au niveau de la page d'accueil d'Esprit");
+define("TXT_AVERTISSEMENT_LOGIN_TITRE","Avertissement login");
 define("TXT_CONSOLE_DESCRIPTION","Pour accéder à la console");
 define("TXT_CONSOLE_TITRE","Console");
 define("TXT_CORBEILLE_DESCRIPTION","Pour supprimer définitivement une formation effacée");

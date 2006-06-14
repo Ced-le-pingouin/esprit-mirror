@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Initialiser
 // ---------------------
-$sTitrePrincipal = "Avertissement loggin";
+$sTitrePrincipal = "Avertissement login";
 $sSousTitre = NULL;
 
 $sRequeteSql = "SELECT AvertissementLogin FROM Projet LIMIT 1";
