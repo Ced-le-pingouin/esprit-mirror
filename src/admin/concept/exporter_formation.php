@@ -1,5 +1,6 @@
 <?php
 require_once("globals.inc.php");
+require_once("admin_globals.inc.php");
 
 $oProjet = new CProjet();
 
@@ -19,19 +20,23 @@ else if ($oProjet->retIdUtilisateur())
 	{
 		$oFormation = new CFormation($oProjet->oBdd, $iIdFormation);
 		
-		header("Content-Type: application/octet-stream" );
-		header("Content-Disposition: attachment; filename=formation.sql" );
-
-		$sSql = $oFormation->copier(TRUE, TRUE);
+		$r = $oFormation->copier(TRUE, 'sql');
 		
+		header('Content-Type: application/octet-stream' );
+		header('Content-Disposition: attachment; filename='.basename($r));
+
 		//print nl2br($sSql);
-		print $sSql;
+		//print $sSql;
+		
+		readfile($r);
+		unlink($r);
+		@rmdir(dirname($r));
 		
 		exit();
 	}
 	else
 	{
-		$sMessage = "Vous n'avez pas le statut requis pour exporter les formations en SQL";
+		$sMessage = "Vous n'avez pas le statut requis pour exporter les formations";
 	}
 }
 ?>
@@ -40,7 +45,7 @@ else if ($oProjet->retIdUtilisateur())
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Exporter la formation en SQL</title>
+<title>Exporter la formation</title>
 </head>
 <body>
 <?php

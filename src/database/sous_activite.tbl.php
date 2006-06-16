@@ -249,14 +249,14 @@ class CSousActiv
 	 * 
 	 * @return	l'id de la nouvelle sous-activité
 	 */
-	function copier($v_iIdActiv, $v_bExportationSeule = FALSE)
+	function copier($v_iIdActiv, $v_sExportation = NULL)
 	{
-		$iIdSousActiv = $this->copierSousActiv($v_iIdActiv, $v_bExportationSeule);
+		$iIdSousActiv = $this->copierSousActiv($v_iIdActiv, $v_sExportation);
 		
-		if ($iIdSousActiv < 1 && !$v_bExportationSeule)
+		if ($iIdSousActiv < 1 && !$v_sExportation)
 			return 0;
 		
-		if (!$v_bExportationSeule)
+		if (!$v_sExportation)
 		{
 			switch ($this->retType())
 			{
@@ -275,15 +275,15 @@ class CSousActiv
 	 * 
 	 * @return	l'id de la nouvelle sous-activité
 	 */
-	function copierSousActiv($v_iIdActiv, $v_bExportationSeule = FALSE)
+	function copierSousActiv($v_iIdActiv, $v_sExportation = NULL)
 	{
 		global $sSqlExportForm;
 		
-		if ($v_iIdActiv < 1 && !$v_bExportationSeule)
+		if ($v_iIdActiv < 1 && !$v_sExportation)
 			return 0;
 		
 		$sRequeteSql = "INSERT INTO SousActiv SET"
-			." IdSousActiv=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
+			." IdSousActiv=".(!$v_sExportation?"NULL":"'".$this->retId()."'")
 			.", NomSousActiv='".MySQLEscapeString($this->oEnregBdd->NomSousActiv)."'"
 			.", DonneesSousActiv='".MySQLEscapeString($this->oEnregBdd->DonneesSousActiv)."'"
 			.", DescrSousActiv='".MySQLEscapeString($this->oEnregBdd->DescrSousActiv)."'"
@@ -293,13 +293,13 @@ class CSousActiv
 			.", VotesMinSousActiv='{$this->oEnregBdd->VotesMinSousActiv}'"
 			.", IdTypeSousActiv='{$this->oEnregBdd->IdTypeSousActiv}'"
 			.", PremierePageSousActiv='".($this->oEnregBdd->PremierePageSousActiv ? "1" : "0")."'" // ENUM ('0','1')
-			//.", IdActiv=".(!$v_bExportationSeule?"'{$v_iIdActiv}'":"@iIdActiviteCourante")
-			.", IdActiv=".(!$v_bExportationSeule?"'{$v_iIdActiv}'":"'".$this->retIdParent()."'")
+			//.", IdActiv=".(!$v_sExportation?"'{$v_iIdActiv}'":"@iIdActiviteCourante")
+			.", IdActiv=".(!$v_sExportation?"'{$v_iIdActiv}'":"'".$this->retIdParent()."'")
 			.", OrdreSousActiv='{$this->oEnregBdd->OrdreSousActiv}'"
 			.", ModaliteSousActiv='{$this->oEnregBdd->ModaliteSousActiv}'"
 			.", IdPers='".$this->retIdPers()."'";
 		
-		if ($v_bExportationSeule)
+		if ($v_sExportation)
 		{
 			$sSqlExportForm .= $sRequeteSql . ";\n\n";
 			$sSqlExportForm .= "SET @iIdSousActiviteCourante := LAST_INSERT_ID();\n\n";

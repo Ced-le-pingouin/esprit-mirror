@@ -32,13 +32,13 @@
 ** 7000 MONS
 */
 
-function ajouter_repertoire ($v_sNomRepertoire)
+function ajouter_repertoire($v_sNomRepertoire)
 {
 	if (is_dir($v_sNomRepertoire))
 		return;
 	
 	// Créer le nouveau répertoire
-	mkdir($v_sNomRepertoire,0744);
+	mkdir($v_sNomRepertoire, 0744);
 	
 	// Copier le fichier qui va permettre d'afficher les pages html,
 	// les images et les exercices correctement
@@ -49,7 +49,7 @@ function ajouter_repertoire ($v_sNomRepertoire)
 	@chmod($sFichierDst,0600);*/
 }
 
-function deleteTree ($v_sRepEffacer)
+function deleteTree($v_sRepEffacer)
 {
 	$v_sRepEffacer = ereg_replace("/\$","",$v_sRepEffacer);
 
@@ -73,49 +73,57 @@ function deleteTree ($v_sRepEffacer)
 	}
 }
 
-function copyTree ($rep_src,$rep_des)
+function copyTree($rep_src, $rep_des, $v_sExportation = NULL, $v_oArchive = NULL)
 {
 	$sChemin = getcwd();
 
-	if (!is_dir($rep_des))
-		@mkdir($rep_des,0777);
+	if (!is_dir($rep_des) && !$v_sExportation)
+		@mkdir($rep_des, 0777);
 
 	if (!is_dir($rep_src))
 	  return;
 
-	copyFiles($rep_src,$rep_des);
+	copyFiles($rep_src, $rep_des, $v_sExportation, &$v_oArchive);
 
 	chdir($sChemin);
 }
 
-function copyFiles ($rep_src,$rep_des)
+function copyFiles($rep_src, $rep_des, $v_sExportation = NULL, $v_oArchive = NULL)
 {
-  	if (!is_dir($rep_des))
-		mkdir($rep_des,0777);
+  	if (!is_dir($rep_des) && !$v_sExportation)
+		mkdir($rep_des, 0777);
 
 	if (is_dir($rep_src))
 	{
-		chdir($rep_src);
-
-		$handle = opendir(".");
-
-		while (($file = readdir($handle)) !== false)
+		if (!$v_sExportation)
 		{
-			if (($file != ".") && ($file != ".."))
+			chdir($rep_src);
+			
+			$handle = opendir(".");
+			
+			while (($file = readdir($handle)) !== false)
 			{
-				if (is_dir($file))
+				if (($file != ".") && ($file != ".."))
 				{
-					copyFiles($rep_src."/".$file,$rep_des."/".$file);
-
-					chdir($rep_src);
+					if (is_dir($file))
+					{
+						copyFiles($rep_src."/".$file,$rep_des."/".$file);
+						
+						chdir($rep_src);
+					}
+					
+					if (is_file($file))
+						copy($rep_src."/".$file,$rep_des."/".$file);
 				}
-
-				if (is_file($file))
-					copy($rep_src."/".$file,$rep_des."/".$file);
 			}
+			
+			closedir($handle);
 		}
-
-		closedir($handle);
+		else
+		{
+			if (!is_null($v_oArchive))
+				$v_oArchive->ajouterEntreesDsListe($rep_src);
+		}
 	}
 }
 
@@ -170,12 +178,12 @@ function effacer_formation ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iFormation,$g_iModule,$g_iRubrique,$g_iUnite,$g_iActiv,$g_iSousActiv;
+	global $g_iFormation, $g_iModule, $g_iRubrique, $g_iUnite, $g_iActiv, $g_iSousActiv;
 	
 	if ($g_iFormation < 1 || !is_object($oProjet))
 		return 0;
 	
-	$oFormation = new CFormation($oProjet->oBdd,$g_iFormation);
+	$oFormation = new CFormation($oProjet->oBdd, $g_iFormation);
 	$oFormation->effacerLogiquement();
 	
 	$type = 0;
@@ -189,7 +197,7 @@ function ajouter_module ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iFormation,$g_iModule,$g_iRubrique,$g_iUnite,$g_iActiv,$g_iSousActiv;
+	global $g_iFormation, $g_iModule, $g_iRubrique, $g_iUnite, $g_iActiv, $g_iSousActiv;
 	
 	$type = TYPE_MODULE;
 	$g_iRubrique = $g_iUnite = $g_iActiv = $g_iSousActiv = 0;
@@ -202,7 +210,7 @@ function ajouter_module ()
 	
 	$oModule = new CModule($oProjet->oBdd);
 	
-	if (($g_iModule = $oModule->ajouter($g_iFormation,$iIdPers)) < 1)
+	if (($g_iModule = $oModule->ajouter($g_iFormation, $iIdPers)) < 1)
 		return 0;
 	
 	$oModule = NULL;
@@ -214,12 +222,12 @@ function effacer_module ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iModule,$g_iRubrique,$g_iUnite,$g_iActiv,$g_iSousActiv;
+	global $g_iModule, $g_iRubrique, $g_iUnite, $g_iActiv, $g_iSousActiv;
 	
 	if ($g_iModule < 1 || !is_object($oProjet))
 		return 0;
 	
-	$oModule = new CModule($oProjet->oBdd,$g_iModule);
+	$oModule = new CModule($oProjet->oBdd, $g_iModule);
 	$oModule->effacer();
 	
 	$type = TYPE_FORMATION;
@@ -235,7 +243,7 @@ function ajouter_rubrique ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iModule,$g_iRubrique,$g_iUnite,$g_iActiv,$g_iSousActiv;
+	global $g_iModule, $g_iRubrique, $g_iUnite, $g_iActiv, $g_iSousActiv;
 	
 	if (gettype($oProjet) != "object")
 		return 0;
@@ -252,12 +260,12 @@ function effacer_rubrique ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iRubrique,$g_iUnite,$g_iActiv,$g_iSousActiv;
+	global $g_iRubrique, $g_iUnite, $g_iActiv, $g_iSousActiv;
 	
 	if ($g_iRubrique < 1 || gettype($oProjet) != "object")
 		return 0;
 	
-	$oRubrique = new CModule_Rubrique($oProjet->oBdd,$g_iRubrique);
+	$oRubrique = new CModule_Rubrique($oProjet->oBdd, $g_iRubrique);
 	$oRubrique->effacer();
 	
 	$type = TYPE_MODULE;
@@ -273,7 +281,7 @@ function ajouter_activite ()
 {	
 	global $oProjet;
 	global $type;
-	global $g_iFormation,$g_iRubrique,$g_iActiv,$g_iSousActiv;
+	global $g_iFormation, $g_iRubrique, $g_iActiv, $g_iSousActiv;
 	
 	if (gettype($oProjet) != "object")
 		return 0;
@@ -286,7 +294,7 @@ function ajouter_activite ()
 	// Créer le répertoire
 	if ($g_iFormation > 0 && $g_iActiv > 0)
 	{
-		$sRepActiv = dir_cours($g_iActiv,$g_iFormation,NULL,TRUE);
+		$sRepActiv = dir_cours($g_iActiv, $g_iFormation, NULL, TRUE);
 		if (!is_dir($sRepActiv))
 			mkdir($sRepActiv);
 	}
@@ -296,12 +304,12 @@ function effacer_activite ()
 {
 	global $oProjet;
 	global $type;
-	global $g_iActiv,$g_iSousActiv;
+	global $g_iActiv, $g_iSousActiv;
 	
 	if ($g_iActiv < 1 || gettype($oProjet) != "object")
 		return 0;
 	
-	$oActiv = new CActiv($oProjet->oBdd,$g_iActiv);
+	$oActiv = new CActiv($oProjet->oBdd, $g_iActiv);
 	
 	$oActiv->effacer();
 	
@@ -314,7 +322,7 @@ function effacer_activite ()
 // *************************************
 function ajouter_sous_activite ()
 {
-	global $oProjet,$type,$g_iActiv,$g_iSousActiv,$g_iIdUtilisateur;
+	global $oProjet, $type, $g_iActiv, $g_iSousActiv, $g_iIdUtilisateur;
 	if (gettype($oProjet) != "object")
 		return 0;
 	$oSousActiv = new CSousActiv($oProjet->oBdd);
@@ -324,10 +332,10 @@ function ajouter_sous_activite ()
 
 function effacer_sous_activite ()
 {
-	global $oProjet,$type,$g_iSousActiv;
+	global $oProjet, $type, $g_iSousActiv;
 	if ($g_iSousActiv < 1 || gettype($oProjet) != "object")
 		return 0;
-	$oSousActiv = new CSousActiv($oProjet->oBdd,$g_iSousActiv);
+	$oSousActiv = new CSousActiv($oProjet->oBdd, $g_iSousActiv);
 	$oSousActiv->effacer();
 	$type = TYPE_ACTIVITE; $g_iSousActiv = 0;
 }

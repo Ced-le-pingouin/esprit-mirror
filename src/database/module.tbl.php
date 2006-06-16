@@ -120,12 +120,12 @@ class CModule
 	 * 
 	 * @return	l'id du nouveau module
 	 */
-	function copier($v_iIdForm, $v_bRecursive = TRUE, $v_bExportationSeule = FALSE)
+	function copier($v_iIdForm, $v_bRecursive = TRUE, $v_sExportation = NULL)
 	{
-		$iIdMod = $this->copierModule($v_iIdForm, $v_bExportationSeule);
+		$iIdMod = $this->copierModule($v_iIdForm, $v_sExportation);
 		
-		if ($v_bRecursive && ($iIdMod > 0 || $v_bExportationSeule))
-			$this->copierRubriques($iIdMod, $v_bExportationSeule);
+		if ($v_bRecursive && ($iIdMod > 0 || $v_sExportation))
+			$this->copierRubriques($iIdMod, $v_sExportation);
 		
 		return $iIdMod;
 	}
@@ -137,20 +137,20 @@ class CModule
 	 * 
 	 * @return	l'id du nouveau module
 	 */
-	function copierModule($v_iIdForm, $v_bExportationSeule = FALSE)
+	function copierModule($v_iIdForm, $v_sExportation = NULL)
 	{
 		global $sSqlExportForm;
 		
-		if ($v_iIdForm < 1 && !$v_bExportationSeule)
+		if ($v_iIdForm < 1 && !$v_sExportation)
 			return 0;
 		
 		$sRequeteSql = "INSERT INTO Module SET"
-			." IdMod=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
+			." IdMod=".(!$v_sExportation?"NULL":"'".$this->retId()."'")
 			.", NomMod='".MySQLEscapeString($this->oEnregBdd->NomMod)."'"
 			.", DescrMod='".MySQLEscapeString($this->oEnregBdd->DescrMod)."'"
 			.", StatutMod='".$this->retStatut()."'"
-			//.", IdForm=".(!$v_bExportationSeule?"'{$v_iIdForm}'":"@iIdFormationCourante")
-			.", IdForm=".(!$v_bExportationSeule?"'{$v_iIdForm}'":"'".$this->retIdParent()."'")
+			//.", IdForm=".(!$v_sExportation?"'{$v_iIdForm}'":"@iIdFormationCourante")
+			.", IdForm=".(!$v_sExportation?"'{$v_iIdForm}'":"'".$this->retIdParent()."'")
 			.", DateDebMod=NOW()"
 			.", DateFinMod=NOW()"
 			.", InscrSpontEquipeM='0'"
@@ -160,7 +160,7 @@ class CModule
 			.", IdIntitule='{$this->oEnregBdd->IdIntitule}'"
 			.", NumDepartIntitule='{$this->oEnregBdd->NumDepartIntitule}'";
 		
-		if ($v_bExportationSeule)
+		if ($v_sExportation)
 		{
 			$sSqlExportForm .= $sRequeteSql . ";\n\n";
 			$sSqlExportForm .= "SET @iIdModuleCourant := LAST_INSERT_ID();\n\n";
@@ -180,11 +180,11 @@ class CModule
 	 * 
 	 * @param	v_iIdMod l'id du module de destination
 	 */
-	function copierRubriques($v_iIdMod, $v_bExportationSeule = FALSE)
+	function copierRubriques($v_iIdMod, $v_sExportation = NULL)
 	{
 		$this->initRubriques();
 		foreach ($this->aoRubriques as $oRubrique)
-			$oRubrique->copier($v_iIdMod, TRUE, $v_bExportationSeule);
+			$oRubrique->copier($v_iIdMod, TRUE, $v_sExportation);
 		$this->aoRubriques = NULL;
 	}
 	

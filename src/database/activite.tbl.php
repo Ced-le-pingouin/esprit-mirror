@@ -115,14 +115,16 @@ class CActiv
 	 * 
 	 * @return	l'id de la nouvelle activité
 	 */
-	function copier($v_iIdRubrique, $v_bRecursive = TRUE, $v_bExportationSeule = FALSE)
+	function copier($v_iIdRubrique, $v_bRecursive = TRUE, $v_sExportation = NULL)
 	{
-		$iIdActiv = $this->copierActivite($v_iIdRubrique, $v_bExportationSeule);
+		global $oArchiveExport;
 		
-		if ($iIdActiv < 1 && !$v_bExportationSeule)
+		$iIdActiv = $this->copierActivite($v_iIdRubrique, $v_sExportation);
+		
+		if ($iIdActiv < 1 && !$v_sExportation)
 			return 0;
 		
-		if (!$v_bExportationSeule)
+		if (!$v_sExportation)
 		{
 			// -------------------
 			// Copier le répertoire de l'activité actuelle
@@ -133,7 +135,7 @@ class CActiv
 			$sRepSrc = dir_cours($this->retId(),$this->retIdFormation());
 			$sRepDst = dir_cours($iIdActiv,$oActiv->retIdFormation());
 			
-			copyTree($sRepSrc,$sRepDst);
+			copyTree($sRepSrc, $sRepDst, $v_sExportation, &$oArchiveExport);
 			
 			// Vider les répertoires contenant les fichiers
 			// des collecticiels (sauf le document de base) et des chats
@@ -147,7 +149,7 @@ class CActiv
 		// Copier les sous-activités
 		// -------------------
 		if ($v_bRecursive)
-			$this->copierSousActivites($iIdActiv, $v_bExportationSeule);
+			$this->copierSousActivites($iIdActiv, $v_sExportation);
 		
 		return $iIdActiv;
 	}
@@ -159,15 +161,15 @@ class CActiv
 	 * 
 	 * @return	l'id de la nouvelle activité
 	 */
-	function copierActivite($v_iIdRubrique, $v_bExportationSeule = FALSE)
+	function copierActivite($v_iIdRubrique, $v_sExportation = NULL)
 	{
 		global $sSqlExportForm;
 		
-		if ($v_iIdRubrique < 1 && !$v_bExportationSeule)
+		if ($v_iIdRubrique < 1 && !$v_sExportation)
 			return 0;
 		
 		$sRequeteSql = "INSERT INTO Activ SET"
-			." IdActiv=".(!$v_bExportationSeule?"NULL":"'".$this->retId()."'")
+			." IdActiv=".(!$v_sExportation?"NULL":"'".$this->retId()."'")
 			.", NomActiv='".MySQLEscapeString($this->oEnregBdd->NomActiv)."'"
 			.", DescrActiv='".MySQLEscapeString($this->oEnregBdd->DescrActiv)."'"
 			.", DateDebActiv=NOW()"
@@ -178,12 +180,12 @@ class CActiv
 			.", AfficherModaliteActiv='{$this->oEnregBdd->AfficherModaliteActiv}'"
 			.", InscrSpontEquipeA='0'"
 			.", NbMaxDsEquipeA='0'"
-			//.", IdRubrique=".(!$v_bExportationSeule?"'{$v_iIdRubrique}'":"@iIdRubriqueCourante")
-			.", IdRubrique=".(!$v_bExportationSeule?"'{$v_iIdRubrique}'":"'".$this->retIdParent()."'")
+			//.", IdRubrique=".(!$v_sExportation?"'{$v_iIdRubrique}'":"@iIdRubriqueCourante")
+			.", IdRubrique=".(!$v_sExportation?"'{$v_iIdRubrique}'":"'".$this->retIdParent()."'")
 			.", IdUnite='0'"
 			.", OrdreActiv='{$this->oEnregBdd->OrdreActiv}'";
 		
-		if ($v_bExportationSeule)
+		if ($v_sExportation)
 		{
 			$sSqlExportForm .= $sRequeteSql . ";\n\n";
 			$sSqlExportForm .= "SET @iIdActiviteCourante := LAST_INSERT_ID();\n\n";
@@ -203,11 +205,11 @@ class CActiv
 	 * 
 	 * @param	v_iIdActiv l'id de l'activité de destination
 	 */
-	function copierSousActivites($v_iIdActiv, $v_bExportationSeule = FALSE)
+	function copierSousActivites($v_iIdActiv, $v_sExportation = NULL)
 	{
 		$this->initSousActivs();
 		foreach ($this->aoSousActivs as $oSousActiv)
-			$oSousActiv->copier($v_iIdActiv, TRUE, $v_bExportationSeule);
+			$oSousActiv->copier($v_iIdActiv, TRUE, $v_sExportation);
 		$this->aoSousActivs = NULL;
 	}
 	
