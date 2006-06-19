@@ -37,6 +37,9 @@
 <a href="javascript: void(0);" onclick="center_alignment()" onfocus="blur()" title="Centr&eacute;"><img src="icones://center_alignment.gif" width="22" height="21" border="0" hspace="0"></a>
 <a href="javascript: void(0);" onclick="right_alignment()" onfocus="blur()" title="Align&eacute; &agrave; droite"><img src="icones://right_alignment.gif" width="22" height="21" border="0" hspace="0"></a>
 <a href="javascript: void(0);" onclick="justify_alignment()" onfocus="blur()" title="Justifi&eacute;"><img src="icones://justify_alignment.gif" width="22" height="21" border="0" hspace="0"></a>
+<a href="javascript: void(0);" onclick="bidi_left_to_right()" onfocus="blur()" title="Gauche &agrave; droite"><img src="icones://bidi_left_to_right.gif" width="22" height="21" border="0" hspace="0"></a>
+<a href="javascript: void(0);" onclick="bidi_right_to_left()" onfocus="blur()" title="Droite &agrave; gauche"><img src="icones://bidi_right_to_left.gif" width="22" height="21" border="0" hspace="0"></a>
+
 </td>
 <td>&nbsp;&nbsp;&nbsp;</td>
 <td>

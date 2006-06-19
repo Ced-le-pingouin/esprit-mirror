@@ -545,6 +545,14 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = str_replace("[j]", "<div style='text-align: justify;'>", $v_sTexte);
 	$v_sTexte = str_replace("[/j]", "</div>", $v_sTexte);
 	
+	// Bi-directionnalité
+	// Gauche à droite (standard)
+	$v_sTexte = str_replace("[ltr]", "<span dir='ltr'>", $v_sTexte);
+	$v_sTexte = str_replace("[/ltr]", "</span>", $v_sTexte);
+	// Droite à gauche (arabe, hébreu)
+	$v_sTexte = str_replace("[rtl]", "<span dir='rtl'>", $v_sTexte);
+	$v_sTexte = str_replace("[/rtl]", "</span>", $v_sTexte);
+	
 	// Ajouter un retour à la ligne
 	$v_sTexte = str_replace("[nl]", "<br>", $v_sTexte);
 	

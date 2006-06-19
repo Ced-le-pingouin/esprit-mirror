@@ -39,6 +39,8 @@ function left_alignment() { insererBalise("[l]","[/l]"); }
 function center_alignment() { insererBalise("[c]","[/c]"); }
 function right_alignment() { insererBalise("[r]","[/r]"); }
 function justify_alignment() { insererBalise("[j]","[/j]"); }
+function bidi_left_to_right() { insererBalise("[ltr]","[/ltr]"); }
+function bidi_right_to_left() { insererBalise("[rtl]","[/rtl]"); }
 
 function list_ul() { insererBalise("[liste \"*\"]\n","\n[/liste]"); }
 function list() { insererBalise("[liste \"1\"]\n","\n[/liste]"); }
