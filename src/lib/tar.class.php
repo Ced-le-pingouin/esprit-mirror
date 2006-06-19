@@ -29,7 +29,7 @@
  * @author	Cédric FLOQUET
  */
 
-require_once 'pcltar/pcltar.lib.php';
+require_once dir_lib('pcltar/pcltar.lib.php', TRUE);
 
 /**
  * Gestion d'archives GNU TAR, utilisant les fonctions de la bibliothèque PclTar
