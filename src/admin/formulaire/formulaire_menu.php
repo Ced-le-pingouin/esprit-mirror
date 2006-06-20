@@ -26,11 +26,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 {
 	if (isset($HTTP_GET_VARS['idformulaire']))
 	{
-		$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+		$v_iIdFormulaire = @$HTTP_GET_VARS['idformulaire'];
 	}
 	else if (isset($HTTP_POST_VARS['idformulaire']))
 	{
-		$v_iIdFomulaire = $HTTP_POST_VARS['idformulaire'];
+		$v_iIdFomulaire = @$HTTP_POST_VARS['idformulaire'];
 	}
 	/*else
 	{
@@ -38,7 +38,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		$v_iIdFormulaire = 0;
 	}*/
 	
-	if ($HTTP_GET_VARS['typeaction']=='supprimer')
+	if (@$HTTP_GET_VARS['typeaction']=='supprimer')
 	{
 		if ($v_iIdFormulaire == Null)  //Si on n'a pas sélectionné de formulaire dans la liste
 		{
@@ -156,7 +156,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		}
 	}
 	
-	if ($HTTP_GET_VARS['typeaction']=='copier')
+	if (@$HTTP_GET_VARS['typeaction']=='copier')
 	{
 		$iIdPersCourant = $oProjet->oUtilisateur->retId();
 		
@@ -213,7 +213,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 			if (strlen($sNomFormulaireCourt) > $iLargeurMax)
 				$sNomFormulaireCourt = sprintf("%.".($iLargeurMax - 3)."s...", $sNomFormulaireCourt);
 			
-			$oBlock->remplacer("{nom_formulaire}", $sCodeHtml . htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
+			$oBlock->remplacer("{nom_formulaire}", htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
 			
 			$oBlock->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire,ENT_COMPAT,"UTF-8"));
 			$oBlock->remplacer("{id_formulaire}",$oFormulaireCourant->retId());
