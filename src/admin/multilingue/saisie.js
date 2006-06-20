@@ -165,6 +165,7 @@ function insertAtCursor(myField, myValue) {
 	} else {
 		myField.value += myValue;
 	}
+	myField.focus();
 }
 
 function showblock(id) {
