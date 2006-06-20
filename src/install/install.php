@@ -36,11 +36,12 @@
 	Reste à faire :
 		- tester
 		- écrire une fonction javascript qui vérifie les données du formulaire (pb de SÉCURITÉ en particulier)
+		- A quoi correspondent $g_sNomProprietaire et $g_sNomBdd ? Leur valeur actuelle est-elle correcte ?
 */
 
 $step=1;
-if (isset($_GET['step']) || isset($_POST['step'])) {
-	$step=($_GET['step']?$_GET['step']:$_POST['step']);
+if (isset($_REQUEST['step']) && $_REQUEST['step']) {
+    $step=$_REQUEST['step'];
 } else {
 	if (file_exists('../include/config.inc')) {
 		echo "<p class='erreur'>Configuration interrompue : Esprit semble déjà configuré.</p>";
@@ -141,6 +142,8 @@ case 3:
 	           . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
 	           . "// }}}\n\n";
 
+	$g_sNomProprietaire = $_POST['user']; // ???
+	$g_sNomBdd = $_POST['base']; // ???
 	$buffer .= "// {{{ Cookie\n"
 	           . '$g_sNomCookie = "{'.$g_sNomProprietaire.'}_{'.$g_sNomBdd.'}";	// Nom du cookie'."\n"
 	           . "// }}}\n\n";
@@ -179,9 +182,18 @@ case 4:
 	if (!file_exists('../tmp/mdpncpte')) {
 		touch('../tmp/mdpncpte');
 	}
+	$ok = true;
 	if (!is_writable('../tmp/mdpncpte')) {
 		echo "<p class='erreur'>Erreur : le fichier tmp/mdpncpte n'est pas accessible en écriture.<p>";
 		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce fichier et le répertoire tmp/</p>';
+		$ok = false;
+	}
+	if (!is_writable('../formation')) {
+		echo "<p class='erreur'>Erreur : le répertoire formation n'est pas accessible en écriture.<p>";
+		echo '<p>Vérifiez que le serveur web a bien des droits d\'écriture sur ce répertoire pour pouvoir plus tard y déposer des documents.</p>';
+		$ok = false;
+	}
+	if (!$ok) {
 		redo_step();
 		echo '</body></html>';
 		exit;
