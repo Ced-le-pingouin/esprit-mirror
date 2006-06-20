@@ -1,0 +1,52 @@
+
+h3 {
+  margin-top: 1ex;
+  clear: both;
+}
+h3 a {
+  text-decoration: none;
+}
+
+div.claviervirtuel {
+  font-size: 1.5em;
+  margin-bottom: 5ex;
+}
+div.claviervirtuel .ligne a {
+  width: 4ex;
+  float: left;
+  border: 1px solid;
+  margin: 2px;
+/*  margin-top: 1ex;
+  padding-top: 1ex;
+  margin-bottom: 0ex;
+  padding-bottom: 0ex; */
+  padding: 0.7ex 0.4ex 0.9ex 0.4ex;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+div.claviervirtuel .ligne {
+  clear: both;
+}
+div.claviervirtuel .azerty {
+  font-size: 0.5em;
+  color: red;
+  position: relative;
+  left: 1ex;
+  top: 2ex;
+}
+
+textarea.arabic {
+  direction: rtl;
+}
+
+form.ml textarea {
+  font-size: 140%;
+}
+form.ml textarea.arabic {
+  font-size: 160%;
+}
+
+#cyrillique, #arabe, #pinyin {
+  display: none;
+}

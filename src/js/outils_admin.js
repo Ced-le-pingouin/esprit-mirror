@@ -46,6 +46,13 @@ function outils() {
 	win.focus();
 }
 
+function multilingue() {
+	var sUrl = GLOBALS["admin"] + "multilingue/ml_index.php";
+	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
+	var win = PopupCenter(sUrl,"winMultilingue",780,580,sOptionsFenetre);
+	win.focus();
+}
+
 function equipes() {
 	var sUrl = GLOBALS["admin"] + "equipe/equipes-index.php";
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=no";

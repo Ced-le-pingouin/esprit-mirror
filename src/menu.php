@@ -91,6 +91,7 @@ $sMenu = ($bPersInscrite
 	.($iNbrOutils > 0
 		? "<a href=\"javascript: void(0);\" onclick=\"outils(); return false;\" onfocus=\"blur()\">"._("Outils")."</a>&nbsp;|&nbsp;" 
 		: NULL)
+	.'<a href="javascript: void(0);" onclick="multilingue(); return false;" onfocus="blur()">'._("Multilinguisme")."</a>&nbsp;|&nbsp;"
 	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
 
 // ---------------------
