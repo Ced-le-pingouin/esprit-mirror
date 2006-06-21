@@ -59,42 +59,93 @@ class CForumCSV extends CCSV
 		return $iNbEquipes;
 	}
 	
-	function envoyerNomForum () { echo "\"".$this->doubler_guillemets($this->oForum->retNom())."\"\n"; }
+	function envoyerNomForum ()
+	{
+		$oFormation = new CFormation($this->oBdd,$this->oIds->retIdForm());
+		$oModule = new CModule($this->oBdd,$this->oIds->retIdMod());
+		
+		$oRubrique = (TYPE_SOUS_ACTIVITE == $this->oForum->retTypeNiveau()
+			? new CModule_Rubrique($this->oBdd,$this->oIds->retIdRubrique())
+			: NULL);
+			
+		echo "\""
+			.$this->doubler_guillemets($oFormation->retNom())
+			." / "
+			.$this->doubler_guillemets($oModule->retNom())
+			.(isset($oRubrique)
+				? " / ".$this->doubler_guillemets($oRubrique->retNom())
+				: NULL)
+			."\""
+			."\n"
+			."\""
+			.$this->doubler_guillemets($this->oForum->retNom())
+			."\""
+			."\n";
+	}
 	
-	function envoyerSujets ($v_iIdEquipe=NULL)
+	function envoyerEntetes ()
+	{
+		echo "\n"
+			."\"ID forum\""
+			.";\"Nom du forum (".$this->doubler_guillemets($this->oForum->retTexteModalite()).")\""
+			.";\"ID sujet\""
+			.";\"Sujet\""
+			.";\"ID auteur\""
+			.";\"Nom\""
+			.";\"Prénom\""
+			.";\"ID statut\""
+			.";\"Statut\""
+			.";\"Date\""
+			.";\"Heure\""
+			.";\"N° du message\""
+			.";\"ID message\""
+			.";\"Message\""
+			."\n";
+	}
+	
+	function envoyerSujets ($v_oEquipe=NULL)
 	{
 		$iIdMod = $this->oIds->retIdMod();
+		$iIdEquipe = (isset($v_oEquipe) ? $v_oEquipe->retId() : NULL);
 		
-		$this->oForum->initSujets($v_iIdEquipe);
+		$iIdForum = $this->oForum->retId();
+		$sNomForum = $this->doubler_guillemets($this->oForum->retNom());
+		
+		$this->oForum->initSujets($iIdEquipe);
 		
 		foreach ($this->oForum->aoSujets as $oSujet)
 		{
-			echo "\n";
-			echo "\"".$this->doubler_guillemets($oSujet->retNom())."\""
-				."\n";
+			$iIdSujet = $oSujet->retId();
+			$sNomSujet = $this->doubler_guillemets($oSujet->retNom());
 			
 			// {{{ Messages du sujet
-			$oSujet->initMessages($v_iIdEquipe);
+			$oSujet->initMessages($iIdEquipe);
 			$oSujet->aoMessages = array_reverse($oSujet->aoMessages);
-			
-			echo "\"N° du message\";\"Pseudo\";\"Statut\";\"Date\";\"Heure\";\"Message\"\n";
 			
 			foreach ($oSujet->aoMessages as $iNumMessage => $oMessage)
 			{
 				$oMessage->initAuteur();
 				$bTuteur = $oMessage->oAuteur->verifTuteur($iIdMod);
 				
-				echo "\"".($iNumMessage+1)."\";"
-					."\"".$oMessage->oAuteur->retPseudo()."\";"
-					."\"".(PERSONNE_SEXE_FEMININ == $oMessage->oAuteur->retSexe()
+				echo "\"{$iIdForum}\""
+					.";\"".(isset($v_oEquipe) ? $this->doubler_guillemets($v_oEquipe->retNom()) : NULL)."\""
+					.";\"{$iIdSujet}\""
+					.";\"{$sNomSujet}\""
+					.";\"".$oMessage->oAuteur->retId()."\""
+					.";\"".$oMessage->oAuteur->retNom()."\""
+					.";\"".$oMessage->oAuteur->retPrenom()."\""
+					.";\"".($bTuteur ? STATUT_PERS_TUTEUR : STATUT_PERS_ETUDIANT)."\""
+					.";\"".(PERSONNE_SEXE_FEMININ == $oMessage->oAuteur->retSexe()
 						? ($bTuteur ? TXT_STATUT_TUTEUR_F : TXT_STATUT_ETUDIANT_F)
 						: ($bTuteur ? TXT_STATUT_TUTEUR_M : TXT_STATUT_ETUDIANT_M))
-					."\";"
-					."\"".$oMessage->retDate("d/m/y")."\";"
-					."\"".$oMessage->retDate("H:i")."\"";
+					."\""
+					.";\"".$oMessage->retDate("d/m/y")."\""
+					.";\"".$oMessage->retDate("H:i")."\""
+					.";\"".($iNumMessage+1)."\""
+					.";\"".$oMessage->retId()."\"";
 				
 				// {{{ Messages
-				foreach (preg_split("/\015\012|\015|\012/",$oMessage->retMessage()) as $iNbMessages => $sMessage)
+				/*foreach (preg_split("/\015\012|\015|\012/",$oMessage->retMessage()) as $iNbMessages => $sMessage)
 				{
 					$sMessage = enleverBaliseMeta($sMessage);
 					
@@ -103,10 +154,17 @@ class CForumCSV extends CCSV
 							.";\""
 							.$this->doubler_guillemets($sMessage)
 							."\"\n";
-				}
+				}*/
 				// }}}
 				
-				echo "\n";
+				// {{{ Messages
+				$sMessage = enleverBaliseMeta(preg_replace("/\015\012|\015/","\012",$oMessage->retMessage()));
+				
+				if (strlen($sMessage))
+					echo ";\" "
+						.$this->doubler_guillemets($sMessage)
+						."\"\n";
+				// }}}
 			}
 		}
 	}
@@ -120,16 +178,12 @@ class CForumCSV extends CCSV
 		
 		// Nom du forum
 		$this->envoyerNomForum();
+		$this->envoyerEntetes();
 		
 		// {{{ Sujets du forum
 		if ($bModaliteParEquipe)
-		{
 			foreach ($this->aoEquipes as $oEquipe)
-			{
-				echo "\n\n\"".$this->doubler_guillemets($oEquipe->retNom())."\"\n";
-				$this->envoyerSujets($oEquipe->retId());
-			}
-		}
+				$this->envoyerSujets($oEquipe);
 		else
 			$this->envoyerSujets();
 		// }}}
