@@ -89,15 +89,13 @@ function showkeyboard($touches, $id, $chars=0) {
 function keyboard($type, $id) {
 	switch ($type) {
 		case "russian":
-//			return showkeyboard( array("ф я у к е н г ш щ з : ;", "й ы в а п р о л д ь ù *", "ц ч с м и т б ж Ж !"),
 			return showkeyboard( array("Й Ц У К Е Н Г Ш Щ З Х Ъ", "Ф Ы В А П Р О Л Д Ж Э", "Я Ч С М И Т Ь Б Ю Ë"),
 			                     $id,
-								 array("й ц у к е н г ш щ з х ъ", "ф ы в а п р о л д ж э", "я ч с м и т ь б ю ë") );
+			                     array("й ц у к е н г ш щ з х ъ", "ф ы в а п р о л д ж э", "я ч с м и т ь б ю ë") );
 		case "arabic":
-//			return showkeyboard( array("د ج ح خ ه ع غ ف ق ث ص ض", "ش س ي ب ل ا ت ن ن م ك ط", "ء ؤ ر لا ى ة و ز ظ لآ"),
 			return showkeyboard( array("ذ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ٠", "ض ص ث ق ف غ ع ه خ ح ج د", "ش س ي ب ل ا ت ن م ك ط *",
-									   "ئ ء ؤ ر لا ى ة و ز ظ",
-									   "آ آ , . ؟ &nbsp; أ أ ـ ، / ؛", "َ ً ُ ٌ ِ ٍ" ),
+			                           "ئ ء ؤ ر لا ى ة و ز ظ",
+			                           "آ , . ؟ &nbsp; أ ـ ، / ؛", "َ ً ُ ٌ ِ ٍ" ),
 			                     $id );
 		default:
 			return false;

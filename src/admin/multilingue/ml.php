@@ -32,7 +32,7 @@ keyboard("arabic", $textid);
 <div id="pinyin">
 Vous pouvez faire suivre &nbsp; <tt>a e i o u ü</tt> &nbsp; d'un chiffre de 1 à 4 pour indiquer leur ton.<br />
 <?php
-$textid = textarea("pinyin", 60, 5);
+$textid = textarea("pinyin", 60, 4);
 ?>
 </div>
 

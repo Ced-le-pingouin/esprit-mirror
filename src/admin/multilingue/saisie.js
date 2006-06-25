@@ -22,13 +22,6 @@ function insert_arabic(event,area) {
    insert(event,area,convert_arabic);
 }
 function insert_pinyin(event,area) {
-	var convert_pinyin = new Object;
-	convert_pinyin["a"] = String("ā á ǎ à").split(" ");
-	convert_pinyin["e"] = String("ē é ě è").split(" ");
-	convert_pinyin["i"] = String("ī í ǐ ì").split(" ");
-	convert_pinyin["o"] = String("ō ó ǒ ò").split(" ");
-	convert_pinyin["u"] = String("ū ú ǔ ù").split(" ");
-	convert_pinyin["ü"] = String("ǖ ǘ ǚ ǜ").split(" ");
 	var charcode = window.event ? event.keyCode : event.which;
 	if (charcode == String("v").charCodeAt(0)) {
 		insertAtCursor(area,"ü");
@@ -37,12 +30,10 @@ function insert_pinyin(event,area) {
 		event.returnValue=false; // MSIE
 		return false;
 	}
-	var char;
+	var tone; /* 1-4 */
 	if ((charcode >= 49 ) && (charcode <= 52 )) {
-		char = String.fromCharCode(charcode);
-		var lastchar = charBeforeCursor(area);
-		if (lastchar in convert_pinyin) {
-			replaceLastChar(area, convert_pinyin[lastchar][charcode-49]);
+		tone = charcode-49;
+		if (putToneOnLastWord(tone,area)) {
 			if (event.preventDefault) event.preventDefault();
 			if (event.stopPropagation) event.stopPropagation();
 			event.returnValue=false; // MSIE
@@ -70,40 +61,8 @@ function setconvert(from, to) {
 
 var convert_russian = setconvert('a z e r t y u i o p ^ $ '+'q s d f g h j k l m ù * '+'w x c v b n , ; : ! '+'A Z E R T Y U I O P " £ '+'Q S D F G H J K L M % µ '+'W X C V B N ? . / § ² ~',
 				 'й ц у к е н г ш щ з х ъ '+'ф ы в а п р о л д ж э * '+'я ч с м и т ь б ю , '+'Й Ц У К Е Н Г Ш Щ З Х Ъ '+'Ф Ы В А П Р О Л Д Ж Э µ '+'Я Ч С М И Т Ь Б Ю . ë Ë');
-var convert_arabic = setconvert("a z e r t y u i o p ^ $ "+"q s d f g h j k l m ù "+"w x c v  b n , ; : !",
-				"ض ص ث ق ف غ ع ه خ ح ج د "+"ش س ي ب ل ا ت ن م ك ط "+"ئ ء ؤ رل ا ى ة و ز ظ" );
-
-/*
-function showkeyboard (touches) {
-	if (touches.length < 3) {
-		alert('Il faut au moins 3 lignes pour définir le clavier.');
-		return false;
-	}
-	if (touches.length == 3) {
-		decalage = new Array(0, 1, 2.9);
-	}
-	if (touches.length == 4) {
-		decalage = new Array(0, 2, 3, 4.9);
-	}
-	if (touches.length == 5) {
-		decalage = new Array(0, 2, 3, 4.9, 0);
-	}
-   
-	var result = "";
-	for (var i=0; i<touches.length; ++i) {
-		var ligne = touches[i].split(" ");
-		result += '<div class="ligne">';
-		if (decalage[i] > 0) {
-			result += '<span style="float:left; width:'+decalage[i]+'ex;">&nbsp;</span>';
-		}
-		for (var j=0; j<ligne.length; ++j) {
-			result += '<a href="#" onclick="insertAtCursor(document.claviervirtuel.saisie,\''+ligne[j]+'\')">' + ligne[j] + '</a>';
-		}
-		result += '</div>';
-	}
-	document.write('<div class="claviervirtuel">'+result+'</div>');
-}
-*/
+var convert_arabic = setconvert("a z e r t y u i o p ^ $ "+"q s d f g h j k l m ù "+"w x c v  b n , ; : !"+" ²",
+				"ض ص ث ق ف غ ع ه خ ح ج د "+"ش س ي ب ل ا ت ن م ك ط "+"ئ ء ؤ رل ا ى ة و ز ظ"+" ذ");
 
 function transcrire(area) {
    var text=area.value;
@@ -113,40 +72,60 @@ function transcrire(area) {
    area.value=text;
 }
 
-function replaceLastChar(myField, character) {
-	// IE support
-	if (document.selection) {
+function putToneOnWord(tone, txt, pos) {
+	var priority = new Array("a","o","e","i","u","ü");
+	var convert_pinyin = new Object;
+	convert_pinyin["a"] = String("ā á ǎ à").split(" ");
+	convert_pinyin["o"] = String("ō ó ǒ ò").split(" ");
+	convert_pinyin["e"] = String("ē é ě è").split(" ");
+	convert_pinyin["iu"] = String("iū iú iǔ iù").split(" ");
+	convert_pinyin["i"] = String("ī í ǐ ì").split(" ");
+	convert_pinyin["u"] = String("ū ú ǔ ù").split(" ");
+	convert_pinyin["ü"] = String("ǖ ǘ ǚ ǜ").split(" ");
+	var charpos;
+	charpos=txt.lastIndexOf("iu");
+	if (charpos >= pos) {
+		txt = txt.substring(0,charpos+1) + convert_pinyin["u"][tone] + txt.substring(charpos+2);
+		return txt;
+	}
+	for (var i=0; i < priority.length; ++i) {
+		charpos=txt.lastIndexOf(priority[i]);
+		if (charpos >= pos) {
+			txt = txt.substring(0,charpos) +
+				 convert_pinyin[priority[i]][tone] + txt.substring(charpos+1);
+			return txt;
+		}
+	}
+	return false;
+}
+
+function putToneOnLastWord(tone, myField) {
+	var modified = false;
+	if (myField.selectionStart) {
+		var startPos = myField.selectionStart;
+		if (startPos != myField.selectionEnd) return false;
+		var before = myField.value.substring(0, startPos);
+		var pos_word = before.lastIndexOf(" ");
+		if (pos_word == -1) pos_word = 0;
+		if (modified = putToneOnWord(tone, before, pos_word)) {
+			myField.value = modified + myField.value.substring(startPos, myField.value.length);
+			return true;
+		}
+	} else {
+		//alert("Méthode MSIE");
 		myField.focus();
 		// get empty selection range since its just a cursor
-		var sel = document.selection.createRange();
-		sel.moveStart("character",-1);
-//		sel.moveEnd("character",0);
+ 		var sel = document.selection.createRange();
+		sel.moveStart("word",-1);
 		sel.select();
-		sel.text = character;
-//		sel.select();
-	} else {
-		var startPos = myField.selectionStart;
-		var endPos = myField.selectionEnd;
-		myField.value = myField.value.substring(0, startPos-1)
-		              + character
-		              + myField.value.substring(endPos, myField.value.length);
+		if (modified = putToneOnWord(tone, sel.text, 0)) {
+			sel.text = modified;
+			myField.focus();
+			document.selection.createRange();
+			return true;
+		}
 	}
-}
-function charBeforeCursor(myField) {
-	// IE support
-	if (document.selection && document.selection.createRange) {
-		var r = document.selection.createRange();
-		r.moveStart('character',-1);
-		return r.text;
-	}
-	// MOZILLA and Co support
-	else if (myField.selectionStart || myField.selectionStart == 0) {
-		var startPos = myField.selectionStart;
-		var endPos = myField.selectionEnd;
-		return myField.value.substring(startPos-1, startPos);
-	} else {
-		return "";
-	}
+	return modified;
 }
 function insertAtCursor(myField, myValue) {
 	// IE support
