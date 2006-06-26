@@ -109,6 +109,9 @@ function putToneOnLastWord(tone, myField) {
 		if (pos_word == -1) pos_word = 0;
 		if (modified = putToneOnWord(tone, before, pos_word)) {
 			myField.value = modified + myField.value.substring(startPos, myField.value.length);
+			// 2 lines for Mozilla
+			myField.selectionStart = startPos;
+			myField.selectionEnd = startPos;
 			return true;
 		}
 	} else {
@@ -118,19 +121,21 @@ function putToneOnLastWord(tone, myField) {
  		var sel = document.selection.createRange();
 		sel.moveStart("word",-1);
 		sel.select();
-		if (modified = putToneOnWord(tone, sel.text, 0)) {
+		modified = putToneOnWord(tone, sel.text, 0);
+		if (modified) {
 			sel.text = modified;
-			myField.focus();
-			document.selection.createRange();
+			sel.select(); // focus !
 			return true;
 		}
+		sel.collapse(false);
+		sel.select();
 	}
 	return modified;
 }
 function insertAtCursor(myField, myValue) {
+	myField.focus();
 	// IE support
 	if (document.selection && document.selection.createRange) {
-		myField.focus();
 		sel = document.selection.createRange();
 		sel.text = myValue;
 	}
@@ -157,6 +162,7 @@ function showblock(id) {
 				block.style.display="none";
 			} else {
 				block.style.display="block";
+				block.getElementsByTagName("form")[0].getElementsByTagName("textarea")[0].focus();
 			}
 		} else {
 			block.style.display="none";
