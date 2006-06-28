@@ -124,7 +124,7 @@ foreach ($oIntitules->aoIntitules as $oIntitule)
 {
 	$sNomIntitule = $oIntitule->retNom(FALSE);
 	$sListeIntitules .= (isset($sListeIntitules) ? ";" : NULL)
-		.rawurlencode($sNomIntitule);
+		.phpString2js($sNomIntitule);
 	
 	$sMenus = ($bGestionIntitule ? $oSet_Menu_Modif : $oSet_Menu_Vide);
 	

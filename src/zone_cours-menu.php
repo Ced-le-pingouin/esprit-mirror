@@ -485,7 +485,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				$oBlockSousActiv->remplacer("{sousactiv.infobulle}",$sHrefTitle);
 				
 				$sTableauHistoriques .= (isset($sTableauHistoriques) ? ", " : NULL)
-					."\"".rawurlencode(str_replace(" ","&nbsp;",$sNomSousActiv))."\"\n";
+					."\"".phpString2js(str_replace(" ","&nbsp;",$sNomSousActiv))."\"\n";
 				
 				$iOrdreHistorique++;
 			}
