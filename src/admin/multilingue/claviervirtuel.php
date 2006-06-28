@@ -95,7 +95,7 @@ function keyboard($type, $id) {
 		case "arabic":
 			return showkeyboard( array("ذ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ٠", "ض ص ث ق ف غ ع ه خ ح ج د", "ش س ي ب ل ا ت ن م ك ط *",
 			                           "ئ ء ؤ ر لا ى ة و ز ظ",
-			                           "آ , . ؟ &nbsp; أ ـ ، / ؛", "َ ً ُ ٌ ِ ٍ" ),
+			                           "آ , . ؟ ! &nbsp; أ ـ ، / ؛", "َ ً ُ ٌ ِ ٍ" ),
 			                     $id );
 		default:
 			return false;
