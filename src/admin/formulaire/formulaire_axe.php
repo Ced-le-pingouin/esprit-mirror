@@ -25,13 +25,13 @@ $oProjet = new CProjet();
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
 }
 else
 {
@@ -55,7 +55,7 @@ echo "<body class=\"popup\" onLoad=\"self.focus()\">"; // ici onLoad permet d'af
 */
 
 
-if (isset($HTTP_GET_VARS['valider']))
+if (isset($_GET['valider']))
 {
 	$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd);
 	$oFormulaire_Axe->effacerAxesForm($v_iIdFormulaire);

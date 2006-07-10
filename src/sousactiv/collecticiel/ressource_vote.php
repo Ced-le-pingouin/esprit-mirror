@@ -48,8 +48,8 @@ if (!is_object($oProjet->oSousActivCourante) ||
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_aiIdResSAVotes = (empty($HTTP_GET_VARS["idResSAVotes"]) ? NULL : $HTTP_GET_VARS["idResSAVotes"]);
-$url_bVoter         = (empty($HTTP_GET_VARS["voter"]) ? FALSE : TRUE);
+$url_aiIdResSAVotes = (empty($_GET["idResSAVotes"]) ? NULL : $_GET["idResSAVotes"]);
+$url_bVoter         = (empty($_GET["voter"]) ? FALSE : TRUE);
 
 // ---------------------
 // Initialiser
@@ -147,7 +147,7 @@ if ($g_iIdEquipe > 0)
 		."</p>"
 		."</div>\n";
 	
-	echo "<form name=\"formVoter\" action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\" method=\"get\">\n";
+	echo "<form name=\"formVoter\" action=\"".$_SERVER["PHP_SELF"]."\" method=\"get\">\n";
 	
 	echo "<TABLE border=\"0\" cellpadding=\"1\" cellspacing=\"1\" width=\"100%\">\n";
 	echo "<TR>\n";
@@ -249,7 +249,7 @@ else if ($g_iIdPers > 0)
 	{
 		echo "<form"
 			." name=\"formVoter\""
-			." action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\""
+			." action=\"".$_SERVER["PHP_SELF"]."\""
 			." method=\"post\""
 			.">"; // <form>
 		

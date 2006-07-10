@@ -21,10 +21,10 @@
 
 require_once("globals.inc.php");
 
-if (isset($HTTP_GET_VARS["CouleurChat"]))
-	$url_sCouleurChat = $HTTP_GET_VARS["CouleurChat"];
-else if (isset($HTTP_POST_VARS["CouleurChat"]))
-	$url_sCouleurChat = $HTTP_POST_VARS["CouleurChat"];
+if (isset($_GET["CouleurChat"]))
+	$url_sCouleurChat = $_GET["CouleurChat"];
+else if (isset($_POST["CouleurChat"]))
+	$url_sCouleurChat = $_POST["CouleurChat"];
 else
 	$url_sCouleurChat = 0;
 

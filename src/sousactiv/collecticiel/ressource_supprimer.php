@@ -37,9 +37,9 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_bRecharger   = (empty($HTTP_GET_VARS["recharger"]) ? FALSE : $HTTP_GET_VARS["recharger"]);
-$url_sNomVariable = (empty($HTTP_GET_VARS["nom"]) ? NULL : $HTTP_GET_VARS["nom"]);
-$url_sIdResSA     = (empty($url_sNomVariable) || empty($HTTP_GET_VARS[$url_sNomVariable]) ? NULL : $HTTP_GET_VARS[$url_sNomVariable]);
+$url_bRecharger   = (empty($_GET["recharger"]) ? FALSE : $_GET["recharger"]);
+$url_sNomVariable = (empty($_GET["nom"]) ? NULL : $_GET["nom"]);
+$url_sIdResSA     = (empty($url_sNomVariable) || empty($_GET[$url_sNomVariable]) ? NULL : $_GET[$url_sNomVariable]);
 
 // ---------------------
 // Template

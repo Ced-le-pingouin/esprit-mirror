@@ -21,8 +21,8 @@
 
 require_once("globals.inc.php");
 
-$url_sNomFormation = (isset($HTTP_GET_VARS["TP"]) ? $HTTP_GET_VARS["TP"] : "&nbsp;");
-$url_sSousTitre = (isset($HTTP_GET_VARS["ST"]) ? $HTTP_GET_VARS["ST"] : "");
+$url_sNomFormation = (isset($_GET["TP"]) ? $_GET["TP"] : "&nbsp;");
+$url_sSousTitre = (isset($_GET["ST"]) ? $_GET["ST"] : "");
 
 $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
 

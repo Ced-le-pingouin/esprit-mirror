@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_bSauver = (empty($HTTP_POST_VARS["SAUVER"]) ? FALSE : TRUE);
+$url_bSauver = (empty($_POST["SAUVER"]) ? FALSE : TRUE);
 
 // ---------------------
 // Déclaration des fonctions locales
@@ -60,20 +60,20 @@ function formatTexteErreur ($v_sTexteErreur)
 // ---------------------
 $iIdPers = 0;
 
-if (isset($HTTP_GET_VARS["nv"]))
+if (isset($_GET["nv"]))
 {
 	$bModifierCookie = FALSE;
 }
-else if (isset($HTTP_GET_VARS["idPers"]))
+else if (isset($_GET["idPers"]))
 {
-	$iIdPers = $HTTP_GET_VARS["idPers"];
+	$iIdPers = $_GET["idPers"];
 }
-else if (isset($HTTP_POST_VARS["ID_PERS"]))
+else if (isset($_POST["ID_PERS"]))
 {
-	if ($HTTP_POST_VARS["ID_PERS"] == 0)
+	if ($_POST["ID_PERS"] == 0)
 		$url_bSauver = TRUE;
 
-	$iIdPers = $HTTP_POST_VARS["ID_PERS"];
+	$iIdPers = $_POST["ID_PERS"];
 }
 else
 	$iIdPers = $oProjet->oUtilisateur->retId();
@@ -89,7 +89,7 @@ if ($iIdPers >= 0)
 	if ($url_bSauver)
 	{
 		// Nom
-		$oPersonne->defNom($HTTP_POST_VARS["NOM_PERS"]);
+		$oPersonne->defNom($_POST["NOM_PERS"]);
 		
 		$sTmp = $oPersonne->retNom();
 		
@@ -97,7 +97,7 @@ if ($iIdPers >= 0)
 			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas être vide");
 		
 		// Prénom
-		$oPersonne->defPrenom($HTTP_POST_VARS["PRENOM_PERS"]);
+		$oPersonne->defPrenom($_POST["PRENOM_PERS"]);
 		
 		$sTmp = $oPersonne->retPrenom();
 		
@@ -129,7 +129,7 @@ if ($iIdPers >= 0)
 		}
 		
 		// Pseudo
-		$oPersonne->defPseudo($HTTP_POST_VARS["PSEUDO_PERS"]);
+		$oPersonne->defPseudo($_POST["PSEUDO_PERS"]);
 		
 		$sTmp = $oPersonne->retPseudo();
 		
@@ -141,35 +141,35 @@ if ($iIdPers >= 0)
 			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a déjà été utilisé");
 		
 		// Date de naissance (format: AAAA-MM-JJ)
-		$sDateNaiss = (empty($HTTP_POST_VARS["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $HTTP_POST_VARS["DATE_NAISS_ANNEE_PERS"])
+		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
 			."-"
-			.$HTTP_POST_VARS["DATE_NAISS_MOIS_PERS"]
+			.$_POST["DATE_NAISS_MOIS_PERS"]
 			."-"
-			.$HTTP_POST_VARS["DATE_NAISS_JOUR_PERS"];
+			.$_POST["DATE_NAISS_JOUR_PERS"];
 			
 		$oPersonne->defDateNaiss($sDateNaiss);
 		
 		// Sexe
-		if (isset($HTTP_POST_VARS["SEXE_PERS"]))
-			$oPersonne->defSexe($HTTP_POST_VARS["SEXE_PERS"]);
+		if (isset($_POST["SEXE_PERS"]))
+			$oPersonne->defSexe($_POST["SEXE_PERS"]);
 		
 		// Adresse
-		$oPersonne->defAdresse($HTTP_POST_VARS["ADRESSE_PERS"]);
+		$oPersonne->defAdresse($_POST["ADRESSE_PERS"]);
 		
 		// Numéro de téléphone
-		$oPersonne->defNumTel($HTTP_POST_VARS["TELEPHONE_PERS"]);
+		$oPersonne->defNumTel($_POST["TELEPHONE_PERS"]);
 		
 		// Email
-		if (!empty($HTTP_POST_VARS["EMAIL_PERS"]) && !emailValide($HTTP_POST_VARS["EMAIL_PERS"]))
+		if (!empty($_POST["EMAIL_PERS"]) && !emailValide($_POST["EMAIL_PERS"]))
 			$asErreurs["email"] = formatTexteErreur("Cette adresse électronique n'est pas valable");
 		
-		$oPersonne->defEmail($HTTP_POST_VARS["EMAIL_PERS"]);
+		$oPersonne->defEmail($_POST["EMAIL_PERS"]);
 		
 		// Mot de passe
-		$sMdp = trim($HTTP_POST_VARS["MDP_PERS"]);
+		$sMdp = trim($_POST["MDP_PERS"]);
 		
 		// Mot de passe de confirmation
-		$sMdpConfirm = trim($HTTP_POST_VARS["MDP_CONFIRM_PERS"]);
+		$sMdpConfirm = trim($_POST["MDP_CONFIRM_PERS"]);
 		
 		// Vérification des mots de passe
 		if ($iIdPers < 1 && empty($sMdp))
@@ -259,7 +259,7 @@ function afficher_erreur(v_sErreur)
 </script>
 </head>
 <body>
-<form action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="POST">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
 
 <tr>

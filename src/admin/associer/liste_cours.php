@@ -38,9 +38,9 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$iIdForm   = (empty($HTTP_GET_VARS["idform"]) ? 0 : $HTTP_GET_VARS["idform"]);
-$iIdPers   = (empty($HTTP_GET_VARS["IDPERS"]) ? 0 : $HTTP_GET_VARS["IDPERS"]);
-$iIdStatut = (empty($HTTP_GET_VARS["STATUT"]) ? 0 : $HTTP_GET_VARS["STATUT"]);
+$iIdForm   = (empty($_GET["idform"]) ? 0 : $_GET["idform"]);
+$iIdPers   = (empty($_GET["IDPERS"]) ? 0 : $_GET["IDPERS"]);
+$iIdStatut = (empty($_GET["STATUT"]) ? 0 : $_GET["STATUT"]);
 
 // ---------------------
 // Initialiser la formation
@@ -84,15 +84,15 @@ switch ($iIdStatut)
 			$oModule = new CModule_Tuteur($oProjet->oBdd,0,$iIdPers);
 		}
 		
-		if (isset($HTTP_GET_VARS["ENVOYER"]))
+		if (isset($_GET["ENVOYER"]))
 		{
 			// Appliquer les modifications
 			$oModule->effacerModules($oFormation->retId());
 			
-			if (isset($HTTP_GET_VARS["IDCOURS"]))
-				$oModule->ajouterModules($HTTP_GET_VARS["IDCOURS"]);
+			if (isset($_GET["IDCOURS"]))
+				$oModule->ajouterModules($_GET["IDCOURS"]);
 			
-			if ($HTTP_GET_VARS["ENVOYER"] == "1")
+			if ($_GET["ENVOYER"] == "1")
 				return;
 		}
 		
@@ -122,14 +122,14 @@ switch ($iIdStatut)
 		
 		$oModule = new CModule_Inscrit($oProjet->oBdd,0,$iIdPers);
 		
-		if (isset($HTTP_GET_VARS["ENVOYER"]))
+		if (isset($_GET["ENVOYER"]))
 		{
 			$oModule->effacerModules($iIdForm);
 			
-			if (isset($HTTP_GET_VARS["IDCOURS"]) && count($HTTP_GET_VARS["IDCOURS"]) > 0)
-				$oModule->ajouterModules($HTTP_GET_VARS["IDCOURS"]);
+			if (isset($_GET["IDCOURS"]) && count($_GET["IDCOURS"]) > 0)
+				$oModule->ajouterModules($_GET["IDCOURS"]);
 			
-			if ($HTTP_GET_VARS["ENVOYER"] == "1")
+			if ($_GET["ENVOYER"] == "1")
 				return;
 		}
 		
@@ -211,7 +211,7 @@ function rechargerListeCours()
 </script>
 </head>
 <body>
-<form action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="get">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
 <?=$sAppliquerChangements?>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
 <?php echo $sListeCours; ?>

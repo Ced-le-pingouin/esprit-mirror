@@ -177,8 +177,6 @@ function cHtmlQTexteCourt($v_iIdFC=NULL)
 
 function cHtmlQTexteCourtModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-	global $HTTP_POST_VARS, $HTTP_GET_VARS;
-	
 	//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
@@ -186,21 +184,21 @@ function cHtmlQTexteCourtModif($v_iIdObjForm,$v_iIdFormulaire)
 	$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
 	$iFlagErreur=0;
 	
-	if (isset($HTTP_POST_VARS['envoyer'])) 
+	if (isset($_POST['envoyer'])) 
 		{
 			   //Récupération des variables transmises par le formulaire
-			   $this->oEnregBdd->EnonQTC = stripslashes($HTTP_POST_VARS['Enonce']);
-			   $this->oEnregBdd->AlignEnonQTC = $HTTP_POST_VARS['AlignEnon'];
-				$this->oEnregBdd->AlignRepQTC = $HTTP_POST_VARS['AlignRep'];
-				$this->oEnregBdd->TxtAvQTC = stripslashes($HTTP_POST_VARS['TxtAv']);
-				$this->oEnregBdd->TxtApQTC = stripslashes($HTTP_POST_VARS['TxtAp']);
-				$this->oEnregBdd->LargeurQTC = $HTTP_POST_VARS['Largeur'];
-				$this->oEnregBdd->MaxCarQTC = $HTTP_POST_VARS['MaxCar'];		
+			   $this->oEnregBdd->EnonQTC = stripslashes($_POST['Enonce']);
+			   $this->oEnregBdd->AlignEnonQTC = $_POST['AlignEnon'];
+				$this->oEnregBdd->AlignRepQTC = $_POST['AlignRep'];
+				$this->oEnregBdd->TxtAvQTC = stripslashes($_POST['TxtAv']);
+				$this->oEnregBdd->TxtApQTC = stripslashes($_POST['TxtAp']);
+				$this->oEnregBdd->LargeurQTC = $_POST['Largeur'];
+				$this->oEnregBdd->MaxCarQTC = $_POST['MaxCar'];		
 				
 			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
 			   //if ($this->oEnregBdd->EnonQTC == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-				if (!(int)$HTTP_POST_VARS['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			   if ((int)$HTTP_POST_VARS['MaxCar'] || strlen($HTTP_POST_VARS['MaxCar']) < 1) 
+				if (!(int)$_POST['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			   if ((int)$_POST['MaxCar'] || strlen($_POST['MaxCar']) < 1) 
 					{;} else { $sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 								
 			   if ($iFlagErreur == 0) 

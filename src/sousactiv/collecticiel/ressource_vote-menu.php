@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $sBlockHead = NULL;
 $aMenus = NULL;
-if (isset($HTTP_GET_VARS["voter"]) && $HTTP_GET_VARS["voter"] == "1")
+if (isset($_GET["voter"]) && $_GET["voter"] == "1")
 	$aMenus = array(
 			array("Confirmer","top.frames['Principale'].voter()"),
 			array("Annuler","top.frames['Principale'].annuler()")

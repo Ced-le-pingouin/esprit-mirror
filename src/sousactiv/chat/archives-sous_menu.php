@@ -40,7 +40,7 @@ function rafraichir()
 <table border="0" cellpadding="3" cellspacing="1" width="100%" height="100%" class="dialog_sous_menu">
 <tr>
 <?php
-if (isset($HTTP_GET_VARS["AM"]))
+if (isset($_GET["AM"]))
 	echo "<td colspan=\"2\">"
 		."<a"
 		." class=\"dialog_sous_menu\""

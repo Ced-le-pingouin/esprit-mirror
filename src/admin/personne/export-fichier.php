@@ -29,9 +29,9 @@ if (!is_object($oProjet->oUtilisateur))
 	exit();
 
 $oPersonnes = new CPersonnes($oProjet->oBdd);
-$aoPersonnes = $oPersonnes->retListePersonnesGraceIds(explode(",",$HTTP_POST_VARS["LISTE_IDPERS"]));
+$aoPersonnes = $oPersonnes->retListePersonnesGraceIds(explode(",",$_POST["LISTE_IDPERS"]));
 
-$asListeChamps = explode(",",$HTTP_POST_VARS["LISTE_CHAMPS"]);
+$asListeChamps = explode(",",$_POST["LISTE_CHAMPS"]);
 $asChampsValides = array("Nom","Prenom","Pseudo","DateNaiss","Sexe","Adresse","NumTel","Email","UrlPerso","Mdp");
 
 $sRepRel = dir_tmp(NULL,FALSE);
@@ -39,7 +39,7 @@ $sRepAbs = dir_tmp(NULL,TRUE);
 
 $sNomFichier = "personne-".$oProjet->oUtilisateur->retPseudo();
 
-$sExtensionFichier = (isset($HTTP_POST_VARS["TYPE"]) ? $HTTP_POST_VARS["TYPE"] : "csv");
+$sExtensionFichier = (isset($_POST["TYPE"]) ? $_POST["TYPE"] : "csv");
 
 switch ($sExtensionFichier)
 {
@@ -60,8 +60,8 @@ switch ($sExtensionFichier)
 }
 
 // Envoyer ou non la liste des noms des champs
-if (isset($HTTP_POST_VARS["ENVOYER_NOMS_CHAMPS"]) &&
-	$HTTP_POST_VARS["ENVOYER_NOMS_CHAMPS"] == "on")
+if (isset($_POST["ENVOYER_NOMS_CHAMPS"]) &&
+	$_POST["ENVOYER_NOMS_CHAMPS"] == "on")
 	$oExport->defChamps($asListeChamps);
 
 // Composer la liste des personnes

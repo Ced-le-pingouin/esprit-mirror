@@ -31,7 +31,7 @@
 **
 */
 
-$iIdForm = (isset($HTTP_POST_VARS["ID_FORM"]) ? $HTTP_POST_VARS["ID_FORM"] : NULL);
+$iIdForm = (isset($_POST["ID_FORM"]) ? $_POST["ID_FORM"] : NULL);
 
 require_once("globals.inc.php");
 
@@ -39,7 +39,7 @@ $oProjet = new CProjet();
 
 $oFormation = new CFormation($oProjet->oBdd,$iIdForm);
 
-if (isset($HTTP_POST_VARS["EFFACER"]))
+if (isset($_POST["EFFACER"]))
 {
 	$oFormation->effacer();
 }
@@ -66,7 +66,7 @@ for ($iIdxForm=0; $iIdxForm<count($oFormation->aoFormations); $iIdxForm++)
 
 if ($iIdxForm > 0)
 	$sCorpHTML = "<p class=\"Cellule_Sous_Titre\">Attention, cette opération est dangereuse. Vous allez effacer définitivement la formation.</p>"
-		."<form action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\" method=\"post\">"
+		."<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">"
 		."<table border=\"0\" cellpadding=\"2\" cellspacing=\"0\" width=\"100%\">"
 		.$sCorpHTML
 		."</table>\n"

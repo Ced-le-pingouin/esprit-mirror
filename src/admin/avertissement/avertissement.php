@@ -38,8 +38,8 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sAvertissement        = (empty($HTTP_POST_VARS["avertissement"]) ? NULL : $HTTP_POST_VARS["avertissement"]);
-$url_bAppliquerChangements = (empty($HTTP_POST_VARS["f"]) ? FALSE : TRUE);
+$url_sAvertissement        = (empty($_POST["avertissement"]) ? NULL : $_POST["avertissement"]);
+$url_bAppliquerChangements = (empty($_POST["f"]) ? FALSE : TRUE);
 
 // ---------------------
 // Appliquer les changements

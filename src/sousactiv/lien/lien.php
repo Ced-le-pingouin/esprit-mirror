@@ -39,7 +39,7 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSousActiv = (empty($HTTP_GET_VARS["idSousActiv"]) ? 0 : $HTTP_GET_VARS["idSousActiv"]);
+$url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
 
 // ---------------------
 // Initialiser

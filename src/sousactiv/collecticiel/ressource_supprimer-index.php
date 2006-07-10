@@ -35,7 +35,7 @@ require_once("globals.inc.php");
 
 $sParamsUrl = NULL;
 
-if (isset($HTTP_GET_VARS["idResSA"]))
+if (isset($_GET["idResSA"]))
 {
 	// Supprimer les documents sélectionnés
 	$sParamsUrl = "?recharger=1";
@@ -46,7 +46,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	
 	$sRepCollecticiel = dir_collecticiel($oProjet->oFormationCourante->retId(),$oProjet->oActivCourante->retId(),NULL,TRUE);
 	
-	foreach (explode(",",$HTTP_GET_VARS["idResSA"]) as $iIdResSA)
+	foreach (explode(",",$_GET["idResSA"]) as $iIdResSA)
 	{
 		$oResSousActiv = new CRessourceSousActiv($oProjet->oBdd,$iIdResSA);
 		@unlink($sRepCollecticiel.$oResSousActiv->retUrl(FALSE,TRUE));
@@ -55,9 +55,9 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	
 	$oProjet->terminer();
 }
-else if ($HTTP_GET_VARS["nom"])
+else if ($_GET["nom"])
 {
-	foreach ($HTTP_GET_VARS as $sCle => $v)
+	foreach ($_GET as $sCle => $v)
 	{
 		$mValeur = NULL;
 		

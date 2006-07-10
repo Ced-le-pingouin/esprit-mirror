@@ -39,11 +39,11 @@ $oProjet->initModuleCourant();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdActiv     = (empty($HTTP_GET_VARS["idActiv"]) ? 0 : $HTTP_GET_VARS["idActiv"]);
-$url_iIdSousActiv = (empty($HTTP_GET_VARS["idSousActiv"]) ? 0 : $HTTP_GET_VARS["idSousActiv"]);
+$url_iIdActiv     = (empty($_GET["idActiv"]) ? 0 : $_GET["idActiv"]);
+$url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
 
 // Variable url facultative
-$url_iIdPers = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+$url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
 // ---------------------
 // Initialiser

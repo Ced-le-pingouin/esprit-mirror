@@ -40,10 +40,10 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdDossierForms  = (empty($HTTP_GET_VARS["idDossierForms"]) ? $oProjet->asInfosSession[SESSION_DOSSIER_FORMS] : $HTTP_GET_VARS["idDossierForms"]);
-$url_aiIdForms        = (empty($HTTP_GET_VARS["idForms"]) ? array() : $HTTP_GET_VARS["idForms"]);
-$url_aiIdDossierForms = (empty($HTTP_GET_VARS["ordreForms"]) ? NULL : $HTTP_GET_VARS["ordreForms"]);
-$url_sEvent           = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
+$url_iIdDossierForms  = (empty($_GET["idDossierForms"]) ? $oProjet->asInfosSession[SESSION_DOSSIER_FORMS] : $_GET["idDossierForms"]);
+$url_aiIdForms        = (empty($_GET["idForms"]) ? array() : $_GET["idForms"]);
+$url_aiIdDossierForms = (empty($_GET["ordreForms"]) ? NULL : $_GET["ordreForms"]);
+$url_sEvent           = (empty($_GET["event"]) ? NULL : $_GET["event"]);
 
 // ---------------------
 // Appliquer les changements

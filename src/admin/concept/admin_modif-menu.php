@@ -36,8 +36,8 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iType   = (empty($HTTP_GET_VARS["type"]) ? 0 : $HTTP_GET_VARS["type"]);
-$url_sParams = (empty($HTTP_GET_VARS["params"]) ? "0:0:0:0:0:0" : $HTTP_GET_VARS["params"]);
+$url_iType   = (empty($_GET["type"]) ? 0 : $_GET["type"]);
+$url_sParams = (empty($_GET["params"]) ? "0:0:0:0:0:0" : $_GET["params"]);
 
 if ($url_iType == 0)
 	$sCorpPage = "<div style=\"text-align: center;\">"

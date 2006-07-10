@@ -21,7 +21,7 @@
 
 require_once("globals.inc.php");
 
-$url_iIdForm = (isset($HTTP_GET_VARS["idform"]) ? $HTTP_GET_VARS["idform"] : 0);
+$url_iIdForm = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
 
 $sTitrePrincipal = "Inscription";
 
@@ -43,7 +43,7 @@ $sBlocHeadHtml = <<<BLOCK_HEAD_HTML
 <!--
 function choix_formation_callback(v_iIdForm)
 {
-	top.location = "{$HTTP_SERVER_VARS['PHP_SELF']}"
+	top.location = "{$_SERVER['PHP_SELF']}"
 		+ "?idform=" + v_iIdForm;
 }
 //-->

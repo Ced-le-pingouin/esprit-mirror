@@ -31,10 +31,10 @@
 **
 */
 
-if (!empty ($HTTP_GET_VARS))
+if (!empty ($_GET))
 {
-	$IdForm  = $HTTP_GET_VARS["FORM"];
-	$IdActiv = $HTTP_GET_VARS["ACTIV"];
+	$IdForm  = $_GET["FORM"];
+	$IdActiv = $_GET["ACTIV"];
 }
 else
 	$IdForm = $IdActiv = NULL;
@@ -83,7 +83,7 @@ function init(v_iLargeur,v_iHauteur)
 <?php 
 
 ?>
-<form name="FRM_RECUPERER_FICHIERS" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
+<form name="FRM_RECUPERER_FICHIERS" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
 <p>Choisissez dans la liste ci-dessous, le fichier que vous désirez récupérer.</p>
 

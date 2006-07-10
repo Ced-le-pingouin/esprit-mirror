@@ -159,8 +159,6 @@ class CQTexteLong
 
 	function cHtmlQTexteLongModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-		global $HTTP_POST_VARS, $HTTP_GET_VARS;
-		
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affichage d'une astérisque à l'endroit de l'erreur)
@@ -168,19 +166,19 @@ class CQTexteLong
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
 		$iFlagErreur=0;
 		
-		if (isset($HTTP_POST_VARS['envoyer'])) 
+		if (isset($_POST['envoyer'])) 
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQTL = stripslashes($HTTP_POST_VARS['Enonce']);
-			$this->oEnregBdd->AlignEnonQTL = $HTTP_POST_VARS['AlignEnon'];
-			$this->oEnregBdd->AlignRepQTL = $HTTP_POST_VARS['AlignRep'];
-			$this->oEnregBdd->LargeurQTL = $HTTP_POST_VARS['Largeur'];
-			$this->oEnregBdd->HauteurQTL = $HTTP_POST_VARS['Hauteur'];		
+			$this->oEnregBdd->EnonQTL = stripslashes($_POST['Enonce']);
+			$this->oEnregBdd->AlignEnonQTL = $_POST['AlignEnon'];
+			$this->oEnregBdd->AlignRepQTL = $_POST['AlignRep'];
+			$this->oEnregBdd->LargeurQTL = $_POST['Largeur'];
+			$this->oEnregBdd->HauteurQTL = $_POST['Hauteur'];		
 			
 			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!(int)$HTTP_POST_VARS['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!(int)$HTTP_POST_VARS['Hauteur']){$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (!(int)$_POST['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (!(int)$_POST['Hauteur']){$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			
 			if ($iFlagErreur == 0) 
 			{

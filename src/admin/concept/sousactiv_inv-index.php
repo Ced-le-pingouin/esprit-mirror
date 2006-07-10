@@ -38,11 +38,11 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSousActiv = $HTTP_GET_VARS["idSousActiv"];
+$url_iIdSousActiv = $_GET["idSousActiv"];
 
 $sParamsUrl = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

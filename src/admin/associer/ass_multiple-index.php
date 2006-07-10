@@ -24,8 +24,8 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupération des paramètres contenu dans l'url
 // ---------------------
-$url_iIdForm = (isset($HTTP_GET_VARS["ID_FORM"]) ? $HTTP_GET_VARS["ID_FORM"] : 0);
-$url_iIdStatut = (isset($HTTP_GET_VARS["STATUT_PERS"]) ? $HTTP_GET_VARS["STATUT_PERS"] : 0);
+$url_iIdForm = (isset($_GET["ID_FORM"]) ? $_GET["ID_FORM"] : 0);
+$url_iIdStatut = (isset($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : 0);
 
 // ---------------------
 // Template

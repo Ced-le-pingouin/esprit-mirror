@@ -24,7 +24,7 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_bEvalFC = (empty($HTTP_GET_VARS["evalFC"]) ? 0 : $HTTP_GET_VARS["evalFC"]);
+$url_bEvalFC = (empty($_GET["evalFC"]) ? 0 : $_GET["evalFC"]);
 
 $sBlockHead = <<<BLOCK_HTML_HEAD
 BLOCK_HTML_HEAD;

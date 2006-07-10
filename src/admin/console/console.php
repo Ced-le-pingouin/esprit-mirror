@@ -26,7 +26,7 @@ $sListeMessages = NULL;
 
 $sFichierLog = dir_admin("console","log/errors.log",TRUE);
 
-if (isset($HTTP_POST_VARS["VIDER"]) && $HTTP_POST_VARS["VIDER"] == "1")
+if (isset($_POST["VIDER"]) && $_POST["VIDER"] == "1")
 {
 	$fp = fopen($sFichierLog,"w");
 	fclose($fp);
@@ -84,7 +84,7 @@ function vider()
 </script>
 </head>
 <body>
-<form action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post" target="principal">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" target="principal">
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
 <tr>
 <td width="1%">&nbsp;</td>

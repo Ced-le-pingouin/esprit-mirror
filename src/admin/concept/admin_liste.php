@@ -38,15 +38,15 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$url_iType   = $HTTP_GET_VARS["type"];
-	$url_sParams = $HTTP_GET_VARS["params"];
+	$url_iType   = $_GET["type"];
+	$url_sParams = $_GET["params"];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$url_iType   = $HTTP_POST_VARS["type"];
-	$url_sParams = $HTTP_POST_VARS["params"];
+	$url_iType   = $_POST["type"];
+	$url_sParams = $_POST["params"];
 }
 
 // ---------------------

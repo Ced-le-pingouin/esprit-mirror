@@ -40,8 +40,8 @@ $oProjet->verifPeutUtiliserOutils();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm = (empty($HTTP_GET_VARS["idForm"]) ? 0 : $HTTP_GET_VARS["idForm"]);
-$url_sFiltre = (empty($HTTP_GET_VARS["filtre"]) ? NULL : $HTTP_GET_VARS["filtre"]);
+$url_iIdForm = (empty($_GET["idForm"]) ? 0 : $_GET["idForm"]);
+$url_sFiltre = (empty($_GET["filtre"]) ? NULL : $_GET["filtre"]);
 
 // ---------------------
 // Template

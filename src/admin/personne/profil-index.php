@@ -36,15 +36,15 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS["nv"]))
-	$sParamUrl = "?nv=".$HTTP_GET_VARS["nv"];
-else if (isset($HTTP_GET_VARS["idPers"]))
-	$sParamUrl = "?idPers=".$HTTP_GET_VARS["idPers"];
+if (isset($_GET["nv"]))
+	$sParamUrl = "?nv=".$_GET["nv"];
+else if (isset($_GET["idPers"]))
+	$sParamUrl = "?idPers=".$_GET["idPers"];
 else
 	$sParamUrl = NULL;
 
-if (isset($HTTP_GET_VARS["titre"]))
-	$sTitrePrincipal = $HTTP_GET_VARS["titre"];
+if (isset($_GET["titre"]))
+	$sTitrePrincipal = $_GET["titre"];
 else
 	$sTitrePrincipal = "Profil";
 

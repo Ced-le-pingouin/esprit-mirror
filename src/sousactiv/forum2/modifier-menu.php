@@ -37,8 +37,8 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
-$url_sMenu            = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
+$url_sModaliteFenetre = (empty($_GET["modaliteFenetre"]) ? NULL : $_GET["modaliteFenetre"]);
+$url_sMenu            = (empty($_GET["menu"]) ? NULL : $_GET["menu"]);
 
 // ---------------------
 // Menus

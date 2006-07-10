@@ -44,8 +44,8 @@ if (isset($bConfirmation) && $bConfirmation)
 	// Identifiant de l'auteur de la formation
 	$iIdPers = $oProjet->oUtilisateur->retId();
 	
-	$url_sNom         = (empty($HTTP_POST_VARS["formation_nom"]) ? NULL : $HTTP_POST_VARS["formation_nom"]);
-	$url_sDescription = (empty($HTTP_POST_VARS["formation_description"]) ? NULL : $HTTP_POST_VARS["formation_description"]);
+	$url_sNom         = (empty($_POST["formation_nom"]) ? NULL : $_POST["formation_nom"]);
+	$url_sDescription = (empty($_POST["formation_description"]) ? NULL : $_POST["formation_description"]);
 	
 	if (($iIdForm = $oProjet->oFormationCourante->copier()) > 0)
 	{

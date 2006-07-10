@@ -33,7 +33,7 @@
 
 require_once("globals.inc.php");
 
-$url_bAfficherMenu = (empty($HTTP_GET_VARS["menu"]) ? FALSE : TRUE);
+$url_bAfficherMenu = (empty($_GET["menu"]) ? FALSE : TRUE);
 
 $oTpl = new Template(dir_theme("dialogue/dialog-sous_menu.tpl",FALSE,TRUE));
 

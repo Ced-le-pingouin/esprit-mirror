@@ -36,7 +36,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iCodeEtat = (empty($HTTP_GET_VARS["codeEtat"]) ? 0 : $HTTP_GET_VARS["codeEtat"]);
+$url_iCodeEtat = (empty($_GET["codeEtat"]) ? 0 : $_GET["codeEtat"]);
 
 // ---------------------
 // Template

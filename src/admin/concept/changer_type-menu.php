@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $sBlockHead = NULL;
 $aMenus = NULL;
-if (isset($HTTP_GET_VARS["menu"]) && $HTTP_GET_VARS["menu"] == "1")
+if (isset($_GET["menu"]) && $_GET["menu"] == "1")
 	$aMenus = array(
 		array("Oui","top.envoyer(); top.close()"),
 		array("Non","top.close()")

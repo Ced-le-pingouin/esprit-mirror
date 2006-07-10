@@ -50,8 +50,8 @@ $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sEvent          = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
-$url_iIdDossierForms = (isset($url_sEvent) ? $HTTP_GET_VARS["idDossierForms"] : $oProjet->retInfosSession(SESSION_DOSSIER_FORMS));
+$url_sEvent          = (empty($_GET["event"]) ? NULL : $_GET["event"]);
+$url_iIdDossierForms = (isset($url_sEvent) ? $_GET["idDossierForms"] : $oProjet->retInfosSession(SESSION_DOSSIER_FORMS));
 
 // ---------------------
 // Appliquer les changements
@@ -125,7 +125,7 @@ if (!$bIdDossierFormsValide)
 	$url_iIdDossierForms = 0;
 
 // {{{ Formulaire
-$oTpl->remplacer(array("{form}","{/form}"),array("<form action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\" method=\"get\">","</form>"));
+$oTpl->remplacer(array("{form}","{/form}"),array("<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"get\">","</form>"));
 $oTpl->remplacer("{dossier_formations.id}",$url_iIdDossierForms);
 // }}}
 

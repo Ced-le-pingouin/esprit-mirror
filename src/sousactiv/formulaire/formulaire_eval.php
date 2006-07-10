@@ -43,13 +43,13 @@ $bAEteEvalue = FALSE;
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_POST_VARS["idFCSousActiv"]))
+if (isset($_POST["idFCSousActiv"]))
 {
-	$url_iIdFCSousActiv    = (empty($HTTP_POST_VARS["idFCSousActiv"]) ? 0 : $HTTP_POST_VARS["idFCSousActiv"]);
-	$url_bEvalFC           = (empty($HTTP_POST_VARS["evalFC"]) ? 0 : $HTTP_POST_VARS["evalFC"]);
-	$url_sStatut           = (empty($HTTP_POST_VARS["statutFCE"]) ? NULL : $HTTP_POST_VARS["statutFCE"]);
-	$url_sAppreciationEval = (empty($HTTP_POST_VARS["appreciationEvalFCE"]) ? NULL : $HTTP_POST_VARS["appreciationEvalFCE"]);
-	$url_sCommentaireEval  = (empty($HTTP_POST_VARS["commentaireEvalFCE"]) ? NULL : $HTTP_POST_VARS["commentaireEvalFCE"]);
+	$url_iIdFCSousActiv    = (empty($_POST["idFCSousActiv"]) ? 0 : $_POST["idFCSousActiv"]);
+	$url_bEvalFC           = (empty($_POST["evalFC"]) ? 0 : $_POST["evalFC"]);
+	$url_sStatut           = (empty($_POST["statutFCE"]) ? NULL : $_POST["statutFCE"]);
+	$url_sAppreciationEval = (empty($_POST["appreciationEvalFCE"]) ? NULL : $_POST["appreciationEvalFCE"]);
+	$url_sCommentaireEval  = (empty($_POST["commentaireEvalFCE"]) ? NULL : $_POST["commentaireEvalFCE"]);
 	
 	$oFCE = new CFormulaireComplete_Evaluation($oProjet->oBdd,$url_iIdFCSousActiv,$g_iIdPers);
 	$oFCE->ajouter($url_sStatut,$url_sAppreciationEval,$url_sCommentaireEval);
@@ -60,9 +60,9 @@ if (isset($HTTP_POST_VARS["idFCSousActiv"]))
 }
 else
 {
-	$url_iIdFCSousActiv = (empty($HTTP_GET_VARS["idFCSousActiv"]) ? 0 : $HTTP_GET_VARS["idFCSousActiv"]);
-	$url_bEvalFC        = (empty($HTTP_GET_VARS["evalFC"]) ? 0 : $HTTP_GET_VARS["evalFC"]);
-	$url_iIdPers        = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+	$url_iIdFCSousActiv = (empty($_GET["idFCSousActiv"]) ? 0 : $_GET["idFCSousActiv"]);
+	$url_bEvalFC        = (empty($_GET["evalFC"]) ? 0 : $_GET["evalFC"]);
+	$url_iIdPers        = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 	
 	if ($url_iIdPers < 1 && $url_bEvalFC)
 		$url_iIdPers = $g_iIdPers;
@@ -121,7 +121,7 @@ else if ($url_bEvalFC)
 	$oTpl->remplacer("{evaluation->corp}",$sSetEvaluationTuteur);
 	
 	// Globals
-	$oTpl->remplacer("{form->action}",$HTTP_SERVER_VARS["PHP_SELF"]);
+	$oTpl->remplacer("{form->action}",$_SERVER["PHP_SELF"]);
 	$oTpl->remplacer("{formulaire_eval->id}",$url_iIdFCSousActiv);
 	$oTpl->remplacer("{personne->peutEvaluer}",$url_bEvalFC);
 	

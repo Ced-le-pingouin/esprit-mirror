@@ -40,9 +40,9 @@ $oEvenement = new CEvenement($oProjet->oBdd);
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iTri     = (isset($HTTP_GET_VARS["tri"]) ? $HTTP_GET_VARS["tri"] : $oEvenement->TRI_DERNIERE_CONNEXION);
-$url_bSensTri = (isset($HTTP_GET_VARS["sens"]) ? $HTTP_GET_VARS["sens"] : $oEvenement->TRI_DESCENDANT);
-$url_iIdPers  = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+$url_iTri     = (isset($_GET["tri"]) ? $_GET["tri"] : $oEvenement->TRI_DERNIERE_CONNEXION);
+$url_bSensTri = (isset($_GET["sens"]) ? $_GET["sens"] : $oEvenement->TRI_DESCENDANT);
+$url_iIdPers  = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
 // ---------------------
 // Initialiser
@@ -167,7 +167,7 @@ function details(v_iIdPers)
 
 function Recharger()
 {
-	self.location = "<?=$HTTP_SERVER_VARS['PHP_SELF']?>";
+	self.location = "<?=$_SERVER['PHP_SELF']?>";
 	top.oExporter().location = "<?=dir_admin("espion","exporter_connexion.php",FALSE)?>";
 }
 

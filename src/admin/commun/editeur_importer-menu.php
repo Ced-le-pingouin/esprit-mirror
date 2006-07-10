@@ -31,7 +31,7 @@
 
 require_once("globals.inc.php");
 $sBlockHead = NULL;
-$url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
+$url_sMenu = (empty($_GET["menu"]) ? NULL : $_GET["menu"]);
 switch ($url_sMenu)
 {
 	case "annuler":

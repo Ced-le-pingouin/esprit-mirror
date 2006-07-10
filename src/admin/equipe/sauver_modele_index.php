@@ -40,10 +40,10 @@ foreach ($amVariablesUrl as $amVariableUrl)
 {
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?").$amVariableUrl[0]."=";
 	
-	if (!empty($HTTP_POST_VARS[$amVariableUrl[0]]))
-		$sParamsUrl .= $HTTP_POST_VARS[$amVariableUrl[0]];
-	else if (!empty($HTTP_GET_VARS[$amVariableUrl[0]]))
-		$sParamsUrl .= $HTTP_GET_VARS[$amVariableUrl[0]];
+	if (!empty($_POST[$amVariableUrl[0]]))
+		$sParamsUrl .= $_POST[$amVariableUrl[0]];
+	else if (!empty($_GET[$amVariableUrl[0]]))
+		$sParamsUrl .= $_GET[$amVariableUrl[0]];
 	else
 		$sParamsUrl .= $amVariableUrl[1];
 }

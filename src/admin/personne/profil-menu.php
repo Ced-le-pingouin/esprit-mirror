@@ -21,7 +21,7 @@
 
 require_once ("globals.inc.php");
 
-if (isset($HTTP_GET_VARS["corriger"]))
+if (isset($_GET["corriger"]))
 	$sMenu = "<td"
 		." align=\"right\">"
 		."<a"

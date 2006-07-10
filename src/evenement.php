@@ -21,7 +21,7 @@
 
 require_once("globals.inc.php");
 
-$url_bMAJ = (isset($HTTP_GET_VARS["maj"]) ? $HTTP_GET_VARS["maj"] : FALSE);
+$url_bMAJ = (isset($_GET["maj"]) ? $_GET["maj"] : FALSE);
 
 if ($url_bMAJ)
 	$oProjet = new CProjet();

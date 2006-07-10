@@ -39,8 +39,8 @@ $oProjet = new CProjet();
 // ---------------------
 // Initialisations
 // ---------------------
-$url_sNomFichier  = (empty($HTTP_GET_VARS["fi"]) ? NULL : $HTTP_GET_VARS["fi"]);
-$url_iIdSousActiv = (empty($HTTP_GET_VARS["idSousActiv"]) ? 0 : $HTTP_GET_VARS["idSousActiv"]);
+$url_sNomFichier  = (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
+$url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
 
 $bOk = FALSE;
 

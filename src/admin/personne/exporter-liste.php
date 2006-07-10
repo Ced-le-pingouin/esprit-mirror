@@ -39,8 +39,8 @@ $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_EXPORT_TABLE_PERSONNE");
 
 $oPersonnes = new CPersonnes($oProjet->oBdd);
 
-$url_sTri      = (empty($HTTP_POST_VARS["TRI"]) ? "nom" : $HTTP_POST_VARS["TRI"]);
-$url_sOrdreTri = (empty($HTTP_POST_VARS["ORDRE_TRI"]) ? $oPersonnes->ORDRE_TRI_CROISSANT : $HTTP_POST_VARS["ORDRE_TRI"]);
+$url_sTri      = (empty($_POST["TRI"]) ? "nom" : $_POST["TRI"]);
+$url_sOrdreTri = (empty($_POST["ORDRE_TRI"]) ? $oPersonnes->ORDRE_TRI_CROISSANT : $_POST["ORDRE_TRI"]);
 
 $oTpl = new Template("exporter-liste.tpl");
 
@@ -78,7 +78,7 @@ foreach ($asTrier as $sTrier)
 	$oTpl->remplacer("{{$sTrier}->image->tri}",$sImageTri);
 }
 
-if (isset($HTTP_POST_VARS["LISTE_IDPERS"]))
+if (isset($_POST["LISTE_IDPERS"]))
 {
 	// Définir le tri
 	if ($url_sTri == "prenom")
@@ -91,7 +91,7 @@ if (isset($HTTP_POST_VARS["LISTE_IDPERS"]))
 	$oPersonnes->defOrdreTri($url_sOrdreTri);
 	
 	// Rechercher les personnes
-	$aoPersonnes = $oPersonnes->retListePersonnesGraceIds(explode(",",$HTTP_POST_VARS["LISTE_IDPERS"]));
+	$aoPersonnes = $oPersonnes->retListePersonnesGraceIds(explode(",",$_POST["LISTE_IDPERS"]));
 	
 	$sCelluleCss = NULL;
 	$iPositionPersonne = 1;
@@ -136,7 +136,7 @@ if (isset($HTTP_POST_VARS["LISTE_IDPERS"]))
 	
 	$oBloc_personne->afficher();
 	
-	$oTpl->remplacer("{LISTE_IDPERS->value}",$HTTP_POST_VARS["LISTE_IDPERS"]);
+	$oTpl->remplacer("{LISTE_IDPERS->value}",$_POST["LISTE_IDPERS"]);
 }
 else
 {

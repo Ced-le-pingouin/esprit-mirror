@@ -33,15 +33,15 @@
 
 require_once("globals.inc.php");
 
-if (!empty($HTTP_GET_VARS))
+if (!empty($_GET))
 {
-	$IdForm = $HTTP_GET_VARS["FORM"];
-	$IdActiv = $HTTP_GET_VARS["ACTIV"];
+	$IdForm = $_GET["FORM"];
+	$IdActiv = $_GET["ACTIV"];
 }
-else if (!empty($HTTP_POST_VARS))
+else if (!empty($_POST))
 {
-	$IdForm = $HTTP_POST_VARS["FORM"];
-	$IdActiv = $HTTP_POST_VARS["ACTIV"];
+	$IdForm = $_POST["FORM"];
+	$IdActiv = $_POST["ACTIV"];
 }
 
 $sRepCours = dir_cours($IdActiv,$IdForm);

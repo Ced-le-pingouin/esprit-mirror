@@ -262,8 +262,6 @@ class CQCocher
 
 	function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-		global $HTTP_POST_VARS, $HTTP_GET_VARS;
-		
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
@@ -271,20 +269,20 @@ class CQCocher
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
 		$iFlagErreur=0;
 		
-		if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
+		if (isset($_POST['envoyer']) || $_POST['typeaction']=='ajouter' || $_POST['typeaction']=='supprimer')
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQC = stripslashes($HTTP_POST_VARS['Enonce']);
-			$this->oEnregBdd->AlignEnonQC = $HTTP_POST_VARS['AlignEnon'];
-			$this->oEnregBdd->AlignRepQC = $HTTP_POST_VARS['AlignRep'];
-			$this->oEnregBdd->TxtAvQC = stripslashes($HTTP_POST_VARS['TxtAv']);
-			$this->oEnregBdd->TxtApQC = stripslashes($HTTP_POST_VARS['TxtAp']);
-			$this->oEnregBdd->DispQC = $HTTP_POST_VARS['Disp'];
-			$this->oEnregBdd->NbRepMaxQC = $HTTP_POST_VARS['NbRepMax'];		
-			$this->oEnregBdd->MessMaxQC = $HTTP_POST_VARS['MessMax'];
+			$this->oEnregBdd->EnonQC = stripslashes($_POST['Enonce']);
+			$this->oEnregBdd->AlignEnonQC = $_POST['AlignEnon'];
+			$this->oEnregBdd->AlignRepQC = $_POST['AlignRep'];
+			$this->oEnregBdd->TxtAvQC = stripslashes($_POST['TxtAv']);
+			$this->oEnregBdd->TxtApQC = stripslashes($_POST['TxtAp']);
+			$this->oEnregBdd->DispQC = $_POST['Disp'];
+			$this->oEnregBdd->NbRepMaxQC = $_POST['NbRepMax'];		
+			$this->oEnregBdd->MessMaxQC = $_POST['MessMax'];
 			
 			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			if (!(int)$HTTP_POST_VARS['NbRepMax'])
+			if (!(int)$_POST['NbRepMax'])
 				{ $sMessageErreur2 = "<font color =\"red\">*</font>"; $iFlagErreur=1; }
 				
 			if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
@@ -306,17 +304,17 @@ class CQCocher
 					// Variables temporaires pour simplifier l'ecriture ci-dessous
 					$TexteTemp = $oReponse->retTexteReponse();
 					$IdReponseTemp = $oReponse->retId();
-					$TexteTemp = $HTTP_POST_VARS["$IdReponseTemp"];
+					$TexteTemp = $_POST["$IdReponseTemp"];
 					$oReponse->defTexteReponse(stripslashes($TexteTemp));
 					$oReponse->enregistrer();
 				}
 				*/
 							
 				//Enregistrement des réponses et de leurs poids pour les differents axes
-				if (isset($HTTP_POST_VARS["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
-													//sur ajouter, $HTTP_POST_VARS["rep"] n'existe pas 
+				if (isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
+													//sur ajouter, $_POST["rep"] n'existe pas 
 				{
-					foreach ($HTTP_POST_VARS["rep"] as $v_iIdReponse => $v_sTexteTemp) 
+					foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 					{
 						$oReponse = new CReponse($this->oBdd);
 						$oReponse->defId($v_iIdReponse);
@@ -324,10 +322,10 @@ class CQCocher
 						$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 						$oReponse->enregistrer(FALSE);
 								
-						if (isset($HTTP_POST_VARS["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
+						if (isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
 																// n'est défini pour ce formulaire
 						{
-							$tab = $HTTP_POST_VARS["repAxe"];
+							$tab = $_POST["repAxe"];
 							foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 							{
 								if (($v_iPoids != "") && (is_numeric($v_iPoids)))
@@ -362,7 +360,7 @@ class CQCocher
 		//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 		//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours. 
 		//(avec les vérifications d'usage avant enregistrement dans la BD)
-		if ($HTTP_POST_VARS['typeaction']=='ajouter')
+		if ($_POST['typeaction']=='ajouter')
 		{
 			//echo "je suis passé par ajouter";
 			
@@ -396,10 +394,10 @@ class CQCocher
 		//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 		//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.
 		//(avec les vérifications d'usage avant enregistrement dans la BD)
-		if ($HTTP_POST_VARS['typeaction']=='supprimer')
+		if ($_POST['typeaction']=='supprimer')
 		{
 			//echo "<br>je suis passé par supprimer";
-			$v_iIdReponse = $HTTP_POST_VARS['parametre'];
+			$v_iIdReponse = $_POST['parametre'];
 			$oReponse = new CReponse($this->oBdd,$v_iIdReponse);
 			$oReponse->effacer();
 		}

@@ -91,7 +91,7 @@ function retVraiNomFichier ($v_sNomComplet)
 // de fichier contenant des espaces et autres caractères spéciaux 
 
 // FILIPPO : tu dois remplacer le 'f' entre [] par 'fd' (et enlever 'rawurldecode' ???)
-$nomComplet = stripslashes(rawurldecode($HTTP_GET_VARS["f"]));
+$nomComplet = stripslashes(rawurldecode($_GET["f"]));
 
 $sErreur = NULL;
 
@@ -109,7 +109,7 @@ if (!(strpos($nomComplet, "..") === false))
 {
 	$sErreur = "Utilisation non autorisée de la chaine '..'";
 }
-else if (!is_readable($HTTP_SERVER_VARS["DOCUMENT_ROOT"].$nomComplet))
+else if (!is_readable($_SERVER["DOCUMENT_ROOT"].$nomComplet))
 {
 	$sErreur = "Lecture impossible";
 }
@@ -139,12 +139,12 @@ if (empty($sErreur))
 	// à l'utilisateur. Si 'filename' n'a pas été spécifié, le fichier aura le
 	// même nom que sur le serveur
 	
-	if (isset ($HTTP_GET_VARS["fn"]))
+	if (isset ($_GET["fn"]))
 	{
-		if ($HTTP_GET_VARS["fn"] === "1") 
+		if ($_GET["fn"] === "1") 
 			$nomSimple = retVraiNomFichier($nomSimple);
 		else
-			$nomSimple = rawurldecode($HTTP_GET_VARS["fn"]).".".$extension;
+			$nomSimple = rawurldecode($_GET["fn"]).".".$extension;
 	}
 	
 	//header ("Content-Type: application/force-download");
@@ -152,7 +152,7 @@ if (empty($sErreur))
 	//header ("Content-Length: ".filesize($nomComplet));
 	header ("Content-Disposition: attachment; filename=".str_replace(" ","_",$nomSimple));
 	//header("Content-Transfer-Encoding: binary"); 
-	readfile ($HTTP_SERVER_VARS["DOCUMENT_ROOT"].$nomComplet);
+	readfile ($_SERVER["DOCUMENT_ROOT"].$nomComplet);
 }
 else
 {

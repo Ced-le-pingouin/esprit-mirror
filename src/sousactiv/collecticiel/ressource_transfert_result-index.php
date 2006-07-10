@@ -44,11 +44,11 @@ $iIdSADest = 0;
 
 $iErr = NULL;
 
-if (isset($HTTP_GET_VARS["idResSA"]))
+if (isset($_GET["idResSA"]))
 {
 	include_once(dir_code_lib("upload.inc.php"));
 	
-	if (($iIdSADest = $HTTP_GET_VARS["idSADest"]) > 0)
+	if (($iIdSADest = $_GET["idSADest"]) > 0)
 	{
 		// {{{ Répertoire source
 		$iIdForm = $oProjet->oFormationCourante->retId();
@@ -63,7 +63,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 		$iTypeTransfert = $oProjet->oActivCourante->retTypeTransfert($oSousActiv->retIdParent());
 		// }}}
 		
-		foreach (explode("x",$HTTP_GET_VARS["idResSA"]) as $iIdResSA)
+		foreach (explode("x",$_GET["idResSA"]) as $iIdResSA)
 		{
 			$oRessourceSousActiv = new CRessourceSousActiv($oProjet->oBdd,$iIdResSA);
 			$oRessourceSousActiv->initResSousActivSource();
@@ -95,7 +95,7 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	// ---------------------------
 	// Si le nombre de transfert échoué est égal au nombre de document à transférer
 	// ---------------------------
-	if (count(explode("x",$HTTP_GET_VARS["idResSA"])) == count($aiIdResSA))
+	if (count(explode("x",$_GET["idResSA"])) == count($aiIdResSA))
 		$iErr = TRANSFERT_ECHOUE;
 	
 	$oProjet->terminer();

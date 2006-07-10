@@ -25,21 +25,21 @@ $oProjet = new CProjet();
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+	$v_iIdObjForm = $_GET['idobj'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
 
 	//formulaire ci-dessous
-	$v_iIdTypeObj = $HTTP_GET_VARS['idtypeobj'];
+	$v_iIdTypeObj = $_GET['idtypeobj'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdObjForm = $HTTP_POST_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
+	$v_iIdObjForm = $_POST['idobj'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
 
 	//formulaire ci-dessous
-	$v_iIdTypeObj = $HTTP_POST_VARS['idtypeobj'];
+	$v_iIdTypeObj = $_POST['idtypeobj'];
 }
 else
 {
@@ -67,7 +67,7 @@ echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".dir_theme("formulaire/
 echo "</head>\n";
 
 
-if (isset($HTTP_GET_VARS['ajouter']))
+if (isset($_GET['ajouter']))
 {
 
 

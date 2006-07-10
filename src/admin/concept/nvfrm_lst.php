@@ -39,9 +39,9 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupération des valeurs des formulaires ou des l'urls
 // ---------------------
-$filtre   = isset($HTTP_GET_VARS["FILTRE"]) ? $HTTP_GET_VARS["FILTRE"] : NULL;
-$tri      = isset($HTTP_GET_VARS["TRI"]) ? $HTTP_GET_VARS["TRI"] : NULL;
-$sens_tri = isset($HTTP_GET_VARS["SENS_TRI"]) ? $HTTP_GET_VARS["SENS_TRI"] : NULL;
+$filtre   = isset($_GET["FILTRE"]) ? $_GET["FILTRE"] : NULL;
+$tri      = isset($_GET["TRI"]) ? $_GET["TRI"] : NULL;
+$sens_tri = isset($_GET["SENS_TRI"]) ? $_GET["SENS_TRI"] : NULL;
 
 ?>
 <html>
@@ -84,7 +84,7 @@ function init()
 </script>
 </head>
 <body onload="init()" class="liste_formations">
-<form name="FRM_CHOIX_FORM" action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="post">
+<form name="FRM_CHOIX_FORM" action="<?=$_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellpadding="2" cellspacing="1" width="100%">
 <tr>
 <td class="dialog_menu_intitule">&nbsp;</td>

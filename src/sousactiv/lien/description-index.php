@@ -38,9 +38,9 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_bEncadrer   = (empty($HTTP_GET_VARS["encadrer"]) ? 0 : $HTTP_GET_VARS["encadrer"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_bEncadrer   = (empty($_GET["encadrer"]) ? 0 : $_GET["encadrer"]);
 
 // ---------------------
 // Initialiser

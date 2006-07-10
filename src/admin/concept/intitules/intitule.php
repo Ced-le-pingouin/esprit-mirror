@@ -37,17 +37,17 @@ $oProjet = new CProjet();
 // ---------------------
 $sFonctionInit = NULL;
 
-if (isset($HTTP_GET_VARS["MODE"]))
+if (isset($_GET["MODE"]))
 {
-	$url_iIdIntitule   = (empty($HTTP_GET_VARS["ID_INTITULE"]) ? NULL : $HTTP_GET_VARS["ID_INTITULE"]);
-	$url_sNomIntitule  = (empty($HTTP_GET_VARS["NOM_INTITULE"]) ? NULL : $HTTP_GET_VARS["NOM_INTITULE"]);
-	$url_iTypeIntitule = (empty($HTTP_GET_VARS["TYPE_INTITULE"]) ? NULL : $HTTP_GET_VARS["TYPE_INTITULE"]);
+	$url_iIdIntitule   = (empty($_GET["ID_INTITULE"]) ? NULL : $_GET["ID_INTITULE"]);
+	$url_sNomIntitule  = (empty($_GET["NOM_INTITULE"]) ? NULL : $_GET["NOM_INTITULE"]);
+	$url_iTypeIntitule = (empty($_GET["TYPE_INTITULE"]) ? NULL : $_GET["TYPE_INTITULE"]);
 	
 	$oIntitule = new CIntitule($oProjet->oBdd,$url_iIdIntitule);
 	
 	$oIntitule->defNom($url_sNomIntitule);
 	
-	if (AJOUTER_INTITULE == $HTTP_GET_VARS["MODE"])
+	if (AJOUTER_INTITULE == $_GET["MODE"])
 	{
 		$oIntitule->defType($url_iTypeIntitule);
 		$oIntitule->ajouter();
@@ -55,11 +55,11 @@ if (isset($HTTP_GET_VARS["MODE"]))
 	}
 	else if ($url_iIdIntitule > 0)
 	{
-		if (MODIFIER_INTITULE == $HTTP_GET_VARS["MODE"])
+		if (MODIFIER_INTITULE == $_GET["MODE"])
 		{
 			$oIntitule->enregistrer();
 		}
-		else if (SUPPRIMER_INTITULE == $HTTP_GET_VARS["MODE"])
+		else if (SUPPRIMER_INTITULE == $_GET["MODE"])
 		{
 			if ($url_iTypeIntitule == TYPE_RUBRIQUE)
 				$oObj = new CModule_Rubrique($oProjet->oBdd);
@@ -84,7 +84,7 @@ if (isset($HTTP_GET_VARS["MODE"]))
 }
 else
 {
-	$url_iTypeIntitule = (isset($HTTP_GET_VARS) ? $HTTP_GET_VARS["TYPE_INTITULE"] : NULL);
+	$url_iTypeIntitule = (isset($_GET) ? $_GET["TYPE_INTITULE"] : NULL);
 }
 
 if (!isset($url_iTypeIntitule))

@@ -42,8 +42,8 @@ $oProjet->initModuleCourant();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm     = (empty($HTTP_GET_VARS["form"]) ? NULL : $HTTP_GET_VARS["form"]);
-$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]);
+$url_iIdForm     = (empty($_GET["form"]) ? NULL : $_GET["form"]);
+$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]);
 
 // ---------------------
 // Initialiser

@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sMenu = (empty($HTTP_GET_VARS["menu"]) ? NULL : $HTTP_GET_VARS["menu"]);
+$url_sMenu = (empty($_GET["menu"]) ? NULL : $_GET["menu"]);
 
 // ---------------------
 // Initialiser

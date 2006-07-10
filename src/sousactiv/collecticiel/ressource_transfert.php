@@ -39,10 +39,10 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdPers   = (isset($HTTP_GET_VARS["idPers"]) ? $HTTP_GET_VARS["idPers"] : (isset($HTTP_POST_VARS["idPers"]) ? $HTTP_POST_VARS["idPers"] : 0));
-$url_iModalite = (empty($HTTP_GET_VARS["idModalite"]) ? NULL : $HTTP_GET_VARS["idModalite"]);
-$url_sTriCol   = (isset($HTTP_GET_VARS["TRICOL"]) ? $HTTP_GET_VARS["TRICOL"] : "titre");
-$url_iTriDir   = (isset($HTTP_GET_VARS["TRIDIR"]) ? $HTTP_GET_VARS["TRIDIR"] : "1");
+$url_iIdPers   = (isset($_GET["idPers"]) ? $_GET["idPers"] : (isset($_POST["idPers"]) ? $_POST["idPers"] : 0));
+$url_iModalite = (empty($_GET["idModalite"]) ? NULL : $_GET["idModalite"]);
+$url_sTriCol   = (isset($_GET["TRICOL"]) ? $_GET["TRICOL"] : "titre");
+$url_iTriDir   = (isset($_GET["TRIDIR"]) ? $_GET["TRIDIR"] : "1");
 
 // ---------------------
 // Initialisations
@@ -255,12 +255,12 @@ function envoyer(v_sTri,v_iTriDirection)
 function init()
 {
 <?php
-if (isset($HTTP_POST_VARS["TRANSFERT"]))
+if (isset($_POST["TRANSFERT"]))
 {
 	$sParamsUrl = NULL;
 	
-	if (isset($HTTP_POST_VARS["idResSA"]))
-		$sParamsUrl = "?idSADest=".$HTTP_POST_VARS["idSADest"]."&idResSA=".implode("x",$HTTP_POST_VARS["idResSA"]);
+	if (isset($_POST["idResSA"]))
+		$sParamsUrl = "?idSADest=".$_POST["idSADest"]."&idResSA=".implode("x",$_POST["idResSA"]);
 	
 	echo "\tvar w=self.open('ressource_transfert_result-index.php{$sParamsUrl}','TransfertResult','width=600,height=400,toolbar=0,resizable=1');\n";
 		//."\tw.focus();\n";

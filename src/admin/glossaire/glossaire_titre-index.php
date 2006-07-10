@@ -34,7 +34,7 @@
 
 require_once("globals.inc.php");
 
-$sParamsUrl = "?idGlossaire=".$HTTP_GET_VARS["idGlossaire"];
+$sParamsUrl = "?idGlossaire=".$_GET["idGlossaire"];
 
 $oTpl = new template(dir_theme("dialogue/dialog_simple-index.tpl",FALSE,TRUE));
 $oTpl->remplacer("{html->titre}",htmlentities("Modifier le titre du glossaire",ENT_COMPAT,"UTF-8"));

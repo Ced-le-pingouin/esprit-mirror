@@ -19,38 +19,38 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "NT 5.1")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Windows XP")) {
+if (stristr( $_SERVER['HTTP_USER_AGENT'], "NT 5.1")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Windows XP")) {
         $os = "Windows XP";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "NT 5")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Windows 2000")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "NT 5")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Windows 2000")) {
         $os = "Windows 2000";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "NT")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "WinNT")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "NT")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "WinNT")) {
         $os = "Windows  NT 4";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "95")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Win95")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "95")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Win95")) {
         $os = "Windows 95";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Win 9x 4.90")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "Win 9x 4.90")) {
         $os = "Windows ME";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "98")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Win98")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "98")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Win98")) {
         $os = "Windows 98";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Windows 3.1")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Win16")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "Windows 3.1")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Win16")) {
         $os = "Windows 3.x";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Macintosh")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Mac") || 
-	stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Macintosh;")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "Macintosh")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "Mac") || 
+	stristr( $_SERVER['HTTP_USER_AGENT'], "Macintosh;")) {
         $os = "Macintosh";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Linux")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "Linux")) {
         $os = "Linux";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "Unix")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "sunos")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "X11")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "Unix")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "sunos")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "X11")) {
         $os = "Unix";
-} else if (stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "WebTV")
-	|| stristr( $HTTP_SERVER_VARS['HTTP_USER_AGENT'], "AOL_TV")) {
+} else if (stristr( $_SERVER['HTTP_USER_AGENT'], "WebTV")
+	|| stristr( $_SERVER['HTTP_USER_AGENT'], "AOL_TV")) {
         $os = "Web TV";
 } else
         $os = "Unknown";

@@ -25,15 +25,15 @@ $oProjet = new CProjet();
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+	$v_iIdObjForm = $_GET['idobj'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdObjForm = $HTTP_POST_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
+	$v_iIdObjForm = $_POST['idobj'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
 }
 else
 {

@@ -39,13 +39,13 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iBoiteEnvoi      = (empty($HTTP_POST_VARS["boiteCourrielle"]) ? BOITE_COURRIELLE_PLATEFORME : $HTTP_POST_VARS["boiteCourrielle"]);
-$url_sSujetCourriel   = (empty($HTTP_POST_VARS["sujetCourriel"]) ? NULL : $HTTP_POST_VARS["sujetCourriel"]);
-$url_sMessageCourriel = (empty($HTTP_POST_VARS["messageCourriel"]) ? NULL : $HTTP_POST_VARS["messageCourriel"]);
-$url_iIdStatuts       = (empty($HTTP_POST_VARS["idStatuts"]) ? NULL : $HTTP_POST_VARS["idStatuts"]);
-$url_iIdEquipes       = (empty($HTTP_POST_VARS["idEquipes"]) ? NULL : $HTTP_POST_VARS["idEquipes"]);
-$url_iIdPers          = (empty($HTTP_POST_VARS["idPers"]) ? NULL : $HTTP_POST_VARS["idPers"]);
-$url_sTypeCourriel    = (empty($HTTP_POST_VARS["typeCourriel"]) ? NULL : $HTTP_POST_VARS["typeCourriel"]);
+$url_iBoiteEnvoi      = (empty($_POST["boiteCourrielle"]) ? BOITE_COURRIELLE_PLATEFORME : $_POST["boiteCourrielle"]);
+$url_sSujetCourriel   = (empty($_POST["sujetCourriel"]) ? NULL : $_POST["sujetCourriel"]);
+$url_sMessageCourriel = (empty($_POST["messageCourriel"]) ? NULL : $_POST["messageCourriel"]);
+$url_iIdStatuts       = (empty($_POST["idStatuts"]) ? NULL : $_POST["idStatuts"]);
+$url_iIdEquipes       = (empty($_POST["idEquipes"]) ? NULL : $_POST["idEquipes"]);
+$url_iIdPers          = (empty($_POST["idPers"]) ? NULL : $_POST["idPers"]);
+$url_sTypeCourriel    = (empty($_POST["typeCourriel"]) ? NULL : $_POST["typeCourriel"]);
 
 // ---------------------
 // Initialiser

@@ -101,7 +101,6 @@ function dir_http_plateform ($v_sFichierAInclure=NULL)
 {
 	if (eregi("^4.2",phpversion()))
 	{
-		global $HTTP_SERVER_VARS;
 		$tmp  = dirname(__FILE__);
 		$tmp1 = dir_document_root();
 		return (substr($tmp,strlen($tmp1))."/{$v_sFichierAInclure}");
@@ -247,15 +246,13 @@ function dir_chat_archives ($v_iTypeNiveau,$v_aiIds,$v_sFichierAInclure=NULL,$v_
 
 function dir_http ($v_sSeparateur="/")
 {
-	global $HTTP_SERVER_VARS;
-	return "http://".$HTTP_SERVER_VARS["HTTP_HOST"].$v_sSeparateur;
+	return "http://".$_SERVER["HTTP_HOST"].$v_sSeparateur;
 }
 
 function dir_document_root ($v_sFichierAInclure=NULL)
 {
 	// Ex.: /www/htdocs/html/
-	global $HTTP_SERVER_VARS;
-	$sDocumentRoot = str_replace("\\","/",realpath($HTTP_SERVER_VARS["DOCUMENT_ROOT"]));
+	$sDocumentRoot = str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"]));
 	return ("{$sDocumentRoot}/{$v_sFichierAInclure}");
 }
 
@@ -681,8 +678,8 @@ function echod ($v_sTexte)
 
 function retCookie ()
 {
-	global $g_sNomCookie, $HTTP_COOKIE_VARS;
-	return explode(":",$HTTP_COOKIE_VARS[$g_sNomCookie]);
+	global $g_sNomCookie;
+	return explode(":",$_COOKIE[$g_sNomCookie]);
 }
 
 function dir_locale ($v_sFichierAInclure=NULL,$v_sLocale=NULL)

@@ -4,7 +4,7 @@ require_once("admin_globals.inc.php");
 
 $oProjet = new CProjet();
 
-$iIdFormation = $HTTP_GET_VARS["idForm"];
+$iIdFormation = $_GET["idForm"];
 
 $sMessage = NULL;
 if ($iIdFormation <= 0)

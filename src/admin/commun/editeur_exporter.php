@@ -29,8 +29,8 @@
 **
 */
 
-$url_sTexte            = (empty($HTTP_POST_VARS["edition"]) ? NULL : stripslashes($HTTP_POST_VARS["edition"]));
-$url_sNomFichierExport = (empty($HTTP_POST_VARS["f"]) ? "fichier_cfj.txt" : stripslashes($HTTP_POST_VARS["f"]));
+$url_sTexte            = (empty($_POST["edition"]) ? NULL : stripslashes($_POST["edition"]));
+$url_sNomFichierExport = (empty($_POST["f"]) ? "fichier_cfj.txt" : stripslashes($_POST["f"]));
 
 $url_sNomFichierExport = str_replace("\"","",$url_sNomFichierExport);
 

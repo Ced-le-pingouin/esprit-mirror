@@ -39,10 +39,10 @@ $oProjet = new CProjet();
 //
 // *************************************
 
-$url_iNiveau        = (empty($HTTP_GET_VARS["NIVEAU"]) ? 0 : $HTTP_GET_VARS["NIVEAU"]);
-$url_iIdNiveau      = (empty($HTTP_GET_VARS["ID_NIVEAU"]) ? 0 : $HTTP_GET_VARS["ID_NIVEAU"]);
-$url_sFichierModele = (empty($HTTP_GET_VARS["FICHIER_MODELE"]) ? NULL : rawurldecode($HTTP_GET_VARS["FICHIER_MODELE"]));
-$url_sAction        = (empty($HTTP_GET_VARS["ACTION"]) ? NULL : $HTTP_GET_VARS["ACTION"]);
+$url_iNiveau        = (empty($_GET["NIVEAU"]) ? 0 : $_GET["NIVEAU"]);
+$url_iIdNiveau      = (empty($_GET["ID_NIVEAU"]) ? 0 : $_GET["ID_NIVEAU"]);
+$url_sFichierModele = (empty($_GET["FICHIER_MODELE"]) ? NULL : rawurldecode($_GET["FICHIER_MODELE"]));
+$url_sAction        = (empty($_GET["ACTION"]) ? NULL : $_GET["ACTION"]);
 
 // *************************************
 //
@@ -243,7 +243,7 @@ function effacerModele()
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
 <?=$sCorpTableUtilisateurs?>
 </table>
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="get">
+<form action="<?=$_SERVER['PHP_SELF']?>" method="get">
 <input type="hidden" name="NIVEAU" value="<?=$url_iNiveau?>">
 <input type="hidden" name="ID_NIVEAU" value="<?=$url_iIdNiveau?>">
 <input type="hidden" name="ACTION" value="ajouter">

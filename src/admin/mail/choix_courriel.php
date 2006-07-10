@@ -43,16 +43,16 @@ if (!is_object($oProjet->oUtilisateur))
 // ---------------------
 $sParamsUrl = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 
-$url_bToutesPersonnes = (empty($HTTP_GET_VARS["idPers"]) ? FALSE : $HTTP_GET_VARS["idPers"] == "tous");
+$url_bToutesPersonnes = (empty($_GET["idPers"]) ? FALSE : $_GET["idPers"] == "tous");
 
 // Types du courriel : cours, unite, forum
-$url_sTypeEnvoiCourriel = (empty($HTTP_GET_VARS["typeCourriel"])
+$url_sTypeEnvoiCourriel = (empty($_GET["typeCourriel"])
 	? NULL
-	: $HTTP_GET_VARS["typeCourriel"]);
+	: $_GET["typeCourriel"]);
 
 // ---------------------
 // Permissions

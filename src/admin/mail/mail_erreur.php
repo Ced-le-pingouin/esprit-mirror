@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$bEnvoiCourrielReussi = (empty($HTTP_GET_VARS["erreur"]) ? TRUE : FALSE);
+$bEnvoiCourrielReussi = (empty($_GET["erreur"]) ? TRUE : FALSE);
 
 // ---------------------
 // Template

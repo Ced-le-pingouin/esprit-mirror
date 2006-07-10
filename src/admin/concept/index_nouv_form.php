@@ -1,7 +1,7 @@
 <?php
 $sParamsUrl = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValue)
+foreach ($_GET as $sCle => $sValue)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValue}";
 ?>

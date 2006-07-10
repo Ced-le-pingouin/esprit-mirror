@@ -38,13 +38,13 @@ require_once("copier_form.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sNomBddSrc = $HTTP_GET_VARS["bddSrc"];
-$url_sNomBddDst = $HTTP_GET_VARS["bddDst"];
-$url_iIdFormSrc = $HTTP_GET_VARS["idFormSrc"];
+$url_sNomBddSrc = $_GET["bddSrc"];
+$url_sNomBddDst = $_GET["bddDst"];
+$url_iIdFormSrc = $_GET["idFormSrc"];
 
-$url_bCopierForums  = ($HTTP_GET_VARS["copierForums"] == "1");
-$url_bCopierSujetsForums = ($HTTP_GET_VARS["copierSujetsForums"] == "1");
-$url_bCopierChats        = ($HTTP_GET_VARS["copierChats"] == "1");
+$url_bCopierForums  = ($_GET["copierForums"] == "1");
+$url_bCopierSujetsForums = ($_GET["copierSujetsForums"] == "1");
+$url_bCopierChats        = ($_GET["copierChats"] == "1");
 
 ?>
 <html>

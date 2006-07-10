@@ -40,7 +40,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdChat = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
+$url_iIdChat = (empty($_GET["idChat"]) ? 0 : $_GET["idChat"]);
 
 $oChat = new CChat($oProjet->oBdd,$url_iIdChat);
 

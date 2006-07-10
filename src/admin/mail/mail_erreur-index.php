@@ -37,7 +37,7 @@ require_once(dir_template("dialogue/dialog_simple.class.php"));
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_asDestinatairesCourriel = (empty($HTTP_POST_VARS["destinataireCourriel"]) ? NULL : $HTTP_POST_VARS["destinataireCourriel"]);
+$url_asDestinatairesCourriel = (empty($_POST["destinataireCourriel"]) ? NULL : $_POST["destinataireCourriel"]);
 
 // ---------------------
 // Composer la liste des destinataires n'ayant pas ou que leur adresse courriel

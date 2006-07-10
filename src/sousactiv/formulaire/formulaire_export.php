@@ -27,9 +27,9 @@ function formaterChaineCsv($v_sChaine)
 	return str_replace("\"", "\"\"", $v_sChaine);
 }
 
-$iIdSousActiv = $HTTP_GET_VARS["idSousActiv"];
-//$iIdFormulaire = ( isset($HTTP_GET_VARS["idformulaire"])?$HTTP_GET_VARS["idformulaire"]:118 );
-//$iIdFc = $HTTP_GET_VARS["idfc"]; // 3,4,49,52,54 = Form118 | 42 = Form2 | 59 = Form126
+$iIdSousActiv = $_GET["idSousActiv"];
+//$iIdFormulaire = ( isset($_GET["idformulaire"])?$_GET["idformulaire"]:118 );
+//$iIdFc = $_GET["idfc"]; // 3,4,49,52,54 = Form118 | 42 = Form2 | 59 = Form126
 
 $asTypes = array(1=>"Q texte long", "Q texte court", "Q nombre", "Q liste", "Q radio", "Q case", "texte", "séparateur");
 $iValeurNeutreMin = 0;

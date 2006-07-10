@@ -1,6 +1,6 @@
 <?php
 require_once("globals.inc.php");
-$sTexteFormatte = (empty($HTTP_POST_VARS["edition"]) ? NULL : convertBaliseMetaVersHtml($HTTP_POST_VARS["edition"]));
+$sTexteFormatte = (empty($_POST["edition"]) ? NULL : convertBaliseMetaVersHtml($_POST["edition"]));
 ?>
 <html>
 <head>

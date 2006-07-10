@@ -21,9 +21,9 @@
 
 require_once("globals.inc.php");
 
-$url_iEtape    = (empty($HTTP_GET_VARS["etape"]) ? 1 : $HTTP_GET_VARS["etape"]);
-$url_iNbEtapes = (empty($HTTP_GET_VARS["etapes"]) ? 0 : $HTTP_GET_VARS["etapes"]);
-$url_bTerminer = (empty($HTTP_GET_VARS["fin"]) ? FALSE : $HTTP_GET_VARS["fin"]);
+$url_iEtape    = (empty($_GET["etape"]) ? 1 : $_GET["etape"]);
+$url_iNbEtapes = (empty($_GET["etapes"]) ? 0 : $_GET["etapes"]);
+$url_bTerminer = (empty($_GET["fin"]) ? FALSE : $_GET["fin"]);
 ?>
 <html>
 <head>

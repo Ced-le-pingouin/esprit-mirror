@@ -39,9 +39,9 @@ $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_INSCRIPTION");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm       = (isset($HTTP_GET_VARS["idform"]) ? $HTTP_GET_VARS["idform"] : 0);
-$url_iSelectFiltre = (!empty($HTTP_GET_VARS["FILTRE"]) ? $HTTP_GET_VARS["FILTRE"] : -1);
-$url_iSelectStatut = (!empty($HTTP_GET_VARS["STATUT_PERS"]) ? $HTTP_GET_VARS["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
+$url_iIdForm       = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
+$url_iSelectFiltre = (!empty($_GET["FILTRE"]) ? $_GET["FILTRE"] : -1);
+$url_iSelectStatut = (!empty($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
 
 // ---------------------
 // Filtres

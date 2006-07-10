@@ -40,7 +40,7 @@ $oProjet = new CProjet();
 // ---------------------
 $url_sParamsUrl = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$url_sParamsUrl .= (isset($url_sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

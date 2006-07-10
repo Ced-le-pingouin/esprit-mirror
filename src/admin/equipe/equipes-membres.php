@@ -38,17 +38,17 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (!empty($HTTP_GET_VARS["ID_EQUIPE"]))
-	$url_iIdEquipe = $HTTP_GET_VARS["ID_EQUIPE"];
-else if (!empty($HTTP_POST_VARS["ID_EQUIPE"]))
-	$url_iIdEquipe = $HTTP_POST_VARS["ID_EQUIPE"];
+if (!empty($_GET["ID_EQUIPE"]))
+	$url_iIdEquipe = $_GET["ID_EQUIPE"];
+else if (!empty($_POST["ID_EQUIPE"]))
+	$url_iIdEquipe = $_POST["ID_EQUIPE"];
 else
 	$url_iIdEquipe = 0;
 
-if (!empty($HTTP_GET_VARS["NIVEAU"]))
-	$url_iNiveau = $HTTP_GET_VARS["NIVEAU"];
-else if (!empty($HTTP_POST_VARS["NIVEAU"]))
-	$url_iNiveau = $HTTP_POST_VARS["NIVEAU"];
+if (!empty($_GET["NIVEAU"]))
+	$url_iNiveau = $_GET["NIVEAU"];
+else if (!empty($_POST["NIVEAU"]))
+	$url_iNiveau = $_POST["NIVEAU"];
 else
 	$url_iNiveau = 0;
 
@@ -60,10 +60,10 @@ else
 
 $sCorpFonctionInit = NULL;
 
-if (isset($HTTP_POST_VARS["ID_PERS"]) && $url_iIdEquipe > 0)
+if (isset($_POST["ID_PERS"]) && $url_iIdEquipe > 0)
 {
 	$oEquipeMembre = new CEquipe_Membre($oProjet->oBdd,$url_iIdEquipe);
-	$oEquipeMembre->effacerMembres($HTTP_POST_VARS["ID_PERS"]);
+	$oEquipeMembre->effacerMembres($_POST["ID_PERS"]);
 	$sCorpFonctionInit = "\n\ttop.oEtudiants().envoyer();\n";
 }
 

@@ -24,17 +24,17 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS["idNiveau"]))
-	$url_iIdParent = $HTTP_GET_VARS["idNiveau"];
-else if (isset($HTTP_POST_VARS["idNiveau"]))
-	$url_iIdParent = $HTTP_POST_VARS["idNiveau"];
+if (isset($_GET["idNiveau"]))
+	$url_iIdParent = $_GET["idNiveau"];
+else if (isset($_POST["idNiveau"]))
+	$url_iIdParent = $_POST["idNiveau"];
 else
 	$url_iIdParent = 0;
 
-if (isset($HTTP_GET_VARS["typeNiveau"]))
-	$url_iTypeParent = $HTTP_GET_VARS["typeNiveau"];
-else if (isset($HTTP_POST_VARS["typeNiveau"]))
-	$url_iTypeParent = $HTTP_POST_VARS["typeNiveau"];
+if (isset($_GET["typeNiveau"]))
+	$url_iTypeParent = $_GET["typeNiveau"];
+else if (isset($_POST["typeNiveau"]))
+	$url_iTypeParent = $_POST["typeNiveau"];
 else
 	$url_iTypeParent = 0;
 

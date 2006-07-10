@@ -43,8 +43,8 @@ $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sEvent          = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
-$url_iIdDossierForms = (empty($HTTP_GET_VARS["idDossierForms"]) ? NULL : $HTTP_GET_VARS["idDossierForms"]);
+$url_sEvent          = (empty($_GET["event"]) ? NULL : $_GET["event"]);
+$url_iIdDossierForms = (empty($_GET["idDossierForms"]) ? NULL : $_GET["idDossierForms"]);
 
 if (empty($url_sEvent) || $g_iIdUtilisateur < 1)
 	exit();
@@ -56,7 +56,7 @@ list(,$sEvent) = explode(":","{$url_sEvent}:");
 
 if ("ajout" == $sEvent || "modif" == $sEvent)
 {
-	$sNomDossier = (empty($HTTP_GET_VARS["nomDossierForms"]) ? "Dossier sans nom" : $HTTP_GET_VARS["nomDossierForms"]);
+	$sNomDossier = (empty($_GET["nomDossierForms"]) ? "Dossier sans nom" : $_GET["nomDossierForms"]);
 	
 	$oDossierForms = new CDossierForms($oProjet->oBdd,$url_iIdDossierForms);
 	
@@ -64,9 +64,9 @@ if ("ajout" == $sEvent || "modif" == $sEvent)
 		$oDossierForms->initAjouter($g_iIdUtilisateur);
 	
 	$oDossierForms->defNom($sNomDossier);
-	$oDossierForms->defNumOrdre($HTTP_GET_VARS["ordreDossierForms"]);
-	$oDossierForms->defPremierDossier((isset($HTTP_GET_VARS["premierDossierForms"]) && "on" == $HTTP_GET_VARS["premierDossierForms"]));
-	$oDossierForms->defVisible((isset($HTTP_GET_VARS["visibleDossierForms"]) &&"on" == $HTTP_GET_VARS["visibleDossierForms"]));
+	$oDossierForms->defNumOrdre($_GET["ordreDossierForms"]);
+	$oDossierForms->defPremierDossier((isset($_GET["premierDossierForms"]) && "on" == $_GET["premierDossierForms"]));
+	$oDossierForms->defVisible((isset($_GET["visibleDossierForms"]) &&"on" == $_GET["visibleDossierForms"]));
 	
 	if ($url_iIdDossierForms > 0)
 		$oDossierForms->enregistrer();

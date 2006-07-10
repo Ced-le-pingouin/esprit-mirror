@@ -45,15 +45,15 @@ $sMonEmail  = ($iMonIdPers > 0 ? $oProjet->oUtilisateur->retEmail() : NULL);
 // ---------------------
 // Mise à jour
 // ---------------------
-if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
+if (is_array($_POST) && count($_POST) > 0)
 {
-	$url_iIdForum  = (empty($HTTP_POST_VARS["idForum"]) ? 0 : $HTTP_POST_VARS["idForum"]);
+	$url_iIdForum  = (empty($_POST["idForum"]) ? 0 : $_POST["idForum"]);
 	
 	if ($url_iIdForum > 0 && $iMonIdPers > 0)
 	{
-		$url_aiIdsEquipes   = (empty($HTTP_POST_VARS["idEquipes"]) ? NULL : $HTTP_POST_VARS["idEquipes"]);
+		$url_aiIdsEquipes   = (empty($_POST["idEquipes"]) ? NULL : $_POST["idEquipes"]);
 		$iNbrEquipes        = count($url_aiIdsEquipes);
-		$url_iCopieCourriel = (empty($HTTP_POST_VARS["copieCourriel"]) ? ($iNbrEquipes > 0 ? "1" : "0") : ("on" == $HTTP_POST_VARS["copieCourriel"]));
+		$url_iCopieCourriel = (empty($_POST["copieCourriel"]) ? ($iNbrEquipes > 0 ? "1" : "0") : ("on" == $_POST["copieCourriel"]));
 		
 		$oForumPrefs = new CForumPrefs($oProjet->oBdd);
 		
@@ -104,7 +104,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 else
 {
 	// Récupérer les variables de l'url
-	$url_iIdForum  = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
+	$url_iIdForum  = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
 }
 
 // ---------------------

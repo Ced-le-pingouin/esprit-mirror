@@ -41,7 +41,7 @@ if (!$oProjet->verifPermission("PERM_FORUM_EXPORTER_CSV"))
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForum = (empty($HTTP_GET_VARS["idForum"]) ? NULL : $HTTP_GET_VARS["idForum"]);
+$url_iIdForum = (empty($_GET["idForum"]) ? NULL : $_GET["idForum"]);
 
 // ---------------------
 // Template

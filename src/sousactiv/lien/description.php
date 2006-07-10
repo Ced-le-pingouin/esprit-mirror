@@ -40,10 +40,10 @@ $oProjet->initStatutsUtilisateur(TRUE);
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_bEncadrer   = (empty($HTTP_GET_VARS["encadrer"]) ? FALSE : $HTTP_GET_VARS["encadrer"]);
-$url_bIndirect   = (empty($HTTP_GET_VARS["indirect"]) ? FALSE : (bool)$HTTP_GET_VARS["indirect"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_bEncadrer   = (empty($_GET["encadrer"]) ? FALSE : $_GET["encadrer"]);
+$url_bIndirect   = (empty($_GET["indirect"]) ? FALSE : (bool)$_GET["indirect"]);
 
 // ---------------------
 // Initialiser

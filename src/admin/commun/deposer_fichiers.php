@@ -37,10 +37,10 @@ require_once(dir_lib("systeme_fichiers.lib.php",TRUE));
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sTitrePrincipalFenetre = (empty($HTTP_GET_VARS["tpf"]) ? "Déposer des fichiers" : stripslashes(rawurldecode($HTTP_GET_VARS["tpf"])));
-$url_sRepDestination        = (empty($HTTP_GET_VARS["repDest"]) ? NULL : rawurldecode($HTTP_GET_VARS["repDest"]));
-$url_bEffacerFichiers       = (empty($HTTP_GET_VARS["effFichiers"]) ? FALSE : $HTTP_GET_VARS["effFichiers"]);
-$url_bDezippe               = (empty($HTTP_GET_VARS["dezipFichier"]) ? TRUE : $HTTP_GET_VARS["dezipFichier"]);
+$url_sTitrePrincipalFenetre = (empty($_GET["tpf"]) ? "Déposer des fichiers" : stripslashes(rawurldecode($_GET["tpf"])));
+$url_sRepDestination        = (empty($_GET["repDest"]) ? NULL : rawurldecode($_GET["repDest"]));
+$url_bEffacerFichiers       = (empty($_GET["effFichiers"]) ? FALSE : $_GET["effFichiers"]);
+$url_bDezippe               = (empty($_GET["dezipFichier"]) ? TRUE : $_GET["dezipFichier"]);
 
 // ---------------------
 // Initialiser

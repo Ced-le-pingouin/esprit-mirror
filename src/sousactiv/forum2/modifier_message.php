@@ -41,18 +41,18 @@ if (!is_object($oProjet->oUtilisateur))
 // ---------------------
 // Appliquer les changements
 // ---------------------
-if (isset($HTTP_POST_VARS["modaliteFenetre"]))
+if (isset($_POST["modaliteFenetre"]))
 {
-	$url_sModaliteFenetre = $HTTP_POST_VARS["modaliteFenetre"];
-	$url_iIdSujet         = $HTTP_POST_VARS["idSujet"];
-	$url_iIdMessage       = $HTTP_POST_VARS["idMessage"];
-	$url_iIdNiveau        = (empty($HTTP_POST_VARS["idNiveau"]) ? 0 : $HTTP_POST_VARS["idNiveau"]);
-	$url_iTypeNiveau      = (empty($HTTP_POST_VARS["typeNiveau"]) ? 0 : $HTTP_POST_VARS["typeNiveau"]);
-	$url_iIdEquipe        = (empty($HTTP_POST_VARS["idEquipe"]) ? 0 : $HTTP_POST_VARS["idEquipe"]);
+	$url_sModaliteFenetre = $_POST["modaliteFenetre"];
+	$url_iIdSujet         = $_POST["idSujet"];
+	$url_iIdMessage       = $_POST["idMessage"];
+	$url_iIdNiveau        = (empty($_POST["idNiveau"]) ? 0 : $_POST["idNiveau"]);
+	$url_iTypeNiveau      = (empty($_POST["typeNiveau"]) ? 0 : $_POST["typeNiveau"]);
+	$url_iIdEquipe        = (empty($_POST["idEquipe"]) ? 0 : $_POST["idEquipe"]);
 	
 	if ("ajouter" == $url_sModaliteFenetre || "modifier" == $url_sModaliteFenetre)
 	{
-		$url_sMessage = trim($HTTP_POST_VARS["messageSujet"]);
+		$url_sMessage = trim($_POST["messageSujet"]);
 		
 		// Numéro d'identifiant de la personne
 		$iIdPers = $oProjet->oUtilisateur->retId();
@@ -81,11 +81,11 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 			$oMessageForum->defRepRessources($sRepFichiersForum);
 			
 			// Effacer l'ancien fichier attaché
-			if ($HTTP_POST_VARS["effacerFichierMessage"] == "on")
+			if ($_POST["effacerFichierMessage"] == "on")
 				$oMessageForum->effacerRessources();
 			
 			// Déposer le fichier attaché sur le serveur
-			if (!empty($HTTP_POST_FILES["fichierMessage"]["name"]) &&
+			if (!empty($_FILES["fichierMessage"]["name"]) &&
 				$url_iIdNiveau > 0 &&
 				$url_iTypeNiveau > 0)
 			{
@@ -101,10 +101,10 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 					// Effacer l'ancienne ressource
 					$oMessageForum->effacerRessources();
 					
-					$sNomFichierUnique = retNomFichierUnique($HTTP_POST_FILES["fichierMessage"]["name"],$sRepFichiersForum);
+					$sNomFichierUnique = retNomFichierUnique($_FILES["fichierMessage"]["name"],$sRepFichiersForum);
 					
-					if (move_uploaded_file($HTTP_POST_FILES["fichierMessage"]["tmp_name"],($sRepFichiersForum.$sNomFichierUnique)))
-						$oMessageForum->ajouterRessource($HTTP_POST_FILES["fichierMessage"]["name"],$sNomFichierUnique,$oProjet->oUtilisateur->retId());
+					if (move_uploaded_file($_FILES["fichierMessage"]["tmp_name"],($sRepFichiersForum.$sNomFichierUnique)))
+						$oMessageForum->ajouterRessource($_FILES["fichierMessage"]["name"],$sNomFichierUnique,$oProjet->oUtilisateur->retId());
 				}
 			}
 		}
@@ -127,12 +127,12 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
-$url_iIdSujet         = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdMessage       = (empty($HTTP_GET_VARS["idMessage"]) ? 0 : $HTTP_GET_VARS["idMessage"]);
-$url_iIdNiveau        = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau      = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdEquipe        = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_sModaliteFenetre = (empty($_GET["modaliteFenetre"]) ? NULL : $_GET["modaliteFenetre"]);
+$url_iIdSujet         = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdMessage       = (empty($_GET["idMessage"]) ? 0 : $_GET["idMessage"]);
+$url_iIdNiveau        = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau      = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdEquipe        = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 // ---------------------
 // Template de la barre de progression

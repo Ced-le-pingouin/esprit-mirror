@@ -48,28 +48,28 @@ define("COPIER_FORMATION",1);
 // ---------------------
 // Récupération des valeurs des formulaires ou des l'urls
 // ---------------------
-$etape    = isset($HTTP_POST_VARS["ETAPE"]) ? $HTTP_POST_VARS["ETAPE"] : "1";
-$filtre   = isset($HTTP_POST_VARS["FILTRE"]) ? $HTTP_POST_VARS["FILTRE"] : NULL;
-$fonction = isset($HTTP_POST_VARS["FONCTION"]) ? $HTTP_POST_VARS["FONCTION"] : NULL;
-$bInit    = isset($HTTP_POST_VARS["INIT"]) ? 0 : 1;
+$etape    = isset($_POST["ETAPE"]) ? $_POST["ETAPE"] : "1";
+$filtre   = isset($_POST["FILTRE"]) ? $_POST["FILTRE"] : NULL;
+$fonction = isset($_POST["FONCTION"]) ? $_POST["FONCTION"] : NULL;
+$bInit    = isset($_POST["INIT"]) ? 0 : 1;
 
 // Informations de la formation
-$type     = isset($HTTP_POST_VARS["TYPE"]) ? $HTTP_POST_VARS["TYPE"] : NOUVELLE_FORMATION;
-$iIdForm  = (empty($HTTP_POST_VARS["ID_FORM"]) ? (empty($HTTP_GET_VARS["ID_FORM"]) ? 0 : $HTTP_GET_VARS["ID_FORM"]) : $HTTP_POST_VARS["ID_FORM"]);
+$type     = isset($_POST["TYPE"]) ? $_POST["TYPE"] : NOUVELLE_FORMATION;
+$iIdForm  = (empty($_POST["ID_FORM"]) ? (empty($_GET["ID_FORM"]) ? 0 : $_GET["ID_FORM"]) : $_POST["ID_FORM"]);
 
-$url_iInscrSpontForm = isset($HTTP_POST_VARS["InscrSpontForm"]) ? $HTTP_POST_VARS["InscrSpontForm"] : 1;
+$url_iInscrSpontForm = isset($_POST["InscrSpontForm"]) ? $_POST["InscrSpontForm"] : 1;
 
-$url_sNomForm = empty($HTTP_POST_VARS["formation_nom"])
-	? (empty($HTTP_POST_VARS["NOM_FORM"])
+$url_sNomForm = empty($_POST["formation_nom"])
+	? (empty($_POST["NOM_FORM"])
 		? INTITULE_FORMATION." sans nom"
-		: $HTTP_POST_VARS["NOM_FORM"])
-	: $HTTP_POST_VARS["formation_nom"];
+		: $_POST["NOM_FORM"])
+	: $_POST["formation_nom"];
 
-$url_sDescrForm = empty($HTTP_POST_VARS["formation_description"])
-	? (empty($HTTP_POST_VARS["DESCR_FORM"])
+$url_sDescrForm = empty($_POST["formation_description"])
+	? (empty($_POST["DESCR_FORM"])
 		? NULL
-		: $HTTP_POST_VARS["DESCR_FORM"])
-	: $HTTP_POST_VARS["formation_description"];
+		: $_POST["DESCR_FORM"])
+	: $_POST["formation_description"];
 
 if ($etape < 3 && $type == COPIER_FORMATION)
 {
@@ -201,7 +201,7 @@ function editeur_callback(v_sForm,v_sElem,v_sTexte) { document.forms[v_sForm].el
 </script>
 </head>
 <body onload="afficherMenu()">
-<form name="FRM_GENERAL" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
+<form name="FRM_GENERAL" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
 <td align="left" valign="top">

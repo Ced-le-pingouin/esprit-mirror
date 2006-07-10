@@ -21,8 +21,8 @@
 
 require_once("globals.inc.php");
 
-if (isset($HTTP_GET_VARS["titre"]))
-	$sTitre = $HTTP_GET_VARS["titre"];
+if (isset($_GET["titre"]))
+	$sTitre = $_GET["titre"];
 else
 	$sTitre = "Utilisateur";
 

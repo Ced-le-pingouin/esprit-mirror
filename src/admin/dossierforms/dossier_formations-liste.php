@@ -39,7 +39,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdDossierForms = (empty($HTTP_GET_VARS["idDossierForms"]) ? $oProjet->asInfosSession[SESSION_DOSSIER_FORMS] : $HTTP_GET_VARS["idDossierForms"]);
+$url_iIdDossierForms = (empty($_GET["idDossierForms"]) ? $oProjet->asInfosSession[SESSION_DOSSIER_FORMS] : $_GET["idDossierForms"]);
 
 // ---------------------
 // Initialiser

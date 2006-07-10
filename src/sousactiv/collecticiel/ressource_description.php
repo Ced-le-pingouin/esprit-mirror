@@ -25,10 +25,10 @@ require_once(dir_database("bdd.class.php"));
 
 $sDescr = NULL;
 
-if (isset($HTTP_GET_VARS["idResSA"]) && $HTTP_GET_VARS["idResSA"] > 0)
+if (isset($_GET["idResSA"]) && $_GET["idResSA"] > 0)
 {
 	$oBdd = new CBdd();
-	$oRes = new CRessourceSousActiv($oBdd,$HTTP_GET_VARS["idResSA"]);
+	$oRes = new CRessourceSousActiv($oBdd,$_GET["idResSA"]);
 	$sDescr = $oRes->retDescr();
 	$oBdd->terminer();
 }

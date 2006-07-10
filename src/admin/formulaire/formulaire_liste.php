@@ -27,15 +27,15 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	//*       Récupération des variables             *
 	//************************************************
 	
-	if (isset($HTTP_GET_VARS))
+	if (isset($_GET))
 	{
-		$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
-		$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+		$v_iIdObjForm = $_GET['idobj'];
+		$v_iIdFormulaire = $_GET['idformulaire'];
 	}
-	else if (isset($HTTP_POST_VARS))
+	else if (isset($_POST))
 	{
-		$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
-		$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
+		$v_iIdObjForm = $_GET['idobj'];
+		$v_iIdFormulaire = $_POST['idformulaire'];
 	}
 	else
 	{
@@ -117,7 +117,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		// si $v_iIdObjForm = 0 cela veut dire que l'on vient de selectionner le formulaire via le menu et alors :
 		// on charge la modif du titre formulaire dans la frame du dessous[modif] uniquement si on est le propriétaire du formulaire où
 		//si l'on est administrateur
-		if ($HTTP_GET_VARS["verifUtilisation"] == 1)
+		if ($_GET["verifUtilisation"] == 1)
 		{
 			$iNbUtilisations = $oFormulaire->retNbUtilisationsDsSessions();
 			$iNbRemplis = $oFormulaire->retNbRemplisDsSessions();

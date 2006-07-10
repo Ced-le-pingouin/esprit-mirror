@@ -39,8 +39,8 @@ $oProjet->initModuleCourant();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdFCSousActiv = (empty($HTTP_GET_VARS["idFCSousActiv"]) ? 0 : $HTTP_GET_VARS["idFCSousActiv"]);
-$url_bEvalFC        = (empty($HTTP_GET_VARS["evalFC"]) ? 0 : $HTTP_GET_VARS["evalFC"]);
+$url_iIdFCSousActiv = (empty($_GET["idFCSousActiv"]) ? 0 : $_GET["idFCSousActiv"]);
+$url_bEvalFC        = (empty($_GET["evalFC"]) ? 0 : $_GET["evalFC"]);
 
 // ---------------------
 // Initialiser

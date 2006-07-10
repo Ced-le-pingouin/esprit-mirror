@@ -38,11 +38,11 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$iIdForm     = (empty($HTTP_GET_VARS["idform"]) ? 0 : $HTTP_GET_VARS["idform"]);
-$iStatutPers = (empty($HTTP_GET_VARS["STATUT_PERS"]) ? STATUT_PERS_ETUDIANT : $HTTP_GET_VARS["STATUT_PERS"]);
-$iIdPers     = (empty($HTTP_GET_VARS["IDPERS"]) ? 0 : $HTTP_GET_VARS["IDPERS"]);
-$iIdMod      = (empty($HTTP_GET_VARS["ID_MOD"]) ? 0 : $HTTP_GET_VARS["ID_MOD"]);
-$sAction     = (empty($HTTP_GET_VARS["ACTIOND"]) ? NULL : $HTTP_GET_VARS["ACTIOND"]);
+$iIdForm     = (empty($_GET["idform"]) ? 0 : $_GET["idform"]);
+$iStatutPers = (empty($_GET["STATUT_PERS"]) ? STATUT_PERS_ETUDIANT : $_GET["STATUT_PERS"]);
+$iIdPers     = (empty($_GET["IDPERS"]) ? 0 : $_GET["IDPERS"]);
+$iIdMod      = (empty($_GET["ID_MOD"]) ? 0 : $_GET["ID_MOD"]);
+$sAction     = (empty($_GET["ACTIOND"]) ? NULL : $_GET["ACTIOND"]);
 
 // ---------------------
 // Effacer une personne inscrite

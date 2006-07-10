@@ -62,7 +62,7 @@ include_once(dir_admin("awareness","awareness.inc.php",TRUE));
 $sAwarenessClient = NULL;
 
 if (isset($oProjet->oUtilisateur) && 
-	!stristr($HTTP_SERVER_VARS["HTTP_USER_AGENT"],"Netscape"))
+	!stristr($_SERVER["HTTP_USER_AGENT"],"Netscape"))
 {
 	$sAwarenessClient = "<applet"
 		." name=\"AwarenessClient\""
@@ -71,7 +71,7 @@ if (isset($oProjet->oUtilisateur) &&
 		." code=\"AwarenessClient.class\""
 		.">\n" // <applet ...>
 		."<param name=\"mode\" value=\"client\">\n"
-		."<param name=\"hostname\" value=\"".$HTTP_SERVER_VARS["SERVER_ADDR"]."\">\n"
+		."<param name=\"hostname\" value=\"".$_SERVER["SERVER_ADDR"]."\">\n"
 		."<param name=\"port\" value=\"2501\">\n"
 		."<param name=\"nickname\" value=\"".urlencode($oProjet->oUtilisateur->retPseudo())."\">\n"
 		."<param name=\"username\" value=\""

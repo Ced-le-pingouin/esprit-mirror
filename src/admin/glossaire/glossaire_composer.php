@@ -39,16 +39,16 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdGlossaire = (empty($HTTP_GET_VARS["idGlossaire"]) ? 0 : $HTTP_GET_VARS["idGlossaire"]);
+$url_iIdGlossaire = (empty($_GET["idGlossaire"]) ? 0 : $_GET["idGlossaire"]);
 
-if (!empty($HTTP_POST_VARS["idGlossaire"]))
+if (!empty($_POST["idGlossaire"]))
 {
-	$url_iIdGlossaire = $HTTP_POST_VARS["idGlossaire"];
+	$url_iIdGlossaire = $_POST["idGlossaire"];
 	
 	$oProjet->oFormationCourante->effacerElementsGlossaire($url_iIdGlossaire);
 	
-	if (is_array($HTTP_POST_VARS["idElementsGlossaire"]))
-		$oProjet->oFormationCourante->ajouterElementsGlossaire($url_iIdGlossaire,$HTTP_POST_VARS["idElementsGlossaire"]);
+	if (is_array($_POST["idElementsGlossaire"]))
+		$oProjet->oFormationCourante->ajouterElementsGlossaire($url_iIdGlossaire,$_POST["idElementsGlossaire"]);
 }
 // ---------------------
 // Initialiser

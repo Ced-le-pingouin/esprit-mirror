@@ -43,7 +43,7 @@ $oProjet->verifPeutUtiliserOutils();
 // Récupérer les variables de l'url
 // ---------------------
 $url_iIdIntitule = $url_sNomIntitule = NULL;
-$url_iTypeIntitule = (isset($HTTP_GET_VARS["TYPE_INTITULE"]) ? $HTTP_GET_VARS["TYPE_INTITULE"] : TYPE_MODULE);
+$url_iTypeIntitule = (isset($_GET["TYPE_INTITULE"]) ? $_GET["TYPE_INTITULE"] : TYPE_MODULE);
 
 $sCorpFonctionJSInit = NULL;
 

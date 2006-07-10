@@ -36,14 +36,14 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iNumPage   = $HTTP_GET_VARS["page"];
-$url_sNomBddSrc = empty($HTTP_GET_VARS["NOM_BDD_SRC"]) ? NULL : $HTTP_GET_VARS["NOM_BDD_SRC"];
-$url_sNomBddDst = empty($HTTP_GET_VARS["NOM_BDD_DST"]) ? NULL : $HTTP_GET_VARS["NOM_BDD_DST"];
-$url_iIdFormSrc = empty($HTTP_GET_VARS["ID_FORM_SELECT"]) ? 0 : $HTTP_GET_VARS["ID_FORM_SELECT"];
+$url_iNumPage   = $_GET["page"];
+$url_sNomBddSrc = empty($_GET["NOM_BDD_SRC"]) ? NULL : $_GET["NOM_BDD_SRC"];
+$url_sNomBddDst = empty($_GET["NOM_BDD_DST"]) ? NULL : $_GET["NOM_BDD_DST"];
+$url_iIdFormSrc = empty($_GET["ID_FORM_SELECT"]) ? 0 : $_GET["ID_FORM_SELECT"];
 
-$url_bCopierForums       = empty($HTTP_GET_VARS["COPIER_FORUMS"]) ? 1 : $HTTP_GET_VARS["COPIER_FORUMS"];
-$url_bCopierSujetsForums = empty($HTTP_GET_VARS["COPIER_SUJETS_FORUMS"]) ? 1 : $HTTP_GET_VARS["COPIER_SUJETS_FORUMS"];
-$url_bCopierChats        = empty($HTTP_GET_VARS["COPIER_CHATS"]) ? 1 :$HTTP_GET_VARS["COPIER_CHATS"];
+$url_bCopierForums       = empty($_GET["COPIER_FORUMS"]) ? 1 : $_GET["COPIER_FORUMS"];
+$url_bCopierSujetsForums = empty($_GET["COPIER_SUJETS_FORUMS"]) ? 1 : $_GET["COPIER_SUJETS_FORUMS"];
+$url_bCopierChats        = empty($_GET["COPIER_CHATS"]) ? 1 :$_GET["COPIER_CHATS"];
 
 // ---------------------
 // Sélectionner la page qui doit être affichée par rapport au numéro

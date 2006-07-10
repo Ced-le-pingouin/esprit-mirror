@@ -38,12 +38,12 @@ require_once(dir_database("bdd.class.php"));
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
-$url_iIdForum         = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
-$url_iIdSujet         = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdNiveau        = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau      = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdEquipe        = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_sModaliteFenetre = (empty($_GET["modaliteFenetre"]) ? NULL : $_GET["modaliteFenetre"]);
+$url_iIdForum         = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
+$url_iIdSujet         = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdNiveau        = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau      = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdEquipe        = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 if ($url_sModaliteFenetre == NULL)
 	exit("Modalit&eacute; inconnue");

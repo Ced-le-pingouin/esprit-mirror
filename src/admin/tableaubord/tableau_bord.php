@@ -48,10 +48,10 @@ $g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
-$url_iIdType     = (empty($HTTP_GET_VARS["idType"]) ? 0 : $HTTP_GET_VARS["idType"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
+$url_iIdType     = (empty($_GET["idType"]) ? 0 : $_GET["idType"]);
 
 // ---------------------
 // Fonctions locales

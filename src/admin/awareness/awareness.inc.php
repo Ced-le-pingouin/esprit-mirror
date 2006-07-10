@@ -47,11 +47,11 @@ function retAwarenessApplet ($v_sLocation)
 {
 	return NULL; // Desactiver l'awareness
 	
-	global $oProjet, $HTTP_SERVER_VARS;
+	global $oProjet;
 	
 	$sChemin = dir_admin("awareness/client",NULL,FALSE);
 	
-	if (!stristr($HTTP_SERVER_VARS["HTTP_USER_AGENT"],"Netscape") &&
+	if (!stristr($_SERVER["HTTP_USER_AGENT"],"Netscape") &&
 		isset($oProjet->oUtilisateur))
 		return "<applet"
 			." name=\"AwarenessApplet\""
@@ -63,7 +63,7 @@ function retAwarenessApplet ($v_sLocation)
 			.">\n"
 			."<param name=\"location\" value=\"{$v_sLocation}\">\n"
 			."<param name=\"id_session\" value=\"".retNomUniqueAwareness()."\">\n"
-			."<param name=\"host\" value=\"".$HTTP_SERVER_VARS["SERVER_ADDR"]."\">\n"
+			."<param name=\"host\" value=\"".$_SERVER["SERVER_ADDR"]."\">\n"
 			."<param name=\"port\" value=\"".NUM_PORT_AWARENESS."\">\n"
 			."<param name=\"nickname\" value=\"".$oProjet->oUtilisateur->retPseudo()."\">\n"
 			."<param name=\"locale\" value=\"Fra\">\n"
@@ -79,11 +79,11 @@ function retAwarenessApplet ($v_sLocation)
 
 function retAwarenessSpy ($v_sLocation,$v_bTraduire=TRUE) 
 {
-	global $oProjet, $HTTP_SERVER_VARS;
+	global $oProjet, $_SERVER;
 	
 	$sChemin = dir_admin("awareness/client",NULL,FALSE);
 	
-	if (!stristr($HTTP_SERVER_VARS["HTTP_USER_AGENT"],"Netscape") &&
+	if (!stristr($_SERVER["HTTP_USER_AGENT"],"Netscape") &&
 		isset($oProjet->oUtilisateur))
 			return "<applet"
 			." name=\"AwarenessSpyClient\""

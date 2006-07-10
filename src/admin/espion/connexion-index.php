@@ -38,7 +38,7 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdPers = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+$url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
 // ---------------------
 // Initialisation

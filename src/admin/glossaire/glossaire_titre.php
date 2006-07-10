@@ -34,13 +34,13 @@
 
 require_once("globals.inc.php");
 
-if (isset($HTTP_GET_VARS["glossaire_id"]))
+if (isset($_GET["glossaire_id"]))
 {
 	include_once("glossaire_titre.inc.php");
 	exit();
 }
 
-$url_iIdGlossaire = $HTTP_GET_VARS["idGlossaire"];
+$url_iIdGlossaire = $_GET["idGlossaire"];
 
 $sGlossaireTitre = NULL;
 

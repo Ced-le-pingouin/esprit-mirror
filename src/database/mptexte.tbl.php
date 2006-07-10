@@ -117,19 +117,17 @@ function cHtmlMPTexte()
 
 function cHtmlMPTexteModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-	global $HTTP_POST_VARS, $HTTP_GET_VARS;
-	
 	//initialisation des messages d'erreurs à 'vide' et de la variable servant a detecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
 	$sMessageErreur1="";
 	$iFlagErreur=0;
 	
-	if (isset($HTTP_POST_VARS['envoyer'])) 
+	if (isset($_POST['envoyer'])) 
 		{
 			   //Récupération des variables transmises par le formulaire
-			   $this->oEnregBdd->AlignMPT = $HTTP_POST_VARS['Align'];
-			   $this->oEnregBdd->TexteMPT = stripslashes($HTTP_POST_VARS['Texte']);
+			   $this->oEnregBdd->AlignMPT = $_POST['Align'];
+			   $this->oEnregBdd->TexteMPT = stripslashes($_POST['Texte']);
 			   
 			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
 			   if ($this->oEnregBdd->TexteMPT == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}

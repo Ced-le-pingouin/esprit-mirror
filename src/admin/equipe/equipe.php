@@ -41,15 +41,15 @@ $sCorpHtml = NULL;
 
 $sCorpFonctionInit = NULL;
 
-if (count($HTTP_POST_VARS) > 0)
+if (count($_POST) > 0)
 {
 	include_once(dir_database("ids.class.php"));
 	
-	$sAction = (empty($HTTP_POST_VARS["ACTION"]) ? NULL : $HTTP_POST_VARS["ACTION"]);
-	$sNomEquipe = (empty($HTTP_POST_VARS["NOM_EQUIPE"]) ? NULL : $HTTP_POST_VARS["NOM_EQUIPE"]);
-	$iIdEquipe = (empty($HTTP_POST_VARS["ID_EQUIPE"]) ? NULL : $HTTP_POST_VARS["ID_EQUIPE"]);
-	$iNiveau = (empty($HTTP_POST_VARS["NIVEAU"]) ? TYPE_FORMATION : $HTTP_POST_VARS["NIVEAU"]);
-	$iIdNiveau = (empty($HTTP_POST_VARS["ID_NIVEAU"]) ? $oProjet->oFormationCourante->retId() : $HTTP_POST_VARS["ID_NIVEAU"]);
+	$sAction = (empty($_POST["ACTION"]) ? NULL : $_POST["ACTION"]);
+	$sNomEquipe = (empty($_POST["NOM_EQUIPE"]) ? NULL : $_POST["NOM_EQUIPE"]);
+	$iIdEquipe = (empty($_POST["ID_EQUIPE"]) ? NULL : $_POST["ID_EQUIPE"]);
+	$iNiveau = (empty($_POST["NIVEAU"]) ? TYPE_FORMATION : $_POST["NIVEAU"]);
+	$iIdNiveau = (empty($_POST["ID_NIVEAU"]) ? $oProjet->oFormationCourante->retId() : $_POST["ID_NIVEAU"]);
 	
 	$oEquipe = new CEquipe($oProjet->oBdd,$iIdEquipe);
 	
@@ -102,10 +102,10 @@ if (count($HTTP_POST_VARS) > 0)
 }
 else
 {
-	$sAction   = (empty($HTTP_GET_VARS["ACTION"]) ? NULL : $HTTP_GET_VARS["ACTION"]);
-	$iIdEquipe = (empty($HTTP_GET_VARS["ID_EQUIPE"]) || $sAction == "ajout" ? 0 : $HTTP_GET_VARS["ID_EQUIPE"]);
-	$iNiveau   = (empty($HTTP_GET_VARS["NIVEAU"]) ? TYPE_FORMATION : $HTTP_GET_VARS["NIVEAU"]);
-	$iIdNiveau = (empty($HTTP_GET_VARS["ID_NIVEAU"]) ? $oProjet->oFormationCourante->retId() : $HTTP_GET_VARS["ID_NIVEAU"]);
+	$sAction   = (empty($_GET["ACTION"]) ? NULL : $_GET["ACTION"]);
+	$iIdEquipe = (empty($_GET["ID_EQUIPE"]) || $sAction == "ajout" ? 0 : $_GET["ID_EQUIPE"]);
+	$iNiveau   = (empty($_GET["NIVEAU"]) ? TYPE_FORMATION : $_GET["NIVEAU"]);
+	$iIdNiveau = (empty($_GET["ID_NIVEAU"]) ? $oProjet->oFormationCourante->retId() : $_GET["ID_NIVEAU"]);
 	
 	if ($sAction != "sup")
 	{
@@ -172,7 +172,7 @@ function valider() { document.forms[0].submit(); }
 </script>
 </head>
 <body onload="init()">
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="post">
+<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <tr>
 <td><img src="<?=dir_theme("icones/equipe.gif")?>" border="0"></td>

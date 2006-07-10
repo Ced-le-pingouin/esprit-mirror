@@ -325,15 +325,14 @@ class CProjet
 	 */
 	function CProjet ($v_bEffacerCookie = FALSE, $v_bRedirigerSiIncorrect = FALSE)
 	{
-		global $HTTP_SERVER_VARS;
 		global $g_sNomCookie;
 		global $g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd;
 		
 		// init 'simples' des propriétés, càd sans accès à la bdd
-		$this->sCheminWeb     = str_replace('\\', '/', dirname($HTTP_SERVER_VARS["PHP_SELF"]));
-		$this->sCheminComplet = $HTTP_SERVER_VARS["DOCUMENT_ROOT"].$this->sCheminWeb;
+		$this->sCheminWeb     = str_replace('\\', '/', dirname($_SERVER["PHP_SELF"]));
+		$this->sCheminComplet = $_SERVER["DOCUMENT_ROOT"].$this->sCheminWeb;
 		$this->sNomRep        = $g_sNomBdd;
-		$this->sUrlLogin      = "http://".$HTTP_SERVER_VARS["HTTP_HOST"].$this->sCheminWeb."/"."login.php";
+		$this->sUrlLogin      = "http://".$_SERVER["HTTP_HOST"].$this->sCheminWeb."/"."login.php";
 		$this->sNomCookie     = $g_sNomCookie;
 		
 		// connexion à la base de données du projet
@@ -433,8 +432,6 @@ class CProjet
 	 */
 	function initUtilisateur($v_bRedirigerSiIncorrect = FALSE)
 	{
-		global $HTTP_SERVER_VARS;
-		
 		// on récupère les nom/prénom/pseudo/mdp du cookie
 		$sTmpNom = $sTmpPrenom = $sTmpPseudo = $sTmpMdp = NULL;
 		
@@ -517,7 +514,7 @@ class CProjet
 			// si ID ok, on inscrit le login dans la table Evenement, mais seulement la 1ère
 			// fois (donc quand on vient de l'écran login, donc quand les infos proviennent 
 			// du formulaire)
-			$this->ecrireEvenement(TYPE_EVEN_LOGIN_REUSSI,$HTTP_SERVER_VARS["HTTP_USER_AGENT"]);
+			$this->ecrireEvenement(TYPE_EVEN_LOGIN_REUSSI,$_SERVER["HTTP_USER_AGENT"]);
 		}
 	}
 	
@@ -1589,27 +1586,25 @@ class CProjet
 	 */
 	function lireInfosSession()
 	{
-		global $HTTP_COOKIE_VARS, $HTTP_POST_VARS, $HTTP_GET_VARS;
-		
 		$this->bIdParFormulaire = FALSE;
 		
 		for ($iIndexInfo=SESSION_DEBUT; $iIndexInfo<=SESSION_FIN; $iIndexInfo++)
 			$this->asInfosSession[$iIndexInfo] = 0;
 		
 		// Un utilisateur vient de se logger
-		if (isset($HTTP_POST_VARS["idPseudo"]))
+		if (isset($_POST["idPseudo"]))
 		{
-			$this->asInfosSession[SESSION_PSEUDO] = $HTTP_POST_VARS["idPseudo"];
-			$this->asInfosSession[SESSION_MDP]    = $HTTP_POST_VARS["idMdp"];
+			$this->asInfosSession[SESSION_PSEUDO] = $_POST["idPseudo"];
+			$this->asInfosSession[SESSION_MDP]    = $_POST["idMdp"];
 			
 			// Il faudra rechercher le statut le plus haut
 			$this->iStatutUtilisateur = NULL;
 			
 			$this->bIdParFormulaire = TRUE;
 		}
-		else if (!empty($HTTP_COOKIE_VARS[$this->sNomCookie]))
+		else if (!empty($_COOKIE[$this->sNomCookie]))
 		{
-			$this->asInfosSession = explode(":", $HTTP_COOKIE_VARS[$this->sNomCookie]);
+			$this->asInfosSession = explode(":", $_COOKIE[$this->sNomCookie]);
 			
 			if (!empty($this->asInfosSession[SESSION_STATUT_UTILISATEUR]))
 				$this->iStatutUtilisateur = $this->asInfosSession[SESSION_STATUT_UTILISATEUR];
@@ -1617,38 +1612,38 @@ class CProjet
 		
 		// si certaines infos sont passées en paramètre de l'URL, elles priment
 		// sur celles contenues dans le cookie
-		if (isset($HTTP_GET_VARS["idForm"]))
+		if (isset($_GET["idForm"]))
 		{
 			include_once(dir_database("evenement.tbl.php"));
-			$oEvenDetail = new CEvenement_Detail($this->oBdd,$this->asInfosSession[SESSION_UID],$HTTP_GET_VARS["idForm"]);
+			$oEvenDetail = new CEvenement_Detail($this->oBdd,$this->asInfosSession[SESSION_UID],$_GET["idForm"]);
 			$oEvenDetail->entrerFormation();
 			
 			if (isset($this->asInfosSession[SESSION_FORM]) && 
-				$this->asInfosSession[SESSION_FORM] != $HTTP_GET_VARS["idForm"])
+				$this->asInfosSession[SESSION_FORM] != $_GET["idForm"])
 					$oEvenDetail->sortirFormation($this->asInfosSession[SESSION_FORM]);
 			
 			unset($oEvenDetail);
 			
-			$this->asInfosSession[SESSION_FORM] = $HTTP_GET_VARS["idForm"];
+			$this->asInfosSession[SESSION_FORM] = $_GET["idForm"];
 		}
 		
-		if (isset($HTTP_GET_VARS["idMod"]))
-			$this->asInfosSession[SESSION_MOD] = $HTTP_GET_VARS["idMod"];
+		if (isset($_GET["idMod"]))
+			$this->asInfosSession[SESSION_MOD] = $_GET["idMod"];
 		
-		if (isset($HTTP_GET_VARS["idUnite"]))
-			$this->asInfosSession[SESSION_UNITE] = $HTTP_GET_VARS["idUnite"];
+		if (isset($_GET["idUnite"]))
+			$this->asInfosSession[SESSION_UNITE] = $_GET["idUnite"];
 		
-		if (isset($HTTP_GET_VARS["idActiv"]))
-			$this->asInfosSession[SESSION_ACTIV] = $HTTP_GET_VARS["idActiv"];
+		if (isset($_GET["idActiv"]))
+			$this->asInfosSession[SESSION_ACTIV] = $_GET["idActiv"];
 		
-		if (isset($HTTP_GET_VARS["idSousActiv"]))
-			$this->asInfosSession[SESSION_SOUSACTIV] = $HTTP_GET_VARS["idSousActiv"];
+		if (isset($_GET["idSousActiv"]))
+			$this->asInfosSession[SESSION_SOUSACTIV] = $_GET["idSousActiv"];
 		
-		if (isset($HTTP_GET_VARS["triCol"]))
-			$this->asInfosSession[SESSION_TRI_COLONNE] = $HTTP_GET_VARS["triCol"];
+		if (isset($_GET["triCol"]))
+			$this->asInfosSession[SESSION_TRI_COLONNE] = $_GET["triCol"];
 		
-		if (isset($HTTP_GET_VARS["triDir"]))
-			$this->asInfosSession[SESSION_TRI_DIRECTION] = $HTTP_GET_VARS["triDir"];
+		if (isset($_GET["triDir"]))
+			$this->asInfosSession[SESSION_TRI_DIRECTION] = $_GET["triDir"];
 		
 		if (empty($this->asInfosSession[SESSION_TRI_COLONNE]))
 			$this->asInfosSession[SESSION_TRI_COLONNE] = "date";
@@ -1853,8 +1848,6 @@ class CProjet
 	 */
 	function ecrireEvenement($v_iTypeEven, $v_sDonneesEven = NULL)
 	{
-		global $HTTP_SERVER_VARS;
-		
 		if (isset($this->oUtilisateur))
 			$iUtilisateur = $this->oUtilisateur->retId();
 		else
@@ -1865,7 +1858,7 @@ class CProjet
 		else
 			$v_sDonneesEven = "null";
 		
-		$sIp = $HTTP_SERVER_VARS["REMOTE_ADDR"];
+		$sIp = $_SERVER["REMOTE_ADDR"];
 		
 		if ($v_iTypeEven == TYPE_EVEN_DECONNEXION)
 			$sRequeteSql = "UPDATE Evenement"

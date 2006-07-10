@@ -21,8 +21,8 @@
 
 require_once("globals.inc.php");
 
-$url_iNiveau = (empty($HTTP_GET_VARS["NIVEAU"]) ? 0 : $HTTP_GET_VARS["NIVEAU"]);
-$url_iIdNiveau = (empty($HTTP_GET_VARS["ID_NIVEAU"]) ? 0 : $HTTP_GET_VARS["ID_NIVEAU"]);
+$url_iNiveau = (empty($_GET["NIVEAU"]) ? 0 : $_GET["NIVEAU"]);
+$url_iIdNiveau = (empty($_GET["ID_NIVEAU"]) ? 0 : $_GET["ID_NIVEAU"]);
 
 $sCorpListe = NULL;
 

@@ -8,8 +8,8 @@
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
-var sFormDest = "<?=$HTTP_GET_VARS['formulaire']?>";
-var sElemDest = "<?=$HTTP_GET_VARS['element']?>";
+var sFormDest = "<?=$_GET['formulaire']?>";
+var sElemDest = "<?=$_GET['element']?>";
 
 var sAnnuler = null;
 
@@ -44,7 +44,7 @@ function exporter()
 {
 	with (oPrincipale().document.forms[0])
 	{
-		elements["f"].value = "<?=@$HTTP_GET_VARS['nfexport']?>"
+		elements["f"].value = "<?=@$_GET['nfexport']?>"
 		action = "editeur_exporter.php";
 		target = "visualiseur";
 		submit();

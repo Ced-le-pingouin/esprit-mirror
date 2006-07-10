@@ -41,11 +41,11 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdChat     = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
-$url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
-$url_iIdPers     = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdChat     = (empty($_GET["idChat"]) ? 0 : $_GET["idChat"]);
+$url_iIdEquipe   = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
+$url_iIdPers     = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
 // ---------------------
 // Initialiser
@@ -65,8 +65,8 @@ unset($oIds);
 // ---------------------
 // Effacer les archives
 // ---------------------
-if (isset($HTTP_POST_VARS["archives"]))
-	foreach ($HTTP_POST_VARS["archives"] as $sArchiveNom)
+if (isset($_POST["archives"]))
+	foreach ($_POST["archives"] as $sArchiveNom)
 		@unlink($sArchivesRep.$sArchiveNom);
 
 // ---------------------
@@ -225,7 +225,7 @@ function effacerArchives()
 
 </head>
 <body class="gauche" onload="init()">
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']."?idNiveau={$url_iIdNiveau}&typeNiveau={$url_iTypeNiveau}&idChat={$url_iIdChat}&idEquipe={$url_iIdEquipe}"?>" method="post">
+<form action="<?=$_SERVER['PHP_SELF']."?idNiveau={$url_iIdNiveau}&typeNiveau={$url_iTypeNiveau}&idChat={$url_iIdChat}&idEquipe={$url_iIdEquipe}"?>" method="post">
 <?php $oTpl->afficher(); ?>
 </form>
 </body>

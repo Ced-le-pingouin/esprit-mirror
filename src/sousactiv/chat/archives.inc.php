@@ -52,7 +52,7 @@ function rafraichir()
 <form name="telecharger" action="<?=dir_code_lib("download.php",FALSE,FALSE)?>" target="_top" method="get">
 <input type="hidden" name="f" value="<?=rawurlencode($sArchiveChatTelecharger)?>">
 </form>
-<form name="recharger" action="<?=$HTTP_SERVER_VARS["PHP_SELF"]?>" method="get">
+<form name="recharger" action="<?=$_SERVER["PHP_SELF"]?>" method="get">
 <input type="hidden" name="idNiveau" value="<?=$url_iIdNiveau?>">
 <input type="hidden" name="typeNiveau" value="<?=$url_iTypeNiveau?>">
 <input type="hidden" name="archive" value="<?=$url_sArchive?>">

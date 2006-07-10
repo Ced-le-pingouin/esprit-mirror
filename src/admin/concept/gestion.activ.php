@@ -47,15 +47,15 @@ else if ($act == "modifier")
 	$oActiv = new CActiv($oProjet->oBdd,$g_iActiv);
 	
 	if ($url_bModifierStatut)
-		$oActiv->defStatut($HTTP_POST_VARS["STATUT"]);
+		$oActiv->defStatut($_POST["STATUT"]);
 	
 	if (!$url_bModifier)
 		return;
 	
-	$iNumOrdre    = $HTTP_POST_VARS["ORDRE"];
-	$sNom         = $HTTP_POST_VARS["NOM"];
-	$sDescription = (empty($HTTP_POST_VARS["DESCRIPTION"]) ? NULL : $HTTP_POST_VARS["DESCRIPTION"]);
-	$iModalite    = $HTTP_POST_VARS["MODALITE"];
+	$iNumOrdre    = $_POST["ORDRE"];
+	$sNom         = $_POST["NOM"];
+	$sDescription = (empty($_POST["DESCRIPTION"]) ? NULL : $_POST["DESCRIPTION"]);
+	$iModalite    = $_POST["MODALITE"];
 	
 	// Sauvegarder les modifications
 	$oActiv->redistNumsOrdre($iNumOrdre);

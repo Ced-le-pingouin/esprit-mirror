@@ -39,7 +39,7 @@ require_once(dir_locale("liste_equipes.lang"));
 // ---------------------
 $sParamsUrl = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

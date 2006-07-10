@@ -323,33 +323,31 @@ return "$CodeHtml";
 
 function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 {
-	global $HTTP_POST_VARS, $HTTP_GET_VARS;
-
 	$sMessageErreur2 = "";
 	$iFlagErreur=0;
 	
-	if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
+	if (isset($_POST['envoyer']) || $_POST['typeaction']=='ajouter' || $_POST['typeaction']=='supprimer')
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQC = stripslashes($HTTP_POST_VARS['Enonce']);
-			$this->oEnregBdd->AlignEnonQC = $HTTP_POST_VARS['AlignEnon'];
-			$this->oEnregBdd->AlignRepQC = $HTTP_POST_VARS['AlignRep'];
-			$this->oEnregBdd->TxtAvQC = stripslashes($HTTP_POST_VARS['TxtAv']);
-			$this->oEnregBdd->TxtApQC = stripslashes($HTTP_POST_VARS['TxtAp']);
-			$this->oEnregBdd->DispQC = $HTTP_POST_VARS['Disp'];
-			$this->oEnregBdd->NbRepMaxQC = $HTTP_POST_VARS['NbRepMax'];		
-			$this->oEnregBdd->MessMaxQC = $HTTP_POST_VARS['MessMax'];
+			$this->oEnregBdd->EnonQC = stripslashes($_POST['Enonce']);
+			$this->oEnregBdd->AlignEnonQC = $_POST['AlignEnon'];
+			$this->oEnregBdd->AlignRepQC = $_POST['AlignRep'];
+			$this->oEnregBdd->TxtAvQC = stripslashes($_POST['TxtAv']);
+			$this->oEnregBdd->TxtApQC = stripslashes($_POST['TxtAp']);
+			$this->oEnregBdd->DispQC = $_POST['Disp'];
+			$this->oEnregBdd->NbRepMaxQC = $_POST['NbRepMax'];		
+			$this->oEnregBdd->MessMaxQC = $_POST['MessMax'];
 			
 			//Test des données reçues et marquage des erreurs(astérisque) dans le formulaire
-			if (!(int)$HTTP_POST_VARS['NbRepMax']) 
+			if (!(int)$_POST['NbRepMax']) 
 				{ $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 			
 			if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
 				{		
 				   //Enregistrement des réponses et de leurs poids pour les différents axes
-				   if (isset($HTTP_POST_VARS["rep"])) 	
+				   if (isset($_POST["rep"])) 	
 					  {
-					  foreach ($HTTP_POST_VARS["rep"] as $v_iIdReponse => $v_sTexteTemp) 
+					  foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 						{
 							$oReponse = new CReponse($this->oBdd);
 							$oReponse->defId($v_iIdReponse);
@@ -357,11 +355,11 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 							$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 							$oReponse->enregistrer(FALSE);
 
-							if (isset($HTTP_POST_VARS["repAxe"])) 	
+							if (isset($_POST["repAxe"])) 	
 									//Vérification pour ne pas effectuer le traitement si 
 									//aucun axe n'est défini pour ce formulaire
 								{
-								   $tab = $HTTP_POST_VARS["repAxe"];
+								   $tab = $_POST["repAxe"];
 								   foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 								   {
 									   if (($v_iPoids != "") && (is_numeric($v_iPoids)))
@@ -398,7 +396,7 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 	//un enregistrement d'office dans la BD des modifications déjà effectuées sur 
 	//l'objet en cours. (avec les vérifications d'usage avant enregistrement dans la BD)
-	if ($HTTP_POST_VARS['typeaction']=='ajouter')
+	if ($_POST['typeaction']=='ajouter')
 		  {
 			  $sRequeteSql = "SELECT MAX(OrdreReponse) AS OrdreMax "
 			  ."FROM Reponse "
@@ -429,10 +427,10 @@ function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
 	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 	//un enregistrement d'office dans la BD des modifications déjà effectuées sur 
 	//l'objet en cours.(avec les vérifications d'usage avant enregistrement dans la BD)
-	if ($HTTP_POST_VARS['typeaction']=='supprimer')
+	if ($_POST['typeaction']=='supprimer')
 		  {
 			  //echo "<br>je suis passé par supprimer";
-			  $v_iIdReponse = $HTTP_POST_VARS['parametre'];
+			  $v_iIdReponse = $_POST['parametre'];
 			  $oReponse = new CReponse($this->oBdd,$v_iIdReponse);
 			  $oReponse->effacer();
 		  }

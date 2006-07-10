@@ -39,10 +39,10 @@ $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_EXPORT_TABLE_PERSONNE");
 require_once(dir_include("personnes.class.php"));
 $oPersonnes = new CPersonnes($oProjet->oBdd);
 
-$url_iIdForm   = (isset($HTTP_GET_VARS["ID_FORM"]) && $HTTP_GET_VARS["ID_FORM"] > 0 ? $HTTP_GET_VARS["ID_FORM"] : NULL);
-$url_iIdStatut = (isset($HTTP_GET_VARS["ID_STATUT"]) && $HTTP_GET_VARS["ID_STATUT"] > 0 ? $HTTP_GET_VARS["ID_STATUT"] : NULL);
-$url_sTri      = (isset($HTTP_GET_VARS["TRI"]) ? $HTTP_GET_VARS["TRI"] : "nom");
-$url_sOrdreTri = (isset($HTTP_GET_VARS["ORDRE_TRI"]) ? $HTTP_GET_VARS["ORDRE_TRI"] : $oPersonnes->ORDRE_TRI_CROISSANT);
+$url_iIdForm   = (isset($_GET["ID_FORM"]) && $_GET["ID_FORM"] > 0 ? $_GET["ID_FORM"] : NULL);
+$url_iIdStatut = (isset($_GET["ID_STATUT"]) && $_GET["ID_STATUT"] > 0 ? $_GET["ID_STATUT"] : NULL);
+$url_sTri      = (isset($_GET["TRI"]) ? $_GET["TRI"] : "nom");
+$url_sOrdreTri = (isset($_GET["ORDRE_TRI"]) ? $_GET["ORDRE_TRI"] : $oPersonnes->ORDRE_TRI_CROISSANT);
 
 if ($url_sTri == "prenom")
 	$oPersonnes->defTrierSur($oPersonnes->TRIER_PRENOM);

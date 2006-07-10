@@ -36,10 +36,10 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_bMenu      = (empty($HTTP_GET_VARS["menu"]) ? FALSE : (bool)$HTTP_GET_VARS["menu"]);
-$url_iIdForm    = (empty($HTTP_GET_VARS["idForm"]) ? 0 : $HTTP_GET_VARS["idForm"]);
-$url_iIdMod     = (empty($HTTP_GET_VARS["idMod"]) ? 0 : $HTTP_GET_VARS["idMod"]);
-$url_iIdStatuts = (empty($HTTP_GET_VARS["idStatuts"]) ? NULL : $HTTP_GET_VARS["idStatuts"]);
+$url_bMenu      = (empty($_GET["menu"]) ? FALSE : (bool)$_GET["menu"]);
+$url_iIdForm    = (empty($_GET["idForm"]) ? 0 : $_GET["idForm"]);
+$url_iIdMod     = (empty($_GET["idMod"]) ? 0 : $_GET["idMod"]);
+$url_iIdStatuts = (empty($_GET["idStatuts"]) ? NULL : $_GET["idStatuts"]);
 
 // ---------------------
 // Initialiser

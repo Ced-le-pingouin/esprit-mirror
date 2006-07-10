@@ -41,7 +41,7 @@ if ($oProjet->retStatutUtilisateur() > STATUT_PERS_TUTEUR)
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSousActiv = $HTTP_GET_VARS["idSousActiv"];
+$url_iIdSousActiv = $_GET["idSousActiv"];
 
 // ---------------------
 // Initialiser
@@ -53,8 +53,8 @@ $oModule    = new CModule($oProjet->oBdd,$oIds->retIdMod());
 $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 
 // {{{ Appliquer les changements
-if (isset($HTTP_POST_VARS["appliquer"]) > 0)
-	$oSousActiv->ajouterInscritsNonAutorises($HTTP_POST_VARS["idPers"]);
+if (isset($_POST["appliquer"]) > 0)
+	$oSousActiv->ajouterInscritsNonAutorises($_POST["idPers"]);
 // }}}
 
 // {{{ Rechercher les inscrits

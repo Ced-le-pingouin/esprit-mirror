@@ -51,10 +51,10 @@ $aVarsURL = array();
 	
 foreach ($amVariablesUrl as $amVariableUrl)
 {
-	if (!empty($HTTP_POST_VARS[$amVariableUrl[0]]))
-		$aVarsURL[$amVariableUrl[0]] = $HTTP_POST_VARS[$amVariableUrl[0]];
-	else if (!empty($HTTP_GET_VARS[$amVariableUrl[0]]))
-		$aVarsURL[$amVariableUrl[0]] = $HTTP_GET_VARS[$amVariableUrl[0]];
+	if (!empty($_POST[$amVariableUrl[0]]))
+		$aVarsURL[$amVariableUrl[0]] = $_POST[$amVariableUrl[0]];
+	else if (!empty($_GET[$amVariableUrl[0]]))
+		$aVarsURL[$amVariableUrl[0]] = $_GET[$amVariableUrl[0]];
 	else
 		$aVarsURL[$amVariableUrl[0]] = $amVariableUrl[1];
 }

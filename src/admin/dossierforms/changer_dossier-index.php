@@ -39,7 +39,7 @@ require_once(dir_locale("dossiers.lang"));
 // ---------------------
 $url_sParams = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$url_sParams .= (isset($url_sParams) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

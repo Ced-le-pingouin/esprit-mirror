@@ -48,16 +48,16 @@ $oBlocFinal = new TPL_Block("ETAPE_FINAL",$oTpl);
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdFormSrc   = (empty($HTTP_GET_VARS["IdFormSrc"]) ? 0 : $HTTP_GET_VARS["IdFormSrc"]);
-$url_iIdModSrc = (empty($HTTP_GET_VARS["IdModSrc"]) ? 0 : $HTTP_GET_VARS["IdModSrc"]);
-$url_iIdRubSrc = (empty($HTTP_GET_VARS["IdRubSrc"]) ? 0 : $HTTP_GET_VARS["IdRubSrc"]);
-$url_iIdActivSrc = (empty($HTTP_GET_VARS["IdActivSrc"]) ? 0 : $HTTP_GET_VARS["IdActivSrc"]);
-$url_iSrcOk = (empty($HTTP_GET_VARS["SrcOk"]) ? 0 : $HTTP_GET_VARS["SrcOk"]);
-$url_iDstOk = (empty($HTTP_GET_VARS["DstOk"]) ? 0 : $HTTP_GET_VARS["DstOk"]);
-$url_iIdFormDst   = (empty($HTTP_GET_VARS["IdFormDst"]) ? $url_iIdFormSrc : $HTTP_GET_VARS["IdFormDst"]);
-$url_iIdModDst   = (empty($HTTP_GET_VARS["IdModDst"]) ? 0 : $HTTP_GET_VARS["IdModDst"]);
-$url_iIdRubDst   = (empty($HTTP_GET_VARS["IdRubDst"]) ? 0 : $HTTP_GET_VARS["IdRubDst"]);
-$url_iOrdreActivDst   = (empty($HTTP_GET_VARS["OrdreActivDst"]) ? 0 : $HTTP_GET_VARS["OrdreActivDst"]);
+$url_iIdFormSrc   = (empty($_GET["IdFormSrc"]) ? 0 : $_GET["IdFormSrc"]);
+$url_iIdModSrc = (empty($_GET["IdModSrc"]) ? 0 : $_GET["IdModSrc"]);
+$url_iIdRubSrc = (empty($_GET["IdRubSrc"]) ? 0 : $_GET["IdRubSrc"]);
+$url_iIdActivSrc = (empty($_GET["IdActivSrc"]) ? 0 : $_GET["IdActivSrc"]);
+$url_iSrcOk = (empty($_GET["SrcOk"]) ? 0 : $_GET["SrcOk"]);
+$url_iDstOk = (empty($_GET["DstOk"]) ? 0 : $_GET["DstOk"]);
+$url_iIdFormDst   = (empty($_GET["IdFormDst"]) ? $url_iIdFormSrc : $_GET["IdFormDst"]);
+$url_iIdModDst   = (empty($_GET["IdModDst"]) ? 0 : $_GET["IdModDst"]);
+$url_iIdRubDst   = (empty($_GET["IdRubDst"]) ? 0 : $_GET["IdRubDst"]);
+$url_iOrdreActivDst   = (empty($_GET["OrdreActivDst"]) ? 0 : $_GET["OrdreActivDst"]);
 
 if($url_iDstOk==1) // copie de l'activité
 {

@@ -25,8 +25,8 @@ $sMenu = NULL;
 $aMenus = NULL;
 $sBlockHead = NULL;
 
-if (isset($HTTP_GET_VARS["menu"]))
-	switch ($HTTP_GET_VARS["menu"])
+if (isset($_GET["menu"]))
+	switch ($_GET["menu"])
 	{
 		case "deposer":
 			$aMenus = array(

@@ -49,23 +49,23 @@ include_once(dir_database("personnes.class.php"));
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_aiIdStatuts = (empty($HTTP_GET_VARS["idStatuts"])
+$url_aiIdStatuts = (empty($_GET["idStatuts"])
 	? NULL
-	: explode("x",$HTTP_GET_VARS["idStatuts"]));
+	: explode("x",$_GET["idStatuts"]));
 
 // Pour afficher toutes les équipes :
 // > choix_courriel-liste.php?idEquipes=tous
 // Pour afficher certaine équipe :
 // > choix_courriel-liste.php?idEquipes=15&10&16&22
-$url_aiIdEquipes = (empty($HTTP_GET_VARS["idEquipes"])
+$url_aiIdEquipes = (empty($_GET["idEquipes"])
 	? NULL
-	: explode("x",$HTTP_GET_VARS["idEquipes"]));
+	: explode("x",$_GET["idEquipes"]));
 
-$url_aiIdPers = (empty($HTTP_GET_VARS["idPers"])
+$url_aiIdPers = (empty($_GET["idPers"])
 	? NULL
-	: explode("x",$HTTP_GET_VARS["idPers"]));
+	: explode("x",$_GET["idPers"]));
 
-$url_bSelectionnerPers = (empty($HTTP_GET_VARS["select"]) ? FALSE : $HTTP_GET_VARS["select"]);
+$url_bSelectionnerPers = (empty($_GET["select"]) ? FALSE : $_GET["select"]);
 
 // ---------------------
 // Initialiser

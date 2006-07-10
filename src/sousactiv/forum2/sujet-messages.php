@@ -38,10 +38,10 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_iIdSujet    = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdEquipe   = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 // ---------------------
 // Initialiser
@@ -77,7 +77,7 @@ $oForum = new CForum($oProjet->oBdd,$oSujetForum->retIdParent());
 // ---------------------
 $oTpl = new Template("sujet-messages.tpl");
 
-$oTpl->remplacer("{form->action}",$HTTP_SERVER_VARS["PHP_SELF"]);
+$oTpl->remplacer("{form->action}",$_SERVER["PHP_SELF"]);
 
 $oBloc_Message = new TPL_Block("BLOCK_MESSAGE",$oTpl);
 

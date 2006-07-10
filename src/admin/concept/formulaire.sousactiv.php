@@ -35,7 +35,7 @@
 require_once("formulaire.sousactiv.inc.php");
 require_once(dir_database("formulaire.tbl.php"));
 
-$url_iMode = (empty($HTTP_POST_VARS["mode"]) ? NULL : $HTTP_POST_VARS["mode"]);
+$url_iMode = (empty($_POST["mode"]) ? NULL : $_POST["mode"]);
 
 // ---------------------
 // Initialisations
@@ -97,7 +97,7 @@ afficherTitre(INTITULE_SOUS_ACTIV,$sNomSousActiv);
 
 if ($g_bModifier || $g_bModifierStatut)
 	echo "<form name=\"form_admin_modif\""
-		." action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\""
+		." action=\"".$_SERVER["PHP_SELF"]."\""
 		." method=\"post\""
 		." enctype=\"multipart/form-data\""
 		.">\n";

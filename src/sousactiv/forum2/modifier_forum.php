@@ -39,18 +39,18 @@ $oProjet = new CProjet();
 // ---------------------
 // Gestion
 // ---------------------
-if (isset($HTTP_POST_VARS["modaliteFenetre"]))
+if (isset($_POST["modaliteFenetre"]))
 {
-	$url_sModaliteFenetre = $HTTP_POST_VARS["modaliteFenetre"];
-	$url_iIdForum       = $HTTP_POST_VARS["idForum"];
-	$url_iIdForumParent = $HTTP_POST_VARS["idForumParent"];
+	$url_sModaliteFenetre = $_POST["modaliteFenetre"];
+	$url_iIdForum       = $_POST["idForum"];
+	$url_iIdForumParent = $_POST["idForumParent"];
 	
 	if ($url_sModaliteFenetre == "ajouter" || $url_sModaliteFenetre == "modifier")
 	{
-		$url_sNom = trim($HTTP_POST_VARS["nom_forum"]);
-		$url_iModalite = $HTTP_POST_VARS["modalite_forum"];
-		$url_iStatut = $HTTP_POST_VARS["statut_forum"];
-		$url_sAccessibleVisiteurs = ($HTTP_POST_VARS["accessible_visiteurs"] == "on" ? "1" : "0");
+		$url_sNom = trim($_POST["nom_forum"]);
+		$url_iModalite = $_POST["modalite_forum"];
+		$url_iStatut = $_POST["statut_forum"];
+		$url_sAccessibleVisiteurs = ($_POST["accessible_visiteurs"] == "on" ? "1" : "0");
 		
 		// L'auteur du forum
 		$iIdPers = $oProjet->oUtilisateur->retId();
@@ -117,9 +117,9 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
-$url_iIdForum       = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
-$url_iIdForumParent = (empty($HTTP_GET_VARS["idForumParent"]) ? 0 : $HTTP_GET_VARS["idForumParent"]);
+$url_sModaliteFenetre = (empty($_GET["modaliteFenetre"]) ? NULL : $_GET["modaliteFenetre"]);
+$url_iIdForum       = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
+$url_iIdForumParent = (empty($_GET["idForumParent"]) ? 0 : $_GET["idForumParent"]);
 
 $oTpl = new Template("modifier_forum.tpl");
 $oBlock_Forum = new TPL_Block("BLOCK_FORUM",$oTpl);

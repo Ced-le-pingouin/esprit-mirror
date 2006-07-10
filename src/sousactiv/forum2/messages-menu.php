@@ -39,9 +39,9 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSujet    = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
-$url_iNbMessages = (empty($HTTP_GET_VARS["nbMessages"]) ? 0 : $HTTP_GET_VARS["nbMessages"]);
+$url_iIdSujet    = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdEquipe   = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
+$url_iNbMessages = (empty($_GET["nbMessages"]) ? 0 : $_GET["nbMessages"]);
 
 // ---------------------
 // Initialiser

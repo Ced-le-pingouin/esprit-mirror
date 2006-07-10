@@ -34,31 +34,31 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_INSCRIPTION");
 
-$url_iIdForm   = $HTTP_GET_VARS["ID_FORM"];
-$url_iIdStatut = $HTTP_GET_VARS["STATUT_PERS"];
+$url_iIdForm   = $_GET["ID_FORM"];
+$url_iIdStatut = $_GET["STATUT_PERS"];
 $url_iModeTri  = TRI_CROISSANT;
 
 // ---------------------
 // Inscrire des personnes à un ou plusieurs cours
 // ---------------------
-if (!empty($HTTP_POST_VARS))
+if (!empty($_POST))
 {
-	if ($HTTP_POST_VARS["ACTION"] == "ajouter")
+	if ($_POST["ACTION"] == "ajouter")
 	{
-		if (isset($HTTP_POST_VARS["ID_PERS"]))
+		if (isset($_POST["ID_PERS"]))
 		{
 			// Récupérer les ids des modules
-			$aiIdMod = explode(",",$HTTP_POST_VARS["IDS_ACTION"]);
+			$aiIdMod = explode(",",$_POST["IDS_ACTION"]);
 			
 			// Pour chaque module inscrire les nouvelles personnes
 			foreach ($aiIdMod as $iIdMod)
 			{
 				$oModule = new CModule($oProjet->oBdd,$iIdMod);
-				$oModule->inscrirePersonnes($HTTP_POST_VARS["ID_PERS"],$url_iIdStatut);
+				$oModule->inscrirePersonnes($_POST["ID_PERS"],$url_iIdStatut);
 			}
 		}
 	}
-	else if ($HTTP_POST_VARS["ACTION"] == "retirer")
+	else if ($_POST["ACTION"] == "retirer")
 	{
 		// 1:6,79,52;2:12,15
 		// + + +     +    +-- id de la troisième personne
@@ -67,7 +67,7 @@ if (!empty($HTTP_POST_VARS))
 		// + + +-- id de la deuxième personne
 		// + +-- id de la première personne
 		// +-- id du premier module
-		foreach (explode(";",$HTTP_POST_VARS["IDS_ACTION"]) as $s)
+		foreach (explode(";",$_POST["IDS_ACTION"]) as $s)
 		{
 			$i = strpos($s,":");
 			$iIdMod = substr($s,0,$i);
@@ -77,9 +77,9 @@ if (!empty($HTTP_POST_VARS))
 			$oModule->retirerPersonnes(explode(",",$sIdPers),$url_iIdStatut);
 		}
 	}
-	else if ($HTTP_POST_VARS["ACTION"] == "tri")
+	else if ($_POST["ACTION"] == "tri")
 	{
-		$url_iModeTri = (isset($HTTP_POST_VARS["TRI"]) ? $HTTP_POST_VARS["TRI"] : TRI_CROISSANT);
+		$url_iModeTri = (isset($_POST["TRI"]) ? $_POST["TRI"] : TRI_CROISSANT);
 	}
 }
 

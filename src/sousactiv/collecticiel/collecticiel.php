@@ -42,12 +42,12 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdPersEquipe       = (empty($HTTP_GET_VARS["sltPersEquipe"]) ? 0 : $HTTP_GET_VARS["sltPersEquipe"]);
-$url_iIdStatutDocument   = (empty($HTTP_GET_VARS["sltStatutDoc"]) ? 0 : $HTTP_GET_VARS["sltStatutDoc"]);
-$url_sDateDocument       = (empty($HTTP_GET_VARS["sltDateDoc"]) ? 0 : $HTTP_GET_VARS["sltDateDoc"]);
-$url_bAfficherBlocsVides = (empty($HTTP_GET_VARS["cbBlocsVides"]) ? ($url_iIdPersEquipe > 0) : $HTTP_GET_VARS["cbBlocsVides"]);
-$url_sTri                = (empty($HTTP_GET_VARS["tri"]) ? "date" : $HTTP_GET_VARS["tri"]);
-$url_iTypeTri            = (empty($HTTP_GET_VARS["typeTri"]) ? TRI_DECROISSANT : $HTTP_GET_VARS["typeTri"]);
+$url_iIdPersEquipe       = (empty($_GET["sltPersEquipe"]) ? 0 : $_GET["sltPersEquipe"]);
+$url_iIdStatutDocument   = (empty($_GET["sltStatutDoc"]) ? 0 : $_GET["sltStatutDoc"]);
+$url_sDateDocument       = (empty($_GET["sltDateDoc"]) ? 0 : $_GET["sltDateDoc"]);
+$url_bAfficherBlocsVides = (empty($_GET["cbBlocsVides"]) ? ($url_iIdPersEquipe > 0) : $_GET["cbBlocsVides"]);
+$url_sTri                = (empty($_GET["tri"]) ? "date" : $_GET["tri"]);
+$url_iTypeTri            = (empty($_GET["typeTri"]) ? TRI_DECROISSANT : $_GET["typeTri"]);
 
 // ---------------------
 // Initialiser

@@ -42,15 +42,15 @@ $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_PERMISSION");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS["idStatut"]))
-	$url_iIdStatut = $HTTP_GET_VARS["idStatut"];
-else if (isset($HTTP_POST_VARS["idStatut"]))
-	$url_iIdStatut = $HTTP_POST_VARS["idStatut"];
+if (isset($_GET["idStatut"]))
+	$url_iIdStatut = $_GET["idStatut"];
+else if (isset($_POST["idStatut"]))
+	$url_iIdStatut = $_POST["idStatut"];
 else
 	$url_iIdStatut = 0;
 
-$url_sFiltre   = (empty($HTTP_POST_VARS["filtre"]) ? NULL : $HTTP_POST_VARS["filtre"]);
-$url_aiIdsPerm = (empty($HTTP_POST_VARS["idPermis"]) ? array() : $HTTP_POST_VARS["idPermis"]);
+$url_sFiltre   = (empty($_POST["filtre"]) ? NULL : $_POST["filtre"]);
+$url_aiIdsPerm = (empty($_POST["idPermis"]) ? array() : $_POST["idPermis"]);
 
 // ---------------------
 // Initialisation

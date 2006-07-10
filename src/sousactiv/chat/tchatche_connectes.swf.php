@@ -33,7 +33,7 @@
 
 require_once("globals.inc.php");
 
-$sAdresseComplete = dir_root_plateform($HTTP_POST_VARS["adresseComplete"]);
+$sAdresseComplete = dir_root_plateform($_POST["adresseComplete"]);
 
 echo "&log={$sAdresseComplete}&";
 

@@ -26,9 +26,9 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSousActiv = (empty($HTTP_GET_VARS["idSA"]) ? 0 : $HTTP_GET_VARS["idSA"]);
-$url_aiIdResSA    = (empty($HTTP_GET_VARS["idResSA"]) ? NULL : explode("x",$HTTP_GET_VARS["idResSA"]));
-$url_iErreur      = (empty($HTTP_GET_VARS["err"]) ? NULL : $HTTP_GET_VARS["err"]);
+$url_iIdSousActiv = (empty($_GET["idSA"]) ? 0 : $_GET["idSA"]);
+$url_aiIdResSA    = (empty($_GET["idResSA"]) ? NULL : explode("x",$_GET["idResSA"]));
+$url_iErreur      = (empty($_GET["err"]) ? NULL : $_GET["err"]);
 
 // ---------------------
 // Initialiser

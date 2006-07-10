@@ -39,9 +39,9 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForum  = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
-$url_iIdSujet  = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdEquipe = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_iIdForum  = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
+$url_iIdSujet  = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdEquipe = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 // ---------------------
 // Initialiser les variables globales
@@ -122,7 +122,7 @@ if (!$bIdSujetValide)
 	$url_iIdSujet = (count($oForum->aoSujets) > 0 ? $oForum->aoSujets[0]->retId() : 0);
 
 // Formulaire
-$oTpl->remplacer("{form->action}",$HTTP_SERVER_VARS["PHP_SELF"]);
+$oTpl->remplacer("{form->action}",$_SERVER["PHP_SELF"]);
 
 $oTpl->remplacer("{forum->id}",$url_iIdForum);
 $oTpl->remplacer("{sujet->id}",$url_iIdSujet);

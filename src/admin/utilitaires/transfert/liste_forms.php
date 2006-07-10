@@ -36,8 +36,8 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sNomBdd    = $HTTP_GET_VARS["bdd"];
-$url_iIdFormSrc = $HTTP_GET_VARS["idFormSrc"];
+$url_sNomBdd    = $_GET["bdd"];
+$url_iIdFormSrc = $_GET["idFormSrc"];
 
 // ---------------------
 // Ouvrir une connexion avec la base de données

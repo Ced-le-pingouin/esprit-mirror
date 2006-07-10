@@ -27,7 +27,7 @@ $oProjet = new CProjet();
 // Initialisation
 // ---------------------
 $sParamsUrl = "?idPers=".$oProjet->retIdUtilisateur()
-	."&idResSA=".(empty($HTTP_GET_VARS["idResSA"]) ? 0 : $HTTP_GET_VARS["idResSA"]);
+	."&idResSA=".(empty($_GET["idResSA"]) ? 0 : $_GET["idResSA"]);
 
 // ---------------------
 // Frame du Titre

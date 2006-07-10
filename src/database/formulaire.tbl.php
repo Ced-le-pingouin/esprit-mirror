@@ -246,8 +246,6 @@ class CFormulaire
 	*/
 	function cHtmlFormulaireModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-		global $HTTP_POST_VARS, $HTTP_GET_VARS;
-	
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
@@ -255,34 +253,34 @@ class CFormulaire
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 ="";
 		$iFlagErreur=0;
 		
-		if (isset($HTTP_POST_VARS['envoyer'])) 
+		if (isset($_POST['envoyer'])) 
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->Titre = stripslashes($HTTP_POST_VARS['Titre']);
-			$this->oEnregBdd->Encadrer = $HTTP_POST_VARS['Encadrer'];
-			$this->oEnregBdd->Largeur = $HTTP_POST_VARS['Largeur'];
-			$this->oEnregBdd->TypeLarg = $HTTP_POST_VARS['TypeLarg'];
-			$this->oEnregBdd->InterElem = $HTTP_POST_VARS['InterElem'];
-			$this->oEnregBdd->InterEnonRep = $HTTP_POST_VARS['InterEnonRep'];
-			$this->defRemplirTout($HTTP_POST_VARS['RemplirTout']);
-			$this->oEnregBdd->Statut = 1; //$HTTP_POST_VARS['Statut'];
-			$this->oEnregBdd->Type = $HTTP_POST_VARS['Type'];
+			$this->oEnregBdd->Titre = stripslashes($_POST['Titre']);
+			$this->oEnregBdd->Encadrer = $_POST['Encadrer'];
+			$this->oEnregBdd->Largeur = $_POST['Largeur'];
+			$this->oEnregBdd->TypeLarg = $_POST['TypeLarg'];
+			$this->oEnregBdd->InterElem = $_POST['InterElem'];
+			$this->oEnregBdd->InterEnonRep = $_POST['InterEnonRep'];
+			$this->defRemplirTout($_POST['RemplirTout']);
+			$this->oEnregBdd->Statut = 1; //$_POST['Statut'];
+			$this->oEnregBdd->Type = $_POST['Type'];
 				
 				
 			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			if (strlen($HTTP_POST_VARS['Titre']) < 1)
+			if (strlen($_POST['Titre']) < 1)
 				{ $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1; }
 			
-			if ((int)$HTTP_POST_VARS['Largeur'] || strlen($HTTP_POST_VARS['Largeur']) < 1 || $HTTP_POST_VARS['Largeur'] == "0") 
+			if ((int)$_POST['Largeur'] || strlen($_POST['Largeur']) < 1 || $_POST['Largeur'] == "0") 
 				{;}
 			else
 				{ $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1; }
 			
-			if ((int)$HTTP_POST_VARS['InterElem'] || strlen($HTTP_POST_VARS['InterElem']) < 1 || $HTTP_POST_VARS['InterElem'] == "0") 
+			if ((int)$_POST['InterElem'] || strlen($_POST['InterElem']) < 1 || $_POST['InterElem'] == "0") 
 				{;}
 			else
 				{ $sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1; }
-			if ((int)$HTTP_POST_VARS['InterEnonRep'] || strlen($HTTP_POST_VARS['InterEnonRep']) < 1 || $HTTP_POST_VARS['InterEnonRep'] == "0") 
+			if ((int)$_POST['InterEnonRep'] || strlen($_POST['InterEnonRep']) < 1 || $_POST['InterEnonRep'] == "0") 
 				{;}
 			else
 				{ $sMessageErreur4="<font color =\"red\">*</font>"; $iFlagErreur=1; }

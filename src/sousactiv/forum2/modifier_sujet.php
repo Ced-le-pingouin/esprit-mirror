@@ -39,16 +39,16 @@ $oProjet = new CProjet();
 // ---------------------
 // Gestion
 // ---------------------
-if (isset($HTTP_POST_VARS["modaliteFenetre"]))
+if (isset($_POST["modaliteFenetre"]))
 {
 	$bOk = FALSE;
 	
-	$url_sModaliteFenetre = $HTTP_POST_VARS["modaliteFenetre"];
-	$url_iIdForum         = $HTTP_POST_VARS["idForum"];
-	$url_iIdSujet         = $HTTP_POST_VARS["idSujet"];
-	$url_iIdNiveau        = (empty($HTTP_POST_VARS["idNiveau"]) ? 0 : $HTTP_POST_VARS["idNiveau"]);
-	$url_iTypeNiveau      = (empty($HTTP_POST_VARS["typeNiveau"]) ? 0 : $HTTP_POST_VARS["typeNiveau"]);
-	$url_iIdEquipe        = (empty($HTTP_POST_VARS["idEquipe"]) ? 0 : $HTTP_POST_VARS["idEquipe"]);
+	$url_sModaliteFenetre = $_POST["modaliteFenetre"];
+	$url_iIdForum         = $_POST["idForum"];
+	$url_iIdSujet         = $_POST["idSujet"];
+	$url_iIdNiveau        = (empty($_POST["idNiveau"]) ? 0 : $_POST["idNiveau"]);
+	$url_iTypeNiveau      = (empty($_POST["typeNiveau"]) ? 0 : $_POST["typeNiveau"]);
+	$url_iIdEquipe        = (empty($_POST["idEquipe"]) ? 0 : $_POST["idEquipe"]);
 	
 	// Répertoire contenant les ressources du forum
 	$oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
@@ -56,8 +56,8 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 	
 	if ("ajouter" == $url_sModaliteFenetre || "modifier" == $url_sModaliteFenetre)
 	{
-		$url_sTitreSujet   = (empty($HTTP_POST_VARS["titreSujet"]) ? NULL : trim($HTTP_POST_VARS["titreSujet"]));
-		$url_sMessageSujet = (empty($HTTP_POST_VARS["messageSujet"]) ? NULL : trim($HTTP_POST_VARS["messageSujet"]));
+		$url_sTitreSujet   = (empty($_POST["titreSujet"]) ? NULL : trim($_POST["titreSujet"]));
+		$url_sMessageSujet = (empty($_POST["messageSujet"]) ? NULL : trim($_POST["messageSujet"]));
 		
 		$iIdPers = $oProjet->oUtilisateur->retId();
 		
@@ -79,7 +79,7 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 					$oMessageForum->ajouter($url_sMessageSujet,$url_iIdSujet,$iIdPers);
 					
 					// Déposer le fichier attaché sur le serveur
-					if (!empty($HTTP_POST_FILES["fichierMessage"]["name"]) &&
+					if (!empty($_FILES["fichierMessage"]["name"]) &&
 						$url_iIdNiveau > 0 &&
 						$url_iTypeNiveau > 0)
 					{
@@ -92,12 +92,12 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 							// Donner un nom unique au fichier
 							include_once(dir_lib("upload.inc.php",TRUE));
 							
-							echo $sNomFichierUnique = retNomFichierUnique($HTTP_POST_FILES["fichierMessage"]["name"],$sRepFichiersForum);
+							echo $sNomFichierUnique = retNomFichierUnique($_FILES["fichierMessage"]["name"],$sRepFichiersForum);
 							
-							if (move_uploaded_file($HTTP_POST_FILES["fichierMessage"]["tmp_name"],($sRepFichiersForum.$sNomFichierUnique)))
+							if (move_uploaded_file($_FILES["fichierMessage"]["tmp_name"],($sRepFichiersForum.$sNomFichierUnique)))
 							{
 								$oMessageForum->defRepRessources($sRepFichiersForum);
-								$oMessageForum->ajouterRessource($HTTP_POST_FILES["fichierMessage"]["name"],$sNomFichierUnique,$oProjet->oUtilisateur->retId());
+								$oMessageForum->ajouterRessource($_FILES["fichierMessage"]["name"],$sNomFichierUnique,$oProjet->oUtilisateur->retId());
 							}
 						}
 					}
@@ -159,12 +159,12 @@ if (isset($HTTP_POST_VARS["modaliteFenetre"]))
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sModaliteFenetre = (empty($HTTP_GET_VARS["modaliteFenetre"]) ? NULL : $HTTP_GET_VARS["modaliteFenetre"]);
-$url_iIdForum         = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
-$url_iIdSujet         = (empty($HTTP_GET_VARS["idSujet"]) ? 0 : $HTTP_GET_VARS["idSujet"]);
-$url_iIdNiveau        = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau      = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdEquipe        = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_sModaliteFenetre = (empty($_GET["modaliteFenetre"]) ? NULL : $_GET["modaliteFenetre"]);
+$url_iIdForum         = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
+$url_iIdSujet         = (empty($_GET["idSujet"]) ? 0 : $_GET["idSujet"]);
+$url_iIdNiveau        = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau      = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdEquipe        = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 // ---------------------
 // Template de l'éditeur

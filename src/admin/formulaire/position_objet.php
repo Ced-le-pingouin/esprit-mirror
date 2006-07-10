@@ -25,17 +25,17 @@ $oProjet = new CProjet();
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdObjForm = $HTTP_GET_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
-	$v_iNouvPos = $HTTP_GET_VARS['ordreobj'];
+	$v_iIdObjForm = $_GET['idobj'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
+	$v_iNouvPos = $_GET['ordreobj'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdObjForm = $HTTP_POST_VARS['idobj'];
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
-	$v_iNouvPos = $HTTP_POST_VARS['ordreobj'];
+	$v_iIdObjForm = $_POST['idobj'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
+	$v_iNouvPos = $_POST['ordreobj'];
 }
 else
 {
@@ -45,7 +45,7 @@ else
 }
 
 
-if (isset($HTTP_GET_VARS['deplacer']))
+if (isset($_GET['deplacer']))
 {
 
 	$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);

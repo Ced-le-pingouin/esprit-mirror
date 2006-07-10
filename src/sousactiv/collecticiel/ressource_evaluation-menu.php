@@ -23,7 +23,7 @@ require_once("globals.inc.php");
 
 $sMenu = $sBlockHead = NULL;
 
-if (isset($HTTP_GET_VARS["eval"]) && $HTTP_GET_VARS["eval"] == "1")
+if (isset($_GET["eval"]) && $_GET["eval"] == "1")
 	$aMenus = array(
 		array("Valider","top.oPrincipale().valider();"),
 		array("Annuler","top.close();")

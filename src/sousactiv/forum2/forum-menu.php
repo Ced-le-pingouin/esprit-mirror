@@ -41,7 +41,7 @@ $iIdUtilisateur = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->r
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForum = (empty($HTTP_GET_VARS["idForum"]) ? 0 : $HTTP_GET_VARS["idForum"]);
+$url_iIdForum = (empty($_GET["idForum"]) ? 0 : $_GET["idForum"]);
 
 // ---------------------
 // Insérer ces lignes dans l'en-tête de la page html

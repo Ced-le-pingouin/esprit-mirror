@@ -21,12 +21,12 @@
 
 $sFichierTmp = "none";
 
-if (!empty($HTTP_POST_FILES["FICHIER"]))
+if (!empty($_FILES["FICHIER"]))
 {
-	$sFichierTmp         = $HTTP_POST_FILES["FICHIER"]["tmp_name"];
-	$sNomFichier         = stripslashes($HTTP_POST_FILES["FICHIER"]["name"]);
-	$sTitreFichier       = stripslashes($HTTP_POST_VARS["TITRE_FICHIER"]);
-	$sDescriptionFichier = stripslashes($HTTP_POST_VARS["DESCRIPTION_FICHIER"]);
+	$sFichierTmp         = $_FILES["FICHIER"]["tmp_name"];
+	$sNomFichier         = stripslashes($_FILES["FICHIER"]["name"]);
+	$sTitreFichier       = stripslashes($_POST["TITRE_FICHIER"]);
+	$sDescriptionFichier = stripslashes($_POST["DESCRIPTION_FICHIER"]);
 }
 
 if ($sFichierTmp != "none")

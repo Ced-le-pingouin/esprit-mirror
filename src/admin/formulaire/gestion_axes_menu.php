@@ -24,13 +24,13 @@ require_once("globals.inc.php");
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
 
 }
 

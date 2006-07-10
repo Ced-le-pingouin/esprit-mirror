@@ -27,9 +27,9 @@ $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 //*       Récupération des variables             *
 //************************************************
 
-$v_iIdFormulaire = ( isset($HTTP_GET_VARS["idFormulaire"])?$HTTP_GET_VARS["idFormulaire"]:($HTTP_POST_VARS["idFormulaire"]?$HTTP_POST_VARS["idFormulaire"]:NULL) );
-$iIdSousActiv = ( isset($HTTP_GET_VARS["idSousActiv"])?$HTTP_GET_VARS["idSousActiv"]:($HTTP_POST_VARS["idSousActiv"]?$HTTP_POST_VARS["idSousActiv"]:NULL) );
-if (isset($HTTP_POST_VARS['bSoumis']))
+$v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
+$iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
+if (isset($_POST['bSoumis']))
 {
 	$bSoumis = TRUE;
 	
@@ -50,9 +50,9 @@ else
 {
 	$bSoumis = FALSE;
 
-	if (isset($HTTP_GET_VARS["idFC"]))
+	if (isset($_GET["idFC"]))
 	{
-		$iIdFC = $HTTP_GET_VARS["idFC"];
+		$iIdFC = $_GET["idFC"];
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
 		$v_iIdFormulaire = $oFormulaireComplete->retIdForm();
 	}
@@ -155,9 +155,9 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			if ($bSoumis)
 			{
 				//echo "<br>Objet de type 1 :";
-				//echo $HTTP_POST_VARS[$iIdObjActuel];
+				//echo $_POST[$iIdObjActuel];
 				
-				$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel]);
+				$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 				
 				//echo "<br>idFC : ".$iIdFC;
 			}
@@ -173,9 +173,9 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			if ($bSoumis)
 			{
 				//echo "<br>Objet de type 2 :";
-				//echo $HTTP_POST_VARS[$iIdObjActuel];
+				//echo $_POST[$iIdObjActuel];
 				
-				$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel]);
+				$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 				
 				//echo "<br>idFC : ".$iIdFC;
 			}
@@ -191,11 +191,11 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			if ($bSoumis)
 			{
 				//echo "<br>Objet de type 3 :";
-				//echo $HTTP_POST_VARS[$iIdObjActuel];
+				//echo $_POST[$iIdObjActuel];
 				
 				// Transforme la virgule en point ex: 20,5 -> 20.5
-				$HTTP_POST_VARS[$iIdObjActuel] = str_replace(",", ".", $HTTP_POST_VARS[$iIdObjActuel]);
-				$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel]);
+				$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
+				$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 				
 				//echo "<br>idFC : ".$iIdFC;
 			}
@@ -211,9 +211,9 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			if ($bSoumis)
 			{
 				//echo "<br>Objet de type 4 :";
-				//echo $HTTP_POST_VARS[$iIdObjActuel];
+				//echo $_POST[$iIdObjActuel];
 				
-				$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel]);
+				$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 				
 				//echo "<br>idFC : ".$iIdFC;
 			}
@@ -229,9 +229,9 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			if ($bSoumis)
 			{
 				//echo "<br>Objet de type 5 :";
-				//echo $HTTP_POST_VARS[$iIdObjActuel];
+				//echo $_POST[$iIdObjActuel];
 				
-				$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel]);
+				$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 				
 				//echo "<br>idFC : ".$iIdFC;
 			}
@@ -248,10 +248,10 @@ while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
 			{
 				//echo "<br>Objet de type 6 :";
 				
-				for ($i = 0; $i < count($HTTP_POST_VARS[$iIdObjActuel]); $i++) 
+				for ($i = 0; $i < count($_POST[$iIdObjActuel]); $i++) 
 				{
-					//echo $HTTP_POST_VARS[$iIdObjActuel][$i];
-					$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$HTTP_POST_VARS[$iIdObjActuel][$i]);
+					//echo $_POST[$iIdObjActuel][$i];
+					$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel][$i]);
 				}
 				
 				//echo "<br>idFC : ".$iIdFC;

@@ -51,7 +51,7 @@ afficherTitre(NULL,$sNom);
 // ---------------------
 if ($g_bModifier || $g_bModifierStatut)
 	echo "<form name=\"form_admin_modif\""
-		." action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\""
+		." action=\"".$_SERVER["PHP_SELF"]."\""
 		." method=\"post\""
 		." enctype=\"multipart/form-data\""
 		.">\n";

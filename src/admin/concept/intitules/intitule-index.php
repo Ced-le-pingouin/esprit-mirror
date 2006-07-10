@@ -11,7 +11,7 @@
 */
 
 // Récupérer les variables de l'url
-$url_iType = (empty($HTTP_GET_VARS) ? NULL : $HTTP_GET_VARS["TYPE_INTITULE"]);
+$url_iType = (empty($_GET) ? NULL : $_GET["TYPE_INTITULE"]);
 
 if (!isset($url_iType))
 	exit();

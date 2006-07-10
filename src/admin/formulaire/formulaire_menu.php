@@ -24,13 +24,13 @@ $oProjet = new CProjet();
 
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))
 {
-	if (isset($HTTP_GET_VARS['idformulaire']))
+	if (isset($_GET['idformulaire']))
 	{
-		$v_iIdFormulaire = @$HTTP_GET_VARS['idformulaire'];
+		$v_iIdFormulaire = @$_GET['idformulaire'];
 	}
-	else if (isset($HTTP_POST_VARS['idformulaire']))
+	else if (isset($_POST['idformulaire']))
 	{
-		$v_iIdFomulaire = @$HTTP_POST_VARS['idformulaire'];
+		$v_iIdFomulaire = @$_POST['idformulaire'];
 	}
 	/*else
 	{
@@ -38,7 +38,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		$v_iIdFormulaire = 0;
 	}*/
 	
-	if (@$HTTP_GET_VARS['typeaction']=='supprimer')
+	if (@$_GET['typeaction']=='supprimer')
 	{
 		if ($v_iIdFormulaire == Null)  //Si on n'a pas sélectionné de formulaire dans la liste
 		{
@@ -156,7 +156,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		}
 	}
 	
-	if (@$HTTP_GET_VARS['typeaction']=='copier')
+	if (@$_GET['typeaction']=='copier')
 	{
 		$iIdPersCourant = $oProjet->oUtilisateur->retId();
 		

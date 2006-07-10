@@ -40,7 +40,7 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSA = (empty($HTTP_GET_VARS["idSA"]) ? NULL : $HTTP_GET_VARS["idSA"]);
+$url_iIdSA = (empty($_GET["idSA"]) ? NULL : $_GET["idSA"]);
 
 $sParamsUrl = "?idSA={$url_iIdSA}";
 

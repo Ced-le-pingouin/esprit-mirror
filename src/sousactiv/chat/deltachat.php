@@ -42,10 +42,10 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_iIdChat     = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
-$url_iIdEquipe   = (empty($HTTP_GET_VARS["idEquipe"]) ? 0 : $HTTP_GET_VARS["idEquipe"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_iIdChat     = (empty($_GET["idChat"]) ? 0 : $_GET["idChat"]);
+$url_iIdEquipe   = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
 // ---------------------
 // Initialiser
@@ -139,7 +139,7 @@ $oProjet->terminer();
 <param name="nickname" value="<?=$sUtilisateurPseudo?>">
 <param name="user" value="<?=$sUtilisateurNomComplet?>">
 <param name="sex" value="<?=$sUtilisateurSexe?>">
-<param name="hostname" value="<?=$HTTP_SERVER_VARS['SERVER_ADDR']?>">
+<param name="hostname" value="<?=$_SERVER['SERVER_ADDR']?>">
 <param name="port" value="<?=$iChatNumPort?>">
 <param name="height_room" value="<?=$iChatFenHauteur?>">
 <param name="color_room" value="<?=$sChatCouleur?>">

@@ -41,9 +41,9 @@ $g_iIdUtilisateur = $oProjet->retIdUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_aiIdStatuts       = (empty($HTTP_GET_VARS["idStatuts"]) ? NULL : explode("x",$HTTP_GET_VARS["idStatuts"]));
-$url_aiIdEquipes       = (empty($HTTP_GET_VARS["idEquipes"]) ? NULL : explode("x",$HTTP_GET_VARS["idEquipes"]));
-$url_bAfficherBlocVide = (empty($HTTP_GET_VARS["affBlocVide"]) ? TRUE : ($HTTP_GET_VARS["affBlocVide"] == "oui"));
+$url_aiIdStatuts       = (empty($_GET["idStatuts"]) ? NULL : explode("x",$_GET["idStatuts"]));
+$url_aiIdEquipes       = (empty($_GET["idEquipes"]) ? NULL : explode("x",$_GET["idEquipes"]));
+$url_bAfficherBlocVide = (empty($_GET["affBlocVide"]) ? TRUE : ($_GET["affBlocVide"] == "oui"));
 
 // ---------------------
 // Initialiser

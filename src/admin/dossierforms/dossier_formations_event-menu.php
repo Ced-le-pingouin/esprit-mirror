@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sEvent = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
+$url_sEvent = (empty($_GET["event"]) ? NULL : $_GET["event"]);
 
 // ---------------------
 // Initialiser

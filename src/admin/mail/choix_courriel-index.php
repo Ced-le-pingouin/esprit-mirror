@@ -38,7 +38,7 @@ require_once("globals.inc.php");
 // ---------------------
 $url_sParams = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$url_sParams .= (isset($url_sParams) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

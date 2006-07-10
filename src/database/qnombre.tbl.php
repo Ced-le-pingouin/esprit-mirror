@@ -165,8 +165,6 @@ class CQNombre
 
 	function cHtmlQNombreModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-		global $HTTP_POST_VARS, $HTTP_GET_VARS;
-		
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
 		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
@@ -174,23 +172,23 @@ class CQNombre
 		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
 		$iFlagErreur=0;
 		
-		if (isset($HTTP_POST_VARS['envoyer'])) 
+		if (isset($_POST['envoyer'])) 
 		{
 			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQN = stripslashes($HTTP_POST_VARS['Enonce']);
-			$this->oEnregBdd->AlignEnonQN = $HTTP_POST_VARS['AlignEnon'];
-			$this->oEnregBdd->AlignRepQN = $HTTP_POST_VARS['AlignRep'];
-			$this->oEnregBdd->TxtAvQN = stripslashes($HTTP_POST_VARS['TxtAv']);
-			$this->oEnregBdd->TxtApQN = stripslashes($HTTP_POST_VARS['TxtAp']);
-			$this->oEnregBdd->NbMinQN = $HTTP_POST_VARS['NbMin'];
-			$this->oEnregBdd->NbMaxQN = $HTTP_POST_VARS['NbMax'];
-			$this->oEnregBdd->MultiQN = $HTTP_POST_VARS['Multi'];
+			$this->oEnregBdd->EnonQN = stripslashes($_POST['Enonce']);
+			$this->oEnregBdd->AlignEnonQN = $_POST['AlignEnon'];
+			$this->oEnregBdd->AlignRepQN = $_POST['AlignRep'];
+			$this->oEnregBdd->TxtAvQN = stripslashes($_POST['TxtAv']);
+			$this->oEnregBdd->TxtApQN = stripslashes($_POST['TxtAp']);
+			$this->oEnregBdd->NbMinQN = $_POST['NbMin'];
+			$this->oEnregBdd->NbMaxQN = $_POST['NbMax'];
+			$this->oEnregBdd->MultiQN = $_POST['Multi'];
 				
 			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			//if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($HTTP_POST_VARS['NbMin'])) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($HTTP_POST_VARS['NbMax'])) {$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($HTTP_POST_VARS['Multi'])) { $sMessageErreur4="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			//if (strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (!is_numeric($_POST['NbMin'])) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (!is_numeric($_POST['NbMax'])) {$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			if (!is_numeric($_POST['Multi'])) { $sMessageErreur4="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 				
 			if ($iFlagErreur == 0) 
 			{

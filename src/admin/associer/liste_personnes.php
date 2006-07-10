@@ -38,11 +38,11 @@ $oProjet = new CProjet();
 // ---------------------
 // Initialiser
 // ---------------------
-$iIdFormCourante = (isset($HTTP_GET_VARS["idform"]) ? $HTTP_GET_VARS["idform"] : 0);
-$iFiltre         = (isset($HTTP_GET_VARS["FILTRE"]) ? $HTTP_GET_VARS["FILTRE"] : 0);
-$iStatutPers     = (isset($HTTP_GET_VARS["STATUT_PERS"]) ? $HTTP_GET_VARS["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
-$iIdMod          = (isset($HTTP_GET_VARS["ID_MOD"]) ? $HTTP_GET_VARS["ID_MOD"] : 0);
-$iIdForm         = (isset($HTTP_GET_VARS["FORMATION"]) && $HTTP_GET_VARS["FORMATION"] > 0 ? 1 : 0);
+$iIdFormCourante = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
+$iFiltre         = (isset($_GET["FILTRE"]) ? $_GET["FILTRE"] : 0);
+$iStatutPers     = (isset($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
+$iIdMod          = (isset($_GET["ID_MOD"]) ? $_GET["ID_MOD"] : 0);
+$iIdForm         = (isset($_GET["FORMATION"]) && $_GET["FORMATION"] > 0 ? 1 : 0);
 
 $sErrPers = NULL;
 
@@ -51,7 +51,7 @@ $sMajListeInscrit = NULL;
 // ---------------------
 // Ajouter des personnes
 // ---------------------
-if (isset($HTTP_GET_VARS["IDPERS"]) && count($HTTP_GET_VARS["IDPERS"]) > 0)
+if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 {
 	$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
 	
@@ -65,7 +65,7 @@ if (isset($HTTP_GET_VARS["IDPERS"]) && count($HTTP_GET_VARS["IDPERS"]) > 0)
 			else
 				$oResp = new CProjet_Resp($oProjet->oBdd);
 			
-			foreach ($HTTP_GET_VARS["IDPERS"] as $iIdPers)
+			foreach ($_GET["IDPERS"] as $iIdPers)
 				$oResp->ajouter($iIdPers);
 			
 			$oResp = NULL;
@@ -85,20 +85,20 @@ if (isset($HTTP_GET_VARS["IDPERS"]) && count($HTTP_GET_VARS["IDPERS"]) > 0)
 				include_once(dir_database("projet_concepteur.tbl.php"));
 				$oConcepteur = new CProjet_Concepteur($oProjet->oBdd);
 			}
-			$oConcepteur->ajouterConcepteurs($HTTP_GET_VARS["IDPERS"]);
+			$oConcepteur->ajouterConcepteurs($_GET["IDPERS"]);
 			break;
 			
 		case STATUT_PERS_TUTEUR:
 			
 			include_once(dir_database("module_tuteur.tbl.php"));
 			$oTuteur = new CFormation_Tuteur($oProjet->oBdd,$iIdFormCourante);
-			$oTuteur->ajouterTuteurs($HTTP_GET_VARS["IDPERS"]);
+			$oTuteur->ajouterTuteurs($_GET["IDPERS"]);
 			break;
 			
 		case STATUT_PERS_ETUDIANT:
 			
 			$oFormInscrit = new CFormation_Inscrit($oProjet->oBdd,$iIdFormCourante);
-			foreach ($HTTP_GET_VARS["IDPERS"] as $iIdPers)
+			foreach ($_GET["IDPERS"] as $iIdPers)
 				$oFormInscrit->ajouter($iIdPers);
 			unset($oFormInscrit);
 			break;
@@ -174,7 +174,7 @@ function init()
 </head>
 <body onload="init()" style="background-color: #FFFFFF;">
 <a name="top"></a>
-<form action="<?php echo $HTTP_SERVER_VARS["PHP_SELF"]; ?>" method="get" target="_self">
+<form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get" target="_self">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">
 <?php
 $sClassTR = (" style=\"border: #EFEFEF none 1px; border-bottom-style: solid;\"");

@@ -46,11 +46,11 @@ if (!$oProjet->verifPermission("PERM_COMPOSER_GALERIE"))
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdSousActiv    = (empty($HTTP_POST_VARS["idSA"]) ? (empty($HTTP_GET_VARS["idSA"]) ? 0 : $HTTP_GET_VARS["idSA"]) : $HTTP_POST_VARS["idSA"]);
-$url_sAction         = (empty($HTTP_POST_VARS["action"]) ? NULL : $HTTP_POST_VARS["action"]);
-$url_iIdPers         = (empty($HTTP_POST_VARS["personne"]) ? 0 : $HTTP_POST_VARS["personne"]);
-$url_iDocument       = (empty($HTTP_POST_VARS["document"]) ? 0 : $HTTP_POST_VARS["document"]);
-$url_iIdCollecticiel = (empty($HTTP_POST_VARS["collecticiel"]) ? 0 : $HTTP_POST_VARS["collecticiel"]);
+$url_iIdSousActiv    = (empty($_POST["idSA"]) ? (empty($_GET["idSA"]) ? 0 : $_GET["idSA"]) : $_POST["idSA"]);
+$url_sAction         = (empty($_POST["action"]) ? NULL : $_POST["action"]);
+$url_iIdPers         = (empty($_POST["personne"]) ? 0 : $_POST["personne"]);
+$url_iDocument       = (empty($_POST["document"]) ? 0 : $_POST["document"]);
+$url_iIdCollecticiel = (empty($_POST["collecticiel"]) ? 0 : $_POST["collecticiel"]);
 
 if ($url_iIdSousActiv == 0 || $url_iIdSousActiv != $oProjet->oSousActivCourante->retId())
 	exit("Erreur : Identifiant action non correspondant");
@@ -63,8 +63,8 @@ $oGalerie = new CGalerie($oProjet->oBdd,$oProjet->oSousActivCourante->retId());
 // {{{ Appliquer les changements
 if (isset($url_sAction))
 {
-	$oGalerie->effacerRessources(explode(",",(empty($HTTP_POST_VARS["idsres"]) ? "" : $HTTP_POST_VARS["idsres"])));
-	$oGalerie->ajouterRessources((empty($HTTP_POST_VARS["ressources"]) ? array() : $HTTP_POST_VARS["ressources"]),FALSE);
+	$oGalerie->effacerRessources(explode(",",(empty($_POST["idsres"]) ? "" : $_POST["idsres"])));
+	$oGalerie->ajouterRessources((empty($_POST["ressources"]) ? array() : $_POST["ressources"]),FALSE);
 }
 // }}}
 

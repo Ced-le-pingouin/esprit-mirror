@@ -27,22 +27,22 @@ $oProjet = new CProjet();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS["idNiveau"]))
-	$url_iIdNiveau = $HTTP_GET_VARS["idNiveau"];
-else if (isset($HTTP_POST_VARS["idNiveau"]))
-	$url_iIdNiveau = $HTTP_POST_VARS["idNiveau"];
+if (isset($_GET["idNiveau"]))
+	$url_iIdNiveau = $_GET["idNiveau"];
+else if (isset($_POST["idNiveau"]))
+	$url_iIdNiveau = $_POST["idNiveau"];
 else
 	$url_iIdNiveau = 0;
 
-if (isset($HTTP_GET_VARS["typeNiveau"]))
-	$url_iTypeNiveau = $HTTP_GET_VARS["typeNiveau"];
-else if (isset($HTTP_POST_VARS["typeNiveau"]))
-	$url_iTypeNiveau = $HTTP_POST_VARS["typeNiveau"];
+if (isset($_GET["typeNiveau"]))
+	$url_iTypeNiveau = $_GET["typeNiveau"];
+else if (isset($_POST["typeNiveau"]))
+	$url_iTypeNiveau = $_POST["typeNiveau"];
 else
 	$url_iTypeNiveau = 0;
 
-$url_iIdChat = (empty($HTTP_POST_VARS["idChat"]) ? 0 : $HTTP_POST_VARS["idChat"]);
-$url_sAction = (empty($HTTP_POST_VARS["action"]) ? NULL : $HTTP_POST_VARS["action"]);
+$url_iIdChat = (empty($_POST["idChat"]) ? 0 : $_POST["idChat"]);
+$url_sAction = (empty($_POST["action"]) ? NULL : $_POST["action"]);
 
 if ($url_sAction != "ajouter" && $url_iIdChat > 0)
 {
@@ -56,12 +56,12 @@ if ($url_sAction != "ajouter" && $url_iIdChat > 0)
 	}
 	else
 	{
-		$oChat->defNumOrdre($HTTP_POST_VARS["ordreChat"]);
-		$oChat->defNom($HTTP_POST_VARS["nomChat"]);
-		$oChat->defCouleur($HTTP_POST_VARS["couleurChat"]);
-		$oChat->defModalite($HTTP_POST_VARS["modaliteChat"]);
-		$oChat->defEnregConversation($HTTP_POST_VARS["enregistrerChat"]);
-		$oChat->defSalonPrive($HTTP_POST_VARS["utiliserSalonPriveChat"]);
+		$oChat->defNumOrdre($_POST["ordreChat"]);
+		$oChat->defNom($_POST["nomChat"]);
+		$oChat->defCouleur($_POST["couleurChat"]);
+		$oChat->defModalite($_POST["modaliteChat"]);
+		$oChat->defEnregConversation($_POST["enregistrerChat"]);
+		$oChat->defSalonPrive($_POST["utiliserSalonPriveChat"]);
 		
 		$oChat->enregistrer();
 	}
@@ -188,7 +188,7 @@ function supprimer()
 </script>
 </head>
 <body class="gauche" onload="init()">
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="post">
+<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 <?php $oTpl->afficher(); ?>
 <input type="hidden" name="action" value="">
 <input type="hidden" name="idNiveau" value="<?=$url_iIdNiveau?>">

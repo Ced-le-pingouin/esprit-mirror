@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 require_once("globals.inc.php");
-$url_sTitrePrincipal = (empty($HTTP_GET_VARS["tp"]) ? NULL : stripslashes($HTTP_GET_VARS["tp"]));
+$url_sTitrePrincipal = (empty($_GET["tp"]) ? NULL : stripslashes($_GET["tp"]));
 $sBlockHead = NULL;
 $aMenus   = array();
 $aMenus[] = array("Changer de formation","top.choix_formation('{$url_sTitrePrincipal}')",1,"text-align: left;");

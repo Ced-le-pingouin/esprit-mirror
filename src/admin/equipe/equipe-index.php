@@ -26,8 +26,8 @@ $sParamsUrl = NULL;
 $asParams = array("ACTION","ID_EQUIPE","NIVEAU","ID_NIVEAU");
 
 foreach ($asParams as $sParam)
-	if (isset($HTTP_POST_VARS[$sParam]))
-		$sParamsUrl .= (isset($sParamsUrl) ? "&" : NULL)."$sParam=".$HTTP_POST_VARS[$sParam];
+	if (isset($_POST[$sParam]))
+		$sParamsUrl .= (isset($sParamsUrl) ? "&" : NULL)."$sParam=".$_POST[$sParam];
 
 if (isset($sParamsUrl))
 	$sParamsUrl = "?{$sParamsUrl}";

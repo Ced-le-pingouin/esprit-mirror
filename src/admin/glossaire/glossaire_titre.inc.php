@@ -19,7 +19,7 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-$url_sTitreGlossaire = $HTTP_GET_VARS["glossaire_titre"];
+$url_sTitreGlossaire = $_GET["glossaire_titre"];
 
 $oProjet = new CProjet();
 

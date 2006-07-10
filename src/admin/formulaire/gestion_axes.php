@@ -25,21 +25,21 @@ $oProjet = new CProjet();
 //*       Récupération des variables             *
 //************************************************
 
-if (isset($HTTP_GET_VARS))
+if (isset($_GET))
 {
-	$v_iIdFormulaire = $HTTP_GET_VARS['idformulaire'];
-	$v_iIdAxeS = $HTTP_GET_VARS['axe_s'];
-	$v_iIdAxeM = $HTTP_GET_VARS['axe_m'];
-	$v_sDescAxeM = $HTTP_GET_VARS['axemodif'];
-	$v_sDescAxeA = $HTTP_GET_VARS['axeajout'];
+	$v_iIdFormulaire = $_GET['idformulaire'];
+	$v_iIdAxeS = $_GET['axe_s'];
+	$v_iIdAxeM = $_GET['axe_m'];
+	$v_sDescAxeM = $_GET['axemodif'];
+	$v_sDescAxeA = $_GET['axeajout'];
 }
-else if (isset($HTTP_POST_VARS))
+else if (isset($_POST))
 {
-	$v_iIdFormulaire = $HTTP_POST_VARS['idformulaire'];
-	$v_iIdAxeS = $HTTP_POST_VARS['axe_s'];
-	$v_iIdAxeM = $HTTP_POST_VARS['axe_m'];
-	$v_sDescAxeM = $HTTP_POST_VARS['axemodif'];
-	$v_sDescAxeA = $HTTP_POST_VARS['axeajout'];
+	$v_iIdFormulaire = $_POST['idformulaire'];
+	$v_iIdAxeS = $_POST['axe_s'];
+	$v_iIdAxeM = $_POST['axe_m'];
+	$v_sDescAxeM = $_POST['axemodif'];
+	$v_sDescAxeA = $_POST['axeajout'];
 }
 else
 {
@@ -51,7 +51,7 @@ else
 }
 
 
-if (isset($HTTP_GET_VARS['supprimer']))
+if (isset($_GET['supprimer']))
 {
 	  echo "<html>\n";
 	  echo "<head>\n";
@@ -70,7 +70,7 @@ if (isset($HTTP_GET_VARS['supprimer']))
 	  echo "</body>\n";
 	  echo "</html>\n";
 }
-else if (isset($HTTP_GET_VARS['modifier']))
+else if (isset($_GET['modifier']))
 		{
 			  echo "<html>\n";
 			  echo "<head>\n";
@@ -101,7 +101,7 @@ else if (isset($HTTP_GET_VARS['modifier']))
 			  echo "</html>\n";
 		}
 		
-		else if (isset($HTTP_GET_VARS['ajouter']))
+		else if (isset($_GET['ajouter']))
 				{
 					  echo "<html>\n";
 					  echo "<head>\n";

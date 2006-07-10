@@ -375,8 +375,6 @@ return "$CodeHtml";
 
 function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
-	global $HTTP_POST_VARS, $HTTP_GET_VARS;
-	
 	//initialisation du messages d'erreur à 'vide' et de la variable servant a détecter
 	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
 	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
@@ -384,27 +382,27 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 	$sMessageErreur1 = "";
 	$iFlagErreur=0;
 	
-	if (isset($HTTP_POST_VARS['envoyer']) || $HTTP_POST_VARS['typeaction']=='ajouter' || $HTTP_POST_VARS['typeaction']=='supprimer')
+	if (isset($_POST['envoyer']) || $_POST['typeaction']=='ajouter' || $_POST['typeaction']=='supprimer')
 		{
 			   //Récupération des variables transmises par le formulaire
-			   $this->oEnregBdd->EnonQR = stripslashes($HTTP_POST_VARS['Enonce']);
-			   $this->oEnregBdd->AlignEnonQR = $HTTP_POST_VARS['AlignEnon'];
-				$this->oEnregBdd->AlignRepQR = $HTTP_POST_VARS['AlignRep'];
-				$this->oEnregBdd->TxtAvQR = stripslashes($HTTP_POST_VARS['TxtAv']);
-				$this->oEnregBdd->TxtApQR = stripslashes($HTTP_POST_VARS['TxtAp']);
-				$this->oEnregBdd->DispQR = $HTTP_POST_VARS['Disp'];
+			   $this->oEnregBdd->EnonQR = stripslashes($_POST['Enonce']);
+			   $this->oEnregBdd->AlignEnonQR = $_POST['AlignEnon'];
+				$this->oEnregBdd->AlignRepQR = $_POST['AlignRep'];
+				$this->oEnregBdd->TxtAvQR = stripslashes($_POST['TxtAv']);
+				$this->oEnregBdd->TxtApQR = stripslashes($_POST['TxtAp']);
+				$this->oEnregBdd->DispQR = $_POST['Disp'];
 				
 			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			   //if (strlen($HTTP_POST_VARS['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
+			   //if (strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
 
 			   //if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
 					//{
 
 						   //Enregistrement des réponses et de leurs poids pour les differents axes
-							if (isset($HTTP_POST_VARS["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
-																			//sur ajouter, $HTTP_POST_VARS["rep"] n'existe pas 
+							if (isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
+																			//sur ajouter, $_POST["rep"] n'existe pas 
 							{
-								foreach ($HTTP_POST_VARS["rep"] as $v_iIdReponse => $v_sTexteTemp) 
+								foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 								{
 									$oReponse = new CReponse($this->oBdd);
 									$oReponse->defId($v_iIdReponse);
@@ -412,10 +410,10 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 									$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 									$oReponse->enregistrer(FALSE);
 								
-									  if (isset($HTTP_POST_VARS["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
+									  if (isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
 									  														// n'est défini pour ce formulaire
 									  {
-										  $tab = $HTTP_POST_VARS["repAxe"];
+										  $tab = $_POST["repAxe"];
 										  foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 										  {
 											  
@@ -452,7 +450,7 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 	//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 	//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours. 
 	//(avec les vérifications d'usage avant enregistrement dans la BD)
-	if ($HTTP_POST_VARS['typeaction']=='ajouter')
+	if ($_POST['typeaction']=='ajouter')
 		  {
 		  //echo "je suis passé par ajouter";
 		  
@@ -482,10 +480,10 @@ function cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire)
 	//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 	//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.
 	//(avec les vérifications d'usage avant enregistrement dans la BD)
-	if ($HTTP_POST_VARS['typeaction']=='supprimer')
+	if ($_POST['typeaction']=='supprimer')
 		  {
 				 //echo "<br>je suis passé par supprimer";
-				 $v_iIdReponse = $HTTP_POST_VARS['parametre'];
+				 $v_iIdReponse = $_POST['parametre'];
 				 $oReponse = new CReponse($this->oBdd,$v_iIdReponse);
 				 $oReponse->effacer();
 		  }

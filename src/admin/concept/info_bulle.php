@@ -34,9 +34,9 @@ require_once("globals.inc.php");
 
 $oProjet = new CProjet();
 
-$url_iType      = $HTTP_GET_VARS["type"];
-$url_iIdType    = $HTTP_GET_VARS["idType"];
-$url_sInfoBulle = (empty($HTTP_GET_VARS["info_bulle"]) ? NULL : trim($HTTP_GET_VARS["info_bulle"]));
+$url_iType      = $_GET["type"];
+$url_iIdType    = $_GET["idType"];
+$url_sInfoBulle = (empty($_GET["info_bulle"]) ? NULL : trim($_GET["info_bulle"]));
 
 switch ($url_iType)
 {

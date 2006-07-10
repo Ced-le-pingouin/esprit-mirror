@@ -48,16 +48,16 @@ else if ($act == "modifier")
 	$oFormation = new CFormation($oProjet->oBdd,$g_iFormation);
 	
 	if ($url_bModifierStatut)
-		$oFormation->defStatut($HTTP_POST_VARS["statut_formation"]);
+		$oFormation->defStatut($_POST["statut_formation"]);
 	
 	if (!$url_bModifier)
 		return;
 	
-	$oFormation->redistNumsOrdre($HTTP_POST_VARS["ordre_formation"]);
-	$oFormation->defNom($HTTP_POST_VARS["nom_formation"]);
-	$oFormation->defdescr($HTTP_POST_VARS["descr_formation"]);
-	$oFormation->defInscrAutoModules($HTTP_POST_VARS["INSCR_AUTO_MODULES"]);
-	$oFormation->defVisiteurAutoriser((isset($HTTP_POST_VARS["VISITEUR_AUTORISER"]) && $HTTP_POST_VARS["VISITEUR_AUTORISER"] == "on" ? '1' : '0'));
+	$oFormation->redistNumsOrdre($_POST["ordre_formation"]);
+	$oFormation->defNom($_POST["nom_formation"]);
+	$oFormation->defdescr($_POST["descr_formation"]);
+	$oFormation->defInscrAutoModules($_POST["INSCR_AUTO_MODULES"]);
+	$oFormation->defVisiteurAutoriser((isset($_POST["VISITEUR_AUTORISER"]) && $_POST["VISITEUR_AUTORISER"] == "on" ? '1' : '0'));
 }
 
 ?>

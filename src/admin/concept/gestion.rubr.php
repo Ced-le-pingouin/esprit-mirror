@@ -43,12 +43,12 @@ switch ($act)
 		$oRubrique = new CModule_Rubrique($oProjet->oBdd,$g_iRubrique);
 		
 		// {{{ Récupérer les variables de l'url
-		$url_iOrdreRubrique  = $HTTP_POST_VARS["ordre_rubrique"];
-		$url_iTypeRubrique   = $HTTP_POST_VARS["type_rubrique"];
-		$url_sNomRubrique    = $HTTP_POST_VARS["nom_rubrique"];
-		$url_iStatutRubrique = $HTTP_POST_VARS["statut_rubrique"];
-		$url_sNomIntitule    = $HTTP_POST_VARS["intitule_rubrique"];
-		$url_iNumDepart      = $HTTP_POST_VARS["numdepart_rubrique"];
+		$url_iOrdreRubrique  = $_POST["ordre_rubrique"];
+		$url_iTypeRubrique   = $_POST["type_rubrique"];
+		$url_sNomRubrique    = $_POST["nom_rubrique"];
+		$url_iStatutRubrique = $_POST["statut_rubrique"];
+		$url_sNomIntitule    = $_POST["intitule_rubrique"];
+		$url_iNumDepart      = $_POST["numdepart_rubrique"];
 		// }}}
 		
 		if ($url_bModifierStatut)
@@ -60,16 +60,16 @@ switch ($act)
 		$html_rubrique = $html_rubrique_name = "none";
 		
 		// ---------------------
-		if (isset($HTTP_POST_FILES["fichier_rubrique"]))
+		if (isset($_FILES["fichier_rubrique"]))
 		{
-			for ($i=0; $i<count($HTTP_POST_FILES["fichier_rubrique"]); $i++)
+			for ($i=0; $i<count($_FILES["fichier_rubrique"]); $i++)
 			{
-				if (isset($HTTP_POST_FILES["fichier_rubrique"]["tmp_name"][$i]))
-					$html_rubrique = $HTTP_POST_FILES["fichier_rubrique"]["tmp_name"][$i];
+				if (isset($_FILES["fichier_rubrique"]["tmp_name"][$i]))
+					$html_rubrique = $_FILES["fichier_rubrique"]["tmp_name"][$i];
 				
 				if (!empty($html_rubrique) && $html_rubrique != "none")
 				{
-					$html_rubrique_name = stripslashes($HTTP_POST_FILES["fichier_rubrique"]["name"][$i]);
+					$html_rubrique_name = stripslashes($_FILES["fichier_rubrique"]["name"][$i]);
 					break;
 				}
 				
@@ -141,7 +141,7 @@ switch ($act)
 		
 		if (LIEN_SITE_INTERNET == $url_iTypeRubrique)
 		{
-			$sDonnees = (empty($HTTP_POST_VARS["LIEN_SITE_INTERNET"]) ? "" : $HTTP_POST_VARS["LIEN_SITE_INTERNET"]);
+			$sDonnees = (empty($_POST["LIEN_SITE_INTERNET"]) ? "" : $_POST["LIEN_SITE_INTERNET"]);
 			// Pourquoi un rawurlencode ?
 			// C'est à cause de ces deux points: "disc.vjf.inserm.fr(:)2010/basisrapports/psycho/psycho_ch10.pdf"
 			$oRubrique->defDonnee(rawurlencode($sDonnees));
@@ -149,8 +149,8 @@ switch ($act)
 		}
 		else if (LIEN_FORUM == $url_iTypeRubrique)
 		{
-			$url_iModaliteForum = (empty($HTTP_POST_VARS["modalite_forum"]) ? MODALITE_POUR_TOUS : $HTTP_POST_VARS["modalite_forum"]);
-			$url_bAccessibleVisiteursForum = ($HTTP_POST_VARS["accessible_visiteurs_forum"] == "on" ? "1" : "0");
+			$url_iModaliteForum = (empty($_POST["modalite_forum"]) ? MODALITE_POUR_TOUS : $_POST["modalite_forum"]);
+			$url_bAccessibleVisiteursForum = ($_POST["accessible_visiteurs_forum"] == "on" ? "1" : "0");
 			
 			$oForum = new CForum($oProjet->oBdd);
 			$oForum->initForumParType(TYPE_RUBRIQUE,$g_iRubrique);
@@ -180,7 +180,7 @@ switch ($act)
 		}
 		else if (LIEN_TEXTE_FORMATTE == $url_iTypeRubrique)
 		{
-			$url_sTexteFormatte = (empty($HTTP_POST_VARS["DESCRIPTION"][LIEN_TEXTE_FORMATTE]) ? NULL : $HTTP_POST_VARS["DESCRIPTION"][LIEN_TEXTE_FORMATTE]);
+			$url_sTexteFormatte = (empty($_POST["DESCRIPTION"][LIEN_TEXTE_FORMATTE]) ? NULL : $_POST["DESCRIPTION"][LIEN_TEXTE_FORMATTE]);
 			$oRubrique->defDescr($url_sTexteFormatte);
 		}
 		else if (LIEN_CHAT == $url_iTypeRubrique)

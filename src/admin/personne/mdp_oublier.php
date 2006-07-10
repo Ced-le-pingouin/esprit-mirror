@@ -46,9 +46,9 @@ define("ERREUR_ENVOI_COURRIEL",3);
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_sNomPers    = (empty($HTTP_GET_VARS["nomPers"]) ? NULL : stripslashes(trim($HTTP_GET_VARS["nomPers"])));
-$url_sPrenomPers = (empty($HTTP_GET_VARS["prenomPers"]) ? NULL : stripslashes(trim($HTTP_GET_VARS["prenomPers"])));
-$url_sEmailPers  = (empty($HTTP_GET_VARS["emailPers"]) ? NULL : stripslashes(trim($HTTP_GET_VARS["emailPers"])));
+$url_sNomPers    = (empty($_GET["nomPers"]) ? NULL : stripslashes(trim($_GET["nomPers"])));
+$url_sPrenomPers = (empty($_GET["prenomPers"]) ? NULL : stripslashes(trim($_GET["prenomPers"])));
+$url_sEmailPers  = (empty($_GET["emailPers"]) ? NULL : stripslashes(trim($_GET["emailPers"])));
 
 // ---------------------
 // Initialisation

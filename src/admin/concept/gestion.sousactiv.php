@@ -49,28 +49,28 @@ switch ($act)
 		$oSousActiv = new CSousActiv($oProjet->oBdd,$g_iSousActiv);
 		
 		if ($url_bModifierStatut)
-			$oSousActiv->defStatut($HTTP_POST_VARS["STATUT"]);
+			$oSousActiv->defStatut($_POST["STATUT"]);
 		
 		if (!$url_bModifier)
 			return;
 		
 		// Récupération des variables de l'url
-		$url_iNumOrdreSousActiv     = $HTTP_POST_VARS["ORDRE"];
-		$url_sNomSousActiv          = $HTTP_POST_VARS["NOM"];
-		$url_iTypeSousActiv         = $HTTP_POST_VARS["TYPE"];
-		$url_iStatutSousActiv       = $HTTP_POST_VARS["STATUT"];
-		$url_iModaliteAffichage     = (empty($HTTP_POST_VARS["MODALITE_AFFICHAGE"][$url_iTypeSousActiv]) ? 0 : $HTTP_POST_VARS["MODALITE_AFFICHAGE"][$url_iTypeSousActiv]);
-		$url_bPremierePageSousActiv = (empty($HTTP_POST_VARS["PREMIERE_PAGE"]) ? FALSE : $HTTP_POST_VARS["PREMIERE_PAGE"] == "on");
-		$url_sIntitule              = (empty($HTTP_POST_VARS["INTITULE"][$url_iTypeSousActiv]) ? NULL : $HTTP_POST_VARS["INTITULE"][$url_iTypeSousActiv]);
-		$url_sDescriptionSousActiv  = (empty($HTTP_POST_VARS["DESCRIPTION"][$url_iTypeSousActiv]) ? NULL : $HTTP_POST_VARS["DESCRIPTION"][$url_iTypeSousActiv]);
+		$url_iNumOrdreSousActiv     = $_POST["ORDRE"];
+		$url_sNomSousActiv          = $_POST["NOM"];
+		$url_iTypeSousActiv         = $_POST["TYPE"];
+		$url_iStatutSousActiv       = $_POST["STATUT"];
+		$url_iModaliteAffichage     = (empty($_POST["MODALITE_AFFICHAGE"][$url_iTypeSousActiv]) ? 0 : $_POST["MODALITE_AFFICHAGE"][$url_iTypeSousActiv]);
+		$url_bPremierePageSousActiv = (empty($_POST["PREMIERE_PAGE"]) ? FALSE : $_POST["PREMIERE_PAGE"] == "on");
+		$url_sIntitule              = (empty($_POST["INTITULE"][$url_iTypeSousActiv]) ? NULL : $_POST["INTITULE"][$url_iTypeSousActiv]);
+		$url_sDescriptionSousActiv  = (empty($_POST["DESCRIPTION"][$url_iTypeSousActiv]) ? NULL : $_POST["DESCRIPTION"][$url_iTypeSousActiv]);
 		$fichier_telecharger        = NULL;
 		$fichier_telecharger_tmp    = NULL;
 		
 		if ($url_iModaliteAffichage == FRAME_CENTRALE_INDIRECT ||
 			$url_iModaliteAffichage == NOUVELLE_FENETRE_INDIRECT)
 		{
-			$url_sIntitule = $HTTP_POST_VARS["INTITULE"][0];
-			$url_sDescriptionSousActiv = $HTTP_POST_VARS["DESCRIPTION"][0];
+			$url_sIntitule = $_POST["INTITULE"][0];
+			$url_sDescriptionSousActiv = $_POST["DESCRIPTION"][0];
 		}
 		
 		// Sauvegarder les modifications globales
@@ -87,7 +87,7 @@ switch ($act)
 		{
 			case LIEN_PAGE_HTML:
 			//   --------------
-				$url_sDonneesSousActiv = $HTTP_POST_VARS["DONNEES"][LIEN_PAGE_HTML];
+				$url_sDonneesSousActiv = $_POST["DONNEES"][LIEN_PAGE_HTML];
 				
 				// Nous allons essayer de récupérer automatiquement le titre
 				// de la page html qui se trouve entre les balises "<title>"
@@ -108,7 +108,7 @@ switch ($act)
 				
 			case LIEN_DOCUMENT_TELECHARGER:
 			//   -------------------------
-				$url_sDonneesSousActiv = $HTTP_POST_VARS["DONNEES"][LIEN_DOCUMENT_TELECHARGER];
+				$url_sDonneesSousActiv = $_POST["DONNEES"][LIEN_DOCUMENT_TELECHARGER];
 				
 				if ($url_iModaliteAffichage == FRAME_CENTRALE_INDIRECT )
 					$oSousActiv->defDonnees($url_sDonneesSousActiv.";".FRAME_CENTRALE_INDIRECT.";".$url_sIntitule);
@@ -119,16 +119,16 @@ switch ($act)
 				
 			case LIEN_SITE_INTERNET:
 			//   ------------------
-				$url_sDonneesSousActiv = $HTTP_POST_VARS["DONNEES"][LIEN_SITE_INTERNET];
+				$url_sDonneesSousActiv = $_POST["DONNEES"][LIEN_SITE_INTERNET];
 				$oSousActiv->defDonnees($url_sDonneesSousActiv.";".$url_iModaliteAffichage.";".$url_sIntitule);
 				break;
 				
 			case LIEN_COLLECTICIEL:
 			//   -----------------
-				$url_sDonneesSousActiv = $HTTP_POST_VARS["DONNEES"][LIEN_COLLECTICIEL];
-				$url_sIntitule         = $HTTP_POST_VARS["INTITULE"][LIEN_COLLECTICIEL];
+				$url_sDonneesSousActiv = $_POST["DONNEES"][LIEN_COLLECTICIEL];
+				$url_sIntitule         = $_POST["INTITULE"][LIEN_COLLECTICIEL];
 				
-				$iModalite = $HTTP_POST_VARS["MODALITE"][LIEN_COLLECTICIEL];
+				$iModalite = $_POST["MODALITE"][LIEN_COLLECTICIEL];
 				
 				$oSousActiv->defDonnees($url_sDonneesSousActiv.";0;".$url_sIntitule);
 				$oSousActiv->defModalite($iModalite);
@@ -139,8 +139,8 @@ switch ($act)
 				if (($url_sNomSousActiv == NULL || $url_sNomSousActiv == INTITULE_SOUS_ACTIV." sans nom"))
 					$url_sNomSousActiv = "Forum";
 				
-				$url_iModaliteForum = $HTTP_POST_VARS["MODALITE"][LIEN_FORUM];
-				$url_bAccessibleVisiteurForum = ($HTTP_POST_VARS["ACCESSIBLE_VISITEURS"][LIEN_FORUM] == "on" ? "1" : "0");
+				$url_iModaliteForum = $_POST["MODALITE"][LIEN_FORUM];
+				$url_bAccessibleVisiteurForum = ($_POST["ACCESSIBLE_VISITEURS"][LIEN_FORUM] == "on" ? "1" : "0");
 				
 				$oSousActiv->defNom($url_sNomSousActiv);
 				
@@ -171,7 +171,7 @@ switch ($act)
 					$url_sNomSousActiv == INTITULE_SOUS_ACTIV." sans nom"))
 					$oSousActiv->defNom("Galerie");
 				
-				if (isset($HTTP_POST_VARS["COLLECTICIEL"]))
+				if (isset($_POST["COLLECTICIEL"]))
 				{
 					$oGalerie = new CGalerie($oProjet->oBdd,$g_iSousActiv);
 					
@@ -180,7 +180,7 @@ switch ($act)
 					$oGalerie->effacerCollecticiels();
 					
 					// Réinsérer la nouvelle liste des collecticiels
-					$oGalerie->ajouterCollecticiels($HTTP_POST_VARS["COLLECTICIEL"]);
+					$oGalerie->ajouterCollecticiels($_POST["COLLECTICIEL"]);
 					
 					$oGalerie = NULL;
 				}
@@ -201,10 +201,10 @@ switch ($act)
 				
 			case LIEN_FORMULAIRE:
 			//   ---------------
-				$url_sDonnees     = $HTTP_POST_VARS["DONNEES"][LIEN_FORMULAIRE];
-				$url_iDeroulement = (empty($HTTP_POST_VARS["DEROULEMENT"][LIEN_FORMULAIRE]) ? SOUMISSION_MANUELLE : $HTTP_POST_VARS["DEROULEMENT"][LIEN_FORMULAIRE]);
-				$url_sIntitule    = $HTTP_POST_VARS["INTITULE"][LIEN_FORMULAIRE];
-				$url_iModalite    = $HTTP_POST_VARS["MODALITE"][LIEN_FORMULAIRE];
+				$url_sDonnees     = $_POST["DONNEES"][LIEN_FORMULAIRE];
+				$url_iDeroulement = (empty($_POST["DEROULEMENT"][LIEN_FORMULAIRE]) ? SOUMISSION_MANUELLE : $_POST["DEROULEMENT"][LIEN_FORMULAIRE]);
+				$url_sIntitule    = $_POST["INTITULE"][LIEN_FORMULAIRE];
+				$url_iModalite    = $_POST["MODALITE"][LIEN_FORMULAIRE];
 				
 				// "{Formulaire.IdForm};{soumission automatique/manuelle};{Intitulé du lien}"
 				$oSousActiv->defDonnees("{$url_sDonnees};{$url_iDeroulement};{$url_sIntitule}");
@@ -214,7 +214,7 @@ switch ($act)
 				
 			case LIEN_GLOSSAIRE:
 			//   --------------
-				$iIdGlossaire = $HTTP_POST_VARS["ID_GLOSSAIRE"];
+				$iIdGlossaire = $_POST["ID_GLOSSAIRE"];
 				
 				if ($iIdGlossaire > 0)
 					$oSousActiv->associerGlossaire($iIdGlossaire);
@@ -225,7 +225,7 @@ switch ($act)
 			
 			case LIEN_TABLEAU_DE_BORD:
 			//   --------------------
-				$url_iModalite = $HTTP_POST_VARS["MODALITE"][LIEN_TABLEAU_DE_BORD];
+				$url_iModalite = $_POST["MODALITE"][LIEN_TABLEAU_DE_BORD];
 				
 				$oSousActiv->defDonnees(";{$url_iModaliteAffichage};");
 				$oSousActiv->defModalite($url_iModalite);

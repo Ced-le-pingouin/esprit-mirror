@@ -39,10 +39,10 @@ $oEvenement = new CEvenement($oProjet->oBdd);
 
 // ---------------------
 // ---------------------
-$url_iIdPers   = (isset($HTTP_GET_VARS["idPers"]) ? $HTTP_GET_VARS["idPers"] : 0);
-$url_bParForms = (isset($HTTP_GET_VARS["PARFORM"]) ? 1 : 0);
-$url_iTri      = (isset($HTTP_GET_VARS["tri"]) ? $HTTP_GET_VARS["tri"] : $oEvenement->TRI_CONNEXION);
-$url_bSensTri  = (isset($HTTP_GET_VARS["sens"]) ? $HTTP_GET_VARS["sens"] : $oEvenement->TRI_DESCENDANT);
+$url_iIdPers   = (isset($_GET["idPers"]) ? $_GET["idPers"] : 0);
+$url_bParForms = (isset($_GET["PARFORM"]) ? 1 : 0);
+$url_iTri      = (isset($_GET["tri"]) ? $_GET["tri"] : $oEvenement->TRI_CONNEXION);
+$url_bSensTri  = (isset($_GET["sens"]) ? $_GET["sens"] : $oEvenement->TRI_DESCENDANT);
 
 // *************************************
 //

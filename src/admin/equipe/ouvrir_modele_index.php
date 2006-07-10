@@ -12,8 +12,8 @@
 **
 */
 
-$sParamsUrl = "?NIVEAU=".(empty($HTTP_GET_VARS["NIVEAU"]) ? 0 : $HTTP_GET_VARS["NIVEAU"])
-	."&ID_NIVEAU=".(empty($HTTP_GET_VARS["ID_NIVEAU"]) ? 0 : $HTTP_GET_VARS["ID_NIVEAU"]);
+$sParamsUrl = "?NIVEAU=".(empty($_GET["NIVEAU"]) ? 0 : $_GET["NIVEAU"])
+	."&ID_NIVEAU=".(empty($_GET["ID_NIVEAU"]) ? 0 : $_GET["ID_NIVEAU"]);
 
 ?>
 

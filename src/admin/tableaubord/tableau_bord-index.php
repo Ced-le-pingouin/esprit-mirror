@@ -41,12 +41,12 @@ $g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm     = (empty($HTTP_GET_VARS["form"]) ? $oProjet->oFormationCourante->retId() : $HTTP_GET_VARS["form"]);
-$url_iIdModalite = (empty($HTTP_GET_VARS["idModal"]) ? NULL : $HTTP_GET_VARS["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
+$url_iIdForm     = (empty($_GET["form"]) ? $oProjet->oFormationCourante->retId() : $_GET["form"]);
+$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
 
 $sParamsUrl = "?form={$url_iIdForm}";
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

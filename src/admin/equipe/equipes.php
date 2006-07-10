@@ -57,11 +57,11 @@ else
 	$iId = ($iNbModules > 0 ? $oProjet->oFormationCourante->aoModules[0]->retId() : 0);
 }
 
-$url_iNiveau   = (empty($HTTP_POST_VARS["NIVEAU"]) ? $iTypeNiveauFin : $HTTP_POST_VARS["NIVEAU"]);
-$url_iIdNiveau = (empty($HTTP_POST_VARS["ID_NIVEAU"]) ? $iId : $HTTP_POST_VARS["ID_NIVEAU"]);
+$url_iNiveau   = (empty($_POST["NIVEAU"]) ? $iTypeNiveauFin : $_POST["NIVEAU"]);
+$url_iIdNiveau = (empty($_POST["ID_NIVEAU"]) ? $iId : $_POST["ID_NIVEAU"]);
 
-$url_iIdEquipe = (empty($HTTP_POST_VARS["ID_EQUIPE"]) ? 0 : $HTTP_POST_VARS["ID_EQUIPE"]);
-$url_iFiltre   = (empty($HTTP_POST_VARS["FILTRE_PERSONNES"]) ? PERSONNE_SANS_EQUIPE : $HTTP_POST_VARS["FILTRE_PERSONNES"]);
+$url_iIdEquipe = (empty($_POST["ID_EQUIPE"]) ? 0 : $_POST["ID_EQUIPE"]);
+$url_iFiltre   = (empty($_POST["FILTRE_PERSONNES"]) ? PERSONNE_SANS_EQUIPE : $_POST["FILTRE_PERSONNES"]);
 
 // *************************************
 // Boite de sélection contenant toutes les équipes de la formation
@@ -204,7 +204,7 @@ function valider(v_iIdEquipe)
 		
 		elements["ACTION"].value = "rafraichir";
 		target = "EQUIPES";
-		action = "<?=$HTTP_SERVER_VARS['PHP_SELF']?>";
+		action = "<?=$_SERVER['PHP_SELF']?>";
 		method="post"
 		submit();
 	}
@@ -225,7 +225,7 @@ function defNiveau(v_iNiveau,v_iIdNiveau)
 		elements["FILTRE_PERSONNES"].value = "<?=PERSONNE_SANS_EQUIPE?>";
 		
 		target = "EQUIPES";
-		action = "<?=$HTTP_SERVER_VARS['PHP_SELF']?>";
+		action = "<?=$_SERVER['PHP_SELF']?>";
 		method = "post";
 	}
 }

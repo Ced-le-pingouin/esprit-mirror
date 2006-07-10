@@ -32,8 +32,8 @@
 ** 7000 MONS
 */
 
-$url_sModaliteFenetre = $HTTP_GET_VARS["modaliteFenetre"];
-$url_iIdForumParent   = (empty($HTTP_GET_VARS["idForumParent"]) ? "0" : $HTTP_GET_VARS["idForumParent"]);
+$url_sModaliteFenetre = $_GET["modaliteFenetre"];
+$url_iIdForumParent   = (empty($_GET["idForumParent"]) ? "0" : $_GET["idForumParent"]);
 
 // ---------------------
 // Définir le titre de la fenêtre

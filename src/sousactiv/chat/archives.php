@@ -39,10 +39,10 @@ require_once("archive.class.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdNiveau   = (empty($HTTP_GET_VARS["idNiveau"]) ? 0 : $HTTP_GET_VARS["idNiveau"]);
-$url_iTypeNiveau = (empty($HTTP_GET_VARS["typeNiveau"]) ? 0 : $HTTP_GET_VARS["typeNiveau"]);
-$url_sArchive    = (empty($HTTP_GET_VARS["archive"]) ? NULL : $HTTP_GET_VARS["archive"]);
-$url_iIdPers     = (empty($HTTP_GET_VARS["idPers"]) ? 0 : $HTTP_GET_VARS["idPers"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
+$url_sArchive    = (empty($_GET["archive"]) ? NULL : $_GET["archive"]);
+$url_iIdPers     = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
 $oBdd = new CBdd();
 

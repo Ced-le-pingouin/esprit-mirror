@@ -36,8 +36,8 @@ require_once("globals.inc.php");
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-if (isset($HTTP_GET_VARS["TP"]))
-	$sTitrePrincipal = rawurldecode($HTTP_GET_VARS["TP"]);
+if (isset($_GET["TP"]))
+	$sTitrePrincipal = rawurldecode($_GET["TP"]);
 else
 	$sTitrePrincipal = "Equipes";
 

@@ -48,18 +48,18 @@ else if ($act == "modifier")
 	$oModule = new CModule($oProjet->oBdd,$g_iModule);
 	
 	if ($url_bModifierStatut)
-		$oModule->defStatut($HTTP_POST_VARS["statut_module"]);
+		$oModule->defStatut($_POST["statut_module"]);
 	
 	if (!$url_bModifier)
 		return;
 	
 	// {{{ Récupérer les variables de l'url
-	$url_iOrdreMod = $HTTP_POST_VARS["ordre_module"];
-	$url_sNomMod = $HTTP_POST_VARS["nom_module"];
-	$url_sDescriptionMod = $HTTP_POST_VARS["descr_module"];
+	$url_iOrdreMod = $_POST["ordre_module"];
+	$url_sNomMod = $_POST["nom_module"];
+	$url_sDescriptionMod = $_POST["descr_module"];
 	
-	$url_sNomIntitule = $HTTP_POST_VARS["intitule_module"];
-	$url_iNumDepart = $HTTP_POST_VARS["numdepart_module"];
+	$url_sNomIntitule = $_POST["intitule_module"];
+	$url_iNumDepart = $_POST["numdepart_module"];
 	// }}}
 	
 	// Retourner l'id de l'intitulé

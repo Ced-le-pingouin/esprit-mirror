@@ -21,11 +21,11 @@
 
 require_once("globals.inc.php");
 
-if (isset($HTTP_GET_VARS["ACTION"]) && $HTTP_GET_VARS["ACTION"] != "sup")
+if (isset($_GET["ACTION"]) && $_GET["ACTION"] != "sup")
 	$sMenu = "<a href=\"javascript: void(0);\" onclick=\"top.oPrincipal().valider()\">Valider</a>"
 		."&nbsp;|&nbsp;" 
 		."<a href=\"javascript: void(0);\" onclick=\"top.close()\">Annuler</a>";
-else if (isset($HTTP_GET_VARS["ACTION"]) && $HTTP_GET_VARS["ACTION"] == "sup")
+else if (isset($_GET["ACTION"]) && $_GET["ACTION"] == "sup")
 	$sMenu = "<a href=\"javascript: void(0);\" onclick=\"top.oPrincipal().valider()\">Oui</a>"
 		."&nbsp;|&nbsp;" 
 		."<a href=\"javascript: void(0);\" onclick=\"top.close()\">Non</a>";

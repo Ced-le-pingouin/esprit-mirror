@@ -48,18 +48,18 @@ $oProjet->initSousActivCourante();
 //                               +-- Les responsables de formation
 //   > mail-index.php?idStatuts=9
 //                               +-- Les étudiants
-$url_aiIdStatuts = (empty($HTTP_GET_VARS["idStatuts"]) ? NULL : explode("x",$HTTP_GET_VARS["idStatuts"]));
+$url_aiIdStatuts = (empty($_GET["idStatuts"]) ? NULL : explode("x",$_GET["idStatuts"]));
 
 // Envoyer un email à cette liste des équipes
 //   > mail-index.php?idEquipes=12x13x15x20
 //   > mail-index.php?idEquipes=15
-$url_aiIdEquipes = (empty($HTTP_GET_VARS["idEquipes"]) ? NULL : explode("x",$HTTP_GET_VARS["idEquipes"]));
+$url_aiIdEquipes = (empty($_GET["idEquipes"]) ? NULL : explode("x",$_GET["idEquipes"]));
 
 // Envoyer un email à cette liste de personnes
 //   > mail-index.php?idPers=tous
 //   > mail-index.php?idPers=1x15x27x14x500
 //   > mail-index.php?idPers=27
-$url_aiIdPers = (empty($HTTP_GET_VARS["idPers"]) ? NULL : explode("x",$HTTP_GET_VARS["idPers"]));
+$url_aiIdPers = (empty($_GET["idPers"]) ? NULL : explode("x",$_GET["idPers"]));
 
 // ---------------------
 // Initialiser

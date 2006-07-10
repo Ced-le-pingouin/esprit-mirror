@@ -57,16 +57,16 @@ define("SUP_SOUS_ACTIVITE",12);
 // ---------------------
 $type = 0; $params = 0; $act = NULL;
 
-if (!empty($HTTP_GET_VARS))
+if (!empty($_GET))
 {
-	$type = $HTTP_GET_VARS["type"];
-	$params = $HTTP_GET_VARS["params"];
+	$type = $_GET["type"];
+	$params = $_GET["params"];
 }
-else if (!empty($HTTP_POST_VARS))
+else if (!empty($_POST))
 {
-	$type = $HTTP_POST_VARS["type"];
-	$params = $HTTP_POST_VARS["params"];
-	$act = $HTTP_POST_VARS["act"];
+	$type = $_POST["type"];
+	$params = $_POST["params"];
+	$act = $_POST["act"];
 }
 
 $g_iFormation = $g_iModule = $g_iRubrique = $g_iUnite = $g_iActiv = $g_iSousActiv = 0;
@@ -532,7 +532,7 @@ html { border: rgb(240,240,240) none 1px; border-right-style: solid; }
 </style>
 </head>
 <body class="gauche">
-<form name="menuForm" action="<?php echo $HTTP_SERVER_VARS['PHP_SELF']; ?>" method="post">
+<form name="menuForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <table border="0" cellpadding="0" celspacing="1" width="100%">
 <tr>
 <td>

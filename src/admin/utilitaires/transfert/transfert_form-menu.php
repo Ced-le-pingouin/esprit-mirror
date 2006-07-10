@@ -33,7 +33,7 @@
 
 require_once("globals.inc.php");
 
-$url_iNumPage = (empty($HTTP_GET_VARS["page"]) ? 0 : $HTTP_GET_VARS["page"]);
+$url_iNumPage = (empty($_GET["page"]) ? 0 : $_GET["page"]);
 
 $sBlockHead = NULL;
 

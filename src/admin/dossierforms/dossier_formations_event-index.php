@@ -38,11 +38,11 @@ require_once("globals.inc.php");
 // ---------------------
 $url_sParams = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$url_sParams .= (isset($url_sParams) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 
-$url_sEvent = (empty($HTTP_GET_VARS["event"]) ? NULL : $HTTP_GET_VARS["event"]);
+$url_sEvent = (empty($_GET["event"]) ? NULL : $_GET["event"]);
 
 // ---------------------
 // Initialiser

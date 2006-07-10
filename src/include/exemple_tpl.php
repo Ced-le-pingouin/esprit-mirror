@@ -67,25 +67,25 @@ if($oProjet->VerifPermission("PERM_MODIF_PERMISSION"))
 	$Liste_Categ_loop = new TPL_Block("AFFICHE_LISTE_CATEG",$tpl);
 	$Structure_Categ_loop = new TPL_Block("AFFICHE_STRUCTURE",$tpl);
 
-	if(isset($HTTP_GET_VARS["IdCategRess"]))
+	if(isset($_GET["IdCategRess"]))
 	{
 		$Liste_Categ_loop->effacer();
 		$Structure_Categ_loop->afficher();
 		
-		$oCategRess = $oProjet->retCategorieRessource($HTTP_GET_VARS["IdCategRess"]);
+		$oCategRess = $oProjet->retCategorieRessource($_GET["IdCategRess"]);
 
-		$aLangueCible = $oProjet->retLangue($HTTP_GET_VARS["LgCib"]);
+		$aLangueCible = $oProjet->retLangue($_GET["LgCib"]);
 		eval('$iConstanteLangueCib = TXT_LANGUE_'.strtoupper($aLangueCible["AbrevLangue"]).';'); // astuce pour contrer le manque de la fonction constant() ds cette version de PHP
 		$tpl->remplacer("[LANGUE_CIBLE]",$oProjet->retTexteM($iConstanteLangueCib));
 
 		$oStructureRessource = new CStructureRessource($oProjet->oBdd);
 		$tpl->remplacer("[ORDRE_CATEG]",$oCategRess->OrdreCategorieRessource);
 		eval('$iConstante = '.$oCategRess->NomCategorieRessource.';'); // astuce pour contrer le manque de la fonction constant() ds cette version de PHP
-		$tpl->remplacer("[NOM_CATEG]",$oProjet->retTexteM($iConstante)."&nbsp;<a href=\"javascript:PopupCenter('ajout_structure_ressource.php?IdCategRess=".$HTTP_GET_VARS["IdCategRess"]."&LgCib=".$HTTP_GET_VARS["LgCib"]."&ParentStructureRessource=0',500,300,'menubar=no,scrollbars=yes,status=no,resizable=yes','admin');\">[+]</a>");
+		$tpl->remplacer("[NOM_CATEG]",$oProjet->retTexteM($iConstante)."&nbsp;<a href=\"javascript:PopupCenter('ajout_structure_ressource.php?IdCategRess=".$_GET["IdCategRess"]."&LgCib=".$_GET["LgCib"]."&ParentStructureRessource=0',500,300,'menubar=no,scrollbars=yes,status=no,resizable=yes','admin');\">[+]</a>");
 		
 		$Structure_loop = new TPL_Block("STRUCTURE_LISTE",$tpl);
 	
-		$aStructureRess = retStructureRessource($oCategRess->IdCategorieRessource,$HTTP_GET_VARS["LgCib"],0);
+		$aStructureRess = retStructureRessource($oCategRess->IdCategorieRessource,$_GET["LgCib"],0);
 		if(isset($aStructureRess))
 		{
 			$Structure_loop->afficher();
@@ -102,9 +102,9 @@ if($oProjet->VerifPermission("PERM_MODIF_PERMISSION"))
 		$Liste_Categ_loop->afficher();
 		$Structure_Categ_loop->effacer();
 
-		$tpl->remplacer("[LGCIB]",$HTTP_GET_VARS["LgCib"]);
+		$tpl->remplacer("[LGCIB]",$_GET["LgCib"]);
 		
-		$aLangueCible = $oProjet->retLangue($HTTP_GET_VARS["LgCib"]);
+		$aLangueCible = $oProjet->retLangue($_GET["LgCib"]);
 		eval('$iConstanteLangueCib = TXT_LANGUE_'.strtoupper($aLangueCible["AbrevLangue"]).';'); // astuce pour contrer le manque de la fonction constant() ds cette version de PHP
 		$tpl->remplacer("[LANGUE_CIBLE]",$oProjet->retTexteM($iConstanteLangueCib));
 
@@ -115,7 +115,7 @@ if($oProjet->VerifPermission("PERM_MODIF_PERMISSION"))
 			foreach($aListeLangue as $aLangue)
 			{
 				eval('$iConstanteLangue = TXT_LANGUE_'.strtoupper($aLangue["AbrevLangue"]).';'); // astuce pour contrer le manque de la fonction constant() ds cette version de PHP
-				if($aLangue["IdLangue"]==$HTTP_GET_VARS["LgCib"])
+				if($aLangue["IdLangue"]==$_GET["LgCib"])
 					$optionsLgCib .= "<option value='".$aLangue["IdLangue"]."' SELECTED>".$oProjet->retTexteM($iConstanteLangue)."</option>";
 				else
 					$optionsLgCib .= "<option value='".$aLangue["IdLangue"]."'>".$oProjet->retTexteM($iConstanteLangue)."</option>";

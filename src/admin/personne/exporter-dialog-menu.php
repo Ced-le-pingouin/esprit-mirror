@@ -22,7 +22,7 @@
 require_once("globals.inc.php");
 $sBlockHead = NULL;
 $aMenus = NULL;
-if (isset($HTTP_GET_VARS["exporter"]) && $HTTP_GET_VARS["exporter"] == "1")
+if (isset($_GET["exporter"]) && $_GET["exporter"] == "1")
 	$aMenus = array(
 		array("Exporter","top.oPrincipale().exporter()"),
 		array("Fermer","top.close()")

@@ -42,12 +42,12 @@ $sParamsUrl = NULL;
 // ---------------------
 // Envoyer l'email
 // ---------------------
-if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
+if (is_array($_POST) && count($_POST) > 0)
 {
-	$url_sExpediteurCourriel = (empty($HTTP_POST_VARS["expediteurCourriel"]) ? NULL : $HTTP_POST_VARS["expediteurCourriel"]);
-	$url_sMessageCourriel    = (empty($HTTP_POST_VARS["messageCourriel"]) ? NULL : $HTTP_POST_VARS["messageCourriel"]);
-	$url_sSujetCourriel      = (empty($HTTP_POST_VARS["sujetCourriel"]) ? NULL : $HTTP_POST_VARS["sujetCourriel"]);
-	$url_sTypeCourriel       = (empty($HTTP_POST_VARS["typeCourriel"]) ? NULL : $HTTP_POST_VARS["typeCourriel"]);
+	$url_sExpediteurCourriel = (empty($_POST["expediteurCourriel"]) ? NULL : $_POST["expediteurCourriel"]);
+	$url_sMessageCourriel    = (empty($_POST["messageCourriel"]) ? NULL : $_POST["messageCourriel"]);
+	$url_sSujetCourriel      = (empty($_POST["sujetCourriel"]) ? NULL : $_POST["sujetCourriel"]);
+	$url_sTypeCourriel       = (empty($_POST["typeCourriel"]) ? NULL : $_POST["typeCourriel"]);
 	
 	$oMail = new CMail($url_sSujetCourriel,$url_sMessageCourriel);
 	$oMail->defExpediteur($url_sExpediteurCourriel);
@@ -59,7 +59,7 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 	
 	$sListeDestinatairesErrones = NULL;
 	
-	foreach ($HTTP_POST_VARS["destinataireCourriel"] as $sDestinataire)
+	foreach ($_POST["destinataireCourriel"] as $sDestinataire)
 	{
 		if (strstr($sDestinataire,"*"))
 			continue;
@@ -99,14 +99,14 @@ if (is_array($HTTP_POST_VARS) && count($HTTP_POST_VARS) > 0)
 // ---------------------
 // Récupérer les variales de l'url
 // ---------------------
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 
 // ---------------------
 // Initialiser
 // ---------------------
-$url_sTypeCourriel = (empty($HTTP_GET_VARS["typeCourriel"]) ? NULL : $HTTP_GET_VARS["typeCourriel"]);
+$url_sTypeCourriel = (empty($_GET["typeCourriel"]) ? NULL : $_GET["typeCourriel"]);
 
 $sSujetCourriel   = NULL;
 $sMessageCourriel = NULL;
@@ -199,7 +199,7 @@ $sHtmlOptions = "<option>"
 $oTpl = new Template("mail-infos.tpl");
 
 // {{{ Formulaire
-$oTpl->remplacer("{form}","<form action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\" target=\"_self\" method=\"post\">");
+$oTpl->remplacer("{form}","<form action=\"".$_SERVER["PHP_SELF"]."\" target=\"_self\" method=\"post\">");
 $oTpl->remplacer("{html_options}",$sHtmlOptions);
 $oTpl->remplacer("{iframe->src}","destinataires-liste.php{$sParamsUrl}");
 $oTpl->remplacer("{sujet_courriel}",$sSujetCourriel);

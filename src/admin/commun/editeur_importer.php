@@ -34,13 +34,13 @@ require_once("globals.inc.php");
 // ---------------------
 // Importer le fichier
 // ---------------------
-if (isset($HTTP_POST_FILES["fichier"]))
+if (isset($_FILES["fichier"]))
 {
-	if ($HTTP_POST_FILES["fichier"]["type"] == "text/plain")
+	if ($_FILES["fichier"]["type"] == "text/plain")
 	{
 		$sContenuFichier = NULL;
 		
-		foreach (file($HTTP_POST_FILES["fichier"]["tmp_name"]) as $sLigne)
+		foreach (file($_FILES["fichier"]["tmp_name"]) as $sLigne)
 			$sContenuFichier .= $sLigne;
 		
 		echo "<html>\n"

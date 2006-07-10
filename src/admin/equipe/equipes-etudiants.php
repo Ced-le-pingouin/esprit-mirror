@@ -38,31 +38,31 @@ $oProjet = new CProjet();
 // ---------------------
 // Rechercher les variables de l'url
 // ---------------------
-if (isset($HTTP_POST_VARS["NIVEAU"]))
-	$url_iNiveau = $HTTP_POST_VARS["NIVEAU"];
-else if (isset($HTTP_GET_VARS["NIVEAU"]))
-	$url_iNiveau = $HTTP_GET_VARS["NIVEAU"];
+if (isset($_POST["NIVEAU"]))
+	$url_iNiveau = $_POST["NIVEAU"];
+else if (isset($_GET["NIVEAU"]))
+	$url_iNiveau = $_GET["NIVEAU"];
 else
 	$url_iNiveau = TYPE_FORMATION;
 
-if (isset($HTTP_POST_VARS["ID_NIVEAU"]))
-	$url_iIdNiveau = $HTTP_POST_VARS["ID_NIVEAU"];
-else if (isset($HTTP_GET_VARS["ID_NIVEAU"]))
-	$url_iIdNiveau = $HTTP_GET_VARS["ID_NIVEAU"];
+if (isset($_POST["ID_NIVEAU"]))
+	$url_iIdNiveau = $_POST["ID_NIVEAU"];
+else if (isset($_GET["ID_NIVEAU"]))
+	$url_iIdNiveau = $_GET["ID_NIVEAU"];
 else
 	$url_iIdNiveau = $oProjet->oFormationCourante->retId();
 
-if (isset($HTTP_POST_VARS["ID_EQUIPE"]))
-	$url_iIdEquipe = $HTTP_POST_VARS["ID_EQUIPE"];
-else if (isset($HTTP_GET_VARS["ID_EQUIPE"]))
-	$url_iIdEquipe = $HTTP_GET_VARS["ID_EQUIPE"];
+if (isset($_POST["ID_EQUIPE"]))
+	$url_iIdEquipe = $_POST["ID_EQUIPE"];
+else if (isset($_GET["ID_EQUIPE"]))
+	$url_iIdEquipe = $_GET["ID_EQUIPE"];
 else
 	$url_iIdEquipe = 0;
 
-if (isset($HTTP_POST_VARS["FILTRE_PERSONNES"]))
-	$url_iFiltrePersonnes = $HTTP_POST_VARS["FILTRE_PERSONNES"];
-else if (isset($HTTP_GET_VARS["FILTRE_PERSONNES"]))
-	$url_iFiltrePersonnes = $HTTP_GET_VARS["FILTRE_PERSONNES"];
+if (isset($_POST["FILTRE_PERSONNES"]))
+	$url_iFiltrePersonnes = $_POST["FILTRE_PERSONNES"];
+else if (isset($_GET["FILTRE_PERSONNES"]))
+	$url_iFiltrePersonnes = $_GET["FILTRE_PERSONNES"];
 else
 	$url_iFiltrePersonnes = PERSONNE_SANS_EQUIPE;
 
@@ -80,10 +80,10 @@ $bAutoInscrit = $oProjet->oFormationCourante->retInscrAutoModules();
 // Ajouter une personne dans une équipe
 // *************************************
 
-if (isset($HTTP_POST_VARS["ID_PERS"]) && $url_iIdEquipe > 0)
+if (isset($_POST["ID_PERS"]) && $url_iIdEquipe > 0)
 {
 	$oEquipeMembre = new CEquipe_Membre($oProjet->oBdd,$url_iIdEquipe);
-	$oEquipeMembre->ajouterMembres($HTTP_POST_VARS["ID_PERS"]);
+	$oEquipeMembre->ajouterMembres($_POST["ID_PERS"]);
 	$sReafficherMembres = "\n\ttop.oMembres().location = top.oMembres().location.pathname"
 		." + \"?NIVEAU={$url_iNiveau}&ID_EQUIPE={$url_iIdEquipe}\";\n";
 }
@@ -230,7 +230,7 @@ function ajouter()
 
 <body class="personnes" onload="init()">
 <a name="top"></a>
-<form action="<?=$HTTP_SERVER_VARS['PHP_SELF']?>" method="post">
+<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <?=$sCorpHtml?>
 </table>

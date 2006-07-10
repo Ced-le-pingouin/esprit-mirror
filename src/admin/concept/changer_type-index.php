@@ -11,8 +11,8 @@
 **
 */
 
-$sParamsUrl = "?type=".(empty($HTTP_GET_VARS["type"]) ? 0 : $HTTP_GET_VARS["type"])
-	."&idType=".(empty($HTTP_GET_VARS["idType"]) ? 0 : $HTTP_GET_VARS["idType"]);
+$sParamsUrl = "?type=".(empty($_GET["type"]) ? 0 : $_GET["type"])
+	."&idType=".(empty($_GET["idType"]) ? 0 : $_GET["idType"]);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"
    "http://www.w3.org/TR/REC-html40/frameset.dtd">

@@ -41,7 +41,7 @@ $oProjet->initSousActivCourante();
 // ---------------------
 $sParamsRechargerFenParent = NULL;
 
-if (!empty($HTTP_POST_VARS["idStatut"]))
+if (!empty($_POST["idStatut"]))
 {
 	$aamNiveaux = array(
 		array(&$oProjet->oFormationCourante,"idForm")
@@ -54,7 +54,7 @@ if (!empty($HTTP_POST_VARS["idStatut"]))
 		$sParamsRechargerFenParent .= (isset($sParamsRechargerFenParent) ? "&" : "?")
 			.$amNiveau[1]."=".(is_object($amNiveau[0]) ? $amNiveau[0]->retId() : 0);
 	
-	$oProjet->changerStatutUtilisateur($HTTP_POST_VARS["idStatut"],TRUE);
+	$oProjet->changerStatutUtilisateur($_POST["idStatut"],TRUE);
 	
 	// Nous devons mettre à jour la fenêtre parente
 	// et fermer absolument cette fenêtre car elle sera orpheline.

@@ -23,7 +23,7 @@ require_once("globals.inc.php");
 
 $oTpl = new Template("exporter-dialog.tpl");
 
-$oTpl->remplacer("{LISTE_IDPERS->value}",$HTTP_GET_VARS["LISTE_IDPERS"]);
+$oTpl->remplacer("{LISTE_IDPERS->value}",$_GET["LISTE_IDPERS"]);
 
 $oBloc_onglet_champs        = new TPL_Block("BLOCK_ONGLET_CHAMPS",$oTpl);
 $oBloc_onglet_type_fichiers = new TPL_Block("BLOCK_ONGLET_TYPE_FICHIERS",$oTpl);

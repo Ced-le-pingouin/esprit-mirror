@@ -50,19 +50,19 @@ $g_iIdUtilisateur = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur-
 
 $g_bModifier = $g_bModifierStatut = FALSE;
 
-if (!empty($HTTP_POST_VARS))
+if (!empty($_POST))
 {
 	// Récupérer les variables du formulaire
-	$type       = $HTTP_POST_VARS["type"];
-	$params     = $HTTP_POST_VARS["params"];
-	$rafraichir = (isset($HTTP_POST_VARS["rafraichir"]) ? $HTTP_POST_VARS["rafraichir"] : NULL);
-	$act        = (isset($HTTP_POST_VARS["act"]) ? $HTTP_POST_VARS["act"] : NULL);
+	$type       = $_POST["type"];
+	$params     = $_POST["params"];
+	$rafraichir = (isset($_POST["rafraichir"]) ? $_POST["rafraichir"] : NULL);
+	$act        = (isset($_POST["act"]) ? $_POST["act"] : NULL);
 }
-else if (!empty($HTTP_GET_VARS))
+else if (!empty($_GET))
 {
 	// Récupérer les variables de l'url
-	$type   = $HTTP_GET_VARS["type"];
-	$params = $HTTP_GET_VARS["params"];
+	$type   = $_GET["type"];
+	$params = $_GET["params"];
 }
 
 // Variable des fonctions (voir admin_fonction.inc.php)
@@ -81,8 +81,8 @@ if (isset($act))
 {
 	include_once("admin_globals.inc.php");
 	
-	$url_bModifier       = (empty($HTTP_POST_VARS["modifier"]) ? FALSE : $HTTP_POST_VARS["modifier"]);
-	$url_bModifierStatut = (empty($HTTP_POST_VARS["modifierStatut"]) ? FALSE : $HTTP_POST_VARS["modifierStatut"]);
+	$url_bModifier       = (empty($_POST["modifier"]) ? FALSE : $_POST["modifier"]);
+	$url_bModifierStatut = (empty($_POST["modifierStatut"]) ? FALSE : $_POST["modifierStatut"]);
 	
 	// {{{ Mettre à jour
 	$sRequeteSql = "LOCK TABLES"

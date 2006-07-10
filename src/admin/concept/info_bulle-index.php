@@ -34,8 +34,8 @@
 
 require_once("globals.inc.php");
 
-$sParamsUrl = "?type=".$HTTP_GET_VARS["type"]
-	."&idType=".$HTTP_GET_VARS["idType"];
+$sParamsUrl = "?type=".$_GET["type"]
+	."&idType=".$_GET["idType"];
 
 $oTpl = new template(dir_theme("dialogue/dialog_simple-index.tpl",FALSE,TRUE));
 $oTpl->remplacer("{html->titre}",htmlentities("Info bulle",ENT_COMPAT,"UTF-8"));

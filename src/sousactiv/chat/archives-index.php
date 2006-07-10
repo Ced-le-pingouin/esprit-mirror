@@ -38,11 +38,11 @@ require_once(dir_database("chat.tbl.php"));
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdChat = (empty($HTTP_GET_VARS["idChat"]) ? 0 : $HTTP_GET_VARS["idChat"]);
+$url_iIdChat = (empty($_GET["idChat"]) ? 0 : $_GET["idChat"]);
 
 $url_sParams = NULL;
 
-foreach ($HTTP_GET_VARS as $sCle => $sValeur)
+foreach ($_GET as $sCle => $sValeur)
 	$url_sParams .= (isset($url_sParams) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 

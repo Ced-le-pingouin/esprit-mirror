@@ -40,7 +40,7 @@ $oProjet->initSousActivCourante();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdPers = (isset($HTTP_GET_VARS["idPers"]) ? $HTTP_GET_VARS["idPers"] : 0);
+$url_iIdPers = (isset($_GET["idPers"]) ? $_GET["idPers"] : 0);
 
 // ---------------------
 // Initialiser
@@ -284,16 +284,16 @@ function redimensionner()
 <?php
 $sSousTitre = "&nbsp;";
 
-if (isset($HTTP_GET_VARS["idResSA"]))
+if (isset($_GET["idResSA"]))
 {
 	echo "<form"
 		." name=\"formEval\""
-		." action=\"".$HTTP_SERVER_VARS["PHP_SELF"]."\""
+		." action=\"".$_SERVER["PHP_SELF"]."\""
 		." method=\"post\""
 		." enctype=\"multipart/form-data\""
 		.">\n";
 	
-	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$HTTP_GET_VARS["idResSA"]);
+	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$_GET["idResSA"]);
 	$oResSA->initEvaluations();
 	$oResSA->initRessourceAttache();
 	
@@ -343,12 +343,12 @@ if (isset($HTTP_GET_VARS["idResSA"]))
 	echo "<input type=\"hidden\" name=\"ressource_attache_effacer\" value=\"0\">\n"
 		."</form>\n";
 }
-else if ($HTTP_POST_VARS["ressource_attache_effacer"] == "1")
+else if ($_POST["ressource_attache_effacer"] == "1")
 {
 	// ---------------------
 	// Effacer un document attaché
 	// ---------------------
-	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$HTTP_POST_VARS["idResSA"]);
+	$oResSA = new CRessourceSousActiv($oProjet->oBdd,$_POST["idResSA"]);
 	$oResSA->effacerRessourceAttache($g_sRepDest);
 	unset($oResSA);
 	
@@ -359,12 +359,12 @@ else if ($HTTP_POST_VARS["ressource_attache_effacer"] == "1")
 		."</td></tr>"
 		."</table>\n";
 }
-else if (isset($HTTP_POST_VARS["idResSA"]))
+else if (isset($_POST["idResSA"]))
 {
 	// ---------------------
 	// Uploader le document attaché à une évaluation
 	// ---------------------
-	$sNomFichier = trim(stripslashes($HTTP_POST_FILES["evaluation_fichier"]["name"]));
+	$sNomFichier = trim(stripslashes($_FILES["evaluation_fichier"]["name"]));
 	
 	if (strlen($sNomFichier) > 0)
 	{
@@ -373,9 +373,9 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 		// Copier le fichier du répertoire temporaire vers sa destination
 		$sNomFichierNouv = retNomFichierUnique($sNomFichier,$g_sRepDest);
 		
-		if (@move_uploaded_file($HTTP_POST_FILES["evaluation_fichier"]["tmp_name"],$sNomFichierNouv))
+		if (@move_uploaded_file($_FILES["evaluation_fichier"]["tmp_name"],$sNomFichierNouv))
 		{
-			$oResSA = new CRessourceSousActiv($oProjet->oBdd,$HTTP_POST_VARS["idResSA"]);
+			$oResSA = new CRessourceSousActiv($oProjet->oBdd,$_POST["idResSA"]);
 			$oResSA->initRessourceAttache();
 			
 			if ($oResSA->oRessourceAttache == NULL)
@@ -405,11 +405,11 @@ else if (isset($HTTP_POST_VARS["idResSA"]))
 	// ---------------------
 	// Enregistrer l'évaluation
 	// ---------------------
-	$oProjet->oSousActivCourante->enregistrerEvaluation($HTTP_POST_VARS["idResSA"],
+	$oProjet->oSousActivCourante->enregistrerEvaluation($_POST["idResSA"],
 		$g_iIdPers,
-		$HTTP_POST_VARS["appreciationEval"],
-		$HTTP_POST_VARS["commentaireEval"],
-		$HTTP_POST_VARS["statutEval"]);
+		$_POST["appreciationEval"],
+		$_POST["commentaireEval"],
+		$_POST["statutEval"]);
 	
 	echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n";
 	echo "top.frames['Bas'].location = 'ressource_evaluation-menu.php';\n";
