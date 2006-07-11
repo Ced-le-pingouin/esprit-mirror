@@ -576,7 +576,7 @@ class CSousActiv
 				list($sNomFichier) = explode(";",$this->retDonnees());
 				$sFichierASupprimer = dir_cours($this->oIdsParents->IdActiv,$this->oIdsParents->IdForm,$sNomFichier,TRUE);
 				@unlink($sFichierASupprimer);
-				unset($oIdsParents,$sFichierASupprimer,$sNomFichier);
+				unset($this->oIdsParents,$sFichierASupprimer,$sNomFichier);
 		}
 		
 		// Effacer les équipes

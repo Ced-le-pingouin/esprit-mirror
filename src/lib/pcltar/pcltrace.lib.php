@@ -118,6 +118,7 @@ if (!defined("PCLTRACE_LIB"))
     global $g_pcl_trace_filename;
     global $g_pcl_trace_name;
     global $g_pcl_trace_index;
+    global $g_pcl_trace_entries;
 
     // ----- Clean
     $g_pcl_trace_mode = "memory";
