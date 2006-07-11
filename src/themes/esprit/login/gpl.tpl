@@ -190,7 +190,7 @@ et que des usages nouveaux sont initiés nous aimerions savoir qui vous êtes et
 Nous vous remercions par avance du temps que vous allez passer à remplir ce petit questionnaire.</p>
 <a href="#_frm1r" name="_frm1r" title="" id="_frm1r"> </a>
 [BLOCK_FORMULAIRE+]
-<form action="GPL.php#_frm1r" method="post">
+<form action="gpl.php#_frm1r" method="post">
 <label for="idOrg">Nom de l'organisme*:</label><input type="text" size="70" name="organisme" id="idOrg" value="[ORG]" />
 <label for="idRai">Raison sociale :</label><input type="text" size="70" name="raison" id="idRai" value="[RAISON]" />
 <label for="idEma">Contact (mail du responsable du projet) :</label><input type="text" size="70" name="email" id="idEma" value="[EMAIL]" />
