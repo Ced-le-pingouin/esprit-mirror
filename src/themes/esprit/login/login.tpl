@@ -6,6 +6,24 @@
 <script type="text/javascript" language="javascript" src="/js/window.js"></script>
 <script type="text/javascript" language="javascript" src="themes/commun/js/login.js.php"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function GPL()
+{
+	var iLargeurFenetre = 750;
+	var iHauteurFenetre = 500;
+	var iPositionGauche = (screen.width-iLargeurFenetre)/2;
+	var iPositionHaut = (screen.height-iHauteurFenetre)/2;
+	var sCaracteristiques = "left=" + iPositionGauche
+		+ ",top=" + iPositionHaut
+		+ ",width=" + iLargeurFenetre
+		+ ",height=" + iHauteurFenetre
+		+ "menubar=no,scrollbars=no,statusbar=no,resizable=yes";
+	var w =	window.open("gpl.php","GPL",sCaracteristiques);
+	w.focus();
+}
+//-->
+</script>
 <link rel="stylesheet" type="text/css" href="theme://login/login.css" />
 </head>
 <body>
@@ -25,6 +43,7 @@
 		est envisagé comme une série d'activités d'apprentissage structurées selon un scénario pédagogique.</p>
 		<p>Des outils permettent aux tuteurs d'encadrer et d'animer le travail 	réalisé par les apprenants. Le travail 
 		collaboratif est nettement favorisé et facilité par certaines fonctionnalités offertes par la plateforme.</p>
+		<p>Esprit est disponible en open source. Si vous êtes intéressé d'obtenir ces sources <a href="javascript: GPL();">cliquez ici</a>.</p>
 	</div>
 	
 	[BLOCK_INFOS_PLATEFORME+]
