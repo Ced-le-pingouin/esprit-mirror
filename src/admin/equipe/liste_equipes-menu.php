@@ -34,8 +34,7 @@ foreach ($_GET as $sCle => $sValeur)
 // ---------------------
 // Initialiser
 // ---------------------
-$sBlockHead = <<<BLOCK_HTML_HEAD
-BLOCK_HTML_HEAD;
+$sBlockHead = '';
 
 // ---------------------
 // Composer le menu

@@ -38,8 +38,7 @@ $sTitrePrincipal = "Soumettre un document pour évaluation";
 
 // ---------------------
 // ---------------------
-$sBlockHead = <<<BLOCK_HTML_HEAD
-BLOCK_HTML_HEAD;
+$sBlockHead = '';
 
 // Frameset
 $sFrameSrcPrincipal = <<<BLOC_FRAME_PRINCIPALE

@@ -580,7 +580,7 @@ class CQCocher
 	function defAlignRepQC ($v_sAlignRepQC) { $this->oEnregBdd->AlignRepQC = $v_sAlignRepQC; }
 	function defTxtAvQC ($v_sTxtAvQC) { $this->oEnregBdd->TxtAvQC = $v_sTxtAvQC; }
 	function defTxtApQC ($v_sTxtApQC) { $this->oEnregBdd->TxtApQC = $v_sTxtApQC; }
-	function defDispQC ($v_sDispQC) { $this->oEnregBdd->DispQR = $v_sDispQR; }
+	function defDispQC ($v_sDispQC) { $this->oEnregBdd->DispQC = $v_sDispQC; }
 	function defNbRepMaxQC ($v_iNbRepMaxQC) { $this->oEnregBdd->NbRepMaxQC = $v_iNbRepMaxQC; }
 	function defMessMaxQC ($v_sMessMaxQC) { $this->oEnregBdd->MessMaxQC = $v_sMessMaxQC; }
 	

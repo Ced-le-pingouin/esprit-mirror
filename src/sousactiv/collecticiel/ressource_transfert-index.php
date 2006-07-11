@@ -53,8 +53,7 @@ $sTitrePrincipal = TXT_TRANSFERER_DES_FICHIERS_TITRE;
 // }}}
 
 // {{{ Frame principale
-$sBlockHead = <<<BLOCK_HTML_HEAD
-BLOCK_HTML_HEAD;
+$sBlockHead = '';
 
 $sFrameSrcPrincipal = <<<BLOCK_FRAME_SRC_PRINCIPALE
 <frame name="Principale" src="ressource_transfert.php{$url_sParamsUrl}" scrolling="auto">
