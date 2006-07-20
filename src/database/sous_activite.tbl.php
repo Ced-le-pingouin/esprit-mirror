@@ -340,7 +340,7 @@ class CSousActiv
 	/**
 	 * Initialise une sous-activité de type glossaire
 	 * 
-	 * @param	v_bInitElements si \true, inialise les éléments du glosaire (\c false par défaut)
+	 * @param	v_bInitElements si \c true, inialise les éléments du glosaire (\c false par défaut)
 	 */
 	function initGlossaire ($v_bInitElements=FALSE)
 	{
