@@ -202,7 +202,7 @@ $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $sBarreOutils = $asTplGlobalCommun["url_envoi_courriel"];
 $oBlocBarreOutils->remplacer(
 	array("{barre_outils}","{url.params}")
-	, array($sBarreOutils,"?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idEquipes=tous" : "idStatuts=".STATUT_PERS_ETUDIANT)."&typeCourriel=courriel-unite"."&select=1")
+	, array($sBarreOutils,"?idForm={$iIdForm}&amp;idMod={$iIdMod}&amp;idUnite={$iIdRubrique}&amp;".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idEquipes=tous" : "idStatuts=".STATUT_PERS_ETUDIANT)."&amp;typeCourriel=courriel-unite"."&amp;select=1")
 );
 $oBlocBarreOutils->afficher();
 // }}}
@@ -454,7 +454,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	// }}}
 	
 	// {{{ Colonne des connexions
-	$oBlocConnexion = new TPL_Block("BLOCK_CONNEXION",$oTpl);
+/*	$oBlocConnexion = new TPL_Block("BLOCK_CONNEXION",$oBlocRubrique);
 	
 	if ($url_iIdType == 0)
 	{
@@ -463,7 +463,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		$iCol++;
 	}
 	else
-		$oBlocConnexion->effacer();
+		$oBlocConnexion->effacer();*/
 	// }}}
 	
 	$iNbColsEntete = $iCol;
@@ -528,7 +528,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			foreach ($oRubrique->aoCollecticiels as $oCollecticiel)
 			{
-				$sParamsUrl = "&idPers={$iIdInscrit}";
+				$sParamsUrl = "&amp;idPers={$iIdInscrit}";
 				
 				$aiIdPers = array();
 				
@@ -539,7 +539,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 					
 					if ($oEquipe->initEquipe($iIdInscrit,$iIdRubr,TYPE_RUBRIQUE,TRUE) > 0)
 					{
-						$sParamsUrl = "&idEquipe=".$oEquipe->retId();
+						$sParamsUrl = "&amp;idEquipe=".$oEquipe->retId();
 						
 						foreach ($oEquipe->aoMembres as $oMembre)
 							$aiIdPers[] = $oMembre->retId();
@@ -568,7 +568,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				
 				$oBloc->remplacer(array("{collecticiel.td.id}","{collecticiel}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutPlusHautRes));
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oCollecticiel->retIdParent(),$oCollecticiel->retId(),$sParamsUrl));
-				$oBloc->remplacer("{collecticiel.date}",($aiStatutPlusHautRes["StatutResPlusHautNb"] > 0 && $aiStatutPlusHautRes["StatutResPlusHaut"] != 0 ? "<br><small class=\"date\">".formatterDate($aiStatutPlusHautRes["StatutResDateRecente"])."</small>" : NULL));
+				$oBloc->remplacer("{collecticiel.date}",($aiStatutPlusHautRes["StatutResPlusHautNb"] > 0 && $aiStatutPlusHautRes["StatutResPlusHaut"] != 0 ? "<br><small class=\"date\">".retDateFormatter($aiStatutPlusHautRes["StatutResDateRecente"])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -587,7 +587,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			foreach ($oRubrique->aoFormulaires as $oFormulaire)
 			{
-				$sParamsUrl = "&idPers={$iIdInscrit}";
+				$sParamsUrl = "&amp;idPers={$iIdInscrit}";
 				
 				$aiStatutPlusHautFormulaire = $oFormulaire->retStatutPlusHautFormulaire($iIdInscrit);
 				$iStatutPlusHautFormulaire = $aiStatutPlusHautFormulaire[0];
@@ -600,7 +600,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				
 				$oBloc->remplacer(array("{formulaire.td.id}","{formulaire}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$sStatutPlusHautFormulaire));
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oFormulaire->retIdParent(),$oFormulaire->retId(),$sParamsUrl));
-				$oBloc->remplacer("{formulaire.date}",($aiStatutPlusHautFormulaire[0] > 0 ? "<br><small class=\"date\">".formatterDate($aiStatutPlusHautFormulaire[2])."</small>" : NULL));
+				$oBloc->remplacer("{formulaire.date}",($aiStatutPlusHautFormulaire[0] > 0 ? "<br><small class=\"date\">".retDateFormatter($aiStatutPlusHautFormulaire[2])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -632,9 +632,9 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				else
 					$oBloc->remplacer("{forum}",$sSetForum);
 				
-				$oBloc->remplacer(array("{forum.params}","{forum.params.fenetre_nom}"),array("?idForum={$iIdForum}&idNiveau={$iIdNiveau}&typeNiveau={$iTypeNiveau}".($abModalites[$iCol] ? "&idEquipe={$_aiEquipes[$iIdInscrit]}" : NULL),"winForum{$iIdForum}"));
+				$oBloc->remplacer(array("{forum.params}","{forum.params.fenetre_nom}"),array("?idForum={$iIdForum}&amp;idNiveau={$iIdNiveau}&amp;typeNiveau={$iTypeNiveau}".($abModalites[$iCol] ? "&amp;idEquipe={$_aiEquipes[$iIdInscrit]}" : NULL),"winForum{$iIdForum}"));
 				$oBloc->remplacer(array("{forum.nom}","{forum.messages.nombre}"),($amNbMessages["NbMessagesForum"] > 0 ? $amNbMessages["NbMessagesForum"] : array("-",0)));
-				$oBloc->remplacer("{forum.date}",($amNbMessages["NbMessagesForum"] > 0 ? "<br><small class=\"date\">".formatterDate($amNbMessages["DateDernierMessage"])."</small>" : NULL));
+				$oBloc->remplacer("{forum.date}",($amNbMessages["NbMessagesForum"] > 0 ? "<br><small class=\"date\">".retDateFormatter($amNbMessages["DateDernierMessage"])."</small>" : NULL));
 				$iCol++;
 			}
 			
@@ -691,13 +691,13 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		// }}}
 		
 		// {{{ Colonne des connexions
-		if ($url_iIdType == 0)
+		if (FALSE && $url_iIdType == 0)
 		{
 			$oEven = new CEvenement($oProjet->oBdd);
 			$iNbConnexions = $oEven->initEvenements($iIdInscrit,$iIdForm);
 			
 			if ($iNbConnexions > 0)
-				$sDate = formatterDate($oEven->aoEvenements[0]->retMomentEven())." ({$iNbConnexions})";
+				$sDate = retDateFormatter($oEven->aoEvenements[0]->retMomentEven())." ({$iNbConnexions})";
 			else
 				$sDate = "-";
 				
@@ -738,4 +738,3 @@ $oTpl->afficher();
 $oProjet->terminer();
 
 ?>
-
