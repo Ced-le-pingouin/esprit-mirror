@@ -1,0 +1,65 @@
+FAQ des listes esprit-admin et esprit-users
+===========================================
+$Id$
+
+
+A. Administration (liste esprit-admin)
+======================================
+
+1. Où trouver la dernière version installable d'Esprit ?
+R : le référentiel de développement d'Esprit est hébergé par la plateforme 
+SourceSup du CRU (Comité Réseau des Universités). La page d'accueil du projet 
+est http://sourcesup.cru.fr/projects/esprit/.
+La dernière version diffusée est disponible dans l'onglet Files, 
+ou directement à l'URL :
+http://sourcesup.cru.fr/frs/?group_id=204
+
+2. Où trouver la version en développement de la plate-forme ?
+R : dans le référentiel Subversion (SVN) du projet. Pour la télécharger,
+il faut avoir un client subversion. La ligne de commande est :
+  svn checkout svn://subversion.cru.fr:/esprit dossier_local
+ou
+  svn checkout https://subversion.cru.fr:/esprit dossier_local
+
+3. Comment attribuer le rôle de responsable de plate-forme à 
+plusieurs personnes ?
+R : pour le moment il n'y a pas d'interface web pour assigner le statut de
+responsable de plate-forme qui, auparavant, ce s'intitulait Admin.
+Actuellement, il faut avoir les droits de manipulation de la base MySQL et
+ajouter directement l'IdPers de la personne voulue dans la table Projet_Admin.
+Cet IdPers est défini dans la table Personne.
+
+
+B. Utilisation (liste esprit-users)
+===================================
+
+1. Comment déposer une archive de documents structurés en liens de telle
+façon que le fichier index soit bien proposé à l'affichage par Esprit 
+(pour HotPotatoes par exemple) ?
+R : Actuellement, il faut envoyer un fichier d'archives compressé (.zip) qui 
+contienne le fichier index *à la racine de l'archive obligatoirement*.
+Le résultat dépend de la manière de créer le fichier zippé. 
+Sous Windows, avec certains programmes, si on clique-droit sur un dossier pour 
+demander de créer un zip, le zip contiendra à sa racine uniquement un dossier
+du même nom, et les fichiers seront dans ce dernier. 
+La plupart du temps, la méthode pour zipper des fichiers en s'assurant
+qu'ils se trouvent directement à la racine d'un zip est la suivante : il
+faut se rendre *dans* le dossier qui contient les fichiers (ou sous-dossiers)
+à zipper, les sélectionner tous (Ctrl-A sous Windows), cliquer droit, et 
+demander de zipper les fichiers/dossiers sélectionnés. Cela créera un fichier 
+zippé où les fichiers/dossiers se trouvent directement à la racine du zip 
+(et qui seront dézippés tels quels dans Esprit).
+Dans le futur, cette limitation devrait être supprimée : voir 
+la demande de fonctionnalité n°915 dans Sourcesup/Esprit.
+http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=915&group_id=204&atid=909
+
+2. Comment fait-on le ménage dans ces documents ?
+(comment les supprimer du serveur, les déplacer pour les remonter à la
+racine par ex) ?
+R : Malheureusement, il n'y a pas d'autre moyen pour le moment que de le
+faire directement dans le système de fichiers du serveur.
+Dans le futur, il sera possible de le faire par l'interface web : voir 
+la demande de fonctionnalité n°916 dans Sourcesup/Esprit.
+http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=916&group_id=204&atid=909
+
+
