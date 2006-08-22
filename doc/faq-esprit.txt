@@ -6,60 +6,60 @@ $Id$
 A. Administration (liste esprit-admin)
 ======================================
 
-1. Où trouver la dernière version installable d'Esprit ?
-R : le référentiel de développement d'Esprit est hébergé par la plateforme 
-SourceSup du CRU (Comité Réseau des Universités). La page d'accueil du projet 
+1. OÃ¹ trouver la derniÃ¨re version installable d'Esprit ?
+R : le rÃ©fÃ©rentiel de dÃ©veloppement d'Esprit est hÃ©bergÃ© par la plateforme 
+SourceSup du CRU (ComitÃ© RÃ©seau des UniversitÃ©s). La page d'accueil du projet 
 est http://sourcesup.cru.fr/projects/esprit/.
-La dernière version diffusée est disponible dans l'onglet Files, 
-ou directement à l'URL :
+La derniÃ¨re version diffusÃ©e est disponible dans l'onglet Files, 
+ou directement Ã  l'URL :
 http://sourcesup.cru.fr/frs/?group_id=204
 
-2. Où trouver la version en développement de la plate-forme ?
-R : dans le référentiel Subversion (SVN) du projet. Pour la télécharger,
+2. OÃ¹ trouver la version en dÃ©veloppement de la plate-forme ?
+R : dans le rÃ©fÃ©rentiel Subversion (SVN) du projet. Pour la tÃ©lÃ©charger,
 il faut avoir un client subversion. La ligne de commande est :
   svn checkout svn://subversion.cru.fr:/esprit dossier_local
 ou
   svn checkout https://subversion.cru.fr:/esprit dossier_local
 
-3. Comment attribuer le rôle de responsable de plate-forme à 
+3. Comment attribuer le rÃ´le de responsable de plate-forme Ã  
 plusieurs personnes ?
 R : pour le moment il n'y a pas d'interface web pour assigner le statut de
 responsable de plate-forme qui, auparavant, ce s'intitulait Admin.
 Actuellement, il faut avoir les droits de manipulation de la base MySQL et
 ajouter directement l'IdPers de la personne voulue dans la table Projet_Admin.
-Cet IdPers est défini dans la table Personne.
+Cet IdPers est dÃ©fini dans la table Personne.
 
 
 B. Utilisation (liste esprit-users)
 ===================================
 
-1. Comment déposer une archive de documents structurés en liens de telle
-façon que le fichier index soit bien proposé à l'affichage par Esprit 
+1. Comment dÃ©poser une archive de documents structurÃ©s en liens de telle
+faÃ§on que le fichier index soit bien proposÃ© Ã  l'affichage par Esprit 
 (pour HotPotatoes par exemple) ?
-R : Actuellement, il faut envoyer un fichier d'archives compressé (.zip) qui 
-contienne le fichier index *à la racine de l'archive obligatoirement*.
-Le résultat dépend de la manière de créer le fichier zippé. 
+R : Actuellement, il faut envoyer un fichier d'archives compressÃ© (.zip) qui 
+contienne le fichier index *Ã  la racine de l'archive obligatoirement*.
+Le rÃ©sultat dÃ©pend de la maniÃ¨re de crÃ©er le fichier zippÃ©. 
 Sous Windows, avec certains programmes, si on clique-droit sur un dossier pour 
-demander de créer un zip, le zip contiendra à sa racine uniquement un dossier
-du même nom, et les fichiers seront dans ce dernier. 
-La plupart du temps, la méthode pour zipper des fichiers en s'assurant
-qu'ils se trouvent directement à la racine d'un zip est la suivante : il
+demander de crÃ©er un zip, le zip contiendra Ã  sa racine uniquement un dossier
+du mÃªme nom, et les fichiers seront dans ce dernier. 
+La plupart du temps, la mÃ©thode pour zipper des fichiers en s'assurant
+qu'ils se trouvent directement Ã  la racine d'un zip est la suivante : il
 faut se rendre *dans* le dossier qui contient les fichiers (ou sous-dossiers)
-à zipper, les sélectionner tous (Ctrl-A sous Windows), cliquer droit, et 
-demander de zipper les fichiers/dossiers sélectionnés. Cela créera un fichier 
-zippé où les fichiers/dossiers se trouvent directement à la racine du zip 
-(et qui seront dézippés tels quels dans Esprit).
-Dans le futur, cette limitation devrait être supprimée : voir 
-la demande de fonctionnalité n°915 dans Sourcesup/Esprit.
+Ã  zipper, les sÃ©lectionner tous (Ctrl-A sous Windows), cliquer droit, et 
+demander de zipper les fichiers/dossiers sÃ©lectionnÃ©s. Cela crÃ©era un fichier 
+zippÃ© oÃ¹ les fichiers/dossiers se trouvent directement Ã  la racine du zip 
+(et qui seront dÃ©zippÃ©s tels quels dans Esprit).
+Dans le futur, cette limitation devrait Ãªtre supprimÃ©e : voir 
+la demande de fonctionnalitÃ© nÂ°915 dans Sourcesup/Esprit.
 http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=915&group_id=204&atid=909
 
-2. Comment fait-on le ménage dans ces documents ?
-(comment les supprimer du serveur, les déplacer pour les remonter à la
+2. Comment fait-on le mÃ©nage dans ces documents ?
+(comment les supprimer du serveur, les dÃ©placer pour les remonter Ã  la
 racine par ex) ?
 R : Malheureusement, il n'y a pas d'autre moyen pour le moment que de le
-faire directement dans le système de fichiers du serveur.
+faire directement dans le systÃ¨me de fichiers du serveur.
 Dans le futur, il sera possible de le faire par l'interface web : voir 
-la demande de fonctionnalité n°916 dans Sourcesup/Esprit.
+la demande de fonctionnalitÃ© nÂ°916 dans Sourcesup/Esprit.
 http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=916&group_id=204&atid=909
 
 
