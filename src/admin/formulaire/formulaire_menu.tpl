@@ -60,7 +60,7 @@ function copie(TypeAct)
 <table border="0" cellpadding="0" cellspacing="2" width="100%">
 <tr>
 <td colspan=2>
-<select class="listeForm" name="idformulaire" onchange="javascript: this.form.submit();" SIZE="5" border="0" style="width: 100%;">
+<select class="listeForm" name="idformulaire" onchange="javascript: this.form.submit();" SIZE="10" border="0" style="width: 100%;">
 
 [BLOCK_FORM+]
 <OPTION {couleur} VALUE="{id_formulaire}" TITLE="{infobulle_formulaire}" onMouseover="top.defTexteStatut(escape(this.title));" onMouseout="top.defTexteStatut('&nbsp;');">{nom_formulaire}

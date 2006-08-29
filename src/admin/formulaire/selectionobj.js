@@ -27,12 +27,6 @@ function majmodifmenu(idobj,idformulaire)
 	parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
 }
 
-
-function modifaxeform(idformulaire) 
-{ 
-	fenetre = window.open("formulaire_axe.php?idformulaire="+idformulaire,"PopUP","width=450,height=300,location=no,status=no,toolbar=no,scrollbars=yes,left=' + ((screen.width - 450)/2) + ',top=' + ((screen.height - 300)/2)");
-}
-
 function popupajout(idobj,idformulaire) 
 {
 	opener.parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);

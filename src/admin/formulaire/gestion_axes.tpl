@@ -1,63 +1,141 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<TITLE>Gestion des Axes/Tendances</TITLE>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Gestion des Axes/Tendances</title>
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<style type="text/css">
+html
+{
+	height: 100%;
+	/* \*/ overflow: hidden; /**/
+}
+body
+{
+	background-color: rgb(253,249,238);
+	margin: 0;
+	padding: 0;
+	color: rgb(0,0,0);
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+#principal
+{
+	height: 90%;
+	overflow: auto;
+	margin: 0;
+	padding: 7px;
+}
+#piedpage
+{
+	height: 10%;
+	text-align: center;
+	margin: 0;
+	padding: 0 10px;
+	border-top: solid black 1px;
+	background-color: rgb(174,165,138);
+	vertical-align: center;
+}
+#valider
+{
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#fermer
+{
+	float: right;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+#gestion
+{
+	display: block;
+	margin-top: 5px;
+}
+legend
+{
+	font-weight: bold;
+}
+#piedpage a:link, #piedpage a:visited, #piedpage a:hover
+{
+	color: rgb(255,255,255);
+	font-weight: bold;
+}
+h1
+{
+	font-size:16px;
+	color: #777777;
+	font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
+	text-decoration: underline;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+function fermer()
+{
+	top.opener.top.location.replace("formulaire_axe.php?idformulaire={idformulaire}"); 
+	parent.window.close();
+}
+</script>
 </head>
 <body class="popup">
-<h1 style="font-size:12pt; color: #777777; font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;" align="center"><u>Gestion des axes</u></h1>
-
-<FORM ACTION="gestion_axes.php" name="formsup" method ="GET">
-
-<fieldset><legend><b>Supprimer un axe</b></legend>
-[BLOCK_AXES+]
-<INPUT TYPE="radio" name="axe_s" value="{id_axe}">{desc_axe}<br>
-[BLOCK_AXES-]
-
-
-<div align="center">
-<a href="#" onclick="document.forms['formsup'].submit();">Supprimer</a>
-<INPUT TYPE="hidden" VALUE="Supprimer" name="supprimer">
-</div>
-
+<div id="principal">
+<h1>Gestion des axes</h1>
+[BLOCK_SUPPRESSION+]
+<form action="gestion_axes.php" name="formgestion" method ="post">
+	<fieldset><legend>Supprimer un axe</legend>
+	[BLOCK_AXES+]
+	<input type="radio" name="axe_s" value="{id_axe}" />{desc_axe}<br />
+	<input type="hidden" name="idformulaire" value="{idformulaire}" />
+	[BLOCK_AXES-]
+	</fieldset>
+</form>
+[BLOCK_SUPPRESSION-]
+[BLOCK_MODIF+]
+<form action="gestion_axes.php" name="formgestion" method ="post">
+	<fieldset><legend>Modifier le nom d'un axe</legend>
+	[BLOCK_AXES2+]
+	<input type="radio" name="axe_m" onclick="document.formgestion.axemodif.value = '{desc_axe2js}'; document.formgestion.axemodif.focus();" value="{id_axe2}" />
+	{desc_axe2}<br />
+	[BLOCK_AXES2-]
+	<br />
+	<input type="text" name="axemodif" size="60" maxlength="100" />
+	<input type="hidden" name="idformulaire" value="{idformulaire}" />
+	</fieldset>
+</form>
+[BLOCK_MODIF-]
+[BLOCK_AJOUT+]
+<form action="gestion_axes.php" name="formgestion" method ="post">
+	<fieldset><legend>Ajouter un axe</legend>
+	<div align="center">
+	<input type="text" name="axeajout" size="60" maxlength="100" />
+	</div>
+	<input type="hidden" name="idformulaire" value="{idformulaire}" />
+	</fieldset>
+</form>
+[BLOCK_AJOUT-]
+[BLOCK_CHOIX+]
+<fieldset>
+	<ul>
+	<li><a href="gestion_axes.php?idformulaire={idformulaire}&amp;action=ajout">Ajouter un axe</a></li>
+	<li><a href="gestion_axes.php?idformulaire={idformulaire}&amp;action=modif">Modifier un axe</a></li>
+	<li><a href="gestion_axes.php?idformulaire={idformulaire}&amp;action=supp">Supprimer un axe</a></li>
+	</ul>
 </fieldset>
-
-</FORM>
-
-
-
-<FORM ACTION="gestion_axes.php" name="formmodif" method ="GET">
-
-<fieldset><legend><b>Modifier le nom d'un axe</b></legend>
-[BLOCK_AXES2+]
-<INPUT TYPE="radio" name="axe_m" onclick="document.formmodif.axemodif.value = '{desc_axe2js}'; document.formmodif.axemodif.focus();" 
-	value="{id_axe2}">{desc_axe2}<br>
-[BLOCK_AXES2-]
-
-
-<div align="center">
-<INPUT TYPE="text" NAME="axemodif" SIZE="60" MAXLENGTH="100">
-<a href="#" onclick="document.forms['formmodif'].submit();">Modifier</a>
-<INPUT TYPE="hidden" VALUE="Modifier" name="modifier">
+[BLOCK_CHOIX-]
+{Message}
 </div>
-
-</fieldset>
-
-</FORM>
-
-
-
-<FORM ACTION="gestion_axes.php" name="formajout" method ="GET">
-
-<fieldset><legend><b>Ajouter un axe</b></legend>
-
-<div align="center">
-<INPUT TYPE="text" NAME="axeajout" SIZE="60" MAXLENGTH="100">
-<a href="#" onclick="document.forms['formajout'].submit();">Ajouter</a>
-<INPUT TYPE="hidden" VALUE="Ajouter" name="ajouter">
+<div id="piedpage">
+	<a href="#" onclick="fermer();" id="fermer">Fermer</a>
+	[BLOCK_LIEN+]
+	<a href="#" onclick="document.forms['formgestion'].submit();" id="valider">{Titre_Lien}</a>
+	[BLOCK_LIEN-]
 </div>
-</fieldset>
-
-</FORM>
-
 </body>
+</html>

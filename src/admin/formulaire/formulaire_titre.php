@@ -1,27 +1,23 @@
-<?php 
-//echo "formulaire_titre.php" 
-?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<style type="text/css">
-<!--
-body
-{
-	background: rgb(255,255,255) url("/esprit/themes/esprit/fond-titre-zdc.gif") repeat-x;
-}
-//-->
-</style>
+<link type="text/css" rel="stylesheet" href="/themes/esprit/globals.css">
+<link type="text/css" rel="stylesheet" href="/themes/esprit/dialog.css">
+<link type="text/css" rel="stylesheet" href="/themes/esprit/dialog_2.css">
+<link type="text/css" rel="stylesheet" href="/themes/esprit/concept.css">
+<script type="text/javascript" language="javascript" src="/themes/esprit/dialog-titre.js"></script>
+<title>Conception de formulaires en ligne</title>
 </head>
-
-
-
-<body>
+<body class="haut">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
-<td><img src="/esprit/themes/esprit/logo-titre-zdc.gif" width="210" height="116" border="0"></td>
+<td class="dialog_logo"><img src="/themes/esprit/dialog-titre-logo-2.gif" width="165" height="65" border="0" alt="Esprit"></td>
+<td>&nbsp;</td>
 </tr>
 </table>
-
+<div class="dialog_titre_image_2"><img src="/themes/esprit/dialog-titre-img_2.gif" width="96" height="44" border="0" alt="">&nbsp;</div>
+<div class="dialog_titre_principal"><span id="titre_principal">Conception de formulaires en ligne</span>&nbsp;<span id="sous_titre">&nbsp;</span></div>
+<div class="dialog_sous_titre">&nbsp;</div>
 </body>
 </html>

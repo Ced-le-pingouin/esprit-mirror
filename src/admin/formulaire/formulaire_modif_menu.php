@@ -76,7 +76,7 @@ function copieobj(idobj,idformulaire)
 
 function modifaxeform(idformulaire)
 {
-	PopupCenter('formulaire_axe_index.php?idformulaire='+idformulaire,'WinModifAxesForm',450,300,'location=no,status=no,toolbar=no,scrollbars=yes');
+	PopupCenter('formulaire_axe.php?idformulaire='+idformulaire,'WinModifAxesForm',550,400,'location=no,status=no,toolbar=no,scrollbars=yes,resizable=no');
 }
 //-->
 </script>

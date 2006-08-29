@@ -21,42 +21,36 @@
 
 require_once("globals.inc.php");
 $oProjet = new CProjet();
+
 //************************************************
 //*       Récupération des variables             *
 //************************************************
-
-if (isset($_GET))
+if (isset($_GET['idformulaire']))
 {
 	$v_iIdFormulaire = $_GET['idformulaire'];
 }
-else if (isset($_POST))
+else 
 {
-	$v_iIdFormulaire = $_POST['idformulaire'];
+	if (isset($_POST['idformulaire']))
+		$v_iIdFormulaire = $_POST['idformulaire'];
+	else
+		$v_iIdFormulaire = 0;
 }
-else
+
+$oTpl = new Template("formulaire_axe.tpl");
+$oTpl->remplacer("{chemin_windows.js}",dir_javascript("window.js"));
+$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
+
+$oBlockChoix = new TPL_Block("BLOCK_CHOIX",$oTpl);
+$oBlockConfirm = new TPL_Block("BLOCK_CONFIRM",$oTpl);
+$oBlockLien = new TPL_Block("BLOCK_LIEN",$oTpl);
+
+if (isset($_POST['valider']) && $oProjet->verifPermission("PERM_OUTIL_FORMULAIRE"))
 {
-	$v_iIdFormulaire = 0;
-}
-
-/*
-echo "<html>\n";
-echo "<head>\n";
-echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
-echo "<TITLE>Gestion des Axes/Tendances</TITLE>";
-echo "<script src=\"selectionobj.js\" type=\"text/javascript\">";
-echo "</script>\n";
-
-//CSS
-echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".dir_theme("formulaire/formulaire.css")."\">";
-//FIN CSS
-echo "</head>\n";
-
-echo "<body class=\"popup\" onLoad=\"self.focus()\">"; // ici onLoad permet d'afficher la popup au dessus de toutes les autres pages
-*/
-
-
-if (isset($_GET['valider']))
-{
+	$oBlockConfirm->afficher();
+	$oBlockChoix->effacer();
+	$oBlockLien->effacer();
+	
 	$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd);
 	$oFormulaire_Axe->effacerAxesForm($v_iIdFormulaire);
 	
@@ -64,83 +58,59 @@ if (isset($_GET['valider']))
 	$axes = $_REQUEST['axes'];
 	for ($i = 0; $i < count($axes); $i++)
 	{
-		//echo "<br>Axe numéro ".$axes[$i]." sélectionné.";
 		$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd,$v_iIdFormulaire,$axes[$i]);
 		$oFormulaire_Axe->ajouter();
 		$sListeAxes.="$axes[$i]".",";
 	}
-	
 	//Ci-dessous : suppression de la virgule de trop a la fin de la chaîne de caractères
 	$sListeAxes = subStr($sListeAxes,0,strlen($sListeAxes)-1);
 	
 	$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
+	if( strlen($sListeAxes) == 0) //aucun axe selectionné
+		$sListeAxes = "0";
 	$oReponse_Axe->VerifierValidite($v_iIdFormulaire,$sListeAxes);
+	//problème si pas d'axe selectionné!
 	
 	$iNbAxesForm = count($axes);
+	$oBlockAxes = new TPL_Block("BLOCK_AXES",$oTpl);
+
 	if ($iNbAxesForm < 1)
 	{
-		echo "<p align=\"center\">";
-		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Aucun Axe n'a été selectionné pour ce formulaire";
-		echo "</p>";
+		$oBlockAxes->remplacer("{desc_axe}","Aucun");
+		$oBlockAxes->afficher();
 	}
 	else
 	{
-		echo "<p align=\"center\">";
-		echo "<br><b>Les changements ont bien été enregistrés</b>";
-		echo "<br>Nombre d'axe sélectionné au total : ".$iNbAxesForm;
-		echo "</p>";
-		
-		$oTpl = new Template("formulaire_axe_2.tpl");
-		
-		$oBlock = new TPL_Block("BLOCK_AXES",$oTpl);
-					
-		if (TRUE)
+		$oBlockAxes->beginLoop();
+		for ($i = 0; $i < count($axes); $i++)
 		{
-			$oBlock->beginLoop();
-			
-			for ($i = 0; $i < count($axes); $i++)
-			{
-				$oBlock->nextLoop();
-				$oAxe = new CAxe($oProjet->oBdd,$axes[$i]); //Crée un objet objet axe
-				
-				$oBlock->remplacer("{id_axe}",$oAxe->retId());
-				$oBlock->remplacer("{desc_axe}",$oAxe->retDescAxe());
-			}
-			
-			$oBlock->afficher();
+			$oBlockAxes->nextLoop();
+			$oAxe = new CAxe($oProjet->oBdd,$axes[$i]); //Crée un objet objet axe
+			$oBlockAxes->remplacer("{desc_axe}",$oAxe->retDescAxe());
 		}
-		else
-		{
-			$oBlock->effacer();
-		}
-					
-		$oTpl->afficher();	  
-		$oProjet->terminer();  //Ferme la connection avec la base de données
+		$oBlockAxes->afficher();
 	}
 }
 else
 {
+	$oBlockConfirm->effacer();
+	$oBlockChoix->afficher();
+	$oBlockLien->afficher();
+
 	//Ceci met dans un tableau les Id des axes contenu dans le formulaire
 	$oFormulaire_Axe = new CFormulaire_Axe($oProjet->oBdd);
 	$TabAxesForm = $oFormulaire_Axe->AxesDsFormulaire($v_iIdFormulaire);
 	
-	$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM Axe order by IdAxe");
-	
-	$oTpl = new Template("formulaire_axe_1.tpl");
-	$oTpl->remplacer("{chemin_windows.js}",dir_javascript("window.js"));
-	$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
-	
 	$oBlock = new TPL_Block("BLOCK_AXES",$oTpl);
+	$oAxe = new CAxe($oProjet->oBdd); //Crée un objet objetformulaire "presque vide"
+	$aoListeAxes = $oAxe->retListeAxes();
 	
-	if (TRUE)
+	if (count($aoListeAxes)>0)// verifie s'il y a au moins un axe
 	{
 		$oBlock->beginLoop();
-		
-		while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
+		foreach ($aoListeAxes as $oEnreg)
 		{
 			$oBlock->nextLoop();
-			$oAxe = new CAxe($oProjet->oBdd); //Crée un objet objetformulaire "presque vide"
 			$oAxe->init($oEnreg); //Remplit l'objet créé ci-dessus avec l'enreg en cours
 			
 			$oBlock->remplacer("{id_axe}",$oAxe->retId());
@@ -149,7 +119,7 @@ else
 			//Permet de cocher la checkbox si l'axe en cours de traitement est présent dans le formulaire
 			if(in_array($oAxe->retId(), $TabAxesForm)) 
 			{
-				$oBlock->remplacer("{chk}","CHECKED");
+				$oBlock->remplacer("{chk}","checked='checked'");
 				$oBlock->remplacer("{couleur_police1}","<i>");
 				$oBlock->remplacer("{couleur_police2}","</i>");
 			}
@@ -160,20 +130,13 @@ else
 				$oBlock->remplacer("{couleur_police2}","");
 			}
 		}
-		
 		$oBlock->afficher();
 	}
 	else
 	{
 		$oBlock->effacer();
 	}
-	
-	$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
-	
-	$oTpl->afficher();	  
-	$oProjet->oBdd->libererResult($hResult);
-	$oProjet->terminer();  //Ferme la connection avec la base de données
 }
-//echo "</body>\n";
-//echo "</html>\n";
+$oTpl->afficher();
+$oProjet->terminer();  //Ferme la connection avec la base de données
 ?>

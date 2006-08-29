@@ -19,28 +19,33 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: permission.tbl.php
-** Description ............: 
-** Date de création .......: 20/03/2002
-** Dernière modification ..: 09/06/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	permission.tbl.php
+ * 
+ * Contient la classe de gestion des permission, en rapport avec la DB
+ * 
+ * @date	2002/03/20
+ * 
+ * @author	Filippo PORCO
+ */
 
-class CPermission
+/**
+ * Gestion des permissions, et encapsulation de la table Permission de la DB
+ */
+ class CPermission
 {
-	var $iId;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id de la permission à récupérer dans la DB
 	
-	var $oBdd;
-	var $oEnregBdd;
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
-	var $aoPermissions;
-	var $aiPermisStatut;
+	var $aoPermissions;			///< Tableau rempli par #initPermissions(), contenant une liste de permission
+	var $aiPermisStatut;		///< Tableau rempli par #initPermissionsStatut(), contenant la liste des permissions d'un statut
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CPermission (&$v_oBdd,$v_iId=NULL)
 	{
 		$this->oBdd = &$v_oBdd;
@@ -50,6 +55,10 @@ class CPermission
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -68,10 +77,20 @@ class CPermission
 		}
 	}
 	
+	/** @name Fonctions de lecture des champs pour cette permission */
+	//@{
 	function retId () { return $this->iId; }
 	function retNom () { return $this->oEnregBdd->NomPermis; }
 	function retDescr () { return $this->oEnregBdd->DescrPermis; }
+	//@}
 	
+	/**
+	 * Initialise un tableau contenant une liste de permission
+	 * 
+	 * @param	v_sFiltre	chaine comprise dans le nom de la permission
+	 * 
+	 * @return	le nombe de permissions insérées dans le tableau
+	 */
 	function initPermissions ($v_sFiltre=NULL)
 	{
 		$iIdxPermis = 0;
@@ -94,6 +113,13 @@ class CPermission
 		return $iIdxPermis;
 	}
 	
+	/**
+	 * Initialise un tableau contenant les permissions d'un statut
+	 * 
+	 * @param	v_iIdStatut	l'id du statut
+	 * 
+	 * @return	le nombre de permissions insérées dans le tableau
+	 */
 	function initPermissionsStatut ($v_iIdStatut)
 	{
 		$this->aiPermisStatut = array();
@@ -113,6 +139,13 @@ class CPermission
 		return count($this->aiPermisStatut);
 	}
 	
+	/**
+	 * Verifie si la permission est dans le tableau initialisé par #initPermissionsStatut()
+	 * 
+	 * @param	v_sPermission nom de la permission
+	 * 
+	 * @return	\c true si la permission est trouvée
+	 */
 	function verifPermission ($v_sPermission) { return (is_array($this->aiPermisStatut) && isset($this->aiPermisStatut[$v_sPermission])); }
 }
 
