@@ -1,23 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="/themes/esprit/globals.css">
-<link type="text/css" rel="stylesheet" href="/themes/esprit/dialog.css">
-<link type="text/css" rel="stylesheet" href="/themes/esprit/dialog_2.css">
-<link type="text/css" rel="stylesheet" href="/themes/esprit/concept.css">
-<script type="text/javascript" language="javascript" src="/themes/esprit/dialog-titre.js"></script>
-<title>Conception de formulaires en ligne</title>
-</head>
-<body class="haut">
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr>
-<td class="dialog_logo"><img src="/themes/esprit/dialog-titre-logo-2.gif" width="165" height="65" border="0" alt="Esprit"></td>
-<td>&nbsp;</td>
-</tr>
-</table>
-<div class="dialog_titre_image_2"><img src="/themes/esprit/dialog-titre-img_2.gif" width="96" height="44" border="0" alt="">&nbsp;</div>
-<div class="dialog_titre_principal"><span id="titre_principal">Conception de formulaires en ligne</span>&nbsp;<span id="sous_titre">&nbsp;</span></div>
-<div class="dialog_sous_titre">&nbsp;</div>
-</body>
-</html>
+<?php
+
+// This file is part of Esprit, a web Learning Management System, developped
+// by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
+// 
+// Esprit is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License version 2, 
+// as published by the Free Software Foundation.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of 
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+// See the GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, you can get one from the web page
+// http://www.gnu.org/licenses/gpl.html
+// 
+// Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
+//                          Universite de Mons-Hainaut, Belgium. 
+
+require_once("globals.inc.php");
+$oProjet = new CProjet();
+$oTpl = new Template("formulaire_titre.tpl");
+
+$oTpl->afficher();
+$oProjet->terminer();  //Ferme la connection avec la base de données
+?>
