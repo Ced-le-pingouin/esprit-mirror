@@ -143,6 +143,32 @@ class CExport
 		}
 	}
 	
+	function ecrireFichierResultat($v_sNomFichier, $v_iNbPassages)
+	{
+		$hFichier = fopen($v_sNomFichier, 'wb')
+		  or die('Impossible de créer le fichier résultat!');
+		
+		$sContenuFichier = '';
+		foreach (array_keys($this->aaTables) as $sNomTable)
+		{
+			if ($this->aEnregsAExporter($sNomTable))
+			{
+				$asEnregsAExporter = $this->retEnregsAExporter($sNomTable);
+				$sContenuFichier .=
+					"$sNomTable (".count($asEnregsAExporter)."):\n".
+					implode("\n", $asEnregsAExporter).
+					"\n"
+					;
+			}
+		}
+				
+		$sContenuFichier .= "\nNb de passages : $v_iNbPassages\n";
+		
+		fwrite($hFichier, $sContenuFichier);
+		fclose($hFichier); 
+	} 
+	
+	
 	function connecterDb()
 	{
 		$this->hLien = @mysql_connect($this->sHote, $this->sUser, $this->sMdp)
@@ -151,7 +177,7 @@ class CExport
 		  or die("Erreur de sélection de la DB ($this->sBase)");
 	}
 	
-	function trouverRelations()
+	function trouverRelations($v_bRecursif = FALSE)
 	{
 		$i = 0;
 		while ($this->aEnregsAjoutesToutesTables())
@@ -159,8 +185,9 @@ class CExport
 			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.++$i.' --- '.LF.FIN_EMPHASE , FALSE);
 			
 			$this->reinitEnregsAjoutesToutesTables();
-			$this->trouverRelationsToutesTables('enfants');
-			$this->trouverRelationsToutesTables('parents');
+			
+			$this->trouverRelationsToutesTables('enfants', $v_bRecursif);
+			//$this->trouverRelationsToutesTables('parents', $v_bRecursif);
 			
 			foreach (array_keys($this->aaTables) as $sNomTable)
 				if ($this->aEnregsAExporter($sNomTable)) 
@@ -168,18 +195,21 @@ class CExport
 		}
 		afflnd(LF.LF.DEBUT_EMPHASE.'*** Nombre de passages : '.$i.' ***'.LF.FIN_EMPHASE , FALSE);
 		
+		$sSuffixe = $v_bRecursif?'.rec':'';
+		$this->ecrireFichierResultat('result'.$sSuffixe.'.txt', $i);
+		
 		return $i;
 	}
 	
-	function trouverRelationsToutesTables($v_sTypeRel)
+	function trouverRelationsToutesTables($v_sTypeRel, $v_bRecursif = FALSE)
 	{
 		foreach (array_keys($this->aaTables) as $sNomTable)
 			if ($this->aEnregsAExporter($sNomTable))
-				$this->trouverRelationsTable($sNomTable, $v_sTypeRel);
+				$this->trouverRelationsTable($sNomTable, $v_sTypeRel, $v_bRecursif);
 	}
 	
 	// $v_sTypeRel doit être 'enfants' ou 'parents'
-	function trouverRelationsTable($v_sTableSource, $v_sTypeRel)
+	function trouverRelationsTable($v_sTableSource, $v_sTypeRel, $v_bRecursif = FALSE)
 	{
 		if ($this->aRelations($v_sTableSource, $v_sTypeRel))
 		{
@@ -234,6 +264,9 @@ class CExport
 //						, FALSE
 //					);
 //				}
+				
+				if ($v_bRecursif && !is_null($sListeIds))
+					$this->trouverRelationsTable($sTableDest, $v_sTypeRel, $v_bRecursif);
 			}
 		}
 	}
@@ -387,5 +420,5 @@ class CExport
 $oExport = new CExport();
 // formation <- liste fixe à exporter (point de départ des requêtes SQL)
 $oExport->ajouterEnregsAExporter('Formation', array(92));
-$oExport->trouverRelations();
+$oExport->trouverRelations(TRUE);
 ?>
