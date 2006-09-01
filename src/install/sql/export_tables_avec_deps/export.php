@@ -11,8 +11,9 @@
  */
 require_once('../../../include/config.inc');
 
-define('DEBUG', TRUE);
+//define('DEBUG', TRUE);
 define('AFFICHAGE_HTML', TRUE);
+define('ENCODAGE', 'utf-8');
 
 if (defined('AFFICHAGE_HTML'))
 {
@@ -23,6 +24,7 @@ if (defined('AFFICHAGE_HTML'))
 	define('FIN_EMPHASE', '</em>');
 	define('ECHAPPER_PAR_DEFAUT', TRUE);
 	define('FCT_ECHAPPER', 'htmlentities');
+	$asParamsFctEchapper = array(ENT_COMPAT, ENCODAGE);
 }
 else
 {
@@ -35,14 +37,21 @@ else
 	define('FCT_ECHAPPER', 'addslashes');
 }
 
-header('content-type: '.MIME.'; charset=utf-8');
+header('content-type: '.MIME.'; charset='.ENCODAGE);
 
 function aff($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT)
 {
+	global $asParamsFctEchapper;
+	
 	if ($v_bEchapper)
-		print call_user_func(FCT_ECHAPPER, $v_sTexte);
+	{
+		if (isset($asParamsFctEchapper) && count($asParamsFctEchapper))
+			print call_user_func_array(FCT_ECHAPPER, array_merge($v_sTexte, $asParamsFctEchapper));
+	}
 	else
+	{
 		print $v_sTexte;
+	}
 }
 function affln($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { aff($v_sTexte, $v_bEchapper); aff(LF, FALSE); }
 
@@ -68,22 +77,24 @@ class CExport
 	var $sFichierClesPrimaires = 'refs_db/cles_primaires.csv';
 	var $sFichierRef           = 'refs_db/src_reference_dest.csv';
 	var $sFichierRefPar        = 'refs_db/src_referencee_par_dest.csv';
+	var $asCommentairesFichiers;
 	
 	var $sHote;
 	var $sUser;
 	var $sMdp;
 	var $sBase;
-	
 	var $hLien;
 	
 	var $aaTables;
 	
 	function CExport()
 	{
+		// initialisations
 		$this->sHote = $GLOBALS['g_sNomServeur'];
 		$this->sUser = $GLOBALS['g_sNomProprietaire'];
 		$this->sMdp  = $GLOBALS['g_sMotDePasse'];
 		$this->sBase = $GLOBALS['g_sNomBdd'];
+		$this->asCommentairesFichiers = array('#', '//');
 		
 		// les infos sur les clés primaire, étrangères, et relations parent-enfant entre tables/champs ont été extraites 
 		// à l'avance et placée dans des fichiers CSV
@@ -103,7 +114,7 @@ class CExport
 		for ($i = 0, $j = 0; $i < count($asLignes); $i++)
 		{
 			$sLigne = trim($asLignes[$i]);
-			if (!empty($sLigne))
+			if (!empty($sLigne) && !$this->estCommentee($sLigne))
 			{
 				$asChamps = explode(';', $sLigne);
 				$this->defClePrimaire($asChamps[TABLE_SRC], $asChamps[1]);
@@ -119,7 +130,7 @@ class CExport
 		for ($i = 0, $j = 0; $i < count($asLignes); $i++)
 		{
 			$sLigne = trim($asLignes[$i]);
-			if (!empty($sLigne))
+			if (!empty($sLigne) && !$this->estCommentee($sLigne))
 			{
 				$asChamps = explode(';', $sLigne);
 				$this->aaTables[$asChamps[TABLE_SRC]]['parents'][] = $asChamps;
@@ -135,7 +146,7 @@ class CExport
 		for ($i = 0, $j = 0; $i < count($asLignes); $i++)
 		{
 			$sLigne = trim($asLignes[$i]);
-			if (!empty($sLigne))
+			if (!empty($sLigne) && !$this->estCommentee($sLigne))
 			{
 				$asChamps = explode(';', $sLigne);
 				$this->aaTables[$asChamps[TABLE_SRC]]['enfants'][] = $asChamps;
@@ -156,7 +167,7 @@ class CExport
 				$asEnregsAExporter = $this->retEnregsAExporter($sNomTable);
 				$sContenuFichier .=
 					"$sNomTable (".count($asEnregsAExporter)."):\n".
-					implode("\n", $asEnregsAExporter).
+//					implode("\n", $asEnregsAExporter).
 					"\n"
 					;
 			}
@@ -165,8 +176,17 @@ class CExport
 		$sContenuFichier .= "\nNb de passages : $v_iNbPassages\n";
 		
 		fwrite($hFichier, $sContenuFichier);
-		fclose($hFichier); 
-	} 
+		fclose($hFichier);
+	}
+	
+	function estCommentee($v_sLigne)
+	{
+		foreach ($this->asCommentairesFichiers as $sCommentaire)
+			if (substr($v_sLigne, 0, strlen($sCommentaire)) == $sCommentaire)
+				return TRUE;
+			
+		return FALSE;
+	}
 	
 	
 	function connecterDb()
@@ -179,19 +199,21 @@ class CExport
 	
 	function trouverRelations($v_bRecursif = FALSE)
 	{
-		$i = 0;
+		$i = 1;
 		while ($this->aEnregsAjoutesToutesTables())
 		{
-			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.++$i.' --- '.LF.FIN_EMPHASE , FALSE);
+			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.$i.' --- '.LF.FIN_EMPHASE , FALSE);
 			
 			$this->reinitEnregsAjoutesToutesTables();
 			
 			$this->trouverRelationsToutesTables('enfants', $v_bRecursif);
-			//$this->trouverRelationsToutesTables('parents', $v_bRecursif);
+			$this->trouverRelationsToutesTables('parents', $v_bRecursif);
 			
 			foreach (array_keys($this->aaTables) as $sNomTable)
 				if ($this->aEnregsAExporter($sNomTable)) 
 					afflnd($sNomTable.' : '.implode(',', $this->retEnregsAExporter($sNomTable)));
+			
+			$i++;
 		}
 		afflnd(LF.LF.DEBUT_EMPHASE.'*** Nombre de passages : '.$i.' ***'.LF.FIN_EMPHASE , FALSE);
 		
@@ -337,12 +359,11 @@ class CExport
 	
 	function aEnregsAjoutesToutesTables()
 	{
-		$r_bEnregsAjoutes = FALSE;
-		
 		foreach (array_keys($this->aaTables) as $sNomTable)
-			$r_bEnregsAjoutes = $r_bEnregsAjoutes || $this->aEnregsAjoutes($sNomTable);
+			if ($this->aEnregsAjoutes($sNomTable))
+				return TRUE;
 		
-		return $r_bEnregsAjoutes;
+		return FALSE;
 	}
 	
 	function aEnregsAjoutes($v_sTable)
@@ -420,5 +441,7 @@ class CExport
 $oExport = new CExport();
 // formation <- liste fixe à exporter (point de départ des requêtes SQL)
 $oExport->ajouterEnregsAExporter('Formation', array(92));
+//$oExport->trouverRelations(FALSE);
 $oExport->trouverRelations(TRUE);
+affln('Terminé');
 ?>
