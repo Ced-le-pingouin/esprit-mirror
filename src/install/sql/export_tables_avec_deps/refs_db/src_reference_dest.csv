@@ -12,7 +12,7 @@ Equipe_Membre;IdEquipe;Equipe;IdEquipe
 Equipe_Membre;IdPers;Personne;IdPers
 Evenement;IdPers;Personne;IdPers
 Evenement_Detail;IdEven;Evenement;IdEven
-Evenement_Detail;IdForm;Formation;IdForm
+#Evenement_Detail;IdForm;Formation;IdForm
 Formation;IdPers;Personne;IdPers
 Formation_Concepteur;IdForm;Formation;IdForm
 Formation_Concepteur;IdPers;Personne;IdPers
@@ -63,7 +63,7 @@ Module_Tuteur;IdMod;Module;IdMod
 Module_Tuteur;IdPers;Personne;IdPers
 MPSeparateur;IdObjForm;ObjetFormulaire;IdObjForm
 MPTexte;IdObjForm;ObjetFormulaire;IdObjForm
-ObjetFormulaire;IdTypeObj;TypeObjetForm;IdTypeObj
+#ObjetFormulaire;IdTypeObj;TypeObjetForm;IdTypeObj
 ObjetFormulaire;IdForm;Formulaire;IdForm
 Projet_Admin;IdPers;Personne;IdPers
 Projet_Concepteur;IdPers;Personne;IdPers
@@ -94,7 +94,7 @@ Ressource_SousActiv_FichierEvaluation;IdResSousActiv;Ressource_SousActiv;IdResSo
 Ressource_SousActiv_FichierEvaluation;IdRes;Ressource;IdRes
 Ressource_SousActiv_Vote;IdResSousActiv;Ressource_SousActiv;IdResSousActiv
 Ressource_SousActiv_Vote;IdPers;Personne;IdPers
-SousActiv;IdTypeSousActiv;TypeSousActiv;IdTypeSousActiv
+#SousActiv;IdTypeSousActiv;TypeSousActiv;IdTypeSousActiv
 SousActiv;IdActiv;Activ;IdActiv
 SousActiv;IdPers;Personne;IdPers
 SousActivInvisible;IdSousActiv;SousActiv;IdSousActiv
@@ -104,7 +104,7 @@ SousActiv_Ressource_SousActiv;IdResSousActiv;Ressource_SousActiv;IdResSousActiv
 SousActiv_SousActiv;IdSousActiv;SousActiv;IdSousActiv
 SousActiv_SousActiv;IdSousActivRef;SousActiv;IdSousActiv
 Statut_Permission;IdPermission;Permission;IdPermission
-Statut_Permission;IdStatut;TypeStatutPers;IdStatut
+#Statut_Permission;IdStatut;TypeStatutPers;IdStatut
 SujetForum;IdForum;Forum;IdForum
 SujetForum;IdPers;Personne;IdPers
 SujetForum_Equipe;IdSujetForum;SujetForum;IdSujetForum

@@ -47,7 +47,7 @@ QTexteLong;IdObjForm
 Reponse;IdReponse
 ReponseCar;IdFC,IdObjForm
 ReponseEntier;IdFC,IdObjForm,IdReponse
-ReponseEntier;IdFC,IdObjForm,IdReponse
+ReponseFlottant;IdFC,IdObjForm
 ReponseTexte;IdFC,IdObjForm
 Reponse_Axe;IdReponse,IdAxe
 Ressource;IdRes

@@ -1,5 +1,11 @@
 <?php
 /*
+ * - la structure de certaines tables diffère-t-elle entre Esprit 1.0 et Esprit 2.0 ?
+ * - les mots de passe sont cryptés dans un champ PASSWORD de MySQL pre-4.1, alors qu'Esprit 2.0 est censé fonctionner 
+ *   dans MySQL 4.1+
+ * - il faut bien entendu récupérer les fichiers des formations également
+ * - attention à l'encodage ? 
+ * 
  * - transformer ce fouillis de tableaux en objets faciles à utiliser
  * - pour le moment, les infos sur les index et les clés étrangères dans les tables sont générés/rédigés avant
  *   l'exportation, puis lus. Il faudrait pouvoir récupérer ces infos dans la DB à la volée. Pour les clés étrangères, 
@@ -11,12 +17,14 @@
  */
 require_once('../../../include/config.inc');
 
-//define('DEBUG', TRUE);
+define('DEBUG', TRUE);
 define('AFFICHAGE_HTML', TRUE);
 define('ENCODAGE', 'utf-8');
 
 if (defined('AFFICHAGE_HTML'))
 {
+	define('EN_TETE',"<html>\n<head><title>Exportation</title></head>\n<body style=\"overflow: auto;\">\n");
+	define('PIED_DE_PAGE',"\n</body>\n</html>");
 	define('MIME', "text/html");
 	define('LF', "<br />");
 	define('TAB', "&nbsp;&nbsp;&nbsp;&nbsp;");
@@ -28,6 +36,8 @@ if (defined('AFFICHAGE_HTML'))
 }
 else
 {
+	define('EN_TETE',"");
+	define('PIED_DE_PAGE',"");
 	define('MIME', "text/plain");
 	define('LF', "\n");
 	define('TAB', "\t");
@@ -166,8 +176,8 @@ class CExport
 			{
 				$asEnregsAExporter = $this->retEnregsAExporter($sNomTable);
 				$sContenuFichier .=
-					"$sNomTable (".count($asEnregsAExporter)."):\n".
-//					implode("\n", $asEnregsAExporter).
+					"$sNomTable (".count($asEnregsAExporter).")".
+//					":\n".implode("\n", $asEnregsAExporter).
 					"\n"
 					;
 			}
@@ -199,9 +209,11 @@ class CExport
 	
 	function trouverRelations($v_bRecursif = FALSE)
 	{
-		$i = 1;
+		$i = 0;
 		while ($this->aEnregsAjoutesToutesTables())
 		{
+			$i++;
+			
 			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.$i.' --- '.LF.FIN_EMPHASE , FALSE);
 			
 			$this->reinitEnregsAjoutesToutesTables();
@@ -211,9 +223,7 @@ class CExport
 			
 			foreach (array_keys($this->aaTables) as $sNomTable)
 				if ($this->aEnregsAExporter($sNomTable)) 
-					afflnd($sNomTable.' : '.implode(',', $this->retEnregsAExporter($sNomTable)));
-			
-			$i++;
+					afflnd($sNomTable.' : '.implode(', ', $this->retEnregsAExporter($sNomTable)));
 		}
 		afflnd(LF.LF.DEBUT_EMPHASE.'*** Nombre de passages : '.$i.' ***'.LF.FIN_EMPHASE , FALSE);
 		
@@ -246,7 +256,7 @@ class CExport
 				
 				$sRequeteSql =
 					 " SELECT"
-					."   $sCleDest" // "d.<nom_cle>", le "d." est ajouté à la création de cette chaîne si besoin est (parfois plusieurs champs pour former la clé)
+					."   DISTINCT $sCleDest" // "d.<nom_cle>", le "d." est ajouté à la création de cette chaîne si besoin est (parfois plusieurs champs pour former la clé)
 					." FROM"
 					."   $sTableDest AS d"
 					."   INNER JOIN $v_sTableSource AS s ON (d.$sChampDest = s.$sChampSource)"
@@ -258,34 +268,39 @@ class CExport
 				if (count($asIds))
 				{
 					$this->ajouterEnregsAExporter($sTableDest, $asIds);
-					$sListeIds = implode(',', $asIds);
+					$sListeIds = implode(', ', $asIds);
 				}
 				else
 				{
 					$sListeIds = NULL;
 				}
 				
-//				if ($v_sTypeRel == 'enfants')
-//				{
-//					afflnd(
-//						$v_sTableSource.'<='.$sTableDest.
-//						' - '.
-//						$sRequeteSql.
-//						' : '.$sListeIds
-//					);
-//				}
-//				else
-//				{
-//					afflnd(
-//						DEBUT_EMPHASE.
-//						$v_sTableSource.'=>'.$sTableDest.
-//						' - '.
-//						$sRequeteSql.
-//						' : '.$sListeIds.
-//						FIN_EMPHASE
-//						, FALSE
-//					);
-//				}
+				if (!is_null($sListeIds))
+				{
+					if ($v_sTypeRel == 'enfants')
+					{
+						afflnd(
+							$v_sTableSource.'<='.$sTableDest.
+							' - '.
+							$sRequeteSql.
+							' : '.
+							$sListeIds
+						);
+					}
+					else
+					{
+						afflnd(
+							DEBUT_EMPHASE.
+							$v_sTableSource.'=>'.$sTableDest.
+							' - '.
+							$sRequeteSql.
+							' : '.
+							$sListeIds.
+							FIN_EMPHASE
+							, FALSE
+						);
+					}
+				}
 				
 				if ($v_bRecursif && !is_null($sListeIds))
 					$this->trouverRelationsTable($sTableDest, $v_sTypeRel, $v_bRecursif);
@@ -312,12 +327,12 @@ class CExport
 	function executerRequete($v_sRequete, $v_bAfficher = FALSE)
 	{
 		if ($v_bAfficher)
-			print $v_sRequete;
+			aff($v_sRequete);
 		
 		$r_hResult = mysql_query($v_sRequete)
 		  or die(mysql_error());
 		
-		return $r_hResult; 
+		return $r_hResult;
 	}
 	
 	function libererResult($v_hResult)
@@ -377,7 +392,7 @@ class CExport
 		$r_bEnregAjoute = FALSE;
 		
 		foreach ($v_asValeurs as $sValeur)
-			$r_bEnregAjoute = $r_bEnregAjoute || $this->ajouterEnregAExporter($v_sTable, $sValeur);
+			$bEnregAjoute = $this->ajouterEnregAExporter($v_sTable, $sValeur) || $r_bEnregAjoute;
 		
 		return $r_bEnregAjoute;
 	}
@@ -415,7 +430,7 @@ class CExport
 		$asCles = explode(',', $v_sCle);
 		for ($i = 0; $i < count($asCles); $i++)
 			$asCles[$i] = $v_sPrefixe.'.'.$asCles[$i];
-		return implode(',', $asCles);
+		return implode(', ', $asCles);
 	}
 	
 	function retConditionCle($v_sPrefixe, $v_sCle, $v_asEnregsAExporter)
@@ -432,16 +447,17 @@ class CExport
 		
 		$asCles = explode(',', $v_sCle);
 		for ($i = 0; $i < count($asCles); $i++)
-			$asPartiesCondition[] = $v_sPrefixe.'.'.$asCles[$i].' IN ('.implode(',', $asValeursParCle[$i]).')';
+			$asPartiesCondition[] = $v_sPrefixe.'.'.$asCles[$i].' IN ('.implode(', ', $asValeursParCle[$i]).')';
 		
 		return ' '.implode(' AND ', $asPartiesCondition);
 	}
 }
+aff(EN_TETE, FALSE);
 
 $oExport = new CExport();
-// formation <- liste fixe à exporter (point de départ des requêtes SQL)
-$oExport->ajouterEnregsAExporter('Formation', array(92));
-//$oExport->trouverRelations(FALSE);
-$oExport->trouverRelations(TRUE);
+$oExport->ajouterEnregsAExporter('Formation', array(92)); // formation <- liste fixe à exporter (point de départ des requêtes SQL)
+$oExport->trouverRelations(FALSE);
 affln('Terminé');
+
+aff(PIED_DE_PAGE, FALSE);
 ?>
