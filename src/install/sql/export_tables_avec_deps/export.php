@@ -77,9 +77,9 @@ function affnivd($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $t
 function affnivlnd($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $this->_affniv($v_iNiveau); afflnd($v_sTexte, $v_bEchapper); }
 
 
-define('TABLE_SRC' , 0);
-define('CHAMPS_SRC' , 1);
-define('TABLE_DEST' , 2);
+define('TABLE_SRC'   , 0);
+define('CHAMPS_SRC'  , 1);
+define('TABLE_DEST'  , 2);
 define('CHAMPS_DEST' , 3);
 
 class CExport
@@ -235,14 +235,20 @@ class CExport
 	
 	function trouverRelationsToutesTables($v_sTypeRel, $v_bRecursif = FALSE)
 	{
+		$r_bEnregsAjoutes = FALSE;
+		
 		foreach (array_keys($this->aaTables) as $sNomTable)
 			if ($this->aEnregsAExporter($sNomTable))
-				$this->trouverRelationsTable($sNomTable, $v_sTypeRel, $v_bRecursif);
+				$r_bEnregsAjoutes = $this->trouverRelationsTable($sNomTable, $v_sTypeRel, $v_bRecursif) || $r_bEnregsAjoutes;
+				
+		return $r_bEnregsAjoutes;
 	}
 	
 	// $v_sTypeRel doit être 'enfants' ou 'parents'
 	function trouverRelationsTable($v_sTableSource, $v_sTypeRel, $v_bRecursif = FALSE)
 	{
+		$r_bEnregsAjoutes = FALSE;
+		
 		if ($this->aRelations($v_sTableSource, $v_sTypeRel))
 		{
 			$sCleSource = $this->retClePrimaire($v_sTableSource);
@@ -265,17 +271,20 @@ class CExport
 					.$this->retConditionCle('s', $sCleSource, $asEnregsAExporter);
 					;
 				$asIds = $this->executerRequeteSurIds($sRequeteSql);
+				
 				if (count($asIds))
 				{
-					$this->ajouterEnregsAExporter($sTableDest, $asIds);
+					$bEnregsAjoutesTmp = $this->ajouterEnregsAExporter($sTableDest, $asIds);
+					$r_bEnregsAjoutes =  $bEnregsAjoutesTmp || $r_bEnregsAjoutes;
 					$sListeIds = implode(', ', $asIds);
 				}
 				else
 				{
 					$sListeIds = NULL;
+					$bEnregsAjoutesTmp = FALSE;
 				}
 				
-				if (!is_null($sListeIds))
+				if ($bEnregsAjoutesTmp)//(!is_null($sListeIds))
 				{
 					if ($v_sTypeRel == 'enfants')
 					{
@@ -303,9 +312,11 @@ class CExport
 				}
 				
 				if ($v_bRecursif && !is_null($sListeIds))
-					$this->trouverRelationsTable($sTableDest, $v_sTypeRel, $v_bRecursif);
+					$r_bEnregsAjoutes = $this->trouverRelationsTable($sTableDest, $v_sTypeRel, $v_bRecursif) || $r_bEnregsAjoutes;
 			}
 		}
+		
+		return $r_bEnregsAjoutes;
 	}
 	
 	
@@ -367,6 +378,12 @@ class CExport
 		$this->aaTables[$v_sTable]['EnregsAjoutes'] = FALSE;
 	}
 	
+	function defEnregsAjoutesToutesTables()
+	{
+		foreach (array_keys($this->aaTables) as $sNomTable)
+			$this->defEnregsAjoutes($sNomTable);
+	}
+	
 	function defEnregsAjoutes($v_sTable)
 	{
 		$this->aaTables[$v_sTable]['EnregsAjoutes'] = TRUE;
@@ -392,7 +409,7 @@ class CExport
 		$r_bEnregAjoute = FALSE;
 		
 		foreach ($v_asValeurs as $sValeur)
-			$bEnregAjoute = $this->ajouterEnregAExporter($v_sTable, $sValeur) || $r_bEnregAjoute;
+			$r_bEnregAjoute = $this->ajouterEnregAExporter($v_sTable, $sValeur) || $r_bEnregAjoute;
 		
 		return $r_bEnregAjoute;
 	}
@@ -435,21 +452,28 @@ class CExport
 	
 	function retConditionCle($v_sPrefixe, $v_sCle, $v_asEnregsAExporter)
 	{
-		$asValeurs = array();
-		$asValeursParCle = array();
+		$sCondition = ' ';
+		$asCles = explode(',', $v_sCle);
 		
-		for ($i = 0; $i < count($v_asEnregsAExporter); $i++)
+		if (count($asCles) == 1)
 		{
-			$asValeurs = explode('&', $v_asEnregsAExporter[$i]);
-			for ($j = 0; $j < count($asValeurs); $j++)
-				$asValeursParCle[$j][] = $asValeurs[$j];
+			$sCondition .= $v_sPrefixe.'.'.$asCles[0].' IN ('.implode(', ', $v_asEnregsAExporter).')';
+		}
+		else
+		{
+			foreach ($v_asEnregsAExporter as $sEnregAExporter)
+			{
+				$asValeursParCle = explode('&', $sEnregAExporter);
+				$asPartiesCondition = array();
+				for ($i = 0; $i < count($asCles); $i++)
+					$asPartiesCondition[] = $v_sPrefixe.'.'.$asCles[$i].'='.$asValeursParCle[$i];
+				$asConditions[] = '('.implode(' AND ', $asPartiesCondition).')';
+			}
+			
+			$sCondition .= implode(' OR ', $asConditions);
 		}
 		
-		$asCles = explode(',', $v_sCle);
-		for ($i = 0; $i < count($asCles); $i++)
-			$asPartiesCondition[] = $v_sPrefixe.'.'.$asCles[$i].' IN ('.implode(', ', $asValeursParCle[$i]).')';
-		
-		return ' '.implode(' AND ', $asPartiesCondition);
+		return $sCondition;
 	}
 }
 aff(EN_TETE, FALSE);
