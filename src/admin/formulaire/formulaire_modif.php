@@ -27,12 +27,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	//*       Récupération des variables             *
 	//************************************************
 	
-	if (isset($_GET))
+	if (isset($_GET['idobj']))
 	{
 		$v_iIdObjForm = $_GET['idobj'];
 		$v_iIdFormulaire = $_GET['idformulaire'];
 	}
-	else if (isset($_POST))
+	else if (isset($_POST['idobj']))
 	{
 		$v_iIdObjForm = $_POST['idobj'];
 		$v_iIdFormulaire = $_POST['idformulaire'];
@@ -40,20 +40,18 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	}
 	else
 	{
-		$v_iIdObjForm = -1;
-		$v_iIdFormulaire = -1;
+		$v_iIdObjForm = 0;
+		$v_iIdFormulaire = 0;
 	}
 ?>
-	
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="<?=dir_theme("formulaire/formulaire.css");?>">
-
+<title>Modification des formulaires </title>
 <script src="selectionobj.js" type="text/javascript">
 </script>
-
 <script type="text/javascript">
 <!--
 function soumettre(TypeAct,Parametre)
@@ -69,15 +67,9 @@ function soumettre(TypeAct,Parametre)
 }
 //-->
 </script>
-
 </head>
-
 <body class="modif">
-	
 <?php
-	//echo "Idobj = ".$v_iIdObjForm;
-	//echo "<br>IdFormulaire =".$v_iIdFormulaire;
-	
 	if ($v_iIdObjForm > 0)
 	{
 		$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);
@@ -86,85 +78,69 @@ function soumettre(TypeAct,Parametre)
 		switch($oObjetFormulaire->retIdTypeObj())
 		{
 			case 1:
-				//echo "Objet de type 1<br>";
 				$oQTexteLong = new CQTexteLong($oProjet->oBdd,$v_iIdObjForm);
 				echo $oQTexteLong->cHtmlQTexteLongModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 2:
-				//echo "Objet de type 2<br>";
-					
 				$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
 				echo $oQTexteCourt->cHtmlQTexteCourtModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 3:
-				//echo "Objet de type 3<br>";
-				
 				$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
 				echo $oQNombre->cHtmlQNombreModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 4:
-				//echo "Objet de type 4<br>";
 				$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
 				echo $oQListeDeroul->cHtmlQListeDeroulModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 5:
-				//echo "Objet de type 5<br>";
 				$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 				echo $oQRadio->cHtmlQRadioModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 6:
-				//echo "Objet de type 6<br>";
 				$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
 				echo $oQCocher->cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 7:
-				//echo "Objet de type 7<br>";
 				$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
 				echo $oMPTexte->cHtmlMPTexteModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			case 8:
-				//echo "Objet de type 8<br>";
 				$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
 				echo $oMPSeparateur->cHtmlMPSeparateurModif($v_iIdObjForm,$v_iIdFormulaire);
-				
 				break;
 				
 			default:
-				echo "Erreur: numéro d'objet d'activité en ligne incorrect.<br>";
+				echo "Erreur: numéro d'objet d'activité en ligne incorrect.<br />";
 		}
 	}
-	else if ($v_iIdFormulaire != 0 ) //Cas où on a cliqué sur le titre du formulaire
+	else 
 	{
-		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
-		echo $oFormulaire->cHtmlFormulaireModif($v_iIdObjForm,$v_iIdFormulaire);
-	}
-	else	//Cas où aucune valeur n'a encore été envoyée (c-à-d chargement de la page)
-	{
-		echo "<table border=\"10\" cellspacing=\"10\" cellpadding=\"10\" width=\"100%\" height=\"100%\">"
-			."<tr><td align=\"center\">"
-			."<img src=\"../../images/doc-vide.gif\" border=\"0\"><br>"
-			//."e&nbsp;C&nbsp;O&nbsp;N&nbsp;C&nbsp;E&nbsp;P&nbsp;T<font size=\"1\"><sup>&copy;</sup></font><br>"
-			."Générateur d'activités en ligne"
-			."</td></tr>"
-			."<tr><td align=\"center\">Unit&eacute; de Technologie de l'&Eacute;ducation</td></tr>"
-			."</table>";
-	}
-	echo "\n</body>\n";
-	echo "</html>";
-} //Verification de la permission d'utiliser le concepteur de formulaire
+		if ($v_iIdFormulaire != 0 ) //Cas où on a cliqué sur le titre du formulaire
+		{
+			$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
+			echo $oFormulaire->cHtmlFormulaireModif($v_iIdObjForm,$v_iIdFormulaire);
+		}
+		else	//Cas où aucune valeur n'a encore été envoyée (c-à-d chargement de la page)
+		{
 ?>
-
+			<div id="titrepagevierge">
+			<img src="../../images/doc-vide.gif" alt="logo" />
+			Générateur d'activités en ligne
+			<span id="ute">Unit&eacute; de Technologie de l'&Eacute;ducation</span>
+			</div>
+<?php
+		}
+	}
+} //Verification de la permission d'utiliser le concepteur de formulaire
+$oProjet->terminer();
+?>
+</body>
+</html>

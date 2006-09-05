@@ -74,7 +74,7 @@ body.formsup
 .listeForm
 {
 	  width:100%;
-	  border:1px solid black; /*Cette propriété n'a d'effet que sous netscape*/
+	  border:1px solid black; /*Cette propriï¿½tï¿½ n'a d'effet que sous netscape*/
 }
 
 fieldset
@@ -84,6 +84,10 @@ fieldset
 	  color:rgb(111,105,87);  
 }
 
+legend
+{
+	font-weight: bold;
+}
 form.formFormulaire
 {
 	background-color: rgb(249,251,251);
@@ -93,31 +97,56 @@ form.formFormulaire
 	padding: 20px;
 }
 
-/* :link permet de définir les propriétés des liens */
+/* :link permet de dï¿½finir les propriï¿½tï¿½s des liens */
 a:link
 {
     color : rgb(63,67,34) ;
     text-decoration : none ;
 }
 
-/* :visited permet de définir les propriétés des liens déjà visités */
+/* :visited permet de dï¿½finir les propriï¿½tï¿½s des liens dï¿½jï¿½ visitï¿½s */
 a:visited
 {
     color : rgb(63,67,34) ;
     text-decoration : none ;
 }
 
-/* :active permet de définir les propriétés d'un lien actif - qui vient d'être cliqué */
+/* :active permet de dï¿½finir les propriï¿½tï¿½s d'un lien actif - qui vient d'ï¿½tre cliquï¿½ */
 a:active
 {
     color : rgb(63,67,34) ;
     text-decoration : none ;
 }
 
-/* :hover permet de définir les propriétés du lien quand le curseur le survole */
+/* :hover permet de dï¿½finir les propriï¿½tï¿½s du lien quand le curseur le survole */
 a:hover
 {
     color : rgb(63,67,34) ;
     text-decoration : underline ;
 }
 
+#titrepagevierge
+{
+	text-align:center;
+	width: 350px;
+	margin: 0 auto;
+	margin-top: 7%;
+	padding: 7px;
+	/*border: solid 1px black;*/
+}
+
+#titrepagevierge img
+{
+	display: block;
+	margin: 2px auto;
+	padding-bottom: 5px;
+	border: 0;
+}
+
+#ute
+{
+	display: block;
+	margin: 2px auto;
+	padding-top: 25px;
+	padding-bottom: 5px;
+}

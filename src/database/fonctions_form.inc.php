@@ -19,15 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: fonctions_form.inc.php
-** Description ............: Ensemble de fonctions communes aux formulaires
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	fonctions_form.inc.php
+ * 
+ * Contient les fonctions communes aux formulaires
+ * 
+ * @date	2004/06/22
+ * 
+ * @author	Ludovic FLAMME
+ */
 
 
 	/*
@@ -48,19 +48,19 @@ function Alignement($sAlignEnon,$sAlignRep)
 
 	if ($sAlignEnon != "")
 	{
-		if ($sAlignEnon == "left") { $sAE1 = "CHECKED"; }
-		else if ($sAlignEnon == "right") { $sAE2 = "CHECKED"; }
-		else if ($sAlignEnon == "center") { $sAE3 = "CHECKED"; }
-		else if ($sAlignEnon == "justify") { $sAE4 = "CHECKED"; }
+		if ($sAlignEnon == "left") { $sAE1 = "checked"; }
+		else if ($sAlignEnon == "right") { $sAE2 = "checked"; }
+		else if ($sAlignEnon == "center") { $sAE3 = "checked"; }
+		else if ($sAlignEnon == "justify") { $sAE4 = "checked"; }
 	}
-	else { $ae1 = "CHECKED"; }
+	else { $ae1 = "checked"; }
 	
 	if ($sAlignRep != "")
 	{
-		if ($sAlignRep == "left") { $sAR1 = "CHECKED"; }
-		else if ($sAlignRep == "right") { $sAR2 = "CHECKED"; }
-		else if ($sAlignRep == "center") { $sAR3 = "CHECKED"; }
-		else if ($sAlignRep == "justify") { $sAR4 = "CHECKED"; }
+		if ($sAlignRep == "left") { $sAR1 = "checked"; }
+		else if ($sAlignRep == "right") { $sAR2 = "checked"; }
+		else if ($sAlignRep == "center") { $sAR3 = "checked"; }
+		else if ($sAlignRep == "justify") { $sAR4 = "checked"; }
 	}
 	else
 	{ $ar1 = "CHECKED"; }
@@ -118,10 +118,9 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 							 ." r.OrdreReponse"
 							 .", a.DescAxe";
 	
-	//echo "<br><br>$sRequeteSqlAxes";
 	$hResultAxe = $oCBdd2->executerRequete($sRequeteSqlAxes);
 
-	$CodeHtml="";
+	$sCodeHtml="";
 
 	while ($oEnreg = $oCBdd2->retEnregSuiv($hResultAxe))
 	{
@@ -131,13 +130,13 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 		$iIdReponse = $oEnreg->IdReponse;
 		$sDescAxe = $oEnreg->DescAxe;
 	
-		$CodeHtml.="<TR><TD></TD><TD>\n"
-				  ."<TABLE><TR><TD width=200> &#149 $sDescAxe</TD><TD><input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" Value=\"$iPoids\" onblur=\"verifNumeric(this)\"></TD></TR></TABLE>\n"
-				  ."</TD></TR>\n"; 
+		$sCodeHtml.="<tr>\n<td>\n &nbsp;\n</td>\n<td>\n"
+				  ."<table>\n<tr>\n<td width=200>\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
+				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\">\n</td>\n</tr>\n</table>\n"
+				  ."</td>\n</tr>\n"; 
 	}
 
-	return "$CodeHtml";
+	return $sCodeHtml;
 }
 
 function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
@@ -146,85 +145,17 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 	
 	//Copie de formulaire
 	$oFormulaire = new CFormulaire($this->oBdd,$v_iIdFormulaire);
-	$v_iIdNvFormulaire = $oFormulaire->copier($v_iIdFormulaire,$iIdNvPers);  //On envoie l'Id du formulaire a copier et l'IdPers du futur propriétaire de la copie
+	$v_iIdNvFormulaire = $oFormulaire->copier($iIdNvPers);  //On envoie l'IdPers du futur propriétaire de la copie
 	
 	//Copie des axes du formulaires
 	CopieFormulaire_Axe($this->oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);
 	
 	//Copie des objets du formulaire 1 par 1
-	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire"
-								  ." WHERE IdForm = $v_iIdFormulaire");
-								  
+	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdForm = $v_iIdFormulaire");
+  
 	while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-	{
 		CopierUnObjetFormulaire($this->oBdd, $oEnreg, $v_iIdNvFormulaire);
-		
-		/*
-		$oObjetFormulaire = new CObjetFormulaire($this->oBdd);
-		$oObjetFormulaire->init($oEnreg);
-		$iIdObjActuel = $oObjetFormulaire->retId();
-		//echo"<br>iIdObjActuel : ".$iIdObjActuel;
-		$iIdNvObjForm = $oObjetFormulaire->copier($v_iIdNvFormulaire,$iIdObjActuel);
-		//echo"<br>iIdNvObjForm : ".$iIdNvObjForm;
-		  
-		switch($oObjetFormulaire->retIdTypeObj())
-		{
-			case 1:
-				//echo "Objet de type 1<br>";
-				$oQTexteLong = new CQTexteLong($this->oBdd,$iIdObjActuel);
-				$oQTexteLong->copier($iIdNvObjForm);
-				break;
 
-			case 2:
-				//echo "Objet de type 2<br>";
-				$oQTexteCourt = new CQTexteCourt($this->oBdd,$iIdObjActuel);
-				$oQTexteCourt->copier($iIdNvObjForm);
-				break;
-				
-			case 3:
-				//echo "Objet de type 3<br>";
-				$oQNombre = new CQNombre($this->oBdd,$iIdObjActuel);
-				$oQNombre->copier($iIdNvObjForm);
-				break;
-				
-			case 4:
-				//echo "Objet de type 4<br>";
-				$oQListeDeroul = new CQListeDeroul($this->oBdd,$iIdObjActuel);
-				$oQListeDeroul->copier($iIdNvObjForm);
-				CopieReponses($this->oBdd,$iIdObjActuel,$iIdNvObjForm);
-				break;
-				
-			case 5:
-				//echo "Objet de type 5<br>";
-				$oQRadio = new CQRadio($this->oBdd,$iIdObjActuel);
-				$oQRadio->copier($iIdNvObjForm);
-				CopieReponses($this->oBdd,$iIdObjActuel,$iIdNvObjForm);
-				break;
-				
-			case 6:
-				//echo "Objet de type 6<br>";
-				$oQCocher = new CQCocher($this->oBdd,$iIdObjActuel);
-				$oQCocher->copier($iIdNvObjForm);
-				CopieReponses($this->oBdd,$iIdObjActuel,$iIdNvObjForm);
-				break;
-				
-			case 7:
-				//echo "Objet de type 7<br>";
-				$oMPTexte = new CMPTexte($this->oBdd,$iIdObjActuel);
-				$oMPTexte->copier($iIdNvObjForm);
-				break;
-				
-			case 8:
-				//echo "Objet de type 8<br>";
-				$oMPSeparateur = new CMPSeparateur($this->oBdd,$iIdObjActuel);
-				$oMPSeparateur->copier($iIdNvObjForm);
-				break;
-				
-			default:
-				echo "Erreur IdObjForm invalide<br>";
-		} //Fin switch
-		*/
-	} //Fin while
 	$this->oBdd->libererResult($hResult);
 	return TRUE;
 }

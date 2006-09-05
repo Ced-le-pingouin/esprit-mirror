@@ -19,36 +19,36 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: formulaire.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	formulaire.tbl.php
+ * 
+ * Contient la classe de gestion des formulaires, en rapport avec la DB
+ * 
+ * @date	2004/05/05
+ * 
+ * @author	Ludovic FLAMME
+ */
 
+/**
+* Gestion des formulaires, et encapsulation de la table Formulaire de la DB
+*/
 class CFormulaire 
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
-	var $aoFormulaire;
-	
-	var $aoObjets;
-	var $aoAxes;
-	
-	var $oExportation;
+	var $oBdd;			///< Objet représentant la connexion à la DB
+	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 
-	/*
-	** Fonction 		: CFormulaire
-	** Description	: constructeur
-	** Entrée			: 
-	**	 			&$v_oBdd : référence de l'objet Bdd appartenant a l'objet Projet
-	**				$v_iId : identifiant d'un objet formulaire
-	** Sortie			: 
-	*/
+	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB
+
+	var $aoFormulaire;	///< Tableau rempli par #retListeFormulairesVisibles(), contenant des formulaires
+	var $aoObjets;		///< Tableau rempli par #initObjets(), contenant des objets de formulaire
+	var $aoAxes;		///< Tableau rempli par #initAxes(), contenant les axes du formulaire courant
+	
+	var $oExportation;	///< objet initialisé par #determinerDonneesAExporter(), contenant les objet à exporter du formulaire courant
+
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CFormulaire(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;
@@ -57,15 +57,10 @@ class CFormulaire
 			$this->init();
 	}
 
-	/*
-	** Fonction 		: init
-	** Description	: permet d'initialiser l'objet formulaire soit en lui passant un enregistrement
-	**					  provenant de la BD, soit en effectuant directement une requête dans la BD avec 
-	**                l'id passé via la constructeur
-	** Entrée			:
-	**				$v_oEnregExistant=NULL : enregistrement représentant un formulaire
-	** Sortie			: 
-	*/
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -74,30 +69,26 @@ class CFormulaire
 		}
 		else
 		{
-			$sRequeteSql = "SELECT *"
-				." FROM Formulaire"
-				." WHERE IdForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM Formulaire"
+					." WHERE IdForm='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		
 		$this->iId = $this->oEnregBdd->IdForm;
 	}
 	
+	/**
+	 * Initialise un tableau contenant les axes du formulaire courant
+	 */
 	function initAxes()
 	{
 		if (isset($this->aoAxes))
 			return;
 		
-		$sRequeteSql =
-			"  SELECT a.*"
-			." FROM Axe AS a, Formulaire_Axe AS fa"
-			." WHERE fa.IdForm=".$this->retId()
-			."  AND fa.IdAxe=a.IdAxe"
-			." ORDER BY a.IdAxe"
-			;
-			
+		$sRequeteSql =	"  SELECT a.* FROM Axe AS a, Formulaire_Axe AS fa"
+				." WHERE fa.IdForm='".$this->retId()."' AND fa.IdAxe=a.IdAxe"
+				." ORDER BY a.IdAxe";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
@@ -106,18 +97,16 @@ class CFormulaire
 			$this->aoAxes[$iIndexAxe] = new CAxe($this->oBdd);
 			$this->aoAxes[$iIndexAxe]->init($oEnreg);
 		}
-		
-		/*$iIndexAxe = 0;
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-		{
-			$this->aoAxes[$iIndexAxe] = new CAxe($this->oBdd);
-			$this->aoAxes[$iIndexAxe]->init($oEnreg);
-			$iIndexAxe++;
-		}*/
-		
 		$this->oBdd->libererResult($hResult);
 	}
 	
+	/**
+	 * Initialise un tableau contenant les objet du formulaire courant
+	 * 
+	 * @param	v_bInitDetail	si \c true(defaut) initialise les objets du formulaire, la fonction initAxes() doit être
+	 * 							appelée avant celle-ci
+	 * @param	v_bInitValeursParAxe si \c true(\c false par défaut), initialise les reponses de l'objet par axe
+	 */
 	function initObjets($v_bInitDetail = TRUE, $v_bInitValeursParAxe = FALSE)
 	{
 		if (isset($this->aoObjets))
@@ -133,13 +122,9 @@ class CFormulaire
 				$sListeAxes = implode(',', $aiAxes);
 		}
 		
-		$sRequeteSql =
-			"  SELECT *"
-			." FROM ObjetFormulaire"
-			." WHERE IdForm=".$this->retId()
-			." ORDER BY OrdreObjForm"
-			;
-		
+		$sRequeteSql =	"SELECT * FROM ObjetFormulaire"
+				." WHERE IdForm=".$this->retId()
+				." ORDER BY OrdreObjForm";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
@@ -150,22 +135,19 @@ class CFormulaire
 			if ($v_bInitDetail)
 				$this->aoObjets[$iIndexObjet]->initDetail($v_bInitValeursParAxe, $sListeAxes);
 		}
-		
-		/*$iIndexObjet = 0;
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-		{
-			$this->aoObjets[$iIndexObjet] = new CObjetFormulaire($this->oBdd);
-			$this->aoObjets[$iIndexObjet]->init($oEnreg);
-			if ($v_bInitDetail)
-				$this->aoObjets[$iIndexObjet]->initDetail($v_bInitValeursParAxe, $sListeAxes);
-			$iIndexObjet++;
-		}*/
-		
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	// pour l'instant, prépare seulement l'exportation des listes, radios, et cases à cocher.
-	// les axes, objets, réponses possibles, et valeurs par axe doivent tous être initialisés pour que ça fonctionne
+	/**
+	 * Initialise oExportation qui contiendra les données à exporter.
+	 * Exporte seulement les listes, radios, et cases à cocher.
+	 * Les axes, objets, réponses possibles, et valeurs par axe doivent tous être initialisés pour que ça fonctionne
+	 * 
+	 * @param	v_iValeurAxeNeutreMin	nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées.
+	 * 									Cet intervalle correspond aux valeurs de l'axe qui ne sont pas prisent en compte
+	 * 									lors de l'exportation
+	 * @param	v_iValeurAxeNeutreMax	nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées
+	 */
 	function determinerDonneesAExporter($v_iValeurAxeNeutreMin = 0, $v_iValeurAxeNeutreMax = 0)
 	{
 		// effacement d'éventuelles données d'exportation existantes
@@ -219,14 +201,13 @@ class CFormulaire
 		}
 	}
 	
-	/*
-	** Fonction 		: ajouter
-	** Description	: créer un enregistrement dans la table Formulaire en initialisant certaines valeurs et
-	**				     surtout le propriétaire du formulaire créé
-	** Entrée			:
-	**				$iIdPers : identifiant du propriétaire du nouveau formulaire
-	** Sortie			: Id renvoyé par la BD
-	*/
+	/**
+	 * Ajoute un nouveau formulaire dans la DB
+	 * 
+	 * @param	iIdPers	l'id de la personne
+	 * 
+	 * @return	l'id du nouveau formulaire
+	 */
 	function ajouter ($iIdPers)
 	{
 		$sRequeteSql = "INSERT INTO Formulaire SET IdForm=NULL, Titre='Nouveau Formulaire', Encadrer=1, IdPers='$iIdPers';";
@@ -235,15 +216,14 @@ class CFormulaire
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
-	/*
-	** Fonction 		: cHtmlFormulaireModif
-	** Description	: renvoie le code html du formulaire qui permet de modifier les caractéristiques d'un formulaire,
-	**				     vérifie les données transmises par l'utilisateur afin de permettre un enregistrement ultérieur dans la BD
-	** Entrée			:
-	**				$v_iIdObjForm
-	**				$v_iIdFormulaire
-	** Sortie			:
-	*/
+	/**
+	 * Retourne le code html du formulaire qui permet de modifier les caractéristiques d'un formulaire
+	 * 
+	 * @param	v_iIdObjForm	l'id de l'objet du formulaire
+	 * @param	v_iIdFormulaire	l'id du formulaire
+	 * 
+	 * @return	le code html du formulaire qui permet de modifier les caractéristiques d'un formulaire
+	 */
 	function cHtmlFormulaireModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
@@ -325,165 +305,143 @@ class CFormulaire
 		else
 			$sRemplirToutSel = "";
 		
-		$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
+		$sParam="?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire;
 		
 		$sCodeHtml = "<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
-			."<fieldset><legend><b>Titre du formulaire</b></legend>\n"
-			."<TABLE>\n"
-			."<TR>\n"
-			."<TD>$sMessageErreur1 Titre :</TD>\n"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"100\" name=\"Titre\" Value=\"{$this->oEnregBdd->Titre}\"></TR>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>Encadrer :</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Encadrer\" VALUE=\"1\" $sEncadr1>Oui\n"
-			."<INPUT TYPE=\"radio\" NAME=\"Encadrer\" VALUE=\"0\" $sEncadr2>Non\n"
-			."</TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
+			."<fieldset>\n <legend>Titre du formulaire</legend>\n"
+			."<table>\n"
+			."<tr>\n"
+			."<td>\n $sMessageErreur1 Titre :\n</td>\n"
+			."<td>\n <input type=\"text\" size=\"70\" maxlength=\"100\" name=\"Titre\" Value=\"{$this->oEnregBdd->Titre}\" />\n</td>\n"
+			."</tr>\n"
+			."<tr>\n"
+			."<td>\n Encadrer :\n</td>\n"
+			."<td>\n <input type=\"radio\" name=\"Encadrer\" value=\"1\" $sEncadr1 />Oui\n"
+			." <input type=\"radio\" name=\"Encadrer\" value=\"0\" $sEncadr2 />Non\n"
+			."</td>\n"
+			."</tr>\n"
+			."</table>\n"
 			."</fieldset>\n"
 			
-			."<fieldset><legend><b>Mise en page</b></legend>\n"
-			."<TABLE>\n"
-			."<TR>\n"
-			."<TD>$sMessageErreur2 Largeur des marges :</TD>\n"
-			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"Largeur\" Value=\"{$this->oEnregBdd->Largeur}\"></TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"P\" $sTypeLargeur1>pourcents\n"
-			."<INPUT TYPE=\"radio\" NAME=\"TypeLarg\" VALUE=\"N\" $sTypeLargeur2>pixels\n"
-			."</TD>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>$sMessageErreur3 Interligne éléments :</TD>\n"
-			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterElem\" Value=\"{$this->oEnregBdd->InterElem}\"></TD>\n"
-			."</TR><TR>\n"
-			."<TD>$sMessageErreur4 Interligne énoncé-réponse :</TD>\n"
-			."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterEnonRep\" Value=\"{$this->oEnregBdd->InterEnonRep}\"></TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
+			."<fieldset>\n <legend>Mise en page</legend>\n"
+			."<table>\n"
+			."<tr>\n"
+			."<td>\n $sMessageErreur2 Largeur des marges :\n</td>\n"
+			."<td>\n <input type=\"text\" size=\"3\" maxlength=\"3\" name=\"Largeur\" value=\"{$this->oEnregBdd->Largeur}\">\n</td>\n"
+			."<td>\n <input type=\"radio\" name=\"TypeLarg\" value=\"P\" $sTypeLargeur1 />pourcents\n"
+			." <input type=\"radio\" name=\"TypeLarg\" value=\"N\" $sTypeLargeur2 />pixels\n"
+			."</td>\n"
+			."</tr>\n"
+			."<tr>\n"
+			."<td>\n $sMessageErreur3 Interligne éléments :\n</td>\n"
+			."<td>\n <input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterElem\" Value=\"{$this->oEnregBdd->InterElem}\" />\n</td>\n"
+			."</tr>\n<tr>\n"
+			."<td>\n $sMessageErreur4 Interligne énoncé-réponse :\n</td>\n"
+			."<td>\n <input type=\"text\" size=\"3\" maxlength=\"3\" name=\"InterEnonRep\" Value=\"{$this->oEnregBdd->InterEnonRep}\" />\n</td>\n"
+			."</tr>\n"
+			."</table>\n"
 			."</fieldset>\n"			
 			
-			."<fieldset><legend><b>Options supplémentaires</b></legend>\n"
-			."<TABLE>\n"
-			/*."<TR>\n"
-			."<TD>Statut : </TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"0\" $sStatut1>En cours</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Statut\" VALUE=\"1\" $sStatut2>Terminé</TD>\n"
-			."</TR>\n"*/			
-			."<TR>\n"
-			."<TD>Type : </TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"prive\" $sType1>Privé</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Type\" VALUE=\"public\" $sType2>Public</TD>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>Tous les champs doivent être remplis : </TD>\n"
-			."<TD COLSPAN=\"2\"><INPUT TYPE=\"checkbox\" NAME=\"RemplirTout\" VALUE=\"1\" $sRemplirToutSel></TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
+			."<fieldset>\n <legend>Options supplémentaires</legend>\n"
+			."<table>\n"
+			."<tr>\n"
+			."<td>\n Type : </td>\n"
+			."<td>\n <input type=\"radio\" name=\"Type\" value=\"prive\" $sType1 />Privé\n</td>\n"
+			."<td>\n <input type=\"radio\" name=\"Type\" value=\"public\" $sType2 />Public\n</td>\n"
+			."</tr>\n"
+			."<tr>\n"
+			."<td>\n Tous les champs doivent être remplis : \n</td>\n"
+			."<td colspan=\"2\"><input type=\"checkbox\" name=\"RemplirTout\" value=\"1\" $sRemplirToutSel />\n</td>\n"
+			."</tr>\n"
+			."</table>\n"
 			."</fieldset>\n"
 
 			//Le champ caché ci-dessous permet de "simuler" le fait d'appuyer 
 			//sur le bouton submit et ainsi permettre l'enregistrement dans la BD
-			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"   
+			."<input type=\"hidden\" name=\"envoyer\" value=\"1\" />\n"   
 			."</form>\n";
 		
 		return $sCodeHtml;
 	}
 	
-	
-	  /*
-	  ** Fonction 		: enregistrer
-	  ** Description	: enregistre les données de l'objet courant dans la BD
-	  ** Entrée			:
-	  ** Sortie			:
-	  */
-	 
+	/**
+	 * Enregistre les données du formulaire courant dans la DB
+	 */
 	function enregistrer ()
 	{
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		//de les stocker dans la BD sans erreur 
 		$sTitre = validerTexte($this->oEnregBdd->Titre);
 		
-		$sRequeteSql = ($this->retId() > 0 ? "UPDATE Formulaire SET" : 
-									  "INSERT INTO Formulaire SET")
-			." Titre='{$sTitre}'"
-			.", Encadrer='{$this->oEnregBdd->Encadrer}'"
-			.", Largeur='{$this->oEnregBdd->Largeur}'"
-			.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
-			.", InterElem='{$this->oEnregBdd->InterElem}'"
-			.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
-			.", RemplirTout='".$this->retRemplirTout()."'"
-			.", Statut='{$this->oEnregBdd->Statut}'"
-			.", Type='{$this->oEnregBdd->Type}'"
-			.", IdPers='{$this->oEnregBdd->IdPers}'"
-			.($this->oEnregBdd->IdForm > 0 ? " WHERE IdForm='{$this->oEnregBdd->IdForm}'" : NULL);
+		$sRequeteSql = ($this->retId() > 0 ? "UPDATE Formulaire SET" : "INSERT INTO Formulaire SET")
+					." Titre='{$sTitre}'"
+					.", Encadrer='{$this->oEnregBdd->Encadrer}'"
+					.", Largeur='{$this->oEnregBdd->Largeur}'"
+					.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
+					.", InterElem='{$this->oEnregBdd->InterElem}'"
+					.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
+					.", RemplirTout='".$this->retRemplirTout()."'"
+					.", Statut='{$this->oEnregBdd->Statut}'"
+					.", Type='{$this->oEnregBdd->Type}'"
+					.", IdPers='{$this->oEnregBdd->IdPers}'"
+					.($this->oEnregBdd->IdForm > 0 ? " WHERE IdForm='{$this->oEnregBdd->IdForm}'" : NULL);
 		
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
 	}
-
-
-	  /*
-	  ** Fonction 		: copier
-	  ** Description	: permet de faire une copie de l'objet courant au sein de la BD tout en lui
-	  **					  affectant un nouveau propriétaire
-	  ** Entrée			:
-	  					$v_iIdParent : identifiant du formulaire parent (uniquement présent à titre de contrôle)
-						$v_iIdPers : identifiant de la personne qui sera propriétaire de la copie
-	  ** Sortie			:
-	  **				$iIdForm : identifiant de la copie, renvoyé par la BD
-	  */
-
-	  function copier ($v_iIdParent,$v_iIdPers)
+	  
+	  /**
+	   * Copie le formulaire courant dans un nouveau formulaire appartenant à la nouvelle personne
+	   * 
+	   * @param	v_iIdPers	l'id de la personne
+	   * 
+	   * @return l'id du nouveau formulaire
+	   */
+	  function copier ($v_iIdPers)
 	  {
-		if ($v_iIdParent < 1)
-			return;
-		
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		// de les stocker dans la BD sans erreur 
 		$sTitre = "Copie de ".validerTexte($this->oEnregBdd->Titre);
 		
 		$sRequeteSql = "INSERT INTO Formulaire SET"
-			." Titre='{$sTitre}'"
-			.", Encadrer='{$this->oEnregBdd->Encadrer}'"
-			.", Largeur='{$this->oEnregBdd->Largeur}'"
-			.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
-			.", InterElem='{$this->oEnregBdd->InterElem}'"
-			.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
-			.", Statut='{$this->oEnregBdd->Statut}'"
-			.", Type='{$this->oEnregBdd->Type}'"
-			.", IdPers='{$v_iIdPers}'";
+					." Titre='{$sTitre}'"
+					.", Encadrer='{$this->oEnregBdd->Encadrer}'"
+					.", Largeur='{$this->oEnregBdd->Largeur}'"
+					.", TypeLarg='{$this->oEnregBdd->TypeLarg}'"
+					.", InterElem='{$this->oEnregBdd->InterElem}'"
+					.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
+					.", Statut='{$this->oEnregBdd->Statut}'"
+					.", Type='{$this->oEnregBdd->Type}'"
+					.", IdPers='{$v_iIdPers}'";
 			
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$iIdForm = $this->oBdd->retDernierId();
+		$iIdFormul = $this->oBdd->retDernierId();
 		
-		return $iIdForm;
+		return $iIdFormul;
 	  }
 
-
-     /*
-	  ** Fonction 		: effacer
-	  ** Description	: efface de la BD l'enregistrement concernant l'objet courant
-	  ** Entrée			:
-	  ** Sortie			:
-	  */
-
+	/**
+	 * Efface le formulaire courant
+	 */
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM Formulaire"
-				." WHERE IdForm ='{$this->oEnregBdd->IdForm}'";
-		//echo "SupprimerFormulaire".$sRequeteSql;
+		$sRequeteSql = "DELETE FROM Formulaire WHERE IdForm ='{$this->oEnregBdd->IdForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
 	}
 	
-	
+	/**
+	 * Retourne la liste des formulaires visibles
+	 * 
+	 * @param	v_iIdAuteur		l'id de l'auteur des formulaires
+	 * @param	v_sType			le type de formulaire
+	 * @param	v_iStatut		le statut du formulaire
+	 * @param	v_bToutMontrer	si \c true(\c false par défaut), la liste complète des formulaires sera retournée
+	 * 
+	 * @return	la liste des formulaires visibles
+	 */
 	function retListeFormulairesVisibles($v_iIdAuteur = NULL , $v_sType = NULL, $v_iStatut = NULL, $v_bToutMontrer = FALSE) // Statut 1 = terminé
 	{
 		$sRequeteSql = "SELECT * FROM Formulaire";
-		
 		if (!$v_bToutMontrer)
 		{
 			if (isset($v_sType))
@@ -499,12 +457,11 @@ class CFormulaire
 				if (isset($v_iIdAuteur))
 					$sRequeteSql .= " WHERE IdPers='$v_iIdAuteur'";
 			}
-			
 			if (isset($v_iStatut))
 				$sRequeteSql .= " AND Statut='$v_iStatut'";
 		}
+		$sRequeteSql .= " ORDER BY Titre";
 		
-		//print $sRequeteSql;
 		$hResultForms = $this->oBdd->executerRequete($sRequeteSql);
 		$iIndexFormulaire = 0;
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultForms))
@@ -513,19 +470,20 @@ class CFormulaire
 			$r_aoFormulaires[$iIndexFormulaire]->init($oEnreg);
 			$iIndexFormulaire++;
 		}
-		
 		$this->oBdd->libererResult($hResultForms);
-		
 		return $r_aoFormulaires;
 	}
 
+	/**
+	 * Retourne le nombre d'utilisation du formulaire
+	 * 
+	 * @return	le nombre d'utilisation du formulaire
+	 */
 	function retNbUtilisationsDsSessions()
 	{
-		$sRequeteSql =
-			"  SELECT COUNT(*) FROM SousActiv"
-			." WHERE IdTypeSousActiv='".LIEN_FORMULAIRE."'"
-			."  AND LEFT(DonneesSousActiv, ".(strlen($this->retId()) + 1).") = '".$this->retId().";'"
-			;
+		$sRequeteSql = "SELECT COUNT(*) FROM SousActiv"
+					." WHERE IdTypeSousActiv='".LIEN_FORMULAIRE."'"
+					."  AND LEFT(DonneesSousActiv, ".(strlen($this->retId()) + 1).") = '".$this->retId().";'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iNb = $this->oBdd->retEnregPrecis($hResult);
 		$this->oBdd->libererResult($hResult);
@@ -533,6 +491,11 @@ class CFormulaire
 		return $iNb;
 	}
 	
+	/**
+	 * Retourne le nombre de formulaire complété
+	 * 
+	 * @return	le nombre de formulaire complété
+	 */
 	function retNbRemplisDsSessions()
 	{
 		$sRequeteSql = "SELECT COUNT(*) FROM FormulaireComplete WHERE IdForm='".$this->retId()."'";
@@ -543,7 +506,8 @@ class CFormulaire
 		return $iNb;
 	}
 
-	//Fonctions de définition
+	/** @name Fonctions de définition des champs pour ce formulaire */
+	//@{
 	function defTitre ($v_sTitre) { $this->oEnregBdd->Titre = trim($v_sTitre); }
 	function defEncadrer ($v_iEncadrer) { $this->oEnregBdd->Encadrer = $v_iEncadrer; }
 	function defLargeur ($v_iLargeur) { $this->oEnregBdd->Largeur = $v_iLargeur; }
@@ -554,8 +518,10 @@ class CFormulaire
 	function defStatut ($v_iStatut) { $this->oEnregBdd->Statut = $v_iStatut; }
 	function defType ($v_sType) { $this->oEnregBdd->Type = trim($v_sType); }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
-	
-	//Fonctions de retour
+	//@}
+
+	/** @name Fonctions de lecture des champs pour ce formulaire */
+	//@{
 	function retId () { return $this->oEnregBdd->IdForm; }
 	function retTitre () { return $this->oEnregBdd->Titre; }
 	function retEncadrer () { return $this->oEnregBdd->Encadrer; }
@@ -567,5 +533,6 @@ class CFormulaire
 	function retStatut () { return $this->oEnregBdd->Statut; }
 	function retType () { return $this->oEnregBdd->Type; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
+	//@}
 }
 ?>
