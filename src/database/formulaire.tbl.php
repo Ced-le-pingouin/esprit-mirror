@@ -294,7 +294,7 @@ class CFormulaire
 		else
 			$sStatut2="CHECKED";*/
 		
-		$sType1 = $sType1 = "";
+		$sType1 = $sType2 = "";
 		if ($this->oEnregBdd->Type == "prive")
 			$sType1="CHECKED";
 		else
@@ -464,6 +464,7 @@ class CFormulaire
 		
 		$hResultForms = $this->oBdd->executerRequete($sRequeteSql);
 		$iIndexFormulaire = 0;
+		$r_aoFormulaires = array();
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultForms))
 		{
 			$r_aoFormulaires[$iIndexFormulaire] = new CFormulaire($this->oBdd);
