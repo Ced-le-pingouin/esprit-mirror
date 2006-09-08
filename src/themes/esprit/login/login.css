@@ -282,6 +282,15 @@ p#avertissement_login
 	color: rgb(136,37,37);
 	padding: 4px;
 	margin: 25px 5px 15px 5px;
+	height: 9em;
+	overflow: auto;
+}
+#avertissement_login a:link,
+#avertissement_login a:visited,
+#avertissement_login a:hover,
+#avertissement_login a:active
+{
+	color: blue;
 }
 #tete
 {
