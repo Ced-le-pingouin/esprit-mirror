@@ -14,6 +14,7 @@ La dernière version diffusée est disponible dans l'onglet Files,
 ou directement à l'URL :
 http://sourcesup.cru.fr/frs/?group_id=204
 
+
 2. Où trouver la version en développement de la plate-forme ?
 R : dans le référentiel Subversion (SVN) du projet. Pour la télécharger,
 il faut avoir un client subversion. La ligne de commande est :
@@ -21,13 +22,33 @@ il faut avoir un client subversion. La ligne de commande est :
 ou
   svn checkout https://subversion.cru.fr:/esprit dossier_local
 
+
 3. Comment attribuer le rôle de responsable de plate-forme à 
 plusieurs personnes ?
-R : pour le moment il n'y a pas d'interface web pour assigner le statut de
-responsable de plate-forme qui, auparavant, ce s'intitulait Admin.
+R : pour le moment ce n'est pas possible par l'interface web.
 Actuellement, il faut avoir les droits de manipulation de la base MySQL et
 ajouter directement l'IdPers de la personne voulue dans la table Projet_Admin.
 Cet IdPers est défini dans la table Personne.
+
+
+4. Comment importer une liste de personnes à inscrire ?
+R : Il existe un canevas Excel, disponible à partir de la page d'accueil de 
+la plate-forme et intitulé inscriptions2.xls, ou à partir de la racine
+de l'archive : ./src/themes/esprit/login/fichiers/inscriptions2.xls 
+Cette fiche doit être remplie par le responsable pédagogique (prof ou 
+secrétariat), puis envoyée à l'administrateur.
+
+Ensuite, l'administrateur doit effectuer les manipulations suivantes :
+- le transformer en fichier csv (avec Excel ou OpenOffice Calc... ) 
+- le déposer dans /setup/inscriptions
+- éliminer les lignes inutiles pour ne garder que les intitulés de colonnes et les données
+- le convertir en fichier sql grâce au fichier script 
+/setup/inscriptions/inscription.php
+- l'insérer dans la table "Personne" en ligne de commande mysql ou avec phpMyAdmin.
+
+Attention : il n'y a pas de vérification de doublon : dans la cas où le nom et 
+le prénom d'une personne sont déjà utilisées, elle sera re-créée.
+
 
 
 B. Utilisation (liste esprit-users)
