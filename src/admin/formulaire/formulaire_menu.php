@@ -209,23 +209,26 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 				$sNomFormulaire = $sSymboleDejaUtilise.$sNomFormulaire;
 			
 			$sNomFormulaireCourt = $sNomFormulaire;
-			
-			if (strlen($sNomFormulaireCourt) > $iLargeurMax)
-				$sNomFormulaireCourt = sprintf("%.".($iLargeurMax - 3)."s...", $sNomFormulaireCourt);
+			if (function_exists('mb_strlen'))
+			{
+					if (mb_strlen($sNomFormulaireCourt,"UTF-8") > $iLargeurMax)
+						$sNomFormulaireCourt = mb_substr($sNomFormulaireCourt,0,$iLargeurMax-3,"UTF-8")."...";
+			}
+			else // le résultat sera sûrement une chaîne corrompue et invalide, avec une représentation totalement incompréhensible
+			{
+					if (strlen($sNomFormulaireCourt) > $iLargeurMax)
+						$sNomFormulaireCourt = sprintf("%.".($iLargeurMax - 3)."s...", $sNomFormulaireCourt);
+			}
 			
 			$oBlock->remplacer("{nom_formulaire}", htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
-			
 			$oBlock->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire,ENT_COMPAT,"UTF-8"));
 			$oBlock->remplacer("{id_formulaire}",$oFormulaireCourant->retId());
 			
 			if ($iIdPersCourant == $oFormulaireCourant->retIdPers())
-			{
 				$oBlock->remplacer("{couleur}","style=\"color:green;\"");
-			}
 			else
 				$oBlock->remplacer("{couleur}","");
 		}
-		
 		$oBlock->afficher();
 	}
 	else
@@ -233,7 +236,6 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		$oBlock->effacer();
 	}
 	$oTpl->afficher();
-	
-	$oProjet->terminer();  //Ferme la connection avec la base de données
+	$oProjet->terminer();
 }//Verification de la permission d'utiliser le concepteur de formulaire
 ?>
