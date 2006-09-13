@@ -19,15 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: qcocher.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	qcocher.tbl.php
+ * 
+ * Contient la classe de gestion des questions de formulaire de type "case à cocher", en rapport avec la DB
+ * 
+ * @date	2004/06/22
+ * 
+ * @author	Ludovic FLAMME
+ */
 
 class CQCocher
 {
@@ -227,7 +227,7 @@ class CQCocher
 		
 		$hResultRRQCM = $this->oBdd->executerRequete($sRequeteSql);
 		
-		$CodeHtml="";
+		$sCodeHtml="";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQCM))
 		{
@@ -239,246 +239,21 @@ class CQCocher
 			$IdReponseTemp = $oReponse->retId();
 			$IdObjFormTemp = $oReponse->retIdObjForm();
 			
-			if ($CodeHtml =="")
-			{
-				$CodeHtml .= "<TD><input type=\"text\" size=\"70\" maxlength=\"255\" "
-					."name=\"rep[$IdReponseTemp]\" Value=\"$TexteTemp\">\n"
-					."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a><br></TD></TR>\n"
-					.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); 
-					//cette fc se trouve dans le fichier fonctions_form.inc.php
-			}
-			else
-			{
-				$CodeHtml .= "<TR><TD></TD><TD><input type=\"text\" size=\"70\" maxlength=\"255\" "
-					."name=\"rep[$IdReponseTemp]\" Value=\"$TexteTemp\">\n"
-					."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a><br></TD></TR>\n"
-					.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); 
-					//cette fc se trouve dans le fichier fonctions_form.inc.php
-			}
-		}
-		$this->oBdd->libererResult($hResultRRQCM);
-		return "$CodeHtml";
-	}
+			if ($sCodeHtml != "")
+				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";
 
-	function cHtmlQCocherModif($v_iIdObjForm,$v_iIdFormulaire)
-	{
-		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
-		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
-		
-		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
-		$iFlagErreur=0;
-		
-		if (isset($_POST['envoyer']) || $_POST['typeaction']=='ajouter' || $_POST['typeaction']=='supprimer')
-		{
-			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQC = stripslashes($_POST['Enonce']);
-			$this->oEnregBdd->AlignEnonQC = $_POST['AlignEnon'];
-			$this->oEnregBdd->AlignRepQC = $_POST['AlignRep'];
-			$this->oEnregBdd->TxtAvQC = stripslashes($_POST['TxtAv']);
-			$this->oEnregBdd->TxtApQC = stripslashes($_POST['TxtAp']);
-			$this->oEnregBdd->DispQC = $_POST['Disp'];
-			$this->oEnregBdd->NbRepMaxQC = $_POST['NbRepMax'];		
-			$this->oEnregBdd->MessMaxQC = $_POST['MessMax'];
-			
-			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			if (!(int)$_POST['NbRepMax'])
-				{ $sMessageErreur2 = "<font color =\"red\">*</font>"; $iFlagErreur=1; }
-				
-			if ($iFlagErreur == 0) //si pas d'erreur, enregistrement physique dans la BD
-			{
-				/* Remplacé par la methode ci-dessous
-				// Enregistrement des réponses de l'objet QCocher
-				// Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-				$sRequeteSql =
-					"  SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
-				
-				$hResultint = $this->oBdd->executerRequete($sRequeteSql);
-				
-				while ($oEnreg = $this->oBdd->retEnregSuiv($hResultint))
-				{
-					$oReponse = new CReponse($this->oBdd);
-					$oReponse->init($oEnreg);
-					
-					// Variables temporaires pour simplifier l'ecriture ci-dessous
-					$TexteTemp = $oReponse->retTexteReponse();
-					$IdReponseTemp = $oReponse->retId();
-					$TexteTemp = $_POST["$IdReponseTemp"];
-					$oReponse->defTexteReponse(stripslashes($TexteTemp));
-					$oReponse->enregistrer();
-				}
-				*/
-							
-				//Enregistrement des réponses et de leurs poids pour les differents axes
-				if (isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
-													//sur ajouter, $_POST["rep"] n'existe pas 
-				{
-					foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
-					{
-						$oReponse = new CReponse($this->oBdd);
-						$oReponse->defId($v_iIdReponse);
-						
-						$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
-						$oReponse->enregistrer(FALSE);
-								
-						if (isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe 
-																// n'est défini pour ce formulaire
-						{
-							$tab = $_POST["repAxe"];
-							foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
-							{
-								if (($v_iPoids != "") && (is_numeric($v_iPoids)))
-								{
-									//echo "<br>v_iPoids : ".$v_iPoids;
-									$oReponse_Axe = new CReponse_Axe($this->oBdd);
-									$oReponse_Axe->defIdReponse($v_iIdReponse);
-									$oReponse_Axe->defIdAxe($v_iIdAxe);
-									$oReponse_Axe->defPoids($v_iPoids);
-									$oReponse_Axe->enregistrer();
-								}
-							}
-						}
-					}
-				}
-							
-				//Enregistrement de l'objet QCocher actuel dans la BD
-				$this->enregistrer();
-				
-				//Lorsque la question est bien enregistrée dans la BD 
-				//(Pour cela on a cliqué sur le bouton 'Appliquer les changements')
-				//on rafraîchit la liste en cochant l'objet que l'on est en train de traiter
-				
-				echo "<script>\n";
-				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
-				echo "</script>\n";
-			}
+			$sCodeHtml.="<td>\n <input type=\"text\" size=\"70\" maxlength=\"255\" "
+				."name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n"
+				."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a><br /></td></tr>\n"
+				.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); 
+				//cette fc se trouve dans le fichier fonctions_form.inc.php
 		}
-		
-		//Si on a cliqué sur le lien 'Ajouter' cela affecte, via javascript, au champ caché ['typeaction']
-		//la valeur 'ajouter' et au champ caché parametre la valeur '0'.
-		//Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
-		//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours. 
-		//(avec les vérifications d'usage avant enregistrement dans la BD)
-		if ($_POST['typeaction']=='ajouter')
-		{
-			//echo "je suis passé par ajouter";
-			
-			$hResultInt2 = $this->oBdd->executerRequete
-			(
-				"  SELECT MAX(OrdreReponse) AS OrdreMax FROM Reponse"
-				." WHERE IdObjForm = '{$this->oEnregBdd->IdObjForm}'"
-			);
-			
-			$oEnreg = $this->oBdd->retEnregSuiv($hResultInt2);
-			$iOrdreMax = $oEnreg->OrdreMax;
-			$iOrdreMax = $iOrdreMax + 1;
-			
-			$oReponse = new CReponse($this->oBdd);
-			$oReponse->defIdObjForm($v_iIdObjForm);
-			$oReponse->defOrdreReponse($iOrdreMax);
-		
-			/*
-			La réponse qui sera créée ici contiendra :
-							le numero de l'objet auquel elle appartient
-							l'ordre dans lequel elle sera affichée (toujours en dernière place)
-							son numéro d'identifiant sera attribué automatiquement par MySql
-			le texte de la réponse sera attribué par après.
-			*/
-			$oReponse->enregistrer();
-			$this->oBdd->libererResult($hResultInt2);
-		}
-		  
-		//Si on a cliqué sur le lien 'Supprimer' cela affecte, via javascript, au champ caché ['typeaction']
-		//la valeur 'supprimer' et au champ caché ['parametre'] l'id de la réponse a supprimer.
-		//Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
-		//un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.
-		//(avec les vérifications d'usage avant enregistrement dans la BD)
-		if ($_POST['typeaction']=='supprimer')
-		{
-			//echo "<br>je suis passé par supprimer";
-			$v_iIdReponse = $_POST['parametre'];
-			$oReponse = new CReponse($this->oBdd,$v_iIdReponse);
-			$oReponse->effacer();
-		}
-		
-		//La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-		//et les 6 autres contiennent une chaîne vide
-		// aeX = alignement enoncé, arX = alignement réponse
-		list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = Alignement($this->oEnregBdd->AlignEnonQC,$this->oEnregBdd->AlignRepQC);
-		
-		if ($this->oEnregBdd->DispQC == "Hor")
-			{ $d1 = "CHECKED"; }
-		else if ($this->oEnregBdd->DispQC == "Ver")
-			{ $d2 = "CHECKED"; }
-		else
-			{ $d2 = "CHECKED"; }
-		
-		$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
-		
-		$sCodeHtml = 
-			"\n<form name=\"formmodif\" action=\"{$_SERVER['PHP_SELF']}$sParam\"  method=\"POST\" enctype=\"text/html\">\n"
-			."<fieldset><legend><b>ENONCE</b></legend>\n"
-			."<TABLE>\n"
-			."<TR>\n"
-			."<TD>$sMessageErreur1 Enoncé :</TD>\n"
-			."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQC}</textarea></TD>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>Alignement énoncé :</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4>Justifier\n"
-			."</TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
-			."</fieldset>\n"
-		   
-			."<fieldset><legend><b>REPONSE</b></legend>\n"
-			."<TABLE>\n"
-			."<TR>\n"
-			."<TD>Texte avant la réponse :</TD>\n"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQC}\"></TR>\n"
-			."</TR><TR>\n"
-			."<TD>Texte après la réponse :</TD>\n"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQC}\"></TR>\n"
-			."</TR><TR>\n"
-			."<TD>Disposition :</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"Disp\" VALUE=\"Hor\" $d1>Horizontale\n"
-			."<INPUT TYPE=\"radio\" NAME=\"Disp\" VALUE=\"Ver\" $d2>Verticale\n"
-			."</TD>\n"
-			."</TR><TR>\n"
-			."<TD>Réponse(s) :\n"
-			."<a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a>\n"
-			."</TD>\n"
-			.$this->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire) 
-			//."</TR>\n"
-			."<TR>\n"
-			."<TD>$sMessageErreur2 Nombre de réponses max :</TD>\n"
-			."<TD><input type=\"text\" size=\"2\" maxlength=\"2\" name=\"NbRepMax\" Value=\"{$this->oEnregBdd->NbRepMaxQC}\" onblur=\"verifNumeric(this)\"></TR>\n"
-			."</TR><TR>\n"
-			."<TD>Message \"Maximum dépassé\"</TD>\n"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"MessMax\" Value=\"{$this->oEnregBdd->MessMaxQC}\"></TR>\n"
-			."</TR>\n"
-			."<TR>\n"
-			."<TD>Alignement Réponse :</TD>\n"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4>Justifier\n"
-			."</TD>\n"
-			."</TR>\n"
-			."</TABLE>\n"
-			."</fieldset>\n"
-			."<INPUT TYPE=\"hidden\" NAME=\"typeaction\" VALUE=\"\">\n"
-			."<INPUT TYPE=\"hidden\" NAME=\"parametre\" VALUE=\"\">\n"
-			//Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
-			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
-			."</form>\n";
-			
+		if(strlen($sCodeHtml)==0)
+			$sCodeHtml = "<td>\n&nbsp;\n</td>\n</tr>\n";
+		$this->oBdd->libererResult($hResultRRQCM);
 		return $sCodeHtml;
 	}
+
 	
 	function enregistrer ()
 	{

@@ -19,15 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: qnombre.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	qnombre.tbl.php
+ * 
+ * Contient la classe de gestion des questions de formulaire de type "nombre", en rapport avec la DB
+ * 
+ * @date	2004/06/22
+ * 
+ * @author	Ludovic FLAMME
+ */
 
 class CQNombre 
 {
@@ -163,102 +163,6 @@ class CQNombre
 		return $sCodeHtml;
 	}
 
-	function cHtmlQNombreModif($v_iIdObjForm,$v_iIdFormulaire)
-	{
-		//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
-		//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-		//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
-		
-		$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
-		$iFlagErreur=0;
-		
-		if (isset($_POST['envoyer'])) 
-		{
-			//Récupération des variables transmises par le formulaire
-			$this->oEnregBdd->EnonQN = stripslashes($_POST['Enonce']);
-			$this->oEnregBdd->AlignEnonQN = $_POST['AlignEnon'];
-			$this->oEnregBdd->AlignRepQN = $_POST['AlignRep'];
-			$this->oEnregBdd->TxtAvQN = stripslashes($_POST['TxtAv']);
-			$this->oEnregBdd->TxtApQN = stripslashes($_POST['TxtAp']);
-			$this->oEnregBdd->NbMinQN = $_POST['NbMin'];
-			$this->oEnregBdd->NbMaxQN = $_POST['NbMax'];
-			$this->oEnregBdd->MultiQN = $_POST['Multi'];
-				
-			//Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			//if (strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($_POST['NbMin'])) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($_POST['NbMax'])) {$sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			if (!is_numeric($_POST['Multi'])) { $sMessageErreur4="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-				
-			if ($iFlagErreur == 0) 
-			{
-				$this->enregistrer();
-				echo "<script>\n";
-				echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
-				echo "</script>\n";
-			} //si pas d'erreur, enregistrement physique
-		}
-		
-		// La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-		// et les 6 autres contiennent une chaîne vide
-		// aeX = alignement enoncé, arX = alignement réponse
-		list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
-		Alignement($this->oEnregBdd->AlignEnonQN,$this->oEnregBdd->AlignRepQN);
-		
-		$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
-		
-		$sCodeHtml = 
-			"<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">"
-			."<fieldset><legend><b>ENONCE</b></legend>"
-			."<TABLE>"
-			."<TR>"
-			."<TD>$sMessageErreur1 Enoncé :</TD>"
-			."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQN}</textarea></TD>"
-			."</TR><TR>"
-			."<TD>Alignement énoncé :</TD>"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4>Justifier"
-			."</TD>"
-			."</TR>"
-			."</TABLE>"
-			."</fieldset>"
-		   
-			."<fieldset><legend><b>REPONSE</b></legend>"
-			."<TABLE>"
-			."<TR>"
-			."<TD>Texte avant la réponse :</TD>"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQN}\"></TR>"
-			."</TR><TR>"
-			."<TD>Texte après la réponse :</TD>"
-			."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQN}\"></TR>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur2 Nombre minimum :</TD>"
-			."<TD><input type=\"text\" size=\"10\" maxlength=\"9\" name=\"NbMin\" Value=\"{$this->oEnregBdd->NbMinQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur3 Nombre maximum :</TD>"
-			."<TD><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"NbMax\" Value=\"{$this->oEnregBdd->NbMaxQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>$sMessageErreur4 Coefficient multiplicateur :</TD>"
-			."<TD><input type=\"text\" size=\"5\" maxlength=\"10\" name=\"Multi\" Value=\"{$this->oEnregBdd->MultiQN}\" onblur=\"verifNumeric(this)\"></TD>"
-			."</TR><TR>"
-			."<TD>Alignement Réponse :</TD>"
-			."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer"
-			."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4>Justifier"
-			."</TD>"
-			."</TR>"
-			."</TABLE>"
-			."</fieldset>"
-			
-			// Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
-			."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
-			."</form>";
-			
-		return $sCodeHtml;
-	}
 
 	function enregistrer ()
 	{

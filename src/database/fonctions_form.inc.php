@@ -48,22 +48,22 @@ function Alignement($sAlignEnon,$sAlignRep)
 
 	if ($sAlignEnon != "")
 	{
-		if ($sAlignEnon == "left") { $sAE1 = "checked"; }
-		else if ($sAlignEnon == "right") { $sAE2 = "checked"; }
-		else if ($sAlignEnon == "center") { $sAE3 = "checked"; }
-		else if ($sAlignEnon == "justify") { $sAE4 = "checked"; }
+		if ($sAlignEnon == "left") { $sAE1 = "checked=\"checked\""; }
+		else if ($sAlignEnon == "right") { $sAE2 = "checked=\"checked\""; }
+		else if ($sAlignEnon == "center") { $sAE3 = "checked=\"checked\""; }
+		else if ($sAlignEnon == "justify") { $sAE4 = "checked=\"checked\""; }
 	}
 	else { $ae1 = "checked"; }
 	
 	if ($sAlignRep != "")
 	{
-		if ($sAlignRep == "left") { $sAR1 = "checked"; }
-		else if ($sAlignRep == "right") { $sAR2 = "checked"; }
-		else if ($sAlignRep == "center") { $sAR3 = "checked"; }
-		else if ($sAlignRep == "justify") { $sAR4 = "checked"; }
+		if ($sAlignRep == "left") { $sAR1 = "checked=\"checked\""; }
+		else if ($sAlignRep == "right") { $sAR2 = "checked=\"checked\""; }
+		else if ($sAlignRep == "center") { $sAR3 = "checked=\"checked\""; }
+		else if ($sAlignRep == "justify") { $sAR4 = "checked=\"checked\""; }
 	}
 	else
-	{ $ar1 = "CHECKED"; }
+	{ $ar1 = "checked=\"checked\""; }
 
 	return array($sAE1,$sAE2,$sAE3,$sAE4,$sAR1,$sAR2,$sAR3,$sAR4);
 }
@@ -131,8 +131,8 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 		$sDescAxe = $oEnreg->DescAxe;
 	
 		$sCodeHtml.="<tr>\n<td>\n &nbsp;\n</td>\n<td>\n"
-				  ."<table>\n<tr>\n<td width=200>\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\">\n</td>\n</tr>\n</table>\n"
+				  ."<table>\n<tr>\n<td width=\"200\">\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
+				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n</td>\n</tr>\n</table>\n"
 				  ."</td>\n</tr>\n"; 
 	}
 

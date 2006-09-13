@@ -238,6 +238,22 @@ class CReponse
 		return TRUE;
 	}
 	
+	/**
+	 * Retourne le numéro d'ordre maximum des réponses d'un objet formulaire
+	 * 
+	 * @param	iIdObjForm l'id de l'objet formulaire
+	 * 
+	 * @return	le numéro d'ordre maximum des réponses d'un objet formulaire
+	 */
+	function retMaxOrdre($iIdObjForm)
+	{
+		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdreReponse) AS OrdreMax FROM Reponse WHERE IdObjForm = '$iIdObjForm'");
+		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		
+		return $oEnreg->OrdreMax;
+	}
+	
+
 	//Fonctions de définition
 	function defId ($v_iIdReponse) { $this->oEnregBdd->IdReponse = $v_iIdReponse; } //Ne pas confondre IdObfForm[Multi] et IdReponse[Unique] - Fonction pas utile car auto_increment ?
 	function defTexteReponse ($v_sTexteReponse) { $this->oEnregBdd->TexteReponse = $v_sTexteReponse; }

@@ -19,15 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: qtextecourt.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	qtextecourt.tbl.php
+ * 
+ * Contient la classe de gestion des questions de formulaire de type "texte court", en rapport avec la DB
+ * 
+ * @date	2004/06/22
+ * 
+ * @author	Ludovic FLAMME
+ */
 
 class CQTexteCourt 
 {
@@ -79,50 +79,16 @@ class CQTexteCourt
 
 
 //Fonctions de définition
-
- function defIdObjForm ($v_iIdObjForm)
-{
-  $this->oEnregBdd->IdObjForm = $v_iIdObjForm;
-}
-
-
- function defEnonQTC ($v_sEnonQTC)
-{
-  $this->oEnregBdd->EnonQTC = $v_sEnonQTC;
-}
-
-function defAlignEnonQTC ($v_sAlignEnonQTC)
-{
-  $this->oEnregBdd->AlignEnonQTC = $v_sAlignEnonQTC;
-}
-
-function defAlignRepQTC ($v_sAlignRepQTC)
-{
-  $this->oEnregBdd->AlignRepQTC = $v_sAlignRepQTC;
-}
-
-function defTxtAvQTC ($v_sTxtAvQTC)
-{
-  $this->oEnregBdd->TxtAvQTC = $v_sTxtAvQTC;
-}
-
-function defTxtApQTC ($v_sTxtApQTC)
-{
-  $this->oEnregBdd->TxtApQTC = $v_sTxtApQTC;
-}
-
-function defLargeurQTC ($v_iLargeurQTC)
-{
-  $this->oEnregBdd->LargeurQTC = trim($v_iLargeurQTC);
-}
-
-function defMaxCarQTC ($v_iMaxCarQTC)
-{
-  $this->oEnregBdd->MaxCarQTC = trim($v_iMaxCarQTC);
-}
+function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+function defEnonQTC ($v_sEnonQTC) { $this->oEnregBdd->EnonQTC = $v_sEnonQTC; }
+function defAlignEnonQTC ($v_sAlignEnonQTC) { $this->oEnregBdd->AlignEnonQTC = $v_sAlignEnonQTC; }
+function defAlignRepQTC ($v_sAlignRepQTC) { $this->oEnregBdd->AlignRepQTC = $v_sAlignRepQTC; }
+function defTxtAvQTC ($v_sTxtAvQTC) { $this->oEnregBdd->TxtAvQTC = $v_sTxtAvQTC; }
+function defTxtApQTC ($v_sTxtApQTC) { $this->oEnregBdd->TxtApQTC = $v_sTxtApQTC; }
+function defLargeurQTC ($v_iLargeurQTC) { $this->oEnregBdd->LargeurQTC = trim($v_iLargeurQTC); }
+function defMaxCarQTC ($v_iMaxCarQTC) { $this->oEnregBdd->MaxCarQTC = trim($v_iMaxCarQTC); }
 
 //Fonctions de retour
-
 function retId () { return $this->oEnregBdd->IdObjForm; }
 function retEnonQTC () { return $this->oEnregBdd->EnonQTC; }
 function retAlignEnonQTC () { return $this->oEnregBdd->AlignEnonQTC; }
@@ -175,99 +141,6 @@ function cHtmlQTexteCourt($v_iIdFC=NULL)
 	}
 
 
-function cHtmlQTexteCourtModif($v_iIdObjForm,$v_iIdFormulaire)
-	{
-	//initialisation des messages d'erreurs à 'vide' et de la variable servant a détecter
-	//si une erreur dans le remplissage du formulaire a eu lieu (ce qui engendre le non enregistrement
-	//de celui-ci dans la base de données + affiche d'une astérisque à l'endroit de l'erreur)
-	
-	$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = "";
-	$iFlagErreur=0;
-	
-	if (isset($_POST['envoyer'])) 
-		{
-			   //Récupération des variables transmises par le formulaire
-			   $this->oEnregBdd->EnonQTC = stripslashes($_POST['Enonce']);
-			   $this->oEnregBdd->AlignEnonQTC = $_POST['AlignEnon'];
-				$this->oEnregBdd->AlignRepQTC = $_POST['AlignRep'];
-				$this->oEnregBdd->TxtAvQTC = stripslashes($_POST['TxtAv']);
-				$this->oEnregBdd->TxtApQTC = stripslashes($_POST['TxtAp']);
-				$this->oEnregBdd->LargeurQTC = $_POST['Largeur'];
-				$this->oEnregBdd->MaxCarQTC = $_POST['MaxCar'];		
-				
-			   //Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-			   //if ($this->oEnregBdd->EnonQTC == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-				if (!(int)$_POST['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-			   if ((int)$_POST['MaxCar'] || strlen($_POST['MaxCar']) < 1) 
-					{;} else { $sMessageErreur3="<font color =\"red\">*</font>"; $iFlagErreur=1;}
-								
-			   if ($iFlagErreur == 0) 
-					{		$this->enregistrer();
-					  		echo "<script>\n";
-							echo "rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n";
-						  	echo "</script>\n";
-					} //si pas d'erreur, enregistrement physique
-		}
-	
-	//La fonction alignement renvoie 2 variables de type string contenant "CHECKED" 
-	//et les 6 autres contiennent une chaîne vide
-	// aeX = alignement enoncé, arX = alignement réponse
-	list($ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4) = 
-		Alignement($this->oEnregBdd->AlignEnonQTC,$this->oEnregBdd->AlignRepQTC);
-		  
-	$sParam="?idobj=".$v_iIdObjForm."&idformulaire=".$v_iIdFormulaire;
-	
-	$sCodeHtml ="<form action=\"{$_SERVER['PHP_SELF']}$sParam\" name=\"formmodif\" method=\"POST\" enctype=\"text/html\">\n"
-		   ."<fieldset><legend><b>ENONCE</b></legend>\n"
-		   ."<TABLE>\n"
-		   ."<TR>\n"
-		   ."<TD>$sMessageErreur1 Enoncé :</TD>\n"
-		   ."<TD><textarea name=\"Enonce\" rows=\"5\" cols=\"70\">{$this->oEnregBdd->EnonQTC}</textarea></TD>\n"
-		   ."</TR>\n"
-		   
-		   ."<TR>\n"
-		   ."<TD>Alignement énoncé :</TD>\n"
-		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"left\" $ae1>Gauche\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"right\" $ae2>Droite\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"center\" $ae3>Centrer\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignEnon\" VALUE=\"justify\" $ae4>Justifier\n"
-		   ."</TD>\n"
-		   ."</TR>\n"
-		   ."</TABLE>\n"
-		   ."</fieldset>\n"
-		   
-		   ."<fieldset><legend><b>REPONSE</b></legend>\n"
-		   ."<TABLE>\n"
-		   ."<TR>\n"
-		   ."<TD>Texte avant la réponse :</TD>\n"
-		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAv\" Value=\"{$this->oEnregBdd->TxtAvQTC}\"></TR>\n"
-		   ."</TR><TR>\n"
-		   ."<TD>Texte après la réponse :</TD>\n"
-		   ."<TD><input type=\"text\" size=\"70\" maxlength=\"254\" name=\"TxtAp\" Value=\"{$this->oEnregBdd->TxtApQTC}\"></TR>\n"
-		   ."</TR><TR>\n"
-		   ."<TD>$sMessageErreur2 Taille de la boîte de texte :</TD>\n"
-		   ."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"Largeur\" Value=\"{$this->oEnregBdd->LargeurQTC}\" onblur=\"verifNumeric(this)\"></TD>\n"
-		   ."</TR><TR>\n"
-		   ."<TD>$sMessageErreur3 Nombre de caractères maximum :</TD>\n"
-		   ."<TD><input type=\"text\" size=\"3\" maxlength=\"3\" name=\"MaxCar\" Value=\"{$this->oEnregBdd->MaxCarQTC}\" onblur=\"verifNumeric(this)\"></TD>\n"
-		   ."</TR><TR>\n"
-		   ."<TD>Alignement Réponse :</TD>\n"
-		   ."<TD><INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"left\" $ar1>Gauche\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"right\" $ar2>Droite\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"center\" $ar3>Centrer\n"
-		   ."<INPUT TYPE=\"radio\" NAME=\"AlignRep\" VALUE=\"justify\" $ar4>Justifier\n"
-		   ."</TD>\n"
-		   ."</TR>\n"
-		   ."</TABLE>\n"
-		   ."</fieldset>\n"
-		   //Le champ caché ci-dessous "simule" le fait d'appuyer sur le bouton submit (qui s'appelait envoyer) et ainsi permettre l'enregistrement dans la BD
-		   ."<input type=\"hidden\" name=\"envoyer\" value=\"1\">\n"
-		   ."</form>\n";
-	
-	return $sCodeHtml;
-	}
-	
-	
 function enregistrer ()
 	{
 	if ($this->oEnregBdd->IdObjForm !=NULL)

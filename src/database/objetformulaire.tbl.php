@@ -19,36 +19,46 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: objetformulaire.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 22-06-2004
-** Auteurs ................: Ludovic FLAMME
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	objetformulaire.tbl.php
+ * 
+ * Contient la classe de gestion des objets de formulaire, en rapport avec la DB
+ * 
+ * @date	2004/06/22
+ * 
+ * @author	Ludovic FLAMME
+ */
 
+/**
+* Gestion des objets de formulaire, et encapsulation de la table ObjetFormulaire de la DB
+*/
 class CObjetFormulaire 
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;			///< Objet représentant la connexion à la DB
+	var $oEnregBdd;		///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
+
+	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB
 	
 	var $oDetail;
 	var $aoReponsesPossibles;
 	var $sReponse;
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CObjetFormulaire(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-								  //si 0 crée un objet presque vide sinon 
-								  //rempli l'objet avec les données de la table Formulaire
-								  //de l'elément ayant l'Id passé en argument
+
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init ($v_oEnregExistant = NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -57,10 +67,8 @@ class CObjetFormulaire
 		}
 		else
 		{
-			$sRequeteSql =
-				"  SELECT *"
-				." FROM ObjetFormulaire"
-				." WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM ObjetFormulaire"
+						." WHERE IdObjForm='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -68,6 +76,12 @@ class CObjetFormulaire
 		$this->iId = $this->oEnregBdd->IdObjForm;
 	}
 	
+	/**
+	 * Initialise l'objet oDetail selon le type de l'objet courant
+	 * 
+	 * @param	v_bInitValeursParAxe
+	 * @param	v_sListeAxesAutorises
+	 */
 	function initDetail($v_bInitValeursParAxe = FALSE, $v_sListeAxesAutorises = NULL)
 	{
 		if (!$this->retIdTypeObj() || !$this->retId())
@@ -109,10 +123,6 @@ class CObjetFormulaire
 			case OBJFORM_MPSEPARATEUR:
 				$this->oDetail = new CMPSeparateur($this->oBdd, $this->retId());
 				break;
-				
-			default:
-				//echo "Erreur: numéro d'objet de formulaire incorrect !<br>";
-				break;
 		}
 	}
 	
@@ -121,11 +131,9 @@ class CObjetFormulaire
 		if (isset($this->aoReponsesPossibles))
 			return;
 		
-		$sRequeteSql =
-			"  SELECT * FROM Reponse"
-			." WHERE IdObjForm = '{$this->iId}'"
-			." ORDER BY OrdreReponse"
-			;
+		$sRequeteSql = "SELECT * FROM Reponse"
+					." WHERE IdObjForm = '{$this->iId}'"
+					." ORDER BY OrdreReponse";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
@@ -137,17 +145,6 @@ class CObjetFormulaire
 			if ($v_bInitValeursParAxe)
 				$this->aoReponsesPossibles[$iIndexReponse]->initValeursParAxe($v_sListeAxesAutorises);
 		}
-		
-		/*$iIndexReponse = 0;
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-		{
-			$this->aoReponsesPossibles[$iIndexReponse] = new CReponse($this->oBdd);
-			$this->aoReponsesPossibles[$iIndexReponse]->init($oEnreg);
-			if ($v_bInitValeursParAxe)
-				$this->aoReponsesPossibles[$iIndexReponse]->initValeursParAxe($v_sListeAxesAutorises);
-			
-			$iIndexReponse++;
-		}*/
 		
 		$this->oBdd->libererResult($hResult);
 	}
@@ -309,16 +306,11 @@ class CObjetFormulaire
 	
 	function effacer()
 	{
-		$sRequeteSql =
-			"  DELETE FROM ObjetFormulaire"
-			." WHERE IdObjForm ='{$this->oEnregBdd->IdObjForm}'";
-		//echo "<br>effacer ObjetFormulaire() : ".$sRequeteSql;
+		$sRequeteSql = "DELETE FROM ObjetFormulaire"
+					." WHERE IdObjForm ='{$this->oEnregBdd->IdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
 		$this->reorganiser();
-		return TRUE;
 	}
-
 
 	/*
 	** Fonction 		: reorganiser
@@ -329,37 +321,30 @@ class CObjetFormulaire
 	*/	
 	function reorganiser()
 	{
-		$sRequeteSql =
-			"  UPDATE ObjetFormulaire"
-			." SET OrdreObjForm = OrdreObjForm-1"
-			." WHERE IdForm='{$this->oEnregBdd->IdForm}'"
-			." AND OrdreObjForm>'{$this->oEnregBdd->OrdreObjForm}'";
-		
-		//echo "<br>reorganiser ObjetFormulaire() : ".$sRequeteSql;
+		$sRequeteSql = "UPDATE ObjetFormulaire"
+					." SET OrdreObjForm = OrdreObjForm-1"
+					." WHERE IdForm='{$this->oEnregBdd->IdForm}'"
+					." AND OrdreObjForm>'{$this->oEnregBdd->OrdreObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
 	}
 	
-	// Fonctions de définitions
+	/** @name Fonctions de définition des champs pour cet objet formulaire */
+	//@{
 	function defIdObjForm($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
 	function defOrdreObjForm($v_iOrdre) { $this->oEnregBdd->OrdreObjForm = $v_iOrdre; }
 	function defIdTypeObj($v_iTypeObj) { $this->oEnregBdd->IdTypeObj = $v_iTypeObj; }
 	function defIdForm($v_iIdForm) { $this->oEnregBdd->IdForm = $v_iIdForm; }
-	/*function defObjFormulaire($v_iOrdre,$v_iIdForm,$v_iIdForm)
-	{
-	  $this->oEnregBdd->OrdreObjForm = $v_iOrdre;
-	  $this->oEnregBdd->idTypeObj = $v_iTypeObj;
-	  $this->oEnregBdd->IdForm = $v_iIdForm;
-	}*/
-	
-	// Fonctions de retour
+	//@}
+
+	/** @name Fonctions de lecture des champs pour cet objet formulaire */
+	//@{
 	function retId() { return $this->oEnregBdd->IdObjForm; }
 	function retOrdreObjForm() { return $this->oEnregBdd->OrdreObjForm; }
 	function retOrdre() { return $this->retOrdreObjForm(); }
 	function retIdTypeObj() { return $this->oEnregBdd->IdTypeObj; }
 	function retIdType() { return $this->retIdTypeObj(); }
 	function retIdForm() { return $this->oEnregBdd->IdForm; }
+	//@}
 }
 
 ?>
