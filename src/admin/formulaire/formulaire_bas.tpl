@@ -4,7 +4,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://menu.css" />
 <link type="text/css" rel="stylesheet" href="theme://dialog-menu.css" />
-<title>Conception de formulaires en ligne</title>
+<title>Conception d'activité en ligne</title>
 </head>
 <body>
 <table border="0" cellspacing="0" cellpadding="2" width="100%">

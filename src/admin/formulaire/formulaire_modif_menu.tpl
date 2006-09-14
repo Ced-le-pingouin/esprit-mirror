@@ -34,7 +34,7 @@ function modifaxeform(idformulaire)
 //-->
 </script>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<title>Conception de formulaires en ligne</title>
+<title>Conception d'activités en ligne</title>
 </head>
 <body class="menumodif">
 <div id="menu_element">

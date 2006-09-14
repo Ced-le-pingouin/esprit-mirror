@@ -69,7 +69,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	echo "<html>\n";
 	echo "<head>\n";
         echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
-	echo "<title>Mettre en forme les formulaires et les éléments de formulaires avec les CSS</title>\n";
+	echo "<title>Mettre en forme les activités en ligne et les éléments des activités avec les CSS</title>\n";
 	
 	echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";
 	echo "<script language=\"Javascript\" src=\"/code_lib/general.js\"></script>\n";
@@ -221,7 +221,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					break;
 					
 				default:
-					echo "Erreur: type d'objet de formulaire inconnu<br>";
+					echo "Erreur: type d'objet d'activité en ligne inconnu<br />";
 			}
 			
 			echo "<div class=\"InterObj\"></div>\n";
@@ -236,7 +236,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 			."<tr><td align=\"center\">"
 			."<img src=\"../../images/doc-plein.gif\" border=\"0\"><br>"
 			//."e&nbsp;C&nbsp;O&nbsp;N&nbsp;C&nbsp;E&nbsp;P&nbsp;T<font size=\"1\"><sup>&copy;</sup></font><br>"
-			."La conception de formulaires totalement en ligne"
+			."La conception d'activités totalement en ligne"
 			."</td></tr>"
 			."<tr><td align=\"center\">Unit&eacute; de Technologie de l'&Eacute;ducation</td></tr>"
 			."</table>";

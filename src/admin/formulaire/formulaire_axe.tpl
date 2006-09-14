@@ -87,7 +87,7 @@ function appliquer()
 [BLOCK_CHOIX+]
 <form name="formaxe" action="formulaire_axe.php" method="post">
 	<fieldset>
-		<legend>Sélection des "axes/tendances" applicables au formulaire</legend>
+		<legend>Sélection des "axes/tendances" applicables à l'activité en ligne</legend>
 		[BLOCK_AXES+]
 		<input type="checkbox" name="axes[]" value="{id_axe}" {chk} />
 		{couleur_police1}{desc_axe}{couleur_police2}<br />
@@ -98,11 +98,11 @@ function appliquer()
 	</form>
 	<br />
 	<div align="center">
-	Les axes présents actuellement dans le formulaire sont écrits en <i>italique</i>
+	Les axes présents actuellement dans l'activité en ligne sont écrits en <i>italique</i>
 	</div>
 [BLOCK_CHOIX-]
 [BLOCK_CONFIRM+]
-	<fieldset><legend>"Axes/tendances" appliqué au formulaire</legend>
+	<fieldset><legend>"Axes/tendances" appliqué à l'activité en ligne</legend>
 	<div align="center">
 	[BLOCK_AXES+]
 	{desc_axe}<br />

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<title>Modification des formulaires </title>
+<title>Modification des activités en ligne</title>
 <script src="selectionobj.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
@@ -549,7 +549,7 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_FORMUL+]
 <form action="formulaire_modif.php{sParam}" name="formmodif" method="post" enctype="text/html">
 <fieldset>
-	<legend>Titre du formulaire</legend>
+	<legend>Titre de l'activité en ligne</legend>
 	<table>
 	<tr>
 		<td>

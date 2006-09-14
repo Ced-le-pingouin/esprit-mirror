@@ -34,7 +34,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	}
 	/*else
 	{
-		echo "Pas de formulaire a supprimer";	
+		echo "Pas d'activité a supprimer";	
 		$v_iIdFormulaire = 0;
 	}*/
 	
@@ -43,7 +43,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		if ($v_iIdFormulaire == Null)  //Si on n'a pas sélectionné de formulaire dans la liste
 		{
 			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner un formulaire dans la liste');";
+			  echo "alert('Veuillez sélectionner une activité dans la liste');";
 			  echo "</SCRIPT>";
 		}
 		else
@@ -129,7 +129,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 							break;
 							
 						default:
-							echo "Erreur: Id d'objet de formulaire incorrect<br>";
+							echo "Erreur: Id d'objet d'activité incorrect<br>";
 					} //Fin switch
 					
 					$oObjetFormulaire->effacer();
@@ -144,13 +144,13 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 				$oFormulaire->effacer();
 				
 				echo"<SCRIPT language=\"JavaScript\">";
-				echo "alert('Le formulaire a été supprimé avec succès');";
+				echo "alert('L'activité a été supprimée avec succès');";
 				echo "</SCRIPT>";
 			}
 			else //Cas ou l'on a pas le droit de supprimer un formulaire 
 			{
 				echo"<SCRIPT language=\"JavaScript\">";
-				echo "alert('Vous ne pouvez pas supprimer le formulaire, veuillez contacter votre administrateur pour plus d\'informations.');";
+				echo "alert('Vous ne pouvez pas supprimer l'activité, veuillez contacter votre administrateur pour plus d\'informations.');";
 				echo "</SCRIPT>";
 			}
 		}
@@ -163,7 +163,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 		if($v_iIdFormulaire == Null)
 		{
 			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner un formulaire dans la liste');";
+			  echo "alert('Veuillez sélectionner une activité dans la liste');";
 			  echo "</SCRIPT>";
 		}
 		else

@@ -8,11 +8,11 @@ function suppression(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
 	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
+		alert('Veuillez sélectionner une activité dans la liste');
 	}
 	else
 	{
-		if(confirm('Voulez-vous supprimer le formulaire sélectionné ?'))
+		if(confirm("Voulez-vous supprimer l'activité sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].action='formulaire_menu.php';
@@ -30,11 +30,11 @@ function copie(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
 	{
-		alert('Veuillez sélectionner un formulaire dans la liste');
+		alert('Veuillez sélectionner une activité dans la liste');
 	}
 	else
 	{
-		if(confirm('Voulez-vous copier le formulaire sélectionné ?'))
+		if(confirm("Voulez-vous copier l'activité sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].action='formulaire_menu.php';
@@ -48,7 +48,7 @@ function copie(TypeAct)
 	}
 }
 </script>
-<title>Conception de formulaires en ligne</title>
+<title>Conception d'activités en ligne</title>
 </head>
 <body>
 <form name="listeformulaire" action="formulaire_liste.php" target="FORMFRAMELISTE" method ="get">
@@ -77,7 +77,7 @@ function copie(TypeAct)
 </form>
 <br />
 <div align="center">
-	<a href="javascript: void(0);" onclick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">Créer un formulaire</a>
+	<a href="javascript: void(0);" onclick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">Créer une activité</a>
 </div>
 </body>
 </html>

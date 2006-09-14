@@ -7,7 +7,7 @@
 <link type="text/css" rel="stylesheet" href="theme://dialog_2.css">
 <link type="text/css" rel="stylesheet" href="theme://concept.css">
 <script type="text/javascript" language="javascript" src="/themes/esprit/dialog-titre.js"></script>
-<title>Conception de formulaires en ligne</title>
+<title>Conception d'activités en ligne</title>
 </head>
 <body class="haut">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -17,7 +17,7 @@
 </tr>
 </table>
 <div class="dialog_titre_image_2"><img src="theme://dialog-titre-img_2.gif" width="96" height="44" border="0" alt="">&nbsp;</div>
-<div class="dialog_titre_principal"><span id="titre_principal">Conception de formulaires en ligne</span>&nbsp;<span id="sous_titre">&nbsp;</span></div>
+<div class="dialog_titre_principal"><span id="titre_principal">Conception d'activités en ligne</span>&nbsp;<span id="sous_titre">&nbsp;</span></div>
 <div class="dialog_sous_titre">&nbsp;</div>
 </body>
 </html>

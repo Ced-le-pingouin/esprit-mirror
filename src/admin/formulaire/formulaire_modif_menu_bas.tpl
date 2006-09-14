@@ -18,7 +18,7 @@ function annuler()
 //-->
 </script>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<title>Conception de formulaires en ligne</title>
+<title>Conception d'activités en ligne</title>
 </head>
 <body class="menumodifbas">
 <div style="border-top:1px solid black; height:20px; text-align: right; padding: 2px 7px;" >

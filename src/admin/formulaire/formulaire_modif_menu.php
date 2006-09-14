@@ -59,9 +59,9 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		$oTpl->remplacer("{COPIER}","<span class=\"element_desactive\">Copier</span>");
 	
 	if ($v_iIdFormulaire > 0) //on envoie $v_iIdFormulaire pour pouvoir recharger la liste après le déplacement
-		$oTpl->remplacer("{DEF_AXES}","<a href=\"javascript: modifaxeform($v_iIdFormulaire);\">Définir les axes de ce formulaire</a>");
+		$oTpl->remplacer("{DEF_AXES}","<a href=\"javascript: modifaxeform($v_iIdFormulaire);\">Définir les axes de cette activité</a>");
 	else
-		$oTpl->remplacer("{DEF_AXES}","<span class=\"element_desactive\">Définir les axes de ce formulaire</span>");
+		$oTpl->remplacer("{DEF_AXES}","<span class=\"element_desactive\">Définir les axes de cette activité</span>");
 	$oTpl->afficher();
 }
 ?>

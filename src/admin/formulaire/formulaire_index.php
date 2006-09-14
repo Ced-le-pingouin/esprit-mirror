@@ -15,13 +15,11 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 */
 ?>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN"
-   "http://www.w3.org/TR/REC-html40/frameset.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN" "http://www.w3.org/TR/REC-html40/frameset.dtd">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title>Conception de formulaires en ligne - Unite de Technologie de l'Education</title>
+<title>Conception d'activités en ligne - Unite de Technologie de l'Education</title>
 <script language="javascript">
 	function defTexteStatut(v_sTitle) {	top.frames["menu"].document.getElementById("id_status").innerHTML = unescape(v_sTitle); }
 </script>
