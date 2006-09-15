@@ -102,6 +102,7 @@ case 2:
 		echo "</body></html>";
 		exit;
 	}
+	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
 	if (! mysql_selectdb($_POST['base'])) {
 		echo "<p class='erreur'>Connexion réussie, mais erreur d'accès à la base de données.</p>";
 		echo "<p>Retournez à <a href='install.php?step=1'>l\'étape précédente</a>.</p>";
