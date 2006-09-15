@@ -91,7 +91,7 @@ echo "<tr>"
 	."<td width=\"5\" valign=\"top\">:</td>"
 	."<td>"
 	."<textarea name=\"formation_description\" cols=\"50\" rows=\"4\" style=\"width: 370px; height: 70px;\">"
-	.html_entity_decode($url_sDescrForm)
+	.mb_convert_encoding($url_sDescrForm, 'UTF-8', 'HTML-ENTITIES')
 	."</textarea>"
 	."&nbsp;&nbsp;[&nbsp;<a href=\"javascript: void(0);\" onclick=\"editeur('FRM_GENERAL','formation_description','editeur')\" onfocus=\"blur()\">Editeur</a>&nbsp;]</span>"
 	."</td>"

@@ -28,9 +28,9 @@ if ($fonction == "valider")
 	
 	if ($iIdPers > 0)
 	{
-		$url_sNomForm = html_entity_decode($url_sNomForm);
-		$url_sDescrForm = html_entity_decode($url_sDescrForm);
-		
+		$url_sNomForm = mb_convert_encoding($url_sNomForm, 'UTF-8', 'HTML-ENTITIES');
+		$url_sDescrForm = mb_convert_encoding($url_sDescrForm, 'UTF-8', 'HTML-ENTITIES');
+		print "$url_sNomForm\n\n$url_sDescrForm\n";
 		if ($type == NOUVELLE_FORMATION)
 		{
 			$oFormation = new CFormation($oProjet->oBdd);
