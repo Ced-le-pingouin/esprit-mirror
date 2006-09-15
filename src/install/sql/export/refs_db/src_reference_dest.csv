@@ -1,4 +1,4 @@
-# pas sûr pour :
+# pas certain pour :
 #
 # ForumPrefs_CopieCourrielEquipe;IdForumPrefs;ForumPrefs;IdForumPrefs
 # ForumPrefs_CopieCourrielEquipe;IdEquipe;Equipe;IdEquipe
@@ -42,7 +42,7 @@ Formation_Tuteur;IdPers;Personne;IdPers
 
 Formulaire;IdPers;Personne;IdPers
 
-FormulaireComplete;IdForm;Formulaire;IdForm
+#FormulaireComplete;IdForm;Formulaire;IdForm
 
 FormulaireComplete_Evaluation;IdPers;Personne;IdPers
 

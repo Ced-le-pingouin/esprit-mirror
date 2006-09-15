@@ -19,7 +19,10 @@ require_once('../../../include/config.inc');
 
 define('DEBUG', TRUE);
 define('AFFICHAGE_HTML', TRUE);
+define('NB_INDEX_PAR_REQUETE', 20);
+
 define('ENCODAGE', 'utf-8');
+
 
 if (defined('AFFICHAGE_HTML'))
 {
@@ -66,7 +69,11 @@ function aff($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT)
 function affln($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { aff($v_sTexte, $v_bEchapper); aff(LF, FALSE); }
 
 function affd($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { if (defined('DEBUG')) aff($v_sTexte, $v_bEchapper); }
-function afflnd($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { if (defined('DEBUG')) affln($v_sTexte, $v_bEchapper); }
+function afflnd($v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT)
+{
+	if (defined('DEBUG'))
+		affln($v_sTexte, $v_bEchapper);
+}
 
 function retChaineNiv($v_iNiveau) { return str_repeat(TAB, $v_iNiveau); }
 function _affniv($v_iNiveau) { aff($this->retChaineNiv($v_iNiveau), FALSE); }
@@ -75,6 +82,22 @@ function affniv($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $th
 function affnivln($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $this->_affniv($v_iNiveau); affln($v_sTexte, $v_bEchapper); }
 function affnivd($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $this->_affniv($v_iNiveau); affd($v_sTexte, $v_bEchapper); }
 function affnivlnd($v_iNiveau, $v_sTexte, $v_bEchapper = ECHAPPER_PAR_DEFAUT) { $this->_affniv($v_iNiveau); afflnd($v_sTexte, $v_bEchapper); }
+
+function microtime_float()
+{
+	list($usec, $sec) = explode(" ", microtime());
+	return ((float)$usec + (float)$sec);
+}
+function debutProf() { $GLOBALS['_ced_iTempsDebut'] = microtime_float(); }
+function finProf($v_bAfficher = FALSE)
+{
+	$r_iIntervalleTemps = microtime_float() - $GLOBALS['_ced_iTempsDebut'];
+	
+	if ($v_bAfficher)
+		aff(" ({$r_iIntervalleTemps}s)");
+		
+	return $r_iIntervalleTemps;
+}
 
 
 define('TABLE_SRC'   , 0);
@@ -111,6 +134,10 @@ class CExport
 		$this->lireFichierClesPrimaires();
 		$this->lireFichierParents();
 		$this->lireFichierEnfants();
+		// toutes les tables qui disposent d'une clé primaire auront potentiellement des enregistrements à exporter, 
+		// et étant donné que ceux-ci seront stockés sous forme de tableau, on crée ce dernier pour chaque table
+		foreach(array_keys($this->aaTables) as $sNomTable)
+			$this->aaTables[$sNomTable]['AExporter'] = array();			
 		
 		// connexion à la DB
 		$this->connecterDb();
@@ -177,7 +204,7 @@ class CExport
 				$asEnregsAExporter = $this->retEnregsAExporter($sNomTable);
 				$sContenuFichier .=
 					"$sNomTable (".count($asEnregsAExporter).")".
-//					":\n".implode("\n", $asEnregsAExporter).
+					":\n".implode("\n", $asEnregsAExporter).
 					"\n"
 					;
 			}
@@ -214,18 +241,19 @@ class CExport
 		{
 			$i++;
 			
-			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.$i.' --- '.LF.FIN_EMPHASE , FALSE);
+			afflnd(LF.LF.DEBUT_EMPHASE.'--- Passage n°'.$i.' --- '.FIN_EMPHASE.LF , FALSE);
 			
 			$this->reinitEnregsAjoutesToutesTables();
 			
 			$this->trouverRelationsToutesTables('enfants', $v_bRecursif);
 			$this->trouverRelationsToutesTables('parents', $v_bRecursif);
 			
+			afflnd('');
 			foreach (array_keys($this->aaTables) as $sNomTable)
 				if ($this->aEnregsAExporter($sNomTable)) 
-					afflnd($sNomTable.' : '.implode(', ', $this->retEnregsAExporter($sNomTable)));
+					afflnd($sNomTable.' ('.count($this->retEnregsAExporter($sNomTable)).') : '.implode(', ', $this->retEnregsAExporter($sNomTable)));
 		}
-		afflnd(LF.LF.DEBUT_EMPHASE.'*** Nombre de passages : '.$i.' ***'.LF.FIN_EMPHASE , FALSE);
+		afflnd(LF.LF.DEBUT_EMPHASE.'*** Nombre de passages : '.$i.' ***'.FIN_EMPHASE.LF , FALSE);
 		
 		$sSuffixe = $v_bRecursif?'.rec':'';
 		$this->ecrireFichierResultat('result'.$sSuffixe.'.txt', $i);
@@ -260,58 +288,74 @@ class CExport
 				$sTableDest = $asRel[TABLE_DEST];
 				$sChampDest = $asRel[CHAMPS_DEST];
 				
-				$sRequeteSql =
-					 " SELECT"
-					."   DISTINCT $sCleDest" // "d.<nom_cle>", le "d." est ajouté à la création de cette chaîne si besoin est (parfois plusieurs champs pour former la clé)
-					." FROM"
-					."   $sTableDest AS d"
-					."   INNER JOIN $v_sTableSource AS s ON (d.$sChampDest = s.$sChampSource)"
-					." WHERE"
-					// ci-dessous, condition sous forme "s.Index1 IN (...) [AND s.Index2 IN (...) ...]"
-					.$this->retConditionCle('s', $sCleSource, $asEnregsAExporter);
-					;
-				$asIds = $this->executerRequeteSurIds($sRequeteSql);
-				
-				if (count($asIds))
-				{
-					$bEnregsAjoutesTmp = $this->ajouterEnregsAExporter($sTableDest, $asIds);
-					$r_bEnregsAjoutes =  $bEnregsAjoutesTmp || $r_bEnregsAjoutes;
-					$sListeIds = implode(', ', $asIds);
-				}
+				if (defined('NB_INDEX_PAR_REQUETE'))
+					$asEnregsAExporterParties = array_chunk($asEnregsAExporter, NB_INDEX_PAR_REQUETE);
 				else
-				{
-					$sListeIds = NULL;
-					$bEnregsAjoutesTmp = FALSE;
-				}
+					$asEnregsAExporterParties = array(0=>$asEnregsAExporter);
 				
-				if ($bEnregsAjoutesTmp)//(!is_null($sListeIds))
+				$bEnregsAjoutesParties = FALSE;
+				foreach ($asEnregsAExporterParties as $asEnregsAExporterPartie)
 				{
-					if ($v_sTypeRel == 'enfants')
+					$sRequeteSql =
+						 " SELECT"
+						."   DISTINCT $sCleDest" // "d.<nom_cle>", le "d." est ajouté à la création de cette chaîne si besoin est (parfois plusieurs champs pour former la clé)
+						." FROM"
+						."   $sTableDest AS d"
+						."   INNER JOIN $v_sTableSource AS s"
+						."     ON (d.$sChampDest = s.$sChampSource)"
+						." WHERE"
+						// ci-dessous, condition sous forme "s.Index1 IN (...) [AND s.Index2 IN (...) ...]"
+						.    $this->retConditionCle('s', $sCleSource, $asEnregsAExporterPartie)
+						."   AND ".$this->retConditionCle('d', $this->retClePrimaire($asRel[TABLE_DEST]), $this->retEnregsAExporter($sTableDest), TRUE)
+						;
+					
+					debutProf();
+					$asIds = $this->executerRequeteSurIds($sRequeteSql);
+					finProf(TRUE);
+					
+					if (count($asIds))
 					{
-						afflnd(
-							$v_sTableSource.'<='.$sTableDest.
-							' - '.
-							$sRequeteSql.
-							' : '.
-							$sListeIds
-						);
+						$bEnregsAjoutesTmp = $this->ajouterEnregsAExporter($sTableDest, $asIds);
+						$r_bEnregsAjoutes =  $bEnregsAjoutesTmp || $r_bEnregsAjoutes;
 					}
 					else
 					{
-						afflnd(
-							DEBUT_EMPHASE.
-							$v_sTableSource.'=>'.$sTableDest.
-							' - '.
-							$sRequeteSql.
-							' : '.
-							$sListeIds.
-							FIN_EMPHASE
-							, FALSE
-						);
+						$bEnregsAjoutesTmp = FALSE;
 					}
+					
+					$bEnregsAjoutesParties = $bEnregsAjoutesParties || $bEnregsAjoutesTmp;
+					
+//					if ($bEnregsAjoutesTmp)
+//					{
+//						if ($v_sTypeRel == 'enfants')
+//						{
+//							afflnd(
+//								$v_sTableSource.'<='.$sTableDest.
+//								' ('.count($asIds).')'.
+////								' - '.
+////								$sRequeteSql.
+//								' : '.
+//								implode(', ', $asIds)
+//							);
+//						}
+//						else
+//						{
+//							afflnd(
+//								DEBUT_EMPHASE.
+//								$v_sTableSource.'=>'.$sTableDest.
+//								' ('.count($asIds).')'.
+////								' - '.
+////								$sRequeteSql.
+//								' : '.
+//								implode(', ', $asIds).
+//								FIN_EMPHASE
+//								, FALSE
+//							);
+//						}
+//					}
 				}
 				
-				if ($v_bRecursif && !is_null($sListeIds))
+				if ($v_bRecursif && $bEnregsAjoutesParties)
 					$r_bEnregsAjoutes = $this->trouverRelationsTable($sTableDest, $v_sTypeRel, $v_bRecursif) || $r_bEnregsAjoutes;
 			}
 		}
@@ -335,10 +379,10 @@ class CExport
 		return $asIds;
 	}
 	
-	function executerRequete($v_sRequete, $v_bAfficher = FALSE)
+	function executerRequete($v_sRequete, $v_bAfficher = TRUE)
 	{
 		if ($v_bAfficher)
-			aff($v_sRequete);
+			affln($v_sRequete);
 		
 		$r_hResult = mysql_query($v_sRequete)
 		  or die(mysql_error());
@@ -406,20 +450,15 @@ class CExport
 	
 	function ajouterEnregsAExporter($v_sTable, $v_asValeurs)
 	{
-		$r_bEnregAjoute = FALSE;
+		$this->aaTables[$v_sTable]['AExporter'] = array_merge($this->aaTables[$v_sTable]['AExporter'], $v_asValeurs);
+		$this->defEnregsAjoutes($v_sTable);
 		
-		foreach ($v_asValeurs as $sValeur)
-			$r_bEnregAjoute = $this->ajouterEnregAExporter($v_sTable, $sValeur) || $r_bEnregAjoute;
-		
-		return $r_bEnregAjoute;
+		return TRUE;
 	}
 	
 	function ajouterEnregAExporter($v_sTable, $v_sValeur)
 	{
 		$r_bEnregAjoute = FALSE;
-		
-		if (!is_array($this->aaTables[$v_sTable]['AExporter']))
-			$this->aaTables[$v_sTable]['AExporter'] = array();
 		
 		if (!in_array($v_sValeur, $this->aaTables[$v_sTable]['AExporter']))
 		{
@@ -450,12 +489,16 @@ class CExport
 		return implode(', ', $asCles);
 	}
 	
-	function retConditionCle($v_sPrefixe, $v_sCle, $v_asEnregsAExporter)
+	function retConditionCle($v_sPrefixe, $v_sCle, $v_asEnregsAExporter, $v_bInverser = FALSE)
 	{
 		$sCondition = ' ';
 		$asCles = explode(',', $v_sCle);
 		
-		if (count($asCles) == 1)
+		if (empty($v_asEnregsAExporter))
+		{
+			$sCondition = '0';
+		}
+		else if (count($asCles) == 1)
 		{
 			$sCondition .= $v_sPrefixe.'.'.$asCles[0].' IN ('.implode(', ', $v_asEnregsAExporter).')';
 		}
@@ -473,11 +516,16 @@ class CExport
 			$sCondition .= implode(' OR ', $asConditions);
 		}
 		
+		if ($v_bInverser)
+			$sCondition = "NOT ($sCondition)";
+		
 		return $sCondition;
 	}
 }
+
 aff(EN_TETE, FALSE);
 
+affln('Exportation... ');
 $oExport = new CExport();
 $oExport->ajouterEnregsAExporter('Formation', array(92)); // formation <- liste fixe à exporter (point de départ des requêtes SQL)
 $oExport->trouverRelations(FALSE);

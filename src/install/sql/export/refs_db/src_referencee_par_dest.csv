@@ -1,4 +1,4 @@
-# pas sûr pour :
+# pas certain pour :
 #
 # ForumPrefs;IdForumPrefs;ForumPrefs_CopieCourrielEquipe;IdForumPrefs
 # Ressource_SousActiv;IdResSousActiv;SousActiv_Ressource_SousActiv;IdResSousActiv
@@ -30,7 +30,7 @@ Formation;IdForm;Formation_Resp;IdForm
 Formation;IdForm;Formation_Tuteur;IdForm
 Formation;IdForm;Glossaire;IdForm
 
-#Formulaire;IdForm;FormulaireComplete;IdForm
+Formulaire;IdForm;FormulaireComplete;IdForm
 Formulaire;IdForm;Formulaire_Axe;IdForm
 Formulaire;IdForm;ObjetFormulaire;IdForm
 
