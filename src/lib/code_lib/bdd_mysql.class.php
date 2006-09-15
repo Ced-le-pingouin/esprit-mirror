@@ -60,6 +60,9 @@ class CBddMySql
 		// tente la connexion, si echec, on arrête directement
 		$this->hLien = mysql_connect($this->sHote, $this->sLogin, $this->sMdp) or die;
 
+		// configure le charset du client
+		mysql_query("SET NAMES 'utf8'");
+
 		// connexion à la base voulue
 		mysql_select_db($v_sNom, $this->hLien) or $this->traiterErreur();
 
