@@ -1394,7 +1394,7 @@ class CSousActiv
 	function retListeModalites ()
 	{
 		return array(
-			array(MODALITE_IDEM_PARENT,"même modalité que le ".strtolower(INTITULE_ACTIV))
+			array(MODALITE_IDEM_PARENT,"même modalité que le ".mb_strtolower(INTITULE_ACTIV,"UTF-8"))
 			/*, array(MODALITE_INDIVIDUEL,"individuel")
 			, array(MODALITE_PAR_EQUIPE,"par &eacute;quipe")*/
 		);
@@ -1427,7 +1427,7 @@ class CSousActiv
 	function retListeTypes ()
 	{
 		return array(
-			  array(LIEN_PAGE_HTML,"Choisissez un type pour cette ".strtolower(INTITULE_SOUS_ACTIV))
+			  array(LIEN_PAGE_HTML,"Choisissez un type pour cette ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"))
 			, array(LIEN_PAGE_HTML,"Affichage d'un document déposé sur le serveur")
 			, array(LIEN_TEXTE_FORMATTE,"Texte formaté")
 			, array(LIEN_DOCUMENT_TELECHARGER,"Document à télécharger")
@@ -1453,7 +1453,7 @@ class CSousActiv
 			  array(STATUT_FERME,"Fermé")
 			, array(STATUT_OUVERT,"Ouvert")
 			, array(STATUT_INVISIBLE,"Invisible")
-			, array(STATUT_IDEM_PARENT,"Même statut que le ".strtolower(INTITULE_ACTIV))
+			, array(STATUT_IDEM_PARENT,"Même statut que le ".mb_strtolower(INTITULE_ACTIV,"UTF-8"))
 		);
 	}
 	

@@ -108,7 +108,7 @@ if (isset($_POST["LISTE_IDPERS"]))
 		$sCelluleCssTrierPseudo = ($url_sTri == "pseudo" ? "cellule_clair_fonce" : $sCelluleCss);
 		
 		$lien = NULL;
-		$sPremiereLettre = strtolower(substr($oPersonne->retNom(),0,1));
+		$sPremiereLettre = mb_strtolower(substr($oPersonne->retNom(),0,1),"UTF-8");
 		
 		if ($iLettre < ord($sPremiereLettre))
 		{

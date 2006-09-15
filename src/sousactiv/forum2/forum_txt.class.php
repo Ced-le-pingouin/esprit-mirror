@@ -87,7 +87,7 @@ class CForumTXT extends CForum
 					."-"
 					.strtoupper($oMessage->oAuteur->retNom())
 					." "
-					.ucfirst(strtolower($oMessage->oAuteur->retPrenom()))
+					.ucfirst(mb_strtolower($oMessage->oAuteur->retPrenom(),"UTF-8"))
 					.CRLN;
 				
 				echo $oMessage->retDate("d/m/y (H:i:s)")

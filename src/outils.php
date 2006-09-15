@@ -52,7 +52,7 @@ BLOCK_JAVASCRIPT;
 
 // {{{ Liste des outils
 $aaOutils = array(
-	array($oProjet->retNom(),"logo-".strtolower($oProjet->retNom()).".gif","informations()",TXT_PLATEFORME_DESCRIPTION,TRUE)
+	array($oProjet->retNom(),"logo-".mb_strtolower($oProjet->retNom(),"UTF-8").".gif","informations()",TXT_PLATEFORME_DESCRIPTION,TRUE)
 	, array(TXT_ECONCEPT_TITRE,"conception.gif","eConcept()",TXT_ECONCEPT_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_ECONCEPT"))
 	, array(TXT_FORMULAIRE_TITRE,"formulaire.gif","formulaire()",TXT_FORMULAIRE_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_FORMULAIRE"))
 	, array(TXT_TRANSFERT_FORMATIONS_TITRE,"transfert_form.gif","transfert_form()",TXT_TRANSFERT_FORMATIONS_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_CORBEILLE"))

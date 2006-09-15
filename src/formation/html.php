@@ -58,7 +58,7 @@ if (!empty($url_sNomFichier))
 	{
 		$bOk = TRUE;
 		eregi("(\.[[:alnum:]]+$)",$sNomFichier,$tmp);
-		$ext = strtolower($tmp[0]);
+		$ext = mb_strtolower($tmp[0],"UTF-8");
 	}
 }
 

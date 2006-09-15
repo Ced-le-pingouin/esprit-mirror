@@ -97,7 +97,7 @@ class CFormulaireComplete
 		if (isset($this->oFormulaireModele))
 			return;
 		
-		if (isset($v_oFormulaireModele) && strtolower(get_class($v_oFormulaireModele)) == "cformulaire"
+		if (isset($v_oFormulaireModele) && mb_strtolower(get_class($v_oFormulaireModele),"UTF-8") == "cformulaire"
 		  && $v_oFormulaireModele->retId() > 0 && $v_oFormulaireModele->retId() == $this->retIdForm())
 		{
 			$this->oFormulaireModele = $v_oFormulaireModele;

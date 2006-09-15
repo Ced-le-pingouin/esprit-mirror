@@ -50,7 +50,7 @@ function validerFichier ($v_sFichierDeposer,$v_sValidExt=NULL,$v_sSeparateurExt=
 	if ($iPos === FALSE || $iPos == (strlen($v_sFichierDeposer)-1))
 		return FALSE;
 	
-	$sExt = strtolower(substr($v_sFichierDeposer,$iPos+1,strlen($v_sFichierDeposer)));
+	$sExt = mb_strtolower(substr($v_sFichierDeposer,$iPos+1,strlen($v_sFichierDeposer)),"UTF-8");
 	
 	return in_array($sExt,$asListeExtentions);
 }

@@ -118,25 +118,25 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 	{
 		case STATUT_PERS_RESPONSABLE:
 			$sErrPers = "Pas de "
-				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"))
+				.mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"),"UTF-8")
 				." trouvé";
 			break;
 			
 		case STATUT_PERS_CONCEPTEUR:
 			$sErrPers = "Pas de "
-				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"))
+				.mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"),"UTF-8")
 				." trouvé";
 			break;
 			
 		case STATUT_PERS_TUTEUR:
 			$sErrPers = "Pas de "
-				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"))
+				.mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"),"UTF-8")
 				." trouvé";
 			break;
 			
 		case STATUT_PERS_ETUDIANT:
 			$sErrPers = "Pas d'"
-				.strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"))
+				.mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"),"UTF-8")
 				." trouvé";
 			break;
 			

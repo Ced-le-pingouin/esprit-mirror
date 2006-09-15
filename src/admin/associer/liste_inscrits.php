@@ -101,14 +101,14 @@ $strPas = _("Pas de %s trouvé");
 $asPasDePersonnesTrouvees = array(
 		NULL,
 		NULL,
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE_POTENTIEL,"M"))),
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"))),
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR_POTENTIEL,"M"))),
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"))),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE_POTENTIEL,"M"),"UTF-8")),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_RESPONSABLE,"M"),"UTF-8")),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR_POTENTIEL,"M"),"UTF-8")),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_CONCEPTEUR,"M"),"UTF-8")),
 		NULL,
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"))),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"),"UTF-8")),
 		NULL,
-		sprintf($strPas,strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"))),
+		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"),"UTF-8")),
 		NULL
 	);
 

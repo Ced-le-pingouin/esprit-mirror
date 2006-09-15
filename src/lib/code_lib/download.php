@@ -74,7 +74,7 @@ function retExt ($v_sNomFichier, $v_bMinuscules = FALSE)
 		$r_sExt = "";
 		
 	if ($v_bMinuscules)
-		return strtolower($r_sExt);
+		return mb_strtolower($r_sExt,"UTF-8");
 	else
 		return $r_sExt;
 }
