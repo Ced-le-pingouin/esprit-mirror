@@ -163,7 +163,7 @@ function div_glossaire ()
 		$sListeGlossaires .= "<option"
 			." value=\"".$oGlossaire->retId()."\""
 			.($oGlossaire->associerSousActiv($g_iSousActiv) ? " selected" : NULL)
-			.">".htmlentities($oGlossaire->retTitre(),ENT_COMPAT,"UTF-8")."</option>";
+			.">".mb_convert_encoding($oGlossaire->retTitre(),"HTML-ENTITIES","UTF-8")."</option>";
 	}
 	
 	if (isset($sListeGlossaires))
@@ -172,7 +172,7 @@ function div_glossaire ()
 	else
 		$sListeGlossaires = "<option value=\"0\">Pas de composition de glossaire trouvé</option>";
 	
-	$sIntitule = htmlentities("Glossaire associés au ".strtolower(INTITULE_SOUS_ACTIV),ENT_COMPAT,"UTF-8");
+	$sIntitule = mb_convert_encoding("Glossaire associés au ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"),"HTML-ENTITIES","UTF-8");
 	
 	$sConteneur = "<!-- :DEBUT: Glossaire -->\n"
 		."<div id=\"lien_glossaire\" class=\"Cacher\">"

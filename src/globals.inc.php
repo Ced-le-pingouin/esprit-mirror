@@ -306,18 +306,21 @@ function dir_sousactiv ($v_iLienSousActiv=NULL,$v_sFichierAInclure=NULL,$v_bChem
 
 function MySQLEscapeString ($v_sTexte,$v_sTexteParDefaut=NULL)
 {
-	$v_sTexte = mysql_escape_string(trim(stripslashes($v_sTexte)));
+	$v_sTexte = mysql_real_escape_string(trim(stripslashes($v_sTexte)));
 	return (strlen($v_sTexte) > 0 ? $v_sTexte : $v_sTexteParDefaut);
 }
 
 
 /*! convertit un texte pour être exporté vers du javascript */
 function phpString2js ($text) {
-    return rawurlencode(utf8ToUnicodeEntities($text));
+	// "é'àç" -> "%26%2300233%3B%27%26%2300224%3B%26%2300231%3B"
+    //return rawurlencode(utf8ToUnicodeSequences($text));
+	// "é'àç" -> "\u00e9\'\u00e0\u00e7"
+	return utf8ToUnicodeSequences(addslashes($text),false);
 }
 
 /*! convertit un texte UTF-8 en HTML ascii avec entitées &#XXX; */
-function utf8ToUnicodeEntities ($source) { 
+function utf8ToUnicodeSequences ($source, $html=true) { 
     // array used to figure what number to decrement from character order value  
     // according to number of characters used to map unicode to ascii by utf-8 
     $decrement[4] = 240; 
@@ -382,10 +385,14 @@ function utf8ToUnicodeEntities ($source) {
                 $thisPos++; 
             } 
 
-            if ($thisLen == 1) 
-                $encodedLetter = "&#". str_pad($decimalCode, 3, "0", STR_PAD_LEFT) . ';'; 
-            else 
-                $encodedLetter = "&#". str_pad($decimalCode, 5, "0", STR_PAD_LEFT) . ';'; 
+			if ($html) {
+				if ($thisLen == 1) 
+					$encodedLetter = "&#". str_pad($decimalCode, 3, "0", STR_PAD_LEFT) . ';'; 
+				else 
+					$encodedLetter = "&#". str_pad($decimalCode, 5, "0", STR_PAD_LEFT) . ';'; 
+			} else { // javascript
+				$encodedLetter = '\u'. str_pad(dechex($decimalCode), 4, "0", STR_PAD_LEFT); 
+			}
 
             $encodedString .= $encodedLetter; 
         } 
@@ -648,7 +655,7 @@ function retTitrePageHtml ($v_sFichierHtml)
 		
 		foreach ($asContenuFichier as $sLigne)
 			if (ereg("<title>(.*)</title>",$sLigne,$asTmp))
-				return html_entity_decode($asTmp[1]);
+				return mb_convert_encoding($asTmp[1], 'UTF-8', 'HTML-ENTITIES');
 	}
 	return NULL;
 }

@@ -85,18 +85,18 @@ if ($g_iFormation > 0)
 // Les titres des tooltips
 $asIntitule = array(
 		"",
-		"Ajouter une nouvelle ".strtolower(INTITULE_FORMATION),
-		"Supprimer cette ".strtolower(INTITULE_FORMATION),
-		"Ajouter un nouveau ".strtolower(INTITULE_MODULE),
-		"Supprimer ce ".strtolower(INTITULE_MODULE),
-		"Ajouter une nouvelle ".strtolower(INTITULE_RUBRIQUE),
-		"Supprimer cette ".strtolower(INTITULE_RUBRIQUE),
+		"Ajouter une nouvelle ".mb_strtolower(INTITULE_FORMATION,"UTF-8"),
+		"Supprimer cette ".mb_strtolower(INTITULE_FORMATION,"UTF-8"),
+		"Ajouter un nouveau ".mb_strtolower(INTITULE_MODULE,"UTF-8"),
+		"Supprimer ce ".mb_strtolower(INTITULE_MODULE,"UTF-8"),
+		"Ajouter une nouvelle ".mb_strtolower(INTITULE_RUBRIQUE,"UTF-8"),
+		"Supprimer cette ".mb_strtolower(INTITULE_RUBRIQUE,"UTF-8"),
 		"",
 		"",
-		"Ajouter un nouveau ".strtolower(INTITULE_ACTIV),
-		"Supprimer ce ".strtolower(INTITULE_ACTIV),
-		"Ajouter une nouvelle ".strtolower(INTITULE_SOUS_ACTIV),
-		"Supprimer cette ".strtolower(INTITULE_SOUS_ACTIV),
+		"Ajouter un nouveau ".mb_strtolower(INTITULE_ACTIV,"UTF-8"),
+		"Supprimer ce ".mb_strtolower(INTITULE_ACTIV,"UTF-8"),
+		"Ajouter une nouvelle ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"),
+		"Supprimer cette ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"),
 	);
 
 // ---------------------
@@ -472,17 +472,17 @@ if (isset($oProjet->oRubriqueCourante) &&
 var asElement = new Array (
 	""
 	,""
-	,"cette <?=strtolower(INTITULE_FORMATION)?>"
+	,"cette <?=phpString2js(mb_strtolower(INTITULE_FORMATION,"UTF-8"))?>"
 	,""
-	,"ce <?=strtolower(INTITULE_MODULE)?>"
+	,"ce <?=phpString2js(mb_strtolower(INTITULE_MODULE,"UTF-8"))?>"
 	,""
-	,"cette <?=strtolower(INTITULE_RUBRIQUE)?>"
+	,"cette <?=phpString2js(mb_strtolower(INTITULE_RUBRIQUE,"UTF-8"))?>"
 	,""
 	,""
 	,""
-	,"ce <?=strtolower(INTITULE_ACTIV)?>"
+	,"ce <?=phpString2js(mb_strtolower(INTITULE_ACTIV,"UTF-8"))?>"
 	,""
-	,"cette <?=strtolower(INTITULE_SOUS_ACTIV)?>");
+	,"cette <?=phpString2js(mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"))?>");
 
 function Envoyer(v_iNum)
 {
