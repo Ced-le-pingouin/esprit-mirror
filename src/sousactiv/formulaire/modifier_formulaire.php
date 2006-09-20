@@ -92,7 +92,7 @@ echo "<title>Activité en ligne</title>\n";
 
 //echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";
 echo "<script src=\"".dir_theme_commun("js/formulaire.js")."\" type=\"text/javascript\"></script>\n";
-echo "<script src=\"".dir_code_lib_ced("general.js", FALSE, FALSE)."\" type=\"text/javascript\"></script>\n";
+echo "<script src=\"".dir_code_lib_ced("general.js.php", FALSE, FALSE)."\" type=\"text/javascript\"></script>\n";
 
 if ($v_iIdFormulaire > 0)
 {
@@ -105,7 +105,7 @@ if ($v_iIdFormulaire > 0)
 	echo "form";
 	echo "  { margin-left:$sLargeur; margin-right:$sLargeur; }\n";
 	echo ".p";
-	echo "  {line-height:10.5pt font-family:Arial,sans-serif; font-size:10pt; color:black; margin-top:6px; margin-bottom:6px; }\n";
+	echo "  {line-height:10.5pt; font-family:Arial,sans-serif; font-size:10pt; color:black; margin-top:6px; margin-bottom:6px; }\n";
 	echo ".InterER";
 	echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels séparant les énoncés des réponses
 	echo ".InterObj";

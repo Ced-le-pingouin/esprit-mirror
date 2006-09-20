@@ -34,23 +34,15 @@ class CQCocher
 	var $oBdd;
 	var $iId;
 	var $oEnregBdd;
-	var $aoFormulaire;
 	
 	function CQCocher(&$v_oBdd, $v_iId = 0) 
 	{
 		$this->oBdd = &$v_oBdd;
-			//si 0 crée un objet presque vide sinon 
-			//rempli l'objet avec les données de la table QRadio
-			//de l'elément ayant l'Id passé en argument 
-			//(ou avec l'objet passé en argument mais sans passer par le constructeur)
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
-	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
-	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
-	function init ($v_oEnregExistant = NULL)
+	function init($v_oEnregExistant = NULL)
 	{
 		if (isset($v_oEnregExistant))
 		{
@@ -63,12 +55,10 @@ class CQCocher
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		
 		$this->iId = $this->oEnregBdd->IdObjForm;
 	}
 	
-	function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type checkbox,
-				 // avec tous ses champs vide, en fin de table
+	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type checkbox, avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO QCocher SET IdObjForm='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -106,17 +96,16 @@ class CQCocher
 				$i++;
 			}
 		}
-
+		
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
 		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
 					." ORDER BY OrdreReponse";
 		$hResultRRQC = $this->oBdd->executerRequete($sRequeteSql);
 		
-		
 		if ($this->oEnregBdd->DispQC == 'Ver')  //Présentation sous forme de tableau
 		{
-			$CodeHtml="<TABLE cellspacing=\"0\" cellpadding=\"0\">";
-
+			$CodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">";
+			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
 			{
 				$oReponse = new CReponse($this->oBdd);
@@ -130,14 +119,14 @@ class CQCocher
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if(in_array($IdReponseTemp, $TabRepEtu))
-					{$sPreSelection = "CHECKED";}
+					{$sPreSelection = "checked=\"checked\"";}
 				else
 					{$sPreSelection = "";}
 				
-				$CodeHtml.= "<TR><TD><INPUT TYPE=\"checkbox\" NAME=\"$IdObjFormTemp\" "
-					."VALUE=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection></TD><TD>$TexteTemp</TD></TR>\n";
+				$CodeHtml.= "<tr><td><input type=\"checkbox\" name=\"$IdObjFormTemp\" "
+					."value=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>$TexteTemp</td></tr>\n";
 			}
-			$CodeHtml.="</TABLE>";
+			$CodeHtml.="</table>";
 		}
 		else //Présentation en ligne
 		{
@@ -157,17 +146,17 @@ class CQCocher
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if (in_array($IdReponseTemp, $TabRepEtu))
-					{$sPreSelection = "CHECKED";}
+					{$sPreSelection = "checked=\"checked\"";}
 				else
 					{$sPreSelection = "";}
 				
-				$CodeHtml .= "<INPUT TYPE=\"checkbox\" NAME=\"$IdObjFormTemp\" "
-					."VALUE=\"$IdReponseTemp\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection>$TexteTemp\n";
+				$CodeHtml .= "<input type=\"checkbox\" name=\"$IdObjFormTemp\" "
+					."value=\"$IdReponseTemp\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />$TexteTemp\n";
 			}
 		}
 		
 		$this->oBdd->libererResult($hResultRRQC);
-		return "$CodeHtml";
+		return $CodeHtml;
 	}
 	
 	/*
@@ -199,8 +188,8 @@ class CQCocher
 		
 		//Genération du code html représentant l'objet
 		$sCodeHtml = "\n<!--QCocher : {$this->oEnregBdd->IdObjForm} -->\n"
-			."<div align={$this->oEnregBdd->AlignEnonQC}>{$this->oEnregBdd->EnonQC}</div>\n"
-			."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQC}>\n"
+			."<div align=\"{$this->oEnregBdd->AlignEnonQC}\">{$this->oEnregBdd->EnonQC}</div>\n"
+			."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQC}\">\n"
 			."{$this->oEnregBdd->TxtAvQC} \n"
 			//Appel de la fonction qui renvoie les réponses sous forme de cases à cocher,
 			//avec la réponse sélectionnée par l'étudiant si IdFC est présent
@@ -224,10 +213,9 @@ class CQCocher
 	{
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
 		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}' ORDER BY OrdreReponse";
-		
 		$hResultRRQCM = $this->oBdd->executerRequete($sRequeteSql);
 		
-		$sCodeHtml="";
+		$sCodeHtml = "";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQCM))
 		{
@@ -253,11 +241,10 @@ class CQCocher
 		$this->oBdd->libererResult($hResultRRQCM);
 		return $sCodeHtml;
 	}
-
 	
-	function enregistrer ()
+	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm !=NULL)
+		if ($this->oEnregBdd->IdObjForm != NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -265,22 +252,17 @@ class CQCocher
 			$sTxtAvQC = validerTexte($this->oEnregBdd->TxtAvQC);
 			$sTxtApQC = validerTexte($this->oEnregBdd->TxtApQC);
 			
-			$sRequeteSql =
-				"  REPLACE QCocher SET"
-				." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
-				." , EnonQC='{$sEnonQC}'"
-				." , AlignEnonQC='{$this->oEnregBdd->AlignEnonQC}'"
-				." , AlignRepQC='{$this->oEnregBdd->AlignRepQC}'"
-				." , TxtAvQC='{$sTxtAvQC}'"
-				." , TxtApQC='{$sTxtApQC}'"
-				." , DispQC='{$this->oEnregBdd->DispQC}'"
-				." , NbRepMaxQC='{$this->oEnregBdd->NbRepMaxQC}'"
-				." , MessMaxQC='{$this->oEnregBdd->MessMaxQC}'"
-				;
-			
+			$sRequeteSql = "REPLACE QCocher SET"
+						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." , EnonQC='{$sEnonQC}'"
+						." , AlignEnonQC='{$this->oEnregBdd->AlignEnonQC}'"
+						." , AlignRepQC='{$this->oEnregBdd->AlignRepQC}'"
+						." , TxtAvQC='{$sTxtAvQC}'"
+						." , TxtApQC='{$sTxtApQC}'"
+						." , DispQC='{$this->oEnregBdd->DispQC}'"
+						." , NbRepMaxQC='{$this->oEnregBdd->NbRepMaxQC}'"
+						." , MessMaxQC='{$this->oEnregBdd->MessMaxQC}'";
 			$this->oBdd->executerRequete($sRequeteSql);
-			
-			return TRUE;
 		}
 		else
 		{
@@ -288,7 +270,7 @@ class CQCocher
 		}
 	}
 	
-	function copier ($v_iIdNvObjForm)
+	function copier($v_iIdNvObjForm)
 	{
 		if ($v_iIdNvObjForm < 1)
 			return;
@@ -299,39 +281,32 @@ class CQCocher
 		$sTxtAvQC = validerTexte($this->oEnregBdd->TxtAvQC);
 		$sTxtApQC = validerTexte($this->oEnregBdd->TxtApQC);
 		
-		$sRequeteSql =
-			"  INSERT INTO QCocher SET"
-			." IdObjForm='{$v_iIdNvObjForm}'"
-			." , EnonQC='{$sEnonQC}'"
-			." , AlignEnonQC='{$this->oEnregBdd->AlignEnonQC}'"
-			." , AlignRepQC='{$this->oEnregBdd->AlignRepQC}'"
-			." , TxtAvQC='{$sTxtAvQC}'"
-			." , TxtApQC='{$sTxtApQC}'"
-			." , DispQC='{$this->oEnregBdd->DispQC}'"
-			." , NbRepMaxQC='{$this->oEnregBdd->NbRepMaxQC}'"
-			." , MessMaxQC='{$this->oEnregBdd->MessMaxQC}'";
-			
+		$sRequeteSql = "INSERT INTO QCocher SET"
+					." IdObjForm='{$v_iIdNvObjForm}'"
+					." , EnonQC='{$sEnonQC}'"
+					." , AlignEnonQC='{$this->oEnregBdd->AlignEnonQC}'"
+					." , AlignRepQC='{$this->oEnregBdd->AlignRepQC}'"
+					." , TxtAvQC='{$sTxtAvQC}'"
+					." , TxtApQC='{$sTxtApQC}'"
+					." , DispQC='{$this->oEnregBdd->DispQC}'"
+					." , NbRepMaxQC='{$this->oEnregBdd->NbRepMaxQC}'"
+					." , MessMaxQC='{$this->oEnregBdd->MessMaxQC}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
 		$iIdObjForm = $this->oBdd->retDernierId();
 		
 		return $iIdObjForm;
 	}
 	
-	function enregistrerRep ($v_iIdFC,$v_iIdObjForm,$v_sReponsePersQC)
+	function enregistrerRep($v_iIdFC,$v_iIdObjForm,$v_sReponsePersQC)
 	{
-		if ($v_iIdObjForm !=NULL)
+		if ($v_iIdObjForm != NULL)
 		{
-			$sRequeteSql =
-				" INSERT INTO ReponseEntier SET"
-				." IdFC='{$v_iIdFC}'"
-				." , IdObjForm='{$v_iIdObjForm}'"
-				." , IdReponse='{$v_sReponsePersQC}'";
+			$sRequeteSql = " INSERT INTO ReponseEntier SET"
+						." IdFC='{$v_iIdFC}'"
+						." , IdObjForm='{$v_iIdObjForm}'"
+						." , IdReponse='{$v_sReponsePersQC}'";
 			
-			//echo "<br>enregistrer ReponsePersQC : ".$sRequeteSql;
 			$this->oBdd->executerRequete($sRequeteSql);
-			
-			return TRUE;
 		}
 		else
 		{
@@ -339,13 +314,10 @@ class CQCocher
 		}
 	}
 	
-	function effacer ()
+	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QCocher WHERE IdObjForm ='{$this->oEnregBdd->IdObjForm}'";
-		//echo "<br>effacer QCocher()".$sRequeteSql;
+		$sRequeteSql = "DELETE FROM QCocher WHERE IdObjForm ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
 	}
 	
 	//Fonctions de définition
@@ -370,5 +342,4 @@ class CQCocher
 	function retNbRepMaxQC () {return $this->oEnregBdd->NbRepMaxQC; }
 	function retMessMaxQC () { return $this->oEnregBdd->MessMaxQC; }
 }
-
 ?>

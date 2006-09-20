@@ -1,6 +1,6 @@
-body, a, div, table, td, h1, h3, h4, h5, h6, p, .normal, ol, li, ul, span
+body
 {
-	color: #222222;
+	color: rgb(34,34,34);
 	font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
 	font-size: 9pt;
 }
@@ -41,7 +41,6 @@ body.popup
 {
 	background-color: rgb(231,225,212);
 }
-
 
 body.menumodif
 {

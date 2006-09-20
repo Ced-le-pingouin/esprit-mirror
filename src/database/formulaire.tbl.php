@@ -358,7 +358,28 @@ class CFormulaire
 		
 		return $iNb;
 	}
-
+	
+	/**
+	 * Retourne la liste des objets de formulaire
+	 * 
+	 * @return	la liste des objets de formulaire
+	 */
+	function retListeObjetFormulaire()
+	{
+		$iIdxObjForm = 0;
+		$aoObjetFormulaire = array();
+		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdForm ='".$this->retId()."' ORDER by OrdreObjForm";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		while ($oEnregBdd = $this->oBdd->retEnregSuiv($hResult))
+		{
+				$aoObjetFormulaire[$iIdxObjForm] = new CObjetFormulaire($this->oBdd);
+				$aoObjetFormulaire[$iIdxObjForm]->init($oEnregBdd);
+				$iIdxObjForm++;
+		}
+		$this->oBdd->libererResult($hResult);
+		return $aoObjetFormulaire;
+	}
+	
 	/** @name Fonctions de définition des champs pour ce formulaire */
 	//@{
 	function defTitre ($v_sTitre) { $this->oEnregBdd->Titre = trim($v_sTitre); }

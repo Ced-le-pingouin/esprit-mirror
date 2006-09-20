@@ -3,7 +3,7 @@ var CSS_RIGHT = 1;
 var CSS_BOTTOM = 2;
 var CSS_LEFT = 3;
 
-var sCheminBiblio = "/code_lib/new/";
+var sCheminBiblio = "<?php echo dirname($_SERVER["PHP_SELF"])?>/";
 var ns4 = false, ie4 = false, ns6 = false;
 
 var _contextMenuState = true;

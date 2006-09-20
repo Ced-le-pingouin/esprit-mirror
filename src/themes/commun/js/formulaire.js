@@ -104,13 +104,13 @@ function validerQNombre(v_oCase)
 		return;
 	
 	var bErreur = false;
-	var fValeurCase = parseFloat(v_oCase.value);
 	
-	// l'Id d'une case QNombre est structuré come ceci: <idobjet>_<nbmin>_<nbmax>
+	// l'Id d'une case QNombre est structuré come ceci: id_<idobjet>_<nbmin>_<nbmax>
 	var asParties = v_oCase.id.split('_');
 		
-	var fNbMin = parseFloat(asParties[1]);
-	var fNbMax = parseFloat(asParties[2]);
+	var fValeurCase = parseFloat(v_oCase.value);
+	var fNbMin = parseFloat(asParties[2]);
+	var fNbMax = parseFloat(asParties[3]);
 		
 	if (isNaN(fValeurCase) || fValeurCase < fNbMin)
 	{

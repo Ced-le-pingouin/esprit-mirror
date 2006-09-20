@@ -38,20 +38,15 @@ class CQRadio
 	var $oBdd;
 	var $iId;
 	var $oEnregBdd;
-	var $aoFormulaire;
-
+	
 	function CQRadio(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
-		
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
-	//INIT est une fonction que l'on peut utiliser sans passer par le constructeur. 
-	//On lui passe alors un objet obtenu par exemple en faisant une requête sur une autre page.
-	//Ceci permet alors d'utiliser toutes les fonctions disponibles sur cet objet
-	function init ($v_oEnregExistant=NULL)  
+	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
 		{
@@ -59,23 +54,21 @@ class CQRadio
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QRadio"
-						." WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QRadio WHERE IdObjForm='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		
 		$this->iId = $this->oEnregBdd->IdObjForm;
 	}
 
-	function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type radio, avec tous ses champs vide, en fin de table
+	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type radio, avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO QRadio SET IdObjForm='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
-
+	
 	//Fonctions de définition
 	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
 	function defEnonQR ($v_sEnonQR) { $this->oEnregBdd->EnonQR = $v_sEnonQR; }
@@ -84,7 +77,7 @@ class CQRadio
 	function defTxtAvQR ($v_sTxtAvQR) { $this->oEnregBdd->TxtAvQR = $v_sTxtAvQR; }	
 	function defTxtApQR ($v_sTxtApQR) { $this->oEnregBdd->TxtApQR = $v_sTxtApQR; }	
 	function defDispQR ($v_sDispQR) { $this->oEnregBdd->DispQR = $v_sDispQR; }
-
+	
 	//Fonctions de retour
 	function retId () { return $this->oEnregBdd->IdObjForm; }
 	function retEnonQR () { return $this->oEnregBdd->EnonQR; }
@@ -93,59 +86,7 @@ class CQRadio
 	function retTxTAvQR () { return $this->oEnregBdd->TxtAvQR; }
 	function retTxtApQR () { return $this->oEnregBdd->TxtApQR; }
 	function retDispQR () { return $this->oEnregBdd->DispQR; }
-
-	/*
-	** Fonction 		: RetourReponseQLD
-	** Description	: renvoie le code html contenant la liste déroulante avec les réponses,
-	**					  si $v_iIdFC la réponse fournie par l'étudiant sera pré-sélectionnée	
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	function RetourReponseQLD($v_iIdFC=NULL)
-	{
-		$iIdReponseEtu = "";
-		if ($v_iIdFC != NULL)
-		{
-			//Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$iIdReponseEtu = $oEnregRep->IdReponse;
-		}
-		
-		//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
-		$hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
-		
-		$CodeHtml="<select name=\"{$this->iId}\">\n";
-		
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQLD))
-		{
-			$oReponse = new CReponse($this->oBdd->oBdd);
-			$oReponse->init($oEnreg);
-			
-			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
-			$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
-			
-			if ($iIdReponseEtu == $IdReponseTemp) //Pré-sélection de la réponse donnée par l'étudiant
-				$CodeHtml.="<option value=\"$IdReponseTemp\" selected=\"selected\">$TexteTemp\n";
-			else
-				$CodeHtml.="<option value=\"$IdReponseTemp\">$TexteTemp\n";
-		}
-		$CodeHtml.="</select>\n";
-		
-		$this->oBdd->libererResult($hResultRRQLD);
-		return $CodeHtml;
-	}
-
+	
 	/*
 	** Fonction 		: RetourReponseQR
 	** Description		: va rechercher dans la table réponse les réponses correspondant
@@ -191,12 +132,12 @@ class CQRadio
 				$IdObjFormTemp = $oReponse->retIdObjForm();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
-					$sPreSelection = "checked";
+					$sPreSelection = "checked=\"checked\"";
 				else 
 					$sPreSelection = "";
 				
 				$CodeHtml.="<tr><td><input type=\"radio\" name=\"$IdObjFormTemp\" "
-						."value=\"$IdReponseTemp\" $sPreSelection></td><td>$TexteTemp</td></tr>\n";
+						."value=\"$IdReponseTemp\" $sPreSelection /></td><td>$TexteTemp</td></tr>\n";
 			}
 			$CodeHtml.="</table>";
 		}
@@ -216,19 +157,18 @@ class CQRadio
 				$IdObjFormTemp = $oReponse->retIdObjForm();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
-					$sPreSelection = "checked";
+					$sPreSelection = "checked=\"checked\"";
 				else
 					$sPreSelection = "";
 				
-				$CodeHtml.="<input type=\"radio\" name=\"$IdObjFormTemp\" "
-				."value=\"$IdReponseTemp\" $sPreSelection>$TexteTemp\n";
+				$CodeHtml .= "<input type=\"radio\" name=\"$IdObjFormTemp\" "
+						."value=\"$IdReponseTemp\" $sPreSelection />$TexteTemp\n";
 			}
 		}
-		
 		$this->oBdd->libererResult($hResulRRQR);
 		return $CodeHtml;
 	}
-
+	
 	/*
 	** Fonction 		: cHtmlQRadio
 	** Description	: renvoie le code html qui permet d'afficher une question de type bouton radio,
@@ -258,8 +198,8 @@ class CQRadio
 		
 		//Genération du code html représentant l'objet
 		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjForm} -->\n"
-				."<div align={$this->oEnregBdd->AlignEnonQR}>{$this->oEnregBdd->EnonQR}</div>\n"
-				."<div class=\"InterER\" align={$this->oEnregBdd->AlignRepQR}>\n"
+				."<div align=\"{$this->oEnregBdd->AlignEnonQR}\">{$this->oEnregBdd->EnonQR}</div>\n"
+				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQR}\">\n"
 				."{$this->oEnregBdd->TxtAvQR} \n"
 				.$this->RetourReponseQR($v_iIdFC) 			//Appel de la fonction qui renvoie les réponses sous forme de bouton radio, 
 															//avec la réponse cochée par l'étudiant si IdFC est présent
@@ -317,8 +257,7 @@ class CQRadio
 		return $sCodeHtml;
 	}
 	
-	
-	function enregistrer ()
+	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjForm !=NULL)
 		{	
@@ -338,15 +277,14 @@ class CQRadio
 						.", DispQR='{$this->oEnregBdd->DispQR}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
-			return TRUE;
 		}
 		else
 		{
 			echo "Identifiant NULL enregistrement impossible";
 		}
 	}
-
-	function enregistrerRep ($v_iIdFC,$v_iIdObjForm,$v_sReponsePersQR)
+	
+	function enregistrerRep($v_iIdFC,$v_iIdObjForm,$v_sReponsePersQR)
 	{
 		if ($v_iIdObjForm !=NULL)
 		{
@@ -356,15 +294,14 @@ class CQRadio
 						.", IdReponse='{$v_sReponsePersQR}'";
 				
 			$this->oBdd->executerRequete($sRequeteSql);
-			return TRUE;
 		}
 		else
 		{
 			echo "Identifiant NULL enregistrement impossible";
 		}
 	}
-
-	function copier ($v_iIdNvObjForm)
+	
+	function copier($v_iIdNvObjForm)
 	{
 		if ($v_iIdNvObjForm < 1)
 			return;
@@ -389,11 +326,10 @@ class CQRadio
 		
 		return $iIdObjForm;
 	}
-
-	function effacer ()
+	
+	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QRadio"
-					." WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QRadio WHERE IdObjForm ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

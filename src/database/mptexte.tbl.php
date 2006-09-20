@@ -34,7 +34,6 @@ class CMPTexte
 	var $oBdd;
 	var $iId;
 	var $oEnregBdd;
-	var $aoFormulaire;
 	
 	function CMPTexte(&$v_oBdd,$v_iId=0) 
 	{
@@ -43,7 +42,7 @@ class CMPTexte
 			$this->init();
 	}
 	
-	function init ($v_oEnregExistant=NULL)  
+	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
 		{
@@ -59,7 +58,7 @@ class CMPTexte
 		$this->iId = $this->oEnregBdd->IdObjForm;
 	}
 	
-	function ajouter ($v_iIdObjForm) //Cette fonction ajoute une mise en page de type texte, avec tous ses champs vide, en fin de table
+	function ajouter($v_iIdObjForm) //Cette fonction ajoute une mise en page de type texte, avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO MPTexte SET IdObjForm='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -82,13 +81,13 @@ class CMPTexte
 		$this->oEnregBdd->TexteMPT = convertBaliseMetaVersHtml($this->oEnregBdd->TexteMPT);
 		
 		//Genération du code html représentant l'objet
-		$sCodeHtml="<div align={$this->oEnregBdd->AlignMPT}>{$this->oEnregBdd->TexteMPT}</div>";
+		$sCodeHtml="<div align=\"{$this->oEnregBdd->AlignMPT}\">{$this->oEnregBdd->TexteMPT}</div>";
 		return $sCodeHtml;	
 	}
 	
-	function enregistrer ()
+	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm !=NULL)
+		if ($this->oEnregBdd->IdObjForm != NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -100,7 +99,6 @@ class CMPTexte
 						.", AlignMPT='{$this->oEnregBdd->AlignMPT}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
-			return TRUE;
 		}
 		else
 		{
@@ -108,7 +106,7 @@ class CMPTexte
 		}
 	}
 	
-	function copier ($v_iIdNvObjForm)
+	function copier($v_iIdNvObjForm)
 	{
 		if ($v_iIdNvObjForm < 1)
 			return;
@@ -128,7 +126,7 @@ class CMPTexte
 		return $iIdObjForm;
 	}
 	
-	function effacer ()
+	function effacer()
 	{
 		$sRequeteSql = "DELETE FROM MPTexte WHERE IdObjForm ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);

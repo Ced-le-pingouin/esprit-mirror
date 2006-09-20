@@ -29,21 +29,20 @@
  * @author	Ludovic FLAMME
  */
 
-class CMPSeparateur 
+class CMPSeparateur
 {
 	var $oBdd;
 	var $iId;
 	var $oEnregBdd;
-	var $aoFormulaire;
 	
 	function CMPSeparateur(&$v_oBdd,$v_iId=0) 
 	{
-		$this->oBdd = &$v_oBdd;  
+		$this->oBdd = &$v_oBdd;
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
-	function init ($v_oEnregExistant=NULL)  
+	function init($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
 		{
@@ -59,7 +58,7 @@ class CMPSeparateur
 		$this->iId = $this->oEnregBdd->IdObjForm;
 	}
 	
-	function ajouter ($v_iIdObjForm) //Cette fonction ajoute une ligne de type séparateur, avec tous ses champs vide, en fin de table
+	function ajouter($v_iIdObjForm) //Cette fonction ajoute une ligne de type séparateur, avec tous ses champs vide, en fin de table
 	{
 		$sRequeteSql = "INSERT INTO MPSeparateur SET IdObjForm='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -85,15 +84,15 @@ class CMPSeparateur
 		else												//se test est peut etre à deplacer car il a l'air a l'origine d'un certain ralentissement
 			$sLargeur=$this->oEnregBdd->LargeurMPS."px";
 		//Genération du code html représentant l'objet
-		$sCodeHtml = "<hr width=$sLargeur size=\"2\" align=\"".$this->retAlignMPS()."\" />";
-		return $sCodeHtml;	
+		$sCodeHtml = "<hr width=\"$sLargeur\" size=\"2\" align=\"".$this->retAlignMPS()."\" />";
+		return $sCodeHtml;
 	}
 	
-	function enregistrer ()  
+	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm !=NULL)
+		if ($this->oEnregBdd->IdObjForm != NULL)
 		{	
-			$sRequeteSql = "REPLACE MPSeparateur SET"									  
+			$sRequeteSql = "REPLACE MPSeparateur SET"
 						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
 						.", LargeurMPS='{$this->oEnregBdd->LargeurMPS}'"
 						.", TypeLargMPS='{$this->oEnregBdd->TypeLargMPS}'"
@@ -106,12 +105,12 @@ class CMPSeparateur
 		}
 	}
 	
-	function copier ($v_iIdNvObjForm)
+	function copier($v_iIdNvObjForm)
 	{
 		if ($v_iIdNvObjForm < 1)
 			return;
 		
-		$sRequeteSql = "INSERT INTO MPSeparateur SET"									  
+		$sRequeteSql = "INSERT INTO MPSeparateur SET"
 					." IdObjForm='{$v_iIdNvObjForm}'"
 					.", LargeurMPS='{$this->oEnregBdd->LargeurMPS}'"
 					.", TypeLargMPS='{$this->oEnregBdd->TypeLargMPS}'"
@@ -121,7 +120,7 @@ class CMPSeparateur
 		return $iIdObjForm;
 	}
 	
-	function effacer ()
+	function effacer()
 	{
 		$sRequeteSql = "DELETE FROM MPSeparateur WHERE IdObjForm ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
