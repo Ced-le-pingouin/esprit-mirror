@@ -32,7 +32,7 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 <br /><br />
 {ListeObjetFormul}
 <div align="center">
-<input type="button" value="Valider" name="soumettre" onclick="validerFormulaire({iRemplirTout});" />
+{bouton_valider}
 </div>
 </form>
 [BLOCK_FORMULAIRE-]

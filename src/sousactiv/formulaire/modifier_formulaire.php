@@ -86,8 +86,11 @@ if ($v_iIdFormulaire > 0)
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	$oTpl->remplacer("{iRemplirTout}",$iRemplirTout);
-	
+	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE"))
+		$oTpl->remplacer("{bouton_valider}","");
+	else
+		$oTpl->remplacer("{bouton_valider}","<input type=\"button\" value=\"Valider\" name=\"soumettre\" onclick=\"validerFormulaire($iRemplirTout);\" />");
+		
 	$oTpl->remplacer("{general_js_php}",dir_code_lib_ced("general.js.php", FALSE, FALSE));
 	$oTpl->remplacer("{formulaire_js}",dir_theme_commun("js/formulaire.js"));
 	$oTpl->remplacer("{sEncadrer}",$sEncadrer);

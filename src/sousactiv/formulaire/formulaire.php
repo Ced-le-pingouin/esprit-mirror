@@ -53,8 +53,7 @@ $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
 // Vérifier que cette personne a le droit d'évaluer les formulaires soumis
-$bPeutEvaluerFormulaires  = $oProjet->verifModifierModule();
-$bPeutEvaluerFormulaires &= $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
+$bPeutEvaluerFormulaires  = $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
 
 if ($bPeutEvaluerFormulaires)
 {
