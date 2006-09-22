@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Activité en ligne</title>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
 <style type="text/css">
 <!--
@@ -12,28 +13,15 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 .titre { font-size: 1.4em; font-weight: bold; }
 -->
 </style>
-<script type="text/javascript" src="selectionobj.js"></script>
-<script type="text/javascript">
-function allerAPos()
-{
-	iPos = retParamUrl(window.location,'pos');
-	if (iPos != null)
-		document.location = '#' + iPos;
-}
-</script>
-<title>Modification des activités en ligne</title>
+<script src="{formulaire_js}" type="text/javascript"></script>
+<script src="{general_js_php}" type="text/javascript"></script>
 </head>
-<body class="liste" {onload}>
-[BLOCK_INTRO+]
-<div id="titrepagevierge">
-	<img src="../../images/doc-plein.gif" alt="logo" />
-	La conception d'activités totalement en ligne
-	<span id="ute">Unit&eacute; de Technologie de l'&Eacute;ducation</span>
-</div>
-[BLOCK_INTRO-]
+<body class="liste">
 [BLOCK_FORMULAIRE+]
-<form name="selection" class="formFormulaire" action="">
-{sSelectModifTitre}
+<form name="questionnaire" action="modifier_formulaire.php" method="post" enctype="text/html" class="formFormulaire">
+<input type="hidden" name="bSoumis" value="1" />
+<input type="hidden" name="idFormulaire" value="{iIdFormulaire}" />
+{input_ss_activ}
 <table {sEncadrer} align="center" class="titre">
 <tr>
 	<td>
@@ -41,8 +29,18 @@ function allerAPos()
 	</td>
 </tr>
 </table>
+<br /><br />
 {ListeObjetFormul}
+<div align="center">
+<input type="button" value="Valider" name="soumettre" onclick="validerFormulaire({iRemplirTout});" />
+</div>
 </form>
 [BLOCK_FORMULAIRE-]
+[BLOCK_FERMER+]
+<script language="javascript" type="text/javascript">
+	top.opener.location = top.opener.location;
+	top.close();
+</script>
+[BLOCK_FERMER-]
 </body>
 </html>

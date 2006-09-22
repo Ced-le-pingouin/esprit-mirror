@@ -21,18 +21,18 @@
 
 require_once("globals.inc.php");
 $oProjet = new CProjet();
+$oTpl = new Template("modifier_formulaire.tpl");
+$oBlockFormulaire = new TPL_Block("BLOCK_FORMULAIRE",$oTpl);
+$oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);
 $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 
-//************************************************
-//*       Récupération des variables             *
-//************************************************
-
+//	Récupération des variables
 $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
+
 if (isset($_POST['bSoumis']))
 {
 	$bSoumis = TRUE;
-	
 	$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd);
 	$oFormulaireComplete->verrouillerTables();
 	$iIdFC = $oFormulaireComplete->ajouter($iIdUtilisateur, $v_iIdFormulaire);
@@ -49,7 +49,6 @@ if (isset($_POST['bSoumis']))
 else
 {
 	$bSoumis = FALSE;
-
 	if (isset($_GET["idFC"]))
 	{
 		$iIdFC = $_GET["idFC"];
@@ -62,240 +61,140 @@ else
 	}
 }
 
-//***********************************************************************************
-//*   Lecture de la table formulaire pour y récupérer les données de mise en page   *
-//***********************************************************************************
-
-$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
-$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
-$iEncadrer = $oFormulaire->retEncadrer();
-$iLargeur = $oFormulaire->retLargeur();
-$iTypeLarg = $oFormulaire->retTypeLarg();	//Pourcentage ou pixel
-$iInterElem = $oFormulaire->retInterElem();
-$iInterEnonRep = $oFormulaire->retInterEnonRep();
-$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
-
-if ($iTypeLarg=="P")					//ajoute % ou px a la largeur pour ainsi créer une chaine de car
-   $sLargeur=$iLargeur."%";
-else
-   $sLargeur=$iLargeur."px";
-
-if ($iEncadrer==1)						//Vérifie s'il faut encadrer le titre ou non et compose le code html
-   $sEncadrer= " style=\"border:1px solid black;\" ";
-else
-   $sEncadrer="";
-
-echo "<html>\n";
-echo "<head>\n";
-echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
-echo "<title>Activité en ligne</title>\n";
-
-//echo "<script src=\"selectionobj.js\" type=\"text/javascript\"></script>\n";
-echo "<script src=\"".dir_theme_commun("js/formulaire.js")."\" type=\"text/javascript\"></script>\n";
-echo "<script src=\"".dir_code_lib_ced("general.js.php", FALSE, FALSE)."\" type=\"text/javascript\"></script>\n";
-
 if ($v_iIdFormulaire > 0)
 {
-	//************************************************
-	//*                     CSS                      *
-	//************************************************
+	if($bSoumis)
+		$oBlockFormulaire->effacer();
+	else
+		$oBlockFormulaire->afficher();
+	// Lecture de la table formulaire pour y récupérer les données de mise en page
+	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
+	$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
+	$iInterElem = $oFormulaire->retInterElem();
+	$iInterEnonRep = $oFormulaire->retInterEnonRep();
+	$iIdPersForm = $oFormulaire->retIdPers();
+	$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
+	if ($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
+		$sEncadrer = "style=\"border:1px solid black;\"";
+	else
+		$sEncadrer = "";
+	$iLargeur = $oFormulaire->retLargeur();
+	if ($oFormulaire->retTypeLarg() == "P") //Pourcentage ou pixel
+		$sLargeur = $iLargeur."%";
+	else
+		$sLargeur = $iLargeur."px";
+	$oTpl->remplacer("{sLargeur}",$sLargeur);
+	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
+	$oTpl->remplacer("{iInterElem}",$iInterElem);
+	$oTpl->remplacer("{iRemplirTout}",$iRemplirTout);
 	
-	echo "<style type=\"text/css\">\n";
-	echo "<!--\n";
-	echo "form";
-	echo "  { margin-left:$sLargeur; margin-right:$sLargeur; }\n";
-	echo ".p";
-	echo "  {line-height:10.5pt; font-family:Arial,sans-serif; font-size:10pt; color:black; margin-top:6px; margin-bottom:6px; }\n";
-	echo ".InterER";
-	echo "  {margin-top:{$iInterEnonRep}px; }\n"; //Espace en pixels séparant les énoncés des réponses
-	echo ".InterObj";
-	echo "  {margin-top:{$iInterElem}px; }\n"; //Espace en pixels séparant les objets
-	echo "-->\n";
-	echo "</style>\n";
-}
-
-//CSS insertion
-echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".dir_theme("formulaire/formulaire.css")."\">\n";
-//FIN CSS
-
-
-echo "</head>\n";
-
-echo "<body class=\"liste\">\n";
-echo "<FORM NAME=\"questionnaire\" ACTION=\"{$_SERVER['PHP_SELF']}\" METHOD=\"POST\" ENCTYPE=\"text/html\" CLASS=\"formFormulaire\">";
-echo "<input type=\"hidden\" name=\"idFormulaire\" value=\"{$v_iIdFormulaire}\">\n";
-if (!empty($iIdSousActiv))
-	echo "<input type=\"hidden\" name=\"idSousActiv\" value=\"{$iIdSousActiv}\">\n";
-echo "<input type=\"hidden\" name=\"bSoumis\" value=\"1\">\n";
-echo "<TABLE $sEncadrer ALIGN=\"center\"><TR><TD><font size=+1><b>$sTitre<b/></font></TD></TR></TABLE>\n";
-
-echo "<br><br><br>";
-
-$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM ObjetFormulaire"
-									." WHERE IdForm = '$v_iIdFormulaire'"
-									." ORDER by OrdreObjForm");
-									
-while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
-{
-	$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd);
-	$oObjetFormulaire->init($oEnreg);
+	$oTpl->remplacer("{general_js_php}",dir_code_lib_ced("general.js.php", FALSE, FALSE));
+	$oTpl->remplacer("{formulaire_js}",dir_theme_commun("js/formulaire.js"));
+	$oTpl->remplacer("{sEncadrer}",$sEncadrer);
+	$oTpl->remplacer("{sTitre}",$sTitre);
 	
-	$iIdObjActuel = $oObjetFormulaire->retId();
-	print "<a name=\"ancre{$iIdObjActuel}\"></a>\n";
-	//$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
-	
-	switch($oObjetFormulaire->retIdTypeObj())
+	$oTpl->remplacer("{iIdFormulaire}",$v_iIdFormulaire);
+	if(!empty($iIdSousActiv))
+		$oTpl->remplacer("{input_ss_activ}","<input type=\"hidden\" name=\"idSousActiv\" value=\"{$iIdSousActiv}\" />\n");
+	else
+		$oTpl->remplacer("{input_ss_activ}","");
+	$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
+	$sHtmlListeObjForm = "";
+	foreach($aoObjetFormulaire as $oObjetFormulaire)
 	{
-		case 1:
-			///$oQTexteLong = new CQTexteLong($oProjet->oBdd);
-				
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 1 :";
-				//echo $_POST[$iIdObjActuel];
-				
-				$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQTexteLong->cHtmlQTexteLong($iIdFC);
-			break;
-		
-		case 2:
-			//$oQTexteCourt = new CQTexteCourt($oProjet->oBdd);
+		$iIdObjActuel = $oObjetFormulaire->retId();
+		$sHtmlListeObjForm .= "<a name=\"ancre{$iIdObjActuel}\"></a>\n";
+		switch($oObjetFormulaire->retIdTypeObj())
+		{
+			case 1:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+						$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					else
+						$sHtmlListeObjForm .= $oQTexteLong->cHtmlQTexteLong($iIdFC);
+					break;
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 2 :";
-				//echo $_POST[$iIdObjActuel];
-				
-				$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQTexteCourt->cHtmlQTexteCourt($iIdFC);
-			break;
-
-		case 3:
-			//$oQNombre = new CQNombre($oProjet->oBdd);
+			case 2:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+						$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					else
+						$sHtmlListeObjForm .= $oQTexteCourt->cHtmlQTexteCourt($iIdFC);
+					break;
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 3 :";
-				//echo $_POST[$iIdObjActuel];
-				
-				// Transforme la virgule en point ex: 20,5 -> 20.5
-				$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
-				$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQNombre->cHtmlQNombre($iIdFC);
-			break;
+			case 3:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+					{
+						// Transforme la virgule en point ex: 20,5 -> 20.5
+						$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
+						$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					}
+					else
+						$sHtmlListeObjForm .= $oQNombre->cHtmlQNombre($iIdFC);
+					break;
 			
-		case 4:
-			//$oQListeDeroul = new CQListeDeroul($oProjet->oBdd);
+			case 4:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+						$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					else
+						$sHtmlListeObjForm .= $oQListeDeroul->cHtmlQListeDeroul($iIdFC);
+					break;
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 4 :";
-				//echo $_POST[$iIdObjActuel];
-				
-				$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQListeDeroul->cHtmlQListeDeroul($iIdFC);
-			break;
+			case 5:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+						$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					else
+						$sHtmlListeObjForm .= $oQRadio->cHtmlQRadio($iIdFC);
+					break;
 			
-		case 5:
-			//$oQRadio = new CQRadio($oProjet->oBdd);
+			case 6:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
+					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
+					$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
+					if ($bSoumis)
+					{
+						for ($i = 0; $i < count($_POST[$iIdObjActuel]); $i++) 
+						{
+							$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel][$i]);
+						}
+					}
+					else
+						$sHtmlListeObjForm .= $oQCocher->cHtmlQCocher($iIdFC);
+					break;
 			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 5 :";
-				//echo $_POST[$iIdObjActuel];
-				
-				$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQRadio->cHtmlQRadio($iIdFC);
-			break;
+			case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
+					if (!$bSoumis)
+						$sHtmlListeObjForm .= $oMPTexte->cHtmlMPTexte();
+					break;
 			
-		case 6:
-			//$oQCocher = new CQCocher($oProjet->oBdd);
-			
-			//Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
-			//Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
-			$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-			if ($bSoumis)
-			{
-				//echo "<br>Objet de type 6 :";
-				
-				for ($i = 0; $i < count($_POST[$iIdObjActuel]); $i++) 
-				{
-					//echo $_POST[$iIdObjActuel][$i];
-					$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel][$i]);
-				}
-				
-				//echo "<br>idFC : ".$iIdFC;
-			}
-			echo $oQCocher->cHtmlQCocher($iIdFC);
-			break;
-			
-		case 7:
-			//echo "Objet de type 7<br>";
-			$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-			echo $oMPTexte->cHtmlMPTexte();
-			break;
-			
-		case 8:
-			//echo "Objet de type 8<br>";
-			$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-			echo $oMPSeparateur->cHtmlMPSeparateur();
-			break;
-			
-		default:
-			echo "Erreur: numéro d'objet de formulaire incorrect !<br>";
-			break;
+			case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
+					if (!$bSoumis)
+						$sHtmlListeObjForm .= $oMPSeparateur->cHtmlMPSeparateur();
+					break;
+		}
+		$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";
 	}
-	
-	echo "<div class=\"InterObj\"></div>\n";
+	$oTpl->remplacer("{ListeObjetFormul}",$sHtmlListeObjForm);
 }
-
-echo "<div align=\"center\">\n";
-echo "<INPUT TYPE=\"button\" VALUE=\"Valider\" name=\"soumettre\" onClick=\"validerFormulaire($iRemplirTout);\">\n";
-//echo "<input type=\"reset\" value=\"Réinitialiser le formulaire\">\n";
-echo "</div>\n";
-echo "</FORM>\n";
-
-if ($bSoumis)
+else
+{
+	$oBlockFormulaire->effacer();
+}
+if($bSoumis)
 {
 	$oFormulaireComplete->deverrouillerTables();
-	
-	echo "<script language=\"javascript\" type=\"text/javascript\">";
-	echo "\ttop.opener.location = top.opener.location;\n";
-	echo "\ttop.close();\n";
-	echo "</script>\n";
+	$oBlockFermer->afficher();
 }
-
-echo "</body>\n";
-echo "</html>\n";
+else
+{
+	$oBlockFermer->effacer();
+}
+$oTpl->afficher(); 
 ?>
-
