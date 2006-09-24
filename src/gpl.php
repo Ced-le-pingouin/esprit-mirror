@@ -5,6 +5,7 @@ $oProjet = new CProjet();
 $sListeDestinataireEmail = "esprit.contact@gmail.com";
 $sSujetEmail = "Esprit - Contact - Logiciel Libre";
 $sMessageEmail = "Un nouvel utilisateur d'Esprit a laissé ses coordonnées.\n\n";
+$sHeaders = 'Content-type: text/html; charset=utf-8' . "\r\n";
 
 // ---------------------
 // Template
@@ -22,7 +23,7 @@ if( isset($_POST["organisme"]) || isset($_POST["raison"]) || isset($_POST["email
 						."\nEmail: ".$_POST["email"]
 						."\nUsage: ".$_POST["usage"]
 						."\nEvolution: ".$_POST["evolution"];
-		mail($sListeDestinataireEmail,$sSujetEmail,$sMessageEmail);
+		mail($sListeDestinataireEmail,$sSujetEmail,$sMessageEmail,$sHeaders);
 		$oBlocFormulaire->effacer();
 		$oBlocMerci->afficher();
 		$oTpl->remplacer("[FORMAT_TEXTE]","");

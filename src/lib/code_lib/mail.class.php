@@ -47,6 +47,8 @@ class CMail
 		
 		$this->defSujet($v_sSujet);
 		$this->defMessage($v_sMessage);
+
+		$this->ajouterEntete('Content-Type','text/plain; charset=utf-8'); // charset par défaut
 		
 		if (isset($v_sDestinataire))
 			$this->ajouterDestinataire($v_sDestinataire,$v_sNomComplet);
