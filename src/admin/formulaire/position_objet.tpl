@@ -1,36 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css"><meta http-equiv="content-type" content="text/html; charset=utf-8">
-<TITLE>Déplacer un élément</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<script src="selectionobj.js" type="text/javascript"></script>
+<title>Déplacer un élément</title>
 </head>
-<body class="popup" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
-<TABLE border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
-<tr><td align="center" valign="middle">
-	<form action="position_objet.php" name="formposition" method ="GET" style="margin: 0px;">
+<body class="popup">
+<div id="contenu">
+	<form action="position_objet.php" name="formposition" method="get">
 	Position : 
-	<SELECT NAME="ordreobj">
+	<select name="ordreobj">
 	[BLOCK_POSITION+]
-	<OPTION VALUE="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</OPTION>
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
-	</SELECT>
-	<INPUT TYPE="hidden" name="idobj" value="{id_obj}">
-	<INPUT TYPE="hidden" name="idformulaire" value="{id_formulaire}">
-	<INPUT TYPE="hidden" name="deplacer" value="deplacer">
-	</FORM>
-</td></tr>
-<tr><td valign="bottom">
-	<table BGCOLOR="CAC3B1" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid black; padding: 3px 0px 3px 0px;"><TR>
-		<td align="left" width="50%">
-			&nbsp
-			<a href="#" onClick="document.forms['formposition'].submit();">Valider</a>
-		</td>
-	    <td align="right" width="50%">
-			<a href="#" onClick="window.close();">Fermer</a>
-			&nbsp
-		</td>
-	</TR></table>
-</td></tr>
-</table>
-
+	</select>
+	<input type="hidden" name="idobj" value="{id_obj}" />
+	<input type="hidden" name="idformulaire" value="{id_formulaire}" />
+	<input type="hidden" name="deplacer" value="deplacer" />
+	</form>
+	[BLOCK_FERMER+]
+	<script language="javascript" type="text/javascript">
+	rechargerlistepopup({id_obj},{id_formulaire});
+	window.close();
+	</script>
+	[BLOCK_FERMER-]
+</div>
+<div id="barreaction">
+	<a id="valider" href="#" onclick="document.forms['formposition'].submit();">Valider</a>
+	<a id="fermer" href="#" onclick="window.close ();">Fermer</a>
+</div>
 </body>
 </html>

@@ -21,21 +21,12 @@
 
 require_once("globals.inc.php");
 $oProjet = new CProjet();
-//************************************************
-//*       Récupération des variables             *
-//************************************************
 
-if (isset($_GET))
+if (isset($_GET['idobj']))
 {
 	$v_iIdObjForm = $_GET['idobj'];
 	$v_iIdFormulaire = $_GET['idformulaire'];
 	$v_iNouvPos = $_GET['ordreobj'];
-}
-else if (isset($_POST))
-{
-	$v_iIdObjForm = $_POST['idobj'];
-	$v_iIdFormulaire = $_POST['idformulaire'];
-	$v_iNouvPos = $_POST['ordreobj'];
 }
 else
 {
@@ -43,71 +34,45 @@ else
 	$v_iIdFormulaire = 0;
 	$v_iNouvPos = 0;
 }
-
-
+$oTpl = new Template("position_objet.tpl");
+$oBlockPos = new TPL_Block("BLOCK_POSITION",$oTpl);
+$oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);
 if (isset($_GET['deplacer']))
 {
-
+	$oBlockPos->effacer();
+	$oBlockFermer->afficher();
 	$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);
 	$oObjetFormulaire->retId();
 	$oObjetFormulaire->DeplacerObjet($v_iNouvPos);
-	echo "<html>\n";
-	echo "<head>\n";
-	echo "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">";
-	echo "<script language=\"javascript\" src=\"selectionobj.js\" type=\"text/javascript\"></script>";
-	echo "<script language=\"javascript\">\n";
-	echo "rechargerlistepopup($v_iIdObjForm,$v_iIdFormulaire)\n";
-	echo "window.close();\n";
-	echo "</script>\n";
-	echo "</head>\n";
-	echo "<body>\n";
-	echo "</body>\n";
-	echo "</html>\n";
 }
 else
 {
+	$oBlockFermer->effacer();
 	$oObjetFormulaire = $oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);
 	$iOrdreObjFormDepart = $oObjetFormulaire->retOrdreObjForm();
-	$sRequeteSql = "SELECT * FROM ObjetFormulaire"
-				." WHERE IdForm='$v_iIdFormulaire' order by OrdreObjForm";
-	$hResult = $oProjet->oBdd->executerRequete($sRequeteSql);
-	$oTpl = new Template("position_objet.tpl");
-	
-	$oBlock = new TPL_Block("BLOCK_POSITION",$oTpl);
-	  
-	if (TRUE)
+	$aoListeObjFormul = $oObjetFormulaire->retListeObjFormulaire($v_iIdFormulaire);
+	if(!empty($aoListeObjFormul))
 	{
-		$oBlock->beginLoop();
-				 
-		while ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
+		$oBlockPos->beginLoop();
+		foreach($aoListeObjFormul AS $oObjetFormulaire)
 		{
-			$oBlock->nextLoop();
-			 
-			$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd);
-			$oObjetFormulaire->init($oEnreg);
+			$oBlockPos->nextLoop();
 			$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
-			$oBlock->remplacer("{ordre_obj_form}",$oObjetFormulaire->retOrdreObjForm());
+			$oBlockPos->remplacer("{ordre_obj_form}",$iOrdreObjForm);
 			if ($iOrdreObjForm == $iOrdreObjFormDepart)
-			{
-				$oBlock->remplacer("{obj_actuel}","SELECTED");
-			}
+				$oBlockPos->remplacer("{obj_actuel}","selected=\"selected\"");
 			else
-			{
-				$oBlock->remplacer("{obj_actuel}","");
-			}
+				$oBlockPos->remplacer("{obj_actuel}","");
 		}
-				 
-		$oBlock->afficher();
+		$oBlockPos->afficher();
 	}
 	else
 	{
-		$oBlock->effacer();
+		$oBlockPos->effacer();
 	}
-	  
-	$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
-	$oTpl->remplacer("{id_obj}",$v_iIdObjForm);
-	$oTpl->afficher();	  
-	$oProjet->oBdd->libererResult($hResult);
 }
+$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
+$oTpl->remplacer("{id_obj}",$v_iIdObjForm);
+$oTpl->afficher();	  
 $oProjet->terminer();
 ?>

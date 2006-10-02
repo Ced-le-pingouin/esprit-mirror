@@ -29,9 +29,9 @@ function majmodifmenu(idobj,idformulaire)
 
 function popupajout(idobj,idformulaire) 
 {
-	opener.parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	//opener.parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj);
-	opener.parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	//opener.parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
 }
 
 //Permet de vérifier si un champ est bien numérique
@@ -128,4 +128,3 @@ function retParamUrl(v_sUrl, v_sNomParam)
 			return r_asParams;
 	}
 }
-

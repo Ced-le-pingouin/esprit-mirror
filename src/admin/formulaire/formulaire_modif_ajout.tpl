@@ -1,72 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<TITLE>Ajouter un élément</TITLE>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Ajouter un élément</title>
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<script src="selectionobj.js" type="text/javascript"></script>
 </head>
-
-
-<body class="popup" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
-
-<TABLE border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
-<tr><td align="center" valign="middle">
-		<form action=formulaire_modif_ajout.php name="formajout" method ="GET">
-		<SELECT NAME="idtypeobj">
-		[BLOCK_MODIF_AJOUT+]
-		<OPTION VALUE="{id_type_obj}">{desc_type_obj}
-		[BLOCK_MODIF_AJOUT-]
-		</SELECT>
-		
-		<INPUT TYPE="hidden" name="idformulaire" value="{id_formulaire}">
-		<INPUT TYPE="hidden" VALUE="ajouter" name="ajouter">
-		</FORM>
-</td></tr>
-<tr><td valign="bottom">
-	<table BGCOLOR="CAC3B1" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid black; padding: 3px 0px 3px 0px;"><TR width="100%">
-		<td align="left">
-			&nbsp
-			<a href="#" onClick="document.forms['formajout'].submit();">Valider</a>
-		</td>
-	    <td align="right">
-			<a href="#" onClick="window.close ();">Fermer</a>
-			&nbsp
-		</td>
-	</TR></table>
-</td></tr>
-</table>
-
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body class="popup">
-<div align="center">
-
-<div align="center">
-<form action= formulaire_modif_ajout.php target="FORMFRAMEMODIF" method ="GET">
-<SELECT NAME="idtypeobj">
-[BLOCK_MODIF_AJOUT+]
-<OPTION VALUE="{id_type_obj}">{desc_type_obj}
-[BLOCK_MODIF_AJOUT-]
-</SELECT>
-
-<INPUT TYPE="hidden" name="idformulaire" value="{id_formulaire}">
-<INPUT TYPE="submit" VALUE="Ajouter" name="ajouter">
-</FORM>
+<body class="popup"{onload}>
+<div id="contenu">
+	<form action="formulaire_modif_ajout.php" name="formajout" method ="get">
+	<select name="idtypeobj">
+	[BLOCK_MODIF_AJOUT+]
+		<option value="{id_type_obj}">{desc_type_obj}</option>
+	[BLOCK_MODIF_AJOUT-]
+	</select>
+	<input type="hidden" name="idformulaire" value="{id_formulaire}" />
+	<input type="hidden" value="ajouter" name="ajouter" />
+	</form>
 </div>
-
+<div id="barreaction">
+	<a id="valider" href="#" onclick="document.forms['formajout'].submit();">Valider</a>
+	<a id="fermer" href="#" onclick="window.close ();">Fermer</a>
+</div>
 </body>
 </html>

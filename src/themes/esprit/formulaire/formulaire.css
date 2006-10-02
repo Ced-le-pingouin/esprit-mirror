@@ -1,15 +1,10 @@
 body
 {
+	background-color: rgb(251,249,238);
+	background-image: none;
 	color: rgb(34,34,34);
 	font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
 	font-size: 9pt;
-}
-
-body
-{
-	background-color: rgb(251,249,238);
-	background-image: none;
-	
 	scrollbar-face-color: rgb(231,225,212);
 	scrollbar-highlight-color: rgb(251,249,238);
 	scrollbar-shadow-color: rgb(251,249,238);
@@ -40,6 +35,7 @@ body.modif
 body.popup
 {
 	background-color: rgb(231,225,212);
+	margin: 0;
 }
 
 body.menumodif
@@ -87,6 +83,11 @@ legend
 {
 	font-weight: bold;
 }
+form
+{
+	padding: 0;
+	margin: 0;
+}
 form.formFormulaire
 {
 	background-color: rgb(249,251,251);
@@ -95,35 +96,16 @@ form.formFormulaire
 	line-height: 11.5pt;
 	padding: 20px;
 }
-
-/* :link permet de définir les propriétés des liens */
-a:link
+a:link, a:visited, a:active
 {
     color : rgb(63,67,34) ;
     text-decoration : none ;
 }
-
-/* :visited permet de définir les propriétés des liens déjà visités */
-a:visited
-{
-    color : rgb(63,67,34) ;
-    text-decoration : none ;
-}
-
-/* :active permet de définir les propriétés d'un lien actif - qui vient d'être cliqué */
-a:active
-{
-    color : rgb(63,67,34) ;
-    text-decoration : none ;
-}
-
-/* :hover permet de définir les propriétés du lien quand le curseur le survole */
 a:hover
 {
     color : rgb(63,67,34) ;
     text-decoration : underline ;
 }
-
 #titrepagevierge
 {
 	text-align:center;
@@ -163,4 +145,28 @@ a:hover
 	position: absolute;
 	top: 5px;
 	right: 7px;
+}
+#contenu
+{
+	text-align: center;
+	padding-top: 25px;
+}
+#barreaction
+{
+	height: 22px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	border-top: 1px solid black;
+	background-color: rgb(202,195,177);
+}
+#valider
+{
+	float: left;
+	margin: 4px 10px;
+}
+#fermer
+{
+	float:right;
+	margin: 4px 10px;
 }
