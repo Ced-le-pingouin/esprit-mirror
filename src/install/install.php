@@ -285,22 +285,25 @@ function load_mysql_dump($path, $ignoreerrors = false) {
 }
 
 // This one already exists in PHP5, but not in PHP4
-function file_put_contents($filename, $content) {
-	if (file_exists($filename)) {
-		echo "Le fichier ($filename) existe déjà";
-		return FALSE;
+if (!function_exists("file_put_contents"))
+{
+	function file_put_contents($filename, $content) {
+		if (file_exists($filename)) {
+			echo "Le fichier ($filename) existe déjà";
+			return FALSE;
+		}
+		$handle = fopen($filename, 'w');
+		if (!$handle) {
+			echo "Impossible d'ouvrir le fichier ($filename)";
+			return FALSE;
+		}
+		$written = fwrite($handle, $content);
+		fclose($handle);
+		if (!$written) {
+			echo "Impossible d'écrire dans le fichier ($filename)";
+			return FALSE;
+		}
+		return $written;
 	}
-	$handle = fopen($filename, 'w');
-	if (!$handle) {
-		echo "Impossible d'ouvrir le fichier ($filename)";
-		return FALSE;
-	}
-	$written = fwrite($handle, $content);
-	fclose($handle);
-	if (!$written) {
-		echo "Impossible d'écrire dans le fichier ($filename)";
-		return FALSE;
-	}
-	return $written;
 }
 ?>
