@@ -48,13 +48,6 @@ class CBdd extends CBddMySql
 		
 		$this->CBddMySql($g_sNomServeur, $g_sNomProprietaire, $g_sMotDePasse, $g_sNomBdd);
 	}
-	
-	/**
-	 * Pseudo-destructeur
-	 * 
-	 * @todo	Est-ce utilisé ?
-	 */
-	function detruire() { $this = NULL; }
 }
 
 ?>
