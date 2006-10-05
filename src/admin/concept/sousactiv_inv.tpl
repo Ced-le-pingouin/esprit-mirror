@@ -23,6 +23,9 @@
 </table>
 <input type="hidden" name="appliquer" value="1">
 </form>
+<a href="#" id="toutCocher">Tout cocher</a>
+&nbsp;&nbsp;&nbsp;
+<a href="#" id="toutDecocher">Tout décocher</a>
 <div><p>&nbsp;</p></div>
 </body>
 </html>

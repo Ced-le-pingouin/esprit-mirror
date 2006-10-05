@@ -30,6 +30,27 @@ function init_principale() {
 		if (!elems.item(i).checked) 
 			grise(elems.item(i).value);
 	}
+
+	document.getElementById('toutCocher').onclick = toutCocher;
+	document.getElementById('toutDecocher').onclick = toutDecocher;
+}
+
+function toutCocher()
+{
+	var elems = document.getElementsByName("idPers[]");
+	for (var i=0; i<elems.length; i++)
+		elems.item(i).checked = true;
+		
+	return false;
+}
+
+function toutDecocher()
+{
+	var elems = document.getElementsByName("idPers[]");
+	for (var i=0; i<elems.length; i++)
+		elems.item(i).checked = false;
+		
+	return false;
 }
 /* Frame principale ''' */
 
