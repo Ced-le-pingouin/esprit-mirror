@@ -24,31 +24,17 @@ $oProjet = new CProjet();
 
 if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))
 {
-	if (isset($_GET['idformulaire']))
-	{
-		$v_iIdFormulaire = @$_GET['idformulaire'];
-	}
-	else if (isset($_POST['idformulaire']))
-	{
-		$v_iIdFomulaire = @$_POST['idformulaire'];
-	}
-	/*else
-	{
-		echo "Pas d'activité a supprimer";	
-		$v_iIdFormulaire = 0;
-	}*/
+	$oTpl = new Template("formulaire_menu.tpl");
+	$iIdPersCourant = $oProjet->oUtilisateur->retId();
+	$sMessageEtat = "";
 	
-	if (@$_GET['typeaction']=='supprimer')
+	if (isset($_GET['idformulaire']))
+		$v_iIdFormulaire = $_GET['idformulaire'];
+	
+	if ($_GET['typeaction'] == 'supprimer')
 	{
-		if ($v_iIdFormulaire == Null)  //Si on n'a pas sélectionné de formulaire dans la liste
+		if ($v_iIdFormulaire != NULL)  // Verification effectué aussi en javascript
 		{
-			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner une activité dans la liste');";
-			  echo "</SCRIPT>";
-		}
-		else
-		{
-			$iIdPersCourant = $oProjet->oUtilisateur->retId();
 			$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 			$iIdPersForm = $oFormulaire->retIdPers();
 			
@@ -70,68 +56,47 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 					$oObjetFormulaire->init($oEnreg);
 					
 					$iIdObjActuel = $oObjetFormulaire->retId();
-					//echo "<br>iIdObjActuel : ".$iIdObjActuel;
 					
 					switch($oObjetFormulaire->retIdTypeObj())
 					{
-						case 1:
-							//echo "Objet de type 1<br>";
-							$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-							$oQTexteLong->effacer();
-							break;
-							 
-						case 2:
-							//echo "Objet de type 2<br>";
-							$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-							$oQTexteCourt->effacer();
-							break;
-							 
-						case 3:
-							//echo "Objet de type 3<br>";
-							$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-							$oQNombre->effacer();
-							break;
-							 
-						case 4:
-							//echo "Objet de type 4<br>";
-							$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-							$oQListeDeroul->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepObj($iIdObjActuel);
-							break;
-							 
-						case 5:
-							//echo "Objet de type 5<br>";
-							$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-							$oQRadio->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepObj($iIdObjActuel);						 
-							break;
-							
-						case 6:
-							//echo "Objet de type 6<br>";
-							$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-							$oQCocher->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepObj($iIdObjActuel);
-							break;
-							
-						case 7:
-							//echo "Objet de type 7<br>";
-							$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-							$oMPTexte->effacer();
-							break;
-							
-						case 8:
-							//echo "Objet de type 8<br>";
-							$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-							$oMPSeparateur->effacer();
-							break;
-							
-						default:
-							echo "Erreur: Id d'objet d'activité incorrect<br>";
+						case 1:	$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
+								$oQTexteLong->effacer();
+								break;
+						
+						case 2:	$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
+								$oQTexteCourt->effacer();
+								break;
+						
+						case 3:	$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
+								$oQNombre->effacer();
+								break;
+						
+						case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
+								$oQListeDeroul->effacer();
+								$oReponse = new CReponse($oProjet->oBdd);
+								$oReponse->effacerRepObj($iIdObjActuel);
+								break;
+						
+						case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
+								$oQRadio->effacer();
+								$oReponse = new CReponse($oProjet->oBdd);
+								$oReponse->effacerRepObj($iIdObjActuel);						 
+								break;
+						
+						case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
+								$oQCocher->effacer();
+								$oReponse = new CReponse($oProjet->oBdd);
+								$oReponse->effacerRepObj($iIdObjActuel);
+								break;
+						
+						case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
+								$oMPTexte->effacer();
+								break;
+						
+						case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
+								$oMPSeparateur->effacer();
+								break;
 					} //Fin switch
-					
 					$oObjetFormulaire->effacer();
 				} //Fin while
 				
@@ -143,55 +108,44 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 				//$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 				$oFormulaire->effacer();
 				
-				echo"<SCRIPT language=\"JavaScript\">";
-				echo "alert('L'activité a été supprimée avec succès');";
-				echo "</SCRIPT>";
+				//$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">alert('L\'activité a été supprimée avec succès');</script>";
 			}
 			else //Cas ou l'on a pas le droit de supprimer un formulaire 
 			{
-				echo"<SCRIPT language=\"JavaScript\">";
-				echo "alert('Vous ne pouvez pas supprimer l'activité, veuillez contacter votre administrateur pour plus d\'informations.');";
-				echo "</SCRIPT>";
+				$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">alert('Vous ne pouvez pas supprimer l\'activité, veuillez contacter votre administrateur pour plus d\'informations');</script>";
 			}
 		}
 	}
 	
-	if (@$_GET['typeaction']=='copier')
+	if ($_GET['typeaction'] == 'copier')
 	{
-		$iIdPersCourant = $oProjet->oUtilisateur->retId();
-		
-		if($v_iIdFormulaire == Null)
+		if ($v_iIdFormulaire != NULL)  // Verification effectué aussi en javascript
 		{
-			  echo"<SCRIPT language=\"JavaScript\">";
-			  echo "alert('Veuillez sélectionner une activité dans la liste');";
-			  echo "</SCRIPT>";
-		}
-		else
-		{
-			  if(CopierUnFormulaire($oProjet->oBdd,$v_iIdFormulaire,$iIdPersCourant))
-			  {	
-				  echo"<SCRIPT language=\"JavaScript\">";
-				  echo "alert('La copie s\\'est correctement réalisée !');";
-				  echo "</SCRIPT>";
-			  }
-			  else
-			  {
-				  echo"<SCRIPT language=\"JavaScript\">";
-				  echo "alert('Erreur lors de la copie, contactez votre administrateur !');";
-				  echo "</SCRIPT>";
-			  }
+			$iNouvIdFormul = CopierUnFormulaire($oProjet->oBdd,$v_iIdFormulaire,$iIdPersCourant);
+			if($iNouvIdFormul > 0)
+			{
+				$v_iIdFormulaire = $iNouvIdFormul;
+				$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerliste(0,$v_iIdFormulaire);</script>";
+			}
+			else
+				  $sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">alert('Erreur lors de la copie, contactez votre administrateur !');</script>";
 		}
 	}
 	
+	if ($_GET['typeaction'] == 'ajouter')
+	{
+		$oFormulaire = new CFormulaire($oProjet->oBdd);
+		$v_iIdFormulaire = $oFormulaire->ajouter($iIdPers);
+		$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerliste(0,$v_iIdFormulaire);</script>";
+	}
+	
 	//Affichage du menu//
-	$iIdPersCourant = $oProjet->oUtilisateur->retId();
 	$oFormulaire = new CFormulaire($oProjet->oBdd);
 	if ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES'))  //Si administrateur -> on voit tout les formulaires
 		$aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles(NULL, NULL, NULL, TRUE);
 	else //Si concepteur -> on voit tout ses formulaires + les formulaires publics
 		$aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles($iIdPersCourant, 'public');
 	
-	$oTpl = new Template("formulaire_menu.tpl");
 	$oBlock = new TPL_Block("BLOCK_FORM",$oTpl);
 	
 	$iLargeurMax = 28;
@@ -228,6 +182,10 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 				$oBlock->remplacer("{couleur}","style=\"color:green;\"");
 			else
 				$oBlock->remplacer("{couleur}","");
+			if($oFormulaireCourant->retId() == $v_iIdFormulaire)
+				$oBlock->remplacer("{selected}"," selected=\"selected\"");
+			else
+				$oBlock->remplacer("{selected}","");
 		}
 		$oBlock->afficher();
 	}
@@ -235,6 +193,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 	{
 		$oBlock->effacer();
 	}
+	$oTpl->remplacer("{Message_Etat}",$sMessageEtat);
 	$oTpl->afficher();
 	$oProjet->terminer();
 }//Verification de la permission d'utiliser le concepteur de formulaire

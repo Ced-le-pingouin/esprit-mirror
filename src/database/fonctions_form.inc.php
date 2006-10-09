@@ -157,7 +157,7 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 		CopierUnObjetFormulaire($this->oBdd, $oEnreg, $v_iIdNvFormulaire);
 
 	$this->oBdd->libererResult($hResult);
-	return TRUE;
+	return $v_iIdNvFormulaire;
 }
 
 function CopierUnObjetFormulaire(&$v_oBdd, &$v_oObjForm, $v_iIdFormulaireDest, $v_iOrdreObjet = NULL)

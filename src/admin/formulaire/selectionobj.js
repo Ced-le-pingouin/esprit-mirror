@@ -1,24 +1,27 @@
-function selectionobj(idobj,idformulaire) 
+function selectionobj(idobj,idformulaire,iPasRechFrModif) 
 {
 	parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	if(!iPasRechFrModif)// test: ne pas recharger FORMFRAMEMODIF
+		parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
 }
 
-function rechargerliste(idobj,idformulaire) 
+function rechargerliste(idobj,idformulaire,bPasRechFrModif) 
 {
-	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj); 
+	if(bPasRechFrModif)// test: ne pas recharger FORMFRAMEMODIF
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&iPasRechFrModif=1");
+	else
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro
 }
 
-function rechargermenugauche()
+function rechargermenugauche(idformulaire)
 {
-	//alert ("je suis dans rechargermenugauche");
-	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php"); 
+	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire);
 }
 
 function rechargerlistepopup(idobj,idformulaire) 
 {
-	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj); 
+	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire); 
 	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro depuis une popup
 }
 
@@ -29,9 +32,7 @@ function majmodifmenu(idobj,idformulaire)
 
 function popupajout(idobj,idformulaire) 
 {
-	//opener.parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&pos="+idobj);
-	//opener.parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire);
 }
 
 //Permet de vérifier si un champ est bien numérique

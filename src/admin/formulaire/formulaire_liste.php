@@ -32,16 +32,83 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 	{
 		$v_iIdObjForm = $_GET['idobj'];
 		$v_iIdFormulaire = $_GET['idformulaire'];
+		if(isset($_GET['action']))
+			$v_sAction = $_GET['action'];
+		else
+			$v_sAction = "";
+		if(isset($_GET["iPasRechFrModif"]) && $_GET["iPasRechFrModif"]==1)
+			$iPasRechFrModif = 1;
+		else
+			$iPasRechFrModif = 0;
 	}
 	else
 	{
 		$v_iIdFormulaire = 0;
 		$v_iIdObjForm = 0;
+		$v_sAction = "";
 	}
 	if ($v_iIdFormulaire > 0)
 	{
 		$oBlockIntro->effacer();
 		$oBlockFormulaire->afficher();
+		$bCopieObjForm = false;
+		if($v_sAction == "copier")
+		{
+			if ($v_iIdObjForm > 0)
+			{
+				$v_iIdObjForm = CopierUnObjetFormulaire($oProjet->oBdd, $v_iIdObjForm, $v_iIdFormulaire, "max");
+				$bCopieObjForm = true;
+			}
+		}
+		else
+		{
+			if($v_sAction == "supprimer")
+			{
+				$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);
+				switch($oObjetFormulaire->retIdTypeObj())
+				{
+					case 1:	$oQTexteLong = new CQTexteLong($oProjet->oBdd,$v_iIdObjForm);
+							$oQTexteLong->effacer();
+							break;
+					
+					case 2:	$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$v_iIdObjForm);
+							$oQTexteCourt->effacer();
+							break;
+					
+					case 3:	$oQNombre = new CQNombre($oProjet->oBdd,$v_iIdObjForm);
+							$oQNombre->effacer();
+							break;
+					
+					case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$v_iIdObjForm);
+							$oQListeDeroul->effacer();
+							$oReponse = new CReponse($oProjet->oBdd);
+							$oReponse->effacerRepPoidsObj($v_iIdObjForm);
+							break;
+					
+					case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$v_iIdObjForm);
+							$oQRadio->effacer();
+							$oReponse = new CReponse($oProjet->oBdd);
+							$oReponse->effacerRepPoidsObj($v_iIdObjForm);						 
+							break;
+					
+					case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$v_iIdObjForm);
+							$oQCocher->effacer();
+							$oReponse = new CReponse($oProjet->oBdd);
+							$oReponse->effacerRepPoidsObj($v_iIdObjForm);
+							break;
+					
+					case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$v_iIdObjForm);
+							$oMPTexte->effacer();
+							break;
+					
+					case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$v_iIdObjForm);
+							$oMPSeparateur->effacer();
+							break;			   
+				}
+				$oObjetFormulaire->effacer();
+				$v_iIdObjForm = 0;
+			}
+		}
 		// Lecture de la table formulaire pour y récupérer les données de mise en page
 		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 		$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
@@ -73,9 +140,16 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 			$sJsVerifUtilisation = " alerteFormulaireUtilise({$iNbUtilisations},{$iNbRemplis});";
 		}
 		if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) or ($iIdPersForm == $iIdPers) )
-			$oTpl->remplacer("{onload}","onload =\"selectionobj($v_iIdObjForm,$v_iIdFormulaire); allerAPos();{$sJsVerifUtilisation}\"");
-		else 
+		{
+			if($bCopieObjForm)
+				$oTpl->remplacer("{onload}","onload =\"selectionobj($v_iIdObjForm,$v_iIdFormulaire,$iPasRechFrModif); allerAPos($v_iIdObjForm);{$sJsVerifUtilisation}\"");
+			else
+				$oTpl->remplacer("{onload}","onload =\"selectionobj($v_iIdObjForm,$v_iIdFormulaire,$iPasRechFrModif); allerAPos();{$sJsVerifUtilisation}\"");
+		}
+		else
+		{
 			$oTpl->remplacer("{onload}","onload =\"selectionobj('NULL','NULL')\"");
+		}
 		$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
 		
 		if ($v_iIdObjForm == 0) {$sCocher = "checked=\"checked\"";} else {$sCocher = "";}	// utile si on arrive sur la liste après suppression d'un objet par exemple

@@ -47,7 +47,15 @@ function copie(TypeAct)
 		}
 	}
 }
+function ajouter(TypeAct)
+{
+	document.forms['listeformulaire'].typeaction.value=TypeAct;
+	document.forms['listeformulaire'].action='formulaire_menu.php';
+	document.forms['listeformulaire'].target='_self';
+	document.forms['listeformulaire'].submit();
+}
 </script>
+<script src="selectionobj.js" type="text/javascript"></script>
 <title>Conception d'activités en ligne</title>
 </head>
 <body>
@@ -57,7 +65,7 @@ function copie(TypeAct)
 	<td colspan="2">
 		<select class="listeForm" name="idformulaire" onchange="javascript: this.form.submit();" size="10" style="width: 100%;">
 	[BLOCK_FORM+]
-			<option {couleur} value="{id_formulaire}" title="{infobulle_formulaire}" onmouseover="top.defTexteStatut(escape(this.title));" onmouseout="top.defTexteStatut('&nbsp;');">{nom_formulaire}</option>
+			<option {couleur} value="{id_formulaire}" title="{infobulle_formulaire}" onmouseover="top.defTexteStatut(escape(this.title));" onmouseout="top.defTexteStatut('&nbsp;');"{selected}>{nom_formulaire}</option>
 	[BLOCK_FORM-]
 		</select>
 		<input type="hidden" name="typeaction" value="" />
@@ -77,7 +85,8 @@ function copie(TypeAct)
 </form>
 <br />
 <div align="center">
-	<a href="javascript: void(0);" onclick="parent.FORMFRAMELISTE.location.replace('ajouter_formulaire.php');">Créer une activité</a>
+	<a href="#" onclick="ajouter('ajouter');">Créer une activité</a>
 </div>
+{Message_Etat}
 </body>
 </html>

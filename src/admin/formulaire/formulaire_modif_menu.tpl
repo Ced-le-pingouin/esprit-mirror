@@ -13,7 +13,8 @@ function supobj(idobj,idformulaire)
 {
 	if (confirm('Voulez-vous supprimer l\'objet sélectionné ?'))
 	{
-		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_sup.php?idobj="+idobj+"&idformulaire="+idformulaire);
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=supprimer");
+		//parent.FORMFRAMEMODIF.location.replace("formulaire_modif_sup.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	}
 }
 function modifposobj(idobj,idformulaire)
@@ -24,7 +25,8 @@ function copieobj(idobj,idformulaire)
 {
 	if (confirm('Voulez-vous copier l\'objet sélectionné ?'))
 	{
-		parent.FORMFRAMEMODIF.location.replace("formulaire_modif_copie.php?idobj="+idobj+"&idformulaire="+idformulaire);
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=copier");
+		//parent.FORMFRAMEMODIF.location.replace("formulaire_modif_copie.php?idobj="+idobj+"&idformulaire="+idformulaire);
 	}
 }
 function modifaxeform(idformulaire)

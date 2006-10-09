@@ -84,7 +84,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQTexteLong->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQTL}",$oQTexteLong->retEnonQTL());
@@ -130,7 +130,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQTexteCourt->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQTC}",$oQTexteCourt->retEnonQTC());
@@ -179,7 +179,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQNombre->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQN}",$oQNombre->retEnonQN());
@@ -248,7 +248,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						}
 						// Enregistrement de l'objet oQListeDeroul actuel dans la BD
 						$oQListeDeroul->enregistrer();
-						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire)</script>\n";
+						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)</script>\n";
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
@@ -337,7 +337,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Enregistrement de l'objet QRadio actuel dans la BD
 						$oQRadio->enregistrer();
 						// Lorsque la question est bien enregistrée dans la BD, on rafraîchit la liste en cochant l'objet que l'on est en train de traiter
-						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire)</script>\n";
+						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)</script>\n";
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
@@ -442,7 +442,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 							}
 							// Enregistrement de l'objet QCocher actuel dans la BD
 							$oQCocher->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
@@ -518,7 +518,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if (!$bFlagErreur)  //si pas d'erreur, enregistrement physique
 						{
 							$oMPTexte->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{TexteMPT}",$oMPTexte->retTexteMPT());
@@ -550,7 +550,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oMPSeparateur->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{LargeurMPS}",$oMPSeparateur->retLargeurMPS());
@@ -630,8 +630,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
 				{
 					$oFormulaire->enregistrer();
-					$sRecharger = "<script type=\"text/javascript\">\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire);\n"
-								."rechargermenugauche(); </script>\n";
+					$sRecharger = "<script type=\"text/javascript\">\n rechargermenugauche($v_iIdFormulaire); \n"
+								." rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1); \n</script>\n";
 				} 
 			}
 			$oTpl->remplacer("{sRecharger}",$sRecharger);

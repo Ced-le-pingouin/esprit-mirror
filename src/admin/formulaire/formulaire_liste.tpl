@@ -14,11 +14,18 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 </style>
 <script type="text/javascript" src="selectionobj.js"></script>
 <script type="text/javascript">
-function allerAPos()
+function allerAPos(v_iNpos)
 {
-	iPos = retParamUrl(window.location,'pos');
-	if (iPos != null)
-		document.location = '#' + iPos;
+	if(v_iNpos)
+	{
+		document.location = '#' + v_iNpos;
+	}
+	else
+	{
+		idObj = retParamUrl(window.location,'idobj');
+		if (idObj != null)
+			document.location = '#' + idObj;
+	}
 }
 </script>
 <title>Modification des activités en ligne</title>
