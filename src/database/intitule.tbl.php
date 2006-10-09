@@ -19,15 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: intitule.tbl.php
-** Description ............: 
-** Date de création .......: 12/04/2003
-** Dernière modification ..: 16/06/2004
-** Auteurs ................: Filippo PORCO
-** Emails .................: ute@umh.ac.be
-**
-*/
+/**
+ * @file	intitule.tbl.php
+ * 
+ * Contient la classe de gestion des intitulés, en rapport avec la DB
+ * 
+ * @date	2003/04/12
+ * 
+ * @author	Filippo PORCO
+ */
 
 class CIntitule
 {
@@ -100,7 +100,7 @@ class CIntitule
 			." (IdIntitule,NomIntitule,TypeIntitule)"
 			." VALUES"
 			." (NULL"
-			.",'".mysql_escape_string($this->oEnregBdd->NomIntitule)."'"
+			.",'".MySQLEscapeString($this->oEnregBdd->NomIntitule)."'"
 			.",'{$this->oEnregBdd->TypeIntitule}')";
 		$this->oBdd->executerRequete($sRequeteSql);
 		$this->iId = $this->oBdd->retDernierId();
@@ -114,7 +114,7 @@ class CIntitule
 			return FALSE;
 		
 		$sRequeteSql = "UPDATE Intitule SET"
-			." NomIntitule='".mysql_escape_string($this->oEnregBdd->NomIntitule)."'"
+			." NomIntitule='".MySQLEscapeString($this->oEnregBdd->NomIntitule)."'"
 			." WHERE IdIntitule='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
@@ -136,7 +136,13 @@ class CIntitule
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	function retNom ($v_bHtmlEntities=TRUE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomIntitule,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomIntitule); }
+	function retNom ($v_bHtmlEntities=TRUE)
+	{
+		if (empty($this->oEnregBdd->NomIntitule))
+			return NULL;
+		
+		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomIntitule,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomIntitule);
+	}
 	
 	function defNom ($v_sNomIntitule)
 	{
@@ -148,7 +154,7 @@ class CIntitule
 	
 	function defType ($v_iType) { $this->oEnregBdd->TypeIntitule = $v_iType; }
 	
-	function retType () { return $this->oEnregBdd->TypeIntitule; }
+	function retType () { return (empty($this->oEnregBdd->TypeIntitule) ? NULL : $this->oEnregBdd->TypeIntitule); }
 		
 	function initIntitules ($v_iTypeIntitule=NULL)
 	{
