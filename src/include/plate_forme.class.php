@@ -2349,7 +2349,7 @@ class CProjet
 				
 			default:
 				if ($v_iIdForm > 0)
-					echo $sRequeteSql = "SELECT p.*"
+					$sRequeteSql = "SELECT p.*"
 						." FROM Formation AS f, Personne AS p"
 						." LEFT JOIN Formation_Resp AS fr ON f.IdForm=fr.IdForm AND p.IdPers=fr.IdPers"
 						." LEFT JOIN Formation_Concepteur AS fc ON f.IdForm=fc.IdForm AND p.IdPers=fc.IdPers"
