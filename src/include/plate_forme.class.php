@@ -1529,11 +1529,11 @@ class CProjet
 			." (IdRes,NomRes,DescrRes,DateRes,AuteurRes,UrlRes,IdPers,IdFormat)"
 			." VALUES"
 			." (null"
-			.", '".mysql_escape_string($v_sNom)."'"
-			.", '".mysql_escape_string($v_sDescr)."'"
+			.", '".MySQLEscapeString($v_sNom)."'"
+			.", '".MySQLEscapeString($v_sDescr)."'"
 			.", NOW()"
-			.", '".mysql_escape_string($v_sAuteur)."'"
-			.", '".mysql_escape_string($v_sUrl)."'"
+			.", '".MySQLEscapeString($v_sAuteur)."'"
+			.", '".MySQLEscapeString($v_sUrl)."'"
 			//.", '{$v_sAuteur'}"
 			//.",\"$v_sUrl\""
 			.", '{$iIdDepos}'"
@@ -2349,7 +2349,7 @@ class CProjet
 				
 			default:
 				if ($v_iIdForm > 0)
-					$sRequeteSql = "SELECT p.*"
+					echo $sRequeteSql = "SELECT p.*"
 						." FROM Formation AS f, Personne AS p"
 						." LEFT JOIN Formation_Resp AS fr ON f.IdForm=fr.IdForm AND p.IdPers=fr.IdPers"
 						." LEFT JOIN Formation_Concepteur AS fc ON f.IdForm=fc.IdForm AND p.IdPers=fc.IdPers"

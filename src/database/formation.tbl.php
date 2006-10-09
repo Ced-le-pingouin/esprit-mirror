@@ -1075,9 +1075,9 @@ class CFormation
 	//@{
 	function defNom ($v_sNomForm)
 	{		
-		$v_sNomForm = $this->oBdd->validerDonnee($v_sNomForm);
+		$v_sNomForm = MySQLEscapeString($v_sNomForm);
 		
-		if (strlen($v_sNomForm) < 1)
+		if (empty($v_sNomForm))
 			$v_sNomForm = INTITULE_FORMATION." sans nom";
 		
 		$this->mettre_a_jour("NomForm",$v_sNomForm);
@@ -1085,7 +1085,7 @@ class CFormation
 	
 	function defDescr ($v_sDescrForm)
 	{		
-		$this->mettre_a_jour("DescrForm",$this->oBdd->validerDonnee($v_sDescrForm));
+		$this->mettre_a_jour("DescrForm",$v_sDescrForm);
 	}
 	
 	function defInscrAutoModules ($v_bInscrAutoModules=TRUE)
@@ -1184,7 +1184,7 @@ class CFormation
 			return FALSE;
 		
 		$sRequeteSql = "UPDATE Formation SET"
-			." {$v_sNomChamp}='".mysql_escape_string($v_mValeurChamp)."'"
+			." {$v_sNomChamp}='".MySQLEscapeString($v_mValeurChamp)."'"
 			." WHERE IdForm='{$v_iIdForm}'";
 		
 		$this->oBdd->executerRequete($sRequeteSql);

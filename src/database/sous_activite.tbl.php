@@ -495,7 +495,7 @@ class CSousActiv
 	{
 		$sRequeteSql = "INSERT INTO SousActiv SET"
 			." IdSousActiv=NULL"
-			.", NomSousActiv='".mysql_escape_string(INTITULE_SOUS_ACTIV." sans nom")."'"
+			.", NomSousActiv='".MySQLEscapeString(INTITULE_SOUS_ACTIV." sans nom")."'"
 			.", DateDebSousActiv=NOW()"
 			.", DateFinSousActiv=NOW()"
 			.", IdTypeSousActiv='0'"
@@ -1121,7 +1121,7 @@ class CSousActiv
 	//@{
 	function setIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers=$v_iIdPers; }
 	function defDonnees ($v_sDonnees) {	$this->mettre_a_jour("DonneesSousActiv",$v_sDonnees); }
-	function defDescr ($v_sDescrSousActiv) { $this->mettre_a_jour("DescrSousActiv",trim(stripslashes($v_sDescrSousActiv))); }
+	function defDescr ($v_sDescrSousActiv) { $this->mettre_a_jour("DescrSousActiv",$v_sDescrSousActiv); }
 	function defNumOrdre ($v_iOrdre) { $this->mettre_a_jour("OrdreSousActiv",$v_iOrdre); }
 	function defInfoBulle ($v_sInfoBulle=NULL) { $this->mettre_a_jour("InfoBulleSousActiv",$v_sInfoBulle); }
 	function defModalite ($v_iModalite) { $this->mettre_a_jour("ModaliteSousActiv",$v_iModalite); }
@@ -1152,7 +1152,7 @@ class CSousActiv
 
 	function defNom ($v_sNomSousActiv)
 	{
-		$v_sNomSousActiv = trim(stripslashes($v_sNomSousActiv));
+		$v_sNomSousActiv = MySQLEscapeString($v_sNomSousActiv);
 		
 		if (empty($v_sNomSousActiv))
 			$v_sNomSousActiv = INTITULE_SOUS_ACTIV." sans nom";
@@ -1315,7 +1315,7 @@ class CSousActiv
 	}
 	
 	/**
-	 * Initialise l'objet \c oAuteur de type CPersonne contenant la personne qui a dépossé la ressource
+	 * Initialise l'objet \c oAuteur de type CPersonne contenant la personne qui a déposé la ressource
 	 */
 	function initAuteur () { $this->oAuteur = new CPersonne($this->oBdd,$this->retIdPers()); }
 	

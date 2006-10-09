@@ -383,7 +383,7 @@ class CModule_Rubrique
 		$sRequeteSql = "INSERT INTO Module_Rubrique SET"
 			." IdRubrique=NULL"
 			.", IdMod='".$this->retIdModule()."'"
-			.", NomRubrique='".mysql_escape_string(INTITULE_RUBRIQUE." sans nom")."'"
+			.", NomRubrique='".MySQLEscapeString(INTITULE_RUBRIQUE." sans nom")."'"
 			.", TypeRubrique='".LIEN_UNITE."'"
 			.", OrdreRubrique='".($this->retNombreLignes()+1)."'"
 			.", StatutRubrique='".STATUT_OUVERT."'"
@@ -698,14 +698,14 @@ class CModule_Rubrique
 	//@{
 	function defNom ($v_sNom)
 	{
-		$v_sNom = trim(stripslashes($v_sNom));
+		$v_sNom = MySQLEscapeString($v_sNom);
 		if (empty($v_sNom)) $v_sNom = INTITULE_RUBRIQUE." sans nom";
 		$this->mettre_a_jour("NomRubrique",$v_sNom);
 	}
 
 	function defDonnee ($v_sDonnee)
 	{
-		$this->mettre_a_jour("DonneesRubrique",trim(stripslashes($v_sDonnee)).":2");
+		$this->mettre_a_jour("DonneesRubrique",$v_sDonnee.":2");
 	}
 
 	function defType ($v_iType)

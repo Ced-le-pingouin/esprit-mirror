@@ -276,7 +276,7 @@ class CActiv
 		
 		$sRequeteSql = "INSERT INTO Activ SET"
 			." IdActiv=NULL"
-			.", NomActiv='".mysql_escape_string(INTITULE_ACTIV." sans nom")."'"
+			.", NomActiv='".MySQLEscapeString(INTITULE_ACTIV." sans nom")."'"
 			.", DateDebActiv=NOW()"
 			.", DateFinActiv=NOW()"
 			.", ModaliteActiv='".MODALITE_INDIVIDUEL."'"
@@ -687,7 +687,7 @@ class CActiv
 
 	function defNom ($v_sNomActiv)
 	{
-		$v_sNomActiv = trim(stripslashes($v_sNomActiv));
+		$v_sNomActiv = MySQLEscapeString($v_sNomActiv);
 		
 		if (empty($v_sNomActiv))
 			$v_sNomActiv = INTITULE_ACTIV." sans nom";
@@ -697,7 +697,7 @@ class CActiv
 	
 	function defDescr ($v_sDescrActiv)
 	{
-		$this->mettre_a_jour("DescrActiv",trim(stripslashes($v_sDescrActiv)));
+		$this->mettre_a_jour("DescrActiv",$v_sDescrActiv);
 	}
 	//@}
 	
@@ -719,7 +719,7 @@ class CActiv
 			return FALSE;
 
 		$sRequeteSql = "UPDATE Activ SET"
-			." {$v_sNomChamp}='".mysql_escape_string($v_mValeurChamp)."'"
+			." {$v_sNomChamp}='".MySQLEscapeString($v_mValeurChamp)."'"
 			." WHERE IdActiv='{$v_iIdActiv}'";
 
 		$this->oBdd->executerRequete ($sRequeteSql);

@@ -146,7 +146,7 @@ class CIntitule
 	
 	function defNom ($v_sNomIntitule)
 	{
-		$v_sNomIntitule = trim(stripslashes($v_sNomIntitule));
+		$v_sNomIntitule = MySQLEscapeString($v_sNomIntitule);
 		
 		if (!empty($v_sNomIntitule))
 			$this->oEnregBdd->NomIntitule = $v_sNomIntitule;

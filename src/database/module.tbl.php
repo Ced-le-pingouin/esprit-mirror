@@ -269,7 +269,7 @@ class CModule
 		
 		$sRequeteSql = "INSERT INTO Module SET"
 			." IdMod=NULL"
-			.", NomMod='".mysql_escape_string(INTITULE_MODULE." sans nom")."'"
+			.", NomMod='".MySQLEscapeString(INTITULE_MODULE." sans nom")."'"
 			.", DateDebMod=NOW()"
 			.", DateFinMod=NOW()"
 			.", StatutMod='".STATUT_OUVERT."'"
@@ -640,13 +640,13 @@ class CModule
 
 	function defNom ($v_sNom)
 	{
-		$v_sNom = trim(stripslashes($v_sNom));
+		$v_sNom = MySQLEscapeString($v_sNom);
 		if (empty($v_sNom))
 			$v_sNom = INTITULE_MODULE." sans nom";
 		$this->mettre_a_jour("NomMod",$v_sNom);
 	}
 	
-	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrMod",trim(stripslashes($v_sDescr))); }
+	function defDescr ($v_sDescr) { $this->mettre_a_jour("DescrMod",$v_sDescr); }
 	//@}
 	
 	/**
@@ -667,7 +667,7 @@ class CModule
 			return FALSE;
 		
 		$sRequeteSql = "UPDATE Module SET"
-			." {$v_sNomChamp}='".mysql_escape_string($v_mValeurChamp)."'"
+			." {$v_sNomChamp}='".MySQLEscapeString($v_mValeurChamp)."'"
 			." WHERE IdMod='{$v_iIdMod}'";
 		
 		$this->oBdd->executerRequete($sRequeteSql);
