@@ -38,6 +38,28 @@
 		- écrire une fonction javascript qui vérifie les données du formulaire (pb de SÉCURITÉ en particulier)
 		- A quoi correspondent $g_sNomProprietaire et $g_sNomBdd ? Leur valeur actuelle est-elle correcte ?
 */
+// This one already exists in PHP5, but not in PHP4
+if (!function_exists("file_put_contents"))
+{
+	function file_put_contents($filename, $content) {
+		if (file_exists($filename)) {
+			echo "Le fichier ($filename) existe déjà";
+			return FALSE;
+		}
+		$handle = fopen($filename, 'w');
+		if (!$handle) {
+			echo "Impossible d'ouvrir le fichier ($filename)";
+			return FALSE;
+		}
+		$written = fwrite($handle, $content);
+		fclose($handle);
+		if (!$written) {
+			echo "Impossible d'écrire dans le fichier ($filename)";
+			return FALSE;
+		}
+		return $written;
+	}
+}
 
 $step=1;
 if (isset($_REQUEST['step']) && $_REQUEST['step']) {
@@ -282,28 +304,5 @@ function load_mysql_dump($path, $ignoreerrors = false) {
 		}
 	}
 	return TRUE;
-}
-
-// This one already exists in PHP5, but not in PHP4
-if (!function_exists("file_put_contents"))
-{
-	function file_put_contents($filename, $content) {
-		if (file_exists($filename)) {
-			echo "Le fichier ($filename) existe déjà";
-			return FALSE;
-		}
-		$handle = fopen($filename, 'w');
-		if (!$handle) {
-			echo "Impossible d'ouvrir le fichier ($filename)";
-			return FALSE;
-		}
-		$written = fwrite($handle, $content);
-		fclose($handle);
-		if (!$written) {
-			echo "Impossible d'écrire dans le fichier ($filename)";
-			return FALSE;
-		}
-		return $written;
-	}
 }
 ?>
