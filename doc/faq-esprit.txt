@@ -3,7 +3,7 @@ FAQ des listes esprit-admin et esprit-users
 $Id$
 
 
-A. Administration (liste esprit-admin)
+A. Installation (liste esprit-admin)
 ======================================
 
 1. Où trouver la dernière version installable d'Esprit ?
@@ -22,6 +22,38 @@ il faut avoir un client subversion. La ligne de commande est :
 ou
   svn checkout https://subversion.cru.fr:/esprit dossier_local
 
+
+3. Comment installer les modules Awareness et Chat ?
+Ces deux modules sont pour l'instant extérieurs à Esprit : ils ne font pas
+partie de la distribution standard. 
+Techniquement, ils sont écrits en Java : ils nécessitent à la fois une machine 
+virtuelle sur le serveur, et sur les clients, avec le navigateur web configuré
+pour exécuter les applets Java.
+Seules les applets sont dans l'archive Esprit pour l'instant, dans
+ - src/sousactiv/chat/client/
+ - src/admin/awareness/client/
+
+Les deux applis serveurs sont diffusées séparément pour l'instant.
+Ils doivent être lancés par les commandes :
+"java AwarenessServer 2501" et "java DeltaChat 2555".
+Les numéros indiqués sont les ports TCP/IP utilisés. Ils doivent être 
+ouverts sur le serveur.
+Dans la DB d'esprit, dans la table Projet, on peut modifier les ports
+vers lesquels les applets tenteront de se connecter (les serveurs
+doivent tourner sur le même serveur que les pages clientes).
+Dans les fichiers joints, il y a aussi, pour chaque serveur, un script
+(le fichier sans extension) qui permet de lancer ou d'arrêter chaque
+serveur.
+
+Pour exploiter les archives du chat, il faut paramétrer une option du
+serveur : dans le fichier deltachat.properties, définir la variable
+DOCUMENT_ROOT =
+(en indiquant le répertoire père de esprit/ )
+
+
+
+B. Administration (liste esprit-admin)
+======================================
 
 3. Comment attribuer le rôle de responsable de plate-forme à 
 plusieurs personnes ?
@@ -51,7 +83,7 @@ le prénom d'une personne sont déjà utilisées, elle sera re-créée.
 
 
 
-B. Utilisation (liste esprit-users)
+C. Utilisation (liste esprit-users)
 ===================================
 
 1. Comment déposer une archive de documents structurés en liens de telle
