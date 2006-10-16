@@ -2294,78 +2294,96 @@ class CProjet
 		{
 			case STATUT_PERS_RESPONSABLE:
 			//   -----------------------
-				$sRequeteSql = "SELECT p.*"
-					." FROM ".($v_iIdForm > 0
-						? "Formation_Resp AS fr"
-						: " Projet_Resp AS pr")
-					." LEFT JOIN Personne AS p USING (IdPers)"
-					.($v_iIdForm > 0 ? " WHERE fr.IdForm='{$v_iIdForm}'" : NULL)
-					." GROUP BY p.IdPers";
+				$sRequeteSql = "SELECT Personne.*"
+					." FROM"
+					.($v_iIdForm > 0
+						? " Formation_Resp"
+						: " Projet_Resp")
+					." LEFT JOIN Personne USING (IdPers)"
+					.($v_iIdForm > 0
+						? " WHERE Formation_Resp.IdForm='{$v_iIdForm}'"
+						: NULL)
+					." GROUP BY Personne.IdPers";
 				break;
 				
 			case STATUT_PERS_CONCEPTEUR:
 			//   ----------------------
-				$sRequeteSql = "SELECT p.*"
-					." FROM ".($v_iIdMod > 0 ? "Module_Concepteur AS mc"
-						: ($v_iIdForm > 0
-							? "Formation_Concepteur AS fc"
-							: "Projet_Concepteur AS pc"))
-					." LEFT JOIN Personne AS p USING (IdPers)"
+				$sRequeteSql = "SELECT Personne.*"
+					." FROM"
 					.($v_iIdMod > 0
-						? " WHERE mc.IdMod='{$v_iIdMod}'"
+						? " Module_Concepteur"
 						: ($v_iIdForm > 0
-							? " WHERE fc.IdForm='{$v_iIdForm}'"
+							? " Formation_Concepteur"
+							: " Projet_Concepteur"))
+					." LEFT JOIN Personne USING (IdPers)"
+					.($v_iIdMod > 0
+						? " WHERE Module_Concepteur.IdMod='{$v_iIdMod}'"
+						: ($v_iIdForm > 0
+							? " WHERE Formation_Concepteur.IdForm='{$v_iIdForm}'"
 							: NULL))
-					." GROUP BY p.IdPers";
+					." GROUP BY Personne.IdPers";
 				break;
 				
 			case STATUT_PERS_TUTEUR:
 			//   ------------------
-				$sRequeteSql = "SELECT p.*"
-					." FROM ".($v_iIdMod > 0 ? "Module_Tuteur AS mt" : "Formation_Tuteur AS ft")
-					." LEFT JOIN Personne AS p USING (IdPers)"
+				$sRequeteSql = "SELECT Personne.*"
+					." FROM"
+					.($v_iIdMod > 0
+						? " Module_Tuteur"
+						: " Formation_Tuteur")
+					." LEFT JOIN Personne USING (IdPers)"
 					." WHERE"
 					.($v_iIdMod > 0
-						? " mt.IdMod='{$v_iIdMod}'"
+						? " Module_Tuteur.IdMod='{$v_iIdMod}'"
 						: ($v_iIdForm > 0
-							? " ft.IdForm='{$v_iIdForm}'"
-							: " ft.IdForm IS NOT NULL"))
-					." GROUP BY p.IdPers";
+							? " Formation_Tuteur.IdForm='{$v_iIdForm}'"
+							: " Formation_Tuteur.IdForm IS NOT NULL"))
+					." GROUP BY Personne.IdPers";
 				break;
 				
 			case STATUT_PERS_ETUDIANT:
 			//   --------------------
-				$sRequeteSql = "SELECT p.*"
-					." FROM ".($v_iIdMod > 0 ? "Module_Inscrit AS mi" : "Formation_Inscrit AS fi")
-					." LEFT JOIN Personne AS p USING (IdPers)"
+				$sRequeteSql = "SELECT Personne.*"
+					." FROM"
+					.($v_iIdMod > 0
+						? " Module_Inscrit"
+						: " Formation_Inscrit")
+					." LEFT JOIN Personne USING (IdPers)"
 					." WHERE"
 					.($v_iIdMod > 0
-						? " mi.IdMod='{$v_iIdMod}'"
+						? " Module_Inscrit.IdMod='{$v_iIdMod}'"
 						: ($v_iIdForm > 0
-							? " fi.IdForm='{$v_iIdForm}'"
-							: " fi.IdForm IS NOT NULL"))
-					." GROUP BY p.IdPers";
+							? " Formation_Inscrit.IdForm='{$v_iIdForm}'"
+							: " Formation_Inscrit.IdForm IS NOT NULL"))
+					." GROUP BY Personne.IdPers";
 				break;
 				
 			default:
 				if ($v_iIdForm > 0)
-					$sRequeteSql = "SELECT p.*"
-						." FROM Formation AS f, Personne AS p"
-						." LEFT JOIN Formation_Resp AS fr ON f.IdForm=fr.IdForm AND p.IdPers=fr.IdPers"
-						." LEFT JOIN Formation_Concepteur AS fc ON f.IdForm=fc.IdForm AND p.IdPers=fc.IdPers"
-						." LEFT JOIN Formation_Tuteur AS ft ON f.IdForm=ft.IdForm AND p.IdPers=ft.IdPers"
-						." LEFT JOIN Formation_Inscrit AS fi ON f.IdForm=fi.IdForm AND p.IdPers=fi.IdPers"
-						." WHERE f.IdForm='{$v_iIdForm}'"
-						." AND (fr.IdPers IS NOT NULL"
-						." OR fc.IdPers IS NOT NULL"
-						." OR ft.IdPers IS NOT NULL"
-						." OR fi.IdPers IS NOT NULL)"
-						." GROUP BY p.IdPers";
+					$sRequeteSql = "SELECT Personne.*"
+						." FROM Personne"
+						." LEFT JOIN Formation_Resp"
+							." ON ( Personne.IdPers = Formation_Resp.IdPers"
+							." AND Formation_Resp.IdForm = '{$v_iIdForm}' )"
+						." LEFT JOIN Formation_Concepteur"
+							." ON ( Personne.IdPers = Formation_Concepteur.IdPers"
+							." AND Formation_Concepteur.IdForm = '{$v_iIdForm}' )"
+						." LEFT JOIN Formation_Tuteur"
+							." ON ( Personne.IdPers = Formation_Tuteur.IdPers"
+							." AND Formation_Tuteur.IdForm = '{$v_iIdForm}' )"
+						." LEFT JOIN Formation_Inscrit"
+							." ON ( Personne.IdPers = Formation_Inscrit.IdPers"
+							." AND Formation_Inscrit.IdForm = '{$v_iIdForm}' )"
+						." WHERE ( Formation_Resp.IdPers IS NOT NULL"
+							." OR Formation_Concepteur.IdPers IS NOT NULL"
+							." OR Formation_Tuteur.IdPers IS NOT NULL"
+							." OR Formation_Inscrit.IdPers IS NOT NULL )"
+						." GROUP BY Personne.IdPers";
 				else
-					$sRequeteSql = "SELECT p.* FROM Personne AS p";
+					$sRequeteSql = "SELECT Personne.* FROM Personne";
 		}
 		
-		$sRequeteSql .= " ORDER BY p.Nom, p.Prenom ASC";
+		$sRequeteSql .= " ORDER BY Personne.Nom, Personne.Prenom ASC";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
