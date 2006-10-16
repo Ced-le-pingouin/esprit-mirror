@@ -169,7 +169,7 @@ var asSousTitre = new Array(
 
 function init()
 {
-	changerSousTitre(<?="'{$iNiveau}','{$sSousTitre}'"?>);
+	changerSousTitre(<?php echo "'{$iNiveau}','{$sSousTitre}'"?>);
 }
 
 function StatusBar(v_oObj,v_sTexteStatusBar)
@@ -208,40 +208,40 @@ function designerSonParent(v_iParentNiveau,v_iParentIdNiveau,v_iEnfantNiveau,v_i
 	
 	switch (v_iParentNiveau)
 	{
-		case "<?=TYPE_FORMATION?>":
+		case "<?php echo TYPE_FORMATION?>":
 			sParentNode = "id_form"
 			break;
 			
-		case "<?=TYPE_MODULE?>":
+		case "<?php echo TYPE_MODULE?>":
 			sParentNode = "id_mod_" + v_iParentIdNiveau;
 			break;
 			
-		case "<?=TYPE_RUBRIQUE?>":
+		case "<?php echo TYPE_RUBRIQUE?>":
 			sParentNode = "id_rubrique_" + v_iParentIdNiveau;
 			break;
 	}
 	
 	switch (v_iEnfantNiveau)
 	{
-		case "<?=TYPE_MODULE?>":
+		case "<?php echo TYPE_MODULE?>":
 			sEnfantNode = "id_mod_" + v_iEnfantIdNiveau;
 			break;
 			
-		case "<?=TYPE_RUBRIQUE?>":
+		case "<?php echo TYPE_RUBRIQUE?>":
 			sEnfantNode = "id_rubrique_" + v_iEnfantIdNiveau;
 			break;
 	}
 	
 	if (sAncienEnfantNode != null && document.getElementById(sAncienEnfantNode))
-		document.getElementById(sAncienEnfantNode).childNodes[0].src = "<?=dir_theme('blank.gif')?>";
+		document.getElementById(sAncienEnfantNode).childNodes[0].src = "<?php echo dir_theme('blank.gif')?>";
 		
 	if (sAncienParentNode != sParentNode)
 	{
 		if (document.getElementById(sAncienParentNode))
-			document.getElementById(sAncienParentNode).childNodes[0].src = "<?=dir_theme('blank.gif')?>";
+			document.getElementById(sAncienParentNode).childNodes[0].src = "<?php echo dir_theme('blank.gif')?>";
 		
 		if (sParentNode != null && document.getElementById(sParentNode))
-			document.getElementById(sParentNode).childNodes[0].src = "<?=dir_theme('fleche-parent.gif')?>";
+			document.getElementById(sParentNode).childNodes[0].src = "<?php echo dir_theme('fleche-parent.gif')?>";
 		
 		sAncienParentNode = sParentNode;
 	}
@@ -250,7 +250,7 @@ function designerSonParent(v_iParentNiveau,v_iParentIdNiveau,v_iEnfantNiveau,v_i
 		sEnfantNode != sParentNode &&
 		typeof(document.getElementById(sEnfantNode)) == "object")
 	{
-		document.getElementById(sEnfantNode).childNodes[0].src = "<?=dir_theme('fleche-enfant.gif')?>";
+		document.getElementById(sEnfantNode).childNodes[0].src = "<?php echo dir_theme('fleche-enfant.gif')?>";
 		sAncienEnfantNode = sEnfantNode;
 	}
 }

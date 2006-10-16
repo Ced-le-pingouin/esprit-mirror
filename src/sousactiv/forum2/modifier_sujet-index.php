@@ -77,7 +77,7 @@ $sParamsUrl = "?modaliteFenetre={$url_sModaliteFenetre}"
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
+<title><?php echo htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
 <script type="text/javascript" language="javascript" src="forum.js"></script>
 <script type="text/javascript" language="javascript">
 <!--
@@ -87,7 +87,7 @@ function oMenu() { return top.frames["MENU"]; }
 </script>
 </head>
 <frameset rows="*,23" border="0">
-<frame name="SUJET" src="modifier_sujet.php<?=$sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="5" scrolling="no" noresize="noresize">
+<frame name="SUJET" src="modifier_sujet.php<?php echo $sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="5" scrolling="no" noresize="noresize">
 <frame name="MENU" src="" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>

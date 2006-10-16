@@ -80,7 +80,7 @@ function init() {
 <body onload="init()" style="background-image: none;">
 <div id="id_barre_de_progession" class="barre_de_progession">
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
-<tr><td align="center" valign="middle"><img src="<?=dir_theme_commun('barre_de_progression.gif')?>" alt="barre_de_progression"><br><small>Un instant svp</small></td></tr>
+<tr><td align="center" valign="middle"><img src="<?php echo dir_theme_commun('barre_de_progression.gif')?>" alt="barre_de_progression"><br><small>Un instant svp</small></td></tr>
 <tr><td>&nbsp;</td></tr>
 </table>
 </div>

@@ -79,11 +79,11 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=htmlentities($sTitrePageHtml,ENT_COMPAT,"UTF-8")?></title>
+<title><?php echo htmlentities($sTitrePageHtml,ENT_COMPAT,"UTF-8")?></title>
 </head>
 <frameset rows="65,*,24" border="0" frameborder="0" framespacing="0">
-<frame name="TITRE" src="description-titre.php?tp=<?=rawurlencode($sTitrePageHtml)?>" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">
-<frame name="PRINCIPALE" src="description.php<?=$sParamsUrl?>" frameborder="0" scrolling="auto" noresize="noresize">
+<frame name="TITRE" src="description-titre.php?tp=<?php echo rawurlencode($sTitrePageHtml)?>" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">
+<frame name="PRINCIPALE" src="description.php<?php echo $sParamsUrl?>" frameborder="0" scrolling="auto" noresize="noresize">
 <frame name="MENU" src="description-menu.php" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>

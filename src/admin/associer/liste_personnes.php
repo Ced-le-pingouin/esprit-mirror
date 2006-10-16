@@ -150,10 +150,10 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 <head>
 <?php inserer_feuille_style("associer_personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<script type="text/javascript" language="javascript"  src="<?=dir_javascript('globals.js.php')?>" ></script>
+<script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('globals.js.php')?>" ></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
-<script type="text/javascript" language="javascript"  src="<?=dir_javascript('outils_admin.js')?>" ></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('outils_admin.js')?>" ></script>
 <script language="javascript" type="text/javascript">
 <!--
 
@@ -197,11 +197,11 @@ if ($i < 1)
 	echo "<tr><td style=\"text-align: center;\">$sErrPers</td></tr>\n";
 ?>
 </table>
-<input type="hidden" name="FILTRE" value="<?=$iFiltre?>">
-<input type="hidden" name="STATUT_PERS" value="<?=$iStatutPers?>">
-<input type="hidden" name="FORMATION" value="<?=$iIdForm?>">
-<input type="hidden" name="ID_MOD" value="<?=$iIdMod?>">
-<input type="hidden" name="idform" value="<?=$iIdFormCourante?>">
+<input type="hidden" name="FILTRE" value="<?php echo $iFiltre?>">
+<input type="hidden" name="STATUT_PERS" value="<?php echo $iStatutPers?>">
+<input type="hidden" name="FORMATION" value="<?php echo $iIdForm?>">
+<input type="hidden" name="ID_MOD" value="<?php echo $iIdMod?>">
+<input type="hidden" name="idform" value="<?php echo $iIdFormCourante?>">
 </form>
 </body>
 </html>

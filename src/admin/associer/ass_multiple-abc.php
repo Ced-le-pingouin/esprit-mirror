@@ -22,9 +22,9 @@
 require_once("globals.inc.php"); ?>
 <html>
 <head>
-<?=inserer_feuille_style()?>
+<?php echo inserer_feuille_style()?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<script type="text/javascript" language="language" src="<?=dir_javascript('globals.js')?>"></script>
+<script type="text/javascript" language="language" src="<?php echo dir_javascript('globals.js')?>"></script>
 <script type="text/javascript" language="language" src="ass_multiple.js"></script>
 <script type="text/javascript" language="language">
 <!--

@@ -37,7 +37,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?=inserer_feuille_style("barre_outils.css")?>
+<?php echo inserer_feuille_style("barre_outils.css")?>
 <style type="text/css">
 <!--
 div.toolbar { position: absolute; left: 0px; top: 0px; width: 100%; height: 32px; }
@@ -77,7 +77,7 @@ function envoyer(v_iIdStatut)
 <td>&nbsp;Liste&nbsp;des&nbsp;statuts&nbsp;:&nbsp;</td>
 <td>
 <select name="idStatut" size="1" onchange="envoyer(this.value)">
-<?=$sIdStatutOptions?>
+<?php echo $sIdStatutOptions?>
 </select>
 </td>
 <td>&nbsp;Filtre&nbsp;:&nbsp;</td>
@@ -109,7 +109,7 @@ function envoyer(v_iIdStatut)
 </td>
 </tr>
 </table>
-<input type="hidden" name="params" value="<?=$aoListeStatuts[0]['IdStatut']?>">
+<input type="hidden" name="params" value="<?php echo $aoListeStatuts[0]['IdStatut']?>">
 </form>
 </div>
 <div id="toolbar2" class="toolbar">

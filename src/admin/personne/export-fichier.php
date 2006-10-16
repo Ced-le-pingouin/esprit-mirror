@@ -91,7 +91,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?=inserer_feuille_style("exporter-personnes.css")?>
+<?php echo inserer_feuille_style("exporter-personnes.css")?>
 <script type="text/javascript" language="javascript">
 <!--
 function exporter()
@@ -108,8 +108,8 @@ function exporter()
 <p>Exportation de la liste des inscrits termin&eacute;e.</p>
 <p>Veuillez fermer cette fen&ecirc;tre.</p>
 </div>
-<form action="<?=dir_code_lib('download.php',FALSE,FALSE)?>" method="get">
-<input type="hidden" name="f" value="<?=$sRepRel.$sNomFichier?>">
+<form action="<?php echo dir_code_lib('download.php',FALSE,FALSE)?>" method="get">
+<input type="hidden" name="f" value="<?php echo $sRepRel.$sNomFichier?>">
 </form>
 </body>
 </html>

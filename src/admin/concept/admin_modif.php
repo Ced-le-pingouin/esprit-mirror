@@ -428,11 +428,11 @@ $sCheminJavascript = dir_javascript();
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<?=inserer_feuille_style("onglet.css; concept.css")?>
-<script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}globals.js.php"?>"></script>
-<script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}window.js"?>"></script>
-<script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}outils_admin.js"?>"></script>
-<script type="text/javascript" language="javascript" src="<?="{$sCheminJavascript}sous_activ.js"?>"></script>
+<?php echo inserer_feuille_style("onglet.css; concept.css")?>
+<script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}globals.js.php"?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}window.js"?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}outils_admin.js"?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}sous_activ.js"?>"></script>
 <script type="text/javascript" language="javascript" src="admin_modif.js"></script>
 <script type="text/javascript" language="javascript">
 <!--
@@ -451,7 +451,7 @@ if ($g_iSousActiv > 0)
 else if ($g_iActiv > 0)
 	$sDeposerFichier .= "&tpf=".rawurlencode("Déposer des fichiers relatifs à ce bloc");
 ?>
-	var sUrl     = "<?=$sDeposerFichier?>";
+	var sUrl     = "<?php echo $sDeposerFichier?>";
 	var iLargeur = 470;
 	var iHauteur = 190;
 	var iGauche  = (screen.width-iLargeur)/2;
@@ -546,10 +546,10 @@ function init()
 	var sParams = "";
 	
 	if (top.frames["Titre"] && top.frames["Titre"].changerSousTitre)
-		top.frames["Titre"].changerSousTitre("<?=rawurlencode($g_sSous_Titre)?>");
+		top.frames["Titre"].changerSousTitre("<?php echo rawurlencode($g_sSous_Titre)?>");
 	
 	if (document.forms.length > 0 && document.forms[0].elements["act"])
-		sParams = "<?="?type={$g_iType}&params={$g_sParams}"?>";
+		sParams = "<?php echo "?type={$g_iType}&params={$g_sParams}"?>";
 	
 	top.frames["AdminModifMenu"].location = "admin_modif-menu.php" 
 		+ sParams;

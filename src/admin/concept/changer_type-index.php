@@ -29,7 +29,7 @@ function envoyer() {top.opener.envoyer(); }
 </script>
 </head>
 <frameset rows="*,25" border="0" frameborder="0" framespacing="3">
-<frame name="principale" src="changer_type.php<?=$sParamsUrl?>" marginwidth="10" marginheight="10" frameborder="0" scrolling="no" noresize="noresize">
+<frame name="principale" src="changer_type.php<?php echo $sParamsUrl?>" marginwidth="10" marginheight="10" frameborder="0" scrolling="no" noresize="noresize">
 <frame name="menu" src="changer_type-menu.php?menu=1" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>

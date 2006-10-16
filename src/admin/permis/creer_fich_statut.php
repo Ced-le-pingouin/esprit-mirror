@@ -44,7 +44,7 @@ $oProjet->terminer();
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Cr&eacute;ation du fichier des statuts</title>
-<?=inserer_feuille_style()?>
+<?php echo inserer_feuille_style()?>
 <style type="text/css">
 <!--
 body { background-image: none; }

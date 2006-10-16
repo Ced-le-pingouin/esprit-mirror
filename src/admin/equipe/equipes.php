@@ -168,8 +168,8 @@ $oProjet->terminer();
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("gestion_equipes.css"); ?>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
 
@@ -182,7 +182,7 @@ function init()
 		top.oFormation().designerSonParent)
 	{
 		desactiverBoutons();
-		afficherMembres("<?=$url_iIdEquipe?>");
+		afficherMembres("<?php echo $url_iIdEquipe?>");
 		top.oFormation().designerSonParent(<?php echo "\"{$iNiveau}\",\"{$iIdNiveau}\",\"{$url_iNiveau}\",\"{$url_iIdNiveau}\""; ?>);
 		changerTailleFrames();
 	}
@@ -204,7 +204,7 @@ function valider(v_iIdEquipe)
 		
 		elements["ACTION"].value = "rafraichir";
 		target = "EQUIPES";
-		action = "<?=$_SERVER['PHP_SELF']?>";
+		action = "<?php echo $_SERVER['PHP_SELF']?>";
 		method="post"
 		submit();
 	}
@@ -222,18 +222,18 @@ function defNiveau(v_iNiveau,v_iIdNiveau)
 		elements["NIVEAU"].value = v_iNiveau;
 		elements["ID_NIVEAU"].value = v_iIdNiveau;
 		elements["ID_EQUIPE"].options[elements["ID_EQUIPE"].selectedIndex].value = "0";
-		elements["FILTRE_PERSONNES"].value = "<?=PERSONNE_SANS_EQUIPE?>";
+		elements["FILTRE_PERSONNES"].value = "<?php echo PERSONNE_SANS_EQUIPE?>";
 		
 		target = "EQUIPES";
-		action = "<?=$_SERVER['PHP_SELF']?>";
+		action = "<?php echo $_SERVER['PHP_SELF']?>";
 		method = "post";
 	}
 }
 
 function desactiverBoutons()
 {
-	document.forms[0].elements["btnAjouter"].disabled = ((document.forms[0].elements["FILTRE_PERSONNES"].value < <?=PERSONNE_SANS_EQUIPE?>) || (<?="{$url_iNiveau}!={$iNiveau}"?>) || (<?="{$iIdxEquipe}==0"?>));
-	document.forms[0].elements["btnRetirer"].disabled = (<?="{$url_iNiveau}!={$iNiveau} || {$iIdxEquipe}==0"?>);
+	document.forms[0].elements["btnAjouter"].disabled = ((document.forms[0].elements["FILTRE_PERSONNES"].value < <?php echo PERSONNE_SANS_EQUIPE?>) || (<?php echo "{$url_iNiveau}!={$iNiveau}"?>) || (<?php echo "{$iIdxEquipe}==0"?>));
+	document.forms[0].elements["btnRetirer"].disabled = (<?php echo "{$url_iNiveau}!={$iNiveau} || {$iIdxEquipe}==0"?>);
 }
 
 function enregistrer()
@@ -244,7 +244,7 @@ function enregistrer()
 		+ ",top=" + ((screen.height-iHauteur)/2) + ",height=" + iHauteur
 		+ ",resizable=1";
 	
-	var w = window.open("sauver_modele_index.php?NIVEAU=<?=$iNiveau?>&ID_NIVEAU=<?=$iIdNiveau?>","WinSauverModele",sCaracteristiques);
+	var w = window.open("sauver_modele_index.php?NIVEAU=<?php echo $iNiveau?>&ID_NIVEAU=<?php echo $iIdNiveau?>","WinSauverModele",sCaracteristiques);
 	
 	w.focus();
 }
@@ -257,7 +257,7 @@ function ouvrir()
 		+ ",top=" + ((screen.height-iHauteur)/2) + ",height=" + iHauteur
 		+ ",resizable=1";
 	
-	var w = window.open("ouvrir_modele_index.php?NIVEAU=<?=$url_iNiveau?>&ID_NIVEAU=<?=$url_iIdNiveau?>","WinOuvrirModele",sCaracteristiques);
+	var w = window.open("ouvrir_modele_index.php?NIVEAU=<?php echo $url_iNiveau?>&ID_NIVEAU=<?php echo $url_iIdNiveau?>","WinOuvrirModele",sCaracteristiques);
 	
 	w.focus();
 }
@@ -275,7 +275,7 @@ function afficherMembres(v_iIdEquipe)
 	sEquipe = "";
 	
 	if (parseInt(v_iIdEquipe) > 0)
-		sEquipe = "?NIVEAU=<?=$iNiveau?>&ID_EQUIPE=" + v_iIdEquipe;
+		sEquipe = "?NIVEAU=<?php echo $iNiveau?>&ID_EQUIPE=" + v_iIdEquipe;
 	
 	top.oEtudiants().setIdEquipe(v_iIdEquipe);
 	
@@ -292,7 +292,7 @@ function equipe(v_sAction,v_bConfirmerAjouter)
 	var w = window.open("","WINGESTIONEQUIPE",sCaracteristiques);
 	
 	document.forms[0].elements["ACTION"].value = v_sAction;
-	document.forms[0].action = "<?=dir_admin('equipe','equipe-index.php')?>";
+	document.forms[0].action = "<?php echo dir_admin('equipe','equipe-index.php')?>";
 	document.forms[0].target = "WINGESTIONEQUIPE";
 	document.forms[0].method = "post";
 	
@@ -333,14 +333,14 @@ select { width: 100%; }
 <td class="intitule" width="1%" valign="bottom">
 &nbsp;&#8250;&nbsp;Liste des &eacute;tudiants
 <br>
-<?=$sSelectFiltrePersonnes?>
+<?php echo $sSelectFiltrePersonnes?>
 </td>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-<td valign="bottom"><?=$sSelectEquipes?></td>
+<td valign="bottom"><?php echo $sSelectEquipes?></td>
 </tr>
 <tr>
 <td valign="top" width="50%">
-<iframe src="equipes-etudiants.php<?="?NIVEAU={$iNiveau}&ID_NIVEAU={$iIdNiveau}&FILTRE_PERSONNES={$url_iFiltre}&ID_EQUIPE={$url_iIdEquipe}"?>" name="ETUDIANTS" id="id_frame_etudiants" width="100%" height="400px" frameborder="0"></iframe>
+<iframe src="equipes-etudiants.php<?php echo "?NIVEAU={$iNiveau}&ID_NIVEAU={$iIdNiveau}&FILTRE_PERSONNES={$url_iFiltre}&ID_EQUIPE={$url_iIdEquipe}"?>" name="ETUDIANTS" id="id_frame_etudiants" width="100%" height="400px" frameborder="0"></iframe>
 <div class="intitule" align="right">Rechercher&nbsp;:&nbsp;<input type="text" size="20" onkeyup="sePlacerPersonne(value,top.oEtudiants())"></div>
 </td>
 <td align="left">
@@ -354,8 +354,8 @@ select { width: 100%; }
 </tr>
 </table>
 <input type="hidden" name="ACTION" value="rafraichir">
-<input type="hidden" name="NIVEAU" value="<?=$url_iNiveau?>">
-<input type="hidden" name="ID_NIVEAU" value="<?=$url_iIdNiveau?>">
+<input type="hidden" name="NIVEAU" value="<?php echo $url_iNiveau?>">
+<input type="hidden" name="ID_NIVEAU" value="<?php echo $url_iIdNiveau?>">
 </form>
 </body>
 </html>

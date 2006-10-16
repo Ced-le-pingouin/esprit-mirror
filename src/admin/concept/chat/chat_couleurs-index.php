@@ -50,7 +50,7 @@ function oPrincipal() { return top.frames["principal"]; }
 </head>
 </html>
 <frameset rows="*,50,24" border="0">
-<frame src="chat_couleurs.php?CouleurChat=<?=$url_sCouleurChat?>" name="principal" frameborder="0" marginwidth="0" marginheight="0" scrolling="auto" noresize="noresize">
+<frame src="chat_couleurs.php?CouleurChat=<?php echo $url_sCouleurChat?>" name="principal" frameborder="0" marginwidth="0" marginheight="0" scrolling="auto" noresize="noresize">
 <frame src="chat_couleurs-site.php" name="site" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">
 <frame src="chat_couleurs-menu.php" name="menu" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">
 </frameset>

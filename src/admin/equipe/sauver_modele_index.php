@@ -83,8 +83,8 @@ function Annuler()
 <frameset rows="60,*,32">
 <frame name="titre" src="sauver_modele_titre.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="true">
 <frameset cols="209,*">
-<frame name="liste" src="sauver_modele_liste.php<?=$sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
-<frame name="principal" src="sauver_modele.php<?=$sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
+<frame name="liste" src="sauver_modele_liste.php<?php echo $sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
+<frame name="principal" src="sauver_modele.php<?php echo $sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
 </frameset>
 <frame name="menu" src="sauver_modele_menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="true">
 </frameset>

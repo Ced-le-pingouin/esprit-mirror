@@ -216,7 +216,7 @@ function Envoyer()
 
 function effacerModele()
 {
-	var sNomModele = "<?=$url_sFichierModele?>";
+	var sNomModele = "<?php echo $url_sFichierModele?>";
 	
 	if (sNomModele.length < 1)
 		alert("Avant d'effacer un modèle d'équipe choisissez un modèle dans la liste ci-dessus.");
@@ -234,20 +234,20 @@ function effacerModele()
 //-->
 </script>
 <body onload="init()">
-<h1 class="Cellule_Sous_Titre"><?=$sNomFichier?></h1>
-<?=$sCorpConsigne?>
+<h1 class="Cellule_Sous_Titre"><?php echo $sNomFichier?></h1>
+<?php echo $sCorpConsigne?>
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
-<?=$sCorpInformations?>
+<?php echo $sCorpInformations?>
 </table>
 <br>
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
-<?=$sCorpTableUtilisateurs?>
+<?php echo $sCorpTableUtilisateurs?>
 </table>
-<form action="<?=$_SERVER['PHP_SELF']?>" method="get">
-<input type="hidden" name="NIVEAU" value="<?=$url_iNiveau?>">
-<input type="hidden" name="ID_NIVEAU" value="<?=$url_iIdNiveau?>">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="get">
+<input type="hidden" name="NIVEAU" value="<?php echo $url_iNiveau?>">
+<input type="hidden" name="ID_NIVEAU" value="<?php echo $url_iIdNiveau?>">
 <input type="hidden" name="ACTION" value="ajouter">
-<input type="hidden" name="FICHIER_MODELE" value="<?=$url_sFichierModele?>">
+<input type="hidden" name="FICHIER_MODELE" value="<?php echo $url_sFichierModele?>">
 </form>
 </body>
 </html>

@@ -11,7 +11,7 @@ $oProjet->terminer();
    "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
-<title><?=$sNomPlateforme?></title>
+<title><?php echo $sNomPlateforme?></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="Shortcut Icon" type="image/x-icon" href="/esprit/favicon.ico">
 <script type="text/javascript" language="javascript">

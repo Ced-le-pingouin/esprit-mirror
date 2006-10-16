@@ -125,10 +125,10 @@ function envoyer()
 	document.forms[0].submit();
 	
 	document.open("text/html","replace");
-	document.writeln('<?=$sMessageDePatience_0?>');
-	document.writeln("<?=$sMessageDePatience_1?>");
-	document.writeln("<?=$sMessageDePatience_2?>");
-	document.writeln("<?=$sMessageDePatience_3?>");
+	document.writeln('<?php echo $sMessageDePatience_0?>');
+	document.writeln("<?php echo $sMessageDePatience_1?>");
+	document.writeln("<?php echo $sMessageDePatience_2?>");
+	document.writeln("<?php echo $sMessageDePatience_3?>");
 	document.close();
 	
 	top.recharger_fenetre_parente = true;
@@ -185,23 +185,23 @@ if ($url_iIdChat < 1)
 <tr>
 <td><div class="intitule">Ordre&nbsp;:&nbsp;</div></td>
 <td>
-<select name="ordreChat"><?=$sNumerosOrdre?></select>
+<select name="ordreChat"><?php echo $sNumerosOrdre?></select>
 </td>
 </tr>
 <tr>
 <td><div class="intitule">Nom&nbsp;:&nbsp;</div></td>
-<td><input type="text" name="nomChat" size="40" value="<?=$sNomChat?>" style="width: 100%;"></td>
+<td><input type="text" name="nomChat" size="40" value="<?php echo $sNomChat?>" style="width: 100%;"></td>
 </tr>
 <tr>
 <tr>
 <td><div class="intitule">Couleur&nbsp;:&nbsp;</div></td>
-<td><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="background-color: #000000"><div onclick="ChoisirCouleur()" title="Cliquer ici pour changer la couleur du chat" style="cursor: pointer;"><table border="0" cellspacing="1" cellpadding="3" width="100%"><tr><td id="idCouleurChat" style="text-align: center; background-color: rgb(<?=$sValeurCouleurChat?>);"><b><span id="idNomCouleurChat"><?=$sNomCouleurChat?></span></b></td></tr></table></div></td></tr></table></td>
+<td><table border="0" cellspacing="0" cellpadding="0" width="300"><tr><td style="background-color: #000000"><div onclick="ChoisirCouleur()" title="Cliquer ici pour changer la couleur du chat" style="cursor: pointer;"><table border="0" cellspacing="1" cellpadding="3" width="100%"><tr><td id="idCouleurChat" style="text-align: center; background-color: rgb(<?php echo $sValeurCouleurChat?>);"><b><span id="idNomCouleurChat"><?php echo $sNomCouleurChat?></span></b></td></tr></table></div></td></tr></table></td>
 </tr>
 <tr><td>&nbsp;</td><td><div style="text-align: center"><a href="javascript: ChoisirCouleur();" onfocus="blur()">Changer de couleur</a></div></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <td><div class="intitule">Modalit&eacute;&nbsp;:&nbsp;</div></td>
 <td>
-<input type="radio" name="modaliteChat" value="0"<?=$sModaliteChat[0]?>>&nbsp;Pour tous
+<input type="radio" name="modaliteChat" value="0"<?php echo $sModaliteChat[0]?>>&nbsp;Pour tous
 <?php
 echo "<input"
 	." type=\"radio\""
@@ -214,16 +214,16 @@ echo "<input"
 </tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td>&nbsp;</td>
-<td><input type="checkbox" name="utiliserSalonPriveChat"<?=$sSalonPriveChat?>>&nbsp;Utilisation du salon priv&eacute;</td>
+<td><input type="checkbox" name="utiliserSalonPriveChat"<?php echo $sSalonPriveChat?>>&nbsp;Utilisation du salon priv&eacute;</td>
 </tr>
 <tr><td>&nbsp;</td>
-<td><input type="checkbox" name="enregistrerChat"<?=$sEnregConversation?>>&nbsp;Enregistrer les conversations</td>
+<td><input type="checkbox" name="enregistrerChat"<?php echo $sEnregConversation?>>&nbsp;Enregistrer les conversations</td>
 </tr>
 </table>
-<input type="hidden" name="couleurChat" value="<?=$sCouleurChat?>">
-<input type="hidden" name="idChat" value="<?=$url_iIdChat?>">
-<input type="hidden" name="idNiveau" value="<?=$iIdNiveau?>">
-<input type="hidden" name="typeNiveau" value="<?=$iTypeNiveau?>">
+<input type="hidden" name="couleurChat" value="<?php echo $sCouleurChat?>">
+<input type="hidden" name="idChat" value="<?php echo $url_iIdChat?>">
+<input type="hidden" name="idNiveau" value="<?php echo $iIdNiveau?>">
+<input type="hidden" name="typeNiveau" value="<?php echo $iTypeNiveau?>">
 </form>
 </body>
 </html>

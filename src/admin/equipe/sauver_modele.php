@@ -77,8 +77,8 @@ function Enregistrer()
 <form action="sauver_modele_liste.php" target="liste" method="post">
 <p><b>Nom du fichier du modèle d'équipe&nbsp;:</b><br><input type="text" name="NOM_FICHIER" size="50"></p>
 <p><b>Description&nbsp;:</b><br><textarea name="DESCRIPTION" rows="10" cols="50"></textarea></p>
-<input type="hidden" name="NIVEAU" value="<?=$_GET['NIVEAU']?>">
-<input type="hidden" name="ID_NIVEAU" value="<?=$_GET['ID_NIVEAU']?>">
+<input type="hidden" name="NIVEAU" value="<?php echo $_GET['NIVEAU']?>">
+<input type="hidden" name="ID_NIVEAU" value="<?php echo $_GET['ID_NIVEAU']?>">
 <input type="hidden" name="ACTION" value="annuler">
 </form>
 </body>

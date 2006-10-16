@@ -34,8 +34,8 @@ function reinitIntitules()
 </script>
 </head>
 <frameset rows="*,50,23" onunload="reinitIntitules()">
-<frame name="Principale" src="intitule.php?TYPE_INTITULE=<?=$url_iType?>" marginwidth="0" marginheight="0" frameborder="0" scrolling="yes" noresize>
-<frame name="Modif" src="intitule-modif.php?TYPE_INTITULE=<?=$url_iType?>" marginwidth="5" marginheight="5" frameborder="0" scrolling="no" noresize>
-<frame name="Menu" src="intitule-menu.php?TYPE_INTITULE=<?=$url_iType?>" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize>
+<frame name="Principale" src="intitule.php?TYPE_INTITULE=<?php echo $url_iType?>" marginwidth="0" marginheight="0" frameborder="0" scrolling="yes" noresize>
+<frame name="Modif" src="intitule-modif.php?TYPE_INTITULE=<?php echo $url_iType?>" marginwidth="5" marginheight="5" frameborder="0" scrolling="no" noresize>
+<frame name="Menu" src="intitule-menu.php?TYPE_INTITULE=<?php echo $url_iType?>" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize>
 </frameset>
 </html>

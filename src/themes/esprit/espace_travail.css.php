@@ -50,7 +50,7 @@ $sTmpRepert = dirname($PHP_SELF);
 	color: #B25A47;
 	font-size: 8pt;
 	font-weight: bold;
-	background: url("<?=$sTmpRepert?>/th_fill.gif");
+	background: url("<?php echo $sTmpRepert?>/th_fill.gif");
 }
 
 /* Les documents */

@@ -115,7 +115,7 @@ selectionnerStatut("statut_module",$aoStatut,$iStatut);
 <td>&nbsp;</td>
 <td>
 <fieldset>
-<legend>&nbsp;<?=INTITULE_MODULE?>&nbsp;</legend>
+<legend>&nbsp;<?php echo INTITULE_MODULE?>&nbsp;</legend>
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <?php
 echo $sFormSelectIntitules;

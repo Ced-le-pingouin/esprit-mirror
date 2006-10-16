@@ -116,9 +116,9 @@ if (isset($fonction))
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Ajouter une nouvelle formation</title>
 <?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('outils_admin.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
 
@@ -234,14 +234,14 @@ switch ($etape)
 </td>
 </tr>
 </table>
-<input type="hidden" name="ETAPE" value="<?=$etape?>">
+<input type="hidden" name="ETAPE" value="<?php echo $etape?>">
 <input type="hidden" name="FONCTION" value="">
 <input type="hidden" name="INIT" value="0">
 
-<input type="hidden" name="ID_FORM" value="<?=$iIdForm?>">
-<input type="hidden" name="TYPE" value="<?=$type?>">
-<input type="hidden" name="NOM_FORM" value="<?=$url_sNomForm?>">
-<input type="hidden" name="DESCR_FORM" value="<?=$url_sDescrForm?>">
+<input type="hidden" name="ID_FORM" value="<?php echo $iIdForm?>">
+<input type="hidden" name="TYPE" value="<?php echo $type?>">
+<input type="hidden" name="NOM_FORM" value="<?php echo $url_sNomForm?>">
+<input type="hidden" name="DESCR_FORM" value="<?php echo $url_sDescrForm?>">
 
 </form>
 </body>

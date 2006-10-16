@@ -81,7 +81,7 @@ selectionnerStatut("statut_rubrique",$oProjet->oRubriqueCourante->retListeStatut
 <tr>
 <td style="vertical-align: top;"><div class="intitule" style="padding-top: 3px;">Type&nbsp;:</div></td>
 <td>
-<select name="type_rubrique" onchange="javascript: afficherElementType('div_donnee_',this.options[this.selectedIndex].value,'<?=LIEN_GLOSSAIRE?>');" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<select name="type_rubrique" onchange="javascript: afficherElementType('div_donnee_',this.options[this.selectedIndex].value,'<?php echo LIEN_GLOSSAIRE?>');" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
 <?php
 $asTypesUnite = $oProjet->oRubriqueCourante->retListeTypes();
 for ($i=0; $i<count($asTypesUnite); $i++)
@@ -323,13 +323,13 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 ?>
 
 <!-- Début Lien vers un texte formaté -->
-<!-- Identifiant du type : <?=LIEN_TEXTE_FORMATTE?> -->
-<div id="div_donnee_<?=LIEN_TEXTE_FORMATTE?>" class="Cacher">
+<!-- Identifiant du type : <?php echo LIEN_TEXTE_FORMATTE?> -->
+<div id="div_donnee_<?php echo LIEN_TEXTE_FORMATTE?>" class="Cacher">
 <fieldset>
 <legend>&nbsp;Texte format&eacute;&nbsp;</legend>
 <table border="0" cellspacing="2" cellpadding="0" width="100%">
 <tr><td colspan="2">&nbsp;</td></tr>
-<?=entrerDescription("DESCRIPTION[".LIEN_TEXTE_FORMATTE."]",$sDescrRub,"Texte",urlencode(addslashes($sNomRub)))?>
+<?php echo entrerDescription("DESCRIPTION[".LIEN_TEXTE_FORMATTE."]",$sDescrRub,"Texte",urlencode(addslashes($sNomRub)))?>
 </table>
 </fieldset>
 </div>
@@ -337,7 +337,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 
 </td>
 </tr>
-<tr><td><img src="<?=dir_theme('espacer.gif')?>" width="120" height="1" border="0"></td><td width="99%">&nbsp;</td></tr>
+<tr><td><img src="<?php echo dir_theme('espacer.gif')?>" width="120" height="1" border="0"></td><td width="99%">&nbsp;</td></tr>
 </table>
 <script type="text/javascript" language="javascript">
 <!--

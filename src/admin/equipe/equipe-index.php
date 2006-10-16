@@ -36,7 +36,7 @@ if (isset($sParamsUrl))
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=$sTitreFenetre?></title>
+<title><?php echo $sTitreFenetre?></title>
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipal() { return top.frames["principal"]; }
@@ -46,7 +46,7 @@ function oMenu() { return top.frames["menu"]; }
 </head>
 </html>
 <frameset rows="*,24" border="0" frameborder="0" framespacing="0">
-<frame name="principal" src="equipe.php<?=$sParamsUrl?>" scrolling="no" noresize="1">
-<frame name="menu" src="equipe_menu.php<?=$sParamsUrl?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="1">
+<frame name="principal" src="equipe.php<?php echo $sParamsUrl?>" scrolling="no" noresize="1">
+<frame name="menu" src="equipe_menu.php<?php echo $sParamsUrl?>" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="1">
 </frameset>
 

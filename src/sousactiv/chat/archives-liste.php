@@ -190,7 +190,7 @@ $oBlockMenu->afficher();
 
 function init()
 {
-	top.oPrincipal().location = "archives.php<?=$sArchivesParams?>";
+	top.oPrincipal().location = "archives.php<?php echo $sArchivesParams?>";
 }
 
 function effacerArchives()
@@ -225,7 +225,7 @@ function effacerArchives()
 
 </head>
 <body class="gauche" onload="init()">
-<form action="<?=$_SERVER['PHP_SELF']."?idNiveau={$url_iIdNiveau}&typeNiveau={$url_iTypeNiveau}&idChat={$url_iIdChat}&idEquipe={$url_iIdEquipe}"?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']."?idNiveau={$url_iIdNiveau}&typeNiveau={$url_iTypeNiveau}&idChat={$url_iIdChat}&idEquipe={$url_iIdEquipe}"?>" method="post">
 <?php $oTpl->afficher(); ?>
 </form>
 </body>

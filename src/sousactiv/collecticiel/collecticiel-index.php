@@ -56,9 +56,9 @@ $oProjet->terminer();
 
 ?>
 <html>
-<frameset rows="<?=$sFramesetRows?>" border="0" frameborder="0">
-<frame name="filtres" src="collecticiel-filtre.php<?=$url_sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="5" noresize="noresize" scrolling="no">
-<frame name="" src="<?=dir_theme('frame_separation.htm')?>" frameborder="0" marginwidth="10" marginheight="10" scrolling="no">
+<frameset rows="<?php echo $sFramesetRows?>" border="0" frameborder="0">
+<frame name="filtres" src="collecticiel-filtre.php<?php echo $url_sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="5" noresize="noresize" scrolling="no">
+<frame name="" src="<?php echo dir_theme('frame_separation.htm')?>" frameborder="0" marginwidth="10" marginheight="10" scrolling="no">
 <frame name="collecticiel" src="" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
 </frameset>
 </html>

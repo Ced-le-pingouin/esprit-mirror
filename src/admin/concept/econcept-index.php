@@ -70,9 +70,9 @@ $oProjet->terminer();
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title><?php echo $sTitrePrincipal; ?></title>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('outils_admin.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
 function init() {}
@@ -85,7 +85,7 @@ function rafraichir()
 
 function choix_formation_callback(v_iIdForm)
 {
-	top.location = "<?=$_SERVER['PHP_SELF']?>"
+	top.location = "<?php echo $_SERVER['PHP_SELF']?>"
 		+ "?idForm=" + v_iIdForm
 		+ "&idMod=0"
 		+ "&idUnite=0"
@@ -121,14 +121,14 @@ window.onerror = capturerErreursJS;
 <frame src="econcept-titre.php" name="Titre" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="true">
 <frameset cols="209,1,*" border="0" frameborder="0" framespacing="0">
 <frame name="ADMINFRAMEMENU" marginwidth="2" marginheight="2" frameborder="0" noresize="true">
-<frame src="<?=dir_theme('frame_separation.htm')?>" frameborder="0" scrolling="no" noresize="noresize">
+<frame src="<?php echo dir_theme('frame_separation.htm')?>" frameborder="0" scrolling="no" noresize="noresize">
 <frameset rows="*,45%,20" border="0" frameborder="0" framespacing="0">
 <frame name="ADMINFRAMELISTE" src="<?php echo $sAdmin_liste; ?>" frameborder="0">
 <frame name="ADMINFRAMEMODIF" src="" marginwidth="0" frameborder="0" border="0"  scrolling="yes">
 <frame name="AdminModifMenu" src="admin_modif-menu.php" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize>
 </frameset>
 </frameset>
-<frame name="menu" src="econcept-menu.php?tp=<?=rawurlencode($sTitrePrincipal)?>" frameborder="0" marginwidth="0" marginheight="0" noresize scrolling="no">
+<frame name="menu" src="econcept-menu.php?tp=<?php echo rawurlencode($sTitrePrincipal)?>" frameborder="0" marginwidth="0" marginheight="0" noresize scrolling="no">
 </frameset>
 </html>
 

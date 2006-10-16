@@ -80,7 +80,7 @@ function ChangerCouleur()
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr><td style="background-color: #222222;">
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
-<?=$sListeCouleurs?>
+<?php echo $sListeCouleurs?>
 </table>
 </td></tr></table>
 </form>

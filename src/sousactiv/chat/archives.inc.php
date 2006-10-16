@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;  charset=utf-8">
-<title><?=$oArchive->retSalon()?></title>
+<title><?php echo $oArchive->retSalon()?></title>
 <?php inserer_feuille_style("archives.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 
 function init()
 {
-	<?=$sFonctionInit?>
+	<?php echo $sFonctionInit?>
 	top.oSousMenu().location = "archives-sous_menu.php?AM=1";
 	
 	/*var elems = document.getElementsByTagName("span");
@@ -38,25 +38,25 @@ function rafraichir()
 <body onload="init()">
 <h3>Informations compl&eacute;mentaires</h3>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
-<?=$sInformations?>
+<?php echo $sInformations?>
 </table>
 <h3>Messages</h3>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr><td>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
-<?=$sEnteteTableau?>
-<?=$sMessages?>
+<?php echo $sEnteteTableau?>
+<?php echo $sMessages?>
 </table>
 </td></tr>
 </table>
-<form name="telecharger" action="<?=dir_code_lib("download.php",FALSE,FALSE)?>" target="_top" method="get">
-<input type="hidden" name="f" value="<?=rawurlencode($sArchiveChatTelecharger)?>">
+<form name="telecharger" action="<?php echo dir_code_lib("download.php",FALSE,FALSE)?>" target="_top" method="get">
+<input type="hidden" name="f" value="<?php echo rawurlencode($sArchiveChatTelecharger)?>">
 </form>
-<form name="recharger" action="<?=$_SERVER["PHP_SELF"]?>" method="get">
-<input type="hidden" name="idNiveau" value="<?=$url_iIdNiveau?>">
-<input type="hidden" name="typeNiveau" value="<?=$url_iTypeNiveau?>">
-<input type="hidden" name="archive" value="<?=$url_sArchive?>">
-<input type="hidden" name="idPers" value="<?=$url_iIdPers?>">
+<form name="recharger" action="<?php echo $_SERVER["PHP_SELF"]?>" method="get">
+<input type="hidden" name="idNiveau" value="<?php echo $url_iIdNiveau?>">
+<input type="hidden" name="typeNiveau" value="<?php echo $url_iTypeNiveau?>">
+<input type="hidden" name="archive" value="<?php echo $url_sArchive?>">
+<input type="hidden" name="idPers" value="<?php echo $url_iIdPers?>">
 </form>
 <a name="bottom"></a>
 </body>

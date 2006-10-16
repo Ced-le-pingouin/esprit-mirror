@@ -90,7 +90,7 @@ top.afficher_etape();
 <small>S&eacute;lectionnez la base de donn&eacute;es source</small>
 </td>
 </tr>
-<tr><td><img src="<?=dir_theme_commun("espacer.gif")?>" width="1" height="5" border="0"></td></tr>
+<tr><td><img src="<?php echo dir_theme_commun("espacer.gif")?>" width="1" height="5" border="0"></td></tr>
 <tr>
 <td>
 <fieldset>
@@ -100,7 +100,7 @@ top.afficher_etape();
 <td>
 <select name="select_bdd_src" onchange="document.forms[0].elements['NOM_BDD_SRC'].value=this.options[this.selectedIndex].value" style="width: 100%;">
 <option value="">Sélectionner une base de données source</option>
-<?=$sOptionsBddsSrc?>
+<?php echo $sOptionsBddsSrc?>
 </select>
 </td>
 </tr>

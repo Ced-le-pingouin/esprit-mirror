@@ -84,7 +84,7 @@ function init()
 </script>
 </head>
 <body onload="init()" class="liste_formations">
-<form name="FRM_CHOIX_FORM" action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form name="FRM_CHOIX_FORM" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellpadding="2" cellspacing="1" width="100%">
 <tr>
 <td class="dialog_menu_intitule">&nbsp;</td>

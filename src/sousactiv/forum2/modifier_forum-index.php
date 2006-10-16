@@ -53,11 +53,11 @@ $sParamsUrl = "?modaliteFenetre={$url_sModaliteFenetre}"
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
+<title><?php echo htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
 <script type="text/javascript" language="javascript" src="forum.js"></script>
 </head>
 <frameset rows="*,26" border="0">
-<frame name="FORUM" src="modifier_forum.php<?=$sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="10" scrolling="no" noresize="noresize">
+<frame name="FORUM" src="modifier_forum.php<?php echo $sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="10" scrolling="no" noresize="noresize">
 <frame name="MENU" src="" frameborder="0" marginwidth="5" marginheight="5" scrolling="no" noresize="noresize">
 </frameset>
 </html>
