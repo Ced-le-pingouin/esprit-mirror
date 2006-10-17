@@ -24,17 +24,33 @@ ou
 
 
 3. Comment installer les modules Awareness et Chat ?
-Ces deux modules sont pour l'instant extérieurs à Esprit : ils ne font pas
-partie de la distribution standard. 
-Techniquement, ils sont écrits en Java : ils nécessitent à la fois une machine 
-virtuelle sur le serveur, et sur les clients, avec le navigateur web configuré
-pour exécuter les applets Java.
-Seules les applets sont dans l'archive Esprit pour l'instant, dans
- - src/sousactiv/chat/client/
- - src/admin/awareness/client/
+Techniquement, ces deux modules sont écrits en Java : ils nécessitent à la fois
+une machine virtuelle sur le serveur, et sur les clients, avec le navigateur web
+configuré pour exécuter les applets Java.
+Les modules se trouvent dans les dossiers suivants :
+ - src/sousactiv/chat/
+ - src/admin/awareness/
+Dans ces dossiers sont présents à chaque fois des sous-dossiers client/ et 
+server/, contenant eux-mêmes :
+ - les classes java déjà compilées et nécessaires au bon fonctionnement, soit 
+   du serveur, soit du client
+ - un sous-dossier src/, qui renferme les sources en java; il est donc possible
+   de modifier le client et le serveur des modules Chat et Awareness
 
-Les deux applis serveurs sont diffusées séparément pour l'instant.
-Ils doivent être lancés par les commandes :
+Dans les dossiers src/ de chaque module, il existe un Makefile permettant de 
+compiler automatiquement les fichiers nécessaires, grâce à la commande "make".
+Notez que les modules en Java ont été développés à l'origine en Java 1.1, c'est
+pourquoi une option "-target 1.1" est utilisée lors de la compilation, et une 
+option "-source 1.2" est utilisée pour éviter une erreur avec les JDK récentes. 
+Des avertissements concernant l'utilisation d'API obsolètes peuvent également 
+apparaître à la compilation.
+
+Après compilation, vous pouvez installer les classes Java à l'endroit approprié
+à l'aide de la commande "make install".
+IMPORTANT : Assurez-vous bien que les fichiers de classes java pour les clients
+            soient accessibles en lecture pour votre serveur web.
+
+Les deux applis serveurs doivent être lancées par les commandes :
 "java AwarenessServer 2501" et "java DeltaChat 2555".
 Les numéros indiqués sont les ports TCP/IP utilisés. Ils doivent être 
 ouverts sur le serveur.
@@ -50,6 +66,10 @@ serveur : dans le fichier deltachat.properties, définir la variable
 DOCUMENT_ROOT =
 (en indiquant le répertoire père de esprit/ )
 
+NOTE : les scripts de "make" et de lancement des serveurs sont rédigés pour 
+       un système GNU/Linux avec shell bash, mais ils ont été testés avec 
+	   succès sous Windows en utilisant le sous-système Cygwin 
+	   (http://www.cygwin.com/).
 
 
 B. Administration (liste esprit-admin)
