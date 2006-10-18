@@ -6,9 +6,9 @@
 #
 
 JAVAC="`which javac`"
-CC=$(JAVAC) -target 1.1 -source 1.2 -Xlint:deprecation
-TARGET_ESPRIT=..
-AWARENESS_SERVER_SOURCE_DIR=../../server/src
+CC=$(JAVAC) -target 1.1 -source 1.2
+TARGET_ESPRIT=../../../src/admin/awareness/client
+AWARENESS_SERVER_SOURCE_DIR=../serveur
 
 all: clean
 	cp $(AWARENESS_SERVER_SOURCE_DIR)/AwarenessURLDecoder.class .
@@ -40,3 +40,4 @@ install:
 		images/girl.gif \
 		images/interdit.gif \
 		$(TARGET_ESPRIT)/images
+	chmod -R ugo+r $(TARGET_ESPRIT)

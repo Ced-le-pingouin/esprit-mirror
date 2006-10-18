@@ -27,17 +27,13 @@ ou
 Techniquement, ces deux modules sont écrits en Java : ils nécessitent à la fois
 une machine virtuelle sur le serveur, et sur les clients, avec le navigateur web
 configuré pour exécuter les applets Java.
-Les modules se trouvent dans les dossiers suivants :
- - src/sousactiv/chat/
- - src/admin/awareness/
-Dans ces dossiers sont présents à chaque fois des sous-dossiers client/ et 
-server/, contenant eux-mêmes :
- - les classes java déjà compilées et nécessaires au bon fonctionnement, soit 
-   du serveur, soit du client
- - un sous-dossier src/, qui renferme les sources en java; il est donc possible
-   de modifier le client et le serveur des modules Chat et Awareness
+Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
+ - src/sousactiv/chat/client
+ - src/admin/awareness/client
 
-Dans les dossiers src/ de chaque module, il existe un Makefile permettant de 
+Quant aux sources java, aussi bien des clients que des serveurs, elle se 
+trouvent dans un dossier /java/ à la racine du projet
+Dans les sources de chaque module en java, il existe un Makefile permettant de 
 compiler automatiquement les fichiers nécessaires, grâce à la commande "make".
 Notez que les modules en Java ont été développés à l'origine en Java 1.1, c'est
 pourquoi une option "-target 1.1" est utilisée lors de la compilation, et une 
@@ -45,13 +41,13 @@ option "-source 1.2" est utilisée pour éviter une erreur avec les JDK récente
 Des avertissements concernant l'utilisation d'API obsolètes peuvent également 
 apparaître à la compilation.
 
-Après compilation, vous pouvez installer les classes Java à l'endroit approprié
-à l'aide de la commande "make install".
-IMPORTANT : Assurez-vous bien que les fichiers de classes java pour les clients
-            soient accessibles en lecture pour votre serveur web.
+Après compilation, dans le cas des applets/clients, vous pouvez installer les 
+classes Java à l'endroit approprié à l'aide de la commande "make install".
 
-Les deux applis serveurs doivent être lancées par les commandes :
-"java AwarenessServer 2501" et "java DeltaChat 2555".
+Les deux applis serveurs doivent être lancées par les commandes 
+"java AwarenessServer 2501" et "java DeltaChat 2555", ou par les scripts de 
+type "daemon", nommés AwarenessServer et DeltaChatServer, présents dans le 
+dossier de chaque serveur.
 Les numéros indiqués sont les ports TCP/IP utilisés. Ils doivent être 
 ouverts sur le serveur.
 Dans la DB d'esprit, dans la table Projet, on peut modifier les ports
