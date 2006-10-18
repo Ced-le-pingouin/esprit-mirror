@@ -32,7 +32,7 @@ Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
  - src/admin/awareness/client
 
 Quant aux sources java, aussi bien des clients que des serveurs, elles se 
-trouvent dans un dossier /java/ à la racine du projet.
+trouvent dans un dossier /java à la racine du projet.
 Dans les sources de chaque module en java, il existe un Makefile permettant de 
 compiler automatiquement les fichiers nécessaires, grâce à la commande "make".
 Notez que les modules en Java ont été développés à l'origine en Java 1.1, c'est
@@ -40,9 +40,16 @@ pourquoi une option "-target 1.1" est utilisée lors de la compilation, et une
 option "-source 1.2" est utilisée pour éviter une erreur avec les JDK récentes. 
 Des avertissements concernant l'utilisation d'API obsolètes peuvent également 
 apparaître à la compilation.
+Si vous recompilez les modules en Java, étant donné qu'ils sont parfois 
+interdépendants, il vaut mieux les recompiler dans cet ordre :
+  (1) serveur Awareness
+  (2) client Awareness (celui-ci dépend du (1))
+  (3) serveur Chat
+  (4) client Chat (celui-ci dépend du (2))
 
 Après compilation, dans le cas des applets/clients, vous pouvez installer les 
 classes Java à l'endroit approprié à l'aide de la commande "make install".
+Les classes compilées des serveurs peuvent rester à leur emplacement initial.
 
 Les deux applis serveurs doivent être lancées par les commandes 
 "java AwarenessServer 2501" et "java DeltaChat 2555", ou par les scripts de 
