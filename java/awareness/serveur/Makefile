@@ -5,7 +5,7 @@
 # Unité de Technologie de l'Education (UTE)
 #
 
-CC="`which javac`" -g -target 1.1 -source 1.2
+CC="`which javac`" -target 1.1 -source 1.2
 TAR=tar czvf
 
 all: clean

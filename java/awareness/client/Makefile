@@ -5,18 +5,14 @@
 # Unité de Technologie de l'Education (UTE)
 #
 
+AWARENESS_SERVEUR_DIR=../serveur
 JAVAC="`which javac`"
-CC=$(JAVAC) -target 1.1 -source 1.2
+CC=$(JAVAC) -target 1.1 -source 1.2 -classpath $(AWARENESS_SERVEUR_DIR)
 TARGET_ESPRIT=../../../src/admin/awareness/client
-AWARENESS_SERVER_SOURCE_DIR=../serveur
 
 all: clean
-	cp $(AWARENESS_SERVER_SOURCE_DIR)/AwarenessURLDecoder.class .
-	cp $(AWARENESS_SERVER_SOURCE_DIR)/ConnectionListener.class .
-	cp $(AWARENESS_SERVER_SOURCE_DIR)/AwarenessProtocol.class .
-	cp $(AWARENESS_SERVER_SOURCE_DIR)/AwarenessMessage.class .
-	cp $(AWARENESS_SERVER_SOURCE_DIR)/AwarenessMessagesThread.class .
 	$(CC) Resource.java \
+		Tooltip.java \
 		ConnectedItem.java \
 		ListConnected.java \
 		AwarenessListConnected.java \

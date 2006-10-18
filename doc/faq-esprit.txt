@@ -31,8 +31,8 @@ Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
  - src/sousactiv/chat/client
  - src/admin/awareness/client
 
-Quant aux sources java, aussi bien des clients que des serveurs, elle se 
-trouvent dans un dossier /java/ à la racine du projet
+Quant aux sources java, aussi bien des clients que des serveurs, elles se 
+trouvent dans un dossier /java/ à la racine du projet.
 Dans les sources de chaque module en java, il existe un Makefile permettant de 
 compiler automatiquement les fichiers nécessaires, grâce à la commande "make".
 Notez que les modules en Java ont été développés à l'origine en Java 1.1, c'est
@@ -47,20 +47,18 @@ classes Java à l'endroit approprié à l'aide de la commande "make install".
 Les deux applis serveurs doivent être lancées par les commandes 
 "java AwarenessServer 2501" et "java DeltaChat 2555", ou par les scripts de 
 type "daemon", nommés AwarenessServer et DeltaChatServer, présents dans le 
-dossier de chaque serveur.
+dossier de chaque serveur, et permettant également d'arrêter les serveurs.
 Les numéros indiqués sont les ports TCP/IP utilisés. Ils doivent être 
 ouverts sur le serveur.
 Dans la DB d'esprit, dans la table Projet, on peut modifier les ports
 vers lesquels les applets tenteront de se connecter (les serveurs
 doivent tourner sur le même serveur que les pages clientes).
-Dans les fichiers joints, il y a aussi, pour chaque serveur, un script
-(le fichier sans extension) qui permet de lancer ou d'arrêter chaque
-serveur.
 
 Pour exploiter les archives du chat, il faut paramétrer une option du
 serveur : dans le fichier deltachat.properties, définir la variable
 DOCUMENT_ROOT =
 (en indiquant le répertoire père de esprit/ )
+(!!! Sous Windows, il faut doubler les backslashes dans le chemin indiqué)
 
 NOTE : les scripts de "make" et de lancement des serveurs sont rédigés pour 
        un système GNU/Linux avec shell bash, mais ils ont été testés avec 
