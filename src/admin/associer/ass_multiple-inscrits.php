@@ -82,7 +82,7 @@ foreach ($oFormation->aoModules as $oModule)
 	$oBloc_Module->nextLoop();
 	
 	$oBloc_Module->remplacer("{module->id}",$oModule->retId());
-	$oBloc_Module->remplacer("{module->intitule}",$oModule->retNomComplet(TRUE));
+	$oBloc_Module->remplacer("{module->intitule}",mb_convert_encoding($oModule->retNomComplet(TRUE),"UTF-8","HTML-ENTITIES"));
 	
 	$oBloc_Personne_Inscrit = new TPL_Block("BLOCK_PERSONNE_INSCRITE",$oBloc_Module);
 	
