@@ -15,6 +15,7 @@
 	[BLOCK_MODIF_AJOUT-]
 	</select>
 	<input type="hidden" name="idformulaire" value="{id_formulaire}" />
+	<input type="hidden" name="bMesForms" value="{bMesForms}" />
 	<input type="hidden" value="ajouter" name="ajouter" />
 	</form>
 </div>

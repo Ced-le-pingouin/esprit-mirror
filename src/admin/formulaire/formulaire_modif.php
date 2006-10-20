@@ -34,29 +34,39 @@ $oBlockModifCocher = new TPL_Block("BLOCK_MODIF_COCHER",$oTpl);
 $oBlockModifMPTexte = new TPL_Block("BLOCK_MODIF_MPTEXTE",$oTpl);
 $oBlockModifMPSep = new TPL_Block("BLOCK_MODIF_MPSEP",$oTpl);
 // Vérification de la permission d'utiliser le concepteur de formulaire
-if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
+if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 {
 	// Récupération des variables passées en paramètres
-	if (isset($_GET['idobj']))
+	if(isset($_GET['idobj']))
 	{
 		$v_iIdObjForm = $_GET['idobj'];
 		$v_iIdFormulaire = $_GET['idformulaire'];
+		$v_iNouvPos = $_POST['ordreobj'];
 	}
 	else 
 	{
 			$v_iIdObjForm = 0;
 			$v_iIdFormulaire = 0;
 	}
+	if(isset($_GET['bMesForms']))
+		$bMesForms = $_GET['bMesForms'];
+	else
+		$bMesForms = 0;
 	// Définitions de variable
 	$bFlagErreur = false;
 	$sRecharger = "";
 	$sMessageErreur1 = $sMessageErreur2 = $sMessageErreur3 = $sMessageErreur4 = "";
-	if ($v_iIdObjForm > 0) //--- cas où un objet de formulaire est sélectionné ---
+	if($v_iIdObjForm > 0) //--- cas où un objet de formulaire est sélectionné ---
 	{
 		$oBlockIntro->effacer();
 		$oBlockModifFormul->effacer();
 		$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$v_iIdObjForm);
 		$iIdObjActuel = $oObjetFormulaire->retId();
+		if(isset($_POST['envoyer']))
+			$oObjetFormulaire->DeplacerObjet($v_iNouvPos);
+		$iOrdreObjFormDepart = $oObjetFormulaire->retOrdreObjForm();
+		$oTypeObj = new CTypeObjetForm($oProjet->oBdd, $oObjetFormulaire->retIdType());
+		$oTpl->remplacer("{Titre_page}","Elément ".$iOrdreObjFormDepart." &gt;&gt; ".$oTypeObj->retDescTypeObj());
 		switch($oObjetFormulaire->retIdTypeObj())
 		{
 			// question ouverte de type "texte long"
@@ -69,7 +79,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQTexteLong = new CQTexteLong($oProjet->oBdd,$v_iIdObjForm);
-					if (isset($_POST['envoyer'])) 
+					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQTexteLong->defEnonQTL( stripslashes($_POST['Enonce']) );
@@ -78,13 +88,13 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQTexteLong->defLargeurQTL( $_POST['Largeur'] );
 						$oQTexteLong->defHauteurQTL( $_POST['Hauteur'] );		
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if (strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!(int)$_POST['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!(int)$_POST['Hauteur']){ $sMessageErreur3="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
+						if(strlen($_POST['Enonce']) < 1) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!(int)$_POST['Largeur']) { $sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!(int)$_POST['Hauteur']){ $sMessageErreur3="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQTexteLong->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQTL}",$oQTexteLong->retEnonQTL());
@@ -114,7 +124,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer();
 					$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer'])) 
+					if(isset($_POST['envoyer'])) 
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQTexteCourt->defEnonQTC( stripslashes($_POST['Enonce']) );
@@ -125,12 +135,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQTexteCourt->defLargeurQTC( $_POST['Largeur'] );
 						$oQTexteCourt->defMaxCarQTC( $_POST['MaxCar'] );		
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if (!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!((int)$_POST['MaxCar'] || strlen($_POST['MaxCar']) < 1 )) { $sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
+						if(!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!((int)$_POST['MaxCar'] || strlen($_POST['MaxCar']) < 1 )) { $sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQTexteCourt->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQTC}",$oQTexteCourt->retEnonQTC());
@@ -161,7 +171,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer'])) 
+					if(isset($_POST['envoyer'])) 
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQNombre->defEnonQN( stripslashes($_POST['Enonce']) );
@@ -173,13 +183,13 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQNombre->defNbMaxQN( $_POST['NbMax'] );
 						$oQNombre->defMultiQN( $_POST['Multi'] );
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if (!is_numeric($_POST['NbMin'])) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!is_numeric($_POST['NbMax'])) {$sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!is_numeric($_POST['Multi'])) { $sMessageErreur3="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
+						if(!is_numeric($_POST['NbMin'])) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!is_numeric($_POST['NbMax'])) {$sMessageErreur2="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!is_numeric($_POST['Multi'])) { $sMessageErreur3="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oQNombre->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{EnonQN}",$oQNombre->retEnonQN());
@@ -212,7 +222,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer']))
+					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQListeDeroul->defEnonQLD( stripslashes($_POST['Enonce']) );
@@ -221,7 +231,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQListeDeroul->defTxtAvQLD( stripslashes($_POST['TxtAv']) );
 						$oQListeDeroul->defTxtApQLD( stripslashes($_POST['TxtAp']) );
 						// Enregistrement des réponses et de leurs poids pour les differents axes
-						if (isset($_POST["rep"])) 	// on doit verifier car lorsque l'on appuie la premiere fois, apres avoir cree l'objet, 
+						if(isset($_POST["rep"])) 	// on doit verifier car lorsque l'on appuie la premiere fois, apres avoir cree l'objet, 
 						{							// sur ajouter, $_POST["rep"] n'existe pas 
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
@@ -229,12 +239,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 								$oReponse->defId($v_iIdReponse);
 								$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 								$oReponse->enregistrer(false);  // On utilise FALSE car on n'initialise (on ne connait pas sa position)
-								if (isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
+								if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];
 									foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 									{
-										if (($v_iPoids != "") && (is_numeric($v_iPoids)))
+										if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 										{
 											$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
 											$oReponse_Axe->defIdReponse($v_iIdReponse);
@@ -248,11 +258,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						}
 						// Enregistrement de l'objet oQListeDeroul actuel dans la BD
 						$oQListeDeroul->enregistrer();
-						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)</script>\n";
+						$sRecharger = "<script>rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)</script>\n";
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
-						if ($_POST['typeaction'] == 'ajouter')
+						if($_POST['typeaction'] == 'ajouter')
 						{
 							$oReponse = new CReponse($oProjet->oBdd);
 							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
@@ -266,7 +276,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur)
-						if ($_POST['typeaction'] == 'supprimer')
+						if($_POST['typeaction'] == 'supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
 							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
@@ -299,7 +309,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPSep->effacer(); 
 					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 					// réception d'un formulaire
-					if (isset($_POST['envoyer']))
+					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQRadio->defEnonQR( stripslashes($_POST['Enonce']) );
@@ -309,7 +319,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQRadio->defTxtApQR( stripslashes($_POST['TxtAp']) );
 						$oQRadio->defDispQR( $_POST['Disp'] );
 						// Enregistrement des réponses et de leurs poids pour les differents axes
-						if (isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois sur ajouter apres avoir créé l'objet 
+						if(isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois sur ajouter apres avoir créé l'objet 
 						{							// $_POST["rep"] n'existe pas 
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
@@ -317,12 +327,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 								$oReponse->defId($v_iIdReponse);
 								$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 								$oReponse->enregistrer(FALSE);
-								if (isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
+								if(isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];
 									foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 									{
-										if (($v_iPoids != "") && (is_numeric($v_iPoids)))
+										if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 										{
 											$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
 											$oReponse_Axe->defIdReponse($v_iIdReponse);
@@ -337,11 +347,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Enregistrement de l'objet QRadio actuel dans la BD
 						$oQRadio->enregistrer();
 						// Lorsque la question est bien enregistrée dans la BD, on rafraîchit la liste en cochant l'objet que l'on est en train de traiter
-						$sRecharger = "<script>rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)</script>\n";
+						$sRecharger = "<script>rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)</script>\n";
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
-						if ($_POST['typeaction'] == 'ajouter')
+						if($_POST['typeaction'] == 'ajouter')
 						{
 							$oReponse = new CReponse($oProjet->oBdd);
 							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
@@ -356,7 +366,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur)
-						if ($_POST['typeaction']=='supprimer')
+						if($_POST['typeaction']=='supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
 							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
@@ -398,7 +408,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer']))
+					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
 						$oQCocher->defEnonQC( stripslashes($_POST['Enonce']) );
@@ -410,12 +420,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oQCocher->defNbRepMaxQC( $_POST['NbRepMax'] );		
 						$oQCocher->defMessMaxQC( $_POST['MessMax'] );
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if (!(int)$_POST['NbRepMax'])
+						if(!(int)$_POST['NbRepMax'])
 						{ $sMessageErreur2 = "<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique dans la BD
+						if(!$bFlagErreur) //si pas d'erreur, enregistrement physique dans la BD
 						{
 							// Enregistrement des réponses et de leurs poids pour les differents axes
-							if (isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
+							if(isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
 							{							//sur ajouter, $_POST["rep"] n'existe pas 
 								foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 								{
@@ -423,12 +433,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 									$oReponse->defId($v_iIdReponse);
 									$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
 									$oReponse->enregistrer(FALSE);
-									if (isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe 
+									if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe 
 									{								// n'est défini pour ce formulaire
 										$tab = $_POST["repAxe"];
 										foreach ($tab[$v_iIdReponse] as $v_iIdAxe => $v_iPoids)
 										{
-											if (($v_iPoids != "") && (is_numeric($v_iPoids)))
+											if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 											{
 												$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
 												$oReponse_Axe->defIdReponse($v_iIdReponse);
@@ -442,12 +452,12 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 							}
 							// Enregistrement de l'objet QCocher actuel dans la BD
 							$oQCocher->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 						// Ajout d'une réponse
 						// Attention lorsque l'on clique sur le lien 'Ajouter' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
-						if ($_POST['typeaction'] == 'ajouter')
+						if($_POST['typeaction'] == 'ajouter')
 						{
 							$oReponse = new CReponse($oProjet->oBdd);
 							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
@@ -462,7 +472,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur)
-						if ($_POST['typeaction'] == 'supprimer')
+						if($_POST['typeaction'] == 'supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
 							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
@@ -508,17 +518,17 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->afficher();
 					$oBlockModifMPSep->effacer(); 
 					$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer'])) 
+					if(isset($_POST['envoyer'])) 
 					{
 						// Récupération des variables transmises par le formulaire
 						$oMPTexte->defAlignMPT( $_POST['Align'] );
 						$oMPTexte->defTexteMPT( stripslashes($_POST['Texte']) );
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if ($oMPTexte->retTexteMPT() == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur)  //si pas d'erreur, enregistrement physique
+						if($oMPTexte->retTexteMPT() == "") { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!$bFlagErreur)  //si pas d'erreur, enregistrement physique
 						{
 							$oMPTexte->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{TexteMPT}",$oMPTexte->retTexteMPT());
@@ -539,18 +549,18 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->afficher(); 
 					$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-					if (isset($_POST['envoyer'])) 
+					if(isset($_POST['envoyer'])) 
 					{
 						// Récupération des variables transmises par le formulaire
 						$oMPSeparateur->defLargeurMPS( $_POST['Largeur'] );
 						$oMPSeparateur->defTypeLargMPS( $_POST['TypeLarg'] );
 						$oMPSeparateur->defAlignMPS( $_POST['Align'] );
 						// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-						if (!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
-						if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
+						if(!(int)$_POST['Largeur']) { $sMessageErreur1="<font color =\"red\">*</font>"; $bFlagErreur = true; }
+						if(!$bFlagErreur) //si pas d'erreur, enregistrement physique
 						{
 							$oMPSeparateur->enregistrer();
-							$sRecharger = "<script>\n rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1)\n</script>\n";
+							$sRecharger = "<script>\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms)\n</script>\n";
 						}
 					}
 					$oTpl->remplacer("{LargeurMPS}",$oMPSeparateur->retLargeurMPS());
@@ -573,9 +583,31 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ae4}",$ae4);
 					break;
 		}
-		$sParam="?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire;
+		$sParam="?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire."&amp;bMesForms=".$bMesForms;
 		$oTpl->remplacer("{sParam}",$sParam);
 		$oTpl->remplacer("{sRecharger}",$sRecharger);
+		// Gestion de l'affichage de la position de l'élément
+		$oBlockPos = new TPL_Block("BLOCK_POSITION",$oTpl);
+		$aoListeObjFormul = $oObjetFormulaire->retListeObjFormulaire($v_iIdFormulaire);
+		if(!empty($aoListeObjFormul))
+		{
+			$oBlockPos->beginLoop();
+			foreach($aoListeObjFormul AS $oObjetFormulaire)
+			{
+				$oBlockPos->nextLoop();
+				$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
+				$oBlockPos->remplacer("{ordre_obj_form}",$iOrdreObjForm);
+				if($iOrdreObjForm == $iOrdreObjFormDepart)
+					$oBlockPos->remplacer("{obj_actuel}","selected=\"selected\"");
+				else
+					$oBlockPos->remplacer("{obj_actuel}","");
+			}
+			$oBlockPos->afficher();
+		}
+		else
+		{
+			$oBlockPos->effacer();
+		}
 	}
 	else 
 	{
@@ -587,12 +619,13 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		$oBlockModifCocher->effacer();
 		$oBlockModifMPTexte->effacer();
 		$oBlockModifMPSep->effacer(); 
-		if ($v_iIdFormulaire != 0 ) //--- Cas où on a cliqué sur le titre du formulaire ---
+		if($v_iIdFormulaire != 0 ) //--- Cas où on a cliqué sur le titre du formulaire ---
 		{
 			$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 			$oBlockIntro->effacer();
 			$oBlockModifFormul->afficher();
-			if (isset($_POST['envoyer'])) 
+			$oTpl->remplacer("{Titre_page}","Options de l'activité en ligne");
+			if(isset($_POST['envoyer'])) 
 			{
 				// Récupération des variables transmises par le formulaire et insertion ds l'objet formulaire
 				$oFormulaire->defTitre(stripslashes($_POST['Titre']));
@@ -605,33 +638,32 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$oFormulaire->defStatut(1); //$_POST['Statut'];
 				$oFormulaire->defType($_POST['Type']);
 				// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
-				if (strlen($_POST['Titre']) < 1)
+				if(strlen($_POST['Titre']) < 1)
 				{
 					$sMessageErreur1 = "<font color =\"red\">*</font>";
 					$bFlagErreur = true;
 				}
 				
-				if (!((int)$_POST['Largeur'] || strlen($_POST['Largeur']) < 1 || $_POST['Largeur'] == "0")) 
+				if(!((int)$_POST['Largeur'] || strlen($_POST['Largeur']) < 1 || $_POST['Largeur'] == "0")) 
 				{
 					$sMessageErreur2 = "<font color =\"red\">*</font>"; 
 					$bFlagErreur = true;
 				}
 				
-				if (!((int)$_POST['InterElem'] || strlen($_POST['InterElem']) < 1 || $_POST['InterElem'] == "0")) 
+				if(!((int)$_POST['InterElem'] || strlen($_POST['InterElem']) < 1 || $_POST['InterElem'] == "0")) 
 				{
 					$sMessageErreur3 = "<font color =\"red\">*</font>"; 
 					$bFlagErreur = true;
 				}
-				if (!((int)$_POST['InterEnonRep'] || strlen($_POST['InterEnonRep']) < 1 || $_POST['InterEnonRep'] == "0")) 
+				if(!((int)$_POST['InterEnonRep'] || strlen($_POST['InterEnonRep']) < 1 || $_POST['InterEnonRep'] == "0")) 
 				{
 					$sMessageErreur4 = "<font color =\"red\">*</font>"; 
 					$bFlagErreur = true;
 				}
-				if (!$bFlagErreur) //si pas d'erreur, enregistrement physique
+				if(!$bFlagErreur) //si pas d'erreur, enregistrement physique
 				{
 					$oFormulaire->enregistrer();
-					$sRecharger = "<script type=\"text/javascript\">\n rechargermenugauche($v_iIdFormulaire); \n"
-								." rechargerliste($v_iIdObjForm,$v_iIdFormulaire,1); \n</script>\n";
+					$sRecharger = "<script type=\"text/javascript\">\n rechargerliste($v_iIdFormulaire,$v_iIdObjForm,$bMesForms); \n</script>\n";
 				} 
 			}
 			$oTpl->remplacer("{sRecharger}",$sRecharger);
@@ -639,7 +671,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 			$oTpl->remplacer("{sMessageErreur2}",$sMessageErreur2);
 			$oTpl->remplacer("{sMessageErreur3}",$sMessageErreur3);
 			$oTpl->remplacer("{sMessageErreur4}",$sMessageErreur4);
-			$sParam = "?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire;
+			$sParam = "?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire."&amp;bMesForms=".$bMesForms;
 			$oTpl->remplacer("{sParam}",$sParam);
 			$oTpl->remplacer("{Titre}",htmlentities($oFormulaire->retTitre(),ENT_COMPAT,"UTF-8"));
 			$oTpl->remplacer("{Largeur}",$oFormulaire->retLargeur());
@@ -684,6 +716,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		{
 			$oBlockIntro->afficher();
 			$oBlockModifFormul->effacer();
+			$oTpl->remplacer("{Titre_page}","Options de l'activité en ligne");
 		}
 	}
 	$oTpl->afficher();

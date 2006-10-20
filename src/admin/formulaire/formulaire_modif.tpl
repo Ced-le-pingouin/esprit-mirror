@@ -22,10 +22,20 @@ function soumettre(TypeAct,Parametre)
 </script>
 </head>
 <body class="modif">
+<div id="entete">
+	<h3>{Titre_page}</h3>
+</div>
+<div id="conteneur">
 [BLOCK_MODIF_TXTLONG+]
 	<form name="formmodif" action="formulaire_modif.php{sParam}" method="post" enctype="text/html">
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
 	<fieldset>
-	<legend>ENONCE</legend>
+	<legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
@@ -49,7 +59,7 @@ function soumettre(TypeAct,Parametre)
 	</table>
 	</fieldset>
 	<fieldset>
-	<legend>REPONSE</legend>
+	<legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td>
@@ -86,7 +96,13 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_TXTLONG-]
 [BLOCK_MODIF_TXTCOURT+]
 	<form name="formmodif" action="formulaire_modif.php{sParam}" method="post" enctype="text/html">
-	<fieldset><legend>ENONCE</legend>
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
+	<fieldset><legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
@@ -110,7 +126,7 @@ function soumettre(TypeAct,Parametre)
 	</table>
 	</fieldset>
 	<fieldset>
-	<legend>REPONSE</legend>
+	<legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td>
@@ -163,8 +179,14 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_TXTCOURT-]
 [BLOCK_MODIF_NOMBRE+]
 	<form action="formulaire_modif.php{sParam}" name="formmodif" method="post" enctype="text/html">
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
 	<fieldset>
-	<legend>ENONCE</legend>
+	<legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
@@ -188,7 +210,7 @@ function soumettre(TypeAct,Parametre)
 	</table>
 	</fieldset>
 	<fieldset>
-	<legend>REPONSE</legend>
+	<legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td>
@@ -249,7 +271,13 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_NOMBRE-]
 [BLOCK_MODIF_LISTEDER+]
 	<form name="formmodif" action="formulaire_modif.php{sParam}" method="post" enctype="text/html">
-	<fieldset><legend>ENONCE</legend>
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
+	<fieldset><legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
@@ -272,7 +300,7 @@ function soumettre(TypeAct,Parametre)
 	</tr>
 	</table>
 	</fieldset>
-	<fieldset><legend>REPONSE</legend>
+	<fieldset><legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td>
@@ -316,14 +344,20 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_LISTEDER-]
 [BLOCK_MODIF_RADIO+]
 	<form name="formmodif" action="formulaire_modif.php{sParam}" method="post" enctype="text/html">
-	<fieldset><legend>ENONCE</legend>
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
+	<fieldset><legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
 			<label for="idenonce">Enoncé :</label>
 		</td>
 		<td>
-			<textarea name="Enonce" rows="5" cols="70">{EnonQR}</textarea>
+			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQR}</textarea>
 		</td>
 	</tr>
 	<tr>
@@ -339,7 +373,7 @@ function soumettre(TypeAct,Parametre)
 	</tr>
 	</table>
 	</fieldset>
-	<fieldset><legend>REPONSE</legend>
+	<fieldset><legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td> 
@@ -392,8 +426,14 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_RADIO-]
 [BLOCK_MODIF_COCHER+]
 	<form name="formmodif" action="formulaire_modif.php{sParam}" method="post" enctype="text/html">
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
 	<fieldset>
-	<legend>ENONCE</legend>
+	<legend>Enoncé</legend>
 	<table>
 	<tr>
 		<td>
@@ -417,7 +457,7 @@ function soumettre(TypeAct,Parametre)
 	</table>
 	</fieldset>
 	<fieldset>
-	<legend>REPONSE</legend>
+	<legend>Zone réponse</legend>
 	<table>
 	<tr>
 		<td>
@@ -486,7 +526,13 @@ function soumettre(TypeAct,Parametre)
 [BLOCK_MODIF_COCHER-]
 [BLOCK_MODIF_MPTEXTE+]
 <form action="formulaire_modif.php{sParam}" name="formmodif" method="post" enctype="text/html">
-<fieldset>
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
+	<fieldset>
 	<legend>Mise en page de type "texte"</legend>
 	<table>
 	<tr>
@@ -509,14 +555,20 @@ function soumettre(TypeAct,Parametre)
 		</td>
 	</tr>
 	</table>
-</fieldset>
+	</fieldset>
 <input type="hidden" name="envoyer" value="1" />
 </form>
 {sRecharger}
 [BLOCK_MODIF_MPTEXTE-]
 [BLOCK_MODIF_MPSEP+]
 <form action="formulaire_modif.php{sParam}" name="formmodif" method="post" enctype="text/html">
-<fieldset>
+	<label for="idordreobj">Numéro d'ordre : </label>
+	<select name="ordreobj" id="idordreobj">
+	[BLOCK_POSITION+]
+		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
+	[BLOCK_POSITION-]
+	</select>
+	<fieldset>
 	<legend>Mise en page de type "séparateur"</legend>
 	<table>
 	<tr>
@@ -541,14 +593,14 @@ function soumettre(TypeAct,Parametre)
 		</td>
 	</tr>
 	</table>
-</fieldset>
-<input type="hidden" name="envoyer" value="1" />
+	</fieldset>
+	<input type="hidden" name="envoyer" value="1" />
 </form>
 {sRecharger}
 [BLOCK_MODIF_MPSEP-]
 [BLOCK_MODIF_FORMUL+]
 <form action="formulaire_modif.php{sParam}" name="formmodif" method="post" enctype="text/html">
-<fieldset>
+	<fieldset>
 	<legend>Titre de l'activité en ligne</legend>
 	<table>
 	<tr>
@@ -569,8 +621,8 @@ function soumettre(TypeAct,Parametre)
 		</td>
 	</tr>
 	</table>
-</fieldset>
-<fieldset>
+	</fieldset>
+	<fieldset>
 	<legend>Mise en page</legend>
 	<table>
 	<tr>
@@ -602,8 +654,8 @@ function soumettre(TypeAct,Parametre)
 		</td>
 	</tr>
 	</table>
-</fieldset>			
-<fieldset>
+	</fieldset>			
+	<fieldset>
 	<legend>Options supplémentaires</legend>
 	<table>
 	<tr>
@@ -626,8 +678,8 @@ function soumettre(TypeAct,Parametre)
 		</td>
 	</tr>
 	</table>
-</fieldset>
-<input type="hidden" name="envoyer" value="1" />   
+	</fieldset>
+	<input type="hidden" name="envoyer" value="1" />   
 </form>
 {sRecharger}
 [BLOCK_MODIF_FORMUL-]
@@ -638,5 +690,6 @@ function soumettre(TypeAct,Parametre)
 	<span id="ute">Unit&eacute; de Technologie de l'&Eacute;ducation</span>
 </div>
 [BLOCK_INTRO-]
+</div>
 </body>
 </html>

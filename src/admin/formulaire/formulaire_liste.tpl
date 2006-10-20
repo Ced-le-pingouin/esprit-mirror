@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
 <style type="text/css">
 <!--
-form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
+form	{	margin: 10px {sLargeur};	}
 .p  { line-height: 10.5pt; font-family: Arial,sans-serif; font-size: 10pt; color: black; margin-top: 6px; margin-bottom: 6px; }
 .InterER  { margin-top: {iInterEnonRep}px; }
 .InterObj  { margin-top: {iInterElem}px; }
