@@ -78,7 +78,7 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 <td>&nbsp;</td>
 <td>
 <fieldset>
-<legend>&nbsp;<?=INTITULE_FORMATION?>&nbsp;</legend>
+<legend>&nbsp;<?php echo INTITULE_FORMATION?>&nbsp;</legend>
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <tr><td colspan="2"><span class="intitule">&nbsp;Modalit&eacute; d'inscription des &eacute;tudiants aux cours&nbsp;:&nbsp;</span></td></tr>
 <tr>
@@ -92,7 +92,7 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 <?php entrerDescription("descr_formation",$sDescription,NULL,urlencode(addslashes($sNom))); ?>
 <tr>
 <td>&nbsp;</td>
-<td align="right"><input name="VISITEUR_AUTORISER" type="checkbox"<?=$sVisiteurAutoriser.($g_bModifier ? NULL : " disabled")?>>&nbsp;&nbsp;Accessible aux visiteurs</td>
+<td align="right"><input name="VISITEUR_AUTORISER" type="checkbox"<?php echo $sVisiteurAutoriser.($g_bModifier ? NULL : " disabled")?>>&nbsp;&nbsp;Accessible aux visiteurs</td>
 </tr>
 </table>
 </fieldset>

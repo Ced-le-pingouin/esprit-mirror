@@ -166,9 +166,9 @@ foreach ($oParent->aoChats as $oChat)
 <script type="text/javascript" language="javascript">
 <!--
 
-<?=$asListeConnectes?>
+<?php echo $asListeConnectes?>
 var g_aListeChats = new Array();
-var g_aaNombreArchives = new Array(<?=$asNombreArchives?>);
+var g_aaNombreArchives = new Array(<?php echo $asNombreArchives?>);
 
 function afficher_liste_connectes(v_iListeConnectes,v_sListeConnectes)
 {

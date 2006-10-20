@@ -1,0 +1,62 @@
+#!/bin/sh
+# 
+
+function usage
+{
+	echo "Usage $0 {start|stop|restart} port"
+}
+
+APPLICATION=Awareness
+SERVER_JAVA=$0
+JAVA_JVM="`which java`"
+# Nom du fichier
+PIDFILE=$2.pid
+
+# Numéro du port
+PORT=$2
+
+case "$1" in
+	start)
+		if [ -z $2 ] ; then
+			usage
+		else
+			if [ -f $PIDFILE ] ; then
+				echo "Le serveur est déjà lancé sur le port $PORT"
+			else
+				echo "Démarrage du serveur $APPLICATION sur le port $PORT"
+				${JAVA_JVM} $SERVER_JAVA $PORT &
+				echo $! > $PIDFILE
+				sleep 1
+			fi
+		fi
+		;;
+	stop)
+		echo "Arrêter le serveur $APPLICATION du port $PORT"
+		
+		if [ -f $PIDFILE ] ; then
+			PID=`cat $PIDFILE`
+			kill -TERM $PID
+			rm $PIDFILE
+		fi
+		echo
+		;;
+	restart)
+		echo "Redémarrage du serveur $APPLICATION du port $PORT"
+		
+		if [ -f $PIDFILE ] ; then
+			PID=`cat $PIDFILE`
+			kill -TERM $PID
+			rm $PIDFILE
+		fi
+		
+		${JAVA_JVM} $SERVER_JAVA $PORT &
+		echo $! > $PIDFILE
+		sleep 1
+		;;
+	*)
+		usage
+esac
+
+unset PID PIDFILE APPLICATION SERVER_JAVA JAVA_JVM PORT
+
+exit 0

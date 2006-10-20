@@ -182,9 +182,9 @@ $oProjet->terminer();
 <META HTTP-EQUIV="Pragma" CONTENT="NO-CACHE">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("equipes.css"); ?>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('outils_admin.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
 
@@ -230,14 +230,14 @@ function ajouter()
 
 <body class="personnes" onload="init()">
 <a name="top"></a>
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
-<?=$sCorpHtml?>
+<?php echo $sCorpHtml?>
 </table>
-<input type="hidden" name="NIVEAU" value="<?=$url_iNiveau?>">
-<input type="hidden" name="ID_NIVEAU" value="<?=$url_iIdNiveau?>">
-<input type="hidden" name="ID_EQUIPE" value="<?=$url_iIdEquipe?>">
-<input type="hidden" name="FILTRE_PERSONNES" value="<?=$url_iFiltrePersonnes?>">
+<input type="hidden" name="NIVEAU" value="<?php echo $url_iNiveau?>">
+<input type="hidden" name="ID_NIVEAU" value="<?php echo $url_iIdNiveau?>">
+<input type="hidden" name="ID_EQUIPE" value="<?php echo $url_iIdEquipe?>">
+<input type="hidden" name="FILTRE_PERSONNES" value="<?php echo $url_iFiltrePersonnes?>">
 </form>
 </body>
 </html>

@@ -9,6 +9,6 @@ $sTexteFormatte = (empty($_POST["edition"]) ? NULL : convertBaliseMetaVersHtml($
 <?php inserer_feuille_style("description.css"); ?>
 </head>
 <body>
-<?=$sTexteFormatte?>
+<?php echo $sTexteFormatte?>
 </body>
 </html>

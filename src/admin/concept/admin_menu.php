@@ -464,31 +464,31 @@ if (isset($oProjet->oRubriqueCourante) &&
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php inserer_feuille_style("dialog.css; concept.css"); ?>
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
-<script type="text/javascript" language="javascript" src="<?=dir_admin('concept','admin_modif.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_admin('concept','admin_modif.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
 
 var asElement = new Array (
 	""
 	,""
-	,"cette <?=phpString2js(mb_strtolower(INTITULE_FORMATION,"UTF-8"))?>"
+	,"cette <?php echo phpString2js(mb_strtolower(INTITULE_FORMATION,"UTF-8"))?>"
 	,""
-	,"ce <?=phpString2js(mb_strtolower(INTITULE_MODULE,"UTF-8"))?>"
+	,"ce <?php echo phpString2js(mb_strtolower(INTITULE_MODULE,"UTF-8"))?>"
 	,""
-	,"cette <?=phpString2js(mb_strtolower(INTITULE_RUBRIQUE,"UTF-8"))?>"
+	,"cette <?php echo phpString2js(mb_strtolower(INTITULE_RUBRIQUE,"UTF-8"))?>"
 	,""
 	,""
 	,""
-	,"ce <?=phpString2js(mb_strtolower(INTITULE_ACTIV,"UTF-8"))?>"
+	,"ce <?php echo phpString2js(mb_strtolower(INTITULE_ACTIV,"UTF-8"))?>"
 	,""
-	,"cette <?=phpString2js(mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"))?>");
+	,"cette <?php echo phpString2js(mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"))?>");
 
 function Envoyer(v_iNum)
 {
 	if (v_iNum == '<?php echo AJT_FORMATION; ?>')
 	{
-		ajouterFormation('<?=$g_iFormation?>');
+		ajouterFormation('<?php echo $g_iFormation?>');
 		return;
 	}
 	

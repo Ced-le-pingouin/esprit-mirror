@@ -170,14 +170,14 @@ $oProjet->terminer();
 <script type="text/javascript" language="javascript">
 <!--
 function changerSousTitre() {
-	top.changerSousTitre("<?=$sNomCompletUtilisateur?>");
+	top.changerSousTitre("<?php echo $sNomCompletUtilisateur?>");
 }
 //-->
 </script>
 </head>
 <body onload="changerSousTitre()">
 <table border="0" cellpadding="5" cellspacing="1" width="100%">
-<?=$sContenuTable?>
+<?php echo $sContenuTable?>
 </table>
 </body>
 </html>

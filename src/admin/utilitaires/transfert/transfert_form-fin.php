@@ -13,7 +13,7 @@ top.afficher_etape();
 <td>
 <fieldset>
 <legend>&nbsp;Copie de la formation&nbsp;</legend>
-<div style="margin: 5px; text-align: center;"><iframe name="liste_formations" src="liste_formations.php?bdd=<?=$url_sNomBddSrc?>&idFormSrc=<?=$url_iIdFormSrc?>" frameborder="0" marginwidth="0" marginheight="0" style="width: 340px; height: 220px;" scrolling="yes"></iframe></div>
+<div style="margin: 5px; text-align: center;"><iframe name="liste_formations" src="liste_formations.php?bdd=<?php echo $url_sNomBddSrc?>&idFormSrc=<?php echo $url_iIdFormSrc?>" frameborder="0" marginwidth="0" marginheight="0" style="width: 340px; height: 220px;" scrolling="yes"></iframe></div>
 </td>
 </tr>
 <tr><td>&nbsp;</td></tr>

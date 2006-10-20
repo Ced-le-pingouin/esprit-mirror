@@ -123,31 +123,31 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;  charset=utf-8">
-<title><?="{$sChatNom} [{$sUtilisateurNomComplet}".(isset($sEquipeNom) ? " - {$sEquipeNom}" : NULL)."]"?></title>
+<title><?php echo "{$sChatNom} [{$sUtilisateurNomComplet}".(isset($sEquipeNom) ? " - {$sEquipeNom}" : NULL)."]"?></title>
 </head>
 <body style="background-color: black;" topmargin="1" leftmargin="1" rightmargin="1" bottommargin="1">
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
 <tr>
 <td align="center" valign="middle">
-<applet codebase="client" code="ChatCli.class" archive="DeltaChatClient.jar" width="<?=$iChatFenLargeur?>" height="<?=$iChatFenHauteur?>">
+<applet codebase="client" code="ChatCli.class" archive="DeltaChatClient.jar" width="<?php echo $iChatFenLargeur?>" height="<?php echo $iChatFenHauteur?>">
 <param name="command" value="">
-<param name="ID" value="<?=$iIdUniqueChat?>">
-<param name="plateform" value="<?=rawurlencode($sNomPlateforme)?>">
-<param name="room" value="<?=rawurlencode($sChatNom)?>">
-<param name="group" value="<?=rawurlencode($sEquipeNom)?>">
-<param name="user_id" value="<?=$iUtilisateurId?>">
-<param name="nickname" value="<?=$sUtilisateurPseudo?>">
-<param name="user" value="<?=$sUtilisateurNomComplet?>">
-<param name="sex" value="<?=$sUtilisateurSexe?>">
-<param name="hostname" value="<?=$_SERVER['SERVER_ADDR']?>">
-<param name="port" value="<?=$iChatNumPort?>">
-<param name="height_room" value="<?=$iChatFenHauteur?>">
-<param name="color_room" value="<?=$sChatCouleur?>">
-<param name="to_file_conversation" value="<?=$bEnregConversation?>">
-<param name="dir_client_log" value="<?=$sRepArchives?>">
-<param name="use_private_room" value="<?=$bChatMsgPrive?>">
+<param name="ID" value="<?php echo $iIdUniqueChat?>">
+<param name="plateform" value="<?php echo rawurlencode($sNomPlateforme)?>">
+<param name="room" value="<?php echo rawurlencode($sChatNom)?>">
+<param name="group" value="<?php echo rawurlencode($sEquipeNom)?>">
+<param name="user_id" value="<?php echo $iUtilisateurId?>">
+<param name="nickname" value="<?php echo $sUtilisateurPseudo?>">
+<param name="user" value="<?php echo $sUtilisateurNomComplet?>">
+<param name="sex" value="<?php echo $sUtilisateurSexe?>">
+<param name="hostname" value="<?php echo $_SERVER['SERVER_ADDR']?>">
+<param name="port" value="<?php echo $iChatNumPort?>">
+<param name="height_room" value="<?php echo $iChatFenHauteur?>">
+<param name="color_room" value="<?php echo $sChatCouleur?>">
+<param name="to_file_conversation" value="<?php echo $bEnregConversation?>">
+<param name="dir_client_log" value="<?php echo $sRepArchives?>">
+<param name="use_private_room" value="<?php echo $bChatMsgPrive?>">
 <param name="language" value="Fra">
-<param name="id_session" value="<?=$iIdForm?>">
+<param name="id_session" value="<?php echo $iIdForm?>">
 <param name="location" value="test">
 <param name="port_spy" value="0">
 </applet>

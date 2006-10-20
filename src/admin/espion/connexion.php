@@ -167,8 +167,8 @@ function details(v_iIdPers)
 
 function Recharger()
 {
-	self.location = "<?=$_SERVER['PHP_SELF']?>";
-	top.oExporter().location = "<?=dir_admin("espion","exporter_connexion.php",FALSE)?>";
+	self.location = "<?php echo $_SERVER['PHP_SELF']?>";
+	top.oExporter().location = "<?php echo dir_admin("espion","exporter_connexion.php",FALSE)?>";
 }
 
 function fermerToutesFenetres()
@@ -182,7 +182,7 @@ function fermerToutesFenetres()
 </head>
 <body onunload="fermerToutesFenetres()">
 <table border="0" cellpadding="2" cellspacing="1" width="100%">
-<?=$sContenuTable?>
+<?php echo $sContenuTable?>
 </table>
 </body>
 </html>

@@ -115,7 +115,7 @@ selectionnerNumeroOrdre("ORDRE",$oProjet->oSousActivCourante->retNombreLignes(),
 entrerNom("NOM",$sNomSousActiv,TRUE);
 selectionnerStatut("STATUT",$oProjet->oSousActivCourante->retListeStatuts(),$oProjet->oSousActivCourante->retStatut());
 ?>
-<tr><td>&nbsp;</td><td><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?=$g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
+<tr><td>&nbsp;</td><td><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?php echo $g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
 <!-- Type -->
 <tr><td>&nbsp;</td><td><hr></td></tr>
 <tr>
@@ -145,7 +145,7 @@ $iTmpType = NULL;
 <td>&nbsp;</td>
 <td>
 
-<!--[[ Affichage d'une page HTML (<?=LIEN_PAGE_HTML?>) -->
+<!--[[ Affichage d'une page HTML (<?php echo LIEN_PAGE_HTML?>) -->
 <div id="lien_page_html" class="Cacher">
 <fieldset>
 <legend>&nbsp;Affichage d'un document (html, doc, swf, gif, jpeg, pdf)&nbsp;</legend>
@@ -163,7 +163,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 		.">".stripslashes($asFichiers[$i])."</option>\n";
 }
 ?>
-</select>&nbsp;<?=boutonDeposer()?>
+</select>&nbsp;<?php echo boutonDeposer()?>
 </td>
 </tr>
 <?php selectionnerModalAff($aoModalitesAffichage,$url_iMode,"MODALITE_AFFICHAGE[".LIEN_PAGE_HTML."]","div_description"); ?>
@@ -172,7 +172,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 </div>
 <!-- Affichage d'une page HTML ]]-->
 
-<!--[[ Document à télécharger (<?=LIEN_DOCUMENT_TELECHARGER?>) -->
+<!--[[ Document à télécharger (<?php echo LIEN_DOCUMENT_TELECHARGER?>) -->
 <div id="lien_document_telecharger" class="Cacher">
 <fieldset>
 <legend>&nbsp;Document à télécharger&nbsp;</legend>
@@ -180,7 +180,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 <tr>
 <td width="200"><div class="intitule">Choisir le document&nbsp;:</div></td>
 <td>
-<select name="DONNEES[<?php echo LIEN_DOCUMENT_TELECHARGER; ?>]"<?=($g_bModifier ? NULL : " disabled")?>>
+<select name="DONNEES[<?php echo LIEN_DOCUMENT_TELECHARGER; ?>]"<?php echo ($g_bModifier ? NULL : " disabled")?>>
 <option value="">Pas de fichier actuellement</option>
 <?php
 for ($i=0; $i<count($asFichiers); $i++)
@@ -189,7 +189,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 		.">$asFichiers[$i]</option>\n";
 ?>
 </select>
-<?=boutonDeposer()?>
+<?php echo boutonDeposer()?>
 </td>
 </tr>
 <!-- Modalité d'affichage -->
@@ -207,14 +207,14 @@ for ($i=0; $i<count($asFichiers); $i++)
 </div>
 <!-- Document à télécharger ]]-->
 
-<!--[[ Site Internet (<?=LIEN_SITE_INTERNET?>) -->
+<!--[[ Site Internet (<?php echo LIEN_SITE_INTERNET?>) -->
 <div id="lien_site_internet" class="Cacher">
 <fieldset>
 <legend>&nbsp;Lien vers un site Internet&nbsp;</legend>
 <table border="0" cellspacing="2" cellpadding="0" width="100%">
 <tr>
 <td width="200"><div class="intitule">http://</div></td>
-<td><input type="text" name="DONNEES[<?php echo LIEN_SITE_INTERNET; ?>]" value="<?php echo $sDonnee; ?>" size="50"<?=($g_bModifier ? NULL : " disabled")?>></td>
+<td><input type="text" name="DONNEES[<?php echo LIEN_SITE_INTERNET; ?>]" value="<?php echo $sDonnee; ?>" size="50"<?php echo ($g_bModifier ? NULL : " disabled")?>></td>
 </tr>
 <?php selectionnerModalAff($aoModalitesAffichage,$url_iMode,"MODALITE_AFFICHAGE[".LIEN_SITE_INTERNET."]","div_description"); ?>
 </table>
@@ -222,7 +222,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 </div>
 <!-- Site Internet ]]-->
 
-<!--[[ Texte formaté (<?=LIEN_TEXTE_FORMATTE?>) -->
+<!--[[ Texte formaté (<?php echo LIEN_TEXTE_FORMATTE?>) -->
 <?php $iTypeLien = LIEN_TEXTE_FORMATTE; ?>
 <div id="lien_texte_formate" class="Cacher">
 <fieldset>
@@ -232,19 +232,19 @@ for ($i=0; $i<count($asFichiers); $i++)
 <tr>
 <td><div class="intitule">Modalit&eacute; d'affichage&nbsp;:&nbsp;</div></td>
 <td>
-<select name="MODALITE_AFFICHAGE[<?=$iTypeLien?>]"<?=$g_bModifier ? NULL : " disabled"?>>
-<option value="<?=FRAME_CENTRALE_DIRECT?>"<?=($url_iMode == FRAME_CENTRALE_DIRECT ? " selected" : NULL)?>>Zone principale</option>
-<option value="<?=NOUVELLE_FENETRE_DIRECT?>"<?=($url_iMode == NOUVELLE_FENETRE_DIRECT ? " selected" : NULL)?>>Nouvelle fen&ecirc;tre</option>
+<select name="MODALITE_AFFICHAGE[<?php echo $iTypeLien?>]"<?php echo $g_bModifier ? NULL : " disabled"?>>
+<option value="<?php echo FRAME_CENTRALE_DIRECT?>"<?php echo ($url_iMode == FRAME_CENTRALE_DIRECT ? " selected" : NULL)?>>Zone principale</option>
+<option value="<?php echo NOUVELLE_FENETRE_DIRECT?>"<?php echo ($url_iMode == NOUVELLE_FENETRE_DIRECT ? " selected" : NULL)?>>Nouvelle fen&ecirc;tre</option>
 </select>
 </td>
 </tr>
-<?=entrerDescription("DESCRIPTION[{$iTypeLien}]",$descr,"Texte",urlencode(addslashes($sNomSousActiv)))?>
+<?php echo entrerDescription("DESCRIPTION[{$iTypeLien}]",$descr,"Texte",urlencode(addslashes($sNomSousActiv)))?>
 </table>
 </fieldset>
 </div>
 <!-- Texte formaté ]]-->
 
-<!--[[ Collecticiel (<?=LIEN_COLLECTICIEL?>) -->
+<!--[[ Collecticiel (<?php echo LIEN_COLLECTICIEL?>) -->
 <div id="lien_collecticiel" class="Cacher">
 <fieldset>
 <legend>&nbsp;Collecticiel&nbsp;</legend>
@@ -270,7 +270,7 @@ else
 	$sIntituleCollecticiel = $sIntitule;
 ?>
 </select>
-<?=boutonDeposer()?>
+<?php echo boutonDeposer()?>
 </td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@ else
 </div>
 <!-- Collecticiel ]]-->
 
-<!--[[ Chat (<?=LIEN_CHAT?>) -->
+<!--[[ Chat (<?php echo LIEN_CHAT?>) -->
 <?php
 $oTpl = new Template("div_chats.tpl");
 
@@ -325,7 +325,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 ?>
 <!-- Chat ]]-->
 
-<!--[[ Formulaire (<?=LIEN_FORMULAIRE?>) -->
+<!--[[ Formulaire (<?php echo LIEN_FORMULAIRE?>) -->
 <div id="lien_formulaire" class="Cacher">
 <fieldset>
 <legend>&nbsp;Activités en ligne&nbsp;</legend>
@@ -431,7 +431,7 @@ echo str_replace(
 	,$sTableauDeBord);
 // }}}
 ?>
-<p style="text-align: right; padding-right: 10px;"><a href="sousactiv_inv-index.php?idSousActiv=<?=$g_iSousActiv?>" onclick="return autorisation_action(this)" target="_blank">Acc&egrave;s</a></p>
+<p style="text-align: right; padding-right: 10px;"><a href="sousactiv_inv-index.php?idSousActiv=<?php echo $g_iSousActiv?>" onclick="return autorisation_action(this)" target="_blank">Acc&egrave;s</a></p>
 </td>
 </tr>
 </table>
@@ -457,7 +457,7 @@ if (document.getElementById)
 	aoType[11] = document.getElementById("lien_tableau_de_bord");
 }
 
-choisirType(aoType,'<?=$amSousActiv["type"]?>');
+choisirType(aoType,'<?php echo $amSousActiv["type"]?>');
 
 //-->
 </script>

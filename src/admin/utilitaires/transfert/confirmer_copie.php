@@ -25,8 +25,8 @@ Dernière étape avant la copie de la formation.
 <br><br>
 Sélectionnez les différentes éléments que vous désirez transférer&nbsp;:
 <br><br><iframe name="selectionner_elements" src="liste_elems_transferer.php" frameborder="0" marginwidth="5" marginheight="5" height="80" width="350"></iframe>
-<br><br>La copie se fera à partir de la formation &laquo;&nbsp;<cite><?=$sNomFormation?></cite>&nbsp;&raquo; vers
-&laquo;&nbsp;<cite><?=$url_sNomBddDst?></cite>&nbsp;&raquo;.
+<br><br>La copie se fera à partir de la formation &laquo;&nbsp;<cite><?php echo $sNomFormation?></cite>&nbsp;&raquo; vers
+&laquo;&nbsp;<cite><?php echo $url_sNomBddDst?></cite>&nbsp;&raquo;.
 </div>
 </td>
 </tr>

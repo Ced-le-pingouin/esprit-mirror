@@ -72,7 +72,7 @@ if (isset($_REQUEST['step']) && $_REQUEST['step']) {
 	}
 }
 ?>
-		<h2>Étape <?= $step ?></h2>
+		<h2>Étape <?php echo $step ?></h2>
 
 <?php
 switch ($step) {
@@ -103,7 +103,7 @@ Normalement, l'encodage devrait être en UTF-8.</i>
 	<label for="host">Serveur BdD :</label> <input type="text" name="host" id="host" value="localhost" /><br />
 	<label for="user">Login de l'utilisateur :</label> <input type="text" name="user" id="user" /><br />
 	<label for="password">Mot de passe de l'utilisateur :</label> <input type="password" name="password" id="password" /><br /><br />
-	<input name="step" value="<?= $step+1 ?>" type="hidden" />
+	<input name="step" value="<?php echo $step+1 ?>" type="hidden" />
 	<input type="submit" value="Étape suivante" />
 </p>
 </form>
@@ -239,7 +239,7 @@ case 5:
 <p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
 </p>
 
-<p>Vous pouvez désormais vous rendre sur votre <a href="<?= $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
+<p>Vous pouvez désormais vous rendre sur votre <a href="<?php echo $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
 </p>
 
 <p>Une fois connecté en tant qu'<em>admin</em>, vous pouvez créer une formation de test, en cliquant sur <em>Outils</em> qui se trouve dans la barre inférieure du site, puis en vous choisissant l'outil de conception de cours eConcept.
@@ -261,11 +261,11 @@ function show_next_step() {
 ?>
 <form action="install.php" method="post">
 <p>
-	<input name="base" value="<?= $_POST['base'] ?>" type="hidden" />
-	<input name="host" value="<?= $_POST['host'] ?>" type="hidden" />
-	<input name="user" value="<?= $_POST['user'] ?>" type="hidden" />
-	<input name="password" value="<?= $_POST['password'] ?>" type="hidden" />
-	<input name="step" value="<?= $step+1 ?>" type="hidden" />
+	<input name="base" value="<?php echo $_POST['base'] ?>" type="hidden" />
+	<input name="host" value="<?php echo $_POST['host'] ?>" type="hidden" />
+	<input name="user" value="<?php echo $_POST['user'] ?>" type="hidden" />
+	<input name="password" value="<?php echo $_POST['password'] ?>" type="hidden" />
+	<input name="step" value="<?php echo $step+1 ?>" type="hidden" />
 	<input type="submit" value="Étape suivante" />
 </p>
 </form>
@@ -277,11 +277,11 @@ function redo_step() {
 ?>
 <form action="install.php" method="post">
 <p>
-	<input name="base" value="<?= $_POST['base'] ?>" type="hidden" />
-	<input name="host" value="<?= $_POST['host'] ?>" type="hidden" />
-	<input name="user" value="<?= $_POST['user'] ?>" type="hidden" />
-	<input name="password" value="<?= $_POST['password'] ?>" type="hidden" />
-	<input name="step" value="<?= $step ?>" type="hidden" />
+	<input name="base" value="<?php echo $_POST['base'] ?>" type="hidden" />
+	<input name="host" value="<?php echo $_POST['host'] ?>" type="hidden" />
+	<input name="user" value="<?php echo $_POST['user'] ?>" type="hidden" />
+	<input name="password" value="<?php echo $_POST['password'] ?>" type="hidden" />
+	<input name="step" value="<?php echo $step ?>" type="hidden" />
 	<input type="submit" value="Refaire cette étape" />
 </p>
 </form>

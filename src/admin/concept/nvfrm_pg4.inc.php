@@ -75,10 +75,10 @@ if ($fonction == "valider")
 
 ?>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td colspan="2"><h5>Etape <?=$etape?>&nbsp;: Modalité d'inscription des étudiants aux cours</h5></td></tr>
+<tr><td colspan="2"><h5>Etape <?php echo $etape?>&nbsp;: Modalité d'inscription des étudiants aux cours</h5></td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
-<tr><td><img src="<?=dir_images_communes('espacer.gif')?>" width="20" height="1" border="0"></td><td><input type="radio" name="InscrSpontForm" value="1"<?=($url_iInscrSpontForm == 1 ? " checked" : NULL)?>>&nbsp;&nbsp;Tous les étudiants seront automatiquement inscrits à tous les cours de cette formation</td></tr>
-<tr><td>&nbsp;</td><td><input type="radio" name="InscrSpontForm" value="0"<?=($url_iInscrSpontForm == 1 ? NULL : " checked")?>>&nbsp;&nbsp;Certains étudiants seront inscrits à certains cours, d'autres pas</td></tr>
+<tr><td><img src="<?php echo dir_images_communes('espacer.gif')?>" width="20" height="1" border="0"></td><td><input type="radio" name="InscrSpontForm" value="1"<?php echo ($url_iInscrSpontForm == 1 ? " checked" : NULL)?>>&nbsp;&nbsp;Tous les étudiants seront automatiquement inscrits à tous les cours de cette formation</td></tr>
+<tr><td>&nbsp;</td><td><input type="radio" name="InscrSpontForm" value="0"<?php echo ($url_iInscrSpontForm == 1 ? NULL : " checked")?>>&nbsp;&nbsp;Certains étudiants seront inscrits à certains cours, d'autres pas</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td colspan="2">&nbsp;</td></tr>
 <tr><td colspan="2">La première option vous dispense de devoir spécifier pour chaque étudiant les cours auxquels il est inscrit, ce qui peut s'avérer fastidieux.

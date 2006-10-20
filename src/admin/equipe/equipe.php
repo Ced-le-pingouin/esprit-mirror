@@ -166,17 +166,17 @@ $oProjet->terminer();
 <?php inserer_feuille_style(); ?>
 <script type="text/javascript" language="javascript">
 <!--
-function init() {<?=$sCorpFonctionInit?>}
+function init() {<?php echo $sCorpFonctionInit?>}
 function valider() { document.forms[0].submit(); }
 //-->
 </script>
 </head>
 <body onload="init()">
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <tr>
-<td><img src="<?=dir_theme("icones/equipe.gif")?>" border="0"></td>
-<td width="99%"><?=$sCorpHtml?></td>
+<td><img src="<?php echo dir_theme("icones/equipe.gif")?>" border="0"></td>
+<td width="99%"><?php echo $sCorpHtml?></td>
 </tr>
 </table>
 </form>

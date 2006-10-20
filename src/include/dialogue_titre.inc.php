@@ -39,10 +39,10 @@ else
 <body class="haut">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
-<td width="1%" align="left" valign="top"><?=$sDialogueLogo?></td>
+<td width="1%" align="left" valign="top"><?php echo $sDialogueLogo?></td>
 </tr>
 </table>
-<div class="dialog_titre_principal">&nbsp;<?=$sDialogueTitre?></div>
-<div class="dialog_sous_titre"><?=$sDialogueSousTitre?></div>
+<div class="dialog_titre_principal">&nbsp;<?php echo $sDialogueTitre?></div>
+<div class="dialog_sous_titre"><?php echo $sDialogueSousTitre?></div>
 </body>
 </html>

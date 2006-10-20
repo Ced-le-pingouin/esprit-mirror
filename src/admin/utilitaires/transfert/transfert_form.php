@@ -78,10 +78,10 @@ function init() {
 <body onload="init()" style="background-image: none;">
 <form method="get">
 <?php if (isset($sNomFichierInclure)) include_once($sNomFichierInclure); ?>
-<input type="hidden" name="page" value="<?=$url_iNumPage?>">
-<input type="hidden" name="NOM_BDD_SRC" value="<?=$url_sNomBddSrc?>">
-<input type="hidden" name="NOM_BDD_DST" value="<?=$g_sNomBdd?>">
-<input type="hidden" name="ID_FORM_SELECT" value="<?=$url_iIdFormSrc?>">
+<input type="hidden" name="page" value="<?php echo $url_iNumPage?>">
+<input type="hidden" name="NOM_BDD_SRC" value="<?php echo $url_sNomBddSrc?>">
+<input type="hidden" name="NOM_BDD_DST" value="<?php echo $g_sNomBdd?>">
+<input type="hidden" name="ID_FORM_SELECT" value="<?php echo $url_iIdFormSrc?>">
 <input type="hidden" name="COPIER_FORUMS" value="1">
 <input type="hidden" name="COPIER_SUJETS_FORUMS" value="1">
 <input type="hidden" name="COPIER_CHATS" value="1">

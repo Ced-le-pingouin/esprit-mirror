@@ -5,11 +5,11 @@
 <head>
 <title>Editeur</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<script type="text/javascript" language="javascript" src="<?=dir_javascript('window.js')?>"></script>
+<script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
-var sFormDest = "<?=$_GET['formulaire']?>";
-var sElemDest = "<?=$_GET['element']?>";
+var sFormDest = "<?php echo $_GET['formulaire']?>";
+var sElemDest = "<?php echo $_GET['element']?>";
 
 var sAnnuler = null;
 
@@ -44,7 +44,7 @@ function exporter()
 {
 	with (oPrincipale().document.forms[0])
 	{
-		elements["f"].value = "<?=@$_GET['nfexport']?>"
+		elements["f"].value = "<?php echo @$_GET['nfexport']?>"
 		action = "editeur_exporter.php";
 		target = "visualiseur";
 		submit();

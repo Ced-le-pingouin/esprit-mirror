@@ -101,6 +101,6 @@ function deconnexion() { self.location = "deconnexion.php"; }
 </script>
 </head>
 <body style="background-color: rgb(0,0,0);">
-<?=$sAwarenessClient?>
+<?php echo $sAwarenessClient?>
 </body>
 </html>

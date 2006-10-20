@@ -115,7 +115,7 @@ $oProjet->terminer();
 </head>
 <body>
 <table border="0" cellpadding="2" cellspacing="1" width="100%">
-<?=$sContenuTable?>
+<?php echo $sContenuTable?>
 </table>
 </body>
 </html>

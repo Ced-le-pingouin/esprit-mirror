@@ -212,14 +212,14 @@ function rechargerListeCours()
 </head>
 <body>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-<?=$sAppliquerChangements?>
+<?php echo $sAppliquerChangements?>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
 <?php echo $sListeCours; ?>
 </table>
-<input type="hidden" name="IDPERS" value="<?=$iIdPers?>">
-<input type="hidden" name="STATUT" value="<?=$iIdStatut?>">
+<input type="hidden" name="IDPERS" value="<?php echo $iIdPers?>">
+<input type="hidden" name="STATUT" value="<?php echo $iIdStatut?>">
 <input type="hidden" name="ENVOYER" value="1">
-<input type="hidden" name="idform" value="<?=$iIdForm?>">
+<input type="hidden" name="idform" value="<?php echo $iIdForm?>">
 </form>
 </body>
 </html>

@@ -58,7 +58,7 @@ else
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?=inserer_feuille_style("concept.css")?>
+<?php echo inserer_feuille_style("concept.css")?>
 <script type="text/javascript" language="javascript">
 <!--
 function verifier()
@@ -75,15 +75,15 @@ function envoyer()
 function annuler()
 {
 	top.frames["ADMINFRAMEMODIF"].location = "admin_modif.php"
-		+ "?type=<?=$url_iType?>"
-		+ "&params=<?=$url_sParams?>";
+		+ "?type=<?php echo $url_iType?>"
+		+ "&params=<?php echo $url_sParams?>";
 }
 //-->
 </script>
 </head>
 <body class="admin_modif_menu">
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
-<tr><td><?=$sCorpPage?></td></tr>
+<tr><td><?php echo $sCorpPage?></td></tr>
 </table>
 </body>
 </html>

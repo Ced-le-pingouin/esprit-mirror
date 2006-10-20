@@ -157,7 +157,7 @@ $oProjet->terminer();
 <!--
 function init()
 {
-	<?=$sFonctionInit?>
+	<?php echo $sFonctionInit?>
 }
 
 function envoyer()
@@ -188,11 +188,11 @@ function supprimer()
 </script>
 </head>
 <body class="gauche" onload="init()">
-<form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <?php $oTpl->afficher(); ?>
 <input type="hidden" name="action" value="">
-<input type="hidden" name="idNiveau" value="<?=$url_iIdNiveau?>">
-<input type="hidden" name="typeNiveau" value="<?=$url_iTypeNiveau?>">
+<input type="hidden" name="idNiveau" value="<?php echo $url_iIdNiveau?>">
+<input type="hidden" name="typeNiveau" value="<?php echo $url_iTypeNiveau?>">
 </form>
 </body>
 </html>

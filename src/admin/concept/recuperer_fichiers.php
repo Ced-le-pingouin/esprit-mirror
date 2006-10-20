@@ -53,7 +53,7 @@ require_once ("globals.inc.php");
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<?=inserer_feuille_style()?>
+<?php echo inserer_feuille_style()?>
 
 <script type="text/javascript" language="javascript">
 <!--

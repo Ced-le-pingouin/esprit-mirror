@@ -249,7 +249,7 @@ $oProjet->terminer();
 
 function envoyer(v_sTri,v_iTriDirection)
 {
-	document.location = "ressource_transfert.php?idPers=<?=$url_iIdPers?>&idModalite=<?=$url_iModalite?>&TRICOL=" + v_sTri + "&TRIDIR=" + v_iTriDirection;
+	document.location = "ressource_transfert.php?idPers=<?php echo $url_iIdPers?>&idModalite=<?php echo $url_iModalite?>&TRICOL=" + v_sTri + "&TRIDIR=" + v_iTriDirection;
 }
 
 function init()

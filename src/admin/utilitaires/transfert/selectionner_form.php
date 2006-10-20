@@ -6,16 +6,16 @@
 top.afficher_etape();
 //-->
 </script>
-<small>Voici une liste de formations appartenant à la base de données source &laquo;&nbsp;<cite><?=$_GET['NOM_BDD_SRC']?></cite>&nbsp;&raquo;.</small>
+<small>Voici une liste de formations appartenant à la base de données source &laquo;&nbsp;<cite><?php echo $_GET['NOM_BDD_SRC']?></cite>&nbsp;&raquo;.</small>
 <br><br>
-<small>Sélectionnez la formation qui sera copiée dans &laquo;&nbsp;<cite><?=$_GET['NOM_BDD_DST']?></cite>&nbsp;&raquo;.</small>
+<small>Sélectionnez la formation qui sera copiée dans &laquo;&nbsp;<cite><?php echo $_GET['NOM_BDD_DST']?></cite>&nbsp;&raquo;.</small>
 </td>
 </tr>
 <tr>
 <td>
 <fieldset>
 <legend>&nbsp;Liste des formations&nbsp;</legend>
-<div style="margin: 5px; text-align: center;"><iframe name="liste_formations" src="liste_forms.php?bdd=<?=$url_sNomBddSrc?>&idFormSrc=<?=$url_iIdFormSrc?>" frameborder="0" marginwidth="0" marginheight="0" style="width: 340px; height: 220px;" scrolling="yes"></iframe></div>
+<div style="margin: 5px; text-align: center;"><iframe name="liste_formations" src="liste_forms.php?bdd=<?php echo $url_sNomBddSrc?>&idFormSrc=<?php echo $url_iIdFormSrc?>" frameborder="0" marginwidth="0" marginheight="0" style="width: 340px; height: 220px;" scrolling="yes"></iframe></div>
 </td>
 </tr>
 <tr><td>&nbsp;</td></tr>

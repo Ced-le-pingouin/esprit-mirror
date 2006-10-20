@@ -79,7 +79,7 @@ $sParamsUrl = "modifier_message.php"
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
+<title><?php echo htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipale() { return top.frames["MESSAGE"]; }
@@ -88,7 +88,7 @@ function oMenu() { return  top.frames["MENU"]; }
 </script>
 </head>
 <frameset rows="*,26" border="0">
-<frame name="MESSAGE" src="<?=$sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="10" scrolling="no" noresize="noresize">
+<frame name="MESSAGE" src="<?php echo $sParamsUrl?>" frameborder="0" marginwidth="5" marginheight="10" scrolling="no" noresize="noresize">
 <frame name="MENU" src="" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>

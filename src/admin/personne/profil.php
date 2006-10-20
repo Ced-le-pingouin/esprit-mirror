@@ -282,7 +282,7 @@ function afficher_erreur(v_sErreur)
 
 <tr>
 <td><div class="intitule">Date de naissance&nbsp;:</div></td>
-<td><select name="DATE_NAISS_JOUR_PERS"><?=$sOptionsDateNaissJour?></select>&nbsp;-&nbsp;<select name="DATE_NAISS_MOIS_PERS"><?=$sOptionsDateNaissMois?></select>&nbsp;-&nbsp;<input type="text" name="DATE_NAISS_ANNEE_PERS" value="<?=$asDateNaiss['annee']?>" size="5" maxlength="4"></td>
+<td><select name="DATE_NAISS_JOUR_PERS"><?php echo $sOptionsDateNaissJour?></select>&nbsp;-&nbsp;<select name="DATE_NAISS_MOIS_PERS"><?php echo $sOptionsDateNaissMois?></select>&nbsp;-&nbsp;<input type="text" name="DATE_NAISS_ANNEE_PERS" value="<?php echo $asDateNaiss['annee']?>" size="5" maxlength="4"></td>
 <td>&nbsp;</td>
 </tr>
 

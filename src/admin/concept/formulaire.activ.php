@@ -79,10 +79,10 @@ selectionnerStatut("STATUT",retListeStatuts('M'),$oProjet->oActivCourante->retSt
 <td>&nbsp;</td>
 <td>
 <fieldset>
-<legend>&nbsp;<?=INTITULE_ACTIV?>&nbsp;</legend><br>
+<legend>&nbsp;<?php echo INTITULE_ACTIV?>&nbsp;</legend><br>
 <table border="0" cellspacing="1" cellpadding="0">
 <tr>
-<td><img src="<?=dir_images_communes('/espacer.gif')?>" width="25" height="1" border="0"></td>
+<td><img src="<?php echo dir_images_communes('/espacer.gif')?>" width="25" height="1" border="0"></td>
 <td><span class="intitule">Modalit&eacute;&nbsp;:&nbsp;</span></td>
 <td><?php echo selectionner_modalite($oProjet->oActivCourante->retListeModalites(),"MODALITE",$oProjet->oActivCourante->retModalite()); ?></td>
 </tr>

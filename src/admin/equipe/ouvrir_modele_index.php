@@ -35,7 +35,7 @@ function Ouvrir()
 
 function Annuler()
 {
-	oListe().location = "sauver_modele_liste.php<?=$iIdForm?>&ACTION=annuler";
+	oListe().location = "sauver_modele_liste.php<?php echo $iIdForm?>&ACTION=annuler";
 
 	top.close();
 }
@@ -46,7 +46,7 @@ function Annuler()
 <frameset rows="62,*,32" border="0">
 <frame name="titre" src="ouvrir_modele_titre.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="true">
 <frameset cols="209,*">
-<frame name="liste" src="ouvrir_modele_liste.php<?=$sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
+<frame name="liste" src="ouvrir_modele_liste.php<?php echo $sParamsUrl?>" frameborder="0" scrolling="auto" noresize="true">
 <frame name="principal" src="ouvrir_modele.php" frameborder="0" scrolling="auto" noresize="true">
 </frameset>
 <frame name="menu" src="ouvrir_modele_menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="true">
