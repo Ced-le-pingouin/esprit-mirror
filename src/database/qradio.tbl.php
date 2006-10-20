@@ -184,26 +184,26 @@ class CQRadio
 		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
 		$this->oEnregBdd->EnonQR = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQR);
 		
-		//Si alignement vertical alors suppression des textes avant et après sinon mise en forme
-		if ($this->oEnregBdd->DispQR == 'Ver')
-		{
-			$this->oEnregBdd->TxtAvQR = "";
-			$this->oEnregBdd->TxtApQR = "";
-		}
-		else
-		{
-			$this->oEnregBdd->TxtAvQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQR);
-			$this->oEnregBdd->TxtApQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQR);
-		}
+		$this->oEnregBdd->TxtAvQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQR);
+		$this->oEnregBdd->TxtApQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQR);
 		
 		//Genération du code html représentant l'objet
 		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjForm} -->\n"
-				."<div align=\"{$this->oEnregBdd->AlignEnonQR}\">{$this->oEnregBdd->EnonQR}</div>\n"
+				."<div align={$this->oEnregBdd->AlignEnonQR}>{$this->oEnregBdd->EnonQR}</div>\n"
 				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQR}\">\n"
-				."{$this->oEnregBdd->TxtAvQR} \n"
-				.$this->RetourReponseQR($v_iIdFC) 			//Appel de la fonction qui renvoie les réponses sous forme de bouton radio, 
-															//avec la réponse cochée par l'étudiant si IdFC est présent
-				." {$this->oEnregBdd->TxtApQR}\n"
+				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
+				."<td valign=\"top\">"
+					."{$this->oEnregBdd->TxtAvQR} \n"
+				."</td>"
+				// appel de la fonction qui renvoie les réponses sous forme de bouton radio,
+				// avec la réponse cochée par l'étudiant si IdFC est présent
+				."<td valign=\"top\">"
+					.$this->RetourReponseQR($v_iIdFC)
+				."</td>"
+				."<td valign=\"top\">"
+					." {$this->oEnregBdd->TxtApQR}\n"
+				."</td>"
+				."</tr></table>"
 				."</div>\n";
 		
 		return $sCodeHtml;
