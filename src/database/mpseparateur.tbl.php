@@ -60,7 +60,7 @@ class CMPSeparateur
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une ligne de type séparateur, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO MPSeparateur SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO MPSeparateur (IdObjForm,TypeLargMPS,LargeurMPS) VALUES ('$v_iIdObjForm','P','100');";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
