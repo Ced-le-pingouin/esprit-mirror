@@ -155,12 +155,12 @@ class CObjetFormulaire
 	
 	function DeplacerObjet($v_iNouvPos)
 	{
+		if ($v_iNouvPos==$this->oEnregBdd->OrdreObjForm)
+			return false;
+		
 		//Verrouillage de la table ObjetFormulaire
 		$sRequeteSql = "LOCK TABLES ObjetFormulaire WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		if ($v_iNouvPos==$this->oEnregBdd->OrdreObjForm)
-			return false;
 		
 		if ($v_iNouvPos > $this->oEnregBdd->OrdreObjForm)
 		{
