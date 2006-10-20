@@ -86,7 +86,7 @@ function ajouter(TypeAct)
 </head>
 <body class="menu">
 <form name="listeformulaire" action="formulaire_menu.php" method="get">
-<input type="checkbox" name="bMesForms" id="bMesForms" value="1" onclick="this.form.submit();" {bMesFormsCoche} /><label for="bMesForms">uniquement mes activitées</label>
+<input type="checkbox" name="bMesForms" id="bMesForms" value="1" onclick="this.form.submit();" {bMesFormsCoche} /><label for="bMesForms">uniquement mes activités</label>
 <input type="hidden" name="typeaction" value="selection" />
 <input type="hidden" name="idobj" value="{idObjForm}" />
 <div class="bloc">

@@ -1,6 +1,17 @@
 function rechargerDroite(idformulaire,idobj,bMesForms)
 {
-	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms);
+	sTypeAction = retParamUrl(window.location,'typeaction');
+	bChgtFormul = false;
+	if(sTypeAction == 'selection')
+	{
+		idformcourant = retParamUrl(parent.FORMFRAMELISTE.location,'idformulaire');
+		if(idformcourant != idformulaire)
+			bChgtFormul = true;
+	}
+	if(bChgtFormul)
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms+"&verifUtilisation=1");
+	else
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms);
 	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms);
 }
 function selectionobj(idformulaire,idobj,bMesForms) 
@@ -8,13 +19,11 @@ function selectionobj(idformulaire,idobj,bMesForms)
 	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 }
-
 function rechargerliste(idformulaire,idobj,bMesForms) 
 {
 	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 }
-
 function ajoutobj(idformulaire,bMesForms)
 {
 	PopupCenter('formulaire_modif_ajout.php?idformulaire='+idformulaire+"&bMesForms="+bMesForms,'WinAjoutObjForm',450,150,'location=no,status=no,toolbar=no,scrollbars=no');
@@ -41,14 +50,6 @@ function modifaxeform(idformulaire)
 {
 	PopupCenter('formulaire_axe.php?idformulaire='+idformulaire,'WinModifAxesForm',550,400,'location=no,status=no,toolbar=no,scrollbars=yes,resizable=no');
 }
-
-
-function rechargerlistepopup(idobj,idformulaire) 
-{
-	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire); 
-	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro depuis une popup
-}
-
 function popupajout(idformulaire,idobj,bMesForms) 
 {
 	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
@@ -83,7 +84,7 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 	
 	if (v_iNbUtilisations > 0)
 	{
-		sMessage += "Ce formulaire est actuellement utilisé ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
+		sMessage += "Cette activité est actuellement utilisé ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
 		sMessage += "Si vous le modifiez, il perdra peut-être son sens dans le contexte où il est en cours d'utilisation.\n";
 		sMessage += "\n\n";
 	}
@@ -93,15 +94,15 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 		if (sMessage != "")
 			sMessage += "De plus, toujours dans le cadre des cours, ";
 		else
-			sMessage += "Ce formulaire a déjà été utilisé dans le cadre des cours sur la plate-forme, et";
+			sMessage += "Cette activité a déjà été utilisée dans le cadre des cours sur la plate-forme, et";
 		
-		sMessage += " il a déjà été complété par des étudiants ("+v_iNbRemplis+" fois).\n";
-		sMessage += "Si vous le modifiez, il se peut que les réponses déjà données par ces étudiants soient perdues.\n";
+		sMessage += " elle a déjà été complétée par des étudiants ("+v_iNbRemplis+" fois).\n";
+		sMessage += "Si vous la modifiez, il se peut que les réponses déjà données par ces étudiants soient perdues.\n";
 		sMessage += "\n\n";
 	}
 	
 	if (sMessage != "")
-		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillé de faire une copie de ce formulaire, et de modifier cette copie.\n\n");
+		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillé de faire une copie de cette activité, et de modifier cette copie.\n\n");
 }
 
 var PARAM_NOM = 0;
