@@ -179,13 +179,6 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	{
 		$oBlockSelFormul->effacer();
 	}
-	if($_GET['typeaction'] == 'selection')
-	{
-		if($bFormulaireVisiblePersCourante)
-			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);</script>";
-		else
-			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite(0,0,$bMesForms);</script>";
-	}
 	// Affichage du menu
 	if($v_iIdFormulaire > 0 && $bFormulaireVisiblePersCourante)
 	{
@@ -198,8 +191,17 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		if($v_iIdObjForm > 0)
 		{
 			$oObjFormSel = new CObjetFormulaire($oProjet->oBdd, $v_iIdObjForm);
-			$oTpl->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre());
-			$oBlocElemLiens->afficher();
+			if($oObjFormSel->retIdForm() == $v_iIdFormulaire)
+			{
+				$oTpl->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre());
+				$oBlocElemLiens->afficher();
+			}
+			else
+			{
+				$oTpl->remplacer("{nom_elem_courant}", "-");
+				$oBlocElemLiens->effacer();
+				$v_iIdObjForm = 0;
+			}
 		}
 		else
 		{
@@ -211,6 +213,13 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	{
 		$oBlocLienForm->effacer();
 		$oBlocElem->effacer();
+	}
+	if($_GET['typeaction'] == 'selection')
+	{
+		if($bFormulaireVisiblePersCourante)
+			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);</script>";
+		else
+			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite(0,0,$bMesForms);</script>";
 	}
 	$oTpl->remplacer("{Message_Etat}",$sMessageEtat);
 	$oTpl->afficher();
