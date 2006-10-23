@@ -129,7 +129,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		
 		case 'ajouter' :
 			$oFormulaire = new CFormulaire($oProjet->oBdd);
-			$v_iIdFormulaire = $oFormulaire->ajouter($iIdPers);
+			$v_iIdFormulaire = $oFormulaire->ajouter($iIdPersCourant);
 			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,0,$bMesForms);</script>";
 			break;
 	}
