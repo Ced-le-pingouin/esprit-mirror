@@ -209,7 +209,7 @@ class CActiv
 	{
 		$this->initSousActivs();
 		foreach ($this->aoSousActivs as $oSousActiv)
-			$oSousActiv->copier($v_iIdActiv, TRUE, $v_sExportation);
+			$oSousActiv->copier($v_iIdActiv, $v_sExportation);
 		$this->aoSousActivs = NULL;
 	}
 	

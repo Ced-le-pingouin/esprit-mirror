@@ -171,7 +171,7 @@ $asReplTpl = array(
 	, nl2br(htmlentities(TXT_COMPOSER_SA_GALERIE_CONSIGNE,ENT_COMPAT,"UTF-8"))
 	, htmlentities(TXT_TITRE,ENT_COMPAT,"UTF-8")
 	, htmlentities(TXT_ETAT,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_DEPOSE_PAR),ENT_COMPAT,"UTF-8"
+	, htmlentities(TXT_DEPOSE_PAR,ENT_COMPAT,"UTF-8")
 );
 
 $oTpl->remplacer($asRechTpl,$asReplTpl);
