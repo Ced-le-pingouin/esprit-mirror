@@ -34,61 +34,35 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset>
+	<fieldset id="zoneenonce">
 	<legend>Enoncé</legend>
-	<table>
-	<tr>
-		<td>
-			{sMessageErreur1} <label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTL}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement énoncé :
-		</td>
-		<td>
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">{sMessageErreur1} Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTL}</textarea>
 	</fieldset>
-	<fieldset>
+	<fieldset id="zonereponse">
 	<legend>Zone réponse</legend>
-	<table>
-	<tr>
-		<td>
-			{sMessageErreur2} <label for="idlargeur">Largeur de la boîte de texte :</label>
-		</td>
-		<td>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<ul>
+		<li>
+			<label for="idlargeur">{sMessageErreur2} Largeur de la boîte de texte :</label>
 			<input type="text" size="3" maxlength="10" name="Largeur" id="idlargeur" value="{LargeurQTL}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur3} <label for="idhauteur">Hauteur de la boîte de texte :</label>
-		</td>
-		<td>
+		</li>
+		<li>
+			<label for="idhauteur">{sMessageErreur3} Hauteur de la boîte de texte :</label>
 			<input type="text" size="3" maxlength="10" name="Hauteur" id="idhauteur" value="{HauteurQTL}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+		</li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />
 	</form>
@@ -102,76 +76,42 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset><legend>Enoncé</legend>
-	<table>
-	<tr>
-		<td>
-			<label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTC}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement énoncé :
-		</td>
-		<td>
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+	<fieldset id="zoneenonce">
+	<legend>Enoncé</legend>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTC}</textarea>
 	</fieldset>
-	<fieldset>
+	<fieldset id="zonereponse">
 	<legend>Zone réponse</legend>
-	<table>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<table border="0" cellpadding="1" cellspacing="10">
 	<tr>
-		<td>
-			<label for="idtxtav">Texte avant la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAv" id="idtxtav" value="{TxtAvQTC}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idtxtap">Texte après la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAp" id="idtxtap" value="{TxtApQTC}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur1} <label for="idlargeur">Taille de la boîte de texte :</label>
-		</td>
-		<td>
-			<input type="text" size="3" maxlength="3" name="Largeur" id="idlargeur" value="{LargeurQTC}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur2} <label for="idmaxcar">Nombre de caractères maximum :</label>
-		</td>
-		<td>
-			<input type="text" size="3" maxlength="3" name="MaxCar" id="idmaxcar" value="{MaxCarQTC}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAv">{TxtAvQTC}</textarea></td>
+		<td id="bloczonerep">Zone<br />réponse</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQTC}</textarea></td>
 	</tr>
 	</table>
+	<ul>
+		<li>
+			<label for="idlargeur">{sMessageErreur1} Taille de la boîte de texte :</label>
+			<input type="text" size="3" maxlength="3" name="Largeur" id="idlargeur" value="{LargeurQTC}" onblur="verifNumeric(this)" />
+		</li>
+		<li>
+			<label for="idmaxcar">{sMessageErreur2} Nombre de caractères maximum :</label>
+			<input type="text" size="3" maxlength="3" name="MaxCar" id="idmaxcar" value="{MaxCarQTC}" onblur="verifNumeric(this)" />
+		</li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />
 	</form>
@@ -185,85 +125,46 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset>
+	<fieldset id="zoneenonce">
 	<legend>Enoncé</legend>
-	<table>
-	<tr>
-		<td>
-			<label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQN}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement énoncé :
-		</td>
-		<td>
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQN}</textarea>
 	</fieldset>
-	<fieldset>
+	<fieldset id="zonereponse">
 	<legend>Zone réponse</legend>
-	<table>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<table border="0" cellpadding="1" cellspacing="10">
 	<tr>
-		<td>
-			<label for="idtxtav">Texte avant la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAv" id="idtxtav" value="{TxtAvQN}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idtxtap">Texte après la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAp" id="idtxtap" value="{TxtApQN}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur1} <label for="idnbmin">Nombre minimum :</label>
-		</td>
-		<td>
-			<input type="text" size="10" maxlength="9" name="NbMin" id="idnbmin" value="{NbMinQN}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur2} <label for="idnbmax">Nombre maximum :</label>
-		</td>
-		<td>
-			<input type="text" size="10" maxlength="10" name="NbMax" id="idnbmax" value="{NbMaxQN}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			{sMessageErreur3} <label for="idmultix">Coefficient multiplicateur :</label>
-		</td>
-		<td>
-			<input type="text" size="5" maxlength="10" name="Multi" id="idmultix" value="{MultiQN}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAv">{TxtAvQN}</textarea></td>
+		<td id="bloczonerep">Zone<br />réponse</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQN}</textarea></td>
 	</tr>
 	</table>
+	<ul>
+		<li>
+			<label for="idnbmin">{sMessageErreur1} Nombre minimum :</label>
+			<input type="text" size="10" maxlength="9" name="NbMin" id="idnbmin" value="{NbMinQN}" onblur="verifNumeric(this)" />
+		</li>
+		<li>
+			<label for="idnbmax">{sMessageErreur2} Nombre maximum :</label>
+			<input type="text" size="10" maxlength="10" name="NbMax" id="idnbmax" value="{NbMaxQN}" onblur="verifNumeric(this)" />
+		</li>
+		<li>
+			<label for="idmultix">{sMessageErreur3} Coefficient multiplicateur :</label>
+			<input type="text" size="5" maxlength="10" name="Multi" id="idmultix" value="{MultiQN}" onblur="verifNumeric(this)" />
+		</li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />
 	</form>
@@ -277,63 +178,38 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset><legend>Enoncé</legend>
-	<table>
+	<fieldset id="zoneenonce">
+	<legend>Enoncé</legend>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQLD}</textarea>
+	</fieldset>
+	<fieldset id="zonereponse">
+	<legend>Zone réponse</legend>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<table border="0" cellpadding="1" cellspacing="10">
 	<tr>
-		<td>
-			<label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQLD}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement énoncé :
-		</td>
-		<td>                                    
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAv">{TxtAvQLD}</textarea></td>
+		<td id="bloczonerep">Zone<br />réponse</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQLD}</textarea></td>
 	</tr>
 	</table>
-	</fieldset>
-	<fieldset><legend>Zone réponse</legend>
 	<table>
-	<tr>
-		<td>
-			<label for="idtxtav">Texte avant la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAv" id="idtxtav" value="{TxtAvQLD}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idtxtap">Texte après la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAp" id="idtxtap" value="{TxtApQLD}" />
-		</td>
-	</tr>
 	<tr>
 		<td>
 			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
 		</td>
 	{RetourReponseQCModif}
-	<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
-	</tr>
 	</table>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
@@ -350,47 +226,33 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset><legend>Enoncé</legend>
-	<table>
+	<fieldset id="zoneenonce">
+	<legend>Enoncé</legend>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQR}</textarea>
+	</fieldset>
+	<fieldset id="zonereponse">
+	<legend>Zone réponse</legend>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<table border="0" cellpadding="1" cellspacing="10">
 	<tr>
-		<td>
-			<label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQR}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement énoncé :
-		</td>
-		<td>
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAv">{TxtAvQR}</textarea></td>
+		<td id="bloczonerep">Zone<br />réponse</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQR}</textarea></td>
 	</tr>
 	</table>
-	</fieldset>
-	<fieldset><legend>Zone réponse</legend>
 	<table>
-	<tr>
-		<td> 
-			<label for="idtxtav">Texte avant la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAv" id="idtxtav" value="{TxtAvQR}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idtxtap">Texte après la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAp" id="idtxtap" value="{TxtApQR}" />
-		</td>
-	</tr>
 	<tr>
 		<td> 
 			Disposition :
@@ -405,17 +267,6 @@ function soumettre(TypeAct,Parametre)
 			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
 		</td>
 		{RetourReponseQRModif} 
-		<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
-	</tr>
 	</table>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
@@ -432,49 +283,33 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset>
+	<fieldset id="zoneenonce">
 	<legend>Enoncé</legend>
-	<table>
+	<ul>
+		<li><input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
+	</ul>
+	<label for="idenonce">{sMessageErreur1} Enoncé :</label>
+	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQC}</textarea>
+	</fieldset>
+	<fieldset id="zonereponse">
+	<legend>Zone réponse</legend>
+	<ul id="alignrep">
+		<li><input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label></li>
+		<li><input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label></li>
+		<li><input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label></li>
+		<li><input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label></li>
+	</ul>
+	<table border="0" cellpadding="1" cellspacing="10">
 	<tr>
-		<td>
-			{sMessageErreur1} <label for="idenonce">Enoncé :</label>
-		</td>
-		<td>
-			<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQC}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-		Alignement énoncé :
-		</td>
-		<td>
-			<input type="radio" name="AlignEnon" id="idAEleft" value="left" {ae1} /><label for="idAEleft">Gauche</label>
-			<input type="radio" name="AlignEnon" id="idAEright" value="right" {ae2} /><label for="idAEright">Droite</label>
-			<input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label>
-			<input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label>
-		</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAv">{TxtAvQC}</textarea></td>
+		<td id="bloczonerep">Zone<br />réponse</td>
+		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQC}</textarea></td>
 	</tr>
 	</table>
-	</fieldset>
-	<fieldset>
-	<legend>Zone réponse</legend>
 	<table>
-	<tr>
-		<td>
-			<label for="idtxtav">Texte avant la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAv" id="idtxtav" value="{TxtAvQC}" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idtxtap">Texte après la réponse :</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="TxtAp" id="idtxtap" value="{TxtApQC}" />
-		</td>
-	</tr>
 	<tr>
 		<td>
 			Disposition :
@@ -505,17 +340,6 @@ function soumettre(TypeAct,Parametre)
 			<input type="text" size="70" maxlength="254" name="MessMax" id="idmessmax" value="{MessMaxQC}" />
 		</td>
 	</tr>
-	<tr>
-		<td>
-			Alignement réponse :
-		</td>
-		<td>
-			<input type="radio" name="AlignRep" id="idARleft" value="left" {ar1} /><label for="idARleft">Gauche</label>
-			<input type="radio" name="AlignRep" id="idARright" value="right" {ar2} /><label for="idARright">Droite</label>
-			<input type="radio" name="AlignRep" id="idARcenter" value="center" {ar3} /><label for="idARcenter">Centrer</label>
-			<input type="radio" name="AlignRep" id="idARjustify" value="justify" {ar4} /><label for="idARjustify">Justifier</label>
-		</td>
-	</tr>
 	</table>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
@@ -532,29 +356,16 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset>
+	<fieldset id="zoneenonce">
 	<legend>Mise en page de type "texte"</legend>
-	<table>
-	<tr>
-		<td>
-			{sMessageErreur1}  <label for="idtexte">Texte :</label>
-		</td>
-		<td>
-			<textarea name="Texte" id="idtexte" rows="5" cols="70">{TexteMPT}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement :
-		</td>
-		<td>
-			<input type="radio" name="Align" id="idAleft" value="left" {ae1} /><label for="idAleft">Gauche</label>
-			<input type="radio" name="Align" id="idAright" value="right" {ae2} /><label for="idAright">Droite</label>
-			<input type="radio" name="Align" id="idAcenter" value="center" {ae3} /><label for="idAcenter">Centrer</label>
-			<input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+	<ul>
+		<li><input type="radio" name="Align" id="idAleft" value="left" {ae1} /><label for="idAleft">Gauche</label></li>
+		<li><input type="radio" name="Align" id="idAright" value="right" {ae2} /><label for="idAright">Droite</label></li>
+		<li><input type="radio" name="Align" id="idAcenter" value="center" {ae3} /><label for="idAcenter">Centrer</label></li>
+		<li><input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label></li>
+	</ul>
+	<label for="idtexte">{sMessageErreur1} Texte :</label>
+	<textarea name="Texte" id="idtexte" rows="5" cols="70">{TexteMPT}</textarea>
 	</fieldset>
 <input type="hidden" name="envoyer" value="1" />
 </form>
@@ -568,31 +379,18 @@ function soumettre(TypeAct,Parametre)
 		<option value="{ordre_obj_form}" {obj_actuel}>{ordre_obj_form}</option>
 	[BLOCK_POSITION-]
 	</select>
-	<fieldset>
+	<fieldset id="zonempsep">
 	<legend>Mise en page de type "séparateur"</legend>
-	<table>
-	<tr>
-		<td>
-			{sMessageErreur1} <label for="idlargeur">Largeur :</label>
-		</td>
-		<td>
-			<input type="text" size="4" maxlength="4" name="Largeur" id="idlargeur" value="{LargeurMPS}" onblur="verifNumeric(this)" />
-			<input type="radio" name="TypeLarg" id="idpour" value="P" {sAR1} /><label for="idpour">pourcents</label>
-			<input type="radio" name="TypeLarg" id="idpix" value="N" {sAR2} /><label for="idpix">pixels</label>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Alignement :
-		</td>
-		<td>
-			<input type="radio" name="Align" id="idAleft" value="left" {ae1} /><label for="idAleft">Gauche</label>
-			<input type="radio" name="Align" id="idAright" value="right" {ae2} /><label for="idAright">Droite</label>
-			<input type="radio" name="Align" id="idAcenter" value="center" {ae3} /><label for="idAcenter">Centrer</label>
-			<input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label>
-		</td>
-	</tr>
-	</table>
+	<ul>
+		<li><input type="radio" name="Align" id="idAleft" value="left" {ae1} /><label for="idAleft">Gauche</label></li>
+		<li><input type="radio" name="Align" id="idAright" value="right" {ae2} /><label for="idAright">Droite</label></li>
+		<li><input type="radio" name="Align" id="idAcenter" value="center" {ae3} /><label for="idAcenter">Centrer</label></li>
+		<li><input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label></li>
+	</ul>
+	<label for="idlargeur">{sMessageErreur1} Largeur :</label>
+	<input type="text" size="4" maxlength="4" name="Largeur" id="idlargeur" value="{LargeurMPS}" onblur="verifNumeric(this)" />
+	<input type="radio" name="TypeLarg" id="idpour" value="P" {sAR1} /><label for="idpour">pourcents</label>
+	<input type="radio" name="TypeLarg" id="idpix" value="N" {sAR2} /><label for="idpix">pixels</label>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />
 </form>

@@ -73,7 +73,7 @@ label
 legend
 {
 	font-weight: bold;
-	color: rgb(111,105,87);
+	color: rgb(153,73,89);
 }
 form
 {
@@ -172,6 +172,7 @@ a:hover
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 1;
 }
 #entete h3
 {
@@ -188,4 +189,48 @@ a:hover
 #conteneur
 {
 	padding: 33px 5px 0 5px;
+}
+#zoneenonce, #zonempsep, #zonereponse
+{
+	padding: 4px;
+	margin: 15px 0;
+}
+#zoneenonce label
+{
+	vertical-align: top;
+}
+#zonereponse ul
+{
+	margin: 0;
+	padding: 0;
+}
+#zoneenonce ul, #zonempsep ul, #alignrep
+{
+	display: block;
+	text-align: right;
+	margin: 2px;
+}
+#zonereponse li
+{
+	list-style-image: none;
+	list-style-type: none;
+	margin: 0 0 7px 0;
+	padding: 0;
+}
+#zoneenonce li, #zonempsep li, #alignrep li
+{
+	list-style-image: none;
+	list-style-type: none;
+	padding: 3px 7px;
+	display: inline;
+	margin: 0;
+}
+#bloczonerep
+{
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	background-color: rgb(255,255,255);
+	color: rgb(153,73,89);
+	border: 1px solid rgb(127,157,185);
 }
