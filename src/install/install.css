@@ -26,13 +26,50 @@ pre {
 	line-height: 1.4em;
 }
 
-input {
-  position: relative;
-  top: 6px;
-  margin: 3px 0;
-}
-
 .erreur {
 	color: rgb(136,37,37);
 	font-weight: bold;
+}
+
+/* Formulaire */
+form label {
+  display: inline-block;
+  line-height: 1.8;
+  vertical-align: top;
+  width: 18em;
+}
+
+form input {
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  padding-top:1px;
+  padding-right:1px;
+  padding-bottom:1px;
+  padding-left:1px;
+}
+
+fieldset ol { 
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
+  padding-top:0;
+  padding-right:0;
+  padding-bottom:0;
+  padding-left:0;
+}
+fieldset li { 
+  list-style-position:outside;
+  list-style-type:none;
+  list-style-image:none;
+  padding-top:4px;
+  padding-right:4px;
+  padding-bottom:4px;
+  padding-left:4px;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:0;
+  margin-left:0;
 }
