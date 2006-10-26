@@ -204,6 +204,9 @@ function soumettre(TypeAct,Parametre)
 		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQLD}</textarea></td>
 	</tr>
 	</table>
+	</fieldset>
+	<fieldset id="zoneproposition">
+	<legend>Propositions</legend>
 	<table>
 	<tr>
 		<td>
@@ -252,16 +255,14 @@ function soumettre(TypeAct,Parametre)
 		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQR}</textarea></td>
 	</tr>
 	</table>
+	</fieldset>
+	<fieldset id="zoneproposition">
+	<legend>Propositions</legend>
+	<ul id="alignrep">
+		<li><input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label></li>
+		<li><input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label></li>
+	</ul>
 	<table>
-	<tr>
-		<td> 
-			Disposition :
-		</td>
-		<td>
-			<input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label>
-			<input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label>
-		</td>
-	</tr>
 	<tr>
 		<td> 
 			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
@@ -309,38 +310,24 @@ function soumettre(TypeAct,Parametre)
 		<td width="45%"><textarea cols="40" rows="2" name="TxtAp">{TxtApQC}</textarea></td>
 	</tr>
 	</table>
+	</fieldset>
+	<fieldset id="zoneproposition">
+	<legend>Propositions</legend>
+	<ul id="alignrep">
+		<li><input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label></li>
+		<li><input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label></li>
+	</ul>
 	<table>
-	<tr>
-		<td>
-			Disposition :
-		</td>
-		<td>
-			<input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label>
-			<input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label>
-		</td>
-	</tr>
 	<tr>
 		<td>
 			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
 		</td>
 	{RetourReponseQCModif}
-	<tr>
-		<td>
-			{sMessageErreur2} <label for="idnbrepmax">Nombre de réponses max :</label>
-		</td>
-		<td>
-			<input type="text" size="2" maxlength="2" name="NbRepMax" id="idnbrepmax" value="{NbRepMaxQC}" onblur="verifNumeric(this)" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idmessmax">Message "Maximum dépassé"</label>
-		</td>
-		<td>
-			<input type="text" size="70" maxlength="254" name="MessMax" id="idmessmax" value="{MessMaxQC}" />
-		</td>
-	</tr>
 	</table>
+	<ul>
+		<li><label for="idnbrepmax">{sMessageErreur2} Nombre de réponses max :</label><input type="text" size="2" maxlength="2" name="NbRepMax" id="idnbrepmax" value="{NbRepMaxQC}" onblur="verifNumeric(this)" /></li>
+		<li><label for="idmessmax">Message "Maximum dépassé"</label><input type="text" size="70" maxlength="254" name="MessMax" id="idmessmax" value="{MessMaxQC}" /></li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
 	<input type="hidden" name="parametre" value="" />

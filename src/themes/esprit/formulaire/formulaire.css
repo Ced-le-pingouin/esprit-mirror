@@ -190,7 +190,7 @@ a:hover
 {
 	padding: 33px 5px 0 5px;
 }
-#zoneenonce, #zonempsep, #zonereponse
+#zoneenonce, #zonempsep, #zonereponse, #zoneproposition
 {
 	padding: 4px;
 	margin: 15px 0;
@@ -199,7 +199,7 @@ a:hover
 {
 	vertical-align: top;
 }
-#zonereponse ul
+#zonereponse ul, #zoneproposition ul
 {
 	margin: 0;
 	padding: 0;
@@ -210,7 +210,7 @@ a:hover
 	text-align: right;
 	margin: 2px;
 }
-#zonereponse li
+#zonereponse li, #zoneproposition li
 {
 	list-style-image: none;
 	list-style-type: none;
