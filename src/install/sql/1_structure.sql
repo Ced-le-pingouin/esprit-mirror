@@ -790,18 +790,18 @@ CREATE TABLE `QTexteLong` (
 -- --------------------------------------------------------
 
 -- 
--- Structure de la table `Reponse`
+-- Structure de la table `PropositionReponse`
 -- 
 
-CREATE TABLE `Reponse` (
-  `IdReponse` int(10) unsigned NOT NULL auto_increment,
-  `TexteReponse` varchar(255) collate utf8_unicode_ci default NULL,
-  `OrdreReponse` tinyint(3) unsigned NOT NULL default '0',
-  `FeedbackReponse` text collate utf8_unicode_ci NOT NULL,
-  `CorrectionReponse` enum('v','x','-') collate utf8_unicode_ci NOT NULL default '-',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdReponse`),
-  KEY `IdObjForm` (`IdObjForm`)
+CREATE TABLE `PropositionReponse` (
+  `IdPropRep` int(10) unsigned NOT NULL auto_increment,
+  `TextePropRep` varchar(255) collate utf8_unicode_ci default NULL,
+  `OrdrePropRep` tinyint(3) unsigned NOT NULL default '0',
+  `ScorePropRep` int(10) NOT NULL default '0',
+  `FeedbackPropRep` text collate utf8_unicode_ci NOT NULL,
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`IdPropRep`),
+  KEY `IdObjFormul` (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

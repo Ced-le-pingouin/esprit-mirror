@@ -108,22 +108,22 @@ class CQListeDeroul
 		}
 		
 		//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
 		
 		$CodeHtml="<select name=\"{$this->iId}\">\n";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQLD))
 		{
-			$oReponse = new CReponse($this->oBdd->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
 			$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			if ($iIdReponseEtu == $IdReponseTemp) 
 				{$sPreSelection = "selected=\"selected\"";}
@@ -179,20 +179,20 @@ class CQListeDeroul
 	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 		$sCodeHtml = "";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRep))
 		{
-			$oReponse = new CReponse($this->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($this->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			if ($sCodeHtml != "")
 				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";

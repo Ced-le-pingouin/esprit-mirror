@@ -72,20 +72,20 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 							
 							case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
 									$oQListeDeroul->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);
 									break;
 							
 							case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 									$oQRadio->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);						 
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);						 
 									break;
 							
 							case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
 									$oQCocher->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);
 									break;
 							
 							case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);

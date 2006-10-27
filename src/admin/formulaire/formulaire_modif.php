@@ -235,10 +235,10 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						{							// sur ajouter, $_POST["rep"] n'existe pas 
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
-								$oReponse = new CReponse($oProjet->oBdd);
-								$oReponse->defId($v_iIdReponse);
-								$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
-								$oReponse->enregistrer(false);  // On utilise FALSE car on n'initialise (on ne connait pas sa position)
+								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+								$oPropositionReponse->defId($v_iIdReponse);
+								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
+								$oPropositionReponse->enregistrer(false);  // On utilise FALSE car on n'initialise (on ne connait pas sa position)
 								if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];
@@ -247,7 +247,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 										if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 										{
 											$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
-											$oReponse_Axe->defIdReponse($v_iIdReponse);
+											$oReponse_Axe->defIdPropRep($v_iIdReponse);
 											$oReponse_Axe->defIdAxe($v_iIdAxe);
 											$oReponse_Axe->defPoids($v_iPoids);
 											$oReponse_Axe->enregistrer();
@@ -264,14 +264,14 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
 						if($_POST['typeaction'] == 'ajouter')
 						{
-							$oReponse = new CReponse($oProjet->oBdd);
-							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
-							$oReponse->defIdObjForm($v_iIdObjForm);
-							$oReponse->defOrdreReponse($iOrdreMax);
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$iOrdreMax = 1 + $oPropositionReponse->retMaxOrdre($iIdObjActuel);
+							$oPropositionReponse->defIdObjFormul($v_iIdObjForm);
+							$oPropositionReponse->defOrdrePropRep($iOrdreMax);
 							/* 	La réponse qui sera créée ici contiendra : 	le numero de l'objet auquel elle appartient
 																			l'ordre dans lequel elle sera affichée (toujours en dernière place)
 																			son numéro d'identifiant sera attribué automatiquement par MySql */
-							$oReponse->enregistrer();
+							$oPropositionReponse->enregistrer();
 						}
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
@@ -279,8 +279,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if($_POST['typeaction'] == 'supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
-							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
-							$oReponse->effacer();
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
+							$oPropositionReponse->effacer();
 						}
 					}
 					$oTpl->remplacer("{EnonQLD}",$oQListeDeroul->retEnonQLD());
@@ -323,10 +323,10 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						{							// $_POST["rep"] n'existe pas 
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
-								$oReponse = new CReponse($oProjet->oBdd);
-								$oReponse->defId($v_iIdReponse);
-								$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
-								$oReponse->enregistrer(FALSE);
+								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+								$oPropositionReponse->defId($v_iIdReponse);
+								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
+								$oPropositionReponse->enregistrer(FALSE);
 								if(isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];
@@ -335,7 +335,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 										if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 										{
 											$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
-											$oReponse_Axe->defIdReponse($v_iIdReponse);
+											$oReponse_Axe->defIdPropRep($v_iIdReponse);
 											$oReponse_Axe->defIdAxe($v_iIdAxe);
 											$oReponse_Axe->defPoids($v_iPoids);
 											$oReponse_Axe->enregistrer();
@@ -353,15 +353,15 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
 						if($_POST['typeaction'] == 'ajouter')
 						{
-							$oReponse = new CReponse($oProjet->oBdd);
-							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
-							$oReponse->defIdObjForm($v_iIdObjForm);
-							$oReponse->defOrdreReponse($iOrdreMax);
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$iOrdreMax = 1 + $oPropositionReponse->retMaxOrdre($iIdObjActuel);
+							$oPropositionReponse->defIdObjFormul($v_iIdObjForm);
+							$oPropositionReponse->defOrdrePropRep($iOrdreMax);
 							/* La réponse qui sera créée ici contiendra :	le numero de l'objet auquel elle appartient
 																			l'ordre dans lequel elle sera affichée (toujours en dernière place)
 																			son numéro d'identifiant sera attribué automatiquement par MySql
 																			le texte de la réponse sera attribué par après.	*/
-							$oReponse->enregistrer();
+							$oPropositionReponse->enregistrer();
 						}
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
@@ -369,8 +369,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if($_POST['typeaction']=='supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
-							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
-							$oReponse->effacer();
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
+							$oPropositionReponse->effacer();
 						}
 					}
 					$oTpl->remplacer("{EnonQR}",$oQRadio->retEnonQR());
@@ -429,10 +429,10 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 							{							//sur ajouter, $_POST["rep"] n'existe pas 
 								foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 								{
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->defId($v_iIdReponse);
-									$oReponse->defTexteReponse(stripslashes($v_sTexteTemp));
-									$oReponse->enregistrer(FALSE);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->defId($v_iIdReponse);
+									$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
+									$oPropositionReponse->enregistrer(FALSE);
 									if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe 
 									{								// n'est défini pour ce formulaire
 										$tab = $_POST["repAxe"];
@@ -441,7 +441,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 											if(($v_iPoids != "") && (is_numeric($v_iPoids)))
 											{
 												$oReponse_Axe = new CReponse_Axe($oProjet->oBdd);
-												$oReponse_Axe->defIdReponse($v_iIdReponse);
+												$oReponse_Axe->defIdPropRep($v_iIdReponse);
 												$oReponse_Axe->defIdAxe($v_iIdAxe);
 												$oReponse_Axe->defPoids($v_iPoids);
 												$oReponse_Axe->enregistrer();
@@ -459,15 +459,15 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// un enregistrement d'office dans la BD des modifications déjà effectuées sur l'objet en cours.(si pas d'erreur) 
 						if($_POST['typeaction'] == 'ajouter')
 						{
-							$oReponse = new CReponse($oProjet->oBdd);
-							$iOrdreMax = 1 + $oReponse->retMaxOrdre($iIdObjActuel);
-							$oReponse->defIdObjForm($v_iIdObjForm);
-							$oReponse->defOrdreReponse($iOrdreMax);
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$iOrdreMax = 1 + $oPropositionReponse->retMaxOrdre($iIdObjActuel);
+							$oPropositionReponse->defIdObjFormul($v_iIdObjForm);
+							$oPropositionReponse->defOrdrePropRep($iOrdreMax);
 							/* La réponse qui sera créée ici contiendra :	le numero de l'objet auquel elle appartient
 																			l'ordre dans lequel elle sera affichée (toujours en dernière place)
 																			son numéro d'identifiant sera attribué automatiquement par MySql
 																			le texte de la réponse sera attribué par après.	*/
-							$oReponse->enregistrer();
+							$oPropositionReponse->enregistrer();
 						}
 						// Suppression d'une réponse
 						// Attention lorsque l'on clique sur le lien 'supprimer' cela implique également 
@@ -475,8 +475,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						if($_POST['typeaction'] == 'supprimer')
 						{
 							$v_iIdReponse = $_POST['parametre'];
-							$oReponse = new CReponse($oProjet->oBdd,$v_iIdReponse);
-							$oReponse->effacer();
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
+							$oPropositionReponse->effacer();
 						}
 					}
 					$oTpl->remplacer("{EnonQC}",$oQCocher->retEnonQC());

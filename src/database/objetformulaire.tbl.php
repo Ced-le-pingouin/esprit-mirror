@@ -129,16 +129,16 @@ class CObjetFormulaire
 		if (isset($this->aoReponsesPossibles))
 			return;
 		
-		$sRequeteSql = "SELECT * FROM Reponse"
-					." WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse"
+					." WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$iIndexReponse = $oEnreg->IdReponse;
-			$this->aoReponsesPossibles[$iIndexReponse] = new CReponse($this->oBdd);
+			$iIndexReponse = $oEnreg->IdPropRep;
+			$this->aoReponsesPossibles[$iIndexReponse] = new CPropositionReponse($this->oBdd);
 			$this->aoReponsesPossibles[$iIndexReponse]->init($oEnreg);
 			if ($v_bInitValeursParAxe)
 				$this->aoReponsesPossibles[$iIndexReponse]->initValeursParAxe($v_sListeAxesAutorises);

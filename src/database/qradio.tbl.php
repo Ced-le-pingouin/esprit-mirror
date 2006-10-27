@@ -112,8 +112,8 @@ class CQRadio
 		}
 		
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResulRRQR = $this->oBdd->executerRequete($sRequeteSql);
 		
 		if ($this->oEnregBdd->DispQR == 'Ver')  //Présentation sous forme de tableau
@@ -122,14 +122,14 @@ class CQRadio
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
 			{
-				$oReponse = new CReponse($this->oBdd->oBdd);
-				$oReponse->init($oEnreg);
+				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
+				$oPropositionReponse->init($oEnreg);
 				
 				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oReponse->retTexteReponse();
+				$TexteTemp = $oPropositionReponse->retTextePropRep();
 				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oReponse->retId();
-				$IdObjFormTemp = $oReponse->retIdObjForm();
+				$IdReponseTemp = $oPropositionReponse->retId();
+				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
 					$sPreSelection = "checked=\"checked\"";
@@ -147,14 +147,14 @@ class CQRadio
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
 			{
-				$oReponse = new CReponse($this->oBdd->oBdd);
-				$oReponse->init($oEnreg);
+				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
+				$oPropositionReponse->init($oEnreg);
 				
 				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oReponse->retTexteReponse();
+				$TexteTemp = $oPropositionReponse->retTextePropRep();
 				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oReponse->retId();
-				$IdObjFormTemp = $oReponse->retIdObjForm();
+				$IdReponseTemp = $oPropositionReponse->retId();
+				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
 					$sPreSelection = "checked=\"checked\"";
@@ -225,20 +225,20 @@ class CQRadio
 		*/
 		$oCBdd = new CBdd;
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}' ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}' ORDER BY OrdrePropRep";
 		$hResultInt = $oCBdd->executerRequete($sRequeteSql);
 		
 		$sCodeHtml="";
 		
 		while ($oEnreg = $oCBdd->retEnregSuiv($hResultInt))
 		{	
-			$oReponse = new CReponse($oCBdd->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($oCBdd->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			//Ici(modif) la propriété name est l'Id de la réponse ce qui permet de les identifier pour les enregistrer
 			//mais à l'affichage(liste) la propriété name est l'Id de l'objet ce qui permet d'avoir le meme nom pour

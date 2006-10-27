@@ -277,7 +277,7 @@ class CFormulaireComplete
 			
 			." , Formulaire WRITE"
 			." , Axe READ"
-			." , Reponse READ"
+			." , PropositionReponse READ"
 			." , Formulaire_Axe READ"
 			." , Reponse_Axe READ"
 			

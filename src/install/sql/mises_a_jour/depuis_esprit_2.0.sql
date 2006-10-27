@@ -213,3 +213,44 @@ ALTER TABLE SujetForum
 ALTER TABLE SujetForum_Equipe
     DROP INDEX IdSujetForum,
     ADD PRIMARY KEY (IdSujetForum, IdEquipe);
+
+
+-- Modification pour l'auto-correction des activités en ligne, effectué le 27-10-2006, pour la r194
+ALTER TABLE Reponse 
+	RENAME PropositionReponse
+
+
+ALTER TABLE PropositionReponse
+	DROP `FeedbackReponse`
+
+
+ALTER TABLE PropositionReponse
+	DROP `CorrectionReponse`
+
+
+ALTER TABLE `PropositionReponse` 
+	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL AUTO_INCREMENT
+
+
+ALTER TABLE `PropositionReponse` 
+	CHANGE `TexteReponse` `TextePropRep` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL 
+
+
+ALTER TABLE `PropositionReponse` 
+	CHANGE `OrdreReponse` `OrdrePropRep` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT '0'
+
+
+ALTER TABLE `PropositionReponse` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+
+ALTER TABLE `PropositionReponse` 
+	ADD `ScorePropRep` INT NOT NULL DEFAULT '0' AFTER `OrdrePropRep` 
+
+
+ALTER TABLE `PropositionReponse` 
+	ADD `FeedbackPropRep` TEXT NOT NULL AFTER `ScorePropRep` 
+
+
+ALTER TABLE `Reponse_Axe` 
+	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'

@@ -98,8 +98,8 @@ class CQCocher
 		}
 		
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResultRRQC = $this->oBdd->executerRequete($sRequeteSql);
 		
 		if ($this->oEnregBdd->DispQC == 'Ver')  //Présentation sous forme de tableau
@@ -108,14 +108,14 @@ class CQCocher
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
 			{
-				$oReponse = new CReponse($this->oBdd);
-				$oReponse->init($oEnreg);
+				$oPropositionReponse = new CPropositionReponse($this->oBdd);
+				$oPropositionReponse->init($oEnreg);
 				
 				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oReponse->retTexteReponse();
+				$TexteTemp = $oPropositionReponse->retTextePropRep();
 				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oReponse->retId();
-				$IdObjFormTemp = $oReponse->retIdObjForm();
+				$IdReponseTemp = $oPropositionReponse->retId();
+				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if(in_array($IdReponseTemp, $TabRepEtu))
@@ -134,15 +134,14 @@ class CQCocher
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
 			{
-				$oReponse = new CReponse($this->oBdd);
-				//$oReponse = new CReponse($oCBdd->oBdd);
-				$oReponse->init($oEnreg);
+				$oPropositionReponse = new CPropositionReponse($this->oBdd);
+				$oPropositionReponse->init($oEnreg);
 				
 				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oReponse->retTexteReponse();
+				$TexteTemp = $oPropositionReponse->retTextePropRep();
 				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oReponse->retId();
-				$IdObjFormTemp = $oReponse->retIdObjForm();
+				$IdReponseTemp = $oPropositionReponse->retId();
+				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if (in_array($IdReponseTemp, $TabRepEtu))
@@ -212,20 +211,20 @@ class CQCocher
 	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}' ORDER BY OrdreReponse";
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}' ORDER BY OrdrePropRep";
 		$hResultRRQCM = $this->oBdd->executerRequete($sRequeteSql);
 		
 		$sCodeHtml = "";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQCM))
 		{
-			$oReponse = new CReponse($this->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($this->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			if ($sCodeHtml != "")
 				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";

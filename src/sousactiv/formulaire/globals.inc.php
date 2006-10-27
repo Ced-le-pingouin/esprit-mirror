@@ -10,7 +10,7 @@ require_once(dir_database("qtextelong.tbl.php"));
 require_once(dir_database("qnombre.tbl.php"));
 require_once(dir_database("qlistederoul.tbl.php"));
 require_once(dir_database("qradio.tbl.php"));
-require_once(dir_database("reponse.tbl.php"));
+require_once(dir_database("propositionreponse.tbl.php"));
 require_once(dir_database("qcocher.tbl.php"));
 require_once(dir_database("mpseparateur.tbl.php"));
 require_once(dir_database("mptexte.tbl.php"));
