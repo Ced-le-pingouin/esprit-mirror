@@ -105,7 +105,7 @@ for ($iIdxNiveau=$url_iNiveau; $iIdxNiveau>=$iTypeNiveauFin; $iIdxNiveau--)
 		$sNomEquipe = $oEquipe->aoEquipes[$iIdxEquipe]->retNom();
 		
 		if (strlen($sNomEquipe) > 35)
-			$sNomEquipeCourt = substr($sNomEquipe,0,30)."...";
+			$sNomEquipeCourt = mb_substr($sNomEquipe,0,30)."...";
 		else
 			$sNomEquipeCourt = $sNomEquipe;
 		

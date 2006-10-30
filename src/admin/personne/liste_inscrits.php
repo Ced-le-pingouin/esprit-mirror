@@ -93,7 +93,7 @@ $oTplOnglet = new Template(dir_theme("onglet/onglet_tab.tpl",FALSE,TRUE));
 $sSetOnglet = $oTplOnglet->defVariable("SET_ONGLET");
 
 // Afficher le nom du cours dans la page des titres
-$oTpl->remplacer("{module->nom}",rawurlencode($oProjet->oModuleCourant->retNom()));
+$oTpl->remplacer("{module->nom}",phpString2js($oProjet->oModuleCourant->retNom()));
 
 // Composer la liste des différents inscrits
 $aoComposerListes = array(

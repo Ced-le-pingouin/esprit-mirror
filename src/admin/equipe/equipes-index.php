@@ -73,7 +73,7 @@ $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->ajouter($sBlocJavascript);
 $oBlockHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($sTitrePrincipal,'HTML-ENTITIES', 'UTF-8'));
 $oTpl->remplacer("{frame_src_haut}","equipes-titre.php?TP=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","equipes-menu.php");

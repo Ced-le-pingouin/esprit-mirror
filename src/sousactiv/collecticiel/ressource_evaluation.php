@@ -297,7 +297,7 @@ if (isset($_GET["idResSA"]))
 	$oResSA->initEvaluations();
 	$oResSA->initRessourceAttache();
 	
-	$sSousTitre = rawurlencode($oResSA->retNom());
+	$sSousTitre = phpString2js($oResSA->retNom());
 	
 	$bDejaUneEval = FALSE;
 	
