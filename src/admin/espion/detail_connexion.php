@@ -54,7 +54,7 @@ $sFlecheVersHaut = "&nbsp;<img src=\"".dir_theme("sort-incr.gif")."\" border=\"0
 $sFlecheVersBas = "&nbsp;<img src=\"".dir_theme("sort-desc.gif")."\" border=\"0\">";
 
 $oPersonne = new CPersonne($oProjet->oBdd,$url_iIdPers);
-$sNomCompletUtilisateur = rawurlencode($oPersonne->retNomComplet());
+$sNomCompletUtilisateur = phpString2js($oPersonne->retNomComplet());
 unset($oPersonne);
 
 $oEvenement->defIdFormation($oProjet->oFormationCourante->retId());

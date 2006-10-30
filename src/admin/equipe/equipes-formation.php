@@ -42,7 +42,7 @@ $iNbrModules = $oProjet->oFormationCourante->initModules();
 //
 // *************************************
 
-$sSousTitre = rawurlencode($oProjet->oFormationCourante->retNom());
+$sSousTitre = phpString2js($oProjet->oFormationCourante->retNom());
 
 if ($bInscritAuto)
 {
@@ -50,7 +50,7 @@ if ($bInscritAuto)
 }
 else if ($iNbrModules > 0)
 {
-	$sSousTitre = rawurlencode($oProjet->oFormationCourante->aoModules[0]->retNom());
+	$sSousTitre = phpString2js($oProjet->oFormationCourante->aoModules[0]->retNom());
 	$iNiveau = TYPE_MODULE;
 }
 
@@ -67,8 +67,8 @@ $sNom = $oProjet->oFormationCourante->retNom();
 if ($iNiveau == TYPE_FORMATION)
 {
 
-	$oBlock_Formation_Ouvert->remplacer("{nom_formation}",htmlentities($sNom,ENT_COMPAT,"UTF-8"));
-	$oBlock_Formation_Ouvert->remplacer("{nom_formation_encoder}",rawurlencode($sNom));
+	$oBlock_Formation_Ouvert->remplacer("{nom_formation}",mb_convert_encoding($sNom,'HTML-ENTITIES', 'UTF-8'));
+	$oBlock_Formation_Ouvert->remplacer("{nom_formation_encoder}",phpString2js($sNom));
 	$oBlock_Formation_Ouvert->remplacer("{id_formation}",$oProjet->oFormationCourante->retId());
 	$oBlock_Formation_Ouvert->remplacer("{type_formation}",TYPE_FORMATION);
 	
@@ -77,8 +77,8 @@ if ($iNiveau == TYPE_FORMATION)
 }
 else
 {
-	$oBlock_Formation_Fermer->remplacer("{nom_formation}",htmlentities($sNom,ENT_COMPAT,"UTF-8"));
-	$oBlock_Formation_Fermer->remplacer("{nom_formation_encoder}",rawurlencode($sNom));
+	$oBlock_Formation_Fermer->remplacer("{nom_formation}",mb_convert_encoding($sNom,'HTML-ENTITIES', 'UTF-8'));
+	$oBlock_Formation_Fermer->remplacer("{nom_formation_encoder}",phpString2js($sNom));
 	
 	$oBlock_Formation_Ouvert->effacer();
 	$oBlock_Formation_Fermer->afficher();
@@ -104,8 +104,8 @@ for ($iIdxModule=0; $iIdxModule<$iNbrModules; $iIdxModule++)
 	$oBlock_Module->remplacer("{ordre_module}",($iIdxModule+1));
 	$oBlock_Module->remplacer("{id_module}",$poModule->retId());
 	$oBlock_Module->remplacer("{type_module}",TYPE_MODULE);
-	$oBlock_Module->remplacer("{nom_module}",htmlentities($sNom,ENT_COMPAT,"UTF-8"));
-	$oBlock_Module->remplacer("{nom_module_encoder}",rawurlencode($sNom));
+	$oBlock_Module->remplacer("{nom_module}",mb_convert_encoding($sNom,'HTML-ENTITIES', 'UTF-8'));
+	$oBlock_Module->remplacer("{nom_module_encoder}",phpString2js($sNom));
 	
 	if ($iIdxModule == 0 && $iNiveau == TYPE_MODULE)
 		$oBlock_Module->remplacer("{select_module}"," checked");
@@ -138,8 +138,8 @@ for ($iIdxModule=0; $iIdxModule<$iNbrModules; $iIdxModule++)
 			$oBlock_Unite->remplacer("{ordre_unite}",$iCompteurRubrique++);
 			$oBlock_Unite->remplacer("{id_unite}",$poRubrique->retId());
 			$oBlock_Unite->remplacer("{type_unite}",TYPE_RUBRIQUE);
-			$oBlock_Unite->remplacer("{nom_unite}",htmlentities($sNom,ENT_COMPAT,"UTF-8"));
-			$oBlock_Unite->remplacer("{nom_unite_encoder}",rawurlencode($sNom));
+			$oBlock_Unite->remplacer("{nom_unite}",mb_convert_encoding($sNom,'HTML-ENTITIES', 'UTF-8'));
+			$oBlock_Unite->remplacer("{nom_unite_encoder}",phpString2js($sNom));
 		}
 	}
 	
