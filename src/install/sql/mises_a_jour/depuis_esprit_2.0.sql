@@ -254,3 +254,45 @@ ALTER TABLE `PropositionReponse`
 
 ALTER TABLE `Reponse_Axe` 
 	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+-- Modification des activités en ligne, effectué le 31-10-2006, pour la r198
+ALTER TABLE `ObjetFormulaire` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL AUTO_INCREMENT ,
+	CHANGE `IdForm` `IdFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0',
+	CHANGE `OrdreObjForm` `OrdreObjFormul` TINYINT( 3 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `MPSeparateur` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `MPTexte` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QCocher` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QListeDeroul` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QNombre` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QRadio` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QTexteCourt` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `QTexteLong` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `ReponseCar` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `ReponseEntier` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `ReponseFlottant` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `ReponseTexte` 
+	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'

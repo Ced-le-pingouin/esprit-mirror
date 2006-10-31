@@ -211,7 +211,7 @@ class CAxe
 	
 	/** @name Fonctions de définition des champs pour cet axe */
 	//@{
-	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdObjForm = $v_iIdAxe; }
+	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdAxe = $v_iIdAxe; }
 	function defDescAxe($v_sDescAxe) { $this->oEnregBdd->DescAxe = $v_sDescAxe; }
 	//@}
 

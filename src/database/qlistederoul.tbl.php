@@ -53,23 +53,23 @@ class CQListeDeroul
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QListeDeroul WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QListeDeroul WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type liste déroulante, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QListeDeroul SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QListeDeroul SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQLD ($v_sEnonQLD) { $this->oEnregBdd->EnonQLD = $v_sEnonQLD; }
 	function defAlignEnonQLD ($v_sAlignEnonQLD) { $this->oEnregBdd->AlignEnonQLD = $v_sAlignEnonQLD; }
 	function defAlignRepQLD ($v_sAlignRepQLD) { $this->oEnregBdd->AlignRepQLD = $v_sAlignRepQLD; }
@@ -77,7 +77,7 @@ class CQListeDeroul
 	function defTxtApQLD ($v_sTxtApQLD) { $this->oEnregBdd->TxtApQLD = $v_sTxtApQLD; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQLD () { return $this->oEnregBdd->EnonQLD; }
 	function retAlignEnonQLD () { return $this->oEnregBdd->AlignEnonQLD; }
 	function retAlignRepQLD () { return $this->oEnregBdd->AlignRepQLD; }
@@ -100,7 +100,7 @@ class CQListeDeroul
 		{
 			//Sélection de la réponse donnée par l'étudiant
 			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
+						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -156,7 +156,7 @@ class CQListeDeroul
 		$this->oEnregBdd->TxtApQLD = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQLD);
 		
 		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QListeDeroul : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml = "\n<!--QListeDeroul : {$this->oEnregBdd->IdObjFormul} -->\n"
 					."<div align=\"{$this->oEnregBdd->AlignEnonQLD}\">{$this->oEnregBdd->EnonQLD}</div>\n"
 					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQLD}\">\n"
 					."{$this->oEnregBdd->TxtAvQLD} \n"
@@ -209,7 +209,7 @@ class CQListeDeroul
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -218,7 +218,7 @@ class CQListeDeroul
 			$sTxtApQLD = validerTexte($this->oEnregBdd->TxtApQLD);
 			
 			$sRequeteSql = "REPLACE QListeDeroul SET"									  
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQLD='{$sEnonQLD}'"
 						.", AlignEnonQLD='{$this->oEnregBdd->AlignEnonQLD}'"
 						.", AlignRepQLD='{$this->oEnregBdd->AlignRepQLD}'"
@@ -239,7 +239,7 @@ class CQListeDeroul
 		{
 			$sRequeteSql = "REPLACE ReponseEntier SET"									  
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", IdReponse='{$v_sReponsePersQLD}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -262,7 +262,7 @@ class CQListeDeroul
 		$sTxtApQLD = validerTexte($this->oEnregBdd->TxtApQLD);
 		
 		$sRequeteSql = "INSERT INTO QListeDeroul SET"									  
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQLD='{$sEnonQLD}'"
 					.", AlignEnonQLD='{$this->oEnregBdd->AlignEnonQLD}'"
 					.", AlignRepQLD='{$this->oEnregBdd->AlignRepQLD}'"
@@ -277,7 +277,7 @@ class CQListeDeroul
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QListeDeroul WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QListeDeroul WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

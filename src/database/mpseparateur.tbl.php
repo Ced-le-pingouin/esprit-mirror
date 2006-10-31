@@ -50,29 +50,29 @@ class CMPSeparateur
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM MPSeparateur WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM MPSeparateur WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une ligne de type séparateur, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO MPSeparateur (IdObjForm,TypeLargMPS,LargeurMPS) VALUES ('$v_iIdObjForm','P','100');";
+		$sRequeteSql = "INSERT INTO MPSeparateur (IdObjFormul,TypeLargMPS,LargeurMPS) VALUES ('$v_iIdObjForm','P','100');";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defLargeurMPS ($v_iLargeurMPS) { $this->oEnregBdd->LargeurMPS = $v_iLargeurMPS; }
 	function defTypeLargMPS ($v_sTypeLargMPS) { $this->oEnregBdd->TypeLargMPS = $v_sTypeLargMPS; }
 	function defAlignMPS ($v_sAlignMPS) { $this->oEnregBdd->AlignMPS = $v_sAlignMPS; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retLargeurMPS () { return $this->oEnregBdd->LargeurMPS; }
 	function retTypeLargMPS () { return $this->oEnregBdd->TypeLargMPS; }
 	function retAlignMPS () { return $this->oEnregBdd->AlignMPS; }
@@ -90,10 +90,10 @@ class CMPSeparateur
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{	
 			$sRequeteSql = "REPLACE MPSeparateur SET"
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", LargeurMPS='{$this->oEnregBdd->LargeurMPS}'"
 						.", TypeLargMPS='{$this->oEnregBdd->TypeLargMPS}'"
 						.", AlignMPS='{$this->oEnregBdd->AlignMPS}'";
@@ -111,7 +111,7 @@ class CMPSeparateur
 			return;
 		
 		$sRequeteSql = "INSERT INTO MPSeparateur SET"
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", LargeurMPS='{$this->oEnregBdd->LargeurMPS}'"
 					.", TypeLargMPS='{$this->oEnregBdd->TypeLargMPS}'"
 					.", AlignMPS='{$this->oEnregBdd->AlignMPS}'";
@@ -122,7 +122,7 @@ class CMPSeparateur
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM MPSeparateur WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM MPSeparateur WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

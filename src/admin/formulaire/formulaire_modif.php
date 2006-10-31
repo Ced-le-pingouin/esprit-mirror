@@ -64,7 +64,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		$iIdObjActuel = $oObjetFormulaire->retId();
 		if(isset($_POST['envoyer']))
 			$oObjetFormulaire->DeplacerObjet($v_iNouvPos);
-		$iOrdreObjFormDepart = $oObjetFormulaire->retOrdreObjForm();
+		$iOrdreObjFormDepart = $oObjetFormulaire->retOrdreObjFormul();
 		$oTypeObj = new CTypeObjetForm($oProjet->oBdd, $oObjetFormulaire->retIdType());
 		$oTpl->remplacer("{Titre_page}","Elément ".$iOrdreObjFormDepart." &gt;&gt; ".$oTypeObj->retDescTypeObj());
 		switch($oObjetFormulaire->retIdTypeObj())
@@ -595,7 +595,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 			foreach($aoListeObjFormul AS $oObjetFormulaire)
 			{
 				$oBlockPos->nextLoop();
-				$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
+				$iOrdreObjForm = $oObjetFormulaire->retOrdreObjFormul();
 				$oBlockPos->remplacer("{ordre_obj_form}",$iOrdreObjForm);
 				if($iOrdreObjForm == $iOrdreObjFormDepart)
 					$oBlockPos->remplacer("{obj_actuel}","selected=\"selected\"");

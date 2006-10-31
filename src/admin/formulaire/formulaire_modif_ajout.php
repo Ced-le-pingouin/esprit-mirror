@@ -48,12 +48,12 @@ if (isset($_GET['ajouter']) && $oProjet->verifPermission('PERM_MOD_FORMULAIRES')
 	{
 		$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd,$oObjetFormulaire); //$oObjetFormulaire a vérifier ????
 		$oObjetFormulaire->defIdTypeObj($v_iIdTypeObj);
-		$oObjetFormulaire->defIdForm($v_iIdFormulaire);
+		$oObjetFormulaire->defIdFormul($v_iIdFormulaire);
 		
-		$iOrdreMaxObjForm = $oObjetFormulaire->OrdreMaxObjForm($oObjetFormulaire->retIdForm());
+		$iOrdreMaxObjForm = $oObjetFormulaire->OrdreMaxObjForm($oObjetFormulaire->retIdFormul());
 		$iOrdreMaxObjForm = $iOrdreMaxObjForm + 1; //pour placer l'objet a la fin du formulaire
 		
-		$oObjetFormulaire->defOrdreObjForm($iOrdreMaxObjForm);
+		$oObjetFormulaire->defOrdreObjFormul($iOrdreMaxObjForm);
 		$oObjetFormulaire->enregistrer();
 		$iIdObjetFormActuel = $oObjetFormulaire->retId();
 		

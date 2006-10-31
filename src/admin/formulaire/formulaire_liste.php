@@ -173,7 +173,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		foreach($aoObjetFormulaire as $oObjetFormulaire)
 		{
 			$iIdObjActuel = $oObjetFormulaire->retId();
-			$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
+			$iOrdreObjForm = $oObjetFormulaire->retOrdreObjFormul();
 			
 			$sHtmlListeObjForm .= "\n<a name=\"$iIdObjActuel\"></a>\n";
 			

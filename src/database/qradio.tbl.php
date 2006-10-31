@@ -54,23 +54,23 @@ class CQRadio
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QRadio WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QRadio WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type radio, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QRadio SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QRadio SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQR ($v_sEnonQR) { $this->oEnregBdd->EnonQR = $v_sEnonQR; }
 	function defAlignEnonQR ($v_sAlignEnonQR) { $this->oEnregBdd->AlignEnonQR = $v_sAlignEnonQR; }
 	function defAlignRepQR ($v_sAlignRepQR) { $this->oEnregBdd->AlignRepQR = $v_sAlignRepQR; }
@@ -79,7 +79,7 @@ class CQRadio
 	function defDispQR ($v_sDispQR) { $this->oEnregBdd->DispQR = $v_sDispQR; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQR () { return $this->oEnregBdd->EnonQR; }
 	function retAlignEnonQR () { return $this->oEnregBdd->AlignEnonQR; }
 	function retAlignRepQR () { return $this->oEnregBdd->AlignRepQR; }
@@ -104,7 +104,7 @@ class CQRadio
 		{
 			//Sélection de la réponse donnée par l'étudiant
 			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
+						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -188,7 +188,7 @@ class CQRadio
 		$this->oEnregBdd->TxtApQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQR);
 		
 		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjFormul} -->\n"
 				."<div align={$this->oEnregBdd->AlignEnonQR}>{$this->oEnregBdd->EnonQR}</div>\n"
 				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQR}\">\n"
 				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
@@ -259,7 +259,7 @@ class CQRadio
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm !=NULL)
+		if ($this->oEnregBdd->IdObjFormul !=NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -268,7 +268,7 @@ class CQRadio
 			$sTxtApQR = validerTexte($this->oEnregBdd->TxtApQR);
 			
 			$sRequeteSql = "REPLACE QRadio SET"
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQR='{$sEnonQR}'"
 						.", AlignEnonQR='{$this->oEnregBdd->AlignEnonQR}'"
 						.", AlignRepQR='{$this->oEnregBdd->AlignRepQR}'"
@@ -290,7 +290,7 @@ class CQRadio
 		{
 			$sRequeteSql = "REPLACE ReponseEntier SET"									  
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", IdReponse='{$v_sReponsePersQR}'";
 				
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -313,7 +313,7 @@ class CQRadio
 		$sTxtApQR = validerTexte($this->oEnregBdd->TxtApQR);
 		
 		$sRequeteSql = "INSERT INTO QRadio SET"
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQR='{$sEnonQR}'"
 					.", AlignEnonQR='{$this->oEnregBdd->AlignEnonQR}'"
 					.", AlignRepQR='{$this->oEnregBdd->AlignRepQR}'"
@@ -329,7 +329,7 @@ class CQRadio
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QRadio WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QRadio WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

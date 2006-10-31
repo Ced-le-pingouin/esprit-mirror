@@ -123,13 +123,13 @@ class CFormulaire
 		}
 		
 		$sRequeteSql =	"SELECT * FROM ObjetFormulaire"
-				." WHERE IdForm=".$this->retId()
-				." ORDER BY OrdreObjForm";
+				." WHERE IdFormul=".$this->retId()
+				." ORDER BY OrdreObjFormul";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$iIndexObjet = $oEnreg->IdObjForm;
+			$iIndexObjet = $oEnreg->IdObjFormul;
 			$this->aoObjets[$iIndexObjet] = new CObjetFormulaire($this->oBdd);
 			$this->aoObjets[$iIndexObjet]->init($oEnreg);
 			if ($v_bInitDetail)
@@ -368,7 +368,7 @@ class CFormulaire
 	{
 		$iIdxObjForm = 0;
 		$aoObjetFormulaire = array();
-		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdForm ='".$this->retId()."' ORDER by OrdreObjForm";
+		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdFormul ='".$this->retId()."' ORDER by OrdreObjFormul";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		while ($oEnregBdd = $this->oBdd->retEnregSuiv($hResult))
 		{

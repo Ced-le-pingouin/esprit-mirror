@@ -40,7 +40,6 @@ class CObjetFormulaire
 	
 	var $oDetail;
 	var $aoReponsesPossibles;
-	var $sReponse;
 	
 	/**
 	 * Constructeur.	Voir CPersonne#CPersonne()
@@ -65,13 +64,12 @@ class CObjetFormulaire
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM ObjetFormulaire"
-						." WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	/**
@@ -148,49 +146,49 @@ class CObjetFormulaire
 	
 	function ajouter()  //Cette fonction ajoute un Objet Formulaire, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO ObjetFormulaire SET IdObjForm=NULL;";
+		$sRequeteSql = "INSERT INTO ObjetFormulaire SET IdObjFormul=NULL;";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	function DeplacerObjet($v_iNouvPos)
 	{
-		if ($v_iNouvPos==$this->oEnregBdd->OrdreObjForm)
+		if ($v_iNouvPos==$this->oEnregBdd->OrdreObjFormul)
 			return false;
 		
 		//Verrouillage de la table ObjetFormulaire
 		$sRequeteSql = "LOCK TABLES ObjetFormulaire WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		if ($v_iNouvPos > $this->oEnregBdd->OrdreObjForm)
+		if ($v_iNouvPos > $this->oEnregBdd->OrdreObjFormul)
 		{
 			$sRequeteSql = "UPDATE ObjetFormulaire SET"
-			  			." OrdreObjForm = OrdreObjForm - 1"
-						." WHERE OrdreObjForm > '{$this->oEnregBdd->OrdreObjForm}'"
-						." AND OrdreObjForm <= '$v_iNouvPos'"
-						." AND IdForm = '{$this->oEnregBdd->IdForm}'";
+			  			." OrdreObjFormul = OrdreObjFormul - 1"
+						." WHERE OrdreObjFormul > '{$this->oEnregBdd->OrdreObjFormul}'"
+						." AND OrdreObjFormul <= '$v_iNouvPos'"
+						." AND IdFormul = '{$this->oEnregBdd->IdFormul}'";
 				  
 			$this->oBdd->executerRequete($sRequeteSql);
 		} 
-		else if ($v_iNouvPos < $this->oEnregBdd->OrdreObjForm)
+		else if ($v_iNouvPos < $this->oEnregBdd->OrdreObjFormul)
 		{
 			$sRequeteSql = "UPDATE ObjetFormulaire SET"
-						." OrdreObjForm = OrdreObjForm + 1"
-						." WHERE OrdreObjForm >= '$v_iNouvPos'"
-						." AND OrdreObjForm < '{$this->oEnregBdd->OrdreObjForm}'"
-						." AND IdForm = '{$this->oEnregBdd->IdForm}'";
+						." OrdreObjFormul = OrdreObjFormul + 1"
+						." WHERE OrdreObjFormul >= '$v_iNouvPos'"
+						." AND OrdreObjFormul < '{$this->oEnregBdd->OrdreObjFormul}'"
+						." AND IdFormul = '{$this->oEnregBdd->IdFormul}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
 		
 		$sRequeteSql = "UPDATE ObjetFormulaire SET"
-					." OrdreObjForm = '$v_iNouvPos'"
-					." WHERE IdObjForm = '{$this->oEnregBdd->IdObjForm}'";
+					." OrdreObjFormul = '$v_iNouvPos'"
+					." WHERE IdObjFormul = '{$this->oEnregBdd->IdObjFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		// déverrouillage de la table ObjetFormulaire
 		$this->oBdd->executerRequete("UNLOCK TABLES");
-		$this->defOrdreObjForm($v_iNouvPos);
+		$this->defOrdreObjFormul($v_iNouvPos);
 	}
 	
 	/*
@@ -203,7 +201,7 @@ class CObjetFormulaire
 	*/
 	function NbObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurais pu etre pratique
 	{
-		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdForm ='{$v_iNumForm}'";
+		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdFormul ='{$v_iNumForm}'";
 		$hResult2=$this->oBdd->executerRequete($sRequeteSql);
 		$i_NbObjForm = $this->oBdd->retNbEnregsDsResult($hResult2);
 		$this->oBdd->libererResult($hResult2);
@@ -220,8 +218,8 @@ class CObjetFormulaire
 	*/
 	function OrdreMaxObjForm($v_iNumForm) 	//$v_iNumForm = {$this->oEnregBdd->IdForm} ne fonctionne pas car la classe n'existe pas ? Mais aurais pu etre pratique
 	{
-		$sRequeteSql = "SELECT MAX(OrdreObjForm) as OrdreMax FROM ObjetFormulaire"
-					." WHERE IdForm ='{$v_iNumForm}'";
+		$sRequeteSql = "SELECT MAX(OrdreObjFormul) as OrdreMax FROM ObjetFormulaire"
+					." WHERE IdFormul ='{$v_iNumForm}'";
 		
 		$hResult2=$this->oBdd->executerRequete($sRequeteSql);
 		$oEnreg = $this->oBdd->retEnregSuiv($hResult2);
@@ -234,13 +232,13 @@ class CObjetFormulaire
 	function enregistrer()
 	{
 		$sRequeteSql = ($this->retId() > 0 ? "UPDATE ObjetFormulaire SET" : "INSERT INTO ObjetFormulaire SET")
-					." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
-					.", OrdreObjForm='{$this->oEnregBdd->OrdreObjForm}'"
+					." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
+					.", OrdreObjFormul='{$this->oEnregBdd->OrdreObjFormul}'"
 					.", IdTypeObj='{$this->oEnregBdd->IdTypeObj}'"
-					.", IdForm='{$this->oEnregBdd->IdForm}'"
-					.($this->oEnregBdd->IdObjForm > 0 ? " WHERE IdForm='{$this->oEnregBdd->IdObjForm}'" : NULL);
+					.", IdFormul='{$this->oEnregBdd->IdFormul}'"
+					.($this->oEnregBdd->IdObjFormul > 0 ? " WHERE IdFormul='{$this->oEnregBdd->IdObjFormul}'" : NULL);
 		$this->oBdd->executerRequete($sRequeteSql);
-		$this->defIdObjForm($this->oBdd->retDernierId()); //On place dans l'objet créé son Id
+		$this->defIdObjFormul($this->oBdd->retDernierId()); //On place dans l'objet créé son Id
 	}
 	
 	function copier($v_iIdFormParent, $iIdObjParent, $v_iOrdreObjet = NULL)
@@ -252,37 +250,35 @@ class CObjetFormulaire
 		
 		if (empty($v_iOrdreObjet))
 		{
-			$sSqlOrdreObjet = " OrdreObjForm='{$this->oEnregBdd->OrdreObjForm}'";
+			$sSqlOrdreObjet = " OrdreObjFormul='{$this->oEnregBdd->OrdreObjFormul}'";
 		}
 		else if ($v_iOrdreObjet == "max")
 		{
 			$iOrdre = $this->OrdreMaxObjForm($v_iIdFormParent) + 1;
-			$sSqlOrdreObjet = " OrdreObjForm='{$iOrdre}'";
+			$sSqlOrdreObjet = " OrdreObjFormul='{$iOrdre}'";
 		}
 		else
 		{
-			$sSqlOrdreObjet = " OrdreObjForm='{$v_iOrdreObjet}'";
+			$sSqlOrdreObjet = " OrdreObjFormul='{$v_iOrdreObjet}'";
 		}
 		
-		$sRequeteSql =
-			"INSERT INTO ObjetFormulaire SET"
-			//." IdObjForm='{$this->oEnregBdd->IdObjForm}', "
-			.$sSqlOrdreObjet
-			.", IdTypeObj='{$this->oEnregBdd->IdTypeObj}'"
-			.", IdForm='{$v_iIdFormParent}'";
+		$sRequeteSql = "INSERT INTO ObjetFormulaire SET"
+					.$sSqlOrdreObjet
+					.", IdTypeObj='{$this->oEnregBdd->IdTypeObj}'"
+					.", IdFormul='{$v_iIdFormParent}'";
 					
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$iIdObjForm = $this->oBdd->retDernierId();
+		$iOrdre = $this->oBdd->retDernierId();
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 		
-		return $iIdObjForm;
+		return $iOrdre;
 	}
 	
 	function effacer()
 	{
 		$sRequeteSql = "DELETE FROM ObjetFormulaire"
-					." WHERE IdObjForm ='{$this->oEnregBdd->IdObjForm}'";
+					." WHERE IdObjFormul ='{$this->oEnregBdd->IdObjFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		$this->reorganiser();
 	}
@@ -297,9 +293,9 @@ class CObjetFormulaire
 	function reorganiser()
 	{
 		$sRequeteSql = "UPDATE ObjetFormulaire"
-					." SET OrdreObjForm = OrdreObjForm-1"
-					." WHERE IdForm='{$this->oEnregBdd->IdForm}'"
-					." AND OrdreObjForm>'{$this->oEnregBdd->OrdreObjForm}'";
+					." SET OrdreObjFormul = OrdreObjFormul-1"
+					." WHERE IdFormul='{$this->oEnregBdd->IdFormul}'"
+					." AND OrdreObjFormul>'{$this->oEnregBdd->OrdreObjFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
@@ -314,7 +310,7 @@ class CObjetFormulaire
 	{
 		$iIdx = 0;
 		$aoObjFormul = array();
-		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdForm='$v_iIdFormulaire' order by OrdreObjForm";
+		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdFormul='$v_iIdFormulaire' ORDER BY OrdreObjFormul";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
@@ -328,20 +324,20 @@ class CObjetFormulaire
 	
 	/** @name Fonctions de définition des champs pour cet objet formulaire */
 	//@{
-	function defIdObjForm($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
-	function defOrdreObjForm($v_iOrdre) { $this->oEnregBdd->OrdreObjForm = $v_iOrdre; }
+	function defIdObjFormul($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
+	function defOrdreObjFormul($v_iOrdre) { $this->oEnregBdd->OrdreObjFormul = $v_iOrdre; }
 	function defIdTypeObj($v_iTypeObj) { $this->oEnregBdd->IdTypeObj = $v_iTypeObj; }
-	function defIdForm($v_iIdForm) { $this->oEnregBdd->IdForm = $v_iIdForm; }
+	function defIdFormul($v_iIdForm) { $this->oEnregBdd->IdFormul = $v_iIdForm; }
 	//@}
 	
 	/** @name Fonctions de lecture des champs pour cet objet formulaire */
 	//@{
-	function retId() { return $this->oEnregBdd->IdObjForm; }
-	function retOrdreObjForm() { return $this->oEnregBdd->OrdreObjForm; }
-	function retOrdre() { return $this->retOrdreObjForm(); }
+	function retId() { return $this->oEnregBdd->IdObjFormul; }
+	function retOrdreObjFormul() { return $this->oEnregBdd->OrdreObjFormul; }
+	function retOrdre() { return $this->retOrdreObjFormul(); }
 	function retIdTypeObj() { return $this->oEnregBdd->IdTypeObj; }
 	function retIdType() { return $this->retIdTypeObj(); }
-	function retIdForm() { return $this->oEnregBdd->IdForm; }
+	function retIdFormul() { return $this->oEnregBdd->IdFormul; }
 	//@}
 }
 ?>

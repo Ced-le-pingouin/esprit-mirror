@@ -50,7 +50,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 					$v_sListeAxes = "0";
 					$oReponse_Axe->VerifierValidite($v_iIdFormulaire,$v_sListeAxes);
 					// Effacement des objets du formulaire 1 par 1
-					$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdForm = $v_iIdFormulaire");
+					$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul = $v_iIdFormulaire");
 					while( $oEnreg = $oProjet->oBdd->retEnregSuiv($hResult) )
 					{
 						$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd);
@@ -191,7 +191,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		if($v_iIdObjForm > 0)
 		{
 			$oObjFormSel = new CObjetFormulaire($oProjet->oBdd, $v_iIdObjForm);
-			if($oObjFormSel->retIdForm() == $v_iIdFormulaire)
+			if($oObjFormSel->retIdFormul() == $v_iIdFormulaire)
 			{
 				$oTpl->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre());
 				$oBlocElemLiens->afficher();

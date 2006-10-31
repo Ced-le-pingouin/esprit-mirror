@@ -127,11 +127,11 @@ class CFormulaireComplete
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 			{
-				if (isset($this->oFormulaireModele->aoObjets[$oEnreg->IdObjForm]))
+				if (isset($this->oFormulaireModele->aoObjets[$oEnreg->IdObjFormul]))
 				{
 					$sNomChamp = $this->asChampsReponses[$i];
 					if (!$this->abVerifZeroReponses[$i] || $oEnreg->$sNomChamp > 0)
-						$this->oFormulaireModele->aoObjets[$oEnreg->IdObjForm]->sReponse[] = $oEnreg->$sNomChamp;
+						$this->oFormulaireModele->aoObjets[$oEnreg->IdObjFormul]->sReponse[] = $oEnreg->$sNomChamp;
 				}
 			}
 			

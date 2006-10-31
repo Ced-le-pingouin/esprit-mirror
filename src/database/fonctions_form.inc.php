@@ -93,12 +93,12 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
 	Exemple de partie de résultat :
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
-	| IdAxe | DescAxe       | IdReponse | TexteReponse | OrdreReponse | IdObjForm | Poids  |
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
-	|     1 | Determination |        55 |              |            3 |       123 | [NULL] |
-	|     2 | Objectivite   |        55 |              |            3 |       123 | [NULL] |
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
+	| IdAxe | DescAxe       | IdReponse | TexteReponse | OrdreReponse | IdObjFormul | Poids  |
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
+	|     1 | Determination |        55 |              |            3 |         123 | [NULL] |
+	|     2 | Objectivite   |        55 |              |            3 |         123 | [NULL] |
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
 	*/
 
 	$sRequeteSqlAxes =	 "Select"
@@ -151,7 +151,7 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 	CopieFormulaire_Axe($this->oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);
 	
 	//Copie des objets du formulaire 1 par 1
-	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdForm = $v_iIdFormulaire");
+	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul=$v_iIdFormulaire");
   
 	while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		CopierUnObjetFormulaire($this->oBdd, $oEnreg, $v_iIdNvFormulaire);
