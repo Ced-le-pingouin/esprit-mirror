@@ -72,7 +72,7 @@ unset($bPeutModifier);
 // ---------------------
 $g_sRepTheme = dir_theme();
 
-$sIntitule = htmlentities($sIntitule,ENT_COMPAT,"UTF-8");
+$sIntitule = mb_convert_encoding($sIntitule,"HTML-ENTITIES","UTF-8");
 
 // Mettre dans un tableau la liste des fichiers qui se
 // trouvent dans la racine du bloc d'activité
@@ -265,7 +265,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 		.">$asFichiers[$i]</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleCollecticiel = htmlentities("Fichier de base à télécharger",ENT_COMPAT,"UTF-8");
+	$sIntituleCollecticiel = mb_convert_encoding("Fichier de base à télécharger","HTML-ENTITIES","UTF-8");
 else
 	$sIntituleCollecticiel = $sIntitule;
 ?>
@@ -354,7 +354,7 @@ foreach($aoFormulairesVisibles as $oFormulaireCourant)
 	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleFormulaire = htmlentities("Questionnaire de base à compléter",ENT_COMPAT,"UTF-8");
+	$sIntituleFormulaire = mb_convert_encoding("Questionnaire de base à compléter","HTML-ENTITIES","UTF-8");
 else
 	$sIntituleFormulaire = $sIntitule;
 ?>

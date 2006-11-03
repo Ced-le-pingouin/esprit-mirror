@@ -61,7 +61,7 @@ function retTexteModalite ($v_sTexteType,$v_iIdModalite)
 	return "({$v_sTexteType}"
 		.(MODALITE_INDIVIDUEL == $v_iIdModalite || MODALITE_POUR_TOUS == $v_iIdModalite
 			? NULL
-			: " - ".htmlentities(TXT_MODALITE_PAR_EQUIPE,ENT_COMPAT,"UTF-8"))
+			: " - ".mb_convert_encoding(TXT_MODALITE_PAR_EQUIPE,"HTML-ENTITIES","UTF-8"))
 		.")";
 }
 
@@ -171,15 +171,15 @@ $asRechTpl = array(
 );
 
 $asReplTpl = array(
-	htmlentities(TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_ETUDIANTS_INSCRITS_AU_COURS,ENT_COMPAT,"UTF-8")
-	, htmlentities(TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL,ENT_COMPAT,"UTF-8")
-	, htmlentities(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TLT_FORUM_NOMBRE_MESSAGES_FORUM,ENT_COMPAT,"UTF-8")
+	mb_convert_encoding(TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TXT_ETUDIANTS_INSCRITS_AU_COURS,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TLT_FORUM_NOMBRE_MESSAGES_FORUM,"HTML-ENTITIES","UTF-8")
 	// {{{ Termes globaux
-	, htmlentities(TLT_ENVOYER_COURRIEL,ENT_COMPAT,"UTF-8")
+	, mb_convert_encoding(TLT_ENVOYER_COURRIEL,"HTML-ENTITIES","UTF-8")
 	// }}}
 );
 
@@ -213,7 +213,7 @@ $oBlocRubrique->beginLoop();
 foreach ($oModule->aoRubriques as $oRubrique)
 {
 	$oBlocRubrique->nextLoop();
-	$oBlocRubrique->remplacer("{rubrique.nom}",htmlentities($oRubrique->retNomComplet(),ENT_COMPAT,"UTF-8"));
+	$oBlocRubrique->remplacer("{rubrique.nom}",mb_convert_encoding($oRubrique->retNomComplet(),"HTML-ENTITIES","UTF-8"));
 	
 	// ---------------------
 	// Afficher les entêtes du tableau
@@ -239,7 +239,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{collecticiel.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom(),ENT_COMPAT,"UTF-8"));
+			$aoBlocs["nom"]->remplacer("{collecticiel.nom}",mb_convert_encoding($oCollecticiel->retNom(),"HTML-ENTITIES","UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{collecticiel.modalite}",retTexteModalite(TXT_COLLECTICIEL,$abModalites[$iCol]));
@@ -275,7 +275,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{formulaire.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{formulaire.nom}",htmlentities($oFormulaire->retNom(),ENT_COMPAT,"UTF-8"));
+			$aoBlocs["nom"]->remplacer("{formulaire.nom}",mb_convert_encoding($oFormulaire->retNom(),"HTML-ENTITIES","UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{formulaire.modalite}",retTexteModalite("AEL",$abModalites[$iCol]));
@@ -315,7 +315,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{forum.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{forum.nom}",htmlentities($oForum->retNom(),ENT_COMPAT,"UTF-8"));
+			$aoBlocs["nom"]->remplacer("{forum.nom}",mb_convert_encoding($oForum->retNom(),"HTML-ENTITIES","UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{forum.modalite}",retTexteModalite(TXT_FORUM,$abModalites[$iCol]));
@@ -434,8 +434,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{chat.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{chat.parent.nom}",htmlentities($oChat->oParent->retNom(),ENT_COMPAT,"UTF-8"));
-			$aoBlocs["nom"]->remplacer("{chat.nom}",htmlentities($oChat->retNom(),ENT_COMPAT,"UTF-8"));
+			$aoBlocs["nom"]->remplacer("{chat.parent.nom}",mb_convert_encoding($oChat->oParent->retNom(),"HTML-ENTITIES","UTF-8"));
+			$aoBlocs["nom"]->remplacer("{chat.nom}",mb_convert_encoding($oChat->retNom(),"HTML-ENTITIES","UTF-8"));
 			
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{chat.modalite}",retTexteModalite(TXT_CHAT,$abModalites[$iCol]));
@@ -496,7 +496,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			
 			$oBlocEquipe->remplacer(
 				array("{equipe.td.colspan}","{equipe.id}","{equipe.nom}")
-				, array($iNbColsEntete+1,$iIdEquipe,htmlentities($sNomEquipe,ENT_COMPAT,"UTF-8"))
+				, array($iNbColsEntete+1,$iIdEquipe,mb_convert_encoding($sNomEquipe,"HTML-ENTITIES","UTF-8"))
 			);
 			
 			$oBlocEquipe->afficher();

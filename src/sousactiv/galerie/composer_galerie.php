@@ -104,7 +104,7 @@ if ($iNbCollecticiels > 0)
 		
 		$oBlocRessource->nextLoop();
 		$oBlocRessource->ajouter($asSetTpl["collecticiel"]);
-		$oBlocRessource->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom(),ENT_COMPAT,"UTF-8"));
+		$oBlocRessource->remplacer("{collecticiel.nom}",mb_convert_encoding($oCollecticiel->retNom(),"HTML-ENTITIES","UTF-8"));
 		
 		foreach ($oCollecticiel->aoRessources as $oRessource)
 		{
@@ -130,9 +130,9 @@ if ($iNbCollecticiels > 0)
 			$amReplTpl = array(
 				($oRessource->estSelectionne ? " checked=\"checked\"" : NULL)
 				, $iIdRes
-				, htmlentities($oRessource->retNom(),ENT_COMPAT,"UTF-8")
-				, htmlentities($oRessource->retTexteStatut(),ENT_COMPAT,"UTF-8")
-				, htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom(),ENT_COMPAT,"UTF-8")
+				, mb_convert_encoding($oRessource->retNom(),"HTML-ENTITIES","UTF-8")
+				, mb_convert_encoding($oRessource->retTexteStatut(),"HTML-ENTITIES","UTF-8")
+				, mb_convert_encoding($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom(),"HTML-ENTITIES","UTF-8")
 			);
 			
 			$oBlocRessource->nextLoop();
@@ -152,7 +152,7 @@ $oTpl->remplacer($asRechTpl,$amReplTpl);
 // }}}
 
 // {{{ Globales
-$oTpl->remplacer("{sousactiv.nom}",htmlentities($oProjet->oSousActivCourante->retNom(),ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{sousactiv.nom}",mb_convert_encoding($oProjet->oSousActivCourante->retNom(),"HTML-ENTITIES","UTF-8"));
 // }}}
 
 // {{{ Traduction des termes
@@ -166,12 +166,12 @@ $asRechTpl = array(
 );
 
 $asReplTpl = array(
-	htmlentities(TXT_COMPOSER_SA_GALERIE_TITRE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_GALERIE_TITRE,ENT_COMPAT,"UTF-8")
-	, nl2br(htmlentities(TXT_COMPOSER_SA_GALERIE_CONSIGNE,ENT_COMPAT,"UTF-8"))
-	, htmlentities(TXT_TITRE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_ETAT,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_DEPOSE_PAR,ENT_COMPAT,"UTF-8")
+	mb_convert_encoding(TXT_COMPOSER_SA_GALERIE_TITRE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TXT_GALERIE_TITRE,"HTML-ENTITIES","UTF-8")
+	, nl2br(mb_convert_encoding(TXT_COMPOSER_SA_GALERIE_CONSIGNE,"HTML-ENTITIES","UTF-8"))
+	, mb_convert_encoding(TXT_TITRE,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TXT_ETAT,"HTML-ENTITIES","UTF-8")
+	, mb_convert_encoding(TXT_DEPOSE_PAR,"HTML-ENTITIES","UTF-8")
 );
 
 $oTpl->remplacer($asRechTpl,$asReplTpl);

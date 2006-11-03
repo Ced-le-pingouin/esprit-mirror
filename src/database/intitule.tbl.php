@@ -141,7 +141,7 @@ class CIntitule
 		if (empty($this->oEnregBdd->NomIntitule))
 			return NULL;
 		
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomIntitule,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomIntitule);
+		return ($v_bHtmlEntities ? mb_convert_encoding($this->oEnregBdd->NomIntitule,"HTML-ENTITIES","UTF-8") : $this->oEnregBdd->NomIntitule);
 	}
 	
 	function defNom ($v_sNomIntitule)

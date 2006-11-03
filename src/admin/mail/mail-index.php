@@ -58,7 +58,7 @@ $oBlocFrameset = new TPL_Block("BLOCK_FRAMESET",$oTpl);
 $oBlocFrameset->ajouter($oTplFrameset->retDonnees());
 $oBlocFrameset->afficher();
 
-$oTpl->remplacer("{html.title}",htmlentities($sTitrePrincipale,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{html.title}",mb_convert_encoding($sTitrePrincipale,"HTML-ENTITIES","UTF-8"));
 
 // {{{ Frames
 $oTpl->remplacer("{frame.titre.src}","mail-titre.php?tp=".rawurlencode($sTitrePrincipale));

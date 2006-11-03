@@ -111,12 +111,12 @@ if ($url_bVoter && isset($url_aiIdResSAVotes))
 			."<p align=\"center\">";
 		
 		if ($g_iIdEquipe > 0)
-			echo htmlentities("Vous venez de voter pour ce document.",ENT_COMPAT,"UTF-8")
+			echo mb_convert_encoding("Vous venez de voter pour ce document.","HTML-ENTITIES","UTF-8")
 				."<br>"
 				.htmlentities("Celui-ci a obtenu le nombre de votes requis."
 				." Il a donc été soumis au tuteur pour évaluation.",ENT_COMPAT,"UTF-8");
 		else
-			echo htmlentities("Votre document a été soumis au tuteur pour évaluation",ENT_COMPAT,"UTF-8");
+			echo mb_convert_encoding("Votre document a été soumis au tuteur pour évaluation","HTML-ENTITIES","UTF-8");
 		
 		echo "</p>\n"
 			."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
@@ -219,7 +219,7 @@ if ($g_iIdEquipe > 0)
 	echo "<tr>"
 		."<td colspan=\"4\" align=\"right\">"
 		."<a href=\"javascript: voter();\">"
-			.htmlentities("Je vote pour ma sélection",ENT_COMPAT,"UTF-8")
+			.mb_convert_encoding("Je vote pour ma sélection","HTML-ENTITIES","UTF-8")
 		."</a>"
 		."</td>"
 		."</tr>\n";
@@ -262,7 +262,7 @@ else if ($g_iIdPers > 0)
 		foreach ($aiIdResSA as $iIdResSA)
 		{
 			$oRes = new CRessourceSousActiv($oProjet->oBdd,$iIdResSA);
-			echo htmlentities($oRes->retNom(),ENT_COMPAT,"UTF-8");
+			echo mb_convert_encoding($oRes->retNom(),"HTML-ENTITIES","UTF-8");
 			echo "<input type=\"hidden\" name=\"resVotes[]\" value=\"{$iIdResSA}\">";
 			unset($oRes);
 		}

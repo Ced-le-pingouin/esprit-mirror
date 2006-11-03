@@ -173,7 +173,7 @@ else if ($iMonIdPers > 0 && $bPeutUtiliserCopieCourriel)
 	$oBlocCopieCourriel->remplacer("{message_commun}",$sVarMessageCommun);
 	
 	$oBlocCopieCourriel->remplacer("{personne->email}",$sMonEmail);
-	//$oBlocCopieCourriel->remplacer("{personne->email}","<a href=\"mailto:{$sMonEmail}\" target=\"_self\" onfocus=\"blur()\">".htmlentities($sMonEmail,ENT_COMPAT,"UTF-8")."</a>");
+	//$oBlocCopieCourriel->remplacer("{personne->email}","<a href=\"mailto:{$sMonEmail}\" target=\"_self\" onfocus=\"blur()\">".mb_convert_encoding($sMonEmail,"HTML-ENTITIES","UTF-8")."</a>");
 	
 	$oBlocCopieCourriel->remplacer("{iframe->src}","copie_courriel-equipes.php?idForum={forum->id}");
 	

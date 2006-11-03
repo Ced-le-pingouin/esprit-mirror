@@ -77,7 +77,7 @@ class CTitrePrincipal
 	
 	function CTitrePrincipal ($v_sTitre)
 	{
-		$this->m_sTitre = htmlentities ($v_sTitre,ENT_COMPAT,"UTF-8");
+		$this->m_sTitre = mb_convert_encoding($v_sTitre,"HTML-ENTITIES","UTF-8");
 	}
 	
 	function defLargeur ($v_sLargeur)

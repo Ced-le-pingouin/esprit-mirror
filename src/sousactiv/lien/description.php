@@ -115,7 +115,7 @@ switch ($url_iTypeNiveau)
 {
 	case TYPE_FORMATION:
 		$oFormation = new CFormation($oProjet->oBdd,$url_iIdNiveau);
-		$sTitrePageHtml = htmlentities($oFormation->retNom(),ENT_COMPAT,"UTF-8");
+		$sTitrePageHtml = mb_convert_encoding($oFormation->retNom(),"HTML-ENTITIES","UTF-8");
 		$sDescription = $oFormation->retDescr();
 		$oAwareness->remplacer("{applet_awareness}",retAwarenessSpy($oFormation->retNom(),TRUE));
 		$oAwareness->afficher();
@@ -125,7 +125,7 @@ switch ($url_iTypeNiveau)
 		
 	case TYPE_RUBRIQUE:
 		$oRubrique = new CModule_Rubrique($oProjet->oBdd,$url_iIdNiveau);
-		$sTitrePageHtml = htmlentities($oRubrique->retNom(),ENT_COMPAT,"UTF-8");
+		$sTitrePageHtml = mb_convert_encoding($oRubrique->retNom(),"HTML-ENTITIES","UTF-8");
 		$sDescription = $oRubrique->retDescr();
 		$oAwareness->effacer();
 		unset($oRubrique);
@@ -133,7 +133,7 @@ switch ($url_iTypeNiveau)
 		
 	case TYPE_SOUS_ACTIVITE:
 		$oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdNiveau);
-		$sTitrePageHtml = htmlentities($oSousActiv->retNom(),ENT_COMPAT,"UTF-8");
+		$sTitrePageHtml = mb_convert_encoding($oSousActiv->retNom(),"HTML-ENTITIES","UTF-8");
 		$sDescription = $oSousActiv->retDescr();
 		$oAwareness->effacer();
 		unset($oSousActiv);
