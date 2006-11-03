@@ -286,8 +286,8 @@ class CPersonne
 	/** @name Fonctions de lecture des champs pour cette personne */
 	//@{
 	function retId() { return (is_numeric($this->iId) ? $this->iId : 0); }
-	function retNom($v_bHtmlEntities = FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->Nom,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->Nom); }
-	function retPrenom($v_bHtmlEntities = FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->Prenom,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->Prenom); }
+	function retNom($v_bHtmlEntities = FALSE) { return ($v_bHtmlEntities ? mb_convert_encoding($this->oEnregBdd->Nom,"HTML-ENTITIES","UTF-8") : $this->oEnregBdd->Nom); }
+	function retPrenom($v_bHtmlEntities = FALSE) { return ($v_bHtmlEntities ? mb_convert_encoding($this->oEnregBdd->Prenom,"HTML-ENTITIES","UTF-8") : $this->oEnregBdd->Prenom); }
 	function retPseudo() { return $this->oEnregBdd->Pseudo; }
 	function retDateNaiss()
 	{
@@ -302,7 +302,7 @@ class CPersonne
 		
 		return PERSONNE_SEXE_MASCULIN;
 	}
-	function retAdresse() { return htmlentities($this->oEnregBdd->Adresse,ENT_COMPAT,"UTF-8"); }
+	function retAdresse() { return mb_convert_encoding($this->oEnregBdd->Adresse,"HTML-ENTITIES","UTF-8"); }
 	function retNumTel() { return $this->oEnregBdd->NumTel; }
 	function retEmail() { return $this->oEnregBdd->Email; }
 	function retUrlPerso() { return $this->oEnregBdd->UrlPerso; }

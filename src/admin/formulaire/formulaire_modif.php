@@ -143,8 +143,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQTC}",htmlentities($oQTexteCourt->retTxtAvQTC(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQTC}",htmlentities($oQTexteCourt->retTxtApQTC(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQTC}",mb_convert_encoding($oQTexteCourt->retTxtAvQTC(),"HTML-ENTITIES","UTF-8"));
+					$oTpl->remplacer("{TxtApQTC}",mb_convert_encoding($oQTexteCourt->retTxtApQTC(),"HTML-ENTITIES","UTF-8"));
 					$oTpl->remplacer("{LargeurQTC}",$oQTexteCourt->retLargeurQTC());
 					$oTpl->remplacer("{MaxCarQTC}",$oQTexteCourt->retMaxCarQTC());
 					$oTpl->remplacer("{sMessageErreur1}",$sMessageErreur1);
@@ -192,8 +192,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQN}",htmlentities($oQNombre->retTxtAvQN(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQN}",htmlentities($oQNombre->retTxtApQN(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQN}",mb_convert_encoding($oQNombre->retTxtAvQN(),"HTML-ENTITIES","UTF-8"));
+					$oTpl->remplacer("{TxtApQN}",mb_convert_encoding($oQNombre->retTxtApQN(),"HTML-ENTITIES","UTF-8"));
 					$oTpl->remplacer("{NbMinQN}",$oQNombre->retNbMinQN());
 					$oTpl->remplacer("{NbMaxQN}",$oQNombre->retNbMaxQN());
 					$oTpl->remplacer("{MultiQN}",$oQNombre->retMultiQN());
@@ -283,8 +283,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQLD}",htmlentities($oQListeDeroul->retTxtAvQLD(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQLD}",htmlentities($oQListeDeroul->retTxtApQLD(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQLD}",mb_convert_encoding($oQListeDeroul->retTxtAvQLD(),"HTML-ENTITIES","UTF-8"));
+					$oTpl->remplacer("{TxtApQLD}",mb_convert_encoding($oQListeDeroul->retTxtApQLD(),"HTML-ENTITIES","UTF-8"));
 					$oTpl->remplacer("{RetourReponseQCModif}",$oQListeDeroul->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire));
 					break;
 			
@@ -383,8 +383,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oTpl->remplacer("{d1}","");
 						$oTpl->remplacer("{d2}","checked=\"checked\"");
 					}
-					$oTpl->remplacer("{TxtAvQR}",htmlentities($oQRadio->retTxTAvQR(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQR}",htmlentities($oQRadio->retTxtApQR(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQR}",mb_convert_encoding($oQRadio->retTxTAvQR(),"HTML-ENTITIES","UTF-8"));
+					$oTpl->remplacer("{TxtApQR}",mb_convert_encoding($oQRadio->retTxtApQR(),"HTML-ENTITIES","UTF-8"));
 					$oTpl->remplacer("{RetourReponseQRModif}",$oQRadio->RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire));
 					break;
 			
@@ -479,8 +479,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQC}",htmlentities($oQCocher->retTxtAvQC(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQC}",htmlentities($oQCocher->retTxtApQC(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQC}",mb_convert_encoding($oQCocher->retTxtAvQC(),"HTML-ENTITIES","UTF-8"));
+					$oTpl->remplacer("{TxtApQC}",mb_convert_encoding($oQCocher->retTxtApQC(),"HTML-ENTITIES","UTF-8"));
 					if($oQCocher->retDispQC()=="Hor")
 					{
 						$oTpl->remplacer("{d1}","checked=\"checked\"");
@@ -641,7 +641,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 			$oTpl->remplacer("{sMessageErreur4}",$sMessageErreur4);
 			$sParam = "?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire;
 			$oTpl->remplacer("{sParam}",$sParam);
-			$oTpl->remplacer("{Titre}",htmlentities($oFormulaire->retTitre(),ENT_COMPAT,"UTF-8"));
+			$oTpl->remplacer("{Titre}",mb_convert_encoding($oFormulaire->retTitre(),"HTML-ENTITIES","UTF-8"));
 			$oTpl->remplacer("{Largeur}",$oFormulaire->retLargeur());
 			$oTpl->remplacer("{InterElem}",$oFormulaire->retInterElem());
 			$oTpl->remplacer("{InterEnonRep}",$oFormulaire->retInterEnonRep());

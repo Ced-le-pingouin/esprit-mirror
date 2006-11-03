@@ -87,7 +87,7 @@ function div_galerie ()
 {
 	global $oProjet, $g_bModifier;
 	
-	$sCollecticielsAssocies = htmlentities("Collecticiels associés",ENT_COMPAT,"UTF-8");
+	$sCollecticielsAssocies = mb_convert_encoding("Collecticiels associés","HTML-ENTITIES","UTF-8");
 	
 	if (($iNbrCollecticiels = $oProjet->oRubriqueCourante->initCollecticiels()) > 0)
 	{

@@ -152,7 +152,7 @@ $oBlocDossier = new TPL_Block("BLOCK_SUPPRIMER_DOSSIER",$oTpl);
 
 if ("supp" == $url_sEvent)
 {
-	$oBlocDossier->remplacer("{dossier.nom}",htmlentities($oDossierForms->retNom(),ENT_COMPAT,"UTF-8"));
+	$oBlocDossier->remplacer("{dossier.nom}",mb_convert_encoding($oDossierForms->retNom(),"HTML-ENTITIES","UTF-8"));
 	$oBlocDossier->afficher();
 }
 else

@@ -47,7 +47,7 @@ class CDialogBase
 		global $sPageIndex;
 		
 		$this->sPageIndex = $sPageIndex;
-		$this->sTitreFenetre = htmlentities($v_sTitreFenetre,ENT_COMPAT,"UTF-8");
+		$this->sTitreFenetre = mb_convert_encoding($v_sTitreFenetre,"HTML-ENTITIES","UTF-8");
 	}
 	
 	function defSrcPrincipale ($v_sSrcPrincipale) { $this->sSrcPrincipale = $v_sSrcPrincipale; }

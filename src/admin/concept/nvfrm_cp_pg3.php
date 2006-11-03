@@ -101,7 +101,7 @@ echo "<tr>"
 	." name=\"formation_nom\""
 	." size=\"50\""
 	." value=\"".(empty($url_sNomForm)
-		? htmlentities($oProjet->oFormationCourante->retNom(),ENT_COMPAT,"UTF-8")
+		? mb_convert_encoding($oProjet->oFormationCourante->retNom(),"HTML-ENTITIES","UTF-8")
 		: $url_sNomForm)
 	."\""
 	." style=\"width: 370px;\""

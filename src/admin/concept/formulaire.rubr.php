@@ -270,7 +270,7 @@ echo "<!-- Forum -->"
 	.($g_bModifier ? NULL : " disabled")
 	.">"
 	."&nbsp;&nbsp;"
-	.htmlentities("Accessible aux visiteurs",ENT_COMPAT,"UTF-8")
+	.mb_convert_encoding("Accessible aux visiteurs","HTML-ENTITIES","UTF-8")
 	."</td>"
 	."</tr>\n"
 	."</table>\n"

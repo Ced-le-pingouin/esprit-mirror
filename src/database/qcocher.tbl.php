@@ -231,7 +231,7 @@ class CQCocher
 				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";
 
 			$sCodeHtml.="<td>\n <input type=\"text\" size=\"70\" maxlength=\"255\" "
-				."name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n"
+				."name=\"rep[$IdReponseTemp]\" value=\"".mb_convert_encoding($TexteTemp,"HTML-ENTITIES","UTF-8")."\" />\n"
 				."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a><br /></td></tr>\n"
 				.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); 
 				//cette fc se trouve dans le fichier fonctions_form.inc.php

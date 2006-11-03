@@ -58,7 +58,7 @@ else
 	$oBlockHead->afficher();
 }
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($sTitrePrincipal,"HTML-ENTITIES","UTF-8"));
 $oTpl->remplacer("{frame_src_haut}","{$sFrameSrcTitre}"
 	."?tp=".rawurlencode($sTitrePrincipal)
 	.(isset($sSousTitre) ? "&st=".rawurlencode($sSousTitre) : NULL));

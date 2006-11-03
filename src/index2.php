@@ -4,7 +4,7 @@ require_once("globals.inc.php");
 // Permet de sauvegarder les variables du formulaire
 // que la page login a envoyée
 $oProjet = new CProjet();
-$sNomPlateforme = htmlentities($oProjet->retNom(),ENT_COMPAT,"UTF-8");
+$sNomPlateforme = mb_convert_encoding($oProjet->retNom(),"HTML-ENTITIES","UTF-8");
 $oProjet->terminer();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"

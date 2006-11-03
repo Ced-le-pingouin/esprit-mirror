@@ -131,7 +131,7 @@ $oBlocCourrielEnvoyer    = new TPL_Block("BLOCK_COURRIEL_ENVOYER",$oTpl);
 if ($iErreur != -1)
 {
 	$oBlocCourrielEnvoyer->remplacer("{personne->email}",$sEmail);
-	$oBlocCourrielEnvoyer->remplacer("{plateforme.nom}",htmlentities($oProjet->retNom(),ENT_COMPAT,"UTF-8"));
+	$oBlocCourrielEnvoyer->remplacer("{plateforme.nom}",mb_convert_encoding($oProjet->retNom(),"HTML-ENTITIES","UTF-8"));
 	
 	$sVarOk                  = $oBlocCourrielEnvoyer->defVariable("VAR_OK");
 	$sVarNomPrenomIncorrect  = $oBlocCourrielEnvoyer->defVariable("VAR_NOM_PRENOM_INCORRECT");

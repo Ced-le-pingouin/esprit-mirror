@@ -472,7 +472,7 @@ function erreurFatale ($v_sMessageErreur=NULL)
 	echo "<html>",
 		"<body>",
 		"<div align=\"center\"><pre>",gettext('Une erreur fatale est survenue&nbsp;:'),"<br>",
-		"<b>",htmlentities($v_sMessageErreur,ENT_COMPAT,"UTF-8"),"</b></pre></div></body></html>";
+		"<b>",mb_convert_encoding($v_sMessageErreur,"HTML-ENTITIES","UTF-8"),"</b></pre></div></body></html>";
 	exit();
 }
 
@@ -511,7 +511,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
+	$v_sTexte = mb_convert_encoding(trim(stripslashes($v_sTexte)),"HTML-ENTITIES","UTF-8");
 	
 	$asMetaTrouver   = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center");
 	$asMetaRemplacer = array("h1","h2","h3","h4","h5","h6","b","u","i","s","blockquote","blockquote","center");
@@ -612,7 +612,7 @@ function enleverBaliseMeta ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	//$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
+	//$v_sTexte = mb_convert_encoding(trim(stripslashes($v_sTexte)),"HTML-ENTITIES","UTF-8");
 	
 	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center", "n","l","c","r","j");
 	$asMetaUnique = array("[nl]","[hr]");

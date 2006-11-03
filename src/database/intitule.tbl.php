@@ -136,7 +136,7 @@ class CIntitule
 	
 	function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
 	
-	function retNom ($v_bHtmlEntities=TRUE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomIntitule,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomIntitule); }
+	function retNom ($v_bHtmlEntities=TRUE) { return ($v_bHtmlEntities ? mb_convert_encoding($this->oEnregBdd->NomIntitule,"HTML-ENTITIES","UTF-8") : $this->oEnregBdd->NomIntitule); }
 	
 	function defNom ($v_sNomIntitule)
 	{
