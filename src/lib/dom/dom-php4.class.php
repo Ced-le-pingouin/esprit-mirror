@@ -118,8 +118,8 @@ class CDOMElement extends CDOMNode
  */
 class CDOMDocument extends CDOMNode
 {
-	var $xmlEncoding = NULL;	///< variable interne pour stocker l'encodage demandé à l'instanciation (et encoding dans PHP 5, qu'est-ce que c'est ?)
-	var $formatOutput = TRUE;
+	var $xmlEncoding = NULL;	///< Variable interne pour stocker l'encodage demandé à l'instanciation (et encoding dans PHP 5, qu'est-ce que c'est ?)
+	var $formatOutput = FALSE;  ///< Indique si on veut que la sortie du document soit mise en forme (sauts de ligne et tabulations)   
 	
 	/**
 	 * Constructeur
