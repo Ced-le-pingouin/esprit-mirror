@@ -187,10 +187,10 @@ if (strlen($url_sTypeCourriel) > 0)
 }
 
 $sHtmlOptions = "<option>"
-	.mb_convert_encoding($oProjet->oUtilisateur->retNomComplet()." "."<".$oProjet->oUtilisateur->retEmail().">","HTML-ENTITIES","UTF-8")
+	.mb_convert_encoding($oProjet->oUtilisateur->retNomComplet()." "."&lt;".$oProjet->oUtilisateur->retEmail()."&gt;","HTML-ENTITIES","UTF-8")
 	."</option>"
 	.($oProjet->verifAdministrateur()
-		? "<option>".mb_convert_encoding($oProjet->retNom()." "."<".$oProjet->retEmail().">","HTML-ENTITIES","UTF-8")."</option>"
+		? "<option>".mb_convert_encoding($oProjet->retNom()." "."&lt;".$oProjet->retEmail()."&gt;","HTML-ENTITIES","UTF-8")."</option>"
 		: NULL);
 
 // ---------------------
