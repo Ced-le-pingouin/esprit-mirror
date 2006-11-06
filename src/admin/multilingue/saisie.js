@@ -1,3 +1,21 @@
+function zoom( id, factor ) {
+	var ta = document.getElementById(id).saisie;
+	var currentFontSize;
+	if (document.defaultView) {
+		currentFontSize = parseInt(document.defaultView.getComputedStyle(ta,'').fontSize);
+	} else if (ta.currentStyle) {
+		currentFontSize = parseInt(ta.currentStyle.fontSize);
+	}
+	currentFontSize = Math.round(currentFontSize * factor);
+	var nodes = document.getElementById(id).getElementsByTagName('input');
+	for (var i = 0; i < nodes.length; i++) {
+		if (nodes[i].getAttribute("name") == 'size') {
+			nodes[i].value = Math.round(currentFontSize * factor);
+		}
+	}
+	document.getElementById(id).submit();
+}
+
 function insert(event,area,tabconvert) {
 	var charcode = window.event ? event.keyCode : event.which;
 	var char;
