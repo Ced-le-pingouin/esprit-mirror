@@ -45,7 +45,7 @@ $oTpl = new Template(dir_theme("dialog-index.tpl",FALSE,TRUE));
 $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->effacer();
 
-$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($url_sTitrePrincipal),"HTML-ENTITIES","UTF-8");
+$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($url_sTitrePrincipal,"HTML-ENTITIES","UTF-8"));
 $oTpl->remplacer("{frame_src_haut}","choix_formation-titre.php?tp=".rawurlencode($url_sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipal);
 $oTpl->remplacer("{frame_src_bas}","choix_formation-menu.php");

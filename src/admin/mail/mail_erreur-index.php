@@ -55,7 +55,7 @@ if (is_array($url_asDestinatairesCourriel) &&
 	foreach ($url_asDestinatairesCourriel as $sDestinataireErrone)
 	{
 		$iPosEtoile = strpos($sDestinataireErrone,"*");
-		$sListeDestinatairesErrones .= "asListeDestinatairesErrones[".$iIdxDestinataireErrone++."] = \"".substr($sDestinataireErrone,$iPosEtoile,(strpos($sDestinataireErrone,"%20%3C")))."\";\n";
+		$sListeDestinatairesErrones .= "asListeDestinatairesErrones[".$iIdxDestinataireErrone++."] = decodeURI(\"".substr($sDestinataireErrone,$iPosEtoile,(strpos($sDestinataireErrone,"%20%3C")))."\");\n";
 	}
 	
 	if ($iIdxDestinataireErrone > 0)
