@@ -19,25 +19,24 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: formulairecomplete.tbl.php
-** Description ............: 
-** Date de création .......: 
-** Dernière modification ..: 09/11/2004
-** Auteurs ................: Ludovic FLAMME
-**                           Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	formulairecomplete.tbl.php
+ * 
+ * Contient la classe de gestion des formulaires complétés, en rapport avec la DB
+ * 
+ * @date	2004/11/09
+ * 
+ * @author	Ludovic FLAMME
+ */
 
 require_once(dir_database("ressource.def.php"));
 
+/**
+* Gestion des formulaires complétés, et encapsulation de la table FormulaireComplete de la DB
+*/
 class CFormulaireComplete
 {
 	var $iId;
-	
 	var $oBdd;
 	var $oEnregBdd;
 	
@@ -46,35 +45,22 @@ class CFormulaireComplete
 	var $asChampsReponses = array("Valeur", "Valeur", "Valeur", "IdReponse");
 	var $abVerifZeroReponses = array(FALSE, FALSE, FALSE, TRUE);
 	
- 	/*
-	** Fonction 	: CFormulaireComplete
-	** Description	: constructeur
-	** Entrée		: 
-	**	 		&$v_oBdd : référence de l'objet Bdd appartenant a l'objet Projet
-	**			$v_iId : identifiant d'un objet "formulaire complete"
-	** Sortie		: 
-	*/
-	function CFormulaireComplete (&$v_oBdd,$v_iId=0)
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
+	function CFormulaireComplete(&$v_oBdd,$v_iId=0)
 	{
 		$this->oBdd = &$v_oBdd;
-		
 		if (($this->iId = $v_iId) > 0)
 			$this->init();
 	}
 	
- 	/*
-	** Fonction 	: init
-	** Description	: permet d'initialiser l'objet QCocher soit en lui passant
-	**					  un enregistrement provenant de la BD, soit en effectuant 
-	**					  directement une requête dans la BD avec 
-	**                	  l'id passé via la constructeur
-	** Entrée		:
-	**			$v_oEnregExistant=NULL : enregistrement représentant une question 
-	**			de type "case à cocher"
-	** Sortie		: 
-	*/
-	
-	function init ($v_oEnregExistant=NULL)
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
+	function init($v_oEnregExistant=NULL)
 	{
 		if (isset($v_oEnregExistant))
 		{
@@ -84,8 +70,7 @@ class CFormulaireComplete
 		else
 		{
 			$sRequeteSql = "SELECT * FROM FormulaireComplete"
-			." WHERE IdFC='{$this->iId}'"
-			." LIMIT 1";
+						." WHERE IdFC='{$this->iId}' LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -98,13 +83,13 @@ class CFormulaireComplete
 			return;
 		
 		if (isset($v_oFormulaireModele) && mb_strtolower(get_class($v_oFormulaireModele),"UTF-8") == "cformulaire"
-		  && $v_oFormulaireModele->retId() > 0 && $v_oFormulaireModele->retId() == $this->retIdForm())
+		  && $v_oFormulaireModele->retId() > 0 && $v_oFormulaireModele->retId() == $this->retIdFormul())
 		{
 			$this->oFormulaireModele = $v_oFormulaireModele;
 		}
-		else if ($this->retIdForm() > 0)
+		else if ($this->retIdFormul() > 0)
 		{
-			$this->oFormulaireModele = new CFormulaire($this->oBdd, $this->retIdForm());
+			$this->oFormulaireModele = new CFormulaire($this->oBdd, $this->retIdFormul());
 		}
 	}
 	
@@ -120,7 +105,7 @@ class CFormulaireComplete
 		{
 			$hResult = $this->oBdd->executerRequete
 			(
-				"  SELECT *"
+				" SELECT *"
 				." FROM ".$this->asTablesReponses[$i]
 				." WHERE IdFC='".$this->retId()."'"
 			);
@@ -150,10 +135,9 @@ class CFormulaireComplete
 	function ajouter ($v_iIdPers,$v_iIdForm)
 	{
 		$sRequeteSql = "INSERT INTO FormulaireComplete SET"
-			." IdPers='{$v_iIdPers}'"
-			.", DateFC=NOW()"
-			.", IdForm='{$v_iIdForm}'";
-		//echo "<br>ajouter FC(): ".$sRequeteSql."<br>";
+					." IdPers='{$v_iIdPers}'"
+					.", DateFC=NOW()"
+					.", IdFormul='{$v_iIdForm}'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$this->iId = $this->oBdd->retDernierId($hResult);
 		$this->defIdPers($v_iIdPers);
@@ -187,7 +171,6 @@ class CFormulaireComplete
 			." IdFC='".$this->retId()."'"
 			.", IdSousActiv='{$v_iIdSousActiv}'"
 			.", StatutFormSousActiv='{$v_iStatutFormulaire}'";
-		//echo "<br>ajouter FC() à SousActiv: ".$sRequeteSql."<br>";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
@@ -202,12 +185,12 @@ class CFormulaireComplete
 	** Entrée			:
 	** Sortie			:
 	*/
-	function enregistrer ()
+	function enregistrer()
 	{
 		$sRequeteSql = "INSERT INTO FormulaireComplete SET"
 			." IdPers='{$this->oEnregBdd->IdPers}'"
 			.", DateFC='{$this->oEnregBdd->DateFC}'"
-			.", IdForm='{$this->oEnregBdd->IdForm}'";
+			.", IdFormul='{$this->oEnregBdd->IdFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return TRUE;
 	}
@@ -219,7 +202,7 @@ class CFormulaireComplete
 	** Entrée			:
 	** Sortie			:
 	*/
-	function effacer ()
+	function effacer()
 	{
 		$sRequeteSql = "DELETE FROM ReponseEntier"
 			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
@@ -240,8 +223,6 @@ class CFormulaireComplete
 		$sRequeteSql = "DELETE FROM FormulaireComplete"
 			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		
-		return TRUE;
 	}
 	
 	function initAuteur () { $this->oAuteur = new CPersonne($this->oBdd,$this->oEnregBdd->IdPers); }
@@ -303,7 +284,7 @@ class CFormulaireComplete
 	function defId ($v_iIdFC) { $this->iId = $v_iIdFC; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	function defDate ($v_sDateFC) { $this->oEnregBdd->DateFC = $v_sDateFC; }
-	function defIdForm ($v_iIdForm) { $this->oEnregBdd->IdForm = $v_iIdForm; }
+	function defIdFormul ($v_iIdFormul) { $this->oEnregBdd->IdFormul = $v_iIdFormul; }
 	// }}}
 	
 	// {{{ Méthodes de retour
@@ -312,7 +293,7 @@ class CFormulaireComplete
 	function retIdParent () { return $this->oEnregBdd->IdSousActiv; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	function retDate () { return retDateFormatter($this->oEnregBdd->DateFC); }
-	function retIdForm () { return $this->oEnregBdd->IdForm; }
+	function retIdFormul () { return $this->oEnregBdd->IdFormul; }
 	function retStatut () { return (isset($this->oEnregBdd->StatutFormSousActiv) ? $this->oEnregBdd->StatutFormSousActiv : STATUT_RES_EN_COURS); }
 	// }}}
 }

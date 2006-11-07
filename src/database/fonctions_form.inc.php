@@ -94,7 +94,7 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
 	Exemple de partie de résultat :
 	+-------+---------------+-----------+--------------+--------------+-------------+--------+
-	| IdAxe | DescAxe       | IdReponse | TexteReponse | OrdreReponse | IdObjFormul | Poids  |
+	| IdAxe | DescAxe       | IdPropRep | TexteReponse | OrdreReponse | IdObjFormul | Poids  |
 	+-------+---------------+-----------+--------------+--------------+-------------+--------+
 	|     1 | Determination |        55 |              |            3 |         123 | [NULL] |
 	|     2 | Objectivite   |        55 |              |            3 |         123 | [NULL] |
@@ -111,7 +111,7 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 							 .", PropositionReponse as pr"
 							 ." LEFT JOIN Reponse_Axe as ra ON (pr.IdPropRep = ra.IdPropRep AND a.IdAxe = ra.IdAxe)"
 					  	 ." WHERE"
-							 ." fa.IdForm = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
+							 ." fa.IdFormul = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
 							 ." AND pr.IdObjFormul = '{$v_iIdObjForm}'"
 							 ." AND pr.IdPropRep = '{$v_iIdReponse}'"
 						 ." ORDER BY"
@@ -120,19 +120,19 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 	
 	$hResultAxe = $oCBdd2->executerRequete($sRequeteSqlAxes);
 
-	$sCodeHtml="";
+	$sCodeHtml= "";
 
 	while ($oEnreg = $oCBdd2->retEnregSuiv($hResultAxe))
 	{
 		//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
 		$iPoids= $oEnreg->Poids;
 		$iIdAxe = $oEnreg->IdAxe;
-		$iIdReponse = $oEnreg->IdReponse;
+		$iIdPropRep = $oEnreg->IdPropRep;
 		$sDescAxe = $oEnreg->DescAxe;
 	
 		$sCodeHtml.="<tr>\n<td>\n &nbsp;\n</td>\n<td>\n"
 				  ."<table>\n<tr>\n<td width=\"200\">\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n</td>\n</tr>\n</table>\n"
+				  ."name=\"repAxe[$iIdPropRep][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n</td>\n</tr>\n</table>\n"
 				  ."</td>\n</tr>\n"; 
 	}
 
@@ -274,8 +274,7 @@ function CopieReponse_Axe(&$v_oBdd,$v_iIdReponse,$v_iIdNvReponse)
 function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 {
 	$this->oBdd = &$v_oBdd;
-	$hResult4 = $this->oBdd->executerRequete("SELECT * FROM Formulaire_Axe"
-											  ." WHERE IdForm = $v_iIdForm");
+	$hResult4 = $this->oBdd->executerRequete("SELECT * FROM Formulaire_Axe WHERE IdFormul = $v_iIdForm");
 										  
 	while ($oEnreg4 = $this->oBdd->retEnregSuiv($hResult4))
 	{
@@ -284,6 +283,5 @@ function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 		$oFormulaire_Axe->copier($v_iIdNvForm);
 	}
 	$this->oBdd->libererResult($hResult4);
-	return TRUE;
 }
 ?>

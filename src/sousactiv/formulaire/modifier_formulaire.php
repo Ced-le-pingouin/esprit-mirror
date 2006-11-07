@@ -53,7 +53,7 @@ else
 	{
 		$iIdFC = $_GET["idFC"];
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
-		$v_iIdFormulaire = $oFormulaireComplete->retIdForm();
+		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 	}
 	else
 	{

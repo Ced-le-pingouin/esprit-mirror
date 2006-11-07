@@ -296,3 +296,13 @@ ALTER TABLE `ReponseFlottant`
 
 ALTER TABLE `ReponseTexte` 
 	CHANGE `IdObjForm` `IdObjFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+-- Modification des activités en ligne, effectué le 07-11-2006, pour la r209
+ALTER TABLE `Formulaire` 
+	CHANGE `IdForm` `IdFormul` INT( 10 ) UNSIGNED NOT NULL AUTO_INCREMENT 
+
+ALTER TABLE `FormulaireComplete` 
+	CHANGE `IdForm` `IdFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+ALTER TABLE `Formulaire_Axe` 
+	CHANGE `IdFormul` `IdFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'

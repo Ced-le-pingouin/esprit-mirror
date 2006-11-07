@@ -283,10 +283,10 @@ CREATE TABLE `FormulaireComplete` (
   `TitreFC` varchar(255) collate utf8_unicode_ci NOT NULL default '',
   `IdPers` int(10) unsigned NOT NULL default '0',
   `DateFC` datetime NOT NULL default '0000-00-00 00:00:00',
-  `IdForm` int(10) unsigned NOT NULL default '0',
+  `IdFormul` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`IdFC`),
   KEY `IdPers` (`IdPers`),
-  KEY `IdForm` (`IdForm`)
+  KEY `IdFormul` (`IdFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -330,9 +330,9 @@ CREATE TABLE `FormulaireComplete_SousActiv` (
 -- 
 
 CREATE TABLE `Formulaire_Axe` (
-  `IdForm` int(10) unsigned NOT NULL default '0',
+  `IdFormul` int(10) unsigned NOT NULL default '0',
   `IdAxe` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdForm`,`IdAxe`)
+  PRIMARY KEY  (`IdFormul`,`IdAxe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -590,11 +590,11 @@ CREATE TABLE `Module_Tuteur` (
 CREATE TABLE `ObjetFormulaire` (
   `IdObjFormul` int(10) unsigned NOT NULL auto_increment,
   `IdTypeObj` int(10) unsigned NOT NULL default '0',
-  `IdForm` int(10) unsigned NOT NULL default '0',
+  `IdFormul` int(10) unsigned NOT NULL default '0',
   `OrdreObjForm` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`IdObjFormul`),
   KEY `IdTypeObj` (`IdTypeObj`),
-  KEY `IdForm` (`IdForm`)
+  KEY `IdFormul` (`IdFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
