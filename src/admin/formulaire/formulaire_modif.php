@@ -65,7 +65,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 		if(isset($_POST['envoyer']))
 			$oObjetFormulaire->DeplacerObjet($v_iNouvPos);
 		$iOrdreObjFormDepart = $oObjetFormulaire->retOrdreObjFormul();
-		$oTypeObj = new CTypeObjetForm($oProjet->oBdd, $oObjetFormulaire->retIdType());
+		$oTypeObj = new CTypeObjetFormul($oProjet->oBdd, $oObjetFormulaire->retIdType());
 		$oTpl->remplacer("{Titre_page}","Elément ".$iOrdreObjFormDepart." &gt;&gt; ".$oTypeObj->retDescTypeObj());
 		switch($oObjetFormulaire->retIdTypeObj())
 		{

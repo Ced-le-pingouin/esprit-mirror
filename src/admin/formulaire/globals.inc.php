@@ -34,7 +34,7 @@ require_once(dir_database("propositionreponse.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("qcocher.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("mpseparateur.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("mptexte.tbl.php")); //AJOUTE PAR LUDO
-require_once(dir_database("typeobjetform.tbl.php")); //AJOUTE PAR LUDO
+require_once(dir_database("typeobjetformul.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("axe.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("formulaire_axe.tbl.php")); //AJOUTE PAR LUDO
 require_once(dir_database("reponse_axe.tbl.php")); //AJOUTE PAR LUDO

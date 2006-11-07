@@ -306,3 +306,8 @@ ALTER TABLE `FormulaireComplete`
 
 ALTER TABLE `Formulaire_Axe` 
 	CHANGE `IdFormul` `IdFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+
+-- Modification des activités en ligne, effectué le 07-11-2006, pour la r210
+ALTER TABLE `TypeObjetForm` 
+	RENAME `TypeObjetFormul`

@@ -14,7 +14,7 @@ require_once(dir_database("propositionreponse.tbl.php"));
 require_once(dir_database("qcocher.tbl.php"));
 require_once(dir_database("mpseparateur.tbl.php"));
 require_once(dir_database("mptexte.tbl.php"));
-require_once(dir_database("typeobjetform.tbl.php"));
+require_once(dir_database("typeobjetformul.tbl.php"));
 require_once(dir_database("axe.tbl.php"));
 require_once(dir_database("formulaire_axe.tbl.php"));
 require_once(dir_database("reponse_axe.tbl.php"));

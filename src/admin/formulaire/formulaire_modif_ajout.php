@@ -106,7 +106,7 @@ if (isset($_GET['ajouter']) && $oProjet->verifPermission('PERM_MOD_FORMULAIRES')
 else
 {
 	$oTpl->remplacer("{onload}","");
-	$oTypeObjForm = new CTypeObjetForm($oProjet->oBdd);
+	$oTypeObjForm = new CTypeObjetFormul($oProjet->oBdd);
 	$aoTypeObjForm = $oTypeObjForm->retListeTypeObjet();
 	if(!empty($aoTypeObjForm))
 	{

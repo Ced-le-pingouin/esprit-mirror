@@ -1058,10 +1058,10 @@ CREATE TABLE `SujetForum_Equipe` (
 -- --------------------------------------------------------
 
 -- 
--- Structure de la table `TypeObjetForm`
+-- Structure de la table `TypeObjetFormul`
 -- 
 
-CREATE TABLE `TypeObjetForm` (
+CREATE TABLE `TypeObjetFormul` (
   `IdTypeObj` int(10) unsigned NOT NULL auto_increment,
   `NomTypeObj` varchar(25) collate utf8_unicode_ci NOT NULL default '',
   `DescTypeObj` varchar(100) collate utf8_unicode_ci NOT NULL default '',
