@@ -79,7 +79,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=mb_convert_encoding($sTitrePageHtml,"HTML-ENTITIES","UTF-8")?></title>
+<title><?=emb_htmlentities($sTitrePageHtml)?></title>
 </head>
 <frameset rows="65,*,24" border="0" frameborder="0" framespacing="0">
 <frame name="TITRE" src="description-titre.php?tp=<?=rawurlencode($sTitrePageHtml)?>" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" noresize="noresize">

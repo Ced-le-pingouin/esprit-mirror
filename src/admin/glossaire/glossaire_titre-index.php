@@ -37,7 +37,7 @@ require_once("globals.inc.php");
 $sParamsUrl = "?idGlossaire=".$_GET["idGlossaire"];
 
 $oTpl = new template(dir_theme("dialogue/dialog_simple-index.tpl",FALSE,TRUE));
-$oTpl->remplacer("{html->titre}",mb_convert_encoding("Modifier le titre du glossaire","HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{html->titre}",emb_htmlentities("Modifier le titre du glossaire"));
 $oTpl->remplacer("{frame['principale']->src}","glossaire_titre.php{$sParamsUrl}");
 $oTpl->remplacer("{frame['menu']->src}","");
 $oTpl->afficher();

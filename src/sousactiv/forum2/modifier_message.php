@@ -217,7 +217,7 @@ else if ($url_sModaliteFenetre == "modifier")
 	
 	if ($oMessageForum->initRessources() > 0)
 	{
-		$oBlocEffacerFichier->remplacer("{fichier_attache->nom}",mb_convert_encoding($oMessageForum->aoRessources[0]->retNom(),"HTML-ENTITIES","UTF-8"));
+		$oBlocEffacerFichier->remplacer("{fichier_attache->nom}",emb_htmlentities($oMessageForum->aoRessources[0]->retNom()));
 		$oBlocEffacerFichier->afficher();
 	}
 	

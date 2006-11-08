@@ -65,7 +65,7 @@ if ($oProjet->initInscritsModule() > 0)
 	{
 		$amReplTpl = array(
 			$oInscrit->retId()
-			, mb_convert_encoding($oInscrit->retNom()." ".$oInscrit->retPrenom(),"HTML-ENTITIES","UTF-8")
+			, emb_htmlentities($oInscrit->retNom()." ".$oInscrit->retPrenom())
 		);
 		
 		$oBlocPersonne->nextLoop();
@@ -91,7 +91,7 @@ foreach ($aiStatuts as $iStatut)
 {
 	$amReplTpl = array(
 		$aaStatutsRes[$iStatut][0]
-		, mb_convert_encoding($aaStatutsRes[$iStatut][1],"HTML-ENTITIES","UTF-8")
+		, emb_htmlentities($aaStatutsRes[$iStatut][1])
 	);
 	
 	$oBlocStatutsRes->nextLoop();
@@ -115,7 +115,7 @@ if ($iNbCollecticiels > 0)
 	{
 		$amReplTpl = array(
 			$oCollecticiel->retId()
-			, mb_convert_encoding($oCollecticiel->retNom(),"HTML-ENTITIES","UTF-8")
+			, emb_htmlentities($oCollecticiel->retNom())
 		);
 		
 		$oBlocCollecticiel->nextLoop();

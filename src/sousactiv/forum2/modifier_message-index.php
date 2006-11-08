@@ -79,7 +79,7 @@ $sParamsUrl = "modifier_message.php"
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?=mb_convert_encoding($sTitrePrincipal,"HTML-ENTITIES","UTF-8")?></title>
+<title><?=emb_htmlentities($sTitrePrincipal)?></title>
 <script type="text/javascript" language="javascript">
 <!--
 function oPrincipale() { return top.frames["MESSAGE"]; }

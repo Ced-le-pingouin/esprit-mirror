@@ -65,7 +65,7 @@ $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->ajouter($sBlocHeadHtml);
 $oBlockHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",mb_convert_encoding("{$sTitrePrincipal} - {$sNomFormation}","HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities("{$sTitrePrincipal} - {$sNomFormation}"));
 $oTpl->remplacer("{frame_src_haut}","inscription-titre.php?TP=".rawurlencode($sTitrePrincipal)."&ST=".rawurlencode($sNomFormation));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipal);
 $oTpl->remplacer("{frame_src_bas}","inscription-menu.php?tp=".rawurlencode($sTitrePrincipal));

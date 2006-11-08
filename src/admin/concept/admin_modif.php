@@ -162,7 +162,7 @@ function formatSousTitre ($v_sType,$v_sNom)
 {
 	return "<b>{$v_sType}</b>"
 		."&nbsp;&raquo;&nbsp;"
-		.mb_convert_encoding($v_sNom,"HTML-ENTITIES","UTF-8");
+		.emb_htmlentities($v_sNom);
 }
 
 if ($g_iSousActiv > 0)
@@ -314,7 +314,7 @@ function selectionnerStatut ($v_sNom,$v_aoStatut,$v_iStatutActuel=0)
 			." value=\"{$v_aoStatut[$i][0]}\""
 			.($v_aoStatut[$i][0] == $v_iStatutActuel ? " selected" : NULL)
 			.">"
-			.mb_convert_encoding($v_aoStatut[$i][1],"HTML-ENTITIES","UTF-8")
+			.emb_htmlentities($v_aoStatut[$i][1])
 			."</option>"
 			."\n";
 	

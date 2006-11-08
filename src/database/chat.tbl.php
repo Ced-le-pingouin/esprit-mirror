@@ -237,7 +237,7 @@ class CChat
 	function retNom ($v_sMode=NULL)
 	{
 		if ($v_sMode == "html")
-			return mb_convert_encoding($this->oEnregBdd->NomChat,"HTML-ENTITIES","UTF-8");
+			return emb_htmlentities($this->oEnregBdd->NomChat);
 		else if ($v_sMode == "url")
 			return rawurlencode($this->oEnregBdd->NomChat);
 		else

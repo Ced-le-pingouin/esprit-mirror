@@ -1,5 +1,5 @@
 <?php
-$sTitrePrincipal = mb_convert_encoding("Exporter","HTML-ENTITIES","UTF-8");
+$sTitrePrincipal = emb_htmlentities("Exporter");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 $sParamsURLPrincipal = "?LISTE_IDPERS=".$_POST["LISTE_IDPERS"];
 ?>

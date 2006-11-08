@@ -59,7 +59,7 @@ $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->ajouter($sBlocEnteteHtml);
 $oBlockHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($sTitrePrincipale,"HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipale));
 $oTpl->remplacer("{frame_src_haut}","mdp_oublier-titre.php?tp=".rawurlencode($sTitrePrincipale));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","mdp_oublier-menu.php");

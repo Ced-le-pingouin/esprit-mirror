@@ -33,7 +33,7 @@ $url_iIdStatut = (isset($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : 0);
 $sTitrePrincipal = _("Association multiple");
 
 $oTpl = new Template("ass_multiple-index.tpl");
-$oTpl->remplacer("{fenetre->titre}",mb_convert_encoding($sTitrePrincipal,"HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{fenetre->titre}",emb_htmlentities($sTitrePrincipal));
 $oTpl->remplacer("{outil->titre}",phpString2js($sTitrePrincipal));
 $oTpl->remplacer("{formation->id}",$url_iIdForm);
 $oTpl->remplacer("{personne->statut}",$url_iIdStatut);

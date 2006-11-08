@@ -74,7 +74,7 @@ if (MODALITE_PAR_EQUIPE == $g_iModalite)
 			
 			$oBlocPersonneEquipe->nextLoop();
 			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.id}",$iIdEquipe);
-			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.nom}",mb_convert_encoding($oEquipe->retNom(),"HTML-ENTITIES","UTF-8"));
+			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.nom}",emb_htmlentities($oEquipe->retNom()));
 			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.selected}",($url_iIdEquipe == $iIdEquipe ? " selected=\"selected\"" : NULL));
 		}
 		
@@ -100,7 +100,7 @@ else
 			
 			$oBlocPersonneEquipe->nextLoop();
 			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.id}",$iIdInscrit);
-			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.nom}",mb_convert_encoding($oInscrit->retNom()." ".$oInscrit->retPrenom(),"HTML-ENTITIES","UTF-8"));
+			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.nom}",emb_htmlentities($oInscrit->retNom()." ".$oInscrit->retPrenom()));
 			$oBlocPersonneEquipe->remplacer("{sltPersEquipe.options.selected}",($url_iIdPers == $iIdInscrit ? " selected=\"selected\"" : NULL));
 		}
 		

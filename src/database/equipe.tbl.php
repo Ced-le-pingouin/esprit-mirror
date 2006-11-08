@@ -583,7 +583,7 @@ class CEquipe
 	function retNom($v_sMode = NULL)
 	{
 		if ($v_sMode == "html")
-			return mb_convert_encoding($this->oEnregBdd->NomEquipe,"HTML-ENTITIES","UTF-8");
+			return emb_htmlentities($this->oEnregBdd->NomEquipe);
 		else if ($v_sMode == "url")
 			return rawurlencode($this->oEnregBdd->NomEquipe);
 		else

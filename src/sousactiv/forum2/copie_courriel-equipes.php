@@ -82,7 +82,7 @@ foreach ($oProjet->aoEquipes as $oEquipe)
 	$bSelectionne = in_array($iIdEquipe,$aiIdsEquipes);
 	
 	$oBlocEquipe->remplacer("{equipe->id}",$iIdEquipe);
-	$oBlocEquipe->remplacer("{equipe->nom}",mb_convert_encoding($oEquipe->retNom(),"HTML-ENTITIES","UTF-8"));
+	$oBlocEquipe->remplacer("{equipe->nom}",emb_htmlentities($oEquipe->retNom()));
 	$oBlocEquipe->remplacer("{equipe->selectionne}",($bSelectionne ? " checked=\"checked\"" : NULL));
 }
 

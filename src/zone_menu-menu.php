@@ -250,7 +250,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 			$oBlocModuleIntitule->afficher();
 			
 			$oBlocModule->remplacer("{separateur_intitule}",($bAffSeparateurIntitule ? $oSet_Separateur_Intitule : NULL));
-			$oBlocModule->remplacer("{nom_cours}",mb_convert_encoding($sNomMod,"HTML-ENTITIES","UTF-8"));
+			$oBlocModule->remplacer("{nom_cours}",emb_htmlentities($sNomMod));
 		}
 	}
 	

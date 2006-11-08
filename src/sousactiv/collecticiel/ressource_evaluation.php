@@ -132,12 +132,12 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 	
 	if ($v_bEditable)
 		echo "<input type=\"text\" size=\"45\" name=\"appreciationEval\""
-			." value=\"".(isset($v_oEval) ? mb_convert_encoding($v_oEval->retAppreciation(),"HTML-ENTITIES","UTF-8") : NULL)."\""
+			." value=\"".(isset($v_oEval) ? emb_htmlentities($v_oEval->retAppreciation()) : NULL)."\""
 			." style=\"width: 100%;\""
 			.">";
 	else
 		echo "<p class=\"appreciation\">"
-			.mb_convert_encoding($v_oEval->retAppreciation(),"HTML-ENTITIES","UTF-8")
+			.emb_htmlentities($v_oEval->retAppreciation())
 			."</p>";
 	
 	echo "</td>\n";
@@ -150,7 +150,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 	
 	if ($v_bEditable)
 		echo "<textarea id=\"commentaire\" cols=\"45\" rows=\"12\" name=\"commentaireEval\" style=\"width: 100%;\">"
-			.(isset($v_oEval) ? mb_convert_encoding($v_oEval->retCommentaire(),"HTML-ENTITIES","UTF-8") : NULL)
+			.(isset($v_oEval) ? emb_htmlentities($v_oEval->retCommentaire()) : NULL)
 			."</textarea>"
 			."<br>\n"
 			."<div style=\"color: rgb(127,157,185); text-align: right;\">[&nbsp;"
@@ -193,7 +193,7 @@ function afficherEvaluation ($v_oEval=NULL,$v_bEditable=FALSE)
 			."<fieldset>"
 			."<legend>"
 			."&nbsp;<span class=\"intitule\">"
-			.mb_convert_encoding("Attacher un document","HTML-ENTITIES","UTF-8")."&nbsp;:"
+			.emb_htmlentities("Attacher un document")."&nbsp;:"
 			."</span>&nbsp;"
 			."</legend>"
 			."<br>"
@@ -331,7 +331,7 @@ if (isset($_GET["idResSA"]))
 		echo "<p>&nbsp;</p>"
 			."<div align=\"center\">"
 			."<div class=\"pas_encore_evaluer\">"
-			.mb_convert_encoding("Ce tuteur n'a pas encore évalué ce document","HTML-ENTITIES","UTF-8")
+			.emb_htmlentities("Ce tuteur n'a pas encore évalué ce document")
 			."</div>\n"
 			."</div>\n";
 		echo "<script type=\"text/javascript\" language=\"javascript\"><!--\n"
@@ -355,7 +355,7 @@ else if ($_POST["ressource_attache_effacer"] == "1")
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".mb_convert_encoding("Le document attaché a bien été effacé","HTML-ENTITIES","UTF-8")."</h3>"
+		."<h3>".emb_htmlentities("Le document attaché a bien été effacé")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }
@@ -420,7 +420,7 @@ else if (isset($_POST["idResSA"]))
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\">"
 		."<tr><td>&nbsp;</td></tr>"
 		."<tr><td align=\"center\">"
-		."<h3>".mb_convert_encoding("L'évaluation a été enregistrée","HTML-ENTITIES","UTF-8")."</h3>"
+		."<h3>".emb_htmlentities("L'évaluation a été enregistrée")."</h3>"
 		."</td></tr>"
 		."</table>\n";
 }
