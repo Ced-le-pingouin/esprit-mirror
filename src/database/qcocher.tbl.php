@@ -174,27 +174,26 @@ class CQCocher
 		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
 		$this->oEnregBdd->EnonQC = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQC);
 		
-		//Si alignement vertical alors suppression des textes avant et après sinon mise en forme
-		if ($this->oEnregBdd->DispQC == 'Ver')
-		{
-			$this->oEnregBdd->TxtAvQC = "";
-			$this->oEnregBdd->TxtApQC = "";
-		}
-		else
-		{
-			$this->oEnregBdd->TxtAvQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQC);
-			$this->oEnregBdd->TxtApQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQC);
-		}
+		$this->oEnregBdd->TxtAvQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQC);
+		$this->oEnregBdd->TxtApQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQC);
 		
 		//Genération du code html représentant l'objet
 		$sCodeHtml = "\n<!--QCocher : {$this->oEnregBdd->IdObjForm} -->\n"
 			."<div align=\"{$this->oEnregBdd->AlignEnonQC}\">{$this->oEnregBdd->EnonQC}</div>\n"
 			."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQC}\">\n"
-			."{$this->oEnregBdd->TxtAvQC} \n"
+				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
+				."<td valign=\"top\">"
+				."{$this->oEnregBdd->TxtAvQC} \n"
+				."</td>"
 			//Appel de la fonction qui renvoie les réponses sous forme de cases à cocher,
 			//avec la réponse sélectionnée par l'étudiant si IdFC est présent
-			.$this->RetourReponseQC($this->oEnregBdd->NbRepMaxQC,$this->oEnregBdd->MessMaxQC,$v_iIdFC)
-			." {$this->oEnregBdd->TxtApQC}\n"
+				."<td valign=\"top\">"
+				.$this->RetourReponseQC($this->oEnregBdd->NbRepMaxQC,$this->oEnregBdd->MessMaxQC,$v_iIdFC)
+				."</td>"
+				."<td valign=\"top\">"
+				." {$this->oEnregBdd->TxtApQC}\n"
+				."</td>"
+				."</tr></table>"
 			."</div>\n";
 		
 		return $sCodeHtml;
