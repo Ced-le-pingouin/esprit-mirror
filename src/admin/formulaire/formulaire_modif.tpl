@@ -212,7 +212,7 @@ function soumettre(TypeAct,Parametre)
 		<td>
 			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
 		</td>
-	{RetourReponseQCModif}
+	{RetourReponseQLDModif}
 	</table>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />

@@ -169,14 +169,14 @@ class CQListeDeroul
 	}
 	
 	/*
-	** Fonction 		: RetourReponseQCModif
+	** Fonction 		: RetourReponseQLDModif
 	** Description		: va rechercher dans la table réponse les réponses correspondant
 	**				  a la question de type liste déroulante en cours de traitement 
 	**				  + mise en page de ces réponses avec possibilité de modification
 	** Entrée			:
 	** Sortie			: Code Html contenant les réponses + mise en page + modification possible
 	*/
-	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
+	function RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
 		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"

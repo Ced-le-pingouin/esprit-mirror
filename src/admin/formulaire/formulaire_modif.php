@@ -295,7 +295,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar4}",$ar4);
 					$oTpl->remplacer("{TxtAvQLD}",htmlentities($oQListeDeroul->retTxtAvQLD(),ENT_COMPAT,"UTF-8"));
 					$oTpl->remplacer("{TxtApQLD}",htmlentities($oQListeDeroul->retTxtApQLD(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{RetourReponseQCModif}",$oQListeDeroul->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire));
+					$oTpl->remplacer("{RetourReponseQLDModif}",$oQListeDeroul->RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire));
 					break;
 			
 			// question fermée de type "radio"
