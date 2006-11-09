@@ -233,12 +233,14 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Enregistrement des réponses et de leurs poids pour les differents axes
 						if(isset($_POST["rep"])) 	// on doit verifier car lorsque l'on appuie la premiere fois, apres avoir cree l'objet, 
 						{							// sur ajouter, $_POST["rep"] n'existe pas 
+							$aiOrdre = $_POST["selOrdreProposition"];
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
-								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
-								$oPropositionReponse->defId($v_iIdReponse);
+								// initialisation avec la proposition de réponse courante (faut-il le faire, ou définir l'IdPropRep et IdFormul?)
+								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
 								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
-								$oPropositionReponse->enregistrer(false);  // On utilise FALSE car on n'initialise (on ne connait pas sa position)
+								$oPropositionReponse->defOrdrePropRep($aiOrdre[$v_iIdReponse]);
+								$oPropositionReponse->enregistrer();
 								if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];
@@ -321,12 +323,13 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						// Enregistrement des réponses et de leurs poids pour les differents axes
 						if(isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois sur ajouter apres avoir créé l'objet 
 						{							// $_POST["rep"] n'existe pas 
+							$aiOrdre = $_POST["selOrdreProposition"];
 							foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 							{
-								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
-								$oPropositionReponse->defId($v_iIdReponse);
+								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
 								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
-								$oPropositionReponse->enregistrer(FALSE);
+								$oPropositionReponse->defOrdrePropRep($aiOrdre[$v_iIdReponse]);
+								$oPropositionReponse->enregistrer();
 								if(isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
 									$tab = $_POST["repAxe"];

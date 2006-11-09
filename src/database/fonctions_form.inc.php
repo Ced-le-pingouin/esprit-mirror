@@ -82,13 +82,8 @@ function validerTexte($v_sTexte)
 	** Sortie			: Code Html contenant le(s) poids + mise en page + modification possible
 	*/
 
-function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
+function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 {
-	/*
-	Utilisation de l'objet CBdd bcp plus léger pour faire les requêtes qu'un objet Projet
-	Attention ne pas oublier le : require_once (dir_database("bdd.class.php"));
-	*/
-	$oCBdd2 = new CBdd;
 	/*
 	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
@@ -118,24 +113,22 @@ function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 							 ." pr.OrdrePropRep"
 							 .", a.DescAxe";
 	
-	$hResultAxe = $oCBdd2->executerRequete($sRequeteSqlAxes);
+	$hResultAxe = $v_oBdd->executerRequete($sRequeteSqlAxes);
 
 	$sCodeHtml= "";
 
-	while ($oEnreg = $oCBdd2->retEnregSuiv($hResultAxe))
+	while ($oEnreg = $v_oBdd->retEnregSuiv($hResultAxe))
 	{
 		//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
 		$iPoids= $oEnreg->Poids;
 		$iIdAxe = $oEnreg->IdAxe;
 		$iIdPropRep = $oEnreg->IdPropRep;
 		$sDescAxe = $oEnreg->DescAxe;
-	
-		$sCodeHtml.="<tr>\n<td>\n &nbsp;\n</td>\n<td>\n"
-				  ."<table>\n<tr>\n<td width=\"200\">\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdPropRep][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n</td>\n</tr>\n</table>\n"
-				  ."</td>\n</tr>\n"; 
+		
+		$sCodeHtml.="<div class=\"poidsaxe\">\n"
+				  ."&#8226; $sDescAxe <input type=\"text\" size=\"4\" maxlength=\"4\" name=\"repAxe[$iIdPropRep][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n"
+				  ."</div>\n"; 
 	}
-
 	return $sCodeHtml;
 }
 

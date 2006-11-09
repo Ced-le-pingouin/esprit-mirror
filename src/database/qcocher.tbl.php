@@ -209,6 +209,12 @@ class CQCocher
 	
 	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
 	{
+		// Recherche du numéro d'ordre maximum
+		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul='{$this->oEnregBdd->IdObjFormul}'");
+		$oEnreg = $this->oBdd->retEnregSuiv();
+		$iOrdreMax = $oEnreg->OrdreMax;
+		$this->oBdd->libererResult($hResult);
+		
 		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
 		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}' ORDER BY OrdrePropRep";
 		$hResultRRQCM = $this->oBdd->executerRequete($sRequeteSql);
@@ -224,18 +230,42 @@ class CQCocher
 			$TexteTemp = $oPropositionReponse->retTextePropRep();
 			$IdReponseTemp = $oPropositionReponse->retId();
 			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
+			$sFeedbackTemp = $oPropositionReponse->retFeedbackPropRep();
+			$iScoreTemp = $oPropositionReponse->retScorePropRep();
+			$iOrdreTemp = $oPropositionReponse->retOrdre();
 			
+			// gestion pour selectionner le bon radio des scores (pas encore utilisé...)
+			switch($iScoreTemp)
+			{
+				case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
+							break;
+				case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
+							break;
+				default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
+			}
+			
+			// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
 			if ($sCodeHtml != "")
-				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";
-
-			$sCodeHtml.="<td>\n <input type=\"text\" size=\"70\" maxlength=\"255\" "
-				."name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n"
-				."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a><br /></td></tr>\n"
-				.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); 
-				//cette fc se trouve dans le fichier fonctions_form.inc.php
+				$sCodeHtml.="<hr class=\"sepproprep\" />";
+			
+			// gestion du numéro d'ordre des propositions
+			$sCodeOptionsOrdre = "";
+			for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
+			{
+				if($iNumOrdre == $iOrdreTemp)
+					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
+				else
+					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
+			}
+			
+			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
+			$sCodeHtml.= "\n <input type=\"text\" size=\"70\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n";
+			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select></div>";
+			$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
+			$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 		}
 		if(strlen($sCodeHtml)==0)
-			$sCodeHtml = "<td>\n&nbsp;\n</td>\n</tr>\n";
+			$sCodeHtml = "<div><a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a></div>\n";
 		$this->oBdd->libererResult($hResultRRQCM);
 		return $sCodeHtml;
 	}

@@ -7,6 +7,51 @@
 <script src="selectionobj.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
+// tableau qui contiendra les objets SELECT permettant de modifier l'ordre
+// des propositions dans les questions de type Liste/Radios/Cases
+var g_aoSelects = new Array();
+
+// initialiser le tableau de SELECT en fonction du nom
+function init()
+{
+	var i, j;
+	var sNomSelectOrdre = 'selOrdreProposition';
+	var iTailleNomSelectOrdre = sNomSelectOrdre.length;
+	
+	aoSelects = document.getElementsByTagName('select');
+	for (i = 0, j = 0; i < aoSelects.length; i++)
+	{
+		if (aoSelects[i].name.substr(0, iTailleNomSelectOrdre) == sNomSelectOrdre)
+		{
+			g_aoSelects[j] = aoSelects[i];
+			g_aoSelects[j].onchange = changerOrdreProposition;
+			g_aoSelects[j].selectedIndexCopy = g_aoSelects[j].selectedIndex;
+			j++;
+		}
+	}
+}
+
+// quand l'ordre d'une proposition est modifié, il faut s'assurer que la nouvelle 
+// valeur n'existe pas pour une autre proposition (auquel cas on lui attribue l'ancienne 
+// (valeur de la position qui vient d'être modifiée)
+function changerOrdreProposition()
+{
+	var i;
+	
+	for (i = 0; i < g_aoSelects.length; i++)
+	{
+		if (g_aoSelects[i] != this && g_aoSelects[i].selectedIndex == this.selectedIndex)
+		{
+			g_aoSelects[i].selectedIndex = this.selectedIndexCopy;
+			g_aoSelects[i].selectedIndexCopy = this.selectedIndexCopy;
+			break;
+		}
+	}
+	
+	this.selectedIndexCopy = this.selectedIndex;
+}
+
+
 function soumettre(TypeAct,Parametre)
 {
 	document.forms['formmodif'].typeaction.value=TypeAct;
@@ -21,7 +66,7 @@ function soumettre(TypeAct,Parametre)
 //-->
 </script>
 </head>
-<body class="modif">
+<body class="modif" onload="init()">
 <div id="entete">
 	<h3>{Titre_page}</h3>
 </div>
@@ -207,13 +252,7 @@ function soumettre(TypeAct,Parametre)
 	</fieldset>
 	<fieldset id="zoneproposition">
 	<legend>Propositions</legend>
-	<table>
-	<tr>
-		<td>
-			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
-		</td>
 	{RetourReponseQLDModif}
-	</table>
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
 	<input type="hidden" name="parametre" value="" />
@@ -262,13 +301,7 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label></li>
 		<li><input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label></li>
 	</ul>
-	<table>
-	<tr>
-		<td> 
-			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
-		</td>
-		{RetourReponseQRModif} 
-	</table>
+	{RetourReponseQRModif} 
 	</fieldset>
 	<input type="hidden" name="typeaction" value="" />
 	<input type="hidden" name="parametre" value="" />
@@ -317,13 +350,7 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="Disp" id="idhor" value="Hor" {d1} /><label for="idhor">Horizontale</label></li>
 		<li><input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label></li>
 	</ul>
-	<table>
-	<tr>
-		<td>
-			Réponse(s) : <a href="javascript: soumettre('ajouter',0);">Ajouter</a>
-		</td>
 	{RetourReponseQCModif}
-	</table>
 	<ul>
 		<li><label for="idnbrepmax">{sMessageErreur2} Nombre de réponses max :</label><input type="text" size="2" maxlength="2" name="NbRepMax" id="idnbrepmax" value="{NbRepMaxQC}" onblur="verifNumeric(this)" /></li>
 		<li><label for="idmessmax">Message "Maximum dépassé"</label><input type="text" size="70" maxlength="254" name="MessMax" id="idmessmax" value="{MessMaxQC}" /></li>

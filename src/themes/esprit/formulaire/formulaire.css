@@ -192,7 +192,7 @@ a:hover
 }
 #zoneenonce, #zonempsep, #zonereponse, #zoneproposition
 {
-	padding: 4px;
+	padding: 4px 4px 4px 14px;
 	margin: 15px 0;
 }
 #zoneenonce label
@@ -233,4 +233,18 @@ a:hover
 	background-color: rgb(255,255,255);
 	color: rgb(153,73,89);
 	border: 1px solid rgb(127,157,185);
+}
+.poidsaxe
+{
+	margin: 5px 0;
+	padding: 1px 1px 1px 100px;
+}
+.sepproprep
+{
+	margin: 10px 0 20px 0;
+	width: 99%;
+	height: 1px;
+	color: rgb(208,208,191);
+	background-color: rgb(208,208,191);
+	border: 0;
 }
