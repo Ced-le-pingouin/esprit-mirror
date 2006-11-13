@@ -77,7 +77,7 @@ class CReponse_Axe
 		//car le/les axes ont été supprimé du formulaire
 		$sRequeteSql = "SELECT Reponse_Axe.*"
 				   ." FROM ObjetFormulaire, PropositionReponse, Reponse_Axe"
-				   ." WHERE ObjetFormulaire.IdForm = '$v_iIdFormulaire' AND PropositionReponse.IdObjFormul = ObjetFormulaire.IdObjFormul"
+				   ." WHERE ObjetFormulaire.IdFormul = '$v_iIdFormulaire' AND PropositionReponse.IdObjFormul = ObjetFormulaire.IdObjFormul"
 				   ." AND Reponse_Axe.IdPropRep = PropositionReponse.IdPropRep"
 				   ." AND Reponse_Axe.IdAxe NOT IN($v_sListeAxes)";
 		

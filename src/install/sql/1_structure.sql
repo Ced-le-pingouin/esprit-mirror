@@ -250,7 +250,7 @@ CREATE TABLE `Formation_Tuteur` (
 -- 
 
 CREATE TABLE `Formulaire` (
-  `IdForm` int(10) unsigned NOT NULL auto_increment,
+  `IdFormul` int(10) unsigned NOT NULL auto_increment,
   `Nom` varchar(100) collate utf8_unicode_ci default NULL,
   `Commentaire` text collate utf8_unicode_ci,
   `ActiverScores` tinyint(1) unsigned NOT NULL default '0',
@@ -268,7 +268,7 @@ CREATE TABLE `Formulaire` (
   `Statut` tinyint(1) NOT NULL default '0',
   `Type` enum('public','prive') collate utf8_unicode_ci NOT NULL default 'prive',
   `IdPers` int(10) NOT NULL default '0',
-  PRIMARY KEY  (`IdForm`),
+  PRIMARY KEY  (`IdFormul`),
   KEY `IdPers` (`IdPers`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -591,7 +591,7 @@ CREATE TABLE `ObjetFormulaire` (
   `IdObjFormul` int(10) unsigned NOT NULL auto_increment,
   `IdTypeObj` int(10) unsigned NOT NULL default '0',
   `IdFormul` int(10) unsigned NOT NULL default '0',
-  `OrdreObjForm` tinyint(3) unsigned NOT NULL default '0',
+  `OrdreObjFormul` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`IdObjFormul`),
   KEY `IdTypeObj` (`IdTypeObj`),
   KEY `IdFormul` (`IdFormul`)
@@ -855,7 +855,7 @@ CREATE TABLE `ReponseTexte` (
   `Valeur` text collate utf8_unicode_ci,
   PRIMARY KEY  (`IdFC`,`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-$
+
 -- --------------------------------------------------------
 
 -- 
@@ -863,10 +863,10 @@ $
 -- 
 
 CREATE TABLE `Reponse_Axe` (
-  `IdReponse` int(10) unsigned NOT NULL default '0',
+  `IdPropRep` int(10) unsigned NOT NULL default '0',
   `IdAxe` int(10) unsigned NOT NULL default '0',
   `Poids` float NOT NULL default '0',
-  PRIMARY KEY  (`IdReponse`,`IdAxe`)
+  PRIMARY KEY  (`IdPropRep`,`IdAxe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
