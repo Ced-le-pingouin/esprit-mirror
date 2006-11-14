@@ -248,3 +248,7 @@ a:hover
 	background-color: rgb(208,208,191);
 	border: 0;
 }
+.feedback
+{
+	margin : 10px 0 10px 93px;
+}

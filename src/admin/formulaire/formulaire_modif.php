@@ -222,6 +222,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
+					$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
@@ -240,6 +241,11 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
 								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
 								$oPropositionReponse->defOrdrePropRep($aiOrdre[$v_iIdReponse]);
+								if($oFormulaire->retAutoCorrection())
+								{
+									$oPropositionReponse->defScorePropRep($_POST["correctionRep"][$v_iIdReponse]);
+									$oPropositionReponse->defFeedbackPropRep($_POST["feedbackRep"][$v_iIdReponse]);
+								}
 								$oPropositionReponse->enregistrer();
 								if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
@@ -297,7 +303,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar4}",$ar4);
 					$oTpl->remplacer("{TxtAvQLD}",htmlentities($oQListeDeroul->retTxtAvQLD(),ENT_COMPAT,"UTF-8"));
 					$oTpl->remplacer("{TxtApQLD}",htmlentities($oQListeDeroul->retTxtApQLD(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{RetourReponseQLDModif}",$oQListeDeroul->RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire));
+					$oTpl->remplacer("{RetourReponseQLDModif}",$oQListeDeroul->RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire,$oFormulaire->retAutoCorrection()));
 					break;
 			
 			// question fermée de type "radio"
@@ -310,6 +316,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
+					$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 					// réception d'un formulaire
 					if(isset($_POST['envoyer']))
 					{
@@ -329,6 +336,11 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 								$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
 								$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
 								$oPropositionReponse->defOrdrePropRep($aiOrdre[$v_iIdReponse]);
+								if($oFormulaire->retAutoCorrection())
+								{
+									$oPropositionReponse->defScorePropRep($_POST["correctionRep"][$v_iIdReponse]);
+									$oPropositionReponse->defFeedbackPropRep($_POST["feedbackRep"][$v_iIdReponse]);
+								}
 								$oPropositionReponse->enregistrer();
 								if(isset($_POST["repAxe"])) 	//Vérifier pour ne pas effectuer le traitement si aucun axe n'est défini pour ce formulaire
 								{
@@ -398,7 +410,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					}
 					$oTpl->remplacer("{TxtAvQR}",htmlentities($oQRadio->retTxTAvQR(),ENT_COMPAT,"UTF-8"));
 					$oTpl->remplacer("{TxtApQR}",htmlentities($oQRadio->retTxtApQR(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{RetourReponseQRModif}",$oQRadio->RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire));
+					$oTpl->remplacer("{RetourReponseQRModif}",$oQRadio->RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire,$oFormulaire->retAutoCorrection()));
 					break;
 			
 			// question fermée de type "case à cocher"
@@ -411,6 +423,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oBlockModifMPTexte->effacer();
 					$oBlockModifMPSep->effacer(); 
 					$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
+					$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 					if(isset($_POST['envoyer']))
 					{
 						// Récupération des variables transmises par le formulaire
@@ -430,12 +443,18 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 							// Enregistrement des réponses et de leurs poids pour les differents axes
 							if(isset($_POST["rep"])) 	//on doit verifier car lorsque l'on appuie la premiere fois apres avoir cree l'objet 
 							{							//sur ajouter, $_POST["rep"] n'existe pas 
+								$aiOrdre = $_POST["selOrdreProposition"];
 								foreach ($_POST["rep"] as $v_iIdReponse => $v_sTexteTemp) 
 								{
-									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
-									$oPropositionReponse->defId($v_iIdReponse);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd,$v_iIdReponse);
 									$oPropositionReponse->defTextePropRep(stripslashes($v_sTexteTemp));
-									$oPropositionReponse->enregistrer(FALSE);
+									$oPropositionReponse->defOrdrePropRep($aiOrdre[$v_iIdReponse]);
+									if($oFormulaire->retAutoCorrection())
+									{
+										$oPropositionReponse->defScorePropRep($_POST["correctionRep"][$v_iIdReponse]);
+										$oPropositionReponse->defFeedbackPropRep($_POST["feedbackRep"][$v_iIdReponse]);
+									}
+									$oPropositionReponse->enregistrer();
 									if(isset($_POST["repAxe"])) 	// Vérifier pour ne pas effectuer le traitement si aucun axe 
 									{								// n'est défini pour ce formulaire
 										$tab = $_POST["repAxe"];
@@ -506,7 +525,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					}
 					$oTpl->remplacer("{NbRepMaxQC}",$oQCocher->retNbRepMaxQC());
 					$oTpl->remplacer("{MessMaxQC}",$oQCocher->retMessMaxQC());
-					$oTpl->remplacer("{RetourReponseQCModif}",$oQCocher->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire));
+					$oTpl->remplacer("{RetourReponseQCModif}",$oQCocher->RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire,$oFormulaire->retAutoCorrection()));
 					$oTpl->remplacer("{sMessageErreur1}",$sMessageErreur1);
 					$oTpl->remplacer("{sMessageErreur2}",$sMessageErreur2);
 					$oTpl->remplacer("{sMessageErreur3}",$sMessageErreur3);
@@ -638,6 +657,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$oFormulaire->defInterElem($_POST['InterElem']);
 				$oFormulaire->defInterEnonRep($_POST['InterEnonRep']);
 				$oFormulaire->defRemplirTout($_POST['RemplirTout']);
+				$oFormulaire->defAutoCorrection($_POST['AutoCorrection']);
 				$oFormulaire->defStatut(1); //$_POST['Statut'];
 				$oFormulaire->defType($_POST['Type']);
 				// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
@@ -714,6 +734,10 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$oTpl->remplacer("{sRemplirToutSel}","checked=\"checked\"");
 			else
 				$oTpl->remplacer("{sRemplirToutSel}","");
+			if($oFormulaire->retAutoCorrection())
+				$oTpl->remplacer("{sAutoCorrectionSel}","checked=\"checked\"");
+			else
+				$oTpl->remplacer("{sAutoCorrectionSel}","");
 		}
 		else	//--- Cas où aucune valeur n'a encore été envoyée (c-à-d chargement de la page) ---
 		{

@@ -235,6 +235,7 @@ class CFormulaire
 					.", RemplirTout='".$this->retRemplirTout()."'"
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
+					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
 					.", IdPers='{$this->oEnregBdd->IdPers}'"
 					.($this->oEnregBdd->IdFormul > 0 ? " WHERE IdFormul='{$this->oEnregBdd->IdFormul}'" : NULL);
 		
@@ -263,6 +264,7 @@ class CFormulaire
 					.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
+					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
 					.", IdPers='{$v_iIdPers}'";
 			
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -391,6 +393,7 @@ class CFormulaire
 	function defRemplirTout ($v_bRemplirTout) { $this->oEnregBdd->RemplirTout = ( $v_bRemplirTout?1:0 ); }
 	function defStatut ($v_iStatut) { $this->oEnregBdd->Statut = $v_iStatut; }
 	function defType ($v_sType) { $this->oEnregBdd->Type = trim($v_sType); }
+	function defAutoCorrection ($v_iAutoCorrect) { $this->oEnregBdd->AutoCorrection = $v_iAutoCorrect; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	//@}
 	
@@ -406,6 +409,7 @@ class CFormulaire
 	function retRemplirTout () { return $this->oEnregBdd->RemplirTout; }
 	function retStatut () { return $this->oEnregBdd->Statut; }
 	function retType () { return $this->oEnregBdd->Type; }
+	function retAutoCorrection () { return $this->oEnregBdd->AutoCorrection; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	//@}
 }

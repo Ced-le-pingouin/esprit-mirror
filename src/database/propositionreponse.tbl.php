@@ -114,6 +114,8 @@ class CPropositionReponse
 		$sRequeteSql = ($this->retId() > 0 ? "UPDATE PropositionReponse SET":"INSERT INTO PropositionReponse SET")
 					." IdPropRep='{$this->oEnregBdd->IdPropRep}'"
 					." , TextePropRep='{$sTexteReponse}'"
+					." , ScorePropRep='{$this->oEnregBdd->ScorePropRep}'"
+					." , FeedbackPropRep='".validerTexte($this->oEnregBdd->FeedbackPropRep)."'"
 					.$sModifOrdre
 					.$sModifIdObjForm
 					.($this->oEnregBdd->IdPropRep > 0 ? " WHERE IdPropRep='{$this->oEnregBdd->IdPropRep}'" : NULL);

@@ -351,6 +351,7 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="Disp" id="idver" value="Ver" {d2} /><label for="idver">Verticale</label></li>
 	</ul>
 	{RetourReponseQCModif}
+	<hr class="sepproprep" />
 	<ul>
 		<li><label for="idnbrepmax">{sMessageErreur2} Nombre de réponses max :</label><input type="text" size="2" maxlength="2" name="NbRepMax" id="idnbrepmax" value="{NbRepMaxQC}" onblur="verifNumeric(this)" /></li>
 		<li><label for="idmessmax">Message "Maximum dépassé"</label><input type="text" size="70" maxlength="254" name="MessMax" id="idmessmax" value="{MessMaxQC}" /></li>
@@ -487,6 +488,14 @@ function soumettre(TypeAct,Parametre)
 		</td>
 		<td colspan="2">
 			<input id="idremptout" type="checkbox" name="RemplirTout" value="1" {sRemplirToutSel} />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label for="idautocorrect">Scores :</label>
+		</td>
+		<td colspan="2">
+			<input id="idautocorrect" type="checkbox" name="AutoCorrection" value="1" {sAutoCorrectionSel} />
 		</td>
 	</tr>
 	</table>

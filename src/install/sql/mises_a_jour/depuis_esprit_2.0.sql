@@ -311,3 +311,7 @@ ALTER TABLE `Formulaire_Axe`
 -- Modification des activités en ligne, effectué le 07-11-2006, pour la r210
 ALTER TABLE `TypeObjetForm` 
 	RENAME `TypeObjetFormul`
+	
+-- Modification des activités en ligne, effectué le 14-11-2006, pour la r218
+ALTER TABLE `Formulaire` 
+	ADD `AutoCorrection` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `Type`

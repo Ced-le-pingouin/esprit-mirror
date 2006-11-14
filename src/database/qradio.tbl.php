@@ -217,7 +217,7 @@ class CQRadio
 	** Entrée			:
 	** Sortie			: Code Html contenant les réponses + mise en page + modification possible
 	*/
-	function RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire)
+	function RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire,$v_bAutoCorrection = false)
 	{
 		// Recherche du numéro d'ordre maximum
 		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul='{$this->oEnregBdd->IdObjFormul}'");
@@ -244,7 +244,7 @@ class CQRadio
 			$iScoreTemp = $oPropositionReponse->retScorePropRep();
 			$iOrdreTemp = $oPropositionReponse->retOrdre();
 			
-			// gestion pour selectionner le bon radio des scores (pas encore utilisé...)
+			// gestion pour selectionner le bon radio des scores
 			switch($iScoreTemp)
 			{
 				case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
@@ -269,8 +269,19 @@ class CQRadio
 			}
 			
 			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
-			$sCodeHtml.= "\n <input type=\"text\" size=\"70\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n";
-			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select></div>";
+			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n";
+			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
+			if($v_bAutoCorrection)
+			{
+				$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
+							."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
+							."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
+			}
+			$sCodeHtml.="</div>";
+			if($v_bAutoCorrection)
+			{
+				$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
+			}
 			$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
 			$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 		} 
