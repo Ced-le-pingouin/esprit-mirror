@@ -29,7 +29,7 @@ require_once(dirname(__FILE__).'/../erreur.class.php');
 require_once(dirname(__FILE__).'/iterateur.class.php');
 
 /**
- * Sous-classe de CIterateur, qui permet d'effectuer des itérations sur un tableau
+ * Sous-classe de CIterateur, qui permet d'effectuer des itérations sur un tableau (itérateur en lecture seule)
  * 
  * @note	Cet itérateur n'est pas récursif, càd que si l'un des éléments contenu est lui-même un tableau, il ne sera 
  * 			pas automatiquement parcouru par les fonctions #next() et autres de la classe, il sera retourné tel quel
@@ -50,6 +50,7 @@ class CIterateurTableau extends CIterateur
 			CErreur::provoquer(__FUNCTION__."(): l'objet n'est pas un tableau");
 			
 		$this->aTableau = $v_aTableau;
+		
 		$this->debut();
 	}
 	
@@ -86,7 +87,7 @@ class CIterateurTableau extends CIterateur
     }
     
     /**
-	 * Méthode non implémentée pour les tableaux actuellement. Voir CIterateur#chercher()
+	 * Méthode non implémentée pour les tableaux actuellement. Voir CIterateur#rechercher()
 	 */
     function rechercher($v_Cle)
     {
