@@ -24,9 +24,12 @@ ou
 
 
 3. Comment installer les modules Awareness et Chat ?
-Techniquement, ces deux modules sont écrits en Java : ils nécessitent à la fois
-une machine virtuelle sur le serveur, et sur les clients, avec le navigateur web
-configuré pour exécuter les applets Java.
+Techniquement, ces deux modules sont écrits en Java, et fonctionnent en mode
+client/serveur, indépendamment du Web.
+Cela veut dire qu'ils nécessitent la présence d'une machine virtuelle Java 
+à la fois sur le serveur et sur la machine de chaque utilisateur désirant 
+avoir accès à ces fonctions. De plus, le navigateur web doit être configuré
+pour exécuter les applets Java.
 Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
  - src/sousactiv/chat/client
  - src/admin/awareness/client
@@ -66,6 +69,9 @@ serveur : dans le fichier deltachat.properties, définir la variable
 DOCUMENT_ROOT =
 (en indiquant le répertoire père de esprit/ )
 (!!! Sous Windows, il faut doubler les backslashes dans le chemin indiqué)
+
+Attention, pour l'enregistrement des archives du chat, il faut que le service
+DeltaChat soit lancé par le même utilisateur qu'Apache (www-data sous Debian).
 
 NOTE : les scripts de "make" et de lancement des serveurs sont rédigés pour 
        un système GNU/Linux avec shell bash, mais ils ont été testés avec 
