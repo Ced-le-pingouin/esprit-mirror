@@ -262,7 +262,7 @@ class CFormulaireComplete
 			." , Formulaire_Axe READ"
 			." , Reponse_Axe READ"
 			
-			." , TypeObjetForm READ"
+			." , TypeObjetFormul READ"
 			." , ObjetFormulaire READ"
 			." , MPTexte READ"
 			." , MPSeparateur READ"

@@ -97,14 +97,13 @@ class CQRadio
 	**				  $v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
 	** Sortie			: Code Html
 	*/
-	function RetourReponseQR($v_iIdFC=NULL)
+	function RetourReponseQR($v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$iIdReponseEtu = "";
 		if ($v_iIdFC != NULL)
 		{
 			//Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
+			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -118,10 +117,11 @@ class CQRadio
 		
 		if ($this->oEnregBdd->DispQR == 'Ver')  //Présentation sous forme de tableau
 		{
-			$CodeHtml="<table cellspacing=\"0\" cellpadding=\"0\">";
+			$sCodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">";
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
 			{
+				$sAutoCorr = "";
 				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
 				$oPropositionReponse->init($oEnreg);
 				
@@ -132,21 +132,38 @@ class CQRadio
 				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
+				{
 					$sPreSelection = "checked=\"checked\"";
-				else 
+					if($v_bAutoCorrection)
+					{
+						switch($oPropositionReponse->retScorePropRep())
+						{
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+						}
+					}
+				}
+				else
+				{
 					$sPreSelection = "";
-				
-				$CodeHtml.="<tr><td><input type=\"radio\" name=\"$IdObjFormTemp\" "
-						."value=\"$IdReponseTemp\" $sPreSelection /></td><td>$TexteTemp</td></tr>\n";
+				}
+				$sCodeHtml.="<tr><td><input type=\"radio\" name=\"$IdObjFormTemp\" "
+						."value=\"$IdReponseTemp\" $sPreSelection /></td><td>$TexteTemp $sAutoCorr</td></tr>\n";
 			}
-			$CodeHtml.="</table>";
+			$sCodeHtml.="</table>";
 		}
 		else //Présentation en ligne
 		{
-			$CodeHtml="";
-			
+			$sCodeHtml = "";
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
 			{
+				$sAutoCorr = "";
 				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
 				$oPropositionReponse->init($oEnreg);
 				
@@ -157,16 +174,33 @@ class CQRadio
 				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 				
 				if ($iIdReponseEtu == $IdReponseTemp) 
+				{
 					$sPreSelection = "checked=\"checked\"";
+					if($v_bAutoCorrection)
+					{
+						switch($oPropositionReponse->retScorePropRep())
+						{
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+						}
+					}
+				}
 				else
+				{
 					$sPreSelection = "";
+				}
 				
-				$CodeHtml .= "<input type=\"radio\" name=\"$IdObjFormTemp\" "
-						."value=\"$IdReponseTemp\" $sPreSelection />$TexteTemp\n";
+				$sCodeHtml .= "<input type=\"radio\" name=\"$IdObjFormTemp\" value=\"$IdReponseTemp\" $sPreSelection />$TexteTemp $sAutoCorr \n";
 			}
 		}
 		$this->oBdd->libererResult($hResulRRQR);
-		return $CodeHtml;
+		return $sCodeHtml;
 	}
 	
 	/*
@@ -189,7 +223,7 @@ class CQRadio
 		
 		//Genération du code html représentant l'objet
 		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjFormul} -->\n"
-				."<div align={$this->oEnregBdd->AlignEnonQR}>{$this->oEnregBdd->EnonQR}</div>\n"
+				."<div align=\"{$this->oEnregBdd->AlignEnonQR}\">{$this->oEnregBdd->EnonQR}</div>\n"
 				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQR}\">\n"
 				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
 				."<td valign=\"top\">"

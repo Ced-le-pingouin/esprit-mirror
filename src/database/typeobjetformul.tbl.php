@@ -30,7 +30,7 @@
  */
 
 /**
- * Gestion des types d'objet de formulaire, et encapsulation de la table TypeObjetForm de la DB
+ * Gestion des types d'objet de formulaire, et encapsulation de la table TypeObjetFormul de la DB
  */
 class CTypeObjetFormul
 {

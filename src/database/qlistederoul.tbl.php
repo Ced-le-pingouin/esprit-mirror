@@ -93,26 +93,25 @@ class CQListeDeroul
 	** Sortie			:
 	**				code html
 	*/
-	function RetourReponseQLD($v_iIdFC=NULL)
+	function RetourReponseQLD($v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$iIdReponseEtu = "";
 		if ($v_iIdFC != NULL)
 		{
 			//Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
+			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
 			$iIdReponseEtu = $oEnregRep->IdReponse;
 		}
 		
-		//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
-		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+		//Sélection de toutes les propositions de réponses concernant l'objet QListeDeroul en cours de traitement
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul='{$this->iId}'"
 					." ORDER BY OrdrePropRep";
 		$hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
 		
-		$CodeHtml="<select name=\"{$this->iId}\">\n";
+		$sCodeHtml="<select name=\"{$this->iId}\">\n";
+		$sAutoCorr = "";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQLD))
 		{
@@ -126,16 +125,32 @@ class CQListeDeroul
 			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			if ($iIdReponseEtu == $IdReponseTemp) 
-				{$sPreSelection = "selected=\"selected\"";}
+			{
+				$sPreSelection = "selected=\"selected\"";
+				if($v_bAutoCorrection)
+				{
+					switch($oPropositionReponse->retScorePropRep())
+					{
+						case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+						
+						case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+						
+						case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+					}
+				}
+			}
 			else
-				{$sPreSelection = "";}
-			
-			$CodeHtml .= "<option value=\"$IdReponseTemp\" $sPreSelection>$TexteTemp</option>\n";
+			{
+				$sPreSelection = "";
+			}
+			$sCodeHtml .= "<option value=\"$IdReponseTemp\" $sPreSelection>$TexteTemp</option>\n";
 		}
-		$CodeHtml .= "</select>\n";
-		
+		$sCodeHtml .= "</select>\n".$sAutoCorr;
 		$this->oBdd->libererResult($hResultRRQLD);
-		return $CodeHtml;
+		return $sCodeHtml;
 	}
 	
 	/*

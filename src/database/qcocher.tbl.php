@@ -76,14 +76,13 @@ class CQCocher
 	** Sortie			:
 	**				code html
 	*/
-	function RetourReponseQC($NbRepMaxQCTemp, $MessMaxQCTemp, $v_iIdFC = NULL)
+	function RetourReponseQC($NbRepMaxQCTemp, $MessMaxQCTemp, $v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$TabRepEtu = array();
 		if ($v_iIdFC != NULL)
 		{
 			//Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT * FROM ReponseEntier"
-							." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->oEnregBdd->IdObjFormul}'";
+			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->oEnregBdd->IdObjFormul}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			
 			$i=0;
@@ -92,7 +91,6 @@ class CQCocher
 			while ($oEnregRep = $this->oBdd->retEnregSuiv($hResultRep))
 			{
 				$TabRepEtu[$i] = $oEnregRep->IdReponse;
-				//echo "<br>La réponse ".$TabRepEtu[$i];
 				$i++;
 			}
 		}
@@ -108,6 +106,7 @@ class CQCocher
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
 			{
+				$sAutoCorr = "";
 				$oPropositionReponse = new CPropositionReponse($this->oBdd);
 				$oPropositionReponse->init($oEnreg);
 				
@@ -119,12 +118,35 @@ class CQCocher
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if(in_array($IdReponseTemp, $TabRepEtu))
-					{$sPreSelection = "checked=\"checked\"";}
+				{
+					$sPreSelection = "checked=\"checked\"";
+					if($v_bAutoCorrection)
+					{
+						switch($oPropositionReponse->retScorePropRep())
+						{
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+						}
+					}
+				}
 				else
-					{$sPreSelection = "";}
+				{
+					$sPreSelection = "";
+					if($v_bAutoCorrection && $v_iIdFC!=NULL)
+					{
+						if($oPropositionReponse->retScorePropRep()==1)
+							$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+					}
+				}
 				
 				$CodeHtml.= "<tr><td><input type=\"checkbox\" name=\"$IdObjFormTemp\" "
-					."value=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>$TexteTemp</td></tr>\n";
+					."value=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>$TexteTemp $sAutoCorr</td></tr>\n";
 			}
 			$CodeHtml.="</table>";
 		}
@@ -134,6 +156,7 @@ class CQCocher
 			
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
 			{
+				$sAutoCorr = "";
 				$oPropositionReponse = new CPropositionReponse($this->oBdd);
 				$oPropositionReponse->init($oEnreg);
 				
@@ -145,12 +168,30 @@ class CQCocher
 				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
 				
 				if (in_array($IdReponseTemp, $TabRepEtu))
-					{$sPreSelection = "checked=\"checked\"";}
+				{
+					$sPreSelection = "checked=\"checked\"";
+					if($v_bAutoCorrection)
+					{
+						switch($oPropositionReponse->retScorePropRep())
+						{
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+							
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										break;
+						}
+					}
+				}
 				else
-					{$sPreSelection = "";}
+				{
+					$sPreSelection = "";
+				}
 				
 				$CodeHtml .= "<input type=\"checkbox\" name=\"$IdObjFormTemp\" "
-					."value=\"$IdReponseTemp\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />$TexteTemp\n";
+					."value=\"$IdReponseTemp\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />$TexteTemp $sAutoCorr \n";
 			}
 		}
 		
