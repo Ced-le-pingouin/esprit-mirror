@@ -270,8 +270,8 @@ foreach ($aiIdPers as $iIdPers)
 		$amRemplacer = array(
 			"id_pers_{$iIdPers}"
 			, $asTplGlobale[($oPersonne->retSexe() == "F" ? "personne->sexe->f" : "personne->sexe->m")]
-			, mb_convert_encoding($oPersonne->retNomComplet(),"HTML-ENTITIES","UTF-8").($iIdPers == $iMonIdPers ? $asTplGlobale["icone->favori"] : NULL)
-			, mb_convert_encoding($oPersonne->retPseudo(),"HTML-ENTITIES","UTF-8")
+			, emb_htmlentities($oPersonne->retNomComplet()).($iIdPers == $iMonIdPers ? $asTplGlobale["icone->favori"] : NULL)
+			, emb_htmlentities($oPersonne->retPseudo())
 			, $asTplGlobale[(strlen($oPersonne->retEmail()) ? "mail->actif" : "mail->passif")]
 			, $oPersonne->retEmail()
 		);

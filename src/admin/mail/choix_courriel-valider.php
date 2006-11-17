@@ -147,7 +147,7 @@ if (BOITE_COURRIELLE_OS == $url_iBoiteEnvoi)
 			{
 				$oBlocListeDestinataires->nextLoop();
 				$oBlocListeDestinataires->remplacer("{liste_adresses_courrielles}",$sListeAdressesCourrielles);
-				$oBlocListeDestinataires->remplacer("{liste_adresses_courrielles:htmlentities}",mb_convert_encoding($sListeAdressesCourrielles,"HTML-ENTITIES","UTF-8"));
+				$oBlocListeDestinataires->remplacer("{liste_adresses_courrielles:htmlentities}",emb_htmlentities($sListeAdressesCourrielles));
 				$iIdxPers = 0;
 				$sListeAdressesCourrielles = NULL;
 			}

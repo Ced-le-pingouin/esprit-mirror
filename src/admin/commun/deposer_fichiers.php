@@ -97,7 +97,7 @@ if (count($asRepertoiresCopie) > 0)
 	foreach ($asRepertoiresCopie as $sCle => $sValeur)
 	{
 		$oBlocNomRepertoireCopie->nextLoop();
-		$oBlocNomRepertoireCopie->remplacer(array("{option.value}","{option.label}"), array($sValeur,mb_convert_encoding($sCle,"HTML-ENTITIES","UTF-8")));
+		$oBlocNomRepertoireCopie->remplacer(array("{option.value}","{option.label}"), array($sValeur,emb_htmlentities($sCle)));
 	}
 	
 	$oBlocNomRepertoireCopie->afficher();
@@ -117,7 +117,7 @@ else
 	$oBlocDeposerFichiers->effacer();
 }
 
-$oTpl->remplacer("{title}",mb_convert_encoding($url_sTitrePrincipalFenetre,"HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{title}",emb_htmlentities($url_sTitrePrincipalFenetre));
 $oTpl->afficher();
 
 ?>

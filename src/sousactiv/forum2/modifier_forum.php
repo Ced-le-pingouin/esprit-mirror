@@ -179,7 +179,7 @@ else if ($url_sModaliteFenetre == "modifier")
 	$oBlock_Forum->remplacer("{onglet->texte}",$oSet_Titre_Forum);
 	
 	// Titre
-	$oBlock_Forum->remplacer("{titre->valeur}",mb_convert_encoding($oSujetForum->retTitre(),"HTML-ENTITIES","UTF-8"));
+	$oBlock_Forum->remplacer("{titre->valeur}",emb_htmlentities($oSujetForum->retTitre()));
 	
 	// Modalité
 	$iModaliteParent = $oSujetForum->retModalite();
@@ -197,7 +197,7 @@ else if ($url_sModaliteFenetre == "supprimer")
 	$oSujetForum = new CSujetForum($oProjet->oBdd,$url_iIdForumParent);
 	
 	$oBlock_Forum->ajouter($oSet_Supprimer_Forum);
-	$oBlock_Forum->remplacer("{sujet->titre}",mb_convert_encoding($oSujetForum->retTitre(),"HTML-ENTITIES","UTF-8"));
+	$oBlock_Forum->remplacer("{sujet->titre}",emb_htmlentities($oSujetForum->retTitre()));
 	$oBlock_Forum->remplacer("{messages->total}",$oSujetForum->retNombreMessages());
 }
 

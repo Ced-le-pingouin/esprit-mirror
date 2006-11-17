@@ -87,7 +87,7 @@ function div_galerie ()
 {
 	global $oProjet, $g_bModifier;
 	
-	$sCollecticielsAssocies = mb_convert_encoding("Collecticiels associés","HTML-ENTITIES","UTF-8");
+	$sCollecticielsAssocies = emb_htmlentities("Collecticiels associés");
 	
 	if (($iNbrCollecticiels = $oProjet->oRubriqueCourante->initCollecticiels()) > 0)
 	{
@@ -163,7 +163,7 @@ function div_glossaire ()
 		$sListeGlossaires .= "<option"
 			." value=\"".$oGlossaire->retId()."\""
 			.($oGlossaire->associerSousActiv($g_iSousActiv) ? " selected" : NULL)
-			.">".mb_convert_encoding($oGlossaire->retTitre(),"HTML-ENTITIES","UTF-8")."</option>";
+			.">".emb_htmlentities($oGlossaire->retTitre())."</option>";
 	}
 	
 	if (isset($sListeGlossaires))
@@ -172,7 +172,7 @@ function div_glossaire ()
 	else
 		$sListeGlossaires = "<option value=\"0\">Pas de composition de glossaire trouvé</option>";
 	
-	$sIntitule = mb_convert_encoding("Glossaire associés au ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"),"HTML-ENTITIES","UTF-8");
+	$sIntitule = emb_htmlentities("Glossaire associés au ".mb_strtolower(INTITULE_SOUS_ACTIV,"UTF-8"));
 	
 	$sConteneur = "<!-- :DEBUT: Glossaire -->\n"
 		."<div id=\"lien_glossaire\" class=\"Cacher\">"

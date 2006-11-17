@@ -72,7 +72,7 @@ $oBlockHtmlHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHtmlHead->ajouter($sBlockHtmlHead);
 $oBlockHtmlHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",mb_convert_encoding($sTitrePrincipal,"HTML-ENTITIES","UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipal));
 $oTpl->remplacer("{frame_src_haut}","infos-titre.php?tp=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","infos-menu.php");

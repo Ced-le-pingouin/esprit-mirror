@@ -50,9 +50,9 @@ $asRechTpl = array(
 );
 
 $amReplTpl = array(
-	mb_convert_encoding($oProjet->oFormationCourante->retNom(),"HTML-ENTITIES","UTF-8")
-	, mb_convert_encoding($oProjet->oModuleCourant->retNom(),"HTML-ENTITIES","UTF-8")
-	, mb_convert_encoding($oProjet->oRubriqueCourante->retNom(),"HTML-ENTITIES","UTF-8")
+	emb_htmlentities($oProjet->oFormationCourante->retNom())
+	, emb_htmlentities($oProjet->oModuleCourant->retNom())
+	, emb_htmlentities($oProjet->oRubriqueCourante->retNom())
 	, (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retNom() : NULL)
 	, (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retPrenom() : NULL)
 	, (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retPseudo() : NULL)

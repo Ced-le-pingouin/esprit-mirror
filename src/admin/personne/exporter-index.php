@@ -1,5 +1,5 @@
 <?php
-$sTitrePrincipal = mb_convert_encoding("Exporter une liste de la table des personnes","HTML-ENTITIES","UTF-8");
+$sTitrePrincipal = emb_htmlentities("Exporter une liste de la table des personnes");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 ?>
 <html>

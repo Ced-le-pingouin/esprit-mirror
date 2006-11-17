@@ -110,8 +110,8 @@ foreach ($oPermission->aoPermissions as $oPermis)
 	$oBloc_permission->remplacer("{permission.input.oui.checked}",($bPermisStatut) ? " checked" : NULL);
 	$oBloc_permission->remplacer("{permission.input.non.checked}",($bPermisStatut) ? NULL : " checked");
 	
-	$oBloc_permission->remplacer("{permission.nom}",mb_convert_encoding($sNomPermis,"HTML-ENTITIES","UTF-8"));
-	$oBloc_permission->remplacer("{permission.description}",mb_convert_encoding($oPermis->retDescr(),"HTML-ENTITIES","UTF-8"));
+	$oBloc_permission->remplacer("{permission.nom}",emb_htmlentities($sNomPermis));
+	$oBloc_permission->remplacer("{permission.description}",emb_htmlentities($oPermis->retDescr()));
 }
 
 $oBloc_permission->afficher();

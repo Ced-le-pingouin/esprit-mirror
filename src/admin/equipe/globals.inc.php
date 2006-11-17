@@ -28,11 +28,11 @@ define("PERSONNE_SANS_EQUIPE",2);
 function format_sous_titre ($v_sType,$v_sSousTitre)
 {
 	return "&nbsp;&nbsp;"
-		."<b>".mb_convert_encoding($v_sType,"HTML-ENTITIES","UTF-8")."</b>"
+		."<b>".emb_htmlentities($v_sType)."</b>"
 		."&nbsp;"
 		."<img src=\"".dir_theme("signet-2.gif")."\" border=\"0\">"
 		."&nbsp;"
-		.mb_convert_encoding($v_sSousTitre,"HTML-ENTITIES","UTF-8");
+		.emb_htmlentities($v_sSousTitre);
 }
 
 // *************************************

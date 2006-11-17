@@ -55,7 +55,7 @@ $oSet_MenuLienActif = $oTpl->defVariable("SET_MENU_LIEN_ACTIF");
 $oSet_MenuSeparateur = $oTplMenuSimple->defVariable("SET_MENU_SEPARATEUR");
 
 // Titre du menu simple
-$oTplMenuSimple->remplacer("{titre}",mb_convert_encoding("Liste des glossaires","HTML-ENTITIES","UTF-8"));
+$oTplMenuSimple->remplacer("{titre}",emb_htmlentities("Liste des glossaires"));
 
 // Liste des glossaires
 if ($iNbGlossaires > 0)
@@ -68,7 +68,7 @@ if ($iNbGlossaires > 0)
 		
 		$oBloc_MenuSimpleElement->remplacer("{element}",$oSet_MenuLienActif);
 		$oBloc_MenuSimpleElement->remplacer("{glossaire->id}",$oGlossaire->retId());
-		$oBloc_MenuSimpleElement->remplacer("{glossaire->titre}",mb_convert_encoding($oGlossaire->retTitre(),"HTML-ENTITIES","UTF-8"));
+		$oBloc_MenuSimpleElement->remplacer("{glossaire->titre}",emb_htmlentities($oGlossaire->retTitre()));
 	}
 	
 	$oBloc_MenuSimpleElement->afficher();

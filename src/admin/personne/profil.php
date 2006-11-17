@@ -49,7 +49,7 @@ function formatTexteErreur ($v_sTexteErreur)
 		."&nbsp;<span"
 		." class=\"erreur\""
 		." style=\"cursor: help;\""
-		." title=\"".mb_convert_encoding($v_sTexteErreur,"HTML-ENTITIES","UTF-8")."\""
+		." title=\"".emb_htmlentities($v_sTexteErreur)."\""
 		." onmouseover=\"afficher_erreur('".rawurlencode("&#8212;&nbsp;".$v_sTexteErreur."&nbsp;&#8212;")."')\""
 		." onmouseout=\"afficher_erreur()\""
 		."\">Erreur</span>";
@@ -119,7 +119,7 @@ if ($iIdPers >= 0)
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
-					.mb_convert_encoding("Inscription impossible: une personne portant ces nom et prénom est déjà inscrite.","HTML-ENTITIES","UTF-8")
+					.emb_htmlentities("Inscription impossible: une personne portant ces nom et prénom est déjà inscrite.")
 					."</b>"
 				."</p>"
 				."<body>\n"

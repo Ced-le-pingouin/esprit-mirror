@@ -74,7 +74,7 @@ if (isset($_FILES["fichier"]))
 			."</head>\n"
 			."<body onload=\"init()\">\n"
 			."<div style=\"text-align: center;\"><h1>"
-			.mb_convert_encoding("Ce type de fichier n'est pas accepté. Seuls les fichiers qui ont une extension txt sont acceptés","HTML-ENTITIES","UTF-8")
+			.emb_htmlentities("Ce type de fichier n'est pas accepté. Seuls les fichiers qui ont une extension txt sont acceptés")
 			."</h1></div>"
 			."</body>\n"
 			."</html>\n";

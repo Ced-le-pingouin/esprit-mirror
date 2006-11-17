@@ -128,7 +128,7 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 	
 	// Afficher l'image d'un monsieur ou d'une madame :-)
 	$oBloc_Message->remplacer("{personne->sexe}",($oMessageForum->oAuteur->retSexe() == "M" ? $oSet_Image_Homme : $oSet_Image_Femme));
-	$oBloc_Message->remplacer("{personne->nom_complet}",mb_convert_encoding($oMessageForum->oAuteur->retNomComplet(),"HTML-ENTITIES","UTF-8"));
+	$oBloc_Message->remplacer("{personne->nom_complet}",emb_htmlentities($oMessageForum->oAuteur->retNomComplet()));
 	
 	// Email de l'auteur
 	if (strlen($sEmail) > 0)
@@ -169,7 +169,7 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 				."&fn=1";
 			$sListeFichiersAttaches .= $oSet_FichierAttache;
 			$sListeFichiersAttaches = str_replace("{a['fichier_attache']->href}",$sHref,$sListeFichiersAttaches);
-			$sListeFichiersAttaches = str_replace("{a['fichier_attache']->text}",mb_convert_encoding($oRes->retNom()." ({$sTailleFichier})","HTML-ENTITIES","UTF-8"),$sListeFichiersAttaches);
+			$sListeFichiersAttaches = str_replace("{a['fichier_attache']->text}",emb_htmlentities($oRes->retNom()." ({$sTailleFichier})"),$sListeFichiersAttaches);
 		}
 	}
 	

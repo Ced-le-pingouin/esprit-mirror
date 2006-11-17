@@ -71,7 +71,7 @@ function adminRetListeModalites ($v_sNomListeModalites,$v_aaListeModalites)
 		$sListeModalites .= "<option"
 			." value=\"".$aModalite[0]."\""
 			.($aModalite[2] ? " selected" : NULL)
-			.">".mb_convert_encoding($aModalite[1],"HTML-ENTITIES","UTF-8")."</option>";
+			.">".emb_htmlentities($aModalite[1])."</option>";
 	
 	return "<select name=\"{$v_sNomListeModalites}\""
 		.($g_bModifier ? NULL : " disabled")

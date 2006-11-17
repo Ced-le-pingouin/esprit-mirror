@@ -128,7 +128,7 @@ $oBlocNomDossier = new TPL_Block("BLOCK_NOM_DOSSIER",$oTpl);
 
 if ($url_iIdDossierForms > 0)
 {
-	$oBlocNomDossier->remplacer("{dossier.nom}",mb_convert_encoding($oDossierForms->retNom(),"HTML-ENTITIES","UTF-8"));
+	$oBlocNomDossier->remplacer("{dossier.nom}",emb_htmlentities($oDossierForms->retNom()));
 	$oBlocNomDossier->afficher();
 }
 else

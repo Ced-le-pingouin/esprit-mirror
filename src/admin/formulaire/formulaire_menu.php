@@ -174,8 +174,8 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissi
 						$sNomFormulaireCourt = sprintf("%.".($iLargeurMax - 3)."s...", $sNomFormulaireCourt);
 			}
 			
-			$oBlock->remplacer("{nom_formulaire}", mb_convert_encoding($sNomFormulaireCourt,"HTML-ENTITIES","UTF-8"));
-			$oBlock->remplacer("{infobulle_formulaire}", mb_convert_encoding($sNomFormulaire,"HTML-ENTITIES","UTF-8"));
+			$oBlock->remplacer("{nom_formulaire}", emb_htmlentities($sNomFormulaireCourt));
+			$oBlock->remplacer("{infobulle_formulaire}", emb_htmlentities($sNomFormulaire));
 			$oBlock->remplacer("{id_formulaire}",$oFormulaireCourant->retId());
 			
 			if ($iIdPersCourant == $oFormulaireCourant->retIdPers())

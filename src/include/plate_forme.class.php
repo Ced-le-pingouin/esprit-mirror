@@ -225,7 +225,7 @@ class CConstantes
 			$this->oBdd->libererResult($hResult);
 			
 			if ($v_bConversionHtml)
-				return mb_convert_encoding($r_Enreg->ContenuTxt,"HTML-ENTITIES","UTF-8");
+				return emb_htmlentities($r_Enreg->ContenuTxt);
 			else
 				return $r_Enreg->ContenuTxt;
 		}
@@ -2135,7 +2135,7 @@ class CProjet
 				."<a href=\"{$sParamLien}{$v_sLien}\"{$sParamBalise}"
 				." onfocus=\"blur()\""
 				.(isset($v_sInfoBulle) ? " title=\"{$v_sInfoBulle}\"" : NULL)
-				.">".mb_convert_encoding($v_sIntitule,"HTML-ENTITIES","UTF-8")."</a>"
+				.">".emb_htmlentities($v_sIntitule)."</a>"
 				."</td></tr>\n"
 				."</table>\n";
 		else

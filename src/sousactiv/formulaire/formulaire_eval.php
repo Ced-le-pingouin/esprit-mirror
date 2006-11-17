@@ -134,18 +134,18 @@ else if ($url_bEvalFC)
 		$iStatutFCE = STATUT_RES_ACCEPTEE;
 	
 	$sListeEtats = "<select name=\"statutFCE\">"
-		."<option value=\"".STATUT_RES_APPROF."\"".(STATUT_RES_APPROF == $iStatutFCE ? " selected" : NULL).">".mb_convert_encoding($oFC->retTexteStatut(STATUT_RES_APPROF),"HTML-ENTITIES","UTF-8")."</option>"
-		."<option value=\"".STATUT_RES_ACCEPTEE."\"".(STATUT_RES_ACCEPTEE == $iStatutFCE ? " selected" : NULL).">".mb_convert_encoding($oFC->retTexteStatut(STATUT_RES_ACCEPTEE),"HTML-ENTITIES","UTF-8")."</option>"
+		."<option value=\"".STATUT_RES_APPROF."\"".(STATUT_RES_APPROF == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_APPROF))."</option>"
+		."<option value=\"".STATUT_RES_ACCEPTEE."\"".(STATUT_RES_ACCEPTEE == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_ACCEPTEE))."</option>"
 		."</select>\n";
 	$oTpl->remplacer("{etat->liste}",$sListeEtats);
 	
 	// Informations à propos de l'évaluateur
-	$oTpl->remplacer("{tuteur->nom_complet}",mb_convert_encoding($oFCE->oEvaluateur->retNomComplet(),"HTML-ENTITIES","UTF-8"));
+	$oTpl->remplacer("{tuteur->nom_complet}",emb_htmlentities($oFCE->oEvaluateur->retNomComplet()));
 	$oTpl->remplacer("{formulaire_eval->date}",$oFCE->retDate());
 	
 	// Appréciation
 	$oTpl->remplacer("{appreciation->input->name}","appreciationEvalFCE");
-	$oTpl->remplacer("{appreciation->texte}",mb_convert_encoding($oFCE->retAppreciation(),"HTML-ENTITIES","UTF-8"));
+	$oTpl->remplacer("{appreciation->texte}",emb_htmlentities($oFCE->retAppreciation()));
 	
 	// Commentaire
 	$oTpl->remplacer("{commentaire->textarea->name}","commentaireEvalFCE");
@@ -167,15 +167,15 @@ else
 		if (STATUT_RES_SOUMISE == ($iStatutFCE = $oFCE->retStatut()))
 			$iStatutFCE = STATUT_RES_ACCEPTEE;
 		
-		$oTpl->remplacer("{etat->liste}",str_replace(" ","&nbsp;",mb_convert_encoding($oFC->retTexteStatut($iStatutFCE),"HTML-ENTITIES","UTF-8")));
+		$oTpl->remplacer("{etat->liste}",str_replace(" ","&nbsp;",emb_htmlentities($oFC->retTexteStatut($iStatutFCE))));
 		
 		// Informations à propos de l'évaluateur
-		$oTpl->remplacer("{tuteur->nom_complet}",mb_convert_encoding($oFCE->oEvaluateur->retNomComplet(),"HTML-ENTITIES","UTF-8"));
+		$oTpl->remplacer("{tuteur->nom_complet}",emb_htmlentities($oFCE->oEvaluateur->retNomComplet()));
 		$oTpl->remplacer("{formulaire_eval->date}",$oFCE->retDate());
 		
 		// Appréciation
 		$oTpl->remplacer("{appreciation->input->name}","appreciationEvalFCE");
-		$oTpl->remplacer("{appreciation->texte}",mb_convert_encoding($oFCE->retAppreciation(),"HTML-ENTITIES","UTF-8"));
+		$oTpl->remplacer("{appreciation->texte}",emb_htmlentities($oFCE->retAppreciation()));
 		
 		// Commentaire
 		$oTpl->remplacer("{commentaire->textarea->name}","commentaireEvalFCE");

@@ -77,8 +77,8 @@ if ($etape < 3 && $type == COPIER_FORMATION)
 }
 else
 {
-	$url_sNomForm   = mb_convert_encoding(stripslashes($url_sNomForm),"HTML-ENTITIES","UTF-8");
-	$url_sDescrForm = mb_convert_encoding(stripslashes($url_sDescrForm),"HTML-ENTITIES","UTF-8");
+	$url_sNomForm   = emb_htmlentities(stripslashes($url_sNomForm));
+	$url_sDescrForm = emb_htmlentities(stripslashes($url_sDescrForm));
 }
 
 // ---------------------

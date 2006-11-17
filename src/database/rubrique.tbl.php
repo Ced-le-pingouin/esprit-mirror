@@ -660,7 +660,7 @@ class CModule_Rubrique
 		if (empty($sNomRubrique))
 			$sNomRubrique = "Rubrique/unité sans nom";
 		return ($v_bHtmlEntities
-			? mb_convert_encoding($sNomRubrique,"HTML-ENTITIES","UTF-8")
+			? emb_htmlentities($sNomRubrique)
 			: $sNomRubrique);
 	}
 	
@@ -677,7 +677,7 @@ class CModule_Rubrique
 	function retDonnee ($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
-			? mb_convert_encoding($this->oEnregBdd->DonneesRubrique,"HTML-ENTITIES","UTF-8")
+			? emb_htmlentities($this->oEnregBdd->DonneesRubrique)
 			: $this->oEnregBdd->DonneesRubrique);
 	}
 

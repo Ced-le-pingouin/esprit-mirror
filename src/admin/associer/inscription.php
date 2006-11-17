@@ -62,7 +62,7 @@ for ($i=0; $i<count($asFiltre); $i++)
 		.($url_iSelectFiltre == $asFiltre[$i][1] ? " selected" : NULL)
 		.">".($asFiltre[$i][1] < 1
 			? $asFiltre[$i][0]
-			: mb_convert_encoding($oProjet->retTexteStatutUtilisateur($asFiltre[$i][0],"M"),"HTML-ENTITIES","UTF-8"))
+			: emb_htmlentities($oProjet->retTexteStatutUtilisateur($asFiltre[$i][0],"M")))
 		."</options>\n";
 	
 unset($asFiltre,$url_iSelectFiltre);
@@ -86,7 +86,7 @@ for ($iIdxStatut=0; $iIdxStatut<count($asStatutPers); $iIdxStatut++)
 		$sOptionsStatut .= "<option"
 			." value=\"".$asStatutPers[$iIdxStatut][0]."\""
 			.($url_iSelectStatut == $asStatutPers[$iIdxStatut][0] ? " selected=\"selected\"" : NULL)
-			.">".mb_convert_encoding($oProjet->retTexteStatutUtilisateur($asStatutPers[$iIdxStatut][0],"M"),"HTML-ENTITIES","UTF-8")."</options>\n";
+			.">".emb_htmlentities($oProjet->retTexteStatutUtilisateur($asStatutPers[$iIdxStatut][0],"M"))."</options>\n";
 
 unset($asStatutPers,$url_iSelectStatut);
 

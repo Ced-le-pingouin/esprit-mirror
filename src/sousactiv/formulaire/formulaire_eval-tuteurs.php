@@ -63,7 +63,7 @@ foreach ($oProjet->oModuleCourant->aoTuteurs as $oTuteur)
 	$oBlockTuteur->nextLoop();
 	
 	$oBlockTuteur->remplacer("{personne->id}",$iIdPers);
-	$oBlockTuteur->remplacer("{personne->nom_complet}",mb_convert_encoding($oTuteur->retNomComplet(),"HTML-ENTITIES","UTF-8"));
+	$oBlockTuteur->remplacer("{personne->nom_complet}",emb_htmlentities($oTuteur->retNomComplet()));
 	$oBlockTuteur->remplacer("{formulaire_complete->id}",$url_iIdFCSousActiv);
 	$oBlockTuteur->remplacer("{personne->peutEvaluer}",($iIdPers == $iMonIdPers) ? $url_bEvalFC : 0);
 }
