@@ -84,7 +84,7 @@ $oBlockHtmlHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHtmlHead->ajouter($sBlockHtmlHead);
 $oBlockHtmlHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipal));
 $oTpl->remplacer("{frame_src_haut}","dossier_formations-titre.php?tp=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","dossier_formations-menu.php");

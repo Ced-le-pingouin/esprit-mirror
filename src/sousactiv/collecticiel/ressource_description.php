@@ -39,6 +39,6 @@ if (isset($_GET["idResSA"]) && $_GET["idResSA"] > 0)
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style(); ?></head>
 <body>
-<p><?php echo (isset($sDescr) ? htmlentities($sDescr,ENT_COMPAT,"UTF-8") : "Ce fichier ne contient pas de description !"); ?></p>
+<p><?php echo (isset($sDescr) ? emb_htmlentities($sDescr) : "Ce fichier ne contient pas de description !"); ?></p>
 </body>
 </html>

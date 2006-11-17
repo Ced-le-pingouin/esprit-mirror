@@ -77,7 +77,7 @@ $sParamsUrl = "?modaliteFenetre={$url_sModaliteFenetre}"
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<title><?php echo htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8")?></title>
+<title><?php echo emb_htmlentities($sTitrePrincipal)?></title>
 <script type="text/javascript" language="javascript" src="forum.js"></script>
 <script type="text/javascript" language="javascript">
 <!--

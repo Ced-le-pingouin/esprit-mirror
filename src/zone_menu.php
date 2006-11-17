@@ -142,7 +142,7 @@ if ($iIdMod > 0)
 	$oTpl->remplacer("{cours.intitule}",$sTexteIntitule
 		.(strlen($sTexteIntitule) > 0 ? $sVarSeparateurIntitule : NULL));
 	
-	$oTpl->remplacer("{cours.titre}",htmlentities($oProjet->oModuleCourant->retNom(),ENT_COMPAT,"UTF-8"));
+	$oTpl->remplacer("{cours.titre}",emb_htmlentities($oProjet->oModuleCourant->retNom()));
 	// }}}
 	
 	// {{{ Description du module
@@ -337,7 +337,7 @@ if ($iIdMod > 0)
 		}
 		
 		// Nom de l'unité
-		$sNomUnite = htmlentities($aoRubriques[$r]->retNom(),ENT_COMPAT,"UTF-8");
+		$sNomUnite = emb_htmlentities($aoRubriques[$r]->retNom());
 		$oBlock_Cours->remplacer("{rubrique.id}",$iIdRub);
 		$oBlock_Cours->remplacer("{rubrique.nom}",ereg_replace("[[:space:]]+\?","&nbsp;?",$sNomUnite));
 	}

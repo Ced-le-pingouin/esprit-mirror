@@ -72,7 +72,7 @@ $oTpl = new Template(dir_theme("dialog-index.tpl",FALSE,TRUE));
 $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->effacer();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipal));
 $oTpl->remplacer("{frame_src_haut}","liste_inscrits-titre.php?tp=".rawurlencode($sTitrePrincipal));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","liste_inscrits-menu.php?menu={$sMenu}&idForm={$iIdForm}&idMod={$iIdMod}&idStatuts={$iIdStatuts}");

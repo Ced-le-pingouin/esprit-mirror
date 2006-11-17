@@ -1077,17 +1077,17 @@ class CSousActiv
 	function retVotesMin () { return $this->oEnregBdd->VotesMinSousActiv; }
 	function retStatut () { return $this->oEnregBdd->StatutSousActiv; }
 	function retType () { return $this->oEnregBdd->IdTypeSousActiv; }
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomSousActiv); }
+	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->NomSousActiv) : $this->oEnregBdd->NomSousActiv); }
 	function retNumOrdre () { return $this->oEnregBdd->OrdreSousActiv; }
-	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrSousActiv); }
+	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->DescrSousActiv) : $this->oEnregBdd->DescrSousActiv); }
 	function retIdParent () { return $this->oEnregBdd->IdActiv; }
 	function retPremierePage () { return (bool)$this->oEnregBdd->PremierePageSousActiv; }
-	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->InfoBulleSousActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->InfoBulleSousActiv); }
+	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->InfoBulleSousActiv) : $this->oEnregBdd->InfoBulleSousActiv); }
 	
 	function retDonnees ($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
-			? htmlentities($this->oEnregBdd->DonneesSousActiv,ENT_COMPAT,"UTF-8")
+			? emb_htmlentities($this->oEnregBdd->DonneesSousActiv)
 			: "{$this->oEnregBdd->DonneesSousActiv};;;");
 	}
 	

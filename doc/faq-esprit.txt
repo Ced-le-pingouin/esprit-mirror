@@ -24,9 +24,12 @@ ou
 
 
 3. Comment installer les modules Awareness et Chat ?
-Techniquement, ces deux modules sont écrits en Java : ils nécessitent à la fois
-une machine virtuelle sur le serveur, et sur les clients, avec le navigateur web
-configuré pour exécuter les applets Java.
+Techniquement, ces deux modules sont écrits en Java, et fonctionnent en mode
+client/serveur, indépendamment du Web.
+Cela veut dire qu'ils nécessitent la présence d'une machine virtuelle Java 
+à la fois sur le serveur et sur la machine de chaque utilisateur désirant 
+avoir accès à ces fonctions. De plus, le navigateur web doit être configuré
+pour exécuter les applets Java.
 Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
  - src/sousactiv/chat/client
  - src/admin/awareness/client
@@ -67,16 +70,20 @@ DOCUMENT_ROOT =
 (en indiquant le répertoire père de esprit/ )
 (!!! Sous Windows, il faut doubler les backslashes dans le chemin indiqué)
 
+Attention, pour l'enregistrement des archives du chat, il faut que le service
+DeltaChat soit lancé par le même utilisateur qu'Apache (www-data sous Debian).
+
 NOTE : les scripts de "make" et de lancement des serveurs sont rédigés pour 
        un système GNU/Linux avec shell bash, mais ils ont été testés avec 
 	   succès sous Windows en utilisant le sous-système Cygwin 
 	   (http://www.cygwin.com/).
 
 
+
 B. Administration (liste esprit-admin)
 ======================================
 
-3. Comment attribuer le rôle de responsable de plate-forme à 
+1. Comment attribuer le rôle de responsable de plate-forme à 
 plusieurs personnes ?
 R : pour le moment ce n'est pas possible par l'interface web.
 Actuellement, il faut avoir les droits de manipulation de la base MySQL et
@@ -84,7 +91,7 @@ ajouter directement l'IdPers de la personne voulue dans la table Projet_Admin.
 Cet IdPers est défini dans la table Personne.
 
 
-4. Comment importer une liste de personnes à inscrire ?
+2. Comment importer une liste de personnes à inscrire ?
 R : Il existe un canevas Excel, disponible à partir de la page d'accueil de 
 la plate-forme et intitulé inscriptions2.xls, ou à partir de la racine
 de l'archive : ./src/themes/esprit/login/fichiers/inscriptions2.xls 
@@ -101,6 +108,23 @@ Ensuite, l'administrateur doit effectuer les manipulations suivantes :
 
 Attention : il n'y a pas de vérification de doublon : dans la cas où le nom et 
 le prénom d'une personne sont déjà utilisées, elle sera re-créée.
+
+
+3. Dans le plan d'une formation, les noms des différents niveaux ne correspondent
+pas aux noms des tables. Comment s'y retrouver ?
+R : Comme d'habitude, ce sont des raisons historiques qui expliquent cette 
+particularité. Dans les évolutions d'Esprit, les noms des niveaux du plan ont
+évolué, mais les noms utilisés dans le code (fichiers, fonctions...) et les 
+tables se réfèrent toujours à l'ancien nommage. 
+Voici une table de correspondance :
+
+Niv   Interface web     Base de Données
+---------------------------------------
+ 1.   Formation         Formation
+ 2.   Cours             Module
+ 3.   Unité             Module_Rubrique
+ 4.   Groupe d'actions  Activ
+ 5.   Action            SousActiv
 
 
 
@@ -126,6 +150,7 @@ zippé où les fichiers/dossiers se trouvent directement à la racine du zip
 Dans le futur, cette limitation devrait être supprimée : voir 
 la demande de fonctionnalité n°915 dans Sourcesup/Esprit.
 http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=915&group_id=204&atid=909
+
 
 2. Comment fait-on le ménage dans ces documents ?
 (comment les supprimer du serveur, les déplacer pour les remonter à la

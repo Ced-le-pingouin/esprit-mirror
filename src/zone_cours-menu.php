@@ -476,8 +476,8 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				$oBlockSousActiv->remplacer("{sousactiv.id}",$iIdSousActiv);
 				$oBlockSousActiv->remplacer("{sousactiv.type}",TYPE_SOUS_ACTIVITE);
 				
-				$oBlockSousActiv->remplacer("{sousactiv.nom}",htmlentities($sNomSousActiv,ENT_COMPAT,"UTF-8"));
-				$oBlockSousActiv->remplacer("{sousactiv.nom_encoder}",htmlentities($sNomSousActiv,ENT_COMPAT,"UTF-8"));
+				$oBlockSousActiv->remplacer("{sousactiv.nom}",emb_htmlentities($sNomSousActiv));
+				$oBlockSousActiv->remplacer("{sousactiv.nom_encoder}",emb_htmlentities($sNomSousActiv));
 				
 				$oBlockSousActiv->remplacer("{sousactiv.lien}",$sHref);
 				$oBlockSousActiv->remplacer("{sousactiv.signet}",$sSignet);

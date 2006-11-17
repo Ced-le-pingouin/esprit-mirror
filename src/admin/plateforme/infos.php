@@ -44,8 +44,8 @@ $iNbAdmins = $oProjet->initAdministrateurs();
 // ---------------------
 $oTpl = new Template("infos.tpl");
 
-$oTpl->remplacer("{plateforme.nom}",htmlentities($oProjet->retNom(),ENT_COMPAT,"UTF-8"));
-$oTpl->remplacer("{plateforme.courriel}",htmlentities($oProjet->retEmail(),ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{plateforme.nom}",emb_htmlentities($oProjet->retNom()));
+$oTpl->remplacer("{plateforme.courriel}",emb_htmlentities($oProjet->retEmail()));
 $oTpl->remplacer("{chat.port}",$oProjet->retNumPortChat());
 $oTpl->remplacer("{awareness.port}",$oProjet->retNumPortAwareness());
 

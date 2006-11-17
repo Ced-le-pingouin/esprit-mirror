@@ -133,7 +133,7 @@ foreach ($oIntitules->aoIntitules as $oIntitule)
 	$oBloc_Intitule->remplacer("{intitule->style->classe}"," ".$sNomClassCss);
 	$oBloc_Intitule->remplacer("{gestion_intitule}",$sMenus);
 	$oBloc_Intitule->remplacer("{intitule->id}",$oIntitule->retId());
-	$oBloc_Intitule->remplacer("{intitule->nom}",htmlentities($sNomIntitule,ENT_COMPAT,"UTF-8"));
+	$oBloc_Intitule->remplacer("{intitule->nom}",emb_htmlentities($sNomIntitule));
 	
 	// Changer la couleur de la ligne de la table
 	$sNomClassCss = ($oSet_Fond_Clair == $sNomClassCss

@@ -92,7 +92,7 @@ $oBlockHtmlHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHtmlHead->ajouter($sBlockHtmlHead);
 $oBlockHtmlHead->afficher();
 
-$oTpl->remplacer("{titre_page_html}",htmlentities($sTitrePrincipal,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipal));
 $oTpl->remplacer("{frame_src_haut}","tableau_bord-titre.php?tp=".rawurlencode($sTitrePrincipal)."&st=".rawurlencode($sSousTitre));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
 $oTpl->remplacer("{frame_src_bas}","tableau_bord-menu.php");

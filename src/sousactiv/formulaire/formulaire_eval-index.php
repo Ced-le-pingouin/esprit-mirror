@@ -56,7 +56,7 @@ $bPeutEvaluerFormulaire &= $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
 // ---------------------
 $oTpl = new Template("formulaire_eval-index.tpl");
 
-$oTpl->remplacer("{html->title}",htmlentities($sTitreFenetre,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{html->title}",emb_htmlentities($sTitreFenetre));
 
 $oTpl->remplacer("{g_iIdNiveau}",$url_iIdNiveau);
 $oTpl->remplacer("{g_iTypeNiveau}",$url_iTypeNiveau);

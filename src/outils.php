@@ -97,10 +97,10 @@ for ($i=0; $i<count($aaOutils); $i++)
 	$oBlocOutil->nextLoop();
 	
 	$oBlocOutil->remplacer("{outil.style}",$oBloc_style);
-	$oBlocOutil->remplacer("{outil.nom}",htmlentities($aaOutils[$i][0],ENT_COMPAT,"UTF-8"));
+	$oBlocOutil->remplacer("{outil.nom}",emb_htmlentities($aaOutils[$i][0]));
 	$oBlocOutil->remplacer("{outil.icone}",$aaOutils[$i][1]);
 	$oBlocOutil->remplacer("{outil.lien}",$aaOutils[$i][2]);
-	$oBlocOutil->remplacer("{outil.description}",htmlentities($aaOutils[$i][3],ENT_COMPAT,"UTF-8"));
+	$oBlocOutil->remplacer("{outil.description}",emb_htmlentities($aaOutils[$i][3]));
 }
 
 $oBlocOutil->afficher();

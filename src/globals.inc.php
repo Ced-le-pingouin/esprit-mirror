@@ -310,6 +310,21 @@ function MySQLEscapeString ($v_sTexte,$v_sTexteParDefaut=NULL)
 	return (strlen($v_sTexte) > 0 ? $v_sTexte : $v_sTexteParDefaut);
 }
 
+/*! remplace htmlentities() vers l'UTF-8
+ Attention : htmlentities marche parfois mal avec de l'UTF-8 en PHP4 */
+function emb_htmlentities ($v_sTexte, $quote_style=ENT_COMPAT)
+{
+	//return htmlentities($v_sTexte,ENT_COMPAT,"UTF-8");
+	switch ($quote_style) {
+		case ENT_QUOTES:
+			return str_replace(array('"',"'"), array('&quot;','&#039;'),mb_convert_encoding($v_sTexte,"HTML-ENTITIES","UTF-8"));
+		case ENT_NOQUOTES:
+			return mb_convert_encoding($v_sTexte,"HTML-ENTITIES","UTF-8");
+		case ENT_COMPAT:
+		default:
+			return str_replace('"','&quot;',mb_convert_encoding($v_sTexte,"HTML-ENTITIES","UTF-8"));
+	}
+}
 
 /*! convertit un texte pour être exporté vers du javascript */
 function phpString2js ($text) {
@@ -472,7 +487,7 @@ function erreurFatale ($v_sMessageErreur=NULL)
 	echo "<html>",
 		"<body>",
 		"<div align=\"center\"><pre>",gettext('Une erreur fatale est survenue&nbsp;:'),"<br>",
-		"<b>",htmlentities($v_sMessageErreur,ENT_COMPAT,"UTF-8"),"</b></pre></div></body></html>";
+		"<b>",emb_htmlentities($v_sMessageErreur),"</b></pre></div></body></html>";
 	exit();
 }
 
@@ -511,7 +526,7 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
+	$v_sTexte = emb_htmlentities(trim(stripslashes($v_sTexte)));
 	
 	$asMetaTrouver   = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center");
 	$asMetaRemplacer = array("h1","h2","h3","h4","h5","h6","b","u","i","s","blockquote","blockquote","center");
@@ -612,7 +627,7 @@ function enleverBaliseMeta ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	//$v_sTexte = htmlentities(trim(stripslashes($v_sTexte)),ENT_COMPAT,"UTF-8");
+	//$v_sTexte = emb_htmlentities(trim(stripslashes($v_sTexte)));
 	
 	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center", "n","l","c","r","j");
 	$asMetaUnique = array("[nl]","[hr]");

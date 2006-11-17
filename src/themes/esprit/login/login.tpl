@@ -3,7 +3,7 @@
 <head>
 <title>La page d'accueil d'Esprit</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" language="javascript" src="/js/window.js"></script>
+<script type="text/javascript" language="javascript" src="js/window.js"></script>
 <script type="text/javascript" language="javascript" src="themes/commun/js/login.js.php"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
 <script language="javascript" type="text/javascript">
@@ -137,7 +137,7 @@ function GPL()
 		<p>La structure d'une formation sous Esprit se compose de plusieurs niveaux : une formation comprend une série de cours, 
 		eux-mêmes divisés en unités d'apprentissage. L' « enseignement-apprentissage » se déroule à l'intérieur de l'unité sous 
 		forme d'actions de formation que l'on ordonne selon le scénario	pédagogique que l'enseignant veut voir supporter à distance.</p>
-		<p><img src="theme://login/images/Structure des niveaux (à 4 niveaux).gif" width="484" height="116" alt="Structure d'une formation" /></p>
+		<p><img src="theme://login/images/Structure des niveaux (a 4 niveaux).gif" width="484" height="116" alt="Structure d'une formation" /></p>
 	</div>
 	
 	<div id="conception" class="BlockContent">

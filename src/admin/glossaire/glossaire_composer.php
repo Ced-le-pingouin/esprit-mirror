@@ -60,7 +60,7 @@ $oProjet->oFormationCourante->initElementsGlossaire($url_iIdGlossaire);
 // Template
 // ---------------------
 $oTpl = new Template(dir_theme("glossaire/glossaire_composer.tpl",FALSE,TRUE));
-$oTpl->remplacer("{glossaire->titre}",htmlentities($oGlossaire->retTitre(),ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{glossaire->titre}",emb_htmlentities($oGlossaire->retTitre()));
 
 $oBloc_ElementsGlossaire = new TPL_Block("BLOCK_ELEMENTS_GLOSSAIRE",$oTpl);
 

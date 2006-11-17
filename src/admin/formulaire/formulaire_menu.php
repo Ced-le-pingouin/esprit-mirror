@@ -156,8 +156,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 			$sNomFormulaireCourt = $sNomFormulaire;
 			if(mb_strlen($sNomFormulaireCourt,"UTF-8") > $iLargeurMax)
 				$sNomFormulaireCourt = mb_substr($sNomFormulaireCourt,0,$iLargeurMax-3,"UTF-8")."...";
-			$oBlockSelFormul->remplacer("{nom_formulaire}", htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
-			$oBlockSelFormul->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire,ENT_COMPAT,"UTF-8"));
+			$oBlockSelFormul->remplacer("{nom_formulaire}", emb_htmlentities($sNomFormulaireCourt));
+			$oBlockSelFormul->remplacer("{infobulle_formulaire}", emb_htmlentities($sNomFormulaire));
 			$oBlockSelFormul->remplacer("{id_formulaire}",$oFormulaireTmp->retId());
 			if($iIdPersCourant == $oFormulaireTmp->retIdPers() ) // auteur de l'activité ?
 				$oBlockSelFormul->remplacer("{couleur}","style=\"color:green;\"");

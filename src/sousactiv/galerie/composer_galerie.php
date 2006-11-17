@@ -104,7 +104,7 @@ if ($iNbCollecticiels > 0)
 		
 		$oBlocRessource->nextLoop();
 		$oBlocRessource->ajouter($asSetTpl["collecticiel"]);
-		$oBlocRessource->remplacer("{collecticiel.nom}",htmlentities($oCollecticiel->retNom(),ENT_COMPAT,"UTF-8"));
+		$oBlocRessource->remplacer("{collecticiel.nom}",emb_htmlentities($oCollecticiel->retNom()));
 		
 		foreach ($oCollecticiel->aoRessources as $oRessource)
 		{
@@ -130,9 +130,9 @@ if ($iNbCollecticiels > 0)
 			$amReplTpl = array(
 				($oRessource->estSelectionne ? " checked=\"checked\"" : NULL)
 				, $iIdRes
-				, htmlentities($oRessource->retNom(),ENT_COMPAT,"UTF-8")
-				, htmlentities($oRessource->retTexteStatut(),ENT_COMPAT,"UTF-8")
-				, htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom(),ENT_COMPAT,"UTF-8")
+				, emb_htmlentities($oRessource->retNom())
+				, emb_htmlentities($oRessource->retTexteStatut())
+				, emb_htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom())
 			);
 			
 			$oBlocRessource->nextLoop();
@@ -152,7 +152,7 @@ $oTpl->remplacer($asRechTpl,$amReplTpl);
 // }}}
 
 // {{{ Globales
-$oTpl->remplacer("{sousactiv.nom}",htmlentities($oProjet->oSousActivCourante->retNom(),ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{sousactiv.nom}",emb_htmlentities($oProjet->oSousActivCourante->retNom()));
 // }}}
 
 // {{{ Traduction des termes
@@ -166,12 +166,12 @@ $asRechTpl = array(
 );
 
 $asReplTpl = array(
-	htmlentities(TXT_COMPOSER_SA_GALERIE_TITRE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_GALERIE_TITRE,ENT_COMPAT,"UTF-8")
-	, nl2br(htmlentities(TXT_COMPOSER_SA_GALERIE_CONSIGNE,ENT_COMPAT,"UTF-8"))
-	, htmlentities(TXT_TITRE,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_ETAT,ENT_COMPAT,"UTF-8")
-	, htmlentities(TXT_DEPOSE_PAR,ENT_COMPAT,"UTF-8")
+	emb_htmlentities(TXT_COMPOSER_SA_GALERIE_TITRE)
+	, emb_htmlentities(TXT_GALERIE_TITRE)
+	, nl2br(emb_htmlentities(TXT_COMPOSER_SA_GALERIE_CONSIGNE))
+	, emb_htmlentities(TXT_TITRE)
+	, emb_htmlentities(TXT_ETAT)
+	, emb_htmlentities(TXT_DEPOSE_PAR)
 );
 
 $oTpl->remplacer($asRechTpl,$asReplTpl);

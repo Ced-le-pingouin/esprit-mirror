@@ -2,7 +2,7 @@
 
 $globalid = 0;
 
-function textarea($type, $cols=50, $rows=4) {
+function textarea($type, $cols=50, $rows=4, $zoom=true) {
 	global $globalid;
 	if (!$type)
 		return false;
@@ -10,13 +10,29 @@ function textarea($type, $cols=50, $rows=4) {
 	if ($type != "pinyin") {
 		echo "La saisie peut se faire au clavier ou en cliquant sur les touches.<br />";
 	}
+	echo "Vous pouvez utiliser la zone de texte pour copier-coller le texte ailleurs.\n";
 ?>
-Vous pouvez utiliser la zone de texte pour copier-coller le texte ailleurs.
 
-<form name="textarea<?php echo $globalid ?>" id="textarea<?php echo $globalid ?>" class="ml">
+<form action="ml.php" name="textarea<?php echo $globalid ?>" id="textarea<?php echo $globalid ?>" class="ml">
+<input type="hidden" name="id" value="textarea<?php echo $globalid ?>" />
+<input type="hidden" name="type" value="<?php echo $type ?>" />
+<input type="hidden" name="size" value="" />
 <p>
-<textarea name="saisie" onkeypress="insert_<?php echo $type ?>(event,this)" cols="<?php echo $cols ?>" rows="<?php echo $rows ?>" class="<?php echo $type ?>"></textarea>
-<input type="button" onClick="reset();this.form.saisie.focus()" value="Effacer">
+<textarea name="saisie" onkeypress="insert_<?php echo $type ?>(event,this)" cols="<?php echo $cols ?>" rows="<?php echo $rows ?>" class="<?php echo $type ?>"><?php
+if (!empty($_REQUEST['id']) && $_REQUEST['id']==="textarea$globalid") {
+	echo $_REQUEST['saisie'];
+}
+?></textarea>
+<input type="button" onClick="reset();this.form.saisie.focus()" value="Effacer" />
+<?php
+	if ($zoom) {
+?>
+<span class="zoom">
+  Zoom
+  <img src="<?php echo dir_icones('zoom-in.gif') ?>" onclick="zoom('textarea<?php echo $globalid ?>',1.1)" />
+  <img src="<?php echo dir_icones('zoom-out.gif') ?>" onclick="zoom('textarea<?php echo $globalid ?>',0.9)" />
+</span>
+<?php } ?>
 </p>
 </form>
 <?php

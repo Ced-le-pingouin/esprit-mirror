@@ -583,7 +583,7 @@ class CEquipe
 	function retNom($v_sMode = NULL)
 	{
 		if ($v_sMode == "html")
-			return htmlentities($this->oEnregBdd->NomEquipe,ENT_COMPAT,"UTF-8");
+			return emb_htmlentities($this->oEnregBdd->NomEquipe);
 		else if ($v_sMode == "url")
 			return rawurlencode($this->oEnregBdd->NomEquipe);
 		else
@@ -610,7 +610,7 @@ class CEquipe
 			.dir_admin("equipe","liste_equipes-index.php")
 			."?idEquipe=".$this->retId()."'"
 			.",'WIN_INFO_EQUIPE','resizable=1,width=600,height=450,status=0'); void(0);\""
-			." title=\"".htmlentities("Cliquer ici pour voir les membres de cette équipe", ENT_COMPAT, "UTF-8")."\""
+			." title=\"Cliquer ici pour voir les membres de cette équipe\""
 			." onfocus=\"blur()\""
 			.">".$this->retNom()."</a>";
 	}

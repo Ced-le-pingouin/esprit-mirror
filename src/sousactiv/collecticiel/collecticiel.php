@@ -72,7 +72,7 @@ if (MODALITE_PAR_EQUIPE == $g_iIdModalite)
 	if ($g_iIdEquipe == 0 && !$g_bResponsable)
 	{
 		// Cette personne n'est pas inscrite pour ce collecticiel
-		$sErreur = htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit dans une équipe.",ENT_COMPAT,"UTF-8");
+		$sErreur = emb_htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit dans une équipe.");
 		$oTplErreur = new Template(dir_theme_commun("erreur.tpl",FALSE,TRUE));
 		$oTplErreur->remplacer("{message_erreur.texte}",$sErreur);
 		$oTplErreur->afficher();
@@ -99,7 +99,7 @@ else
 	else
 	{
 		// Cette personne n'est pas inscrite dans cette formation
-		$sErreur = htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit comme étudiant dans cette formation.",ENT_COMPAT,"UTF-8");
+		$sErreur = emb_htmlentities("Vous ne pouvez pas réaliser cette activité pour le moment car vous n'êtes pas encore inscrit comme étudiant dans cette formation.");
 		$oTplErreur = new Template(dir_theme_commun("erreur.tpl",FALSE,TRUE));
 		$oTplErreur->remplacer("{message_erreur.texte}",$sErreur);
 		$oTplErreur->afficher();
@@ -168,7 +168,7 @@ if ((!$g_bResponsable || $url_iIdPersEquipe < 1) && strlen($sUrlDocumentBase))
 {
 	$sUrl = rawurlencode($oProjet->dir_cours($sUrlDocumentBase));
 	$oBlocDocumentTelecharger->remplacer("{fichier_de_base.href}",dir_lib("download.php?f={$sUrl}"));
-	$oBlocDocumentTelecharger->remplacer("{fichier_de_base.label}",htmlentities($sIntituleDocumentBase,ENT_COMPAT,"UTF-8"));
+	$oBlocDocumentTelecharger->remplacer("{fichier_de_base.label}",emb_htmlentities($sIntituleDocumentBase));
 	$oBlocDocumentTelecharger->afficher();
 }
 else
@@ -320,10 +320,10 @@ if (count($aaCollecticiels) > 0)
 				// }}}
 				
 				$amReplTplDocument = array(
-					htmlentities($oRessource->retNom(),ENT_COMPAT,"UTF-8")
+					emb_htmlentities($oRessource->retNom())
 					, "{$g_sFichierTelecharger}?f=".rawurlencode($g_sRepRessources.$oRessource->retUrl())
 						."&fn=1"
-					, htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom(),ENT_COMPAT,"UTF-8")
+					, emb_htmlentities($oRessource->oExpediteur->retNom()." ".$oRessource->oExpediteur->retPrenom())
 					, retDateFormatter($oRessource->retDate())
 					, retDateFormatter($oRessource->retDate(),"H:i:s")
 					, $oRessource->retTexteStatut()

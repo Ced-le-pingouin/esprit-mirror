@@ -67,7 +67,7 @@ if (isset($aMenus) && is_array($aMenus))
 			$sStyleColonne = "text-align: right;";
 		}
 		
-		$sTexteLien = (!isset($aMenu[4]) || $aMenu[4] ? htmlentities($aMenu[0],ENT_COMPAT,"UTF-8") : $aMenu[0]);
+		$sTexteLien = (!isset($aMenu[4]) || $aMenu[4] ? emb_htmlentities($aMenu[0]) : $aMenu[0]);
 		$sMenuColonne .= (isset($sMenuColonne) ? "&nbsp;|&nbsp;" : NULL)
 			.(isset($aMenu[1])
 				? "<a"

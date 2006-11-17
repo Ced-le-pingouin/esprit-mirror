@@ -72,7 +72,7 @@ unset($bPeutModifier);
 // ---------------------
 $g_sRepTheme = dir_theme();
 
-$sIntitule = htmlentities($sIntitule,ENT_COMPAT,"UTF-8");
+$sIntitule = emb_htmlentities($sIntitule);
 
 // Mettre dans un tableau la liste des fichiers qui se
 // trouvent dans la racine du bloc d'activité
@@ -265,7 +265,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 		.">$asFichiers[$i]</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleCollecticiel = htmlentities("Fichier de base à télécharger",ENT_COMPAT,"UTF-8");
+	$sIntituleCollecticiel = emb_htmlentities("Fichier de base à télécharger");
 else
 	$sIntituleCollecticiel = $sIntitule;
 ?>
@@ -354,7 +354,7 @@ foreach($aoFormulairesVisibles as $oFormulaireCourant)
 	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleFormulaire = htmlentities("Questionnaire de base à compléter",ENT_COMPAT,"UTF-8");
+	$sIntituleFormulaire = emb_htmlentities("Questionnaire de base à compléter");
 else
 	$sIntituleFormulaire = $sIntitule;
 ?>

@@ -96,16 +96,18 @@ Normalement, l'encodage devrait être en UTF-8.</i>
 <p>Vous pouvez également utiliser phpmyadmin s'il est installé.</p>
 
 <h3>Saisie</h3>
-<p>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.</p>
 <form action="install.php" method="post">
-<p>
-	<label for="base">Base de données :</label> <input type="text" name="base" id="base" /><br />
-	<label for="host">Serveur BdD :</label> <input type="text" name="host" id="host" value="localhost" /><br />
-	<label for="user">Login de l'utilisateur :</label> <input type="text" name="user" id="user" /><br />
-	<label for="password">Mot de passe de l'utilisateur :</label> <input type="password" name="password" id="password" /><br /><br />
-	<input name="step" value="<?php echo $step+1 ?>" type="hidden" />
-	<input type="submit" value="Étape suivante" />
-</p>
+<fieldset>
+<legend>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.</legend>
+<ul>
+	<li><label for="base">Base de données :</label> <input type="text" name="base" id="base" /></li>
+	<li><label for="host">Serveur BdD :</label> <input type="text" name="host" id="host" value="localhost" /></li>
+	<li><label for="user">Login de l'utilisateur :</label> <input type="text" name="user" id="user" /></li>
+	<li><label for="password">Mot de passe de l'utilisateur :</label> <input type="password" name="password" id="password" /></li>
+</ul>
+<input name="step" value="<?php echo $step+1 ?>" type="hidden" />
+<input type="submit" value="Étape suivante" />
+</fieldset>
 </form>
 
 <?php
@@ -127,7 +129,7 @@ case 2:
 	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
 	if (! mysql_selectdb($_POST['base'])) {
 		echo "<p class='erreur'>Connexion réussie, mais erreur d'accès à la base de données.</p>";
-		echo "<p>Retournez à <a href='install.php?step=1'>l\'étape précédente</a>.</p>";
+		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
 		echo "</body></html>";
 		exit;
 	}
@@ -183,9 +185,9 @@ define("THEME","esprit");
 // }}}
 ?>';
 
-	if (file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
+	if (@file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
 		echo "<p class='erreur'>Erreur lors de l'écriture du fichier de configuration.</p>";
-		echo '<p>Vérifiez que les accès en écriture sont autorisés dans le répertoire <em>include</em>.</p>';
+		echo '<p>Vérifiez que les accès en écriture pour le serveur web sont autorisés dans le répertoire <em>include</em>.</p>';
 		redo_step();
 		echo '</body></html>';
 		exit;
@@ -203,7 +205,7 @@ case 4:
 		mkdir('../tmp');
 	}
 	if (!file_exists('../tmp/mdpncpte')) {
-		touch('../tmp/mdpncpte');
+		@touch('../tmp/mdpncpte');
 	}
 	$ok = true;
 	if (!is_writable('../tmp/mdpncpte')) {

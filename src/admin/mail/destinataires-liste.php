@@ -172,7 +172,7 @@ if (count($asDestinataires) > 0)
 		$sTexte = "{$sNomComplet} <{$sEmail}>";
 		
 		$oBlocDestinataire->remplacer("{destinataire->email:urlencode}",rawurlencode($sTexte));
-		$oBlocDestinataire->remplacer("{destinataire->email}",htmlentities($sTexte,ENT_COMPAT,"UTF-8"));
+		$oBlocDestinataire->remplacer("{destinataire->email}",emb_htmlentities($sTexte));
 	}
 }
 else

@@ -149,7 +149,7 @@ $sSetOnglet = $oTplOnglet->defVariable("SET_ONGLET");
 
 $oTpl->remplacer("{liste_sujets}",$sSetOnglet);
 $oTpl->remplacer("{onglet->texte}",($bAfficherListeEquipes ? $sSetListeSujetsEquipes : $sSetListeSujets));
-$oTpl->remplacer("{onglet->titre}",htmlentities($oForum->retNom()." - Liste des sujets",ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{onglet->titre}",emb_htmlentities($oForum->retNom()." - Liste des sujets"));
 $oTpl->remplacer("{onglet->menu}",NULL);
 $oTpl->remplacer("{envoi_courriel}","choix_courriel('?idStatuts=".STATUT_PERS_TUTEUR.(MODALITE_POUR_TOUS == $iModaliteForum ? "x".STATUT_PERS_ETUDIANT : "&idEquipes=tous")."&typeCourriel=courriel-forum@{$url_iIdForum}')");
 
@@ -170,14 +170,14 @@ if ($bAfficherListeEquipes)
 			$oBlocEquipe->nextLoop();
 			$oBlocEquipe->remplacer("{equipe->id}",$iIdEquipe);
 			$oBlocEquipe->remplacer("{option->selected}",($url_iIdEquipe == $iIdEquipe ? " selected" : NULL));
-			$oBlocEquipe->remplacer("{equipe->nom}",htmlentities($oEquipe->retNom(),ENT_COMPAT,"UTF-8"));
+			$oBlocEquipe->remplacer("{equipe->nom}",emb_htmlentities($oEquipe->retNom()));
 		}
 	}
 	else
 	{
 		$oBlocEquipe->remplacer("{equipe->id}",0);
 		$oBlocEquipe->remplacer("{option->selected}"," selected");
-		$oBlocEquipe->remplacer("{equipe->nom}",htmlentities("Pas d'équipe trouvée",ENT_COMPAT,"UTF-8"));
+		$oBlocEquipe->remplacer("{equipe->nom}",emb_htmlentities("Pas d'équipe trouvée"));
 	}
 	
 	$oBlocEquipe->afficher();

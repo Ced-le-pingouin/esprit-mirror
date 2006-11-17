@@ -130,7 +130,7 @@ for ($i=0; $i<$iNbrFormations; $i++)
 		."</td>\n"
 		//."<td class=\"$sClasseCss\" width=\"1%\" align=\"center\">&nbsp;".$oFormation->aoFormations[$i]->retType()."&nbsp;</td>\n"
 		."<td class=\"$sClasseCss\">"
-			.htmlentities($oFormation->aoFormations[$i]->retNom(),ENT_COMPAT,"UTF-8")
+			.emb_htmlentities($oFormation->aoFormations[$i]->retNom())
 		."</td>\n"
 		."<td class=\"$sClasseCss\" align=\"center\">&#8212;</td>\n"
 		."</tr>\n";

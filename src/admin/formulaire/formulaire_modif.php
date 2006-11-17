@@ -153,8 +153,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQTC}",htmlentities($oQTexteCourt->retTxtAvQTC(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQTC}",htmlentities($oQTexteCourt->retTxtApQTC(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQTC}",emb_htmlentities($oQTexteCourt->retTxtAvQTC()));
+					$oTpl->remplacer("{TxtApQTC}",emb_htmlentities($oQTexteCourt->retTxtApQTC()));
 					$oTpl->remplacer("{LargeurQTC}",$oQTexteCourt->retLargeurQTC());
 					$oTpl->remplacer("{MaxCarQTC}",$oQTexteCourt->retMaxCarQTC());
 					$oTpl->remplacer("{sMessageErreur1}",$sMessageErreur1);
@@ -202,8 +202,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQN}",htmlentities($oQNombre->retTxtAvQN(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQN}",htmlentities($oQNombre->retTxtApQN(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQN}",emb_htmlentities($oQNombre->retTxtAvQN()));
+					$oTpl->remplacer("{TxtApQN}",emb_htmlentities($oQNombre->retTxtApQN()));
 					$oTpl->remplacer("{NbMinQN}",$oQNombre->retNbMinQN());
 					$oTpl->remplacer("{NbMaxQN}",$oQNombre->retNbMaxQN());
 					$oTpl->remplacer("{MultiQN}",$oQNombre->retMultiQN());
@@ -301,8 +301,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQLD}",htmlentities($oQListeDeroul->retTxtAvQLD(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQLD}",htmlentities($oQListeDeroul->retTxtApQLD(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQLD}",emb_htmlentities($oQListeDeroul->retTxtAvQLD()));
+					$oTpl->remplacer("{TxtApQLD}",emb_htmlentities($oQListeDeroul->retTxtApQLD()));
 					$oTpl->remplacer("{RetourReponseQLDModif}",$oQListeDeroul->RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire,$oFormulaire->retAutoCorrection()));
 					break;
 			
@@ -408,8 +408,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 						$oTpl->remplacer("{d1}","");
 						$oTpl->remplacer("{d2}","checked=\"checked\"");
 					}
-					$oTpl->remplacer("{TxtAvQR}",htmlentities($oQRadio->retTxTAvQR(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQR}",htmlentities($oQRadio->retTxtApQR(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQR}",emb_htmlentities($oQRadio->retTxTAvQR()));
+					$oTpl->remplacer("{TxtApQR}",emb_htmlentities($oQRadio->retTxtApQR()));
 					$oTpl->remplacer("{RetourReponseQRModif}",$oQRadio->RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire,$oFormulaire->retAutoCorrection()));
 					break;
 			
@@ -511,8 +511,8 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 					$oTpl->remplacer("{ar2}",$ar2);
 					$oTpl->remplacer("{ar3}",$ar3);
 					$oTpl->remplacer("{ar4}",$ar4);
-					$oTpl->remplacer("{TxtAvQC}",htmlentities($oQCocher->retTxtAvQC(),ENT_COMPAT,"UTF-8"));
-					$oTpl->remplacer("{TxtApQC}",htmlentities($oQCocher->retTxtApQC(),ENT_COMPAT,"UTF-8"));
+					$oTpl->remplacer("{TxtAvQC}",emb_htmlentities($oQCocher->retTxtAvQC()));
+					$oTpl->remplacer("{TxtApQC}",emb_htmlentities($oQCocher->retTxtApQC()));
 					if($oQCocher->retDispQC()=="Hor")
 					{
 						$oTpl->remplacer("{d1}","checked=\"checked\"");
@@ -696,7 +696,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 			$oTpl->remplacer("{sMessageErreur4}",$sMessageErreur4);
 			$sParam = "?idobj=".$v_iIdObjForm."&amp;idformulaire=".$v_iIdFormulaire."&amp;bMesForms=".$bMesForms;
 			$oTpl->remplacer("{sParam}",$sParam);
-			$oTpl->remplacer("{Titre}",htmlentities($oFormulaire->retTitre(),ENT_COMPAT,"UTF-8"));
+			$oTpl->remplacer("{Titre}",emb_htmlentities($oFormulaire->retTitre()));
 			$oTpl->remplacer("{Largeur}",$oFormulaire->retLargeur());
 			$oTpl->remplacer("{InterElem}",$oFormulaire->retInterElem());
 			$oTpl->remplacer("{InterEnonRep}",$oFormulaire->retInterEnonRep());

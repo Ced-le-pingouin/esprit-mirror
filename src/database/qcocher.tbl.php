@@ -300,7 +300,7 @@ class CQCocher
 			}
 			
 			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
-			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n";
+			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".emb_htmlentities($TexteTemp)."\" />\n";
 			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
 			if($v_bAutoCorrection)
 			{

@@ -20,7 +20,7 @@ public abstract class WriterLog {
 		
 		if (writerLog != null && s.length() > 0) {
 			s += CRLF;
-			writerLog.write(s.getBytes());
+			writerLog.write(s.getBytes("UTF8"));
 		}
 		
 		close();

@@ -49,7 +49,7 @@ if ($url_iIdGlossaire > 0)
 	require_once(dir_database("bdd.class.php"));
 	$oBdd = new CBdd();
 	$oGlossaire = new CGlossaire($oBdd,$url_iIdGlossaire);
-	$sGlossaireTitre = htmlentities($oGlossaire->retTitre(),ENT_COMPAT,"UTF-8");
+	$sGlossaireTitre = emb_htmlentities($oGlossaire->retTitre());
 	unset($oBdd);
 }
 

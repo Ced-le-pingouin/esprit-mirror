@@ -273,7 +273,7 @@ if ($iNbrInscrits < 1)
 	$sNomsInscrits = "<tr>"
 		."<td class=\"Infos\">"
 		."&#8250;&nbsp;"
-		.htmlentities($asPasDePersonnesTrouvees[$iStatutPers],ENT_COMPAT,"UTF-8")
+		.emb_htmlentities($asPasDePersonnesTrouvees[$iStatutPers])
 		."</td>"
 		."</tr>\n";
 

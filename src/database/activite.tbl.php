@@ -648,12 +648,12 @@ class CActiv
 	
 	function retNom ($v_bHtmlEntities=FALSE)
 	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->NomActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->NomActiv);
+		return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->NomActiv) : $this->oEnregBdd->NomActiv);
 	}
 	
 	function retDescr ($v_bHtmlEntities=FALSE)
 	{
-		return ($v_bHtmlEntities ? htmlentities($this->oEnregBdd->DescrActiv,ENT_COMPAT,"UTF-8") : $this->oEnregBdd->DescrActiv);
+		return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->DescrActiv) : $this->oEnregBdd->DescrActiv);
 	}
 	//@}
 

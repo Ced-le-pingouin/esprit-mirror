@@ -39,8 +39,8 @@ require_once("globals.inc.php");
 $url_sTitre     = (empty($_GET["tp"]) ? (empty($sTitrePrincipal) ? NULL : $sTitrePrincipal) : $_GET["tp"]);
 $url_sSousTitre = (empty($_GET["st"]) ? (empty($sSousTitre) ? NULL : $sSousTitre) : $_GET["st"]);
 
-$url_sTitre     = htmlentities(stripslashes($url_sTitre),ENT_COMPAT,"UTF-8");
-$url_sSousTitre = htmlentities(stripslashes($url_sSousTitre),ENT_COMPAT,"UTF-8");
+$url_sTitre     = emb_htmlentities(stripslashes($url_sTitre));
+$url_sSousTitre = emb_htmlentities(stripslashes($url_sSousTitre));
 
 // ---------------------
 // Template

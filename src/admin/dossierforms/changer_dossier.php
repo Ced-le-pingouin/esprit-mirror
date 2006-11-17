@@ -116,7 +116,7 @@ foreach ($g_aoDossierForms as $oDossierForms)
 	$oBlocDossierForms->nextLoop();
 	$oBlocDossierForms->remplacer("{dossier_formations.id}",$iIdDossierForms);
 	$oBlocDossierForms->remplacer("{dossier_formations.icone}",$sIcone);
-	$oBlocDossierForms->remplacer("{dossier_formations.titre}",htmlentities($oDossierForms->retNom(),ENT_COMPAT,"UTF-8"));
+	$oBlocDossierForms->remplacer("{dossier_formations.titre}",emb_htmlentities($oDossierForms->retNom()));
 }
 
 $oBlocDossierForms->afficher();
@@ -134,7 +134,7 @@ if ($g_oDossierForms->oPremierDossierForms->retId() > 0)
 else
 	$sNomDossierForms = "Toutes les formations";
 
-$oTpl->remplacer("{dossier_formation.nom}",htmlentities($sNomDossierForms,ENT_COMPAT,"UTF-8"));
+$oTpl->remplacer("{dossier_formation.nom}",emb_htmlentities($sNomDossierForms));
 
 $oTpl->remplacer("[TXT_REMARQUE]",TXT_REMARQUE);
 
