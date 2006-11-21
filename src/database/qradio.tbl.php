@@ -69,124 +69,50 @@ class CQRadio
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
-	//Fonctions de définition
-	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
-	function defEnonQR ($v_sEnonQR) { $this->oEnregBdd->EnonQR = $v_sEnonQR; }
-	function defAlignEnonQR ($v_sAlignEnonQR) { $this->oEnregBdd->AlignEnonQR = $v_sAlignEnonQR; }
-	function defAlignRepQR ($v_sAlignRepQR) { $this->oEnregBdd->AlignRepQR = $v_sAlignRepQR; }
-	function defTxtAvQR ($v_sTxtAvQR) { $this->oEnregBdd->TxtAvQR = $v_sTxtAvQR; }	
-	function defTxtApQR ($v_sTxtApQR) { $this->oEnregBdd->TxtApQR = $v_sTxtApQR; }	
-	function defDispQR ($v_sDispQR) { $this->oEnregBdd->DispQR = $v_sDispQR; }
-	
-	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjFormul; }
-	function retEnonQR () { return $this->oEnregBdd->EnonQR; }
-	function retAlignEnonQR () { return $this->oEnregBdd->AlignEnonQR; }
-	function retAlignRepQR () { return $this->oEnregBdd->AlignRepQR; }
-	function retTxTAvQR () { return $this->oEnregBdd->TxtAvQR; }
-	function retTxtApQR () { return $this->oEnregBdd->TxtApQR; }
-	function retDispQR () { return $this->oEnregBdd->DispQR; }
-	
-	/*
-	** Fonction 		: RetourReponseQR
-	** Description		: va rechercher dans la table réponse les réponses correspondant
-	**				  a la question de type bouton Radio en cours de traitement 
-	**				  + mise en page de ces réponses,
-	**				  si $v_iIdFC la réponse fournie par l'étudiant sera pré-sélectionnée
-	** Entrée			:
-	**				  $v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			: Code Html
-	*/
+	/**
+	 * Retourne le code HTML des propositions de réponses de question de type bouton radio
+	 * 
+	 * @param	v_iIdFC				si l'id d'un formulaire complété est présent, la réponse fournie par l'étudiant sera pré-sélectionnée
+	 * @param	v_bAutoCorrection	si \c true, la question est de type auto-corrigée
+	 * 
+	 * @return	le code HTML des propositions de réponses de question de type bouton radio
+	 */
 	function RetourReponseQR($v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$iIdReponseEtu = "";
 		if ($v_iIdFC != NULL)
 		{
-			//Sélection de la réponse donnée par l'étudiant
+			// Sélection de la réponse donnée par l'étudiant
 			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
-			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
 			$iIdReponseEtu = $oEnregRep->IdReponse;
+			$this->oBdd->libererResult($hResultRep);
 		}
 		
-		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
-					." ORDER BY OrdrePropRep";
-		$hResulRRQR = $this->oBdd->executerRequete($sRequeteSql);
-		
-		if ($this->oEnregBdd->DispQR == 'Ver')  //Présentation sous forme de tableau
-		{
+		$oPropositionReponse = new CPropositionReponse($this->oBdd);
+		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);
+		if($this->retDispQR() == 'Ver')
 			$sCodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">";
-			
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
-			{
-				$sAutoCorr = "";
-				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
-				$oPropositionReponse->init($oEnreg);
-				
-				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oPropositionReponse->retTextePropRep();
-				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oPropositionReponse->retId();
-				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-				
-				if ($iIdReponseEtu == $IdReponseTemp) 
-				{
-					$sPreSelection = "checked=\"checked\"";
-					if($v_bAutoCorrection)
-					{
-						switch($oPropositionReponse->retScorePropRep())
-						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-						}
-					}
-				}
-				else
-				{
-					$sPreSelection = "";
-				}
-				$sCodeHtml.="<tr><td><input type=\"radio\" name=\"$IdObjFormTemp\" "
-						."value=\"$IdReponseTemp\" $sPreSelection /></td><td>$TexteTemp $sAutoCorr</td></tr>\n";
-			}
-			$sCodeHtml.="</table>";
-		}
-		else //Présentation en ligne
-		{
+		else
 			$sCodeHtml = "";
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResulRRQR))
+		if(!empty($aoListePropRep))
+		{
+			foreach($aoListePropRep AS $oPropRep)
 			{
 				$sAutoCorr = "";
-				$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
-				$oPropositionReponse->init($oEnreg);
-				
-				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oPropositionReponse->retTextePropRep();
-				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oPropositionReponse->retId();
-				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-				
-				if ($iIdReponseEtu == $IdReponseTemp) 
+				if ($iIdReponseEtu == $oPropRep->retId()) 
 				{
 					$sPreSelection = "checked=\"checked\"";
 					if($v_bAutoCorrection)
 					{
-						switch($oPropositionReponse->retScorePropRep())
+						switch($oPropRep->retScorePropRep())
 						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
-							
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
-							
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
 						}
 					}
@@ -195,51 +121,41 @@ class CQRadio
 				{
 					$sPreSelection = "";
 				}
-				
-				$sCodeHtml .= "<input type=\"radio\" name=\"$IdObjFormTemp\" value=\"$IdReponseTemp\" $sPreSelection />$TexteTemp $sAutoCorr \n";
+				if($this->retDispQR() == 'Ver')
+					$sCodeHtml .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
+							."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+				else
+					$sCodeHtml .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 			}
 		}
-		$this->oBdd->libererResult($hResulRRQR);
+		if($this->retDispQR() == 'Ver')
+			$sCodeHtml .= "</table>";
 		return $sCodeHtml;
 	}
 	
-	/*
-	** Fonction 		: cHtmlQRadio
-	** Description	: renvoie le code html qui permet d'afficher une question de type bouton radio,
-	**				     si $v_iIdFC est passé en paramètre il est envoyé à la fonction RetourReponseQR qui permettra
-	**					  de pré-sélectionner la réponse entrée par l'étudiant
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété
-	** Sortie			:
-	**				code html
-	*/
+	/**
+	 * Retourne le code HTML qui permet d'afficher une question de type bouton radio
+	 * 
+	 * @param	v_iIdFC	l'id d'un formulaire complété
+	 * 
+	 * @return	le code HTML qui permet d'afficher une question de type bouton radio
+	 */
 	function cHtmlQRadio($v_iIdFC=NULL)
 	{
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQR = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQR);
-		
-		$this->oEnregBdd->TxtAvQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQR);
-		$this->oEnregBdd->TxtApQR = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQR);
-		
-		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QRadio : {$this->oEnregBdd->IdObjFormul} -->\n"
-				."<div align=\"{$this->oEnregBdd->AlignEnonQR}\">{$this->oEnregBdd->EnonQR}</div>\n"
-				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQR}\">\n"
-				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
-				."<td valign=\"top\">"
-					."{$this->oEnregBdd->TxtAvQR} \n"
-				."</td>"
-				// appel de la fonction qui renvoie les réponses sous forme de bouton radio,
-				// avec la réponse cochée par l'étudiant si IdFC est présent
-				."<td valign=\"top\">"
-					.$this->RetourReponseQR($v_iIdFC)
-				."</td>"
-				."<td valign=\"top\">"
-					." {$this->oEnregBdd->TxtApQR}\n"
-				."</td>"
-				."</tr></table>"
+		// Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+		$this->defEnonQR( convertBaliseMetaVersHtml($this->retEnonQR()) );
+		$this->defTxtAvQR( convertBaliseMetaVersHtml($this->retTxTAvQR()) );
+		$this->defTxtApQR( convertBaliseMetaVersHtml($this->retTxtApQR()) );
+		// Genération du code html représentant l'objet
+		$sCodeHtml = "\n<!--QRadio : ".$this->retId()." -->\n"
+				."<div align=\"".$this->retAlignEnonQR()."\">".$this->retEnonQR()."</div>\n"
+				."<div class=\"InterER\" align=\"".$this->retAlignRepQR()."\">\n"
+				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+				."<td valign=\"top\">".$this->retTxTAvQR()."</td>\n"
+				."<td valign=\"top\">".$this->RetourReponseQR($v_iIdFC)."</td>\n"
+				."<td valign=\"top\">".$this->retTxtApQR()."</td>\n"
+				."</tr></table>\n"
 				."</div>\n";
-		
 		return $sCodeHtml;
 	}
 	
@@ -253,75 +169,68 @@ class CQRadio
 	*/
 	function RetourReponseQRModif($v_iIdObjForm,$v_iIdFormulaire,$v_bAutoCorrection = false)
 	{
-		// Recherche du numéro d'ordre maximum
-		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul='{$this->oEnregBdd->IdObjFormul}'");
-		$oEnreg = $this->oBdd->retEnregSuiv();
-		$iOrdreMax = $oEnreg->OrdreMax;
-		$this->oBdd->libererResult($hResult);
-
-		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}' ORDER BY OrdrePropRep";
-		$hResultInt = $this->oBdd->executerRequete($sRequeteSql);
-		
+		$oPropositionReponse = new CPropositionReponse($this->oBdd);
+		$iOrdreMax = $oPropositionReponse->retMaxOrdre($this->oEnregBdd->IdObjFormul);
+		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);		
 		$sCodeHtml = "";
-		
-		while($oEnreg = $this->oBdd->retEnregSuiv($hResultInt))
-		{	
-			$oPropositionReponse = new CPropositionReponse($this->oBdd);
-			$oPropositionReponse->init($oEnreg);
-			
-			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oPropositionReponse->retTextePropRep();
-			$IdReponseTemp = $oPropositionReponse->retId();
-			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-			$sFeedbackTemp = $oPropositionReponse->retFeedbackPropRep();
-			$iScoreTemp = $oPropositionReponse->retScorePropRep();
-			$iOrdreTemp = $oPropositionReponse->retOrdre();
-			
-			// gestion pour selectionner le bon radio des scores
-			switch($iScoreTemp)
+		if(!empty($aoListePropRep))
+		{
+			foreach($aoListePropRep AS $oPropRep)
 			{
-				case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
-							break;
-				case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
-							break;
-				default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
-			}
+				// Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
+				$TexteTemp = $oPropRep->retTextePropRep();
+				$IdReponseTemp = $oPropRep->retId();
+				$IdObjFormTemp = $oPropRep->retIdObjFormul();
+				$sFeedbackTemp = $oPropRep->retFeedbackPropRep();
+				$iScoreTemp = $oPropRep->retScorePropRep();
+				$iOrdreTemp = $oPropRep->retOrdre();
 			
-			// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
-			if ($sCodeHtml != "")
-				$sCodeHtml.="<hr class=\"sepproprep\" />";
-			
-			// gestion du numéro d'ordre des propositions
-			$sCodeOptionsOrdre = "";
-			for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
-			{
-				if($iNumOrdre == $iOrdreTemp)
-					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
-				else
-					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
+				// gestion pour selectionner le bon radio des scores
+				switch($iScoreTemp)
+				{
+					case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
+								break;
+					case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
+								break;
+					default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
+				}
+				
+				// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
+				if ($sCodeHtml != "")
+					$sCodeHtml.="<hr class=\"sepproprep\" />";
+				
+				// gestion du numéro d'ordre des propositions
+				$sCodeOptionsOrdre = "";
+				for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
+				{
+					if($iNumOrdre == $iOrdreTemp)
+						$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
+					else
+						$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
+				}
+				
+				$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
+				$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".emb_htmlentities($TexteTemp)."\" />\n";
+				$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
+				if($v_bAutoCorrection)
+				{
+					$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
+								."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
+								."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
+				}
+				$sCodeHtml.="</div>";
+				if($v_bAutoCorrection)
+				{
+					$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
+				}
+				$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
+				$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 			}
-			
-			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
-			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".emb_htmlentities($TexteTemp)."\" />\n";
-			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
-			if($v_bAutoCorrection)
-			{
-				$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
-							."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
-							."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
-			}
-			$sCodeHtml.="</div>";
-			if($v_bAutoCorrection)
-			{
-				$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
-			}
-			$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
-			$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 		} 
-		if(strlen($sCodeHtml)==0)
+		else
+		{
 			$sCodeHtml = "<div><a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a></div>\n";
-		$this->oBdd->libererResult($hResultInt);
+		}
 		return $sCodeHtml;
 	}
 	
@@ -400,5 +309,23 @@ class CQRadio
 		$sRequeteSql = "DELETE FROM QRadio WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
+	
+	//Fonctions de définition
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
+	function defEnonQR ($v_sEnonQR) { $this->oEnregBdd->EnonQR = $v_sEnonQR; }
+	function defAlignEnonQR ($v_sAlignEnonQR) { $this->oEnregBdd->AlignEnonQR = $v_sAlignEnonQR; }
+	function defAlignRepQR ($v_sAlignRepQR) { $this->oEnregBdd->AlignRepQR = $v_sAlignRepQR; }
+	function defTxtAvQR ($v_sTxtAvQR) { $this->oEnregBdd->TxtAvQR = $v_sTxtAvQR; }	
+	function defTxtApQR ($v_sTxtApQR) { $this->oEnregBdd->TxtApQR = $v_sTxtApQR; }	
+	function defDispQR ($v_sDispQR) { $this->oEnregBdd->DispQR = $v_sDispQR; }
+	
+	//Fonctions de retour
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
+	function retEnonQR () { return $this->oEnregBdd->EnonQR; }
+	function retAlignEnonQR () { return $this->oEnregBdd->AlignEnonQR; }
+	function retAlignRepQR () { return $this->oEnregBdd->AlignRepQR; }
+	function retTxTAvQR () { return $this->oEnregBdd->TxtAvQR; }
+	function retTxtApQR () { return $this->oEnregBdd->TxtApQR; }
+	function retDispQR () { return $this->oEnregBdd->DispQR; }
 }
 ?>

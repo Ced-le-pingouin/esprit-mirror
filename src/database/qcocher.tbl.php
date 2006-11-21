@@ -65,72 +65,58 @@ class CQCocher
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
-	/*
-	** Fonction 		: RetourReponseQC
-	** Description	: renvoie le code html contenant les checkbox avec les réponses,
-	**					  si $v_iIdFC est présent la/les réponse(s) fournie(s) par l'étudiant sera/seront pré-sélectionnée	
-	** Entrée			:
-	**				$NbRepMaxQCTemp : nombre de réponses que l'étudiant peut cocher au maximum
-	**				$MessMaxQCTemp : message personnalisé si l'étudiant coche trop de cases
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
+	/**
+	 * Retourne le code HTML des propositions de réponses de question de type cases à cocher
+	 * 
+	 * @param	NbRepMaxQCTemp		nombre de réponses que l'étudiant peut cocher au maximum
+	 * @param	MessMaxQCTemp 		message personnalisé si l'étudiant coche trop de cases
+	 * @param	v_iIdFC				si l'id d'un formulaire complété est présent, la/les réponse(s) fournie(s) par l'étudiant sera/seront pré-sélectionnée
+	 * @param	v_bAutoCorrection	si \c true, la question est de type auto-corrigée
+	 * 
+	 * @return	le code HTML des propositions de réponses de question de type cases à cocher
+	 */
 	function RetourReponseQC($NbRepMaxQCTemp, $MessMaxQCTemp, $v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$TabRepEtu = array();
 		if ($v_iIdFC != NULL)
 		{
-			//Sélection de la réponse donnée par l'étudiant
+			// Sélection de la réponse donnée par l'étudiant
 			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->oEnregBdd->IdObjFormul}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			
 			$i=0;
 			$TabRepEtu=array();
-			
 			while ($oEnregRep = $this->oBdd->retEnregSuiv($hResultRep))
 			{
 				$TabRepEtu[$i] = $oEnregRep->IdReponse;
 				$i++;
 			}
+			$this->oBdd->libererResult($hResultRep);
 		}
 		
-		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
-					." ORDER BY OrdrePropRep";
-		$hResultRRQC = $this->oBdd->executerRequete($sRequeteSql);
+		$oPropositionReponse = new CPropositionReponse($this->oBdd);
+		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);
+		if($this->retDispQC() == 'Ver')
+			$sCodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+		else
+			$sCodeHtml = "";
 		
-		if ($this->oEnregBdd->DispQC == 'Ver')  //Présentation sous forme de tableau
+		if(!empty($aoListePropRep))
 		{
-			$CodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">";
-			
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
+			foreach($aoListePropRep AS $oPropRep)
 			{
 				$sAutoCorr = "";
-				$oPropositionReponse = new CPropositionReponse($this->oBdd);
-				$oPropositionReponse->init($oEnreg);
-				
-				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oPropositionReponse->retTextePropRep();
-				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oPropositionReponse->retId();
-				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
-				
-				if(in_array($IdReponseTemp, $TabRepEtu))
+				if(in_array($oPropRep->retId(), $TabRepEtu))
 				{
 					$sPreSelection = "checked=\"checked\"";
 					if($v_bAutoCorrection)
 					{
-						switch($oPropositionReponse->retScorePropRep())
+						switch($oPropRep->retScorePropRep())
 						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
-							
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
-							
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 										break;
 						}
 					}
@@ -140,102 +126,46 @@ class CQCocher
 					$sPreSelection = "";
 					if($v_bAutoCorrection && $v_iIdFC!=NULL)
 					{
-						if($oPropositionReponse->retScorePropRep()==1)
-							$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+						if($oPropRep->retScorePropRep()==1)
+							$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 					}
 				}
-				
-				$CodeHtml.= "<tr><td><input type=\"checkbox\" name=\"$IdObjFormTemp\" "
-					."value=\"$IdReponseTemp\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>$TexteTemp $sAutoCorr</td></tr>\n";
-			}
-			$CodeHtml.="</table>";
-		}
-		else //Présentation en ligne
-		{
-			$CodeHtml="";
-			
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQC))
-			{
-				$sAutoCorr = "";
-				$oPropositionReponse = new CPropositionReponse($this->oBdd);
-				$oPropositionReponse->init($oEnreg);
-				
-				//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-				$TexteTemp = $oPropositionReponse->retTextePropRep();
-				$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-				$IdReponseTemp = $oPropositionReponse->retId();
-				$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-				$IdObjFormTemp = $IdObjFormTemp."[]"; //utilise un tableau pour stocker les differents résultats possibles
-				
-				if (in_array($IdReponseTemp, $TabRepEtu))
-				{
-					$sPreSelection = "checked=\"checked\"";
-					if($v_bAutoCorrection)
-					{
-						switch($oPropositionReponse->retScorePropRep())
-						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-						}
-					}
-				}
+				if($this->retDispQC() == 'Ver')
+					$sCodeHtml.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+							."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
 				else
-				{
-					$sPreSelection = "";
-				}
-				
-				$CodeHtml .= "<input type=\"checkbox\" name=\"$IdObjFormTemp\" "
-					."value=\"$IdReponseTemp\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />$TexteTemp $sAutoCorr \n";
+					$sCodeHtml .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+							."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 			}
 		}
-		
-		$this->oBdd->libererResult($hResultRRQC);
-		return $CodeHtml;
+		if($this->retDispQC() == 'Ver')
+			$sCodeHtml .= "</table>\n";
+		return $sCodeHtml;
 	}
 	
-	/*
-	** Fonction 		: cHtmlQCocher
-	** Description	: renvoie le code html qui permet d'afficher une question de type case à cocher,
-	**				     si $v_iIdFC est passé en paramètre il est envoyé à la fonction RetourReponseQC qui permettra
-	**					  de pré-sélectionner la/les réponse(s) encodée(s) par l'étudiant
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété
-	** Sortie			:
-	**				code html
-	*/
+	/**
+	 *  Retourne le code HTML qui permet d'afficher une question de type cases à cocher
+	 * 
+	 * @param	v_iIdFC	l'id d'un formulaire complété
+	 * 
+	 * @return	le code HTML qui permet d'afficher une question de type cases à cocher
+	 */
 	function cHtmlQCocher($v_iIdFC = NULL)
 	{
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQC = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQC);
-		
-		$this->oEnregBdd->TxtAvQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQC);
-		$this->oEnregBdd->TxtApQC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQC);
-		
-		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QCocher : {$this->oEnregBdd->IdObjFormul} -->\n"
-			."<div align=\"{$this->oEnregBdd->AlignEnonQC}\">{$this->oEnregBdd->EnonQC}</div>\n"
-			."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQC}\">\n"
-				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>"
-				."<td valign=\"top\">"
-					."{$this->oEnregBdd->TxtAvQC} \n"
-				."</td>"
-			//Appel de la fonction qui renvoie les réponses sous forme de cases à cocher,
-			//avec la réponse sélectionnée par l'étudiant si IdFC est présent
-				."<td valign=\"top\">"
-				.$this->RetourReponseQC($this->oEnregBdd->NbRepMaxQC,$this->oEnregBdd->MessMaxQC,$v_iIdFC)
-				."</td>"
-				."<td valign=\"top\">"
-					." {$this->oEnregBdd->TxtApQC}\n"
-				."</td>"
-				."</tr></table>"
-				."</div>\n";
-		
+		// Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
+		$this->defEnonQC( convertBaliseMetaVersHtml($this->retEnonQC()) );
+		$this->defTxtAvQC( convertBaliseMetaVersHtml($this->retTxTAvQC()) );
+		$this->defTxtApQC( convertBaliseMetaVersHtml($this->retTxtApQC()) );
+		// Genération du code html représentant l'objet
+		$sCodeHtml = "\n<!--QCocher : ".$this->retId()." -->\n"
+					."<div align=\"".$this->retAlignEnonQC()."\">".$this->retEnonQC()."</div>\n"
+					."<div class=\"InterER\" align=\"".$this->retAlignEnonQC()."\">\n"
+					."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+					."<td valign=\"top\">".$this->retTxTAvQC()."</td>\n"
+					."<td valign=\"top\">".$this->RetourReponseQC($this->retNbRepMaxQC(),$this->retMessMaxQC(),$v_iIdFC)."</td>\n"
+					."<td valign=\"top\">".$this->retTxtApQC()."</td>\n"
+					."</tr></table>\n"
+					."</div>\n";
 		return $sCodeHtml;
 	}
 	
@@ -250,75 +180,68 @@ class CQCocher
 	
 	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire,$v_bAutoCorrection = false)
 	{
-		// Recherche du numéro d'ordre maximum
-		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul='{$this->oEnregBdd->IdObjFormul}'");
-		$oEnreg = $this->oBdd->retEnregSuiv();
-		$iOrdreMax = $oEnreg->OrdreMax;
-		$this->oBdd->libererResult($hResult);
-		
-		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}' ORDER BY OrdrePropRep";
-		$hResultRRQCM = $this->oBdd->executerRequete($sRequeteSql);
-		
+		$oPropositionReponse = new CPropositionReponse($this->oBdd);
+		$iOrdreMax = $oPropositionReponse->retMaxOrdre($this->oEnregBdd->IdObjFormul);
+		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);		
 		$sCodeHtml = "";
-		
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQCM))
+		if(!empty($aoListePropRep))
 		{
-			$oPropositionReponse = new CPropositionReponse($this->oBdd);
-			$oPropositionReponse->init($oEnreg);
-			
-			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oPropositionReponse->retTextePropRep();
-			$IdReponseTemp = $oPropositionReponse->retId();
-			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
-			$sFeedbackTemp = $oPropositionReponse->retFeedbackPropRep();
-			$iScoreTemp = $oPropositionReponse->retScorePropRep();
-			$iOrdreTemp = $oPropositionReponse->retOrdre();
-			
-			// gestion pour selectionner le bon radio des scores
-			switch($iScoreTemp)
+			foreach($aoListePropRep AS $oPropRep)
 			{
-				case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
-							break;
-				case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
-							break;
-				default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
+				// Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
+				$TexteTemp = $oPropRep->retTextePropRep();
+				$IdReponseTemp = $oPropRep->retId();
+				$IdObjFormTemp = $oPropRep->retIdObjFormul();
+				$sFeedbackTemp = $oPropRep->retFeedbackPropRep();
+				$iScoreTemp = $oPropRep->retScorePropRep();
+				$iOrdreTemp = $oPropRep->retOrdre();
+				
+				// gestion pour selectionner le bon radio des scores
+				switch($iScoreTemp)
+				{
+					case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
+								break;
+					case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
+								break;
+					default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
+				}
+				
+				// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
+				if ($sCodeHtml != "")
+					$sCodeHtml.="<hr class=\"sepproprep\" />";
+				
+				// gestion du numéro d'ordre des propositions
+				$sCodeOptionsOrdre = "";
+				for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
+				{
+					if($iNumOrdre == $iOrdreTemp)
+						$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
+					else
+						$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
+				}
+				
+				$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
+				$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".emb_htmlentities($TexteTemp)."\" />\n";
+				$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
+				if($v_bAutoCorrection)
+				{
+					$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
+								."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
+								."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
+				}
+				$sCodeHtml.="</div>";
+				if($v_bAutoCorrection)
+				{
+					$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
+				}
+				$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
+				$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 			}
-			
-			// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
-			if ($sCodeHtml != "")
-				$sCodeHtml.="<hr class=\"sepproprep\" />";
-			
-			// gestion du numéro d'ordre des propositions
-			$sCodeOptionsOrdre = "";
-			for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
-			{
-				if($iNumOrdre == $iOrdreTemp)
-					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
-				else
-					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
-			}
-			
-			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
-			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".emb_htmlentities($TexteTemp)."\" />\n";
-			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
-			if($v_bAutoCorrection)
-			{
-				$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
-							."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
-							."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
-			}
-			$sCodeHtml.="</div>";
-			if($v_bAutoCorrection)
-			{
-				$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
-			}
-			$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
-			$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 		}
-		if(strlen($sCodeHtml)==0)
+		else
+		{
 			$sCodeHtml = "<div><a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a></div>\n";
-		$this->oBdd->libererResult($hResultRRQCM);
+		}
 		return $sCodeHtml;
 	}
 	
@@ -412,7 +335,7 @@ class CQCocher
 	function defMessMaxQC ($v_sMessMaxQC) { $this->oEnregBdd->MessMaxQC = $v_sMessMaxQC; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdReponse; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQC () { return $this->oEnregBdd->EnonQC; }
 	function retAlignEnonQC () { return $this->oEnregBdd->AlignEnonQC; }
 	function retAlignRepQC () { return $this->oEnregBdd->AlignRepQC; }
