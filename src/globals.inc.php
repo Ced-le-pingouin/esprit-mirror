@@ -567,11 +567,13 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	
 	// Bi-directionnalité
 	// Gauche à droite (standard)
-	$v_sTexte = str_replace("[ltr]", '<div dir="ltr">', $v_sTexte);
-	$v_sTexte = str_replace("[/ltr]", "</div>", $v_sTexte);
+	$v_sTexte = preg_replace("/\n\[ltr\](.+?)\[\/ltr\]/", '<div dir="ltr">$1</div>', $v_sTexte);
+	$v_sTexte = str_replace("[ltr]", '<span dir="ltr">', $v_sTexte);
+	$v_sTexte = str_replace("[/ltr]", "</span>", $v_sTexte);
 	// Droite à gauche (arabe, hébreu)
-	$v_sTexte = str_replace("[rtl]", '<div dir="rtl">', $v_sTexte);
-	$v_sTexte = str_replace("[/rtl]", "</div>", $v_sTexte);
+	$v_sTexte = preg_replace("/\n\[rtl\](.+?)\[\/rtl\]/", '<div dir="rtl">$1</div>', $v_sTexte);
+	$v_sTexte = str_replace("[rtl]", '<span dir="rtl">', $v_sTexte);
+	$v_sTexte = str_replace("[/rtl]", "</span>", $v_sTexte);
 	
 	// Ajouter un retour à la ligne
 	$v_sTexte = str_replace("[nl]", "<br>", $v_sTexte);
