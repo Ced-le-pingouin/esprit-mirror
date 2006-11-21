@@ -41,9 +41,9 @@ if (!empty($_REQUEST['id']) && $_REQUEST['id']==="textarea$globalid") {
 
 function showkeyboard($touches, $id, $chars=0) {
 	if (count($touches) > 3) {
-		$azerty = array( preg_split('//',' 1234567890)=',-1,PREG_SPLIT_NO_EMPTY),
+		$azerty = array( preg_split('//','1234567890)=',-1,PREG_SPLIT_NO_EMPTY),
 						 preg_split('//','azertyuiop^$',-1,PREG_SPLIT_NO_EMPTY),
-						 preg_split('//','qsdfghjklm',-1,PREG_SPLIT_NO_EMPTY),
+						 preg_split('//','qsdfghjklmu*',-1,PREG_SPLIT_NO_EMPTY),
 						 preg_split('//','wxcvbn,;:!',-1,PREG_SPLIT_NO_EMPTY) );
 	} else {
 		$azerty = array( preg_split('//','azertyuiop^$',-1,PREG_SPLIT_NO_EMPTY),
@@ -55,11 +55,13 @@ function showkeyboard($touches, $id, $chars=0) {
 		die('Il faut au moins 3 lignes pour d&eacute;finir le clavier et non '.count($touches).'.');
 		return false;
 	}
+	//	/* pas de décalage
 	switch (count($touches)) {
 		case 3: $decalage = array(0, 1, 2.9); break;
 		case 4: $decalage = array(0, 2, 3, 4.9); break;
-		default: $decalage = array(0, 6+3, 6+4.5, 6+6.5);
+		default: $decalage = array(0, 3, 4.5, 6+6.5);
 	}
+	//	*/
 
 	for ($i=0; $i<count($touches); $i++) {
 		$touches[$i] = explode(" ",$touches[$i]);
@@ -109,9 +111,9 @@ function keyboard($type, $id) {
 			                     $id,
 			                     array("й ц у к е н г ш щ з х ъ", "ф ы в а п р о л д ж э", "я ч с м и т ь б ю ë") );
 		case "arabic":
-			return showkeyboard( array("ذ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ٠", "ض ص ث ق ف غ ع ه خ ح ج د", "ش س ي ب ل ا ت ن م ك ط *",
+			return showkeyboard( array("١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ٠", "ض ص ث ق ف غ ع ه خ ح ج د", "ش س ي ب ل ا ت ن م ك ط ذ",
 			                           "ئ ء ؤ ر لا ى ة و ز ظ",
-			                           "آ , . ؟ ! &nbsp; أ ـ ، / ؛", "َ ً ُ ٌ ِ ٍ" ),
+			                           "آ أ إ &nbsp; . ؟ !", "َ ْ ً ُ ٌ ِ ٍ" ),
 			                     $id );
 		default:
 			return false;

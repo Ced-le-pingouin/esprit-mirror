@@ -79,8 +79,8 @@ function setconvert(from, to) {
 
 var convert_russian = setconvert('a z e r t y u i o p ^ $ '+'q s d f g h j k l m ù * '+'w x c v b n , ; : ! '+'A Z E R T Y U I O P " £ '+'Q S D F G H J K L M % µ '+'W X C V B N ? . / § ² ~',
 				 'й ц у к е н г ш щ з х ъ '+'ф ы в а п р о л д ж э * '+'я ч с м и т ь б ю , '+'Й Ц У К Е Н Г Ш Щ З Х Ъ '+'Ф Ы В А П Р О Л Д Ж Э µ '+'Я Ч С М И Т Ь Б Ю . ë Ë');
-var convert_arabic = setconvert("a z e r t y u i o p ^ $ "+"q s d f g h j k l m ù "+"w x c v  b n , ; : !"+" ²",
-				"ض ص ث ق ف غ ع ه خ ح ج د "+"ش س ي ب ل ا ت ن م ك ط "+"ئ ء ؤ ر ا ى ة و ز ظ"+" ذ");
+var convert_arabic = setconvert("a z e r t y u i o p ^ $ "+"q s d f g h j k l m ù * "+"w x c v  b n , ; : !"+" ²",
+				"ض ص ث ق ف غ ع ه خ ح ج د "+"ش س ي ب ل ا ت ن م ك ط ذ "+"ئ ء ؤ ر ل ى ة و ز ظ"+" ذ");
 
 function transcrire(area) {
    var text=area.value;
