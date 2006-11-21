@@ -29,63 +29,69 @@
  * @author	Ludovic FLAMME
  */
 
-
-	/*
-	** Fonction 		: Alignement
-	** Description		: Sert à cocher les cases concernant l'alignement d'un enonce
-	**                    et de sa réponse
-	** Entrée			: $sAlignEnon,$sAlignRep : contiennent la chaine de caractères 
-	**										{left,right,center ou justify)
-	** Sortie			: $ae1,$ae2,$ae3,$ae4,$ar1,$ar2,$ar3,$ar4
-	**					Une chaîne de caractère $aeX contient "CHECKED" et les autres ""	
-	**					Une chaîne de caractère $arX contient "CHECKED" et les autres ""
-	*/
-	
+/**
+ * Sert à cocher les cases concernant l'alignement d'un énonce et de sa réponse
+ * 
+ * @param	sAlignEnon	contient la chaine de caractère {left,right,center ou justify) pour l'alignement de l'énoncé
+ * @param	sAlignRep	contient la chaine de caractère {left,right,center ou justify) pour l'alignement de la réponse
+ * 
+ * @return	un tableau contenant des chaînes de caractères, deux contenant 'checked="checked"' et les autres sont vides
+ */
 function Alignement($sAlignEnon,$sAlignRep)
 {
 	$sAE1 = $sAE2 = $sAE3 = $sAE4 = "";
 	$sAR1 = $sAR2 = $sAR3 = $sAR4 = "";	
-
-	if ($sAlignEnon != "")
-	{
-		if ($sAlignEnon == "left") { $sAE1 = "checked=\"checked\""; }
-		else if ($sAlignEnon == "right") { $sAE2 = "checked=\"checked\""; }
-		else if ($sAlignEnon == "center") { $sAE3 = "checked=\"checked\""; }
-		else if ($sAlignEnon == "justify") { $sAE4 = "checked=\"checked\""; }
-	}
-	else { $ae1 = "checked"; }
 	
-	if ($sAlignRep != "")
+	switch($sAlignEnon)
 	{
-		if ($sAlignRep == "left") { $sAR1 = "checked=\"checked\""; }
-		else if ($sAlignRep == "right") { $sAR2 = "checked=\"checked\""; }
-		else if ($sAlignRep == "center") { $sAR3 = "checked=\"checked\""; }
-		else if ($sAlignRep == "justify") { $sAR4 = "checked=\"checked\""; }
+		case "right":	$sAE2 = "checked=\"checked\"";
+						break;
+		case "center":	$sAE3 = "checked=\"checked\"";
+						break;
+		case "justify":	$sAE4 = "checked=\"checked\"";
+						break;
+		default:		$sAE1 = "checked=\"checked\"";
 	}
-	else
-	{ $ar1 = "checked=\"checked\""; }
-
+	
+	switch($sAlignRep)
+	{
+		case "right":	$sAR2 = "checked=\"checked\"";
+						break;
+		case "center":	$sAR3 = "checked=\"checked\"";
+						break;
+		case "justify":	$sAR4 = "checked=\"checked\"";
+						break;
+		default:		$sAR1 = "checked=\"checked\"";
+	}
+	
 	return array($sAE1,$sAE2,$sAE3,$sAE4,$sAR1,$sAR2,$sAR3,$sAR4);
 }
-	
+
+/**
+ * Supprime les espaces (ou d'autres caractères) en début et fin de chaîne, supprime les anti-slash d'une chaîne, et protège les caractères spéciaux d'une commande SQL
+ * 
+ * @param	v_sTexte la chaîne de caractère à traiter
+ * 
+ * @return	 la chaîne de caractère traitée
+ */
 function validerTexte($v_sTexte)
 {
 	return mysql_real_escape_string(stripslashes(trim($v_sTexte)));
 }
 
-	
-	/*
-	** Fonction 		: RetourPoidsReponse
-	** Description		: renvoie pour chaque réponse appartenant a l'objet en cours de traitement
-	**				  le poids pour chaque axe du formulaire même si celui-ci est NULL 
-	** Entrée			: $v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse
-	** Sortie			: Code Html contenant le(s) poids + mise en page + modification possible
-	*/
-
-function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
+/**
+ * Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids  pour chaque axe de l'activité en ligne
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFormulaire	l'id de l'activité en ligne (formulaire)
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire
+ * @param	v_iIdPropRep	l'id de la proposition de réponse
+ * 
+ * @return	Code Html contenant le(s) poid(s) + mise en page + modification possible
+ */
+function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjFormul,$v_iIdPropRep)
 {
-	/*
-	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
+/*	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
 	Exemple de partie de résultat :
 	+-------+---------------+-----------+--------------+--------------+-------------+--------+
@@ -93,13 +99,8 @@ function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdRepons
 	+-------+---------------+-----------+--------------+--------------+-------------+--------+
 	|     1 | Determination |        55 |              |            3 |         123 | [NULL] |
 	|     2 | Objectivite   |        55 |              |            3 |         123 | [NULL] |
-	+-------+---------------+-----------+--------------+--------------+-------------+--------+
-	*/
-
-	$sRequeteSqlAxes =	 "Select"
-							 ." a.*"
-							 .", pr.*"
-							 .", ra.Poids"
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+	*/
+	$sRequeteSqlAxes =	 "Select a.*, pr.*, ra.Poids"
 						 ." FROM"
 							 ." Formulaire_Axe as fa"
 							 .", Axe as a"
@@ -107,16 +108,11 @@ function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdRepons
 							 ." LEFT JOIN Reponse_Axe as ra ON (pr.IdPropRep = ra.IdPropRep AND a.IdAxe = ra.IdAxe)"
 					  	 ." WHERE"
 							 ." fa.IdFormul = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
-							 ." AND pr.IdObjFormul = '{$v_iIdObjForm}'"
-							 ." AND pr.IdPropRep = '{$v_iIdReponse}'"
-						 ." ORDER BY"
-							 ." pr.OrdrePropRep"
-							 .", a.DescAxe";
-	
+							 ." AND pr.IdObjFormul = '{$v_iIdObjFormul}'"
+							 ." AND pr.IdPropRep = '{$v_iIdPropRep}'"
+						 ." ORDER BY pr.OrdrePropRep, a.DescAxe";
 	$hResultAxe = $v_oBdd->executerRequete($sRequeteSqlAxes);
-
 	$sCodeHtml= "";
-
 	while ($oEnreg = $v_oBdd->retEnregSuiv($hResultAxe))
 	{
 		//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
@@ -124,35 +120,50 @@ function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdRepons
 		$iIdAxe = $oEnreg->IdAxe;
 		$iIdPropRep = $oEnreg->IdPropRep;
 		$sDescAxe = $oEnreg->DescAxe;
-		
 		$sCodeHtml.="<div class=\"poidsaxe\">\n"
 				  ."&#8226; $sDescAxe <input type=\"text\" size=\"4\" maxlength=\"4\" name=\"repAxe[$iIdPropRep][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n"
 				  ."</div>\n"; 
 	}
+	$v_oBdd->libererResult($hResultAxe);
 	return $sCodeHtml;
 }
 
+/**
+ * Copie une activité en ligne
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFormulaire	l'id de l'activité en ligne (formulaire)
+ * @param	iIdNvPers		l'id de la personne
+ * 
+ * @return	l'id de l'activité en ligne (formulaire) copiée
+ */
 function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 {
-	$this->oBdd = &$v_oBdd;
-	
 	//Copie de formulaire
-	$oFormulaire = new CFormulaire($this->oBdd,$v_iIdFormulaire);
+	$oFormulaire = new CFormulaire($v_oBdd,$v_iIdFormulaire);
 	$v_iIdNvFormulaire = $oFormulaire->copier($iIdNvPers);  //On envoie l'IdPers du futur propriétaire de la copie
 	
 	//Copie des axes du formulaires
-	CopieFormulaire_Axe($this->oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);
+	CopieFormulaire_Axe($v_oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);
 	
 	//Copie des objets du formulaire 1 par 1
-	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul=$v_iIdFormulaire");
-  
-	while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-		CopierUnObjetFormulaire($this->oBdd, $oEnreg, $v_iIdNvFormulaire);
-
-	$this->oBdd->libererResult($hResult);
+	$hResult = $v_oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul=$v_iIdFormulaire");
+	while($oEnreg = $v_oBdd->retEnregSuiv($hResult))
+		CopierUnObjetFormulaire($v_oBdd, $oEnreg, $v_iIdNvFormulaire);
+	$v_oBdd->libererResult($hResult);
+	
 	return $v_iIdNvFormulaire;
 }
-
+/**
+ * Copie un objet de formulaire
+ * 
+ * @param	v_oBdd					Objet représentant la connexion à la DB
+ * @param	v_oObjForm				Objet contenant un enregistrement de la table ObjetFormulaire
+ * @param	v_iIdFormulaireDest		l'id de l'objet de formulaire de destination
+ * @param	v_iOrdreObjet			le numéro d'ordre du nouvel objet de formulaire
+ * 
+ * @return	l'id du nouvel objet de formulaire
+ */
 function CopierUnObjetFormulaire(&$v_oBdd, &$v_oObjForm, $v_iIdFormulaireDest, $v_iOrdreObjet = NULL)
 {
 	if (!is_object($v_oObjForm) && is_numeric($v_oObjForm))
@@ -166,115 +177,108 @@ function CopierUnObjetFormulaire(&$v_oBdd, &$v_oObjForm, $v_iIdFormulaireDest, $
 	}
 	
 	$iIdObjActuel = $oObjetFormulaire->retId();
-	//echo"<br>iIdObjActuel : ".$iIdObjActuel;
 	$iIdNvObjForm = $oObjetFormulaire->copier($v_iIdFormulaireDest, $iIdObjActuel, $v_iOrdreObjet);
-	//echo"<br>iIdNvObjForm : ".$iIdNvObjForm;
 	
 	switch($oObjetFormulaire->retIdTypeObj())
 	{
-		case 1:
-			//echo "Objet de type 1<br>";
-			$oQTexteLong = new CQTexteLong($v_oBdd,$iIdObjActuel);
-			$oQTexteLong->copier($iIdNvObjForm);
-			break;
+		case 1:	$oQTexteLong = new CQTexteLong($v_oBdd,$iIdObjActuel);
+				$oQTexteLong->copier($iIdNvObjForm);
+				break;
 		
-		case 2:
-			//echo "Objet de type 2<br>";
-			$oQTexteCourt = new CQTexteCourt($v_oBdd,$iIdObjActuel);
-			$oQTexteCourt->copier($iIdNvObjForm);
-			break;
+		case 2:	$oQTexteCourt = new CQTexteCourt($v_oBdd,$iIdObjActuel);
+				$oQTexteCourt->copier($iIdNvObjForm);
+				break;
 		
-		case 3:
-			//echo "Objet de type 3<br>";
-			$oQNombre = new CQNombre($v_oBdd,$iIdObjActuel);
-			$oQNombre->copier($iIdNvObjForm);
-			break;
+		case 3:	$oQNombre = new CQNombre($v_oBdd,$iIdObjActuel);
+				$oQNombre->copier($iIdNvObjForm);
+				break;
 		
-		case 4:
-			//echo "Objet de type 4<br>";
-			$oQListeDeroul = new CQListeDeroul($v_oBdd,$iIdObjActuel);
-			$oQListeDeroul->copier($iIdNvObjForm);
-			CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
-			break;
+		case 4:	$oQListeDeroul = new CQListeDeroul($v_oBdd,$iIdObjActuel);
+				$oQListeDeroul->copier($iIdNvObjForm);
+				CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
+				break;
 		
-		case 5:
-			//echo "Objet de type 5<br>";
-			$oQRadio = new CQRadio($v_oBdd,$iIdObjActuel);
-			$oQRadio->copier($iIdNvObjForm);
-			CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
-			break;
+		case 5:	$oQRadio = new CQRadio($v_oBdd,$iIdObjActuel);
+				$oQRadio->copier($iIdNvObjForm);
+				CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
+				break;
 		
-		case 6:
-			//echo "Objet de type 6<br>";
-			$oQCocher = new CQCocher($v_oBdd,$iIdObjActuel);
-			$oQCocher->copier($iIdNvObjForm);
-			CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
-			break;
+		case 6:	$oQCocher = new CQCocher($v_oBdd,$iIdObjActuel);
+				$oQCocher->copier($iIdNvObjForm);
+				CopieReponses($v_oBdd,$iIdObjActuel,$iIdNvObjForm);
+				break;
 		
-		case 7:
-			//echo "Objet de type 7<br>";
-			$oMPTexte = new CMPTexte($v_oBdd,$iIdObjActuel);
-			$oMPTexte->copier($iIdNvObjForm);
-			break;
+		case 7:	$oMPTexte = new CMPTexte($v_oBdd,$iIdObjActuel);
+				$oMPTexte->copier($iIdNvObjForm);
+				break;
 		
-		case 8:
-			//echo "Objet de type 8<br>";
-			$oMPSeparateur = new CMPSeparateur($v_oBdd,$iIdObjActuel);
-			$oMPSeparateur->copier($iIdNvObjForm);
-			break;
-		
-		default:
-			echo "Erreur IdObjForm invalide<br>";
-	} //Fin switch
-	
+		case 8:	$oMPSeparateur = new CMPSeparateur($v_oBdd,$iIdObjActuel);
+				$oMPSeparateur->copier($iIdNvObjForm);
+				break;
+	}
 	return $iIdNvObjForm;
 }
 
+/**
+ * Copie les propositions de réponses d'un objet de formulaire vers un autre
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire à copier
+ * @param	v_iIdNvObjForm	l'id de l'objet formulaire de destination
+ */
 function CopieReponses(&$v_oBdd,$v_iIdObjFormul,$v_iIdNvObjForm)
 {
-	$this->oBdd = &$v_oBdd;
-	$hResult2 = $this->oBdd->executerRequete("SELECT * FROM PropositionReponse WHERE IdObjFormul = $v_iIdObjFormul");
+	$hResult = $v_oBdd->executerRequete("SELECT * FROM PropositionReponse WHERE IdObjFormul = $v_iIdObjFormul");
 										  
-	while ($oEnreg2 = $this->oBdd->retEnregSuiv($hResult2))
+	while($oEnreg = $v_oBdd->retEnregSuiv($hResult))
 	{
-		$oPropositionReponse = new CPropositionReponse($this->oBdd);
-		$oPropositionReponse->init($oEnreg2);
+		$oPropositionReponse = new CPropositionReponse($v_oBdd);
+		$oPropositionReponse->init($oEnreg);
 		$iIdReponse = $oPropositionReponse->retId();
 		$iIdNvReponse = $oPropositionReponse->copier($v_iIdNvObjForm);
-		CopieReponse_Axe($this->oBdd,$iIdReponse,$iIdNvReponse);
+		CopieReponse_Axe($v_oBdd,$iIdReponse,$iIdNvReponse);
 	}
-	$this->oBdd->libererResult($hResult2);
+	$v_oBdd->libererResult($hResult);
 }
 
-function CopieReponse_Axe(&$v_oBdd,$v_iIdReponse,$v_iIdNvReponse)
+/**
+ * Copie les poids des propositions de réponses par rapport à un axe
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdReponse	l'id de la proposition de réponse
+ * @param	v_iIdNvReponse	l'id de la nouvelle proposition de réponse
+ */
+function CopieReponse_Axe(&$v_oBdd,$v_iIdPropRep,$v_iIdNvReponse)
 {
-	$this->oBdd = &$v_oBdd;
-	
-	$sRequeteSql = "SELECT * FROM Reponse_Axe"
-						." WHERE IdPropRep = $v_iIdReponse";
-	$hResult3 = $this->oBdd->executerRequete($sRequeteSql);
+	$sRequeteSql = "SELECT * FROM Reponse_Axe WHERE IdPropRep = $v_iIdPropRep";
+	$hResult = $v_oBdd->executerRequete($sRequeteSql);
 											  
-	while ($oEnreg3 = $this->oBdd->retEnregSuiv($hResult3))
+	while($oEnreg = $v_oBdd->retEnregSuiv($hResult))
 	{
-		$oReponse_Axe = new CReponse_Axe($this->oBdd);
-		$oReponse_Axe->init($oEnreg3);
+		$oReponse_Axe = new CReponse_Axe($v_oBdd);
+		$oReponse_Axe->init($oEnreg);
 		$oReponse_Axe->copier($v_iIdNvReponse);
 	}
-	$this->oBdd->libererResult($hResult3);
+	$v_oBdd->libererResult($hResult);
 }
 
-
+/**
+ * Copie le lien (Axe - Formulaire) entre deux activités en lignes
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdForm		l'id de l'activité en ligne (formulaire) source
+ * @param	v_iIdNvForm		l'id de l'activité en ligne de destination
+ */
 function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 {
-	$this->oBdd = &$v_oBdd;
-	$hResult4 = $this->oBdd->executerRequete("SELECT * FROM Formulaire_Axe WHERE IdFormul = $v_iIdForm");
+	$hResult = $v_oBdd->executerRequete("SELECT * FROM Formulaire_Axe WHERE IdFormul = $v_iIdForm");
 										  
-	while ($oEnreg4 = $this->oBdd->retEnregSuiv($hResult4))
+	while($oEnreg = $v_oBdd->retEnregSuiv($hResult))
 	{
-		$oFormulaire_Axe = new CFormulaire_Axe($this->oBdd);
-		$oFormulaire_Axe->init($oEnreg4);
+		$oFormulaire_Axe = new CFormulaire_Axe($v_oBdd);
+		$oFormulaire_Axe->init($oEnreg);
 		$oFormulaire_Axe->copier($v_iIdNvForm);
 	}
-	$this->oBdd->libererResult($hResult4);
+	$v_oBdd->libererResult($hResult);
 }
 ?>
