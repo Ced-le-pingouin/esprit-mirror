@@ -42,15 +42,14 @@ class CIterateurTableau extends CIterateur
 	/**
 	 * Constructeur
 	 * 
-	 * @param	le tableau sur lequel on effectuera l'itération
+	 * @param	v_aTableau	le tableau sur lequel on effectuera l'itération
 	 */
 	function CIterateurTableau($v_aTableau)
 	{
 		if (!is_array($v_aTableau))
 			CErreur::provoquer(__FUNCTION__."(): l'objet n'est pas un tableau");
-			
-		$this->aTableau = $v_aTableau;
 		
+		$this->aTableau = $v_aTableau;
 		$this->debut();
 	}
 	
@@ -61,37 +60,13 @@ class CIterateurTableau extends CIterateur
 	{
 		reset($this->aTableau);
 	}
-	
-	/**
-	 * Voir CIterateur#fin()
-	 */
-    function fin()
-    {
-    	end($this->aTableau);
-    }
-    
-    /**
-	 * Voir CIterateur#precedent()
-	 */
-    function precedent()
-    {
-    	prev($this->aTableau);
-    }
-    
+
     /**
 	 * Voir CIterateur#suivant()
 	 */
     function suivant()
     {
     	next($this->aTableau);
-    }
-    
-    /**
-	 * Méthode non implémentée pour les tableaux actuellement. Voir CIterateur#rechercher()
-	 */
-    function rechercher($v_Cle)
-    {
-    	parent::rechercher($v_Cle);
     }
 
     /**
@@ -104,21 +79,13 @@ class CIterateurTableau extends CIterateur
     	// pas documenté dans le manuel en ligne de PHP...
     	return ( !is_null( key($this->aTableau) ) ) ;
     }
-    
+
     /**
-	 * Voir CIterateur#estPremier()
+	 * Voir CIterateur#cle()
 	 */
-    function estPremier()
+    function cle()
     {
-    	return ( key($this->aTableau) === reset(array_keys($this->aTableau)) );
-    }
-    
-    /**
-	 * Voir CIterateur#estDernier()
-	 */
-    function estDernier()
-    {
-    	return ( key($this->aTableau) === end(array_keys($this->aTableau)) );
+    	return key($this->aTableau);
     }
 
     /**
@@ -129,20 +96,79 @@ class CIterateurTableau extends CIterateur
     	return current($this->aTableau);
     }
     
-    /**
-	 * Voir CIterateur#cle()
+	/**
+	 * Voir CIterateur#fin()
 	 */
-    function cle()
+    function fin()
     {
-    	return key($this->aTableau);
+    	end($this->aTableau);
     }
     
+    
+    /**
+     * Voir CIterateur#supportePrecedent()
+     */
+    function supportePrecedent()
+    {
+    	return TRUE;
+    }
+    
+    /**
+	 * Voir CIterateur#precedent()
+	 */
+    function precedent()
+    {
+    	prev($this->aTableau);
+    }
+    
+    
+    /**
+     * Voir CIterateur#supporteTaille()
+     */
+    function supporteTaille()
+    {
+    	return TRUE;
+    }
+
     /**
 	 * Voir CIterateur#taille()
 	 */
     function taille()
     {
     	return count($this->aTableau);
+    }
+
+
+    /**
+     * Voir CIterateur#supporteEstPremier()
+     */
+    function supporteEstPremier()
+    {
+    	return TRUE;
+    }
+
+    /**
+	 * Voir CIterateur#estPremier()
+	 */
+    function estPremier()
+    {
+    	return ( key($this->aTableau) === reset(array_keys($this->aTableau)) );
+    }
+
+    /**
+     * Voir CIterateur#supporteEstDernier()
+     */
+    function supporteEstDernier()
+    {
+    	return TRUE;
+    }
+    
+    /**
+	 * Voir CIterateur#estDernier()
+	 */
+    function estDernier()
+    {
+    	return ( key($this->aTableau) === end(array_keys($this->aTableau)) );
     }
 }
 
