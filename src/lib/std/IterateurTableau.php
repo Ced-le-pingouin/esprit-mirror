@@ -20,22 +20,22 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /**
- * @file	iterateur_tableau.class.php
+ * @file	IterateurTableau.php
  * 
  * Contient une classe/interface pour l'implémentation d'itérateurs de tableaux en PHP 4 et +
  */
 
-require_once(dirname(__FILE__).'/../erreur.class.php');
-require_once(dirname(__FILE__).'/iterateur.class.php');
+require_once(dirname(__FILE__).'/Erreur.php');
+require_once(dirname(__FILE__).'/Iterateur.php');
 
 /**
- * Sous-classe de CIterateur, qui permet d'effectuer des itérations sur un tableau (itérateur en lecture seule)
+ * Sous-classe de Iterateur, qui permet d'effectuer des itérations sur un tableau (itérateur en lecture seule)
  * 
  * @note	Cet itérateur n'est pas récursif, càd que si l'un des éléments contenu est lui-même un tableau, il ne sera 
  * 			pas automatiquement parcouru par les fonctions #next() et autres de la classe, il sera retourné tel quel
  * 			(sous forme de tableau, donc) par la fonction #courant()
  */
-class CIterateurTableau extends CIterateur
+class IterateurTableau extends Iterateur
 {
 	var $aTableau; ///< Le tableau sur lequel aura lieu l'itération, et qui est passé au constructeur
 	
@@ -44,17 +44,17 @@ class CIterateurTableau extends CIterateur
 	 * 
 	 * @param	v_aTableau	le tableau sur lequel on effectuera l'itération
 	 */
-	function CIterateurTableau($v_aTableau)
+	function IterateurTableau($v_aTableau)
 	{
 		if (!is_array($v_aTableau))
-			CErreur::provoquer("L'objet n'est pas un tableau");
+			Erreur::provoquer("L'objet n'est pas un tableau");
 		
 		$this->aTableau = $v_aTableau;
 		$this->debut();
 	}
 	
 	/**
-	 * Voir CIterateur#debut()
+	 * Voir Iterateur#debut()
 	 */
 	function debut()
 	{
@@ -62,7 +62,7 @@ class CIterateurTableau extends CIterateur
 	}
 
     /**
-	 * Voir CIterateur#suivant()
+	 * Voir Iterateur#suivant()
 	 */
     function suivant()
     {
@@ -70,7 +70,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-	 * Voir CIterateur#estValide()
+	 * Voir Iterateur#estValide()
 	 */
     function estValide()
     {
@@ -81,7 +81,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-	 * Voir CIterateur#cle()
+	 * Voir Iterateur#cle()
 	 */
     function cle()
     {
@@ -89,7 +89,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-	 * Voir CIterateur#courant()
+	 * Voir Iterateur#courant()
 	 */
     function courant()
     {
@@ -97,7 +97,7 @@ class CIterateurTableau extends CIterateur
     }
     
 	/**
-	 * Voir CIterateur#fin()
+	 * Voir Iterateur#fin()
 	 */
     function fin()
     {
@@ -106,7 +106,7 @@ class CIterateurTableau extends CIterateur
     
     
     /**
-     * Voir CIterateur#supportePrecedent()
+     * Voir Iterateur#supportePrecedent()
      */
     function supportePrecedent()
     {
@@ -114,7 +114,7 @@ class CIterateurTableau extends CIterateur
     }
     
     /**
-	 * Voir CIterateur#precedent()
+	 * Voir Iterateur#precedent()
 	 */
     function precedent()
     {
@@ -123,7 +123,7 @@ class CIterateurTableau extends CIterateur
     
     
     /**
-     * Voir CIterateur#supporteTaille()
+     * Voir Iterateur#supporteTaille()
      */
     function supporteTaille()
     {
@@ -131,7 +131,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-	 * Voir CIterateur#taille()
+	 * Voir Iterateur#taille()
 	 */
     function taille()
     {
@@ -140,7 +140,7 @@ class CIterateurTableau extends CIterateur
 
 
     /**
-     * Voir CIterateur#supporteEstPremier()
+     * Voir Iterateur#supporteEstPremier()
      */
     function supporteEstPremier()
     {
@@ -148,7 +148,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-	 * Voir CIterateur#estPremier()
+	 * Voir Iterateur#estPremier()
 	 */
     function estPremier()
     {
@@ -156,7 +156,7 @@ class CIterateurTableau extends CIterateur
     }
 
     /**
-     * Voir CIterateur#supporteEstDernier()
+     * Voir Iterateur#supporteEstDernier()
      */
     function supporteEstDernier()
     {
@@ -164,7 +164,7 @@ class CIterateurTableau extends CIterateur
     }
     
     /**
-	 * Voir CIterateur#estDernier()
+	 * Voir Iterateur#estDernier()
 	 */
     function estDernier()
     {

@@ -20,12 +20,12 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /**
- * @file	iterateur.class.php
+ * @file	Iterateur.php
  * 
  * Contient une classe abstraite pour l'implémentation d'itérateurs en PHP 4 et +
  */
 
-require_once(dirname(__FILE__).'/../oo.class.php');
+require_once(dirname(__FILE__).'/Objet.php');
 
 /**
  * Classe "vide" qui présente les méthodes requise pour implémenter un itérateur. Si PHP 4 le permettait, cette classe 
@@ -33,7 +33,7 @@ require_once(dirname(__FILE__).'/../oo.class.php');
  * implémentations d'itérateurs en fonction de différents objets (par ex. un itérateur pour tableaux PHP). C'est 
  * également ici que la documentation sur le comportement attendu des implémentations se trouve.
  */
-class CIterateur
+class Iterateur
 {
 	/**
 	 * Constructeur. Celui de cette classe n'est pas opérationnel et provoque une erreur car il s'agit d'un semblant de 
@@ -42,9 +42,9 @@ class CIterateur
 	 * Par contre, les sous-classes devraient, dans leur constructeur, initialiser l'objet à itérer, car l'itérateur 
 	 * devrait être positionné au début dès sa création
 	 */
-	function CIterateur()
+	function Iterateur()
 	{
-		OO::abstraite();
+		Objet::abstraite();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ class CIterateur
 	 */
     function debut()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -60,7 +60,7 @@ class CIterateur
      */
     function suivant()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -72,7 +72,7 @@ class CIterateur
      */
     function estValide()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -82,7 +82,7 @@ class CIterateur
      */
     function cle()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -92,7 +92,7 @@ class CIterateur
      */
     function courant()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -102,7 +102,7 @@ class CIterateur
      */
     function fin()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
     
     
@@ -126,7 +126,7 @@ class CIterateur
      */
     function precedent()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
 
@@ -150,7 +150,7 @@ class CIterateur
      */
     function taille()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
     /**
@@ -173,7 +173,7 @@ class CIterateur
      */
     function rechercher($v_Cle)
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
 
@@ -197,7 +197,7 @@ class CIterateur
      */
     function estPremier()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
     
     /**
@@ -220,7 +220,7 @@ class CIterateur
      */
     function estDernier()
     {
-    	OO::abstraite();
+    	Objet::abstraite();
     }
 
 

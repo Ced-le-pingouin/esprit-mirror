@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium.
 
 /**
- * @file	fichier_info.class.php
+ * @file	FichierInfo.php
  * 
  * Contient la classe d'information sur les fichiers/dossiers du système de fichiers
  */
@@ -33,7 +33,7 @@
  * 			fonctions natives de PHP telles que dirname() et basename(), qui se comportent différemment suivant l'OS
  * 
  * @note	Un objet de cette classe ne doit pas obligatoirement représenter un fichier existant, il s'agit seulement 
- * 			d'un chemin, qui peut ensuite être vérifié (il y a une exception : CFichierInfo#retCheminReel())
+ * 			d'un chemin, qui peut ensuite être vérifié (il y a une exception : FichierInfo#retCheminReel())
  * 
  * @note	Cette classe ne gère PAS les lectures/écritures DANS un fichier
  * 
@@ -44,7 +44,7 @@
  * 			pouvoir convertir les chemins Unix-Windows (séparateurs différents), transformer un chemin relatif en 
  * 			absolu (et vice versa) quand c'est possible, déterminer la partie "racine" d'un chemin etc.
  */
-class CFichierInfo
+class FichierInfo
 {
 	var $sChemin;                           ///< Le chemin représenté par l'objet
 	var $sSeparateur = DIRECTORY_SEPARATOR; ///< Le séparateur de dossiers à utiliser pour ce chemin (pour l'instant forcé à celui de l'OS et non modifiable)
@@ -55,7 +55,7 @@ class CFichierInfo
 	 * @param	v_sChemin	le chemin qui sera représenté par l'objet. Ce chemin peut être absolu ou relatif, et n'est 
 	 * 						pas obligé de représenter un fichier/dossier existant ou lisible dans un premier temps. 
 	 */
- 	function CFichierInfo($v_sChemin)
+ 	function FichierInfo($v_sChemin)
  	{
  		$this->defChemin($v_sChemin);
  	}

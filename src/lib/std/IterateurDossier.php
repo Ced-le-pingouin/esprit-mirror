@@ -20,24 +20,24 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /**
- * @file	iterateur_dossier.class.php
+ * @file	IterateurDossier.php
  * 
  * Contient une classe/interface pour l'implémentation d'itérateurs de dossiers (répertoires)
  */
 
-require_once(dirname(__FILE__).'/../erreur.class.php');
-require_once(dirname(__FILE__).'/iterateur.class.php');
-require_once(dirname(__FILE__).'/../systeme_fichiers/fichier_info.class.php');
+require_once(dirname(__FILE__).'/Erreur.php');
+require_once(dirname(__FILE__).'/Iterateur.php');
+require_once(dirname(__FILE__).'/FichierInfo.php');
 
 /**
- * Sous-classe de CIterateur, qui permet d'effectuer des itérations sur un dossier (itérateur en lecture seule)
+ * Sous-classe de Iterateur, qui permet d'effectuer des itérations sur un dossier (itérateur en lecture seule)
  * 
- * @note	Pour le moment, cet itérateur hérite directement de CIterateurTableau, car grâce à la fonction glob() de 
+ * @note	Pour le moment, cet itérateur hérite directement de IterateurTableau, car grâce à la fonction glob() de 
  * 			PHP, on peut directement ramener sous forme de tableau la liste des fichiers/dossiers d'un dossier, et donc 
  * 			se passer de opendir() et readdir(), qui auraient empêché une implémentation simple de #precedent(), ou de 
  * 			#taille()
  */
-class CIterateurDossier extends CIterateurTableau
+class IterateurDossier extends IterateurTableau
 {
 	var $sFiltrePre;        ///< La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers
 	var $oDossier;          ///< L'objet CFichierInfo qui représente le dossier dont le chemin a été passé en paramètre au constructeur
@@ -50,35 +50,35 @@ class CIterateurDossier extends CIterateurTableau
 	 * @param	v_sFiltre	le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui 
 	 * 						utilisé par la fonction native PHP glob()
 	 * 
-	 * @note	Contrairement aux filtres d'itérateurs (CIterateurFiltre et sous-classes), le filtre agit ici 
+	 * @note	Contrairement aux filtres d'itérateurs (IterateurFiltre et sous-classes), le filtre agit ici 
 	 * 			directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs 
 	 * 			agissent pendant l'itération, pour déterminer à chaque élément s'il est accepté ou pas.
 	 * 			Le filtre disponible ici peut donc avoir un effet sur la #taille(), tandis que les filtres d'itérateurs 
 	 * 			n'en ont aucun
 	 */
-	function CIterateurDossier($v_sChemin, $v_sFiltrePre = '*')
+	function IterateurDossier($v_sChemin, $v_sFiltrePre = '*')
 	{
 		if (!is_dir($v_sChemin) || !is_readable($v_sChemin))
-			CErreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
+			Erreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
 			                   CERREUR_AVERT);
 		
 		$this->sFiltrePre = $v_sFiltrePre;
-		$this->oDossier = new CFichierInfo($v_sChemin);
+		$this->oDossier = new FichierInfo($v_sChemin);
 		$asFichiers = glob($this->oDossier->formerChemin($v_sFiltrePre), GLOB_NOSORT);
 		if (!is_array($asFichiers))
 			$asFichiers = array(); 
-		parent::CIterateurTableau($asFichiers);
+		parent::IterateurTableau($asFichiers);
 	}
 	
     /**
-	 * Voir CIterateur#courant()
+	 * Voir Iterateur#courant()
 	 */
     function courant()
     {
     	$sCheminFichierCourant = parent::courant();
     	
     	if (!isset($this->oFichierCourant))
-    		$this->oFichierCourant = new CFichierInfo($sCheminFichierCourant);
+    		$this->oFichierCourant = new FichierInfo($sCheminFichierCourant);
     	else if (strcmp($this->oFichierCourant->retChemin(), $sCheminFichierCourant) != 0)
     		$this->oFichierCourant->defChemin($sCheminFichierCourant);
     	

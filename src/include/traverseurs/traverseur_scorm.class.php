@@ -133,7 +133,7 @@ class CTraverseurScorm extends CTraverseur
 	}
 	
 	/**
-	 * Rattache les noeuds xml les plus extérieurs à la racine du fichier manifest.
+	 * Rattache les noeuds xml les plus extérieurs (ceux qui ne sont pas des "item") à la racine du fichier manifest.
 	 * Cette fonction est appelée en interne uniquement
 	 */
 	function finTraitement()
@@ -290,9 +290,10 @@ class CTraverseurScorm extends CTraverseur
 	}
 	
 	/**
-	 * Retourne le contenu (texte) du fichier imsmanifest.xml
+	 * Retourne le contenu généré pour la création du fichier imsmanifest.xml
 	 * 
-	 * @return	le contenu du fichier imsmanifest.xml créé pendant la traversée des (éléments de) formations
+	 * @return	la chaîne de texte générée pendant la traversée des (éléments de) formations, et qui constituera le 
+	 * 			contenu du fichier imsmanifest.xml créé pour le paquet SCORM
 	 */
 	function retContenuManifest()
 	{

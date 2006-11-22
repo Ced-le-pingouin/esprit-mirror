@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /**
- * @file	erreur.class.php
+ * @file	Erreur.php
  * 
  * Contient un classe de gestion des erreurs
  */
@@ -41,7 +41,7 @@ define("CERREUR_NOTE"  , E_USER_NOTICE);  /// l'erreur correspond aux notices de
  * Classe de gestion des erreurs. Pour l'instant, cette classe est minimale et permet seulement de "provoquer" une 
  * erreur dans du code perso, étant donné qu'en PHP 4 les exceptions n'existent pas
  */
-class CErreur
+class Erreur
 {
 	var $sTexte;  ///< Le texte associé à l'objet erreur/avertissement/note créé par le constructeur
 	var $iNiveau; ///< Le niveau de gravité (erreur/avertissement/note) de l'objet créé par le constructeur
@@ -57,7 +57,7 @@ class CErreur
 	 * 						\c CERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est 
 	 * 						de type \c E_USER_NOTICE, donc de moindre importance) 
 	 */	
-	function CErreur($v_sTexte, $v_iNiveau = CERREUR_FATALE)
+	function Erreur($v_sTexte, $v_iNiveau = CERREUR_FATALE)
 	{
 		$this->sTexte  = $v_sTexte;
 		$this->iNiveau = $v_iNiveau;
@@ -79,7 +79,7 @@ class CErreur
 		// également censée afficher les messages d'erreurs concernant la classe qui l'appelle 
 		$asTraces = debug_backtrace();
 		$iAppelant = 1;
-		if (strcasecmp($asTraces[$iAppelant]['class'], 'oo') == 0)
+		if (strcasecmp($asTraces[$iAppelant]['class'], 'Objet') == 0)
 			$iAppelant++;
 		$sFichier  = $asTraces[$iAppelant-1]['file'];
 		$iLigne    = $asTraces[$iAppelant-1]['line'];
@@ -146,7 +146,7 @@ class CErreur
 	 */
 	function estErreur($v_oObjet)
 	{
-		// utilisation de is_a() au lieu de get_class(), pour détecter non seulement les objets de classe CErreur, mais 
+		// utilisation de is_a() au lieu de get_class(), pour détecter non seulement les objets de classe Erreur, mais 
 		// également d'éventuelles sous-classes (erreurs plus précises, comme pour les exceptions PHP 5 ?)
 		// Si cette classe survit à un passage exlusif du code à la version 5+ de PHP, is_a() sera peut-être obsolète 
 		// et devra être remplacée par l'opérateur instanceof (qui teste pour une classe, sous-classe, ou interface)
