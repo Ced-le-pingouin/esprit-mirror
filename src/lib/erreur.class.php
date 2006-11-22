@@ -28,9 +28,8 @@
 /** 
  * @name Constantes - types d'erreurs
  * 
- * Celles-ci reprennent les constantes \c E_USER_ de PHP. Plus tard, il faudrait
- * qu'elles deviennent des constantes de classe en laissant tomber le préfixe \c CERREUR_ au passage, mais les
- * constantes de classe n'existent qu'en PHP 5 
+ * Celles-ci reprennent les constantes \c E_USER_ de PHP. Plus tard, il faudrait qu'elles deviennent des constantes 
+ * de classe en laissant tomber le préfixe \c CERREUR_ au passage, mais les constantes de classe n'existent qu'en PHP 5 
  */
 //@{
 define("CERREUR_FATALE", E_USER_ERROR);   /// l'erreur correspond aux erreurs fatales de PHP, elle provoquera donc l'arrêt du script                @enum CERREUR_FATALE
@@ -76,7 +75,64 @@ class CErreur
 	 */
 	function provoquer($v_sTexte, $v_iNiveau = CERREUR_FATALE)
 	{
-		trigger_error($v_sTexte, $v_iNiveau);
+		// on retrouve d'où vient l'appel, et on remonte d'un niveau s'il vient de la classe OO, car cette dernière est 
+		// également censée afficher les messages d'erreurs concernant la classe qui l'appelle 
+		$asTraces = debug_backtrace();
+		$iAppelant = 1;
+		if (strcasecmp($asTraces[$iAppelant]['class'], 'oo') == 0)
+			$iAppelant++;
+		$sFichier  = $asTraces[$iAppelant-1]['file'];
+		$iLigne    = $asTraces[$iAppelant-1]['line'];
+		$sClasse   = $asTraces[$iAppelant]['class'];
+		$sFonction = $asTraces[$iAppelant]['function'];
+		
+		// on affichera les infos dont on dispose sur le fichier, la ligne, la classe, et la fonction où s'est produite 
+		// l'erreur
+		$sInfosFichier = basename($sFichier).', ligne '.$iLigne;
+		if (!empty($sClasse))
+			$sClasse .= '::';
+		if (!empty($sFonction))
+			$sFonction .= '()';
+			
+		switch($v_iNiveau)
+		{
+			case CERREUR_FATALE:
+				echo '<strong>',
+				     'Erreur: ',
+				     '<em>',
+				     $sInfosFichier, ': ',
+				     $sClasse,
+				     $sFonction, ': ',
+				     '</em>',
+				     '</strong>',
+				     $v_sTexte,
+				     '<br />';
+				die();
+				break;
+			
+			case CERREUR_AVERT:
+				echo '<strong>',
+				     'Attention: ',
+			         '<em>',
+				     $sInfosFichier, ': ',
+				     $sClasse,
+				     $sFonction, ': ',
+				     '</em>',
+			         '</strong> ',
+				     $v_sTexte,
+				     '<br />';
+				break;
+				
+			default:
+				// pour l'instant, on ne fait rien si l'erreur est de type "note" (comme dans PHP avec le type E_NOTICE)
+		}
+		
+		// pour l'instant, on n'utilise pas le système de gestion d'erreurs natif de PHP. Plus tard il faudrait le 
+		// faire, et redéfinir automatiquement un gestionnaire perso dès le premier appel à la présente méthode 
+		// (possible aussi de garder l'ancien gestionnaire de PHP pour y faire appel si l'erreur ne nous "intéresse" 
+		// pas?)
+		
+		//trigger_error($v_sTexte, $v_iNiveau);
 	}
 	
 	/**

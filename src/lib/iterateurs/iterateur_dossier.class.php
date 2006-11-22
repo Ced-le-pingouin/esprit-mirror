@@ -39,22 +39,32 @@ require_once(dirname(__FILE__).'/../systeme_fichiers/fichier_info.class.php');
  */
 class CIterateurDossier extends CIterateurTableau
 {
+	var $sFiltrePre;        ///< La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers
 	var $oDossier;          ///< L'objet CFichierInfo qui représente le dossier dont le chemin a été passé en paramètre au constructeur
 	var $oFichierCourant;   ///< L'objet CFichierInfo qui représente l'élément courant de l'itérateur
 	
 	/**
 	 * Constructeur
 	 * 
-	 * @param	le dossier sur lequel on effectuera l'itération
+	 * @param	v_sChemin	le dossier sur lequel on effectuera l'itération
+	 * @param	v_sFiltre	le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui 
+	 * 						utilisé par la fonction native PHP glob()
+	 * 
+	 * @note	Contrairement aux filtres d'itérateurs (CIterateurFiltre et sous-classes), le filtre agit ici 
+	 * 			directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs 
+	 * 			agissent pendant l'itération, pour déterminer à chaque élément s'il est accepté ou pas.
+	 * 			Le filtre disponible ici peut donc avoir un effet sur la #taille(), tandis que les filtres d'itérateurs 
+	 * 			n'en ont aucun
 	 */
-	function CIterateurDossier($v_sChemin, $v_sFiltre = '*')
+	function CIterateurDossier($v_sChemin, $v_sFiltrePre = '*')
 	{
 		if (!is_dir($v_sChemin) || !is_readable($v_sChemin))
-			CErreur::provoquer(__FUNCTION__."(): le chemin fourni ne représente pas un dossier valide, ou le dossier".
-			                   " est inaccessible", CERREUR_AVERT);
-			                   
+			CErreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
+			                   CERREUR_AVERT);
+		
+		$this->sFiltrePre = $v_sFiltrePre;
 		$this->oDossier = new CFichierInfo($v_sChemin);
-		$asFichiers = glob($this->oDossier->formerChemin($v_sFiltre), GLOB_NOSORT);
+		$asFichiers = glob($this->oDossier->formerChemin($v_sFiltrePre), GLOB_NOSORT);
 		if (!is_array($asFichiers))
 			$asFichiers = array(); 
 		parent::CIterateurTableau($asFichiers);
@@ -74,7 +84,16 @@ class CIterateurDossier extends CIterateurTableau
     	
     	return $this->oFichierCourant;
     }
-
+	
+	/**
+	 * Retourne le filtre passé au constructeur (ou celui par défaut)
+	 * 
+	 * @return	le filtre passé au constructeur pour restreindre les fichiers/dossiers pris en compte par l'itérateur
+	 */
+	function retFiltrePre()
+	{
+		return $this->sFiltrePre;
+	}
 }
 
 ?>

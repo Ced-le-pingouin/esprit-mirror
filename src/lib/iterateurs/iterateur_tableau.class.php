@@ -47,7 +47,7 @@ class CIterateurTableau extends CIterateur
 	function CIterateurTableau($v_aTableau)
 	{
 		if (!is_array($v_aTableau))
-			CErreur::provoquer(__FUNCTION__."(): l'objet n'est pas un tableau");
+			CErreur::provoquer("L'objet n'est pas un tableau");
 		
 		$this->aTableau = $v_aTableau;
 		$this->debut();

@@ -22,10 +22,10 @@
 /**
  * @file	iterateur.class.php
  * 
- * Contient une classe/interface pour l'implémentation d'itérateurs en PHP 4 et +
+ * Contient une classe abstraite pour l'implémentation d'itérateurs en PHP 4 et +
  */
 
-require_once(dirname(__FILE__).'/../erreur.class.php');
+require_once(dirname(__FILE__).'/../oo.class.php');
 
 /**
  * Classe "vide" qui présente les méthodes requise pour implémenter un itérateur. Si PHP 4 le permettait, cette classe 
@@ -44,7 +44,7 @@ class CIterateur
 	 */
 	function CIterateur()
 	{
-		CErreur::provoquer(get_class($this).' est une classe abstraite, et ne devrait pas être instanciée');
+		OO::abstraite();
 	}
 	
 	/**
@@ -52,7 +52,7 @@ class CIterateur
 	 */
     function debut()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -60,7 +60,7 @@ class CIterateur
      */
     function suivant()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -72,7 +72,7 @@ class CIterateur
      */
     function estValide()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -82,7 +82,7 @@ class CIterateur
      */
     function cle()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -92,7 +92,7 @@ class CIterateur
      */
     function courant()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -102,7 +102,7 @@ class CIterateur
      */
     function fin()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
     
     
@@ -126,7 +126,7 @@ class CIterateur
      */
     function precedent()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
 
@@ -150,7 +150,7 @@ class CIterateur
      */
     function taille()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
     /**
@@ -173,7 +173,7 @@ class CIterateur
      */
     function rechercher($v_Cle)
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
 
@@ -197,7 +197,7 @@ class CIterateur
      */
     function estPremier()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
     
     /**
@@ -220,7 +220,7 @@ class CIterateur
      */
     function estDernier()
     {
-    	CErreur::provoquer('Méthode '.__FUNCTION__.'() non implémentée dans '.get_class($this));
+    	OO::abstraite();
     }
 
 
