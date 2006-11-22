@@ -827,8 +827,8 @@ CREATE TABLE `ReponseCar` (
 CREATE TABLE `ReponseEntier` (
   `IdFC` int(10) unsigned NOT NULL default '0',
   `IdObjFormul` int(10) unsigned NOT NULL default '0',
-  `IdReponse` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdFC`,`IdObjFormul`,`IdReponse`)
+  `IdPropRep` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`IdFC`,`IdObjFormul`,`IdPropRep`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

@@ -81,13 +81,13 @@ class CQCocher
 		if ($v_iIdFC != NULL)
 		{
 			// Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->oEnregBdd->IdObjFormul}'";
+			$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->oEnregBdd->IdObjFormul}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$i=0;
 			$TabRepEtu=array();
 			while ($oEnregRep = $this->oBdd->retEnregSuiv($hResultRep))
 			{
-				$TabRepEtu[$i] = $oEnregRep->IdReponse;
+				$TabRepEtu[$i] = $oEnregRep->IdPropRep;
 				$i++;
 			}
 			$this->oBdd->libererResult($hResultRep);
@@ -307,7 +307,7 @@ class CQCocher
 			$sRequeteSql = " INSERT INTO ReponseEntier SET"
 						." IdFC='{$v_iIdFC}'"
 						." , IdObjFormul='{$v_iIdObjForm}'"
-						." , IdReponse='{$v_sReponsePersQC}'";
+						." , IdPropRep='{$v_sReponsePersQC}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
 		}

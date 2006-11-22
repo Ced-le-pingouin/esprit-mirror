@@ -42,7 +42,7 @@ class CFormulaireComplete
 	
 	var $oFormulaireModele;
 	var $asTablesReponses = array("ReponseCar", "ReponseTexte", "ReponseFlottant", "ReponseEntier");
-	var $asChampsReponses = array("Valeur", "Valeur", "Valeur", "IdReponse");
+	var $asChampsReponses = array("Valeur", "Valeur", "Valeur", "IdPropRep");
 	var $abVerifZeroReponses = array(FALSE, FALSE, FALSE, TRUE);
 	
 	/**

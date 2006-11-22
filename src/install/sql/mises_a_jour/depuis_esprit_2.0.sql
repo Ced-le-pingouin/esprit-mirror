@@ -307,11 +307,15 @@ ALTER TABLE `FormulaireComplete`
 ALTER TABLE `Formulaire_Axe` 
 	CHANGE `IdFormul` `IdFormul` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
 
-
 -- Modification des activités en ligne, effectué le 07-11-2006, pour la r210
 ALTER TABLE `TypeObjetForm` 
 	RENAME `TypeObjetFormul`
-	
+
 -- Modification des activités en ligne, effectué le 14-11-2006, pour la r218
 ALTER TABLE `Formulaire` 
 	ADD `AutoCorrection` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `Type`
+
+-- Modification des activités en ligne, effectué le 22-11-2006, pour la r234
+ALTER TABLE `ReponseEntier` 
+	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+

@@ -83,10 +83,10 @@ class CQRadio
 		if ($v_iIdFC != NULL)
 		{
 			// Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
+			$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$iIdReponseEtu = $oEnregRep->IdReponse;
+			$iIdReponseEtu = $oEnregRep->IdPropRep;
 			$this->oBdd->libererResult($hResultRep);
 		}
 		
@@ -265,10 +265,10 @@ class CQRadio
 	{
 		if ($v_iIdObjForm !=NULL)
 		{
-			$sRequeteSql = "REPLACE ReponseEntier SET"									  
+			$sRequeteSql = "INSERT ReponseEntier SET"									  
 						." IdFC='{$v_iIdFC}'"
 						.", IdObjFormul='{$v_iIdObjForm}'"
-						.", IdReponse='{$v_sReponsePersQR}'";
+						.", IdPropRep='{$v_sReponsePersQR}'";
 				
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
