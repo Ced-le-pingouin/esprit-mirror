@@ -33,12 +33,19 @@ require_once (dir_database("bdd.class.php"));  	//permet d'utiliser la bdd sans 
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des questions de type "radio" des activités en ligne, et encapsulation de la table QRadio de la DB
+*/
 class CQRadio
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQRadio(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
@@ -46,6 +53,10 @@ class CQRadio
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -81,14 +92,7 @@ class CQRadio
 	{
 		$iIdReponseEtu = "";
 		if ($v_iIdFC != NULL)
-		{
-			// Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$iIdReponseEtu = $oEnregRep->IdPropRep;
-			$this->oBdd->libererResult($hResultRep);
-		}
+			$iIdReponseEtu = retReponseEntier($this->oBdd,$v_iIdFC,$this->iId);
 		
 		$oPropositionReponse = new CPropositionReponse($this->oBdd);
 		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);
@@ -101,7 +105,7 @@ class CQRadio
 			foreach($aoListePropRep AS $oPropRep)
 			{
 				$sAutoCorr = "";
-				if ($iIdReponseEtu == $oPropRep->retId()) 
+				if($iIdReponseEtu[0] == $oPropRep->retId()) 
 				{
 					$sPreSelection = "checked=\"checked\"";
 					if($v_bAutoCorrection)
@@ -265,7 +269,7 @@ class CQRadio
 	{
 		if ($v_iIdObjForm !=NULL)
 		{
-			$sRequeteSql = "INSERT ReponseEntier SET"									  
+			$sRequeteSql = "INSERT ReponseEntier SET"
 						." IdFC='{$v_iIdFC}'"
 						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", IdPropRep='{$v_sReponsePersQR}'";

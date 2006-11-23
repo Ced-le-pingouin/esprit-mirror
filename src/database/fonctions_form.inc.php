@@ -80,6 +80,26 @@ function validerTexte($v_sTexte)
 }
 
 /**
+ * Retourne les id des propositions de réponses que l'étudiant a choisies
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFC			l'id du formulaire (activité en ligne) complété
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire
+ * 
+ * @return	un tableau contenant les id des propositions de réponses que l'étudiant a choisies
+ */
+function retReponseEntier(&$v_oBdd,$v_iIdFC,$v_iIdObjFormul)
+{
+	$aiReponse = array();
+	$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$v_iIdObjFormul}'";
+	$hResultRep = $v_oBdd->executerRequete($sRequeteSql);
+	while($oEnregRep = $v_oBdd->retEnregSuiv($hResultRep))
+		$aiReponse[] = $oEnregRep->IdPropRep;
+	$v_oBdd->libererResult($hResultRep);
+	return $aiReponse;
+}
+
+/**
  * Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids  pour chaque axe de l'activité en ligne
  * 
  * @param	v_oBdd			Objet représentant la connexion à la DB

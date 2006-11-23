@@ -29,12 +29,19 @@
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des questios de type "case à cocher" des activités en ligne, et encapsulation de la table QCocher de la DB
+*/
 class CQCocher
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQCocher(&$v_oBdd, $v_iId = 0) 
 	{
 		$this->oBdd = &$v_oBdd;
@@ -42,6 +49,10 @@ class CQCocher
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant = NULL)
 	{
 		if (isset($v_oEnregExistant))
@@ -79,19 +90,7 @@ class CQCocher
 	{
 		$TabRepEtu = array();
 		if ($v_iIdFC != NULL)
-		{
-			// Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->oEnregBdd->IdObjFormul}'";
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$i=0;
-			$TabRepEtu=array();
-			while ($oEnregRep = $this->oBdd->retEnregSuiv($hResultRep))
-			{
-				$TabRepEtu[$i] = $oEnregRep->IdPropRep;
-				$i++;
-			}
-			$this->oBdd->libererResult($hResultRep);
-		}
+			$TabRepEtu = retReponseEntier($this->oBdd,$v_iIdFC,$this->iId);
 		
 		$oPropositionReponse = new CPropositionReponse($this->oBdd);
 		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);

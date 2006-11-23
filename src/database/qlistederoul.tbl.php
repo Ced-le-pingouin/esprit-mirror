@@ -25,19 +25,26 @@ require_once (dir_database("bdd.class.php"));  	//permet d'utiliser la bdd sans 
 /**
  * @file	qlistederoul.tbl.php
  * 
- * Contient la classe de gestion des questions de formulaire de type "nombre", en rapport avec la DB
+ * Contient la classe de gestion des questions de formulaire de type "liste déroulante", en rapport avec la DB
  * 
  * @date	2004/06/22
  * 
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des question de type "liste déroulante" des activités en ligne, et encapsulation de la table QListeDeroul de la DB
+*/
 class CQListeDeroul
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQListeDeroul(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
@@ -45,6 +52,10 @@ class CQListeDeroul
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -78,16 +89,9 @@ class CQListeDeroul
 	 */
 	function RetourReponseQLD($v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
-		$iIdReponseEtu = "";
+		$iIdReponseEtu = 0;
 		if ($v_iIdFC != NULL)
-		{
-			// Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT IdPropRep FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$iIdReponseEtu = $oEnregRep->IdPropRep;
-			$this->oBdd->libererResult($hResultRep);
-		}
+			$iIdReponseEtu = retReponseEntier($this->oBdd,$v_iIdFC,$this->iId);
 		
 		$sCodeHtml="<select name=\"{$this->iId}\">\n";
 		$sAutoCorr = "";
@@ -97,7 +101,7 @@ class CQListeDeroul
 		{
 			foreach($aoListePropRep AS $oPropRep)
 			{
-				if ($iIdReponseEtu == $oPropRep->retId()) 
+				if($iIdReponseEtu[0] == $oPropRep->retId()) 
 				{
 					$sPreSelection = "selected=\"selected\"";
 					if($v_bAutoCorrection)
