@@ -137,32 +137,6 @@ class CQRadio
 		return $sCodeHtml;
 	}
 	
-	/**
-	 * Retourne le code HTML qui permet d'afficher une question de type bouton radio
-	 * 
-	 * @param	v_iIdFC	l'id d'un formulaire complété
-	 * 
-	 * @return	le code HTML qui permet d'afficher une question de type bouton radio
-	 */
-	function cHtmlQRadio($v_iIdFC=NULL)
-	{
-		// Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->defEnonQR( convertBaliseMetaVersHtml($this->retEnonQR()) );
-		$this->defTxtAvQR( convertBaliseMetaVersHtml($this->retTxTAvQR()) );
-		$this->defTxtApQR( convertBaliseMetaVersHtml($this->retTxtApQR()) );
-		// Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QRadio : ".$this->retId()." -->\n"
-				."<div align=\"".$this->retAlignEnonQR()."\">".$this->retEnonQR()."</div>\n"
-				."<div class=\"InterER\" align=\"".$this->retAlignRepQR()."\">\n"
-				."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
-				."<td valign=\"top\">".$this->retTxTAvQR()."</td>\n"
-				."<td valign=\"top\">".$this->RetourReponseQR($v_iIdFC)."</td>\n"
-				."<td valign=\"top\">".$this->retTxtApQR()."</td>\n"
-				."</tr></table>\n"
-				."</div>\n";
-		return $sCodeHtml;
-	}
-	
 	/*
 	** Fonction 		: RetourReponseQRModif
 	** Description		: va rechercher dans la table réponse les réponses correspondant

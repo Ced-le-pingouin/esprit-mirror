@@ -30,7 +30,7 @@
  */
 
 /**
-* Gestion des questios de type "case à cocher" des activités en ligne, et encapsulation de la table QCocher de la DB
+* Gestion des questions de type "case à cocher" des activités en ligne, et encapsulation de la table QCocher de la DB
 */
 class CQCocher
 {
@@ -139,32 +139,6 @@ class CQCocher
 		}
 		if($this->retDispQC() == 'Ver')
 			$sCodeHtml .= "</table>\n";
-		return $sCodeHtml;
-	}
-	
-	/**
-	 *  Retourne le code HTML qui permet d'afficher une question de type cases à cocher
-	 * 
-	 * @param	v_iIdFC	l'id d'un formulaire complété
-	 * 
-	 * @return	le code HTML qui permet d'afficher une question de type cases à cocher
-	 */
-	function cHtmlQCocher($v_iIdFC = NULL)
-	{
-		// Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->defEnonQC( convertBaliseMetaVersHtml($this->retEnonQC()) );
-		$this->defTxtAvQC( convertBaliseMetaVersHtml($this->retTxTAvQC()) );
-		$this->defTxtApQC( convertBaliseMetaVersHtml($this->retTxtApQC()) );
-		// Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QCocher : ".$this->retId()." -->\n"
-					."<div align=\"".$this->retAlignEnonQC()."\">".$this->retEnonQC()."</div>\n"
-					."<div class=\"InterER\" align=\"".$this->retAlignEnonQC()."\">\n"
-					."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
-					."<td valign=\"top\">".$this->retTxTAvQC()."</td>\n"
-					."<td valign=\"top\">".$this->RetourReponseQC($this->retNbRepMaxQC(),$this->retMessMaxQC(),$v_iIdFC)."</td>\n"
-					."<td valign=\"top\">".$this->retTxtApQC()."</td>\n"
-					."</tr></table>\n"
-					."</div>\n";
 		return $sCodeHtml;
 	}
 	

@@ -33,7 +33,7 @@ require_once (dir_database("bdd.class.php"));  	//permet d'utiliser la bdd sans 
  */
 
 /**
-* Gestion des question de type "liste déroulante" des activités en ligne, et encapsulation de la table QListeDeroul de la DB
+* Gestion des questions de type "liste déroulante" des activités en ligne, et encapsulation de la table QListeDeroul de la DB
 */
 class CQListeDeroul
 {
@@ -125,30 +125,6 @@ class CQListeDeroul
 			}
 		}
 		$sCodeHtml .= "</select>\n".$sAutoCorr;
-		return $sCodeHtml;
-	}
-	
-	/**
-	 * Retourne le code HTML qui permet d'afficher une question de type liste déroulante
-	 * 
-	 * @param	v_iIdFC	l'id d'un formulaire complété
-	 * 
-	 * @return le code HTML qui permet d'afficher une question de type liste déroulante
-	 */
-	function cHtmlQListeDeroul($v_iIdFC=NULL)
-	{
-		// Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->defEnonQLD( convertBaliseMetaVersHtml($this->retEnonQLD()) );
-		$this->defTxtAvQLD( convertBaliseMetaVersHtml($this->retTxTAvQLD()) );
-		$this->defTxtApQLD( convertBaliseMetaVersHtml($this->retTxtApQLD()) );
-		// Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QListeDeroul : ".$this->retId()." -->\n"
-					."<div align=\"".$this->retAlignEnonQLD()."\">".$this->retEnonQLD()."</div>\n"
-					."<div class=\"InterER\" align=\"".$this->retAlignRepQLD()."\">\n"
-					.$this->retTxTAvQLD()
-					.$this->RetourReponseQLD($v_iIdFC)
-					.$this->retTxtApQLD()
-					."</div>\n";
 		return $sCodeHtml;
 	}
 	

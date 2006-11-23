@@ -182,43 +182,63 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 			else
 				$sCocher = "";
 			
-			if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
-				$sSelectModif = "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
-			else 
-				$sSelectModif = "";
+			if( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
+				$sHtmlListeObjForm .= "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
 			
 			switch($oObjetFormulaire->retIdTypeObj())
 			{
 				case 1:	$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQTexteLong->cHtmlQTexteLong()."\n";
+						$sHtmlListeObjForm .= $oQTexteLong->cHtmlQTexteLong()."\n";
 						break;
-					
+				
 				case 2:	$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQTexteCourt->cHtmlQTexteCourt()."\n";					
+						$sHtmlListeObjForm .= $oQTexteCourt->cHtmlQTexteCourt()."\n";					
 						break;
-					
+				
 				case 3:	$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQNombre->cHtmlQNombre()."\n";					
+						$sHtmlListeObjForm .= $oQNombre->cHtmlQNombre()."\n";					
 						break;
-					
+				
 				case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQListeDeroul->cHtmlQListeDeroul()."\n";
+						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
+											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD())
+											.$oQListeDeroul->RetourReponseQLD()
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
+											."</div>\n";
 						break;
-					
+				
 				case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQRadio->cHtmlQRadio()."\n";
+						$sHtmlListeObjForm .= "\n<!--QRadio : $iIdObjActuel -->\n"
+											."<div align=\"".$oQRadio->retAlignEnonQR()."\">".convertBaliseMetaVersHtml($oQRadio->retEnonQR())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
+											."<td valign=\"top\">".$oQRadio->RetourReponseQR()."</td>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
 						break;
-					
+				
 				case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQCocher->cHtmlQCocher()."\n";
+						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC()."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
+											."<td valign=\"top\">".$oQCocher->RetourReponseQC($oQCocher->retNbRepMaxQC(),$oQCocher->retMessMaxQC())."</td>\n"
+											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
 						break;
-					
+				
 				case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oMPTexte->cHtmlMPTexte()."\n";
+						$sHtmlListeObjForm .= $oMPTexte->cHtmlMPTexte()."\n";
 						break;
-					
+				
 				case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oMPSeparateur->cHtmlMPSeparateur()."\n";
+						$sHtmlListeObjForm .= $oMPSeparateur->cHtmlMPSeparateur()."\n";
 						break;
 			}
 			$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";

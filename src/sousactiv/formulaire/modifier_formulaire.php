@@ -144,18 +144,40 @@ if ($v_iIdFormulaire > 0)
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
 					if ($bSoumis)
+					{
 						$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					}
 					else
-						$sHtmlListeObjForm .= $oQListeDeroul->cHtmlQListeDeroul($iIdFC);
+					{
+						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
+											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD())
+											.$oQListeDeroul->RetourReponseQLD($iIdFC)
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
+											."</div>\n";
+					}
 					break;
 			
 			case 5:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 					if ($bSoumis)
+					{
 						$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					}
 					else
-						$sHtmlListeObjForm .= $oQRadio->cHtmlQRadio($iIdFC);
+					{
+						$sHtmlListeObjForm .= "\n<!--QRadio : $iIdObjActuel -->\n"
+											."<div align=\"".$oQRadio->retAlignEnonQR()."\">".convertBaliseMetaVersHtml($oQRadio->retEnonQR())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
+											."<td valign=\"top\">".$oQRadio->RetourReponseQR($iIdFC)."</td>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
+					}
 					break;
 			
 			case 6:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
@@ -169,7 +191,17 @@ if ($v_iIdFormulaire > 0)
 						}
 					}
 					else
-						$sHtmlListeObjForm .= $oQCocher->cHtmlQCocher($iIdFC);
+					{
+						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC()."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
+											."<td valign=\"top\">".$oQCocher->RetourReponseQC($oQCocher->retNbRepMaxQC(),$oQCocher->retMessMaxQC(),$iIdFC)."</td>\n"
+											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
+					}
 					break;
 			
 			case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
