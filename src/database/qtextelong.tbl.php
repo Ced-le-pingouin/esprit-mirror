@@ -103,17 +103,10 @@ class CQTexteLong
 	*/
 	function cHtmlQTexteLong($v_iIdFC = NULL)
 	{
-		$sValeur = "";
-		
 		if ($v_iIdFC != NULL)
-		{
-			$sRequeteSql = "SELECT * FROM ReponseTexte"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$sValeur = $oEnregRep->Valeur;
-		}
+			$sValeur = retReponseTexteLong($this->oBdd,$v_iIdFC,$this->iId);
+		else
+			$sValeur = "";
 		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
 		$this->oEnregBdd->EnonQTL = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTL);
 		//Genération du code html représentant l'objet

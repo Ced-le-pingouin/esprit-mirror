@@ -100,6 +100,63 @@ function retReponseEntier(&$v_oBdd,$v_iIdFC,$v_iIdObjFormul)
 }
 
 /**
+ * Retourne une réponse de type "texte long" d'un étudiant
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFC			l'id du formulaire (activité en ligne) complété
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire
+ * 
+ * @return	le texte de la réponse de type "texte long"
+ */
+function retReponseTexteLong(&$v_oBdd,$v_iIdFC,$v_iIdObjFormul)
+{
+	$sRequeteSql = "SELECT Valeur FROM ReponseTexte WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$v_iIdObjFormul}'";
+	$hResultRep = $v_oBdd->executerRequete($sRequeteSql);
+	$oEnregRep = $v_oBdd->retEnregSuiv($hResultRep);
+	$sValeur = $oEnregRep->Valeur;
+	$v_oBdd->libererResult($hResultRep);
+	return $sValeur;
+}
+
+/**
+ * Retourne une réponse de type "texte court" d'un étudiant
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFC			l'id du formulaire (activité en ligne) complété
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire
+ * 
+ * @return	le texte de la réponse de type "texte court"
+ */
+function retReponseTexteCourt(&$v_oBdd,$v_iIdFC,$v_iIdObjFormul)
+{
+	$sRequeteSql = "SELECT Valeur FROM ReponseCar WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$v_iIdObjFormul}'";
+	$hResultRep = $v_oBdd->executerRequete($sRequeteSql);
+	$oEnregRep = $v_oBdd->retEnregSuiv($hResultRep);
+	$sValeur = $oEnregRep->Valeur;
+	$v_oBdd->libererResult($hResultRep);
+	return $sValeur;
+}
+
+/**
+ * Retourne une réponse de type "nombre" d'un étudiant
+ * 
+ * @param	v_oBdd			Objet représentant la connexion à la DB
+ * @param	v_iIdFC			l'id du formulaire (activité en ligne) complété
+ * @param	v_iIdObjFormul	l'id de l'objet formulaire
+ * 
+ * @return	la réponse de type nombre (flottant)
+ */
+function retReponseFlottant(&$v_oBdd,$v_iIdFC,$v_iIdObjFormul)
+{
+	$sRequeteSql = "SELECT Valeur FROM ReponseFlottant WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$v_iIdObjFormul}'";
+	$hResultRep = $v_oBdd->executerRequete($sRequeteSql);
+	$oEnregRep = $v_oBdd->retEnregSuiv($hResultRep);
+	$fValeur = $oEnregRep->Valeur;
+	$v_oBdd->libererResult($hResultRep);
+	return $fValeur;
+}
+
+/**
  * Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids  pour chaque axe de l'activité en ligne
  * 
  * @param	v_oBdd			Objet représentant la connexion à la DB

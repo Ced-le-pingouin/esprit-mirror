@@ -111,17 +111,10 @@ class CQNombre
 	
 	function cHtmlQNombre($v_iIdFC=NULL)
 	{
-		$sValeur = "";
-		
 		if ($v_iIdFC != NULL)
-		{
-			$sRequeteSql = "SELECT * FROM ReponseFlottant"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$sValeur = $oEnregRep->Valeur;
-		}
+			$sValeur = retReponseFlottant($this->oBdd,$v_iIdFC,$this->iId);
+		else
+			$sValeur = "";
 		
 		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
 		$this->oEnregBdd->EnonQN = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQN);
