@@ -99,43 +99,6 @@ class CQNombre
 	function retNbMaxQN () { return $this->oEnregBdd->NbMaxQN; }
 	function retMultiQN () { return $this->oEnregBdd->MultiQN; } //Nombre réel
 	
-	/*
-	** Fonction 		: cHtmlQNombre
-	** Description	: renvoie le code html qui permet d'afficher une question de type nombre,
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	
-	function cHtmlQNombre($v_iIdFC=NULL)
-	{
-		if ($v_iIdFC != NULL)
-			$sValeur = retReponseFlottant($this->oBdd,$v_iIdFC,$this->iId);
-		else
-			$sValeur = "";
-		
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQN = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQN);
-		$this->oEnregBdd->TxtAvQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQN);
-		$this->oEnregBdd->TxtApQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQN);
-		
-		//Genération du code html représentant l'objet
-		//Ceci est le code COMPLET qui affiche toutes les valeurs -> pas utilisable 
-		//tel quel par les etudiants
-		$sCodeHtml = "\n<!--QNombre : {$this->oEnregBdd->IdObjFormul} -->\n"
-					."<div align=\"{$this->oEnregBdd->AlignEnonQN}\">{$this->oEnregBdd->EnonQN}</div>"
-					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQN}\">"
-					."{$this->oEnregBdd->TxtAvQN} \n"
-					."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
-					." id=\"id_".$this->retId()."_".$this->retNbMinQN()."_".$this->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
-					." {$this->oEnregBdd->TxtApQN}\n"
-					."</div><br />\n";
-		
-		return $sCodeHtml;
-	}
-	
 	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjFormul != NULL)

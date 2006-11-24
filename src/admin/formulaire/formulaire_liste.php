@@ -188,15 +188,33 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 			switch($oObjetFormulaire->retIdTypeObj())
 			{
 				case 1:	$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $oQTexteLong->cHtmlQTexteLong()."\n";
+						$sHtmlListeObjForm .= "\n<!--QTexteLong : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteLong->retAlignEnonQTL()."\">".convertBaliseMetaVersHtml($oQTexteLong->retEnonQTL())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteLong->retAlignRepQTL()."\">\n"
+											."<textarea name=\"$iIdObjActuel\" rows=\"".$oQTexteLong->retHauteurQTL()."\" cols=\"".$oQTexteLong->retLargeurQTL()."\">\n"
+											."</textarea>\n"
+											."</div><br />\n";
 						break;
 				
 				case 2:	$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $oQTexteCourt->cHtmlQTexteCourt()."\n";					
+						$sHtmlListeObjForm .= "\n<!--QTexteCourt : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteCourt->retAlignEnonQTC()."\">".convertBaliseMetaVersHtml($oQTexteCourt->retEnonQTC())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteCourt->retAlignRepQTC()."\">\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtAvQTC())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"".$oQTexteCourt->retLargeurQTC()."\" maxlength=\"".$oQTexteCourt->retMaxCarQTC()."\" />\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtApQTC())
+											."</div><br />\n";
 						break;
 				
 				case 3:	$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $oQNombre->cHtmlQNombre()."\n";					
+						$sHtmlListeObjForm .= "\n<!--QNombre : $iIdObjActuel -->\n"
+											."<div align=\"".$oQNombre->retAlignEnonQN()."\">".convertBaliseMetaVersHtml($oQNombre->retEnonQN())."</div>"
+											."<div class=\"InterER\" align=\"".$oQNombre->retAlignRepQN()."\">"
+											.convertBaliseMetaVersHtml($oQNombre->retTxTAvQN())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"10\" maxlength=\"10\""
+											." id=\"id_".$oQNombre->retId()."_".$oQNombre->retNbMinQN()."_".$oQNombre->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
+											.convertBaliseMetaVersHtml($oQNombre->retTxtApQN())
+											."</div><br />\n";
 						break;
 				
 				case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
@@ -234,11 +252,11 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 						break;
 				
 				case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $oMPTexte->cHtmlMPTexte()."\n";
+						$sHtmlListeObjForm .= "<div align=\"".$oMPTexte->retAlignMPT()."\">".convertBaliseMetaVersHtml($oMPTexte->retTexteMPT())."</div>";
 						break;
 				
 				case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $oMPSeparateur->cHtmlMPSeparateur()."\n";
+						$sHtmlListeObjForm .= "<hr width=\"".$oMPSeparateur->retLargeurCompleteMPS()."\" size=\"2\" align=\"".$oMPSeparateur->retAlignMPS()."\" />";
 						break;
 			}
 			$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";

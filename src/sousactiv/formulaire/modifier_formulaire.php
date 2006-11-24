@@ -30,13 +30,13 @@ $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
 
-if (isset($_POST['bSoumis']))
+if(isset($_POST['bSoumis']))
 {
 	$bSoumis = TRUE;
 	$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd);
 	$oFormulaireComplete->verrouillerTables();
 	$iIdFC = $oFormulaireComplete->ajouter($iIdUtilisateur, $v_iIdFormulaire);
-	if (isset($iIdSousActiv))
+	if(isset($iIdSousActiv))
 	{
 		$oSousActiv = new CSousActiv($oProjet->oBdd, $iIdSousActiv);
 		list($sLien, $iMode, $sIntitule) = explode(";",$oSousActiv->retDonnees());
@@ -49,7 +49,7 @@ if (isset($_POST['bSoumis']))
 else
 {
 	$bSoumis = FALSE;
-	if (isset($_GET["idFC"]))
+	if(isset($_GET["idFC"]))
 	{
 		$iIdFC = $_GET["idFC"];
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
@@ -61,7 +61,7 @@ else
 	}
 }
 
-if ($v_iIdFormulaire > 0)
+if($v_iIdFormulaire > 0)
 {
 	if($bSoumis)
 		$oBlockFormulaire->effacer();
@@ -74,12 +74,12 @@ if ($v_iIdFormulaire > 0)
 	$iInterEnonRep = $oFormulaire->retInterEnonRep();
 	$iIdPersForm = $oFormulaire->retIdPers();
 	$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
-	if ($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
+	if($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
 		$sEncadrer = "style=\"border:1px solid black;\"";
 	else
 		$sEncadrer = "";
 	$iLargeur = $oFormulaire->retLargeur();
-	if ($oFormulaire->retTypeLarg() == "P") //Pourcentage ou pixel
+	if($oFormulaire->retTypeLarg() == "P") //Pourcentage ou pixel
 		$sLargeur = $iLargeur."%";
 	else
 		$sLargeur = $iLargeur."px";
@@ -112,38 +112,78 @@ if ($v_iIdFormulaire > 0)
 			case 1:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					}
 					else
-						$sHtmlListeObjForm .= $oQTexteLong->cHtmlQTexteLong($iIdFC);
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseTexteLong($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QTexteLong : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteLong->retAlignEnonQTL()."\">".convertBaliseMetaVersHtml($oQTexteLong->retEnonQTL())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteLong->retAlignRepQTL()."\">\n"
+											."<textarea name=\"$iIdObjActuel\" rows=\"".$oQTexteLong->retHauteurQTL()."\" cols=\"".$oQTexteLong->retLargeurQTL()."\">\n"
+											."$sValeur</textarea>\n"
+											."</div><br />\n";
+					}
 					break;
 			
 			case 2:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
+					}
 					else
-						$sHtmlListeObjForm .= $oQTexteCourt->cHtmlQTexteCourt($iIdFC);
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseTexteCourt($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QTexteCourt : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteCourt->retAlignEnonQTC()."\">".convertBaliseMetaVersHtml($oQTexteCourt->retEnonQTC())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteCourt->retAlignRepQTC()."\">\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtAvQTC())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"".$oQTexteCourt->retLargeurQTC()."\" maxlength=\"".$oQTexteCourt->retMaxCarQTC()."\" value=\"$sValeur\" />\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtApQTC())
+											."</div><br />\n";
+					}
 					break;
 			
 			case 3:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						// Transforme la virgule en point ex: 20,5 -> 20.5
 						$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
 						$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
 					else
-						$sHtmlListeObjForm .= $oQNombre->cHtmlQNombre($iIdFC);
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseFlottant($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QNombre : $iIdObjActuel -->\n"
+											."<div align=\"".$oQNombre->retAlignEnonQN()."\">".convertBaliseMetaVersHtml($oQNombre->retEnonQN())."</div>"
+											."<div class=\"InterER\" align=\"".$oQNombre->retAlignRepQN()."\">"
+											.convertBaliseMetaVersHtml($oQNombre->retTxTAvQN())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
+											." id=\"id_".$oQNombre->retId()."_".$oQNombre->retNbMinQN()."_".$oQNombre->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
+											.convertBaliseMetaVersHtml($oQNombre->retTxtApQN())
+											."</div><br />\n";
+					}
 					break;
 			
 			case 4:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
@@ -162,7 +202,7 @@ if ($v_iIdFormulaire > 0)
 			case 5:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
@@ -183,7 +223,7 @@ if ($v_iIdFormulaire > 0)
 			case 6:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						for ($i = 0; $i < count($_POST[$iIdObjActuel]); $i++) 
 						{
@@ -205,13 +245,13 @@ if ($v_iIdFormulaire > 0)
 					break;
 			
 			case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-					if (!$bSoumis)
-						$sHtmlListeObjForm .= $oMPTexte->cHtmlMPTexte();
+					if(!$bSoumis)
+						$sHtmlListeObjForm .= "<div align=\"".$oMPTexte->retAlignMPT()."\">".convertBaliseMetaVersHtml($oMPTexte->retTexteMPT())."</div>";
 					break;
 			
 			case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-					if (!$bSoumis)
-						$sHtmlListeObjForm .= $oMPSeparateur->cHtmlMPSeparateur();
+					if(!$bSoumis)
+						$sHtmlListeObjForm .= "<hr width=\"".$oMPSeparateur->retLargeurCompleteMPS()."\" size=\"2\" align=\"".$oMPSeparateur->retAlignMPS()."\" />";
 					break;
 		}
 		$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";

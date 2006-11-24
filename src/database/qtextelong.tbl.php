@@ -92,35 +92,7 @@ class CQTexteLong
 	function retLargeurQTL () { return $this->oEnregBdd->LargeurQTL; }
 	function retHauteurQTL () { return $this->oEnregBdd->HauteurQTL; }
 	
-    /*
-	** Fonction 		: cHtmlQTexteLong
-	** Description	: renvoie le code html qui permet d'afficher une question de type texte "long",
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	function cHtmlQTexteLong($v_iIdFC = NULL)
-	{
-		if ($v_iIdFC != NULL)
-			$sValeur = retReponseTexteLong($this->oBdd,$v_iIdFC,$this->iId);
-		else
-			$sValeur = "";
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQTL = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTL);
-		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QTexteLong : {$this->oEnregBdd->IdObjFormul} -->\n"
-					."<div align=\"{$this->oEnregBdd->AlignEnonQTL}\">{$this->oEnregBdd->EnonQTL}</div>\n"
-					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTL}\">\n"
-					."<textarea name=\"{$this->oEnregBdd->IdObjFormul}\" rows=\"{$this->oEnregBdd->HauteurQTL}\" cols=\"{$this->oEnregBdd->LargeurQTL}\">\n"
-					."$sValeur"
-					."</textarea>\n"
-					."</div><br />\n";
-		return $sCodeHtml;
-	}
-	
-	function enregistrer()
+ 	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{

@@ -76,16 +76,12 @@ class CMPSeparateur
 	function retLargeurMPS () { return $this->oEnregBdd->LargeurMPS; }
 	function retTypeLargMPS () { return $this->oEnregBdd->TypeLargMPS; }
 	function retAlignMPS () { return $this->oEnregBdd->AlignMPS; }
-	
-	function cHtmlMPSeparateur()
+	function retLargeurCompleteMPS ()
 	{
-		if ($this->oEnregBdd->TypeLargMPS=="P")					//ajoute % ou px a la largeur pour ainsi créer une chaine de car
-			$sLargeur=$this->oEnregBdd->LargeurMPS."%";
-		else												//se test est peut etre à deplacer car il a l'air a l'origine d'un certain ralentissement
-			$sLargeur=$this->oEnregBdd->LargeurMPS."px";
-		//Genération du code html représentant l'objet
-		$sCodeHtml = "<hr width=\"$sLargeur\" size=\"2\" align=\"".$this->retAlignMPS()."\" />";
-		return $sCodeHtml;
+		if($this->retTypeLargMPS() == "P")
+			return $this->retLargeurMPS()."%";
+		else
+			return $this->retLargeurMPS()."px";
 	}
 	
 	function enregistrer()

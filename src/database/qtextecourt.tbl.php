@@ -96,39 +96,6 @@ class CQTexteCourt
 	function retLargeurQTC () { return $this->oEnregBdd->LargeurQTC; }
 	function retMaxCarQTC () { return $this->oEnregBdd->MaxCarQTC; }
 	
-	/*
-	** Fonction 		: cHtmlQTexteCourt
-	** Description	: renvoie le code html qui permet d'afficher une question de type texte "court",
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	function cHtmlQTexteCourt($v_iIdFC=NULL)
-	{
-		if ($v_iIdFC != NULL)
-			$sValeur = retReponseTexteCourt($this->oBdd,$v_iIdFC,$this->iId);
-		else
-			$sValeur = "";
-		
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQTC = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTC);
-		$this->oEnregBdd->TxtAvQTC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQTC);
-		$this->oEnregBdd->TxtApQTC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQTC);
-		
-		//Genération du code html représentant l'objet
-		$sCodeHtml="\n<!--QTexteCourt : {$this->oEnregBdd->IdObjFormul} -->\n"
-				."<div align=\"{$this->oEnregBdd->AlignEnonQTC}\">{$this->oEnregBdd->EnonQTC}</div>\n"
-				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTC}\">\n"
-				."{$this->oEnregBdd->TxtAvQTC} \n"
-				."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"{$this->oEnregBdd->LargeurQTC}\" maxlength=\"{$this->oEnregBdd->MaxCarQTC}\" value=\"$sValeur\" />\n"
-				." {$this->oEnregBdd->TxtApQTC}\n"
-				."</div><br />\n";
-		
-		return $sCodeHtml;
-	}
-	
 	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjFormul != NULL)
