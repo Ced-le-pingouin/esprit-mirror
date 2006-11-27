@@ -79,55 +79,6 @@ class CQListeDeroul
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
-	/**
-	 * Retourne le code HTML des propositions de réponses de question de type liste déroulante
-	 * 
-	 * @param	v_iIdFC				si l'id d'un formulaire complété est présent, la réponse fournie par l'étudiant sera pré-sélectionnée
-	 * @param	v_bAutoCorrection	si \c true, la question est de type auto-corrigée
-	 * 
-	 * @return	le code HTML des propositions de réponses de question de type liste déroulante
-	 */
-	function RetourReponseQLD($v_iIdFC=NULL,$v_bAutoCorrection=true)
-	{
-		$iIdReponseEtu = 0;
-		if ($v_iIdFC != NULL)
-			$iIdReponseEtu = retReponseEntier($this->oBdd,$v_iIdFC,$this->iId);
-		
-		$sCodeHtml="<select name=\"{$this->iId}\">\n";
-		$sAutoCorr = "";
-		$oPropositionReponse = new CPropositionReponse($this->oBdd);
-		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);
-		if(!empty($aoListePropRep))
-		{
-			foreach($aoListePropRep AS $oPropRep)
-			{
-				if($iIdReponseEtu[0] == $oPropRep->retId()) 
-				{
-					$sPreSelection = "selected=\"selected\"";
-					if($v_bAutoCorrection)
-					{
-						switch($oPropRep->retScorePropRep())
-						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-						}
-					}
-				}
-				else
-				{
-					$sPreSelection = "";
-				}
-				$sCodeHtml .= "<option value=\"".$oPropRep->retId()."\" $sPreSelection>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
-			}
-		}
-		$sCodeHtml .= "</select>\n".$sAutoCorr;
-		return $sCodeHtml;
-	}
-	
 	/*
 	** Fonction 		: RetourReponseQLDModif
 	** Description		: va rechercher dans la table réponse les réponses correspondant

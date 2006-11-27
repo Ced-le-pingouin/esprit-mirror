@@ -221,8 +221,16 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
 											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
 											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
-											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD())
-											.$oQListeDeroul->RetourReponseQLD()
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD());
+						$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\">\n";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+									$sHtmlListeObjForm .= "<option value=\"".$oPropRep->retId()."\">".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
+						}
+						$sHtmlListeObjForm .= "</select>\n"
 											.convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
 											."</div>\n";
 						break;
@@ -233,7 +241,25 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
-											."<td valign=\"top\">".$oQRadio->RetourReponseQR()."</td>\n"
+											."<td valign=\"top\">";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($oQRadio->retDispQR() == 'Ver')
+									$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
+											."value=\"".$oPropRep->retId()."\" /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."\n";
+							}
+						}
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "</table>";
+						$sHtmlListeObjForm .= "</td>\n"
 											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
 											."</tr></table>\n"
 											."</div>\n";
@@ -245,7 +271,26 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
-											."<td valign=\"top\">".$oQCocher->RetourReponseQC($oQCocher->retNbRepMaxQC(),$oQCocher->retMessMaxQC())."</td>\n"
+											."<td valign=\"top\">";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($oQCocher->retDispQC() == 'Ver')
+									$sHtmlListeObjForm.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."\n";
+							}
+						}
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "</table>\n";
+						$sHtmlListeObjForm .= "</td>\n"
 											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
 											."</tr></table>\n"
 											."</div>\n";

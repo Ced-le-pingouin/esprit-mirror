@@ -74,6 +74,7 @@ if($v_iIdFormulaire > 0)
 	$iInterEnonRep = $oFormulaire->retInterEnonRep();
 	$iIdPersForm = $oFormulaire->retIdPers();
 	$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
+	$bAutoCorrection = ( $oFormulaire->retAutoCorrection()?true:false );
 	if($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
 		$sEncadrer = "style=\"border:1px solid black;\"";
 	else
@@ -192,9 +193,44 @@ if($v_iIdFormulaire > 0)
 						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
 											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
 											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
-											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD())
-											.$oQListeDeroul->RetourReponseQLD($iIdFC)
-											.convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD());
+						if($iIdFC != NULL)
+							$iIdReponseEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$iIdReponseEtu[0] = 0;
+						$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\">\n";
+						$sAutoCorr = "";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($iIdReponseEtu[0] == $oPropRep->retId()) 
+								{
+									$sPreSelection = "selected=\"selected\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+								}
+								$sHtmlListeObjForm .= "<option value=\"".$oPropRep->retId()."\" $sPreSelection>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
+							}
+						}
+						$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
+						$sHtmlListeObjForm .= convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
 											."</div>\n";
 					}
 					break;
@@ -213,7 +249,50 @@ if($v_iIdFormulaire > 0)
 											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
-											."<td valign=\"top\">".$oQRadio->RetourReponseQR($iIdFC)."</td>\n"
+											."<td valign=\"top\">";
+						if($iIdFC != NULL)
+							$iIdReponseEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$iIdReponseEtu[0] = 0;
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								$sAutoCorr = "";
+								if($iIdReponseEtu[0] == $oPropRep->retId()) 
+								{
+									$sPreSelection = "checked=\"checked\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+								}
+								if($oQRadio->retDispQR() == 'Ver')
+									$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
+											."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
+							}
+						}
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "</table>";
+						$sHtmlListeObjForm .= "</td>\n"
 											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
 											."</tr></table>\n"
 											."</div>\n";
@@ -237,7 +316,55 @@ if($v_iIdFormulaire > 0)
 											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
-											."<td valign=\"top\">".$oQCocher->RetourReponseQC($oQCocher->retNbRepMaxQC(),$oQCocher->retMessMaxQC(),$iIdFC)."</td>\n"
+											."<td valign=\"top\">";
+						$TabRepEtu = array();
+						if($iIdFC != NULL)
+							$TabRepEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								$sAutoCorr = "";
+								if(in_array($oPropRep->retId(), $TabRepEtu))
+								{
+									$sPreSelection = "checked=\"checked\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+									if($bAutoCorrection && $iIdFC!=NULL)
+									{
+										if($oPropRep->retScorePropRep() == 1)
+											$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									}
+								}
+								if($oQCocher->retDispQC() == 'Ver')
+									$sHtmlListeObjForm.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
+							}
+						}
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "</table>\n";
+						$sHtmlListeObjForm .= "</td>\n"
 											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
 											."</tr></table>\n"
 											."</div>\n";

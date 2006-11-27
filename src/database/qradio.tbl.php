@@ -80,63 +80,6 @@ class CQRadio
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
-	/**
-	 * Retourne le code HTML des propositions de réponses de question de type bouton radio
-	 * 
-	 * @param	v_iIdFC				si l'id d'un formulaire complété est présent, la réponse fournie par l'étudiant sera pré-sélectionnée
-	 * @param	v_bAutoCorrection	si \c true, la question est de type auto-corrigée
-	 * 
-	 * @return	le code HTML des propositions de réponses de question de type bouton radio
-	 */
-	function RetourReponseQR($v_iIdFC=NULL,$v_bAutoCorrection=true)
-	{
-		$iIdReponseEtu = "";
-		if ($v_iIdFC != NULL)
-			$iIdReponseEtu = retReponseEntier($this->oBdd,$v_iIdFC,$this->iId);
-		
-		$oPropositionReponse = new CPropositionReponse($this->oBdd);
-		$aoListePropRep = $oPropositionReponse->retListePropRep($this->iId);
-		if($this->retDispQR() == 'Ver')
-			$sCodeHtml = "<table cellspacing=\"0\" cellpadding=\"0\">";
-		else
-			$sCodeHtml = "";
-		if(!empty($aoListePropRep))
-		{
-			foreach($aoListePropRep AS $oPropRep)
-			{
-				$sAutoCorr = "";
-				if($iIdReponseEtu[0] == $oPropRep->retId()) 
-				{
-					$sPreSelection = "checked=\"checked\"";
-					if($v_bAutoCorrection)
-					{
-						switch($oPropRep->retScorePropRep())
-						{
-							case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-							case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
-										break;
-						}
-					}
-				}
-				else
-				{
-					$sPreSelection = "";
-				}
-				if($this->retDispQR() == 'Ver')
-					$sCodeHtml .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
-							."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
-				else
-					$sCodeHtml .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
-			}
-		}
-		if($this->retDispQR() == 'Ver')
-			$sCodeHtml .= "</table>";
-		return $sCodeHtml;
-	}
-	
 	/*
 	** Fonction 		: RetourReponseQRModif
 	** Description		: va rechercher dans la table réponse les réponses correspondant
