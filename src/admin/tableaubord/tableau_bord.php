@@ -19,17 +19,13 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: tableau_bord.php
-** Description ............:
-** Date de création .......: 20/06/2005
-** Dernière modification ..: 18/11/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	tableau_bord.php
+ * 
+ * @date	2006/11/27
+ * 
+ * @author	Filippo PORCO
+ */
 
 require_once("globals.inc.php");
 require_once(dir_database("evenement.tbl.php"));
@@ -48,10 +44,10 @@ $g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? 0 : $_GET["typeNiveau"]);
-$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? 0 : $_GET["idNiveau"]);
-$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
-$url_iIdType     = (empty($_GET["idType"]) ? 0 : $_GET["idType"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? NULL : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? NULL : $_GET["typeNiveau"]);
+$url_iIdType     = (empty($_GET["idType"]) ? NULL : $_GET["idType"]);
+$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]);
 
 // ---------------------
 // Fonctions locales

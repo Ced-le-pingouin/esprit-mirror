@@ -19,43 +19,47 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: tableau_bord-index.php
-** Description ............:
-** Date de création .......: 23/06/2005
-** Dernière modification ..: 09/11/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	tableau_bord-index.php
+ * 
+ * @date	2006/11/27
+ * 
+ * @author	Filippo PORCO
+ */
 
 require_once("globals.inc.php");
-require_once(dir_locale("tableau_bord.lang"));
 
 $oProjet = new CProjet();
-
-$g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm     = (empty($_GET["form"]) ? $oProjet->oFormationCourante->retId() : $_GET["form"]);
-$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]); // !!! Laisser NULL car 0 = chat public et 1 = chat par équipe
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? $oProjet->oFormationCourante->retId() : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? TYPE_FORMATION : $_GET["typeNiveau"]);
+$url_iIdType     = (empty($_GET["idType"]) ? 0 : $_GET["idType"]);
+$url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]);
 
-$sParamsUrl = "?form={$url_iIdForm}";
+$sParamsUrl = NULL;
 
 foreach ($_GET as $sCle => $sValeur)
 	$sParamsUrl .= (isset($sParamsUrl) ? "&" : "?")
 		."{$sCle}={$sValeur}";
 
+if (empty($sParamsUrl))
+	$sParamsUrl = "?idNiveau={$url_iIdNiveau}"
+		."&typeNiveau={$url_iTypeNiveau}"
+		."&idModal={$url_iIdModalite}";
+
 // ---------------------
 // Initialiser
 // ---------------------
-$oFormation = new CFormation($oProjet->oBdd,$url_iIdForm);
+$g_iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 
-$sTitrePrincipal = TITRE;
+$oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
+
+$oFormation = new CFormation($oProjet->oBdd,$oIds->retIdForm());
+
+$sTitrePrincipal = "Tableau de bord";
 $sSousTitre = $oFormation->retNom();
 
 unset($oFormation);
@@ -73,7 +77,14 @@ BLOCK_HTML_HEAD;
 // }}}
 
 // {{{ Frame principale
-$iHauteurFrameFiltre = (STATUT_PERS_ETUDIANT > $g_iIdStatutUtilisateur && empty($url_iIdModalite) ? 50 : 1);
+if (empty($url_iIdModalite)
+	&& (STATUT_PERS_TUTEUR == $g_iIdStatutUtilisateur
+		|| STATUT_PERS_CONCEPTEUR == $g_iIdStatutUtilisateur
+		|| STATUT_PERS_RESPONSABLE == $g_iIdStatutUtilisateur
+		|| STATUT_PERS_ADMIN == $g_iIdStatutUtilisateur))
+	$iHauteurFrameFiltre = 50;
+else
+	$iHauteurFrameFiltre = 1;
 
 $sFramePrincipale = <<<BLOCK_FRAME_PRINCIPALE
 <frameset rows="{$iHauteurFrameFiltre}px,*" frameborder="0" border="0">

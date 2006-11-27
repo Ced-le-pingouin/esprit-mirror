@@ -19,38 +19,42 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: tableau_bord-liste.php
-** Description ............:
-** Date de création .......: 27/06/2005
-** Dernière modification ..: 08/11/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
-
-error_reporting(E_ALL);
+/**
+ * @file	tableau_bord-filtre.php
+ * 
+ * @date	2006/11/27
+ * 
+ * @author	Filippo PORCO
+ */
 
 require_once("globals.inc.php");
 require_once(dir_locale("globals.lang"));
 
 $oProjet = new CProjet();
-$oProjet->initModuleCourant();
 
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm     = (empty($_GET["form"]) ? NULL : $_GET["form"]);
+$url_iIdNiveau   = (empty($_GET["idNiveau"]) ? NULL : $_GET["idNiveau"]);
+$url_iTypeNiveau = (empty($_GET["typeNiveau"]) ? NULL : $_GET["typeNiveau"]);
+$url_iIdType     = (empty($_GET["idType"]) ? 0 : $_GET["idType"]);
 $url_iIdModalite = (empty($_GET["idModal"]) ? NULL : $_GET["idModal"]);
 
 // ---------------------
 // Initialiser
 // ---------------------
-$oFormation = new CFormation($oProjet->oBdd,$url_iIdForm);
+if (empty($url_iIdNiveau) || empty($url_iTypeNiveau))
+	exit();
 
-$iPremierModule = (is_object($oProjet->oModuleCourant) ? $oProjet->oModuleCourant->retId() : 0);
+$oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
+
+$g_iIdForm = $oIds->retIdForm();
+$g_iIdMod  = $oIds->retIdMod();
+$g_iIdRubr = $oIds->retIdRubrique();
+
+$oFormation = new CFormation($oProjet->oBdd,$g_iIdForm);
+
+unset($oIds);
 
 // ---------------------
 // Template
@@ -67,9 +71,6 @@ if ($oFormation->initModules() > 0)
 	{
 		$iIdMod = $oModule->retId();
 		
-		if ($iPremierModule == 0)
-			$iPremierModule = $iIdMod;
-		
 		$oBlocModule->nextLoop();
 		
 		$oBlocRubrique = new TPL_Block("BLOCK_RUBRIQUE",$oBlocModule);
@@ -80,19 +81,20 @@ if ($oFormation->initModules() > 0)
 			
 			foreach ($oModule->aoRubriques as $oRubrique)
 			{
+				$iIdRubrique = $oRubrique->retId();
+				
+				if ($g_iIdRubr == 0 && $g_iIdMod == $iIdMod)
+					$g_iIdRubr = $iIdRubrique;
+				
 				$oBlocRubrique->nextLoop();
 				$oBlocRubrique->remplacer(
 					array("{rubrique.option.value}"
 						,"{rubrique.option.selected}"
 						,"{rubrique.nom}")
-					, array($oRubrique->retId()
-						,($iPremierModule == $iIdMod ? "selected=\"selected\"" : NULL)
+					, array($iIdRubrique
+						,($g_iIdRubr == $iIdRubrique ? " selected=\"selected\"" : NULL)
 						,emb_htmlentities($oRubrique->retNomComplet()))
-				);
-				
-				// Mettre à -1, sinon on va placer des "selected" dans toutes les unités
-				if ($iPremierModule == $iIdMod)
-					$iPremierModule = -1;
+				);				
 			}
 			
 			$oBlocRubrique->afficher();
@@ -102,7 +104,7 @@ if ($oFormation->initModules() > 0)
 		
 		$oBlocModule->remplacer(
 			array("{module.option.value}","{module.nom}")
-			, array("?typeNiveau=".TYPE_MODULE."&idNiveau={$iIdMod}",$oModule->retNomComplet())
+			, array("?idNiveau={$g_iIdRubr}&typeNiveau=".TYPE_RUBRIQUE,$oModule->retNomComplet())
 		);
 	}
 	
