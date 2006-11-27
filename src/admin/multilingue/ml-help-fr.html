@@ -19,7 +19,19 @@ Le support inclut deux points :</p>
 <li>saisie : mise en place des méthodes de saisie nécessaires.</li>
 </ul>
 
-<h1>Windows XP</h1>
+<h2>Sommaire</h2>
+<ul>
+  <li><a href="#winxp">Windows XP</a></li>
+  <li><a href="#win98">Windows 98/Me</a></li>
+  <li><a href="#macosx">Mac OS X</a></li>
+  <li><a href="#linux">GNU/Linux</a></li>
+  <li><a href="#test">Test UTF-8</a></li>
+  <li><a href="#mail">Courrier électronique</a></li>
+</ul>
+
+
+
+<h1><a name="winxp">Windows XP</a></h1>
 <p>
 L'installation du support multilingue se fait en deux étapes : une première effectuée par l'administrateur (si elle n'a pas été faite à l'installation de Windows), et une deuxième étape de configuration effectuée par chaque utilisateur pour son compte.
 </p>
@@ -49,7 +61,7 @@ Chaque langue ajoutée sera accessible à partir de la barre d'état, générale
 </p>
 
 
-<h1>Windows 98/Me</h1>
+<h1><a name="win98">Windows 98/Me</a></h1>
 
 <p>Malheureusement ces systèmes sont trop vieux pour pouvoir permettre un fonctionnement parfait des langues non latines sous Windows.
 On peut toutefois obtenir un affichage normal et, dans une moindre mesure, une saisie des langues non latines.</p>
@@ -70,7 +82,7 @@ Si toutefois certaines pages ne s'affichent pas correctement dans Internet Explo
 
 
 
-<h1>Mac OS X</h1>
+<h1><a name="macosx">Mac OS X</a></h1>
 
 <p>Mac OS X est déjà configuré pour pouvoir afficher des langues non latines ; il faut toutefois activer la méthode de saisie adaptée à la langue.
 Pour cela, dans le menu <em>Pomme</em>, sélectionnez <em>Préférences système...</em> puis cliquez sur l'icône <em>International</em>.
@@ -79,7 +91,7 @@ Si vous cochez la case <em>Afficher le menu Saisie dans la barre de menus</em>, 
 
 
 
-<h1>GNU/Linux</h1>
+<h1><a name="linux">GNU/Linux</a></h1>
 
 <h2>Affichage</h2>
 <p>La plupart des distributions récentes installent automatiquement les fontes nécessaires.
@@ -94,12 +106,32 @@ Gnome propose un équivalent dans son interface de configuration.
 À noter que pour les langues asiatiques, vous serez peut-être amené à installer manuellement une méthode de saisie comme <em>SCIM</em> avant de pouvoir configurer votre gestionnaire de bureau.</p>
 
 
-<h1>Test UTF-8</h1>
+<h1><a name="test">Test UTF-8</a></h1>
 <p>Pour tester les capacités de votre navigateur web, il est possible
 de recourir à la
 <a href="http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Unicode/Test">page de test Unicode</a>
 proposée par Wikipedia.
 </p>
+
+
+<h1><a name="mail">Courrier électronique</a></h1>
+<p>Depuis la version "multilingue" d'Esprit (2.1), les mails envoyés par
+  la plateforme utilisent l'encodage de caractères UTF-8, comme les
+  pages HTML elles-même, en remplacement du latin-1, qui ne couvrait que
+  les langues d'Europe de l'Ouest. L'encodage utilisé est déclaré
+  explicitement dans l'en-tête de chaque mail envoyé.
+</p>
+<p>Vous devez donc utiliser un client mail acceptant cet encodage UTF-8.
+  Généralement, il suffit d'installer la dernière version de votre
+  logiciel habituel.
+</p>
+<p>Si vous utilisez un webmail, certaines versions ne sont pas à jour et
+  utilisent un affichage latin-1, en négligeant les en-têtes de mail.
+  Vous devez alors forcer votre navigateur en UTF-8 sur cette page.
+  Mais le mieux est de demander à l'administrateur de mettre à jour le
+  webmail vers une version qui respecte l'encodage déclaré !
+</p>
+
 
 <p>
     <a href="ml.php">Retour à la page précédente</a>
