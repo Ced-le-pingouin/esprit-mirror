@@ -26,7 +26,7 @@
  */
 
 require_once(dirname(__FILE__).'/Erreur.php');
-require_once(dirname(__FILE__).'/Iterateur.php');
+require_once(dirname(__FILE__).'/IterateurTableau.php');
 require_once(dirname(__FILE__).'/FichierInfo.php');
 
 /**
