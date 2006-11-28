@@ -358,4 +358,26 @@ function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 	}
 	$v_oBdd->libererResult($hResult);
 }
+
+/**
+ * Calcule le score d'une réponse d'une activité en ligne
+ * 
+ * @param	v_iNbrePropRepCorrecte	le nombre de proposition correcte de la question
+ * @param	v_iNbrePropRepFausse	le nombre de proposition fausse de la question
+ * @param	v_iNbreRepCorrecte		le nombre de réponses correctes
+ * @param	v_iNbreRepFausse		le nombre de réponses fausses
+ * @param	bForGuessing			si \c true, avec correction for guessing
+ * @param	v_iPoids				le poids de la question
+ * 
+ * @return	le score d'une réponse d'une activité en ligne
+ */
+function CalculerScore($v_iNbrePropRepCorrecte,$v_iNbrePropRepFausse,$v_iNbreRepCorrecte,$v_iNbreRepFausse,$bForGuessing=true,$v_iPoids=1)
+{
+	$fScore = 0;
+	if($bForGuessing)
+		$fScore = (($v_iNbreRepCorrecte/$v_iNbrePropRepCorrecte)-($v_iNbreRepFausse/$v_iNbrePropRepFausse))*$v_iPoids;
+	else
+		$fScore = ($v_iNbreRepCorrecte/$v_iNbrePropRepCorrecte)*$v_iPoids;
+	return $fScore;
+}
 ?>

@@ -104,6 +104,7 @@ if($v_iIdFormulaire > 0)
 		$oTpl->remplacer("{input_ss_activ}","");
 	$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
 	$sHtmlListeObjForm = "";
+	$fScore = 0;
 	foreach($aoObjetFormulaire as $oObjetFormulaire)
 	{
 		$iIdObjActuel = $oObjetFormulaire->retId();
@@ -204,6 +205,8 @@ if($v_iIdFormulaire > 0)
 						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
 						if(!empty($aoListePropRep))
 						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
 							foreach($aoListePropRep AS $oPropRep)
 							{
 								if($iIdReponseEtu[0] == $oPropRep->retId()) 
@@ -214,10 +217,12 @@ if($v_iIdFormulaire > 0)
 										switch($oPropRep->retScorePropRep())
 										{
 											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
 														break;
 											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 														break;
 											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
 														break;
 										}
 									}
@@ -226,9 +231,22 @@ if($v_iIdFormulaire > 0)
 								{
 									$sPreSelection = "";
 								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
+									{
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
+									}
+									$iNbrePropRep++;
+								}
 								$sHtmlListeObjForm .= "<option value=\"".$oPropRep->retId()."\" $sPreSelection>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
 							}
 						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
 						$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
 						$sHtmlListeObjForm .= convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
 											."</div>\n";
@@ -260,6 +278,8 @@ if($v_iIdFormulaire > 0)
 							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">";
 						if(!empty($aoListePropRep))
 						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
 							foreach($aoListePropRep AS $oPropRep)
 							{
 								$sAutoCorr = "";
@@ -271,10 +291,12 @@ if($v_iIdFormulaire > 0)
 										switch($oPropRep->retScorePropRep())
 										{
 											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
 														break;
 											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 														break;
 											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
 														break;
 										}
 									}
@@ -283,6 +305,17 @@ if($v_iIdFormulaire > 0)
 								{
 									$sPreSelection = "";
 								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
+									{
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
+									}
+									$iNbrePropRep++;
+								}
 								if($oQRadio->retDispQR() == 'Ver')
 									$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
 											."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
@@ -290,6 +323,8 @@ if($v_iIdFormulaire > 0)
 									$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 							}
 						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
 						if($oQRadio->retDispQR() == 'Ver')
 							$sHtmlListeObjForm .= "</table>";
 						$sHtmlListeObjForm .= "</td>\n"
@@ -326,6 +361,8 @@ if($v_iIdFormulaire > 0)
 							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">\n";
 						if(!empty($aoListePropRep))
 						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
 							foreach($aoListePropRep AS $oPropRep)
 							{
 								$sAutoCorr = "";
@@ -337,10 +374,12 @@ if($v_iIdFormulaire > 0)
 										switch($oPropRep->retScorePropRep())
 										{
 											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
 														break;
 											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
 														break;
 											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
 														break;
 										}
 									}
@@ -348,11 +387,17 @@ if($v_iIdFormulaire > 0)
 								else
 								{
 									$sPreSelection = "";
-									if($bAutoCorrection && $iIdFC!=NULL)
+								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
 									{
-										if($oPropRep->retScorePropRep() == 1)
-											$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
 									}
+									$iNbrePropRep++;
 								}
 								if($oQCocher->retDispQC() == 'Ver')
 									$sHtmlListeObjForm.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
@@ -362,6 +407,8 @@ if($v_iIdFormulaire > 0)
 											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 							}
 						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
 						if($oQCocher->retDispQC() == 'Ver')
 							$sHtmlListeObjForm .= "</table>\n";
 						$sHtmlListeObjForm .= "</td>\n"
@@ -384,6 +431,10 @@ if($v_iIdFormulaire > 0)
 		$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";
 	}
 	$oTpl->remplacer("{ListeObjetFormul}",$sHtmlListeObjForm);
+	if($bAutoCorrection && $iIdFC!=NULL)
+		$oTpl->remplacer("{score}","<div id=\"score\">Score = ".round($fScore,2)."</div>");
+	else
+		$oTpl->remplacer("{score}","");
 }
 else
 {

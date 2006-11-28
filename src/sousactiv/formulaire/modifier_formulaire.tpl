@@ -35,6 +35,7 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 {bouton_valider}
 </div>
 </form>
+{score}
 [BLOCK_FORMULAIRE-]
 [BLOCK_FERMER+]
 <script language="javascript" type="text/javascript">
