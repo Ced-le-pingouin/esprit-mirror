@@ -216,6 +216,11 @@ function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjFormul,$v_iIdProp
  */
 function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 {
+	$sRequeteSql = "LOCK TABLES Formulaire WRITE, Formulaire_Axe WRITE, ObjetFormulaire WRITE, PropositionReponse WRITE,"
+					." Reponse_Axe WRITE, QTexteLong WRITE, QTexteCourt WRITE, QNombre WRITE, MPTexte WRITE, MPSeparateur WRITE"
+					.", QCocher WRITE, QListeDeroul WRITE, QRadio WRITE";
+	$v_oBdd->executerRequete($sRequeteSql);
+	
 	//Copie de formulaire
 	$oFormulaire = new CFormulaire($v_oBdd,$v_iIdFormulaire);
 	$v_iIdNvFormulaire = $oFormulaire->copier($iIdNvPers);  //On envoie l'IdPers du futur propriétaire de la copie
@@ -229,6 +234,7 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 		CopierUnObjetFormulaire($v_oBdd, $oEnreg, $v_iIdNvFormulaire);
 	$v_oBdd->libererResult($hResult);
 	
+	$v_oBdd->executerRequete("UNLOCK TABLES");
 	return $v_iIdNvFormulaire;
 }
 /**
@@ -374,6 +380,16 @@ function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 function CalculerScore($v_iNbrePropRepCorrecte,$v_iNbrePropRepFausse,$v_iNbreRepCorrecte,$v_iNbreRepFausse,$bForGuessing=true,$v_iPoids=1)
 {
 	$fScore = 0;
+	if($v_iNbrePropRepCorrecte==0)
+	{
+		$v_iNbrePropRepCorrecte = 1;
+		$v_iNbreRepCorrecte = 0;
+	}
+	if($v_iNbrePropRepFausse==0)
+	{
+		$v_iNbrePropRepFausse = 1;
+		$v_iNbreRepFausse = 0;
+	}
 	if($bForGuessing)
 		$fScore = (($v_iNbreRepCorrecte/$v_iNbrePropRepCorrecte)-($v_iNbreRepFausse/$v_iNbrePropRepFausse))*$v_iPoids;
 	else
