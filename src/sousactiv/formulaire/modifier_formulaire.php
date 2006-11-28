@@ -346,19 +346,15 @@ if($v_iIdFormulaire > 0)
 					}
 					else
 					{
-						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
-											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC()."</div>\n"
-											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
-											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
-											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
-											."<td valign=\"top\">";
 						$TabRepEtu = array();
 						if($iIdFC != NULL)
 							$TabRepEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
 						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
 						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
 						if($oQCocher->retDispQC() == 'Ver')
-							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+							$sPropRepQCocher = "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+						else
+							$sPropRepQCocher = "";
 						if(!empty($aoListePropRep))
 						{
 							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
@@ -400,17 +396,28 @@ if($v_iIdFormulaire > 0)
 									$iNbrePropRep++;
 								}
 								if($oQCocher->retDispQC() == 'Ver')
-									$sHtmlListeObjForm.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+									$sPropRepQCocher.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
 											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
 								else
-									$sHtmlListeObjForm .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+									$sPropRepQCocher .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
 											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 							}
 						}
 						if($bAutoCorrection)
 							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
 						if($oQCocher->retDispQC() == 'Ver')
-							$sHtmlListeObjForm .= "</table>\n";
+							$sPropRepQCocher .= "</table>\n";
+						if($iNbrePropRepCorrecte!=$iNbreRepCorrecte)
+							$sIncomplet = "<img src=\"".dir_theme_commun('icones/incomplet.gif')."\" align=\"top\" alt=\"Réponse incomplète\" title=\"Réponse incomplète\" />";
+						else
+							$sIncomplet = "";
+						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC().$sIncomplet."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
+											."<td valign=\"top\">";
+						$sHtmlListeObjForm .= $sPropRepQCocher;
 						$sHtmlListeObjForm .= "</td>\n"
 											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
 											."</tr></table>\n"
