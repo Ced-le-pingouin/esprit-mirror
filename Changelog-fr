@@ -1,5 +1,51 @@
-Esprit  Changelog 
-
-v. 2.0  2006-05-17 : premiere version libre 
+Esprit  Changelog et Roadmap
 
 
+CHANGELOG
+
+v. 2.0  2006-05-17 : première version libre
+
+v. 2.1  2006-11-30 : version "multilingue"
+- Affichage complet en UTF-8 pour accepter les langues non-latines
+- Claviers virtuels intégrés pour le cyrillique, l'arabe
+- Méthode de saisie pour le Pinyin (translittération du chinois en latin)
+
+
+
+ROADMAP
+
+Les prévisions ci-dessous sont strictement indicatives, et peuvent être soumises à
+changements : modifications de priorités, abandon...
+
+v. 2.2  (2006-12-20 ?) : 
+(Silecs)
+- Gestionnaire de contenu pour la page d'accueil : texte d'accueil, brèves, liens
+- Inscription d'utilisateurs par lot à partir d'un fichier tableur
+- Possibilité de délégation du rôle d'administrateur par l'interface web
+
+
+v. 2.3  (février 2007 ?)
+(Silecs)
+- Intégration d'un éditeur HTML Wysiwyg : probablement TinyMCE
+- Multilingusime : gestion de l'affichage et de la saisie bidirectionnels
+
+
+v. 2.4 (avril 2007 ?)
+(Silecs)
+- Gestion des droits : changement de rôle au vol
+
+
+v. 2.5  (juin 2007 ?)
+(Silecs)
+- Gestion de groupes d'individus ; groupes de groupes
+- Inscriptions de groupes à une formation
+- Refonte de l'interface d'administration des individus
+
+
+
+TODO, non planifiés :
+- Interface de rapport de bogue (Silecs ?)
+- Remplacement des serveurs Chat et Awareness par du PHP intégré
+- Amélioration de la gestion de fichiers (possibilité pour le concepteur de
+    déposer, supprimer, déplacer des fichiers, choix d'un fichier d'index pour
+    page html...)
