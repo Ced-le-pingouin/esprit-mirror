@@ -21,8 +21,6 @@
 
 /**
  * @file	IterateurFiltre.php
- *
- * Contient une classe qui permet de filtrer des éléments dans un itérateur
  */
 
 require_once(dirname(__FILE__).'/OO.php');
@@ -38,7 +36,7 @@ require_once(dirname(__FILE__).'/Iterateur.php');
  * pas un élément de l'itérateur par la méthode #courant() est quant à lui implémenté ici, et ne doit normalement pas
  * être modifié
  */
-class IterateurFiltre extends Iterateur
+class IterateurFiltre
 {
 	var $oItr; ///< l'itérateur interne qui sera réellement utilisé (déplacé etc.) avant filtrage par la présente classe
 
@@ -91,20 +89,6 @@ class IterateurFiltre extends Iterateur
     }
 
 	/**
-	 * Recule l'itérateur interne jusqu'au précédent élément qui soit valide (existant) ET accepté par le filtre utilisé
-	 */
-    function trouverValidePrec()
-    {
-    	while ($this->oItr->estValide())
-    	{
-    		if ($this->accepter())
-    			return;
-
-    		$this->oItr->prec();
-    	}
-    }
-
-	/**
 	 * Voir Iterateur#debut()
 	 */
 	function debut()
@@ -152,16 +136,7 @@ class IterateurFiltre extends Iterateur
     function fin()
     {
     	$this->oItr->fin();
-    	$this->trouverValidePrec();
-    }
-
-    /**
-	 * Voir Iterateur#prec()
-	 */
-    function prec()
-    {
-    	$this->oItr->prec();
-    	$this->trouverValidePrec();
+    	$this->trouverValideSuiv();
     }
 
 	/**
@@ -217,5 +192,6 @@ class IterateurFiltre extends Iterateur
 }
 
 OO::defClasseAbstraite();
+OO::implemente('Iterateur');
 
 ?>

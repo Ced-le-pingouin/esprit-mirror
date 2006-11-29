@@ -21,23 +21,24 @@
 
 /**
  * @file	IterateurTableau.php
- *
- * Contient une classe/interface pour l'implémentation d'itérateurs de tableaux en PHP 4 et +
  */
 
-require_once(dirname(__FILE__).'/Iterateur.php');
+require_once(dirname(__FILE__).'/IterateurAbstrait.php');
 require_once(dirname(__FILE__).'/Erreur.php');
 
 /**
- * Sous-classe de Iterateur, qui permet d'effectuer des itérations sur un tableau (itérateur en lecture seule)
+ * Sous-classe d'IterateurAbstrait (donc bidirectionnel), qui permet d'effectuer des itérations sur un tableau
+ *
+ * @note	Pour le moment, il n'y a pas d'implémentation spécifique pour #rechercher(), elle est récupérée
+ * 			d'IterateurAbstrait, et est donc "générique"
  *
  * @note	Cet itérateur n'est pas récursif, càd que si l'un des éléments contenu est lui-même un tableau, il ne sera
  * 			pas automatiquement parcouru par les fonctions #next() et autres de la classe, il sera retourné tel quel
  * 			(sous forme de tableau, donc) par la fonction #courant()
  */
-class IterateurTableau extends Iterateur
+class IterateurTableau extends IterateurAbstrait
 {
-	var $aTableau; ///< Le tableau sur lequel aura lieu l'itération, et qui est passé au constructeur
+	var $aTableau; ///< Le tableau sur lequel aura lieu l'itération, et qui est passé au constructeur, puis sauvé ici
 
 	/**
 	 * Constructeur
@@ -105,14 +106,6 @@ class IterateurTableau extends Iterateur
     }
 
     /**
-	 * Voir Iterateur#prec()
-	 */
-    function prec()
-    {
-    	prev($this->aTableau);
-    }
-
-    /**
 	 * Voir Iterateur#taille()
 	 */
     function taille()
@@ -134,6 +127,14 @@ class IterateurTableau extends Iterateur
     function estDernier()
     {
     	return ( key($this->aTableau) === end(array_keys($this->aTableau)) );
+    }
+
+    /**
+	 * Voir Iterateur#prec()
+	 */
+    function prec()
+    {
+    	prev($this->aTableau);
     }
 }
 

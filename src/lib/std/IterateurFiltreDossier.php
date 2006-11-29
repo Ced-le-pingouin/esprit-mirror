@@ -21,43 +21,41 @@
 
 /**
  * @file	IterateurFiltreDossier.php
- * 
- * Contient la classe permettant de filtrer un itérateur de dossier 
  */
 
+require_once(dirname(__FILE__).'/OO.php');
 require_once(dirname(__FILE__).'/IterateurFiltre.php');
 require_once(dirname(__FILE__).'/IterateurDossier.php');
-require_once(dirname(__FILE__).'/OO.php');
 
 /**
- * Classe permettant de filtrer les éléments d'un itérateur de dossier, en fonction du nom de fichier/dossier de ceux-ci 
+ * Classe permettant de filtrer les éléments d'un itérateur de dossier, en fonction du nom de fichier/dossier de ceux-ci
  */
 class IterateurFiltreDossier extends IterateurFiltre
 {
 	var $sFiltre;
-	
+
 	/**
 	 * Constructeur
-	 * 
+	 *
 	 * @param	v_oItr		l'itérateur (déjà créé) qui sera parcouru en utilisant le filtre
-	 * @param	v_sFiltre	la chaîne de caractère représentant une expression régulière, qui déterminera si un élement 
-	 * 						est accepté. La syntaxe est celle des expressions régulières Perl (fonctions preg_...() en 
+	 * @param	v_sFiltre	la chaîne de caractère représentant une expression régulière, qui déterminera si un élement
+	 * 						est accepté. La syntaxe est celle des expressions régulières Perl (fonctions preg_...() en
 	 * 						PHP)
-	 * 
+	 *
 	 * @note	l'itérateur passé au constructeur est réinitialisé (#debut()) par défaut
-	 */	
+	 */
 	function IterateurFiltreDossier($v_oItr, $v_sFiltre)
 	{
 		if (!OO::instanceDe($v_oItr, 'IterateurDossier'))
 			Erreur::provoquer("L'itérateur filtré doit être une instance d'IterateurDossier ou d'une de ses "
 			                 ."sous-classes");
-			                 
+
 		$this->oItr    = $v_oItr;
 		$this->sFiltre = $v_sFiltre;
-		
+
 		$this->debut();
 	}
-	
+
 	/**
 	 * Voir IterateurFiltre#accepter()
 	 */

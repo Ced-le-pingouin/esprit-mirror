@@ -21,8 +21,6 @@
 
 /**
  * @file	OO.php
- *
- * Contient la classe de gestion de programmation orientée objet
  */
 
 require_once(dirname(__FILE__).'/Erreur.php');
@@ -32,7 +30,7 @@ $_asClassesAbstraites = array(); ///< sauvegarde l'info indiquant que certaines 
 
 /**
  * Classe permettant de gérer de concepts "forcés" absents de PHP 4, comme la déclaration d'interfaces, l'obligation
- * pour une classe d'implémenter une interface, les classes et méthodes abstraites, et les méthodes strictement 
+ * pour une classe d'implémenter une interface, les classes et méthodes abstraites, et les méthodes strictement
  * statiques
  */
 class OO
@@ -115,8 +113,25 @@ class OO
 		if (!OO::interfaceExiste($v_sInterface))
 			Erreur::provoquer("L'interface $v_sInterface n'existe pas");
 
+		// en réalité, ce ne sont pas *toutes* les méthodes présentes dans la classe "interface" qui doivent être
+		// obligatoirement implémentées, mais bien ces méthodes, *moins* le(s) constructeur(s) de cette interface ET
+		// le(s) constructeur(s) des éventuelles classes/interfaces parentes de celle-ci
+
+		// on récupère les méthodes de l'interface à implémenter
+		$asMethodesInterface = get_class_methods($v_sInterface);
+
+		// dans les méthodes à ne pas implémenter, il y a le nom du constructeur en style PHP 5...
+		$asMethodesAEliminer = array('__construct');
+		// ...et les noms des constructeurs, en style PHP 4, de l'interface et des éventuels parents de celle-ci
+		for ($sClasseParente = OO::_nomClasse($v_sInterface);
+		     !empty($sClasseParente);
+		     $sClasseParente = get_parent_class($sClasseParente))
+			$asMethodesAEliminer[] = $sClasseParente;
+
+		$asMethodesInterfaceNettoyees = array_diff($asMethodesInterface, $asMethodesAEliminer);
+
 		// vérification que la classe qui implémente dispose bien de toutes les méthodes requises de l'interface
-		$asMethodesManquantes = array_diff(get_class_methods($v_sInterface),
+		$asMethodesManquantes = array_diff($asMethodesInterfaceNettoyees,
 		                                   get_class_methods($v_sClasseQuiImplemente));
 		if (count($asMethodesManquantes))
 		{
@@ -154,39 +169,39 @@ class OO
 	}
 
 	/**
-	 * Définit une classe PHP comme abstraite. Il s'agit juste d'une information, et la seule conséquence est que 
-	 * lorsqu'une classe disposera d'au moins une méthode appelant #abstraite(), si cette classe n'est pas définie 
-	 * comme abstraite grâce à #defClasseAbstraite(), une erreur sera générée. Je n'ai pas trouvé de moyen simple de 
+	 * Définit une classe PHP comme abstraite. Il s'agit juste d'une information, et la seule conséquence est que
+	 * lorsqu'une classe disposera d'au moins une méthode appelant #abstraite(), si cette classe n'est pas définie
+	 * comme abstraite grâce à #defClasseAbstraite(), une erreur sera générée. Je n'ai pas trouvé de moyen simple de
 	 * pouvoir vérifier cela avant l'appel effectif d'une méthode OO::abstraite() en PHP 4
 	 *
 	 * @param	v_sClasseAbstraite	le nom de la classe qui doit être considérée comme abstraite. S'il \c null (par
 	 * 								défaut), on tentera de déterminer le nom de la classe en fonction du fichier d'où
-	 * 								provient l'appel, qui devra alors être un fichier qui définit la classe tout en 
+	 * 								provient l'appel, qui devra alors être un fichier qui définit la classe tout en
 	 * 								portant le même nom (avec ou sans extension)
 	 *
-	 * @warning	Il est préférable, pour des raisons de cohérence, de placer le OO:defClasseAbstraite() après la 
-	 * 			définition de la classe PHP qu'on veut déclarer comme abstraite. Voir la remarque sur #implemente() 
+	 * @warning	Il est préférable, pour des raisons de cohérence, de placer le OO:defClasseAbstraite() après la
+	 * 			définition de la classe PHP qu'on veut déclarer comme abstraite. Voir la remarque sur #implemente()
 	 * 			(valable même si elle concerne les interfaces)
 	 */
 	function defClasseAbstraite($v_sClasseAbstraite = NULL)
 	{
 		if (is_null($v_sClasseAbstraite))
 			$v_sClasseAbstraite = OO::_retClasseAppelante();
-		
-		// l'indice contient le nom de la classe telle qu'elle est déclarée, et la valeur le nom de la classe en 
-		// minuscules, de façon à faciliter la recherche en PHP 4 (ou les noms de classes sont retournés entièrement en 
+
+		// l'indice contient le nom de la classe telle qu'elle est déclarée, et la valeur le nom de la classe en
+		// minuscules, de façon à faciliter la recherche en PHP 4 (ou les noms de classes sont retournés entièrement en
 		// minuscules par les fonction natives)
 		if (!OO::classeAbstraiteExiste($v_sClasseAbstraite))
 			$GLOBALS['_asClassesAbstraites'][$v_sClasseAbstraite] = strtolower($v_sClasseAbstraite);
 	}
-	
+
 	/**
 	 * Vérifie l'existence d'une classe abstraite
 	 *
 	 * @param	v_sClasseAbstraite		le nom de la classe abstraite dont il faut vérifier l'existence
 	 * @param	v_bRechercheMinuscules	si \true, la recherche se fait sur la version en minuscules des noms
-	 * 									de classes abstraites déclarées. Si \c false (défaut), la recherche se fait sur 
-	 * 									les noms des classes abstraites tels qu'ils ont été enregistrés (voir remarque 
+	 * 									de classes abstraites déclarées. Si \c false (défaut), la recherche se fait sur
+	 * 									les noms des classes abstraites tels qu'ils ont été enregistrés (voir remarque
 	 * 									#interfaceExiste())
 	 *
 	 * @return	\c true si la classe abstraite existe, \c false sinon
@@ -198,12 +213,12 @@ class OO
 		else
 			return (in_array($v_sClasseAbstraite, $GLOBALS['_asClassesAbstraites']));
 	}
-	
+
 	/**
 	 * Placée dans une méthode d'une classe abstraite (ou une interface), provoquera volontairement une erreur si on
 	 * tente d'appeler la méthode. Cela permet de s'assurer que les méthodes dans une classe abstraite (interface) ne
 	 * seront jamais appelées. Si cette méthode est appelée par un constructeur d'une classe abstraite (interface), le
-	 * message est adapté pour indiquer qu'il est impossible d'instancier ce type de classe. Si cette méthode 
+	 * message est adapté pour indiquer qu'il est impossible d'instancier ce type de classe. Si cette méthode
 	 *
 	 * exemple: function methodeClasseAbstraite() { OO::abstraite(); }
 	 */
@@ -211,7 +226,7 @@ class OO
 	{
 		$bPhp4 = (phpversion() < 5);
 		list( , $sAppelant) = debug_backtrace();
-		
+
 		// impossible de déclarer un méthode abstraite si on n'est pas une classe abstraite, ou une interface
 		if (!OO::classeAbstraiteExiste($sAppelant['class'], $bPhp4)
 		    && !OO::interfaceExiste($sAppelant['class'], $bPhp4))
@@ -219,8 +234,8 @@ class OO
 			Erreur::provoquer("La classe ".$sAppelant['class']." contient des méthodes abstraites mais n'est ni une "
 			                 ."interface, ni une classe abstraite");
 		}
-		
-		// si on a affaire à un constructeur, on provoque l'erreur en indiquant qu'on ne peut instancier une classe 
+
+		// si on a affaire à un constructeur, on provoque l'erreur en indiquant qu'on ne peut instancier une classe
 		// abstraite ou une interface
 		if ($sAppelant['function'] == $sAppelant['class'] || $sAppelant == '__construct')
 		{
@@ -256,7 +271,7 @@ class OO
 	 *
 	 * @param	v_sClasse		le nom de la classe qui implémente l'interface
 	 * @param	v_sInterface	le nom de l'interface implémentée
-	 * 
+	 *
 	 * @note	 Méthode privée
 	 */
 	function _defClasseQuiImplemente($v_sClasse, $v_sInterface)
@@ -271,7 +286,7 @@ class OO
 	 * @param	v_sInterface	le nom de l'interface
 	 *
 	 * @return	\c true si la classe implémente l'interface, \c false sinon
-	 * 
+	 *
 	 * @note	 Méthode privée
 	 */
 	function _estClasseQuiImplemente($v_sClasse, $v_sInterface)
@@ -289,7 +304,7 @@ class OO
 	 *   éventuelle extension)
 	 *
 	 * @return	le nom de la classe au sein de laquelle a été appelée la dernière méthode de OO
-	 * 
+	 *
 	 * @note	 Méthode privée
 	 */
 	function _retClasseAppelante()
@@ -298,6 +313,23 @@ class OO
 		// "traces" (indice 1), pas la première (indice 0)
 		$asTraces = debug_backtrace();
 		return preg_replace('/\..+$/', '', basename($asTraces[1]['file']));
+	}
+
+	/**
+	 * Retourne le nom d'une classe, converti selon le type de valeurs de retour des fonctions de gestion de
+	 * classes/méthodes/fonctions du PHP courant (PHP 4 retourne tous les noms en minuscules, alors que PHP 5 les
+	 * retourne tels qu'ils ont été déclarés)
+	 *
+	 * @param	v_sClasse	le nom de classe (ou méthode) à convertir
+	 *
+	 * @return	le nom de la classe, converti selon la version de PHP courante
+	 */
+	function _nomClasse($v_sClasse)
+	{
+		if (phpversion() < 5)
+			return strtolower($v_sClasse);
+		else
+			return $v_sClasse;
 	}
 }
 

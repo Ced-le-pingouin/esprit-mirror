@@ -21,8 +21,6 @@
 
 /**
  * @file	Erreur.php
- *
- * Contient une classe de gestion des erreurs
  */
 
 /**
