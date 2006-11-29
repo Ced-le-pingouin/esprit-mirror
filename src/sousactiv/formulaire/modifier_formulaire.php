@@ -407,7 +407,7 @@ if($v_iIdFormulaire > 0)
 							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
 						if($oQCocher->retDispQC() == 'Ver')
 							$sPropRepQCocher .= "</table>\n";
-						if($iNbrePropRepCorrecte!=$iNbreRepCorrecte)
+						if($iNbrePropRepCorrecte!=$iNbreRepCorrecte && $iNbreRepCorrecte>0)
 							$sIncomplet = "<img src=\"".dir_theme_commun('icones/incomplet.gif')."\" align=\"top\" alt=\"Réponse incomplète\" title=\"Réponse incomplète\" />";
 						else
 							$sIncomplet = "";
