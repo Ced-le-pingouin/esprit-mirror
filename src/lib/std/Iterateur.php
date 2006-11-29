@@ -28,10 +28,8 @@
 require_once(dirname(__FILE__).'/OO.php');
 
 /**
- * Classe "vide" qui présente les méthodes requise pour implémenter un itérateur. Si PHP 4 le permettait, cette classe
- * devrait plutôt être une interface. Dans sa forme actuelle, elle servira juste de classe parente pour de véritables
- * implémentations d'itérateurs en fonction de différents objets (par ex. un itérateur pour tableaux PHP). C'est
- * également ici que la documentation sur le comportement attendu des implémentations se trouve.
+ * Classe abstraite qui présente les méthodes requise pour implémenter un itérateur.
+ * C'est également ici que se trouve la documentation sur le comportement attendu des implémentations.
  */
 class Iterateur
 {
@@ -58,7 +56,7 @@ class Iterateur
     /**
      * Déplace l'itérateur vers l'avant
      */
-    function suivant()
+    function suiv()
     {
     	OO::abstraite();
     }
@@ -98,158 +96,127 @@ class Iterateur
     /**
      * Place l'itérateur sur le dernier élément
      *
-     * @return	le dernier élément de l'itérateur
+     * @warning	Même remarque sur la performance que pour #taille()
      */
     function fin()
     {
-    	OO::abstraite();
-    }
+    	$this->debut();
 
-
-    /**
-     * Indique si cet itérateur supporte la méthode #precedent()
-     *
-     * @return	doit retourner \c true si l'itérateur (sous-classe) supporte la méthode #precedent(), \c false sinon
-     * 			(par défaut).
-     *
-     * @note 	Si vous sous-classez l'itérateur et que vous définissez une méthode #precedent(), n'oubliez pas
-     * 			d'également redéfinir la présente méthode pour qu'elle retourne \c true. Sinon, il n'est pas nécessaire
-     * 			de la redéfinir
-     */
-    function supportePrecedent()
-    {
-    	return FALSE;
+    	$iPosDernier = $this->taille() - 1;
+    	for ($i = 0; $i < $iPosDernier; $i++)
+			$this->suiv();
     }
 
     /**
      * Déplace l'itérateur vers l'arrière
      */
-    function precedent()
+    function prec()
     {
     	OO::abstraite();
     }
 
-
-    /**
-     * Indique si cet itérateur supporte la méthode #taille()
-     *
-     * @return	doit retourner \c true si l'itérateur (sous-classe) supporte la méthode #taille(), \c false sinon
-     * 			(par défaut).
-     *
-     * @note 	même remarque que pour #supportePrecedent()
-     */
-	function supporteTaille()
-	{
-		return FALSE;
-	}
 
     /**
      * Retourne le nombre d'éléments présents dans l'itérateur
      *
      * @return	le nombre d'éléments de l'itérateur
+     *
+     * @warning	l'implémentation par défaut de cette méthode, présente dans la classe abstraite Iterateur, parcourt
+     * 			l'itérateur avec une boucle PHP pour accomplir sa tâche, ce qui peut être très très lent sur de grandes
+     * 			"collections"; donc quand il est possible d'utiliser des fonctions natives directes ou plus rapides pour
+     * 			implémenter cette méthode dans une sous-classe d'Iterateur, il est vivement conseillé de la redéfinir
      */
     function taille()
     {
-    	OO::abstraite();
+		$CleSauvee = $this->cle();
+
+		for ($this->debut(), $iTaille = 0; $this->estValide(); $this->suiv())
+			++$iTaille;
+
+		$this->rechercher($CleSauvee);
+
+		return $iTaille;
     }
 
     /**
-     * Indique si cet itérateur supporte la méthode #rechercher()
-     *
-     * @return	doit retourner \c true si l'itérateur (sous-classe) supporte la méthode #rechercher(), \c false sinon
-     * 			(par défaut).
-     *
-     * @note 	même remarque que pour #supportePrecedent()
-     */
-    function supporteRechercher()
-    {
-    	return FALSE;
-    }
-
-    /**
-     * Déplace l'itérateur jusqu'à un emplacement donné en fonction d'une clé
+     * Déplace l'itérateur jusqu'à un emplacement donné en fonction d'une clé. Si cette dernière n'existe pas,
+     * l'itérateur restera à la même position qu'avant l'appel
      *
      * @param	v_Cle	la clé utilisée pour déplacer le "pointeur" interne de l'itérateur
+     *
+     * @return	\c true si la clé recherchée existe bien dans la "collection" sur laquelle l'itérateur fonctionne,
+     * 			\c false sinon
+     *
+     * @warning	Même remarque sur la performance que pour #taille()
      */
     function rechercher($v_Cle)
     {
-    	OO::abstraite();
-    }
+    	$CleSauvee = $this->cle();
 
+    	for ($this->debut(); $this->estValide(); $this->suiv())
+    		if ($this->cle() === $v_Cle)
+    			return TRUE;
 
-    /**
-     * Indique si cet itérateur supporte la méthode #estPremier()
-     *
-     * @return	doit retourner \c true si l'itérateur (sous-classe) supporte la méthode #estPremier(), \c false sinon
-     * 			(par défaut).
-     *
-     * @note 	même remarque que pour #supportePrecedent()
-     */
-    function supporteEstPremier()
-    {
-    	return FALSE;
+		// si pas trouvé, on replace l'itérateur sur la position qu'il avait avant la recherche, SAUF si cette position
+		// était identique en début de recherche à celle en fin => = position "invalide" car après le dernier élément
+		// => si on demande à chercher cette position invalide, elle ne sera jamais trouvée, et provoquera un nouvel
+		// appel à rechercher() à la fin de chaque appel rechercher() etc. => boucle infinie
+		if ($this->cle() !== $CleSauvee)
+			$this->rechercher($CleSauvee);
+		return FALSE;
     }
 
     /**
      * Indique si l'élément courant de l'itérateur est le premier
      *
      * @return	\c true si l'itérateur est positionné sur le premier élément. Sinon \c false
+     *
+     * @warning	Même remarque sur la performance que pour #taille()
      */
     function estPremier()
     {
-    	OO::abstraite();
-    }
+    	// on sauvegarde la clé actuelle de l'itérateur et on le place au début...
+    	$CleSauvee = $this->cle();
+    	$this->debut();
 
-    /**
-     * Indique si cet itérateur supporte la méthode #estDernier()
-     *
-     * @return	doit retourner \c true si l'itérateur (sous-classe) supporte la méthode #estDernier(), \c false sinon
-     * 			(par défaut).
-     *
-     * @note 	même remarque que pour #supportePrecedent()
-     */
-    function supporteEstDernier()
-    {
-    	return FALSE;
+    	// ...pour vérifier si la clé actuelle était bien celle du premier élément
+    	if ($this->cle() === $CleSauvee)
+    	{
+    		return TRUE;
+    	}
+    	// sinon, ça n'était pas le 1er élément, alors on replace l'itérateur dans sa position d'avant l'appel
+    	else
+    	{
+    		$this->rechercher($CleSauvee);
+    		return FALSE;
+    	}
     }
 
     /**
      * Indique si l'élément courant de l'itérateur est le dernier
      *
      * @return	\c true si l'itérateur est positionné sur le dernier élément. Sinon \c false
+     *
+     * @warning	Même remarque sur la performance que pour #taille()
      */
     function estDernier()
     {
-    	OO::abstraite();
-    }
+    	// on sauvegarde la clé actuelle de l'itérateur et on le place à la fin...
+    	$CleSauvee = $this->cle();
+    	$this->fin();
 
-
-	/** @name Alias de méthodes existantes : les méthodes ci-dessous ne DOIVENT PAS ETRE REDEFINIES */
-	//@{
-    /**
-     * Alias pour #precedent(). Ne doit pas être redéfini par les sous-classe (c'est automatique)
-     */
-    function prec()
-    {
-    	$this->precedent();
+    	// ...pour vérifier si la clé actuelle était bien celle du dernier élément
+    	if ($this->cle() === $CleSauvee)
+    	{
+    		return TRUE;
+    	}
+    	// sinon, ça n'était pas le dernier élément, alors on replace l'itérateur dans sa position d'avant l'appel
+    	else
+    	{
+    		$this->rechercher($CleSauvee);
+    		return FALSE;
+    	}
     }
-
-    /**
-     * Alias pour #suivant(). Ne doit pas être redéfini par les sous-classe (c'est automatique)
-     */
-    function suiv()
-    {
-    	$this->suivant();
-    }
-
-    /**
-     * Alias pour #chercher(). Ne doit pas être redéfini par les sous-classe (c'est automatique)
-     */
-    function aller($v_Cle)
-    {
-    	$this->rechercher($v_Cle);
-    }
-    //@}
 }
 
 // n'est pas une interface, car certaines méthodes sont prédéfinies

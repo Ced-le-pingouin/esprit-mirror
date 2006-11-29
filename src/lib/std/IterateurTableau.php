@@ -62,9 +62,9 @@ class IterateurTableau extends Iterateur
 	}
 
     /**
-	 * Voir Iterateur#suivant()
+	 * Voir Iterateur#suiv()
 	 */
-    function suivant()
+    function suiv()
     {
     	next($this->aTableau);
     }
@@ -104,30 +104,12 @@ class IterateurTableau extends Iterateur
     	end($this->aTableau);
     }
 
-
     /**
-     * Voir Iterateur#supportePrecedent()
-     */
-    function supportePrecedent()
-    {
-    	return TRUE;
-    }
-
-    /**
-	 * Voir Iterateur#precedent()
+	 * Voir Iterateur#prec()
 	 */
-    function precedent()
+    function prec()
     {
     	prev($this->aTableau);
-    }
-
-
-    /**
-     * Voir Iterateur#supporteTaille()
-     */
-    function supporteTaille()
-    {
-    	return TRUE;
     }
 
     /**
@@ -138,29 +120,12 @@ class IterateurTableau extends Iterateur
     	return count($this->aTableau);
     }
 
-
-    /**
-     * Voir Iterateur#supporteEstPremier()
-     */
-    function supporteEstPremier()
-    {
-    	return TRUE;
-    }
-
     /**
 	 * Voir Iterateur#estPremier()
 	 */
     function estPremier()
     {
     	return ( key($this->aTableau) === reset(array_keys($this->aTableau)) );
-    }
-
-    /**
-     * Voir Iterateur#supporteEstDernier()
-     */
-    function supporteEstDernier()
-    {
-    	return TRUE;
     }
 
     /**

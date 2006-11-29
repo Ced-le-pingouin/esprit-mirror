@@ -34,7 +34,7 @@ require_once(dirname(__FILE__).'/FichierInfo.php');
  * 
  * @note	Pour le moment, cet itérateur hérite directement de IterateurTableau, car grâce à la fonction glob() de 
  * 			PHP, on peut directement ramener sous forme de tableau la liste des fichiers/dossiers d'un dossier, et donc 
- * 			se passer de opendir() et readdir(), qui auraient empêché une implémentation simple de #precedent(), ou de 
+ * 			se passer de opendir() et readdir(), qui auraient empêché une implémentation simple de #prec(), ou de 
  * 			#taille()
  */
 class IterateurDossier extends IterateurTableau
