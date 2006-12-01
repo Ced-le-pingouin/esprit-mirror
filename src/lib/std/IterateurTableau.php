@@ -23,18 +23,18 @@
  * @file	IterateurTableau.php
  */
 
-require_once(dirname(__FILE__).'/IterateurAbstrait.php');
+require_once(dirname(__FILE__).'/OO.php');
 require_once(dirname(__FILE__).'/Erreur.php');
+require_once(dirname(__FILE__).'/IterateurAbstrait.php');
+require_once(dirname(__FILE__).'/IterateurBidir.php');
+require_once(dirname(__FILE__).'/IterateurComposite.php');
 
 /**
- * Sous-classe d'IterateurAbstrait (donc bidirectionnel), qui permet d'effectuer des itérations sur un tableau
+ * Sous-classe d'IterateurAbstrait, qui permet d'effectuer des itérations sur un tableau, mais implémente en plus 
+ * l'interface IterateurBidir pour fournir un itérateur bidirectionnel
  *
  * @note	Pour le moment, il n'y a pas d'implémentation spécifique pour #rechercher(), elle est récupérée
  * 			d'IterateurAbstrait, et est donc "générique"
- *
- * @note	Cet itérateur n'est pas récursif, càd que si l'un des éléments contenu est lui-même un tableau, il ne sera
- * 			pas automatiquement parcouru par les fonctions #next() et autres de la classe, il sera retourné tel quel
- * 			(sous forme de tableau, donc) par la fonction #courant()
  */
 class IterateurTableau extends IterateurAbstrait
 {
@@ -53,7 +53,8 @@ class IterateurTableau extends IterateurAbstrait
 		$this->aTableau = $v_aTableau;
 		$this->debut();
 	}
-
+	
+	// méthodes implémentées pour l'interface Iterateur (simple)
 	/**
 	 * Voir Iterateur#debut()
 	 */
@@ -128,7 +129,9 @@ class IterateurTableau extends IterateurAbstrait
     {
     	return ( key($this->aTableau) === end(array_keys($this->aTableau)) );
     }
+	
 
+	// méthodes implémentées pour l'interface IterateurBidir uniquement (la classe IterateurAbstrait l'implémente)
     /**
 	 * Voir Iterateur#prec()
 	 */
@@ -136,6 +139,29 @@ class IterateurTableau extends IterateurAbstrait
     {
     	prev($this->aTableau);
     }
+    
+    
+    // méthodes implémentées pour l'interface IterateurComposite
+    /**
+     * Voir IterateurComposite#aEnfants()
+     * 
+     * @return	\c true si l'élément courant du tableau est lui même un tableau, \c false sinon
+     */
+    function aEnfants()
+    {
+    	return is_array($this->courant());
+    }
+    
+    /**
+     * Voir IterateurComposite#retIterateurEnfants()
+     */
+    function retIterateurEnfants()
+    {
+    	return new IterateurTableau($this->courant());
+    }
 }
+
+OO::implemente('IterateurBidir');
+OO::implemente('IterateurComposite');
 
 ?>

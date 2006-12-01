@@ -123,10 +123,11 @@ class OO
 		// dans les méthodes à ne pas implémenter, il y a le nom du constructeur en style PHP 5...
 		$asMethodesAEliminer = array('__construct');
 		// ...et les noms des constructeurs, en style PHP 4, de l'interface et des éventuels parents de celle-ci
-		for ($sClasseParente = OO::_nomClasse($v_sInterface);
-		     !empty($sClasseParente);
+		for ($sClasseParente = OO::_nomClasse($v_sInterface); !empty($sClasseParente);
 		     $sClasseParente = get_parent_class($sClasseParente))
+		{
 			$asMethodesAEliminer[] = $sClasseParente;
+		}
 
 		$asMethodesInterfaceNettoyees = array_diff($asMethodesInterface, $asMethodesAEliminer);
 
@@ -165,7 +166,7 @@ class OO
 		if (!class_exists($v_sClasse) && !OO::interfaceExiste($v_sClasse))
 			Erreur::provoquer("La classe ou interface $v_sClasse n'existe pas");
 
-		return (is_a($v_oObjet, $v_sClasse) || OO::_estClasseQuiImplemente($v_sClasse, $v_sClasse));
+		return (is_a($v_oObjet, $v_sClasse) || OO::_estClasseQuiImplemente(get_class($v_oObjet), $v_sClasse));
 	}
 
 	/**
@@ -276,22 +277,41 @@ class OO
 	 */
 	function _defClasseQuiImplemente($v_sClasse, $v_sInterface)
 	{
-		$GLOBALS['_aaInterfaces'][$v_sInterface][$v_sClasse] = TRUE;
+		$GLOBALS['_aaInterfaces'][$v_sInterface][$v_sClasse] = strtolower($v_sClasse);
 	}
 
 	/**
-	 * Vérifie qu'un classe implémente une interface donnée
+	 * Vérifie qu'un classe, ou une de ses classes parentes, implémente une interface donnée
 	 *
 	 * @param	v_sClasse		le nom de la classe
 	 * @param	v_sInterface	le nom de l'interface
 	 *
-	 * @return	\c true si la classe implémente l'interface, \c false sinon
+	 * @return	\c true si la classe ou une de ses classes parentes implémente l'interface, \c false sinon
 	 *
 	 * @note	 Méthode privée
 	 */
 	function _estClasseQuiImplemente($v_sClasse, $v_sInterface)
 	{
-		return (isset($GLOBALS['_aaInterfaces'][$v_sInterface][$v_sClasse]));
+		if (phpversion() < 5)
+		{
+			for ($sClasseParente = $v_sClasse; !empty($sClasseParente); 
+			     $sClasseParente = get_parent_class($sClasseParente))
+			{
+				if (in_array($sClasseParente, $GLOBALS['_aaInterfaces'][$v_sInterface]))
+					return TRUE;
+			}
+		}
+		else
+		{
+			for ($sClasseParente = $v_sClasse; !empty($sClasseParente); 
+			     $sClasseParente = get_parent_class($sClasseParente))
+			{
+				if (isset($GLOBALS['_aaInterfaces'][$v_sInterface][$sClasseParente]))
+					return TRUE;
+			}
+		}
+		
+		return FALSE;
 	}
 
 	/**

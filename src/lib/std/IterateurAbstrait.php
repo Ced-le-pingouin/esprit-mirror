@@ -24,11 +24,11 @@
  */
 
 require_once(dirname(__FILE__).'/OO.php');
-require_once(dirname(__FILE__).'/IterateurBidir.php');
+require_once(dirname(__FILE__).'/Iterateur.php');
 
 /**
  * Classe abstraite qui implémente quelques méthodes requises par un itérateur. Elle se base sur l'interface
- * IterateurBidir
+ * Iterateur (simple)
  */
 class IterateurAbstrait
 {
@@ -187,18 +187,10 @@ class IterateurAbstrait
     		return FALSE;
     	}
     }
-
-    /**
-     * Voir IterateurBidir#prec()
-     */
-    function prec()
-    {
-    	OO::abstraite();
-    }
 }
 
 // propose un itérateur avec des méthodes prédéfinies, mais n'implémente pas tout => classe abstraite
 OO::defClasseAbstraite();
-OO::implemente('IterateurBidir');
+OO::implemente('Iterateur');
 
 ?>

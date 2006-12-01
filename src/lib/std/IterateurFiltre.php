@@ -24,7 +24,7 @@
  */
 
 require_once(dirname(__FILE__).'/OO.php');
-require_once(dirname(__FILE__).'/Iterateur.php');
+require_once(dirname(__FILE__).'/IterateurDecorateur.php');
 
 /**
  * Classe abstraite qui sert de filtre (sous forme de décorateur) à des objets dérivés de Iterateur.
@@ -36,33 +36,8 @@ require_once(dirname(__FILE__).'/Iterateur.php');
  * pas un élément de l'itérateur par la méthode #courant() est quant à lui implémenté ici, et ne doit normalement pas
  * être modifié
  */
-class IterateurFiltre
+class IterateurFiltre extends IterateurDecorateur
 {
-	var $oItr; ///< l'itérateur interne qui sera réellement utilisé (déplacé etc.) avant filtrage par la présente classe
-
-	/**
-	 * Constructeur
-	 *
-	 * @param	v_oItr	l'itérateur (déjà créé) qui sera parcouru en utilisant le filtre
-	 */
-	function IterateurFiltre($v_oItr)
-	{
-		// la méthode en elle-même n'est pas abstraite, mais la classe doit l'être, et donc non-instanciable
-		OO::abstraite();
-
-		$this->oItr = $v_oItr;
-	}
-
-	/**
-	 * Retourne l'itérateur interne, passé au constructeur lors de la création de l'objet
-	 *
-	 * @return	l'itérateur filtré
-	 */
-	function retIterateurInterne()
-	{
-		return $this->oItr;
-	}
-
 	/**
 	 * Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir si l'élément courant est
 	 * "acceptable" ou pas selon le filtre voulu
@@ -87,7 +62,9 @@ class IterateurFiltre
     		$this->oItr->suiv();
     	}
     }
-
+	
+	// certaines méthodes de la classe parente IterateurDecorateur, et donc par extentsion de l'interface Iterateur, 
+	// doivent être réimplémentées pour assurer le fonctionnement du filtre
 	/**
 	 * Voir Iterateur#debut()
 	 */
@@ -104,30 +81,6 @@ class IterateurFiltre
     {
     	$this->oItr->suiv();
     	$this->trouverValideSuiv();
-    }
-
-    /**
-	 * Voir Iterateur#estValide()
-	 */
-    function estValide()
-    {
-		return $this->oItr->estValide();
-    }
-
-    /**
-	 * Voir Iterateur#cle()
-	 */
-    function cle()
-    {
-    	return $this->oItr->cle();
-    }
-
-    /**
-	 * Voir Iterateur#courant()
-	 */
-    function courant()
-    {
-    	return $this->oItr->courant();
     }
 
 	/**
@@ -173,25 +126,8 @@ class IterateurFiltre
    		$this->oItr->rechercher($CleSauvee);
    		return FALSE;
     }
-
-    /**
-	 * Voir Iterateur#estPremier()
-	 */
-    function estPremier()
-    {
-    	return $this->oItr->estPremier();
-    }
-
-    /**
-	 * Voir Iterateur#estDernier()
-	 */
-    function estDernier()
-    {
-    	return $this->oItr->estDernier();
-    }
 }
 
 OO::defClasseAbstraite();
-OO::implemente('Iterateur');
 
 ?>

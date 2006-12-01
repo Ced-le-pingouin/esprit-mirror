@@ -27,12 +27,12 @@
  * @name Constantes - types d'erreurs
  *
  * Celles-ci reprennent les constantes \c E_USER_ de PHP. Plus tard, il faudrait qu'elles deviennent des constantes
- * de classe en laissant tomber le préfixe \c CERREUR_ au passage, mais les constantes de classe n'existent qu'en PHP 5
+ * de classe en laissant tomber le préfixe \c ERREUR_ au passage, mais les constantes de classe n'existent qu'en PHP 5
  */
 //@{
-define("CERREUR_FATALE", E_USER_ERROR);   /// l'erreur correspond aux erreurs fatales de PHP, elle provoquera donc l'arrêt du script                @enum CERREUR_FATALE
-define("CERREUR_AVERT" , E_USER_WARNING); /// l'erreur correspond aux warnings de PHP => pas d'arrêt du script mais elles sont affichées par défaut @enum CERREUR_AVERT
-define("CERREUR_NOTE"  , E_USER_NOTICE);  /// l'erreur correspond aux notices de PHP => je pense que par défaut elles ne sont pas affichées         @enum CERREUR_NOTE
+define("ERREUR_FATALE", E_USER_ERROR);   /// l'erreur correspond aux erreurs fatales de PHP, elle provoquera donc l'arrêt du script                @enum ERREUR_FATALE
+define("ERREUR_AVERT" , E_USER_WARNING); /// l'erreur correspond aux warnings de PHP => pas d'arrêt du script mais elles sont affichées par défaut @enum ERREUR_AVERT
+define("ERREUR_NOTE"  , E_USER_NOTICE);  /// l'erreur correspond aux notices de PHP => je pense que par défaut elles ne sont pas affichées         @enum ERREUR_NOTE
 //@}
 
 /**
@@ -51,11 +51,11 @@ class Erreur
 	 * des objets de type \c Exception)
 	 *
 	 * @param	v_sTexte	le texte qui décrit l'erreur
-	 * @param	v_iNiveau	le type d'erreur (voir constantes \c CERREUR_). Par défaut, il s'agit d'une erreur de type
-	 * 						\c CERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
+	 * @param	v_iNiveau	le type d'erreur (voir constantes \c ERREUR_). Par défaut, il s'agit d'une erreur de type
+	 * 						\c ERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
 	 * 						de type \c E_USER_NOTICE, donc de moindre importance)
 	 */
-	function Erreur($v_sTexte, $v_iNiveau = CERREUR_FATALE)
+	function Erreur($v_sTexte, $v_iNiveau = ERREUR_FATALE)
 	{
 		$this->sTexte  = $v_sTexte;
 		$this->iNiveau = $v_iNiveau;
@@ -65,13 +65,13 @@ class Erreur
 	 * Provoque une erreur grâce à une fonction native de PHP
 	 *
 	 * @param	v_sTexte	le texte qui décrit l'erreur
-	 * @param	v_iNiveau	le type d'erreur (voir constantes \c CERREUR_). Par défaut, il s'agit d'une erreur de type
-	 * 						\c CERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
+	 * @param	v_iNiveau	le type d'erreur (voir constantes \c ERREUR_). Par défaut, il s'agit d'une erreur de type
+	 * 						\c ERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
 	 * 						de type \c E_USER_NOTICE, donc de moindre importance)
 	 *
 	 * @note	Cette fonction est censée être statique (méthode de classe, pas d'instance)
 	 */
-	function provoquer($v_sTexte, $v_iNiveau = CERREUR_FATALE)
+	function provoquer($v_sTexte, $v_iNiveau = ERREUR_FATALE)
 	{
 		// on retrouve d'où vient l'appel, et on remonte d'un niveau tant qu'il vient de la classe OO, car cette
 		// dernière est également censée afficher les messages d'erreurs concernant la classe qui l'appelle
@@ -94,7 +94,7 @@ class Erreur
 
 		switch($v_iNiveau)
 		{
-			case CERREUR_FATALE:
+			case ERREUR_FATALE:
 				echo '<strong>',
 				     'Erreur: ',
 				     '<em>',
@@ -108,7 +108,7 @@ class Erreur
 				die();
 				break;
 
-			case CERREUR_AVERT:
+			case ERREUR_AVERT:
 				echo '<strong>',
 				     'Attention: ',
 			         '<em>',

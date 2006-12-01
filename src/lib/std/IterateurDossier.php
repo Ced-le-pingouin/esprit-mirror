@@ -55,7 +55,7 @@ class IterateurDossier extends IterateurTableau
 	{
 		if (!is_dir($v_sChemin) || !is_readable($v_sChemin))
 			Erreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
-			                   CERREUR_AVERT);
+			                   ERREUR_AVERT);
 
 		$this->sFiltrePre = $v_sFiltrePre;
 		$this->oDossier = new FichierInfo($v_sChemin);
@@ -89,6 +89,28 @@ class IterateurDossier extends IterateurTableau
 	{
 		return $this->sFiltrePre;
 	}
+	
+	// réimplémenter les méthodes de l'interface ItérateurComposite: un élément d'IterateurDossier considéré comme 
+	// "parent" uniquement s'il s'agit d'un dossier
+    /**
+     * Voir IterateurComposite#aEnfants()
+     * 
+     * @return	\c true si l'élément courant représente un dossier, \c false sinon
+     */
+    function aEnfants()
+    {
+    	$f = $this->courant();
+    	return $f->estDossier();
+    }
+    
+    /**
+     * Voir IterateurComposite#retIterateurEnfants()
+     */
+    function retIterateurEnfants()
+    {
+    	$f = $this->courant();
+    	return new IterateurDossier($f->retChemin());
+    }
 }
 
 ?>
