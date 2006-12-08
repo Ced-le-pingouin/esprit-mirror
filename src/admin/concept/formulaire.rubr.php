@@ -98,7 +98,7 @@ for ($i=0; $i<count($asTypesUnite); $i++)
 // Afficher les éléments pour le rubrique de type 'Lien'
 // *************************************
 
-$sDonnee = explode(":",$oProjet->oRubriqueCourante->retDonnee());
+$sDonnee = explode(":",$oProjet->oRubriqueCourante->retDonnees());
 
 $iNumDiv = 0;
 

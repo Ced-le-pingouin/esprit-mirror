@@ -54,7 +54,7 @@ if (isset ($g_iRubrique))
 		$repDeposer = $oProjet->retRepRubriques ();
 
 		// Effacer l'ancien fichier qui se trouve dans le répertoire du serveur
-		$f = explode (":",$oModule_Rubrique->retDonnee ());
+		$f = explode (":",$oModule_Rubrique->retDonnees());
 
 		@unlink ($repDeposer.$f[0]);
 

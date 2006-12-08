@@ -271,7 +271,7 @@ if ($iIdMod > 0)
 				case LIEN_PAGE_HTML:
 				//   --------------
 					$oBlock_Cours->ajouter($oSet_Page_Html);
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
@@ -290,7 +290,7 @@ if ($iIdMod > 0)
 				case LIEN_SITE_INTERNET:
 				//   ------------------
 					$oBlock_Cours->ajouter($oSet_Site_Internet);
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
@@ -308,7 +308,7 @@ if ($iIdMod > 0)
 				//   -------------------------
 					$oBlock_Cours->ajouter($oSet_Document_Telecharger);
 					
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
