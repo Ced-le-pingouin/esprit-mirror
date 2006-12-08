@@ -5,7 +5,7 @@ CHANGELOG
 
 v. 2.0  2006-05-17 : première version libre (r66)
 
-v. 2.1  2006-11-30 : version "multilingue"
+v. 2.1  2006-12-08 : version "multilingue"
 - Affichage complet en UTF-8 pour accepter les langues non-latines
 - Claviers virtuels intégrés pour le cyrillique, l'arabe
 - Méthode de saisie pour le Pinyin (translittération du chinois en latin)
