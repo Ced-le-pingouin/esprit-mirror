@@ -25,6 +25,7 @@
 
 require_once(dirname(__FILE__).'/OO.php');
 require_once(dirname(__FILE__).'/IterateurFiltre.php');
+require_once(dirname(__FILE__).'/IterateurRecursif.php');
 require_once(dirname(__FILE__).'/IterateurDossier.php');
 
 /**
@@ -46,14 +47,20 @@ class IterateurFiltreDossier extends IterateurFiltre
 	 */
 	function IterateurFiltreDossier($v_oItr, $v_sFiltre)
 	{
-		if (!OO::instanceDe($v_oItr, 'IterateurDossier'))
+		if (OO::instanceDe($v_oItr, 'IterateurDossier')
+		    || (OO::instanceDe($v_oItr, 'IterateurRecursif')
+		        && OO::instanceDe($v_oItr->retIterateurInterne(), 'IterateurDossier')))
+		{
+			$this->oItr    = $v_oItr;
+			$this->sFiltre = $v_sFiltre;
+	
+			$this->debut();
+		}
+		else
+		{
 			Erreur::provoquer("L'itérateur filtré doit être une instance d'IterateurDossier ou d'une de ses "
 			                 ."sous-classes");
-
-		$this->oItr    = $v_oItr;
-		$this->sFiltre = $v_sFiltre;
-
-		$this->debut();
+		}
 	}
 
 	/**
@@ -64,6 +71,18 @@ class IterateurFiltreDossier extends IterateurFiltre
 		$f = $this->oItr->courant();
 		return (bool)preg_match($this->sFiltre, $f->retNom());
 	}
+	
+	function aEnfants()
+	{
+		return $this->oItr->aEnfants();
+	}
+	
+	function retIterateurEnfants()
+	{
+		return $this->oItr->retIterateurEnfants();
+	}
 }
+
+OO::implemente('IterateurComposite');
 
 ?>

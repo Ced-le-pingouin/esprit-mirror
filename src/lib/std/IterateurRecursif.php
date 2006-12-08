@@ -41,7 +41,7 @@ define("ITR_REC_MODE_DERNIER" , 3); /// constante interne à des fins de vérifi
  * aussi les enfants de ce dernier lorsqu'il y en a. L'itérateur "décoré" doit implémenter l'interface 
  * IterateurComposite pour que ça fonctionne
  * 
- * @todo: taille(), rechercher(), estPremier(), et estDernier() ???
+ * @todo: taille(), rechercher(), estPremier(), et estDernier() ne fonctionnent pas correctement pour l'instant
  * @todo: prec() ??? (car on hérite d'IterateurTableau, bidirectionnel, gasp!)
  * @todo: voir s'il y a moyen de modifier la façon d'implémenter \c _bDoitRetournerParent, car le nom n'est pas clair, 
  *        et également, y a-t-il moyen de faire tous les test le concernant dans #_trouverElementSuiv(), qui 
@@ -74,6 +74,14 @@ class IterateurRecursif extends IterateurDecorateur
 		$this->iMode    =  $v_iMode;
 
 		$this->debut();
+	}
+	
+	/**
+	 * @return	le niveau de l'itérateur courant, càd le nombre d'ancêtres dont il dispose
+	 */
+	function retNiveau()
+	{
+		return count($this->aoItr) - 1;
 	}
 	
 	/**

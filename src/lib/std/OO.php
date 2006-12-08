@@ -161,12 +161,29 @@ class OO
 		if (!is_object($v_oObjet))
 			Erreur::provoquer("$v_oObjet n'est pas un objet");
 
-		// les interfaces sont aussi des classes dans notre système pour PHP 4, donc cette vérification fonctionne pour
-		// les deux
-		if (!class_exists($v_sClasse) && !OO::interfaceExiste($v_sClasse))
+		// si la classe existe et que l'objet en est une instance, ou l'instance d'une classe dérivée => ok
+		if (class_exists($v_sClasse))
+		{
+			$bExiste = TRUE;
+		 	if (is_a($v_oObjet, $v_sClasse))
+				return TRUE;
+		}
+		
+		// si l'interface existe et que l'objet l'implémente
+		if (OO::interfaceExiste($v_sClasse))
+		{
+			$bExiste = TRUE;
+			if (OO::_estClasseQuiImplemente(get_class($v_oObjet), $v_sClasse))
+				return TRUE;
+		
+		}
+		
+		// si le second paramètre n'était ni une classe, ni une interface existantes => erreur
+		if (!$bExiste)
 			Erreur::provoquer("La classe ou interface $v_sClasse n'existe pas");
-
-		return (is_a($v_oObjet, $v_sClasse) || OO::_estClasseQuiImplemente(get_class($v_oObjet), $v_sClasse));
+		
+		// si l'objet n'est ni une instance, ni une implémentation du second paramètre
+		return FALSE;
 	}
 
 	/**

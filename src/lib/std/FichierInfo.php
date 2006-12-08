@@ -23,12 +23,17 @@
  * @file	FichierInfo.php
  */
 
+require_once(dirname(__FILE__).'/Erreur.php');
+
+/** Constantes - Séparateurs de fichiers/dossiers */
+//@{
+define('FICHIER_SEPARATEUR_UNIX'   , '/') ; ///< Le séparateur de fichiers/dossiers par défaut sous Unix 
+define('FICHIER_SEPARATEUR_WINDOWS', '\\'); ///< Le séparateur de fichiers/dossiers par défaut sous Windows
+//@}
+
 /**
  * Classe d'information sur les fichiers/dossiers du système de fichier: interrogations des caractéristiques, accès,
  * etc.
- *
- * @warning	L'implémentation de cette objet est dépendante de l'OS sur lequel elle tourne, car elle utilise les
- * 			fonctions natives de PHP telles que dirname() et basename(), qui se comportent différemment suivant l'OS
  *
  * @note	Un objet de cette classe ne doit pas obligatoirement représenter un fichier existant, il s'agit seulement
  * 			d'un chemin, qui peut ensuite être vérifié (il y a une exception : FichierInfo#retCheminReel())
@@ -38,14 +43,16 @@
  * @note	Cette classe utilise des fonctions str...(), qui ne sont par défaut pas compatibles multibyte, mais je pense
  * 			que pour les noms de fichiers/dossiers récupérés par l'OS, ça ne devrait pas poser de problèmes
  *
- * @todo	Il faudrait que la classe accepte des chemins indépendants de l'OS sur lequel elle tourne, de manière à
- * 			pouvoir convertir les chemins Unix-Windows (séparateurs différents), transformer un chemin relatif en
- * 			absolu (et vice versa) quand c'est possible, déterminer la partie "racine" d'un chemin etc.
+ * @todo	Il faudrait créer des méthodes pour:
+ * 			  - transformer un chemin relatif en absolu (et vice versa) sans obligation que le chemin fourni existe 
+ * 			    réellement quand c'est possible;
+ * 			  - déterminer la partie "racine" d'un chemin;
+ * 			  - etc
  */
 class FichierInfo
 {
 	var $sChemin;                           ///< Le chemin représenté par l'objet
-	var $sSeparateur = DIRECTORY_SEPARATOR; ///< Le séparateur de dossiers à utiliser pour ce chemin (pour l'instant forcé à celui de l'OS et non modifiable)
+	var $sSeparateur = DIRECTORY_SEPARATOR; ///< Le séparateur de dossiers à utiliser pour ce chemin (les chemins retournés utiliseront celui-là)
 
 	/**
 	 * Constructeur.
@@ -61,10 +68,14 @@ class FichierInfo
 	/**
 	 * Initialise un chemin dans l'objet
 	 *
-	 * @param	v_sChemin	le chemin qui sera représenté par l'objet courant
+	 * @param	v_sChemin	le chemin qui sera représenté par l'objet courant. Le chemin, même s'il contient un type de 
+	 * 						séparateur qui n'est pas celui par défaut de l'OS courant (par exemple un chemin contenant 
+	 * 						des séparateurs '/' sous Windows), utilisera par défaut ce séparateur pour ses opérations 
+	 * 						internes et dans les valeurs de retour des méthodes publiques de cette classe
 	 */
 	function defChemin($v_sChemin)
 	{
+		$this->sSeparateur = $this->detecterSeparateur($v_sChemin);
 		$this->sChemin = $this->enleverSeparateursDeFin($v_sChemin);
 	}
 
@@ -88,7 +99,7 @@ class FichierInfo
 	 */
  	function retCheminReel()
  	{
- 		return realpath($this->sChemin);
+ 		return $this->convertirSeparateurs(realpath($this->sChemin));
  	}
 
 	/**
@@ -98,7 +109,7 @@ class FichierInfo
 	 */
 	function retDossier()
  	{
- 		return dirname($this->sChemin);
+ 		return $this->convertirSeparateurs(dirname($this->sChemin));
  	}
 
  	/**
@@ -109,7 +120,7 @@ class FichierInfo
  	 */
 	function retNom()
  	{
- 		return basename($this->sChemin);
+ 		return $this->convertirSeparateurs(basename($this->sChemin));
  	}
 
  	/**
@@ -195,7 +206,75 @@ class FichierInfo
  	{
  		return is_writable($this->sChemin);
  	}
+	
+	function defSeparateur($v_sSeparateur, $v_bRemplacerExistant = TRUE)
+	{
+		if ($v_sSeparateur != FICHIER_SEPARATEUR_UNIX && $v_sSeparateur != FICHIER_SEPARATEUR_WINDOWS)
+			Erreur::provoquer("Séparateur de fichiers/dossiers non reconnu : $v_sSeparateur");
+		
+		if ($v_bRemplacerExistant)
+			$this->sChemin = $this->convertirSeparateurs($this->sChemin, $this->sSeparateur, $v_sSeparateur);
+		
+		$this->sSeparateur = $v_sSeparateur;
+	}
+	
+	/**
+	 * @return	le séparateur défini pour l'objet courant
+	 */
+	function retSeparateur()
+	{
+		return $this->sSeparateur;
+	}
 
+	/**
+	 * Détecte et retourne le séparateur utilisé dans un chemin
+	 * 
+	 * @param	v_sChemin	le chemin dont il faut détecter les séparateur
+	 * 
+	 * @return	le séparateur utilisé dans le chemin, soit FICHIER_SEPARATEUR_UNIX ou FICHIER_SEPARATEUR_WINDOWS. Dans 
+	 * 			le cas où le chemin passé est relatif et ne contient aucun séparateur reconnu, le séparateur par défaut 
+	 * 			de l'OS sur lequel tourne PHP est retourné (soit "\\" pour Windows, ou '/' pour Unix)
+	 */
+ 	function detecterSeparateur($v_sChemin)
+ 	{
+ 		if (strpos($v_sChemin, FICHIER_SEPARATEUR_UNIX))
+ 			return FICHIER_SEPARATEUR_UNIX;
+ 		else if (strpos($v_sChemin, FICHIER_SEPARATEUR_WINDOWS))
+ 			return FICHIER_SEPARATEUR_WINDOWS;
+ 		else
+ 			return DIRECTORY_SEPARATOR;
+ 	}
+
+	/**
+	 * Convertit, dans un chemin, les séparateurs de fichier/dossiers par défaut de l'OS courant, en séparateurs exigés 
+	 * par l'attribut \c sSeparateur de l'objet (détecté par #defChemin() ou modifié par #defSeparateur())
+	 * 
+	 * @param	v_sChemin			le chemin dans lequel il faut convertir les séparateurs
+	 * @param	v_sSeparateurSrc	le séparateur à remplacer. Par défaut, il s'agit du séparateur standard de l'OS
+	 * @param	v_sSeparateurDst	le séparateur qui doit remplacer celui spécifié par le paramètre 
+	 * 								\c v_sSeparateurSrc. Par défaut, il s'agit de l'attribut \c sSeparateur défini pour 
+	 * 								l'objet courant 
+	 */
+	function convertirSeparateurs($v_sChemin, $v_sSeparateurSrc = DIRECTORY_SEPARATOR, $v_sSeparateurDst = NULL)
+	{
+		// impossible d'utiliser une expression comme valeur par défaut pour le paramètre v_sSeparateurDst => il faut 
+		// donner cette valeur par défaut en premier lieu
+		if (is_null($v_sSeparateurDst))
+			$v_sSeparateurDst = $this->sSeparateur;
+		
+		// erreur si l'un des deux séparateurs spécifiés n'est pas reconnu
+		if ($v_sSeparateurSrc != FICHIER_SEPARATEUR_UNIX && $v_sSeparateurSrc != FICHIER_SEPARATEUR_WINDOWS)
+			Erreur::provoquer("Séparateur source non reconnu : $v_sSeparateurSrc");
+		if ($v_sSeparateurDst != FICHIER_SEPARATEUR_UNIX && $v_sSeparateurDst != FICHIER_SEPARATEUR_WINDOWS)
+			Erreur::provoquer("Séparateur destination non reconnu : $v_sSeparateurDst");
+		
+		// si les séparateur source et destination désirés sont identique, pas la peine de tenter le remplacement
+		if ($v_sSeparateurSrc == $v_sSeparateurDst)
+			return $v_sChemin;
+		else
+			return str_replace($v_sSeparateurSrc, $v_sSeparateurDst, $v_sChemin);
+	}
+	
  	/**
  	 * Enlève les séparateurs de dossier qui se trouveraient à la fin d'un chemin
  	 *
@@ -223,6 +302,17 @@ class FichierInfo
  			return $this->enleverSeparateursDeFin($this->sChemin) . $this->sSeparateur . $v_sSupplement;
  		else
  			return $this->sChemin;
+ 	}
+ 	
+ 	/**
+ 	 * Enlève le début du chemin représenté par l'objet, si ce début correspond à une chaîne donnée
+ 	 * 
+ 	 * @param	v_sPartieAEnlever	la partie qu'on veut enlever du chemin, et qui doit se trouver au début de celui-ci
+ 	 */
+ 	function reduireChemin($v_sPartieAEnlever)
+ 	{
+ 		if (strpos($this->sChemin, $v_sPartieAEnlever) === 0)
+ 			$this->sChemin = substr($this->sChemin, strlen($v_sPartieAEnlever));
  	}
 }
 

@@ -121,7 +121,7 @@ class IterateurDecorateur
 	 */
     function rechercher($v_Cle)
     {
-    	return $this->oItr->rechercher();
+    	return $this->oItr->rechercher($v_Cle);
     }
 
     /**
