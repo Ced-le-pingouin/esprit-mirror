@@ -33,6 +33,7 @@
 
 require_once("globals.inc.php");
 require_once(dir_database("evenement.tbl.php"));
+require_once(dir_database("formulaire.tbl.php"));
 require_once(dir_locale("globals.lang"));
 require_once(dir_chat("archive.class.php",TRUE));
 
@@ -268,14 +269,23 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	{
 		$aoBlocs["nom"]->beginLoop();
 		$aoBlocs["modalite"]->beginLoop();
-		
 		foreach ($oRubrique->aoFormulaires as $oFormulaire)
 		{
 			$abModalites[$iCol] = $oFormulaire->retModalite(TRUE);
-			
+			list($iIdFormul) = explode(";",$oFormulaire->retDonnees());
+			$bAutoCorrection = false;
+			if(is_numeric($iIdFormul))
+			{
+				$oFormul = new CFormulaire($oProjet->oBdd,$iIdFormul);
+				if($oFormul->retAutoCorrection())
+					$bAutoCorrection = true;
+			}
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{formulaire.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{formulaire.nom}",emb_htmlentities($oFormulaire->retNom()));
+			if($bAutoCorrection)
+				$aoBlocs["nom"]->remplacer("{formulaire.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oFormulaire->retNom())."</a>");
+			else
+				$aoBlocs["nom"]->remplacer("{formulaire.nom}",emb_htmlentities($oFormulaire->retNom()));
 			
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{formulaire.modalite}",retTexteModalite("AEL",$abModalites[$iCol]));
