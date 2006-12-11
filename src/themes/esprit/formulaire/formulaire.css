@@ -254,7 +254,7 @@ a:hover
 }
 #score
 {
-	margin: 5px;
+	margin: 5px 5px 30px 5px;
 	padding: 5px;
 	background-color: rgb(249,251,251);
 	border: 1px dotted rgb(220,230,230);

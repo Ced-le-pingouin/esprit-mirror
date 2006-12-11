@@ -11,6 +11,32 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 .InterER  { margin-top: {iInterEnonRep}px; }
 .InterObj  { margin-top: {iInterElem}px; }
 .titre { font-size: 1.4em; font-weight: bold; }
+#barremenu
+{
+	margin: 0;
+	padding: 3px 0;
+	text-align: right;
+	border-top: rgb(0,0,0) solid 1px;
+	background-color: rgb(174,165,138);
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+a:link, a:active, a:visited
+{
+	color: rgb(255,255,255);
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover
+{
+	color: rgb(255,255,255);
+	text-decoration: underline;
+}
+form
+{
+	margin-bottom: 30px;
+}
 -->
 </style>
 <script src="{formulaire_js}" type="text/javascript"></script>
@@ -31,11 +57,11 @@ form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
 </table>
 <br /><br />
 {ListeObjetFormul}
-<div align="center">
-{bouton_valider}
-</div>
 </form>
 {score}
+<div id="barremenu">
+{bouton_valider}<a href="javascript: top.close();">{fermer}</a>&nbsp;
+</div>
 [BLOCK_FORMULAIRE-]
 [BLOCK_FERMER+]
 <script language="javascript" type="text/javascript">

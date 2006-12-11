@@ -51,7 +51,7 @@ td
 #barremenu
 {
 	margin: 0;
-	padding: 0;
+	padding: 3px 0;
 	text-align: right;
 	border-top: rgb(0,0,0) solid 1px;
 	background-color: rgb(174,165,138);
@@ -143,6 +143,5 @@ table
 </table>
 </div>
 <div id="barremenu"><a id="csv" href="tableau_scores.php?IdFormul={IdFormul}&amp;action=exportation">Exporter</a><a href="javascript: top.close();">Fermer</a>&nbsp;</div>
-
 </body>
 </html>
