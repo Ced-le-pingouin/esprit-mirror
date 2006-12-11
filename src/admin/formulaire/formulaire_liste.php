@@ -267,7 +267,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 				
 				case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
 						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
-											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC()."</div>\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".convertBaliseMetaVersHtml($oQCocher->retEnonQC())."</div>\n"
 											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"

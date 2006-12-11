@@ -417,7 +417,7 @@ if($v_iIdFormulaire > 0)
 						else
 							$sIncomplet = "";
 						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
-											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".$oQCocher->retEnonQC().$sIncomplet."</div>\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".convertBaliseMetaVersHtml($oQCocher->retEnonQC()).$sIncomplet."</div>\n"
 											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
 											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
 											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"

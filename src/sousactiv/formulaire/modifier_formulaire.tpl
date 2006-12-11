@@ -6,7 +6,17 @@
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
 <style type="text/css">
 <!--
-form  { margin-left: {sLargeur}; margin-right: {sLargeur}; }
+form
+{
+	margin-left: {sLargeur};
+	margin-right: {sLargeur};
+	margin-bottom: 30px;
+	margin-top: 3px;
+}
+input, select
+{
+	margin: 0 5px;
+}
 .p  { line-height: 10.5pt; font-family: Arial,sans-serif; font-size: 10pt; color: black; margin-top: 6px; margin-bottom: 6px; }
 .InterER  { margin-top: {iInterEnonRep}px; }
 .InterObj  { margin-top: {iInterElem}px; }
@@ -32,10 +42,6 @@ a:hover
 {
 	color: rgb(255,255,255);
 	text-decoration: underline;
-}
-form
-{
-	margin-bottom: 30px;
 }
 -->
 </style>
