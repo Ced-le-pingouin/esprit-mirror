@@ -92,6 +92,7 @@ if($NbrePers>0)
 		$oBlocNoms->afficher();
 		$oBlocQuestions->beginLoop();
 	}
+	$aiScorePers = array_fill(0,$NbrePers,0);
 	foreach($aoObjetFormulaire as $oObjetFormulaire)
 	{
 		if(4<=$oObjetFormulaire->retIdTypeObj() && $oObjetFormulaire->retIdTypeObj()<=6)
@@ -146,12 +147,34 @@ if($NbrePers>0)
 					$oBlocScores->remplacer("{Score}",round($fScore,2));
 				else
 					print round($fScore,2).";";
+				$aiScorePers[$i] = $fScore + $aiScorePers[$i];
 			}
 			if(!$bExportation)
 				$oBlocScores->afficher();
 			else
 				print "\n";
 		}
+	}
+	// affichage des totaux
+	if(!$bExportation)
+	{
+		$oBlocQuestions->nextLoop();
+		$oBlocQuestions->remplacer("{Question}","Total : ");
+		$oBlocScores = new TPL_Block("BLOCK_SCORES",$oBlocQuestions);
+		$oBlocScores->beginLoop();
+		for($i=0;$i<$NbrePers;$i++)
+		{
+			$oBlocScores->nextLoop();
+			$oBlocScores->remplacer("{Score}",round($aiScorePers[$i],2));
+		}
+		$oBlocScores->afficher();
+	}
+	else
+	{
+		print "Total : ;";
+		for($i=0;$i<$NbrePers;$i++)
+			print round($aiScorePers[$i],2).";";
+		print "\n";
 	}
 	if(!$bExportation)
 		$oBlocQuestions->afficher();
