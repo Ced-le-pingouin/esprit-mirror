@@ -127,7 +127,7 @@ class CPropositionReponse
 		
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
-
+	
 	function copier($v_iIdObjFormul)
 	{
 		if ($v_iIdObjFormul < 1)
@@ -143,16 +143,23 @@ class CPropositionReponse
 		
 		return  $this->oBdd->retDernierId();
 	}
-
+	
 	function effacer()
 	{
+		$this->oBdd->executerRequete("LOCK TABLES PropositionReponse WRITE, Reponse_Axe WRITE");
+		
+		$sRequeteSql = "UPDATE PropositionReponse SET OrdrePropRep=(OrdrePropRep-1) WHERE OrdrePropRep>".$this->retOrdrePropRep()." AND IdObjFormul=".$this->retIdObjFormul()."";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
 		$sRequeteSql = "DELETE FROM PropositionReponse WHERE IdPropRep ='{$this->oEnregBdd->IdPropRep}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		$sRequeteSql = "DELETE FROM Reponse_Axe WHERE IdPropRep ='{$this->oEnregBdd->IdPropRep}'";
 		$this->oBdd->executerRequete($sRequeteSql);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
-
+	
 	/*
 	** Fonction 		: effacerRepObj
 	** Description		: supprime TOUTES les réponses qui se rapportent à un objet formulaire 

@@ -34,6 +34,7 @@ input, select
 }
 a:link, a:active, a:visited
 {
+	font-size: 11px;
 	color: rgb(255,255,255);
 	text-decoration: none;
 	font-weight: bold;
