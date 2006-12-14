@@ -380,7 +380,7 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label></li>
 	</ul>
 	<label for="idtexte">{sMessageErreur1} Texte :</label>
-	<textarea name="Texte" id="idtexte" rows="5" cols="70">{TexteMPT}</textarea>
+	<textarea name="Texte" id="idtexte" rows="8" cols="70">{TexteMPT}</textarea>
 	</fieldset>
 <input type="hidden" name="envoyer" value="1" />
 </form>

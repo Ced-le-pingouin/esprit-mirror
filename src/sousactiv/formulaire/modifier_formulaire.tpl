@@ -67,7 +67,7 @@ a:hover
 </form>
 {score}
 <div id="barremenu">
-{bouton_valider}<a href="javascript: top.close();">{fermer}</a>&nbsp;
+{bouton_valider}{bouton_fermer}&nbsp;
 </div>
 [BLOCK_FORMULAIRE-]
 [BLOCK_FERMER+]

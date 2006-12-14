@@ -29,6 +29,7 @@ $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 //	Récupération des variables
 $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
+$iIdFC = NULL;
 
 if(isset($_POST['bSoumis']))
 {
@@ -45,6 +46,8 @@ if(isset($_POST['bSoumis']))
 		else
 			$oFormulaireComplete->deposerDansSousActiv($iIdSousActiv, STATUT_RES_EN_COURS);
 	}
+	$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
+	$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 }
 else
 {
@@ -55,26 +58,23 @@ else
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
 		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 	}
-	else
-	{
-		$iIdFC = NULL;
-	}
 }
 
 if($v_iIdFormulaire > 0)
 {
-	if($bSoumis)
+	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
+	$bAutoCorrection = ( $oFormulaire->retAutoCorrection()?true:false );
+	if($bSoumis && !$bAutoCorrection)
 		$oBlockFormulaire->effacer();
 	else
 		$oBlockFormulaire->afficher();
 	// Lecture de la table formulaire pour y récupérer les données de mise en page
-	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 	$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
 	$iInterElem = $oFormulaire->retInterElem();
 	$iInterEnonRep = $oFormulaire->retInterEnonRep();
 	$iIdPersForm = $oFormulaire->retIdPers();
 	$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
-	$bAutoCorrection = ( $oFormulaire->retAutoCorrection()?true:false );
+	
 	if($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
 		$sEncadrer = "style=\"border:1px solid black;\"";
 	else
@@ -87,15 +87,15 @@ if($v_iIdFormulaire > 0)
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE"))
+	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE")|| ($bSoumis && $bAutoCorrection))
 	{// si c'est pour évaluer, on ne voit pas le bouton valider
 		$oTpl->remplacer("{bouton_valider}","");
-		$oTpl->remplacer("{fermer}","Fermer");
+		$oTpl->remplacer("{bouton_fermer}","<a href=\"javascript: top.close();\">Fermer</a>");
 	}
 	else
 	{
-		$oTpl->remplacer("{bouton_valider}","<a href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>&nbsp;|&nbsp;");
-		$oTpl->remplacer("{fermer}","Annuler");
+		$oTpl->remplacer("{bouton_valider}","<a href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
+		$oTpl->remplacer("{bouton_fermer}","");
 	}
 	$oTpl->remplacer("{general_js_php}",dir_code_lib_ced("general.js.php", FALSE, FALSE));
 	$oTpl->remplacer("{formulaire_js}",dir_theme_commun("js/formulaire.js"));
@@ -123,7 +123,7 @@ if($v_iIdFormulaire > 0)
 					{
 						$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						if ($iIdFC != NULL)
 							$sValeur = retReponseTexteLong($oProjet->oBdd,$iIdFC,$iIdObjActuel);
@@ -145,7 +145,7 @@ if($v_iIdFormulaire > 0)
 					{
 						$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						if ($iIdFC != NULL)
 							$sValeur = retReponseTexteCourt($oProjet->oBdd,$iIdFC,$iIdObjActuel);
@@ -170,7 +170,7 @@ if($v_iIdFormulaire > 0)
 						$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
 						$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						if ($iIdFC != NULL)
 							$sValeur = retReponseFlottant($oProjet->oBdd,$iIdFC,$iIdObjActuel);
@@ -194,7 +194,7 @@ if($v_iIdFormulaire > 0)
 					{
 						$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
 											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
@@ -265,7 +265,7 @@ if($v_iIdFormulaire > 0)
 					{
 						$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						$sHtmlListeObjForm .= "\n<!--QRadio : $iIdObjActuel -->\n"
 											."<div align=\"".$oQRadio->retAlignEnonQR()."\">".convertBaliseMetaVersHtml($oQRadio->retEnonQR())."</div>\n"
@@ -349,7 +349,7 @@ if($v_iIdFormulaire > 0)
 							$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel][$i]);
 						}
 					}
-					else
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 					{
 						$TabRepEtu = array();
 						if($iIdFC != NULL)
@@ -431,12 +431,12 @@ if($v_iIdFormulaire > 0)
 					break;
 			
 			case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-					if(!$bSoumis)
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 						$sHtmlListeObjForm .= "<div align=\"".$oMPTexte->retAlignMPT()."\">".convertBaliseMetaVersHtml($oMPTexte->retTexteMPT())."</div>";
 					break;
 			
 			case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-					if(!$bSoumis)
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 						$sHtmlListeObjForm .= "<hr width=\"".$oMPSeparateur->retLargeurCompleteMPS()."\" size=\"2\" align=\"".$oMPSeparateur->retAlignMPS()."\" />";
 					break;
 		}
@@ -453,13 +453,12 @@ else
 	$oBlockFormulaire->effacer();
 }
 if($bSoumis)
-{
 	$oFormulaireComplete->deverrouillerTables();
-	$oBlockFermer->afficher();
-}
-else
-{
+
+if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 	$oBlockFermer->effacer();
-}
+else
+	$oBlockFermer->afficher();
+
 $oTpl->afficher(); 
 ?>
