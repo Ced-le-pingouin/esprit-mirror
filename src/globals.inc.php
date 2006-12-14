@@ -315,6 +315,7 @@ function MySQLEscapeString ($v_sTexte,$v_sTexteParDefaut=NULL)
 function emb_htmlentities ($v_sTexte, $quote_style=ENT_COMPAT)
 {
 	//return htmlentities($v_sTexte,ENT_COMPAT,"UTF-8");
+   	$v_sTexte = str_replace(array('<','>'), array('&lt;','&gt;'), $v_sTexte);
 	switch ($quote_style) {
 		case ENT_QUOTES:
 			return str_replace(array('"',"'"), array('&quot;','&#039;'),mb_convert_encoding($v_sTexte,"HTML-ENTITIES","UTF-8"));
@@ -566,10 +567,12 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	
 	// Bi-directionnalité
 	// Gauche à droite (standard)
-	$v_sTexte = str_replace("[ltr]", "<span dir='ltr'>", $v_sTexte);
+	$v_sTexte = preg_replace("/\n\[ltr\](.+?)\[\/ltr\]/", '<div dir="ltr">$1</div>', $v_sTexte);
+	$v_sTexte = str_replace("[ltr]", '<span dir="ltr">', $v_sTexte);
 	$v_sTexte = str_replace("[/ltr]", "</span>", $v_sTexte);
 	// Droite à gauche (arabe, hébreu)
-	$v_sTexte = str_replace("[rtl]", "<span dir='rtl'>", $v_sTexte);
+	$v_sTexte = preg_replace("/\n\[rtl\](.+?)\[\/rtl\]/", '<div dir="rtl">$1</div>', $v_sTexte);
+	$v_sTexte = str_replace("[rtl]", '<span dir="rtl">', $v_sTexte);
 	$v_sTexte = str_replace("[/rtl]", "</span>", $v_sTexte);
 	
 	// Ajouter un retour à la ligne

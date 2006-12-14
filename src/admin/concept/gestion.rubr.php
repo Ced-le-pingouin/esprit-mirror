@@ -97,7 +97,7 @@ switch ($act)
 			}
 			
 			// Effacer l'ancien fichier qui se trouve dans le répertoire du serveur
-			list($sNomFichierEffacer) = explode(":",$oRubrique->retDonnee());
+			list($sNomFichierEffacer) = explode(":",$oRubrique->retDonnees());
 			
 			@unlink($repDeposer.$sNomFichierEffacer);
 			

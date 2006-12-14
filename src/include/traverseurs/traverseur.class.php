@@ -31,8 +31,8 @@ require_once(dirname(__FILE__).'/../../database/rubrique.tbl.php');      // pour
 require_once(dirname(__FILE__).'/../../database/activite.tbl.php');      // pour CActiv
 require_once(dirname(__FILE__).'/../../database/sous_activite.tbl.php'); // pour CSousActiv
 require_once(dirname(__FILE__).'/../plate_forme.class.php');             // pour les constantes TYPE_
-require_once(dirname(__FILE__).'/../../lib/iterateurs/iterateur_tableau.class.php'); // pour les itérateurs
-require_once(dirname(__FILE__).'/../../lib/erreur.class.php');           // pour la gestion des erreurs
+require_once(dirname(__FILE__).'/../../lib/std/IterateurTableau.php');   // pour les itérateurs
+require_once(dirname(__FILE__).'/../../lib/std/Erreur.php');             // pour la gestion des erreurs
 
 /**
  * Classe de base pour les "traverseurs". Ceux-ci permettent de traverser une formation et tous ses descendants, 
@@ -116,7 +116,7 @@ class CTraverseur
 				break;
 				
 			default:
-				CErreur::provoquer("Erreur: Niveau de départ non reconnu dans ".get_class($this)."::".__FUNCTION__."()");
+				Erreur::provoquer("Niveau de départ non reconnu");
 		}
 	}
 	
@@ -165,13 +165,13 @@ class CTraverseur
 		
 		$this->debutFormation();
 		
-		$it = new CIterateurTableau($this->oFormation->aoModules);
-		for (; $it->estValide(); $it->suiv())
+		$itr = new IterateurTableau($this->oFormation->aoModules);
+		for (; $itr->estValide(); $itr->suiv())
 		{
-			$this->bPremierModule = $it->estPremier();
-			$this->bDernierModule = $it->estDernier();
+			$this->bPremierModule = $itr->estPremier();
+			$this->bDernierModule = $itr->estDernier();
 			
-			$this->oModule = $it->courant();
+			$this->oModule = $itr->courant();
 			$this->parcourirModule();
 		}
 				
@@ -189,13 +189,13 @@ class CTraverseur
 		
 		$this->debutModule();
 		
-		$it = new CIterateurTableau($this->oModule->aoRubriques);
-		for (; $it->estValide(); $it->suiv())
+		$itr = new IterateurTableau($this->oModule->aoRubriques);
+		for (; $itr->estValide(); $itr->suiv())
 		{
-			$this->bPremiereRubrique = $it->estPremier();
-			$this->bDerniereRubrique = $it->estDernier();
+			$this->bPremiereRubrique = $itr->estPremier();
+			$this->bDerniereRubrique = $itr->estDernier();
 			
-			$this->oRubrique = $it->courant();
+			$this->oRubrique = $itr->courant();
 			$this->parcourirRubrique();
 		}
 				
@@ -213,13 +213,13 @@ class CTraverseur
 		
 		$this->debutRubrique();
 		
-		$it = new CIterateurTableau($this->oRubrique->aoActivs);
-		for (; $it->estValide(); $it->suiv())
+		$itr = new IterateurTableau($this->oRubrique->aoActivs);
+		for (; $itr->estValide(); $itr->suiv())
 		{
-			$this->bPremiereActiv = $it->estPremier();
-			$this->bDerniereActiv = $it->estDernier();
+			$this->bPremiereActiv = $itr->estPremier();
+			$this->bDerniereActiv = $itr->estDernier();
 			
-			$this->oActiv = $it->courant();
+			$this->oActiv = $itr->courant();
 			$this->parcourirActiv();
 		}
 				
@@ -237,13 +237,13 @@ class CTraverseur
 		
 		$this->debutActiv();
 		
-		$it = new CIterateurTableau($this->oActiv->aoSousActivs);
-		for (; $it->estValide(); $it->suiv())
+		$itr = new IterateurTableau($this->oActiv->aoSousActivs);
+		for (; $itr->estValide(); $itr->suiv())
 		{
-			$this->bPremiereSousActiv = $it->estPremier();
-			$this->bDerniereSousActiv = $it->estDernier();
+			$this->bPremiereSousActiv = $itr->estPremier();
+			$this->bDerniereSousActiv = $itr->estDernier();
 			
-			$this->oSousActiv = $it->courant();
+			$this->oSousActiv = $itr->courant();
 			$this->parcourirSousActiv();
 		}
 				

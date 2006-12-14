@@ -151,7 +151,9 @@ if ($iIdMod > 0)
 	if (strlen($sDescr))
 	{
 		$oBlocDescriptionModule->afficher();
-		$oTpl->remplacer("{description_cours}",$sDescr);
+		$oTpl->remplacer(
+			array("{description_cours}","{tableaudebord.niveau.id}","{tableaudebord.niveau.type}"),
+			array($sDescr,$oProjet->oModuleCourant->retId(),TYPE_MODULE));
 	}
 	else
 		$oBlocDescriptionModule->effacer();
@@ -269,7 +271,7 @@ if ($iIdMod > 0)
 				case LIEN_PAGE_HTML:
 				//   --------------
 					$oBlock_Cours->ajouter($oSet_Page_Html);
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
@@ -288,7 +290,7 @@ if ($iIdMod > 0)
 				case LIEN_SITE_INTERNET:
 				//   ------------------
 					$oBlock_Cours->ajouter($oSet_Site_Internet);
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
@@ -306,7 +308,7 @@ if ($iIdMod > 0)
 				//   -------------------------
 					$oBlock_Cours->ajouter($oSet_Document_Telecharger);
 					
-					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnee());
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
 					
 					if ($bStatutOuvert && strlen($sUrl) > 0)
 					{
@@ -369,7 +371,23 @@ $oTpl->remplacer("{texte_formatte.url}",dir_sousactiv(LIEN_PAGE_HTML,"descriptio
 
 // {{{ Outils du cours
 if (!empty($iNbrRubriques) && $oProjet->verifPermission("PERM_OUTIL_TABLEAU_DE_BORD"))
-	$oTpl->remplacer("{outils.tableau_de_bord}","<a href=\"admin://tableaubord/tableau_bord-index.php\" onclick=\"return tableau_de_bord(this)\" target=\"_blank\" title=\"Tableau de bord\"><img src=\"commun://icones/24x24/tableaubord.gif\" width=\"24\" height=\"24\" border=\"0\"></a>");
+	$oTpl->remplacer(
+		"{outils.tableau_de_bord}",
+		"<a"
+			." href=\"admin://tableaubord/tableau_bord-index.php"
+				."?idNiveau={$iIdMod}"
+				."&typeNiveau=".TYPE_MODULE
+				."&idType=0"
+				."&idModal=0\""
+			." onclick=\"return tableau_de_bord(this)\""
+			." target=\"_blank\""
+			." title=\"Tableau de bord\">"
+			."<img"
+				." src=\"commun://icones/24x24/tableaubord.gif\""
+				." width=\"24\""
+				." height=\"24\""
+				." border=\"0\">"
+		."</a>");
 else
 	$oTpl->remplacer("{outils.tableau_de_bord}",NULL);
 

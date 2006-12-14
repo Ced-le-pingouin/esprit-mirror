@@ -674,7 +674,7 @@ class CModule_Rubrique
 			.$this->oEnregBdd->NomRubrique;
 	}
 
-	function retDonnee ($v_bHtmlEntities=FALSE)
+	function retDonnees($v_bHtmlEntities=FALSE)
 	{
 		return ($v_bHtmlEntities
 			? emb_htmlentities($this->oEnregBdd->DonneesRubrique)
