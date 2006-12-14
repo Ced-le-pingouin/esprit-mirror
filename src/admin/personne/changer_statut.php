@@ -59,14 +59,14 @@ if (!empty($_POST["idStatut"]))
 	// Nous devons mettre à jour la fenêtre parente
 	// et fermer absolument cette fenêtre car elle sera orpheline.
 	echo "<html>"
-		."<header>"
+		."<head>"
 		."<script type=\"text/javascript\" language=\"javascript\">"
 		."<!--\n"
 		."top.opener.recharger('{$sParamsRechargerFenParent}');"
 		."top.close();"
 		."\n//-->"
 		."</script>"
-		."</header>"
+		."</head>"
 		."<body>"
 		."</body>"
 		."</html>\n";
@@ -115,15 +115,12 @@ for ($iIdxStatut=STATUT_PERS_PREMIER; $iIdxStatut<STATUT_PERS_DERNIER; $iIdxStat
 		
 		$oBlocListeStatuts->remplacer("{nom_radio_statut}","idStatut");
 		$oBlocListeStatuts->remplacer("{valeur_statut}",$iIdxStatut);
-		$oBlocListeStatuts->remplacer("{selectionner_statut}",($bStatutActuel ? " checked": NULL));
-		$oBlocListeStatuts->remplacer("{nom_statut}",$sStatutActuel.($bStatutActuel ? "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" border=\"0\">": NULL));
+		$oBlocListeStatuts->remplacer("{selectionner_statut}",($bStatutActuel ? " checked=\"checked\"": NULL));
+		$oBlocListeStatuts->remplacer("{nom_statut}",$sStatutActuel.($bStatutActuel ? "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" />": NULL));
 	}
 
 $oBlocListeStatuts->afficher();
 
 $oTpl->afficher();
-
 $oProjet->terminer();
-
 ?>
-
