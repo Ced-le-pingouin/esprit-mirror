@@ -214,9 +214,7 @@ class CSousActiv
 				." FROM FormulaireComplete_SousActiv"
 				." LEFT JOIN FormulaireComplete USING (IdFC)"
 				." WHERE FormulaireComplete_SousActiv.IdSousActiv='".$this->retId()."'"
-					." AND FormulaireComplete.IdPers IN ({$sListePers})"
-				." GROUP BY FormulaireComplete_SousActiv.StatutFormSousActiv"
-				." ORDER BY FormulaireComplete_SousActiv.StatutFormSousActiv DESC LIMIT 1";
+					." AND FormulaireComplete.IdPers IN ({$sListePers})";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
