@@ -36,6 +36,7 @@
 // ---------------------
 // Déclaration des fichiers à inclure
 // ---------------------
+require_once('include/config.inc');
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
 require_once(dir_include("gettext.inc.php"));
@@ -99,20 +100,12 @@ function dir_database ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 
 function dir_http_plateform ($v_sFichierAInclure=NULL)
 {
-	if (eregi("^4.2",phpversion()))
-	{
-		$tmp  = dirname(__FILE__);
-		$tmp1 = dir_document_root();
-		return (substr($tmp,strlen($tmp1))."/{$v_sFichierAInclure}");
-	}
-	
-	$sChemin = ereg_replace(dir_document_root(),dir_http(),dir_root_plateform());
-	
-	return ($sChemin."{$v_sFichierAInclure}");
+	global $g_sCheminRacineWeb;
+	return $g_sCheminRacineWeb.$v_sFichierAInclure;
 }
 
 /**
- * Cette méthode retourne le chemin absolue du répertoire racine de la
+ * Cette méthode retourne le chemin absolu du répertoire racine de la
  * plate-forme
  * @param $v_sFichierAInclure string
  * @param $v_bCheminAbsolu    boolean
@@ -120,9 +113,12 @@ function dir_http_plateform ($v_sFichierAInclure=NULL)
  */
 function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
-	$sChemin = str_replace("\\","/",realpath(dirname(__FILE__))."/");
-	if (!$v_bCheminAbsolu) $sChemin = str_replace(dir_document_root(),"/",$sChemin);
-	return "{$sChemin}{$v_sFichierAInclure}";
+	global $g_sCheminRacine, $g_sCheminRacineWeb;
+	if ($v_bCheminAbsolu) {
+		return $g_sCheminRacine.$v_sFichierAInclure;
+	} else {
+		return $g_sCheminRacineWeb.$v_sFichierAInclure;
+	}
 }
 
 function dir_formation ($v_iIdForm=NULL,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
