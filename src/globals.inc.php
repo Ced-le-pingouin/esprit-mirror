@@ -36,7 +36,7 @@
 // ---------------------
 // Déclaration des fichiers à inclure
 // ---------------------
-require_once('include/config.inc');
+require_once(dirname(__FILE__).'/include/config.inc');
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
 require_once(dir_include("gettext.inc.php"));
