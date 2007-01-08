@@ -1,0 +1,6 @@
+"Introduisez les coordonnées des étudiants, un étudiant par ligne. Les champs ""Nom"", ""Prenom"", ""Pseudo"" et ""Mdp"" sont obligatoires.",,,,,,
+"Vous pouvez aussi ajouter, supprimer ou modifier ces inscriptions à partir de l'outil ""Inscription"" à l'intérieur de la plateforme.",,,,,,
+,,,,,,
+Nom,Prenom,Pseudo,Mdp,Sexe,UrlPerso,Email
+"(nom de famille)",(prénom),"(caractères alphanumériques uniquement, pas d'accents) Pas deux fois le même pseudo !","(caractères alphanumériques uniquement, pas d'accents)","Bien pratique pour contacter les étudiants en cours de formation.","F ou M (en majuscule)",
+

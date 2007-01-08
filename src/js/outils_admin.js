@@ -91,6 +91,13 @@ function exporter_liste_personnes() {
 	win.focus();
 }
 
+function importer_liste_personnes() {
+	var sUrl = GLOBALS["admin"] + "personne/import-index.php";
+	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
+	var win = PopupCenter(sUrl,"WinImporterPersonnes",500,480,sOptionsFenetre);
+	win.focus();
+}
+
 function choix_formation(v_sTitre) {
 	var sUrl = GLOBALS["admin"] + "commun/choix_formation-index.php"
 		+ (v_sTitre.length > 0 ? "?tp=" + v_sTitre : "");

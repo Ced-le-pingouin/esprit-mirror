@@ -203,6 +203,10 @@ class CPersonne
 	function estUnique()
 	{
 		$bEstUnique = TRUE;
+		if (empty($this->oEnregBdd->IdPers))
+			$currentId=0;
+		else
+			$currentId=$this->oEnregBdd->IdPers;
 		
 		$sRequeteSql = 
 			 " SELECT IdPers FROM Personne"
@@ -212,7 +216,7 @@ class CPersonne
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		if ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-			$bEstUnique = ($oEnreg->IdPers == $this->oEnregBdd->IdPers);
+			$bEstUnique = ($oEnreg->IdPers == $currentId);
 		
 		$this->oBdd->libererResult($hResult);
 		
