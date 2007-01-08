@@ -47,14 +47,13 @@ if (!empty($_POST['modifier']))
 {
 	switch ($_POST['modifier']) {
 		case "avertissement" : 
-			$sRequeteSql = "UPDATE Projet SET"
-				." AvertissementLogin='".MySQLEscapeString($_POST['avertissementEditeur'])."'"
-				." LIMIT 1";
-			$oProjet->oBdd->executerRequete($sRequeteSql);
-			//$oAccueil->setAvert($_POST['avertissementEditeur']);
+			$oAccueil->setAvert($_POST['avertissementEditeur']);
 			break;
 		case "texteAccueil" :
 			$oAccueil->setTexte($_POST['texteAccueilEditeur']);
+			break;
+		case "liens" :
+			$oAccueil->setLien($_POST['texte'],$_POST['lien'],$_POST['typeLien'],1,'NULL',$_POST['id']);
 			break;
 	}
 	/*
@@ -84,27 +83,24 @@ if (empty($_REQUEST['onglet'])) {
 	$oTpl->remplacer("{onglet}",$_REQUEST['onglet']);
 }
 
-insertEditor($oTpl,"avertissement","Attention au chien !");
+insertEditor($oTpl,"avertissement",$oAccueil->getAvert());
 
 insertEditor($oTpl,"texteAccueil",$oAccueil->getTexte());
 
-/*
-$oTpl = new Template(dir_admin("commun","editeur.tpl",TRUE));
-$sSetVisualiseur = $oTpl->defVariable("SET_VISUALISEUR");
-
-// {{{ Editeur
-$oBlocEditeur = new TPL_Block("BLOCK_EDITEUR",$oTpl);
-$oBlocEditeur->ajouter($sSetEditeur);
-$oBlocEditeur->afficher();
-// }}}
-
-// {{{ Visualiseur
-$oBlocVisualiseur = new TPL_Block("BLOCK_VISUALISATEUR",$oTpl);
-$oBlocVisualiseur->effacer();
-// }}}
-
-$oTpl->remplacer("{editeur->nom}","avertissement");
-*/
+$oBlock = new TPL_Block("BLOCK_LOOP_LIENS",$oTpl);
+$oBlock->beginLoop();
+foreach ($oAccueil->getLiens() as $lien) {
+	$oBlock->nextLoop();
+	$oBlock->remplacer("{lien_id}",emb_htmlentities($lien->Id));
+	$oBlock->remplacer("{lien_text}",emb_htmlentities($lien->Texte));
+	$oBlock->remplacer("{lien_lien}",emb_htmlentities($lien->Lien));
+	$oBlock->remplacer("{sel_".$lien->TypeLien."}",' selected="1"');
+	$oBlock->remplacer("{sel_frame}",'');
+	$oBlock->remplacer("{sel_page}",'');
+	$oBlock->remplacer("{sel_popup}",'');
+	$oBlock->remplacer("{sel_inactif}",'');
+}
+$oBlock->afficher();
 
 $oTpl->remplacer("icones://",dir_icones());
 $oTpl->remplacer("editeur://",dir_admin("commun"));
@@ -131,6 +127,23 @@ function insertEditor( &$template, $id, $content="" ) {
 						 '<input type="hidden" name="onglet" value="'.$id.'" />'.
 						 $sSetEditeur.
 						 "</form>");
+
+	/*
+	$oTplVisualiseur = new Template(dir_admin("commun","editeur.tpl",TRUE));
+	$sSetVisualiseur = $oTplVisualiseur->defVariable("SET_VISUALISEUR");
+
+	// {{{ Editeur
+	$oBlocEditeur = new TPL_Block("BLOCK_EDITEUR",$oTplVisualiseur);
+	$oBlocEditeur->ajouter($sSetEditeur);
+	$oBlocEditeur->afficher();
+	// }}}
+
+	// {{{ Visualiseur
+	$oBlocVisualiseur = new TPL_Block("BLOCK_VISUALISATEUR",$oTplVisualiseur);
+	$oBlocVisualiseur->effacer();
+	// }}}
+	*/
+
 }
 ?>
 
