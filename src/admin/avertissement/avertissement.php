@@ -68,9 +68,28 @@ if ($url_bAppliquerChangements)
 // ---------------------
 // Template
 // ---------------------
-$oTpl = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
-$sSetEditeur = $oTpl->defVariable("SET_EDITEUR");
+$oTpl = new Template("avertissement.tpl");
 
+$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
+$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
+$oBlocTableauDeBord->effacer();
+$oTplEditeur->remplacer("{editeur->nom}","avertissement");
+$oTplEditeur->remplacer("26","10"); // hauteur
+$oTplEditeur->remplacer("80","70"); // largeur
+$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
+$oTpl->remplacer("{avertissement}",$sSetEditeur);
+
+$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
+$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
+$oBlocTableauDeBord->effacer();
+$oTplEditeur->remplacer("{editeur->nom}","texteAccueil");
+$oTplEditeur->remplacer("26","10"); // hauteur
+$oTplEditeur->remplacer("80","70"); // largeur
+$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
+$oTpl->remplacer("{texteAccueil}",$sSetEditeur);
+
+
+/*
 $oTpl = new Template(dir_admin("commun","editeur.tpl",TRUE));
 $sSetVisualiseur = $oTpl->defVariable("SET_VISUALISEUR");
 
@@ -86,6 +105,7 @@ $oBlocVisualiseur->effacer();
 // }}}
 
 $oTpl->remplacer("{editeur->nom}","avertissement");
+*/
 
 $oTpl->remplacer("icones://",dir_icones());
 $oTpl->remplacer("editeur://",dir_admin("commun"));

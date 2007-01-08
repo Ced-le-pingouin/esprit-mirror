@@ -51,7 +51,10 @@ BLOCK_HTML_HEAD;
 // ---------------------
 $aMenus = array();
 
-$aMenus[] = array("Valider","top.valider()");
+$aMenus[] = array("Avertissement","top.frames['Principale'].showOnly('avertissement')");
+$aMenus[] = array("Texte d'accueil","top.frames['Principale'].showOnly('texteAccueil')");
+$aMenus[] = array("Liens","top.frames['Principale'].showOnly('liens')");
+$aMenus[] = array("Brèves","top.frames['Principale'].showOnly('breves')");
 $aMenus[] = array("Annuler","top.close()");
 
 // ---------------------
