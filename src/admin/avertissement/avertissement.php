@@ -53,7 +53,14 @@ if (!empty($_POST['modifier']))
 			$oAccueil->setTexte($_POST['texteAccueilEditeur']);
 			break;
 		case "liens" :
-			$oAccueil->setLien($_POST['texte'],$_POST['lien'],$_POST['typeLien'],1,'NULL',$_POST['id']);
+			$oAccueil->setLien($_POST['texte'],$_POST['lien'],$_POST['typeLien'],1,$_POST['ordre'],$_POST['id']);
+			break;
+		case "breves" :
+			if (isset($_POST['hideBreve'])) {
+				$oAccueil->toggleVisible($_POST['id']);
+			} else if (isset($_POST['editBreve'])) {
+				$oAccueil->setBreve($_POST['breveEditeur'],$_POST['dateDeb'],$_POST['dateFin'],1,$_POST['ordre'],$_POST['editBreve']);
+			}
 			break;
 	}
 	/*
@@ -79,31 +86,113 @@ $oTpl = new Template("avertissement.tpl");
 
 if (empty($_REQUEST['onglet'])) {
 	$oTpl->remplacer("{onglet}",'avertissement');
+	$_REQUEST['onglet'] = 'avertissement';
 } else {
 	$oTpl->remplacer("{onglet}",$_REQUEST['onglet']);
 }
 
-insertEditor($oTpl,"avertissement",$oAccueil->getAvert());
-
-insertEditor($oTpl,"texteAccueil",$oAccueil->getTexte());
-
-$oBlock = new TPL_Block("BLOCK_LOOP_LIENS",$oTpl);
-$oBlock->beginLoop();
-foreach ($oAccueil->getLiens() as $lien) {
-	$oBlock->nextLoop();
-	$oBlock->remplacer("{lien_id}",emb_htmlentities($lien->Id));
-	$oBlock->remplacer("{lien_text}",emb_htmlentities($lien->Texte));
-	$oBlock->remplacer("{lien_lien}",emb_htmlentities($lien->Lien));
-	$oBlock->remplacer("{sel_".$lien->TypeLien."}",' selected="1"');
-	$oBlock->remplacer("{sel_frame}",'');
-	$oBlock->remplacer("{sel_page}",'');
-	$oBlock->remplacer("{sel_popup}",'');
-	$oBlock->remplacer("{sel_inactif}",'');
+// Avertissement
+$oBlock = new TPL_Block("BLOCK_AVERTISSEMENT",$oTpl);
+if ($_REQUEST['onglet']==='avertissement') {
+	insertEditor($oBlock,"avertissement",$oAccueil->getAvert());
+} else {
+	$oBlock->effacer();
 }
 $oBlock->afficher();
 
+// Texte d'accueil
+$oBlock = new TPL_Block("BLOCK_TEXTEACCUEIL",$oTpl);
+if ($_REQUEST['onglet']==='texteAccueil') {
+	insertEditor($oBlock,"texteAccueil",$oAccueil->getTexte());
+} else {
+	$oBlock->effacer();
+}
+$oBlock->afficher();
+
+// Liens
+$oBlock = new TPL_Block("BLOCK_LIENS",$oTpl);
+if ($_REQUEST['onglet']==='liens') {
+	$oBlock2 = new TPL_Block("BLOCK_LOOP_LIENS",$oBlock);
+	$oBlock2->beginLoop();
+	foreach ($oAccueil->getLiens() as $lien) {
+		$oBlock2->nextLoop();
+		$oBlock2->remplacer("{lien_id}",emb_htmlentities($lien->Id));
+		$oBlock2->remplacer("{lien_text}",emb_htmlentities($lien->Texte));
+		$oBlock2->remplacer("{lien_lien}",emb_htmlentities($lien->Lien));
+		$oBlock2->remplacer("{sel_".$lien->TypeLien."}",' selected="1"');
+		$oBlock2->remplacer("{sel_frame}",'');
+		$oBlock2->remplacer("{sel_page}",'');
+		$oBlock2->remplacer("{sel_popup}",'');
+		$oBlock2->remplacer("{sel_inactif}",'');
+		$iNumLiens = $oAccueil->getNumByType('lien');
+		$ordre = '<select name="ordre"><option value="NULL">Défaut</option>';
+		for ($i=1; $i<$iNumLiens+1; $i++) {
+			$ordre .= "<option".($lien->Ordre==$i?' selected':'').">$i</option>";
+		}
+		$ordre .= '</select>';
+		$oBlock2->remplacer("{lien_position}",$ordre);
+		$oBlock2->remplacer("{lien_positionTotal}",$iNumLiens);
+	}
+	$oBlock2->afficher();
+} else {
+	$oBlock->effacer();
+}
+$oBlock->afficher();
+
+// Brèves
+$oBlock = new TPL_Block("BLOCK_BREVES",$oTpl);
+if ($_REQUEST['onglet']==='breves') {
+	$oBlock1 = new TPL_Block("BLOCK_LOOP_BREVES",$oBlock);
+	$oBlock2 = new TPL_Block("BLOCK_EDIT_BREVE",$oBlock);
+	if (empty($_REQUEST['selectBreve'])) {
+		$oBlock2->effacer();
+		$oBlock1->beginLoop();
+		foreach ($oAccueil->getBreves() as $breve) {
+			$oBlock1->nextLoop();
+			$oBlock1->remplacer("{breve_id}",emb_htmlentities($breve->Id));
+			$oBlock1->remplacer("{texteDebut}",
+								emb_htmlentities(mb_substr($breve->Texte,0,50))
+								.(mb_strlen($breve->Texte)>50?'...':''));
+			if (!$breve->Visible) {
+				$oBlock1->remplacer('Masquer</button>','Montrer</button>');
+			}
+		}
+		$oBlock1->ajouter('<li><span><em>Nouvelle entrée</em></span>
+  <button name="selectBreve" value="-1" type="submit">Editer</button></li>');
+	} else {
+		$oBlock1->effacer();
+		if ($_REQUEST['selectBreve']=="-1") {
+			$breve->DateDeb = date("Y-m-d");
+			$breve->DateFin = date("Y-m-d", mktime(0,0,0,date("m")+1,date("d"),date("Y")) );
+			$breve->Texte="";
+		}
+		$breve = $oAccueil->getItem($_REQUEST['selectBreve']);
+		$oBlock2->remplacer("{breve_id}",$breve->Id);
+		$oBlock2->remplacer("{breve_dateDeb}",emb_htmlentities($breve->DateDeb));
+		$oBlock2->remplacer("{breve_dateFin}",emb_htmlentities($breve->DateFin));
+		$iNumBreves = $oAccueil->getNumByType('breve');
+		$ordre = '<select name="ordre"><option value="NULL">Défaut</option>';
+		for ($i=1; $i<$iNumBreves+1; $i++) {
+error_log($breve->Ordre." - ".$i);
+			$ordre .= "<option".($breve->Ordre==$i?' selected':'').">$i</option>";
+		}
+		$ordre .= '</select>';
+		$oBlock2->remplacer("{breve_position}",$ordre);
+		$oBlock2->remplacer("{breve_positionTotal}",$iNumBreves);
+		insertEditor($oBlock2,"breve",$breve->Texte);
+	}
+	$oBlock1->afficher();
+	$oBlock2->afficher();
+} else {
+	$oBlock->effacer();
+}
+$oBlock->afficher();
+
+
+// Compléments
 $oTpl->remplacer("icones://",dir_icones());
 $oTpl->remplacer("editeur://",dir_admin("commun"));
+$oTpl->remplacer("{self}",$_SERVER['PHP_SELF']);
 
 $oTpl->afficher();
 
@@ -111,22 +200,17 @@ $oProjet->terminer();
 
 
 
-function insertEditor( &$template, $id, $content="" ) {
+function insertEditor( &$template, $theme, $content="" ) {
 	$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
 	$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
 	$oBlocTableauDeBord->effacer();
-	$oTplEditeur->remplacer("{editeur->nom}",$id."Editeur");
+	$oTplEditeur->remplacer("{editeur->nom}",$theme."Editeur");
 	$oTplEditeur->remplacer("26","10"); // hauteur
 	$oTplEditeur->remplacer("80","70"); // largeur
 	$oTplEditeur->remplacer('class="editeur_texte"></textarea>',
-							'class="editeur_texte" onchange="changed('."'$id')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
+							'class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
 	$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-	$template->remplacer('{'.$id.'}',
-						 '<form action="'.$_SERVER['PHP_SELF'].'" name="'.$id.'Form" method="post">'.
-						 '<input type="hidden" name="modifier" value="'.$id.'" />'.
-						 '<input type="hidden" name="onglet" value="'.$id.'" />'.
-						 $sSetEditeur.
-						 "</form>");
+	$template->remplacer('{'.$theme.'Editeur}',$sSetEditeur);
 
 	/*
 	$oTplVisualiseur = new Template(dir_admin("commun","editeur.tpl",TRUE));

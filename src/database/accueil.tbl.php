@@ -32,6 +32,9 @@ class CAccueil
 {
 	var $oBdd;					///< Objet représentant la connexion à la DB
 
+	// variables prévues pour servir de cache
+	// mais en fait non utilisées pour cela
+	// (il faudrait les filtrer avec "array_filter($aoBreves,'isVisible')")
 	var $sAvert;
 	var $sTexte;
 	var $aoBreves;
@@ -52,7 +55,6 @@ class CAccueil
 	 */
 	function init()
 	{
-		error_log('init');
 		$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte'"
 												." ORDER BY OrdreLIMIT 1");
 		while($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
@@ -77,55 +79,54 @@ class CAccueil
 
 	function getAvert ($Visible=0)
 	{
-		if (empty($this->sAvert)) {
-			if($Visible==0) $hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='avert' LIMIT 1");
-                        else $hResult = $this->oBdd->executerRequete("SELECT Texte FROM Accueil WHERE TypeContenu='avert' AND Visible=1 LIMIT 1");
-			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
-			$this->sAvert = $oEnreg->Texte;
-		}
+		unset($this->sAvert);
+		if ($Visible==0)
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='avert' LIMIT 1");
+		else
+			$hResult = $this->oBdd->executerRequete("SELECT Texte FROM Accueil WHERE TypeContenu='avert' AND Visible=1 LIMIT 1");
+		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		$this->sAvert = $oEnreg->Texte;
 		return $this->sAvert;
 	}
 
 	function getTexte ($Visible=0)
 	{
-		if (empty($this->sTexte)) {
-			if($Visible==0) $hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte' LIMIT 1");
-                        else $hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte' AND Visible=1 LIMIT 1");
-			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
-			$this->sTexte = $oEnreg->Texte;
-		}
+		unset($this->sTexte);
+		if ($Visible==0)
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte' LIMIT 1");
+		else
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte' AND Visible=1 LIMIT 1");
+		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		$this->sTexte = $oEnreg->Texte;
 		return $this->sTexte;
 	}
 
-	function getBreves ($Visible=0, $Date=0)
+	function getBreves ($Visible=0, $Date=FALSE)
 	{
-		if (empty($this->aoBreves)) { 
-                        $params="";                  
-                        if($Visible!=0) $params=" AND Visible=1 ";
-			if($Date!=0) {
-                           $ladate = date("Y-m-d");
-                           $params.="AND  DateDeb <= '$ladate'AND DateFin >= '$ladate'";
-                        }
-                        $requete = "SELECT * FROM Accueil WHERE TypeContenu='breve'".$params." ORDER BY Ordre";
-                        $hResult = $this->oBdd->executerRequete($requete);
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
-				$this->aoBreves[] = $oEnreg;
-			}
+		unset($this->aoBreves);
+		$params="";                  
+		if ($Visible!=0) $params=" AND Visible=1 ";
+		if ($Date) {
+			$ladate = date("Y-m-d");
+			$params .= " AND (DateDeb <= '$ladate' OR DateDeb IS NULL) AND (DateFin >= '$ladate' OR DateFin IS NULL)";
+		}
+		$requete = "SELECT * FROM Accueil WHERE TypeContenu='breve'".$params." ORDER BY Ordre,DateCreation";
+		$hResult = $this->oBdd->executerRequete($requete);
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
+			$this->aoBreves[] = $oEnreg;
 		}
 		return $this->aoBreves;
 	}
 
 	function getLiens ($Visible=0)
 	{
-		if (empty($this->aoLiens)) {
-
-	                if($Visible==0) $hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' ORDER BY Ordre");
-                        else $hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' AND Visible=1 ORDER BY Ordre");
-
-			
-			while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
-				$this->aoLiens[] = $oEnreg;
-			}
+		unset($this->aoLiens);
+		if ($Visible==0)
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' ORDER BY Ordre");
+		else
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' AND Visible=1 ORDER BY Ordre,DateCreation");
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
+			$this->aoLiens[] = $oEnreg;
 		}
 		return $this->aoLiens;
 	}
@@ -136,11 +137,18 @@ class CAccueil
 		return $this->oBdd->retEnregSuiv($hResult);
 	}
 
+	function getNumByType ( $type )
+	{
+		$hResult = $this->oBdd->executerRequete("SELECT count(Id) as num FROM Accueil WHERE TypeContenu='$type'");
+		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		return $oEnreg->num;
+	}
+
 		 // fonctions SET...
 
 	function setAvert ( $txt )
 	{
-		if ($this->getAvert()===FALSE) {
+		if ($this->getAvert()===NULL) {
 			$this->oBdd->executerRequete("INSERT INTO Accueil (TypeContenu,Texte) VALUES ('avert','"
 										 .MySQLEscapeString($txt)."')");
 		} else {
@@ -151,7 +159,7 @@ class CAccueil
 
 	function setTexte ( $txt )
 	{
-		if ($this->getTexte()===FALSE) {
+		if ($this->getTexte()===NULL) {
 			$this->oBdd->executerRequete("INSERT INTO Accueil (TypeContenu,Texte) VALUES ('texte','"
 										 .MySQLEscapeString($txt)."')");
 		} else {
@@ -160,10 +168,14 @@ class CAccueil
 		}
 	}
 
-	function setBreve ( $txt, $visible=1, $ordre='NULL', $dateDeb='NULL', $dateFin='NULL', $id=FALSE )
+	function setBreve ( $txt, $dateDeb='NULL', $dateFin='NULL', $visible=1, $ordre='NULL', $id=FALSE )
 	{
-		if ($dateDeb!=='NULL') $dateDeb = "'".MySQLEscapeString($dateDeb)."'";
-		if ($dateFin!=='NULL') $dateFin = "'".MySQLEscapeString($dateFin)."'";
+		if (!$dateDeb) $dateDeb='NULL';
+		if (!$dateFin) $dateFin='NULL';
+		if ($dateDeb!=='NULL')
+			$dateDeb = "'".MySQLEscapeString($dateDeb)."'";
+		if ($dateFin!=='NULL')
+			$dateFin = "'".MySQLEscapeString($dateFin)."'";
 		$txt = "'".MySQLEscapeString($txt)."'";
 		if (!$id) { // création
 			$this->oBdd->executerRequete("INSERT INTO Accueil "
@@ -199,6 +211,11 @@ class CAccueil
 		$hResult = $this->oBdd->executerRequete("UPDATE Accueil SET Visible=1-Visible WHERE Id=$id");
 	}
 
+
+function isVisible($ele)
+{
+	return $ele->Visible;
+}
 
 }
 ?>

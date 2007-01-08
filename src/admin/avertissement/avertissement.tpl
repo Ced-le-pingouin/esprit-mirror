@@ -16,8 +16,21 @@ form.liensForm label { display:block; margin:2px 0; }
 form.liensForm label span { width:15ex; text-align:right; }
 form.liensForm input { width:70ex; margin-left:1ex; }
 form.liensForm button { margin-left:5ex; }
+#brevesForm li { margin:4px 0; }
+#brevesForm li span { width:51ex; 
+  display: -moz-inline-box;
+  display: inline-block;
+  border: 1px solid gray;
+  text-align: left;
+  margin: 0;
+  padding: 0 1em 0 1em;
+}
+input.date { margin-left:1ex; width:14ex; }
 </style>
+<script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
+function insererBalise(v_sBaliseDepart,v_sBaliseFin) { insertAtCursor(document.getElementsByTagName('textarea')[0],v_sBaliseDepart,v_sBaliseFin); }
+
 function getElementsByClassName(oElm, strTagName, strClassName){
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
 	var arrReturnElements = new Array();
@@ -33,6 +46,9 @@ function getElementsByClassName(oElm, strTagName, strClassName){
 	return (arrReturnElements)
 }
 function showOnly( id ) {
+	if ('{onglet}' != id)
+		window.location = "{self}?onglet="+id;
+/*
 	var nodes = getElementsByClassName(document,"div","hidden");
 	for(var i=0; i<nodes.length; i++) {
 		if (nodes[i].id !== id) {
@@ -45,6 +61,7 @@ function showOnly( id ) {
 	} else {
 		e.style.display = 'none';
 	}
+*/
 }
 function valider( id ) {
 	var node = document.getElementById(id);
@@ -58,28 +75,43 @@ function changed( id ) {
 }
 </script>
 </head>
-<body onload="showOnly('{onglet}')">
-<div id="avertissement" class="hidden">
+<!-- <body onload="showOnly('{onglet}')"> -->
+<body>
+
+[BLOCK_AVERTISSEMENT+]
+<div id="avertissement">
 <div class="valider"><span></span><a href="#" onclick="valider('avertissement')">Valider</a></div>
 <h1>Avertissement</h1>
 <p><em>Texte placé sous la zone de login, sur la gauche de la page d'accueil.</em></p>
-{avertissement}
+<form action="{self}" name="avertissement" method="post">
+<input type="hidden" name="modifier" value="avertissement" />
+<input type="hidden" name="onglet" value="avertissement" />
+{avertissementEditeur}
+</form>
 </div>
+[BLOCK_AVERTISSEMENT-]
 
-<div id="texteAccueil" class="hidden">
+[BLOCK_TEXTEACCUEIL+]
+<div id="texteAccueil">
 <div class="valider"><span></span><a href="#" onclick="valider('texteAccueil')">Valider</a></div>
 <h1>Texte d'accueil</h1>
-{texteAccueil}
+<form action="{self}" name="texteAccueil" method="post">
+<input type="hidden" name="modifier" value="texteAccueil" />
+<input type="hidden" name="onglet" value="texteAccueil" />
+{texteAccueilEditeur}
+</form>
 </div>
+[BLOCK_TEXTEACCUEIL-]
 
-<div id="liens" class="hidden">
+[BLOCK_LIENS+]
+<div id="liens">
 <h1>Liens</h1>
 [BLOCK_LOOP_LIENS+]
-  <form name="liensForm{lien_id}" id="liensForm{lien_id}" class="liensForm" action="" method="post">
+  <form name="liensForm{lien_id}" id="liensForm{lien_id}" class="liensForm" action="{self}" method="post">
   <input type="hidden" name="modifier" value="liens" />
   <input type="hidden" name="onglet" value="liens" />
-  <p>
   <input type="hidden" name="id" value="{lien_id}" />
+  <p>
   <label><span>Titre :</span><input type="text" name="texte" value="{lien_text}" /></label>
   <label><span>Lien :</span><input type="text" name="lien" value="{lien_lien}" /></label>
   <label><span>Type :</span>
@@ -89,16 +121,19 @@ function changed( id ) {
 	<option{sel_popup}>popup</option>
 	<option{sel_inactif}>inactif</option>
   </select>
+  </label>
+  <label><span>Position :</span> {lien_position} sur {lien_positionTotal}
   <button name="submit" value="submit" type="submit">Valider</button>
+  </label>
   </p>
   </form>
 [BLOCK_LOOP_LIENS-]
   <h2>Nouveau lien</h2>
-  <form name="liensFormNew" id="liensFormNew" class="liensForm" action="" method="post">
+  <form name="liensFormNew" id="liensFormNew" class="liensForm" action="{self}" method="post">
   <input type="hidden" name="modifier" value="liens" />
   <input type="hidden" name="onglet" value="liens" />
-  <p>
   <input type="hidden" name="id" value="0" />
+  <p>
   <label><span>Titre :</span><input type="text" name="texte" value="" /></label>
   <label><span>Lien :</span><input type="text" name="lien" value="" /></label>
   <label><span>Type :</span>
@@ -109,14 +144,39 @@ function changed( id ) {
 	<option>inactif</option>
   </select>
   <button name="submit" value="submit" type="submit">Valider</button>
+  </label>
   </p>
   </form>
 </div>
+[BLOCK_LIENS-]
 
-<div id="breves" class="hidden">
+[BLOCK_BREVES+]
+<div id="breves">
 <h1>Brèves</h1>
-{breves}
+  <form name="brevesForm" id="brevesForm" action="{self}" method="post">
+  <input type="hidden" name="modifier" value="breves" />
+  <input type="hidden" name="onglet" value="breves" />
+  <ul>
+[BLOCK_LOOP_BREVES+]
+  <li>
+  <span>{texteDebut}</span>
+  <button name="selectBreve" value="{breve_id}" type="submit">Editer</button>
+  <button name="hideBreve" value="{breve_id}" type="submit">Masquer</button>
+  </li>
+[BLOCK_LOOP_BREVES-]
+[BLOCK_EDIT_BREVE+]
+  <button name="retour" value="breves" type="submit">Retour à la liste</button>
+  <button name="editBreve" value="{breve_id}" type="submit">Valider</button><br /><br />
+  <li><label><span>Date de début : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateDeb" class="date" value="{breve_dateDeb}" /></label></li>
+  <li><label><span>Date de fin : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateFin" class="date" value="{breve_dateFin}" /></label></li>
+  <li><label>Position : {breve_position} sur {breve_positionTotal}</label></li>
+  <li>{breveEditeur}</li> 
+[BLOCK_EDIT_BREVE-]
+  </ul>
+  </form>
 </div>
+[BLOCK_BREVES-]
+
 </body>
 </html>
 
