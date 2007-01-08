@@ -133,6 +133,7 @@ function changed( id ) {
   </select>
   </label>
   <label><span>Position :</span>{lien_position} sur {lien_positionTotal}
+  <button name="delete" value="delete" type="submit">Supprimer</button>
   <button name="submit" value="submit" type="submit">Valider</button>
   </label>
   </p>

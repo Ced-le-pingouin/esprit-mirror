@@ -206,7 +206,12 @@ class CAccueil
 		}
 	}
 
-	 function toggleVisible ( $id )
+	function deleteItem ( $id )
+	{
+		$hResult = $this->oBdd->executerRequete("DELETE FROM Accueil WHERE Id=$id LIMIT 1");
+	}
+
+	function toggleVisible ( $id )
 	{
 		$hResult = $this->oBdd->executerRequete("UPDATE Accueil SET Visible=1-Visible WHERE Id=$id");
 	}

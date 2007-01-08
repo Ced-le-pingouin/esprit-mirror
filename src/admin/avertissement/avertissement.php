@@ -53,7 +53,11 @@ if (!empty($_POST['modifier']))
 			$oAccueil->setTexte($_POST['texteAccueilEditeur']);
 			break;
 		case "liens" :
-			$oAccueil->setLien($_POST['texte'],$_POST['lien'],$_POST['typeLien'],1,$_POST['ordre'],$_POST['id']);
+			if (empty($_POST['delete'])) {
+				$oAccueil->setLien($_POST['texte'],$_POST['lien'],$_POST['typeLien'],1,$_POST['ordre'],$_POST['id']);
+			} else {
+				$oAccueil->deleteItem($_POST['id']);
+			}
 			break;
 		case "breves" :
 			if (isset($_POST['hideBreve'])) {
@@ -178,7 +182,7 @@ if ($_REQUEST['onglet']==='breves') {
 		$oBlock2->remplacer("{breve_dateFin}",emb_htmlentities($breve->DateFin));
 		$iNumBreves = $oAccueil->getNumByType('breve');
 		$ordre = '<select name="ordre"><option value="NULL">Défaut</option>';
-		for ($i=1; $i<$iNumBreves+1; $i++) {
+		for ($i=1; $i<=$iNumBreves+1; $i++) {
 			$ordre .= "<option".($breve->Ordre==$i?' selected':'').">$i</option>";
 		}
 		$ordre .= '</select>';

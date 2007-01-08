@@ -149,10 +149,10 @@ foreach ($liens as $lien) {
    if($lien->TypeLien!="inactif"){
 
       switch($lien->TypeLien){
-         case "frame":
+         case "page":
             $target="href='".$lien->Lien." 'target='_parent'";
             break;
-         case  "page":           
+         case  "new":           
             $target="href='".$lien->Lien."' target='_blank'";
             break;
          case "popup":             
