@@ -1120,3 +1120,22 @@ CREATE TABLE `i18n_fr` (
   PRIMARY KEY  (`IdTxt`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Table structure for table `Accueil`
+--
+
+CREATE TABLE `Accueil` (
+  `Id` smallint(5) unsigned NOT NULL auto_increment,
+  `TypeContenu` enum('avert','texte','breve','lien') NOT NULL default 'texte',
+  `Texte` text,
+  `Lien` varchar(200) default NULL,
+  `TypeLien` enum('new','page','popup','inactif') NOT NULL default 'popup',
+  `DateDeb` date default NULL,
+  `DateFin` date default NULL,
+  `Visible` tinyint(1) NOT NULL default '1',
+  `Ordre` smallint(6) default NULL,
+  `DateCreation` date NOT NULL default '0000-00-00',
+  `DateEdition` date NOT NULL default '0000-00-00',
+  PRIMARY KEY  (`Id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+

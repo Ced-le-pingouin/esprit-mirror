@@ -20,8 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 //                          Grenoble Universités
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -67,6 +66,11 @@ if (isset($_REQUEST['step']) && $_REQUEST['step']) {
     $step=$_REQUEST['step'];
 } else {
 	if (file_exists('../include/config.inc')) {
+		/*
+		// Mise à jour d'Esprit
+		require('../include/config.inc');
+		$link = init_db($g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd);
+		*/
 		echo "<p class='erreur'>Configuration interrompue : Esprit semble déjà configuré.</p>";
 		echo "</body></html>";
 		exit;
@@ -120,16 +124,8 @@ case 2:
 		echo "</body></html>";
 		exit;
 	}
-	$link = mysql_connect($_POST['host'],$_POST['user'],$_POST['password']);
-	if (! $link) {
-		echo "<p class='erreur'>Erreur de connexion à la base de données.</P>";
-		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
-		echo "</body></html>";
-		exit;
-	}
-	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
-	if (! mysql_selectdb($_POST['base'])) {
-		echo "<p class='erreur'>Connexion réussie, mais erreur d'accès à la base de données.</p>";
+	$link=init_db($_POST['host'],$_POST['user'],$_POST['password'],$_POST['base']);
+	if ($link === FALSE) {
 		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
 		echo "</body></html>";
 		exit;
@@ -263,7 +259,7 @@ case 5:
 	$DirUp = dirname(dirname($DocName));
 ?>
 
-<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
+<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé de bloquer l'accès au répertoire <em>install/</em> de votre serveur web.
 </p>
 
 <p>Vous pouvez désormais vous rendre sur votre <a href="<?php echo $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
@@ -313,6 +309,18 @@ function redo_step() {
 </p>
 </form>
 <?php
+}
+
+function init_db( $host, $user, $password, $base ) {
+	$link = mysql_connect($host,$user,$password);
+	if (! $link) {
+		echo "<p class='erreur'>Erreur de connexion au serveur MySQL.</P>";
+	}
+	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
+	if (! mysql_selectdb($base)) {
+		echo "<p class='erreur'>Connexion au serveur MySQL réussie, mais erreur d'accès à la base de données.</p>";
+	}
+	return $link;
 }
 
 function load_mysql_dump($path, $ignoreerrors = false) {
