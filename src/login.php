@@ -112,7 +112,7 @@ $breves = $oAccueil->getBreves($Visible=1, $Date=1);
 if($breves){
    foreach ($breves as $breve) {
       $oBlocBreve->nextLoop();
-      $oBlocBreve->remplacer("{breve->info}",$breve->Texte);
+	   $oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
    }
    $oBlocBreve->afficher(); 
 }
@@ -150,24 +150,24 @@ foreach ($liens as $lien) {
 
       switch($lien->TypeLien){
          case "frame":
-            $target="_parent";
+            $target="href='".$lien->Lien." 'target='_parent'";
             break;
-         case  "page":
-            $target="_target";
+         case  "page":           
+            $target="href='".$lien->Lien."' target='_blank'";
             break;
-         case "popup": // A TERMINER !!!
-            $target="_parent";
+         case "popup":             
+            $target = "href=\"".$lien->Lien."\" onClick=\"window.open('".$lien->Lien."','popup','width=500,height=500');return false\"";
             break;
       }
-      $sInfo = "<a href='".$lien->Lien."' target='".$target."'>".$lien->Texte."</a>"; 
+      $sInfo = "<a ".$target.">".$lien->Texte."</a>"; 
    }
    else $sInfo = $lien->Texte;           
   $oBlocLien->remplacer("{lien->info}",$sInfo);
 
 }
 $oBlocLien->afficher();
-
 }
+
 else $oBlocLien->effacer();
 
 

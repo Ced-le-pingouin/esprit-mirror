@@ -539,8 +539,8 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = str_replace("[/n]", "</span>", $v_sTexte);
 	
 	// lien vers un site internet
-	$v_sTexte = ereg_replace("\[http://([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"http://\\1\\2\" target=\"_blank\" onfocus=\"blur()\">http://\\1\\2</a>", $v_sTexte);
-	$v_sTexte = preg_replace('/\[http:\/\/([^\s\]]+) ([^\]]+)\]/','<a href="http://$1" target="_blank" onfocus="blur()">$2</a>', $v_sTexte);
+	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$1</a>', $v_sTexte);
+	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+) ([^\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$2</a>', $v_sTexte);
 	
 	// Ecrire un e-mail
 	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"".gettext("Envoyer un e-mail")."\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);

@@ -217,7 +217,7 @@ function composer_dossiers_formations() {
 function avertissement_login() {
 	var sUrl = GLOBALS["admin"] + "avertissement/avertissement-index.php";
 	var sOptionsFenetre = ",status=no,resizable=no,scrollbars=no";
-	var oWin = PopupCenter(sUrl,"winAvertissementLogin",620,360,sOptionsFenetre);
+	var oWin = PopupCenter(sUrl,"winAvertissementLogin",700,440,sOptionsFenetre);
 	oWin.focus();
 }
 

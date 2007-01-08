@@ -41,12 +41,6 @@ $oProjet = new CProjet();
 $sTitrePrincipal = "Gestion de la page d'accueil";
 $sSousTitre = NULL;
 
-$sRequeteSql = "SELECT AvertissementLogin FROM Projet LIMIT 1";
-$hResult = $oProjet->oBdd->executerRequete($sRequeteSql);
-$oEnreg = $oProjet->oBdd->retEnregSuiv($hResult);
-$sAvertissementLogin = rawurlencode($oEnreg->AvertissementLogin);
-$oProjet->oBdd->libererResult($hResult);
-
 // {{{ Insérer ces lignes dans l'en-tête de la page html
 $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <script type="text/javascript" language="javascript">
@@ -60,7 +54,7 @@ BLOCK_HTML_HEAD;
 
 // {{{ Frame principale
 $sFramePrincipale = <<<BLOCK_FRAME_PRINCIPALE
-<frame name="Principale" src="avertissement.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="no">
+<frame name="Principale" src="avertissement.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
 BLOCK_FRAME_PRINCIPALE;
 // }}}
 

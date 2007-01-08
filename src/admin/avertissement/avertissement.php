@@ -57,9 +57,9 @@ if (!empty($_POST['modifier']))
 			break;
 		case "breves" :
 			if (isset($_POST['hideBreve'])) {
-				$oAccueil->toggleVisible($_POST['id']);
-			} else if (isset($_POST['editBreve'])) {
-				$oAccueil->setBreve($_POST['breveEditeur'],$_POST['dateDeb'],$_POST['dateFin'],1,$_POST['ordre'],$_POST['editBreve']);
+				$oAccueil->toggleVisible($_POST['hideBreve']);
+			} else if (isset($_POST['editBreve']) && empty($_POST['retour'])) {
+				$oAccueil->setBreve($_POST['brevesEditeur'],$_POST['dateDeb'],$_POST['dateFin'],1,$_POST['ordre'],$_POST['editBreve']);
 			}
 			break;
 	}
@@ -103,7 +103,7 @@ $oBlock->afficher();
 // Texte d'accueil
 $oBlock = new TPL_Block("BLOCK_TEXTEACCUEIL",$oTpl);
 if ($_REQUEST['onglet']==='texteAccueil') {
-	insertEditor($oBlock,"texteAccueil",$oAccueil->getTexte());
+	insertEditor($oBlock,"texteAccueil",$oAccueil->getTexte(),78,15);
 } else {
 	$oBlock->effacer();
 }
@@ -126,7 +126,7 @@ if ($_REQUEST['onglet']==='liens') {
 		$oBlock2->remplacer("{sel_inactif}",'');
 		$iNumLiens = $oAccueil->getNumByType('lien');
 		$ordre = '<select name="ordre"><option value="NULL">Défaut</option>';
-		for ($i=1; $i<$iNumLiens+1; $i++) {
+		for ($i=1; $i<=$iNumLiens; $i++) {
 			$ordre .= "<option".($lien->Ordre==$i?' selected':'').">$i</option>";
 		}
 		$ordre .= '</select>';
@@ -134,6 +134,12 @@ if ($_REQUEST['onglet']==='liens') {
 		$oBlock2->remplacer("{lien_positionTotal}",$iNumLiens);
 	}
 	$oBlock2->afficher();
+	$ordre = '<select name="ordre">';
+	for ($i=1; $i<=$iNumLiens; $i++) {
+		$ordre .= "<option>$i</option>";
+	}
+	$ordre .= '<option selected="1">'.($iNumLiens+1).'</option></select>';
+	$oBlock->remplacer("{lien_position}",$ordre);
 } else {
 	$oBlock->effacer();
 }
@@ -173,13 +179,12 @@ if ($_REQUEST['onglet']==='breves') {
 		$iNumBreves = $oAccueil->getNumByType('breve');
 		$ordre = '<select name="ordre"><option value="NULL">Défaut</option>';
 		for ($i=1; $i<$iNumBreves+1; $i++) {
-error_log($breve->Ordre." - ".$i);
 			$ordre .= "<option".($breve->Ordre==$i?' selected':'').">$i</option>";
 		}
 		$ordre .= '</select>';
 		$oBlock2->remplacer("{breve_position}",$ordre);
 		$oBlock2->remplacer("{breve_positionTotal}",$iNumBreves);
-		insertEditor($oBlock2,"breve",$breve->Texte);
+		insertEditor($oBlock2,"breves",$breve->Texte,72,10);
 	}
 	$oBlock1->afficher();
 	$oBlock2->afficher();
@@ -200,13 +205,13 @@ $oProjet->terminer();
 
 
 
-function insertEditor( &$template, $theme, $content="" ) {
+function insertEditor( &$template, $theme, $content="", $largeur=78, $hauteur=13 ) {
 	$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
 	$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
 	$oBlocTableauDeBord->effacer();
 	$oTplEditeur->remplacer("{editeur->nom}",$theme."Editeur");
-	$oTplEditeur->remplacer("26","10"); // hauteur
-	$oTplEditeur->remplacer("80","70"); // largeur
+	$oTplEditeur->remplacer("80",$largeur); // largeur
+	$oTplEditeur->remplacer("26",$hauteur); // hauteur
 	$oTplEditeur->remplacer('class="editeur_texte"></textarea>',
 							'class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
 	$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
