@@ -55,7 +55,7 @@ $aMenus[] = array("Avertissement","top.frames['Principale'].showOnly('avertissem
 $aMenus[] = array("Texte d'accueil","top.frames['Principale'].showOnly('texteAccueil')");
 $aMenus[] = array("Liens","top.frames['Principale'].showOnly('liens')");
 $aMenus[] = array("Brèves","top.frames['Principale'].showOnly('breves')");
-$aMenus[] = array("Annuler","top.close()");
+$aMenus[] = array("<Fermer>","top.close()");
 
 // ---------------------
 // Afficher le menu

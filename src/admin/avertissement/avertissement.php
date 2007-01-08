@@ -32,37 +32,45 @@
 */
 
 require_once("globals.inc.php");
+include_once(dir_database("accueil.tbl.php"));
 
+// ---------------------
+// Données
+// ---------------------
 $oProjet = new CProjet();
-
-// ---------------------
-// Récupérer les variables de l'url
-// ---------------------
-$url_sAvertissement        = (empty($_POST["avertissement"]) ? NULL : $_POST["avertissement"]);
-$url_bAppliquerChangements = (empty($_POST["f"]) ? FALSE : TRUE);
+$oAccueil = new CAccueil($oProjet->oBdd);
 
 // ---------------------
 // Appliquer les changements
 // ---------------------
-if ($url_bAppliquerChangements)
+if (!empty($_POST['modifier']))
 {
-	$sRequeteSql = "UPDATE Projet SET"
-		." AvertissementLogin='".MySQLEscapeString($url_sAvertissement)."'"
-		." LIMIT 1";
-	$oProjet->oBdd->executerRequete($sRequeteSql);
-	
+	switch ($_POST['modifier']) {
+		case "avertissement" : 
+			$sRequeteSql = "UPDATE Projet SET"
+				." AvertissementLogin='".MySQLEscapeString($_POST['avertissementEditeur'])."'"
+				." LIMIT 1";
+			$oProjet->oBdd->executerRequete($sRequeteSql);
+			//$oAccueil->setAvert($_POST['avertissementEditeur']);
+			break;
+		case "texteAccueil" :
+			$oAccueil->setTexte($_POST['texteAccueilEditeur']);
+			break;
+	}
+	/*
 	exit("<html>\n"
-		."<head>\n"
-	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
-		."<script type=\"text/javascript\" language=\"javascript\">\n"
-		."<!--\n"
-		."function init() { top.close(); }\n"
-		."//-->\n"
-		."</script>\n"
-		."</head>\n"
-		."<body onload=\"init()\"></body>\n"
-		."</html>\n"
-	);
+		 ."<head>\n"
+		 ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
+		 ."<script type=\"text/javascript\" language=\"javascript\">\n"
+		 ."<!--\n"
+		 ."function init() { top.close(); }\n"
+		 ."//-->\n"
+		 ."</script>\n"
+		 ."</head>\n"
+		 ."<body onload=\"init()\"></body>\n"
+		 ."</html>\n"
+		 );
+	*/
 }
 
 // ---------------------
@@ -70,24 +78,15 @@ if ($url_bAppliquerChangements)
 // ---------------------
 $oTpl = new Template("avertissement.tpl");
 
-$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
-$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
-$oBlocTableauDeBord->effacer();
-$oTplEditeur->remplacer("{editeur->nom}","avertissement");
-$oTplEditeur->remplacer("26","10"); // hauteur
-$oTplEditeur->remplacer("80","70"); // largeur
-$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-$oTpl->remplacer("{avertissement}",$sSetEditeur);
+if (empty($_REQUEST['onglet'])) {
+	$oTpl->remplacer("{onglet}",'avertissement');
+} else {
+	$oTpl->remplacer("{onglet}",$_REQUEST['onglet']);
+}
 
-$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
-$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
-$oBlocTableauDeBord->effacer();
-$oTplEditeur->remplacer("{editeur->nom}","texteAccueil");
-$oTplEditeur->remplacer("26","10"); // hauteur
-$oTplEditeur->remplacer("80","70"); // largeur
-$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-$oTpl->remplacer("{texteAccueil}",$sSetEditeur);
+insertEditor($oTpl,"avertissement","Attention au chien !");
 
+insertEditor($oTpl,"texteAccueil",$oAccueil->getTexte());
 
 /*
 $oTpl = new Template(dir_admin("commun","editeur.tpl",TRUE));
@@ -114,5 +113,24 @@ $oTpl->afficher();
 
 $oProjet->terminer();
 
+
+
+function insertEditor( &$template, $id, $content="" ) {
+	$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
+	$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
+	$oBlocTableauDeBord->effacer();
+	$oTplEditeur->remplacer("{editeur->nom}",$id."Editeur");
+	$oTplEditeur->remplacer("26","10"); // hauteur
+	$oTplEditeur->remplacer("80","70"); // largeur
+	$oTplEditeur->remplacer('class="editeur_texte"></textarea>',
+							'class="editeur_texte" onchange="changed('."'$id')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
+	$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
+	$template->remplacer('{'.$id.'}',
+						 '<form action="'.$_SERVER['PHP_SELF'].'" name="'.$id.'Form" method="post">'.
+						 '<input type="hidden" name="modifier" value="'.$id.'" />'.
+						 '<input type="hidden" name="onglet" value="'.$id.'" />'.
+						 $sSetEditeur.
+						 "</form>");
+}
 ?>
 

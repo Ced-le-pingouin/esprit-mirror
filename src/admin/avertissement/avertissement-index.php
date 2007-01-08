@@ -53,20 +53,6 @@ $sBlockHtmlHead = <<<BLOCK_HTML_HEAD
 <!--
 function oPrincipale() { return top.frames["Principale"]; }
 function rafraichir() { oPrincipale().location = oPrincipale().location; }
-
-function recuperer() {
-	var form = oPrincipale().document.getElementsByTagName("form").item(0);
-	form.elements["avertissement"].value = unescape("{$sAvertissementLogin}");
-}
-
-function valider() {
-	var form = oPrincipale().document.getElementsByTagName("form").item(0);
-	var params = form.elements["f"].value = "appliquer";
-	form.action = "avertissement.php";
-	form.target = "Principale";
-	form.method = "post";
-	form.submit();
-}
 //-->
 </script>
 BLOCK_HTML_HEAD;
