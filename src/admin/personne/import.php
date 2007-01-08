@@ -91,7 +91,11 @@ if (!empty($_POST['importer'])) {
 	$data->setOutputEncoding('UTF-8');
 	if (strcasecmp(substr($_FILES['importFile']['name'],-4),".csv")===0) {
 		$data->readCSV($_FILES['importFile']['tmp_name']);
-	} else {			
+	} 
+        elseif (strcasecmp(substr($_FILES['importFile']['name'],-4),".ods")===0) {
+           $data->readODS($_FILES['importFile']['tmp_name']);
+        }
+        else {			
 		$data->read($_FILES['importFile']['tmp_name']);
 	}
 	echo '<head>
@@ -104,6 +108,8 @@ if (!empty($_POST['importer'])) {
 	echo "\n<ol>";
 	$inscrits=0;
 	$total=0;
+
+// print_r($data->sheets);
 	for ($nrow=6; $nrow<$data->sheets[0]['numRows']; $nrow++) {
 		// colonnes 1 à 6, à partir de la ligne 6
 		// nom, prénom, pseudo, mdp, sexe, email
@@ -163,6 +169,7 @@ Télécharger le modèle de feuille de tableur
 <ul>
   <li>au format <a href="esprit_inscriptions.xls">Excel</a></li>
   <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
+  <li>au format <a href="esprit_inscriptions.ods">ODS</a></li>
 </ul>
 Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.
 </body>
