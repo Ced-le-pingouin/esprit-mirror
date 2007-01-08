@@ -322,7 +322,7 @@ function GPL()
 <div id="pieddepage">
 	<div id="hautpieddepage">&nbsp;</div>
 	<div id="baspieddepage">
-	<a href="javascript: void(propos('theme://'));" onfocus="blur()">ESPRIT a été développé par l'Unité de Technologie de L'Education de l'Université de Mons-Hainaut (Belgique)</a>
+	<a href="javascript: void(propos('theme://'));" onfocus="blur()">ESPRIT  (C) Unité de Technologie de L'Education, Université de Mons-Hainaut (Belgique), 2001-2006 et Grenoble Universités, projet Flodi, 2006.</a>
 	</div>
 </div>
 
