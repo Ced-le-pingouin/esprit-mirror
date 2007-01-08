@@ -30,9 +30,10 @@
  */
 
 require_once("globals.inc.php");
+include_once(dir_database("accueil.tbl.php"));
 
 $oProjet = new CProjet();
-
+$oAccueil = new CAccueil($oProjet->oBdd);
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
@@ -57,19 +58,17 @@ else
 // }}}
 
 // {{{ Afficher un message d'avertissement
-$sRequeteSql = "SELECT AvertissementLogin FROM Projet LIMIT 1";
-$hResult = $oProjet->oBdd->executerRequete($sRequeteSql);
-$oEnreg = $oProjet->oBdd->retEnregSuiv($hResult);
-$sAvertissementLogin = $oEnreg->AvertissementLogin;
-$oProjet->oBdd->libererResult($hResult);
 
-if (strlen($sAvertissementLogin))
-{
-	$oBlocAvertissementLogin->remplacer("{login.avertissement}",convertBaliseMetaVersHtml($sAvertissementLogin));
-	$oBlocAvertissementLogin->afficher();
+$oBlocAvertissementLogin->beginLoop();
+
+$avert = $oAccueil->getAvert($Visible=1);
+if($avert){
+   $oBlocAvertissementLogin->nextLoop();
+   $oBlocAvertissementLogin->remplacer("{login.avertissement}",convertBaliseMetaVersHtml($avert));
+   $oBlocAvertissementLogin->afficher();
 }
-else
- $oBlocAvertissementLogin->effacer();
+else  $oBlocAvertissementLogin->effacer();
+
 // }}}
 
 // {{{ Formulaire
@@ -94,15 +93,90 @@ if ($oProjet->initFormationsUtilisateur() > 0)
 	}
 	
 	$oBlocFormation->afficher();
+
 	$oBlocListeFormations->afficher();
+
 }
 else
 {
 	$oBlocListeFormations->effacer();
+      
 }
 
 $oBlocInfosPlateforme->afficher();
+// ajout des breves
+$ladate = date("Y-m-d");
+$oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
+$oBlocBreve->beginLoop();
+$breves = $oAccueil->getBreves($Visible=1, $Date=1);
+if($breves){
+   foreach ($breves as $breve) {
+      $oBlocBreve->nextLoop();
+      $oBlocBreve->remplacer("{breve->info}",$breve->Texte);
+   }
+   $oBlocBreve->afficher(); 
+}
+else{
+   $oBlocBreve->effacer();
+}
+
+
+
+// ajouts des textes de présentation
+
+$oBlocTexte = new TPL_Block("BLOCK_TEXTE",$oTpl);
+$oBlocTexte->beginLoop();
+$Texte  = $oAccueil->getTexte($Visible=1);
+if($Texte){
+   $oBlocTexte->nextLoop();
+   $oBlocTexte->remplacer("{texte->info}",convertBaliseMetaVersHtml($Texte));
+   $oBlocTexte->afficher();
+} 
+
+else  	$oBlocTexte->effacer();
+
+
+
+
+// ajout des liens
+$oBlocLien = new TPL_Block("BLOCK_LIEN",$oTpl);
+
+$oBlocLien->beginLoop();
+$liens = $oAccueil->getLiens($Visible=1);
+if($liens){
+foreach ($liens as $lien) {
+   $oBlocLien->nextLoop();
+   if($lien->TypeLien!="inactif"){
+
+      switch($lien->TypeLien){
+         case "frame":
+            $target="_parent";
+            break;
+         case  "page":
+            $target="_target";
+            break;
+         case "popup": // A TERMINER !!!
+            $target="_parent";
+            break;
+      }
+      $sInfo = "<a href='".$lien->Lien."' target='".$target."'>".$lien->Texte."</a>"; 
+   }
+   else $sInfo = $lien->Texte;           
+  $oBlocLien->remplacer("{lien->info}",$sInfo);
+
+}
+$oBlocLien->afficher();
+
+}
+else $oBlocLien->effacer();
+
+
+
+
 $oTpl->afficher();
 
-$oProjet->terminer();
+
+
+
+
 ?>
