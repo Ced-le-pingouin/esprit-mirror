@@ -38,7 +38,6 @@ $oProjet = new CProjet();
 
 // Vérifier que cet utilisateur a le droit d'utiliser cet outil
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_PERMISSION");
-
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
@@ -82,15 +81,28 @@ if (count($url_aiIdsPerm) > 0)
 // Rechercher les permissions par rapport au statut de l'utilisateur
 $oPermisUtilisateur->initPermissions($url_iIdStatut);
 
+
 // ---------------------
 // Template
 // ---------------------
 $oTpl = new Template("permissions.tpl");
+if (empty($_REQUEST['onglet'])) {
+	$oTpl->remplacer("{onglet}",'permission');
+	$_REQUEST['onglet'] = 'permission';
+} else {
+	$oTpl->remplacer("{onglet}",$_REQUEST['onglet']);
+}
+
 
 $oTpl->remplacer("{idStatut}",$url_iIdStatut);
 $oTpl->remplacer("{filtre}",$url_sFiltre);
+$oBloc_liste_permission = new TPL_Block("BLOCK_LISTE_PERMISSION",$oTpl);
+$oBloc_permission = new TPL_Block("BLOCK_PERMISSION",$oBloc_liste_permission);
 
-$oBloc_permission = new TPL_Block("BLOCK_PERMISSION",$oTpl);
+if ($_REQUEST['onglet']==='permission') {
+
+
+
 
 $oBloc_permission->beginLoop();
 
@@ -115,6 +127,26 @@ foreach ($oPermission->aoPermissions as $oPermis)
 }
 
 $oBloc_permission->afficher();
+
+} else {
+	$oBloc_liste_permission->effacer();
+}
+
+$oBloc_liste_permission->afficher();
+
+$oBloc_admin = new TPL_Block("BLOCK_ADMIN",$oTpl);
+
+if ($_REQUEST['onglet']==='admin') {
+
+  // $oBloc_admin->remplacer("{admin}", "");
+
+}else{
+   $oBloc_admin->effacer();
+}
+$oBloc_admin->afficher();
+
+$oTpl->remplacer("{self}",$_SERVER['PHP_SELF']);
+$oTpl->remplacer("js://",dir_javascript());
 
 $oTpl->afficher();
 
