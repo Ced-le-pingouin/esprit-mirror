@@ -86,6 +86,11 @@ define("LIEN_GLOSSAIRE"				, 11);	/// Glossaire																						@enum LIEN_
 define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités			@enum LIEN_TABLEAU_DE_BORD
 //@}
 
+/** @name Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module_Rubrique */
+define("DONNEES_URL"     , 0); /// Url pour les liens             @enum DONNEES_URL
+define("DONNEES_MODE"    , 1); /// Mode, par ex. pour l'affichage @enum DONNEES_MODE
+define("DONNEES_INTITULE", 2); /// Nom à afficher pour ce lien    @enum DONNEES_INTITULE
+
 /** @name Constantes - modalités d'affichage pour certains liens HTML de la plate-forme */
 //@{
 define("FRAME_CENTRALE_DIRECT"		, 1);	/// Affichage immédiat dans la frame centrale														@enum FRAME_CENTRALE_DIRECT
