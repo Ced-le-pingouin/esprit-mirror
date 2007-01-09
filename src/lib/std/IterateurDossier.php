@@ -45,7 +45,8 @@ class IterateurDossier extends IterateurTableau
 	 *
 	 * @param	v_sChemin	le dossier sur lequel on effectuera l'itération
 	 * @param	v_sFiltre	le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui
-	 * 						utilisé par la fonction native PHP glob()
+	 * 						utilisé par la fonction native PHP glob(). Par défaut, il comprend tous les 
+	 * 						fichiers/dossiers
 	 *
 	 * @note	Contrairement aux filtres d'itérateurs (IterateurFiltre et sous-classes), le filtre agit ici
 	 * 			directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs
