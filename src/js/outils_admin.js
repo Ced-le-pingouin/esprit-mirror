@@ -221,10 +221,10 @@ function composer_dossiers_formations() {
 	oWin.focus();
 }
 
-function avertissement_login() {
-	var sUrl = GLOBALS["admin"] + "avertissement/avertissement-index.php";
+function page_accueil() {
+	var sUrl = GLOBALS["admin"] + "accueil/accueil-index.php";
 	var sOptionsFenetre = ",status=no,resizable=no,scrollbars=no";
-	var oWin = PopupCenter(sUrl,"winAvertissementLogin",700,440,sOptionsFenetre);
+	var oWin = PopupCenter(sUrl,"winAccueilLogin",700,440,sOptionsFenetre);
 	oWin.focus();
 }
 

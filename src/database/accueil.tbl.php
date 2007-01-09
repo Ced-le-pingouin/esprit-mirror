@@ -28,6 +28,9 @@
  * @author	François GANNAZ
  */
 
+/**
+ * Gestion de la page d'accueil en utilisant la table Accueil de la DB
+ */
 class CAccueil
 {
 	var $oBdd;					///< Objet représentant la connexion à la DB
@@ -77,6 +80,9 @@ class CAccueil
 
 		 // fonctions GET...
 
+	/**
+	 * Renvoie le texte de l'avertissement à afficher sur la page d'accueil
+	 */
 	function getAvert ($Visible=0)
 	{
 		unset($this->sAvert);
@@ -89,6 +95,9 @@ class CAccueil
 		return $this->sAvert;
 	}
 
+	/**
+	 * Renvoie le texte d'accueil
+	 */
 	function getTexte ($Visible=0)
 	{
 		unset($this->sTexte);
@@ -101,6 +110,11 @@ class CAccueil
 		return $this->sTexte;
 	}
 
+	/**
+	 * Renvoie le tableau des brèves à afficher sur la page d'accueil
+	 * @param Visible Si non nul, uniquement les éléments visibles.
+	 * @param Date    Si vrai, tient compte de la date courante
+	 */
 	function getBreves ($Visible=0, $Date=FALSE)
 	{
 		unset($this->aoBreves);
@@ -118,6 +132,10 @@ class CAccueil
 		return $this->aoBreves;
 	}
 
+	/**
+	 * Renvoie le tableau des liens à afficher sur la page d'accueil
+	 * @param Visible Si non nul, uniquement les éléments visibles.
+	 */
 	function getLiens ($Visible=0)
 	{
 		unset($this->aoLiens);
@@ -131,12 +149,20 @@ class CAccueil
 		return $this->aoLiens;
 	}
 
+	/**
+	 * Renvoie l'item (avertissement, texte, breve, lien) de la page d'accueil
+	 * @param id L'ID SQL de l'item.
+	 */
 	function getItem ( $id )
 	{
 		$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE Id=$id");
 		return $this->oBdd->retEnregSuiv($hResult);
 	}
 
+	/**
+	 * Renvoie le nombre d'item (avertissement, texte, breve, lien) du type donné
+	 * @param type Le type des items.
+	 */
 	function getNumByType ( $type )
 	{
 		$hResult = $this->oBdd->executerRequete("SELECT count(Id) as num FROM Accueil WHERE TypeContenu='$type'");
@@ -216,11 +242,10 @@ class CAccueil
 		$hResult = $this->oBdd->executerRequete("UPDATE Accueil SET Visible=1-Visible WHERE Id=$id");
 	}
 
-
-function isVisible($ele)
-{
-	return $ele->Visible;
-}
+	function isVisible($ele)
+	{
+		return $ele->Visible;
+	}
 
 }
 ?>
