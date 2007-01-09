@@ -56,9 +56,9 @@ class CTraverseurScorm extends CTraverseur
 	var $oElementSousActiv;
 	//@}
 	
-	var $poElementParent; ///< Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés)
+	var $poElementParent;   ///< Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés)
 	
-	var $asRes   = array();
+	var $asRes   = array(); ///< Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités
 	
 	/**
 	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité 
@@ -247,6 +247,7 @@ class CTraverseurScorm extends CTraverseur
 		$title = $this->oDocXml->createElement('title', $this->oRubrique->retNom());
 		$this->oElementRubrique->appendChild($title);
 		
+		// des fichiers peuvent être associés aux rubriques => transformés en ressources SCORM
 		$this->_exporterRessources(TYPE_RUBRIQUE, $this->oRubrique, $this->oElementRubrique);
 		
 		$this->defElementParent($this->oElementRubrique, $this->retElementCourant());
@@ -305,6 +306,7 @@ class CTraverseurScorm extends CTraverseur
 		$title = $this->oDocXml->createElement('title', $this->oSousActiv->retNom());
 		$this->oElementSousActiv->appendChild($title);
 		
+		// des fichiers peuvent être associés aux sous-activités => transformés en ressources SCORM
 		$this->_exporterRessources(TYPE_SOUS_ACTIVITE, $this->oSousActiv, $this->oElementRubrique);
 		
 		$this->defElementParent($this->oElementSousActiv, $this->retElementCourant());
@@ -342,16 +344,40 @@ class CTraverseurScorm extends CTraverseur
 		$this->oDocXml->save($this->oDossierPaquet->formerChemin('imsmanifest.xml'));
 	}
 	
+	/**
+	 * Indique si une ressource ou un ensemble de ressources a déjà été exporté(e) (décrit en xml)
+	 * 
+	 * @param	v_sNomRes	l'identificateur de la ressource à vérifier
+	 * 
+	 * @return	\c true si cette (ces) ressource(s) a (ont) déjà été exportée(s), \c false sinon
+	 */
 	function _ressourceDejaExportee($v_sNomRes)
 	{
 		return array_key_exists($v_sNomRes, $this->asRes);
 	}
 	
+	/**
+	 * Déclare une ressource ou en ensemble de ressource comme exporté(e)
+	 * 
+	 * @param	v_sNomRes				l'identificateur de la ressource exportée
+	 * @param	v_oElementXmlRessource	l'objet xml qui représente cette ressource en SCORM
+	 */
 	function _declarerRessourceExportee($v_sNomRes, &$v_oElementXmlRessource)
 	{
 		$this->asRes[$v_sNomRes] =& $v_oElementXmlRessource;
 	}
 	
+	/**
+	 * Intègre un fichier à un ensemble de ressources exportées (balise file en SCORM). Cette fonction est appelée en 
+	 * callback par un objet FichierInfo chargé de copier les fichiers d'un élément de formation
+	 * 
+	 * @param	l'objet FichierInfo qui représente le fichier source qui est exporté (il se trouve dans les rubriques 
+	 * 			ou sous-activités)
+	 * @param	l'objet FichierInfo qui représente le fichier copié, dans son emplacement final au sein du paquet SCORM 
+	 * 			créé dans un dossier temporaire
+	 * @param	si \c true, la copie du fichier s'est bien déroulée (ce paramètre est requis pour les fonctions 
+	 * 			callback de FichierInfo dans le cadre des copies)
+	 */
 	function _cbExporterFichierRessource($v_oFichierSrc, $v_oFichierDest, $v_bCopieReussie)
 	{
 		if ($v_bCopieReussie && $v_oFichierDest->estFichier())
@@ -363,6 +389,18 @@ class CTraverseurScorm extends CTraverseur
 		}
 	}
 	
+	/**
+	 * Prend en charge l'exportation de toutes les ressources d'un niveau de formation. Cela implique la copie des 
+	 * fichiers dans le paquet SCORM en création, l'écriture des balises correspondantes, la transformation de 
+	 * ressources au format Esprit vers un format lisible et utilisable dans un paquet SCORM, etc
+	 * 
+	 * @param	v_iNiveau		le niveau pour lequel s'effectue l'exportation de ressources (rubrique, (sous-)activité,
+	 * 							etc)
+	 * @param	v_oElementPhp	l'objet qui représente l'élément de formation en terme de classes Esprit, càd CFormation, 
+	 * 							CModule, etc
+	 * @param	v_oElementXml	l'objet qui représente l'élément de formation sous sa forme *exportée*, càd dire en DOM 
+	 * 							XML
+	 */
 	function _exporterRessources($v_iNiveau, &$v_oElementPhp, &$v_oElementXml)
 	{
 		// les ressources de toutes les rubriques d'une formation se trouvent dans un dossier commun 
