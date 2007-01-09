@@ -34,6 +34,9 @@
 require_once(dir_database("module.tbl.php"));
 require_once(dir_code_lib("tri.inc.php"));
 require_once(dir_lib("tar.class.php", TRUE));
+require_once(dir_lib("std/FichierInfo.php", TRUE));
+require_once(dir_lib("std/IterateurDossier.php", TRUE));
+require_once(dir_lib("std/IterateurRecursif.php", TRUE));
 
 define("INTITULE_FORMATION","Formation"); /// Titre qui désigne le niveau racine de la structure d'une formation 	@enum INTITULE_FORMATION
 
@@ -233,6 +236,23 @@ class CFormation
 	 * @return	le numéro d'ordre maximum
 	 */
 	function retNumOrdreMax () { return $this->retValeurMax($this->ORDRE); }
+	
+	/**
+	 * @return	le dossier où se trouvent tous les dossiers de toutes les formations, et donc leurs fichiers associés
+	 */
+	function retDossierFormations()
+	{
+		return dir_formation();
+	}
+	
+	/**
+	 * @return	le dossier associé à cette formation, donc celui où se trouvent les fichiers associés à la formation
+	 */
+	function retDossier()
+	{
+		$f = new FichierInfo(dir_formation($this->retId()));
+		return $f->retChemin();
+	}
 	
 	/**
 	 * Copie la formation courante vers une autre
@@ -949,11 +969,12 @@ class CFormation
 	 * @param	v_iIdPers				le numéro d'identifiant de la personne
 	 * @param	v_iIdStatutUtilisateur	l'id du statut de la personne utilisé comme critère pour la recherche. 
 	 * 									La signification de ce paramètre est modifiée par \p v_bRechStricte.
-	 * 									Si le paramètre n'est pas fourni, tous les modules de la formation seront récupérés
-	 * @param	v_bRechStricte			si \true et \p v_iIdStatutUtilisateur fourni, alors seul les modules pour lesquels
-	 * 									la personne a exactement le statut demandé seront récupérés. Si \c false, les
-	 * 									modules pour lesquels la personne a un statut inférieur ou égal à celui demandé
-	 * 									seront également récupérés
+	 * 									Si le paramètre n'est pas fourni, tous les modules de la formation seront 
+	 * 									récupérés
+	 * @param	v_bRechStricte			si \c true et \p v_iIdStatutUtilisateur fourni, alors seul les modules pour 
+	 * 									lesquels la personne a exactement le statut demandé seront récupérés. 
+	 * 									Si \c false, les modules pour lesquels la personne a un statut inférieur ou égal 
+	 * 									à celui demandé seront également récupérés
 	 * 
 	 * @return	le nombre de module insérés dans le tableau
 	 */

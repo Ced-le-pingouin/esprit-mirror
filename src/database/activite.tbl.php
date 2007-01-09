@@ -32,6 +32,7 @@
 
 require_once(dir_database("sous_activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
+require_once(dir_lib("std/FichierInfo.php", TRUE));
 
 define("INTITULE_ACTIV","Groupe d'actions"); /// Titre qui désigne le quatrième niveau de la structure d'une formation 	@enum INTITULE_ACTIV
 
@@ -892,6 +893,15 @@ class CActiv
 		return array(
 			array(MODALITE_INDIVIDUEL,"individuel"),
 			array(MODALITE_PAR_EQUIPE,"par &eacute;quipe"));
+	}
+
+	/**
+	 * @return	le dossier associé à cette activité, donc celui où se trouvent ses fichiers associés
+	 */	
+	function retDossier()
+	{
+		$f = new FichierInfo(dir_cours($this->retId(), $this->retIdFormation()));
+		return $f->retChemin();
 	}
 }
 
