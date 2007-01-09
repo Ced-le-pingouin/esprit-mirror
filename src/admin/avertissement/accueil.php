@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Fichier ................: avertissement.php
+** Fichier ................: accueil.php
 ** Description ............:
 ** Date de création .......: 08/07/2005
 ** Dernière modification ..: 12/07/2005
@@ -86,7 +86,7 @@ if (!empty($_POST['modifier']))
 // ---------------------
 // Template
 // ---------------------
-$oTpl = new Template("avertissement.tpl");
+$oTpl = new Template("accueil.tpl");
 
 if (empty($_REQUEST['onglet'])) {
 	$oTpl->remplacer("{onglet}",'avertissement');

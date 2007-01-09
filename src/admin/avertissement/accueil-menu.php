@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Fichier ................: avertissement-menu.php
+** Fichier ................: accueil-menu.php
 ** Description ............: 
 ** Date de création .......: 08/07/2005
 ** Dernière modification ..: 08/07/2005

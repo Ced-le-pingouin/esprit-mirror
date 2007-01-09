@@ -20,11 +20,11 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /*
-** Fichier ................: avertissement-index.php
+** Fichier ................: accueil-index.php
 ** Description ............:
 ** Date de création .......: 08/07/2005
 ** Dernière modification ..: 12/07/2005
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
+** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>, François Gannaz
 **
 ** Unité de Technologie de l'Education
 ** 18, Place du Parc
@@ -54,7 +54,7 @@ BLOCK_HTML_HEAD;
 
 // {{{ Frame principale
 $sFramePrincipale = <<<BLOCK_FRAME_PRINCIPALE
-<frame name="Principale" src="avertissement.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
+<frame name="Principale" src="accueil.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
 BLOCK_FRAME_PRINCIPALE;
 // }}}
 
@@ -68,9 +68,9 @@ $oBlockHtmlHead->ajouter($sBlockHtmlHead);
 $oBlockHtmlHead->afficher();
 
 $oTpl->remplacer("{titre_page_html}",emb_htmlentities($sTitrePrincipal));
-$oTpl->remplacer("{frame_src_haut}","avertissement-titre.php?tp=".rawurlencode($sTitrePrincipal)."&st=".rawurlencode($sSousTitre));
+$oTpl->remplacer("{frame_src_haut}","accueil-titre.php?tp=".rawurlencode($sTitrePrincipal)."&st=".rawurlencode($sSousTitre));
 $oTpl->remplacer("{frame_principal}",$sFramePrincipale);
-$oTpl->remplacer("{frame_src_bas}","avertissement-menu.php");
+$oTpl->remplacer("{frame_src_bas}","accueil-menu.php");
 
 $oTpl->afficher();
 
