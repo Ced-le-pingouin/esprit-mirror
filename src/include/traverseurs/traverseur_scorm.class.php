@@ -25,8 +25,10 @@
  * Contient la classe qui traverse les (éléments de) formations et les exporte en SCORM 2004
  */
 
+require_once(dirname(__FILE__).'/../../globals.inc.php');
 require_once(dirname(__FILE__).'/traverseur.class.php');
 require_once(dirname(__FILE__).'/../../lib/dom/dom.class.php');
+require_once(dirname(__FILE__).'/../../lib/std/FichierInfo.php');
 
 /**
  * Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004 
@@ -35,13 +37,17 @@ class CTraverseurScorm extends CTraverseur
 {
 	var $sEncodage = 'UTF-8'; ///< Encodage utilisé pour le fichier imsmanifest.xml (pas modifiable pour l'instant)
 	
-	var $oDocXml;			  ///< Objet interne qui représente le document xml du manifest
+	var $oDocXml;             ///< Objet interne qui représente le document xml du manifest
+	var $oDossierPaquet;      ///< Objet de type FichierInfo qui représente le chemin de la racine du paquet créé
+	var $oDossierRessources;  ///< Objet de type FichierInfo qui représente le chemin du dossier où seront placées les ressources du paquet SCORM
 	
 	/** Objets internes qui contiendront les noeuds xml nécessaires pendant la création du manifest */
 	//@{
 	var $oElementManifest;
 	var $oElementOrgs;
 	var $oElementOrg;
+	var $oElementRessources;
+	var $oElementRessource;
 	
 	var $oElementFormation;
 	var $oElementModule;
@@ -50,7 +56,9 @@ class CTraverseurScorm extends CTraverseur
 	var $oElementSousActiv;
 	//@}
 	
-	var $poElementParent; ///< Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés)  
+	var $poElementParent; ///< Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés)
+	
+	var $asRes   = array();
 	
 	/**
 	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité 
@@ -85,6 +93,19 @@ class CTraverseurScorm extends CTraverseur
 	 */
 	function debutTraitement()
 	{
+		// construction du chemin où se trouvera la paquet SCORM et ses fichiers avant compression en PIF (zip)
+		$this->oDossierPaquet = new FichierInfo(dir_tmp(NULL, TRUE));
+		$sDossierPaquet = 'esprit-scorm-'.md5(uniqid(rand(), TRUE));
+		$this->oDossierPaquet->formerChemin($sDossierPaquet, TRUE);
+		
+		// création du dossier racine et du sous-dossier destiné à contenir d'éventuels fichiers (ressources)
+		$this->oDossierPaquet->creerDossier();
+		$this->oDossierRessources = new FichierInfo($this->oDossierPaquet->formerChemin('fichiers'));
+		$this->oDossierRessources->creerDossier();
+		
+		// ressources à zéro
+		$this->asRes = array();
+		
 		// création de l'objet "document xml" pour le manifest, avec son encodage, dans un format lisible avec indentation
 		$this->oDocXml = new CDOMDocument('1.0', $this->sEncodage);
 		$this->oDocXml->formatOutput = TRUE;
@@ -130,6 +151,9 @@ class CTraverseurScorm extends CTraverseur
 		
 		// l'élément suivant devra être rattaché à celui-ci, qui devient le "parent"
 		$this->defElementCourant($this->oElementOrg);
+		
+		// cet élément est créé dès le départ, mais sera rattaché au document principal uniquement à la fin
+		$this->oElementRessources = $this->oDocXml->createElement('resources');
 	}
 	
 	/**
@@ -144,8 +168,14 @@ class CTraverseurScorm extends CTraverseur
 		// fin organizations => ajouté dans manifest
 		$this->oElementManifest->appendChild($this->oElementOrgs);
 		
+		// fin resources => ajouté dans manifest
+		$this->oElementManifest->appendChild($this->oElementRessources);
+		
 		// fin manifest => ajouté dans le doc/root => fin document XML
 		$this->oDocXml->appendChild($this->oElementManifest);
+		
+		// suppression du dossier temporaire créé pour le paquet
+		//$this->oDossierPaquet->supprimerDossier(TRUE);
 	}
 	
 	/**
@@ -217,6 +247,8 @@ class CTraverseurScorm extends CTraverseur
 		$title = $this->oDocXml->createElement('title', $this->oRubrique->retNom());
 		$this->oElementRubrique->appendChild($title);
 		
+		$this->_exporterRessources(TYPE_RUBRIQUE, $this->oRubrique, $this->oElementRubrique);
+		
 		$this->defElementParent($this->oElementRubrique, $this->retElementCourant());
 		$this->defElementCourant($this->oElementRubrique);
 	}
@@ -269,10 +301,11 @@ class CTraverseurScorm extends CTraverseur
 		// sous-activ(ité) (item) (dans la DB, dans Esprit le terme est devenu "Action")
 		$this->oElementSousActiv = $this->oDocXml->createElement('item');
 		$this->oElementSousActiv->setAttribute('identifier', 'SOUSACTIV-'.$this->oSousActiv->retId());
-		//$this->oElementSousActiv->setAttribute('identifierref', 'RES-1');
 		
 		$title = $this->oDocXml->createElement('title', $this->oSousActiv->retNom());
 		$this->oElementSousActiv->appendChild($title);
+		
+		$this->_exporterRessources(TYPE_SOUS_ACTIVITE, $this->oSousActiv, $this->oElementRubrique);
 		
 		$this->defElementParent($this->oElementSousActiv, $this->retElementCourant());
 		$this->defElementCourant($this->oElementSousActiv);
@@ -306,7 +339,140 @@ class CTraverseurScorm extends CTraverseur
 	function enregistrerPaquetScorm()
 	{	
 		// sauver le fichier XML
-		$this->oDocXml->save('package_scorm/imsmanifest.xml');
+		$this->oDocXml->save($this->oDossierPaquet->formerChemin('imsmanifest.xml'));
+	}
+	
+	function _ressourceDejaExportee($v_sNomRes)
+	{
+		return array_key_exists($v_sNomRes, $this->asRes);
+	}
+	
+	function _declarerRessourceExportee($v_sNomRes, &$v_oElementXmlRessource)
+	{
+		$this->asRes[$v_sNomRes] =& $v_oElementXmlRessource;
+	}
+	
+	function _cbExporterFichierRessource($v_oFichierSrc, $v_oFichierDest, $v_bCopieReussie)
+	{
+		if ($v_bCopieReussie && $v_oFichierDest->estFichier())
+		{
+			$f = $this->oDocXml->createElement('file');
+			$f->setAttribute('href', $v_oFichierDest->reduireChemin($this->oDossierPaquet->retChemin()
+			                                                        .$v_oFichierDest->retSeparateur()));
+			$this->oElementRessource->appendChild($f);
+		}
+	}
+	
+	function _exporterRessources($v_iNiveau, &$v_oElementPhp, &$v_oElementXml)
+	{
+		// les ressources de toutes les rubriques d'une formation se trouvent dans un dossier commun 
+		if ($v_iNiveau == TYPE_RUBRIQUE)
+			$sNomResGlobales = 'RES-RUB-FORM-'.$this->oFormation->retId();
+		// idem pour les ressources de toutes les sous-activités d'une même activité
+		else if ($v_iNiveau == TYPE_SOUS_ACTIVITE)
+			$sNomResGlobales = 'RES-ACTIV-'.$this->oActiv->retId();
+		else
+			Erreur::provoquer("Exportation de ressources non supportée à ce niveau ($v_iNiveau)");
+		
+		// si on n'a pas déjà créé le bloc ressource "global" pour les rubriques d'une même formation, ou pour les 
+		// sous-activités d'une même activité, on le crée. Ca ne sera donc fait qu'une seule fois par formation ou 
+		// activité. Les rubriques et sous-activités (respectivement) dépendantes auront uniquement un href pour 
+		// indiquer l'index, et une balise dependency pour pointer vers l'ensemble des ressources de son "parent"
+		if (!$this->_ressourceDejaExportee($sNomResGlobales))
+		{
+			$this->oElementRessource = $this->oDocXml->createElement('resource');
+			$this->oElementRessource->setAttribute('identifier', $sNomResGlobales);
+			$this->oElementRessource->setAttribute('type', 'webcontent');
+			$this->oElementRessource->setAttribute('adlcp:scormType', 'asset');
+			
+			$oDossierSrc = new FichierInfo($v_oElementPhp->retDossier());
+			$oDossierSrc->copier($this->oDossierRessources->retChemin(), TRUE, array($this, '_cbExporterFichierRessource'));
+			
+			$this->oElementRessources->appendChild($this->oElementRessource);
+			
+			$this->_declarerRessourceExportee($sNomResGlobales, $this->oElementRessource);
+		}
+		/*
+		switch($v_oElementPhp->retType())
+		{
+			case LIEN_PAGE_HTML:
+				break;
+			
+			case LIEN_DOCUMENT_TELECHARGER:
+				$sUrl = $v_oElementPhp->retDonnee(DONNEES_URL);
+				$sNomRes = $this->_retNomRessource($sUrl);
+				
+				$v_oElementXml->setAttribute('identifierref', $sNomRes);
+				
+				$r = $this->oDocXml->createElement('resource');
+				$r->setAttribute('identifier', $sNomRes);
+				$r->setAttribute('type', 'webcontent');
+				$r->setAttribute('adlcp:scormType', 'asset');
+				$r->setAttribute('href', $sUrl);
+					
+					$f = $this->oDocXml->createElement('file');
+					$f->setAttribute('href', $sUrl);
+					$r->appendChild($f);
+					
+					$this->oElementRessources->appendChild($r);
+				
+				break;
+				
+			case LIEN_SITE_INTERNET:
+				$sUrl = $v_oElementPhp->retDonnee(DONNEES_URL);
+				$bResExiste = $this->_ressourceDejaExportee($sUrl);
+				$sNomRes = $this->_retNomRessource($sUrl);
+				
+				$v_oElementXml->setAttribute('identifierref', $sNomRes);
+
+				if (!$bResExiste)
+				{				
+					$r = $this->oDocXml->createElement('resource');
+					$r->setAttribute('identifier', $sNomRes);
+					$r->setAttribute('type', 'webcontent');
+					$r->setAttribute('adlcp:scormType', 'asset');
+					$r->setAttribute('href', $sUrl);
+					$this->oElementRessources->appendChild($r);
+				}
+				break;
+			
+			case LIEN_TEXTE_FORMATTE:
+//				$sUrl = $v_oElementPhp->retDonnee(DONNEES_URL);
+//				$bResExiste = $this->_ressourceDejaExportee($sUrl);
+//				$sNomRes = $this->_retNomRessource($sUrl);
+//				
+//				$v_oElementXml->setAttribute('identifierref', $sNomRes);
+//
+//				if (!$bResExiste)
+//				{				
+//					$r = $this->oDocXml->createElement('resource');
+//					$r->setAttribute('identifier', $sNomRes);
+//					$r->setAttribute('type', 'webcontent');
+//					$r->setAttribute('adlcp:scormType', 'asset');
+//					$r->setAttribute('href', $sUrl);
+//					
+//					$f = $this->oDocXml->createElement('file');
+//					$f->setAttribute('href', $sUrl);
+//					$r->appendChild($f);
+//					
+//					$this->oElementRessources->appendChild($r);
+//				}
+//				break;
+			
+			// types connus mais qui n'ont pour le moment pas d'exportation de ressources supplémentaires
+			case LIEN_CHAT:
+			case LIEN_FORUM:
+			case LIEN_UNITE:
+			case LIEN_GALERIE:
+			case LIEN_COLLECTICIEL:
+			case LIEN_TABLEAU_DE_BORD:
+				break;
+			
+			// si type inconnu, aucune ressource exportée, forcément
+			default:
+				break;
+		}
+		*/
 	}
 }
 
