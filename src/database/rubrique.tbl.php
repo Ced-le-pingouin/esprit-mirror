@@ -705,9 +705,9 @@ class CModule_Rubrique
 		$this->mettre_a_jour("NomRubrique",$v_sNom);
 	}
 
-	function defDonnee ($v_sDonnee)
+	function defDonnees($v_sDonnees)
 	{
-		$this->mettre_a_jour("DonneesRubrique",$v_sDonnee.":2");
+		$this->mettre_a_jour("DonneesRubrique",$v_sDonnees.":2");
 	}
 
 	function defType ($v_iType)

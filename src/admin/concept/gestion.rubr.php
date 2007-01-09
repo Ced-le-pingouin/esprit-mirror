@@ -106,9 +106,9 @@ switch ($act)
 			
 			// Mettre à jour la base de données
 			if (file_exists($repDeposer.$html_rubrique_name))
-				$oRubrique->defDonnee($html_rubrique_name);
+				$oRubrique->defDonnees($html_rubrique_name);
 			else
-				$oRubrique->defDonnee("");
+				$oRubrique->defDonnees("");
 		}
 		// }}}
 		
@@ -144,7 +144,7 @@ switch ($act)
 			$sDonnees = (empty($_POST["LIEN_SITE_INTERNET"]) ? "" : $_POST["LIEN_SITE_INTERNET"]);
 			// Pourquoi un rawurlencode ?
 			// C'est à cause de ces deux points: "disc.vjf.inserm.fr(:)2010/basisrapports/psycho/psycho_ch10.pdf"
-			$oRubrique->defDonnee(rawurlencode($sDonnees));
+			$oRubrique->defDonnees(rawurlencode($sDonnees));
 			$sDonnees = NULL;
 		}
 		else if (LIEN_FORUM == $url_iTypeRubrique)

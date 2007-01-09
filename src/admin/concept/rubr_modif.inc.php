@@ -75,7 +75,7 @@ if (isset ($g_iRubrique))
 	$oModule_Rubrique->defType ($type_rubrique);
 
 	if ($bChargerFichier)
-		$oModule_Rubrique->defDonnee ($html_rubrique_name);			
+		$oModule_Rubrique->defDonnees($html_rubrique_name);			
 
 	// *************************************
 	// Recharger la table
