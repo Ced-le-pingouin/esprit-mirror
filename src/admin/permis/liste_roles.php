@@ -61,7 +61,7 @@ if ($sAction == "effacer" && $iIdPers > 0){
 }
 
 $iNbAdmins = $oProjet->initAdministrateurs();
-$sNomsInscrits;
+$sNomsInscrits = "";
 if ($iNbAdmins > 0){
    foreach ($oProjet->aoAdmins as $oAdmin){
       $sNomsInscrits = $sNomsInscrits."<tr><td width=\"1%\"> <input type=\"radio\" name=\"IDPERS\" onfocus=\"blur()\""; 

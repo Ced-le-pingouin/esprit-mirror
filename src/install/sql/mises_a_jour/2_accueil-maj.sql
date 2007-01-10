@@ -5,7 +5,7 @@
 -- Permissions
 
 INSERT INTO Permission (NomPermis,DescrPermis) VALUES ("PERM_EDITER_ACCUEIL","Peut éditer la page d'accueil") ;
-INSERT INTO Statut_Permission (IdPermission,IdStatut) VALUES ((SELECT IdPermission FROM Permission WHERE NomPermis='PERM_EDITER_ACCUEIL'),1) ;
+INSERT INTO Statut_Permission (IdPermission,IdStatut) VALUES ((SELECT IdPermission FROM Permission WHERE NomPermis='PERM_MOD_ACCUEIL'),1) ;
 
 
 -- Avertissement

@@ -640,13 +640,9 @@ CREATE TABLE `Personne` (
 -- 
 
 CREATE TABLE `Projet` (
-  `NomProj` varchar(80) collate utf8_unicode_ci NOT NULL default '',
-  `Email` varchar(255) collate utf8_unicode_ci NOT NULL default '',
-  `NumPortAwareness` varchar(5) collate utf8_unicode_ci NOT NULL default '',
-  `NumPortChat` varchar(5) collate utf8_unicode_ci default NULL,
-  `UrlAccueil` varchar(100) collate utf8_unicode_ci default NULL,
-  `AvertissementLogin` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`NomProj`)
+  `Nom` varchar(80) collate utf8_unicode_ci NOT NULL default '',
+  `Valeur` text collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`Nom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

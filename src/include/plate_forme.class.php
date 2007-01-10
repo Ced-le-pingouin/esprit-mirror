@@ -296,6 +296,7 @@ class CProjet
 	var $bIdParFormulaire;		///< Les infos utilisateurs ont-elles été transmises par formulaire ? Sinon, c'est par cookie
 	var $oBdd;					///< Objet représentant la connexion à la DB
 	var $sNom;					///< Nom complet du projet
+	var $sVersion;				///< Numéro de version (chaîne de caractères)
 	var $sUrlAccueil;			///< URL complète de la page d'accueil du projet
 	var $sUrlLogin;				///< URL de la page permettant de s'identifier
 	var $oErreurs;				///< :DEBUG: pour tester la classe CConstantes
@@ -381,14 +382,17 @@ class CProjet
 	function init()
 	{
 		$hResult = $this->oBdd->executerRequete("SELECT * FROM Projet");
-		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
+			switch ($oEnreg->Nom) {
+			case 'NomProj': $this->sNom = $oEnreg->Valeur; break;
+			case 'Email': $this->sEmail = $oEnreg->Valeur; break;
+			case 'UrlAccueil': $this->sUrlAccueil = $oEnreg->Valeur; break;
+			case 'NumPortChat': $this->iNumPortChat = $oEnreg->Valeur; break;
+			case 'NumPortAwareness': $this->iNumPortAwareness = $oEnreg->Valeur; break;
+			case 'Version': $this->sVersion = $oEnreg->Valeur; break;
+			}
+		}
 		$this->oBdd->libererResult($hResult);
-		
-		$this->sNom = $oEnreg->NomProj;
-		$this->sEmail = $oEnreg->Email;
-		$this->sUrlAccueil = $oEnreg->UrlAccueil;
-		$this->iNumPortChat = $oEnreg->NumPortChat;
-		$this->iNumPortAwareness = $oEnreg->NumPortAwareness;
 		
 		if (isset($this->asInfosSession[SESSION_UID]) && $this->asInfosSession[SESSION_UID] > 0)
 		{
