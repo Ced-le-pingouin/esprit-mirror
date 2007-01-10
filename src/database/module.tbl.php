@@ -33,7 +33,6 @@
 
 require_once(dir_database("formation.tbl.php"));
 require_once(dir_database("rubrique.tbl.php"));
-require_once(dir_lib("std/FichierInfo.php", TRUE));
 
 define("INTITULE_MODULE","Cours"); /// Titre qui désigne le second niveau de la structure d'une formation 	@enum INTITULE_MODULE
 

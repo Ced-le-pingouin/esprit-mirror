@@ -29,8 +29,8 @@ require_once(dirname(__FILE__).'/IterateurDossier.php');
 
 /** Constantes - Séparateurs de fichiers/dossiers */
 //@{
-define('FICHIER_SEPARATEUR_UNIX'   , '/') ; ///< Le séparateur de fichiers/dossiers par défaut sous Unix 
-define('FICHIER_SEPARATEUR_WINDOWS', '\\'); ///< Le séparateur de fichiers/dossiers par défaut sous Windows
+define('FICHIER_SEPARATEUR_UNIX'   , '/') ; ///< Le séparateur de fichiers/dossiers par défaut sous Unix	@enum FICHIER_SEPARATEUR_UNIX
+define('FICHIER_SEPARATEUR_WINDOWS', '\\'); ///< Le séparateur de fichiers/dossiers par défaut sous Windows	@enum FICHIER_SEPARATEUR_WINDOWS
 //@}
 
 /**
@@ -370,6 +370,7 @@ class FichierInfo
  			return $this->sChemin;
  		}
  	}
+ 	
  	
  	/**
  	 * Crée le dossier représenté dans l'objet courant

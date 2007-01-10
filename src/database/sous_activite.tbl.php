@@ -35,6 +35,7 @@ require_once(dir_database("collecticiel.tbl.php"));
 require_once(dir_database("galerie.tbl.php"));
 require_once(dir_database("glossaire.tbl.php"));
 require_once(dir_database("chat.tbl.php"));
+require_once(dir_lib("std/FichierInfo.php", TRUE));
 
 define("INTITULE_SOUS_ACTIV","Action");	/// Titre qui désigne le cinquième niveau de la structure d'une formation 	@enum INTITULE_SOUS_ACTIV
 
