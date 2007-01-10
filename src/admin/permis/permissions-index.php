@@ -23,7 +23,7 @@ BLOCK_HTML_HEAD;
 
 // {{{ Frame principale
 $sFramePrincipale = <<<BLOCK_FRAME_PRINCIPALE
-<frame name="Principale" src="permission.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
+<frame name="Principale" src="permissions.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="auto">
 BLOCK_FRAME_PRINCIPALE;
 // }}}
 
@@ -55,7 +55,7 @@ $oProjet->terminer();
 </head>
 <frameset rows="63,*,25" border="0" frameborder="0" framespacing="0">
 <frame name="titre" src="permissions-titre.php" border="0" marginwidth="0" marginheight="0" frameborder="0" framespacing="0" scrolling="no" noresize="noresize">
-<frame name="Principale" src="permission.php" border="0" marginwidth="0" marginheight="0" frameborder="0" framespacing="0" scrolling="yes" noresize="noresize">
+<frame name="Principale" src="permissions.php" border="0" marginwidth="0" marginheight="0" frameborder="0" framespacing="0" scrolling="yes" noresize="noresize">
 <frame name="menu" src="permissions-menu.php" border="0" marginwidth="10" marginheight="4" frameborder="0" framespacing="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>

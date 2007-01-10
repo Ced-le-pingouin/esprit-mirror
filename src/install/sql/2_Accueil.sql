@@ -14,12 +14,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Permissions
-
-INSERT INTO Permission (NomPermis,DescrPermis) VALUES ("PERM_EDITER_ACCUEIL","Peut éditer la page d'accueil") ;
-INSERT INTO Statut_Permission (IdPermission,IdStatut) VALUES ((SELECT IdPermission FROM Permission WHERE NomPermis='PERM_EDITER_ACCUEIL'),1) ;
-
-
 --
 -- Dumping data for table `Accueil`
 --

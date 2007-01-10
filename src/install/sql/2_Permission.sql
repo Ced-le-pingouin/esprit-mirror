@@ -102,3 +102,4 @@ INSERT INTO Permission VALUES (101,'PERM_CLASSER_FORMATIONS','Peut Classer ses f
 INSERT INTO Permission VALUES (102,'PERM_COMPOSER_GALERIE','Peut associer des documents à la galerie');
 INSERT INTO Permission VALUES (103,'PERM_FORUM_EXPORTER_CSV','Peut exporter un forum vers un fichier csv');
 INSERT INTO Permission VALUES (104,'PERM_OUTIL_TABLEAU_DE_BORD','Peut accèder au tableau de bord');
+INSERT INTO Permission VALUES (105,'PERM_MOD_ACCUEIL','Peut modifier la page d\'accueil');

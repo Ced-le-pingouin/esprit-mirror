@@ -36,7 +36,13 @@
 // ---------------------
 // Déclaration des fichiers à inclure
 // ---------------------
-require_once(dirname(__FILE__).'/include/config.inc');
+if (! @include_once(dirname(__FILE__).'/include/config.inc')) {
+	echo "<html><head><title>Esprit : Erreur fatale</title></head>
+<body><h1>Esprit : Erreur fatale</h1>
+<p><strong>Pas de fichier de configuration.</strong> L'installation d'Esprit est-elle achev&eacute;e ?</p>
+</body></html>\n";
+	exit();
+}
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
 require_once(dir_include("gettext.inc.php"));
