@@ -249,7 +249,7 @@ class CFormulaire
 	   * 
 	   * @return l'id du nouveau formulaire
 	   */
-	  function copier ($v_iIdPers)
+	  function copier($v_iIdPers)
 	  {
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		// de les stocker dans la BD sans erreur 
@@ -380,6 +380,36 @@ class CFormulaire
 		}
 		$this->oBdd->libererResult($hResult);
 		return $aoObjetFormulaire;
+	}
+	
+	/**
+	 * Retourne le nombre d'éléments de cette activité en ligne
+	 * 
+	 * @return	le nombre d'éléments de cette activité en ligne
+	 */
+	function retNbreObjetFormulaire()
+	{
+		$sRequeteSql = "SELECT COUNT(*) FROM ObjetFormulaire"
+					." WHERE IdFormul='".$this->retId()."'";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$iNb = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		return $iNb;
+	}
+	
+	/**
+	 * Retourne le nombre d'éléments qui ne sont pas auto-corrigés
+	 * 
+	 * @return	le nombre d'éléments qui ne sont pas auto-corrigés
+	 */
+	function retNbreObjetFormulaireNonAutoCorrige()
+	{
+		$sRequeteSql = "SELECT COUNT(*) FROM ObjetFormulaire"
+					." WHERE IdFormul='".$this->retId()."' AND IdTypeObj IN (".OBJFORM_QTEXTELONG.",".OBJFORM_QTEXTECOURT.",".OBJFORM_QNOMBRE.")";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$iNb = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		return $iNb;
 	}
 	
 	/** @name Fonctions de définition des champs pour ce formulaire */
