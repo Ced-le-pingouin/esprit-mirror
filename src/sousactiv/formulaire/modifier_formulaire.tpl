@@ -175,33 +175,6 @@ a:hover
 </style>
 <script src="{formulaire_js}" type="text/javascript"></script>
 <script src="{general_js_php}" type="text/javascript"></script>
-<script type="text/javascript" language="javascript">
-<!--
-
-function GestionFeedback(idPropRep,aFermer) 
-{
-	if(document.getElementById("FB"+idPropRep).style.display == "block")
-	{
-		document.getElementById("FB"+idPropRep).style.display = "none";
-		document.getElementById("FBT"+idPropRep).style.display = "none";
-	}
-	else
-	{
-		if(aFermer)
-		{
-			for (var i=0;i<aFermer.length;i++)
-			{
-				document.getElementById("FB"+aFermer[i]).style.display = "none";
-				document.getElementById("FBT"+aFermer[i]).style.display = "none";
-			}
-		}
-		document.getElementById("FB"+idPropRep).style.display = "block";
-		document.getElementById("FBT"+idPropRep).style.display = "block";
-	}
-}
-
-//-->
-</script>
 </head>
 <body>
 <div id="entete"><h3>{Nom_etudiant}{Info_ael}</h3></div>

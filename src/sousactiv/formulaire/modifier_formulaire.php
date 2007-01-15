@@ -415,9 +415,9 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 						foreach($TabRepEtu as $sTmp)
 						{
 							if( $sRepEtud != "")
-								$sRepEtud .= ",$sTmp";
+								$sRepEtud .= ",'$sTmp'";
 							else
-								$sRepEtud = "$sTmp";
+								$sRepEtud = "'$sTmp'";
 						}
 					}
 					$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
