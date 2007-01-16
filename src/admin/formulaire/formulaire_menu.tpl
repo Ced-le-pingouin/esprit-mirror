@@ -3,44 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<style type="text/css">
-p { margin: 0px; }
-
-.bloc
-{
-	margin: 5px 3px 12px 3px;
-	background-color: rgb(111,105,87);
-	padding: 2px;
-	text-align: center;
-}
-.bloc select
-{
-	background-color: rgb(231,225,212);
-}
-.bloc h3
-{
-	margin: 0px;
-	padding: 2px 0px;
-	font-size: 12px;
-	font-weight: bold;
-	color: rgb(250,250,250);
-}
-
-.bloc .nom
-{
-	margin: 1px 0px;
-	background-color: rgb(231,225,212);
-	padding: 4px 0px;
-}
-
-.bloc .liens
-{
-	background-color: rgb(202,195,177);
-	padding: 4px 0px;
-}
-
-.bloc .liens a { font-size: 11px; }
-</style>
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_menu.css" />
 <script type="text/javascript">
 <!--
 function suppression(TypeAct)
@@ -84,7 +47,7 @@ function ajouter(TypeAct)
 <script src="selectionobj.js" type="text/javascript"></script>
 <title>Conception d'activités en ligne</title>
 </head>
-<body class="menu">
+<body>
 <form name="listeformulaire" action="formulaire_menu.php" method="get">
 <input type="checkbox" name="bMesForms" id="bMesForms" value="1" onclick="this.form.submit();" {bMesFormsCoche} /><label for="bMesForms">uniquement mes activités</label>
 <input type="hidden" name="typeaction" value="selection" />

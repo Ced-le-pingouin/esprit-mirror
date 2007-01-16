@@ -3,16 +3,23 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_liste.css" />
 <style type="text/css">
 <!--
-form	{	margin: 10px {sLargeur};	}
-.p  { line-height: 10.5pt; font-family: Arial,sans-serif; font-size: 10pt; color: black; margin-top: 6px; margin-bottom: 6px; }
-.InterER  { margin-top: {iInterEnonRep}px; }
-.InterObj  { margin-top: {iInterElem}px; }
-.titre { font-size: 1.4em; font-weight: bold; }
-input, select
+form
 {
-	margin: 0 5px;
+	margin-bottom: 10px;
+	margin-left: {sLargeur};
+	margin-right: {sLargeur};
+	margin-top: 10px;
+}
+.InterER
+{
+	margin-top: {iInterEnonRep}px;
+}
+.InterObj
+{
+	margin-top: {iInterElem}px;
 }
 -->
 </style>
@@ -34,7 +41,7 @@ function allerAPos(v_iNpos)
 </script>
 <title>Modification des activités en ligne</title>
 </head>
-<body class="liste" {onload}>
+<body {onload}>
 [BLOCK_INTRO+]
 <div id="titrepagevierge">
 	<img src="../../images/doc-plein.gif" alt="logo" />

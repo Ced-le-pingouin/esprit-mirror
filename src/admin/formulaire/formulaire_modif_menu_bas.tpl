@@ -21,8 +21,6 @@ function annuler()
 <title>Conception d'activités en ligne</title>
 </head>
 <body class="menumodifbas">
-<div style="border-top:1px solid black; height:20px; text-align: right; padding: 2px 7px;" >
-	<a href="javascript: appliquer();">Appliquer les changements</a> | <a href="javascript: annuler();">Annuler</a>
-</div>
+<a href="javascript: appliquer();">Appliquer les changements</a> | <a href="javascript: annuler();">Annuler</a>
 </body>
 </html>
