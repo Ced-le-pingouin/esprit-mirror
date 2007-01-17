@@ -70,18 +70,16 @@ function dir_definition ($v_sFichierAInclure=NULL) { return dir_include("def/$v_
 // ---------------------
 function dir_code_lib ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
-	$v_sFichierAInclure = "code_lib/{$v_sFichierAInclure}";
+	$v_sFichierAInclure = "lib/code_lib/{$v_sFichierAInclure}";
 	if ($v_bCheminHttp)
-		return dir_http_plateform(dir_lib($v_sFichierAInclure, FALSE));
+		return dir_http_plateform($v_sFichierAInclure, FALSE);
 	else
-		return dir_lib($v_sFichierAInclure,$v_bCheminAbsolu);
-	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/new/$v_sFichierAInclure";
+		return dir_root_plateform($v_sFichierAInclure,$v_bCheminAbsolu);
 }
 
 function dir_code_lib_ced ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
 	return dir_code_lib($v_sFichierAInclure, $v_bCheminHttp, $v_bCheminAbsolu);
-	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/$v_sFichierAInclure";
 }
 
 /**
@@ -107,7 +105,7 @@ function dir_database ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 function dir_http_plateform ($v_sFichierAInclure=NULL)
 {
 	global $g_sCheminRacineWeb;
-	return $g_sCheminRacineWeb.$v_sFichierAInclure;
+	return $g_sCheminRacineWeb.ltrim($v_sFichierAInclure, '/');
 }
 
 /**
@@ -123,7 +121,8 @@ function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 	if ($v_bCheminAbsolu) {
 		return $g_sCheminRacine.$v_sFichierAInclure;
 	} else {
-		return $g_sCheminRacineWeb.$v_sFichierAInclure;
+		// $v_bCheminAbsolu à FALSE voudrait dire le chemin relatif *à la racine web*.
+		return str_replace(dir_http(), '/', $g_sCheminRacineWeb).$v_sFichierAInclure;
 	}
 }
 
@@ -265,7 +264,7 @@ function dir_document_root ($v_sFichierAInclure=NULL)
 function dir_root_formation ($v_sFichierAInclure=NULL)
 {
 	// Ex.: /www/htdocs/html/esprit/formation/
-	return (dir_root_plateform()."/formation/{$v_sFichierAInclure}");
+	return (dir_root_plateform()."formation/{$v_sFichierAInclure}");
 }
 
 // *************************************
