@@ -658,6 +658,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$oFormulaire->defInterEnonRep($_POST['InterEnonRep']);
 				$oFormulaire->defRemplirTout($_POST['RemplirTout']);
 				$oFormulaire->defAutoCorrection($_POST['AutoCorrection']);
+				$oFormulaire->defMethodeCorrection($_POST['Methode']);
 				$oFormulaire->defStatut(1); //$_POST['Statut'];
 				$oFormulaire->defType($_POST['Type']);
 				// Test des données reçues et marquage des erreurs à l'aide d'une astérisque dans le formulaire
@@ -738,6 +739,16 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 				$oTpl->remplacer("{sAutoCorrectionSel}","checked=\"checked\"");
 			else
 				$oTpl->remplacer("{sAutoCorrectionSel}","");
+			if($oFormulaire->retMethodeCorrection() == 1)
+			{
+				$oTpl->remplacer("{sMethode_1}","checked=\"checked\"");
+				$oTpl->remplacer("{sMethode_0}","");
+			}
+			else
+			{
+				$oTpl->remplacer("{sMethode_0}","checked=\"checked\"");
+				$oTpl->remplacer("{sMethode_1}","");
+			}
 		}
 		else	//--- Cas où aucune valeur n'a encore été envoyée (c-à-d chargement de la page) ---
 		{

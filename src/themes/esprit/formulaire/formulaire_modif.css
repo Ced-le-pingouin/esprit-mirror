@@ -72,3 +72,23 @@ body
 	margin: 0;
 	padding: 3px 7px;
 }
+#calcul
+{
+	margin-left: 17px;
+	margin-top: 4px;
+}
+#calcul dd
+{
+	font-size: 0.8em;
+}
+#options
+{
+	margin: 0;
+	padding: 0;
+}
+#options li
+{
+	list-style-image: none;
+	list-style-type: none;
+	margin: 5px 0;
+}

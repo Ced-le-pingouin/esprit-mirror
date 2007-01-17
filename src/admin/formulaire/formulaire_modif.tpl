@@ -471,35 +471,29 @@ function soumettre(TypeAct,Parametre)
 	</fieldset>			
 	<fieldset>
 	<legend>Options supplémentaires</legend>
-	<table>
-	<tr>
-		<td>
-			Type :
-		</td>
-		<td>
-			<input id="idpriv" type="radio" name="Type" value="prive" {sType1} /><label for="idpriv">Privé</label>
-		</td>
-		<td>
+	<ul id="options">
+		<li>
+			Type : <input id="idpriv" type="radio" name="Type" value="prive" {sType1} /><label for="idpriv">Privé</label> 
 			<input id="idpub" type="radio" name="Type" value="public" {sType2} /><label for="idpub">Public</label>
-		</td>
-	</tr>
-	<tr>
-		<td>
+		</li>
+		<li>
 			<label for="idremptout">Tous les champs doivent être remplis :</label>
-		</td>
-		<td colspan="2">
 			<input id="idremptout" type="checkbox" name="RemplirTout" value="1" {sRemplirToutSel} />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idautocorrect">Scores :</label>
-		</td>
-		<td colspan="2">
+		</li>
+		<li>
+			<label for="idautocorrect">Auto correction :</label>
 			<input id="idautocorrect" type="checkbox" name="AutoCorrection" value="1" {sAutoCorrectionSel} />
-		</td>
-	</tr>
-	</table>
+		</li>
+		<li>
+			Méthode de calcul (scores) :
+			<dl id="calcul">
+				<dt><input type="radio" name="Methode" id="Meth_0" value="0" {sMethode_0} /><label for="Meth_0">Correction standard</label></dt>
+				<dd>( Nombre de réponses correctes / Nombre de propositions de réponses correctes )</dd>
+				<dt><input type="radio" name="Methode" id="Meth_1" value="1" {sMethode_1} /><label for="Meth_1">Correction for guessing</label></dt>
+				<dd>[ ( Nombre de réponses correctes / Nombre de propositions de réponses correctes ) - ( Nombre de réponses fausses / Nombres de propositions de réponses fausses ) ]</dd>
+			</dl>
+		</li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />   
 </form>

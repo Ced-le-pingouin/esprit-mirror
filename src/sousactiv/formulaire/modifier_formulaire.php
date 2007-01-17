@@ -292,7 +292,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".$oPropRep->retFeedbackPropRep()."</p></div>";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div>";
 								}
 							}
 							else
@@ -315,7 +315,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 					}
 					if($bAutoCorrection)
 					{
-						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
 					$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
@@ -366,7 +366,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".$oPropRep->retFeedbackPropRep()."</p></div>";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div>";
 								}
 							}
 							else
@@ -393,7 +393,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 					}
 					if($bAutoCorrection)
 					{
-						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
 					if($oQRadio->retDispQR() == 'Ver')
@@ -452,7 +452,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback .= "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".$oPropRep->retFeedbackPropRep()."</p></div><br style=\"clear: both; display: none;\" />\n";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div><br style=\"clear: both; display: none;\" />\n";
 								}
 							}
 							else
@@ -480,7 +480,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 					}
 					if($bAutoCorrection)
 					{
-						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
 					if($oQCocher->retDispQC() == 'Ver')
