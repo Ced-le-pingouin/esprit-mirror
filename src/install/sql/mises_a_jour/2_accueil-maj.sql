@@ -10,7 +10,7 @@ INSERT INTO Statut_Permission (IdPermission,IdStatut) VALUES ((SELECT IdPermissi
 
 -- Avertissement
 
-INSERT INTO `Accueil` VALUES (6,'avert',(SELECT AvertissementLogin FROM Projet LIMIT 1),NULL,NULL,NULL,NULL,1,1,'2006-11-29','2006-11-29');
+INSERT INTO `Accueil` (TypeContenu,Texte,DateCreation) VALUES ('avert',(SELECT AvertissementLogin FROM Projet LIMIT 1),CURRENT_DATE());
 ALTER TABLE Projet DROP AvertissementLogin;
 
   
