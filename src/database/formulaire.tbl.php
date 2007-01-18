@@ -210,7 +210,7 @@ class CFormulaire
 	 */
 	function ajouter($iIdPers)
 	{
-		$sRequeteSql = "INSERT INTO Formulaire SET IdFormul=NULL, Titre='Nouveau Formulaire', Encadrer=1, TypeLarg='N', Largeur=5, InterElem=10, InterEnonRep=5, IdPers='$iIdPers';";
+		$sRequeteSql = "INSERT INTO Formulaire SET IdFormul=NULL, Titre='Nouvelle activité en ligne', Encadrer=1, TypeLarg='N', Largeur=5, InterElem=10, InterEnonRep=5, IdPers='$iIdPers';";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return ($this->iId = $this->oBdd->retDernierId());

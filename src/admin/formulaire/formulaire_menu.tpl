@@ -10,11 +10,11 @@ function suppression(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
 	{
-		alert('Veuillez sélectionner une activité dans la liste');
+		alert('Veuillez sélectionner une activité en ligne dans la liste');
 	}
 	else
 	{
-		if(confirm("Voulez-vous supprimer l'activité sélectionnée ?"))
+		if(confirm("Voulez-vous supprimer l'activité en ligne sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].submit();
@@ -29,7 +29,7 @@ function copie(TypeAct)
 	}
 	else
 	{
-		if(confirm("Voulez-vous copier l'activité sélectionnée ?"))
+		if(confirm("Voulez-vous copier l'activité en ligne sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
 			document.forms['listeformulaire'].submit();

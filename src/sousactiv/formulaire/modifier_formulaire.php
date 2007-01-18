@@ -131,7 +131,7 @@ if(!$bFermer)
 					$sEvalGlobale = "Evaluation globale de l'activité (".$oFCE->oEvaluateur->retNom().", le ".$oFormulaireComplete_Eval->retDate()."):";
 				}
 				if(strlen($oFCE->retAppreciation()) || strlen($oFCE->retCommentaire()))
-					$oTpl->remplacer("{txt_eval}",$oFCE->retAppreciation()."<br />".$oFCE->retCommentaire());
+					$oTpl->remplacer("{txt_eval}",convertBaliseMetaVersHtml($oFCE->retAppreciation())."<br />".convertBaliseMetaVersHtml($oFCE->retCommentaire()));
 				else
 					$oTpl->remplacer("{txt_eval}","Aucune remarque particulière n'a été communiquée par votre tuteur");
 			}
@@ -301,7 +301,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div>";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div>";
 								}
 							}
 							else
@@ -381,7 +381,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div>";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div>";
 								}
 							}
 							else
@@ -473,7 +473,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback .= "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?$oPropRep->retFeedbackPropRep():"Aucun feedback spécifique")."</p></div><br style=\"clear: both; display: none;\" />\n";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div><br style=\"clear: both; display: none;\" />\n";
 								}
 							}
 							else

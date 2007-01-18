@@ -30,7 +30,7 @@ function ajoutobj(idformulaire,bMesForms)
 }
 function supobj(idformulaire,idobj,bMesForms) 
 {
-	if (confirm('Voulez-vous supprimer l\'objet sélectionné ?'))
+	if (confirm('Voulez-vous supprimer l\'élément sélectionné ?'))
 	{
 		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=supprimer"+"&bMesForms="+bMesForms);
 	}
@@ -41,7 +41,7 @@ function modifposobj(idformulaire,idobj)
 }
 function copieobj(idformulaire,idobj,bMesForms) 
 {
-	if (confirm('Voulez-vous copier l\'objet sélectionné ?'))
+	if (confirm('Voulez-vous copier l\'élément sélectionné ?'))
 	{
 		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=copier"+"&bMesForms="+bMesForms);
 	}
@@ -84,17 +84,17 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 	
 	if (v_iNbUtilisations > 0)
 	{
-		sMessage += "Cette activité est actuellement utilisé ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
-		sMessage += "Si vous le modifiez, il perdra peut-être son sens dans le contexte où il est en cours d'utilisation.\n";
+		sMessage += "Cette activité en ligne est actuellement utilisée ("+v_iNbUtilisations+" fois) dans le cadre des cours sur la plate-forme.\n";
+		sMessage += "Si vous la modifiez, elle perdra peut-être son sens dans le contexte où elle est en cours d'utilisation.\n";
 		sMessage += "\n\n";
 	}
 
 	if (v_iNbRemplis > 0)
 	{
 		if (sMessage != "")
-			sMessage += "De plus, toujours dans le cadre des cours, ";
+			sMessage += "De plus, toujours dans le cadre des cours,";
 		else
-			sMessage += "Cette activité a déjà été utilisée dans le cadre des cours sur la plate-forme, et";
+			sMessage += "Cette activité en ligne a déjà été utilisée dans le cadre des cours sur la plate-forme, et";
 		
 		sMessage += " elle a déjà été complétée par des étudiants ("+v_iNbRemplis+" fois).\n";
 		sMessage += "Si vous la modifiez, il se peut que les réponses déjà données par ces étudiants soient perdues.\n";
@@ -102,7 +102,7 @@ function alerteFormulaireUtilise(v_iNbUtilisations, v_iNbRemplis)
 	}
 	
 	if (sMessage != "")
-		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillé de faire une copie de cette activité, et de modifier cette copie.\n\n");
+		alert("ATTENTION\n\n" + sMessage + "C'est pourquoi il est vivement conseillé de faire une copie de cette activité en ligne, et de modifier cette copie.\n\n");
 }
 
 var PARAM_NOM = 0;
