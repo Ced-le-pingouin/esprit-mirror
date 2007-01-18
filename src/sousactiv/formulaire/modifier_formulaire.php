@@ -281,12 +281,18 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 								{
 									switch($oPropRep->retScorePropRep())
 									{
-										case "-1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "-1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepFausse++;
 													break;
-										case "0" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "0" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													break;
-										case "1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepCorrecte++;
 													break;
 									}
@@ -315,7 +321,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 					}
 					if($bAutoCorrection)
 					{
-						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
+						$fScore += CalculerScore(1,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
 					$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
@@ -355,12 +361,18 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 								{
 									switch($oPropRep->retScorePropRep())
 									{
-										case "-1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "-1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepFausse++;
 													break;
-										case "0" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "0" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													break;
-										case "1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().")\" src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().");\">"
+																."<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepCorrecte++;
 													break;
 									}
@@ -393,7 +405,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 					}
 					if($bAutoCorrection)
 					{
-						$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
+						$fScore += CalculerScore(1,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
 					if($oQRadio->retDispQR() == 'Ver')
@@ -441,12 +453,18 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 								{
 									switch($oPropRep->retScorePropRep())
 									{
-										case "-1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud))\" src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "-1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud));\">"
+																."<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepFausse++;
 													break;
-										case "0" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud))\" src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "0" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud));\">"
+																."<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													break;
-										case "1" :	$sAutoCorr = "<img onclick=\"GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud))\" src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+										case "1" :	$sAutoCorr = "<a href=\"javascript: GestionFeedback(".$oPropRep->retId().",new Array($sRepEtud));\">"
+																."<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />"
+																."</a>";
 													$iNbreRepCorrecte++;
 													break;
 									}
@@ -570,7 +588,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 		}
 		else
 		{
-			$sEtat .= "<td class=\"separvert\">L'activité a été évalué par votre tuteur</td>";
+			$sEtat .= "<td class=\"separvert\">L'activité a été évaluée par votre tuteur</td>";
 			$sEtat .= "<td><img src=\"theme://formulaire/res_eval.gif\" width=\"8\" height=\"8\" border=\"0\" alt=\"évalué\"/></td></tr>";
 			if($oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_APPROF)
 			{

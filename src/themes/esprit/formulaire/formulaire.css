@@ -54,6 +54,10 @@ fieldset
 	  color: rgb(111,105,87);
 	  margin: 8px 1px;
 }
+img
+{
+	border: 0;
+}
 label
 {
 	  color: rgb(111,105,87);

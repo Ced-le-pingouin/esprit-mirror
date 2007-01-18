@@ -485,12 +485,12 @@ function soumettre(TypeAct,Parametre)
 			<input id="idautocorrect" type="checkbox" name="AutoCorrection" value="1" {sAutoCorrectionSel} />
 		</li>
 		<li>
-			Méthode de calcul (scores) :
+			Méthode de calcul du score :
 			<dl id="calcul">
-				<dt><input type="radio" name="Methode" id="Meth_0" value="0" {sMethode_0} /><label for="Meth_0">Correction standard</label></dt>
-				<dd>( Nombre de réponses correctes / Nombre de propositions de réponses correctes )</dd>
-				<dt><input type="radio" name="Methode" id="Meth_1" value="1" {sMethode_1} /><label for="Meth_1">Correction for guessing</label></dt>
-				<dd>[ ( Nombre de réponses correctes / Nombre de propositions de réponses correctes ) - ( Nombre de réponses fausses / Nombres de propositions de réponses fausses ) ]</dd>
+				<dt><input type="radio" name="Methode" id="Meth_0" value="0" {sMethode_0} /><label for="Meth_0">Formule standard</label></dt>
+				<dd>( Nombre de réponses correctes fournies / Nombre de réponses correctes attendues)</dd>
+				<dt><input type="radio" name="Methode" id="Meth_1" value="1" {sMethode_1} /><label for="Meth_1">Formule avancée</label></dt>
+				<dd>[ ( Nombre de réponses correctes fournies / Nombre de réponses correctes attendues ) - ( Nombre de réponses incorrectes incorrectes / Nombre total de réponses incorrectes ) ]</dd>
 			</dl>
 		</li>
 	</ul>
