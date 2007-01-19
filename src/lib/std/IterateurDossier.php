@@ -37,15 +37,16 @@ require_once(dirname(__FILE__).'/FichierInfo.php');
 class IterateurDossier extends IterateurTableau
 {
 	var $sFiltrePre;        ///< La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers
-	var $oDossier;          ///< L'objet CFichierInfo qui représente le dossier dont le chemin a été passé en paramètre au constructeur
-	var $oFichierCourant;   ///< L'objet CFichierInfo qui représente l'élément courant de l'itérateur
+	var $oDossier;          ///< L'objet FichierInfo qui représente le dossier dont le chemin a été passé en paramètre au constructeur
+	var $oFichierCourant;   ///< L'objet FichierInfo qui représente l'élément courant de l'itérateur
 
 	/**
 	 * Constructeur
 	 *
 	 * @param	v_sChemin	le dossier sur lequel on effectuera l'itération
 	 * @param	v_sFiltre	le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui
-	 * 						utilisé par la fonction native PHP glob()
+	 * 						utilisé par la fonction native PHP glob(). Par défaut, il comprend tous les 
+	 * 						fichiers/dossiers
 	 *
 	 * @note	Contrairement aux filtres d'itérateurs (IterateurFiltre et sous-classes), le filtre agit ici
 	 * 			directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs

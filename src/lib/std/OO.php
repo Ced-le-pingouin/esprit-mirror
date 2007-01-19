@@ -59,7 +59,7 @@ class OO
 	 * Vérifie l'existence d'une interface
 	 *
 	 * @param	v_sInterface			le nom de l'interface dont il faut vérifier l'existence
-	 * @param	v_bRechercheMinuscules	si \true, la recherche se fait sur la version en minuscules des noms
+	 * @param	v_bRechercheMinuscules	si \c true, la recherche se fait sur la version en minuscules des noms
 	 * 									d'interfaces déclarées. Si \c false (défaut), la recherche se fait sur les noms
 	 * 									des interfaces tels qu'ils ont été enregistrés. Ce paramètre est utile en PHP 4
 	 * 									si l'on veut passer en paramètre \p v_sInterface un nom de classe récupéré d'une
@@ -217,7 +217,7 @@ class OO
 	 * Vérifie l'existence d'une classe abstraite
 	 *
 	 * @param	v_sClasseAbstraite		le nom de la classe abstraite dont il faut vérifier l'existence
-	 * @param	v_bRechercheMinuscules	si \true, la recherche se fait sur la version en minuscules des noms
+	 * @param	v_bRechercheMinuscules	si \c true, la recherche se fait sur la version en minuscules des noms
 	 * 									de classes abstraites déclarées. Si \c false (défaut), la recherche se fait sur
 	 * 									les noms des classes abstraites tels qu'ils ont été enregistrés (voir remarque
 	 * 									#interfaceExiste())

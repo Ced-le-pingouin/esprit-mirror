@@ -31,6 +31,7 @@
  */
 
 
+require_once(dir_database("formation.tbl.php"));
 require_once(dir_database("rubrique.tbl.php"));
 
 define("INTITULE_MODULE","Cours"); /// Titre qui désigne le second niveau de la structure d'une formation 	@enum INTITULE_MODULE
@@ -48,6 +49,7 @@ class CModule
 	var $aoTuteurs;				///< Tableau rempli par #initTuteurs(), contenant tous les tuteurs de ce module
 	var $aoInscrits;			///< Tableau rempli par #initInscrits(), contenant tous les personnes inscrites à cette formation
 	
+	var $oFormation;			///< Objet de type CFormation qui représente le parent du module courant, et devra être initialisé par #initFormation() 
 	var $aoModules;				///< Tableau rempli par #retListeModules(), contenant tous les modules d'une formation
 	var $oRubriqueCourante;		///< Objet de type CModule_Rubrique contenant une rubrique d'un module
 	var $aoRubriques;			///< Tableau rempli par #initRubriques(), contenant une liste des rubriques de ce module
@@ -1108,6 +1110,24 @@ class CModule
 	function retTypes ()
 	{
 		return array(array(0,INTITULE_MODULE));
+	}
+	
+	/**
+	 * Initialise, à partir de la DB, l'objet \c oFormation interne, qui représente le parent du module courant
+	 */
+	function initFormation()
+	{
+		if (is_null($this->oFormation))
+			$this->oFormation = new CFormation($this->oBdd, $this->retIdParent());
+	}
+	
+	/**
+	 * @return	le dossier associé à ce module, donc celui où se trouvent ses fichiers associés
+	 */
+	function retDossier()
+	{
+		$this->initFormation();
+		return $this->oFormation->retDossier();
 	}
 }
 

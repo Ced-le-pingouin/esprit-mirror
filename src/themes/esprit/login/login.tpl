@@ -3,7 +3,7 @@
 <head>
 <title>La page d'accueil d'Esprit</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" language="javascript" src="js/window.js"></script>
+<script type="text/javascript" language="javascript" src="/js/window.js"></script>
 <script type="text/javascript" language="javascript" src="themes/commun/js/login.js.php"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
 <script language="javascript" type="text/javascript">
@@ -36,15 +36,20 @@ function GPL()
 	<tr>
 	<td width="55%" valign="top">
 	<div id="bienvenue" class="BlockContent">
-		<h2>Bienvenue sur la plateforme de formation Esprit</h2>
-		<p>Esprit est une plateforme de formation à distance qui permet aux étudiants de réaliser des activités d'apprentissage, 
+	<!--	<h2>Bienvenue sur la plateforme de formation Esprit</h2>-->
+	<!--	<p>Esprit est une plateforme de formation à distance qui permet aux étudiants de réaliser des activités d'apprentissage, 
 		seuls ou en petits groupes, sous la supervision de tuteurs en ligne.</p>
 		<p>Esprit permet à l'enseignant-concepteur de créer son cours de manière autonome et totalement	à distance. Ce cours 
 		est envisagé comme une série d'activités d'apprentissage structurées selon un scénario pédagogique.</p>
 		<p>Des outils permettent aux tuteurs d'encadrer et d'animer le travail 	réalisé par les apprenants. Le travail 
 		collaboratif est nettement favorisé et facilité par certaines fonctionnalités offertes par la plateforme.</p>
-		<p>Esprit est disponible en open source. Si vous êtes intéressé d'obtenir ces sources <a href="javascript: GPL();">cliquez ici</a>.</p>
+		<p>Esprit est disponible en open source. Si vous êtes intéressé d'obtenir ces sources <a href="javascript: GPL();">cliquez ici</a>.</p>-->
+
+[BLOCK_TEXTE+]
+   <p>{texte->info}</p>
+[BLOCK_TEXTE-]
 	</div>
+
 	
 	[BLOCK_INFOS_PLATEFORME+]
 	<div id="formations">
@@ -63,7 +68,7 @@ function GPL()
 	</div>
 	[BLOCK_INFOS_PLATEFORME-]
 	
-	<div id="plateforme" class="BlockContent">
+<!--	<div id="plateforme" class="BlockContent">
 		<h3>Encore une plateforme de formation à distance ?</h3>
 		<p>Il existe un grand nombre de plateformes et pourtant aucune d'entre elles ne répond aux exigences pédagogiques que 
 		nous avons définies. Certaines semblent pourtant assez intéressantes mais à l'usage nous nous sommes rendu compte 
@@ -98,9 +103,9 @@ function GPL()
 		de la plateforme Galanet (<a href="http://www.galanet.be/" target="_blank">http://www.galanet.be</a>) qui a été bâtie autour de la notion de 
 		pédagogie par projet et de communauté d'apprentissage. Nous pensons néanmoins qu'Esprit constitue un outil précieux 
 		lorsqu'il s'agit de mettre sur pied une formation qui réponde aux besoins habituels des concepteurs pédagogiques.</p>
-	</div>
+	</div>-->
 	
-	<div id="principes" class="BlockContent">
+<!--	<div id="principes" class="BlockContent">
 		<h3>Les principes qui ont conduit à la conception d'Esprit</h3>
 		<ul>
 		<li>L'enseignant doit disposer de tous les outils pour concevoir son cours de façon autonome. Il doit également avoir 
@@ -130,17 +135,17 @@ function GPL()
 		autour des statuts d'administrateur, responsable de formation, enseignant concepteur de cours, enseignant tuteur, 
 		apprenant et visiteur.</li>
 		</ul>
-	</div>
+	</div>-->
 	
-	<div id="structure" class="BlockContent">
+	<!--<div id="structure" class="BlockContent">
 		<h3>La structure d'une formation sous Esprit</h3>
 		<p>La structure d'une formation sous Esprit se compose de plusieurs niveaux : une formation comprend une série de cours, 
 		eux-mêmes divisés en unités d'apprentissage. L' « enseignement-apprentissage » se déroule à l'intérieur de l'unité sous 
 		forme d'actions de formation que l'on ordonne selon le scénario	pédagogique que l'enseignant veut voir supporter à distance.</p>
-		<p><img src="theme://login/images/Structure des niveaux (a 4 niveaux).gif" width="484" height="116" alt="Structure d'une formation" /></p>
-	</div>
+		<p><img src="theme://login/images/Structure des niveaux (à 4 niveaux).gif" width="484" height="116" alt="Structure d'une formation" /></p>
+	</div>-->
 	
-	<div id="conception" class="BlockContent">
+<!--	<div id="conception" class="BlockContent">
 		<h3>La conception d'une plateforme se fonde sur des orientations pédagogiques claires</h3>
 		<p>Même s'il est possible d'utiliser cette plateforme de différentes manières, Esprit ne se réduit pas à une plateforme 
 		de mise en ligne de cours ni à un intégrateur de ressources multimédias interactives, ni encore à un environnement de 
@@ -153,7 +158,8 @@ function GPL()
 		d'adapter ses connaissances antérieures (constructivisme) en relation avec son environnement social et avec le 
 		contexte historique et culturel dans lequel cet apprentissage s'inscrit.</p>
 	</div>
-	
+	-->
+<!--
 	<div id="choix" class="BlockContent">
 		<h3>Les choix technologiques et les options de développement adoptés</h3>
 		<ul>
@@ -167,18 +173,26 @@ function GPL()
 		ce qui permet d'avoir le contrôle de l'ensemble et de garantir l'évolution constante des outils et leur intégration 
 		harmonieuse	dans le dispositif</li>
 		</ul>
-	</div>
+	</div>-->
 	</td>
 	<td valign="top">
 	<div id="breves">
 		<h4>Les brèves</h4>
-		<div class="news_texte">
+		<!--<div class="news_texte">
 			<strong>Astuce !</strong>Pour ceux qui ne verraient pas la zone qui permet d'entrer son pseudo et son mot de 
 			passe, appuyez sur la touche <span class="touchesF">F11</span> ou utilisez le menu Affichage 
 			et sélectionnez l'option "Plein écran" (10/09/03)
 		</div>
+		<img src="theme://login/images/separateur_news.gif" class="breve_separateur" width="178" height="3" alt=" - - - - - - - - - - - - - - " />-->
+
+[BLOCK_BREVE+]
+	<div class="news_texte">
+	<p>{breve->info}</p>
+</div>
 		<img src="theme://login/images/separateur_news.gif" class="breve_separateur" width="178" height="3" alt=" - - - - - - - - - - - - - - " />
-		<div class="news_texte">
+[BLOCK_BREVE-]
+
+		<!--<div class="news_texte">
 			Une nouvelle version est disponible	(version 1.1). Elle propose différents outils supplémentaires pour l'enseignant 
 			concepteur (possibilité d'introduire directement du texte à partir de la plateforme, des possibiltés de mise 
 			en page, une refonte de l'ergonomie d'eConcept...) (15/07/04)
@@ -193,11 +207,23 @@ function GPL()
 		<div class="news_texte">
 			Vous êtes intéressé par l'utilisation d'Esprit dans le cadre de vos formations ? Contactez 
 			<a href="mailto:jean-jacques.quintin@umh.ac.be">Jean-Jacques.Quintin@umh.ac.be</a>.
-		</div>
+		</div>-->
 	</div>
 
 	<div id="ressources">
-		<h4>Le coin des ressources</h4>
+        <h4>Les liens</h4>
+
+[BLOCK_LIEN+]
+	
+	<p>{lien->info}</p>
+
+[BLOCK_LIEN-]
+
+
+
+
+
+	<!--	<h4>Le coin des ressources</h4>
 		<p><strong>Comment suivre une formation sous Esprit ?</strong></p>
 		<ul>
 			<li><a href="fichiers/Esprit-manuel-utilisation.pdf" target="_blank">Manuel
@@ -218,9 +244,11 @@ function GPL()
 		étudiant par étudiant ce qui peut se révéler fastidieux lorsqu'il s'agit d'un nombre important d'utilisateurs. 
 		Vous pouvez si vous le préférez utiliser ce fichier excel, introduire les coordonnées à la volée et le tranmettre 
 		à l'administrateur du site <a href="mailto:Filippo.Porco@umh.ac.be" class="discret">(Filippo.Porco@umh.ac.be)</a></p>
+
+-->
 	</div>
 
-	<div id="adresses">
+<!--	<div id="adresses">
 		<h4>Les bonnes adresses</h4>
 		<p><strong>Quelques plateformes francophones de formation à distance</strong></p>
 		<p><a href="http://www.galanet.be" target="_blank">Galanet</a> (Galanet est une plateforme de formation à l'intercompréhension
@@ -261,17 +289,18 @@ function GPL()
 		sur	les technologies éducatives (TICE), fondée par la Chambre de Commerce et d'Industrie de Paris, l'École Nationale
 		Supérieure des Télécommunications, l'Université de Technologie de Compiègne et Paribas)</p> 
 	</div>
-	
+	-->
+<!--
 	<div id="actus">
 		<h4>Les actualités</h4>
-		<!--Lien avec Ntic.org (remontée des ctu du site en question)-->
+		
 		<p>Ces actualités sont issues de portails extérieurs. Dans cette mesure, nous ne pouvons pas garantir l'absolue 
 		exactitude des informations présentées ci-dessous.</p>
 		<p>
 		<script src="http://ntic.org/nouvelles/nouvelles_export.php?fmt=javascript&amp;inclure_description=true&amp;inclure_vitrine=true&amp;inclure_isef=false&amp;inclure_biblio=false" type="text/javascript" charset="iso-8859-1"></script>
 		</p>
 	</div>
-	
+	-->
 	</td>
 	</tr>
 	</table>
@@ -293,7 +322,7 @@ function GPL()
 <div id="pieddepage">
 	<div id="hautpieddepage">&nbsp;</div>
 	<div id="baspieddepage">
-	<a href="javascript: void(propos('theme://'));" onfocus="blur()">ESPRIT a été développé par l'Unité de Technologie de L'Education de l'Université de Mons-Hainaut (Belgique)</a>
+	<a href="javascript: void(propos('theme://'));" onfocus="blur()">ESPRIT  (C) Unité de Technologie de L'Education, Université de Mons-Hainaut (Belgique), 2001-2006 et Grenoble Universités, projet Flodi, 2006.</a>
 	</div>
 </div>
 

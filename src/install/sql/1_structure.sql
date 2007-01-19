@@ -642,13 +642,9 @@ CREATE TABLE `Personne` (
 -- 
 
 CREATE TABLE `Projet` (
-  `NomProj` varchar(80) collate utf8_unicode_ci NOT NULL default '',
-  `Email` varchar(255) collate utf8_unicode_ci NOT NULL default '',
-  `NumPortAwareness` varchar(5) collate utf8_unicode_ci NOT NULL default '',
-  `NumPortChat` varchar(5) collate utf8_unicode_ci default NULL,
-  `UrlAccueil` varchar(100) collate utf8_unicode_ci default NULL,
-  `AvertissementLogin` text collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`NomProj`)
+  `Nom` varchar(80) collate utf8_unicode_ci NOT NULL default '',
+  `Valeur` text collate utf8_unicode_ci default NULL,
+  PRIMARY KEY  (`Nom`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1120,5 +1116,24 @@ CREATE TABLE `i18n_fr` (
   `TooltipTxt` varchar(80) collate utf8_unicode_ci default NULL,
   `DescrTxt` text collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`IdTxt`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Table structure for table `Accueil`
+--
+
+CREATE TABLE `Accueil` (
+  `Id` smallint(5) unsigned NOT NULL auto_increment,
+  `TypeContenu` enum('avert','texte','breve','lien') NOT NULL default 'texte',
+  `Texte` text,
+  `Lien` varchar(200) default NULL,
+  `TypeLien` enum('new','page','popup','inactif') NOT NULL default 'popup',
+  `DateDeb` date default NULL,
+  `DateFin` date default NULL,
+  `Visible` tinyint(1) NOT NULL default '1',
+  `Ordre` smallint(6) default NULL,
+  `DateCreation` date NOT NULL default '0000-00-00',
+  `DateEdition` date NOT NULL default '0000-00-00',
+  PRIMARY KEY  (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

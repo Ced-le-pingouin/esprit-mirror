@@ -20,8 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 //                          Grenoble Universités
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,9 +31,10 @@
 <h1>Installation d'Esprit</h1>
 <?php
 /*
-	Installateur d'Esprit (en cours, très partiellement testé)
+	Installateur d'Esprit
 	Reste à faire :
 		- tester
+		- prévoir une procédure de mise à jour
 		- écrire une fonction javascript qui vérifie les données du formulaire (pb de SÉCURITÉ en particulier)
 		- A quoi correspondent $g_sNomProprietaire et $g_sNomBdd ? Leur valeur actuelle est-elle correcte ?
 */
@@ -66,6 +66,11 @@ if (isset($_REQUEST['step']) && $_REQUEST['step']) {
     $step=$_REQUEST['step'];
 } else {
 	if (file_exists('../include/config.inc')) {
+		/*
+		// Mise à jour d'Esprit
+		require('../include/config.inc');
+		$link = init_db($g_sNomServeur,$g_sNomProprietaire,$g_sMotDePasse,$g_sNomBdd);
+		*/
 		echo "<p class='erreur'>Configuration interrompue : Esprit semble déjà configuré.</p>";
 		echo "</body></html>";
 		exit;
@@ -96,7 +101,7 @@ Normalement, l'encodage devrait être en UTF-8.</i>
 <p>Vous pouvez également utiliser phpmyadmin s'il est installé.</p>
 
 <h3>Saisie</h3>
-<form action="install.php" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <fieldset>
 <legend>Veuillez saisir ci-dessous le nom de la base créée et de son utilisateur MySQL.</legend>
 <ul>
@@ -119,16 +124,8 @@ case 2:
 		echo "</body></html>";
 		exit;
 	}
-	$link = mysql_connect($_POST['host'],$_POST['user'],$_POST['password']);
-	if (! $link) {
-		echo "<p class='erreur'>Erreur de connexion à la base de données.</P>";
-		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
-		echo "</body></html>";
-		exit;
-	}
-	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
-	if (! mysql_selectdb($_POST['base'])) {
-		echo "<p class='erreur'>Connexion réussie, mais erreur d'accès à la base de données.</p>";
+	$link=init_db($_POST['host'],$_POST['user'],$_POST['password'],$_POST['base']);
+	if ($link === FALSE) {
 		echo "<p>Retournez à <a href='install.php?step=1'>l'étape précédente</a>.</p>";
 		echo "</body></html>";
 		exit;
@@ -153,50 +150,74 @@ case 2:
 
 // ******************* creating config file *******************
 case 3:
-	$buffer = "<?php\n// Fichier de configuration généré automatiquement par install.php\n\n"
-	          . "// {{{ Base de données\n" 
-	          . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de données\n"
-	          . '$g_sNomServeur = \''. $_POST['host'] ."'; // Nom du serveur\n"
-	          . '$g_sNomProprietaire = \''. $_POST['user'] ."'; // Nom du propriétaire de la base de données MySQL\n"
-	          . '$g_sMotDePasse = \''. $_POST['password'] ."'; // Mot de passe de la base de données MySQL\n"
-	          . "// }}}\n\n";
+	if (empty($_POST['fileroot']) || empty($_POST['webroot'])) {
+?>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+<fieldset>
+<legend>Veuillez vérifier les chemins d'accès si dessous.</legend>
+<ul>
+	<li><label for="fileroot">Racine des fichiers d'Esprit :</label> <input type="text" name="fileroot" value="<?php echo get_fileroot(); ?>" size="60" /></li>
+	<li><label for="webroot">Racine web d'Esprit :</label> <input type="text" name="webroot" value="<?php echo get_webroot(); ?>" size="60" /></li>
+</ul>
+	<input name="base" value="<?php echo $_POST['base'] ?>" type="hidden" />
+	<input name="host" value="<?php echo $_POST['host'] ?>" type="hidden" />
+	<input name="user" value="<?php echo $_POST['user'] ?>" type="hidden" />
+	<input name="password" value="<?php echo $_POST['password'] ?>" type="hidden" />
+<input name="step" value="<?php echo $step; ?>" type="hidden" />
+<input type="submit" value="Étape suivante" />
+</fieldset>
+</form>
+<p>Les chemins proposés peuvent être inadaptés en cas de liens symboliques ou d'alias web (<em>/~login/</em> par exemple).</p>
+<?php
+	} else {
+		$buffer = "<?php\n// Fichier de configuration généré automatiquement par install.php\n\n";
 
-	$buffer .= "// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes\n"
-	           . '$g_sNomServeurTransfert = \''. $_POST['host'] ."';\n"
-	           . '$g_sNomProprietaireTransfert = "root";' ."\n"
-	           . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
-	           . "// }}}\n\n";
+		$buffer .= "// {{{ Chemins des fichiers\n" 
+			 . '$g_sCheminRacine = \''. add_ending_slash($_POST['fileroot']) ."'; // Chemin réel des fichiers d'Esprit\n"
+			 . '$g_sCheminRacineWeb = \''. add_ending_slash($_POST['webroot']) ."'; // Adresse des fichiers sur le serveur web\n"
+			 . "// }}}\n\n";
 
-	$g_sNomProprietaire = $_POST['user']; // ???
-	$g_sNomBdd = $_POST['base']; // ???
-	$buffer .= "// {{{ Cookie\n"
-	           . '$g_sNomCookie = "{'.$g_sNomProprietaire.'}_{'.$g_sNomBdd.'}";	// Nom du cookie'."\n"
-	           . "// }}}\n\n";
+		$buffer .= "// {{{ Base de données\n" 
+			 . '$g_sNomBdd = \''. $_POST['base'] ."'; // Nom de la base de données\n"
+			 . '$g_sNomServeur = \''. $_POST['host'] ."'; // Nom du serveur\n"
+			 . '$g_sNomProprietaire = \''. $_POST['user'] ."'; // Nom du propriétaire de la base de données MySQL\n"
+			 . '$g_sMotDePasse = \''. $_POST['password'] ."'; // Mot de passe de la base de données MySQL\n"
+			 . "// }}}\n\n";
 
-	$buffer .= '// {{{ Adresse courrielle
+		$buffer .= "// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes\n"
+			 . '$g_sNomServeurTransfert = \''. $_POST['host'] ."';\n"
+			 . '$g_sNomProprietaireTransfert = "root";' ."\n"
+			 . '$g_sMotDePasseTransfert = "mot_de_passe_root";' ."\n"
+			 . "// }}}\n\n";
+
+		$g_sNomProprietaire = $_POST['user']; // ???
+		$g_sNomBdd = $_POST['base']; // ???
+		$buffer .= "// {{{ Cookie\n"
+			 . '$g_sNomCookie = "{'.$g_sNomProprietaire.'}_{'.$g_sNomBdd.'}";	// Nom du cookie'."\n"
+			 . "// }}}\n\n";
+
+		$buffer .= '// {{{ Adresse courrielle
 //     Cette adresse courriel sert, dans le cas d\'un problème ou autre
 //     (forum), à envoyer un message aux administrateurs de la plate-forme
 define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","ute@umh.ac.be");
-// }}}'
-	           ."\n\n";
+// }}}' ."\n\n";
 
-	$buffer .= '// {{{ Thèmes
+		$buffer .= '// {{{ Thèmes
 define("THEME","esprit");
 // }}}
-?>';
+?'.'>';
 
-	if (@file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
-		echo "<p class='erreur'>Erreur lors de l'écriture du fichier de configuration.</p>";
-		echo '<p>Vérifiez que les accès en écriture pour le serveur web sont autorisés dans le répertoire <em>include</em>.</p>';
-		redo_step();
-		echo '</body></html>';
-		exit;
+		if (@file_put_contents('../include/config.inc',$buffer) != strlen($buffer)) {
+			echo "<p class='erreur'>Erreur lors de l'écriture du fichier de configuration.</p>";
+			echo '<p>Vérifiez que les accès en écriture pour le serveur web sont autorisés dans le répertoire <em>include</em>.</p>';
+			redo_step();
+			echo '</body></html>';
+			exit;
+		}
+		echo '<p>Le fichier de configuration a été écrit avec succès.</p>';
+		show_next_step();
 	}
-?>
-<p>Le fichier de configuration a été écrit avec succès.
-</p>
-<?php
-	show_next_step();
+
 	break;
 
 // ******************* directories and permissions *******************
@@ -238,7 +259,7 @@ case 5:
 	$DirUp = dirname(dirname($DocName));
 ?>
 
-<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé d'effacer le répertoire <em>install/</em> de votre serveur web.
+<p>L'installation est terminée. Pour des <strong>raisons de sécurité</strong>, il est maintenant recommandé de bloquer l'accès au répertoire <em>install/</em> de votre serveur web.
 </p>
 
 <p>Vous pouvez désormais vous rendre sur votre <a href="<?php echo $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
@@ -290,6 +311,18 @@ function redo_step() {
 <?php
 }
 
+function init_db( $host, $user, $password, $base ) {
+	$link = mysql_connect($host,$user,$password);
+	if (! $link) {
+		echo "<p class='erreur'>Erreur de connexion au serveur MySQL.</P>";
+	}
+	mysql_query("SET NAMES 'utf8'");	// configure le charset du client
+	if (! mysql_selectdb($base)) {
+		echo "<p class='erreur'>Connexion au serveur MySQL réussie, mais erreur d'accès à la base de données.</p>";
+	}
+	return $link;
+}
+
 function load_mysql_dump($path, $ignoreerrors = false) {
 	$file_content = file($path);
 	$query = "";
@@ -307,4 +340,25 @@ function load_mysql_dump($path, $ignoreerrors = false) {
 	}
 	return TRUE;
 }
+
+function get_fileroot() {
+	$cwd = str_replace("\\","/",realpath(dirname(__FILE__)));
+	return substr($cwd,0,strrpos($cwd,'/')).'/';
+}
+
+function get_webroot() {
+	$root = str_replace( str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"])),
+				"/",
+				get_fileroot());
+	return "http://".$_SERVER["HTTP_HOST"].'/'. $root;
+}
+
+function add_ending_slash( $str ) {
+	if ($str[strlen($str)-1] === '/') {
+		return $str;
+	} else {
+		return $str.'/';
+	}
+}
+
 ?>

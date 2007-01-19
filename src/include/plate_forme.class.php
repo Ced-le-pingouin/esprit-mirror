@@ -86,6 +86,11 @@ define("LIEN_GLOSSAIRE"				, 11);	/// Glossaire																						@enum LIEN_
 define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités			@enum LIEN_TABLEAU_DE_BORD
 //@}
 
+/** @name Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module_Rubrique */
+define("DONNEES_URL"     , 0); /// Url pour les liens             @enum DONNEES_URL
+define("DONNEES_MODE"    , 1); /// Mode, par ex. pour l'affichage @enum DONNEES_MODE
+define("DONNEES_INTITULE", 2); /// Nom à afficher pour ce lien    @enum DONNEES_INTITULE
+
 /** @name Constantes - modalités d'affichage pour certains liens HTML de la plate-forme */
 //@{
 define("FRAME_CENTRALE_DIRECT"		, 1);	/// Affichage immédiat dans la frame centrale														@enum FRAME_CENTRALE_DIRECT
@@ -291,6 +296,7 @@ class CProjet
 	var $bIdParFormulaire;		///< Les infos utilisateurs ont-elles été transmises par formulaire ? Sinon, c'est par cookie
 	var $oBdd;					///< Objet représentant la connexion à la DB
 	var $sNom;					///< Nom complet du projet
+	var $sVersion;				///< Numéro de version (chaîne de caractères)
 	var $sUrlAccueil;			///< URL complète de la page d'accueil du projet
 	var $sUrlLogin;				///< URL de la page permettant de s'identifier
 	var $oErreurs;				///< :DEBUG: pour tester la classe CConstantes
@@ -376,14 +382,17 @@ class CProjet
 	function init()
 	{
 		$hResult = $this->oBdd->executerRequete("SELECT * FROM Projet");
-		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
+			switch ($oEnreg->Nom) {
+			case 'NomProj': $this->sNom = $oEnreg->Valeur; break;
+			case 'Email': $this->sEmail = $oEnreg->Valeur; break;
+			case 'UrlAccueil': $this->sUrlAccueil = $oEnreg->Valeur; break;
+			case 'NumPortChat': $this->iNumPortChat = $oEnreg->Valeur; break;
+			case 'NumPortAwareness': $this->iNumPortAwareness = $oEnreg->Valeur; break;
+			case 'Version': $this->sVersion = $oEnreg->Valeur; break;
+			}
+		}
 		$this->oBdd->libererResult($hResult);
-		
-		$this->sNom = $oEnreg->NomProj;
-		$this->sEmail = $oEnreg->Email;
-		$this->sUrlAccueil = $oEnreg->UrlAccueil;
-		$this->iNumPortChat = $oEnreg->NumPortChat;
-		$this->iNumPortAwareness = $oEnreg->NumPortAwareness;
 		
 		if (isset($this->asInfosSession[SESSION_UID]) && $this->asInfosSession[SESSION_UID] > 0)
 		{

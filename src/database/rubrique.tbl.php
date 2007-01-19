@@ -30,8 +30,10 @@
  * @author	Filippo PORCO
  */
 
+require_once(dir_database("module.tbl.php"));
 require_once(dir_database("activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
+require_once(dir_lib("std/FichierInfo.php", TRUE));
 
 define("INTITULE_RUBRIQUE","Unité"); /// Titre qui désigne le troisième niveau de la structure d'une formation 	@enum INTITULE_RUBRIQUE
 
@@ -47,7 +49,7 @@ class CModule_Rubrique
 	
 	var $iIdForm;				///< Objet initialisé par #initIdForm(), contient l'id de la formation
 	
-	var $aoRubriques;			///< Tableau rempli par #retListeRubriques(), contenant tous les rubriques d'un module
+	var $aoRubriques;			///< Tableau rempli par #retListeRubriques(), contenant toutes les rubriques d'un module
 	var $aoActivs;				///< Tableau rempli par #initActivs() , contenant tous les activités d'une rubrique
 	
 	var $aoCollecticiels;		///< Tableau rempli par #initCollecticiels(), contenant tous les collecticiels de la rubrique
@@ -703,9 +705,9 @@ class CModule_Rubrique
 		$this->mettre_a_jour("NomRubrique",$v_sNom);
 	}
 
-	function defDonnee ($v_sDonnee)
+	function defDonnees($v_sDonnees)
 	{
-		$this->mettre_a_jour("DonneesRubrique",$v_sDonnee.":2");
+		$this->mettre_a_jour("DonneesRubrique",$v_sDonnees.":2");
 	}
 
 	function defType ($v_iType)
@@ -1197,7 +1199,15 @@ class CModule_Rubrique
 		
 		return $iIdxFormulaire;
 	}
-
+	
+	/**
+	 * @return	le dossier associé à cette rubrique, donc celui où se trouvent ses fichiers associés
+	 */
+	function retDossier()
+	{
+		$f = new FichierInfo(dir_rubriques($this->iIdForm));
+		return $f->retChemin();
+	}
 }
 
 ?>

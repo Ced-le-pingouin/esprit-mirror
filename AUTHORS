@@ -9,5 +9,5 @@ Guillaume Allègre <guillaume.allegre@silecs.info>
 
 Esprit intègre les composants logiciels externes suivants :
 
-- PclTar (http://www.phpconcept.net/)
-    bibliothèque de gestion des fichiers au format GNU TAR, développée par Vincent Blavet
+- PclTar & PclZip (http://www.phpconcept.net/)
+    bibliothèques de gestion des fichiers au format GNU TAR et ZIP, développées par Vincent Blavet

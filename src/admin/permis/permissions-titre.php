@@ -34,6 +34,7 @@ foreach ($aoListeStatuts as $aStatut)
 $oProjet->terminer();
 
 ?>
+ 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -42,12 +43,32 @@ $oProjet->terminer();
 <!--
 div.toolbar { position: absolute; left: 0px; top: 0px; width: 100%; height: 32px; }
 div#toolbar2 { position: absolute; left: 0px; top: 32px; width: 100%; height: 25px; }
+/**div.toolbar { display:none; }**/
+div#adminTitre { text-align:center; display:none; margin-top:15px; font-weight: bold ;}
+
 -->
 </style>
 <script type="text/javascript" language="javascript" src="permissions.js"></script>
+<script type="text/javascript" language="javascript" src="globals.js"></script>	  
+	  
 <script type="text/javascript" language="javascript">
 <!--
 
+
+function showTitre( id ) {       
+	if(id == 'permission'){
+          document.getElementById('toolbar1').style.display = "block";
+          document.getElementById('toolbar2').style.display = "block";
+          document.getElementById('adminTitre').style.display = "none";
+	  }
+	  else{
+          document.getElementById('toolbar1').style.display = "none";
+	  document.getElementById('toolbar2').style.display = "none";
+	  document.getElementById('adminTitre').style.display = "block";
+	  }
+       
+}
+	  
 function init()
 {
 	if (top.frames['Principale'])
@@ -70,6 +91,8 @@ function envoyer(v_iIdStatut)
 </script>
 </head>
 <body onload="init()">
+  <div id="adminTitre">Administration</div>  
+
 <div id="toolbar1" class="toolbar">
 <form name="StatutForm" action="permissions.php" method="post" target="Principale">
 <table border="0" cellspacing="0" cellpadding="3" width="100%" height="100%">
@@ -115,7 +138,7 @@ function envoyer(v_iIdStatut)
 <div id="toolbar2" class="toolbar">
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
 <tr>
-<td><input type="button" value="Appliquer" onclick="appliquer()"></td>
+<td><input type="button" value="Appliquer" onclick="appliquer();"></td>
 <td width="99%" align="right">
 <a href="javascript: oui(); void(0);">Tout &agrave; oui</a>
 <a href="javascript: non(); void(0);">Tout &agrave; non</a>
@@ -125,6 +148,9 @@ function envoyer(v_iIdStatut)
 </tr>
 <table>
 </div>
+
+
+  
 </body>
 </html>
 

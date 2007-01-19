@@ -35,6 +35,7 @@ require_once(dir_database("collecticiel.tbl.php"));
 require_once(dir_database("galerie.tbl.php"));
 require_once(dir_database("glossaire.tbl.php"));
 require_once(dir_database("chat.tbl.php"));
+require_once(dir_lib("std/FichierInfo.php", TRUE));
 
 define("INTITULE_SOUS_ACTIV","Action");	/// Titre qui désigne le cinquième niveau de la structure d'une formation 	@enum INTITULE_SOUS_ACTIV
 
@@ -48,8 +49,8 @@ class CSousActiv
 	var $oBdd;					///< Objet représentant la connexion à la DB
 	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	var $oActivParente;			///< Objet de type CActiv contenant l'activité parente de la sous-activité courante
 	var $aoRessources;			///< Tableau rempli par #initRessources(), contenant une liste des ressources de cette sous-activité
-	var $oActivParente = NULL;	///< Objet de type CActiv contenant une activité
 	var $aoSousActivs;			///< Tableau rempli par #retListeSousActivs(), contenant une liste des sous-activités de l'activité
 	var $oIdsParents;			///< Objet contenant l'id de la formation, du module, de la rubrique et de l'activité
 	
@@ -214,9 +215,7 @@ class CSousActiv
 				." FROM FormulaireComplete_SousActiv"
 				." LEFT JOIN FormulaireComplete USING (IdFC)"
 				." WHERE FormulaireComplete_SousActiv.IdSousActiv='".$this->retId()."'"
-					." AND FormulaireComplete.IdPers IN ({$sListePers})"
-				." GROUP BY FormulaireComplete_SousActiv.StatutFormSousActiv"
-				." ORDER BY FormulaireComplete_SousActiv.StatutFormSousActiv DESC LIMIT 1";
+					." AND FormulaireComplete.IdPers IN ({$sListePers})";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnreg = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -1084,11 +1083,17 @@ class CSousActiv
 	function retPremierePage () { return (bool)$this->oEnregBdd->PremierePageSousActiv; }
 	function retInfoBulle ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->InfoBulleSousActiv) : $this->oEnregBdd->InfoBulleSousActiv); }
 	
-	function retDonnees ($v_bHtmlEntities=FALSE)
+	function retDonnees($v_bHtmlEntities = FALSE)
 	{
 		return ($v_bHtmlEntities
 			? emb_htmlentities($this->oEnregBdd->DonneesSousActiv)
 			: "{$this->oEnregBdd->DonneesSousActiv};;;");
+	}
+	
+	function retDonnee($v_iPartie)
+	{
+		$d = explode(';', $this->retDonnees());
+		return $d[$v_iPartie];
 	}
 	
 	function retDateDeb ()
@@ -1222,9 +1227,13 @@ class CSousActiv
 	//@}
 	
 	/**
-	 * Initialise l'obje \c oActiveParente avec l'activité parente de la sous-activité
+	 * Initialise l'objet \c oActiveParente avec l'activité parente de la sous-activité
 	 */
-	function initActiv () { $this->oActivParente = new CActiv($this->oBdd,$this->retIdParent()); }
+	function initActiv()
+	{
+		if (is_null($this->oActivParente))
+			$this->oActivParente = new CActiv($this->oBdd,$this->retIdParent());
+	}
 	
 	/**
 	 * Initialise un tableau des sous-activités de l'activité
@@ -1484,6 +1493,16 @@ class CSousActiv
 			array(SOUMISSION_AUTOMATIQUE,"en un seul temps",($bSoumissionManuelle == SOUMISSION_AUTOMATIQUE))
 			/*, array(SOUMISSION_MANUELLE,"en deux temps (par défaut)",(empty($bSoumissionManuelle) || $bSoumissionManuelle == SOUMISSION_MANUELLE))*/
 		);
+	}
+	
+	/**
+	 * @return	le dossier associé à cette sous-activité, donc celui où se trouvent ses fichiers associés
+	 */
+	function retDossier()
+	{
+		$iIds = $this->initIdsParents();
+		$f = new FichierInfo(dir_cours($iIds->IdActiv, $iIds->IdForm));
+		return $f->retChemin();
 	}
 }
 

@@ -91,6 +91,13 @@ function exporter_liste_personnes() {
 	win.focus();
 }
 
+function importer_liste_personnes() {
+	var sUrl = GLOBALS["admin"] + "personne/import-index.php";
+	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
+	var win = PopupCenter(sUrl,"WinImporterPersonnes",500,480,sOptionsFenetre);
+	win.focus();
+}
+
 function choix_formation(v_sTitre) {
 	var sUrl = GLOBALS["admin"] + "commun/choix_formation-index.php"
 		+ (v_sTitre.length > 0 ? "?tp=" + v_sTitre : "");
@@ -214,10 +221,10 @@ function composer_dossiers_formations() {
 	oWin.focus();
 }
 
-function avertissement_login() {
-	var sUrl = GLOBALS["admin"] + "avertissement/avertissement-index.php";
+function page_accueil() {
+	var sUrl = GLOBALS["admin"] + "accueil/accueil-index.php";
 	var sOptionsFenetre = ",status=no,resizable=no,scrollbars=no";
-	var oWin = PopupCenter(sUrl,"winAvertissementLogin",620,360,sOptionsFenetre);
+	var oWin = PopupCenter(sUrl,"winAccueilLogin",700,440,sOptionsFenetre);
 	oWin.focus();
 }
 

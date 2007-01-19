@@ -36,6 +36,13 @@
 // ---------------------
 // Déclaration des fichiers à inclure
 // ---------------------
+if (! @include_once(dirname(__FILE__).'/include/config.inc')) {
+	echo "<html><head><title>Esprit : Erreur fatale</title></head>
+<body><h1>Esprit : Erreur fatale</h1>
+<p><strong>Pas de fichier de configuration.</strong> L'installation d'Esprit est-elle achev&eacute;e ?</p>
+</body></html>\n";
+	exit();
+}
 require_once(dir_include("plate_forme.class.php"));
 require_once(dir_include("template.inc.php"));
 require_once(dir_include("gettext.inc.php"));
@@ -63,18 +70,16 @@ function dir_definition ($v_sFichierAInclure=NULL) { return dir_include("def/$v_
 // ---------------------
 function dir_code_lib ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
-	$v_sFichierAInclure = "code_lib/{$v_sFichierAInclure}";
+	$v_sFichierAInclure = "lib/code_lib/{$v_sFichierAInclure}";
 	if ($v_bCheminHttp)
-		return dir_http_plateform(dir_lib($v_sFichierAInclure, FALSE));
+		return dir_http_plateform($v_sFichierAInclure, FALSE);
 	else
-		return dir_lib($v_sFichierAInclure,$v_bCheminAbsolu);
-	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/new/$v_sFichierAInclure";
+		return dir_root_plateform($v_sFichierAInclure,$v_bCheminAbsolu);
 }
 
 function dir_code_lib_ced ($v_sFichierAInclure=NULL,$v_bCheminHttp=FALSE,$v_bCheminAbsolu=TRUE)
 {
 	return dir_code_lib($v_sFichierAInclure, $v_bCheminHttp, $v_bCheminAbsolu);
-	//return (($v_bCheminHttp) ? dir_http() : ($v_bCheminAbsolu ? dir_document_root() : "/"))."code_lib/$v_sFichierAInclure";
 }
 
 /**
@@ -99,20 +104,12 @@ function dir_database ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 
 function dir_http_plateform ($v_sFichierAInclure=NULL)
 {
-	if (eregi("^4.2",phpversion()))
-	{
-		$tmp  = dirname(__FILE__);
-		$tmp1 = dir_document_root();
-		return (substr($tmp,strlen($tmp1))."/{$v_sFichierAInclure}");
-	}
-	
-	$sChemin = ereg_replace(dir_document_root(),dir_http(),dir_root_plateform());
-	
-	return ($sChemin."{$v_sFichierAInclure}");
+	global $g_sCheminRacineWeb;
+	return $g_sCheminRacineWeb.ltrim($v_sFichierAInclure, '/');
 }
 
 /**
- * Cette méthode retourne le chemin absolue du répertoire racine de la
+ * Cette méthode retourne le chemin absolu du répertoire racine de la
  * plate-forme
  * @param $v_sFichierAInclure string
  * @param $v_bCheminAbsolu    boolean
@@ -120,9 +117,13 @@ function dir_http_plateform ($v_sFichierAInclure=NULL)
  */
 function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
-	$sChemin = str_replace("\\","/",realpath(dirname(__FILE__))."/");
-	if (!$v_bCheminAbsolu) $sChemin = str_replace(dir_document_root(),"/",$sChemin);
-	return "{$sChemin}{$v_sFichierAInclure}";
+	global $g_sCheminRacine, $g_sCheminRacineWeb;
+	if ($v_bCheminAbsolu) {
+		return $g_sCheminRacine.$v_sFichierAInclure;
+	} else {
+		// $v_bCheminAbsolu à FALSE voudrait dire le chemin relatif *à la racine web*.
+		return str_replace(dir_http(), '/', $g_sCheminRacineWeb).$v_sFichierAInclure;
+	}
 }
 
 function dir_formation ($v_iIdForm=NULL,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
@@ -263,7 +264,7 @@ function dir_document_root ($v_sFichierAInclure=NULL)
 function dir_root_formation ($v_sFichierAInclure=NULL)
 {
 	// Ex.: /www/htdocs/html/esprit/formation/
-	return (dir_root_plateform()."/formation/{$v_sFichierAInclure}");
+	return (dir_root_plateform()."formation/{$v_sFichierAInclure}");
 }
 
 // *************************************
@@ -543,7 +544,8 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	$v_sTexte = str_replace("[/n]", "</span>", $v_sTexte);
 	
 	// lien vers un site internet
-	$v_sTexte = ereg_replace("\[http://([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"http://\\1\\2\" target=\"_blank\" onfocus=\"blur()\">http://\\1\\2</a>", $v_sTexte);
+	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$1</a>', $v_sTexte);
+	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+) ([^\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$2</a>', $v_sTexte);
 	
 	// Ecrire un e-mail
 	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"".gettext("Envoyer un e-mail")."\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);
