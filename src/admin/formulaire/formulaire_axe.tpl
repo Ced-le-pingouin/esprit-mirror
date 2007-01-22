@@ -4,70 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestion des Axes/Tendances</title>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<style type="text/css">
-html
-{
-	height: 100%;
-	/* \*/ overflow: hidden; /**/
-}
-body
-{
-	background-color: rgb(253,249,238);
-	margin: 0;
-	padding: 0;
-	color: rgb(0,0,0);
-	font-family: Verdana,Tahoma,Arial,sans-serif;
-	font-size: 12px;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-}
-#principal
-{
-	height: 90%;
-	overflow: auto;
-	margin: 0;
-	padding: 7px;
-}
-#piedpage
-{
-	height: 10%;
-	text-align: center;
-	margin: 0;
-	padding: 0 10px;
-	border-top: solid black 1px;
-	background-color: rgb(174,165,138);
-	vertical-align: center;
-}
-#valider
-{
-	float: left;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-#fermer
-{
-	float: right;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-#gestion
-{
-	display: block;
-	margin-top: 5px;
-}
-legend
-{
-	font-weight: bold;
-}
-a:link, a:visited, a:hover
-{
-	color: rgb(255,255,255);
-	font-weight: bold;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_axe.css" />
 <script type="text/javascript" language="javascript" src="{chemin_windows.js}"></script>
 <script type="text/javascript">
 <!--
@@ -82,7 +19,7 @@ function appliquer()
 //-->
 </script>
 </head>
-<body class="popup">
+<body>
 <div id="principal">
 [BLOCK_CHOIX+]
 <form name="formaxe" action="formulaire_axe.php" method="post">

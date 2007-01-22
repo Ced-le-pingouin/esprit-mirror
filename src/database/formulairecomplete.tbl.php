@@ -144,6 +144,16 @@ class CFormulaireComplete
 		return ($this->iId);
 	}
 	
+	function retNbreFormulaireComplete($v_iIdSousActiv,$v_iIdPers)
+	{
+		$sRequeteSql = "  SELECT COUNT(*)"
+					." FROM FormulaireComplete_SousActiv AS fcsa, FormulaireComplete AS fc"
+					." WHERE fcsa.IdSousActiv='{$v_iIdSousActiv}' AND fcsa.IdFC=fc.IdFC AND fc.IdPers='{$v_iIdPers}'";
+		$hResult = 	$this->oBdd->executerRequete($sRequeteSql);
+		$iNbreFC = $this->oBdd->retEnregPrecis($hResult, 0);
+		return $iNbreFC;
+	}
+	
 	function deposerDansSousActiv($v_iIdSousActiv, $v_iStatutFormulaire)
 	{
 		$this->oBdd->executerRequete
@@ -155,15 +165,7 @@ class CFormulaireComplete
 			." , FormulaireComplete_SousActiv WRITE"
 		);
 		
-		$hResult = 
-			$this->oBdd->executerRequete
-			(
-				"  SELECT COUNT(*)"
-				." FROM FormulaireComplete_SousActiv AS fcsa, FormulaireComplete AS fc"
-				." WHERE fcsa.IdSousActiv='{$v_iIdSousActiv}' AND fcsa.IdFC=fc.IdFC AND fc.IdPers='".$this->retIdPers()."'"
-			);
-		
-		$iNumVersion = $this->oBdd->retEnregPrecis($hResult, 0) + 1;
+		$iNumVersion = $this->retNbreFormulaireComplete($v_iIdSousActiv,$this->retIdPers()) + 1;
 		
 		$this->oBdd->executerRequete("UPDATE FormulaireComplete SET TitreFC='{$iNumVersion}' WHERE IdFC='".$this->retId()."'");
 		
@@ -304,7 +306,7 @@ class CFormulaireComplete
 		$this->oBdd->libererResult($hResult);
 		return $aoListeFC;
 	}
-		
+	
 	/** @name Fonctions de définition des champs pour ce formulaire (activité en ligne) complété */
 	//@{
 	function defId ($v_iIdFC) { $this->iId = $v_iIdFC; }
@@ -352,7 +354,7 @@ class CFormulaireComplete_SousActiv extends CFormulaireComplete
 				.", FormulaireComplete_SousActiv.IdSousActiv"
 				." FROM FormulaireComplete_SousActiv"
 				." LEFT JOIN FormulaireComplete ON FormulaireComplete.IdFC=FormulaireComplete_SousActiv.IdFC"
-				." FROM IdFCSousActiv='{$this->iIdFCSA}'"
+				." WHERE IdFCSousActiv='{$this->iIdFCSA}'"
 				." LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
@@ -362,12 +364,25 @@ class CFormulaireComplete_SousActiv extends CFormulaireComplete
 		$this->iId = $this->oEnregBdd->IdFC;
 	}
 	
-	/*function initFormulairesCompletes ($v_iIdSousActiv)
+	function initParFcEtSsActiv($v_iIdFc,$v_iIdSousActiv)
 	{
-	}*/
+		$sRequeteSql = "SELECT FormulaireComplete.*"
+				.", FormulaireComplete_SousActiv.IdFCSousActiv"
+				.", FormulaireComplete_SousActiv.StatutFormSousActiv"
+				.", FormulaireComplete_SousActiv.IdSousActiv"
+				." FROM FormulaireComplete_SousActiv"
+				." LEFT JOIN FormulaireComplete ON FormulaireComplete.IdFC=FormulaireComplete_SousActiv.IdFC"
+				." WHERE FormulaireComplete.IdFC='$v_iIdFc' AND IdSousActiv='$v_iIdSousActiv'"
+				." LIMIT 1";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
+		$this->oBdd->libererResult($hResult);
+		$this->iId = $this->oEnregBdd->IdFC;
+	}
+	
 	
 	// {{{ Méthodes de retour
-	function retIdFCSA () { return (isset($this->iIdFCSA) ? $this->iIdFCSA : 0); }
+	function retIdFCSA() { return (isset($this->oEnregBdd->IdFCSousActiv) ? $this->oEnregBdd->IdFCSousActiv : 0); }
 	//function retIdFC () { return (isset($this->oEnregBdd->IdFC) ? $this->oEnregBdd->IdFC : 0); }
 	//function retIdSousActiv () { return ; }
 	// }}}

@@ -19,17 +19,15 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-/*
-** Fichier ................: formulairecomplete_eval.tbl.php
-** Description ............: 
-** Date de création .......: 05/11/2004
-** Dernière modification ..: 09/11/2004
-** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
-**
-** Unité de Technologie de l'Education
-** 18, Place du Parc
-** 7000 MONS
-*/
+/**
+ * @file	formulairecomplete_eval.tbl.php
+ * 
+ * Contient la classe de gestion des formulaires complétés, en rapport avec la DB
+ * 
+ * @date	2004/11/5
+ * 
+ * @author	Filippo PORCO
+ */
 
 require_once(dir_database("ressource.def.php"));
 
@@ -108,13 +106,32 @@ class CFormulaireComplete_Evaluation
 		return $this->iId;
 	}
 	
-	function initEvaluateur () { $this->oEvaluateur = new CPersonne($this->oBdd,$this->iIdPers); }
+	function initPlusAncien($v_IdFCSousActiv)
+	{
+		$sRequeteSql = "SELECT FormulaireComplete_SousActiv.*"
+				.", FormulaireComplete_Evaluation.IdPers"
+				.", FormulaireComplete_Evaluation.DateEval"
+				.", FormulaireComplete_Evaluation.AppreciationEval"
+				.", FormulaireComplete_Evaluation.CommentaireEval"
+				." FROM FormulaireComplete_SousActiv"
+				." LEFT JOIN FormulaireComplete_Evaluation"
+				." ON FormulaireComplete_SousActiv.IdFCSousActiv=FormulaireComplete_Evaluation.IdFCSousActiv"
+				." WHERE FormulaireComplete_SousActiv.IdFCSousActiv='$v_IdFCSousActiv'"
+				." ORDER BY DateEval DESC"
+				." LIMIT 1";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
+		$this->oBdd->libererResult($hResult);
+		$this->iId = $this->oEnregBdd->IdFCSousActiv;
+	}
+	
+	function initEvaluateur() { $this->oEvaluateur = new CPersonne($this->oBdd,$this->retIdEvaluateur()); }
 	
 	// {{{ Méthodes de retour
 	function retId () { return (empty($this->iId) ? 0 : $this->iId); }
 	function retIdFC () { return (empty($this->oEnregBdd) ? 0 : $this->oEnregBdd->IdFC); }
 	function retStatut () { return (empty($this->oEnregBdd) ? STATUT_RES_APPROF : $this->oEnregBdd->StatutFormSousActiv); }
-	function retIdEvaluateur () { return $this->iIdPers; }
+	function retIdEvaluateur () { return $this->oEnregBdd->IdPers; }
 	function retDate () { return (empty($this->oEnregBdd->DateEval) ? date("d/m/y") : retDateFormatter($this->oEnregBdd->DateEval)); }
 	function retAppreciation () { return (isset($this->oEnregBdd->AppreciationEval) ? $this->oEnregBdd->AppreciationEval : NULL); }
 	function retCommentaire () { return (isset($this->oEnregBdd->CommentaireEval) ? $this->oEnregBdd->CommentaireEval : NULL); }

@@ -100,6 +100,9 @@ ALTER TABLE `Formulaire`
 
 
 ALTER TABLE `ReponseEntier` 
-	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0';
 
+
+ALTER TABLE `Formulaire` 
+	ADD `MethodeCorrection` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `AutoCorrection`;
 

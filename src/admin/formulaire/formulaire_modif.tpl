@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_modif.css" />
 <title>Modification des activités en ligne</title>
 <script src="selectionobj.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -66,7 +67,7 @@ function soumettre(TypeAct,Parametre)
 //-->
 </script>
 </head>
-<body class="modif" onload="init()">
+<body onload="init()">
 <div id="entete">
 	<h3>{Titre_page}</h3>
 </div>
@@ -470,35 +471,29 @@ function soumettre(TypeAct,Parametre)
 	</fieldset>			
 	<fieldset>
 	<legend>Options supplémentaires</legend>
-	<table>
-	<tr>
-		<td>
-			Type :
-		</td>
-		<td>
-			<input id="idpriv" type="radio" name="Type" value="prive" {sType1} /><label for="idpriv">Privé</label>
-		</td>
-		<td>
+	<ul id="options">
+		<li>
+			Type : <input id="idpriv" type="radio" name="Type" value="prive" {sType1} /><label for="idpriv">Privé</label> 
 			<input id="idpub" type="radio" name="Type" value="public" {sType2} /><label for="idpub">Public</label>
-		</td>
-	</tr>
-	<tr>
-		<td>
+		</li>
+		<li>
 			<label for="idremptout">Tous les champs doivent être remplis :</label>
-		</td>
-		<td colspan="2">
 			<input id="idremptout" type="checkbox" name="RemplirTout" value="1" {sRemplirToutSel} />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<label for="idautocorrect">Scores :</label>
-		</td>
-		<td colspan="2">
+		</li>
+		<li>
+			<label for="idautocorrect">Auto correction :</label>
 			<input id="idautocorrect" type="checkbox" name="AutoCorrection" value="1" {sAutoCorrectionSel} />
-		</td>
-	</tr>
-	</table>
+		</li>
+		<li>
+			Méthode de calcul du score :
+			<dl id="calcul">
+				<dt><input type="radio" name="Methode" id="Meth_0" value="0" {sMethode_0} /><label for="Meth_0">Formule standard</label></dt>
+				<dd>( Nombre de réponses correctes fournies / Nombre de réponses correctes attendues)</dd>
+				<dt><input type="radio" name="Methode" id="Meth_1" value="1" {sMethode_1} /><label for="Meth_1">Formule avancée</label></dt>
+				<dd>[ ( Nombre de réponses correctes fournies / Nombre de réponses correctes attendues ) - ( Nombre de réponses incorrectes incorrectes / Nombre total de réponses incorrectes ) ]</dd>
+			</dl>
+		</li>
+	</ul>
 	</fieldset>
 	<input type="hidden" name="envoyer" value="1" />   
 </form>

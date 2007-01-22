@@ -132,3 +132,25 @@ function validerQNombre(v_oCase)
 		);
 	}
 }
+
+function GestionFeedback(idPropRep,aFermer) 
+{
+	if(document.getElementById("FB"+idPropRep).style.display == "block")
+	{
+		document.getElementById("FB"+idPropRep).style.display = "none";
+		document.getElementById("FBT"+idPropRep).style.display = "none";
+	}
+	else
+	{
+		if(aFermer)
+		{
+			for (var i=0;i<aFermer.length;i++)
+			{
+				document.getElementById("FB"+aFermer[i]).style.display = "none";
+				document.getElementById("FBT"+aFermer[i]).style.display = "none";
+			}
+		}
+		document.getElementById("FB"+idPropRep).style.display = "block";
+		document.getElementById("FBT"+idPropRep).style.display = "block";
+	}
+}

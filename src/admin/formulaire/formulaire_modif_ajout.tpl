@@ -4,9 +4,10 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Ajouter un élément</title>
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_modif_ajout.css" />
 <script src="selectionobj.js" type="text/javascript"></script>
 </head>
-<body class="popup"{onload}>
+<body {onload}>
 <div id="contenu">
 	<form action="formulaire_modif_ajout.php" name="formajout" method ="get">
 	<select name="idtypeobj">

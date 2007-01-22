@@ -1,0 +1,49 @@
+html
+{
+	height: 100%;
+	/* \*/ overflow: hidden; /**/
+}
+body
+{
+	background-color: rgb(253,249,238);
+	color: rgb(0,0,0);
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+}
+h1
+{
+	color: rgb(34,34,34);
+	font-size: 1.25em;
+	text-align: center;
+	text-decoration: underline;
+}
+#piedpage a:link, #piedpage a:visited, #piedpage a:hover
+{
+	color: rgb(255,255,255);
+	font-size: 0.85em;
+	font-weight: bold;
+}
+#principal
+{
+	height: 90%;
+	margin: 0;
+	overflow: auto;
+	padding: 7px;
+}
+#piedpage
+{
+	background-color: rgb(174,165,138);
+	border-top: black solid 1px;
+	height: 10%;
+	margin: 0;
+	padding: 0 10px;
+	text-align: center;
+	vertical-align: center;
+}
+#gestion
+{
+	display: block;
+	margin-top: 5px;
+}

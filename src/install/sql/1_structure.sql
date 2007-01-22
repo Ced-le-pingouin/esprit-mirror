@@ -268,6 +268,7 @@ CREATE TABLE `Formulaire` (
   `Statut` tinyint(1) NOT NULL default '0',
   `Type` enum('public','prive') collate utf8_unicode_ci NOT NULL default 'prive',
   `AutoCorrection` tinyint(1) unsigned NOT NULL default '0',
+  `MethodeCorrection` tinyint(1) unsigned NOT NULL default '0',
   `IdPers` int(10) NOT NULL default '0',
   PRIMARY KEY  (`IdFormul`),
   KEY `IdPers` (`IdPers`)

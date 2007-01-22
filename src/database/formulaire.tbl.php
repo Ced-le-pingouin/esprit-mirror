@@ -208,9 +208,9 @@ class CFormulaire
 	 * 
 	 * @return	l'id du nouveau formulaire
 	 */
-	function ajouter ($iIdPers)
+	function ajouter($iIdPers)
 	{
-		$sRequeteSql = "INSERT INTO Formulaire SET IdFormul=NULL, Titre='Nouveau Formulaire', Encadrer=1, IdPers='$iIdPers';";
+		$sRequeteSql = "INSERT INTO Formulaire SET IdFormul=NULL, Titre='Nouvelle activité en ligne', Encadrer=1, TypeLarg='N', Largeur=5, InterElem=10, InterEnonRep=5, IdPers='$iIdPers';";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return ($this->iId = $this->oBdd->retDernierId());
@@ -236,6 +236,7 @@ class CFormulaire
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
 					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
+					.", MethodeCorrection='{$this->oEnregBdd->MethodeCorrection}'"
 					.", IdPers='{$this->oEnregBdd->IdPers}'"
 					.($this->oEnregBdd->IdFormul > 0 ? " WHERE IdFormul='{$this->oEnregBdd->IdFormul}'" : NULL);
 		
@@ -249,7 +250,7 @@ class CFormulaire
 	   * 
 	   * @return l'id du nouveau formulaire
 	   */
-	  function copier ($v_iIdPers)
+	  function copier($v_iIdPers)
 	  {
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		// de les stocker dans la BD sans erreur 
@@ -265,6 +266,7 @@ class CFormulaire
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
 					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
+					.", MethodeCorrection='{$this->oEnregBdd->MethodeCorrection}'"
 					.", IdPers='{$v_iIdPers}'";
 			
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -382,6 +384,36 @@ class CFormulaire
 		return $aoObjetFormulaire;
 	}
 	
+	/**
+	 * Retourne le nombre d'éléments de cette activité en ligne
+	 * 
+	 * @return	le nombre d'éléments de cette activité en ligne
+	 */
+	function retNbreObjetFormulaire()
+	{
+		$sRequeteSql = "SELECT COUNT(*) FROM ObjetFormulaire"
+					." WHERE IdFormul='".$this->retId()."'";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$iNb = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		return $iNb;
+	}
+	
+	/**
+	 * Retourne le nombre d'éléments qui ne sont pas auto-corrigés
+	 * 
+	 * @return	le nombre d'éléments qui ne sont pas auto-corrigés
+	 */
+	function retNbreObjetFormulaireNonAutoCorrige()
+	{
+		$sRequeteSql = "SELECT COUNT(*) FROM ObjetFormulaire"
+					." WHERE IdFormul='".$this->retId()."' AND IdTypeObj IN (".OBJFORM_QTEXTELONG.",".OBJFORM_QTEXTECOURT.",".OBJFORM_QNOMBRE.")";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$iNb = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		return $iNb;
+	}
+	
 	/** @name Fonctions de définition des champs pour ce formulaire */
 	//@{
 	function defTitre ($v_sTitre) { $this->oEnregBdd->Titre = trim($v_sTitre); }
@@ -394,6 +426,7 @@ class CFormulaire
 	function defStatut ($v_iStatut) { $this->oEnregBdd->Statut = $v_iStatut; }
 	function defType ($v_sType) { $this->oEnregBdd->Type = trim($v_sType); }
 	function defAutoCorrection ($v_iAutoCorrect) { $this->oEnregBdd->AutoCorrection = $v_iAutoCorrect; }
+	function defMethodeCorrection ($v_iMethode) { $this->oEnregBdd->MethodeCorrection = $v_iMethode; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	//@}
 	
@@ -410,6 +443,7 @@ class CFormulaire
 	function retStatut () { return $this->oEnregBdd->Statut; }
 	function retType () { return $this->oEnregBdd->Type; }
 	function retAutoCorrection () { return $this->oEnregBdd->AutoCorrection; }
+	function retMethodeCorrection () { return $this->oEnregBdd->MethodeCorrection; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	//@}
 }
