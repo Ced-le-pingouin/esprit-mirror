@@ -20,7 +20,7 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 /**
- * @file	typeobjetform.tbl.php
+ * @file	typeobjetformul.tbl.php
  * 
  * Contient la classe de gestion des types d'objet de formulaire, en rapport avec la DB
  * 
@@ -30,9 +30,9 @@
  */
 
 /**
- * Gestion des types d'objet de formulaire, et encapsulation de la table TypeObjetForm de la DB
+ * Gestion des types d'objet de formulaire, et encapsulation de la table TypeObjetFormul de la DB
  */
-class CTypeObjetForm 
+class CTypeObjetFormul
 {
 	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id de l'objet de formulaire à récupérer dans la DB
 	var $oBdd;					///< Objet représentant la connexion à la DB
@@ -42,7 +42,7 @@ class CTypeObjetForm
 	 * Constructeur.	Voir CPersonne#CPersonne()
 	 * 
 	 */
-	function CTypeObjetForm(&$v_oBdd,$v_iId=0) 
+	function CTypeObjetFormul(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
 		if (($this->iId = $v_iId) > 0)
@@ -61,7 +61,7 @@ class CTypeObjetForm
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM TypeObjetForm WHERE IdTypeObj='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM TypeObjetFormul WHERE IdTypeObj='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -76,7 +76,7 @@ class CTypeObjetForm
 	 */
 	function ajouter()
 	{
-		$sRequeteSql = "INSERT INTO TypeObjetForm SET IdTypeObj=NULL;";
+		$sRequeteSql = "INSERT INTO TypeObjetFormul SET IdTypeObj=NULL;";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
@@ -90,11 +90,11 @@ class CTypeObjetForm
 	{
 		$iIdx = 0;
 		$aoTypeObj = array();
-		$sRequeteSql = "SELECT * FROM TypeObjetForm ORDER BY IdTypeObj";
+		$sRequeteSql = "SELECT * FROM TypeObjetFormul ORDER BY IdTypeObj";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$aoTypeObj[$iIdx] = new CTypeObjetForm($this->oBdd);
+			$aoTypeObj[$iIdx] = new CTypeObjetFormul($this->oBdd);
 			$aoTypeObj[$iIdx]->init($oEnreg);
 			$iIdx++;
 		}

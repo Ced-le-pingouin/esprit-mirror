@@ -50,24 +50,24 @@ class CQNombre
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QNombre WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QNombre WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type nombre, avec tous ses champs vides, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QNombre SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QNombre SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQN ($v_sEnonQN) { $this->oEnregBdd->EnonQN = $v_sEnonQN; }
 	function defAlignEnonQN ($v_sAlignEnonQN) { $this->oEnregBdd->AlignEnonQN = $v_sAlignEnonQN; }
 	function defAlignRepQN ($v_sAlignRepQN) { $this->oEnregBdd->AlignRepQN = $v_sAlignRepQN; }
@@ -78,7 +78,7 @@ class CQNombre
 	function defMultiQN ($v_iMultiQN) { $this->oEnregBdd->NbMultiQN = trim($v_iMultiQN); } //Nombre réel
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQN () { return $this->oEnregBdd->EnonQN; }
 	function retAlignEnonQN () { return $this->oEnregBdd->AlignEnonQN; }
 	function retAlignRepQN () { return $this->oEnregBdd->AlignRepQN; }
@@ -105,7 +105,7 @@ class CQNombre
 		if ($v_iIdFC != NULL)
 		{
 			$sRequeteSql = "SELECT * FROM ReponseFlottant"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
+						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -120,11 +120,11 @@ class CQNombre
 		//Genération du code html représentant l'objet
 		//Ceci est le code COMPLET qui affiche toutes les valeurs -> pas utilisable 
 		//tel quel par les etudiants
-		$sCodeHtml = "\n<!--QNombre : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml = "\n<!--QNombre : {$this->oEnregBdd->IdObjFormul} -->\n"
 					."<div align=\"{$this->oEnregBdd->AlignEnonQN}\">{$this->oEnregBdd->EnonQN}</div>"
 					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQN}\">"
 					."{$this->oEnregBdd->TxtAvQN} \n"
-					."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjForm}\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
+					."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
 					." id=\"id_".$this->retId()."_".$this->retNbMinQN()."_".$this->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
 					." {$this->oEnregBdd->TxtApQN}\n"
 					."</div><br />\n";
@@ -134,7 +134,7 @@ class CQNombre
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			// de les stocker dans la BD sans erreur 
@@ -147,7 +147,7 @@ class CQNombre
 				$this->oEnregBdd->MultiQN = 1;
 			
 			$sRequeteSql = "REPLACE QNombre SET"
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQN='{$EnonQN}'"
 						.", AlignEnonQN='{$this->oEnregBdd->AlignEnonQN}'"
 						.", AlignRepQN='{$this->oEnregBdd->AlignRepQN}'"
@@ -171,7 +171,7 @@ class CQNombre
 		{
 			$sRequeteSql = "REPLACE ReponseFlottant SET"
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", Valeur='{$v_fReponsePersQTC}'";
 			$this->oBdd->executerRequete($sRequeteSql);
 		}
@@ -193,7 +193,7 @@ class CQNombre
 		$TxtApQN = validerTexte($this->oEnregBdd->TxtApQN);
 				
 		$sRequeteSql = "INSERT INTO QNombre SET"									  
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQN='{$EnonQN}'"
 					.", AlignEnonQN='{$this->oEnregBdd->AlignEnonQN}'"
 					.", AlignRepQN='{$this->oEnregBdd->AlignRepQN}'"
@@ -211,7 +211,7 @@ class CQNombre
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QNombre WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QNombre WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

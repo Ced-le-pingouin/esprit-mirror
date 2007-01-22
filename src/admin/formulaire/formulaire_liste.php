@@ -83,20 +83,20 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 					
 					case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$v_iIdObjForm);
 							$oQListeDeroul->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepPoidsObj($v_iIdObjForm);
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$oPropositionReponse->effacerRepPoidsObj($v_iIdObjForm);
 							break;
 					
 					case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$v_iIdObjForm);
 							$oQRadio->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepPoidsObj($v_iIdObjForm);						 
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$oPropositionReponse->effacerRepPoidsObj($v_iIdObjForm);						 
 							break;
 					
 					case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$v_iIdObjForm);
 							$oQCocher->effacer();
-							$oReponse = new CReponse($oProjet->oBdd);
-							$oReponse->effacerRepPoidsObj($v_iIdObjForm);
+							$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+							$oPropositionReponse->effacerRepPoidsObj($v_iIdObjForm);
 							break;
 					
 					case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$v_iIdObjForm);
@@ -173,7 +173,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		foreach($aoObjetFormulaire as $oObjetFormulaire)
 		{
 			$iIdObjActuel = $oObjetFormulaire->retId();
-			$iOrdreObjForm = $oObjetFormulaire->retOrdreObjForm();
+			$iOrdreObjForm = $oObjetFormulaire->retOrdreObjFormul();
 			
 			$sHtmlListeObjForm .= "\n<a name=\"$iIdObjActuel\"></a>\n";
 			

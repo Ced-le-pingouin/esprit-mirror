@@ -50,7 +50,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 					$v_sListeAxes = "0";
 					$oReponse_Axe->VerifierValidite($v_iIdFormulaire,$v_sListeAxes);
 					// Effacement des objets du formulaire 1 par 1
-					$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdForm = $v_iIdFormulaire");
+					$hResult = $oProjet->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul = $v_iIdFormulaire");
 					while( $oEnreg = $oProjet->oBdd->retEnregSuiv($hResult) )
 					{
 						$oObjetFormulaire = new CObjetFormulaire($oProjet->oBdd);
@@ -72,20 +72,20 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 							
 							case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
 									$oQListeDeroul->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);
 									break;
 							
 							case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
 									$oQRadio->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);						 
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);						 
 									break;
 							
 							case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
 									$oQCocher->effacer();
-									$oReponse = new CReponse($oProjet->oBdd);
-									$oReponse->effacerRepObj($iIdObjActuel);
+									$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+									$oPropositionReponse->effacerRepObj($iIdObjActuel);
 									break;
 							
 							case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
@@ -129,7 +129,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		
 		case 'ajouter' :
 			$oFormulaire = new CFormulaire($oProjet->oBdd);
-			$v_iIdFormulaire = $oFormulaire->ajouter($iIdPers);
+			$v_iIdFormulaire = $oFormulaire->ajouter($iIdPersCourant);
 			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,0,$bMesForms);</script>";
 			break;
 	}
@@ -179,13 +179,6 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	{
 		$oBlockSelFormul->effacer();
 	}
-	if($_GET['typeaction'] == 'selection')
-	{
-		if($bFormulaireVisiblePersCourante)
-			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);</script>";
-		else
-			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite(0,0,$bMesForms);</script>";
-	}
 	// Affichage du menu
 	if($v_iIdFormulaire > 0 && $bFormulaireVisiblePersCourante)
 	{
@@ -198,8 +191,17 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		if($v_iIdObjForm > 0)
 		{
 			$oObjFormSel = new CObjetFormulaire($oProjet->oBdd, $v_iIdObjForm);
-			$oTpl->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre());
-			$oBlocElemLiens->afficher();
+			if($oObjFormSel->retIdFormul() == $v_iIdFormulaire)
+			{
+				$oTpl->remplacer("{nom_elem_courant}", "Elément ".$oObjFormSel->retOrdre());
+				$oBlocElemLiens->afficher();
+			}
+			else
+			{
+				$oTpl->remplacer("{nom_elem_courant}", "-");
+				$oBlocElemLiens->effacer();
+				$v_iIdObjForm = 0;
+			}
 		}
 		else
 		{
@@ -211,6 +213,13 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	{
 		$oBlocLienForm->effacer();
 		$oBlocElem->effacer();
+	}
+	if($_GET['typeaction'] == 'selection')
+	{
+		if($bFormulaireVisiblePersCourante)
+			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);</script>";
+		else
+			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite(0,0,$bMesForms);</script>";
 	}
 	$oTpl->remplacer("{Message_Etat}",$sMessageEtat);
 	$oTpl->afficher();

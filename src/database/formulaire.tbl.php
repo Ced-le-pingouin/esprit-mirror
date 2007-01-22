@@ -70,12 +70,12 @@ class CFormulaire
 		else
 		{
 			$sRequeteSql = "SELECT * FROM Formulaire"
-					." WHERE IdForm='{$this->iId}'";
+					." WHERE IdFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdForm;
+		$this->iId = $this->oEnregBdd->IdFormul;
 	}
 	
 	/**
@@ -87,7 +87,7 @@ class CFormulaire
 			return;
 		
 		$sRequeteSql =	"  SELECT a.* FROM Axe AS a, Formulaire_Axe AS fa"
-				." WHERE fa.IdForm='".$this->retId()."' AND fa.IdAxe=a.IdAxe"
+				." WHERE fa.IdFormul='".$this->retId()."' AND fa.IdAxe=a.IdAxe"
 				." ORDER BY a.IdAxe";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
@@ -123,13 +123,13 @@ class CFormulaire
 		}
 		
 		$sRequeteSql =	"SELECT * FROM ObjetFormulaire"
-				." WHERE IdForm=".$this->retId()
-				." ORDER BY OrdreObjForm";
+				." WHERE IdFormul=".$this->retId()
+				." ORDER BY OrdreObjFormul";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		{
-			$iIndexObjet = $oEnreg->IdObjForm;
+			$iIndexObjet = $oEnreg->IdObjFormul;
 			$this->aoObjets[$iIndexObjet] = new CObjetFormulaire($this->oBdd);
 			$this->aoObjets[$iIndexObjet]->init($oEnreg);
 			if ($v_bInitDetail)
@@ -210,7 +210,7 @@ class CFormulaire
 	 */
 	function ajouter ($iIdPers)
 	{
-		$sRequeteSql = "INSERT INTO Formulaire SET IdForm=NULL, Titre='Nouveau Formulaire', Encadrer=1, IdPers='$iIdPers';";
+		$sRequeteSql = "INSERT INTO Formulaire SET IdFormul=NULL, Titre='Nouveau Formulaire', Encadrer=1, IdPers='$iIdPers';";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		return ($this->iId = $this->oBdd->retDernierId());
@@ -219,7 +219,7 @@ class CFormulaire
 	/**
 	 * Enregistre les données du formulaire courant dans la DB
 	 */
-	function enregistrer ()
+	function enregistrer()
 	{
 		// Les variables contenant du "texte" doivent être formatées, cela permet 
 		//de les stocker dans la BD sans erreur 
@@ -235,8 +235,9 @@ class CFormulaire
 					.", RemplirTout='".$this->retRemplirTout()."'"
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
+					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
 					.", IdPers='{$this->oEnregBdd->IdPers}'"
-					.($this->oEnregBdd->IdForm > 0 ? " WHERE IdForm='{$this->oEnregBdd->IdForm}'" : NULL);
+					.($this->oEnregBdd->IdFormul > 0 ? " WHERE IdFormul='{$this->oEnregBdd->IdFormul}'" : NULL);
 		
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
@@ -263,6 +264,7 @@ class CFormulaire
 					.", InterEnonRep='{$this->oEnregBdd->InterEnonRep}'"
 					.", Statut='{$this->oEnregBdd->Statut}'"
 					.", Type='{$this->oEnregBdd->Type}'"
+					.", AutoCorrection='{$this->oEnregBdd->AutoCorrection}'"
 					.", IdPers='{$v_iIdPers}'";
 			
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -277,7 +279,7 @@ class CFormulaire
 	 */
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM Formulaire WHERE IdForm ='{$this->oEnregBdd->IdForm}'";
+		$sRequeteSql = "DELETE FROM Formulaire WHERE IdFormul ='{$this->oEnregBdd->IdFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
@@ -351,7 +353,7 @@ class CFormulaire
 	 */
 	function retNbRemplisDsSessions()
 	{
-		$sRequeteSql = "SELECT COUNT(*) FROM FormulaireComplete WHERE IdForm='".$this->retId()."'";
+		$sRequeteSql = "SELECT COUNT(*) FROM FormulaireComplete WHERE IdFormul='".$this->retId()."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$iNb = $this->oBdd->retEnregPrecis($hResult);
 		$this->oBdd->libererResult($hResult);
@@ -368,7 +370,7 @@ class CFormulaire
 	{
 		$iIdxObjForm = 0;
 		$aoObjetFormulaire = array();
-		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdForm ='".$this->retId()."' ORDER by OrdreObjForm";
+		$sRequeteSql = "SELECT * FROM ObjetFormulaire WHERE IdFormul ='".$this->retId()."' ORDER by OrdreObjFormul";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		while ($oEnregBdd = $this->oBdd->retEnregSuiv($hResult))
 		{
@@ -391,12 +393,13 @@ class CFormulaire
 	function defRemplirTout ($v_bRemplirTout) { $this->oEnregBdd->RemplirTout = ( $v_bRemplirTout?1:0 ); }
 	function defStatut ($v_iStatut) { $this->oEnregBdd->Statut = $v_iStatut; }
 	function defType ($v_sType) { $this->oEnregBdd->Type = trim($v_sType); }
+	function defAutoCorrection ($v_iAutoCorrect) { $this->oEnregBdd->AutoCorrection = $v_iAutoCorrect; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	//@}
-
+	
 	/** @name Fonctions de lecture des champs pour ce formulaire */
 	//@{
-	function retId () { return $this->oEnregBdd->IdForm; }
+	function retId () { return $this->oEnregBdd->IdFormul; }
 	function retTitre () { return $this->oEnregBdd->Titre; }
 	function retEncadrer () { return $this->oEnregBdd->Encadrer; }
 	function retLargeur () { return $this->oEnregBdd->Largeur; }
@@ -406,6 +409,7 @@ class CFormulaire
 	function retRemplirTout () { return $this->oEnregBdd->RemplirTout; }
 	function retStatut () { return $this->oEnregBdd->Statut; }
 	function retType () { return $this->oEnregBdd->Type; }
+	function retAutoCorrection () { return $this->oEnregBdd->AutoCorrection; }
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	//@}
 }

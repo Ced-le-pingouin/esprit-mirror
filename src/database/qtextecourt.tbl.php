@@ -50,23 +50,23 @@ class CQTexteCourt
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QTexteCourt WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QTexteCourt WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type texte court, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QTexteCourt SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QTexteCourt SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQTC ($v_sEnonQTC) { $this->oEnregBdd->EnonQTC = $v_sEnonQTC; }
 	function defAlignEnonQTC ($v_sAlignEnonQTC) { $this->oEnregBdd->AlignEnonQTC = $v_sAlignEnonQTC; }
 	function defAlignRepQTC ($v_sAlignRepQTC) { $this->oEnregBdd->AlignRepQTC = $v_sAlignRepQTC; }
@@ -76,7 +76,7 @@ class CQTexteCourt
 	function defMaxCarQTC ($v_iMaxCarQTC) { $this->oEnregBdd->MaxCarQTC = trim($v_iMaxCarQTC); }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQTC () { return $this->oEnregBdd->EnonQTC; }
 	function retAlignEnonQTC () { return $this->oEnregBdd->AlignEnonQTC; }
 	function retAlignRepQTC () { return $this->oEnregBdd->AlignRepQTC; }
@@ -101,7 +101,7 @@ class CQTexteCourt
 		if ($v_iIdFC != NULL)
 		{
 			$sRequeteSql = "SELECT * FROM ReponseCar"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
+						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -114,11 +114,11 @@ class CQTexteCourt
 		$this->oEnregBdd->TxtApQTC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQTC);
 		
 		//Genération du code html représentant l'objet
-		$sCodeHtml="\n<!--QTexteCourt : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml="\n<!--QTexteCourt : {$this->oEnregBdd->IdObjFormul} -->\n"
 				."<div align=\"{$this->oEnregBdd->AlignEnonQTC}\">{$this->oEnregBdd->EnonQTC}</div>\n"
 				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTC}\">\n"
 				."{$this->oEnregBdd->TxtAvQTC} \n"
-				."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjForm}\" size=\"{$this->oEnregBdd->LargeurQTC}\" maxlength=\"{$this->oEnregBdd->MaxCarQTC}\" value=\"$sValeur\" />\n"
+				."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"{$this->oEnregBdd->LargeurQTC}\" maxlength=\"{$this->oEnregBdd->MaxCarQTC}\" value=\"$sValeur\" />\n"
 				." {$this->oEnregBdd->TxtApQTC}\n"
 				."</div><br />\n";
 		
@@ -127,7 +127,7 @@ class CQTexteCourt
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -140,7 +140,7 @@ class CQTexteCourt
 				{$this->oEnregBdd->MaxCarQTC = $this->oEnregBdd->LargeurQTC;}
 			
 			$sRequeteSql = "REPLACE QTexteCourt SET"									  
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQTC='{$sEnonQTC}'"
 						.", AlignEnonQTC='{$this->oEnregBdd->AlignEnonQTC}'"
 						.", AlignRepQTC='{$this->oEnregBdd->AlignRepQTC}'"
@@ -167,7 +167,7 @@ class CQTexteCourt
 			
 			$sRequeteSql = "REPLACE ReponseCar SET"									  
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", Valeur='{$sReponsePersQTC}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -190,7 +190,7 @@ class CQTexteCourt
 		$sTxtApQTC = validerTexte($this->oEnregBdd->TxtApQTC);
 		
 		$sRequeteSql = "INSERT INTO QTexteCourt SET"									  
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQTC='{$sEnonQTC}'"
 					.", AlignEnonQTC='{$this->oEnregBdd->AlignEnonQTC}'"
 					.", AlignRepQTC='{$this->oEnregBdd->AlignRepQTC}'"
@@ -207,7 +207,7 @@ class CQTexteCourt
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QTexteCourt WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QTexteCourt WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

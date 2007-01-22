@@ -50,23 +50,23 @@ class CQTexteLong
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QTexteLong WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QTexteLong WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
-	function ajouter ($v_iIdObjForm) //Cette fonction ajoute une question de type texte long, avec tous ses champs vide, en fin de table
+	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type texte long, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QTexteLong SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QTexteLong SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQTL ($v_sEnonQTL) { $this->oEnregBdd->EnonQTL = $v_sEnonQTL; }
 	function defAlignEnonQTL ($v_sAlignEnonQTL) { $this->oEnregBdd->AlignEnonQTL = $v_sAlignEnonQTL; }
 	function defAlignRepQTL ($v_sAlignRepQTL) { $this->oEnregBdd->AlignRepQTL = $v_sAlignRepQTL; }
@@ -74,7 +74,7 @@ class CQTexteLong
 	function defHauteurQTL ($v_iHauteurQTL) { $this->oEnregBdd->HauteurQTL = trim($v_iHauteurQTL); }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQTL () { return $this->oEnregBdd->EnonQTL; }
 	function retAlignEnonQTL () { return $this->oEnregBdd->AlignEnonQTL; }
 	function retAlignRepQTL () { return $this->oEnregBdd->AlignRepQTL; }
@@ -97,7 +97,7 @@ class CQTexteLong
 		if ($v_iIdFC != NULL)
 		{
 			$sRequeteSql = "SELECT * FROM ReponseTexte"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
+						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
 			
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
@@ -106,10 +106,10 @@ class CQTexteLong
 		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
 		$this->oEnregBdd->EnonQTL = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTL);
 		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QTexteLong : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml = "\n<!--QTexteLong : {$this->oEnregBdd->IdObjFormul} -->\n"
 					."<div align=\"{$this->oEnregBdd->AlignEnonQTL}\">{$this->oEnregBdd->EnonQTL}</div>\n"
 					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTL}\">\n"
-					."<textarea name=\"{$this->oEnregBdd->IdObjForm}\" rows=\"{$this->oEnregBdd->HauteurQTL}\" cols=\"{$this->oEnregBdd->LargeurQTL}\">\n"
+					."<textarea name=\"{$this->oEnregBdd->IdObjFormul}\" rows=\"{$this->oEnregBdd->HauteurQTL}\" cols=\"{$this->oEnregBdd->LargeurQTL}\">\n"
 					."$sValeur"
 					."</textarea>\n"
 					."</div><br />\n";
@@ -118,14 +118,14 @@ class CQTexteLong
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
 			$sEnonQTL = validerTexte($this->oEnregBdd->EnonQTL);
 			
 			$sRequeteSql = "REPLACE QTexteLong SET"
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQTL='{$sEnonQTL}'"
 						.", AlignEnonQTL='{$this->oEnregBdd->AlignEnonQTL}'"
 						.", AlignRepQTL='{$this->oEnregBdd->AlignRepQTL}'"
@@ -149,7 +149,7 @@ class CQTexteLong
 			
 			$sRequeteSql = "REPLACE ReponseTexte SET"
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", Valeur='{$sReponsePersQTL}'";
 				
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -170,7 +170,7 @@ class CQTexteLong
 		$sEnonQTL = validerTexte($this->oEnregBdd->EnonQTL);
 		
 		$sRequeteSql = "INSERT INTO QTexteLong SET"
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQTL='{$sEnonQTL}'"
 					.", AlignEnonQTL='{$this->oEnregBdd->AlignEnonQTL}'"
 					.", AlignRepQTL='{$this->oEnregBdd->AlignRepQTL}'"
@@ -184,7 +184,7 @@ class CQTexteLong
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QTexteLong WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QTexteLong WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

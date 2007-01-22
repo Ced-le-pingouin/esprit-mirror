@@ -73,7 +73,7 @@ label
 legend
 {
 	font-weight: bold;
-	color: rgb(111,105,87);
+	color: rgb(153,73,89);
 }
 form
 {
@@ -172,6 +172,7 @@ a:hover
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 1;
 }
 #entete h3
 {
@@ -188,4 +189,66 @@ a:hover
 #conteneur
 {
 	padding: 33px 5px 0 5px;
+}
+#zoneenonce, #zonempsep, #zonereponse, #zoneproposition
+{
+	padding: 4px 4px 4px 14px;
+	margin: 15px 0;
+}
+#zoneenonce label
+{
+	vertical-align: top;
+}
+#zonereponse ul, #zoneproposition ul
+{
+	margin: 0;
+	padding: 0;
+}
+#zoneenonce ul, #zonempsep ul, #alignrep
+{
+	display: block;
+	text-align: right;
+	margin: 2px;
+}
+#zonereponse li, #zoneproposition li
+{
+	list-style-image: none;
+	list-style-type: none;
+	margin: 0 0 7px 0;
+	padding: 0;
+}
+#zoneenonce li, #zonempsep li, #alignrep li
+{
+	list-style-image: none;
+	list-style-type: none;
+	padding: 3px 7px;
+	display: inline;
+	margin: 0;
+}
+#bloczonerep
+{
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	background-color: rgb(241,235,222);
+	color: rgb(153,73,89);
+	border: 1px solid rgb(188,188,171);
+}
+.poidsaxe
+{
+	margin: 5px 0;
+	padding: 1px 1px 1px 100px;
+}
+.sepproprep
+{
+	margin: 10px 0 20px 0;
+	width: 99%;
+	height: 1px;
+	color: rgb(208,208,191);
+	background-color: rgb(208,208,191);
+	border: 0;
+}
+.feedback
+{
+	margin : 10px 0 10px 93px;
 }

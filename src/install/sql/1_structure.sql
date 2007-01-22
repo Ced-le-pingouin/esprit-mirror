@@ -250,7 +250,7 @@ CREATE TABLE `Formation_Tuteur` (
 -- 
 
 CREATE TABLE `Formulaire` (
-  `IdForm` int(10) unsigned NOT NULL auto_increment,
+  `IdFormul` int(10) unsigned NOT NULL auto_increment,
   `Nom` varchar(100) collate utf8_unicode_ci default NULL,
   `Commentaire` text collate utf8_unicode_ci,
   `ActiverScores` tinyint(1) unsigned NOT NULL default '0',
@@ -267,8 +267,9 @@ CREATE TABLE `Formulaire` (
   `RemplirTout` tinyint(1) unsigned NOT NULL default '0',
   `Statut` tinyint(1) NOT NULL default '0',
   `Type` enum('public','prive') collate utf8_unicode_ci NOT NULL default 'prive',
+  `AutoCorrection` tinyint(1) unsigned NOT NULL default '0',
   `IdPers` int(10) NOT NULL default '0',
-  PRIMARY KEY  (`IdForm`),
+  PRIMARY KEY  (`IdFormul`),
   KEY `IdPers` (`IdPers`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -283,10 +284,10 @@ CREATE TABLE `FormulaireComplete` (
   `TitreFC` varchar(255) collate utf8_unicode_ci NOT NULL default '',
   `IdPers` int(10) unsigned NOT NULL default '0',
   `DateFC` datetime NOT NULL default '0000-00-00 00:00:00',
-  `IdForm` int(10) unsigned NOT NULL default '0',
+  `IdFormul` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`IdFC`),
   KEY `IdPers` (`IdPers`),
-  KEY `IdForm` (`IdForm`)
+  KEY `IdFormul` (`IdFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -330,9 +331,9 @@ CREATE TABLE `FormulaireComplete_SousActiv` (
 -- 
 
 CREATE TABLE `Formulaire_Axe` (
-  `IdForm` int(10) unsigned NOT NULL default '0',
+  `IdFormul` int(10) unsigned NOT NULL default '0',
   `IdAxe` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdForm`,`IdAxe`)
+  PRIMARY KEY  (`IdFormul`,`IdAxe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -432,11 +433,11 @@ CREATE TABLE `Intitule` (
 -- 
 
 CREATE TABLE `MPSeparateur` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `LargeurMPS` int(10) unsigned default NULL,
   `TypeLargMPS` enum('N','P') collate utf8_unicode_ci default NULL,
   `AlignMPS` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -446,10 +447,10 @@ CREATE TABLE `MPSeparateur` (
 -- 
 
 CREATE TABLE `MPTexte` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `TexteMPT` text collate utf8_unicode_ci,
   `AlignMPT` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -588,13 +589,13 @@ CREATE TABLE `Module_Tuteur` (
 -- 
 
 CREATE TABLE `ObjetFormulaire` (
-  `IdObjForm` int(10) unsigned NOT NULL auto_increment,
+  `IdObjFormul` int(10) unsigned NOT NULL auto_increment,
   `IdTypeObj` int(10) unsigned NOT NULL default '0',
-  `IdForm` int(10) unsigned NOT NULL default '0',
-  `OrdreObjForm` tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdObjForm`),
+  `IdFormul` int(10) unsigned NOT NULL default '0',
+  `OrdreObjFormul` tinyint(3) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`IdObjFormul`),
   KEY `IdTypeObj` (`IdTypeObj`),
-  KEY `IdForm` (`IdForm`)
+  KEY `IdFormul` (`IdFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -685,7 +686,7 @@ CREATE TABLE `Projet_Resp` (
 -- 
 
 CREATE TABLE `QCocher` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQC` text collate utf8_unicode_ci,
   `AlignEnonQC` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQC` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
@@ -694,7 +695,7 @@ CREATE TABLE `QCocher` (
   `DispQC` enum('Hor','Ver') collate utf8_unicode_ci NOT NULL default 'Ver',
   `NbRepMaxQC` tinyint(3) unsigned NOT NULL default '99',
   `MessMaxQC` varchar(255) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -704,13 +705,13 @@ CREATE TABLE `QCocher` (
 -- 
 
 CREATE TABLE `QListeDeroul` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQLD` text collate utf8_unicode_ci,
   `AlignEnonQLD` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQLD` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `TxtAvQLD` varchar(255) collate utf8_unicode_ci default NULL,
   `TxtApQLD` varchar(255) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -720,7 +721,7 @@ CREATE TABLE `QListeDeroul` (
 -- 
 
 CREATE TABLE `QNombre` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQN` text collate utf8_unicode_ci,
   `AlignEnonQN` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQN` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
@@ -729,7 +730,7 @@ CREATE TABLE `QNombre` (
   `NbMinQN` bigint(20) NOT NULL default '0',
   `NbMaxQN` bigint(20) NOT NULL default '9999999999',
   `MultiQN` float NOT NULL default '1',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -739,14 +740,14 @@ CREATE TABLE `QNombre` (
 -- 
 
 CREATE TABLE `QRadio` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQR` text collate utf8_unicode_ci,
   `AlignEnonQR` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQR` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `TxtAvQR` varchar(255) collate utf8_unicode_ci default NULL,
   `TxtApQR` varchar(255) collate utf8_unicode_ci default NULL,
   `DispQR` enum('Hor','Ver') collate utf8_unicode_ci NOT NULL default 'Ver',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -756,7 +757,7 @@ CREATE TABLE `QRadio` (
 -- 
 
 CREATE TABLE `QTexteCourt` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQTC` text collate utf8_unicode_ci,
   `AlignEnonQTC` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQTC` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
@@ -764,7 +765,7 @@ CREATE TABLE `QTexteCourt` (
   `TxtApQTC` varchar(255) collate utf8_unicode_ci default NULL,
   `LargeurQTC` tinyint(3) unsigned NOT NULL default '30',
   `MaxCarQTC` tinyint(3) unsigned NOT NULL default '30',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -774,30 +775,30 @@ CREATE TABLE `QTexteCourt` (
 -- 
 
 CREATE TABLE `QTexteLong` (
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `EnonQTL` text collate utf8_unicode_ci,
   `AlignEnonQTL` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `AlignRepQTL` enum('left','right','center','justify') collate utf8_unicode_ci NOT NULL default 'left',
   `LargeurQTL` tinyint(3) unsigned NOT NULL default '50',
   `HauteurQTL` tinyint(3) unsigned NOT NULL default '10',
-  PRIMARY KEY  (`IdObjForm`)
+  PRIMARY KEY  (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 -- 
--- Structure de la table `Reponse`
+-- Structure de la table `PropositionReponse`
 -- 
 
-CREATE TABLE `Reponse` (
-  `IdReponse` int(10) unsigned NOT NULL auto_increment,
-  `TexteReponse` varchar(255) collate utf8_unicode_ci default NULL,
-  `OrdreReponse` tinyint(3) unsigned NOT NULL default '0',
-  `FeedbackReponse` text collate utf8_unicode_ci NOT NULL,
-  `CorrectionReponse` enum('v','x','-') collate utf8_unicode_ci NOT NULL default '-',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdReponse`),
-  KEY `IdObjForm` (`IdObjForm`)
+CREATE TABLE `PropositionReponse` (
+  `IdPropRep` int(10) unsigned NOT NULL auto_increment,
+  `TextePropRep` varchar(255) collate utf8_unicode_ci default NULL,
+  `OrdrePropRep` tinyint(3) unsigned NOT NULL default '0',
+  `ScorePropRep` int(10) NOT NULL default '0',
+  `FeedbackPropRep` text collate utf8_unicode_ci NOT NULL,
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`IdPropRep`),
+  KEY `IdObjFormul` (`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -808,9 +809,9 @@ CREATE TABLE `Reponse` (
 
 CREATE TABLE `ReponseCar` (
   `IdFC` int(10) unsigned NOT NULL default '0',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `Valeur` varchar(255) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`IdFC`,`IdObjForm`)
+  PRIMARY KEY  (`IdFC`,`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -821,9 +822,9 @@ CREATE TABLE `ReponseCar` (
 
 CREATE TABLE `ReponseEntier` (
   `IdFC` int(10) unsigned NOT NULL default '0',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `IdReponse` int(10) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`IdFC`,`IdObjForm`,`IdReponse`)
+  PRIMARY KEY  (`IdFC`,`IdObjFormul`,`IdReponse`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -834,9 +835,9 @@ CREATE TABLE `ReponseEntier` (
 
 CREATE TABLE `ReponseFlottant` (
   `IdFC` int(10) unsigned NOT NULL default '0',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `Valeur` float default NULL,
-  PRIMARY KEY  (`IdFC`,`IdObjForm`)
+  PRIMARY KEY  (`IdFC`,`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -847,9 +848,9 @@ CREATE TABLE `ReponseFlottant` (
 
 CREATE TABLE `ReponseTexte` (
   `IdFC` int(10) unsigned NOT NULL default '0',
-  `IdObjForm` int(10) unsigned NOT NULL default '0',
+  `IdObjFormul` int(10) unsigned NOT NULL default '0',
   `Valeur` text collate utf8_unicode_ci,
-  PRIMARY KEY  (`IdFC`,`IdObjForm`)
+  PRIMARY KEY  (`IdFC`,`IdObjFormul`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -859,10 +860,10 @@ CREATE TABLE `ReponseTexte` (
 -- 
 
 CREATE TABLE `Reponse_Axe` (
-  `IdReponse` int(10) unsigned NOT NULL default '0',
+  `IdPropRep` int(10) unsigned NOT NULL default '0',
   `IdAxe` int(10) unsigned NOT NULL default '0',
   `Poids` float NOT NULL default '0',
-  PRIMARY KEY  (`IdReponse`,`IdAxe`)
+  PRIMARY KEY  (`IdPropRep`,`IdAxe`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1054,10 +1055,10 @@ CREATE TABLE `SujetForum_Equipe` (
 -- --------------------------------------------------------
 
 -- 
--- Structure de la table `TypeObjetForm`
+-- Structure de la table `TypeObjetFormul`
 -- 
 
-CREATE TABLE `TypeObjetForm` (
+CREATE TABLE `TypeObjetFormul` (
   `IdTypeObj` int(10) unsigned NOT NULL auto_increment,
   `NomTypeObj` varchar(25) collate utf8_unicode_ci NOT NULL default '',
   `DescTypeObj` varchar(100) collate utf8_unicode_ci NOT NULL default '',

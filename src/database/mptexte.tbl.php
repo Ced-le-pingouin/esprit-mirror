@@ -50,28 +50,28 @@ class CMPTexte
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM MPTexte WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM MPTexte WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une mise en page de type texte, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO MPTexte SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO MPTexte SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defTexteMPT ($v_sTexteMPT) { $this->oEnregBdd->TexteMPT = $v_sTexteMPT; }
 	function defAlignMPT ($v_sAlignMPT) { $this->oEnregBdd->AlignMPT = $v_sAlignMPT; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retTexteMPT () { return $this->oEnregBdd->TexteMPT; }
 	function retAlignMPT () { return $this->oEnregBdd->AlignMPT; }
 	
@@ -87,14 +87,14 @@ class CMPTexte
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
 			$sTexteMPT = validerTexte($this->oEnregBdd->TexteMPT);
 			
 			$sRequeteSql = "REPLACE MPTexte SET"									  
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", TexteMPT='{$sTexteMPT}'"
 						.", AlignMPT='{$this->oEnregBdd->AlignMPT}'";
 			
@@ -116,7 +116,7 @@ class CMPTexte
 		$sTexteMPT = validerTexte($this->oEnregBdd->TexteMPT);
 		
 		$sRequeteSql = "INSERT INTO MPTexte SET"									  
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", TexteMPT='{$sTexteMPT}'"
 					.", AlignMPT='{$this->oEnregBdd->AlignMPT}'"; 
 		
@@ -128,7 +128,7 @@ class CMPTexte
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM MPTexte WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM MPTexte WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

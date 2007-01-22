@@ -120,7 +120,7 @@ class CAxe
 				//On recherche et affiche le nom du/des formulaire(s) où l'axe est utilisé
 				$sRequeteSql = "SELECT f.Titre, fa.IdAxe"
 						." FROM Formulaire as f, Formulaire_Axe as fa"
-						." WHERE fa.IdAxe = '{$this->oEnregBdd->IdAxe}' AND f.IdForm = fa.IdForm";
+						." WHERE fa.IdAxe = '{$this->oEnregBdd->IdAxe}' AND f.IdFormul = fa.IdFormul";
 				
 				$hResultInt=$this->oBdd->executerRequete($sRequeteSql);
 				while ($oEnreg = $this->oBdd->retEnregSuiv($hResultInt))
@@ -159,7 +159,7 @@ class CAxe
 			//On recherche et affiche le nom du/des formulaire(s) où l'axe est utilisé
 			$sRequeteSql = "SELECT f.Titre, fa.IdAxe"
 						." FROM Formulaire as f, Formulaire_Axe as fa"
-						." WHERE fa.IdAxe = '{$this->iId}' AND f.IdForm = fa.IdForm";
+						." WHERE fa.IdAxe = '{$this->iId}' AND f.IdFormul = fa.IdFormul";
 			
 			$hResultInt=$this->oBdd->executerRequete($sRequeteSql);
 			$sSortie = "Liste des dépendances: <ul>";
@@ -211,7 +211,7 @@ class CAxe
 	
 	/** @name Fonctions de définition des champs pour cet axe */
 	//@{
-	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdObjForm = $v_iIdAxe; }
+	function defIdAxe($v_iIdAxe) { $this->oEnregBdd->IdAxe = $v_iIdAxe; }
 	function defDescAxe($v_sDescAxe) { $this->oEnregBdd->DescAxe = $v_sDescAxe; }
 	//@}
 

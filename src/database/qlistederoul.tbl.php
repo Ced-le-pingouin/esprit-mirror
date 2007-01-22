@@ -53,23 +53,23 @@ class CQListeDeroul
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM QListeDeroul WHERE IdObjForm='{$this->iId}'";
+			$sRequeteSql = "SELECT * FROM QListeDeroul WHERE IdObjFormul='{$this->iId}'";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
 		}
-		$this->iId = $this->oEnregBdd->IdObjForm;
+		$this->iId = $this->oEnregBdd->IdObjFormul;
 	}
 	
 	function ajouter($v_iIdObjForm) //Cette fonction ajoute une question de type liste déroulante, avec tous ses champs vide, en fin de table
 	{
-		$sRequeteSql = "INSERT INTO QListeDeroul SET IdObjForm='{$v_iIdObjForm}'";
+		$sRequeteSql = "INSERT INTO QListeDeroul SET IdObjFormul='{$v_iIdObjForm}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->iId = $this->oBdd->retDernierId());
 	}
 	
 	//Fonctions de définition
-	function defIdObjForm ($v_iIdObjForm) { $this->oEnregBdd->IdObjForm = $v_iIdObjForm; }
+	function defIdObjFormul ($v_iIdObjForm) { $this->oEnregBdd->IdObjFormul = $v_iIdObjForm; }
 	function defEnonQLD ($v_sEnonQLD) { $this->oEnregBdd->EnonQLD = $v_sEnonQLD; }
 	function defAlignEnonQLD ($v_sAlignEnonQLD) { $this->oEnregBdd->AlignEnonQLD = $v_sAlignEnonQLD; }
 	function defAlignRepQLD ($v_sAlignRepQLD) { $this->oEnregBdd->AlignRepQLD = $v_sAlignRepQLD; }
@@ -77,7 +77,7 @@ class CQListeDeroul
 	function defTxtApQLD ($v_sTxtApQLD) { $this->oEnregBdd->TxtApQLD = $v_sTxtApQLD; }
 	
 	//Fonctions de retour
-	function retId () { return $this->oEnregBdd->IdObjForm; }
+	function retId () { return $this->oEnregBdd->IdObjFormul; }
 	function retEnonQLD () { return $this->oEnregBdd->EnonQLD; }
 	function retAlignEnonQLD () { return $this->oEnregBdd->AlignEnonQLD; }
 	function retAlignRepQLD () { return $this->oEnregBdd->AlignRepQLD; }
@@ -93,49 +93,64 @@ class CQListeDeroul
 	** Sortie			:
 	**				code html
 	*/
-	function RetourReponseQLD($v_iIdFC=NULL)
+	function RetourReponseQLD($v_iIdFC=NULL,$v_bAutoCorrection=true)
 	{
 		$iIdReponseEtu = "";
 		if ($v_iIdFC != NULL)
 		{
 			//Sélection de la réponse donnée par l'étudiant
-			$sRequeteSql = "SELECT * FROM ReponseEntier"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjForm = '{$this->iId}'";
-			
+			$sRequeteSql = "SELECT IdReponse FROM ReponseEntier WHERE IdFC='{$v_iIdFC}' AND IdObjFormul='{$this->iId}'";
 			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
 			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
 			$iIdReponseEtu = $oEnregRep->IdReponse;
 		}
 		
-		//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		//Sélection de toutes les propositions de réponses concernant l'objet QListeDeroul en cours de traitement
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul='{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResultRRQLD = $this->oBdd->executerRequete($sRequeteSql);
 		
-		$CodeHtml="<select name=\"{$this->iId}\">\n";
+		$sCodeHtml="<select name=\"{$this->iId}\">\n";
+		$sAutoCorr = "";
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRRQLD))
 		{
-			$oReponse = new CReponse($this->oBdd->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($this->oBdd->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
 			$TexteTemp = convertBaliseMetaVersHtml($TexteTemp);
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
 			
 			if ($iIdReponseEtu == $IdReponseTemp) 
-				{$sPreSelection = "selected=\"selected\"";}
+			{
+				$sPreSelection = "selected=\"selected\"";
+				if($v_bAutoCorrection)
+				{
+					switch($oPropositionReponse->retScorePropRep())
+					{
+						case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+						
+						case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+						
+						case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropositionReponse->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+									break;
+					}
+				}
+			}
 			else
-				{$sPreSelection = "";}
-			
-			$CodeHtml .= "<option value=\"$IdReponseTemp\" $sPreSelection>$TexteTemp</option>\n";
+			{
+				$sPreSelection = "";
+			}
+			$sCodeHtml .= "<option value=\"$IdReponseTemp\" $sPreSelection>$TexteTemp</option>\n";
 		}
-		$CodeHtml .= "</select>\n";
-		
+		$sCodeHtml .= "</select>\n".$sAutoCorr;
 		$this->oBdd->libererResult($hResultRRQLD);
-		return $CodeHtml;
+		return $sCodeHtml;
 	}
 	
 	/*
@@ -156,7 +171,7 @@ class CQListeDeroul
 		$this->oEnregBdd->TxtApQLD = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQLD);
 		
 		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QListeDeroul : {$this->oEnregBdd->IdObjForm} -->\n"
+		$sCodeHtml = "\n<!--QListeDeroul : {$this->oEnregBdd->IdObjFormul} -->\n"
 					."<div align=\"{$this->oEnregBdd->AlignEnonQLD}\">{$this->oEnregBdd->EnonQLD}</div>\n"
 					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQLD}\">\n"
 					."{$this->oEnregBdd->TxtAvQLD} \n"
@@ -169,47 +184,91 @@ class CQListeDeroul
 	}
 	
 	/*
-	** Fonction 		: RetourReponseQCModif
+	** Fonction 		: RetourReponseQLDModif
 	** Description		: va rechercher dans la table réponse les réponses correspondant
 	**				  a la question de type liste déroulante en cours de traitement 
 	**				  + mise en page de ces réponses avec possibilité de modification
 	** Entrée			:
 	** Sortie			: Code Html contenant les réponses + mise en page + modification possible
 	*/
-	function RetourReponseQCModif($v_iIdObjForm,$v_iIdFormulaire)
+	function RetourReponseQLDModif($v_iIdObjForm,$v_iIdFormulaire,$v_bAutoCorrection = false)
 	{
-		//Sélection de toutes les réponses concernant l'objet QRadio en cours de traitement
-		$sRequeteSql = "SELECT * FROM Reponse WHERE IdObjForm = '{$this->iId}'"
-					." ORDER BY OrdreReponse";
+		// Recherche du numéro d'ordre maximum
+		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul='{$this->oEnregBdd->IdObjFormul}'");
+		$oEnreg = $this->oBdd->retEnregSuiv();
+		$iOrdreMax = $oEnreg->OrdreMax;
+		$this->oBdd->libererResult($hResult);
+		
+		//Sélection de toutes les réponses concernant l'objet QListeDeroul en cours de traitement
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul = '{$this->iId}'"
+					." ORDER BY OrdrePropRep";
 		$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
+		
 		$sCodeHtml = "";
 		
-		while ($oEnreg = $this->oBdd->retEnregSuiv($hResultRep))
+		while($oEnreg = $this->oBdd->retEnregSuiv($hResultRep))
 		{
-			$oReponse = new CReponse($this->oBdd);
-			$oReponse->init($oEnreg);
+			$oPropositionReponse = new CPropositionReponse($this->oBdd);
+			$oPropositionReponse->init($oEnreg);
 			
 			//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
-			$TexteTemp = $oReponse->retTexteReponse();
-			$IdReponseTemp = $oReponse->retId();
-			$IdObjFormTemp = $oReponse->retIdObjForm();
+			$TexteTemp = $oPropositionReponse->retTextePropRep();
+			$IdReponseTemp = $oPropositionReponse->retId();
+			$IdObjFormTemp = $oPropositionReponse->retIdObjFormul();
+			$sFeedbackTemp = $oPropositionReponse->retFeedbackPropRep();
+			$iScoreTemp = $oPropositionReponse->retScorePropRep();
+			$iOrdreTemp = $oPropositionReponse->retOrdre();
 			
+			// gestion pour selectionner le bon radio des scores
+			switch($iScoreTemp)
+			{
+				case "-1" :	$sSelV = ""; $sSelX = "checked=\"checked\""; $sSelN = "";
+							break;
+				case "1" :	$sSelV = "checked=\"checked\""; $sSelX = ""; $sSelN = "";
+							break;
+				default :	$sSelV = ""; $sSelX = ""; $sSelN = "checked=\"checked\"";
+			}
+			
+			// Entre chaque proposition de réponse, il faut mettre une ligne de séparation
 			if ($sCodeHtml != "")
-				$sCodeHtml.="<tr>\n<td>\n&nbsp;\n</td>\n";
+				$sCodeHtml.="<hr class=\"sepproprep\" />";
 			
-			$sCodeHtml.=" <td>\n <input type=\"text\" size=\"70\" maxlength=\"255\" "
-						."name=\"rep[$IdReponseTemp]\" value=\"$TexteTemp\" />\n"
-						."<a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a>\n<br />\n</td>\n</tr>\n"
-						.RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
+			// gestion du numéro d'ordre des propositions
+			$sCodeOptionsOrdre = "";
+			for ($iNumOrdre = 1; $iNumOrdre <= $iOrdreMax; $iNumOrdre++)
+			{
+				if($iNumOrdre == $iOrdreTemp)
+					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\" selected=\"selected\">$iNumOrdre</option>";
+				else
+					$sCodeOptionsOrdre .= "<option value=\"$iNumOrdre\">$iNumOrdre</option>";
+			}
+			
+			$sCodeHtml.= "<div> Proposition ".$iOrdreTemp.": ";
+			$sCodeHtml.= "\n <input type=\"text\" size=\"60\" maxlength=\"255\" name=\"rep[$IdReponseTemp]\" value=\"".htmlentities($TexteTemp,ENT_COMPAT,"UTF-8")."\" />\n";
+			$sCodeHtml.= "<select name=\"selOrdreProposition[$IdReponseTemp]\">".$sCodeOptionsOrdre."</select>";
+			if($v_bAutoCorrection)
+			{
+				$sCodeHtml.= "<span class=\"scores\">&nbsp;<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"1\" $sSelV />&nbsp;&nbsp;"
+							."&nbsp;<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"-1\" $sSelX />&nbsp;&nbsp;"
+							."&nbsp;<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" /><input type=\"radio\" name=\"correctionRep[$IdReponseTemp]\" value=\"0\" $sSelN /></span>";
+			}
+			$sCodeHtml.="</div>";
+			if($v_bAutoCorrection)
+			{
+				$sCodeHtml.="<div class=\"feedback\"><textarea cols=\"50\" rows=\"2\" name=\"feedbackRep[$IdReponseTemp]\" />$sFeedbackTemp</textarea></div>";
+			}
+			$sCodeHtml.= RetourPoidsReponse($this->oBdd,$v_iIdFormulaire,$v_iIdObjForm,$IdReponseTemp); //cette fc se trouve dans fonctions_form.inc.php
+			$sCodeHtml.= "<div align=\"right\"> <a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a> - <a href=\"javascript: soumettre('supprimer',$IdReponseTemp);\">Supprimer</a> </div>\n";
 		}
 		if(strlen($sCodeHtml)==0)
-			$sCodeHtml = "<td>\n&nbsp;\n</td>\n</tr>\n";
+			$sCodeHtml = "<div><a href=\"javascript: soumettre('ajouter',0);\">Ajouter</a></div>\n";
+		$this->oBdd->libererResult($hResultRep);
 		return $sCodeHtml;
 	}
 	
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->IdObjForm != NULL)
+		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{	
 			// Les variables contenant du "texte" doivent être formatées, cela permet 
 			//de les stocker dans la BD sans erreur 
@@ -218,7 +277,7 @@ class CQListeDeroul
 			$sTxtApQLD = validerTexte($this->oEnregBdd->TxtApQLD);
 			
 			$sRequeteSql = "REPLACE QListeDeroul SET"									  
-						." IdObjForm='{$this->oEnregBdd->IdObjForm}'"
+						." IdObjFormul='{$this->oEnregBdd->IdObjFormul}'"
 						.", EnonQLD='{$sEnonQLD}'"
 						.", AlignEnonQLD='{$this->oEnregBdd->AlignEnonQLD}'"
 						.", AlignRepQLD='{$this->oEnregBdd->AlignRepQLD}'"
@@ -239,7 +298,7 @@ class CQListeDeroul
 		{
 			$sRequeteSql = "REPLACE ReponseEntier SET"									  
 						." IdFC='{$v_iIdFC}'"
-						.", IdObjForm='{$v_iIdObjForm}'"
+						.", IdObjFormul='{$v_iIdObjForm}'"
 						.", IdReponse='{$v_sReponsePersQLD}'";
 			
 			$this->oBdd->executerRequete($sRequeteSql);
@@ -262,7 +321,7 @@ class CQListeDeroul
 		$sTxtApQLD = validerTexte($this->oEnregBdd->TxtApQLD);
 		
 		$sRequeteSql = "INSERT INTO QListeDeroul SET"									  
-					." IdObjForm='{$v_iIdNvObjForm}'"
+					." IdObjFormul='{$v_iIdNvObjForm}'"
 					.", EnonQLD='{$sEnonQLD}'"
 					.", AlignEnonQLD='{$this->oEnregBdd->AlignEnonQLD}'"
 					.", AlignRepQLD='{$this->oEnregBdd->AlignRepQLD}'"
@@ -277,7 +336,7 @@ class CQListeDeroul
 	
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM QListeDeroul WHERE IdObjForm ='{$this->iId}'";
+		$sRequeteSql = "DELETE FROM QListeDeroul WHERE IdObjFormul ='{$this->iId}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 }

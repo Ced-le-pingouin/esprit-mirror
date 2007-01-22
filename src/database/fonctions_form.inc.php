@@ -70,7 +70,7 @@ function Alignement($sAlignEnon,$sAlignRep)
 	
 function validerTexte($v_sTexte)
 {
-	return mysql_escape_string(stripslashes(trim($v_sTexte)));
+	return mysql_real_escape_string(stripslashes(trim($v_sTexte)));
 }
 
 	
@@ -82,60 +82,53 @@ function validerTexte($v_sTexte)
 	** Sortie			: Code Html contenant le(s) poids + mise en page + modification possible
 	*/
 
-function RetourPoidsReponse($v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
+function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjForm,$v_iIdReponse)
 {
-	/*
-	Utilisation de l'objet CBdd bcp plus léger pour faire les requêtes qu'un objet Projet
-	Attention ne pas oublier le : require_once (dir_database("bdd.class.php"));
-	*/
-	$oCBdd2 = new CBdd;
 	/*
 	Cette requête retourne pour chaque réponse, n lignes représentant chaque axe du formulaire.
 	Chaque ligne contient la valeur de l'axe[poids] si elle existe sinon contient la valeur NULL pour cet axe. 
 	Exemple de partie de résultat :
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
-	| IdAxe | DescAxe       | IdReponse | TexteReponse | OrdreReponse | IdObjForm | Poids  |
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
-	|     1 | Determination |        55 |              |            3 |       123 | [NULL] |
-	|     2 | Objectivite   |        55 |              |            3 |       123 | [NULL] |
-	+-------+---------------+-----------+--------------+--------------+-----------+--------+
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
+	| IdAxe | DescAxe       | IdPropRep | TexteReponse | OrdreReponse | IdObjFormul | Poids  |
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
+	|     1 | Determination |        55 |              |            3 |         123 | [NULL] |
+	|     2 | Objectivite   |        55 |              |            3 |         123 | [NULL] |
+	+-------+---------------+-----------+--------------+--------------+-------------+--------+
 	*/
 
 	$sRequeteSqlAxes =	 "Select"
 							 ." a.*"
-							 .", r.*"
+							 .", pr.*"
 							 .", ra.Poids"
 						 ." FROM"
 							 ." Formulaire_Axe as fa"
 							 .", Axe as a"
-							 .", Reponse as r"
-							 ." LEFT JOIN Reponse_Axe as ra ON (r.IdReponse = ra.IdReponse AND a.IdAxe = ra.IdAxe)"
+							 .", PropositionReponse as pr"
+							 ." LEFT JOIN Reponse_Axe as ra ON (pr.IdPropRep = ra.IdPropRep AND a.IdAxe = ra.IdAxe)"
 					  	 ." WHERE"
-							 ." fa.IdForm = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
-							 ." AND r.IdObjForm = '{$v_iIdObjForm}'"
-							 ." AND r.IdReponse = '{$v_iIdReponse}'"
+							 ." fa.IdFormul = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
+							 ." AND pr.IdObjFormul = '{$v_iIdObjForm}'"
+							 ." AND pr.IdPropRep = '{$v_iIdReponse}'"
 						 ." ORDER BY"
-							 ." r.OrdreReponse"
+							 ." pr.OrdrePropRep"
 							 .", a.DescAxe";
 	
-	$hResultAxe = $oCBdd2->executerRequete($sRequeteSqlAxes);
+	$hResultAxe = $v_oBdd->executerRequete($sRequeteSqlAxes);
 
-	$sCodeHtml="";
+	$sCodeHtml= "";
 
-	while ($oEnreg = $oCBdd2->retEnregSuiv($hResultAxe))
+	while ($oEnreg = $v_oBdd->retEnregSuiv($hResultAxe))
 	{
 		//Variables temporaires pour simplifier l'ecriture du code Html ci-dessous
 		$iPoids= $oEnreg->Poids;
 		$iIdAxe = $oEnreg->IdAxe;
-		$iIdReponse = $oEnreg->IdReponse;
+		$iIdPropRep = $oEnreg->IdPropRep;
 		$sDescAxe = $oEnreg->DescAxe;
-	
-		$sCodeHtml.="<tr>\n<td>\n &nbsp;\n</td>\n<td>\n"
-				  ."<table>\n<tr>\n<td width=\"200\">\n &#8226; $sDescAxe\n</td>\n<td>\n <input type=\"text\" size=\"4\" maxlength=\"4\" "
-				  ."name=\"repAxe[$iIdReponse][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n</td>\n</tr>\n</table>\n"
-				  ."</td>\n</tr>\n"; 
+		
+		$sCodeHtml.="<div class=\"poidsaxe\">\n"
+				  ."&#8226; $sDescAxe <input type=\"text\" size=\"4\" maxlength=\"4\" name=\"repAxe[$iIdPropRep][$iIdAxe]\" value=\"$iPoids\" onblur=\"verifNumeric(this)\" />\n"
+				  ."</div>\n"; 
 	}
-
 	return $sCodeHtml;
 }
 
@@ -151,7 +144,7 @@ function CopierUnFormulaire(&$v_oBdd,$v_iIdFormulaire,$iIdNvPers)
 	CopieFormulaire_Axe($this->oBdd,$v_iIdFormulaire,$v_iIdNvFormulaire);
 	
 	//Copie des objets du formulaire 1 par 1
-	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdForm = $v_iIdFormulaire");
+	$hResult = $this->oBdd->executerRequete("SELECT * FROM ObjetFormulaire WHERE IdFormul=$v_iIdFormulaire");
   
 	while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
 		CopierUnObjetFormulaire($this->oBdd, $oEnreg, $v_iIdNvFormulaire);
@@ -237,22 +230,20 @@ function CopierUnObjetFormulaire(&$v_oBdd, &$v_oObjForm, $v_iIdFormulaireDest, $
 	return $iIdNvObjForm;
 }
 
-function CopieReponses(&$v_oBdd,$v_iIdObjForm,$v_iIdNvObjForm)
+function CopieReponses(&$v_oBdd,$v_iIdObjFormul,$v_iIdNvObjForm)
 {
 	$this->oBdd = &$v_oBdd;
-	$hResult2 = $this->oBdd->executerRequete("SELECT * FROM Reponse"
-										  ." WHERE IdObjForm = $v_iIdObjForm");
+	$hResult2 = $this->oBdd->executerRequete("SELECT * FROM PropositionReponse WHERE IdObjFormul = $v_iIdObjFormul");
 										  
 	while ($oEnreg2 = $this->oBdd->retEnregSuiv($hResult2))
 	{
-		$oReponse = new CReponse($this->oBdd);
-		$oReponse->init($oEnreg2);
-		$iIdReponse = $oReponse->retId();
-		$iIdNvReponse = $oReponse->copier($v_iIdNvObjForm);
+		$oPropositionReponse = new CPropositionReponse($this->oBdd);
+		$oPropositionReponse->init($oEnreg2);
+		$iIdReponse = $oPropositionReponse->retId();
+		$iIdNvReponse = $oPropositionReponse->copier($v_iIdNvObjForm);
 		CopieReponse_Axe($this->oBdd,$iIdReponse,$iIdNvReponse);
 	}
 	$this->oBdd->libererResult($hResult2);
-	return TRUE;
 }
 
 function CopieReponse_Axe(&$v_oBdd,$v_iIdReponse,$v_iIdNvReponse)
@@ -260,8 +251,7 @@ function CopieReponse_Axe(&$v_oBdd,$v_iIdReponse,$v_iIdNvReponse)
 	$this->oBdd = &$v_oBdd;
 	
 	$sRequeteSql = "SELECT * FROM Reponse_Axe"
-						." WHERE IdReponse = $v_iIdReponse";
-	//echo $sRequeteSql;
+						." WHERE IdPropRep = $v_iIdReponse";
 	$hResult3 = $this->oBdd->executerRequete($sRequeteSql);
 											  
 	while ($oEnreg3 = $this->oBdd->retEnregSuiv($hResult3))
@@ -271,15 +261,13 @@ function CopieReponse_Axe(&$v_oBdd,$v_iIdReponse,$v_iIdNvReponse)
 		$oReponse_Axe->copier($v_iIdNvReponse);
 	}
 	$this->oBdd->libererResult($hResult3);
-	return TRUE;
 }
 
 
 function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 {
 	$this->oBdd = &$v_oBdd;
-	$hResult4 = $this->oBdd->executerRequete("SELECT * FROM Formulaire_Axe"
-											  ." WHERE IdForm = $v_iIdForm");
+	$hResult4 = $this->oBdd->executerRequete("SELECT * FROM Formulaire_Axe WHERE IdFormul = $v_iIdForm");
 										  
 	while ($oEnreg4 = $this->oBdd->retEnregSuiv($hResult4))
 	{
@@ -288,6 +276,5 @@ function CopieFormulaire_Axe(&$v_oBdd,$v_iIdForm,$v_iIdNvForm)
 		$oFormulaire_Axe->copier($v_iIdNvForm);
 	}
 	$this->oBdd->libererResult($hResult4);
-	return TRUE;
 }
 ?>

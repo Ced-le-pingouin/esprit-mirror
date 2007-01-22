@@ -53,7 +53,7 @@ else
 	{
 		$iIdFC = $_GET["idFC"];
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
-		$v_iIdFormulaire = $oFormulaireComplete->retIdForm();
+		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 	}
 	else
 	{
@@ -86,7 +86,7 @@ if ($v_iIdFormulaire > 0)
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE"))
+	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE")) // si c'est pour évaluer, on ne voit pas le boutoun valider
 		$oTpl->remplacer("{bouton_valider}","");
 	else
 		$oTpl->remplacer("{bouton_valider}","<input type=\"button\" value=\"Valider\" name=\"soumettre\" onclick=\"validerFormulaire($iRemplirTout);\" />");
