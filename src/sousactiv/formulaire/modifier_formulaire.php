@@ -29,14 +29,15 @@ $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 //	Récupération des variables
 $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
+$iIdFC = NULL;
 
-if (isset($_POST['bSoumis']))
+if(isset($_POST['bSoumis']))
 {
 	$bSoumis = TRUE;
 	$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd);
 	$oFormulaireComplete->verrouillerTables();
 	$iIdFC = $oFormulaireComplete->ajouter($iIdUtilisateur, $v_iIdFormulaire);
-	if (isset($iIdSousActiv))
+	if(isset($iIdSousActiv))
 	{
 		$oSousActiv = new CSousActiv($oProjet->oBdd, $iIdSousActiv);
 		list($sLien, $iMode, $sIntitule) = explode(";",$oSousActiv->retDonnees());
@@ -45,52 +46,57 @@ if (isset($_POST['bSoumis']))
 		else
 			$oFormulaireComplete->deposerDansSousActiv($iIdSousActiv, STATUT_RES_EN_COURS);
 	}
+	$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
+	$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 }
 else
 {
 	$bSoumis = FALSE;
-	if (isset($_GET["idFC"]))
+	if(isset($_GET["idFC"]))
 	{
 		$iIdFC = $_GET["idFC"];
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd, $iIdFC);
 		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
 	}
-	else
-	{
-		$iIdFC = NULL;
-	}
 }
 
-if ($v_iIdFormulaire > 0)
+if($v_iIdFormulaire > 0)
 {
-	if($bSoumis)
+	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
+	$bAutoCorrection = ( $oFormulaire->retAutoCorrection()?true:false );
+	if($bSoumis && !$bAutoCorrection)
 		$oBlockFormulaire->effacer();
 	else
 		$oBlockFormulaire->afficher();
 	// Lecture de la table formulaire pour y récupérer les données de mise en page
-	$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 	$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
 	$iInterElem = $oFormulaire->retInterElem();
 	$iInterEnonRep = $oFormulaire->retInterEnonRep();
 	$iIdPersForm = $oFormulaire->retIdPers();
 	$iRemplirTout = ( $oFormulaire->retRemplirTout()?1:0 );
-	if ($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
+	
+	if($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
 		$sEncadrer = "style=\"border:1px solid black;\"";
 	else
 		$sEncadrer = "";
 	$iLargeur = $oFormulaire->retLargeur();
-	if ($oFormulaire->retTypeLarg() == "P") //Pourcentage ou pixel
+	if($oFormulaire->retTypeLarg() == "P") //Pourcentage ou pixel
 		$sLargeur = $iLargeur."%";
 	else
 		$sLargeur = $iLargeur."px";
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE")) // si c'est pour évaluer, on ne voit pas le boutoun valider
+	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE")|| ($bSoumis && $bAutoCorrection))
+	{// si c'est pour évaluer, on ne voit pas le bouton valider
 		$oTpl->remplacer("{bouton_valider}","");
+		$oTpl->remplacer("{bouton_fermer}","<a href=\"javascript: top.close();\">Fermer</a>");
+	}
 	else
-		$oTpl->remplacer("{bouton_valider}","<input type=\"button\" value=\"Valider\" name=\"soumettre\" onclick=\"validerFormulaire($iRemplirTout);\" />");
-		
+	{
+		$oTpl->remplacer("{bouton_valider}","<a href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
+		$oTpl->remplacer("{bouton_fermer}","");
+	}
 	$oTpl->remplacer("{general_js_php}",dir_code_lib_ced("general.js.php", FALSE, FALSE));
 	$oTpl->remplacer("{formulaire_js}",dir_theme_commun("js/formulaire.js"));
 	$oTpl->remplacer("{sEncadrer}",$sEncadrer);
@@ -103,6 +109,7 @@ if ($v_iIdFormulaire > 0)
 		$oTpl->remplacer("{input_ss_activ}","");
 	$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
 	$sHtmlListeObjForm = "";
+	$fScore = 0;
 	foreach($aoObjetFormulaire as $oObjetFormulaire)
 	{
 		$iIdObjActuel = $oObjetFormulaire->retId();
@@ -112,92 +119,346 @@ if ($v_iIdFormulaire > 0)
 			case 1:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQTexteLong->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-					else
-						$sHtmlListeObjForm .= $oQTexteLong->cHtmlQTexteLong($iIdFC);
+					}
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseTexteLong($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QTexteLong : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteLong->retAlignEnonQTL()."\">".convertBaliseMetaVersHtml($oQTexteLong->retEnonQTL())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteLong->retAlignRepQTL()."\">\n"
+											."<textarea name=\"$iIdObjActuel\" rows=\"".$oQTexteLong->retHauteurQTL()."\" cols=\"".$oQTexteLong->retLargeurQTL()."\">\n"
+											."$sValeur</textarea>\n"
+											."</div><br />\n";
+					}
 					break;
 			
 			case 2:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQTexteCourt->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-					else
-						$sHtmlListeObjForm .= $oQTexteCourt->cHtmlQTexteCourt($iIdFC);
+					}
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseTexteCourt($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QTexteCourt : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteCourt->retAlignEnonQTC()."\">".convertBaliseMetaVersHtml($oQTexteCourt->retEnonQTC())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteCourt->retAlignRepQTC()."\">\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtAvQTC())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"".$oQTexteCourt->retLargeurQTC()."\" maxlength=\"".$oQTexteCourt->retMaxCarQTC()."\" value=\"$sValeur\" />\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtApQTC())
+											."</div><br />\n";
+					}
 					break;
 			
 			case 3:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						// Transforme la virgule en point ex: 20,5 -> 20.5
 						$_POST[$iIdObjActuel] = str_replace(",", ".", $_POST[$iIdObjActuel]);
 						$oQNombre->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
 					}
-					else
-						$sHtmlListeObjForm .= $oQNombre->cHtmlQNombre($iIdFC);
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						if ($iIdFC != NULL)
+							$sValeur = retReponseFlottant($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$sValeur = "";
+						$sHtmlListeObjForm .= "\n<!--QNombre : $iIdObjActuel -->\n"
+											."<div align=\"".$oQNombre->retAlignEnonQN()."\">".convertBaliseMetaVersHtml($oQNombre->retEnonQN())."</div>"
+											."<div class=\"InterER\" align=\"".$oQNombre->retAlignRepQN()."\">"
+											.convertBaliseMetaVersHtml($oQNombre->retTxTAvQN())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
+											." id=\"id_".$oQNombre->retId()."_".$oQNombre->retNbMinQN()."_".$oQNombre->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
+											.convertBaliseMetaVersHtml($oQNombre->retTxtApQN())
+											."</div><br />\n";
+					}
 					break;
 			
 			case 4:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQListeDeroul->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-					else
-						$sHtmlListeObjForm .= $oQListeDeroul->cHtmlQListeDeroul($iIdFC);
+					}
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
+											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD());
+						if($iIdFC != NULL)
+							$iIdReponseEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$iIdReponseEtu[0] = 0;
+						$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\">\n";
+						$sAutoCorr = "";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if(!empty($aoListePropRep))
+						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($iIdReponseEtu[0] == $oPropRep->retId()) 
+								{
+									$sPreSelection = "selected=\"selected\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
+									{
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
+									}
+									$iNbrePropRep++;
+								}
+								$sHtmlListeObjForm .= "<option value=\"".$oPropRep->retId()."\" $sPreSelection>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
+							}
+						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
+						$sHtmlListeObjForm .= convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
+											."</div>\n";
+					}
 					break;
 			
 			case 5:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
+					{
 						$oQRadio->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel]);
-					else
-						$sHtmlListeObjForm .= $oQRadio->cHtmlQRadio($iIdFC);
+					}
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						$sHtmlListeObjForm .= "\n<!--QRadio : $iIdObjActuel -->\n"
+											."<div align=\"".$oQRadio->retAlignEnonQR()."\">".convertBaliseMetaVersHtml($oQRadio->retEnonQR())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
+											."<td valign=\"top\">";
+						if($iIdFC != NULL)
+							$iIdReponseEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						else
+							$iIdReponseEtu[0] = 0;
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">";
+						if(!empty($aoListePropRep))
+						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								$sAutoCorr = "";
+								if($iIdReponseEtu[0] == $oPropRep->retId()) 
+								{
+									$sPreSelection = "checked=\"checked\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
+									{
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
+									}
+									$iNbrePropRep++;
+								}
+								if($oQRadio->retDispQR() == 'Ver')
+									$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
+											."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
+							}
+						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "</table>";
+						$sHtmlListeObjForm .= "</td>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
+					}
 					break;
 			
 			case 6:	// Ces 2 lignes ci-dessous permettent de réafficher la réponse fournie
 					// Celles-ci serviront pour afficher les questionnaires remplis par les étudiants
 					$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-					if ($bSoumis)
+					if($bSoumis)
 					{
 						for ($i = 0; $i < count($_POST[$iIdObjActuel]); $i++) 
 						{
 							$oQCocher->enregistrerRep($iIdFC,$iIdObjActuel,$_POST[$iIdObjActuel][$i]);
 						}
 					}
-					else
-						$sHtmlListeObjForm .= $oQCocher->cHtmlQCocher($iIdFC);
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+					{
+						$TabRepEtu = array();
+						if($iIdFC != NULL)
+							$TabRepEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQCocher->retDispQC() == 'Ver')
+							$sPropRepQCocher = "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+						else
+							$sPropRepQCocher = "";
+						if(!empty($aoListePropRep))
+						{
+							$iNbrePropRep = $iNbrePropRepCorrecte = $iNbrePropRepFausse = 0;
+							$iNbreRepCorrecte = $iNbreRepFausse = 0;
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								$sAutoCorr = "";
+								if(in_array($oPropRep->retId(), $TabRepEtu))
+								{
+									$sPreSelection = "checked=\"checked\"";
+									if($bAutoCorrection)
+									{
+										switch($oPropRep->retScorePropRep())
+										{
+											case "-1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/x.gif')."\" align=\"top\" alt=\"X\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepFausse++;
+														break;
+											case "0" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/-.gif')."\" align=\"top\" alt=\"-\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														break;
+											case "1" :	$sAutoCorr = "<img src=\"".dir_theme_commun('icones/v.gif')."\" align=\"top\" alt=\"V\" title=\"".htmlspecialchars($oPropRep->retFeedbackPropRep(),ENT_COMPAT,"UTF-8")."\" />";
+														$iNbreRepCorrecte++;
+														break;
+										}
+									}
+								}
+								else
+								{
+									$sPreSelection = "";
+								}
+								if($bAutoCorrection)
+								{
+									switch($oPropRep->retScorePropRep())
+									{
+												case "-1" :	$iNbrePropRepFausse++;
+															break;
+												case "1" :	$iNbrePropRepCorrecte++;
+															break;
+									}
+									$iNbrePropRep++;
+								}
+								if($oQCocher->retDispQC() == 'Ver')
+									$sPropRepQCocher.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+								else
+									$sPropRepQCocher .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
+							}
+						}
+						if($bAutoCorrection)
+							$fScore += CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
+						if($oQCocher->retDispQC() == 'Ver')
+							$sPropRepQCocher .= "</table>\n";
+						if($iNbrePropRepCorrecte!=$iNbreRepCorrecte && $iNbreRepCorrecte>0)
+							$sIncomplet = "<img src=\"".dir_theme_commun('icones/incomplet.gif')."\" align=\"top\" alt=\"Réponse incomplète\" title=\"Réponse incomplète\" />";
+						else
+							$sIncomplet = "";
+						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".convertBaliseMetaVersHtml($oQCocher->retEnonQC()).$sIncomplet."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
+											."<td valign=\"top\">";
+						$sHtmlListeObjForm .= $sPropRepQCocher;
+						$sHtmlListeObjForm .= "</td>\n"
+											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
+					}
 					break;
 			
 			case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-					if (!$bSoumis)
-						$sHtmlListeObjForm .= $oMPTexte->cHtmlMPTexte();
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+						$sHtmlListeObjForm .= "<div align=\"".$oMPTexte->retAlignMPT()."\">".convertBaliseMetaVersHtml($oMPTexte->retTexteMPT())."</div>";
 					break;
 			
 			case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-					if (!$bSoumis)
-						$sHtmlListeObjForm .= $oMPSeparateur->cHtmlMPSeparateur();
+					if(!$bSoumis || ($bSoumis && $bAutoCorrection))
+						$sHtmlListeObjForm .= "<hr width=\"".$oMPSeparateur->retLargeurCompleteMPS()."\" size=\"2\" align=\"".$oMPSeparateur->retAlignMPS()."\" />";
 					break;
 		}
 		$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";
 	}
 	$oTpl->remplacer("{ListeObjetFormul}",$sHtmlListeObjForm);
+	if($bAutoCorrection && $iIdFC!=NULL)
+		$oTpl->remplacer("{score}","<div id=\"score\">Score = ".round($fScore,2)."</div>");
+	else
+		$oTpl->remplacer("{score}","");
 }
 else
 {
 	$oBlockFormulaire->effacer();
 }
 if($bSoumis)
-{
 	$oFormulaireComplete->deverrouillerTables();
-	$oBlockFermer->afficher();
-}
-else
-{
+
+if(!$bSoumis || ($bSoumis && $bAutoCorrection))
 	$oBlockFermer->effacer();
-}
+else
+	$oBlockFermer->afficher();
+
 $oTpl->afficher(); 
 ?>

@@ -29,12 +29,19 @@
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des questions de type "texte long" des activités en ligne, et encapsulation de la table QTexteLong de la DB
+*/
 class CQTexteLong 
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQTexteLong(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
@@ -42,6 +49,10 @@ class CQTexteLong
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -81,42 +92,7 @@ class CQTexteLong
 	function retLargeurQTL () { return $this->oEnregBdd->LargeurQTL; }
 	function retHauteurQTL () { return $this->oEnregBdd->HauteurQTL; }
 	
-    /*
-	** Fonction 		: cHtmlQTexteLong
-	** Description	: renvoie le code html qui permet d'afficher une question de type texte "long",
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	function cHtmlQTexteLong($v_iIdFC = NULL)
-	{
-		$sValeur = "";
-		
-		if ($v_iIdFC != NULL)
-		{
-			$sRequeteSql = "SELECT * FROM ReponseTexte"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$sValeur = $oEnregRep->Valeur;
-		}
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQTL = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTL);
-		//Genération du code html représentant l'objet
-		$sCodeHtml = "\n<!--QTexteLong : {$this->oEnregBdd->IdObjFormul} -->\n"
-					."<div align=\"{$this->oEnregBdd->AlignEnonQTL}\">{$this->oEnregBdd->EnonQTL}</div>\n"
-					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTL}\">\n"
-					."<textarea name=\"{$this->oEnregBdd->IdObjFormul}\" rows=\"{$this->oEnregBdd->HauteurQTL}\" cols=\"{$this->oEnregBdd->LargeurQTL}\">\n"
-					."$sValeur"
-					."</textarea>\n"
-					."</div><br />\n";
-		return $sCodeHtml;
-	}
-	
-	function enregistrer()
+ 	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjFormul != NULL)
 		{

@@ -29,12 +29,19 @@
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des questions de type "nombre" des activités en ligne, et encapsulation de la table QNombre de la DB
+*/
 class CQNombre 
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQNombre(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
@@ -42,6 +49,10 @@ class CQNombre
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -87,50 +98,6 @@ class CQNombre
 	function retNbMinQN () { return $this->oEnregBdd->NbMinQN; }
 	function retNbMaxQN () { return $this->oEnregBdd->NbMaxQN; }
 	function retMultiQN () { return $this->oEnregBdd->MultiQN; } //Nombre réel
-	
-	/*
-	** Fonction 		: cHtmlQNombre
-	** Description	: renvoie le code html qui permet d'afficher une question de type nombre,
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	
-	function cHtmlQNombre($v_iIdFC=NULL)
-	{
-		$sValeur = "";
-		
-		if ($v_iIdFC != NULL)
-		{
-			$sRequeteSql = "SELECT * FROM ReponseFlottant"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$sValeur = $oEnregRep->Valeur;
-		}
-		
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQN = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQN);
-		$this->oEnregBdd->TxtAvQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQN);
-		$this->oEnregBdd->TxtApQN = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQN);
-		
-		//Genération du code html représentant l'objet
-		//Ceci est le code COMPLET qui affiche toutes les valeurs -> pas utilisable 
-		//tel quel par les etudiants
-		$sCodeHtml = "\n<!--QNombre : {$this->oEnregBdd->IdObjFormul} -->\n"
-					."<div align=\"{$this->oEnregBdd->AlignEnonQN}\">{$this->oEnregBdd->EnonQN}</div>"
-					."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQN}\">"
-					."{$this->oEnregBdd->TxtAvQN} \n"
-					."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"10\" maxlength=\"10\" value=\"$sValeur\""
-					." id=\"id_".$this->retId()."_".$this->retNbMinQN()."_".$this->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
-					." {$this->oEnregBdd->TxtApQN}\n"
-					."</div><br />\n";
-		
-		return $sCodeHtml;
-	}
 	
 	function enregistrer()
 	{

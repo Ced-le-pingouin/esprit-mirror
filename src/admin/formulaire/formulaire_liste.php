@@ -182,43 +182,126 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 			else
 				$sCocher = "";
 			
-			if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
-				$sSelectModif = "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
-			else 
-				$sSelectModif = "";
+			if( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
+				$sHtmlListeObjForm .= "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
 			
 			switch($oObjetFormulaire->retIdTypeObj())
 			{
 				case 1:	$oQTexteLong = new CQTexteLong($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQTexteLong->cHtmlQTexteLong()."\n";
+						$sHtmlListeObjForm .= "\n<!--QTexteLong : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteLong->retAlignEnonQTL()."\">".convertBaliseMetaVersHtml($oQTexteLong->retEnonQTL())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteLong->retAlignRepQTL()."\">\n"
+											."<textarea name=\"$iIdObjActuel\" rows=\"".$oQTexteLong->retHauteurQTL()."\" cols=\"".$oQTexteLong->retLargeurQTL()."\">\n"
+											."</textarea>\n"
+											."</div><br />\n";
 						break;
-					
+				
 				case 2:	$oQTexteCourt = new CQTexteCourt($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQTexteCourt->cHtmlQTexteCourt()."\n";					
+						$sHtmlListeObjForm .= "\n<!--QTexteCourt : $iIdObjActuel -->\n"
+											."<div align=\"".$oQTexteCourt->retAlignEnonQTC()."\">".convertBaliseMetaVersHtml($oQTexteCourt->retEnonQTC())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQTexteCourt->retAlignRepQTC()."\">\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtAvQTC())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"".$oQTexteCourt->retLargeurQTC()."\" maxlength=\"".$oQTexteCourt->retMaxCarQTC()."\" />\n"
+											.convertBaliseMetaVersHtml($oQTexteCourt->retTxtApQTC())
+											."</div><br />\n";
 						break;
-					
+				
 				case 3:	$oQNombre = new CQNombre($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQNombre->cHtmlQNombre()."\n";					
+						$sHtmlListeObjForm .= "\n<!--QNombre : $iIdObjActuel -->\n"
+											."<div align=\"".$oQNombre->retAlignEnonQN()."\">".convertBaliseMetaVersHtml($oQNombre->retEnonQN())."</div>"
+											."<div class=\"InterER\" align=\"".$oQNombre->retAlignRepQN()."\">"
+											.convertBaliseMetaVersHtml($oQNombre->retTxTAvQN())
+											."<input type=\"text\" name=\"$iIdObjActuel\" size=\"10\" maxlength=\"10\""
+											." id=\"id_".$oQNombre->retId()."_".$oQNombre->retNbMinQN()."_".$oQNombre->retNbMaxQN()."\" onchange=\"validerQNombre(this);\" />"
+											.convertBaliseMetaVersHtml($oQNombre->retTxtApQN())
+											."</div><br />\n";
 						break;
-					
+				
 				case 4:	$oQListeDeroul = new CQListeDeroul($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQListeDeroul->cHtmlQListeDeroul()."\n";
+						$sHtmlListeObjForm .= "\n<!--QListeDeroul : $iIdObjActuel -->\n"
+											."<div align=\"".$oQListeDeroul->retAlignEnonQLD()."\">".convertBaliseMetaVersHtml($oQListeDeroul->retEnonQLD())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQListeDeroul->retAlignRepQLD()."\">\n"
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxTAvQLD());
+						$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\">\n";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+									$sHtmlListeObjForm .= "<option value=\"".$oPropRep->retId()."\">".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</option>\n";
+						}
+						$sHtmlListeObjForm .= "</select>\n"
+											.convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
+											."</div>\n";
 						break;
-					
+				
 				case 5:	$oQRadio = new CQRadio($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQRadio->cHtmlQRadio()."\n";
+						$sHtmlListeObjForm .= "\n<!--QRadio : $iIdObjActuel -->\n"
+											."<div align=\"".$oQRadio->retAlignEnonQR()."\">".convertBaliseMetaVersHtml($oQRadio->retEnonQR())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQRadio->retAlignRepQR()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxTAvQR())."</td>\n"
+											."<td valign=\"top\">";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($oQRadio->retDispQR() == 'Ver')
+									$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
+											."value=\"".$oPropRep->retId()."\" /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."\n";
+							}
+						}
+						if($oQRadio->retDispQR() == 'Ver')
+							$sHtmlListeObjForm .= "</table>";
+						$sHtmlListeObjForm .= "</td>\n"
+											."<td valign=\"top\">".convertBaliseMetaVersHtml($oQRadio->retTxtApQR())."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
 						break;
-					
+				
 				case 6:	$oQCocher = new CQCocher($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oQCocher->cHtmlQCocher()."\n";
+						$sHtmlListeObjForm .= "\n<!--QCocher : $iIdObjActuel -->\n"
+											."<div align=\"".$oQCocher->retAlignEnonQC()."\">".convertBaliseMetaVersHtml($oQCocher->retEnonQC())."</div>\n"
+											."<div class=\"InterER\" align=\"".$oQCocher->retAlignEnonQC()."\">\n"
+											."<table border=\"0\" cellpadding=\"0\" cellspacing=\"5\"><tr>\n"
+											."<td valign=\"top\">".$oQCocher->retTxTAvQC()."</td>\n"
+											."<td valign=\"top\">";
+						$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
+						$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "<table cellspacing=\"0\" cellpadding=\"0\">\n";
+						if(!empty($aoListePropRep))
+						{
+							foreach($aoListePropRep AS $oPropRep)
+							{
+								if($oQCocher->retDispQC() == 'Ver')
+									$sHtmlListeObjForm.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."</td></tr>\n";
+								else
+									$sHtmlListeObjForm .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+											."value=\"".$oPropRep->retId()."\" />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())."\n";
+							}
+						}
+						if($oQCocher->retDispQC() == 'Ver')
+							$sHtmlListeObjForm .= "</table>\n";
+						$sHtmlListeObjForm .= "</td>\n"
+											."<td valign=\"top\">".$oQCocher->retTxtApQC()."</td>\n"
+											."</tr></table>\n"
+											."</div>\n";
 						break;
-					
+				
 				case 7:	$oMPTexte = new CMPTexte($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oMPTexte->cHtmlMPTexte()."\n";
+						$sHtmlListeObjForm .= "<div align=\"".$oMPTexte->retAlignMPT()."\">".convertBaliseMetaVersHtml($oMPTexte->retTexteMPT())."</div>";
 						break;
-					
+				
 				case 8:	$oMPSeparateur = new CMPSeparateur($oProjet->oBdd,$iIdObjActuel);
-						$sHtmlListeObjForm .= $sSelectModif.$oMPSeparateur->cHtmlMPSeparateur()."\n";
+						$sHtmlListeObjForm .= "<hr width=\"".$oMPSeparateur->retLargeurCompleteMPS()."\" size=\"2\" align=\"".$oMPSeparateur->retAlignMPS()."\" />";
 						break;
 			}
 			$sHtmlListeObjForm .= "<div class=\"InterObj\"></div>\n";

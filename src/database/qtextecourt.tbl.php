@@ -29,12 +29,19 @@
  * @author	Ludovic FLAMME
  */
 
+/**
+* Gestion des questions de type "texte court" des activités en ligne, et encapsulation de la table QTexteCourt de la DB
+*/
 class CQTexteCourt 
 {
-	var $oBdd;
-	var $iId;
-	var $oEnregBdd;
+	var $oBdd;				///< Objet représentant la connexion à la DB
+	var $iId;				///< Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB
+	var $oEnregBdd;			///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	/**
+	 * Constructeur.	Voir CPersonne#CPersonne()
+	 * 
+	 */
 	function CQTexteCourt(&$v_oBdd,$v_iId=0) 
 	{
 		$this->oBdd = &$v_oBdd;  
@@ -42,6 +49,10 @@ class CQTexteCourt
 			$this->init();
 	}
 	
+	/**
+	 * Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement
+	 * Voir CPersonne#init()
+	 */
 	function init($v_oEnregExistant=NULL)  
 	{
 		if (isset($v_oEnregExistant))
@@ -84,46 +95,6 @@ class CQTexteCourt
 	function retTxtApQTC () { return $this->oEnregBdd->TxtApQTC; }
 	function retLargeurQTC () { return $this->oEnregBdd->LargeurQTC; }
 	function retMaxCarQTC () { return $this->oEnregBdd->MaxCarQTC; }
-	
-	/*
-	** Fonction 		: cHtmlQTexteCourt
-	** Description	: renvoie le code html qui permet d'afficher une question de type texte "court",
-	**				     si $v_iIdFC est passé en paramètre la réponse correspondante sera également affichée
-	** Entrée			:
-	**				$v_iIdFC : Id d'un formulaire complété -> récupération de la réponse dans la table correspondante
-	** Sortie			:
-	**				code html
-	*/
-	function cHtmlQTexteCourt($v_iIdFC=NULL)
-	{
-		$sValeur = "";
-		
-		if ($v_iIdFC != NULL)
-		{
-			$sRequeteSql = "SELECT * FROM ReponseCar"
-						." WHERE IdFC = '{$v_iIdFC}' AND IdObjFormul = '{$this->iId}'";
-			
-			$hResultRep = $this->oBdd->executerRequete($sRequeteSql);
-			$oEnregRep = $this->oBdd->retEnregSuiv($hResultRep);
-			$sValeur = $oEnregRep->Valeur;
-		}
-		
-		//Mise en forme du texte (ex: remplacement de [b][/b] par le code html adéquat)
-		$this->oEnregBdd->EnonQTC = convertBaliseMetaVersHtml($this->oEnregBdd->EnonQTC);
-		$this->oEnregBdd->TxtAvQTC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtAvQTC);
-		$this->oEnregBdd->TxtApQTC = convertBaliseMetaVersHtml($this->oEnregBdd->TxtApQTC);
-		
-		//Genération du code html représentant l'objet
-		$sCodeHtml="\n<!--QTexteCourt : {$this->oEnregBdd->IdObjFormul} -->\n"
-				."<div align=\"{$this->oEnregBdd->AlignEnonQTC}\">{$this->oEnregBdd->EnonQTC}</div>\n"
-				."<div class=\"InterER\" align=\"{$this->oEnregBdd->AlignRepQTC}\">\n"
-				."{$this->oEnregBdd->TxtAvQTC} \n"
-				."<input type=\"text\" name=\"{$this->oEnregBdd->IdObjFormul}\" size=\"{$this->oEnregBdd->LargeurQTC}\" maxlength=\"{$this->oEnregBdd->MaxCarQTC}\" value=\"$sValeur\" />\n"
-				." {$this->oEnregBdd->TxtApQTC}\n"
-				."</div><br />\n";
-		
-		return $sCodeHtml;
-	}
 	
 	function enregistrer()
 	{

@@ -99,3 +99,7 @@ ALTER TABLE `Formulaire`
 	ADD `AutoCorrection` TINYINT( 1 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `Type`;
 
 
+ALTER TABLE `ReponseEntier` 
+	CHANGE `IdReponse` `IdPropRep` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'
+
+

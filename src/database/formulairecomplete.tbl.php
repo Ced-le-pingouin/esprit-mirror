@@ -36,13 +36,14 @@ require_once(dir_database("ressource.def.php"));
 */
 class CFormulaireComplete
 {
-	var $iId;
-	var $oBdd;
-	var $oEnregBdd;
+	var $iId;					///< Utilisé dans le constructeur, pour indiquer l'id du module à récupérer dans la DB
+	var $oBdd;					///< Objet représentant la connexion à la DB
+	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 	
+	var $oAuteur;				///< Variable de type CPersonne, contenant la personne qui a complété le formulaire
 	var $oFormulaireModele;
 	var $asTablesReponses = array("ReponseCar", "ReponseTexte", "ReponseFlottant", "ReponseEntier");
-	var $asChampsReponses = array("Valeur", "Valeur", "Valeur", "IdReponse");
+	var $asChampsReponses = array("Valeur", "Valeur", "Valeur", "IdPropRep");
 	var $abVerifZeroReponses = array(FALSE, FALSE, FALSE, TRUE);
 	
 	/**
@@ -69,8 +70,7 @@ class CFormulaireComplete
 		}
 		else
 		{
-			$sRequeteSql = "SELECT * FROM FormulaireComplete"
-						." WHERE IdFC='{$this->iId}' LIMIT 1";
+			$sRequeteSql = "SELECT * FROM FormulaireComplete WHERE IdFC='{$this->iId}' LIMIT 1";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
@@ -132,7 +132,7 @@ class CFormulaireComplete
 				$v_iIdForm : identifiant du formulaire de base
 	** Sortie		: Id renvoyé par la BD
 	*/
-	function ajouter ($v_iIdPers,$v_iIdForm)
+	function ajouter($v_iIdPers,$v_iIdForm)
 	{
 		$sRequeteSql = "INSERT INTO FormulaireComplete SET"
 					." IdPers='{$v_iIdPers}'"
@@ -192,42 +192,35 @@ class CFormulaireComplete
 			.", DateFC='{$this->oEnregBdd->DateFC}'"
 			.", IdFormul='{$this->oEnregBdd->IdFormul}'";
 		$this->oBdd->executerRequete($sRequeteSql);
-		return TRUE;
 	}
 	
-	/*
-	** Fonction 		: effacer
-	** Description		: efface de la BD l'enregistrement concernant l'objet courant
-						  et toutes les réponses correspondantes
-	** Entrée			:
-	** Sortie			:
-	*/
+	/**
+	 * Efface le formulaire complété courant ainsi que les réponses correspondantes 
+	 */
 	function effacer()
 	{
-		$sRequeteSql = "DELETE FROM ReponseEntier"
-			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
+		$sRequeteSql = "DELETE FROM ReponseEntier WHERE IdFC='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$sRequeteSql = "DELETE FROM ReponseTexte"
-			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
+		$sRequeteSql = "DELETE FROM ReponseTexte WHERE IdFC='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$sRequeteSql = "DELETE FROM ReponseCar"
-			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
+		$sRequeteSql = "DELETE FROM ReponseCar WHERE IdFC='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$sRequeteSql = "DELETE FROM ReponseFlottant"
-			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
+		$sRequeteSql = "DELETE FROM ReponseFlottant WHERE IdFC='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
-		$sRequeteSql = "DELETE FROM FormulaireComplete"
-			." WHERE IdFC='{$this->oEnregBdd->IdFC}'";
+		$sRequeteSql = "DELETE FROM FormulaireComplete WHERE IdFC='".$this->retId()."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
-	function initAuteur () { $this->oAuteur = new CPersonne($this->oBdd,$this->oEnregBdd->IdPers); }
+	function initAuteur()
+	{
+		$this->oAuteur = new CPersonne($this->oBdd,$this->retIdPers());
+	}
 	
-	function retTexteStatut ($v_iStatut=NULL)
+	function retTexteStatut($v_iStatut=NULL)
 	{
 		if (empty($v_iStatut))
 			$v_iStatut = $this->oEnregBdd->StatutFormSousActiv;
@@ -241,6 +234,9 @@ class CFormulaireComplete
 		}
 	}
 	
+	/**
+	 *  Verrouille les tables en relation avec la table FormulaireComplete
+	 */
 	function verrouillerTables()
 	{
 		$this->oBdd->executerRequete
@@ -274,20 +270,51 @@ class CFormulaireComplete
 			." , QCocher READ"
 		);
 	}
-	
+	/**
+	 * Déverrouille les tables verrouillées par la fonction verrouillerTables()
+	 */
 	function deverrouillerTables()
 	{
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
-
- 	// {{{ Méthodes de définition
+	
+	/**
+	 * retourne une liste des formulaires complétés d'un formulaire (activité en ligne)
+	 * 
+	 * @param	v_iIdFormul l'id du formulaire de base
+	 * 
+	 * @return	une liste des formulaires complétés d'un formulaire (activité en ligne)
+	 */
+	function retListeFormulaireComplete($v_iIdFormul)
+	{
+		$aoListeFC = array();
+		$sRequeteSql = "SELECT FC.*, P.Nom, P.Prenom "
+					."FROM FormulaireComplete AS FC "
+					."INNER JOIN Personne AS P ON FC.IdPers = P.IdPers "
+					."INNER JOIN ("
+						."SELECT MAX( DateFC ) AS Date,IdPers,IdFormul "
+						."FROM FormulaireComplete "
+						."WHERE IdFormul='$v_iIdFormul' "
+						."GROUP BY IdPers "
+						.") AS MaxDate "
+					."ON MaxDate.Date=FC.DateFc AND MaxDate.IdPers=FC.IdPers AND MaxDate.IdFormul=FC.IdFormul";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		while($oEnreg = $this->oBdd->retEnregSuiv($hResult))
+			$aoListeFC[] = $oEnreg;
+		$this->oBdd->libererResult($hResult);
+		return $aoListeFC;
+	}
+		
+	/** @name Fonctions de définition des champs pour ce formulaire (activité en ligne) complété */
+	//@{
 	function defId ($v_iIdFC) { $this->iId = $v_iIdFC; }
 	function defIdPers ($v_iIdPers) { $this->oEnregBdd->IdPers = $v_iIdPers; }
 	function defDate ($v_sDateFC) { $this->oEnregBdd->DateFC = $v_sDateFC; }
 	function defIdFormul ($v_iIdFormul) { $this->oEnregBdd->IdFormul = $v_iIdFormul; }
-	// }}}
+	//@}
 	
-	// {{{ Méthodes de retour
+	/** @name Fonctions de lecture des champs pour ce formulaire (activité en ligne) complété */
+	//@{
 	function retId () { return $this->iId; }
 	function retTitre () { return $this->oEnregBdd->TitreFC; }
 	function retIdParent () { return $this->oEnregBdd->IdSousActiv; }
@@ -295,11 +322,10 @@ class CFormulaireComplete
 	function retDate () { return retDateFormatter($this->oEnregBdd->DateFC); }
 	function retIdFormul () { return $this->oEnregBdd->IdFormul; }
 	function retStatut () { return (isset($this->oEnregBdd->StatutFormSousActiv) ? $this->oEnregBdd->StatutFormSousActiv : STATUT_RES_EN_COURS); }
-	// }}}
+	//@}
 }
 
 
-///////////////////////
 class CFormulaireComplete_SousActiv extends CFormulaireComplete
 {
 	function CFormulaireComplete_SousActiv (&$v_oBdd,$v_iId=NULL)

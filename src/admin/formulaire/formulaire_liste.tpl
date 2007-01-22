@@ -10,6 +10,10 @@ form	{	margin: 10px {sLargeur};	}
 .InterER  { margin-top: {iInterEnonRep}px; }
 .InterObj  { margin-top: {iInterElem}px; }
 .titre { font-size: 1.4em; font-weight: bold; }
+input, select
+{
+	margin: 0 5px;
+}
 -->
 </style>
 <script type="text/javascript" src="selectionobj.js"></script>

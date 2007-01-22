@@ -113,8 +113,8 @@ if ($url_bVoter && isset($url_aiIdResSAVotes))
 		if ($g_iIdEquipe > 0)
 			echo emb_htmlentities("Vous venez de voter pour ce document.")
 				."<br>"
-				.htmlentities("Celui-ci a obtenu le nombre de votes requis."
-				." Il a donc été soumis au tuteur pour évaluation.",ENT_COMPAT,"UTF-8");
+				.emb_htmlentities("Celui-ci a obtenu le nombre de votes requis."
+				." Il a donc été soumis au tuteur pour évaluation.");
 		else
 			echo emb_htmlentities("Votre document a été soumis au tuteur pour évaluation");
 		
@@ -171,7 +171,7 @@ if ($g_iIdEquipe > 0)
 		echo "<TR>\n";
 		
 		echo "<TD class=\"{$CssStyle}\" align=\"center\" width=\"150px\"><B>";
-		echo htmlentities($oResSA->retNom());
+		echo emb_htmlentities($oResSA->retNom());
 		echo "</B>";
 		//echo "<BR>\n";
 		//echo "déposé par ".$oResSA->oExpediteur->retLienEmail();

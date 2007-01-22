@@ -93,7 +93,12 @@ class CPropositionReponse
 		$this->oBdd->libererResult($hResult);
 	}
 	
-	function ajouter() 	//Cette fonction ajoute une réponse avec tous ses champs vide, en fin de table
+	/**
+	 * Ajoute une proposition de réponse avec tous ses champs vides
+	 * 
+	 * @return	l'id de la nouvelle proposition de réponse
+	 */
+	function ajouter()
 	{
 		$sRequeteSql = "INSERT INTO PropositionReponse SET IdPropRep=NULL;";
 		$this->oBdd->executerRequete($sRequeteSql);
@@ -122,7 +127,7 @@ class CPropositionReponse
 		
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
-
+	
 	function copier($v_iIdObjFormul)
 	{
 		if ($v_iIdObjFormul < 1)
@@ -138,16 +143,23 @@ class CPropositionReponse
 		
 		return  $this->oBdd->retDernierId();
 	}
-
+	
 	function effacer()
 	{
+		$this->oBdd->executerRequete("LOCK TABLES PropositionReponse WRITE, Reponse_Axe WRITE");
+		
+		$sRequeteSql = "UPDATE PropositionReponse SET OrdrePropRep=(OrdrePropRep-1) WHERE OrdrePropRep>".$this->retOrdrePropRep()." AND IdObjFormul=".$this->retIdObjFormul()."";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
 		$sRequeteSql = "DELETE FROM PropositionReponse WHERE IdPropRep ='{$this->oEnregBdd->IdPropRep}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		$sRequeteSql = "DELETE FROM Reponse_Axe WHERE IdPropRep ='{$this->oEnregBdd->IdPropRep}'";
 		$this->oBdd->executerRequete($sRequeteSql);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
-
+	
 	/*
 	** Fonction 		: effacerRepObj
 	** Description		: supprime TOUTES les réponses qui se rapportent à un objet formulaire 
@@ -216,11 +228,32 @@ class CPropositionReponse
 	{
 		$hResult = $this->oBdd->executerRequete("SELECT MAX(OrdrePropRep) AS OrdreMax FROM PropositionReponse WHERE IdObjFormul = '$v_iIdObjFormul'");
 		$oEnreg = $this->oBdd->retEnregSuiv($hResult);
-		
 		return $oEnreg->OrdreMax;
 	}
 	
-
+	/**
+	 * Retourne une liste d'objet de type CPropositionReponse
+	 * 
+	 * @param	v_iIdObjFormul l'id de l'objet de formulaire
+	 * 
+	 * @return une liste d'objet de type CPropositionReponse
+	 */
+	function retListePropRep($v_iIdObjFormul)
+	{
+		$aoListePropRep = array();
+		$iIdxPropRep = 0;
+		$sRequeteSql = "SELECT * FROM PropositionReponse WHERE IdObjFormul='$v_iIdObjFormul' ORDER BY OrdrePropRep";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		while($oEnreg = $this->oBdd->retEnregSuiv($hResult))
+		{
+			$aoListePropRep[$iIdxPropRep] = new CPropositionReponse($this->oBdd);
+			$aoListePropRep[$iIdxPropRep]->init($oEnreg);
+			$iIdxPropRep++;
+		}
+		$this->oBdd->libererResult($hResult);
+		return $aoListePropRep;
+	}
+	
 	/** @name Fonctions de définition des champs pour cette proposition de réponse */
 	//@{
 	function defId ($v_iIdPropRep) { $this->oEnregBdd->IdPropRep = $v_iIdPropRep; } //Ne pas confondre IdObfForm[Multi] et IdReponse[Unique] - Fonction pas utile car auto_increment ?

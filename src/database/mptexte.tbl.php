@@ -75,16 +75,6 @@ class CMPTexte
 	function retTexteMPT () { return $this->oEnregBdd->TexteMPT; }
 	function retAlignMPT () { return $this->oEnregBdd->AlignMPT; }
 	
-	function cHtmlMPTexte()
-	{
-		//Mise en page du texte
-		$this->oEnregBdd->TexteMPT = convertBaliseMetaVersHtml($this->oEnregBdd->TexteMPT);
-		
-		//Genération du code html représentant l'objet
-		$sCodeHtml="<div align=\"{$this->oEnregBdd->AlignMPT}\">{$this->oEnregBdd->TexteMPT}</div>";
-		return $sCodeHtml;	
-	}
-	
 	function enregistrer()
 	{
 		if ($this->oEnregBdd->IdObjFormul != NULL)
