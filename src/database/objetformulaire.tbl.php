@@ -190,6 +190,7 @@ class CObjetFormulaire
 		
 		// déverrouillage de la table ObjetFormulaire
 		$this->oBdd->executerRequete("UNLOCK TABLES");
+		$this->defOrdreObjForm($v_iNouvPos);
 	}
 	
 	/*

@@ -36,6 +36,10 @@ else
 	$v_iIdFormulaire = 0;
 	$v_iIdTypeObj = 0;
 }
+	if(isset($_GET['bMesForms']))
+		$bMesForms = $_GET['bMesForms'];
+	else
+		$bMesForms = 0;
 $oTpl = new Template("formulaire_modif_ajout.tpl");
 $oBlockModifAjout = new TPL_Block("BLOCK_MODIF_AJOUT",$oTpl);
 if (isset($_GET['ajouter']) && $oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
@@ -97,7 +101,7 @@ if (isset($_GET['ajouter']) && $oProjet->verifPermission('PERM_MOD_FORMULAIRES')
 		}
 	}
 	$oBlockModifAjout->effacer();
-	$oTpl->remplacer("{onload}","onload=\"popupajout($iIdObjetFormActuel,$v_iIdFormulaire); window.close ();\"");
+	$oTpl->remplacer("{onload}","onload=\"popupajout($v_iIdFormulaire,$iIdObjetFormActuel,$bMesForms); window.close ();\"");
 }
 else
 {
@@ -120,6 +124,7 @@ else
 		$oBlockModifAjout->effacer();
 	}
 	$oTpl->remplacer("{id_formulaire}",$v_iIdFormulaire);
+	$oTpl->remplacer("{bMesForms}",$bMesForms);
 }
 $oTpl->afficher();	  
 $oProjet->terminer();

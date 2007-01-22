@@ -3,7 +3,46 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
+<style type="text/css">
+p { margin: 0px; }
+
+.bloc
+{
+	margin: 5px 3px 12px 3px;
+	background-color: rgb(111,105,87);
+	padding: 2px;
+	text-align: center;
+}
+.bloc select
+{
+	background-color: rgb(231,225,212);
+}
+.bloc h3
+{
+	margin: 0px;
+	padding: 2px 0px;
+	font-size: 12px;
+	font-weight: bold;
+	color: rgb(250,250,250);
+}
+
+.bloc .nom
+{
+	margin: 1px 0px;
+	background-color: rgb(231,225,212);
+	padding: 4px 0px;
+}
+
+.bloc .liens
+{
+	background-color: rgb(202,195,177);
+	padding: 4px 0px;
+}
+
+.bloc .liens a { font-size: 11px; }
+</style>
 <script type="text/javascript">
+<!--
 function suppression(TypeAct)
 {
 	if (document.listeformulaire.idformulaire.selectedIndex == -1)
@@ -15,14 +54,7 @@ function suppression(TypeAct)
 		if(confirm("Voulez-vous supprimer l'activité sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
-			document.forms['listeformulaire'].action='formulaire_menu.php';
-			document.forms['listeformulaire'].target='_self';
 			document.forms['listeformulaire'].submit();
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			parent.FORMFRAMEMODIF.location.replace('formulaire_modif.php');
-			parent.FORMFRAMEMODIFMENU.location.replace('formulaire_modif_menu.php');
 		}
 	}
 }
@@ -37,56 +69,61 @@ function copie(TypeAct)
 		if(confirm("Voulez-vous copier l'activité sélectionnée ?"))
 		{
 			document.forms['listeformulaire'].typeaction.value=TypeAct;
-			document.forms['listeformulaire'].action='formulaire_menu.php';
-			document.forms['listeformulaire'].target='_self';
 			document.forms['listeformulaire'].submit();
-			parent.FORMFRAMEMODIF.location.replace('formulaire_modif.php');
-			parent.FORMFRAMEMODIFMENU.location.replace('formulaire_modif_menu.php')
-			parent.FORMFRAMELISTE.location.replace('formulaire_liste.php');
-			//-> de preference pointer vers la copie
 		}
 	}
 }
 function ajouter(TypeAct)
 {
 	document.forms['listeformulaire'].typeaction.value=TypeAct;
-	document.forms['listeformulaire'].action='formulaire_menu.php';
-	document.forms['listeformulaire'].target='_self';
 	document.forms['listeformulaire'].submit();
 }
+//-->
 </script>
+<script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script src="selectionobj.js" type="text/javascript"></script>
 <title>Conception d'activités en ligne</title>
 </head>
-<body>
-<form name="listeformulaire" action="formulaire_liste.php" target="FORMFRAMELISTE" method ="get">
-<table border="0" cellpadding="0" cellspacing="2" width="100%">
-<tr>
-	<td colspan="2">
-		<select class="listeForm" name="idformulaire" onchange="javascript: this.form.submit();" size="10" style="width: 100%;">
-	[BLOCK_FORM+]
+<body class="menu">
+<form name="listeformulaire" action="formulaire_menu.php" method="get">
+<input type="checkbox" name="bMesForms" id="bMesForms" value="1" onclick="this.form.submit();" {bMesFormsCoche} /><label for="bMesForms">uniquement mes activitées</label>
+<input type="hidden" name="typeaction" value="selection" />
+<input type="hidden" name="idobj" value="{idObjForm}" />
+<div class="bloc">
+	<h3>Activité en ligne</h3>
+	<p class="nom">
+		<select class="listeForm" name="idformulaire" onchange="this.form.submit();" size="1" style="width: 100%;">
+			<option value="0" style="background-color: rgb(240,240,240);">-Veuillez choisir une activitée-</option>
+		[BLOCK_SEL_FORM+]
 			<option {couleur} value="{id_formulaire}" title="{infobulle_formulaire}" onmouseover="top.defTexteStatut(escape(this.title));" onmouseout="top.defTexteStatut('&nbsp;');"{selected}>{nom_formulaire}</option>
-	[BLOCK_FORM-]
+		[BLOCK_SEL_FORM-]
 		</select>
-		<input type="hidden" name="typeaction" value="" />
-		<input type="hidden" name="idobj" value="0" />
-		<input type="hidden" name="verifUtilisation" value="1" />
-	</td>
-</tr>
-<tr>
-	<td style="text-align : left">
-		<a href="javascript: suppression('supprimer');">Supprimer</a>
-	</td>
-	<td style="text-align : right">
-		<a href="javascript: copie('copier');">Copier</a>
-	</td>
-</tr>
-</table>
-</form>
-<br />
-<div align="center">
-	<a href="#" onclick="ajouter('ajouter');">Créer une activité</a>
+	</p>
+	<p class="liens">
+		<a href="#" onclick="ajouter('ajouter');">Ajouter</a>
+		[BLOC_LIEN_FORM+]
+		| <a href="javascript: suppression('supprimer');">Supprimer</a>
+		| <a href="javascript: copie('copier');">Copier</a>
+		<span class="liens" style="border-top: 1px solid rgb(111,105,87); display: block; margin: 4px 0 0 0; padding: 4px 0 0 0;">
+			<a href="javascript: modifaxeform({id_formulaire_sel});">Définir les axes</a>
+		</span>
+		[BLOC_LIEN_FORM-]
+	</p>
 </div>
+[BLOC_ELEM_COURANT+]
+<div class="bloc">
+<h3>Elément</h3>
+<p class="nom">{nom_elem_courant}</p>
+<p class="liens">
+	<a href="javascript: ajoutobj({id_formulaire_sel},{bMesForms});">Ajouter</a>
+	[BLOC_ELEM_COURANT_LIENS+]
+	| <a href="javascript: supobj({id_formulaire_sel},{id_obj},{bMesForms});">Supprimer</a>
+	| <a href="javascript: copieobj({id_formulaire_sel},{id_obj},{bMesForms});">Copier</a>
+	[BLOC_ELEM_COURANT_LIENS-]
+</p>
+</div>
+[BLOC_ELEM_COURANT-]
+</form>
 {Message_Etat}
 </body>
 </html>

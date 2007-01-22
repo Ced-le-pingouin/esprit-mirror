@@ -47,17 +47,19 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		$v_iIdObjForm = 0;
 		$v_sAction = "";
 	}
+	if(isset($_GET['bMesForms']))
+		$bMesForms = $_GET['bMesForms'];
+	else
+		$bMesForms = 0;
 	if ($v_iIdFormulaire > 0)
 	{
 		$oBlockIntro->effacer();
 		$oBlockFormulaire->afficher();
-		$bCopieObjForm = false;
 		if($v_sAction == "copier")
 		{
 			if ($v_iIdObjForm > 0)
 			{
 				$v_iIdObjForm = CopierUnObjetFormulaire($oProjet->oBdd, $v_iIdObjForm, $v_iIdFormulaire, "max");
-				$bCopieObjForm = true;
 			}
 		}
 		else
@@ -141,14 +143,17 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		}
 		if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) or ($iIdPersForm == $iIdPers) )
 		{
-			if($bCopieObjForm)
-				$oTpl->remplacer("{onload}","onload =\"selectionobj($v_iIdObjForm,$v_iIdFormulaire,$iPasRechFrModif); allerAPos($v_iIdObjForm);{$sJsVerifUtilisation}\"");
+			if($v_sAction == "copier")
+				$oTpl->remplacer("{onload}","onload =\"allerAPos($v_iIdObjForm); selectionobj($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);{$sJsVerifUtilisation}\"");
 			else
-				$oTpl->remplacer("{onload}","onload =\"selectionobj($v_iIdObjForm,$v_iIdFormulaire,$iPasRechFrModif); allerAPos();{$sJsVerifUtilisation}\"");
+				if($v_sAction == "supprimer")
+					$oTpl->remplacer("{onload}","onload =\"allerAPos(); selectionobj($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);{$sJsVerifUtilisation}\"");
+				else
+					$oTpl->remplacer("{onload}","onload =\"allerAPos();{$sJsVerifUtilisation}\"");
 		}
 		else
 		{
-			$oTpl->remplacer("{onload}","onload =\"selectionobj('NULL','NULL')\"");
+			$oTpl->remplacer("{onload}","");
 		}
 		$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
 		
@@ -157,7 +162,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		//Si on clique sur le titre on envoie à la page 'formulaire_modif.php' via javascript 
 		//idobj=0 et le numéro de formulaire 
 		if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) or ($iIdPersForm == $iIdPers) )
-			$sSelectModifTitre = "<input type=\"radio\" name=\"objet\" value=\"TitreFormulaire\" onclick =\"selectionobj(0,$v_iIdFormulaire)\" $sCocher />\n";
+			$sSelectModifTitre = "<input type=\"radio\" name=\"objet\" value=\"TitreFormulaire\" onclick =\"selectionobj($v_iIdFormulaire,0,$bMesForms)\" $sCocher />\n";
 		else
 			$sSelectModifTitre = "";
 		$oTpl->remplacer("{sSelectModifTitre}",$sSelectModifTitre);
@@ -178,7 +183,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 				$sCocher = "";
 			
 			if ( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
-				$sSelectModif = "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($iIdObjActuel,$v_iIdFormulaire)\" $sCocher /><b>$iOrdreObjForm</b>";
+				$sSelectModif = "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
 			else 
 				$sSelectModif = "";
 			

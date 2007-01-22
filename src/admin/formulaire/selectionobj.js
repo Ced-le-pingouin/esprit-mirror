@@ -1,23 +1,47 @@
-function selectionobj(idobj,idformulaire,iPasRechFrModif) 
+function rechargerDroite(idformulaire,idobj,bMesForms)
 {
-	parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	if(!iPasRechFrModif)// test: ne pas recharger FORMFRAMEMODIF
-		parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms);
+	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idobj="+idobj+"&idformulaire="+idformulaire+"&bMesForms="+bMesForms);
+}
+function selectionobj(idformulaire,idobj,bMesForms) 
+{
+	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
+	parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 }
 
-function rechargerliste(idobj,idformulaire,bPasRechFrModif) 
+function rechargerliste(idformulaire,idobj,bMesForms) 
 {
-	if(bPasRechFrModif)// test: ne pas recharger FORMFRAMEMODIF
-		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&iPasRechFrModif=1");
-	else
-		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire);
-	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro
+	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
+	parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 }
 
-function rechargermenugauche(idformulaire)
+function ajoutobj(idformulaire,bMesForms)
 {
-	parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire);
+	PopupCenter('formulaire_modif_ajout.php?idformulaire='+idformulaire+"&bMesForms="+bMesForms,'WinAjoutObjForm',450,150,'location=no,status=no,toolbar=no,scrollbars=no');
 }
+function supobj(idformulaire,idobj,bMesForms) 
+{
+	if (confirm('Voulez-vous supprimer l\'objet sélectionné ?'))
+	{
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=supprimer"+"&bMesForms="+bMesForms);
+	}
+}
+function modifposobj(idformulaire,idobj)
+{
+	PopupCenter('position_objet.php?idobj='+idobj+'&idformulaire='+idformulaire,'WinModifPosObjForm',300,150,'location=no,status=no,toolbar=no,scrollbars=no');
+}
+function copieobj(idformulaire,idobj,bMesForms) 
+{
+	if (confirm('Voulez-vous copier l\'objet sélectionné ?'))
+	{
+		parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire+"&action=copier"+"&bMesForms="+bMesForms);
+	}
+}
+function modifaxeform(idformulaire)
+{
+	PopupCenter('formulaire_axe.php?idformulaire='+idformulaire,'WinModifAxesForm',550,400,'location=no,status=no,toolbar=no,scrollbars=yes,resizable=no');
+}
+
 
 function rechargerlistepopup(idobj,idformulaire) 
 {
@@ -25,14 +49,11 @@ function rechargerlistepopup(idobj,idformulaire)
 	//permet de rafraichir la frame liste[dessus] avec le formulaire dont on envoie le numéro depuis une popup
 }
 
-function majmodifmenu(idobj,idformulaire)
+function popupajout(idformulaire,idobj,bMesForms) 
 {
-	parent.FORMFRAMEMODIFMENU.location.replace("formulaire_modif_menu.php?idobj="+idobj+"&idformulaire="+idformulaire);
-}
-
-function popupajout(idobj,idformulaire) 
-{
-	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idobj="+idobj+"&idformulaire="+idformulaire);
+	opener.parent.FORMFRAMELISTE.location.replace("formulaire_liste.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
+	opener.parent.FORMFRAMEMENU.location.replace("formulaire_menu.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
+	opener.parent.FORMFRAMEMODIF.location.replace("formulaire_modif.php?idformulaire="+idformulaire+"&idobj="+idobj+"&bMesForms="+bMesForms);
 }
 
 //Permet de vérifier si un champ est bien numérique
