@@ -27,6 +27,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	isset($_GET['idformulaire']) ? ($v_iIdFormulaire = $_GET['idformulaire']) : ($v_iIdFormulaire = 0);
 	isset($_GET['idobj']) ? ($v_iIdObjForm = $_GET['idobj']) : ($v_iIdObjForm = 0);
 	isset($_GET['bMesForms']) ? ($bMesForms = $_GET['bMesForms']) : ($bMesForms = 0);
+	isset($_GET['typeaction']) ? ($sTypeAction = $_GET['typeaction']) : ($sTypeAction = NULL);
 	$oTpl = new Template("formulaire_menu.tpl");
 	$oBlocLienForm = new TPL_Block("BLOC_LIEN_FORM", $oTpl);
 	$oBlocElem = new TPL_Block("BLOC_ELEM_COURANT", $oTpl);
@@ -35,7 +36,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 	$oTpl->remplacer("{idObjForm}",$v_iIdObjForm);
 	$iIdPersCourant = $oProjet->oUtilisateur->retId();
 	$sMessageEtat = ""; // variable qui peut contenir du javascript pour le rechargement de frame ou l'affichage de message d'erreur
-	switch($_GET['typeaction']) // gestion de l'ajout, de la copie et de la suppression d'un activité en ligne
+	switch($sTypeAction) // gestion de l'ajout, de la copie et de la suppression d'un activité en ligne
 	{
 		case 'supprimer' :
 			if($v_iIdFormulaire > 0)  // Vérification effectué aussi en javascript
@@ -214,7 +215,7 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		$oBlocLienForm->effacer();
 		$oBlocElem->effacer();
 	}
-	if($_GET['typeaction'] == 'selection')
+	if($sTypeAction == 'selection')
 	{
 		if($bFormulaireVisiblePersCourante)
 			$sMessageEtat = "<script language=\"javascript\" type=\"text/javascript\">rechargerDroite($v_iIdFormulaire,$v_iIdObjForm,$bMesForms);</script>";

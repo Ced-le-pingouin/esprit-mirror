@@ -41,12 +41,12 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES'))
 	{
 		$v_iIdObjForm = $_GET['idobj'];
 		$v_iIdFormulaire = $_GET['idformulaire'];
-		$v_iNouvPos = $_POST['ordreobj'];
+		$v_iNouvPos = isset($_POST['ordreobj'])?$_POST['ordreobj']:NULL;
 	}
 	else 
 	{
-			$v_iIdObjForm = 0;
-			$v_iIdFormulaire = 0;
+		$v_iIdObjForm = 0;
+		$v_iIdFormulaire = 0;
 	}
 	if(isset($_GET['bMesForms']))
 		$bMesForms = $_GET['bMesForms'];
