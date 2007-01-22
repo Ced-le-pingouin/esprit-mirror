@@ -48,6 +48,10 @@ td
 	text-align: center;
 	padding: 3px 5px;
 }
+.grise
+{
+	background-color: rgb(245,245,245);
+}
 #barremenu
 {
 	margin: 0;
@@ -134,9 +138,9 @@ table
 </tr>
 [BLOCK_QUESTIONS+]
 <tr>
-	<td>{Question}</td>
+	<td{ClassQuestion}>{Question}</td>
 [BLOCK_SCORES+]
-	<td>{Score}</td>
+	<td{ClassScore}>{Score}</td>
 [BLOCK_SCORES-]
 </tr>
 [BLOCK_QUESTIONS-]

@@ -35,6 +35,12 @@ require_once(dir_database("formulaire.tbl.php"));
 require_once(dir_database("objetformulaire.tbl.php"));
 require_once(dir_database("fonctions_form.inc.php"));
 require_once(dir_database("propositionreponse.tbl.php"));
+require_once(dir_database("qradio.tbl.php"));
+require_once(dir_database("qlistederoul.tbl.php"));
+require_once(dir_database("qcocher.tbl.php"));
+require_once(dir_database("qtextelong.tbl.php"));
+require_once(dir_database("qtextecourt.tbl.php"));
+require_once(dir_database("qnombre.tbl.php"));
 $oProjet = new CProjet();
 if(isset($_GET["IdFormul"]))
 	$v_iIdFormul = $_GET["IdFormul"];
@@ -93,18 +99,64 @@ if($NbrePers>0)
 		$oBlocQuestions->beginLoop();
 	}
 	$aiScorePers = array_fill(0,$NbrePers,0);
+	$iNumeroQuestion = 0;
+	$iScoreMax = 0;
 	foreach($aoObjetFormulaire as $oObjetFormulaire)
 	{
+		if(1<=$oObjetFormulaire->retIdTypeObj() && $oObjetFormulaire->retIdTypeObj()<=3)
+		{
+			$iNumeroQuestion++;
+			if(!$bExportation)
+			{
+				$oBlocQuestions->nextLoop();
+				$oObjetFormulaire->initDetail();
+				switch($oObjetFormulaire->retIdTypeObj())
+				{
+					case OBJFORM_QTEXTELONG:	$sTitre = $oObjetFormulaire->oDetail->retEnonQTL();
+												break;
+					case OBJFORM_QTEXTECOURT:		$sTitre = $oObjetFormulaire->oDetail->retEnonQTC();
+												break;
+					case OBJFORM_QNOMBRE:		$sTitre = $oObjetFormulaire->oDetail->retEnonQN();
+												break;
+					default:					$sTitre = "";
+				}
+				$oBlocQuestions->remplacer("{Question}","<span title=\"".emb_htmlentities($sTitre)."\">Question ".$iNumeroQuestion."</span>");
+				$oBlocQuestions->remplacer("{ClassQuestion}"," class=\"grise\"");
+				$oBlocScores = new TPL_Block("BLOCK_SCORES",$oBlocQuestions);
+				$oBlocScores->beginLoop();
+				for($i=0;$i<$NbrePers;$i++)
+				{
+					$oBlocScores->nextLoop();
+					$oBlocScores->remplacer("{Score}","&nbsp;");
+					$oBlocScores->remplacer("{ClassScore}"," class=\"grise\"");
+				}
+				$oBlocScores->afficher();
+			}
+		}
 		if(4<=$oObjetFormulaire->retIdTypeObj() && $oObjetFormulaire->retIdTypeObj()<=6)
 		{
+			$iNumeroQuestion++;
+			$iScoreMax ++;
 			if($bExportation)
 			{
-				print "Questions ".$oObjetFormulaire->retOrdre().";";
+				print "Questions ".$iNumeroQuestion.";";
 			}
 			else
 			{
 				$oBlocQuestions->nextLoop();
-				$oBlocQuestions->remplacer("{Question}","Question ".$oObjetFormulaire->retOrdre());
+				$oObjetFormulaire->initDetail();
+				switch($oObjetFormulaire->retIdTypeObj())
+				{
+					case OBJFORM_QLISTEDEROUL:	$sTitre = $oObjetFormulaire->oDetail->retEnonQLD();
+												break;
+					case OBJFORM_QRADIO:		$sTitre = $oObjetFormulaire->oDetail->retEnonQR();
+												break;
+					case OBJFORM_QCOCHER:		$sTitre = $oObjetFormulaire->oDetail->retEnonQC();
+												break;
+					default:					$sTitre = "";
+				}
+				$oBlocQuestions->remplacer("{Question}","<span title=\"".emb_htmlentities($sTitre)."\">Question ".$iNumeroQuestion."</span>");
+				$oBlocQuestions->remplacer("{ClassQuestion}","");
 				$oBlocScores = new TPL_Block("BLOCK_SCORES",$oBlocQuestions);
 				$oBlocScores->beginLoop();
 			}
@@ -142,11 +194,19 @@ if($NbrePers>0)
 						$iNbrePropRep++;
 					}
 				}
-				$fScore = CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse);
-				if(!$bExportation)
-					$oBlocScores->remplacer("{Score}",round($fScore,2));
+				if(4<=$oObjetFormulaire->retIdTypeObj() && $oObjetFormulaire->retIdTypeObj()<=5)
+					$fScore = CalculerScore(1,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormul->retMethodeCorrection());
 				else
+					$fScore = CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormul->retMethodeCorrection());
+				if(!$bExportation)
+				{
+					$oBlocScores->remplacer("{Score}",round($fScore,2));
+					$oBlocScores->remplacer("{ClassScore}","");
+				}
+				else
+				{
 					print round($fScore,2).";";
+				}
 				$aiScorePers[$i] = $fScore + $aiScorePers[$i];
 			}
 			if(!$bExportation)
@@ -160,12 +220,15 @@ if($NbrePers>0)
 	{
 		$oBlocQuestions->nextLoop();
 		$oBlocQuestions->remplacer("{Question}","Total : ");
+		$oBlocQuestions->remplacer("{ClassQuestion}","");
 		$oBlocScores = new TPL_Block("BLOCK_SCORES",$oBlocQuestions);
 		$oBlocScores->beginLoop();
 		for($i=0;$i<$NbrePers;$i++)
 		{
 			$oBlocScores->nextLoop();
-			$oBlocScores->remplacer("{Score}",round($aiScorePers[$i],2));
+			$iPourcentage = round(($aiScorePers[$i]/$iScoreMax)*100);
+			$oBlocScores->remplacer("{Score}",round($aiScorePers[$i],2)."/$iScoreMax ($iPourcentage%)");
+			$oBlocScores->remplacer("{ClassScore}","");
 		}
 		$oBlocScores->afficher();
 	}
@@ -173,7 +236,10 @@ if($NbrePers>0)
 	{
 		print "Total : ;";
 		for($i=0;$i<$NbrePers;$i++)
-			print round($aiScorePers[$i],2).";";
+		{
+			$iPourcentage = round(($aiScorePers[$i]/$iScoreMax)*100);
+			print round($aiScorePers[$i],2)."/$iScoreMax ($iPourcentage%)".";";
+		}
 		print "\n";
 	}
 	if(!$bExportation)
