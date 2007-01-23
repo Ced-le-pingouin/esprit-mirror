@@ -30,12 +30,14 @@ require_once(dirname(__FILE__).'/traverseur.class.php');
 require_once(dirname(__FILE__).'/../../lib/dom/dom.class.php');
 require_once(dirname(__FILE__).'/../../lib/std/FichierInfo.php');
 require_once(dirname(__FILE__).'/../../lib/std/FichierAcces.php');
+require_once(dirname(__FILE__).'/../../lib/zip.class.php');
 
 /**
  * Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004
  * 
  * @todo Liste:
- * 			- créer le fichier zippé (= PIF en SCORM) et effacer le dossier temporaire utilisé pour créer le paquet
+ * 			- pourquoi le fichier ZIP créé par PclZip "commence" toujours par une entrée vide ( = "/" ?) au lieu d'avoir 
+ * 			  le fichier "imsmanifest.xml" et le dossier "fichiers" directement visibles ???
  * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
  * 			- problème d'encodage des caractères dans les noms des fichiers ?
  * 			- tester sous Unix
@@ -52,6 +54,7 @@ class CTraverseurScorm extends CTraverseur
 	var $oDocXml;             ///< Objet interne qui représente le document xml du manifest
 	var $oDossierPaquet;      ///< Objet de type FichierInfo qui représente le chemin de la racine du paquet créé
 	var $oDossierRessources;  ///< Objet de type FichierInfo qui représente le chemin du dossier où seront placées les ressources du paquet SCORM
+	var $sNomFichierPif;      ///< Nom du fichier PIF (PKZIP) qui a été créé pour contenir le paquet
 	
 	/** Objets internes qui contiendront les noeuds xml nécessaires pendant la création du manifest */
 	//@{
@@ -191,9 +194,6 @@ class CTraverseurScorm extends CTraverseur
 		
 		// fin manifest => ajouté dans le doc/root => fin document XML
 		$this->oDocXml->appendChild($this->oElementManifest);
-		
-		// suppression du dossier temporaire créé pour le paquet
-		//$this->oDossierPaquet->supprimerDossier(TRUE);
 		
 		// restaurer le séparateur de chemins utilisé par défaut avant l'exportation
 		FichierInfo::separateurParDefaut($this->sSeparateurOrigine);
@@ -369,12 +369,66 @@ class CTraverseurScorm extends CTraverseur
 	/**
 	 * Crée le paquet SCORM correspondant aux éléments de formations traversés
 	 */
-	function enregistrerPaquetScorm()
+	function enregistrerPaquetScorm($v_sNomFichier = 'esprit-scorm.zip')
 	{	
 		// sauver le fichier XML
 		$this->oDocXml->save($this->oDossierPaquet->formerChemin('imsmanifest.xml'));
+		$this->_creerFichierPif($v_sNomFichier);
 	}
-
+	
+	/**
+	 * Crée le fichier PIF (=PKZIP) contenant le paquet
+	 * 
+	 * @param	v_sNomFichier	le nom du fichier PIF à créer
+	 */
+	function _creerFichierPif($v_sNomFichier)
+	{
+		$oFichierPif = new CZip($this->oDossierPaquet->formerChemin($v_sNomFichier),
+		                        $this->oDossierPaquet->retChemin()); 
+		
+		// dans le fichier PIF, le paquet doit être à la racine => on enlève une partie du chemin enregistré. En plus, 
+		// sous Windows, il faut apparemment enlever le lecteur et les deux points en début du chemin pour que ça 
+		// fonctionne  
+		$oCheminAEnlever = new FichierInfo($this->oDossierPaquet->retChemin());
+		$oCheminAEnlever->defSeparateur(FICHIER_SEPARATEUR_DEFAUT);
+		$sCheminAEnlever = preg_replace('/^[A-Za-z]:/', '', $oCheminAEnlever->retChemin());
+		$oFichierPif->defModifsChemins('', $sCheminAEnlever);
+		
+		if ($oFichierPif->creerArchive() === 0)
+			Erreur::provoquer('Erreur à la création du paquet SCORM zippé');
+			
+		$this->sNomFichierPif = $v_sNomFichier;
+	}
+	
+	/**
+	 * envoie le paquet en téléchargement à l'utilisateur
+	 */
+	function envoyerPaquetScorm()
+	{
+		$sCheminFichierPif = $this->oDossierPaquet->formerChemin($this->sNomFichierPif);
+		
+		header("content-type: application/zip");
+		//header("Content-Disposition: inline; filename=".$this->sNomFichierPif);   //force le téléchargement
+		header("Content-Disposition: attachment; filename=".$this->sNomFichierPif); //laisse le choix à l'utilisateur
+		header("Content-Transfer-Encoding: binary");
+		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		header('Pragma: public');
+		header("Expires: 0");
+		
+		echo file_get_contents($sCheminFichierPif);
+	}
+	
+	/**
+	 * Efface du système de fichiers le dossier temporaire utilisé pour la création du paquet SCORM, et tout son contenu
+	 * 
+	 * @warning	Cette fonction est donc à appeler uniquement lorsqu'on a récupéré le paquet et qu'on est certain de ne 
+	 * 			plus en avoir besoin
+	 */
+	function effacerPaquetScorm()
+	{
+		$this->oDossierPaquet->supprimerDossier(TRUE);
+	}
+	
 	/**
 	 * Prend en charge l'exportation de toutes les ressources d'un niveau de formation. Cela implique la copie des 
 	 * fichiers dans le paquet SCORM en création, l'écriture des balises correspondantes, la transformation de 
@@ -700,7 +754,7 @@ class CTraverseurScorm extends CTraverseur
 
 		$oFichier = new FichierAcces($v_sCheminFichier);
 		$oFichier->ecrireTout($sContenuFichier);
-	}
+	}	
 }
 
 ?>

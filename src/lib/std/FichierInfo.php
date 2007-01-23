@@ -29,8 +29,9 @@ require_once(dirname(__FILE__).'/IterateurDossier.php');
 
 /** Constantes - Séparateurs de fichiers/dossiers */
 //@{
-define('FICHIER_SEPARATEUR_UNIX'   , '/') ; ///< Le séparateur de fichiers/dossiers par défaut sous Unix	@enum FICHIER_SEPARATEUR_UNIX
-define('FICHIER_SEPARATEUR_WINDOWS', '\\'); ///< Le séparateur de fichiers/dossiers par défaut sous Windows	@enum FICHIER_SEPARATEUR_WINDOWS
+define('FICHIER_SEPARATEUR_UNIX'   , '/') ;                ///< Le séparateur de fichiers/dossiers par défaut sous Unix         @enum FICHIER_SEPARATEUR_UNIX
+define('FICHIER_SEPARATEUR_WINDOWS', '\\');                ///< Le séparateur de fichiers/dossiers par défaut sous Windows      @enum FICHIER_SEPARATEUR_WINDOWS
+define('FICHIER_SEPARATEUR_DEFAUT' , DIRECTORY_SEPARATOR); ///< Le séparateur de fichiers/dossiers par défaut pour l'OS courant @enum FICHIER_SEPARATEUR_DEFAUT
 //@}
 
 /**
