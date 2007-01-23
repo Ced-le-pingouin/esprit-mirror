@@ -1102,6 +1102,14 @@ class CModule
 	}
 	
 	/**
+	 * @return	le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc)
+	 */
+	function retTexteNiveau()
+	{
+		return INTITULE_MODULE;
+	}
+	
+	/**
 	 * Retourne un tableau à 2 dimensions contenant l'intitulé d'un module
 	 * @todo ce système sera modifié pour l'internationalisation de la plate-forme
 	 * 

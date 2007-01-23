@@ -1176,6 +1176,13 @@ class CFormation
 	}
 	//@}
 
+	/**
+	 * @return	le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc)
+	 */
+	function retTexteNiveau()
+	{
+		return INTITULE_FORMATION;
+	}
 	
 	/**
 	 * Retourne le nom par défaut d'une formation

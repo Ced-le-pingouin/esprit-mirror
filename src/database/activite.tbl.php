@@ -884,6 +884,14 @@ class CActiv
 	}
 	
 	/**
+	 * @return	le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc)
+	 */
+	function retTexteNiveau()
+	{
+		return INTITULE_ACTIV;
+	}
+	
+	/**
 	 * Retourne un tableau à 2 dimensions contenant les modalités d'une activité
 	 * 
 	 * @return	la liste des différentes modalités pour une activité

@@ -1452,6 +1452,14 @@ class CSousActiv
 	}
 	
 	/**
+	 * @return	le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc)
+	 */
+	function retTexteNiveau()
+	{
+		return INTITULE_SOUS_ACTIV;
+	}
+	
+	/**
 	 * Retourne la liste des statuts possibles d'un sous-activité
 	 * 
 	 * @return	la liste des statuts possibles d'un sous-activité

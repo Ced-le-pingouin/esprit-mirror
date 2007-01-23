@@ -856,6 +856,25 @@ class CModule_Rubrique
 		$oChat->effacerChats($this);
 	}
 	
+	/**
+	 * Retourne le texte en français du type de rubrique
+	 * 
+	 * @param	v_iType le type(optionnel) d'une rubrique
+	 * 
+	 * @return	le texte du type de rubrique
+	 */
+	function retTexteType($v_iType=NULL)
+	{
+		if (empty($v_iType))
+			$v_iType = $this->retType();
+		
+		$aaListeTypes = $this->retListeTypes();
+		
+		foreach ($aaListeTypes as $amTypes)
+			if ($amTypes[0] == $v_iType)
+				return $amTypes[1];
+	}
+	
 	 /**
 	  * Retourne un tableau contenant la liste des différents types de rubrique. En fait, cette liste se présente elle-même
 	  * sous forme de tableaux, contenant chacun le type de rubrique(constante LIEN_), l'intitulé de ce type, et une
@@ -934,6 +953,14 @@ class CModule_Rubrique
 		$this->oBdd->libererResult($hResult);
 		
 		return ($i-1);
+	}
+	
+	/**
+	 * @return	le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc)
+	 */
+	function retTexteNiveau()
+	{
+		return INTITULE_RUBRIQUE;
 	}
 	
 	/**
