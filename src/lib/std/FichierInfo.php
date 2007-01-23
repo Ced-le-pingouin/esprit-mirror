@@ -107,11 +107,19 @@ class FichierInfo
 	/**
 	 * Retourne le nom du dossier parent extrait du chemin représenté par l'objet courant
 	 *
+	 * @param	v_bPasDePoint	si \c true (défaut), la méthode ne retournera pas le dossier sous forme de point ('.') 
+	 * 							lorsque celui-ci représente un "dossier courant", elle retournera une chaîne vide
+	 *
 	 * @return	le nom du dossier parent dans le chemin représenté par l'objet courant
 	 */
-	function retDossier()
+	function retDossier($v_bPasDePoint = TRUE)
  	{
- 		return $this->convertirSeparateurs(dirname($this->sChemin));
+ 		$sDossier = $this->convertirSeparateurs(dirname($this->sChemin));
+ 		
+ 		if ($v_bPasDePoint && $sDossier === '.')
+ 			return '';
+ 		else
+ 			return $sDossier;
  	}
 
  	/**
@@ -219,7 +227,42 @@ class FichierInfo
  	{
  		return is_writable($this->sChemin);
  	}
+
+	/**
+	 * Définit un séparateur par défaut pour tous les objets de cette classe qui seront créés. Si cette méthode n'est 
+	 * jamais appelée, le séparateur par défaut est celui de l'OS. Cette méthode retourne l'actuel séparateur par défaut 
+	 * si elle est appelée sans paramètre
+	 * 
+	 * @param	v_sSeparateur	le séparateur par défaut à utiliser pour tous les objets de la classe. Si \c null 
+	 * 							(défaut), alors la méthode ne définit pas le séparateur par défaut, mais le retourne
+	 * 
+	 * @return	si \p v_sSeparateur est \c null, le séparateur par défaut actuel
+	 */
+	function separateurParDefaut($v_sSeparateur = NULL)
+	{
+		static $s_sSeparateur = NULL;
+		
+		if (is_null($v_sSeparateur))
+		{
+			if (is_null($s_sSeparateur))
+				return DIRECTORY_SEPARATOR;
+			else
+				return $s_sSeparateur;
+		}
+		else
+		{
+			$s_sSeparateur = $v_sSeparateur;			
+		}
+	}
 	
+	/**
+	 * Définit un séparateur de chemin pour l'objet
+	 * 
+	 * @param	v_sSeparateur			le séparateur qu'on veut "reconnu" comme tel pour les chemins stockés dans 
+	 * 									l'objet
+	 * @param	v_bRemplacerExistant	si \c true (défaut), le chemin actuellement stocké est converti pour utiliser 
+	 * 									le nouveau séparateur défini
+	 */	
 	function defSeparateur($v_sSeparateur, $v_bRemplacerExistant = TRUE)
 	{
 		if ($v_sSeparateur != FICHIER_SEPARATEUR_UNIX && $v_sSeparateur != FICHIER_SEPARATEUR_WINDOWS)
@@ -246,7 +289,7 @@ class FichierInfo
 	 * 
 	 * @return	le séparateur utilisé dans le chemin, soit FICHIER_SEPARATEUR_UNIX ou FICHIER_SEPARATEUR_WINDOWS. Dans 
 	 * 			le cas où le chemin passé est relatif et ne contient aucun séparateur reconnu, le séparateur par défaut 
-	 * 			de l'OS sur lequel tourne PHP est retourné (soit "\\" pour Windows, ou '/' pour Unix)
+	 * 			est retourné. Pour connaître le séparateur par défaut, voir #separateurParDefaut()
 	 */
  	function detecterSeparateur($v_sChemin)
  	{
@@ -255,7 +298,7 @@ class FichierInfo
  		else if (strpos($v_sChemin, FICHIER_SEPARATEUR_WINDOWS) !== FALSE)
  			return FICHIER_SEPARATEUR_WINDOWS;
  		else
- 			return DIRECTORY_SEPARATOR;
+ 			return $this->separateurParDefaut();
  	}
 
 	/**
@@ -359,6 +402,7 @@ class FichierInfo
  		if (strpos($this->sChemin, $v_sPartieAEnlever) === 0)
  		{
  			$sNouveauChemin = substr($this->sChemin, strlen($v_sPartieAEnlever));
+ 			$sNouveauChemin = $this->enleverSeparateursDeDebut($sNouveauChemin);
  			
  			if ($v_bRemplacer)
  				$this->defChemin($sNouveauChemin);
@@ -375,30 +419,54 @@ class FichierInfo
  	/**
  	 * Crée le dossier représenté dans l'objet courant
  	 * 
- 	 * @param	$v_sCreerEnfant	le nom du dossier à créer *dans* le dossier actuellement représenté par l'objet. 
+ 	 * @param	v_sCreerEnfant	le nom du dossier à créer *dans* le dossier actuellement représenté par l'objet. 
  	 * 							Si \c null, c'est le chemin actuellement représenté par l'objet qui est considéré comme
  	 * 							le dossier à créer
+ 	 * @param	v_bCreerInterm	si \c true, crée également les dossiers parents (intermédiaires) si ceux-ci n'existent 
+ 	 * 							pas
  	 * @param	v_iMode			le mode utilisé pour créer le dossier (permissions sur les système Unix, ignoré sous 
  	 * 							Windows)
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function creerDossier($v_sCreerEnfant = NULL, $v_iMode = 0777)
+ 	function creerDossier($v_sCreerEnfant = NULL, $v_bCreerInterm = FALSE, $v_iMode = 0777)
  	{
- 		if (!is_dir($this->retDossier()))
- 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier().", qui doit lui-même être un "
- 			                 ."dossier");
- 		
- 		if (!is_writable($this->retDossier()))
- 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier()." : accès impossible", 
- 			                  ERREUR_AVERT);
-		
-		if (!is_null($v_sCreerEnfant))
+		if (!empty($v_sCreerEnfant))
 			$sDossierACreer = $this->formerChemin($v_sCreerEnfant);
 		else
 			$sDossierACreer = $this->retChemin();
-		
- 		return @mkdir($sDossierACreer, $v_iMode);
+
+		if ($v_bCreerInterm)
+		{
+			$r = FALSE;
+			$asDossiersInterm = explode($this->sSeparateur, $sDossierACreer);
+			
+			if (count($asDossiersInterm))
+			{
+				$oDossierInterm = new FichierInfo(array_shift($asDossiersInterm));
+				$oDossierInterm->defSeparateur($this->sSeparateur);
+				
+				foreach ($asDossiersInterm as $sDossierInterm)
+				{
+					$oDossierInterm->formerChemin($sDossierInterm, TRUE);
+					if (!$oDossierInterm->existe())
+						$r = $oDossierInterm->creerDossier() || $r;
+				}
+				
+				return $r;
+			}
+		}
+		else
+		{
+	 		if (!is_dir($this->retDossier()))
+	 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier().", qui doit lui-même être un "
+	 			                 ."dossier");
+	 		
+	 		if (!is_writable($this->retDossier()))
+	 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier()." : accès impossible", 
+	 			                  ERREUR_AVERT);
+	 		return @mkdir($sDossierACreer, $v_iMode);			
+		}
  	}
  	
  	/**
@@ -414,14 +482,14 @@ class FichierInfo
  		if (!$this->estDossier())
  			Erreur::provoquer("Le chemin ".$this->retChemin()." ne représente pas un dossier");
  		
- 		$r = TRUE;
+ 		$r = FALSE;
 		
  		// si on a demandé l'effacement de tout le contenu du dossier
  		if ($v_bRecursif)
  		{
  			$itr = new IterateurRecursif(new IterateurDossier($this->retChemin()), ITR_REC_ENFANTS_AVANT);
  			
- 			for ($r = FALSE; $itr->estValide(); $itr->suiv())
+ 			for (; $itr->estValide(); $itr->suiv())
  			{
  				$f = $itr->courant();
  				$r = $f->supprimer(FALSE) || $r;
@@ -487,16 +555,19 @@ class FichierInfo
  	/**
  	 * Copie le fichier représenté par l'objet courant dans un autre dossier
  	 * 
- 	 * @param	v_sDossierDest	le chemin du dossier destination pour la copie du fichier
- 	 * @param	v_fnCallback	la fonction à appeler lorsqu'un fichier est copié. Ce paramètre doit représenter un type  
- 	 * 							'callback' valide, tel que reconnu par PHP. La fonction appelée devra accepter 3 
- 	 * 							paramètres : les deux premiers de type FichierInfo, représenteront respectivement le 
- 	 * 							fichier source qui devait être copié, et le fichier destination. Le 3è sera la valeur de 
- 	 * 							retour de l'opération de copie
+ 	 * @param	v_sDossierDest		le chemin du dossier destination pour la copie du fichier
+ 	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
+ 	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
+ 	 * 								cible existant au cours de la copie provoquera une erreur
+ 	 * @param	v_fnCallback		la fonction à appeler lorsqu'un fichier est copié. Ce paramètre doit représenter un 
+ 	 * 								type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra accepter 
+ 	 * 								3 paramètres : les deux premiers de type FichierInfo, représenteront respectivement 
+ 	 * 								le fichier source qui devait être copié, et le fichier destination. Le 3è sera la 
+ 	 * 								valeur de retour de l'opération de copie
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function copierFichier($v_sDossierDest, $v_fnCallback = NULL)
+ 	function copierFichier($v_sDossierDest, $v_bEcraserExistant = FALSE, $v_fnCallback = NULL)
  	{
  		// fichier source est vraiment un fichier ?
  		if (!$this->estFichier())
@@ -523,7 +594,7 @@ class FichierInfo
  		
  		// copie du fichier => dossier destination
  		$oDossierDest->formerChemin($this->retNom(), TRUE);
- 		if ($oDossierDest->existe())
+ 		if (!$v_bEcraserExistant && $oDossierDest->existe())
  			Erreur::provoquer("Le fichier existe déjà dans le dossier de destination");
  		$r = @copy($this->retChemin(), $oDossierDest->retChemin());
  		
@@ -543,13 +614,16 @@ class FichierInfo
  	/**
  	 * Copie le dossier représenté par l'objet courant *dans* un autre dossier
  	 * 
- 	 * @param	v_sDossierDest	le chemin du dossier destination, *dans* lequel le dossier source sera copié
- 	 * @param	v_bRecursif		si \c true, les sous-dossiers et leur contenu seront également copiés
- 	 * @param	v_fnCallback	voir le paramètre du même nom de #copierFichier()
+ 	 * @param	v_sDossierDest		le chemin du dossier destination, *dans* lequel le dossier source sera copié
+ 	 * @param	v_bRecursif			si \c true, les sous-dossiers et leur contenu seront également copiés
+ 	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
+ 	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
+ 	 * 								cible existant au cours de la copie provoquera une erreur
+ 	 * @param	v_fnCallback		voir le paramètre du même nom de #copierFichier()
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function copierDossier($v_sDossierDest, $v_bRecursif = FALSE, $v_fnCallback = NULL)
+ 	function copierDossier($v_sDossierDest, $v_bRecursif = FALSE, $v_bEcraserExistant = FALSE, $v_fnCallback = NULL)
  	{
  		if (!$this->estDossier())
  			Erreur::provoquer("Le chemin source ".$this->retChemin()." ne représente pas un dossier");
@@ -568,8 +642,8 @@ class FichierInfo
  		
  		// "copie" du dossier => dossier destination : pas une copie mais une création de dossier
  		$oDossierDest->formerChemin($this->retNom(), TRUE);
- 		if ($oDossierDest->existe())
-			Erreur::provoquer("Le dossier existe déjà dans le dossier de destination");
+ 		if (!$v_bEcraserExistant && $oDossierDest->existe())
+			Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
  		$r = $oDossierDest->creerDossier();
 		
 		$itr = new IterateurDossier($this->retChemin());
@@ -582,7 +656,7 @@ class FichierInfo
 			
 			if ($oFichierSource->estFichier() || $v_bRecursif)
 				$r = $oFichierSource->copier($oDossierDest->formerChemin($oCheminRelatif->retDossier()), 
-				                             $v_bRecursif, $v_fnCallback)
+				                             $v_bRecursif, $v_bEcraserExistant, $v_fnCallback)
 			   		 || $r;
 		}
 		
@@ -595,21 +669,25 @@ class FichierInfo
  	/**
  	 * Copie le fichier ou dossier représenté par l'objet courant dans un autre dossier
  	 * 
- 	 * @param	v_sDossierDest	le chemin du dossier destination, *dans* lequel le fichier ou dossier source sera copié
- 	 * @param	v_bRecursif		si \c true, les sous-dossiers du dossier source, et leur contenu, seront également 
- 	 * 							copiés. 
- 	 * 							Ce paramètre n'est donc utile qu'au cas ou le chemin représenté par l'objet courant est
- 	 * 							un dossier
- 	 * @param	v_fnCallback	voir le paramètre du même nom de #copierFichier()
+ 	 * @param	v_sDossierDest		le chemin du dossier destination, *dans* lequel le fichier ou dossier source sera 
+ 	 * 								copié 
+ 	 * @param	v_bRecursif			si \c true, les sous-dossiers du dossier source, et leur contenu, seront également 
+ 	 * 								copiés.
+ 	 *  							Ce paramètre n'est donc utile qu'au cas ou le chemin représenté par l'objet courant est
+ 	 * 								un dossier
+ 	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
+ 	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
+ 	 * 								cible existant au cours de la copie provoquera une erreur
+ 	 * @param	v_fnCallback		voir le paramètre du même nom de #copierFichier()
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function copier($v_sDossierDest, $v_bRecursif = FALSE, $v_fnCallback = NULL)
+ 	function copier($v_sDossierDest, $v_bRecursif = FALSE, $v_bEcraserExistant = FALSE, $v_fnCallback = NULL)
  	{
  		if ($this->estDossier())
- 			return $this->copierDossier($v_sDossierDest, $v_bRecursif, $v_fnCallback);
+ 			return $this->copierDossier($v_sDossierDest, $v_bRecursif, $v_bEcraserExistant, $v_fnCallback);
  		else
- 			return $this->copierFichier($v_sDossierDest, $v_fnCallback);
+ 			return $this->copierFichier($v_sDossierDest, $v_bEcraserExistant, $v_fnCallback);
  	}
 }
 
