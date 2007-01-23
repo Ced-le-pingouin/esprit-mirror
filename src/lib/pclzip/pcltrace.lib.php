@@ -118,6 +118,7 @@
     global $g_pcl_trace_filename;
     global $g_pcl_trace_name;
     global $g_pcl_trace_index;
+    global $g_pcl_trace_entries;
 
     // ----- Clean
     $g_pcl_trace_mode = "memory";
@@ -723,9 +724,9 @@ function PclTraceHideAll() {
       for ($i=0; $i<$p_entry['index']; $i++)
         echo "---";
       if ($p_entry['type'] == 1)
-        echo "<b>".$p_entry['name']."</b>(".$p_entry['param'].") : ".$p_entry['message']." [".$p_entry[file].", ".$p_entry[line]."]<br>";
+        echo "<b>".$p_entry['name']."</b>(".$p_entry['param'].") : ".$p_entry['message']." [".$p_entry['file'].", ".$p_entry['line']."]<br>";
       else if ($p_entry['type'] == 2)
-        echo "<b>".$p_entry['name']."</b>()=".$p_entry['param']." : ".$p_entry['message']." [".$p_entry[file].", ".$p_entry[line]."]<br>";
+        echo "<b>".$p_entry['name']."</b>()=".$p_entry['param']." : ".$p_entry['message']." [".$p_entry['file'].", ".$p_entry['line']."]<br>";
       else
         echo $p_entry['message']." [".$p_entry['file'].", ".$p_entry['line']."]<br>";
     }
