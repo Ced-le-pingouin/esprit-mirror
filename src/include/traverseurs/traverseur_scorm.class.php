@@ -37,10 +37,8 @@ require_once(dirname(__FILE__).'/../../lib/std/FichierAcces.php');
  * @todo Liste:
  * 			- créer le fichier zippé (= PIF en SCORM) et effacer le dossier temporaire utilisé pour créer le paquet
  * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
- * 			- indiquer dans le titre de la page exportée ou ailleurs, le type de l'activité dans Esprit, même s'il 
- * 			  s'agit d'un type d'activité qui n'est pas réellement exportable. Au moins il y en aura trace dans le 
- * 			  paquet SCORM
- * 			- problème d'encodage des caractères dans les noms des fichiers
+ * 			- problème d'encodage des caractères dans les noms des fichiers ?
+ * 			- tester sous Unix
  * 			- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
  * 			  option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)
  * 			- donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux 
@@ -73,6 +71,8 @@ class CTraverseurScorm extends CTraverseur
 	var $poElementParent;   ///< Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés)
 	
 	var $asRes   = array(); ///< Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités
+	
+	var $sSeparateurOrigine;///< Pour sauvegarder le séparateur de chemins dans la gestion de fichiers initial
 	
 	/**
 	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité 
@@ -107,6 +107,10 @@ class CTraverseurScorm extends CTraverseur
 	 */
 	function debutTraitement()
 	{
+		// utiliser le séparateur de chemins par défaut '/', même sous Windows (après avoir sauvegardé l'ancien)
+		$this->sSeparateurOrigine = FichierInfo::separateurParDefaut();
+		FichierInfo::separateurParDefaut('/');
+		
 		// construction du chemin où se trouvera la paquet SCORM et ses fichiers avant compression en PIF (zip)
 		$this->oDossierPaquet = new FichierInfo(dir_tmp(NULL, TRUE));
 		$sDossierPaquet = 'esprit-scorm-'.md5(uniqid(rand(), TRUE));
@@ -190,6 +194,9 @@ class CTraverseurScorm extends CTraverseur
 		
 		// suppression du dossier temporaire créé pour le paquet
 		//$this->oDossierPaquet->supprimerDossier(TRUE);
+		
+		// restaurer le séparateur de chemins utilisé par défaut avant l'exportation
+		FichierInfo::separateurParDefaut($this->sSeparateurOrigine);
 	}
 	
 	/**
@@ -204,6 +211,10 @@ class CTraverseurScorm extends CTraverseur
 		
 		$title = $this->oDocXml->createElement('title', $this->oFormation->retNom());
 		$this->oElementFormation->appendChild($title);
+		
+		// exportation SCORM (description)
+		$this->_exporterRessources(TYPE_FORMATION, $this->oFormation, $this->oElementFormation);
+
 		
 		$this->defElementParent($this->oElementFormation, $this->retElementCourant());
 		$this->defElementCourant($this->oElementFormation);
@@ -232,6 +243,9 @@ class CTraverseurScorm extends CTraverseur
 		
 		$title = $this->oDocXml->createElement('title', $this->oModule->retNom());
 		$this->oElementModule->appendChild($title);
+		
+		// exportation SCORM (description)
+		$this->_exporterRessources(TYPE_MODULE, $this->oModule, $this->oElementModule);
 		
 		$this->defElementParent($this->oElementModule, $this->retElementCourant());
 		$this->defElementCourant($this->oElementModule);
@@ -291,6 +305,9 @@ class CTraverseurScorm extends CTraverseur
 		
 		$title = $this->oDocXml->createElement('title', $this->oActiv->retNom());
 		$this->oElementActiv->appendChild($title);
+		
+		// exportation SCORM (description)
+		$this->_exporterRessources(TYPE_ACTIVITE, $this->oActiv, $this->oElementActiv);
 		
 		$this->defElementParent($this->oElementActiv, $this->retElementCourant());
 		$this->defElementCourant($this->oElementActiv);
@@ -394,7 +411,9 @@ class CTraverseurScorm extends CTraverseur
 			$this->oElementRessource->setAttribute('adlcp:scormType', 'asset');
 			
 			$oDossierSrc = new FichierInfo($v_oElementPhp->retDossier());
-			$oDossierSrc->copier($this->oDossierRessources->retChemin(), TRUE, array($this, '_cbExporterFichierRessource'));
+			if ($oDossierSrc->existe())
+				$oDossierSrc->copier($this->oDossierRessources->retChemin(), TRUE, TRUE, 
+				                     array($this, '_cbExporterFichierRessource'));
 			
 			$this->oElementRessources->appendChild($this->oElementRessource);
 			
@@ -405,108 +424,222 @@ class CTraverseurScorm extends CTraverseur
 		//===== exportation des "ressources" spécifiques d'une rubrique ou sous-activité, qui en fait seront des 
 		//===== "dependencies" de celles déjà exportées ci-dessus, ou éventuellement des fichiers créés pour son 
 		//===== exportation
-		if ($v_iNiveau == TYPE_RUBRIQUE)
-			$sNomRes = 'RES-RUB-'.$this->oRubrique->retId();
-		else if ($v_iNiveau == TYPE_SOUS_ACTIVITE)
-			$sNomRes = 'RES-SOUSACTIV-'.$this->oSousActiv->retId();
-		else
-			Erreur::provoquer("Exportation de ressources non supportée à ce niveau ($v_iNiveau)");
+		// génération du chemin *relatif* vers le dossier de cette ressource. Il sera préfixé aux Href des fichiers 
+		// ressources, qui doivent être relatifs au paquet SCORM
+		$oCheminResEsprit = new FichierInfo($v_oElementPhp->retDossier());           // dossiers "rubriques", "activ_..." d'Esprit
+		$oCheminResEsprit->reduireChemin($this->oFormation->retDossier(), TRUE);     // enlever toute référence à "fxx" (le dossier de la formation) 
+		$oCheminResPaquet = new FichierInfo($this->oDossierRessources->retChemin()); // dossier des fichiers du paquet SCORM
+		$oCheminResPaquet->formerChemin($oCheminResEsprit->retNom(), TRUE);          // ajout du dossier spécifique à la ressource
+		// devient relatif au dossier du paquet
+		$oCheminResPaquet->reduireChemin($this->oDossierPaquet->retChemin(), TRUE);
 		
-		// formation du chemin complet (absolu) du dossier où se trouvera la ressource dans le dossier temporaire qui 
-		// contient le paquet SCORM
-		$oDossierElement  = new FichierInfo($v_oElementPhp->retDossier());
-		$oCheminRessource = new FichierInfo($this->oDossierRessources->retChemin());
-		$oCheminRessource->formerChemin($oDossierElement->retNom(), TRUE);
+		unset($oCheminResEsprit);
 		
 		$sHref = NULL;
-		$aoFichiers = array();
-		switch($v_oElementPhp->retType())
+		$bDependance = FALSE;
+		$bDescription = FALSE;
+		$sContenuFichierACreer = '';
+		// si on est au niveau rubrique ou sous-activité, l'exportation dépend du type "d'action"
+		if ($v_iNiveau == TYPE_RUBRIQUE || $v_iNiveau == TYPE_SOUS_ACTIVITE)
 		{
-			case LIEN_PAGE_HTML:
-			case LIEN_DOCUMENT_TELECHARGER:
-				// ce type de ressource n'aura pas de fichiers "propres", mais sera dépendante des fichiers déjà 
-				// exportés (par son élément parent)
-				$d = $this->oDocXml->createElement('dependency');
-				$d->setAttribute('identifierref', $sNomResGlobales);
-				$aoFichiers[] = $d;
-				
-				// on va chercher le nom du fichier index de la ressource, on l'ajoute au chemin, et ensuite on rend ce 
-				// dernier relatif par rapport au paquet, car les attributs "Href" des balises "file" sont relatifs
-				$oCheminRessource->formerChemin($v_oElementPhp->retDonnee(DONNEES_URL), TRUE);
-				$oCheminRessource->reduireChemin($this->oDossierPaquet->retChemin().$oCheminRessource->retSeparateur(),
-		                                 TRUE);
-				$sHref = $oCheminRessource->retChemin();
-				
-				break;
-			
-			case LIEN_SITE_INTERNET:
-				$sHref = $v_oElementPhp->retDonnee(DONNEES_URL);
-				break;
-			
-			case LIEN_TEXTE_FORMATTE:
-				// il faut créer un fichier qui contiendra le texte et pourra être affiché en tant que ressource SCORM
-				// => on forme son nom + chemin complet dans le paquet avant
-				$sHref = 'res-'.$v_iNiveau.'-'.$v_oElementPhp->retId().'.html';
-				$oCheminRessource->formerChemin($sHref, TRUE);
-				$this->_creerFichierHtml($oCheminRessource->retChemin(), 
-				                         $v_oElementPhp->retNom(),
-				                         convertBaliseMetaVersHtml($v_oElementPhp->retDescr()));
-				
-				// pour créer le fichier, je préférais utiliser le chemin complet, mais maintenant qu'on l'utilisera 
-				// comme Href, son chemin doit devenir relatif
-				$oCheminRessource->reduireChemin($this->oDossierPaquet->retChemin().$oCheminRessource->retSeparateur(),
-		                                         TRUE);
-				$sHref = $oCheminRessource->retChemin();
-				
-				// le fichier Href a été créé spécialement pour cette ressource, il n'existait pas sous forme de fichier 
-				// dans Esprit, donc il faut lui créer une nouvelle balise "file" "propre" 
-				$f = $this->oDocXml->createElement('file');
-				$f->setAttribute('href', $sHref);
-				$aoFichiers[] = $f;
+			switch($v_oElementPhp->retType())
+			{
+				case LIEN_PAGE_HTML:
+				case LIEN_DOCUMENT_TELECHARGER:
+				case LIEN_COLLECTICIEL:
+					// ces ressources dépendent de fichiers, déjà exportés par l'élément parent
+					$bDependance = TRUE;
 
-				break;
-			
-			// types connus mais qui n'ont pour le moment pas d'exportation de ressources supplémentaires
-			case LIEN_CHAT:
-			case LIEN_FORUM:
-			case LIEN_UNITE:
-			case LIEN_GALERIE:
-			case LIEN_COLLECTICIEL:
-			case LIEN_TABLEAU_DE_BORD:
-				break;
-			
-			// si type inconnu, aucune ressource exportée, forcément
-			default:
-				break;
+					// chemin du fichier index à (télé)charger, interne au paquet, donc relatif
+					$sHref = $v_oElementPhp->retDonnee(DONNEES_URL);
+					
+					// si le mode d'affichage dans Esprit est "indirect", il peut y avoir des consignes avant le lien
+					$iModeAffichage = $v_oElementPhp->retDonnee(DONNEES_MODE);
+					if ($iModeAffichage == FRAME_CENTRALE_INDIRECT || $iModeAffichage == NOUVELLE_FENETRE_INDIRECT
+					    || $v_oElementPhp->retType() == LIEN_COLLECTICIEL)
+						$bDescription = TRUE;
+					else
+						// si le mode est "direct", pas de consignes => pas de fichier créé => l'url doit être modifiée
+						$sHref = $oCheminResPaquet->formerChemin($sHref);
+					break;
+
+				case LIEN_SITE_INTERNET:
+					// nom du fichier index à charger, externe à Esprit... donc absolu (on ajoute juste 'http://')
+					$sHref = 'http://'.$v_oElementPhp->retDonnee(DONNEES_URL);
+					
+					// si le mode d'affichage dans Esprit est "indirect", il peut y avoir des consignes avant le lien
+					$iModeAffichage = $v_oElementPhp->retDonnee(DONNEES_MODE);
+					if ($iModeAffichage == FRAME_CENTRALE_INDIRECT || $iModeAffichage == NOUVELLE_FENETRE_INDIRECT)
+						$bDescription = TRUE;
+					break;
+
+
+					// ces ressources dépendent de fichiers, déjà exportés par l'élément parent
+					$bDependance = TRUE;
+
+					// chemin du fichier index à (télé)charger, interne au paquet, donc relatif
+					$sHref = $v_oElementPhp->retDonnee(DONNEES_URL);
+					
+					// si le mode d'affichage dans Esprit est "indirect", il peut y avoir des consignes avant le lien
+					$iModeAffichage = $v_oElementPhp->retDonnee(DONNEES_MODE);
+					if ($iModeAffichage == FRAME_CENTRALE_INDIRECT || $iModeAffichage == NOUVELLE_FENETRE_INDIRECT)
+						$bDescription = TRUE;
+					break;
+
+				// uniquement la description pour ces type d'activité
+				case LIEN_TEXTE_FORMATTE:
+					$bDescription = TRUE;
+					break;
+					
+				case LIEN_FORMULAIRE:
+				case LIEN_GALERIE:
+				case LIEN_TABLEAU_DE_BORD:
+					$bDescription = TRUE;
+					$sContenuFichierACreer = "<em>"
+					                        ."Cet élément disposait de contenu supplémentaire non exportable, par "
+					                        ."conséquent seule sa consigne ou description a été exportée."
+					                        ."<br />"
+					                        ."</em>"
+					                        ;
+					break;
+				
+				// types connus mais qui n'ont pour le moment pas d'exportation de ressources supplémentaires
+				case LIEN_CHAT:
+				case LIEN_FORUM:
+					$sContenuFichierACreer = "<em>"
+					                        ."Cet élément ne disposait d'aucun contenu exportable."
+					                        ."<br />"
+					                        ."</em>"
+					                        ;
+					break;
+
+				case LIEN_UNITE:
+					$sContenuFichierACreer = "<em>"
+			        		                ."Cet élément sert uniquement à la structuration dans la plate-forme Esprit, il ne "
+			                		        ."dispose donc d'aucun contenu textuel propre."
+			                        		."<br />"
+					                        ."</em>"
+					                        ;
+					break;
+				
+				// si type inconnu, aucune ressource exportée, forcément
+				default:
+					$sContenuFichierACreer = "<em>"
+					                        ."L'élément est d'un type qui n'est actuellement pas pris en charge par "
+					                        ."l'exportation SCORM de la plate-forme Esprit."
+					                        ."<br />"
+					                        ."</em>"
+					                        ;
+					break;
+			}
+		}
+		// si on est au niveau formation ou module, il existe une description (pas pour activ/groupe d'actions)
+		else if ($v_iNiveau != TYPE_ACTIVITE)
+		{
+			$bDescription = TRUE;
+		}
+		// si on est dans une activité, il n'y aura pas de contenu à afficher (excepté le message qui informe qu'il 
+		// s'agit d'une exportation SCORM de la plate-forme Esprit, et le niveau dont il s'agit - donc ici "Groupe 
+		// d'actions" = activité)
+		else
+		{
+			$sContenuFichierACreer = "<em>"
+			                        ."Cet élément sert uniquement à la structuration dans la plate-forme Esprit, il ne "
+			                        ."dispose donc d'aucun contenu textuel propre."
+			                        ."<br />"
+			                        ."</em>"
+			                        ;
 		}
 		
-		if (!is_null($sHref))
+		// s'il y a un Href ou un fichier à créer (qui deviendra lui même un Href), il faut exporter une ressource; 
+		// sinon c'est que l'élément/activité n'était pas exportable
+		if (!empty($sHref) || !empty($sContenuFichierACreer) || $bDescription)
 		{
-			// s'il y a eu un Href défini, c'est que le type "d'action" de la rubrique ou sous-activité est exportable
-			// en tant que ressource SCORM  => on la crée en xml
+			// on forme le nom de la ressource
+			$sNomRes = 'RES-'.$v_iNiveau.'-'.$v_oElementPhp->retId();
+			
+			// création de la balise ressource en xml, mais l'attribut href (l'index) sera ajouté à la fin, car pour  
+			// certaines exportations, il doit seulement être défini plus tard
 			$r = $this->oDocXml->createElement('resource');
 			$r->setAttribute('identifier', $sNomRes);
 			$r->setAttribute('type', 'webcontent');
 			$r->setAttribute('adlcp:scormType', 'asset');
-			$r->setAttribute('href', $sHref);
+	
+			// si on doit exporter une ressource qui contient des fichiers présents dans Esprit, ils auront normalement 
+			// déjà été exportés, car généralement les fichiers utilisés pendant une activité se trouvent dans le 
+			// dossier correspondant à son élément parent => l'enfant qui les utilise crée une balise "dependency"
+			if ($bDependance)
+			{
+				$d = $this->oDocXml->createElement('dependency');
+				$d->setAttribute('identifierref', $sNomResGlobales); // = nom de la balise "resource" du parent
+				$r->appendChild($d);
+			}
+
+			if ($bDescription)
+			{
+				$sContenuFichierACreer .= convertBaliseMetaVersHtml($v_oElementPhp->retDescr()).'<br />';
 			
-			// parfois le Href suffit pour définir la ressource, parfois il y a des dépendances de fichiers ou de 
-			// nouveaux fichiers créés pour elle => balises "file" supplémentaire à rattacher à la ressource SCORM
-			foreach ($aoFichiers as $oFichier)
-				$r->appendChild($oFichier);
+				if (!empty($sHref))
+				{
+					$sContenuFichierACreer .= '<br />'
+					                         .'<a href="'.$sHref.'">'
+					                         .$v_oElementPhp->retDonnee(DONNEES_INTITULE)
+					                         .'</a>'
+					                         ;
+				}
+			}
+			
+			// si on doit créer un fichier HTML qui représente l'élément à exporter, on le fait ici (création du fichier 
+			// + balise "file" correspondante)
+			if (!empty($sContenuFichierACreer))
+			{
+				// à la fin du fichier créé, on indique de quel niveau et type d'activité il s'agit
+				$sContenuFichierACreer .=
+				  '<br /><br />'
+				 .'<em>'
+				 .'(élément de niveau "'.$v_oElementPhp->retTexteNiveau().'"'
+				 .(is_callable(array($v_oElementPhp, 'retTexteType'))?', de type "'.$v_oElementPhp->retTexteType().'"':'')
+				 .', exporté par la plate-forme Esprit)'
+				 .'</em>'
+				 ;
+				
+				// il faut créer un fichier qui contiendra le texte et pourra être affiché en tant que ressource SCORM
+				
+				// d'abord on vérifie que le dossier où créer le fichier existe déjà dans le paquet
+				$oCheminRes = new FichierInfo($this->oDossierPaquet->formerChemin($oCheminResPaquet->retChemin()));
+				if (!$oCheminRes->existe())
+					$oCheminRes->creerDossier(NULL, TRUE);
+				unset($oCheminRes);
+
+				// on garde comme Href le chemin de la ressource, *relatif* à la racine du paquet
+				$sHref = $oCheminResPaquet->formerChemin('res-'.$v_iNiveau.'-'.$v_oElementPhp->retId().'.html');
+				
+				// et on crée le fichier qui représente la ressource, mais cette fois on passe le chemin absolu complet
+				$this->_creerFichierHtml($this->oDossierPaquet->formerChemin($sHref), 
+				                         $v_oElementPhp->retNom(),
+				                         $sContenuFichierACreer);
+				// balise "file"
+				$f = $this->oDocXml->createElement('file');
+				$f->setAttribute('href', $sHref);
+				$r->appendChild($f);
+			}
+	
+			// on connaît avec certitude le "href" de la ressource, donc on peut maintenant l'écrire
+			$r->setAttribute('href', $sHref);
 			
 			// on rattache la ressource à la balise "ressources"
 			$this->oElementRessources->appendChild($r);
 			
 			// et surtout, on relie "l'item" (= élément de formation = rubrique, sous-activité) à la ressource qui 
 			// vient d'être exportée
-			$v_oElementXml->setAttribute('identifierref', $sNomRes); 
+			$v_oElementXml->setAttribute('identifierref', $sNomRes);
 		}
+		
 		//===== fin de l'exportation des ressources "dependencies" et fichiers spécifiques
 	}
 
 	/**
-	 * Intègre un fichier à un ensemble de ressources exportées (balise file en SCORM). Cette fonction est appelée en 
+	 * Intègre un fichier à un ensemble de ressources exportées (balise "file" en SCORM). Cette fonction est appelée en 
 	 * callback par un objet FichierInfo chargé de copier les fichiers d'un élément de formation
 	 * 
 	 * @param	l'objet FichierInfo qui représente le fichier source qui est exporté (il se trouve dans les rubriques 
@@ -528,7 +661,7 @@ class CTraverseurScorm extends CTraverseur
 	}
 	
 	/**
-	 * Déclare une ressource ou en ensemble de ressource comme exporté(e)
+	 * Déclare une ressource ou en ensemble de ressources comme exporté(e)
 	 * 
 	 * @param	v_sNomRes				l'identificateur de la ressource exportée
 	 * @param	v_oElementXmlRessource	l'objet xml qui représente cette ressource en SCORM
@@ -565,7 +698,7 @@ class CTraverseurScorm extends CTraverseur
 		 .'</html>'."\n"
 		 ;
 
-		$oFichier = new FichierAcces($v_sCheminFichier);		 
+		$oFichier = new FichierAcces($v_sCheminFichier);
 		$oFichier->ecrireTout($sContenuFichier);
 	}
 }
