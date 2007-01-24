@@ -112,6 +112,13 @@ function oListe() { return top.frames["ADMINFRAMELISTE"]; }
 function oModifMenu() { return top.frames["AdminModifMenu"]; }
 function capturerErreursJS() { return true; }
 
+function retIdForm()
+{
+	var sChaineParams = top.frames['ADMINFRAMEMENU'].location.search;
+	asCorresps = /params=([0-9]+):/.exec(sChaineParams);
+	return asCorresps[1];
+}
+
 window.onerror = capturerErreursJS;
 
 //-->

@@ -24,8 +24,8 @@ $url_sTitrePrincipal = (empty($_GET["tp"]) ? NULL : stripslashes($_GET["tp"]));
 $sBlockHead = NULL;
 $aMenus   = array();
 $aMenus[] = array("Changer de formation","top.choix_formation('{$url_sTitrePrincipal}')",1,"text-align: left;");
-$aMenus[] = array("Rafraîchir","top.rafraichir()",2,"text-align: center;");
-$aMenus[] = array("Fermer","top.close()",3);
+$aMenus[] = array("Exportation SCORM","self.location.href='../../include/traverseurs/export_scorm.php?idForm='+top.retIdForm()",2,"text-align: left;");
+$aMenus[] = array("Rafraîchir","top.rafraichir()",3,"text-align: center;");
+$aMenus[] = array("Fermer","top.close()",4);
 include_once(dir_template("dialogue","dialog-menu.tpl.php"));
 ?>
-
