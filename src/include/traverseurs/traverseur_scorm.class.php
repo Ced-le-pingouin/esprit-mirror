@@ -30,14 +30,13 @@ require_once(dirname(__FILE__).'/traverseur.class.php');
 require_once(dirname(__FILE__).'/../../lib/dom/dom.class.php');
 require_once(dirname(__FILE__).'/../../lib/std/FichierInfo.php');
 require_once(dirname(__FILE__).'/../../lib/std/FichierAcces.php');
+require_once(dirname(__FILE__).'/../../lib/std/IterateurDossier.php');
 require_once(dirname(__FILE__).'/../../lib/zip.class.php');
 
 /**
  * Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004
  * 
  * @todo Liste:
- * 			- pourquoi le fichier ZIP créé par PclZip "commence" toujours par une entrée vide ( = "/" ?) au lieu d'avoir 
- * 			  le fichier "imsmanifest.xml" et le dossier "fichiers" directement visibles ???
  * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
  * 			- problème d'encodage des caractères dans les noms des fichiers ?
  * 			- tester sous Unix
@@ -383,8 +382,13 @@ class CTraverseurScorm extends CTraverseur
 	 */
 	function _creerFichierPif($v_sNomFichier)
 	{
-		$oFichierPif = new CZip($this->oDossierPaquet->formerChemin($v_sNomFichier),
-		                        $this->oDossierPaquet->retChemin()); 
+		$oFichierPif = new CZip($this->oDossierPaquet->formerChemin($v_sNomFichier));
+		
+		for ($itr = new IterateurDossier($this->oDossierPaquet->retChemin()); $itr->estValide(); $itr->suiv())
+		{
+			$oEntree = $itr->courant();
+			$oFichierPif->ajouterEntreesDsListe($oEntree->retChemin());
+		}
 		
 		// dans le fichier PIF, le paquet doit être à la racine => on enlève une partie du chemin enregistré. En plus, 
 		// sous Windows, il faut apparemment enlever le lecteur et les deux points en début du chemin pour que ça 
