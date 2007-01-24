@@ -46,7 +46,7 @@ class CActiv
 	var $oBdd;					///< Objet représentant la connexion à la DB
 	var $oEnregBdd;				///< Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici
 
-	var $b_RemettreDeOrdre;		///< Valeur booléenne indiquant s'il faut réorganiser les numéros d'ordre des activitées
+	var $b_RemettreDeOrdre;		///< Valeur booléenne indiquant s'il faut réorganiser les numéros d'ordre des activités
 	var $oSousActivCourante;	///< Objet de type CSousActiv contenant une activité
 	var $aoSousActivs;			///< Tableau rempli par #initSousActivs(), contenant une liste des sous-activités de cette activité
 	var $oEquipe;				///< Objet de type CEquipe contenant une équipe

@@ -56,7 +56,7 @@ function ajouter(TypeAct)
 	<h3>Activité en ligne</h3>
 	<p class="nom">
 		<select class="listeForm" name="idformulaire" onchange="this.form.submit();" size="1" style="width: 100%;">
-			<option value="0" style="background-color: rgb(240,240,240);">-Veuillez choisir une activitée-</option>
+			<option value="0" style="background-color: rgb(240,240,240);">-Veuillez choisir une activité-</option>
 		[BLOCK_SEL_FORM+]
 			<option {couleur} value="{id_formulaire}" title="{infobulle_formulaire}" onmouseover="top.defTexteStatut(escape(this.title));" onmouseout="top.defTexteStatut('&nbsp;');"{selected}>{nom_formulaire}</option>
 		[BLOCK_SEL_FORM-]
