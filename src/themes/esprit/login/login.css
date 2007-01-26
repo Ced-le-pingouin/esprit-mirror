@@ -1,19 +1,75 @@
-html
+/* Modèle général */
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%; /* 100 % height */
+}
+html>body #wrap {
+  height:100%; /* 100 % height */
+  background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
+}
+#bandeau {
+  width:100%;
+  height:120px;
+	background-color: rgb(104,101,96);
+	background-image: url('images/login-haut-fond.jpg');
+	background-repeat: repeat-x;
+	background-position: 228px 0;
+	border-bottom-color: black;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+html>body #bandeau {
+  position:fixed;
+  z-index:10; /* Prevent certain problems with form controls */
+}
+html>body #content-wrap {
+  height:100%; /* 100 % height */
+}
+html>body #contenu {
+  padding:125px 1em 0 1em; /* 6em = height of #header and #footer + 1em, 1em = give the content some breathing space */
+}
+#formlogin
 {
-	height: 100%;
-	/* \*/ overflow: hidden; /**/
+	position: absolute;
+	top: 120px;
+}
+#pieddepage {
+  width:100%;
+  height:3em;
+}
+html>body #pieddepage {
+  position:fixed;
+  bottom:0;
+  z-index:10; /* Prevent certain problems with form controls */
+}
+
+/* Détails */
+
+#contenu
+{
+	margin: 0 0 1px 228px;
+	padding: 0;
+}
+#pieddepage
+{
+	background-color: rgb(220,217,210);
+	background-image: url('images/login-bas-image.gif');
+	background-repeat: repeat-y;
+	background-position: 0 0;
+	color: white;
+	border-top-color: black;
+	border-top-style: solid;
+	border-top-width: 1px;
 }
 body
 {
-	background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
 	margin: 0;
 	padding: 0;
 	color: black;
 	font-family: Verdana,Tahoma,Arial,sans-serif;
 	font-size: 12px;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
 }
 h1
 {
@@ -118,25 +174,19 @@ form
 	font-weight: bold;
 	color: rgb(153,51,51);
 }
-#bandeau
-{
-	background-image: url('images/login-haut-fond.jpg');
-	background-repeat: repeat-x;
-	background-position: 228px 0;
-	background-color: rgb(104,101,96);
-	height: 18%;
-	width: 100%;
-	border-bottom-color: black;
-	border-bottom-style: solid;
-	border-bottom-width: 1px;
+#test{
+	position: relative;
+	height: 110px;
 }
 #bandeau-logo
 {
-	float: left;
+	position: absolute;
 	background-image: url('images/login-haut-gauche.gif');
 	background-repeat: no-repeat;
 	background-position: 0 0;
-	height: 100%;
+  top:0;
+  left:0;
+	height: 120px; /* hauteur de #bandeau */
 	width: 228px;
 }
 #logo
@@ -147,17 +197,11 @@ form
 }
 #titre
 {
+	position: absolute;
 	padding-top: 98px;
 	margin-left: 232px;
 	font-family: Arial,sans-serif;
 	font-stretch: ultra-expanded;
-}
-#contenu
-{
-	height: 73%;
-	overflow: auto;
-	margin: 0 0 1px 228px;
-	padding: 0;
 }
 #formations
 {
@@ -251,21 +295,18 @@ form
 #formlogin
 {
 	font-size: 11px;
-	position: absolute;
-	top: 18%;
 	left: 26px;
 	width: 201px;
-	padding: 0;
 	margin: 0;
-}
-#formlogin a:link, #formlogin a:visited, #formlogin a:link
-{
-	color: rgb(255,255,255);
 }
 #formlogin p
 {
 	padding: 0;
 	margin: 4px;
+}
+#formlogin a:link, #formlogin a:visited, #formlogin a:link
+{
+	color: rgb(255,255,255);
 }
 p#erreur_login
 {
@@ -303,27 +344,15 @@ p#avertissement_login
 	border-top-style: solid;
 	border-top-width: 1px;
 }
-#pieddepage
-{
-	background-image: url('images/login-bas-image.gif');
-	background-repeat: repeat-y;
-	background-position: 0 0;
-	background-color: rgb(220,217,210);
-	color: white;
-	height: 9%;
-	border-top-color: black;
-	border-top-style: solid;
-	border-top-width: 1px;
-}
 #hautpieddepage
 {
-	height: 60%;
+	height: 50%;
 }
 #baspieddepage
 {
 	background-color: rgb(39,43,28);
 	text-align: center;
-	height: 40%;
+	height: 50%;
 	padding: 1px;
 	margin: 0;
 }

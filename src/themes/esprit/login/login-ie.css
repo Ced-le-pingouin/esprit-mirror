@@ -1,0 +1,14 @@
+html,
+body {
+  background:url(foo) fixed;
+}
+#bandeau,
+#pieddepage {
+  position:absolute;
+  z-index:10;
+}
+#bandeau {top:expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop : document.body.scrollTop)}
+#wrap,
+#content-wrap {height:100%;  background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;}
+#contenu {padding:125px 1em 0 1em;}
+#pieddepage {top:expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop +(documentElement.clientHeight-this.clientHeight) : document.body.scrollTop +(document.body.clientHeight-this.clientHeight));}

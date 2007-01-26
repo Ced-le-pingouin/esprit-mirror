@@ -25,12 +25,31 @@ function GPL()
 //-->
 </script>
 <link rel="stylesheet" type="text/css" href="theme://login/login.css" />
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="theme://login/login-ie.css">
+<![endif]-->
 </head>
 <body>
+<div id="wrap">
 <div id="bandeau">
-	<div id="bandeau-logo"><img id="logo" src="theme://login/images/esprit.gif" border="0" alt="Esprit" /></div>
 	<h1 id="titre">Environnement scénarisé d'apprentissage interactif à distance</h1>
+	<div id="test"><div id="bandeau-logo"><img id="logo" src="theme://login/images/esprit.gif" border="0" alt="Esprit" /></div></div>
 </div>
+<div id="content-wrap">
+
+<div id="formlogin">
+	{form}
+	<img id="tete" src="theme://login/images/login-tete.jpg" width="201" height="165" border="0" alt="Logo: tête" />
+	[BLOCK_ERREUR_LOGIN+]<p id="erreur_login">Votre pseudo ou votre mot de passe est incorrect.</p>[BLOCK_ERREUR_LOGIN-]
+	<p>Si vous êtes inscrit, introduisez votre pseudo et mot de passe.</p>
+	<p class="aligndroite"><a href="javascript: void(0);" onclick="return mdp_oublier()" onfocus="blur()" style="font-size: 7pt;">Oubli&eacute;&nbsp;?</a></p>
+	<p class="aligndroite"><label for="idPseudo">Pseudo&nbsp;:</label><input type="text" size="13" name="idPseudo" id="idPseudo" /></p>
+	<p class="aligndroite"><label for="idMdp">Mot&nbsp;de&nbsp;passe&nbsp;:</label><input type="password" size="13" name="idMdp" id="idMdp" /></p>
+	<p class="aligndroite"><input class="btn_ok" type="submit" value="&nbsp;Ok&nbsp;" /></p>
+	{/form}
+	[BLOCK_AVERTISSEMENT_LOGIN+]<p id="avertissement_login">{login.avertissement}</p>[BLOCK_AVERTISSEMENT_LOGIN-]
+</div>
+
 <div id="contenu">
 	<table border="0" cellspacing="0" cellpadding="5">
 	<tr>
@@ -305,18 +324,6 @@ function GPL()
 	</tr>
 	</table>
 </div>
-
-<div id="formlogin">
-	{form}
-	<img id="tete" src="theme://login/images/login-tete.jpg" width="201" height="165" border="0" alt="Logo: tête" />
-	[BLOCK_ERREUR_LOGIN+]<p id="erreur_login">Votre pseudo ou votre mot de passe est incorrect.</p>[BLOCK_ERREUR_LOGIN-]
-	<p>Si vous êtes inscrit, introduisez votre pseudo et mot de passe.</p>
-	<p class="aligndroite"><a href="javascript: void(0);" onclick="return mdp_oublier()" onfocus="blur()" style="font-size: 7pt;">Oubli&eacute;&nbsp;?</a></p>
-	<p class="aligndroite"><label for="idPseudo">Pseudo&nbsp;:</label><input type="text" size="13" name="idPseudo" id="idPseudo" /></p>
-	<p class="aligndroite"><label for="idMdp">Mot&nbsp;de&nbsp;passe&nbsp;:</label><input type="password" size="13" name="idMdp" id="idMdp" /></p>
-	<p class="aligndroite"><input class="btn_ok" type="submit" value="&nbsp;Ok&nbsp;" /></p>
-	{/form}
-	[BLOCK_AVERTISSEMENT_LOGIN+]<p id="avertissement_login">{login.avertissement}</p>[BLOCK_AVERTISSEMENT_LOGIN-]
 </div>
 
 <div id="pieddepage">
@@ -325,6 +332,6 @@ function GPL()
 	<a href="javascript: void(propos('theme://'));" onfocus="blur()">ESPRIT  (C) Unité de Technologie de L'Education, Université de Mons-Hainaut (Belgique), 2001-2006 et Grenoble Universités, projet Flodi, 2006.</a>
 	</div>
 </div>
-
+</div>
 </body>
 </html>
