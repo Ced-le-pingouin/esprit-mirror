@@ -42,7 +42,7 @@ if (!function_exists('gettext'))
 	putenv("LANG=$lang"); // optionnel
 	if (!setlocale(LC_ALL, $lang)) {
 		if (!setlocale(LC_ALL, $langWin)) {
-			print "Erreur avec setlocale !";
+			error_log("Erreur avec setlocale($lang) !");
 		}
 	} 
 
