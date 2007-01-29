@@ -32,6 +32,8 @@
 require_once("globals.inc.php");
 include_once(dir_database("accueil.tbl.php"));
 
+define('MAX_BREVES',4);
+
 $oProjet = new CProjet();
 $oAccueil = new CAccueil($oProjet->oBdd);
 // ---------------------
@@ -42,6 +44,24 @@ $url_iCodeEtat = (empty($_GET["codeEtat"]) ? 0 : $_GET["codeEtat"]);
 // ---------------------
 // Template
 // ---------------------
+if (isset($_REQUEST['breves'])) { // popup des brèves
+	$oTpl = new Template(dir_theme("login/breves.tpl",FALSE,TRUE));
+	$oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
+	$oBlocBreve->beginLoop();
+	$breves = $oAccueil->getBreves(TRUE,TRUE); // breves(visibles,date)
+	if ($breves) {
+		foreach ($breves as $breve) {
+			$oBlocBreve->nextLoop();
+			$oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
+		}
+		$oBlocBreve->afficher(); 
+	} else {
+		$oBlocBreve->effacer();
+	}
+	$oTpl->afficher();
+	exit(0);
+}
+
 $oTpl = new Template(dir_theme("login/login.tpl",FALSE,TRUE));
 $oBlocErreurLogin = new TPL_Block("BLOCK_ERREUR_LOGIN",$oTpl);
 $oBlocAvertissementLogin = new TPL_Block("BLOCK_AVERTISSEMENT_LOGIN",$oTpl);
@@ -58,24 +78,22 @@ else
 // }}}
 
 // {{{ Afficher un message d'avertissement
-
 $oBlocAvertissementLogin->beginLoop();
-
 $avert = $oAccueil->getAvert($Visible=1);
-if($avert){
-   $oBlocAvertissementLogin->nextLoop();
-   $oBlocAvertissementLogin->remplacer("{login.avertissement}",convertBaliseMetaVersHtml($avert));
-   $oBlocAvertissementLogin->afficher();
+if ($avert) {
+	$oBlocAvertissementLogin->nextLoop();
+	$oBlocAvertissementLogin->remplacer("{login.avertissement}",convertBaliseMetaVersHtml($avert));
+	$oBlocAvertissementLogin->afficher();
 }
-else  $oBlocAvertissementLogin->effacer();
-
+else $oBlocAvertissementLogin->effacer();
 // }}}
 
 // {{{ Formulaire
-$oTpl->remplacer(array("{form}","{/form}"), array("<form name=\"formulId\" action=\"index2.php\" method=\"post\" target=\"_top\">","</form>"));
+$oTpl->remplacer(array("{form}","{/form}"),
+                 array("<form name=\"formulId\" action=\"index2.php\" method=\"post\" target=\"_top\">","</form>"));
 // }}}
 
-// {{{ Permet d'afficher que les formations accessibles qu'aux visiteurs
+// {{{ Permet d'afficher uniquement les formations accessibles qu'aux visiteurs
 $oProjet->oUtilisateur = NULL;
 $oProjet->asInfosSession[SESSION_FORM] = 0;
 // }}}
@@ -84,99 +102,83 @@ $sRepHttpPlateforme = dir_http_plateform();
 if ($oProjet->initFormationsUtilisateur() > 0)
 {
 	$oBlocFormation->beginLoop();
-	
 	foreach ($oProjet->aoFormations as $oFormation)
 	{
 		$sUrl = "<a href='{$sRepHttpPlateforme}index2.php?idForm=".$oFormation->retId()."' target='_top'>".$oFormation->retNom()."</a>";
 		$oBlocFormation->nextLoop();
 		$oBlocFormation->remplacer("{formation->url}",$sUrl);
 	}
-	
 	$oBlocFormation->afficher();
-
 	$oBlocListeFormations->afficher();
-
 }
 else
 {
-	$oBlocListeFormations->effacer();
-      
+	$oBlocListeFormations->effacer();     
 }
-
 $oBlocInfosPlateforme->afficher();
+
 // ajout des breves
 $ladate = date("Y-m-d");
 $oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
 $oBlocBreve->beginLoop();
 $breves = $oAccueil->getBreves($Visible=1, $Date=1);
-if($breves){
-   foreach ($breves as $breve) {
-      $oBlocBreve->nextLoop();
-	   $oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
-   }
-   $oBlocBreve->afficher(); 
+if ($breves) {
+	$numBreve = 0;
+	foreach ($breves as $breve) {
+		if (++$numBreve > MAX_BREVES) break;
+		$oBlocBreve->nextLoop();
+		$oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
+	}
+	if (count($breves)>MAX_BREVES) {
+		$oBlocBreve->ajouter('<a href="javascript: void(0);" onclick="window.open('."'login.php?breves=all','Toutes les breves','width=400,height=500,menubar=no,statusbar=no,resizable=yes,scrollbars=yes'".')" class="breve-centered">Toutes les brèves...</a>');
+	}
+	$oBlocBreve->afficher(); 
+} else {
+	$oBlocBreve->effacer();
 }
-else{
-   $oBlocBreve->effacer();
-}
-
 
 
 // ajouts des textes de présentation
-
 $oBlocTexte = new TPL_Block("BLOCK_TEXTE",$oTpl);
 $oBlocTexte->beginLoop();
 $Texte  = $oAccueil->getTexte($Visible=1);
 if($Texte){
-   $oBlocTexte->nextLoop();
-   $oBlocTexte->remplacer("{texte->info}",convertBaliseMetaVersHtml($Texte));
-   $oBlocTexte->afficher();
+	$oBlocTexte->nextLoop();
+	$oBlocTexte->remplacer("{texte->info}",convertBaliseMetaVersHtml($Texte));
+	$oBlocTexte->afficher();
 } 
-
-else  	$oBlocTexte->effacer();
-
-
+else $oBlocTexte->effacer();
 
 
 // ajout des liens
 $oBlocLien = new TPL_Block("BLOCK_LIEN",$oTpl);
-
 $oBlocLien->beginLoop();
 $liens = $oAccueil->getLiens($Visible=1);
 if($liens){
-foreach ($liens as $lien) {
-   $oBlocLien->nextLoop();
-   if($lien->TypeLien!="inactif"){
-
-      switch($lien->TypeLien){
-         case "page":
-            $target="href='".$lien->Lien." 'target='_parent'";
-            break;
-         case  "new":           
-            $target="href='".$lien->Lien."' target='_blank'";
-            break;
-         case "popup":             
-            $target = "href=\"".$lien->Lien."\" onClick=\"window.open('".$lien->Lien."','popup','width=500,height=500');return false\"";
-            break;
-      }
-      $sInfo = "<a ".$target.">".$lien->Texte."</a>"; 
-   }
-   else $sInfo = $lien->Texte;           
-  $oBlocLien->remplacer("{lien->info}",$sInfo);
-
+	foreach ($liens as $lien) {
+		$oBlocLien->nextLoop();
+		if($lien->TypeLien!="inactif"){
+			switch($lien->TypeLien){
+				case "actuelle":
+					$target=$lien->Lien.'"';
+					break;
+				case "nouvelle":
+					$target=$lien->Lien.'" target="_blank"';
+					break;
+				case "popup":
+					$target='javascript:void(0)" onClick="window.open(\''.$lien->Lien."','popup','width=500,height=500');return false;\"";
+					break;
+			}
+			$sInfo = '<a href="'.$target.'>'.$lien->Texte."</a>"; 
+		}
+		else $sInfo = $lien->Texte;           
+		$oBlocLien->remplacer("{lien->info}",$sInfo);
+	}
+	$oBlocLien->afficher();
 }
-$oBlocLien->afficher();
-}
-
 else $oBlocLien->effacer();
 
 
-
-
 $oTpl->afficher();
-
-
-
-
 
 ?>

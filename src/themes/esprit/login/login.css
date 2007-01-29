@@ -1,17 +1,17 @@
 /* Modèle général */
 html,
 body {
-  margin:0;
-  padding:0;
-  height:100%; /* 100 % height */
+	margin:0;
+	padding:0;
+	height:100%;
 }
 html>body #wrap {
-  height:100%; /* 100 % height */
-  background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
+	height:100%;
+	background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
 }
 #bandeau {
-  width:100%;
-  height:120px;
+	width:100%;
+	height:120px;
 	background-color: rgb(104,101,96);
 	background-image: url('images/login-haut-fond.jpg');
 	background-repeat: repeat-x;
@@ -21,32 +21,39 @@ html>body #wrap {
 	border-bottom-width: 1px;
 }
 html>body #bandeau {
-  position:fixed;
-  z-index:10; /* Prevent certain problems with form controls */
+	position:fixed;
+	z-index:10; /* Prevent certain problems with form controls */
 }
 html>body #content-wrap {
-  height:100%; /* 100 % height */
+	height:100%;
 }
 html>body #contenu {
-  padding:125px 1em 0 1em; /* 6em = height of #header and #footer + 1em, 1em = give the content some breathing space */
+	padding:125px 1em 0 1em; /* top : height(#bandeau) + un peu d'espace (5px) */
 }
 #formlogin
 {
 	position: absolute;
-	top: 120px;
+	top: 120px; /* height(#bandeau) */
 }
 #pieddepage {
-  width:100%;
-  height:3em;
+	width:100%;
+	height:3em;
 }
 html>body #pieddepage {
-  position:fixed;
-  bottom:0;
-  z-index:10; /* Prevent certain problems with form controls */
+	position:fixed;
+	bottom:0;
+	z-index:10; /* Prevent certain problems with form controls */
 }
 
 /* Détails */
-
+body
+{
+	margin: 0;
+	padding: 0;
+	color: black;
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+}
 #contenu
 {
 	margin: 0 0 1px 228px;
@@ -63,14 +70,7 @@ html>body #pieddepage {
 	border-top-style: solid;
 	border-top-width: 1px;
 }
-body
-{
-	margin: 0;
-	padding: 0;
-	color: black;
-	font-family: Verdana,Tahoma,Arial,sans-serif;
-	font-size: 12px;
-}
+
 h1
 {
 	font-size: 11px;
@@ -141,12 +141,6 @@ form
 	padding: 2px;
 	margin: 3px 0 20px 3px;
 }
-.breve_separateur
-{
-	padding: 0 0 0 70px;
-	margin: 5px auto;
-	display: block;
-}
 .btn_ok 
 { 
 	background-color: rgb(148,3,32);
@@ -160,34 +154,10 @@ form
 	margin: 5px;
 	padding: 0;
 }
-.news_texte
-{
-	font-style: normal;
-	font-weight: normal;
-	color: black;
-	background-color: rgb(255,245,213);
-	margin: 0 0 0 70px;
-	padding: 3px;
-}
 .touchesF
 {
 	font-weight: bold;
 	color: rgb(153,51,51);
-}
-#test{
-	position: relative;
-	height: 110px;
-}
-#bandeau-logo
-{
-	position: absolute;
-	background-image: url('images/login-haut-gauche.gif');
-	background-repeat: no-repeat;
-	background-position: 0 0;
-  top:0;
-  left:0;
-	height: 120px; /* hauteur de #bandeau */
-	width: 228px;
 }
 #logo
 {
@@ -195,13 +165,24 @@ form
 	top: 55px;
 	left: 90px;
 }
-#titre
+#bandeau h1
 {
 	position: absolute;
 	padding-top: 98px;
 	margin-left: 232px;
 	font-family: Arial,sans-serif;
 	font-stretch: ultra-expanded;
+}
+#bandeau div
+{
+	position: absolute;
+	background-image: url('images/login-haut-gauche.gif');
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	top:0;
+	left:0;
+	height: 120px; /* hauteur de #bandeau */
+	width: 228px;
 }
 #formations
 {
@@ -254,6 +235,22 @@ form
 	background-image: url("images/news.gif");
 	background-repeat: no-repeat;
 }
+.breve-centered
+{
+	padding: 0 0 0 70px;
+	margin: 5px auto;
+	display: block;
+	text-align: center;
+}
+.news-texte
+{
+	font-style: normal;
+	font-weight: normal;
+	color: black;
+	background-color: rgb(255,245,213);
+	margin: 0 0 0 70px;
+	padding: 10px;
+}
 #ressources
 {
 	background-image: url("images/ressources.gif");
@@ -268,12 +265,10 @@ form
 {
 	background-color: rgb(179,165,138);
 }
-#ressources p, #ressources ul, #adresses p, #actus p, #actus div
-{
-	margin: 7px 0 7px 70px;
-}
 #ressources a
 {
+	display: block;
+	margin: 4px 0 4px 70px;
 	color: rgb(153,102,51);
 	font-size: 12px;
 	font-weight: normal;

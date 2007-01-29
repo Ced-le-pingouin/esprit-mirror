@@ -20,10 +20,10 @@
 DROP TABLE IF EXISTS `Accueil`;
 CREATE TABLE `Accueil` (
   `Id` smallint(5) unsigned NOT NULL auto_increment,
-  `TypeContenu` enum('avert','texte','breve','lien') NOT NULL default 'texte',
+  `TypeContenu` enum('avert','texte','breve','lien','titre_breves','titre_liens') NOT NULL default 'texte',
   `Texte` text,
   `Lien` varchar(200) default NULL,
-  `TypeLien` enum('new','page','popup','inactif') NOT NULL default 'popup',
+  `TypeLien` enum('actuelle','nouvelle','popup','inactif') NOT NULL default 'popup',
   `DateDeb` date default NULL,
   `DateFin` date default NULL,
   `Visible` tinyint(1) NOT NULL default '1',

@@ -24,8 +24,8 @@ LOCK TABLES `Accueil` WRITE;
 INSERT INTO `Accueil` VALUES (1,'texte','Bienvenue dans la plate-forme Esprit !\r\n\r\nEsprit est une plateforme de formation à distance qui permet aux étudiants de réaliser des activités d\'apprentissage, seuls ou en petits groupes, sous la supervision de tuteurs en ligne.\r\n',NULL,1,NULL,NULL,1,1,'2006-11-29','2006-11-29');
 INSERT INTO `Accueil` VALUES (2,'breve','La version 2.1 d\'Esprit est disponible sur le site de développement \r\n[https://sourcesup.cru.fr/frs/?group_id=204 SourceSup].',NULL,1,'2006-11-29','2007-01-31',1,1,'2006-11-29','2006-11-29');
 INSERT INTO `Accueil` VALUES (3,'breve','La version 2.2 d\'Esprit offrira une page d\'accueil améliorée !',NULL,1,'2006-11-30','2007-01-31',1,2,'2006-11-29','2006-11-29');
-INSERT INTO `Accueil` VALUES (4,'lien','La plate-forme Esprit de Mons','http://ute2.umh.ac.be/esprit/login-index.php','popup',NULL,NULL,1,1,'2006-11-29','2006-11-29');
-INSERT INTO `Accueil` VALUES (5,'lien','La plate-forme de test des développements','http://ute.umh.ac.be/esprit_dev/login.php','popup',NULL,NULL,1,2,'2006-11-29','2006-11-29');
+INSERT INTO `Accueil` VALUES (4,'lien','La plate-forme Esprit de Mons','http://ute2.umh.ac.be/esprit/login-index.php','nouvelle',NULL,NULL,1,1,'2006-11-29','2006-11-29');
+INSERT INTO `Accueil` VALUES (5,'lien','La plate-forme de test des développements','http://ute.umh.ac.be/esprit_dev/login.php','nouvelle',NULL,NULL,1,2,'2006-11-29','2006-11-29');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Accueil` ENABLE KEYS */;
 
