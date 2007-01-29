@@ -7,6 +7,7 @@ A. Installation (liste esprit-admin)
 ======================================
 
 1. Où trouver la dernière version installable d'Esprit ?
+
 R : le référentiel de développement d'Esprit est hébergé par la plateforme 
 SourceSup du CRU (Comité Réseau des Universités). La page d'accueil du projet 
 est http://sourcesup.cru.fr/projects/esprit/.
@@ -16,6 +17,7 @@ http://sourcesup.cru.fr/frs/?group_id=204
 
 
 2. Où trouver la version en développement de la plate-forme ?
+
 R : dans le référentiel Subversion (SVN) du projet. Pour la télécharger,
 il faut avoir un client subversion. La ligne de commande est :
   svn checkout svn://subversion.cru.fr:/esprit dossier_local
@@ -24,6 +26,7 @@ ou
 
 
 3. Comment installer les modules Awareness et Chat ?
+
 Techniquement, ces deux modules sont écrits en Java, et fonctionnent en mode
 client/serveur, indépendamment du Web.
 Cela veut dire qu'ils nécessitent la présence d'une machine virtuelle Java 
@@ -85,33 +88,23 @@ B. Administration (liste esprit-admin)
 
 1. Comment attribuer le rôle de responsable de plate-forme à 
 plusieurs personnes ?
-R : pour le moment ce n'est pas possible par l'interface web.
-Actuellement, il faut avoir les droits de manipulation de la base MySQL et
-ajouter directement l'IdPers de la personne voulue dans la table Projet_Admin.
-Cet IdPers est défini dans la table Personne.
+
+R : Cela se fait par le menu Outils > Permissions, puis l'onglet "Admin".
+Évidemment, c'est accessible uniquement à l'administrateur en titre.
 
 
 2. Comment importer une liste de personnes à inscrire ?
-R : Il existe un canevas Excel, disponible à partir de la page d'accueil de 
-la plate-forme et intitulé inscriptions2.xls, ou à partir de la racine
-de l'archive : ./src/themes/esprit/login/fichiers/inscriptions2.xls 
-Cette fiche doit être remplie par le responsable pédagogique (prof ou 
-secrétariat), puis envoyée à l'administrateur.
 
-Ensuite, l'administrateur doit effectuer les manipulations suivantes :
-- le transformer en fichier csv (avec Excel ou OpenOffice Calc... ) 
-- le déposer dans /setup/inscriptions
-- éliminer les lignes inutiles pour ne garder que les intitulés de colonnes et les données
-- le convertir en fichier sql grâce au fichier script 
-/setup/inscriptions/inscription.php
-- l'insérer dans la table "Personne" en ligne de commande mysql ou avec phpMyAdmin.
-
-Attention : il n'y a pas de vérification de doublon : dans la cas où le nom et 
-le prénom d'une personne sont déjà utilisées, elle sera re-créée.
+R : Pour l'administrateur, c'est possible à partir du menu standard :
+Outils > Inscription.
+La fenêtre pop-up "Inscription" comporte un lien "importer une liste" 
+qui ouvre une nouvelle fenêtre "Importation d'utilisateurs".
+L'administrateur peut télécharger un canevas au format xls, csv ou ods.
 
 
-3. Dans le plan d'une formation, les noms des différents niveaux ne correspondent
-pas aux noms des tables. Comment s'y retrouver ?
+3. Dans le plan d'une formation, les noms des différents niveaux 
+ne correspondent pas aux noms des tables. Comment s'y retrouver ?
+
 R : Comme d'habitude, ce sont des raisons historiques qui expliquent cette 
 particularité. Dans les évolutions d'Esprit, les noms des niveaux du plan ont
 évolué, mais les noms utilisés dans le code (fichiers, fonctions...) et les 
@@ -134,6 +127,7 @@ C. Utilisation (liste esprit-users)
 1. Comment déposer une archive de documents structurés en liens de telle
 façon que le fichier index soit bien proposé à l'affichage par Esprit 
 (pour HotPotatoes par exemple) ?
+
 R : Actuellement, il faut envoyer un fichier d'archives compressé (.zip) qui 
 contienne le fichier index *à la racine de l'archive obligatoirement*.
 Le résultat dépend de la manière de créer le fichier zippé. 
@@ -155,6 +149,7 @@ http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=915&group_id=204&atid=
 2. Comment fait-on le ménage dans ces documents ?
 (comment les supprimer du serveur, les déplacer pour les remonter à la
 racine par ex) ?
+
 R : Malheureusement, il n'y a pas d'autre moyen pour le moment que de le
 faire directement dans le système de fichiers du serveur.
 Dans le futur, il sera possible de le faire par l'interface web : voir 

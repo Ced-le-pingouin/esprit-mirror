@@ -10,19 +10,15 @@ PRÉREQUIS
 ----------------------------------------------------------------------
 CONFIGURATION DU SERVEUR WEB
 
-Le répertoire src/ d'Esprit doit être placé sur le serveur web.  Le
-serveur web doit pouvoir accèder à ces fichiers, il peut donc être
-nécessaire de changer leur propriétaire à "nobody" ou "www-data" selon
-la configuration du serveur.
-
-Dans le cas où les fichiers seraient placés hors du serveur, il est
-nécessaire d'utiliser un Virtual Host. Un lien symbolique ne suffit
-pas. Voir l'ANNEXE A ci-dessous.
+Le répertoire src/ d'Esprit doit être accessible au serveur web, 
+éventuellement par l'intermédiaire d'un lien symbolique. 
+Il peut donc être nécessaire de changer leur propriétaire à "nobody" ou 
+"www-data" selon la configuration du serveur.
 
 ----------------------------------------------------------------------
 INSTALLATION AUTOMATIQUE
 
-Rendez-vous avec  votre navigateur à l'adresse : 
+Rendez-vous avec votre navigateur à l'adresse : 
 http://mon_site/repertoire_esprit/install/install.php
 Suivez la procédure d'installation.
 
@@ -51,13 +47,17 @@ d'Esprit (src/install/sql), dans l'ordre :
 (select/insert/update/delete/lock devraient suffire).
 
 4) faire une copie du fichier ./setup/config.inc.dist sous le nom
-"./src/include/config.inc", et modifier les variables utilisateur et 
-mot de passe pour permettre l'accès à la BdD esprit, en utilisant 
-les valeurs définies en 3) :
+"./src/include/config.inc".
+
+Modifier le chemin système ($g_sCheminRacine) et l'URL racine 
+($g_sCheminRacineWeb) d'Esprit.
+
+Puis modifier les variables utilisateur et mot de passe pour permettre 
+l'accès à la BdD esprit, en utilisant les valeurs définies en 3) :
   $g_sNomProprietaire = "utilisateur";
   $g_sMotDePasse = "mot_de_passe";                  
 
-Il y a une deuxième mention d'un couple uitilisateur/mot de passe dans
+Il y a une deuxième mention d'un couple utilisateur/mot de passe dans
 ce fichier : il s'agit de l'accès root, mais il n'est pas nécessaire
 sauf si on utilise un outil particulier appelé "transfert", dans la
 plate-forme.
@@ -74,33 +74,3 @@ mot de passe "mdp".
 7) une fois entré en admin, on peut créer une formation de test, en
 cliquant sur "Outils", qui se trouve dans la barre inférieure du site,
 puis en se servant de l'outil de conception de cours eConcept.
-
-
-
-----------------------------------------------------------------------
-ANNEXE A : VIRTUAL HOST
-
-Pour établir un virtual host qui déclarerait le répertoire
-/home/esprit/src comme serveur autonome nommé esprit.domaine.org, 
-on peut suivre la procédure suivante.
-
- - Insérer à la fin du fichier httpd.conf d'Apache le bloc :
-
-  NameVirtualHost * 
-  <VirtualHost *>
-      DocumentRoot /var/www/
-      ServerName www.domaine.org
-  </VirtualHost>
-  <VirtualHost *>
-  #    ServerAdmin webmaster@host.domaine.org
-      DocumentRoot /home/esprit/src/
-      ServerName esprit.domaine.org
-  #    ErrorLog logs/host.domaine.org-error.log
-  </VirtualHost>
-
- - Déclarer un alias esprit.domaine.org vers la machine réelle.
-Soit en modifiant les fichiers hosts des machines clientes concernées 
-pour y insérer "XXX.XXX.XXX.XXX esprit esprit.domaine.org".
-Soit en modifiant le serveur DNS pour ajouter un alias.
-
- - Redémarrer le serveur Apache.

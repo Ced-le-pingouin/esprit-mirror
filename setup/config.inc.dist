@@ -3,23 +3,29 @@
 /*
 ** Fichier ................: confic.inc.dist
 ** Description ............:
-** Date de crÈation .......:
-** DerniËre modification ..: 22/02/2005
+** Date de cr√©ation .......:
+** Derni√®re modification ..: 29/01/2007
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
 **
-** UnitÈ de Technologie de l'Education
+** Unit√© de Technologie de l'Education
 ** 18, Place du Parc
 ** 7000 MONS
 */
 
-// {{{ Base de donnÈes
-$g_sNomBdd = "base_de_donnees";							// Nom de la base de donnÈes
-$g_sNomServeur = "localhost";							// Nom du serveur
-$g_sNomProprietaire = "utilisateur";					// Nom du propriÈtaire de la base de donnÈes MySQL
-$g_sMotDePasse = "mot_de_passe";						// Mot de passe de la base de donnÈes MySQL
+// {{{ Chemins des fichiers
+$g_sCheminRacine = ''; // Chemin r√©el des fichiers d'Esprit
+$g_sCheminRacineWeb = ''; // Adresse des fichiers sur le serveur web
 // }}}
 
-// {{{ Informations BdD nÈcessaires au transfert de formations entre deux plateformes
+
+// {{{ Base de donn√©es
+$g_sNomBdd = "base_de_donnees";							// Nom de la base de donn√©es
+$g_sNomServeur = "localhost";							// Nom du serveur
+$g_sNomProprietaire = "utilisateur";					// Nom du propri√©taire de la base de donn√©es MySQL
+$g_sMotDePasse = "mot_de_passe";						// Mot de passe de la base de donn√©es MySQL
+// }}}
+
+// {{{ Informations BdD n√©cessaires au transfert de formations entre deux plateformes
 $g_sNomServeurTransfert = "localhost";
 $g_sNomProprietaireTransfert = "root";
 $g_sMotDePasseTransfert = "mot_de_passe_root";
@@ -30,17 +36,17 @@ $g_sNomCookie = "{$g_sNomProprietaire}_{$g_sNomBdd}";	// Nom du cookie
 // }}}
 
 // {{{ Adresse courrielle
-//     Cette adresse courriel sert, dans le cas d'un problËme ou autre
-//     (forum), ‡ envoyer un message aux administrateurs de la plate-forme
+//     Cette adresse courriel sert, dans le cas d'un probl√®me ou autre
+//     (forum), √† envoyer un message aux administrateurs de la plate-forme
 define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","ute@umh.ac.be");
 // }}}
 
 // {{{ INTERNATIONALISATION
-define("ACTIVER_RECREATION_FICHIER_I18N",FALSE);		// CrÈer ou pas le fichier de dÈfinitions pour l'internationalisation
+define("ACTIVER_RECREATION_FICHIER_I18N",FALSE);		// Cr√©er ou pas le fichier de d√©finitions pour l'internationalisation
 define("I18N","i18n_fr");								// Nom de la table contenant toutes les traductions de la plate-forme
 // }}}
 
-// {{{ ThËmes
+// {{{ Th√®mes
 define("THEME","esprit");
 // }}}
 

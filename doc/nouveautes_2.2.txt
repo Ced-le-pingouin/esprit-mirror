@@ -1,0 +1,49 @@
+Documentation des nouvelles fonctionnalités de la version 2.2
+
+
+** Délégation du rôle d'administrateur
+**************************************
+L'administrateur de plate-forme peut désormais déléguer son rôle à tout
+utilisateur enregistré. L'interface est accessible par le menu 
+Outils > Permissions, onglet Admin.
+La présentation en deux colonnes reprend celle de l'inscription d'un 
+utilisateur à une formation, mais le rôle cible est fixé à "Administrateur".
+
+
+** Importation d'une liste d'utilisateurs
+*****************************************
+La saisie manuelle des utilisateurs à inscrire peut maintenant être remplacée
+par l'importation d'une feuille de tableur contenant une liste bien formatée.
+L'interface est accessible via le menu
+Outils > Inscription >  lien "Importer une liste".
+La fenêtre pop-up permet de télécharger un canevas pour tableur
+(formats Excel .xls, OpenOffice Calc .ods ou standard .csv), et d'importer
+la feuille de calcul remplie, en sélectionnant un fichier local.
+
+En cas de doublon, le pseudo doublonné n'est pas importé, mais le fichier
+est traité jusqu'à la fin, et un message d'erreur est retourné à 
+l'administrateur.
+Un message final indique le nombre d'inscriptions réussies et le nombre 
+de lignes traitées.
+
+
+** Gestion de la page d'accueil
+*******************************
+Un mini-gestionnaire de contenu est désormais intégré à la page d'accueil.
+Les quatre zones modifiables sont :
+- l'avertissement (optionnel), dans la colonne d'identification, juste 
+  sous le champ Mot de passe ;
+- le texte de présentation, dans la colonne gauche de la zone principale ;
+- les brèves, en haut de la colonne droite de la zone principale ;
+- les liens, situés sous les brèves.
+
+La gestion des informations d'accueil est réservée au rôle d'administrateur
+de la plate-forme.
+Une fois connecté, il peut utiliser l'interface Outils > Page d'accueil 
+(dernière position), qui ouvre une fenêtre pop-up intitulée
+"Gestion de la page d'accueil".
+Les quatre onglets " Avertissement | Texte d'accueil | Liens | Brèves "
+correspondent aux quatre zones modifiables.
+Dans la plupart des cas, les contenus sont modifiés via l'éditeur HTML
+intégré.
+

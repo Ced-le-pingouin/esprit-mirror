@@ -61,6 +61,7 @@ if (!function_exists("file_put_contents"))
 	}
 }
 
+$nbsteps=5;
 $step=1;
 if (isset($_REQUEST['step']) && $_REQUEST['step']) {
     $step=$_REQUEST['step'];
@@ -77,7 +78,7 @@ if (isset($_REQUEST['step']) && $_REQUEST['step']) {
 	}
 }
 ?>
-		<h2>Étape <?php echo $step ?></h2>
+		<h2>Étape <?php echo $step ?> / <?php echo $nbsteps ?></h2>
 
 <?php
 switch ($step) {
@@ -265,7 +266,7 @@ case 5:
 <p>Vous pouvez désormais vous rendre sur votre <a href="<?php echo $DirUp ?>">nouvelle interface d'Esprit</a>. Le login par défaut est <em>admin</em>, et le mot de passe <em>mdp</em>.
 </p>
 
-<p>Une fois connecté en tant qu'<em>admin</em>, vous pouvez créer une formation de test, en cliquant sur <em>Outils</em> qui se trouve dans la barre inférieure du site, puis en vous choisissant l'outil de conception de cours eConcept.
+<p>Une fois connecté en tant qu'<em>admin</em>, vous pouvez créer une formation de test, en cliquant sur <em>Outils</em> qui se trouve dans la barre inférieure du site, puis en choisissant l'outil de conception de cours eConcept.
 </p>
 
 

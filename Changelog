@@ -1,8 +1,29 @@
 Esprit  Changelog 
 
-See Changelog-fr for details.
 
-v. 2.0  2006-05-17 : first free release
+v. 2.2  2007-02- 
+- Java tools code integration (awareness, chat), both client and server sides
+- homepage CMS : welcome text, links, news...
+- batch users input, from a spreadsheet file (xls, ods, csv)
+- sharing of admin role
+- courses export into SCORM 2004 packages
+- automatic correction for MCQ online activities
+- scores managing interface
+- copy / move of course items (same course or other courses)
 
-v. 2.1  2006-12-08 : multilingual release
 
+v. 2.1  2006-12-08 : "multilingual" release (r.260)
+- global UTF-8 display
+- virtual keyboards for Cyrillic and Arabic alphabets
+- Pinyin input method 
+- homepage: HTML/CSS revision, frames removed
+- online activities (previously forms): bugfixes, source code cleanup
+- copy / move of course items: no advanced UI, but an available page: 
+  src/admin/copieelement/copie_element.php
+- PHP script for complete course export:  src/install/sql/export/export.php.
+- SQL scripts for DB structure updates: src/install/sql/mises_a_jour
+
+
+v. 2.0  2006-05-17 : first free release (r.66)
+- license notification (GPL v2)
+- web installer
