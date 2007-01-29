@@ -66,21 +66,10 @@ if (!empty($_POST['modifier']))
 				$oAccueil->setBreve($_POST['brevesEditeur'],$_POST['dateDeb'],$_POST['dateFin'],1,$_POST['ordre'],$_POST['editBreve']);
 			}
 			break;
+		case "titre" :
+			$oAccueil->setTitre($_POST['titre'],$_POST['texte']);
+			break;
 	}
-	/*
-	exit("<html>\n"
-		 ."<head>\n"
-		 ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
-		 ."<script type=\"text/javascript\" language=\"javascript\">\n"
-		 ."<!--\n"
-		 ."function init() { top.close(); }\n"
-		 ."//-->\n"
-		 ."</script>\n"
-		 ."</head>\n"
-		 ."<body onload=\"init()\"></body>\n"
-		 ."</html>\n"
-		 );
-	*/
 }
 
 // ---------------------
@@ -94,6 +83,11 @@ if (empty($_REQUEST['onglet'])) {
 } else {
 	$oTpl->remplacer("{onglet}",$_REQUEST['onglet']);
 }
+
+// Titres (brèves & liens)
+$titres = $oAccueil->getTitres();
+$oTpl->remplacer('{breves->titre}',$titres['breves']);
+$oTpl->remplacer('{liens->titre}',$titres['liens']);
 
 // Avertissement
 $oBlock = new TPL_Block("BLOCK_AVERTISSEMENT",$oTpl);
@@ -124,8 +118,8 @@ if ($_REQUEST['onglet']==='liens') {
 		$oBlock2->remplacer("{lien_text}",emb_htmlentities($lien->Texte));
 		$oBlock2->remplacer("{lien_lien}",emb_htmlentities($lien->Lien));
 		$oBlock2->remplacer("{sel_".$lien->TypeLien."}",' selected="1"');
-		$oBlock2->remplacer("{sel_frame}",'');
-		$oBlock2->remplacer("{sel_page}",'');
+		$oBlock2->remplacer("{sel_actuelle}",'');
+		$oBlock2->remplacer("{sel_nouvelle}",'');
 		$oBlock2->remplacer("{sel_popup}",'');
 		$oBlock2->remplacer("{sel_inactif}",'');
 		$iNumLiens = $oAccueil->getNumByType('lien');

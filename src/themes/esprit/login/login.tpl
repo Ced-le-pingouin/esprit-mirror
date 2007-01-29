@@ -79,7 +79,7 @@ function GPL()
 	</td>
 	<td valign="top">
 	<div id="breves">
-		<h4>Les brèves</h4>
+		<h4>{breves->titre}</h4>
 [BLOCK_BREVE+]
 	<div class="news-texte">{breve->info}</div>
 	<img src="theme://login/images/separateur_news.gif" class="breve-centered" width="178" height="3" alt=" - - - - - - - - - - - - - - " />
@@ -87,7 +87,7 @@ function GPL()
 	</div>
 
 	<div id="ressources">
-		<h4>Les liens</h4>
+		<h4>{liens->titre}</h4>
 [BLOCK_LIEN+]
 	<p>{lien->info}</p>
 [BLOCK_LIEN-]

@@ -117,8 +117,21 @@ else
 }
 $oBlocInfosPlateforme->afficher();
 
+// ajouts des textes de présentation
+$oBlocTexte = new TPL_Block("BLOCK_TEXTE",$oTpl);
+$oBlocTexte->beginLoop();
+$Texte = $oAccueil->getTexte($Visible=1);
+if ($Texte) {
+	$oBlocTexte->nextLoop();
+	$oBlocTexte->remplacer("{texte->info}",convertBaliseMetaVersHtml($Texte));
+	$oBlocTexte->afficher();
+} 
+else $oBlocTexte->effacer();
+
+
 // ajout des breves
-$ladate = date("Y-m-d");
+$titres = $oAccueil->getTitres();
+$oTpl->remplacer('{breves->titre}',$titres['breves']);
 $oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
 $oBlocBreve->beginLoop();
 $breves = $oAccueil->getBreves($Visible=1, $Date=1);
@@ -130,7 +143,9 @@ if ($breves) {
 		$oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
 	}
 	if (count($breves)>MAX_BREVES) {
-		$oBlocBreve->ajouter('<a href="javascript: void(0);" onclick="window.open('."'login.php?breves=all','Toutes les breves','width=400,height=500,menubar=no,statusbar=no,resizable=yes,scrollbars=yes'".')" class="breve-centered">Toutes les brèves...</a>');
+		$oBlocBreve->ajouter('<a href="javascript: void(0);" onclick="window.open('
+		                     ."'login.php?breves=all','Toutes les breves','width=400,height=500,menubar=no,statusbar=no,resizable=yes,scrollbars=yes'"
+	                         .')" class="breve-centered">Toutes les brèves...</a>');
 	}
 	$oBlocBreve->afficher(); 
 } else {
@@ -138,19 +153,8 @@ if ($breves) {
 }
 
 
-// ajouts des textes de présentation
-$oBlocTexte = new TPL_Block("BLOCK_TEXTE",$oTpl);
-$oBlocTexte->beginLoop();
-$Texte  = $oAccueil->getTexte($Visible=1);
-if($Texte){
-	$oBlocTexte->nextLoop();
-	$oBlocTexte->remplacer("{texte->info}",convertBaliseMetaVersHtml($Texte));
-	$oBlocTexte->afficher();
-} 
-else $oBlocTexte->effacer();
-
-
 // ajout des liens
+$oTpl->remplacer('{liens->titre}',$titres['liens']);
 $oBlocLien = new TPL_Block("BLOCK_LIEN",$oTpl);
 $oBlocLien->beginLoop();
 $liens = $oAccueil->getLiens($Visible=1);

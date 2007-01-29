@@ -160,6 +160,21 @@ class CAccueil
 	}
 
 	/**
+	 * Renvoie les titres des sections (breves, liens) de la page d'accueil
+	 */
+	function getTitres ( )
+	{
+		$titres = array();
+		$hResult = $this->oBdd->executerRequete("SELECT TypeContenu,Texte FROM Accueil WHERE TypeContenu IN ('titre_breves','titre_liens')");
+		while ($e = $this->oBdd->retEnregSuiv($hResult)) {
+			$titres[substr($e->TypeContenu,6)] = $e->Texte;
+		}
+		if (empty($titres['breves'])) $titres['breves'] = 'Les brèves';
+		if (empty($titres['liens']))  $titres['liens']  = 'Les liens';
+		return $titres;
+	}
+
+	/**
 	 * Renvoie le nombre d'item (avertissement, texte, breve, lien) du type donné
 	 * @param type Le type des items.
 	 */
@@ -229,6 +244,27 @@ class CAccueil
 										 ." SET TypeContenu='lien', Texte=$txt, Lien=$lien, TypeLien=$typeLien,"
 										 ." Visible=$visible, Ordre=$ordre, DateEdition=CURRENT_DATE()"
 										 ." WHERE Id=$id");
+		}
+	}
+
+	/**
+	 * Affecte le titre d'une rubrique (breves, liens) de la page d'accueil
+	 * @param rubrique Le nom de la rubrique (breves, liens).
+	 * @param texte Le nouveau titre.
+	 */
+	function setTitre ($rubrique, $texte )
+	{
+		$hResult = $this->oBdd->executerRequete("SELECT count(Id) as num FROM Accueil WHERE TypeContenu='titre_$rubrique'");
+		$e = $this->oBdd->retEnregSuiv($hResult);
+		if ($e->num > 0) {
+			// màj
+			error_log('màj');
+			$this->oBdd->executerRequete("UPDATE Accueil "
+										 ." SET Texte='".MySQLEscapeString($texte)
+										 ."' WHERE TypeContenu='titre_$rubrique'");
+		} else {
+			$this->oBdd->executerRequete("INSERT INTO Accueil (TypeContenu,Texte) "
+										 ." VALUES('titre_$rubrique','".MySQLEscapeString($texte)."')");
 		}
 	}
 
