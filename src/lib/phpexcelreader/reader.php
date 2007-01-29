@@ -181,35 +181,30 @@ class Spreadsheet_Excel_Reader {
 	}
         function readODS($sFileName) {		
 		if(!function_exists('zip_open'))
-			{
+		{
 			die('NO ZIP FUNCTIONS DETECTED. Do you have the PECL ZIP extensions loaded?');
-			}
+		}
 		if($zip = zip_open("$sFileName"))
                 {
 			while ($zip_entry = zip_read($zip))
-				{
+			{
 				$filename = zip_entry_name($zip_entry);
-                              
 				if(zip_entry_name($zip_entry) == 'content.xml' and zip_entry_open($zip, $zip_entry, "r"))
-					{                                        
+				{                                        
 					$content = zip_entry_read($zip_entry, zip_entry_filesize($zip_entry));
-                                      
-					zip_entry_close($zip_entry);					}
-		
+					zip_entry_close($zip_entry);
 				}
+			}
 			if(isset($content))
-				{
-				  
-                              
+			{
 				if($save == false)
-					{ 
-                                          $xml_parser = new xml($this->sheets);
-                                          $xml_parser->parse($content);
-					  $this->sheets[0]['cells'] = $xml_parser->getTableau();                          
-                                          $this->sheets[0]['numRows'] = $xml_parser->getNumRows();
-              
-					}	
-				}	
+				{
+					$xml_parser = new xml($this->sheets);
+					$xml_parser->parse($content);
+					$this->sheets[0]['cells'] = $xml_parser->getTableau();
+					$this->sheets[0]['numRows'] = $xml_parser->getNumRows();
+				}
+			}
          	}
 	}
 
@@ -402,15 +397,15 @@ class Spreadsheet_Excel_Reader {
 					if (array_key_exists($indexCode, $this->dateFormats)) {
 						//echo "isdate ".$dateFormats[$indexCode];
 						$this->formatRecords['xfrecords'][] = array(
-																	'type' => 'date',
-																	'format' => $this->dateFormats[$indexCode]
-																	);
+							'type' => 'date',
+							'format' => $this->dateFormats[$indexCode]
+							);
 					} elseif (array_key_exists($indexCode, $this->numberFormats)) {
 						//echo "isnumber ".$this->numberFormats[$indexCode];
 						$this->formatRecords['xfrecords'][] = array(
-																	'type' => 'number',
-																	'format' => $this->numberFormats[$indexCode]
-																	);
+							'type' => 'number',
+							'format' => $this->numberFormats[$indexCode]
+							);
 					} else {
 						$isdate = FALSE;
 						if ($indexCode > 0) {
@@ -418,7 +413,7 @@ class Spreadsheet_Excel_Reader {
 								$formatstr = $this->formatRecords[$indexCode];
 							//echo '.other.';
 							//echo "\ndate-time=$formatstr=\n";
-							if ($formatstr)
+							if (!empty($formatstr))
 								if (preg_match("/[^hmsday\/\-:\s]/i", $formatstr) == 0) { // found day and time format
 									$isdate = TRUE;
 									$formatstr = str_replace('mm', 'i', $formatstr);
@@ -429,15 +424,15 @@ class Spreadsheet_Excel_Reader {
 
 						if ($isdate){
 							$this->formatRecords['xfrecords'][] = array(
-																		'type' => 'date',
-																		'format' => $formatstr,
-																		);
+								'type' => 'date',
+								'format' => $formatstr,
+								);
 						} else {
 							$this->formatRecords['xfrecords'][] = array(
-										'type' => 'other',
-										'format' => '',
-										'code' => $indexCode
-										);
+								'type' => 'other',
+								'format' => '',
+								'code' => $indexCode
+								);
 						}
 					}
 					//echo "\n";
@@ -463,9 +458,9 @@ class Spreadsheet_Excel_Reader {
 					} elseif ($version == Spreadsheet_Excel_Reader_BIFF7){
 						$rec_name	 = substr($this->data, $pos+11, $rec_length);
 					}
-					$this->boundsheets[] = array('name'=>$rec_name,
-												 'offset'=>$rec_offset);
-
+					$this->boundsheets[] = array(
+						'name'=>$rec_name,
+						'offset'=>$rec_offset);
 					break;
 			}
 
@@ -816,8 +811,6 @@ class Spreadsheet_Excel_Reader {
 		}
 		return $value;
 	}
-
-
 }
 
 
@@ -831,90 +824,58 @@ class xml  {
    var $l=6;
    var $numRows;
    var $tableau;
-   function xml()
-   {
 
-       $this->parser = xml_parser_create();
+	function xml()
+	{
+		$this->parser = xml_parser_create();
+		xml_set_object($this->parser, $this);
+		xml_set_element_handler($this->parser, "xml_open", "xml_close");
+		xml_set_character_data_handler($this->parser, "xml_data");
+	}
 
-       xml_set_object($this->parser, $this);
-       xml_set_element_handler($this->parser, "xml_open", "xml_close");
-       xml_set_character_data_handler($this->parser, "xml_data");
-   }
-
-   function parse($data)
-   { 
-     if(!xml_parse($this->parser, $data)){
-         die(sprintf("Une erreur XML %s s'est produite à la ligne %d et à la colonne %d.",
-      xml_error_string(xml_get_error_code($xml_parser)),
-      xml_get_current_line_number($xml_parser),
-      xml_get_current_column_number($xml_parser)));
-     }
-   }
-
+	function parse($data)
+	{ 
+		if(!xml_parse($this->parser, $data)){
+			die(sprintf("Une erreur XML %s s'est produite à la ligne %d et à la colonne %d.",
+			xml_error_string(xml_get_error_code($xml_parser)),
+			xml_get_current_line_number($xml_parser),
+			xml_get_current_column_number($xml_parser)));
+		}
+	}
    
-   function xml_open($parser, $name){
+	function xml_open($parser, $name){
+		if($name == "TABLE:TABLE-ROW"){
+			$this->j++;
+		}
+		$this->nb++;
+	}
 
+	function xml_close($parser, $name){
+		$this->nb--;
+		if($name == "TABLE:TABLE-ROW" && $this->j > 5)
+		{
+			$this->col = 1;   
+			$this->l++;
+		}
+	}
 
-if($name == "TABLE:TABLE-ROW"){
+	function xml_data($parser, $data){
+		if($data!="NULL" && $this->j > 5 && $this->nb > 5){  
+			$this->tableau[$this->l][$this->col] = $data;
+			$this->col++;
+			$this->numRows=$this->l;
+		}
+	}
 
-   
-   $this->j++;
-}
-    $this->nb++;
-}
-
-
-
-function xml_close($parser, $name){
-
-
-    $this->nb--;
+	function getTableau(){
+		return $this->tableau;
+	}
   
-
-if($name == "TABLE:TABLE-ROW" && $this->j > 5)
-{
- 
-   $this->col = 1;   
-   $this->l++;
-
-
-}
-}
-
-function xml_data($parser, $data){
- 
-
-    if($data!="NULL" && $this->j > 5 && $this->nb > 5){  
-      $this->tableau[$this->l][$this->col] = $data;
-      $this->col++;
-      $this->numRows=$this->l;
-     
-
-   }
-
-
-}
-
- function getTableau(){
-   
-   return $this->tableau;
-   
- }
-  
-function getNumRows(){
- 
-   return  ++$this->numRows;
-   
- }
-
+	function getNumRows(){
+		return  ++$this->numRows;
+	}
 
 } // fin de la classe xml
-
-
-
-
-
-
 
 
 ?>
