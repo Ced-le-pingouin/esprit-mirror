@@ -3,7 +3,7 @@
 <head>
 <title>Esprit : page d'accueil</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" language="javascript" src="/js/window.js"></script>
+<script type="text/javascript" language="javascript" src="js/window.js"></script>
 <script type="text/javascript" language="javascript" src="themes/commun/js/login.js.php"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
 <script language="javascript" type="text/javascript">
