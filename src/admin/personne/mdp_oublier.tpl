@@ -1,7 +1,7 @@
 [BLOCK_ENTRER_INFORMATIONS+]
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <style type="text/css">
 <!--
@@ -92,6 +92,7 @@ function valider()
 [VAR_ERREUR_ENVOI_COURRIEL-]
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <script type="text/javascript" language="javascript">
 <!--

@@ -85,9 +85,13 @@ if (isset($url_sNomPers) && isset($url_sPrenomPers))
 			
 			if (is_file($sFichierMdp))
 			{
-				chmod($sFichierMdp,0600);
-				$asLignesFichierMdp = file($sFichierMdp);
-				chmod($sFichierMdp,0200);
+				if (!is_readable($sFichierMdp)) {
+					chmod($sFichierMdp,0600);
+					$asLignesFichierMdp = file($sFichierMdp);
+					chmod($sFichierMdp,0200);
+				} else {
+					$asLignesFichierMdp = file($sFichierMdp);
+				}
 			}
 			// }}}
 			
@@ -130,6 +134,8 @@ $oBlocCourrielEnvoyer    = new TPL_Block("BLOCK_COURRIEL_ENVOYER",$oTpl);
 
 if ($iErreur != -1)
 {
+	if (empty($sEmail))
+		$sEmail = '';
 	$oBlocCourrielEnvoyer->remplacer("{personne->email}",$sEmail);
 	$oBlocCourrielEnvoyer->remplacer("{plateforme.nom}",emb_htmlentities($oProjet->retNom()));
 	
