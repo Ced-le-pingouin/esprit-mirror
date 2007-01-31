@@ -77,6 +77,25 @@ else
 	$oBlocErreurLogin->effacer();
 // }}}
 
+// {{{ Le logo local (s'il existe)
+$logos = glob(dir_theme('login/images/logo_local.*',FALSE,TRUE));
+foreach ($logos as $tmplogo) {
+	error_log($tmplogo);
+	if (preg_match('/\.(png|gif|jpg)$/i',$tmplogo,$ext) && is_readable($tmplogo)) {
+		$ext = $ext[1];
+		break;
+	} else {
+		unset($ext);
+	}
+}
+if (isset($ext)) {
+	$oTpl->remplacer("{logo->local}",
+	                 '<img id="logo-local" src="'.dir_theme('login/images/logo_local.',TRUE).$ext.'" border="0" alt="Logo local" />');
+} else {
+	$oTpl->remplacer("{logo->local}",'');
+}
+// }}}
+
 // {{{ Afficher un message d'avertissement
 $oBlocAvertissementLogin->beginLoop();
 $avert = $oAccueil->getAvert($Visible=1);

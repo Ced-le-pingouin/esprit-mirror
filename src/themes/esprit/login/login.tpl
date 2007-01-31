@@ -34,6 +34,7 @@ function GPL()
 <div id="bandeau">
 	<h1>Environnement scénarisé d'apprentissage interactif à distance</h1>
 	<div><img id="logo" src="theme://login/images/esprit.gif" border="0" alt="Esprit" /></div>
+	{logo->local}
 </div>
 <div id="content-wrap">
 <div id="formlogin">
