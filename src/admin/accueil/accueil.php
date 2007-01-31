@@ -148,8 +148,10 @@ $oBlock = new TPL_Block("BLOCK_BREVES",$oTpl);
 if ($_REQUEST['onglet']==='breves') {
 	$oBlock1 = new TPL_Block("BLOCK_LOOP_BREVES",$oBlock);
 	$oBlock2 = new TPL_Block("BLOCK_EDIT_BREVE",$oBlock);
+	$oBlock_titre = new TPL_Block("BLOCK_BREVES_TITRE",$oBlock);
 	if (empty($_REQUEST['selectBreve'])) {
 		$oBlock2->effacer();
+		$oBlock_titre->afficher();
 		$oBlock1->beginLoop();
 		foreach ($oAccueil->getBreves() as $breve) {
 			$oBlock1->nextLoop();
@@ -165,6 +167,7 @@ if ($_REQUEST['onglet']==='breves') {
   <button name="selectBreve" value="-1" type="submit">Editer</button></li>');
 	} else {
 		$oBlock1->effacer();
+		$oBlock_titre->effacer();
 		if ($_REQUEST['selectBreve']=="-1") {
 			$breve->DateDeb = date("Y-m-d");
 			$breve->DateFin = date("Y-m-d", mktime(0,0,0,date("m")+1,date("d"),date("Y")) );

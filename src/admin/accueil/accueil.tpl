@@ -133,8 +133,8 @@ function changed( id ) {
   <label><span>Titre :</span><input type="text" name="texte" value="{lien_text}" /></label>
   <label><span>Lien :</span><input type="text" name="lien" value="{lien_lien}" /></label>
   <label><span>Type :</span><select name="typeLien" size="1">
-	<option{sel_actuelle}>page actuelle</option>
-	<option{sel_nouvelle}>nouvelle page</option>
+	<option{sel_actuelle} value="actuelle">page actuelle</option>
+	<option{sel_nouvelle} value="nouvelle">nouvelle page</option>
 	<option{sel_popup}>popup</option>
 	<option{sel_inactif}>inactif</option>
   </select>
@@ -155,8 +155,8 @@ function changed( id ) {
   <label><span>Titre :</span><input type="text" name="texte" value="" /></label>
   <label><span>Lien :</span><input type="text" name="lien" value="" /></label>
   <label><span>Type :</span><select name="typeLien" size="1">
-	<option>frame</option>
-	<option>page</option>
+	<option value="actuelle">page actuelle</option>
+	<option value="nouvelle">nouvelle page</option>
 	<option selected="1">popup</option>
 	<option>inactif</option>
   </select>
@@ -172,6 +172,7 @@ function changed( id ) {
 [BLOCK_BREVES+]
 <div id="breves">
 <h1>Brèves</h1>
+[BLOCK_BREVES_TITRE+]
   <form name="brevesTitre" id="brevesTitre" action="{self}" method="post">
   <input type="hidden" name="modifier" value="titre" />
   <input type="hidden" name="titre" value="breves" />
@@ -179,6 +180,7 @@ function changed( id ) {
   <label><span>Titre de la rubrique :</span><input type="text" name="texte" value="{breves->titre}" /></label>
   <button name="submit" value="submit" type="submit">Valider</button>
   </form>
+[BLOCK_BREVES_TITRE-]
   <form name="brevesForm" id="brevesForm" action="{self}" method="post">
   <input type="hidden" name="modifier" value="breves" />
   <input type="hidden" name="onglet" value="breves" />

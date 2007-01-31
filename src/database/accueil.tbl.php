@@ -221,7 +221,7 @@ class CAccueil
 		if (!$id) { // création
 			$this->oBdd->executerRequete("INSERT INTO Accueil "
 										 ." (TypeContenu,Texte,DateDeb,DateFin,Visible,Ordre,DateCreation) "
-										 ." VALUES ('breve',$txt,$dateDeb,$dateFin,$visible,$ordre,CURDATE())");
+										 ." VALUES ('breve',$txt,$dateDeb,$dateFin,$visible,$ordre,CURRENT_DATE())");
 		} else { // mise à jour
 			$this->oBdd->executerRequete("UPDATE Accueil "
 										 ." SET TypeContenu='breve', Texte=$txt, DateDeb=$dateDeb, DateFin=$dateFin,"
