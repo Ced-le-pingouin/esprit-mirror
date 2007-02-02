@@ -544,7 +544,7 @@ class FichierInfo
  	 */
  	function supprimer($v_bRecursif = FALSE)
  	{
- 		 if (!$this->existe())
+ 		if (!$this->existe())
  			Erreur::provoquer("Le chemin ".$this->retChemin()." n'existe pas");
  		
  		if ($this->estDossier())
@@ -616,15 +616,19 @@ class FichierInfo
  	 * Copie le dossier représenté par l'objet courant *dans* un autre dossier
  	 * 
  	 * @param	v_sDossierDest		le chemin du dossier destination, *dans* lequel le dossier source sera copié
- 	 * @param	v_bRecursif			si \c true, les sous-dossiers et leur contenu seront également copiés
  	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
  	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
  	 * 								cible existant au cours de la copie provoquera une erreur
+ 	 * @param	v_bCreerDsDest		si \c true (défaut), un dossier du même nom que le source sera d'abord créé dans le 
+ 	 * 								dossier de destination, avant d'y copier le contenu de source. Si \c false, le 
+ 	 * 								contenu du dossier source sera copié directement dans le dossier cible spécifié 
+ 	 * @param	v_bRecursif			si \c true, les sous-dossiers et leur contenu seront également copiés
  	 * @param	v_fnCallback		voir le paramètre du même nom de #copierFichier()
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function copierDossier($v_sDossierDest, $v_bRecursif = FALSE, $v_bEcraserExistant = FALSE, $v_fnCallback = NULL)
+ 	function copierDossier($v_sDossierDest, $v_bEcraserExistant = FALSE, $v_bCreerDsDest = TRUE, $v_bRecursif = FALSE,  
+ 	                       $v_fnCallback = NULL)
  	{
  		if (!$this->estDossier())
  			Erreur::provoquer("Le chemin source ".$this->retChemin()." ne représente pas un dossier");
@@ -641,24 +645,38 @@ class FichierInfo
  			return FALSE;
  		}
  		
- 		// "copie" du dossier => dossier destination : pas une copie mais une création de dossier
- 		$oDossierDest->formerChemin($this->retNom(), TRUE);
- 		if (!$v_bEcraserExistant && $oDossierDest->existe())
-			Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
- 		$r = $oDossierDest->creerDossier();
+ 		// "copie" du dossier => dossier destination : pas une copie mais une création de dossier...
+ 		if ($v_bCreerDsDest)
+ 		{
+	 		$oDossierDest->formerChemin($this->retNom(), TRUE);
+	 		if (!$v_bEcraserExistant && $oDossierDest->existe())
+				Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
+	 		$r = $oDossierDest->creerDossier();
+ 		}
+ 		// ...sauf si a demandé de copier *le contenu* du dossier source dans le dossier dest => pas de création 
+ 		// préalable
+ 		else
+ 		{
+ 			$r = TRUE;
+ 		}
 		
-		$itr = new IterateurDossier($this->retChemin());
-		for (; $itr->estValide(); $itr->suiv())
+		// si le dossier de destination est disponible, on peut y copier le contenu du dossier source
+		if ($r)
 		{
-			$oFichierSource = $itr->courant();
-			
-			$oCheminRelatif = new FichierInfo($oFichierSource->retChemin());
-			$oCheminRelatif->reduireChemin($this->retChemin(), TRUE);
-			
-			if ($oFichierSource->estFichier() || $v_bRecursif)
-				$r = $oFichierSource->copier($oDossierDest->formerChemin($oCheminRelatif->retDossier()), 
-				                             $v_bRecursif, $v_bEcraserExistant, $v_fnCallback)
-			   		 || $r;
+			$r = FALSE;
+			$itr = new IterateurDossier($this->retChemin());
+			for (; $itr->estValide(); $itr->suiv())
+			{
+				$oFichierSource = $itr->courant();
+				
+				$oCheminRelatif = new FichierInfo($oFichierSource->retChemin());
+				$oCheminRelatif->reduireChemin($this->retChemin(), TRUE);
+				
+				if ($oFichierSource->estFichier() || $v_bRecursif)
+					$r = $oFichierSource->copier($oDossierDest->formerChemin($oCheminRelatif->retDossier()), 
+					                             $v_bEcraserExistant, TRUE, $v_bRecursif, $v_fnCallback)
+				   		 || $r;
+			}
 		}
 		
 		if (!is_null($v_fnCallback))
@@ -672,21 +690,25 @@ class FichierInfo
  	 * 
  	 * @param	v_sDossierDest		le chemin du dossier destination, *dans* lequel le fichier ou dossier source sera 
  	 * 								copié 
+ 	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
+ 	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
+ 	 * 								cible existant au cours de la copie provoquera une erreur
+ 	 * @param	v_bCreerDsDest		uniquement utilisé dans le cas où la source de la copie est un dossier.
+ 	 * 								Voir le paramètre du même nom dans #copierDossier()
  	 * @param	v_bRecursif			si \c true, les sous-dossiers du dossier source, et leur contenu, seront également 
  	 * 								copiés.
  	 *  							Ce paramètre n'est donc utile qu'au cas ou le chemin représenté par l'objet courant est
  	 * 								un dossier
- 	 * @param	v_bEcraserExistant	si \c true, les dossiers ou fichiers existants seront créés/copiés, même si la cible
- 	 * 								existait déjà, sans provoquer d'erreur ou d'avertissement. Si \c false, tout fichier 
- 	 * 								cible existant au cours de la copie provoquera une erreur
  	 * @param	v_fnCallback		voir le paramètre du même nom de #copierFichier()
  	 * 
  	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
  	 */
- 	function copier($v_sDossierDest, $v_bRecursif = FALSE, $v_bEcraserExistant = FALSE, $v_fnCallback = NULL)
+ 	function copier($v_sDossierDest, $v_bEcraserExistant = FALSE, $v_bCreerDsDest = TRUE, $v_bRecursif = FALSE, 
+ 	                $v_fnCallback = NULL)
  	{
  		if ($this->estDossier())
- 			return $this->copierDossier($v_sDossierDest, $v_bRecursif, $v_bEcraserExistant, $v_fnCallback);
+ 			return $this->copierDossier($v_sDossierDest, $v_bEcraserExistant, $v_bCreerDsDest, $v_bRecursif, 
+ 			                            $v_fnCallback);
  		else
  			return $this->copierFichier($v_sDossierDest, $v_bEcraserExistant, $v_fnCallback);
  	}

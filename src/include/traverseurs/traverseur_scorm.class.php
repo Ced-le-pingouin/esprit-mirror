@@ -38,8 +38,11 @@ require_once(dirname(__FILE__).'/../../lib/zip.class.php');
  * 
  * @todo Liste:
  * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
- * 			- problème d'encodage des caractères dans les noms des fichiers ?
- * 			- tester sous Unix
+ * 			- problème d'encodage des caractères dans les noms des fichiers ? (accents)
+ * 			- tester sous Unix (backslashes dans les noms de fichiers)
+ * 			- réussir la validation dans divers outils (les href de certains fichiers de la formation Intercomp italien 
+ * 			  ne sont pas valides pour le type anyURI)
+ * 			- gérer l'effacement du paquet créé en tmp (en différé ?)
  * 			- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
  * 			  option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)
  * 			- donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux 
@@ -123,6 +126,11 @@ class CTraverseurScorm extends CTraverseur
 		$this->oDossierRessources = new FichierInfo($this->oDossierPaquet->formerChemin('fichiers'));
 		$this->oDossierRessources->creerDossier();
 		
+		// copier les fichiers nécessaire à la validation XML
+		$oDossierDep = new FichierInfo(dirname(__FILE__).'/paquet_scorm_dep');
+		$oDossierDep->copierDossier($this->oDossierPaquet->retChemin(), FALSE, FALSE);
+		unset($oDossierDep);
+		
 		// ressources à zéro
 		$this->asRes = array();
 		
@@ -136,7 +144,11 @@ class CTraverseurScorm extends CTraverseur
 		$this->oElementManifest->setAttribute('version', '1.3');
 		$this->oElementManifest->setAttribute('xmlns', 'http://www.imsglobal.org/xsd/imscp_v1p1');
 		$this->oElementManifest->setAttribute('xmlns:adlcp', 'http://www.adlnet.org/xsd/adlcp_v1p3');
-		
+		$this->oElementManifest->setAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
+		$this->oElementManifest->setAttribute('xsi:schemaLocation', 
+		                                      'http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd '
+		                                     .'http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd');
+
 		//$this->oElementManifest->setAttribute('xmlns:lom', 'http://ltsc.ieee.org/xsd/LOM');
 		//$this->oElementManifest->setAttribute('xmlns:adlseq', 'http://www.adlnet.org/xsd/adlseq_v1p3');
 		//$this->oElementManifest->setAttribute('xmlns:adlnav_1p3', 'http://www.adlnet.org/xsd/adlnav_v1p3');
@@ -470,7 +482,7 @@ class CTraverseurScorm extends CTraverseur
 			
 			$oDossierSrc = new FichierInfo($v_oElementPhp->retDossier());
 			if ($oDossierSrc->existe())
-				$oDossierSrc->copier($this->oDossierRessources->retChemin(), TRUE, TRUE, 
+				$oDossierSrc->copier($this->oDossierRessources->retChemin(), TRUE, TRUE, TRUE, 
 				                     array($this, '_cbExporterFichierRessource'));
 			
 			$this->oElementRessources->appendChild($this->oElementRessource);
@@ -623,16 +635,6 @@ class CTraverseurScorm extends CTraverseur
 			$r->setAttribute('type', 'webcontent');
 			$r->setAttribute('adlcp:scormType', 'asset');
 	
-			// si on doit exporter une ressource qui contient des fichiers présents dans Esprit, ils auront normalement 
-			// déjà été exportés, car généralement les fichiers utilisés pendant une activité se trouvent dans le 
-			// dossier correspondant à son élément parent => l'enfant qui les utilise crée une balise "dependency"
-			if ($bDependance)
-			{
-				$d = $this->oDocXml->createElement('dependency');
-				$d->setAttribute('identifierref', $sNomResGlobales); // = nom de la balise "resource" du parent
-				$r->appendChild($d);
-			}
-
 			if ($bDescription)
 			{
 				$sContenuFichierACreer .= convertBaliseMetaVersHtml($v_oElementPhp->retDescr()).'<br />';
@@ -681,7 +683,17 @@ class CTraverseurScorm extends CTraverseur
 				$f->setAttribute('href', $sHref);
 				$r->appendChild($f);
 			}
-	
+			
+			// si on doit exporter une ressource qui contient des fichiers présents dans Esprit, ils auront normalement 
+			// déjà été exportés, car généralement les fichiers utilisés pendant une activité se trouvent dans le 
+			// dossier correspondant à son élément parent => l'enfant qui les utilise crée une balise "dependency"
+			if ($bDependance)
+			{
+				$d = $this->oDocXml->createElement('dependency');
+				$d->setAttribute('identifierref', $sNomResGlobales); // = nom de la balise "resource" du parent
+				$r->appendChild($d);
+			}
+			
 			// on connaît avec certitude le "href" de la ressource, donc on peut maintenant l'écrire
 			$r->setAttribute('href', $sHref);
 			
