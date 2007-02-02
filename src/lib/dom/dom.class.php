@@ -29,10 +29,10 @@
 
 // vérification de la présence des fonctions DOM PHP 5+
 if (function_exists('dom_import_simplexml'))
-	include_once('dom-php5.class.php');
+	include_once(dirname(__FILE__).'/'.'dom-php5.class.php');
 // sinon, est-ce que l'extension domxml PHP 4 est présente ?
 else if (function_exists('domxml_new_doc'))
-	include_once('dom-php4.class.php');
+	include_once(dirname(__FILE__).'/'.'dom-php4.class.php');
 // sinon, erreur
 else
 	die("ERREUR : Aucune bibliothèque DOM n'est présente dans l'installation de PHP sur ce serveur.");
