@@ -30,14 +30,12 @@ de lignes traitées.
 ** Gestion de la page d'accueil
 *******************************
 Un mini-gestionnaire de contenu est désormais intégré à la page d'accueil.
-Les quatre zones modifiables sont :
+Les quatre zones modifiables de la page sont :
 - l'avertissement (optionnel), dans la colonne d'identification, juste 
   sous le champ Mot de passe ;
 - le texte de présentation, dans la colonne gauche de la zone principale ;
-- les brèves, en haut de la colonne droite de la zone principale ;
-- les liens, situés sous les brèves ;
-- les titres des rubriques "brèves" et "liens" (par défaut, ils sont fixés
-  à "Les brèves" et "Les liens").
+- le bloc "brèves", en haut de la colonne droite de la zone principale ;
+- le bloc "liens", situé sous les brèves ;
 
 La gestion des informations d'accueil est réservée au rôle d'administrateur
 de la plate-forme.
@@ -45,12 +43,14 @@ Une fois connecté, il peut utiliser l'interface Outils > Page d'accueil
 (dernière position), qui ouvre une fenêtre pop-up intitulée
 "Gestion de la page d'accueil".
 Les quatre onglets " Avertissement | Texte d'accueil | Liens | Brèves "
-correspondent aux quatre zones modifiables.
+correspondent aux quatre zones modifiables. 
+Les titres des rubriques "brèves" et "liens" sont modifiables.
 Dans la plupart des cas, les contenus sont modifiés via l'éditeur HTML
 intégré.
 
-Un logo personnalisé peut être intégré à Esprit en plaçant le fichier
-dans le répertoire "src/themes/esprit/login/images/". Le nom du fichier
+Hors interface de gestion web, il est aussi possible d'intégrer un logo 
+personnalisé à la page d'accueil en plaçant le fichier image dans 
+le répertoire "src/themes/esprit/login/images/". Le nom du fichier
 est "logo_local.png" ou "logo_local.gif" ou "logo_local.jpg". Sa hauteur
 maximale est de 100 pixels.
 
