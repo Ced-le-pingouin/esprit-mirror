@@ -124,7 +124,7 @@ class CAccueil
 			$ladate = date("Y-m-d");
 			$params .= " AND (DateDeb <= '$ladate' OR DateDeb IS NULL) AND (DateFin >= '$ladate' OR DateFin IS NULL)";
 		}
-		$requete = "SELECT * FROM Accueil WHERE TypeContenu='breve'".$params." ORDER BY Ordre,DateCreation";
+		$requete = "SELECT * FROM Accueil WHERE TypeContenu='breve'".$params." ORDER BY -Ordre DESC, DateEdition DESC, DateCreation DESC";
 		$hResult = $this->oBdd->executerRequete($requete);
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
 			$this->aoBreves[] = $oEnreg;
@@ -139,10 +139,11 @@ class CAccueil
 	function getLiens ($Visible=0)
 	{
 		unset($this->aoLiens);
+		$ordre = " ORDER BY  -Ordre DESC, DateEdition DESC, DateCreation DESC";
 		if ($Visible==0)
-			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' ORDER BY Ordre");
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' $ordre");
 		else
-			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' AND Visible=1 ORDER BY Ordre,DateCreation");
+			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' AND Visible=1 $ordre");
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
 			$this->aoLiens[] = $oEnreg;
 		}

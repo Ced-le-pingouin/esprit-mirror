@@ -46,6 +46,8 @@ $url_iCodeEtat = (empty($_GET["codeEtat"]) ? 0 : $_GET["codeEtat"]);
 // ---------------------
 if (isset($_REQUEST['breves'])) { // popup des brèves
 	$oTpl = new Template(dir_theme("login/breves.tpl",FALSE,TRUE));
+	$titres = $oAccueil->getTitres();
+	$oTpl->remplacer('{breves->titre}',$titres['breves']);
 	$oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
 	$oBlocBreve->beginLoop();
 	$breves = $oAccueil->getBreves(TRUE,TRUE); // breves(visibles,date)

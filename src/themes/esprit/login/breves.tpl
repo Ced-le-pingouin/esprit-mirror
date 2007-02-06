@@ -70,7 +70,7 @@ h4
 <body>
 <div id="wrap">
 <div id="breves">
-	<h4>Les brèves</h4>
+	<h4>{breves->titre}</h4>
 [BLOCK_BREVE+]
 	<div class="news-texte">{breve->info}</div>
 	<img src="theme://login/images/separateur_news.gif" class="breve-centered" width="178" height="3" alt=" - - - - - - - - - - - - - - " />
