@@ -27,7 +27,7 @@ public class DateChat {
 	
 	public String getDateFormat(String pattern) {
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-		sdf.setTimeZone(new SimpleTimeZone(2*60*60*1000,"GMT"));
+		sdf.setTimeZone(TimeZone.getDefault());
 		return sdf.format(date.getTime());
 	}
 	
