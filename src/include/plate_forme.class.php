@@ -2288,7 +2288,7 @@ class CProjet
 	/**
 	 * Initialise un tableau d'objets CPersonne (\c aoPersonnes) selon des critères de statut
 	 * 
-	 * @param	v_iIdStatutPers	la constante rerpésentant le statut désiré
+	 * @param	v_iIdStatutPers	la constante représentant le statut désiré
 	 * @param	v_iIdForm		l'id de la session de formation à croiser avec le statut
 	 * @param	v_iIdMod		l'id du module à croiser avec le statut, n'est pas requis pour certains statuts
 	 * 
@@ -2301,6 +2301,13 @@ class CProjet
 		
 		switch ($v_iIdStatutPers)
 		{
+			case STATUT_PERS_ADMIN:
+			//   -----------------
+				$sRequeteSql = "SELECT Personne.*"
+					." FROM Projet_Admin"
+					." LEFT JOIN Personne USING (IdPers)";
+				break;
+				
 			case STATUT_PERS_RESPONSABLE:
 			//   -----------------------
 				$sRequeteSql = "SELECT Personne.*"
