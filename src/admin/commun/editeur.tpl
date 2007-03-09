@@ -3,7 +3,28 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
+<script language="javascript" type="text/javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
+<script language="javascript" type="text/javascript">
+tinyMCE.init({
+	theme : "advanced",
+	plugins : "table,save,advhr,advlink,emotions,insertdatetime,preview,zoom,searchreplace,contextmenu",
+theme_advanced_buttons1_add_before : "save,separator",
+theme_advanced_buttons1_add : "fontselect,fontsizeselect",
+theme_advanced_buttons2_add : "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
+theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
+theme_advanced_buttons3_add_before : "tablecontrols,separator",
+theme_advanced_buttons3_add : "emotions,iespell,advhr,separator,print",
+theme_advanced_toolbar_location : "top",
+theme_advanced_toolbar_align : "left",
+theme_advanced_path_location : "bottom",
+plugin_insertdate_dateFormat : "%Y-%m-%d",
+plugin_insertdate_timeFormat : "%H:%M:%S",
+extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
+	mode : "exact",
+	elements : "id_{editeur->nom}",
+	language : "fr"
+});
+</script>
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://dom.element.js"></script>
 <script type="text/javascript" language="javascript">
@@ -14,77 +35,42 @@ function init() {
 	win = new DOMWindow();
 	
 	redimensionner();
-	
-	if (top.recuperer)
-		top.recuperer();
+
+	if (top.recuperer) {
+		tinyMCE.setContent(top.recuperer());
+	}
 }
 
 function redimensionner() {
 	var iHauteur = win.innerHeight();
-	var elEditeur = new DOMElement("id_{editeur->nom}");
-	var elVisualiseur = new DOMElement("idVisualiseur");
-	var tmp = iHauteur-80;
+	var elEditeur = new DOMElement("mce_editor_0");
+	var tmp = iHauteur-110;
 	if (tmp < 35) tmp = 35;
 	elEditeur.setHeight(tmp);
-	tmp = iHauteur-20;
-	if (tmp < 35) tmp = 35;
-	elVisualiseur.setHeight(tmp);
 }
 
-function editeur() {
-	if (top.oSousMenu) {
-		top.oSousMenu().afficher_visualiser();
-		document.getElementById("idVisualiseur").className = "cacher";
-		document.getElementById("idEditeur").className = "afficher";
-	}
-	
-	return false;
-}
-
-function visualiser() {
-	
-	if (top.oSousMenu) {
-		with (document.forms[0]) {
-			action = "editeur_visualiser.php";
-			target = "visualiseur";
-			submit();
-		}
-		
-		top.oSousMenu().afficher_editer();
-		
-		document.getElementById("idEditeur").className = "cacher";
-		document.getElementById("idVisualiseur").className = "afficher";
-	}
-	
-	return false;
-}
-function insererBalise(v_sBaliseDepart,v_sBaliseFin) { insertAtCursor(document.forms[0].elements["{editeur->nom}"],v_sBaliseDepart,v_sBaliseFin); }
 //-->
 </script>
 <style type="text/css">
 <!--
-.afficher, .cacher {position: absolute; left: 0px; top: 0px; margin: 5 5 5 5; }
-.afficher { visibility: visible; display: block; }
-.cacher { visibility: hidden; display: none; }
 textarea.editeur_texte { width: 100%; height: 100%; }
 -->
 </style>
 </head>
 <body onload="init()" onresize="redimensionner()">
 <form action="" method="post">
-<div id="idEditeur" class="afficher">
-[BLOCK_EDITEUR+][BLOCK_EDITEUR-]
-</div>
-<div id="idVisualiseur" class="cacher">
-[BLOCK_VISUALISATEUR+][BLOCK_VISUALISATEUR-]
+<div id="idEditeur">
+<textarea id="id_{editeur->nom}" name="{editeur->nom}" cols="80" rows="26" class="editeur_texte"></textarea>
 </div>
 <input type="hidden" name="f" value="">
 </form>
 </body>
 </html>
-
-[SET_VISUALISEUR+]
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td><iframe id="id_visualiseur" name="visualiseur" src="" frameborder="0" width="100%" style="border-color: rgb(255,255,255); height: 420px;"></iframe></td></tr>
+<!-- 
+<table>
+[BLOCK_TABLEAU_DE_BORD+]
+<td><a href="javascript: tableau_de_bord('/i')" onfocus="blur()" title="Lien vers le tableau de bord individuel"><img src="commun://icones/24x24/tableaubord.gif"></a></td>
+<td><a href="javascript: tableau_de_bord('/e')" onfocus="blur()" title="Lien vers le tableau de bord par Ã©quipe"><img src="commun://icones/24x24/tableaubord.gif"></a></td>
+[BLOCK_TABLEAU_DE_BORD-]
 </table>
-[SET_VISUALISEUR-]
+ -->
