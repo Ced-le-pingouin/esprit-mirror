@@ -554,10 +554,10 @@ function enleverBaliseMeta ($v_sTexte)
 	$v_sTexte = str_replace($asMetaUnique, "", $v_sTexte);
 	
 	// lien vers un site internet
-	$v_sTexte = preg_replace('/<a href="([^"]+)" target="_blank" onfocus="blur()">([^<]+)</a>/e','("\1"==="\2"?"\1":"$2 ($1)")', $v_sTexte);
+	$v_sTexte = preg_replace('/<a href="([^"]+)" target="_blank" onfocus="blur()">([^<]+)<\/a>/e','("\1"==="\2"?"\1":"$2 ($1)")', $v_sTexte);
 	
 	// Ecrire un e-mail
-	$v_sTexte = ereg_replace('/<a href="mailto:([^"]+)" title="Envoyer un e-mail" onfocus="blur()">/','\1', $v_sTexte);
+	$v_sTexte = ereg_replace('/<a href="mailto:([^"]+)" title="Envoyer un e-mail" onfocus="blur()">[^<]+<\/a>/','\1', $v_sTexte);
 	
 	// Liste
 	$v_sTexte = preg_replace("/<\/?[ou]l[^>]+?>/","", $v_sTexte);
