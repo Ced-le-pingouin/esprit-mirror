@@ -528,103 +528,11 @@ function convertBaliseMetaVersHtml ($v_sTexte)
 	if (strlen($v_sTexte) < 1)
 		return NULL;
 	
-	$v_sTexte = emb_htmlentities(trim(stripslashes($v_sTexte)));
-	
-	$asMetaTrouver   = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center");
-	$asMetaRemplacer = array("h1","h2","h3","h4","h5","h6","b","u","i","s","blockquote","blockquote","center");
-	
-	for ($iIdxMeta=0; $iIdxMeta<count($asMetaTrouver); $iIdxMeta++)	
-	{
-		$v_sTexte = str_replace("[".$asMetaTrouver[$iIdxMeta]."]","<".$asMetaRemplacer[$iIdxMeta].">",$v_sTexte);
-		$v_sTexte = str_replace("[/".$asMetaTrouver[$iIdxMeta]."]","</".$asMetaRemplacer[$iIdxMeta].">",$v_sTexte);
-	}
-	
-	// font normal
-	$v_sTexte = str_replace("[n]", "<span style='font-weight: normal;'>", $v_sTexte);
-	$v_sTexte = str_replace("[/n]", "</span>", $v_sTexte);
-	
-	// lien vers un site internet
-	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$1</a>', $v_sTexte);
-	$v_sTexte = preg_replace('/\[(https?:\/\/[^\s\]]+) ([^\]]+)\]/','<a href="$1" target="_blank" onfocus="blur()">$2</a>', $v_sTexte);
-	
-	// Ecrire un e-mail
-	$v_sTexte = ereg_replace("\[mailto:[[:space:]]?([^[:space:]]*)([[:alnum:]#?/&=])\]","<a href=\"mailto:\\1\\2\" title=\"".gettext("Envoyer un e-mail")."\" onfocus=\"blur()\">\\1\\2</a>", $v_sTexte);
-	
-	// Alignements du texte:
-	// - à gauche
-	$v_sTexte = str_replace("[l]", "<div style='text-align: left;'>", $v_sTexte);
-	$v_sTexte = str_replace("[/l]", "</div>", $v_sTexte);
-	
-	// - au centre
-	$v_sTexte = str_replace("[c]", "<div style='text-align: center;'>", $v_sTexte);
-	$v_sTexte = str_replace("[/c]", "</div>", $v_sTexte);
-	
-	// - à droite
-	$v_sTexte = str_replace("[r]", "<div style='text-align: right;'>", $v_sTexte);
-	$v_sTexte = str_replace("[/r]", "</div>", $v_sTexte);
-	
-	// - justifié
-	$v_sTexte = str_replace("[j]", "<div style='text-align: justify;'>", $v_sTexte);
-	$v_sTexte = str_replace("[/j]", "</div>", $v_sTexte);
-	
-	// Bi-directionnalité
-	// Gauche à droite (standard)
-	$v_sTexte = preg_replace("/\n\[ltr\](.+?)\[\/ltr\]/", '<div dir="ltr">$1</div>', $v_sTexte);
-	$v_sTexte = str_replace("[ltr]", '<span dir="ltr">', $v_sTexte);
-	$v_sTexte = str_replace("[/ltr]", "</span>", $v_sTexte);
-	// Droite à gauche (arabe, hébreu)
-	$v_sTexte = preg_replace("/\n\[rtl\](.+?)\[\/rtl\]/", '<div dir="rtl">$1</div>', $v_sTexte);
-	$v_sTexte = str_replace("[rtl]", '<span dir="rtl">', $v_sTexte);
-	$v_sTexte = str_replace("[/rtl]", "</span>", $v_sTexte);
-	
-	// Ajouter un retour à la ligne
-	$v_sTexte = str_replace("[nl]", "<br>", $v_sTexte);
-	
-	// Liste
-	while (($iDepart = strpos($v_sTexte,"[liste")) !== FALSE)
-	{
-		$iFin  = strpos($v_sTexte,"]",$iDepart)+1;
-		$iFin2 = strpos($v_sTexte,"[/liste]",$iDepart);
-		
-		if ($iFin > $iFin2)
-			break;
-		
-		$sBaliseDepart = substr($v_sTexte,$iDepart,($iFin-$iDepart));
-		
-		// Récupérer le contenu de la balise liste
-		$sContenuBalise = trim(substr($v_sTexte,$iFin,($iFin2-$iFin)));
-		
-		// Composer la liste
-		$sListe = NULL;
-		foreach (explode("\n",$sContenuBalise) as $sLigne)
-			$sListe .= "<li>".trim($sLigne)."</li>";
-		
-		if (strpos($sBaliseDepart,"1") !== FALSE)
-			$sListe = "<ol type=\"1\">{$sListe}</ol>";
-		else if (strpos($sBaliseDepart,"&quot;a&quot;") !== FALSE)
-			$sListe = "<ol type=\"a\">{$sListe}</ol>";
-		else if (strpos($sBaliseDepart,"&quot;A&quot;") !== FALSE)
-			$sListe = "<ol type=\"A\">{$sListe}</ol>";
-		else if (strpos($sBaliseDepart,"&quot;i&quot;") !== FALSE)
-			$sListe = "<ol type=\"i\">{$sListe}</ol>";
-		else if (strpos($sBaliseDepart,"&quot;I&quot;") !== FALSE)
-			$sListe = "<ol type=\"I\">{$sListe}</ol>";
-		else
-			$sListe = "<ul>{$sListe}</ul>";
-		
-		$v_sTexte = trim(substr($v_sTexte,0,$iDepart))
-			.$sListe
-			.trim(substr($v_sTexte,($iFin2+strlen("[/liste]"))));
-	}
-	
-	// Ligne horizontale
-	$v_sTexte = str_replace("[hr]","<hr>",$v_sTexte);
-	
 	// Tableau de bord
 	$v_sTexte = str_replace("[tableaudebord /i]",convertLien("[tableaudebord /i]"),$v_sTexte);
 	$v_sTexte = str_replace("[tableaudebord /e]",convertLien("[tableaudebord /e]"),$v_sTexte);
 	
-	return nl2br($v_sTexte);
+	return $v_sTexte;
 }
 
 function enleverBaliseMeta ($v_sTexte)
@@ -635,24 +543,24 @@ function enleverBaliseMeta ($v_sTexte)
 	//$v_sTexte = emb_htmlentities(trim(stripslashes($v_sTexte)));
 	
 	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center", "n","l","c","r","j");
-	$asMetaUnique = array("[nl]","[hr]");
+	$asMetaUnique = array("<br />","<hr />");
 	
 	for ($iIdxMeta = 0; $iIdxMeta < count($asMetaDebFin); $iIdxMeta++)	
 	{
-		$v_sTexte = str_replace("[".$asMetaDebFin[$iIdxMeta]."]", "", $v_sTexte);
-		$v_sTexte = str_replace("[/".$asMetaDebFin[$iIdxMeta]."]", "", $v_sTexte);
+		$v_sTexte = str_replace("<".$asMetaDebFin[$iIdxMeta].">", "", $v_sTexte);
+		$v_sTexte = str_replace("</".$asMetaDebFin[$iIdxMeta].">", "", $v_sTexte);
 	}
 	
 	$v_sTexte = str_replace($asMetaUnique, "", $v_sTexte);
 	
 	// lien vers un site internet
-	$v_sTexte = ereg_replace("\[(http://[^[:space:]]*[[:alnum:]#?/&=])\]","\\1", $v_sTexte);
+	$v_sTexte = preg_replace('/<a href="([^"]+)" target="_blank" onfocus="blur()">([^<]+)</a>/e','("\1"==="\2"?"\1":"$2 ($1)")', $v_sTexte);
 	
 	// Ecrire un e-mail
-	$v_sTexte = ereg_replace("\[mailto:([^[:space:]]*[[:alnum:]#?/&=])\]","\\1", $v_sTexte);
+	$v_sTexte = ereg_replace('/<a href="mailto:([^"]+)" title="Envoyer un e-mail" onfocus="blur()">/','\1', $v_sTexte);
 	
 	// Liste
-	$v_sTexte = preg_replace("/\[\/?liste.*\]/U","", $v_sTexte);
+	$v_sTexte = preg_replace("/<\/?[ou]l[^>]+?>/","", $v_sTexte);
 	
 	return $v_sTexte;
 }
