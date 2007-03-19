@@ -8,7 +8,7 @@
 tinyMCE.init({
 	theme : "advanced",
 	plugins : "table,save,advhr,advlink,emotions,insertdatetime,preview,zoom,searchreplace,contextmenu",
-theme_advanced_buttons1_add_before : "save,separator",
+// theme_advanced_buttons1_add_before : "save,separator",
 theme_advanced_buttons1_add : "fontselect,fontsizeselect",
 theme_advanced_buttons2_add : "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
 theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
@@ -33,20 +33,20 @@ var win;
 
 function init() {
 	win = new DOMWindow();
-	
 	redimensionner();
-
 	if (top.recuperer) {
 		tinyMCE.setContent(top.recuperer());
 	}
 }
 
 function redimensionner() {
+	var elEd = document.getElementById("mce_editor_0");
 	var iHauteur = win.innerHeight();
-	var elEditeur = new DOMElement("mce_editor_0");
 	var tmp = iHauteur-110;
 	if (tmp < 35) tmp = 35;
-	elEditeur.setHeight(tmp);
+	elEd.style.height = tmp + 'px';
+	// redimensionnement horizontal : pb de frames ?
+	// ...
 }
 
 //-->
@@ -60,7 +60,7 @@ textarea.editeur_texte { width: 100%; height: 100%; }
 <body onload="init()" onresize="redimensionner()">
 <form action="" method="post">
 <div id="idEditeur">
-<textarea id="id_{editeur->nom}" name="{editeur->nom}" cols="80" rows="26" class="editeur_texte"></textarea>
+<textarea id="id_{editeur->nom}" name="{editeur->nom}" cols="80" rows="20" class="editeur_texte"></textarea>
 </div>
 <input type="hidden" name="f" value="">
 </form>

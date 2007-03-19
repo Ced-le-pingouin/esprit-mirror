@@ -60,8 +60,8 @@ function importer()
 //-->
 </script>
 </head>
-<frameset rows="*,23,21" frameborder="0" border="0">
-<frame name="principale" src="editeur.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="no" noresize="noresize">
+<frameset rows="*,23" frameborder="0" border="0">
+<frame name="principale" src="editeur.php" frameborder="0" marginwidth="10" marginheight="10" scrolling="no">
 <!-- <frame name="sous_menu" src="editeur-sous_menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize"> -->
 <frame name="menu" src="editeur-menu.php" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
 </frameset>

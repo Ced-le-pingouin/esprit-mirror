@@ -177,7 +177,7 @@ function editeur(v_sNomFormulaire,v_sNomElementFormulaire,v_sNomFichierExporter)
 		+ "&element=" + v_sNomElementFormulaire
 		+ "&nfexport=" + v_sNomFichierExporter + ".txt";
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=no";
-	var win = PopupCenter(sUrl,"winOutilsEditeur",640,480,sOptionsFenetre);
+	var win = PopupCenter(sUrl,"winOutilsEditeur",700,480,sOptionsFenetre);
 	win.focus();
 }
 
