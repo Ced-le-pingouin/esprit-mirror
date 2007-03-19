@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="theme://inscription-personnes.css">
+<title>Liste des utilisateurs</title>
+</head>
+<body>
+<form>
+<table id="liste_personnes">
+<tr><th class="check">&nbsp;</th><th>Nom &amp; prénom</th></tr>
+[BLOCK_PERSONNE+]
+<tr>
+<td><input name="Personnes[]" type="checkbox" value="{Personne.id}"></td>
+<td class="personne"><strong>{Personne.nom}</strong> {Personne.prenom}</td>
+</tr>
+[BLOCK_PERSONNE-]
+[BLOCK_ELSE_PERSONNE+]<tr><td colspan="2">Aucun utilisateur trouvé</td></tr>[BLOCK_ELSE_PERSONNE-]
+</table>
+</form>
+</body>
+</html>

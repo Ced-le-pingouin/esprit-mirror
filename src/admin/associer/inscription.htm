@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="theme://inscription.css">
+<script type="text/javascript" src="inscription.js"></script>
+</head>
+<body>
+<form>
+<table border="1" width="100%">
+  <tr>
+    <td width="48%"><p class="intitule">Liste des utilisateurs :</p>
+      <select name="select_utilisateurs">
+        <option value="0">inscrits à cette session de formation</option>
+        <option value="1">non affectés à un cours</option>
+        <option value="2">de l'ensemble de la plateforme</option>
+      </select></td>
+    <td>&nbsp;</td>
+    <td width="48%"><p class="intitule">Statut des utilisateurs de la formation :</p>
+      <select name="select_statut_utilisateur" onchange="rechargerListeInscrits(this.options[this.selectedIndex].value)">
+        [BLOCK_STATUT_PERSONNE+]<option value="{StatutPersonne.id}"{StatutPersonne.checked}>{StatutPersonne.nom}</option>[BLOCK_STATUT_PERSONNE-]
+      </select></td>
+  </tr>
+  <tr>
+    <td rowspan="2"><iframe id="liste_personnes" name="liste_personnes" src="inscription-personnes.php"></iframe></td>
+    <td id="actions"><input name="btnAjouterInscrits" type="button" value="&nbsp;&raquo;&nbsp;">
+      <input name="btnRetirerInscrits" type="button" value="&nbsp;&laquo;&nbsp;"></td>
+    <td><p class="intitule">Liste des inscrits :</p>
+      <iframe id="liste_inscrits" name="liste_inscrits" src="inscription-inscrits.php?form={Formation.id}&amp;statut={StatutUtilisateurDepart}"></iframe>
+  </tr>
+</table>
+</form>
+
+<form name="recharger_liste_inscrits" action="inscription-inscrits.php" target="liste_inscrits">
+<input type="hidden" name="form" value="{Formation.id}">
+<input type="hidden" name="statut" value="{StatutUtilisateurDepart}">
+</form>
+
+<form name="recharger_liste_cours" action="inscription-modules.php" target="liste_cours">
+<input type="hidden" name="form" value="{Formation.id}">
+<input type="hidden" name="statut" value="{StatutUtilisateurDepart}">
+</form>
+
+</body>
+</html>

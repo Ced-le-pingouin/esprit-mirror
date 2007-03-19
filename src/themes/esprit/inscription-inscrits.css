@@ -1,0 +1,23 @@
+* {
+	padding: 0;
+	margin: 0;
+	}
+
+#liste_inscrits {
+	width: 100%;
+	}
+
+#liste_inscrits th, #liste_inscrits td {
+	padding: 3px;
+	}
+
+#liste_inscrits td {
+	border: rgb(210,210,210) none 1px;
+	border-bottom-style: dotted;
+	}
+
+.check {
+	width: 1%;
+	}
+
+.aucun_inscrit { text-align: center; }

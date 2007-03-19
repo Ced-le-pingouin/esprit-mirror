@@ -1,0 +1,22 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="theme://inscription-inscrits.css">
+<title>Liste des utilisateurs</title>
+</head>
+<body>
+<form>
+<table id="liste_inscrits">
+<tr><th class="check">&nbsp;</th><th>Nom &amp; prénom</th></tr>
+[BLOCK_INSCRIT+]
+<tr>
+<td><input name="Inscrits[]" type="checkbox" value="{Inscrit.id}"></td>
+<td class="personne"><strong>{Inscrit.nom}</strong> {Inscrit.prenom}</td>
+</tr>
+[BLOCK_INSCRIT-]
+[BLOCK_ELSE_INSCRIT+]<tr><td class="aucun_inscrit" colspan="2">Aucun inscrit trouvé</td></tr>[BLOCK_ELSE_INSCRIT-]
+</table>
+</form>
+</body>
+</html>
