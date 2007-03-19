@@ -20,18 +20,9 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 require_once("globals.inc.php");
-
-$url_sNomFormation = (isset($_GET["TP"]) ? $_GET["TP"] : "&nbsp;");
-$url_sSousTitre = (isset($_GET["ST"]) ? $_GET["ST"] : "");
-
-$oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
-
-$oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
-$oBlock_Head->effacer();
-
-$oTpl->remplacer("{titre_principal}",$url_sNomFormation);
-$oTpl->remplacer("{sous_titre}",$url_sSousTitre);
-
-$oTpl->afficher();
+$sTitrePrincipal = empty($_GET["TP"]) ? NULL : $_GET["TP"];
+$sSousTitre = empty($_GET["ST"]) ? NULL : $_GET["ST"];
+$sHead = NULL;
+include_once(dir_template("dialogue","dialog-titre.tpl.php"));
 
 ?>
