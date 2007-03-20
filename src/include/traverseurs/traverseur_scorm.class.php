@@ -37,13 +37,15 @@ require_once(dirname(__FILE__).'/../../lib/zip.class.php');
  * Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004
  * 
  * @todo Liste:
- * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
  * 			- problème d'encodage des caractères dans les noms des fichiers ? (accents)
- * 			- tester sous Unix (backslashes dans les noms de fichiers)
- * 			- réussir la validation dans divers outils (les href de certains fichiers de la formation Intercomp italien 
- * 			  ne sont pas valides pour le type anyURI)
+ * 			- réussir la validation dans divers outils:
+ * 				. les élément "item" non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais 
+ * 			      pas l'ADL Test Suite) => utiliser des description LOM, ou créer un item "enfant" initial qui contient 
+ * 			      la description ou l'interactivité ?
+ * 			    . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI
  * 			- gérer l'effacement du paquet créé en tmp (en différé ?)
- * 			- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
+ *  		- tester sous Unix (backslashes dans les noms de fichiers)
+ *  		- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
  * 			  option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)
  * 			- donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux 
  * 			  activités aient un look similaire à celui d'Esprit (ou autre), car sinon la plupart du temps il s'agit 
