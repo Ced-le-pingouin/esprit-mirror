@@ -19,6 +19,10 @@ var TinyMCE_DirectionalityPlugin = {
 		};
 	},
 
+	initInstance : function(inst) {
+		tinyMCE.importCSS(inst.getDoc(), tinyMCE.baseURL + "/plugins/directionality/css/rtl.css");
+	},
+
 	getControlHTML : function(cn) {
 		switch (cn) {
 			case "ltr":
@@ -48,8 +52,10 @@ var TinyMCE_DirectionalityPlugin = {
 				var inst = tinyMCE.getInstanceById(editor_id);
 				var elm = tinyMCE.getParentElement(inst.getFocusElement(), "p,div,td,h1,h2,h3,h4,h5,h6,pre,address");
 
-				if (elm)
+				if (elm) {
 					elm.setAttribute("dir", "rtl");
+					elm.setAttribute("class", "rtl");
+				}
 
 				tinyMCE.triggerNodeChange(false);
 				return true;

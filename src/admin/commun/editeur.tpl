@@ -7,13 +7,13 @@
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
 	theme : "advanced",
-	plugins : "table,save,advhr,advlink,emotions,insertdatetime,preview,zoom,searchreplace,contextmenu",
+	plugins : "save,advhr,advlink,emotions,insertdatetime,zoom,searchreplace,contextmenu,directionality",
 // theme_advanced_buttons1_add_before : "save,separator",
 theme_advanced_buttons1_add : "fontselect,fontsizeselect",
-theme_advanced_buttons2_add : "separator,insertdate,inserttime,preview,zoom,separator,forecolor,backcolor",
+theme_advanced_buttons2_add : "separator,insertdate,inserttime,zoom,separator,forecolor,backcolor",
 theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
-theme_advanced_buttons3_add_before : "tablecontrols,separator",
-theme_advanced_buttons3_add : "emotions,iespell,advhr,separator,print",
+theme_advanced_buttons3_add_before : "ltr,rtl,separator",
+theme_advanced_buttons3_add : "emotions,iespell,separator,print",
 theme_advanced_toolbar_location : "top",
 theme_advanced_toolbar_align : "left",
 theme_advanced_path_location : "bottom",
@@ -22,7 +22,8 @@ plugin_insertdate_timeFormat : "%H:%M:%S",
 extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
 	mode : "exact",
 	elements : "id_{editeur->nom}",
-	language : "fr"
+	language : "fr",
+	docs_language : "en" // pas de doc en français ?
 });
 </script>
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
