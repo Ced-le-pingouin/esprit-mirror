@@ -649,9 +649,20 @@ class FichierInfo
  		if ($v_bCreerDsDest)
  		{
 	 		$oDossierDest->formerChemin($this->retNom(), TRUE);
-	 		if (!$v_bEcraserExistant && $oDossierDest->existe())
-				Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
-	 		$r = $oDossierDest->creerDossier();
+	 		// si le dossier à créer existe déjà:
+	 		//  - SI on doit "écraser" l'existant, on ne fait rien mais on ne provoque pas d'erreur
+	 		//  - SI on ne doit pas "écraser" l'existant, on provoque une erreur
+	 		if ($oDossierDest->existe())
+	 		{
+	 			if ($v_bEcraserExistant)
+					$r = TRUE;
+				else
+					Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
+	 		}
+	 		else
+	 		{
+	 			$r = $oDossierDest->creerDossier();
+	 		}
  		}
  		// ...sauf si a demandé de copier *le contenu* du dossier source dans le dossier dest => pas de création 
  		// préalable

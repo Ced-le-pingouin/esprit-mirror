@@ -77,10 +77,12 @@ class CTraverseurScorm extends CTraverseur
 	
 	var $asRes   = array(); ///< Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités
 	
-	var $sSeparateurOrigine;///< Pour sauvegarder le séparateur de chemins dans la gestion de fichiers initial
+	var $sSeparateurOrigine;///< Pour sauvegarder le séparateur de chemins initial (pour les noms de fichiers/dossier)
 	
 	/**
-	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité 
+	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité
+	 * 
+	 * @param	v_poElementCourant	l'objet "noeud XML" à sauvegarder (référence) 
 	 */
 	function defElementCourant(&$v_poElementCourant)
 	{
@@ -99,7 +101,10 @@ class CTraverseurScorm extends CTraverseur
 	
 	/**
 	 * Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir 
-	 * rattacher par la suite l'enfant à l'élément correct 
+	 * rattacher par la suite l'enfant à l'élément correct
+	 * 
+	 * @param	v_poElementEnfant	l'élément enfant dans lequel on va sauvegarder la référence au parent (référence)
+	 * @param	v_poElementParent	l'élément parent (référence)
 	 */
 	function defElementParent(&$v_poElementEnfant, &$v_poElementParent)
 	{
@@ -226,7 +231,6 @@ class CTraverseurScorm extends CTraverseur
 		// exportation SCORM (description)
 		$this->_exporterRessources(TYPE_FORMATION, $this->oFormation, $this->oElementFormation);
 
-		
 		$this->defElementParent($this->oElementFormation, $this->retElementCourant());
 		$this->defElementCourant($this->oElementFormation);
 	}
