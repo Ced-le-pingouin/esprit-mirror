@@ -7,13 +7,14 @@
 <script language="javascript" type="text/javascript">
 tinyMCE.init({
 	theme : "advanced",
-	plugins : "save,advhr,advlink,emotions,insertdatetime,zoom,searchreplace,contextmenu,directionality",
+	plugins : "save,advhr,advlink,emotions,insertdatetime,zoom,searchreplace,contextmenu,directionality,tableaubord",
 // theme_advanced_buttons1_add_before : "save,separator",
-theme_advanced_buttons1_add : "fontselect,fontsizeselect",
-theme_advanced_buttons2_add : "separator,insertdate,inserttime,zoom,separator,forecolor,backcolor",
+theme_advanced_buttons1_add : "fontselect,fontsizeselect,separator,forecolor,backcolor",
+theme_advanced_buttons2_add : "separator,zoom",
 theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
-theme_advanced_buttons3_add_before : "ltr,rtl,separator",
-theme_advanced_buttons3_add : "emotions,iespell,separator,print",
+theme_advanced_disable : "image",
+theme_advanced_buttons2_add : "separator,ltr,rtl,separator,tableaubordi,tableauborde,separator,iespell,hr,removeformat,sub,sup,charmap,visualaidseparator,print",
+theme_advanced_buttons3: "",
 theme_advanced_toolbar_location : "top",
 theme_advanced_toolbar_align : "left",
 theme_advanced_path_location : "bottom",
@@ -67,11 +68,3 @@ textarea.editeur_texte { width: 100%; height: 100%; }
 </form>
 </body>
 </html>
-<!-- 
-<table>
-[BLOCK_TABLEAU_DE_BORD+]
-<td><a href="javascript: tableau_de_bord('/i')" onfocus="blur()" title="Lien vers le tableau de bord individuel"><img src="commun://icones/24x24/tableaubord.gif"></a></td>
-<td><a href="javascript: tableau_de_bord('/e')" onfocus="blur()" title="Lien vers le tableau de bord par Ã©quipe"><img src="commun://icones/24x24/tableaubord.gif"></a></td>
-[BLOCK_TABLEAU_DE_BORD-]
-</table>
- -->
