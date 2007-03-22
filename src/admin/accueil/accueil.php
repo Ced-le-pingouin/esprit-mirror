@@ -185,7 +185,7 @@ if ($_REQUEST['onglet']==='breves') {
 		$ordre .= '</select>';
 		$oBlock2->remplacer("{breve_position}",$ordre);
 		$oBlock2->remplacer("{breve_positionTotal}",$iNumBreves);
-		insertEditor($oBlock2,"breves",$breve->Texte,72,10);
+		insertEditor($oBlock2,"breves",$breve->Texte,80,10);
 	}
 	$oBlock1->afficher();
 	$oBlock2->afficher();
@@ -205,8 +205,8 @@ $oTpl->afficher();
 $oProjet->terminer();
 
 
-
-function insertEditor( &$template, $theme, $content="", $largeur=78, $hauteur=13 ) {
+function insertEditor( &$template, $theme, $content="", $largeur=80, $hauteur=13 ) {
+	/*
 	$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
 	$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
 	$oBlocTableauDeBord->effacer();
@@ -216,24 +216,9 @@ function insertEditor( &$template, $theme, $content="", $largeur=78, $hauteur=13
 	$oTplEditeur->remplacer('class="editeur_texte"></textarea>',
 							'class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
 	$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-	$template->remplacer('{'.$theme.'Editeur}',$sSetEditeur);
-
-	/*
-	$oTplVisualiseur = new Template(dir_admin("commun","editeur.tpl",TRUE));
-	$sSetVisualiseur = $oTplVisualiseur->defVariable("SET_VISUALISEUR");
-
-	// {{{ Editeur
-	$oBlocEditeur = new TPL_Block("BLOCK_EDITEUR",$oTplVisualiseur);
-	$oBlocEditeur->ajouter($sSetEditeur);
-	$oBlocEditeur->afficher();
-	// }}}
-
-	// {{{ Visualiseur
-	$oBlocVisualiseur = new TPL_Block("BLOCK_VISUALISATEUR",$oTplVisualiseur);
-	$oBlocVisualiseur->effacer();
-	// }}}
 	*/
-
+	$sSetEditeur = '<textarea name="'.$theme.'Editeur" class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();" '."cols=\"$largeur\" rows=\"$hauteur\" >".$content.'</textarea>';
+	$template->remplacer('{'.$theme.'Editeur}',$sSetEditeur);
 }
 ?>
 

@@ -27,20 +27,22 @@ form.liensForm label span {
   padding: 0 1em 0 1em;
 }
 
+#breves ul { list-style-type: none; margin:0; padding:0; }
 #brevesForm li { margin:4px 0; }
-#brevesForm li span { width:51ex; 
-  display: -moz-inline-box;
-  display: inline-block;
+#brevesForm li span {
+  float:left;
+  width:51ex; 
   border: 1px solid gray;
   text-align: left;
   margin: 0;
-  padding: 0 1em 0 1em;
 }
 input.date { margin-left:1ex; width:14ex; }
 </style>
+<script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
-function insererBalise(v_sBaliseDepart,v_sBaliseFin) { insertAtCursor(document.getElementsByTagName('textarea')[0],v_sBaliseDepart,v_sBaliseFin); }
+
+initEditeur("textareas", "", false );
 
 function getElementsByClassName(oElm, strTagName, strClassName){
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
