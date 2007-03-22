@@ -21,6 +21,11 @@
 
 require_once("globals.inc.php");
 
+// ---------------------
+// Récupérer les variables de l'url
+// ---------------------
+$url_iIdForm = empty($_GET["idform"]) ? 0 : $_GET["idform"];
+
 $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_ASS_ETUDIANT_COURS");
 
@@ -29,35 +34,49 @@ $oProjet->verifPeutUtiliserOutils("PERM_ASS_ETUDIANT_COURS");
 // ---------------------
 $g_iIdStatututilisateur = $oProjet->retStatutUtilisateur();
 
-// {{{ Statuts de l'utilisateur
+// Statuts de l'utilisateur
 $amStatutsUtilisateur = $oProjet->retListeStatut();
+array_unshift($amStatutsUtilisateur, NULL);
 
 if (STATUT_PERS_ADMIN != $g_iIdStatututilisateur)
 {
-	$amStatutsUtilisateur[STATUT_PERS_ADMIN-1] = NULL;
-	$amStatutsUtilisateur[STATUT_PERS_RESPONSABLE_POTENTIEL-1] = NULL;
+	$amStatutsUtilisateur[STATUT_PERS_ADMIN] = NULL;
+	$amStatutsUtilisateur[STATUT_PERS_RESPONSABLE_POTENTIEL] = NULL;
 }
 
-if (!$oProjet->verifPermission("PERM_ASS_RESP_SESSION"))
-	$amStatutsUtilisateur[STATUT_PERS_RESPONSABLE-1] = NULL;
+if ($url_iIdForm < 1
+	|| !$oProjet->verifPermission("PERM_ASS_RESP_SESSION"))
+	$amStatutsUtilisateur[STATUT_PERS_RESPONSABLE] = NULL;
 
-$amStatutsUtilisateur[STATUT_PERS_CONCEPTEUR_POTENTIEL-1] = NULL;
+$amStatutsUtilisateur[STATUT_PERS_CONCEPTEUR_POTENTIEL] = NULL;
 
-if (!$oProjet->verifPermission("PERM_ASS_CONCEPT_COURS"))
-	$amStatutsUtilisateur[STATUT_PERS_CONCEPTEUR-1] = NULL;
+if ($url_iIdForm < 1
+	|| !$oProjet->verifPermission("PERM_ASS_CONCEPT_COURS"))
+	$amStatutsUtilisateur[STATUT_PERS_CONCEPTEUR] = NULL;
 
-$amStatutsUtilisateur[STATUT_PERS_CHERCHEUR-1] = NULL;
+$amStatutsUtilisateur[STATUT_PERS_CHERCHEUR] = NULL;
 
-if (!$oProjet->verifPermission("PERM_ASS_TUTEUR_COURS"))
-	$amStatutsUtilisateur[STATUT_PERS_TUTEUR-1] = NULL;
+if ($url_iIdForm < 1
+	|| !$oProjet->verifPermission("PERM_ASS_TUTEUR_COURS"))
+	$amStatutsUtilisateur[STATUT_PERS_TUTEUR] = NULL;
 
-$amStatutsUtilisateur[STATUT_PERS_COTUTEUR-1] = NULL;
+$amStatutsUtilisateur[STATUT_PERS_COTUTEUR] = NULL;
 
-if (!$oProjet->verifPermission("PERM_ASS_ETUDIANT_COURS"))
-	$amStatutsUtilisateur[STATUT_PERS_ETUDIANT-1] = NULL;
+if ($url_iIdForm < 1
+	|| !$oProjet->verifPermission("PERM_ASS_ETUDIANT_COURS"))
+	$amStatutsUtilisateur[STATUT_PERS_ETUDIANT] = NULL;
 
-$amStatutsUtilisateur[STATUT_PERS_VISITEUR-1] = NULL;
-// }}}
+$amStatutsUtilisateur[STATUT_PERS_VISITEUR] = NULL;
+
+// Sélectionner le statut par défaut
+$iStatutPersDepart = NULL;
+
+for ($i = STATUT_PERS_DERNIER; $i > STATUT_PERS_PREMIER; $i--)
+	if ($amStatutsUtilisateur[$i]["IdStatut"] == $i)
+	{
+		$iStatutPersDepart = $i;
+		break;
+	}
 
 // ---------------------
 // Template
@@ -65,7 +84,7 @@ $amStatutsUtilisateur[STATUT_PERS_VISITEUR-1] = NULL;
 $oTpl = new Template("inscription.htm");
 
 $oTpl->remplacer("{Formation.id}", $oProjet->oFormationCourante->retId());
-$oTpl->remplacer("{StatutUtilisateurDepart}", STATUT_PERS_ETUDIANT);
+$oTpl->remplacer("{StatutUtilisateurDepart}", $iStatutPersDepart);
 
 // Statut des utilisateurs
 $oBlocStatutUtilisateur = new TPL_Block("BLOCK_STATUT_PERSONNE", $oTpl);
@@ -75,14 +94,14 @@ foreach ($amStatutsUtilisateur as $amStatutUtilisateur)
 {
 	if (empty($amStatutUtilisateur))
 		continue;
-	
+
 	$oBlocStatutUtilisateur->nextLoop();
 	$oBlocStatutUtilisateur->remplacer(
 		array("{StatutPersonne.id}",
 			"{StatutPersonne.checked}",
 			"{StatutPersonne.nom}"),
 		array($amStatutUtilisateur["IdStatut"],
-			(STATUT_PERS_ETUDIANT == $amStatutUtilisateur["IdStatut"] ? " selected=\"selected\"" : NULL),
+			($iStatutPersDepart == $amStatutUtilisateur["IdStatut"] ? " selected=\"selected\"" : NULL),
 			$amStatutUtilisateur["NomStatut"]));
 }
 

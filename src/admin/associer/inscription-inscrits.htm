@@ -1,22 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Liste des utilisateurs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://inscription-inscrits.css">
-<title>Liste des utilisateurs</title>
+<script language="javascript" type="text/javascript" src="inscription.js"></script>
 </head>
 <body>
 <form>
-<table id="liste_inscrits">
-<tr><th class="check">&nbsp;</th><th>Nom &amp; prénom</th></tr>
-[BLOCK_INSCRIT+]
-<tr>
-<td><input name="Inscrits[]" type="checkbox" value="{Inscrit.id}"></td>
-<td class="personne"><strong>{Inscrit.nom}</strong> {Inscrit.prenom}</td>
-</tr>
-[BLOCK_INSCRIT-]
-[BLOCK_ELSE_INSCRIT+]<tr><td class="aucun_inscrit" colspan="2">Aucun inscrit trouvé</td></tr>[BLOCK_ELSE_INSCRIT-]
-</table>
+[BLOCK_PERSONNES+]
+<ul>
+[BLOCK_PERSONNE+]<li><input type="checkbox"> <strong>{Personne.Nom}</strong> {Personne.Prenom}</li>[BLOCK_PERSONNE-]
+</ul>
+[BLOCK_PERSONNES-]
+[BLOCK_ELSE_PERSONNES+]Aucun inscrit trouvé[BLOCK_ELSE_PERSONNES-]
+[BLOCK_MODULE+]
+<dl onclick="visible(this)">
+<dt class="replier" title="Il y a {Personne.nombre} inscrit(s) à ce cours"><input type="checkbox" name="MC{Module.Id}"> {Module.Nom}</dt>
+<dd class="replier"><ul>[BLOCK_PERSONNE+]<li><input type="checkbox" name="MC{Module.Id}_{Personne.Id}[]"> <strong>{Personne.Nom}</strong> {Personne.Prenom}</li>[BLOCK_PERSONNE-]</ul></dd>
+</dl>
+[BLOCK_MODULE-]
+[BLOCK_ELSE_MODULE+]Aucun cours trouvé[BLOCK_ELSE_MODULE-]
 </form>
 </body>
 </html>

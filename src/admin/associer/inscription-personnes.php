@@ -48,13 +48,13 @@ if ($iNbrPersonnes > 0)
 		$oBlocPersonne->nextLoop();
 
 		$oBlocPersonne->remplacer(
-			array("{Personne.id}",
-				"{Personne.nom}",
-				"{Personne.prenom}",
-				"{Personne.pseudo}",
+			array("{Personne.Id}",
+				"{Personne.Nom}",
+				"{Personne.Prenom}",
+				"{Personne.Pseudo}",
 				"{Personne.class}"),
 			array($oPersonne->retId(),
-				$oPersonne->retNom(),
+				emb_htmlentities(strtoupper($oPersonne->retNom())),
 				$oPersonne->retPrenom(),
 				$oPersonne->retPseudo(),
 				("F" == $oPersonne->retSexe() ? "girl" : "boy"))

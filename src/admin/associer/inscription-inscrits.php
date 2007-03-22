@@ -21,37 +21,97 @@
 
 require_once("globals.inc.php");
 
-$url_iIdForm              = empty($_GET["form"]) ? 0 : $_GET["form"];
-$url_iIdStatutUtilisateur = empty($_GET["statut"]) ? 0 : $_GET["statut"];
+$url_iIdForm              = empty($_GET["idform"]) ? 0 : $_GET["idform"];
+$url_iIdStatutUtilisateur = empty($_GET["idstatut"]) ? 0 : $_GET["idstatut"];
+
+if ($url_iIdStatutUtilisateur < 1)
+	exit;
 
 $oProjet = new CProjet();
-$iNbPersonnes = $oProjet->initPersonnes($url_iIdStatutUtilisateur, $url_iIdForm);
 
 $oTpl = new Template("inscription-inscrits.htm");
 
-$oBlocInscrit = new TPL_Block("BLOCK_INSCRIT", $oTpl);
-$oBlocAucunInscrit = new TPL_Block("BLOCK_ELSE_INSCRIT", $oTpl);
+$oBlocPersonnes      = new TPL_Block("BLOCK_PERSONNES", $oTpl);
+$oBlocPersonne       = new TPL_Block("BLOCK_PERSONNE", $oBlocPersonnes);
+$oBlocAucunePersonne = new TPL_Block("BLOCK_ELSE_PERSONNES", $oTpl);
 
-if ($iNbPersonnes > 0)
+$oBlocModule      = new TPL_Block("BLOCK_MODULE", $oTpl);
+$oBlocAucunModule = new TPL_Block("BLOCK_ELSE_MODULE", $oTpl);
+
+if (STATUT_PERS_ETUDIANT == $url_iIdStatutUtilisateur
+	|| STATUT_PERS_TUTEUR == $url_iIdStatutUtilisateur
+	|| STATUT_PERS_CONCEPTEUR == $url_iIdStatutUtilisateur)
 {
-	$oBlocInscrit->beginLoop();
-	
-	foreach ($oProjet->aoPersonnes as $oInscrit)
+	$oFormation = new CFormation($oProjet->oBdd, $url_iIdForm);
+	$oFormation->initModules();
+
+	$oBlocModule->beginLoop();
+
+	foreach ($oFormation->aoModules as $oModule)
 	{
-		$oBlocInscrit->nextLoop();
+		$iIdMod = $oModule->retId();
+		$iNbPersonnes = $oModule->initPersonnes($url_iIdStatutUtilisateur);
 		
-		$oBlocInscrit->remplacer(
-			array("{Inscrit.id}", "{Inscrit.nom}", "{Inscrit.prenom}"),
-			array($oInscrit->retId(), $oInscrit->retNom(), $oInscrit->retPrenom()));
+		$oBlocModule->nextLoop();		
+		$oBlocModule->remplacer("{Personne.nombre}", $iNbPersonnes);
+		$oBlocModule->remplacer(
+			array("{Module.Id}", "{Module.Nom}")
+			, array($iIdMod, emb_htmlentities($oModule->retNom())));
+		
+		$oBlocModulePers = new TPL_Block("BLOCK_PERSONNE", $oBlocModule);
+				
+		if ($iNbPersonnes > 0)
+		{
+					
+			$oBlocModulePers->beginLoop();
+
+			foreach ($oModule->aoPersonnes as $oPersonne)
+			{
+				$oBlocModulePers->nextLoop();
+				$oBlocModulePers->remplacer("{Module.Id}", $iIdMod);
+				$oBlocModulePers->remplacer(
+					array("{Personne.Id}", "{Personne.Nom}", "{Personne.Prenom}")
+					, array($oPersonne->retId(), emb_htmlentities(strtoupper($oPersonne->retNom())), emb_htmlentities($oPersonne->retPrenom())));
+			}
+			
+			$oBlocModulePers->afficher();
+		}
+		else
+			$oBlocModulePers->effacer();
 	}
-	
-	$oBlocInscrit->afficher();
-	$oBlocAucunInscrit->effacer();
+
+	$oBlocModule->afficher();
+
+	$oBlocPersonnes->effacer();
+	$oBlocAucunePersonne->effacer();
+	$oBlocAucunModule->effacer();
 }
 else
 {
-	$oBlocInscrit->effacer();
-	$oBlocAucunInscrit->afficher();
+	$oBlocModule->effacer();
+	$oBlocAucunModule->effacer();
+	
+	if ($oProjet->initPersonnes($url_iIdStatutUtilisateur, $url_iIdForm) > 0)
+	{
+		$oBlocPersonne->beginLoop();
+
+		foreach ($oProjet->aoPersonnes as $oPersonne)
+		{
+			$oBlocPersonne->nextLoop();
+			$oBlocPersonne->remplacer(
+				array("{Personne.Nom}","{Personne.Prenom}"),
+				array(emb_htmlentities(strtoupper($oPersonne->retNom())), emb_htmlentities($oPersonne->retPrenom())));
+		}
+
+		$oBlocPersonne->afficher();
+		$oBlocPersonnes->afficher();
+		$oBlocAucunePersonne->effacer();
+	}
+	else
+	{
+		$oBlocPersonnes->effacer();
+		$oBlocAucunePersonne->afficher();
+	}
 }
 
 $oTpl->afficher();

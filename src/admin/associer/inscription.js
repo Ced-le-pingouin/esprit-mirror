@@ -1,46 +1,48 @@
-function rechargerListeInscrits(v_iNouveauStatut) {
-	with (document.getElementsByName("recharger_liste_inscrits").item(0)) {
-		elements["statut"].value = v_iNouveauStatut;
-		submit();
+function visible(v_elem) {
+	for (var i=0; i<v_elem.childNodes.length; i++)
+	{
+		if ( v_elem.childNodes.item(i).nodeName == "DT"
+			|| v_elem.childNodes.item(i).nodeName == "DD") {
+			if (v_elem.childNodes.item(i).className == "replier")
+				v_elem.childNodes.item(i).className = "deplier";
+			else
+				v_elem.childNodes.item(i).className = "replier";
+		}
+		
+		if (v_elem.childNodes.item(i).nodeName == "DD")
+			break;
 	}
-	rechargerListeCours(v_iNouveauStatut);
 }
 
-function rechargerListeCours(v_iNouveauStatut) {
-	with (document.getElementsByName("recharger_liste_cours").item(0)) {
-		elements["statut"].value = v_iNouveauStatut;
+function rechargerListeInscrits(v_iNouveauStatut) {
+	with (document.getElementById("recharger_liste_inscrits")) {
+		elements["idstatut"].value = v_iNouveauStatut;
 		submit();
 	}
 }
 
 function changerTaille(v_element, v_nouvelleTaille) {
+	if (v_nouvelleTaille < 50)
+		v_nouvelleTaille = 50;
 	v_element.style.height = v_nouvelleTaille + "px";
 }
 
 function verifierTailles() {
+	var heightIFrame;
+	var height = window.innerHeight;
+	var heightRows = document.getElementsByTagName('tr').item(0).offsetHeight
+		+ document.getElementsByTagName('tr').item(2).offsetHeight;
 
-	var heightBody;
-	var height;
-	var elem;
-	var elemBody = document.getElementsByTagName('body').item(0);
-	var elemTable = document.getElementsByTagName('table').item(0);
+	if (document.body.clientHeight)
+		height = document.body.clientHeight;
 
-	heightTr = document.getElementsByTagName('TR').item(0).clientHeight;
-	heightBody = elemBody.clientHeight - 30;
+	height = height - heightRows - 20;
 
-	// Changer la hauteur de la iframe de la liste des personnes
-	var asIFRAMES = new Array("liste_personnes", "liste_inscrits");
+	heightIFrame = parseInt(height - document.getElementById('liste_personnes').offsetTop);
+	changerTaille(document.getElementById('liste_personnes'), heightIFrame);
 
-	for (var i=0; i<asIFRAMES.length; i++) {
-		elem = document.getElementById(asIFRAMES[i]);
-		height = heightBody - heightTr;
-
-		// Donner une hauteur minimale
-		if (height < 50)
-			height = 50;
-
-		changerTaille(elem, height);
-	}
+	heightIFrame = parseInt(height - document.getElementById('liste_inscrits').offsetTop);
+	changerTaille(document.getElementById('liste_inscrits'), heightIFrame);
 }
 
 function init() {
