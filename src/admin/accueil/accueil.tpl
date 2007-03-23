@@ -29,7 +29,7 @@ form.liensForm label span {
 
 #breves ul { list-style-type: none; margin:0; padding:0; }
 #brevesForm li { margin:4px 0; }
-#brevesForm li span {
+#brevesForm li label span {
   float:left;
   width:51ex; 
   border: 1px solid gray;

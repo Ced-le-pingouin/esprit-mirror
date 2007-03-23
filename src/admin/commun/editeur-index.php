@@ -28,7 +28,6 @@ function remplacer(v_sTexte)
 	oPrincipale().editeur();
 }
 function recuperer() {
-//	oPrincipale().document.forms[0].elements["edition"].value = top.opener.document.forms[sFormDest].elements[sElemDest].value;
 	return top.opener.document.forms[sFormDest].elements[sElemDest].value;
 }
 function valider()
