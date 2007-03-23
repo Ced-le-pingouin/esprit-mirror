@@ -6,7 +6,6 @@
 body { margin: 5px; }
 
 dl {
-	border: rgb(238,234,221) dotted 1px;
 	margin-bottom: 3px;
 	}
 
@@ -21,13 +20,18 @@ dt.deplier { background-image: url(inscription-fleche-bas.gif); }
 
 dt:hover { background-color: rgb(244,242,233); }
 
+dd {
+	border: rgb(238,234,221) dotted 1px;
+	border-top-style: none;
+	}
+
 dd.replier {
-	margin-left: 50px;
+	padding-left: 50px;
 	display: none;
 	}
 
 dd.deplier {
-	margin-left: 50px;
+	padding-left: 50px;
 	display: block;
 	}
 

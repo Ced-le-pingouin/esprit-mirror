@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://inscription-inscrits.css">
-<script language="javascript" type="text/javascript" src="inscription.js"></script>
+<script language="javascript" type="text/javascript" src="inscription-inscrits.js"></script>
 </head>
 <body>
 <form>
@@ -18,8 +18,8 @@
 [BLOCK_PERSONNES-]
 [BLOCK_ELSE_PERSONNES+]Aucun inscrit trouvé[BLOCK_ELSE_PERSONNES-]
 [BLOCK_MODULE+]
-<dl onclick="visible(this)">
-<dt class="replier" title="Il y a {Personne.nombre} inscrit(s) à ce cours"><input type="checkbox" name="MC{Module.Id}"> {Module.Nom}</dt>
+<dl title="Il y a {Personne.nombre} inscrit(s) à ce cours">
+<dt class="replier" onclick="visible(this)"><input type="checkbox" name="MC{Module.Id}"> {Module.Nom}</dt>
 <dd class="replier"><ul>[BLOCK_PERSONNE+]<li><input type="checkbox" name="MC{Module.Id}_{Personne.Id}[]"> <strong>{Personne.Nom}</strong> {Personne.Prenom}</li>[BLOCK_PERSONNE-]</ul></dd>
 </dl>
 [BLOCK_MODULE-]
