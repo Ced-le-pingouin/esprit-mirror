@@ -47,7 +47,7 @@ function GPL()
 	<p class="aligndroite"><label for="idMdp">Mot&nbsp;de&nbsp;passe&nbsp;:</label><input type="password" size="13" name="idMdp" id="idMdp" /></p>
 	<p class="aligndroite"><input class="btn_ok" type="submit" value="&nbsp;Ok&nbsp;" /></p>
 	{/form}
-	[BLOCK_AVERTISSEMENT_LOGIN+]<p id="avertissement_login">{login.avertissement}</p>[BLOCK_AVERTISSEMENT_LOGIN-]
+	[BLOCK_AVERTISSEMENT_LOGIN+]<div id="avertissement_login">{login.avertissement}</div>[BLOCK_AVERTISSEMENT_LOGIN-]
 </div>
 
 <div id="contenu">
@@ -56,7 +56,7 @@ function GPL()
 	<td width="55%" valign="top">
 	<div id="bienvenue" class="BlockContent">
 [BLOCK_TEXTE+]
-   <p>{texte->info}</p>
+   <div>{texte->info}</div>
 [BLOCK_TEXTE-]
 	</div>
 

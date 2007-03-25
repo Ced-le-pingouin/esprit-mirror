@@ -321,7 +321,7 @@ p#erreur_login
 	text-align: center;
 	padding: 5px;
 }
-p#avertissement_login
+#avertissement_login
 {
 	background-color: rgb(253,249,238);
 	border: rgb(136,37,37) dashed 1px;
