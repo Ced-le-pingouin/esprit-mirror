@@ -81,7 +81,7 @@ if (isset($_POST["modaliteFenetre"]))
 			$oMessageForum->defRepRessources($sRepFichiersForum);
 			
 			// Effacer l'ancien fichier attaché
-			if ($_POST["effacerFichierMessage"] == "on")
+			if (isset($_POST["effacerFichierMessage"]) && $_POST["effacerFichierMessage"] == "on")
 				$oMessageForum->effacerRessources();
 			
 			// Déposer le fichier attaché sur le serveur
@@ -145,27 +145,19 @@ $oTplBarreDeProgression = new Template(dir_theme("barre_de_progression.inc.tpl",
 $oTplMessageImportant = new Template(dir_theme("dialogue/dialog-important.inc.tpl",FALSE,TRUE));
 
 // ---------------------
-// Template de l'éditeur
-// ---------------------
-$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
-
-// {{{ Icones du tableau de bord
-$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
-
-if ($oProjet->retStatutUtilisateur() < STATUT_PERS_ETUDIANT)
-	$oBlocTableauDeBord->afficher();
-else
-	$oBlocTableauDeBord->effacer();
-// }}}
-
-$oBlocVisualiseur = new TPL_Block("BLOCK_VISUALISEUR",$oTplEditeur);
-$oBlocVisualiseur->effacer();
-$oSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-
-// ---------------------
 // Template principale
 // ---------------------
 $oTpl = new Template("modifier_message.tpl");
+
+// {{{ éditeur
+// {{{ Tableau de bord
+if ($oProjet->retStatutUtilisateur() < STATUT_PERS_ETUDIANT)
+	$oTpl->remplacer("{tableau_de_bord->actif}","true");
+else
+	$oTpl->remplacer("{tableau_de_bord->actif}","false");
+// }}}
+$oSetEditeur = '<textarea id="{editeur->nom}" name="{editeur->nom}" cols="84" rows="27">{message->texte}</textarea>';
+// }}}
 
 $oBlockStyleSheetErreur = new TPL_Block("BLOCK_STYLESHEET_ERREUR",$oTpl);
 $oBlockMessage          = new TPL_Block("BLOCK_MESSAGE",$oTpl);
@@ -221,7 +213,8 @@ else if ($url_sModaliteFenetre == "modifier")
 		$oBlocEffacerFichier->afficher();
 	}
 	
-	$oTpl->remplacer("{editeur->sauvegarde}",$oMessageForum->retMessage());
+//	$oTpl->remplacer("{editeur->sauvegarde}",$oMessageForum->retMessage());
+	$oBlockMessage->remplacer("{message->texte}",$oMessageForum->retMessage());
 	
 	$oMessageForum = NULL;
 }

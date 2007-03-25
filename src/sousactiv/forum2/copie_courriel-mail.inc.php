@@ -31,7 +31,7 @@
 ** 7000 MONS
 */
 
-if (!is_object($oSujet))
+if (empty($oSujet) || !is_object($oSujet))
 	$oSujet = new CSujetForum($oProjet->oBdd,$url_iIdSujet);
 
 $iIdForumCopieCourriel = $oSujet->retIdParent();

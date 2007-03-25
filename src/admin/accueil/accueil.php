@@ -206,17 +206,6 @@ $oProjet->terminer();
 
 
 function insertEditor( &$template, $theme, $content="", $largeur=80, $hauteur=13 ) {
-	/*
-	$oTplEditeur = new Template(dir_admin("commun","editeur.inc.tpl",TRUE));
-	$oBlocTableauDeBord = new TPL_Block("BLOCK_TABLEAU_DE_BORD",$oTplEditeur);
-	$oBlocTableauDeBord->effacer();
-	$oTplEditeur->remplacer("{editeur->nom}",$theme."Editeur");
-	$oTplEditeur->remplacer("80",$largeur); // largeur
-	$oTplEditeur->remplacer("26",$hauteur); // hauteur
-	$oTplEditeur->remplacer('class="editeur_texte"></textarea>',
-							'class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();">'.$content.'</textarea>');
-	$sSetEditeur = $oTplEditeur->defVariable("SET_EDITEUR");
-	*/
 	$sSetEditeur = '<textarea name="'.$theme.'Editeur" class="editeur_texte" onchange="changed('."'$theme')".'" onkeypress="blur();focus();" '."cols=\"$largeur\" rows=\"$hauteur\" >".$content.'</textarea>';
 	$template->remplacer('{'.$theme.'Editeur}',$sSetEditeur);
 }

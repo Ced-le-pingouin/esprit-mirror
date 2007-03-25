@@ -5,7 +5,11 @@
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
 [BLOCK_STYLESHEET_ERREUR+]<link type="text/css" rel="stylesheet" href="theme://dialogue/dialog-important.css">[BLOCK_STYLESHEET_ERREUR-]
 <link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
+<script type="text/javascript">
+initEditeur("textareas", "", {tableau_de_bord->actif} );
+</script>
 <script type="text/javascript" language="javascript">
 <!--
 var g_oEditeur = null;
@@ -23,8 +27,9 @@ function init()
 }
 function valider()
 {
+	tinyMCE.triggerSave();
 	var oForm = document.forms[0];
-	if (oForm.elements["{editeur->nom}"].value.length < 1) { alert("Votre message est vide"); return false; }
+	if (oForm.elements["{editeur->nom}"].value.length < 1) { alert("Votre message est vide : "+oForm.elements["{editeur->nom}"].value); return false; }
 	if (document.getElementById)
 	{
 		top.oMenu().page_desactiver();
@@ -40,7 +45,6 @@ function Annuler()
 	top.close();
 }
 function supprimer() { return document.forms[0].submit(); }
-function insererBalise(v_sBaliseDepart,v_sBaliseFin) { insertAtCursor(g_oEditeur,v_sBaliseDepart,v_sBaliseFin); }
 //-->
 </script>
 <style type="text/css">
