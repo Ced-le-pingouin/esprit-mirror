@@ -22,9 +22,10 @@ function redimensionner() {
 	if (window.innerHeight) {
 		iHauteur = window.innerHeight;
 		iLargeur = window.innerWidth;
-	else if (document.body)
+	} else if (document.body) {
 		iHauteur = window.document.body.clientHeight;
 		iLargeur = window.document.body.clientWidth;
+	}
 	var elEd = document.getElementById("mce_editor_0");
 	var tmp = iHauteur-110;
 	if (tmp < 35) tmp = 35;
