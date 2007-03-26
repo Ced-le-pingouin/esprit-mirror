@@ -41,9 +41,6 @@ input.date { margin-left:1ex; width:14ex; }
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
-
-initEditeur("textareas", "", false );
-
 function getElementsByClassName(oElm, strTagName, strClassName){
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
 	var arrReturnElements = new Array();
@@ -61,31 +58,23 @@ function getElementsByClassName(oElm, strTagName, strClassName){
 function showOnly( id ) {
 	if ('{onglet}' != id)
 		window.location = "{self}?onglet="+id;
-/*
-	var nodes = getElementsByClassName(document,"div","hidden");
-	for(var i=0; i<nodes.length; i++) {
-		if (nodes[i].id !== id) {
-			nodes[i].style.display = 'none';
-		}
-	}
-	var e = document.getElementById(id);
-	if (!e.style.display || e.style.display == 'none') {
-		e.style.display = 'block';
-	} else {
-		e.style.display = 'none';
-	}
-*/
 }
 function valider( id ) {
 	var node = document.getElementById(id);
 	var forms = node.getElementsByTagName('form');
 	forms[0].submit();
 }
-function changed( id ) {
-	var nodes = getElementsByClassName(document.getElementById(id),"div","valider");
+function changed() {
+	var nodes = getElementsByClassName(document.getElementById('{onglet}'),"div","valider");
 	var spans = nodes[0].getElementsByTagName('span');
 	spans[0].innerHTML = "Non enregistré";
 }
+function editeurOnChangeHandler(inst) { // The editor expects a callback with this name
+	changed();
+}
+
+initEditeur("textareas", "", false );
+
 </script>
 </head>
 <!-- <body onload="showOnly('{onglet}')"> -->
@@ -189,7 +178,7 @@ function changed( id ) {
   <ul>
 [BLOCK_LOOP_BREVES+]
   <li>
-  <span>{texteDebut}</span>
+  <label><span>{texteDebut}</span></label>
   <button name="selectBreve" value="{breve_id}" type="submit">Editer</button>
   <button name="hideBreve" value="{breve_id}" type="submit">Masquer</button>
   </li>
@@ -199,8 +188,8 @@ function changed( id ) {
   <button name="retour" value="breves" type="submit" style="position:absolute;top:2px;right:2px">Retour à la liste</button>
   <input name="editBreve" value="{breve_id}" type="hidden" />
 <!--   <button name="editBreve" value="{breve_id}" type="submit">Valider</button><br /> -->
-  <li><label><span>Date de début : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateDeb" class="date" value="{breve_dateDeb}" onchange="changed('breves')" /></label></li>
-  <li><label><span>Date de fin : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateFin" class="date" value="{breve_dateFin}" onchange="changed('breves')" /></label></li>
+  <li><label><span>Date de début : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateDeb" class="date" value="{breve_dateDeb}" onchange="changed()" /></label></li>
+  <li><label><span>Date de fin : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateFin" class="date" value="{breve_dateFin}" onchange="changed()" /></label></li>
   <li><label>Position : {breve_position} sur {breve_positionTotal}</label></li>
   <li>{brevesEditeur}</li> 
 [BLOCK_EDIT_BREVE-]

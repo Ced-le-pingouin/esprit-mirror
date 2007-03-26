@@ -1,9 +1,14 @@
 function initEditeur( Mode, Elements, tableauDeBord ) {
-	var contentCallback;
+	var contentCallback, onchangeCallback;
 	if ('function' == typeof mySetContent) {
 		contentCallback = "mySetContent";
 	} else {
 		contentCallback = "";
+	}
+	if ('function' == typeof editeurOnChangeHandler) {
+		onchangeCallback = "editeurOnChangeHandler";
+	} else {
+		onchangeCallback = "";
 	}
 tinyMCE.init({
 	theme : "advanced",
@@ -14,7 +19,9 @@ theme_advanced_buttons1_add : "fontselect,fontsizeselect,forecolor,backcolor",
 theme_advanced_buttons2_add : "separator,zoom",
 theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
 theme_advanced_disable : "image",
-theme_advanced_buttons2_add : "separator,ltr,rtl,separator,tableaubordi,tableauborde,separator,iespell,hr,removeformat,sub,sup,charmap,visualaidseparator,print",
+theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"
+	+(tableauDeBord?"tableaubordi,tableauborde,separator,":"")
+	+"iespell,hr,removeformat,sub,sup,charmap,visualaidseparator,print",
 theme_advanced_buttons3: "",
 theme_advanced_toolbar_location : "top",
 theme_advanced_toolbar_align : "left",
@@ -25,6 +32,7 @@ extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|borde
 	mode : Mode,
 	elements : Elements,
 	setupcontent_callback : contentCallback,
+	onchange_callback : onchangeCallback,
 	language : "fr",
 	docs_language : "en" // pas de doc en français ?
 });
