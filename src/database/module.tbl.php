@@ -102,10 +102,11 @@ class CModule
 	 * Initialise un tableau d'objets CPersonne (\c aoPersonnes) selon des critères de statut
 	 *
 	 * @param	v_iIdStatutPers	la constante représentant le statut désiré
+	 * @param	v_sModeTri		permet de trier l'ensemble des personnes par ordre croissant (par défaut) ou décroissant
 	 *
 	 * @return	le nombre de personnes trouvées
 	 */
-	function initPersonnes($v_iIdStatutPers = NULL)
+	function initPersonnes($v_iIdStatutPers = NULL, $v_sModeTri = "ASC")
 	{
 		$iIdxPers = 0;
 		$this->aoPersonnes = array();
@@ -117,25 +118,25 @@ class CModule
 			case STATUT_PERS_ETUDIANT:
 				$sRequeteSql = "SELECT Personne.*"
 					." FROM Module_Inscrit"
-					." LEFT JOIN Personne USING(IdPers)"
+					." LEFT JOIN Personne USING (IdPers)"
 					." WHERE Module_Inscrit.IdMod='{$iIdMod}'"
-					." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
 				break;
 
 			case STATUT_PERS_TUTEUR:
 				$sRequeteSql = "SELECT Personne.*"
 					." FROM Module_Tuteur"
-					." LEFT JOIN Personne USING(IdPers)"
+					." LEFT JOIN Personne USING (IdPers)"
 					." WHERE Module_Tuteur.IdMod='{$iIdMod}'"
-					." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
 				break;
 
 			case STATUT_PERS_CONCEPTEUR:
 				$sRequeteSql = "SELECT Personne.*"
 					." FROM Module_Concepteur"
-					." LEFT JOIN Personne USING(IdPers)"
+					." LEFT JOIN Personne USING (IdPers)"
 					." WHERE Module_Concepteur.IdMod='{$iIdMod}'"
-					." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
 				break;
 
 			default:
@@ -153,7 +154,7 @@ class CModule
 					." WHERE Module_Concepteur.IdMod='{$iIdMod}'"
 						." OR Module_Tuteur.IdMod='{$iIdMod}'"
 						." OR Module_Inscrit.IdMod='{$iIdMod}'"
-					." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
 		}
 
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
@@ -505,9 +506,9 @@ class CModule
 	 *
 	 * @return	le nombre de personnes(concepteurs) insérées dans le tableau
 	 */
-	function initConcepteurs ()
+	function initConcepteurs ($v_sModeTri = "ASC")
 	{
-		$iNbrConcepteurs = $this->initPersonnes(STATUT_PERS_CONCEPTEUR);
+		$iNbrConcepteurs = $this->initPersonnes(STATUT_PERS_CONCEPTEUR, $v_sModeTri);
 		$this->aoConcepteurs = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrConcepteurs;
@@ -518,9 +519,9 @@ class CModule
 	 *
 	 * @return	le nombre de personnes(tuteurs) insérées dans le tableau
 	 */
-	function initTuteurs ()
+	function initTuteurs ($v_sModeTri = "ASC")
 	{
-		$iNbrTuteurs = $this->initPersonnes(STATUT_PERS_TUTEUR);
+		$iNbrTuteurs = $this->initPersonnes(STATUT_PERS_TUTEUR, $v_sModeTri);
 		$this->aoTuteurs = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrTuteurs;
@@ -539,9 +540,9 @@ class CModule
 	 *
 	 * @return	le nombre de personnes(étudiants) insérées dans le tableau
 	 */
-	function initInscrits ()
+	function initInscrits ($v_sModeTri = "ASC")
 	{
-		$iNbrInscrits = $this->initPersonnes(STATUT_PERS_ETUDIANT);
+		$iNbrInscrits = $this->initPersonnes(STATUT_PERS_ETUDIANT, $v_sModeTri);
 		$this->aoInscrits = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrInscrits;
