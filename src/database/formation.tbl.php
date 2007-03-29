@@ -745,12 +745,15 @@ class CFormation
 	 * Initialise un tableau avec les étudiants inscrits à la formation
 	 * 
 	 * @param	v_sModeTri si \c "ASC" (par défaut), tri croissant sur le nom et le prénom, si \c "DESC" tri décroissant
+	 * @param	v_bNonAffectesModule
 	 * 
 	 * @return	le nombre de personnes(étudiants) insérées dans le tableau
 	 */
-	function initInscrits ($v_sModeTri = "ASC")
+	function initInscrits ($v_sModeTri = "ASC", $v_bNonAffectesModule = FALSE)
 	{
-		$iNbrInscrits = $this->initPersonnes(STATUT_PERS_ETUDIANT, $v_sModeTri);
+		$iNbrInscrits = $v_bNonAffectesModule
+			? $this->initPersNonAffectesMod(STATUT_PERS_ETUDIANT, $v_sModeTri)
+			: $this->initPersonnes(STATUT_PERS_ETUDIANT, $v_sModeTri);
 		$this->aoInscrits = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrInscrits;
@@ -1083,16 +1086,112 @@ class CFormation
 		return $iIdxPers;
 	}
 	
+	function initPersNonAffectesMod ($v_iIdStatutPers = NULL, $v_sModeTri = "ASC")
+	{
+		$iIdxPers = 0;
+		$this->aoPersonnes = array();
+		
+		if ($this->retInscrAutoModules())
+			return 0;
+		
+		$iIdForm = $this->retId();
+		$iNbrModules = $this->retNbrModules();
+		
+		switch ($v_iIdStatutPers)
+		{
+			case STATUT_PERS_ETUDIANT:
+				$sRequeteSql = "SELECT Personne.*"
+					."FROM Module"
+					." LEFT JOIN Formation_Inscrit USING (IdForm)"
+					." LEFT JOIN Module_Inscrit"
+						." ON Module.IdMod = Module_Inscrit.IdMod"
+						." AND Formation_Inscrit.IdPers = Module_Inscrit.IdPers"
+					." LEFT JOIN Personne ON Formation_Inscrit.IdPers=Personne.IdPers"
+					." WHERE Module.IdForm='{$iIdForm}'"
+						." AND Module_Inscrit.IdMod IS NULL"
+						." AND Module_Inscrit.IdPers IS NULL"
+					." GROUP BY Formation_Inscrit.IdPers"
+					." HAVING COUNT(*)='{$iNbrModules}'"
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
+				break;
+			
+			case STATUT_PERS_TUTEUR:
+				$sRequeteSql = "SELECT Personne.*"
+					."FROM Module"
+					." LEFT JOIN Formation_Tuteur USING (IdForm)"
+					." LEFT JOIN Module_Tuteur"
+						." ON Module.IdMod = Module_Tuteur.IdMod"
+						." AND Formation_Tuteur.IdPers = Module_Tuteur.IdPers"
+					." LEFT JOIN Personne ON Formation_Tuteur.IdPers=Personne.IdPers"
+					." WHERE Module.IdForm='{$iIdForm}'"
+						." AND Module_Tuteur.IdMod IS NULL"
+						." AND Module_Tuteur.IdPers IS NULL"
+					." GROUP BY Formation_Tuteur.IdPers"
+					." HAVING COUNT(*)='{$iNbrModules}'"
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
+				break;
+			
+			case STATUT_PERS_CONCEPTEUR:
+				$sRequeteSql = "SELECT Personne.*"
+					."FROM Module"
+					." LEFT JOIN Formation_Concepteur USING (IdForm)"
+					." LEFT JOIN Module_Concepteur"
+						." ON Module.IdMod = Module_Concepteur.IdMod"
+						." AND Formation_Inscrit.IdPers = Module_Concepteur.IdPers"
+					." LEFT JOIN Personne ON Formation_Concepteur.IdPers=Personne.IdPers"
+					." WHERE Module.IdForm='{$iIdForm}'"
+						." AND Module_Concepteur.IdMod IS NULL"
+						." AND Module_Concepteur.IdPers IS NULL"
+					." GROUP BY Formation_Concepteur.IdPers"
+					." HAVING COUNT(*)='{$iNbrModules}'"
+					." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom {$v_sModeTri}";
+				break;
+			
+			default:
+				return 0;
+		}
+		
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
+		{
+			$this->aoPersonnes[$iIdxPers] = new CPersonne($this->oBdd);
+			$this->aoPersonnes[$iIdxPers]->init($oEnreg);
+		 	$iIdxPers++;
+		}
+
+		$this->oBdd->libererResult($hResult);
+		
+		return $iIdxPers;
+	}
+	
+	/**
+	 * Retourne le nombre de modules de cette formation
+	 * 
+	 * @return	le nombre de modules de cette formation
+	 */
+	function retNbrModules ()
+	{
+		$sRequeteSql = "SELECT COUNT(*) FROM Module WHERE Module.IdForm='".$this->retId()."'";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$iNbrModules = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		return $iNbrModules;
+	}
+	
 	/**
 	 * Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette formation
 	 * 
 	 * @param	v_sModeTri si \c "ASC" (par défaut), tri croissant sur le nom et le prénom, si \c "DESC" tri décroissant
+	 * @param	v_bNonAffectesModule
 	 * 
 	 * @return	le nombre de concepteurs insérés dans le tableau
 	 */
-	function initConcepteurs ($v_sModeTri = "ASC")
+	function initConcepteurs ($v_sModeTri = "ASC", $v_bNonAffectesModule = FALSE)
 	{
-		$iNbrConcepteurs = $this->initPersonnes(STATUT_PERS_CONCEPTEUR, $v_sModeTri);
+		$iNbrConcepteurs = $v_bNonAffectesModule
+			? $this->initPersNonAffectesMod(STATUT_PERS_CONCEPTEUR, $v_sModeTri)
+			: $this->initPersonnes(STATUT_PERS_CONCEPTEUR, $v_sModeTri);
 		$this->aoConcepteurs = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrConcepteurs;
@@ -1103,12 +1202,15 @@ class CFormation
 	 * Initialise un tableau contenant tous les tuteurs inscrits aux cours de cette formation
 	 * 
 	 * @param	v_sModeTri si \c "ASC" (par défaut), tri croissant sur le nom et le prénom, si \c "DESC" tri décroissant
+	 * @param	v_bNonAffectesModule
 	 * 
 	 * @return	le nombre de tuteurs insérés dans le tableau
 	 */
-	function initTuteurs ($v_sModeTri = "ASC")
+	function initTuteurs ($v_sModeTri = "ASC", $v_bNonAffectesModule = FALSE)
 	{
-		$iNbrTuteurs = $this->initPersonnes(STATUT_PERS_TUTEUR, $v_sModeTri);
+		$iNbrTuteurs = $v_bNonAffectesModule
+			? $this->initPersNonAffectesMod(STATUT_PERS_TUTEUR, $v_sModeTri)
+			: $this->initPersonnes(STATUT_PERS_TUTEUR, $v_sModeTri);
 		$this->aoTuteurs = $this->aoPersonnes;
 		$this->aoPersonnes = NULL;
 		return $iNbrTuteurs;
