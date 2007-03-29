@@ -1091,7 +1091,8 @@ class CFormation
 		$iIdxPers = 0;
 		$this->aoPersonnes = array();
 		
-		if ($this->retInscrAutoModules())
+		if (STATUT_PERS_ETUDIANT == $v_iIdStatutPers
+			&& $this->retInscrAutoModules())
 			return 0;
 		
 		$iIdForm = $this->retId();
@@ -1101,7 +1102,7 @@ class CFormation
 		{
 			case STATUT_PERS_ETUDIANT:
 				$sRequeteSql = "SELECT Personne.*"
-					."FROM Module"
+					." FROM Module"
 					." LEFT JOIN Formation_Inscrit USING (IdForm)"
 					." LEFT JOIN Module_Inscrit"
 						." ON Module.IdMod = Module_Inscrit.IdMod"
@@ -1117,7 +1118,7 @@ class CFormation
 			
 			case STATUT_PERS_TUTEUR:
 				$sRequeteSql = "SELECT Personne.*"
-					."FROM Module"
+					." FROM Module"
 					." LEFT JOIN Formation_Tuteur USING (IdForm)"
 					." LEFT JOIN Module_Tuteur"
 						." ON Module.IdMod = Module_Tuteur.IdMod"
@@ -1133,7 +1134,7 @@ class CFormation
 			
 			case STATUT_PERS_CONCEPTEUR:
 				$sRequeteSql = "SELECT Personne.*"
-					."FROM Module"
+					." FROM Module"
 					." LEFT JOIN Formation_Concepteur USING (IdForm)"
 					." LEFT JOIN Module_Concepteur"
 						." ON Module.IdMod = Module_Concepteur.IdMod"
