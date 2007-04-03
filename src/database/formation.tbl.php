@@ -221,13 +221,7 @@ class CFormation
 	 */
 	function associerResponsable ($v_iIdPers)
 	{
-		if (($iIdForm = $this->retId()) < 1 || $v_iIdPers < 1)
-			return;
-		
-		$sRequeteSql = "REPLACE INTO Formation_Resp SET"
-			." IdForm='{$iIdForm}'"
-			.", IdPers='{$v_iIdPers}'";
-		$this->oBdd->executerRequete($sRequeteSql);
+		$this->inscrirePersonnes(array($v_iIdPers), STATUT_PERS_RESPONSABLE);
 	}
 	
 	/**
@@ -1084,6 +1078,59 @@ class CFormation
 		$this->oBdd->libererResult($hResult);
 		
 		return $iIdxPers;
+	}
+	
+	/**
+	 * Inscrit les personnes à la formation en fonction du statut déterminé
+	 *
+	 * @param	v_aiIdPers	tableau contenant les id des personnes
+	 * @param	v_iIdStatut	le statut des personnes à insérer
+	 *
+	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
+	 */
+	function inscrirePersonnes ($v_aiIdPers, $v_iIdStatut)
+	{
+		$iIdForm = $this->retId();
+		
+		if (empty($iIdForm))
+			return FALSE;
+		
+		$sValeursRequete = NULL;
+		
+		foreach ($v_aiIdPers as $iIdPers)
+			if ($iIdPers > 0)
+				$sValeursRequete .= (isset($sValeursRequete) ? ", " : NULL)
+					."('{$iIdForm}','{$iIdPers}')";
+		
+		if (empty($sValeursRequete))
+			return FALSE;
+		
+		switch ($v_iIdStatut)
+		{
+			case STATUT_PERS_ETUDIANT:
+				$sTable = "Formation_Inscrit";
+				break;
+			case STATUT_PERS_TUTEUR:
+				$sTable = "Formation_Tuteur";
+				break;
+			case STATUT_PERS_CONCEPTEUR:
+				$sTable = "Formation_Concepteur";
+				break;
+			case STATUT_PERS_RESPONSABLE:
+				$sTable = "Formation_Resp";
+				break;
+			default:
+				$sTable = NULL;
+		}
+		
+		if (empty($sTable))
+			return FALSE;
+		
+		$sRequeteSql = "REPLACE INTO {$sTable}"
+			." (IdForm, IdPers) VALUES {$sValeursRequete}";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		return TRUE;
 	}
 	
 	function initPersNonAffectesMod ($v_iIdStatutPers = NULL, $v_sModeTri = "ASC")
