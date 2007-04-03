@@ -942,40 +942,51 @@ class CModule
 	/**
 	 * Inscrit les personnes comme soit étudiant, soit tuteur, ou soit concepteur d'un module
 	 *
-	 * @param	v_aiIdPers	tableau contenat les id des personnes
-	 * @param	v_iIdStatut	le statut des personnes à inséré
+	 * @param	v_aiIdPers	tableau contenant les id des personnes
+	 * @param	v_iIdStatut	le statut des personnes à insérer
 	 *
 	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
 	 */
 	function inscrirePersonnes ($v_aiIdPers,$v_iIdStatut)
 	{
+		$iIdMod = $this->retId();
+		
+		if (empty($iIdMod))
+			return FALSE;
+		
 		$sValeursRequete = NULL;
 
-		if ($this->iId < 1)
-			return;
-
 		foreach ($v_aiIdPers as $iIdPers)
-			$sValeursRequete .= (isset($sValeursRequete) ? ", " : NULL)
-				."('{$this->iId}','{$iIdPers}')";
+			if ($iIdPers > 0)
+				$sValeursRequete .= (isset($sValeursRequete) ? ", " : NULL)
+					."('{$iIdMod}', '{$iIdPers}')";
 
-		if (isset($sValeursRequete))
+		if (empty($sValeursRequete))
+			return FALSE;
+
+		switch ($v_iIdStatut)
 		{
-			if ($v_iIdStatut == STATUT_PERS_CONCEPTEUR)
-				$sNomTable = "Module_Concepteur";
-			else if ($v_iIdStatut == STATUT_PERS_TUTEUR)
-				$sNomTable = "Module_Tuteur";
-			else if ($v_iIdStatut == STATUT_PERS_ETUDIANT)
-				$sNomTable = "Module_Inscrit";
-			else
-				$sNomTable = NULL;
-
-			if (isset($sNomTable))
-			{
-				$sRequeteSql = "REPLACE INTO {$sNomTable}"
-					." (IdMod, IdPers) VALUES {$sValeursRequete}";
-				$this->oBdd->executerRequete($sRequeteSql);
-			}
+			case STATUT_PERS_ETUDIANT:
+				$sTable = "Module_Inscrit";
+				break;
+			case STATUT_PERS_TUTEUR:
+				$sTable = "Module_Tuteur";
+				break;
+			case STATUT_PERS_CONCEPTEUR:
+				$sTable = "Module_Concepteur";
+				break;
+			default:
+				$sTable = NULL;
 		}
+		
+		if (empty($sTable))
+			return FALSE;		
+
+		$sRequeteSql = "REPLACE INTO {$sTable}"
+			." (IdMod, IdPers) VALUES {$sValeursRequete}";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		return TRUE;
 	}
 
 	/**
