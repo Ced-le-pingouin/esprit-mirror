@@ -610,6 +610,25 @@ class CProjet
 		}
 	}
 	
+	function inscrireAdministrateurs($v_aiIdPers)
+	{
+		$sValeursRequete = NULL;
+		
+		foreach ($v_aiIdPers as $iIdPers)
+			if ($iIdPers > 0)
+				$sValeursRequete .= isset($sValeursRequete) ? ", " : NULL
+					."('{$iIdPers}')";
+		
+		if (empty($sValeursRequete))
+			return FALSE;
+		
+		$sRequeteSql = "REPLACE INTO Projet_Admin"
+			." (IdPers) VALUES {$sValeursRequete}";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		return TRUE;
+	}
+	
 	/**
 	 * Vérifie que l'utilisateur connecté est admin du projet
 	 *
