@@ -947,7 +947,7 @@ class CModule
 	 *
 	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
 	 */
-	function inscrirePersonnes ($v_aiIdPers,$v_iIdStatut)
+	function inscrirePersonnes ($v_aiIdPers, $v_iIdStatut)
 	{
 		$iIdMod = $this->retId();
 		
@@ -997,38 +997,47 @@ class CModule
 	 *
 	 * @return	\c false si l'objet \c oEnregBdd n'a pas été initialisé
 	 */
-	function retirerPersonnes ($v_aiIdPers,$v_iIdStatut)
+	function retirerPersonnes ($v_aiIdPers, $v_iIdStatut)
 	{
+		$iIdMod = $this->retId();
+		
+		if (empty($iIdMod))
+			return FALSE;
+		
 		$sValeursRequete = NULL;
 
-		if ($this->iId < 1)
-			return;
-
 		foreach ($v_aiIdPers as $iIdPers)
-			if (is_numeric($iIdPers))
+			if ($iIdPers > 0)
 				$sValeursRequete .= (isset($sValeursRequete) ? ", " : NULL)
 					."'{$iIdPers}'";
+		
+		if (empty($sValeursRequete))
+			return FALSE;
 
-		if (isset($sValeursRequete))
+		switch ($v_iIdStatut)
 		{
-			if ($v_iIdStatut == STATUT_PERS_CONCEPTEUR)
-				$sNomTable = "Module_Concepteur";
-			else if ($v_iIdStatut == STATUT_PERS_TUTEUR)
-				$sNomTable = "Module_Tuteur";
-			else if ($v_iIdStatut == STATUT_PERS_ETUDIANT)
-				$sNomTable = "Module_Inscrit";
-			else
-				$sNomTable = NULL;
-
-			if (isset($sNomTable))
-			{
-				$sRequeteSql = "DELETE FROM {$sNomTable}"
-					." WHERE IdMod='{$this->iId}'"
-					." AND IdPers IN ({$sValeursRequete})"
-					." LIMIT ".count($v_aiIdPers);
-				$this->oBdd->executerRequete($sRequeteSql);
-			}
+			case STATUT_PERS_ETUDIANT:
+				$sTable = "Module_Inscrit";
+				break;
+			case STATUT_PERS_TUTEUR:
+				$sTable = "Module_Tuteur";
+				break;
+			case STATUT_PERS_CONCEPTEUR:
+				$sTable = "Module_Concepteur";
+				break;
+			default:
+				$sTable = NULL;
 		}
+		
+		if (empty($sTable))
+			return FALSE;		
+
+		$sRequeteSql = "DELETE FROM {$sTable}"
+			." WHERE IdMod='{$iIdMod}'"
+				." AND IdPers IN ({$sValeursRequete})";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		return TRUE;
 	}
 
 	/**
