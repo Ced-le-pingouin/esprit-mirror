@@ -62,6 +62,8 @@ if (!empty($_POST['modifier']))
 		case "breves" :
 			if (isset($_POST['hideBreve'])) {
 				$oAccueil->toggleVisible($_POST['hideBreve']);
+			} else if (isset($_POST['deleteBreve'])) {
+				$oAccueil->deleteItem($_POST['deleteBreve']);
 			} else if (isset($_POST['editBreve']) && empty($_POST['retour'])) {
 				$oAccueil->setBreve($_POST['brevesEditeur'],$_POST['dateDeb'],$_POST['dateFin'],1,$_POST['ordre'],$_POST['editBreve']);
 			}
