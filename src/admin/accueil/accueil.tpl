@@ -193,7 +193,7 @@ function changed( id ) {
   <span>{texteDebut}</span>
   <button name="selectBreve" value="{breve_id}" type="submit">Editer</button>
   <button name="hideBreve" value="{breve_id}" type="submit">Masquer</button>
-  <button name="deleteBreve" value="{breve_id}" type="submit">Supprimer</button>
+  <button name="deleteBreve" value="{breve_id}" type="submit" onclick="return confirm('Effacer cette brève ?')">Supprimer</button>
   </li>
 [BLOCK_LOOP_BREVES-]
 [BLOCK_EDIT_BREVE+]
