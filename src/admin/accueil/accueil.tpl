@@ -11,10 +11,6 @@ div.valider { float:right; text-align:right; }
 div.valider a { color:black; font-size:13px; border:1px solid black; background-color:#C0C0C0; padding:2px 3px; }
 div.valider a:hover { background-color:#D0D0D0;}
 div.valider span { color:red; font-style:italic; margin-right:1em;}
-/*
-form.liensForm label { display:block; margin:2px 0; }
-form.liensForm label span { width:15ex; text-align:right; }
-*/
 form.liensForm input { width:70ex; }
 form.liensForm button { margin-left:5ex; }
 form.liensForm label { display:block; margin:2px 0; padding:0; }
@@ -27,8 +23,12 @@ form.liensForm label span {
   padding: 0 1em 0 1em;
 }
 
-#brevesForm li { margin:4px 0; }
-#brevesForm li span { width:51ex; 
+#brevesForm li {
+  margin:4px 0;
+  clear:both;
+}
+#brevesForm li span {
+  width:53ex; 
   display: -moz-inline-box;
   display: inline-block;
   border: 1px solid gray;
@@ -36,7 +36,10 @@ form.liensForm label span {
   margin: 0;
   padding: 0 1em 0 1em;
 }
-input.date { margin-left:1ex; width:14ex; }
+input.date {
+  margin-left:1ex;
+  width:14ex;
+}
 </style>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
@@ -190,6 +193,7 @@ function changed( id ) {
   <span>{texteDebut}</span>
   <button name="selectBreve" value="{breve_id}" type="submit">Editer</button>
   <button name="hideBreve" value="{breve_id}" type="submit">Masquer</button>
+  <button name="deleteBreve" value="{breve_id}" type="submit">Supprimer</button>
   </li>
 [BLOCK_LOOP_BREVES-]
 [BLOCK_EDIT_BREVE+]
