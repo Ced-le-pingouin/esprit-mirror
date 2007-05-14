@@ -19,17 +19,6 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-define("NUM_PORT_AWARENESS","2600");
-
-function retAwarenessJavascript ()
-{
-	return "<script"
-		." language=\"javascript\""
-		." type=\"text/javascript\""
-		." src=\"".dir_javascript("awareness.js")."\">"
-		."</script>";
-}
-
 function retNomUniqueAwareness ()
 {
 	global $oProjet;
@@ -43,41 +32,7 @@ function retNomUniqueAwareness ()
 	return "{$oProjet->sNomRep}_{$iIdForm}";
 }
 
-function retAwarenessApplet ($v_sLocation)
-{
-	return NULL; // Desactiver l'awareness
-	
-	global $oProjet;
-	
-	$sChemin = dir_admin("awareness/client",NULL,FALSE);
-	
-	if (!stristr($_SERVER["HTTP_USER_AGENT"],"Netscape") &&
-		isset($oProjet->oUtilisateur))
-		return "<applet"
-			." name=\"AwarenessApplet\""
-			." width=\"29\" height=\"17\""
-			." codebase=\"{$sChemin}\""
-			." code=\"AwarenessApplet.class\""
-			." archive=\"AwarenessClient.jar\""
-			." MAYSCRIPT"
-			.">\n"
-			."<param name=\"location\" value=\"{$v_sLocation}\">\n"
-			."<param name=\"id_session\" value=\"".retNomUniqueAwareness()."\">\n"
-			."<param name=\"host\" value=\"".$_SERVER["SERVER_ADDR"]."\">\n"
-			."<param name=\"port\" value=\"".NUM_PORT_AWARENESS."\">\n"
-			."<param name=\"nickname\" value=\"".$oProjet->oUtilisateur->retPseudo()."\">\n"
-			."<param name=\"locale\" value=\"Fra\">\n"
-			."</applet>\n";
-	else
-		return "<img"
-			." src=\"{$sChemin}/non_oeil.jpg\""
-			." width=\"29\" height=\"17\""
-			." border=\"0\""
-			." title=\"Awareness non disponible avec les Netscape \""
-			.">\n";
-}
-
-function retAwarenessSpy ($v_sLocation,$v_bTraduire=TRUE) 
+function retAwarenessSpy ($v_sLocation, $v_bTraduire = TRUE)
 {
 	global $oProjet, $_SERVER;
 	
