@@ -1018,7 +1018,6 @@ class CSousActiv
 			
 			$sRequeteSql = "UPDATE Ressource_SousActiv"
 				." SET StatutResSousActiv='".STATUT_RES_SOUMISE."'"
-					.", DateModifStatut=NOW()"
 				." WHERE IdResSousActiv='{$v_iIdResSousActiv}'"
 				." AND StatutResSousActiv='".STATUT_RES_EN_COURS."'";
 			$this->oBdd->executerRequete($sRequeteSql);
