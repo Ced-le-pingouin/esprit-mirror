@@ -1,4 +1,5 @@
 <?php
+require_once("globals.inc.php");
 $sTitrePrincipal = emb_htmlentities("Exporter une liste de la table des personnes");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 ?>
