@@ -37,7 +37,7 @@ class CZip
 	var $oArchive;				///< Objet PclZip interne qui représente l'archive
 
 	var $sCheminArchive = NULL;	///< Chaîne de caractères contenant le chemin de l'archive à créer
-	var $asEntrees = NULL;		///< Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive
+	var $asEntrees = array();	///< Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive
 	var $sCheminAAjouter = "";	///< Ce chemin sera ajouté devant la racine de chaque fichier inclus à l'archive
 	var $sCheminAEnlever = "";	///< Les fichiers inclus dans l'archive et dont le chemin commence par cette chaîne, auront cette chaîne enlevée du chemin
 	
@@ -56,7 +56,7 @@ class CZip
 	 * 
 	 * @todo	Vérifier que le chemin/nom de l'archive à créer est valide
 	 */
-	function CZip($v_sCheminArchive, $v_asEntrees = NULL, $v_bCreer = FALSE)
+	function CZip($v_sCheminArchive, $v_asEntrees = array(), $v_bCreer = FALSE)
 	{
 		$this->oArchive = new PclZip($v_sCheminArchive);
 		
@@ -85,7 +85,7 @@ class CZip
 	function ajouterEntreesDsListe($v_asEntrees, $v_bEffacerAnciennes = FALSE, $v_bCreer = FALSE)
 	{
 		if ($v_bEffacerAnciennes)
-			$this->asEntrees = NULL;
+			$this->asEntrees = array();
 		
 		if (!is_array($v_asEntrees))
 			$this->asEntrees = array_merge($this->asEntrees, array($v_asEntrees));
