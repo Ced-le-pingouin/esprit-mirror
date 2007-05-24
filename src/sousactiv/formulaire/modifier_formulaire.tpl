@@ -24,6 +24,7 @@ form
 }
 -->
 </style>
+<script src="javascript://globals.js" type="text/javascript"></script>
 <script src="{formulaire_js}" type="text/javascript"></script>
 <script src="{general_js_php}" type="text/javascript"></script>
 </head>

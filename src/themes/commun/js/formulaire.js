@@ -22,7 +22,7 @@ function formulaire_eval(v_sParamsUrl,v_sNomFenetre)
 
 function verifNbQcocher(NbRepMaxQC,MessMaxQC) { ; }
 
-// !!! la fonction trim() est définie dans /code_lib/general.js, qui doit donc être inclus avant ce fichier !!!
+// !!! la méthode trim() est définie dans js/globals.js, qui doit donc être inclus avant ce fichier !!!
 function validerFormulaire(v_bRemplirTout)
 {
 	var oForm = document.forms['questionnaire'];
@@ -39,12 +39,12 @@ function validerFormulaire(v_bRemplirTout)
 				switch(oForm.elements[i].type)
 				{
 					case 'text':
-						if (trim(oForm.elements[i].value) == '')
+						if (oForm.elements[i].value.trim() == '')
 							oElementIncorrect = oForm.elements[i];
 						break;
 					
 					case 'textarea':
-						if (trim(oForm.elements[i].value) == '')
+						if (oForm.elements[i].value.trim() == '')
 							oElementIncorrect = oForm.elements[i];
 						break;
 					
