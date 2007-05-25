@@ -62,8 +62,7 @@ function GPL()
 
 	[BLOCK_INFOS_PLATEFORME+]
 	<div id="formations">
-		<p>Vous êtes déjà inscrit ? Introduisez votre pseudo et mot de passe dans la zone située à gauche de cet écran 
-		(Si cette zone n'apparaît pas complètement,	appuyez alors sur la touche F11 pour passer en mode plein écran).</p>
+	<h2>Formations en acc&egrave;s libre</h2>
 		[BLOCK_LISTE_FORMATIONS+]
 		<p>Vous n'êtes pas inscrit ? Vous pouvez néanmoins vous faire une idée des possibilités d'Esprit en sélectionnant
 		une des formations proposées ci-dessous à titre d'exemple. Vous aurez la possibilité, en parcourant l'une ou l'autre 
