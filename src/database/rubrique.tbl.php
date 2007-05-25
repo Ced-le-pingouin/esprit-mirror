@@ -683,6 +683,11 @@ class CModule_Rubrique
 			: $this->oEnregBdd->DonneesRubrique);
 	}
 
+	function retDonnee($v_iPartie)
+	{
+		$d = explode(';', $this->retDonnees());
+		return $d[$v_iPartie];
+	}
 
 	function retNumOrdre ()
 	{
