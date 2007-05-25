@@ -6,7 +6,7 @@
 <link type="text/css" rel="stylesheet" href="theme://dialog.css">
 <link type="text/css" rel="stylesheet" href="theme://dialog_2.css">
 <link type="text/css" rel="stylesheet" href="theme://concept.css">
-<script type="text/javascript" language="javascript" src="/themes/esprit/dialog-titre.js"></script>
+<script type="text/javascript" language="javascript" src="commun://js//dialog-titre.js"></script>
 <title>Conception d'activités en ligne</title>
 </head>
 <body class="haut">

@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="theme://dialog.css">
 <link type="text/css" rel="stylesheet" href="theme://dialog_2.css">
 [BLOCK_HEAD+][BLOCK_HEAD-]
-<script type="text/javascript" language="javascript" src="theme://dialog-titre.js"></script>
+<script type="text/javascript" language="javascript" src="commun://js/dialog-titre.js"></script>
 </head>
 <body class="haut">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">

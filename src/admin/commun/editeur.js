@@ -1,61 +1,39 @@
-function insertAtCursor(v_sNomChamp,v_sBaliseDepart,v_sBaliseFin)
-{
-	if (document.selection)
-	{
-		// IE support
-		v_sNomChamp.focus();
-		selection = document.selection.createRange();
-		selection.text = v_sBaliseDepart + selection.text + v_sBaliseFin;
+function initEditeur( Mode, Elements, tableauDeBord ) {
+	var contentCallback, onchangeCallback;
+	if ('function' == typeof mySetContent) {
+		contentCallback = "mySetContent";
+	} else {
+		contentCallback = "";
 	}
-	else if (v_sNomChamp.selectionStart || v_sNomChamp.selectionStart == '0')
-	{
-		// MOZILLA/NETSCAPE support
-		var startPos = v_sNomChamp.selectionStart;
-		var endPos = v_sNomChamp.selectionEnd;
-		v_sNomChamp.value = v_sNomChamp.value.substring(0, startPos)
-			+ v_sBaliseDepart
-			+ v_sNomChamp.value.substring(startPos,endPos)
-			+ v_sBaliseFin
-			+ v_sNomChamp.value.substring(endPos,v_sNomChamp.value.length);
+	if ('function' == typeof editeurOnChangeHandler) {
+		onchangeCallback = "editeurOnChangeHandler";
+	} else {
+		onchangeCallback = "";
 	}
-	else
-	{
-		v_sNomChamp.value += v_sBaliseDepart + v_sBaliseFin;
-	}
-}
-
-function fonth1() { insererBalise("[h1]","[/h1]"); }
-function fonth2() { insererBalise("[h2]","[/h2]"); }
-function fonth3() { insererBalise("[h3]","[/h3]"); }
-function fonth4() { insererBalise("[h4]","[/h4]"); }
-function fonth5() { insererBalise("[h5]","[/h5]"); }
-function fonth6() { insererBalise("[h6]","[/h6]"); }
-
-function bold() { insererBalise("[b]","[/b]"); }
-function italic() { insererBalise("[i]","[/i]"); }
-function underline() { insererBalise("[u]","[/u]"); }
-
-function left_alignment() { insererBalise("[l]","[/l]"); }
-function center_alignment() { insererBalise("[c]","[/c]"); }
-function right_alignment() { insererBalise("[r]","[/r]"); }
-function justify_alignment() { insererBalise("[j]","[/j]"); }
-function bidi_left_to_right() { insererBalise("[ltr]","[/ltr]"); }
-function bidi_right_to_left() { insererBalise("[rtl]","[/rtl]"); }
-
-function list_ul() { insererBalise("[liste \"*\"]\n","\n[/liste]"); }
-function list() { insererBalise("[liste \"1\"]\n","\n[/liste]"); }
-function list_ol() { insererBalise("[liste \"A\"]\n","\n[/liste]"); }
-
-function increase_indent() { insererBalise("[blockquote]","[/blockquote]\n"); }
-
-function email() { insererBalise("[mailto:","]"); }
-function site() { insererBalise("[http://","]"); }
-
-function hrule() { insererBalise("[hr]",""); }
-
-function tableau_de_bord(v_sModalite) {
-	if (v_sModalite && v_sModalite == "/e")
-		insererBalise("[tableaudebord /e]","");
-	else
-		insererBalise("[tableaudebord /i]","");
+tinyMCE.init({
+	theme : "advanced",
+	plugins : "save,advhr,advlink,emotions,insertdatetime,zoom,searchreplace,contextmenu,directionality"
+		+(tableauDeBord?",tableaubord":""),
+// theme_advanced_buttons1_add_before : "save,separator",
+theme_advanced_buttons1_add : "fontselect,fontsizeselect,forecolor,backcolor",
+theme_advanced_buttons2_add : "separator,zoom",
+theme_advanced_buttons2_add_before: "cut,copy,paste,separator,search,replace,separator",
+theme_advanced_disable : "image",
+theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"
+	+(tableauDeBord?"tableaubordi,tableauborde,separator,":"")
+	+"iespell,hr,removeformat,sub,sup,charmap,visualaidseparator,print",
+theme_advanced_buttons3: "",
+theme_advanced_toolbar_location : "top",
+theme_advanced_toolbar_align : "left",
+theme_advanced_path_location : "bottom",
+plugin_insertdate_dateFormat : "%Y-%m-%d",
+plugin_insertdate_timeFormat : "%H:%M:%S",
+extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
+	mode : Mode,
+	elements : Elements,
+	setupcontent_callback : contentCallback,
+	onchange_callback : onchangeCallback,
+	language : "fr",
+	docs_language : "en" // pas de doc en français ?
+});
 }

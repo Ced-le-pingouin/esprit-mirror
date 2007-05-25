@@ -176,3 +176,12 @@ td.intitule { vertical-align: top; }
 a.email { font-size: 8pt; font-weight: normal; }
 span.sans_email { cursor: help; font-style: italic; font-size: 8pt; font-weight: normal; }
 
+/* arabe */
+.rtl { font-size:150%; }
+h1.rtl { font-size: 22pt; }
+h2.rtl { font-size: 18pt; }
+h3.rtl { font-size: 16pt; }
+h4.rtl { font-size: 15pt; }
+h5.rtl { font-size: 13pt; }
+h6.rtl { font-size: 12pt; }
+.rtl font { font-size:150%; }

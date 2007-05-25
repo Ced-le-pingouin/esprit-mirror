@@ -7,7 +7,6 @@
 <link type="text/css" rel="stylesheet" href="theme://menu.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
-<script type="text/javascript" language="javascript" src="javascript://cookie.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://outils_admin.js"></script>
 </head>
 <body>
