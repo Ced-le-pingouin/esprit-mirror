@@ -177,11 +177,11 @@ function RetourPoidsReponse(&$v_oBdd,$v_iIdFormulaire,$v_iIdObjFormul,$v_iIdProp
 	|     1 | Determination |        55 |              |            3 |         123 | [NULL] |
 	|     2 | Objectivite   |        55 |              |            3 |         123 | [NULL] |
 	+-------+---------------+-----------+--------------+--------------+-------------+--------+	*/
-	$sRequeteSqlAxes =	 "Select a.*, pr.*, ra.Poids"
+	$sRequeteSqlAxes =	 "SELECT a.*, pr.*, ra.Poids"
 						 ." FROM"
 							 ." Formulaire_Axe as fa"
-							 .", Axe as a"
-							 .", PropositionReponse as pr"
+							 ." JOIN Axe as a"
+							 ." JOIN PropositionReponse as pr"
 							 ." LEFT JOIN Reponse_Axe as ra ON (pr.IdPropRep = ra.IdPropRep AND a.IdAxe = ra.IdAxe)"
 					  	 ." WHERE"
 							 ." fa.IdFormul = '{$v_iIdFormulaire}' AND fa.IdAxe = a.IdAxe"
