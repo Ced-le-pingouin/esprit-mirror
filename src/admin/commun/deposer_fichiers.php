@@ -47,7 +47,7 @@ $url_bDezippe               = (empty($_GET["dezipFichier"]) ? TRUE : $_GET["dezi
 // ---------------------
 $asRepertoiresCopie = array();
 
-$sRepAbsDestination = dir_document_root($url_sRepDestination);
+$sRepAbsDestination = dir_root_formation($url_sRepDestination);
 
 // Rechercher les répertoires de copie
 if (!is_dir($sRepAbsDestination))
@@ -115,6 +115,7 @@ if (count($asRepertoiresCopie) > 0)
 else
 {
 	$oBlocDeposerFichiers->effacer();
+	error_log('ESPRIT : perm pb ? No copy dir found in '.$sRepAbsDestination);
 }
 
 $oTpl->remplacer("{title}",emb_htmlentities($url_sTitrePrincipalFenetre));
