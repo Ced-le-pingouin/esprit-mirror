@@ -4,10 +4,10 @@ body {
 	margin:0;
 	padding:0;
 	height:100%;
+	background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
 }
 html>body #wrap {
 	height:100%;
-	background: rgb(255,255,255) url('images/login-gauche-fond.jpg') repeat-y fixed top left;
 }
 #bandeau {
 	width:100%;
@@ -51,7 +51,7 @@ body
 	margin: 0;
 	padding: 0;
 	color: black;
-	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-family: Verdana Tahoma Arial sans-serif;
 	font-size: 12px;
 }
 #contenu
