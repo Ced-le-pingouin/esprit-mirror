@@ -71,7 +71,7 @@ BLOC_PAGE_HTML;
 	if ("." != $_POST["nomRepertoireCopie"])
 		$url_sNomRepertoireCopie .= $_POST["nomRepertoireCopie"]."/";
 	
-	$sDestination = dir_document_root($url_sNomRepertoireCopie);
+	$sDestination = dir_root_plateform($url_sNomRepertoireCopie);
 	
 	move_uploaded_file($_FILES["nomFichierCopier"]["tmp_name"],$sDestination.$url_sNomFichierCopier);
 	

@@ -129,10 +129,10 @@ function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 function dir_formation ($v_iIdForm=NULL,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
 	$sFormation = NULL;
-	$sCheminAbsolu = dir_root_plateform(NULL,$v_bCheminAbsolu);
+	$sCheminAbsolu = ($v_bCheminAbsolu?dir_root_plateform(NULL):'');
 	if ($v_iIdForm > 0)
 		$sFormation = "f{$v_iIdForm}/";
-	return "{$g_sCheminRacine}formation/{$sFormation}{$v_sFichierAInclure}";
+	return "{$sCheminAbsolu}formation/{$sFormation}{$v_sFichierAInclure}";
 }
 
 function dir_cours ($v_iIdActiv,$v_iIdForm=NULL,$v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
