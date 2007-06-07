@@ -109,7 +109,7 @@ if (!(strpos($nomComplet, "..") === false))
 {
 	$sErreur = "Utilisation non autorisée de la chaine '..'";
 }
-else if (!is_readable($_SERVER["DOCUMENT_ROOT"].$nomComplet))
+else if (!is_readable(dir_root_plateform().$nomComplet))
 {
 	$sErreur = "Lecture impossible";
 }
