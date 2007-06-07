@@ -72,7 +72,7 @@ if (isset($oProjet->oUtilisateur) &&
 		.">\n" // <applet ...>
 		."<param name=\"mode\" value=\"client\">\n"
 		."<param name=\"hostname\" value=\"".$_SERVER["SERVER_ADDR"]."\">\n"
-		."<param name=\"port\" value=\"".$oProjet->retNumPortAwareness()."\">\n"
+		."<param name=\"port\" value=\"2501\">\n"
 		."<param name=\"nickname\" value=\"".urlencode($oProjet->oUtilisateur->retPseudo())."\">\n"
 		."<param name=\"username\" value=\""
 			.urlencode($oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom())
