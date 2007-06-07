@@ -152,7 +152,7 @@ if (empty($sErreur))
 	//header ("Content-Length: ".filesize($nomComplet));
 	header ("Content-Disposition: attachment; filename=".str_replace(" ","_",$nomSimple));
 	//header("Content-Transfer-Encoding: binary"); 
-	readfile ($_SERVER["DOCUMENT_ROOT"].$nomComplet);
+	readfile (dir_root_plateform().$nomComplet);
 }
 else
 {
