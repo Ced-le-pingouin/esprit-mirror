@@ -253,8 +253,7 @@ function dir_http ($v_sSeparateur="/")
 function dir_document_root ($v_sFichierAInclure=NULL)
 {
 	// Ex.: /www/htdocs/html/
-	$sDocumentRoot = str_replace("\\","/",realpath($_SERVER["DOCUMENT_ROOT"]));
-	return ("{$sDocumentRoot}/{$v_sFichierAInclure}");
+	return (dir_root_plateform()."{$v_sFichierAInclure}");
 }
 
 // *************************************

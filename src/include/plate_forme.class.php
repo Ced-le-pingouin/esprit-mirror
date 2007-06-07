@@ -2151,6 +2151,8 @@ class CProjet
 					$sParamBalise = " target=\"_self\"";
 					$sIcone = "<img src=\"".dir_theme("disquette.gif")."\" border=\"0\">&nbsp;";
 					$v_sInfoBulle = "T&eacute;l&eacute;chargez ce document";
+				} else {
+					error_log("ESPRIT : fichier introuvable ".$sCheminAbsolu.rawurldecode($v_sLien));
 				}
 				
 				break;
