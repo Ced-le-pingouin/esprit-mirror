@@ -2119,6 +2119,7 @@ class CProjet
 				{
 					$v_sLien = $this->dir_cours(NULL,FALSE).$v_sLien;
 					$ok = is_file($sCheminAbsolu.rawurldecode($v_sLien));
+					$v_sLien = dir_http_plateform($v_sLien);
 				}
 				
 				if ($v_iMode == FRAME_CENTRALE_INDIRECT)
