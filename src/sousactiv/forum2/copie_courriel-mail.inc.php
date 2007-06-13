@@ -45,8 +45,8 @@ if ($iIdForumCopieCourriel > 0)
 // se sont inscrites et une copie courriel est envoyé automatiquement aux
 // administrateurs de la plate-forme
 if ($oForumPrefs->peutEnvoyerCopieCourrielForum() ||
-	(defined("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN") &&
-			strlen(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN)))
+	(defined("GLOBAL_ESPRIT_ADRESSE_BCC") &&
+			strlen(GLOBAL_ESPRIT_ADRESSE_BCC)))
 {
 	$oProjet->initSousActivCourante();
 	

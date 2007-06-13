@@ -53,9 +53,9 @@ if (is_array($_POST) && count($_POST) > 0)
 	$oMail->defExpediteur($url_sExpediteurCourriel);
 	
 	// Permet d'envoyer une copie cachée à l'administrateur de la plate-forme
-	if (defined("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN") &&
-		strlen(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN))
-		$oMail->defCopieCarboneInvisible(GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN);
+	if (defined("GLOBAL_ESPRIT_ADRESSE_BCC") &&
+		strlen(GLOBAL_ESPRIT_ADRESSE_BCC))
+		$oMail->defCopieCarboneInvisible(GLOBAL_ESPRIT_ADRESSE_BCC);
 	
 	$sListeDestinatairesErrones = NULL;
 	
