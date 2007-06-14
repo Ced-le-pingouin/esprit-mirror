@@ -77,7 +77,7 @@ if ($oForumPrefs->peutEnvoyerCopieCourrielForum() ||
 	$oBlocCopieCourriel->remplacer($asTplRechercher,$asTplRemplacer);
 	
 	$sSujetCopieCourriel   = $oBlocCopieCourriel->defVariable("VAR_SUJET_COURRIEL");
-	$sMessageCopieCourriel = $url_sMessage
+	$sMessageCopieCourriel = enleverBaliseMeta($url_sMessage)
 		."\r\n\r\n"
 		.$oBlocCopieCourriel->defVariable("VAR_MESSAGE_COURRIEL");
 	
