@@ -18,7 +18,7 @@ function importer() {
 	
 	with (self.frames["principale"]) {
 		if (document.getElementById)
-			document.getElementById("id_barre_progression").style.visibility = "visible";
+			document.getElementById("id_barre_de_progression").style.visibility = "visible";
 		document.forms[0].submit();
 	}
 }

@@ -25,7 +25,7 @@ function annuler()
 function remplacer(v_sTexte)
 {
 	oPrincipale().document.forms[0].elements["edition"].value = unescape(v_sTexte);
-	oPrincipale().editeur();
+	oPrincipale().tinyMCE.updateContent("edition");
 }
 function recuperer() {
 	return top.opener.document.forms[sFormDest].elements[sElemDest].value;

@@ -49,7 +49,7 @@ if (isset($_FILES["fichier"]))
 			."<script type=\"text/javascript\" language=\"javascript\">\n"
 			."<!--\n"
 			."function init() {\n"
-			."top.opener.top.remplacer('".rawurlencode($sContenuFichier)."');\n"
+			."top.opener.top.remplacer('".rawurlencode(nl2br($sContenuFichier))."');\n"
 			."top.close();"
 			."}\n"
 			."//-->\n"
