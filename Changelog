@@ -1,7 +1,7 @@
 Esprit  Changelog 
 
 
-v. 2.2  2007-02- 
+v. 2.2  2007-03-20
 - Java tools code integration (awareness, chat), both client and server sides
 - homepage CMS : welcome text, links, news...
 - batch users input, from a spreadsheet file (xls, ods, csv)
@@ -9,7 +9,6 @@ v. 2.2  2007-02-
 - courses export into SCORM 2004 packages
 - automatic correction for MCQ online activities
 - scores managing interface
-- copy / move of course items (same course or other courses)
 
 
 v. 2.1  2006-12-08 : "multilingual" release (r.260)

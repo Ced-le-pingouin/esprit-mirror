@@ -37,13 +37,15 @@ require_once(dirname(__FILE__).'/../../lib/zip.class.php');
  * Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004
  * 
  * @todo Liste:
- * 			- les fichiers xml ou dtd de base pour SCORM doivent-ils être inclus dans le fichier PIF ?
  * 			- problème d'encodage des caractères dans les noms des fichiers ? (accents)
- * 			- tester sous Unix (backslashes dans les noms de fichiers)
- * 			- réussir la validation dans divers outils (les href de certains fichiers de la formation Intercomp italien 
- * 			  ne sont pas valides pour le type anyURI)
+ * 			- réussir la validation dans divers outils:
+ * 				. les élément "item" non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais 
+ * 			      pas l'ADL Test Suite) => utiliser des description LOM, ou créer un item "enfant" initial qui contient 
+ * 			      la description ou l'interactivité ?
+ * 			    . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI
  * 			- gérer l'effacement du paquet créé en tmp (en différé ?)
- * 			- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
+ *  		- tester sous Unix (backslashes dans les noms de fichiers)
+ *  		- enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une 
  * 			  option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)
  * 			- donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux 
  * 			  activités aient un look similaire à celui d'Esprit (ou autre), car sinon la plupart du temps il s'agit 
@@ -77,10 +79,12 @@ class CTraverseurScorm extends CTraverseur
 	
 	var $asRes   = array(); ///< Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités
 	
-	var $sSeparateurOrigine;///< Pour sauvegarder le séparateur de chemins dans la gestion de fichiers initial
+	var $sSeparateurOrigine;///< Pour sauvegarder le séparateur de chemins initial (pour les noms de fichiers/dossier)
 	
 	/**
-	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité 
+	 * Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité
+	 * 
+	 * @param	v_poElementCourant	l'objet "noeud XML" à sauvegarder (référence) 
 	 */
 	function defElementCourant(&$v_poElementCourant)
 	{
@@ -99,7 +103,10 @@ class CTraverseurScorm extends CTraverseur
 	
 	/**
 	 * Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir 
-	 * rattacher par la suite l'enfant à l'élément correct 
+	 * rattacher par la suite l'enfant à l'élément correct
+	 * 
+	 * @param	v_poElementEnfant	l'élément enfant dans lequel on va sauvegarder la référence au parent (référence)
+	 * @param	v_poElementParent	l'élément parent (référence)
 	 */
 	function defElementParent(&$v_poElementEnfant, &$v_poElementParent)
 	{
@@ -226,7 +233,6 @@ class CTraverseurScorm extends CTraverseur
 		// exportation SCORM (description)
 		$this->_exporterRessources(TYPE_FORMATION, $this->oFormation, $this->oElementFormation);
 
-		
 		$this->defElementParent($this->oElementFormation, $this->retElementCourant());
 		$this->defElementCourant($this->oElementFormation);
 	}
