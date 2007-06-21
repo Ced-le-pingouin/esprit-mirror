@@ -541,27 +541,26 @@ function enleverBaliseMeta ($v_sTexte)
 	
 	//$v_sTexte = emb_htmlentities(trim(stripslashes($v_sTexte)));
 	
-	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","b","u","i","s","tab","blockquote","center", "n","l","c","r","j");
-	$asMetaUnique = array("<br />","<hr />");
-	
+	$asMetaDebFin  = array("h1","h2","h3","h4","h5","h6","blockquote","center","p","div","li");
 	for ($iIdxMeta = 0; $iIdxMeta < count($asMetaDebFin); $iIdxMeta++)	
 	{
 		$v_sTexte = str_replace("<".$asMetaDebFin[$iIdxMeta].">", "", $v_sTexte);
-		$v_sTexte = str_replace("</".$asMetaDebFin[$iIdxMeta].">", "", $v_sTexte);
+		$v_sTexte = str_replace("</".$asMetaDebFin[$iIdxMeta].">", "\n", $v_sTexte);
 	}
 	
-	$v_sTexte = str_replace($asMetaUnique, "", $v_sTexte);
+	$asMetaUnique = array("<br />","<hr />");
+	$v_sTexte = str_replace($asMetaUnique, "\n", $v_sTexte);
 	
 	// lien vers un site internet
-	$v_sTexte = preg_replace('/<a href="([^"]+)" target="_blank" onfocus="blur()">([^<]+)<\/a>/e','("\1"==="\2"?"\1":"$2 ($1)")', $v_sTexte);
+	$v_sTexte = preg_replace('/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/e','("\1"==="\2"?"\1":"$2 ($1)")', $v_sTexte);
 	
 	// Ecrire un e-mail
-	$v_sTexte = ereg_replace('/<a href="mailto:([^"]+)" title="Envoyer un e-mail" onfocus="blur()">[^<]+<\/a>/','\1', $v_sTexte);
+	$v_sTexte = ereg_replace('/<a [^>]*href="mailto:([^"]+)"[^>]*>[^<]+<\/a>/','\1', $v_sTexte);
 	
 	// Liste
 	$v_sTexte = preg_replace("/<\/?[ou]l[^>]+?>/","", $v_sTexte);
 	
-	return $v_sTexte;
+	return mb_convert_encoding(strip_tags($v_sTexte),"UTF-8","HTML-ENTITIES");
 }
 
 function emailValide ($v_sEmail) { return ereg('^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+'.'@'.'[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.'.'[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$',$v_sEmail); }
