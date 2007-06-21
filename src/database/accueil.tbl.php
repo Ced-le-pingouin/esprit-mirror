@@ -85,7 +85,7 @@ class CAccueil
 	 */
 	function getAvert ($Visible=0)
 	{
-		unset($this->sAvert);
+		$this->sAvert = NULL;
 		if ($Visible==0)
 			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='avert' LIMIT 1");
 		else
@@ -100,7 +100,7 @@ class CAccueil
 	 */
 	function getTexte ($Visible=0)
 	{
-		unset($this->sTexte);
+		$this->sTexte = NULL;
 		if ($Visible==0)
 			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='texte' LIMIT 1");
 		else
@@ -117,7 +117,7 @@ class CAccueil
 	 */
 	function getBreves ($Visible=0, $Date=FALSE)
 	{
-		unset($this->aoBreves);
+		$this->aoBreves = NULL;
 		$params="";                  
 		if ($Visible!=0) $params=" AND Visible=1 ";
 		if ($Date) {
@@ -138,7 +138,7 @@ class CAccueil
 	 */
 	function getLiens ($Visible=0)
 	{
-		unset($this->aoLiens);
+		$this->aoLiens = NULL;
 		$ordre = " ORDER BY  -Ordre DESC, DateEdition DESC, DateCreation DESC";
 		if ($Visible==0)
 			$hResult = $this->oBdd->executerRequete("SELECT * FROM Accueil WHERE TypeContenu='lien' $ordre");
