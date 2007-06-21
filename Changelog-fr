@@ -1,7 +1,7 @@
 Esprit  Changelog 
 
 
-v. 2.2  2007-02- 
+v. 2.2  2007-03-20 
 - Intégration du code et des versions compilées des outils en Java (awareness 
   et chat), client et serveur
 - Gestionnaire de contenu pour la page d'accueil : texte d'accueil, brèves, liens
@@ -11,8 +11,6 @@ v. 2.2  2007-02-
 - Activités en ligne auto-corrigées pour les questions de type choix multiples
 - Intégration des scores des activités en ligne auto-corrigées dans l'outil 
   Tableau de bord
-- Interface permettant de copier/déplacer des éléments de formation au sein 
-  de la même formation, ou vers d'autres formations
 
 
 v. 2.1  2006-12-08 : version "multilingue" (r.260)
