@@ -195,7 +195,9 @@ case 3:
 		$g_sNomBdd = $_POST['base']; // ???
 		$buffer .= "// {{{ Cookie\n"
 			 . '$g_sNomCookie = "{'.$g_sNomProprietaire.'}_{'.$g_sNomBdd.'}";	// Nom du cookie'."\n"
-			 . "// }}}\n\n";
+			 . "// }}}\n\n"
+			 . "// Vérifier l'unicité du couple nom+prénom ?\n"
+			 . "define('UNICITE_NOM_PRENOM',TRUE);\n";
 
 		$buffer .= '// {{{ Adresse courrielle
 //     Cette adresse courriel sert, dans le cas d\'un problÃ¨me ou autre

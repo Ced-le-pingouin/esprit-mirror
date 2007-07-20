@@ -105,7 +105,7 @@ if ($iIdPers >= 0)
 			$asErreurs["prenom"] = formatTexteErreur("Le prénom ne peut pas être vide");
 		
 		// Vérifier que le nom + prénom est unique dans la table
-		if (!$oPersonne->estUnique())
+		if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 		{
 			echo "<html>\n"
 				."<head>"
