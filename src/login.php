@@ -189,7 +189,7 @@ if($liens){
 					$target=$lien->Lien.'" target="_blank"';
 					break;
 				case "popup":
-					$target='javascript:void(0)" onClick="window.open(\''.$lien->Lien."','popup','width=500,height=500');return false;\"";
+					$target='javascript:void(0)" onclick="window.open(\''.$lien->Lien."','popup','width=500,height=500');return false;\"";
 					break;
 			}
 			$sInfo = '<a href="'.$target.'>'.$lien->Texte."</a>"; 

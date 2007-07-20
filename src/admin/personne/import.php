@@ -54,7 +54,7 @@ function insererPersonne ($tab, $enreg=true)
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
-	if (!$oPersonne->estUnique())
+	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 		return "Le couple (nom,prénom) n'est pas unique. L'étudiant existe déjà ?";
 
 	if (empty($tab[3]))
