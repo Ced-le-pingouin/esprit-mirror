@@ -187,7 +187,10 @@ for ($i=0; $i<$iNbrPers; $i++)
 		."<td width=\"98%\"{$sClassTR}>"
 		."<a name=\"pos".($i+1)."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
-		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)."</span>"
+		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
+		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===FALSE)?
+		  '&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>':'')
+		."</span>"
 		."</a>"
 		."</td>\n"
 		."<td{$sClassTR}>&nbsp;"._("Infos")."&nbsp;</td>"
