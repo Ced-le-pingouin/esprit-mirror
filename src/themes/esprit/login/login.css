@@ -28,7 +28,7 @@ html>body #content-wrap {
 	height:100%;
 }
 html>body #contenu {
-	padding:125px 1em 0 1em; /* top : height(#bandeau) + un peu d'espace (5px) */
+	padding:125px 1em 3em 1em; /* top : height(#bandeau) + un peu d'espace (5px) */
 }
 #formlogin
 {
@@ -328,7 +328,7 @@ p#erreur_login
 	color: rgb(136,37,37);
 	padding: 4px;
 	margin: 25px 5px 15px 5px;
-	height: 9em;
+	height: 12em;
 	overflow: auto;
 }
 #avertissement_login a:link,
