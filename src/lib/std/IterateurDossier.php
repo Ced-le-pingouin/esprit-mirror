@@ -36,23 +36,30 @@ require_once(dirname(__FILE__).'/FichierInfo.php');
  */
 class IterateurDossier extends IterateurTableau
 {
-	var $sFiltrePre;        ///< La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers
 	var $oDossier;          ///< L'objet FichierInfo qui représente le dossier dont le chemin a été passé en paramètre au constructeur
+	var $sFiltrePre;        ///< La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers
+	var	$bTrier;			///< L'indication du tri alphabétique demandé ou pas à l'initialisation de l'objet
+	var $bDossiersSeulement;///< Indique si on a demandé, à l'initialisation, à recevoir uniquement les dossiers
 	var $oFichierCourant;   ///< L'objet FichierInfo qui représente l'élément courant de l'itérateur
 
 	/**
 	 * Constructeur
 	 *
-	 * @param	v_sChemin	le dossier sur lequel on effectuera l'itération
-	 * @param	v_sFiltre	le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui
-	 * 						utilisé par la fonction native PHP glob(). Par défaut, il comprend tous les 
-	 * 						fichiers/dossiers
+	 * @param	v_sChemin				le dossier sur lequel on effectuera l'itération
+	 * @param	v_sFiltre				le filtre à utiliser pour ne ramener que certains fichiers spécifiques.
+	 * 									Ce filtre est celui utilisé par la fonction native PHP glob(). Par défaut, il
+	 * 									comprend tous les fichiers/dossiers (apparemment les entrées dont le nom débute 
+	 * 									par un point ne sont pas prises en compte!!!)
+	 * @param	v_bTrier				indique si les entrées du dossier doivent être triées par ordre alphabétique
+	 * 									(\c false par défaut)
+	 * @param	v_bDossiersSeulement	indique si on désire uniquement itérer sur les sous-dossiers, et donc omettre
+	 * 									les fichiers 
 	 *
 	 * @note	Contrairement aux filtres d'itérateurs (IterateurFiltre et sous-classes), le filtre agit ici
 	 * 			directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs
 	 * 			agissent pendant l'itération, pour déterminer à chaque élément s'il est accepté ou pas.
 	 */
-	function IterateurDossier($v_sChemin, $v_sFiltrePre = '*')
+	function IterateurDossier($v_sChemin, $v_sFiltrePre = '*', $v_bTrier = FALSE, $v_bDossiersSeulement = FALSE)
 	{
 		if (!is_dir($v_sChemin) || !is_readable($v_sChemin))
 			Erreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
@@ -60,7 +67,10 @@ class IterateurDossier extends IterateurTableau
 
 		$this->sFiltrePre = $v_sFiltrePre;
 		$this->oDossier = new FichierInfo($v_sChemin);
-		$asFichiers = glob($this->oDossier->formerChemin($v_sFiltrePre), GLOB_NOSORT);
+		$this->bTrier = $v_bTrier;
+		$this->bDossiersSeulement = $v_bDossiersSeulement;
+		$paramsGlob = ($v_bTrier ? 0 : GLOB_NOSORT) | ($v_bDossiersSeulement ? GLOB_ONLYDIR: 0); 
+		$asFichiers = glob($this->oDossier->formerChemin($v_sFiltrePre), $paramsGlob);
 		if (!is_array($asFichiers))
 			$asFichiers = array();
 		parent::IterateurTableau($asFichiers);
@@ -110,7 +120,7 @@ class IterateurDossier extends IterateurTableau
     function retIterateurEnfants()
     {
     	$f = $this->courant();
-    	return new IterateurDossier($f->retChemin());
+    	return new IterateurDossier($f->retChemin(), $this->sFiltrePre, $this->bTrier, $this->bDossiersSeulement);
     }
 }
 
