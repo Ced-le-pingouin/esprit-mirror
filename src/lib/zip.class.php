@@ -111,6 +111,13 @@ class CZip
 		                               PCLZIP_OPT_REMOVE_PATH, $this->sCheminAEnlever);
 	}
 	
+	function desarchiver($v_sDossierDest = NULL, $v_bEcraserExistant = FALSE)
+	{
+		if (empty($v_sDossierDest))
+			$v_sDossierDest = dirname(realpath($this->sCheminArchive));
+		
+		return $this->oArchive->extract(PCLZIP_OPT_PATH, $v_sDossierDest, PCLZIP_OPT_REPLACE_NEWER);
+	}
 	
 	/** @name Fonctions de lecture des champs de l'objet */
 	//@{
