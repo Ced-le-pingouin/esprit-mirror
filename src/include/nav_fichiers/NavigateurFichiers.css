@@ -1,0 +1,95 @@
+body, ul, li, form, h3
+{
+	margin: 0;
+	padding: 0;
+}
+
+li { margin: 0 0 0 1em; }
+
+h3 { margin: 0.5em; }
+
+/*** Blocs principaux ***/
+#cadreNavFichiers
+{
+	margin: 0 auto;
+	position: relative;
+	width: 80%;
+	
+	border: 1px dotted black;
+}
+
+#cadreActionsSuppl { float: right; }
+
+#cadreNavCentrale
+{
+	float: left; /*oblige ce cadre à contenir entièrement ses enfants "float"*/
+	width: 100%;
+	
+	border: 1px solid red;
+}
+
+#cadreArborescence, #cadreContenu
+{
+	float: left;
+	height: 20em;
+	margin-top: 0.5em;
+	overflow: auto;
+
+	border: 1px solid blue;
+}
+
+#cadreArborescence { width: 35%; }
+#cadreContenu { width: 64%; }
+
+#cadrePressePapiers
+{
+	clear: left;
+}
+
+/*** Listes ***/
+.listeFichiers li
+{
+	list-style: none none outside;
+}
+
+.listeFichiers li img
+{
+	vertical-align: top;
+}
+
+.listeFichiers li input
+{
+	margin-left: 0;
+}
+
+.listeFichiers li .fichier, .listeFichiers li .dossier
+{
+	background: url(images/fichier.gif) no-repeat 2px 2px;
+	padding-left: 22px;
+}
+
+.listeFichiers li .dossier
+{
+	background-image: url(images/dossier.gif);
+}
+
+.listeFichiers li .actif
+{
+	background-color: blue;
+}
+
+.listeFichiers li label:hover
+{
+	background-color: red;
+}
+
+/*** Erreurs ***/
+#erreurs p
+{
+	background-color: rgb(255,80,80);
+	color: rgb(200,200,200);
+	margin: 0.5em auto;
+	padding: 1em;
+	text-align: center;
+	width: 60%;
+}

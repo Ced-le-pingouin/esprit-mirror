@@ -1,1 +1,1 @@
-<?php require_once("../globals.inc.php"); ?>
+<?php require_once dirname(__FILE__).'/../globals.inc.php'; ?>
