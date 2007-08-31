@@ -35,6 +35,12 @@ define("ERREUR_AVERT" , E_USER_WARNING); /// l'erreur correspond aux warnings de
 define("ERREUR_NOTE"  , E_USER_NOTICE);  /// l'erreur correspond aux notices de PHP => je pense que par défaut elles ne sont pas affichées         @enum ERREUR_NOTE
 //@}
 
+/** @name Constantes - modes de gestion des erreurs */
+//@{
+define("ERREUR_MODE_AFFICHAGE", 0); /// les erreurs sont affichée immédiatement (mode par défaut)                       @enum ERREUR_MODE_AFFICHAGE
+define("ERREUR_MODE_STOCKAGE" , 1); /// les erreurs sont stockées dans un tableau et peuvent être récupérées en différé @enum ERREUR_MODE_STOCKAGE
+//@}
+
 /**
  * Classe de gestion des erreurs. Pour l'instant, cette classe est minimale et permet seulement de "provoquer" une
  * erreur dans du code perso, étant donné qu'en PHP 4 les exceptions n'existent pas
@@ -52,27 +58,69 @@ class Erreur
 	 *
 	 * @param	v_sTexte	le texte qui décrit l'erreur
 	 * @param	v_iNiveau	le type d'erreur (voir constantes \c ERREUR_). Par défaut, il s'agit d'une erreur de type
-	 * 						\c ERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
+	 * 						\c ERREUR_AVERT (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
 	 * 						de type \c E_USER_NOTICE, donc de moindre importance)
 	 */
-	function Erreur($v_sTexte, $v_iNiveau = ERREUR_FATALE)
+	function Erreur($v_sTexte, $v_iNiveau = ERREUR_AVERT)
 	{
 		$this->sTexte  = $v_sTexte;
 		$this->iNiveau = $v_iNiveau;
 	}
-
+	
+	/**
+	 * Retourne le texte de l'erreur
+	 */
+	function retTexte()
+	{
+		return $this->sTexte;
+	}
+	
+	/**
+	 * Retourne le niveau de l'erreur (voir constantes \c ERREUR_)
+	 */
+	function retNiveau()
+	{
+		return $this->iNiveau;
+	}
+	
+	/**
+	 * Modifie ou retourne le mode de gestion des erreurs
+	 * 
+	 * @param	v_iMode	si \c null, le mode de de gestion actuel est retourné. Sinon, le paramètre est défini comme mode 
+	 * 					d'affichage (voir constantes \c ERREUR_MODE_...)
+	 * 
+	 * @return	si le paramètre \p v_iMode était \c null, retourne le mode d'affichage actuel. Sinon, rien
+	 * 
+	 * @note	Cette fonction est censée être statique (méthode de classe, pas d'instance)  
+	 */
+	function mode($v_iMode = NULL)
+	{
+		static $iMode = ERREUR_MODE_AFFICHAGE;
+		
+		if (is_null($v_iMode))
+			return $iMode;
+		else
+			$iMode = $v_iMode;
+	}
+	
 	/**
 	 * Provoque une erreur grâce à une fonction native de PHP
 	 *
 	 * @param	v_sTexte	le texte qui décrit l'erreur
 	 * @param	v_iNiveau	le type d'erreur (voir constantes \c ERREUR_). Par défaut, il s'agit d'une erreur de type
-	 * 						\c ERREUR_FATALE (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
+	 * 						\c ERREUR_AVERT (contrairement à PHP, ou l'erreur par défaut pour \c trigger_error() est
 	 * 						de type \c E_USER_NOTICE, donc de moindre importance)
 	 *
 	 * @note	Cette fonction est censée être statique (méthode de classe, pas d'instance)
 	 */
-	function provoquer($v_sTexte, $v_iNiveau = ERREUR_FATALE)
+	function provoquer($v_sTexte, $v_iNiveau = ERREUR_AVERT)
 	{
+		if (Erreur::mode() == ERREUR_MODE_STOCKAGE)
+		{
+			Erreur::erreurs($v_sTexte, $v_iNiveau);
+			return;
+		}
+		
 		// on retrouve d'où vient l'appel, et on remonte d'un niveau tant qu'il vient de la classe OO, car cette
 		// dernière est également censée afficher les messages d'erreurs concernant la classe qui l'appelle
 		$asTraces = debug_backtrace();
@@ -146,9 +194,46 @@ class Erreur
 	{
 		// utilisation de is_a() au lieu de get_class(), pour détecter non seulement les objets de classe Erreur, mais
 		// également d'éventuelles sous-classes (erreurs plus précises, comme pour les exceptions PHP 5 ?)
-		// Si cette classe survit à un passage exlusif du code à la version 5+ de PHP, is_a() sera peut-être obsolète
+		// Si cette classe survit à un passage exclusif du code à la version 5+ de PHP, is_a() sera peut-être obsolète
 		// et devra être remplacée par l'opérateur instanceof (qui teste pour une classe, sous-classe, ou interface)
 		return ( is_a($v_oObjet, __CLASS__) ) ;
+	}
+	
+	/**
+	 * Stocke une nouvelle erreur ou retourne les erreurs déjà stockées
+	 * 
+	 * @param	v_sTexte	si de type booléen, la méthode retourne les erreurs déjà stockées.						
+	 * 						si de type non-booléen, le paramètre est considéré comme le texte d'une nouvelle erreur à 
+	 * 						stocker
+	 * 
+	 * @param	v_iNiveau	si le \p v_sTexte est de type non-booléen, ceci représente le niveau de l'erreur à stocker
+	 * 						(voir constantes \c ERREUR_)
+	 * 
+	 * @return	si \p v_sTexte est de type booléen, les erreurs déjà stockées s'il y en a, ou \c false s'il n'y en a pas
+	 * 			si \p v_sTexte est de type non-booléen, rien
+	 * 
+	 * @note	Cette fonction est censée être statique
+	 */
+	function erreurs($v_sTexte = TRUE, $v_iNiveau = ERREUR_AVERT)
+	{
+		static $aoErreurs = array();
+		
+		if (is_bool($v_sTexte))
+		{
+			$aoErreursTemp = $aoErreurs;
+			
+			if ($v_sTexte)
+				$aoErreurs = array();
+
+			if (count($aoErreursTemp) > 0)
+				return $aoErreursTemp;
+			else
+				return FALSE;
+		}
+		else
+		{
+			$aoErreurs[] = new Erreur($v_sTexte, $v_iNiveau);
+		}
 	}
 }
 
