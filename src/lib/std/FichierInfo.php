@@ -91,7 +91,7 @@ class FichierInfo
  	{
  		return $this->sChemin;
  	}
-
+	
 	/**
 	 * Retourne le chemin réel représenté par l'objet, càd sa forme absolue et canonique (séparateurs corrects pour
 	 * l'OS et chemins '.' et '..' résolus)
@@ -133,7 +133,7 @@ class FichierInfo
  	{
  		return $this->convertirSeparateurs(basename($this->sChemin));
  	}
-
+	
  	/**
  	 * Retourne l'extension du fichier/dossier contenue dans le chemin représenté par l'objet courant
  	 *
@@ -169,7 +169,7 @@ class FichierInfo
  	function retTaille()
  	{
  		if (!$this->estFichier())
- 			Erreur::provoquer("Le chemin ".$this->retChemin()." ne représente pas un fichier");
+ 			Erreur::provoquer($this->retChemin().": récupération de la taille impossible");
 
  		return @filesize($this->retChemin());
  	}
@@ -228,6 +228,22 @@ class FichierInfo
  	{
  		return is_writable($this->sChemin);
  	}
+
+	function estDescendantDe($v_sDossierSource)
+	{
+		$oDossierSource = new FichierInfo($v_sDossierSource);
+		
+		if ($this->retCheminReel() === FALSE || $oDossierSource->retCheminReel() === FALSE)
+			return FALSE;
+		
+		$oThis = new FichierInfo($this->retCheminReel());
+		$sCheminReduit = $oThis->reduireChemin($oDossierSource->retCheminReel());
+				
+		if (!empty($sCheminReduit) && $sCheminReduit != $oThis->retChemin())
+			return TRUE;
+		else
+			return FALSE;
+	}
 
 	/**
 	 * Définit un séparateur par défaut pour tous les objets de cette classe qui seront créés. Si cette méthode n'est 
@@ -416,6 +432,25 @@ class FichierInfo
  		}
  	}
  	
+	/**
+	 * Indique si le chemin actuellement représenté par l'objet contient explicitement un dossier, ou s'il s'agit d'un 
+	 * simple nom de fichier
+	 * 
+	 * @return	\c true si le chemin contient une référence à un dossier (par ex "/monDossier/monFichier.ext", ou même 
+	 * 			"./monFichier.ext" et "../monFichier.ext"), \c false sinon (par ex "monFichier.ext")
+	 * 
+	 * @note	Je me sers de cette méthode pour différencier les chemins "./monFichier.ext" et "monFichier.ext", qui en
+	 * 			temps normal sont "égaux" et représentent tous les deux "./monFichier.ext", mais qui dans certaines 
+	 * 			circonstances devraient pouvoir être différenciés pour modifier le comportement d'une méthode en 
+	 * 			fonction du type de chemin utilisé (par exemple dans #renommer(), où le fichier sera toujours renommé 
+	 * 			dans son dossier d'origine si aucun dossier n'est spécifié explicitement dans le chemin de destination, 
+	 * 			mais où il sera *déplacé dans le dossier courant* si un "./" est spécifié devant le nom dans le chemin 
+	 * 			de destination) 
+	 */
+	function cheminContientDossier()
+	{
+		return ($this->retChemin() != $this->retNom());
+	}
  	
  	/**
  	 * Crée le dossier représenté dans l'objet courant
@@ -459,13 +494,23 @@ class FichierInfo
 		}
 		else
 		{
-	 		if (!is_dir($this->retDossier()))
-	 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier().", qui doit lui-même être un "
-	 			                 ."dossier");
+			// sera différent selon la valeur du 1er paramètre
+			$oDossierACreer = new FichierInfo($sDossierACreer);
+			
+	 		if (!is_dir($oDossierACreer->retDossier()))
+	 		{
+	 			Erreur::provoquer($oDossierACreer->retNom().": création dans ".$this->retDossier()." impossible."
+	 			                 ." La cible n'est pas un dossier");
+	 			return FALSE;
+	 		}
 	 		
-	 		if (!is_writable($this->retDossier()))
-	 			Erreur::provoquer("Impossible de créer un dossier dans ".$this->retDossier()." : accès impossible", 
-	 			                  ERREUR_AVERT);
+	 		if (!is_writable($oDossierACreer->retDossier()))
+	 		{
+	 			Erreur::provoquer($oDossierACreer->retNom().": création dans ".$this->retDossier()." impossible."
+	 			                 ." Accès en écriture interdit");
+	 			return FALSE;
+	 		}
+	 		
 	 		return @mkdir($sDossierACreer, $v_iMode);			
 		}
  	}
@@ -481,7 +526,10 @@ class FichierInfo
  	function supprimerDossier($v_bRecursif = FALSE)
  	{
  		if (!$this->estDossier())
- 			Erreur::provoquer("Le chemin ".$this->retChemin()." ne représente pas un dossier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": suppression impossible. N'est pas un dossier");
+ 			return FALSE;
+ 		}
  		
  		$r = FALSE;
 		
@@ -504,7 +552,7 @@ class FichierInfo
  			
  			if ($itr->estValide())
  			{
-				Erreur::provoquer("Le dossier ".$this->retChemin()." n'est pas vide!", ERREUR_AVERT);
+				Erreur::provoquer($this->retChemin().": suppression impossible. Le dossier n'est pas vide!");
 				return FALSE;
  			}
  		}
@@ -521,11 +569,14 @@ class FichierInfo
  	function supprimerFichier()
  	{
  		if (!$this->estFichier())
- 			Erreur::provoquer("Le chemin ".$this->retChemin()." ne représente pas un fichier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": suppression impossible. N'est pas un fichier");
+ 			return FALSE;
+ 		}
  			
  		if (!$this->estModifiable())
  		{
- 			Erreur::provoquer("Le fichier ".$this->retChemin()." ne peut être supprimé : accès impossible", ERREUR_AVERT);
+ 			Erreur::provoquer($this->retChemin().": suppression impossible. Accès en écriture interdit");
  			return FALSE;
  		}
  			
@@ -545,7 +596,10 @@ class FichierInfo
  	function supprimer($v_bRecursif = FALSE)
  	{
  		if (!$this->existe())
- 			Erreur::provoquer("Le chemin ".$this->retChemin()." n'existe pas");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": suppression impossible. N'existe pas");
+ 			return FALSE;
+ 		}
  		
  		if ($this->estDossier())
  			return $this->supprimerDossier($v_bRecursif);
@@ -572,31 +626,43 @@ class FichierInfo
  	{
  		// fichier source est vraiment un fichier ?
  		if (!$this->estFichier())
- 			Erreur::provoquer("Le chemin source ".$this->retChemin()." ne représente pas un fichier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": copie impossible. N'est pas un fichier");
+ 			return FALSE;
+ 		}
 
  		// fichier source est lisible ?
  		if (!$this->estLisible())
  		{
- 			Erreur::provoquer("Le fichier ".$this->retChemin()." ne peut lu", ERREUR_AVERT);
+ 			Erreur::provoquer($this->retChemin().": copie impossible. Accès en lecture interdit");
  			return FALSE;
  		}
  		
  		$oDossierDest = new FichierInfo($v_sDossierDest);
 		// dossier destination est vraiment un dossier ?
  		if (!$oDossierDest->estDossier())
- 			Erreur::provoquer("Le chemin de destination ".$oDossierDest->retChemin()." ne représente pas un dossier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible."
+ 			                 ." La cible n'est pas un dossier");
+ 			return FALSE;
+ 		}
  		
  		// dossier destination est "inscriptible" ?
  		if (!$oDossierDest->estModifiable())
  		{
- 			Erreur::provoquer("Dossier de destination ".$oDossierDest->retChemin()." : accès impossible ", ERREUR_AVERT);
+ 			Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible. Accès en "
+ 			                ."écriture interdit");
  			return FALSE;
  		}
  		
  		// copie du fichier => dossier destination
  		$oDossierDest->formerChemin($this->retNom(), TRUE);
  		if (!$v_bEcraserExistant && $oDossierDest->existe())
- 			Erreur::provoquer("Le fichier existe déjà dans le dossier de destination");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible. Existe déjà "
+ 			                 ."dans le dossier cible");
+ 			return FALSE;
+ 		}
  		$r = @copy($this->retChemin(), $oDossierDest->retChemin());
  		
 // APPAREMMENT, LE FIX SUIVANT N'EST PLUS D'ACTUALITE ?
@@ -631,17 +697,25 @@ class FichierInfo
  	                       $v_fnCallback = NULL)
  	{
  		if (!$this->estDossier())
- 			Erreur::provoquer("Le chemin source ".$this->retChemin()." ne représente pas un dossier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": copie impossible. N'est pas un dossier");
+ 			return FALSE;
+ 		}
  		
  		$oDossierDest = new FichierInfo($v_sDossierDest);
 		// dossier destination est vraiment un dossier ?
  		if (!$oDossierDest->estDossier())
- 			Erreur::provoquer("Le chemin de destination ".$oDossierDest->retChemin()." ne représente pas un dossier");
+ 		{
+ 			Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible."
+ 			                 ." La cible n'est pas un dossier");
+ 			return FALSE;
+ 		}
  		
  		// dossier destination est "inscriptible" ?
  		if (!$oDossierDest->estModifiable())
  		{
- 			Erreur::provoquer("Dossier de destination ".$oDossierDest->retChemin()." : accès impossible ", ERREUR_AVERT);
+ 			Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible. Accès "
+ 			                 ."en écriture interdit");
  			return FALSE;
  		}
  		
@@ -655,9 +729,15 @@ class FichierInfo
 	 		if ($oDossierDest->existe())
 	 		{
 	 			if ($v_bEcraserExistant)
+	 			{
 					$r = TRUE;
+	 			}
 				else
-					Erreur::provoquer("Le dossier ".$oDossierDest->retChemin()." existe déjà dans le dossier de destination");
+				{
+					Erreur::provoquer($this->retChemin().": copie dans ".$oDossierDest->retChemin()." impossible. "
+					                ." Existe déjà dans le dossier cible");
+					$r = FALSE;
+				}
 	 		}
 	 		else
 	 		{
@@ -722,6 +802,123 @@ class FichierInfo
  			                            $v_fnCallback);
  		else
  			return $this->copierFichier($v_sDossierDest, $v_bEcraserExistant, $v_fnCallback);
+ 	}
+ 	
+ 	/**
+ 	 * Renomme le fichier ou dossier représenté par l'objet courant
+ 	 * 
+ 	 * @param	v_sCheminDest		le chemin du nouveau fichier/dossier
+ 	 * @param	v_bEcraserExistant	si \c true, et que nouvel emplacement du fichier/dossier à renommer existe déjà, 
+ 	 * 								ce dernier sera écrasé. Sinon, l'opération provoque une erreur
+	 * @param	v_bRemplacer		indique si le chemin du fichier ou dossier de départ enregistré dans l'objet doit 
+	 * 								être immédiatement remplacé par le chemin du fichier/dossier renommé, dans le cas où
+	 * 								l'opération s'est déroulée correctement
+ 	 * @param	v_fnCallback		la fonction à appeler lorsqu'un fichier est renommé. Ce paramètre doit représenter 
+ 	 * 								un type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra 
+ 	 * 								accepter 3 paramètres : les deux premiers de type FichierInfo, représenteront 
+ 	 * 								respectivement le fichier/dossier source qui devait être renommé, et le nouveau
+ 	 * 								fichier/dossier résultant du renommage. Le 3è sera la valeur de retour de 
+ 	 * 								l'opération de renommage
+ 	 * 
+ 	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
+ 	 */
+ 	function renommer($v_sCheminDest, $v_bEcraserExistant = FALSE, $v_bRemplacer = FALSE, $v_fnCallback = NULL)
+ 	{
+ 		// fichier ou dossier source est lisible ?
+ 		if (!$this->estLisible())
+ 		{
+ 			Erreur::provoquer($this->retChemin().": renommage/déplacement impossible. Accès en lecture interdit");
+ 			return FALSE;
+ 		}
+ 		
+ 		// fichier source modifiable ?
+ 		if (!$this->estModifiable())
+ 		{
+ 			Erreur::provoquer($this->retChemin().": renommage/déplacement impossible. Accès en écriture interdit");
+ 			return FALSE;
+ 		}
+ 		
+ 		$oDossierSrc = new FichierInfo($this->retDossier(FALSE));
+ 		$oFichierDest = new FichierInfo($v_sCheminDest);
+ 		// si aucun dossier ne fait partie du "nom" (chemin) de destination, c'est qu'on veut garder le fichier renommé
+ 		// dans son dossier d'origine => Il faut manipuler le dossier de destination dans ce cas, car ce n'est pas le 
+ 		// comportement par défaut de la fonction rename(), elle déplacerait (renommerait) le fichier/dossier vers le
+ 		// dossier courant)
+ 		if (!$oFichierDest->cheminContientDossier())
+ 			$oFichierDest->defChemin($oDossierSrc->formerChemin($oFichierDest->retNom()));
+ 		$oDossierDest = new FichierInfo($oFichierDest->retDossier(FALSE));
+
+		// dossier de destination "inscriptible" ?
+ 		if (!$oDossierDest->estModifiable())
+ 		{
+ 			Erreur::provoquer($this->retChemin().": renommage/déplacement vers ".$oDossierDest->retChemin()
+ 			                 ." impossible. Accès en écriture interdit");
+ 			return FALSE;
+ 		}
+
+ 		if ($oFichierDest->existe())
+ 		{
+ 			if ($oDossierSrc->retCheminReel() == $oDossierDest->retCheminReel()
+ 			 && $this->retNom() == $oFichierDest->retNom())
+ 				return TRUE;
+ 			
+ 			if (!$v_bEcraserExistant)
+ 			{
+ 				Erreur::provoquer($this->retChemin().": renommage/déplacement vers ".$oDossierDest->retChemin()
+                                 ." impossible. Existe déjà dans le dossier cible");
+ 				return FALSE;
+ 			}
+ 			else
+ 			{
+ 				$oFichierDest->supprimer(TRUE);
+ 			}
+ 		}
+
+		// renommer le fichier/dossier
+		$r = @rename($this->retChemin(), $oFichierDest->retChemin());
+ 		
+		if (!is_null($v_fnCallback))
+			call_user_func($v_fnCallback, $this, $oDossierDest, $r);
+		
+		if ($r && $v_bRemplacer)
+			$this->defChemin($oFichierDest->retChemin());
+		
+ 		return $r;
+ 	}
+ 	
+ 	/**
+ 	 * Déplace le fichier ou dossier représenté par l'objet courant
+ 	 * 
+ 	 * @param	v_sDossierDest		le dossier de destination du déplacement
+ 	 * @param	v_bEcraserExistant	si \c true, et que nouvel emplacement du fichier/dossier à renommer existe déjà, 
+ 	 * 								ce dernier sera écrasé. Sinon, l'opération provoque une erreur
+	 * @param	v_bRemplacer		indique si le chemin du fichier ou dossier de départ enregistré dans l'objet doit 
+	 * 								être immédiatement remplacé par le chemin du fichier/dossier déplacé, dans le cas où
+	 * 								l'opération s'est déroulée correctement
+ 	 * @param	v_fnCallback		la fonction à appeler lorsqu'un fichier est déplacé. Ce paramètre doit représenter 
+ 	 * 								un type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra 
+ 	 * 								accepter 3 paramètres : les deux premiers de type FichierInfo, représenteront 
+ 	 * 								respectivement le fichier/dossier source qui devait être déplacé, et le nouveau
+ 	 * 								fichier/dossier résultant du déplacement. Le 3è sera la valeur de retour de 
+ 	 * 								l'opération de déplacement
+ 	 * 
+ 	 * @return	\c true si l'opération s'est bien déroulée, \c false dans le cas contraire
+ 	 * 
+ 	 * @note	Cette méthode est un cas particulier de #renommer() et y fait appel avec des paramètres prédéfinis 
+ 	 */
+ 	function deplacer($v_sDossierDest, $v_bEcraserExistant = FALSE, $v_bRemplacer = FALSE, $v_fnCallback = NULL)
+ 	{
+ 		$oDossierDest = new FichierInfo($v_sDossierDest);
+
+		// dossier destination est vraiment un dossier ?
+ 		if (!$oDossierDest->estDossier())
+ 		{
+ 			Erreur::provoquer($this->retChemin().": déplacement vers ".$oDossierDest->retChemin()." impossible."
+ 			                 ." La cible n'est pas un dossier");
+ 			return FALSE;
+ 		}
+
+ 		return $this->renommer($oDossierDest->formerChemin($this->retNom()), $v_bEcraserExistant, $v_bRemplacer, $v_fnCallback);
  	}
 }
 
