@@ -3,14 +3,25 @@ require_once(dirname(__FILE__).'/OO.php');
 
 class AfficheurPage
 {
+	var $aDonneesUrl;
+	var $aDonneesForm;
+	var $aDonneesPersist;
+	
 	var $fichierTpl;
 	var $tpl;
+	
 	var $aErreursPossibles = array();
 	var $aErreurs = array();
 	var $iNbErreursFatales = 0;
 	
 	function demarrer($fichierTpl = NULL)
 	{
+		// récup des données
+		$this->aDonneesUrl     =  $_GET;
+		$this->aDonneesForm    =  $_POST;
+		if (is_null(session_id()) || session_id() == '') session_start();
+		$this->aDonneesPersist =& $_SESSION;
+				
 		$this->recupererDonnees();
 		$this->validerDonnees();
 		if ($this->retNbErreursFatales() == 0)
@@ -18,13 +29,6 @@ class AfficheurPage
 		$this->defTpl($fichierTpl);
 		$this->detecterErreursPossibles();
 		$this->afficher();
-	}
-	
-	function detecterErreursPossibles()
-	{
-		preg_match_all('/\[(erreur[^]]+)\+\].*\[\1\-\]/s', $this->tpl->data, $aListeErreurs);
-		if (count($aListeErreurs[0]) > 0)
-			$this->aErreursPossibles = $aListeErreurs[1];
 	}
 	
 	function recupererDonnees()
@@ -46,8 +50,12 @@ class AfficheurPage
 	{
 		if (empty($fichierTpl))
 		{
-			$asTraces = debug_backtrace();
-			$this->fichierTpl = preg_replace('/\.[^.]*$/', '.html', basename($asTraces[1]['file']));
+			// trouver le .html du même nom que le fichier qui a instancié l'objet
+			//$asTraces = debug_backtrace();
+			//$this->fichierTpl = preg_replace('/\.[^.]*$/', '.html', basename($asTraces[1]['file']));
+			
+			// trouver le .tpl qui porte le même nom que la classe (fille) à afficher
+			$this->fichierTpl = get_class($this).'.tpl';
 		}
 		else
 		{
@@ -105,6 +113,13 @@ class AfficheurPage
 	function afficherParties()
 	{
 		OO::abstraite();
+	}
+	
+	function detecterErreursPossibles()
+	{
+		preg_match_all('/\[(erreur[^]]+)\+\].*\[\1\-\]/s', $this->tpl->data, $aListeErreurs);
+		if (count($aListeErreurs[0]) > 0)
+			$this->aErreursPossibles = $aListeErreurs[1];
 	}
 	
 	function declarerErreur($sNomErreur, $bFatale = FALSE)
