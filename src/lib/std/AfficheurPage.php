@@ -86,28 +86,19 @@ class AfficheurPage
 		{
 			if (($cle = array_search($sNomErreur, $this->aErreursPossibles)) !== FALSE)
 			{
-				$tplErreur = new TPL_Block($sNomErreur, $this->tpl);
-				$tplErreur->afficher();
-				
+				$this->tpl->activerBloc($sNomErreur);
 				unset($this->aErreursPossibles[$cle]);
 			}
 		}
 		
 		// effacer les blocs d'erreurs se trouvant sur la page, pour celles qui ne se sont pas produites
 		foreach ($this->aErreursPossibles as $sNomErreur)
-		{
-			$tplErreur = new TPL_Block($sNomErreur, $this->tpl);
-			$tplErreur->effacer();
-		}
+			$this->tpl->desactiverBloc($sNomErreur);
 		
 		// si pas d'erreur(s) fatale(s), on affiche le bloc "pasErreur", sinon on l'efface => pour bien faire, les blocs
 		// représentant les erreurs fatales devraient se trouver en dehors du bloc "pasErreur", sinon on ne verra pas 
 		// leur texte
-		$tplPasErreur = new TPL_Block('pasErreur', $this->tpl);
-		if ($this->iNbErreursFatales == 0)
-			$tplPasErreur->afficher();
-		else
-			$tplPasErreur->effacer();
+		$this->tpl->activerBloc('pasErreur', $this->iNbErreursFatales == 0);
 	}
 	
 	function afficherParties()
