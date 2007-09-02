@@ -8,7 +8,8 @@
 </head>
 <body>
 
-<div id="erreurs">
+<div class="erreurs">[erreurs+][erreurs-]</div>
+<div class="erreurs">
 [erreurDossierRacine+]<p>Accès au dossier racine impossible</p>[erreurDossierRacine-]
 [erreurFichiersSel+]<p>Aucun fichier ou dossier n'a été sélectionné comme cible de l'opération</p>[erreurFichiersSel-]
 [erreurPressePapiersVide+]<p>L'opération "coller" est impossible: le presse-papiers est vide</p>[erreurPressePapiersVide-]

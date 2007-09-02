@@ -84,7 +84,7 @@ h3 { margin: 0.5em; }
 }
 
 /*** Erreurs ***/
-#erreurs p
+.erreurs p
 {
 	background-color: rgb(255,80,80);
 	color: rgb(200,200,200);

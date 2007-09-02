@@ -12,7 +12,7 @@ class AfficheurPage
 	
 	var $aErreursPossibles = array();
 	var $aErreurs = array();
-	var $iNbErreursFatales = 0;
+	var $aErreursFatales = array();
 	
 	function demarrer($fichierTpl = NULL)
 	{
@@ -81,13 +81,36 @@ class AfficheurPage
 	
 	function afficherErreurs()
 	{
+		$tplErreurs = new TPL_Block('erreurs', $this->tpl);
+		
 		// afficher les blocs correspondant aux erreurs qui se sont produites
-		foreach ($this->aErreurs as $sNomErreur=>$bFatale)
+		foreach ($this->aErreurs as $sNomErreur=>$sTexte)
 		{
 			if (($cle = array_search($sNomErreur, $this->aErreursPossibles)) !== FALSE)
 			{
-				$this->tpl->activerBloc($sNomErreur);
+				if (empty($sTexte))
+					$this->tpl->activerBloc($sNomErreur);
 				unset($this->aErreursPossibles[$cle]);
+			}
+			else
+			{
+				if (!empty($sTexte))
+					$tplErreurs->ajouter("<p>$sTexte</p>");
+			}
+		}
+		
+		foreach ($this->aErreursFatales as $sNomErreur=>$sTexte)
+		{
+			if (($cle = array_search($sNomErreur, $this->aErreursPossibles)) !== FALSE)
+			{
+				if (empty($sTexte))
+					$this->tpl->activerBloc($sNomErreur);
+				unset($this->aErreursPossibles[$cle]);
+			}
+			else
+			{
+				if (!empty($sTexte))
+					$tplErreurs->ajouter("<p>$sTexte</p>");
 			}
 		}
 		
@@ -95,10 +118,12 @@ class AfficheurPage
 		foreach ($this->aErreursPossibles as $sNomErreur)
 			$this->tpl->desactiverBloc($sNomErreur);
 		
+		$tplErreurs->afficher();
+		
 		// si pas d'erreur(s) fatale(s), on affiche le bloc "pasErreur", sinon on l'efface => pour bien faire, les blocs
 		// représentant les erreurs fatales devraient se trouver en dehors du bloc "pasErreur", sinon on ne verra pas 
 		// leur texte
-		$this->tpl->activerBloc('pasErreur', $this->iNbErreursFatales == 0);
+		$this->tpl->activerBloc('pasErreur', count($this->aErreursFatales) == 0);
 	}
 	
 	function afficherParties()
@@ -113,30 +138,32 @@ class AfficheurPage
 			$this->aErreursPossibles = $aListeErreurs[1];
 	}
 	
-	function declarerErreur($sNomErreur, $bFatale = FALSE)
+	function declarerErreur($sNomErreur, $bFatale = FALSE, $v_sTexte = '')
 	{
-		$this->aErreurs[$sNomErreur] = $bFatale;
-		if ($bFatale) $this->iNbErreursFatales++;
+		if ($bFatale)
+			$this->aErreursFatales[$sNomErreur] = $v_sTexte;
+		else
+			$this->aErreurs[$sNomErreur] = $v_sTexte;
 	}
 	
 	function erreurDeclaree($sNomErreur)
 	{
-		return isset($this->aErreurs[$sNomErreur]);
+		return (isset($this->aErreurs[$sNomErreur]) || isset($this->aErreursFatales[$sNomErreur]));
 	}
 	
 	function retNbErreurs()
 	{
-		return count($this->aErreurs);
+		return count($this->aErreurs) + count($this->aErreursFatales);
 	}
 	
 	function retNbErreursNonFatales()
 	{
-		return count($this->aErreurs) - $this->iNbErreursFatales;
+		return count($this->aErreurs);
 	}
 	
 	function retNbErreursFatales()
 	{
-		return $this->iNbErreursFatales;
+		return count($this->aErreursFatales);
 	}
 }
 
