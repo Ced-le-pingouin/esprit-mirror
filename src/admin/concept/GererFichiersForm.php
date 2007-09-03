@@ -5,6 +5,8 @@ require_once dir_include('nav_fichiers/NavigateurFichiers.php');
 
 class GererFichiersForm extends NavigateurFichiers
 {
+	var $sFiltreFichiers = '%(?:[/\\]|^)(?:activ_[0-9]+|chatlog|forum|html\.php|ressources|rubriques|tableaudebord\.csv)$%i';
+	
 	function recupererDonnees()
 	{
 		$oProjet = new CProjet();
@@ -17,5 +19,4 @@ class GererFichiersForm extends NavigateurFichiers
 
 $page = new GererFichiersForm();
 $page->demarrer(dir_include('nav_fichiers/NavigateurFichiers.tpl'));
-
 ?>
