@@ -20,13 +20,18 @@
 [erreurTelechargementInterdit+]<p>Ce fichier ne peut être téléchargé</p>[erreurTelechargementInterdit-]
 [erreurDeposer+]<p>Une erreur s'est produite lors du dépôt de fichier</p>[erreurDeposer-]
 [erreurDezip+]<p>Une erreur s'est produite lors du dézippage du fichier</p>[erreurDezip-]
+[erreurFichiersProteges+]<p>Certains fichiers ou dossiers n'ont pas été pris en compte pour l'opération 
+demandée, car leur nom a une signification spéciale pour la plate-forme Esprit: 
+activ_..., chatlog, forum, html.php, ressources, rubriques, et tableaudebord.csv<br />
+Toutefois, si l'opération impliquait plusieurs fichiers, ceux non concernés par cette remarque ont 
+bien été traités</p>[erreurFichiersProteges-]
 </div>
 
 [pasErreur+]
 <div id="cadreNavFichiers">
 
 <div id="cadreActionsSuppl">
-<form name="formNavFichiersCreerDossier" action="" method="post"> <!--enctype="multipart/form-data"-->
+<form name="formNavFichiersCreerDossier" action="" method="post">
 <label for="nomDossierACreerId">Créer un dossier:</label>
 <input type="text" name="nomDossierACreer" id="nomDossierACreerId" value="" />
 <input type="submit" name="creerDossier" value="Créer" />

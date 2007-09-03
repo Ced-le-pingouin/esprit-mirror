@@ -21,6 +21,7 @@ class NavigateurFichiers extends AfficheurPage
 	var $sFichierDeposeCheminTemp;
 	var $sFichierDeposeNom;
 	var $bDezipperFichierDepose;
+	var $sFiltreFichiers;
 	
 	function recupererDonnees()
 	{
@@ -56,64 +57,61 @@ class NavigateurFichiers extends AfficheurPage
 			$this->declarerErreur('erreurDossierRacine', TRUE);
 		
 		if (!$this->oDossierCourant->estDossier() || !$this->oDossierCourant->estLisible()
-		 || !$this->oDossierCourant->estDescendantDe($this->oDossierRacine->retChemin()))
+		    || !$this->oDossierCourant->estDescendantDe($this->oDossierRacine->retChemin()))
 			$this->oDossierCourant->defChemin($this->oDossierRacine->retChemin());
 		
-		if (in_array($this->sAction, array('copier', 'couper', 'supprimer')) && !count($this->aFichiersSel))
+		if (in_array($this->sAction, array('copier', 'couper', 'supprimer')))
 		{
-			$this->declarerErreur('erreurFichiersSel');
-			$this->sAction = '';
+			if (!count($this->aFichiersSel))
+			{
+				$this->declarerErreurAction('erreurFichiersSel');
+			}
+			else if (!empty($this->sFiltreFichiers)
+			         && count(($aFichiersAEnlever = preg_grep($this->sFiltreFichiers, $this->aFichiersSel)) > 0))
+			{
+				$this->aFichiersSel = array_diff($this->aFichiersSel, $aFichiersAEnlever);
+				$this->declarerErreur('erreurFichiersProteges');
+			}
 		}
 		
 		if ($this->sAction == 'coller' && $this->oPressePapiers->estVide())
-		{
-			$this->declarerErreur('erreurPressePapiersVide');
-			$this->sAction = '';
-		}
+			$this->declarerErreurAction('erreurPressePapiersVide');
 			
 		if ($this->sAction == 'creerDossier')
 		{
 			if (empty($this->sDossierACreer))
-			{
-				$this->declarerErreur('erreurDossierACreerVide');
-				$this->sAction = '';
-			}
+				$this->declarerErreurAction('erreurDossierACreerVide');
+			else if (!empty($this->sFiltreFichiers) && preg_match($this->sFiltreFichiers, $this->sDossierACreer) > 0)
+				$this->declarerErreurAction('erreurFichiersProteges');
 			else
-			{
 				// ne garder que le nom => pas de possibilité de retaper des /.../...
 				$this->sDossierACreer = basename($this->sDossierACreer);
-			}
 		}
 		
 		if ($this->sAction == 'renommer')
 		{
-			 if (!$this->oFichierARenommer->estModifiable()
-			  || !$this->oFichierARenommer->estDescendantDe($this->oDossierCourant->retChemin()))
-			 {
-				$this->declarerErreur('erreurFichierARenommer');
-				$this->sAction = '';
-			 }
+			if (!$this->oFichierARenommer->estModifiable()
+			    || !$this->oFichierARenommer->estDescendantDe($this->oDossierCourant->retChemin()))
+				$this->declarerErreurAction('erreurFichierARenommer');
+			else if (!empty($this->sFiltreFichiers)
+			         && (preg_match($this->sFiltreFichiers, $this->oFichierARenommer->retChemin()) > 0
+			             || preg_match($this->sFiltreFichiers, $this->sFichierRenomme) > 0))
+				$this->declarerErreurAction('erreurFichiersProteges');
 			 
-			 if (!empty($this->sFichierRenomme))
-			 	$this->sFichierRenomme = basename($this->sFichierRenomme);
+			if (!empty($this->sFichierRenomme))
+				$this->sFichierRenomme = basename($this->sFichierRenomme);
 		}
 		
 		if ($this->sAction == 'telecharger')
 		{
 			if (!$this->oFichierATelecharger->estFichier() || !$this->oFichierATelecharger->estLisible()
-			 || !$this->oFichierATelecharger->estDescendantDe($this->oDossierRacine->retChemin()))
-			{
-				$this->declarerErreur('erreurTelechargement');
-				$this->sAction = '';
-			}
+			    || !$this->oFichierATelecharger->estDescendantDe($this->oDossierRacine->retChemin()))
+				$this->declarerErreurAction('erreurTelechargement');
 			else
 			{
 				$sRegExpExts = '%^php[0-9]*$%i';							
 				if (preg_match($sRegExpExts, $this->oFichierATelecharger->retExtension()) > 0)
-				{
-					$this->declarerErreur('erreurTelechargementInterdit');
-					$this->sAction = '';
-				}
+					$this->declarerErreurAction('erreurTelechargementInterdit');
 			}
 		}
 		
@@ -126,8 +124,7 @@ class NavigateurFichiers extends AfficheurPage
 			}
 			else
 			{
-				$this->declarerErreur('erreurDeposer');
-				$this->sAction = '';
+				$this->declarerErreurAction('erreurDeposer');
 			}
 		}
 	}
@@ -161,7 +158,7 @@ class NavigateurFichiers extends AfficheurPage
 					if ($action == 'copier')
 					{
 						if (!$fichier->existe()
-						 || $fichier->copier($this->oDossierCourant->retChemin(), TRUE, TRUE, TRUE))
+						    || $fichier->copier($this->oDossierCourant->retChemin(), TRUE, TRUE, TRUE))
 							$this->oPressePapiers->enleverElement($elem, TRUE);
 					}
 					else if ($action == 'couper')
@@ -335,17 +332,23 @@ class NavigateurFichiers extends AfficheurPage
 		$this->tpl->remplacer('{dossier}', $this->oDossierCourant->reduireChemin($this->oDossierRacine->retChemin()));
 		$this->tpl->remplacer('{fichier.nom}', $this->oFichierARenommer->retNom());
 	}
+	
+	function declarerErreurAction($sNomErreur, $bFatale = FALSE, $v_sTexte = '')
+	{
+		$this->sAction = '';
+		parent::declarerErreur($sNomErreur, $bFatale, $v_sTexte);
+	}
 }
 
-//// action choisir un fichier/dossier (plus: télécharger un .zip de la sélection)
-//// confirmation Suppression
 //// bouton Ok défaut quand Renommer
+//// confirmation Suppression
+//// JS: lien/bouton "Sélectionner tout"
 //// afficher les erreurs différement? (texte en PHP et juste le div vide en HTML. Effacement du div si pas d'erreurs?)
 //// bread crumbs en haut?
 //// transformer Contenu en TABLE/TRs, pour aligner les boutons, et ajouter la taille (et date?)
+//// action choisir un fichier/dossier (plus: télécharger un .zip de la sélection)
 
-//// la racine ne devra pas être acceptée en REQUEST dans notre cas
+//// filtrer AUSSI sur les fichiers/dossiers dans les .zip (et sur l'action coller?)
 //// sur les fichiers cochés, appeler FichierInfo->estDescendantDe(DossierRacine)
-//// certaines actions interdites pour dossiers/fichiers spéciaux de formations (rubriques, autres?)
 //// création/renommage: essayer noms spéciaux
 ?>
