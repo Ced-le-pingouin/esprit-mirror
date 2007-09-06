@@ -165,7 +165,7 @@ class Template
 	
 	function desactiverBloc($looptag)
 	{
-		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]%Us', '', $this->data);
+		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
 	}
 }
 
@@ -466,7 +466,7 @@ class TPL_Block
 	
 	function desactiverBloc($looptag)
 	{
-		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]%Us', '', $this->data);
+		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
 	}
 }
 
