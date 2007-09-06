@@ -1,0 +1,135 @@
+/*** d'abord réinitialiser les marges/espacements initiaux ***/
+/* (ajouter des éléments si nécessaire) */
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, 
+table, tr, th, td, caption, a, img 
+{
+	margin: 0;
+	padding: 0;
+}
+
+/*** police, espacement, couleurs, etc. identiques pour ts les navigateurs ***/
+body
+{
+	background: white;
+	color: black;
+	font-family: "Times New Roman", Times, serif;
+	font-size: medium;
+	font-style: normal;
+	font-weight: normal;
+	line-height: 1;
+	padding: 8px;
+}
+
+/*** polices and co., uniformes pour divers éléments ***/
+b, strong { font-weight: bolder; }
+i, em, cite, address, var, dfn { font-style: italic; }
+pre, tt, code, kbd, samp { font-family: monospace; }
+big { font-size: larger; }
+small { font-size: smaller; }
+ins { text-decoration: underline; }
+del { text-decoration: line-through; }
+sub { font-size: smaller; line-height: normal; }
+sup { font-size: smaller; line-height: normal; }
+
+/*** titres et p, pre ***/
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1 { font-size: 2em; margin: .67em 0; }
+h2 { font-size: 1.5em; margin: .83em 0; }
+h3 { font-size: 1.17em; margin: 1em 0; }
+h4 { /*font-size: 1em;*/ margin: 1.33em 0; }
+h5 { font-size: 0.83em; margin: 1.67em 0; }
+h6 { font-size: 0.67em; margin: 2.33em 0; }
+/* la police de pre semble + gde dans Opera mais je ne peux rien y faire */
+p, pre { margin: 1em 0; }
+
+/*** tables et enfants (il en manque?) ***/
+table
+{
+	caption-side: top; /* c'est par défaut de tte façon, et seul Fx reconnaît */
+	margin-bottom: 0;
+	margin-top: 0;
+}
+th { font-weight: bold; }
+th, caption { text-align: center; }
+td, th { padding: 2px 1px 3px;}
+td { text-align: inherit; }
+/* bordures */
+table, td, th { border: 1px solid black; }
+/* table CSS */
+table { border-collapse: collapse; }
+/* table identique à celles sans CSS avec bord=1 */
+/*table
+{
+	border-collapse: separate;
+	border-spacing: 2px;
+}*/
+
+/*** listes ***/
+ul, ol, dl { margin: 1em 0; } 
+ul, ol, dd { padding-left: 40px; } 
+ul { list-style-type: disc; }
+ol { list-style-type: decimal; }
+ul, ol { list-style-position: outside; }
+/* 2 niveaux */
+ul ul, ul ol, ul dl, ol ul, ol ol, ol dl, dl ul, dl ol, dl dl
+{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* 2è niveau liste non-ordonnée => cercle */
+ol ul, ul ul { list-style-type: circle; }
+/* 3è niveau liste non-ordonnée => carré */
+ol ol ul, ol ul ul, ul ol ul, ul ul ul { list-style-type: square; }
+
+/*** formulaires ***/
+/* (pas encore géré les attributs comme checked, disabled, etc.) */
+form, select, option { margin: 0; padding: 0; }
+fieldset
+{
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+	/*border: 2px groove;*/
+}
+legend { border: none; color: black; padding: 0 2px; }
+/*input { font-family: inherit; line-height: normal; }*/
+button { padding: 2px 3px; }
+select { padding: 1px; }
+option { line-height: normal; margin-right: 10px; }
+optgroup { font-size: inherit; font-style: italic; font-weight: bold; }
+optgroup > option { padding-left: 20px; }
+
+/*** liens, images (pas vraiment traité les liens pour le moment ***/
+a img { border: 2px solid blue; }
+
+/*** citations ***/
+blockquote { margin: 1em 0; }
+blockquote { margin-left: 40px; margin-right: 40px; }
+/* (IE6/7 n'appliquent aucune des règles ci-dessous) */
+/* pour enlever complètement les guillemets (1er pour Saf, 2è pour Fx & Op) */
+/*blockquote:before, blockquote:after, q:before, q:after { content: "|"; }
+blockquote, q { quotes: "" "" "" ""; }*/
+/* pour définir les guillemets x2 et x1, fonctionne uniquement dans Fx & Op */
+blockquote, q { quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/*** divers ***/
+abbr[title], acronym[title] { border-bottom: dotted 1px; font-variant: normal; }
+/* IE6 ne comprend pas la règle ci-dessus (attributs) (pas de abbr, non plus) */
+* html acronym { border-bottom: dotted 1px; }
+frame { border: none; }
+iframe { border: 2px inset; }
+
+/*hr???*/
+/*focus???*/
+/*éléments à cacher???*/
+/*curseurs???*/
+
+/*** pour "simuler" le position: fixed en IE6 ***/
+/* (nécessite htmt id="fixes", et un bloc #contenuPrincipal) */
+/* pas de barres de défilement */
+* html#fixes { overflow: hidden; }
+/* le body occupe toute la hauteur */
+* html#fixes body { height: 100%; }
+/* le contenu occupe toute la fenêtre, et pourra avoir des barres défilement */
+* html#fixes #contenuPrincipal { height: 100%; overflow: auto; width: 100%; }
+/* fix pour qd le bloc contenu contient lui-même des éléments positionnés */
+* html#fixes #contenuPrincipal { position: relative; }

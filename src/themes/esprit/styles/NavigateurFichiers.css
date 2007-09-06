@@ -1,0 +1,66 @@
+@import url(esprit-base.css);
+
+/* modifie la gestion des ul/li */
+ul, li { margin: 0; padding: 0; }
+li { margin: 0 0 0 1em; }
+
+/*** Blocs principaux ***/
+#cadreNavFichiers
+{
+	margin: 0 auto;
+	width: 98%;
+	
+	padding-bottom: 2em; /* pour compenser la barre du bas (Fermer) */
+}
+
+.barreOutils { margin: 7px 0; }
+
+#cadreArborescence, #cadreContenu
+{
+	height: 20em;
+	overflow: auto;
+}
+
+#cadreArborescence { float: left; margin-right: 10px; width: 35%; }
+#cadreContenu { margin-right: 4px; }
+
+#cadrePressePapiers
+{
+	clear: both;
+}
+
+#cadrePressePapiers table { width: 100%; }
+#cadrePressePapiers th, #cadrePressePapiers td { padding: 4px; }
+
+h3
+{
+	background-color: rgb(104,108,71);
+	border: 1px solid black;
+	color: white;
+	font-size: 1em;
+	margin: 0 0 0.3em;
+	padding: 0.3em;
+}
+
+/*** Listes ***/
+.listeFichiers li { line-height: 1.6; }
+.listeFichiers li { list-style: none none outside; }
+.listeFichiers li img { vertical-align: top; }
+.listeFichiers li input { margin-left: 0; }
+.listeFichiers a, .listeFichiers label { color: rgb(63,67,34); }
+.listeFichiers li .fichier, .listeFichiers li .dossier
+{
+	background: url(../images/fichier.gif) no-repeat 2px 2px;
+	padding-left: 22px;
+}
+.listeFichiers li .dossier
+{
+	background-image: url(../images/dossier.gif);
+}
+.listeFichiers li .actif
+{
+	border: 1px dotted black;
+}
+/* boutons télécharger et renommer à côté de chaque fichier/dossier */
+.listeFichiers li { position: relative; }
+.listeFichiers li .ligneOutils { position: absolute; right: 0; }
