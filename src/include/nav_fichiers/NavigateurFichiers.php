@@ -67,7 +67,7 @@ class NavigateurFichiers extends AfficheurPage
 				$this->declarerErreurAction('erreurFichiersSel');
 			}
 			else if (!empty($this->sFiltreFichiers)
-			         && count(($aFichiersAEnlever = preg_grep($this->sFiltreFichiers, $this->aFichiersSel)) > 0))
+			         && count(($aFichiersAEnlever = preg_grep($this->sFiltreFichiers, $this->aFichiersSel))) > 0)
 			{
 				$this->aFichiersSel = array_diff($this->aFichiersSel, $aFichiersAEnlever);
 				$this->declarerErreur('erreurFichiersProteges');
@@ -235,6 +235,7 @@ class NavigateurFichiers extends AfficheurPage
 	{
 		$this->tpl->remplacer('{g:page}', $_SERVER['PHP_SELF']);
 		$this->tpl->remplacer('{g:racine}', urlencode($this->oDossierRacine->retChemin()));
+		$this->tpl->remplacer('{g:dossierCourant}', urlencode($this->oDossierCourant->retNom()));
 		
 		$this->afficherArborescence();
 		$this->afficherContenu();
@@ -320,8 +321,9 @@ class NavigateurFichiers extends AfficheurPage
 		for (; $itrPressePapiers->estValide(); $itrPressePapiers->suiv())
 		{
 			$elem = $itrPressePapiers->courant();
+			$fichier = new FichierInfo($elem->retSujet());
 			$tplPressePapiers->nextLoop();
-			$tplPressePapiers->remplacer('{pp.fichier}', $elem->retSujet());
+			$tplPressePapiers->remplacer('{pp.fichier}', $fichier->reduireChemin($this->oDossierRacine->retChemin()));
 			$tplPressePapiers->remplacer('{pp.action}', $elem->retAction());
 		}
 		$tplPressePapiers->afficher();
@@ -341,7 +343,6 @@ class NavigateurFichiers extends AfficheurPage
 }
 
 //// bouton Ok défaut quand Renommer
-//// confirmation Suppression
 //// JS: lien/bouton "Sélectionner tout"
 //// afficher les erreurs différement? (texte en PHP et juste le div vide en HTML. Effacement du div si pas d'erreurs?)
 //// bread crumbs en haut?
