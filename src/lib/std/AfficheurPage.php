@@ -14,6 +14,8 @@ class AfficheurPage
 	var $aErreurs = array();
 	var $aErreursFatales = array();
 	
+	var $sAction;
+	
 	function demarrer($fichierTpl = NULL)
 	{
 		// récup des données
@@ -144,6 +146,12 @@ class AfficheurPage
 			$this->aErreursFatales[$sNomErreur] = $v_sTexte;
 		else
 			$this->aErreurs[$sNomErreur] = $v_sTexte;
+	}
+	
+	function declarerErreurAction($sNomErreur, $bFatale = FALSE, $v_sTexte = '')
+	{
+		$this->sAction = '';
+		$this->declarerErreur($sNomErreur, $bFatale, $v_sTexte);
 	}
 	
 	function erreurDeclaree($sNomErreur)

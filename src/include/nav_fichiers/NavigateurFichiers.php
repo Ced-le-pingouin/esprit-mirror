@@ -9,7 +9,6 @@ require_once dir_lib('std/PressePapiers.php', TRUE);
 
 class NavigateurFichiers extends AfficheurPage
 {
-	var $sAction;
 	var $oDossierRacine;
 	var $oDossierCourant;
 	var $aFichiersSel;
@@ -164,7 +163,7 @@ class NavigateurFichiers extends AfficheurPage
 					else if ($action == 'couper')
 					{
 						if (!$fichier->existe() || $fichier->deplacer($this->oDossierCourant->retChemin()))
-							$this->oPressePapiers->enleverElement($elem, TRUE, TRUE);
+							$this->oPressePapiers->enleverElement($elem, TRUE);
 					}
 					
 					$this->oPressePapiers->enleverElementsDiffere();
@@ -333,12 +332,6 @@ class NavigateurFichiers extends AfficheurPage
 	{
 		$this->tpl->remplacer('{dossier}', $this->oDossierCourant->reduireChemin($this->oDossierRacine->retChemin()));
 		$this->tpl->remplacer('{fichier.nom}', $this->oFichierARenommer->retNom());
-	}
-	
-	function declarerErreurAction($sNomErreur, $bFatale = FALSE, $v_sTexte = '')
-	{
-		$this->sAction = '';
-		parent::declarerErreur($sNomErreur, $bFatale, $v_sTexte);
 	}
 }
 
