@@ -230,6 +230,8 @@ class CFormation
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 	
+	function retTypeNiveau () { return TYPE_FORMATION; }
+	
 	/**
 	 * Permet de connaitre le numero d'ordre maximum des formations
 	 * 
@@ -1507,6 +1509,15 @@ class CFormation
 			array(STATUT_INVISIBLE,"Invisible"),
 			array(STATUT_LECTURE_SEULE,"Clôturé")
 			/*array(STATUT_ARCHIVE,"Archivé")*/);
+	}
+	
+	
+	function &retElementsEnfants()
+	{
+		if (!isset($this->aoModules))
+			$this->initModules();
+
+		return $this->aoModules;
 	}
 }
 

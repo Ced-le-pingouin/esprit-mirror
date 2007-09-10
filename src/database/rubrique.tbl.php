@@ -162,6 +162,25 @@ class CModule_Rubrique
 		return $iMax;
 	}
 	
+	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
+	{
+		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
+		$sRequeteSql = "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
+						." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		if (empty($v_iNumOrdre) || !is_int($v_iNumOrdre) || $v_iNumOrdre < 0)
+			$iNumOrdre = $this->retNumOrdreMax($v_iIdDest) + 1;
+		else
+			$iNumOrdre = $v_iNumOrdre;
+		
+		$iIdNouv = $this->copier($v_iIdDest, TRUE);
+		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
+		$oNouv->redistNumsOrdre($iNumOrdre);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
+	}
+	
 	/**
 	 * Copie la rubrique courante vers un module spécifique
 	 * 
@@ -1239,6 +1258,15 @@ class CModule_Rubrique
 	{
 		$f = new FichierInfo(dir_rubriques($this->iIdForm));
 		return $f->retChemin();
+	}
+	
+	
+	function &retElementsEnfants()
+	{
+		if (!isset($this->aoActivs))
+			$this->initActivs();
+			
+		return $this->aoActivs;
 	}
 }
 

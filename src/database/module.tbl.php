@@ -114,6 +114,25 @@ class CModule
 		return $iNumMax;
 	}
 	
+	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
+	{
+		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
+		$sRequeteSql = "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
+						." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		if (empty($v_iNumOrdre) || !is_int($v_iNumOrdre) || $v_iNumOrdre < 0)
+			$iNumOrdre = $this->retNumOrdreMax($v_iIdDest) + 1;
+		else
+			$iNumOrdre = $v_iNumOrdre;
+		
+		$iIdNouv = $this->copier($v_iIdDest, TRUE);
+		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
+		$oNouv->redistNumsOrdre($iNumOrdre);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
+	}
+	
 	/**
 	 * Copie le module courant vers une formation spécifique
 	 * 
@@ -1136,6 +1155,15 @@ class CModule
 	{
 		$this->initFormation();
 		return $this->oFormation->retDossier();
+	}
+	
+	
+	function &retElementsEnfants()
+	{
+		if (!isset($this->aoRubriques))
+			$this->initRubriques();
+			
+		return $this->aoRubriques;
 	}
 }
 
