@@ -1,6 +1,6 @@
 format 42
 "lib_std"
-  revision 3
+  revision 4
   modified_by 2 "cedric"
 
 
@@ -278,6 +278,13 @@ ${members}};
 
       classrelation 130050 // <aggregation>
 	relation_ref 129794 // <aggregation>
+      end
+
+      classrelation 132610 // <unidirectional association>
+	relation 132226 --->
+	  a role_name "" protected
+	    classrelation_ref 132610 // <unidirectional association>
+	  b parent class_ref 128898 // IterateurComposite
       end
     end
 

@@ -143,6 +143,10 @@ relationcanvas 135170 relation_ref 131074 // <aggregation>
   from ref 134914 z 1999 to ref 135042
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
+relationcanvas 135426 relation_ref 132226 // <unidirectional association>
+  from ref 129666 z 1999 to ref 129026
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
 line 131970 -_-_ geometry VH
   from ref 131842 z 1998 to point 297 524
   line 134658 z 1998 to ref 131330
