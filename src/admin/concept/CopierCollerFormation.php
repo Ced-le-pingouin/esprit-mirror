@@ -30,6 +30,8 @@ class CopierCollerFormation extends AfficheurPage
 	var $iTypeElemDest;
 	var $iIdElemDest;
 	
+	var $sOngletCourant; // utile seulement si Javascript est activé
+	
 	function recupererDonnees()
 	{
 		$sActionsReconnues = array('changerFormation', 'copier', 'coller', 'supprimerElemPp', 'viderPp');
@@ -52,7 +54,10 @@ class CopierCollerFormation extends AfficheurPage
 			$this->oPressePapiers = new PressePapiers();
 		
 		$this->elemPpSel = $this->aDonneesForm['elemPpSel'];
-			
+		
+		$this->sOngletCourant = !empty($this->aDonneesForm['ongletCourant']) ?
+		                        $this->aDonneesForm['ongletCourant'] : '';
+		
 		$this->oProjet->initFormations();
 		$this->aoFormationsSrc = $this->oProjet->aoFormations;
 		$this->oProjet->initFormationsUtilisateur();
@@ -72,8 +77,10 @@ class CopierCollerFormation extends AfficheurPage
 		
 		if (!empty($this->iIdFormationDest))
 			$this->oFormationDest = new CFormation($this->oProjet->oBdd, $this->iIdFormationDest);
-		else
+		else if (!empty($this->oProjet->oFormationCourante))
 			$this->oFormationDest = $this->oProjet->oFormationCourante;
+		else if (count($this->aoFormationsDest) > 0)
+			$this->oFormationDest = $this->aoFormationsDest[0];
 		
 		if (!$this->oFormationDest || !$this->oFormationDest->oEnregBdd)
 			$this->declarerErreur('erreurFormationDest', TRUE,
@@ -154,6 +161,8 @@ class CopierCollerFormation extends AfficheurPage
 	
 	function afficherParties()
 	{
+		$this->tpl->remplacer('{ongletCourant}', $this->sOngletCourant);
+		
 		$this->afficherFormationsSrcEtDest();
 		$this->afficherPressePapiers();
 	}
@@ -183,10 +192,10 @@ class CopierCollerFormation extends AfficheurPage
 			
 			$itrFormation = new IterateurRecursif(new IterateurElementFormation($donnees[2]),
 			                                      ITR_REC_PARENT_AVANT);
-			for ($bFormation = TRUE; $itrFormation->estValide(); $itrFormation->suiv())
+			for ($i = 0; $itrFormation->estValide(); $i++)
 			{
 				$tplBranche->nextLoop();
-				if (!$bFormation)
+				if ($i > 0)
 				{
 					$branche = $itrFormation->courant();
 				}
@@ -195,9 +204,9 @@ class CopierCollerFormation extends AfficheurPage
 					$branche = $donnees[2];
 					if ($donnees[0] == 'Src')
 						$tplBranche->remplacer('<input ', '<input disabled="disabled" ');
-					$bFormation = FALSE;
 				}
 				$idCompose = $branche->retTypeNiveau().'_'.$branche->retId();
+				$tplBranche->remplacer('{branche.numNiv}', $branche->retTypeNiveau());
 				$tplBranche->remplacer('{branche.niv}', $branche->retTexteNiveau());
 				$tplBranche->remplacer('{branche.type}', $branche->retTypeNiveau() == TYPE_SOUS_ACTIVITE ? 
 				                                         $branche->retTexteType : '');
@@ -207,6 +216,9 @@ class CopierCollerFormation extends AfficheurPage
 				
 				if ($donnees[0] == 'Dest' && $idCompose == $this->brancheDestSel)
 					$tplBranche->remplacer('<input ', '<input checked="checked"');
+					
+				if ($i > 0)
+					$itrFormation->suiv();
 			}
 			
 			$tplBranche->afficher();
@@ -243,9 +255,7 @@ class CopierCollerFormation extends AfficheurPage
 $page = new CopierCollerFormation();
 $page->demarrer();
 
-//// replacer la page en copier/coller correctement
-//// vérif les outils en PHP 4 avec grosses formations
-//// vérif si idFormation(Src/Dest) est bien lisible/modifiable par l'utilisateur
-//// faire disparaître les boutons Choisir si JS activé (submit auto)
-//// vérif si GererFichiersFormation.php fonctionne encore après passage de declarerErreurAction() dans AfficheurPage
+//// - vérif que la formation cible est modifiable par l'utilisateur (quelle méthode? dans quelle classe? il y a 
+////   verifModifierFormation() dans CProjet, mais c'est pour la formation courante, pas n'importe laquelle)
+//// ??? faire disparaître les boutons Choisir si JS activé (submit auto)
 ?>

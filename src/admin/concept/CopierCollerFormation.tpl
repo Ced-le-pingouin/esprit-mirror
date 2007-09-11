@@ -17,51 +17,58 @@
 <div class="erreurs">[erreurs+][erreurs-]</div>
 
 [pasErreur+]
+<div id="cadreOnglets">
 <form name="formCopierCollerFormation" action="" method="post">
+<input type="hidden" name="ongletCourant" id="ongletCourant"
+ value ="{ongletCourant}" />
 
 <div id="cadreCopier">
+<h3>
 <label for="idFormationSrcId">Copier de la formation &lt;</label>
 <select name="idFormationSrc" id="idFormationSrcId">
   [formSrc_liste+]
   <option value="{formation.id}">{formation.titre}</option>
   [formSrc_liste-]
 </select>
-<input type="submit" name="changerFormationSrc" value="Choisir"
+<input type="submit" name="changerFormationSrc" value="Choisir" class="bouton"
  title="Choisir la formation source de la copie" />
+</h3>
 <table border="1">
   [formSrc_branche+]<tr>
   	<th>{branche.niv} {branche.type}</th>
-    <td>
+    <td class="niv{branche.numNiv}">
       <input type="checkbox" name="branchesSrcSel[]" id="{branche.id}"
        value="{branche.val}" />
       <label for="{branche.id}">{branche.titre}</label>
     </td>
   </tr>[formSrc_branche-]
 </table>
-<input type="submit" name="copier" value="Copier"
+<input type="submit" name="copier" value="Copier" class="bouton"
  title="copier les éléments cochés vers le presse-papiers" />
 </div><!--cadreCopier-->
 
 <div id="cadreColler">
-<label for="idFormationDestId">Copier dans la formation &gt;</label>
+<h3>
+<label for="idFormationDestId">Coller dans la formation &gt;</label>
 <select name="idFormationDest" id="idFormationDestId">
   [formDest_liste+]
   <option value="{formation.id}">{formation.titre}</option>
   [formDest_liste-]
 </select>
-<input type="submit" name="changerFormationDest" value="Choisir"
+<input type="submit" name="changerFormationDest" value="Choisir" class="bouton"
  title="Choisir la formation cible de la copie" />
+</h3>
 <table border="1">
   [formDest_branche+]<tr>
   	<th>{branche.niv} {branche.type}</th>
-    <td>
+    <td class="niv{branche.numNiv}">
       <input type="radio" name="brancheDestSel" id="{branche.id}"
        value="{branche.val}" />
       <label for="{branche.id}">{branche.titre}</label>
     </td>
   </tr>[formDest_branche-]
 </table>
-<input type="submit" name="coller" value="Coller"
+<input type="submit" name="coller" value="Coller" class="bouton"
  title="coller les éléments sélectionnés du presse-papiers vers la formation cible" />
 </div><!--cadreColler-->
 
@@ -77,13 +84,14 @@
     </td>
   </tr>[pp_element-]
 </table>
-<input type="submit" name="supprimerElemPp" value="Supprimer"
+<input type="submit" name="supprimerElemPp" value="Supprimer" class="bouton"
  title="supprimer les éléments cochés du presse-papiers" />
-<input type="submit" name="viderPp" value="Vider"
+<input type="submit" name="viderPp" value="Vider" class="bouton"
  title="vider complètement presse-papiers" />
 </div><!-- cadrePressePapiers -->
 
 </form>
+</div><!--cadreOnglets-->
 [pasErreur-]
 
 </div><!-- contenuPrincipal -->

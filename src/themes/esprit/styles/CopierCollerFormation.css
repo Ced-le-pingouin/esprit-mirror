@@ -1,1 +1,65 @@
 @import url(esprit-base.css);
+
+body { background-color: white; }
+table { margin: 0.8em; width: 95%; }
+th { padding: 0.3em; text-align: right; width: 10em; }
+
+h3
+{
+	background-color: rgb(104,108,71);
+	border: 1px solid black;
+	color: white;
+	font-size: 1em;
+	line-height: 1.5;
+	margin: 0.5em 0;
+	padding: 0.3em;
+}
+
+/*** onglets et cadres rattachés ***/
+ul.onglets
+{
+	margin: 0.5em 0 -1px 2em;
+	overflow: hidden;
+	/*car les onglets (li) on une marge de -1px => bord du 1er invisible sinon*/
+	padding: 0 0 0 1px;
+}
+
+ul.onglets li
+{
+	background-color: rgb(179,165,138);
+	border: 1px solid black;
+	float: left;
+	list-style-type: none;
+	margin: 0.15em 0 -2px -1px;
+	padding: 0.2em 0.6em;
+}
+
+ul.onglets li.actif
+{
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-top: 0;
+}
+
+ul.onglets a { color: rgb(200,200,200); }
+ul.onglets li.actif, ul.onglets li.actif a, #cadreOnglets
+{
+	background-color: rgb(238,234,221);
+	color: rgb(111,105,87);
+}
+
+#cadreOnglets
+{
+	border: 1px solid rgb(200,200,200);
+	margin: 0 auto;
+	padding: 0.5em;
+	width: 95%;
+	
+	padding-bottom: 2em; /* compenser barre inférieure */
+}
+
+/*** arbre de la formation ***/
+.niv2 { padding-left: 10px; }
+.niv3, .niv4 { padding-left: 20px; }
+.niv5 { padding-left: 30px; }
+.niv6 { padding-left: 40px; }
