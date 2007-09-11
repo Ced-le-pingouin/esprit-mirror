@@ -35,6 +35,8 @@ body
 	padding: 0 0.5em;
 }
 
+#barreBas a:hover { text-decoration: underline; }
+
 /*** barre d'outils et boutons ***/
 /*** boutons ***/
 .barreOutils

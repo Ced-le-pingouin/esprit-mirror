@@ -10,7 +10,7 @@ class GererFichiersForm extends NavigateurFichiers
 	function recupererDonnees()
 	{
 		$oProjet = new CProjet();
-		if ($oProjet->verifPermission('PERM_MOD_SESSION'))
+		if ($oProjet->verifModifierFormation())
 			$this->aDonneesUrl['r'] = $oProjet->oFormationCourante->retDossier();
 		
 		parent::recupererDonnees();
