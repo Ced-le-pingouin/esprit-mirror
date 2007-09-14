@@ -1,4 +1,27 @@
 <?php
+// This file is part of Esprit, a web Learning Management System, developped
+// by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
+// 
+// Esprit is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License version 2, 
+// as published by the Free Software Foundation.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of 
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+// See the GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, you can get one from the web page
+// http://www.gnu.org/licenses/gpl.html
+// 
+// Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
+//                          Universite de Mons-Hainaut, Belgium. 
+
+/**
+ * @file	NavigateurFichiers.php
+ */
+
 require_once dirname(__FILE__).'/../globals.inc.php';
 require_once dir_include('template.inc.php', TRUE);
 require_once dir_lib('zip.class.php', TRUE);
@@ -7,21 +30,26 @@ require_once dir_lib('std/FichierInfo.php', TRUE);
 require_once dir_lib('std/IterateurDossier.php', TRUE);
 require_once dir_lib('std/PressePapiers.php', TRUE);
 
+/**
+ * Contrôleur pour l'outil "navigateur de fichiers"
+ */
 class NavigateurFichiers extends AfficheurPage
 {
-	var $oDossierRacine;
-	var $oDossierCourant;
-	var $aFichiersSel;
-	var $oPressePapiers;
-	var $sDossierACreer;
-	var $oFichierARenommer;
-	var $sFichierRenomme;
-	var $oFichierATelecharger;
-	var $sFichierDeposeCheminTemp;
-	var $sFichierDeposeNom;
-	var $bDezipperFichierDepose;
-	var $sFiltreFichiers;
+	var $oDossierRacine;			///< Objet FichierInfo représentant le dossier racine (panneau Arborescence)
+	var $oDossierCourant;			///< Objet FichierInfo représentant le dossier actif (panneau Contenu)
+	var $aFichiersSel;				///< Tableau des fichiers sélectionnés (formulaire)
+	var $oPressePapiers;			///< Objet représentant le presse-papiers
+	var $sDossierACreer;			///< Lors de l'action Créer un dossier, objet représentant ce dossier
+	var $oFichierARenommer;			///< Lors de l'action Renommer, objet représentant le fichier/dossier à renommer
+	var $sFichierRenomme;			///< Nouveau nom pour le fichier/dossier à renommer
+	var $oFichierATelecharger;		///< Lors de l'action télécharger, objet représentant le fichier à télécharger
+	var $sFichierDeposeNom;			///< Lors de l'action Déposer un fichier, nom de ce dernier
+	var $bDezipperFichierDepose;	///< Lors de l'action Déposer un fichier, indique si on doit dézipper s'il s'agit d'un fichier zippé
+	var $sFiltreFichiers;			///< Regex représentant les noms de fichiers/dossiers sur lesquels les actions sont interdites (non défini ici, destiné aux classes filles)
 	
+	/**
+	 * @see AfficheurPage#recupererDonnees()
+	 */
 	function recupererDonnees()
 	{
 		$sActionsReconnues = array('copier', 'couper', 'coller', 'supprimer', 'creerDossier', 'viderPressePapiers', 
@@ -50,15 +78,20 @@ class NavigateurFichiers extends AfficheurPage
 		$this->bDezipperFichierDepose = ($this->aDonneesForm['dezipperFichierDepose'] == '1');
 	}
 	
+	/**
+	 * @see AfficheurPage#validerDonnees()
+	 */
 	function validerDonnees()
 	{
+		// le dossier racine doit être un dossier, et être lisible
 		if (!$this->oDossierRacine->estDossier() || !$this->oDossierRacine->estLisible())
 			$this->declarerErreur('erreurDossierRacine', TRUE);
-		
+		// le dossier courant doit être un dossier, lisible, ET identique ou descendant du dossier racine
 		if (!$this->oDossierCourant->estDossier() || !$this->oDossierCourant->estLisible()
 		    || !$this->oDossierCourant->estDescendantDe($this->oDossierRacine->retChemin()))
 			$this->oDossierCourant->defChemin($this->oDossierRacine->retChemin());
 		
+		// des fichiers/dossiers doivent être choisis pour copier/coller/supprimer, ET ne pas faire partie de la liste des éléments "interdits"
 		if (in_array($this->sAction, array('copier', 'couper', 'supprimer')))
 		{
 			if (!count($this->aFichiersSel))
@@ -73,9 +106,11 @@ class NavigateurFichiers extends AfficheurPage
 			}
 		}
 		
+		// pour Coller, le presse-papiers doit contenir qq chose
 		if ($this->sAction == 'coller' && $this->oPressePapiers->estVide())
 			$this->declarerErreurAction('erreurPressePapiersVide');
-			
+		
+		// le nom du dossier à créer doit être non vide, et ne pas faire partie de la liste de éléments "interdits"
 		if ($this->sAction == 'creerDossier')
 		{
 			if (empty($this->sDossierACreer))
@@ -87,6 +122,7 @@ class NavigateurFichiers extends AfficheurPage
 				$this->sDossierACreer = basename($this->sDossierACreer);
 		}
 		
+		// le fichier/dossier à renommer doit être accessible en écriture, être descendant du dossier actif, et ne pas faire partie des éléments "interdits" 
 		if ($this->sAction == 'renommer')
 		{
 			if (!$this->oFichierARenommer->estModifiable()
@@ -101,6 +137,7 @@ class NavigateurFichiers extends AfficheurPage
 				$this->sFichierRenomme = basename($this->sFichierRenomme);
 		}
 		
+		// le fichier à télécharger doit être un fichier, lisible, être descendant du dossier racine, et ne pas être un fichier PHP
 		if ($this->sAction == 'telecharger')
 		{
 			if (!$this->oFichierATelecharger->estFichier() || !$this->oFichierATelecharger->estLisible()
@@ -114,6 +151,7 @@ class NavigateurFichiers extends AfficheurPage
 			}
 		}
 		
+		// le fichier déposé est-il valide ?
 		if ($this->sAction == 'deposer')
 		{
 			if (!empty($_FILES['fichierDepose']['size']))
@@ -128,6 +166,9 @@ class NavigateurFichiers extends AfficheurPage
 		}
 	}
 	
+	/**
+	 * @see AfficheurPage#gererActions()
+	 */
 	function gererActions()
 	{
 		switch ($this->sAction)
@@ -143,7 +184,7 @@ class NavigateurFichiers extends AfficheurPage
 				foreach($this->aFichiersSel as $sFichier)
 				{
 					$fichier = new FichierInfo($sFichier);
-					$fichier->supprimer(TRUE);
+					$fichier->supprimer(TRUE); // suppression récursive
 				}
 				break;
 				
@@ -154,6 +195,7 @@ class NavigateurFichiers extends AfficheurPage
 					$fichier = new FichierInfo($elem->retSujet());
 					$action = $elem->retAction();
 					
+					// si les éléments collés n'existent plus ou si l'opération s'est bien déroulée, ils sont enlevés du presse-papiers
 					if ($action == 'copier')
 					{
 						if (!$fichier->existe()
@@ -215,6 +257,7 @@ class NavigateurFichiers extends AfficheurPage
 				{
 					if (strtolower($oFichierDepose->retExtension()) == 'zip' && $this->bDezipperFichierDepose)
 					{
+						// dézipper avec écrasement de l'existant
 						$zip = new CZip($oFichierDepose->retChemin());
 						if ($zip->desarchiver($this->oDossierCourant->retChemin(), TRUE) <= 0)
 							$this->declarerErreur('erreurDezip');
@@ -230,6 +273,9 @@ class NavigateurFichiers extends AfficheurPage
 		}
 	}
 	
+	/**
+	 * @see AfficheurPage#afficherParties()
+	 */
 	function afficherParties()
 	{
 		$this->tpl->remplacer('{g:page}', $_SERVER['PHP_SELF']);
@@ -241,6 +287,10 @@ class NavigateurFichiers extends AfficheurPage
 		$this->afficherPressePapiers();
 	}
 	
+	/**
+	 * Affiche le panneau contenant l'arborescence des dossiers à partir du 
+	 * dossier racine
+	 */
 	function afficherArborescence()
 	{
 		$tplListeDossiers = new TPL_Block_ListeComposite('liste_dossiers', $this->tpl);
@@ -277,7 +327,10 @@ class NavigateurFichiers extends AfficheurPage
 		}
 		$tplListeDossiers->afficher();
 	}
-
+	
+	/**
+	 * Affiche le panneau du contenu du dossier actif
+	 */
 	function afficherContenu()
 	{
 		$itrContenu = new IterateurDossier($this->oDossierCourant->retChemin(), '*', TRUE);
@@ -290,6 +343,7 @@ class NavigateurFichiers extends AfficheurPage
 			$bEstDossier = $fichier->estDossier();
 			
 			$tplListeContenu->nextLoop();
+			// si on n'est pas déjà en action de renommage, on affiche à côté de chaque fichier/dossier les boutons Renommer et Télécharger (seulement fichiers)
 			if ($this->sAction != 'renommer' || $fichier->retNom() != $this->oFichierARenommer->retNom())
 			{
 				$tplListeContenu->desactiverBloc('lc_ren');
@@ -298,6 +352,7 @@ class NavigateurFichiers extends AfficheurPage
 				$tplListeContenu->activerBloc('lc_btn_tel', !$bEstDossier);
 				$tplListeContenu->remplacer('{fichier.id}', 'dest_id_'.$fichierId);
 			}
+			// si on renomme un dossier/fichier, seuls des boutons Ok/Annuler sont affichés à côté
 			else
 			{
 				$tplListeContenu->desactiverBloc('lc_normal');
@@ -312,6 +367,9 @@ class NavigateurFichiers extends AfficheurPage
 		$tplListeContenu->afficher();
 	}
 	
+	/**
+	 * Affiche le panneau du contenu du presse-papiers
+	 */
 	function afficherPressePapiers()
 	{
 		$itrPressePapiers = $this->oPressePapiers->retIterateur();
@@ -327,17 +385,11 @@ class NavigateurFichiers extends AfficheurPage
 		}
 		$tplPressePapiers->afficher();
 	}
-	
-	function afficherRenommer()
-	{
-		$this->tpl->remplacer('{dossier}', $this->oDossierCourant->reduireChemin($this->oDossierRacine->retChemin()));
-		$this->tpl->remplacer('{fichier.nom}', $this->oFichierARenommer->retNom());
-	}
 }
 
 //// bouton Ok défaut quand Renommer
 //// JS: lien/bouton "Sélectionner tout"
-//// afficher les erreurs différement? (texte en PHP et juste le div vide en HTML. Effacement du div si pas d'erreurs?)
+//// afficher les erreurs différemment? (texte en PHP et juste le div vide en HTML. Effacement du div si pas d'erreurs?)
 //// bread crumbs en haut?
 //// transformer Contenu en TABLE/TRs, pour aligner les boutons, et ajouter la taille (et date?)
 //// action choisir un fichier/dossier (plus: télécharger un .zip de la sélection)
