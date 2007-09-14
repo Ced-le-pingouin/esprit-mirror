@@ -154,7 +154,14 @@ class Template
 		return strlen($this->data);
 	}
 	// }}}
-
+	
+	/**
+	 * Active un bloc de template (ou le désactive, en fonction d'une condition)
+	 * 
+	 * @param	looptag	le nom du bloc
+	 * @param	activ	si spécifié, et \c true, le bloc sera bien activé; si 
+	 * 					\c false par contre, le bloc sera désactivé
+	 */
 	function activerBloc($looptag, $activ = TRUE)
 	{
 		if ($activ)
@@ -163,6 +170,11 @@ class Template
 			$this->desactiverBloc($looptag);
 	}	
 	
+	/**
+	 * Désactive un bloc de template
+	 * 
+	 * @param	looptag	le nom du bloc
+	 */
 	function desactiverBloc($looptag)
 	{
 		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
@@ -456,6 +468,13 @@ class TPL_Block
 		$this->template_parent->data = str_replace("[$this->looptag"."_tmp]", $this->data, $this->template_parent->data);
 	}
 	
+	/**
+	 * Active un bloc de template (ou le désactive, en fonction d'une condition)
+	 * 
+	 * @param	looptag	le nom du bloc
+	 * @param	activ	si spécifié, et \c true, le bloc sera bien activé; si 
+	 * 					\c false par contre, le bloc sera désactivé
+	 */
 	function activerBloc($looptag, $activ = TRUE)
 	{
 		if ($activ)
@@ -464,6 +483,11 @@ class TPL_Block
 			$this->desactiverBloc($looptag);
 	}
 	
+	/**
+	 * Désactive un bloc de template
+	 * 
+	 * @param	looptag	le nom du bloc
+	 */
 	function desactiverBloc($looptag)
 	{
 		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
