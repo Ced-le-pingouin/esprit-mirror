@@ -108,6 +108,17 @@ class CActiv
 		return $iNumOrdreMax;
 	}
 	
+	/**
+	 * Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre 
+	 * pour la copie de l'activité
+	 * 
+	 * @param	v_iIdDest	l'id de la rubrique de destination
+	 * @param	v_iNumOrdre	le n° d'ordre de la copie de l'activité. Si \c 0
+	 * 						(défaut), elle sera dernière dans la rubrique 
+	 * 						destination
+	 * 
+	 * @return	l'id de la copie de l'activité
+	 */
 	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
 	{
 		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
@@ -125,6 +136,8 @@ class CActiv
 		$oNouv->redistNumsOrdre($iNumOrdre);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
+		
+		return $iIdNouv;
 	}
 	
 	/**
@@ -931,7 +944,10 @@ class CActiv
 		return $f->retChemin();
 	}
 	
-	
+	/**
+	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
+	 * de l'activité, càd les sous-activités
+	 */	
 	function &retElementsEnfants()
 	{
 		if (!isset($this->aoSousActivs))

@@ -162,6 +162,17 @@ class CModule_Rubrique
 		return $iMax;
 	}
 	
+	/**
+	 * Copie la rubrique courante vers un module, en indiquant un n° d'ordre 
+	 * pour la rubrique copiée
+	 * 
+	 * @param	v_iIdDest	l'id du module de destination
+	 * @param	v_iNumOrdre	le n° d'ordre de la copie de la rubrique. Si \c 0
+	 * 						(défaut), elle sera dernière dans le module 
+	 * 						destination
+	 * 
+	 * @return	l'id de la copie de la rubrique
+	 */
 	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
 	{
 		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
@@ -179,6 +190,8 @@ class CModule_Rubrique
 		$oNouv->redistNumsOrdre($iNumOrdre);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
+		
+		return $iIdNouv;
 	}
 	
 	/**
@@ -1260,7 +1273,10 @@ class CModule_Rubrique
 		return $f->retChemin();
 	}
 	
-	
+	/**
+	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
+	 * de la rubrique, càd les activités
+	 */	
 	function &retElementsEnfants()
 	{
 		if (!isset($this->aoActivs))

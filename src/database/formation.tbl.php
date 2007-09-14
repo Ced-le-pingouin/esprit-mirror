@@ -1511,7 +1511,10 @@ class CFormation
 			/*array(STATUT_ARCHIVE,"Archivé")*/);
 	}
 	
-	
+	/**
+	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
+	 * de la formation, càd les modules
+	 */
 	function &retElementsEnfants()
 	{
 		if (!isset($this->aoModules))

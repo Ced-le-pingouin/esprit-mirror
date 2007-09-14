@@ -114,6 +114,17 @@ class CModule
 		return $iNumMax;
 	}
 	
+	/**
+	 * Copie le module courant vers une formation, en indiquant un n° d'ordre 
+	 * pour la copie du module
+	 * 
+	 * @param	v_iIdDest	l'id de la formation de destination
+	 * @param	v_iNumOrdre	le n° d'ordre de la copie du module. Si \c 0
+	 * 						(défaut), il sera dernier dans la formation 
+	 * 						destination
+	 * 
+	 * @return	l'id de la copie du module
+	 */
 	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
 	{
 		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
@@ -131,6 +142,8 @@ class CModule
 		$oNouv->redistNumsOrdre($iNumOrdre);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
+		
+		return $iIdNouv;
 	}
 	
 	/**
@@ -1157,7 +1170,10 @@ class CModule
 		return $this->oFormation->retDossier();
 	}
 	
-	
+	/**
+	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
+	 * du module, càd les rubriques
+	 */
 	function &retElementsEnfants()
 	{
 		if (!isset($this->aoRubriques))
