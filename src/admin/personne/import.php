@@ -60,8 +60,16 @@ function insererPersonne ($tab, $enreg=true)
 	if (empty($tab[3]))
 		return "Pas de pseudo.";
 	$oPersonne->defPseudo($tab[3]);
-	if (!$oPersonne->estPseudoUnique())
-		return "Le pseudo est déjà attribué.";
+	if (!$oPersonne->estPseudoUnique()) {
+		$a = '';
+		$hResult = $oProjet->oBdd->executerRequete(
+			"SELECT CONCAT(Nom,' ',Prenom) AS NomC FROM Personne "
+			. "WHERE Pseudo='". $tab[3] ."'"
+			);
+		if ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
+			$a = ' à "' . $oEnreg->NomC .'"';
+		return "Le pseudo '".$tab[3]."' est déjà attribué$a.";
+	}
 	$sMdp = trim($tab[4]);
 	if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
 		return "Le mot de passe doit être alpha-numérique.";
