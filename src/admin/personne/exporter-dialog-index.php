@@ -1,4 +1,5 @@
 <?php
+require_once "globals.inc.php";
 $sTitrePrincipal = emb_htmlentities("Exporter");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 $sParamsURLPrincipal = "?LISTE_IDPERS=".$_POST["LISTE_IDPERS"];
