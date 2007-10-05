@@ -103,5 +103,5 @@ echo "<tr>"
 	."</tr>";
 ?>
 </table>
-<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaîtra à lécran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
+<p>Indiquer le nom de votre formation et une description de celle-ci. Si vous indiquez une description, celle-ci apparaîtra à l'écran &laquo;&nbsp;Menu&nbsp;&raquo; sous la rubrique &laquo;&nbsp;Description&nbsp;&raquo; de la formation.</p>
 <p><b><u>Note</u></b>&nbsp;: Vous pouvez changer ces éléments à tout moment à partir d'eConcept.</p>
