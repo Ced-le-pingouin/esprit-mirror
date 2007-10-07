@@ -5,31 +5,29 @@ Les prévisions ci-dessous sont strictement indicatives, et peuvent être soumis
 changements : modifications de priorités, abandon...
 
 
-v. 2.3  (avril 2007 ?)
+v. 2.4  (décembre 2007 ?)
 (Silecs)
-- Intégration d'un éditeur HTML Wysiwyg : probablement TinyMCE
-- Multilingusime : gestion de l'affichage et de la saisie bidirectionnels (arabe)
+- importation d'activités Hot Potatoes ; récupération des scores
+
+(UTE)
+- Refonte de l'interface d'administration des individus ?
+
+
+
+v. 2.5 ?
+(Silecs)
 - Gestion de groupes d'individus ; groupes de groupes
 - Inscriptions de groupes à une formation
-(UTE)
-- Interface permettant de copier/déplacer des éléments de formation au sein 
-  de la même formation, ou vers d'autres formations
-- Refonte de l'interface d'administration des individus
-
-
-
-v. 2.4  (juin 2007 ?)
-
-
+- Refonte de la gestion de rôle par niveau de formation (0=global, 1=formation...)
 
 
 
 TODO, non planifiés :
+
 - Interface de rapport de bogue (Silecs ?)
 - Gestion des droits : changement de rôle au vol
 - Remplacement des serveurs Chat et Awareness par du PHP intégré
 - Amélioration de la gestion de fichiers (possibilité pour le concepteur de
     déposer, supprimer, déplacer des fichiers, choix d'un fichier d'index pour
     page html...)
-- Refonte de la gestion de rôle par niveau de formation (0=global, 1=formation...)
 - Aide en ligne contextuelle
