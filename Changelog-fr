@@ -1,21 +1,18 @@
 Esprit  Changelog 
 
+(Ceci est un résumé rapide. Les nouveautés sont documentées dans 
+doc/nouveautes_<version>.txt)
 
 v. 2.3 2007-10
-- Intégration d'un éditeur de TinyMCE, éditeur HTML Wysiwyg : probablement TinyMCE
-  à la place de l'éditeur textuel interne
+- Intégration de TinyMCE, éditeur HTML Wysiwyg à la place de l'éditeur interne
 - Multilingusime : gestion de l'affichage et de la saisie bidirectionnels (arabe)
 - Interface permettant de copier/déplacer des éléments de formation au sein 
   de la même formation, ou vers d'autres formations
 - Interface de gestion des fichiers déposés
 
-ATTENTION : le remplacement de l'éditeur HTML impose de mettre à jour les tables
-contenant du texte "web". Le pseudo-HTML utilisé précédemment est remplacé par
-du HTML standard.
-Pour cela, le script perl utils/esprit_convHTML.pl est fourni.
-La documentation est lisible par :  ./esprit_convHTML.pl --man
-Il est conseillé de faire un dump de la base avant d'appliquer ce script, 
-pour pouvoir la restaurer au besoin.
+= ATTENTION = le remplacement de l'éditeur HTML impose de mettre à jour 
+les tables contenant du texte "web". Lisez attentivement le fichier 
+src/install/sql/mises_a_jour/2.2_vers_2.3_README
 
 
 
