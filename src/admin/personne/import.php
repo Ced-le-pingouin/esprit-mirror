@@ -177,7 +177,7 @@ Télécharger le modèle de feuille de tableur
 <ul>
   <li>au format <a href="esprit_inscriptions.xls">Excel</a></li>
   <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
-  <li>au format <a href="esprit_inscriptions.ods">ODS</a></li>
+<?php /* BUGS IN PARSER <li>au format <a href="esprit_inscriptions.ods">ODS</a></li> */ ?>
 </ul>
 <p>Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.</p>
 <p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p>
