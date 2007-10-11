@@ -50,7 +50,7 @@ function insererPersonne ($tab, $enreg=true)
 	$oPersonne = new CPersonne($oProjet->oBdd);
 	if (empty($tab[1]))
 		return false;
-	$oPersonne->defNom($tab[1]);
+	$oPersonne->defNom(mb_strtoupper($tab[1], "utf-8"));
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
@@ -123,7 +123,7 @@ if (!empty($_POST['importer'])) {
 		// nom, prénom, pseudo, mdp, sexe, email
 		if (empty($data->sheets[0]['cells'][$nrow][1]) or empty($data->sheets[0]['cells'][$nrow][2]))
 			continue;
-		$nom = $data->sheets[0]['cells'][$nrow][1];
+		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
@@ -179,7 +179,8 @@ Télécharger le modèle de feuille de tableur
   <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
   <li>au format <a href="esprit_inscriptions.ods">ODS</a></li>
 </ul>
-Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.
+<p>Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.</p>
+<p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p>
 </body>
 </html>
 
