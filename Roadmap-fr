@@ -9,9 +9,6 @@ v. 2.4  (décembre 2007 ?)
 (Silecs)
 - importation d'activités Hot Potatoes ; récupération des scores
 
-(UTE)
-- Refonte de l'interface d'administration des individus ?
-
 
 
 v. 2.5 ?
@@ -24,10 +21,8 @@ v. 2.5 ?
 
 TODO, non planifiés :
 
+- Refonte de l'interface d'administration des individus (UTE)
 - Interface de rapport de bogue (Silecs ?)
 - Gestion des droits : changement de rôle au vol
 - Remplacement des serveurs Chat et Awareness par du PHP intégré
-- Amélioration de la gestion de fichiers (possibilité pour le concepteur de
-    déposer, supprimer, déplacer des fichiers, choix d'un fichier d'index pour
-    page html...)
 - Aide en ligne contextuelle

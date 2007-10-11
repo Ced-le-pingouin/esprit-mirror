@@ -18,6 +18,30 @@ src/install/sql/mises_a_jour/2.2_vers_2.3_README
 
 
 
+** Interface de gestion des fichiers déposés
+********************************************
+Auparavant, le concepteur pouvait voir et récupérer les fichiers qu'il avait 
+déposés dans le cadre d'un groupe d'actions (les "blocs" du menu de gauche dans 
+une formation). Désormais, un outil présent dans eConcept permet de naviguer 
+dans tous les fichiers d'une même formation, et permet ainsi d'avoir une vision 
+beaucoup moins restreinte de ces fichiers.
+De plus, les fichiers -et dossiers- peuvent être copiés, déplacés, ou supprimés 
+(à l'exception de ceux créés automatiquement par la plate-forme), et de nouveaux
+dossiers peuvent être créés.
+
+
+
+** Interface de copier/coller pour éléments de formations
+*********************************************************
+Toujours dans eConcept, il existe maintenant un outil permettant de copier des 
+modules/cours, rubriques/unités, ..., actions d'une formation vers une autre.
+Auparavant, la seule possibilité était de baser une nouvelle formation sur une 
+existante, ce qui impliquait une copie complète de la formation source, et du 
+coup l'effacement ultérieur par le concepteur de tout ce qui n'était pas 
+nécessaire à la nouvelle formation.   
+
+
+
 ** Améliorations mineures
 *************************
 - l'importation de liste d'utilisateurs (nouveauté 2.2) a été légèrement améliorée
