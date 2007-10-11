@@ -827,7 +827,7 @@ class xml  {
 
 	function xml()
 	{
-		$this->parser = xml_parser_create();
+		$this->parser = xml_parser_create('UTF-8');
 		xml_set_object($this->parser, $this);
 		xml_set_element_handler($this->parser, "xml_open", "xml_close");
 		xml_set_character_data_handler($this->parser, "xml_data");
