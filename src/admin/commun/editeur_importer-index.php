@@ -13,12 +13,22 @@ function recommencer() {
 	self.frames["principale"].location = "editeur_importer.php";
 	self.frames["menu"].location = "editeur_importer-menu.php?menu=importer";
 }
-function importer() {
+function importer_rpl() {
 	self.frames["menu"].location = "editeur_importer-menu.php?menu=annuler";
 	
 	with (self.frames["principale"]) {
 		if (document.getElementById)
 			document.getElementById("id_barre_de_progression").style.visibility = "visible";
+		document.forms[0].submit();
+	}
+}
+function importer_ins() {
+	self.frames["menu"].location = "editeur_importer-menu.php?menu=annuler";
+	
+	with (self.frames["principale"]) {
+		if (document.getElementById)
+			document.getElementById("id_barre_de_progression").style.visibility = "visible";
+		document.forms[0].action.value = 'insere';
 		document.forms[0].submit();
 	}
 }

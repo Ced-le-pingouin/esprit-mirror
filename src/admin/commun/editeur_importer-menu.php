@@ -38,7 +38,10 @@ switch ($url_sMenu)
 		$aMenus = array(array("Annuler","top.close()"));
 		break;
 	case "importer":
-		$aMenus = array(array("Importer","top.importer()"), array("Annuler","top.close()"));
+		$aMenus = array(
+			array("Insérer","top.importer_ins()"),
+			array("Remplacer","top.importer_rpl()"),
+			array("Annuler","top.close()") );
 		break;
 	case "recommencer":
 		$aMenus = array(array("Recommencer","top.recommencer()"), array("Annuler","top.close()"));

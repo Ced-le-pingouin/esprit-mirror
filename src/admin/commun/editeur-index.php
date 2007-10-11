@@ -24,8 +24,12 @@ function annuler()
 }
 function remplacer(v_sTexte)
 {
-	oPrincipale().document.forms[0].elements["edition"].value = unescape(v_sTexte);
-	oPrincipale().tinyMCE.updateContent("edition");
+	//oPrincipale().document.getElementById("id_edition").innerHTML = unescape(v_sTexte);
+	oPrincipale().tinyMCE.execInstanceCommand("id_edition",'mceSetContent',false,unescape(v_sTexte));
+}
+function inserer(v_sTexte)
+{
+	oPrincipale().tinyMCE.execInstanceCommand("id_edition",'mceInsertContent',false,unescape(v_sTexte));
 }
 function recuperer() {
 	return top.opener.document.forms[sFormDest].elements[sElemDest].value;
