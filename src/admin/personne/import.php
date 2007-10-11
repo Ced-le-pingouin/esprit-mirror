@@ -72,7 +72,7 @@ function insererPersonne ($tab, $enreg=true)
 	}
 	$sMdp = trim($tab[4]);
 	if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
-		return "Le mot de passe doit être alpha-numérique.";
+		return "Le mot de passe <em>$sMdp</em> doit être alpha-numérique.";
 	else
 		$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
 
