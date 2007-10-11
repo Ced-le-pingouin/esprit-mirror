@@ -50,7 +50,7 @@ function insererPersonne ($tab, $enreg=true)
 	$oPersonne = new CPersonne($oProjet->oBdd);
 	if (empty($tab[1]))
 		return false;
-	$oPersonne->defNom(mb_strtoupper($tab[1], "utf-8"));
+	$oPersonne->defNom(addslashes(mb_strtoupper($tab[1], "utf-8")));
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
@@ -97,13 +97,14 @@ if (!empty($_POST['importer'])) {
 	require_once(dir_lib('phpexcelreader/reader.php',TRUE));
 	$data = new Spreadsheet_Excel_Reader();
 	$data->setOutputEncoding('UTF-8');
+	$data->setUTFEncoder('mb');
 	if (strcasecmp(substr($_FILES['importFile']['name'],-4),".csv")===0) {
 		$data->readCSV($_FILES['importFile']['tmp_name']);
-	} 
-        elseif (strcasecmp(substr($_FILES['importFile']['name'],-4),".ods")===0) {
-           $data->readODS($_FILES['importFile']['tmp_name']);
-        }
-        else {			
+	}
+	elseif (strcasecmp(substr($_FILES['importFile']['name'],-4),".ods")===0) {
+		$data->readODS($_FILES['importFile']['tmp_name']);
+	}
+	else {			
 		$data->read($_FILES['importFile']['tmp_name']);
 	}
 	echo '<head>

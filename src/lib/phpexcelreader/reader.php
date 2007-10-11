@@ -352,8 +352,10 @@ class Spreadsheet_Excel_Reader {
 
 									}
 							}
-						$retstr = ($asciiEncoding) ? $retstr : $this->_encodeUTF16($retstr);
-						//		echo "Str $i = $retstr\n";
+						$retstr = ($asciiEncoding)
+							 ? mb_convert_encoding($retstr,$this->_defaultEncoding,'ISO-8859-1')
+							 : $this->_encodeUTF16($retstr);
+						//echo "Str $i (ascii $asciiEncoding) = $retstr\n";
 						if ($richString){
 							$spos += 4 * $formattingRuns;
 						}
