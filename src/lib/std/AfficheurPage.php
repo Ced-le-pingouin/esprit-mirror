@@ -126,6 +126,20 @@ class AfficheurPage
 			
 			// trouver le .tpl qui porte le même nom que la classe (fille) à afficher
 			$this->fichierTpl = get_class($this).'.tpl';
+			
+			// en PHP 4, le nom de la classe est tjs renvoyé en minuscules => si la classe, et donc son fichier,
+			// comportaient des majuscules, on peut trouver leur nom réel si le fichier existe vraiment (seulement utile
+			// pour les systèmes non-Windows, où le respect de la casse pour les fichiers est important)
+			if (phpversion() < 5)
+			{
+				$fichiers = @glob('*.tpl');
+				if (is_array($fichiers))
+				{
+					$index = array_search($this->fichierTpl, array_map('strtolower', $fichiers));
+					if (!empty($index))
+						$this->fichierTpl = $fichiers[$index];
+				}
+			}
 		}
 		else
 		{
