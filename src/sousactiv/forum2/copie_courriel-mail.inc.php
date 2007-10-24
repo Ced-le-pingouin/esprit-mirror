@@ -48,6 +48,7 @@ if ($oForumPrefs->peutEnvoyerCopieCourrielForum() ||
 	(defined("GLOBAL_ESPRIT_ADRESSE_BCC") &&
 			strlen(GLOBAL_ESPRIT_ADRESSE_BCC)))
 {
+	$oProjet->initModuleCourant();
 	$oProjet->initSousActivCourante();
 	
 	$asTplRechercher   = array();
