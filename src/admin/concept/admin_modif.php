@@ -546,7 +546,7 @@ function init()
 	var sParams = "";
 	
 	if (top.frames["Titre"] && top.frames["Titre"].changerSousTitre)
-		top.frames["Titre"].changerSousTitre("<?php echo rawurlencode($g_sSous_Titre)?>");
+		top.frames["Titre"].changerSousTitre("<?php echo phpString2js($g_sSous_Titre)?>");
 	
 	if (document.forms.length > 0 && document.forms[0].elements["act"])
 		sParams = "<?php echo "?type={$g_iType}&params={$g_sParams}"?>";
