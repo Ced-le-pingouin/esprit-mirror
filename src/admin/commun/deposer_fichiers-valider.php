@@ -31,8 +31,9 @@
 ** 7000 MONS
 */
 
-require_once("globals.inc.php");
-require_once(dir_code_lib("fichiers_permis.inc.php"));
+require_once "globals.inc.php";
+require_once dir_lib("zip.class.php", TRUE);
+require_once dir_code_lib("fichiers_permis.inc.php");
 
 // ---------------------
 // Récupérer les variables de l'url
@@ -79,7 +80,10 @@ BLOC_PAGE_HTML;
 	
 	// Décompressé le fichier zip
 	if ($url_bDezippe)
-		unzip($sDestination,$url_sNomFichierCopier);
+	{
+		$zip = new CZip($sDestination.$url_sNomFichierCopier);
+		$zip->desarchiver($sDestination, TRUE);
+	}
 }
 else
 {
