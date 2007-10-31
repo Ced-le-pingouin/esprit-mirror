@@ -58,6 +58,12 @@ function valider()
 <tr><td colspan="3"><img src="commun://espacer.gif" width="150" height="1" alt="" border="0"></td><td style="width: 99%;">&nbsp;</td></tr>
 </table>
 </form>
+<p><strong>Attention</strong></p>
+<p>Si votre messagerie est équipée d'un filtre contre le courrier indésirable, il se peut que le message contenant vos données de connexion atterrisse 
+directement dans le dossier réservé à ce type de courrier (Hotmail, GMail etc. sont équipé d'un tel filtre). Vous devrez dans ce cas vous rendre dans ce dossier pour 
+lire le message.</p>
+<p><em>Si vous ne recevez pas du tout le message</em>, ajoutez l'adresse e-mail suivante à votre liste des expéditeurs autorisés: <em>{esprit->email}</em></p> 
+</p>
 </body>
 </html>
 [BLOCK_ENTRER_INFORMATIONS-]

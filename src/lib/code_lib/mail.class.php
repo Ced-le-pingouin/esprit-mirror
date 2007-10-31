@@ -87,7 +87,7 @@ class CMail
 		$sListeEntetes = NULL;
 		
 		foreach ($this->asEntetes as $sCle => $sValeur)
-			$sListeEntetes .= "{$sCle}: {$sValeur}\r\n";
+			$sListeEntetes .= "{$sCle}: {$sValeur}\n";
 		
 		return $sListeEntetes;
 	}

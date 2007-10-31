@@ -112,6 +112,7 @@ if (isset($url_sNomPers) && isset($url_sPrenomPers))
 						."Mot de passe : {$sMdp}";
 					
 					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$oPersonne->retNomComplet());
+					$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 					
 					if ($oMail->envoyer()) $iErreur = ERREUR_OK; else $iErreur = ERREUR_ENVOI_COURRIEL;
 				}
@@ -172,6 +173,7 @@ else
 	
 	$oBlocEntrerInformations->remplacer("{personne->nom}",$url_sNomPers);
 	$oBlocEntrerInformations->remplacer("{personne->prenom}",$url_sPrenomPers);
+	$oBlocEntrerInformations->remplacer("{esprit->email}",$oProjet->retEmail());
 	
 	// Dans le cas où deux personnes ont le même nom et prénom, la plate-forme
 	// demandera à l'utilisateur d'entrer son adresse courriel
