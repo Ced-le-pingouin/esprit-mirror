@@ -109,6 +109,38 @@ class CActiv
 	}
 	
 	/**
+	 * Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre 
+	 * pour la copie de l'activité
+	 * 
+	 * @param	v_iIdDest	l'id de la rubrique de destination
+	 * @param	v_iNumOrdre	le n° d'ordre de la copie de l'activité. Si \c 0
+	 * 						(défaut), elle sera dernière dans la rubrique 
+	 * 						destination
+	 * 
+	 * @return	l'id de la copie de l'activité
+	 */
+	function copierAvecNumOrdre($v_iIdDest, $v_iNumOrdre = 0)
+	{
+		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
+		$sRequeteSql = "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
+						." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE";
+		$this->oBdd->executerRequete($sRequeteSql);
+		
+		if (empty($v_iNumOrdre) || !is_int($v_iNumOrdre) || $v_iNumOrdre < 0)
+			$iNumOrdre = $this->retNumOrdreMax($v_iIdDest) + 1;
+		else
+			$iNumOrdre = $v_iNumOrdre;
+		
+		$iIdNouv = $this->copier($v_iIdDest, TRUE);
+		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
+		$oNouv->redistNumsOrdre($iNumOrdre);
+		
+		$this->oBdd->executerRequete("UNLOCK TABLES");
+		
+		return $iIdNouv;
+	}
+	
+	/**
 	 * Copie l'activité courante vers une rubrique spécifique
 	 * 
 	 * @param	v_iIdRubrique	l'id de la rubrique
@@ -910,6 +942,18 @@ class CActiv
 	{
 		$f = new FichierInfo(dir_cours($this->retId(), $this->retIdFormation()));
 		return $f->retChemin();
+	}
+	
+	/**
+	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
+	 * de l'activité, càd les sous-activités
+	 */	
+	function &retElementsEnfants()
+	{
+		if (!isset($this->aoSousActivs))
+			$this->initSousActivs();
+			
+		return $this->aoSousActivs;
 	}
 }
 

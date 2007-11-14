@@ -111,6 +111,30 @@ class CZip
 		                               PCLZIP_OPT_REMOVE_PATH, $this->sCheminAEnlever);
 	}
 	
+	/**
+	 * Décompresse une archive
+	 * 
+	 * @param	v_sDossierDest		le dossier de destination de la 
+	 * 								décompression
+	 * @param	v_bEcraserExistant	si \c true, les éléments décompressés 
+	 * 								écraseront des éléments de même nom 
+	 * 								existants. Si \c false, les éléments 
+	 * 								existants seront conservés
+	 * 
+	 * @return	la valeur de retour de la fonction \c PclZip::extract() (biblio 
+	 * 			externe), supérieure à 0 si l'opération s'est bien déroulée, 
+	 * 			<= 0 sinon
+	 */
+	function desarchiver($v_sDossierDest = NULL, $v_bEcraserExistant = FALSE)
+	{
+		if (empty($v_sDossierDest))
+			$v_sDossierDest = dirname(realpath($this->sCheminArchive));
+		
+		if ($v_bEcraserExistant)
+			return $this->oArchive->extract(PCLZIP_OPT_PATH, $v_sDossierDest, PCLZIP_OPT_REPLACE_NEWER);
+		else
+			return $this->oArchive->extract(PCLZIP_OPT_PATH, $v_sDossierDest);
+	}
 	
 	/** @name Fonctions de lecture des champs de l'objet */
 	//@{

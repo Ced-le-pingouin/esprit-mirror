@@ -50,21 +50,29 @@ function insererPersonne ($tab, $enreg=true)
 	$oPersonne = new CPersonne($oProjet->oBdd);
 	if (empty($tab[1]))
 		return false;
-	$oPersonne->defNom($tab[1]);
+	$oPersonne->defNom(addslashes(mb_strtoupper($tab[1], "utf-8")));
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
-	if (!$oPersonne->estUnique())
+	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 		return "Le couple (nom,prénom) n'est pas unique. L'étudiant existe déjà ?";
 
 	if (empty($tab[3]))
 		return "Pas de pseudo.";
 	$oPersonne->defPseudo($tab[3]);
-	if (!$oPersonne->estPseudoUnique())
-		return "Le pseudo est déjà attribué.";
+	if (!$oPersonne->estPseudoUnique()) {
+		$a = '';
+		$hResult = $oProjet->oBdd->executerRequete(
+			"SELECT CONCAT(Nom,' ',Prenom) AS NomC FROM Personne "
+			. "WHERE Pseudo='". $tab[3] ."'"
+			);
+		if ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
+			$a = ' à "' . $oEnreg->NomC .'"';
+		return "Le pseudo '".$tab[3]."' est déjà attribué$a.";
+	}
 	$sMdp = trim($tab[4]);
 	if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
-		return "Le mot de passe doit être alpha-numérique.";
+		return "Le mot de passe <em>$sMdp</em> doit être alpha-numérique.";
 	else
 		$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
 
@@ -89,13 +97,14 @@ if (!empty($_POST['importer'])) {
 	require_once(dir_lib('phpexcelreader/reader.php',TRUE));
 	$data = new Spreadsheet_Excel_Reader();
 	$data->setOutputEncoding('UTF-8');
+	$data->setUTFEncoder('mb');
 	if (strcasecmp(substr($_FILES['importFile']['name'],-4),".csv")===0) {
 		$data->readCSV($_FILES['importFile']['tmp_name']);
-	} 
-        elseif (strcasecmp(substr($_FILES['importFile']['name'],-4),".ods")===0) {
-           $data->readODS($_FILES['importFile']['tmp_name']);
-        }
-        else {			
+	}
+	elseif (strcasecmp(substr($_FILES['importFile']['name'],-4),".ods")===0) {
+		$data->readODS($_FILES['importFile']['tmp_name']);
+	}
+	else {			
 		$data->read($_FILES['importFile']['tmp_name']);
 	}
 	echo '<head>
@@ -115,7 +124,7 @@ if (!empty($_POST['importer'])) {
 		// nom, prénom, pseudo, mdp, sexe, email
 		if (empty($data->sheets[0]['cells'][$nrow][1]) or empty($data->sheets[0]['cells'][$nrow][2]))
 			continue;
-		$nom = $data->sheets[0]['cells'][$nrow][1];
+		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
@@ -169,9 +178,10 @@ Télécharger le modèle de feuille de tableur
 <ul>
   <li>au format <a href="esprit_inscriptions.xls">Excel</a></li>
   <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
-  <li>au format <a href="esprit_inscriptions.ods">ODS</a></li>
+<?php /* BUGS IN PARSER <li>au format <a href="esprit_inscriptions.ods">ODS</a></li> */ ?>
 </ul>
-Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.
+<p>Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.</p>
+<p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p>
 </body>
 </html>
 

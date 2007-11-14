@@ -77,7 +77,7 @@ class Template
 	 * @return	la variable trouvée. S'il n'existe pas de variable définie par des blocs [looptag+][lopptag-], renvoie 
 	 * 			\c null
 	 */
-	function defVariable($looptag)
+	function defVariable($looptag, $effacer = TRUE)
 	{
 		$sVariable = NULL;
 		
@@ -87,7 +87,10 @@ class Template
 			$fin = strpos($this->data, "[$looptag-]", $debut) + strlen("[$looptag-]"); // + taille de la balise finale
 			$sVariable = substr($this->data, $debut, ($fin-$debut));
 			//effacement du bloc
-			$this->data = str_replace($sVariable, "", $this->data);
+			if ($effacer)
+				$this->data = str_replace($sVariable, "", $this->data);
+			else
+				$this->data = preg_replace('/\['.$looptag.'[-+]\]/', '', $this->data);
 			// enlevement des balises + et - ds le tableau
 			$sVariable = str_replace("[$looptag+]", "", $sVariable);
 			$sVariable = str_replace("[$looptag-]", "", $sVariable);
@@ -121,7 +124,7 @@ class Template
 	 */
 	function afficher()
 	{
-		// {{{ Ajouter par Fil
+		// {{{ Ajouté par Fil
 		$asRechercher = array("racine://", "admin://", "commun://", "theme://", "javascript://", "lib://");
 		$asRemplacer = array(dir_root_plateform(NULL, FALSE),dir_admin(), dir_theme_commun(), dir_theme(), dir_javascript(), dir_lib());
 		$this->data = str_replace($asRechercher, $asRemplacer, $this->data);
@@ -151,6 +154,31 @@ class Template
 		return strlen($this->data);
 	}
 	// }}}
+	
+	/**
+	 * Active un bloc de template (ou le désactive, en fonction d'une condition)
+	 * 
+	 * @param	looptag	le nom du bloc
+	 * @param	activ	si spécifié, et \c true, le bloc sera bien activé; si 
+	 * 					\c false par contre, le bloc sera désactivé
+	 */
+	function activerBloc($looptag, $activ = TRUE)
+	{
+		if ($activ)
+			$this->data = preg_replace('%\['.$looptag.'[-+]\]%', '', $this->data);
+		else
+			$this->desactiverBloc($looptag);
+	}	
+	
+	/**
+	 * Désactive un bloc de template
+	 * 
+	 * @param	looptag	le nom du bloc
+	 */
+	function desactiverBloc($looptag)
+	{
+		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
+	}
 }
 
 /**
@@ -427,7 +455,7 @@ class TPL_Block
 	}
 	
 	/**
-	 * Affiche le contenu du bloc de tamplate dans son parent. Si le bloc est une boucle, cette fonction doit tout de
+	 * Affiche le contenu du bloc de template dans son parent. Si le bloc est une boucle, cette fonction doit tout de
 	 * même n'être appelée qu'une seule fois, après la boucle (composée d'appels à #beginLoop(), #nextLoop(), 
 	 * #remplacer()), ce qui a pour effet d'afficher en une seule fois toutes les itérations de la boucle
 	 * 
@@ -438,6 +466,175 @@ class TPL_Block
 		if (count($this->asData))
 			$this->data = implode("", $this->asData) . $this->data;
 		$this->template_parent->data = str_replace("[$this->looptag"."_tmp]", $this->data, $this->template_parent->data);
+	}
+	
+	/**
+	 * Active un bloc de template (ou le désactive, en fonction d'une condition)
+	 * 
+	 * @param	looptag	le nom du bloc
+	 * @param	activ	si spécifié, et \c true, le bloc sera bien activé; si 
+	 * 					\c false par contre, le bloc sera désactivé
+	 */
+	function activerBloc($looptag, $activ = TRUE)
+	{
+		if ($activ)
+			$this->data = preg_replace('%\['.$looptag.'[-+]\]%', '', $this->data);
+		else
+			$this->desactiverBloc($looptag);
+	}
+	
+	/**
+	 * Désactive un bloc de template
+	 * 
+	 * @param	looptag	le nom du bloc
+	 */
+	function desactiverBloc($looptag)
+	{
+		$this->data = preg_replace('%\['.$looptag.'\+\].*\['.$looptag.'\-\]\\n?%s', '', $this->data);
+	}
+}
+
+/**
+ * Gestion d'un bloc de template particulier, qui peut servir à afficher des listes d'éléments "composites", càd dont 
+ * chaque élément peut être simple, ou lui-même une liste d'éléments composites. C'est donc différent d'une simple 
+ * boucle, et sert par ex. à afficher une arborescence de fichiers (un dossier contient lui-même soit des fichiers, 
+ * soit des dossiers, qui eux-même etc.), ou une arborescence de cours/unités/activités/etc. dans une formation.
+ * 
+ * Par exemple, pour afficher une liste de dossiers/fichiers, on peut définir le code HTML liste comme ceci:
+ * 
+ * @code
+ * [liste+]
+ * <ul>
+ *   [liste_el+]<li>
+ *     {nom_fichier}
+ *     [@liste]
+ *   </li>[liste_el-]
+ * </ul>
+ * [liste-]
+ * @endcode
+ * 
+ * Donc, la liste elle-même se définit exactement comme un TPL_Block. A l'intérieur de celle-ci, on encadre le code qui 
+ * représente un élément de liste par un bloc du même nom que la liste mais avec le suffixe \c _el. Ensuite, on place 
+ * où on veut dans le code de l'élément, une balise du même nom que la liste mais précédée de \c @, qui indique où 
+ * s'insérera automatiquement une sous-liste du même type dans le cas où l'élément n'est pas "simple" mais de type
+ * composite (par ex. un dossier dans le cas de l'arborescence de fichiers).
+ * 
+ * Dans les méthodes de cette classe, la différence est principalement sur nextLoop(), qui demande pour chaque itération 
+ * deux paramètres: une indication que l'élément courant est composite ou pas (simple), et le niveau d'imbrication 
+ * actuel de l'arborescance (commençant à 0 automatiquement).
+ * 
+ * Cette classe peut par exemple être utilisée avec un IterateurRecursif de la lib std.   
+ */
+class TPL_Block_ListeComposite
+{
+	var $looptag;					///< Balise qui entourait le bloc dans le template parent
+	var $iNiv;						///< Niveau actuel d'indentation de l'arborescence
+
+	var $aTplsListes = array();		///< Tableau qui contient les différents niveaux de listes imbriquées
+	var $aTplsElements = array();   ///< Tableau qui contient les éléments de chacune des listes ci-dessus
+	var $sContenuListe;				///< Sauvegarde du contenu (code) de la liste initiale, qui sera inséré pour chaque sous-liste (élément composite)
+	
+	/**
+	 * Constructeur. Initialise le niveau d'imbrication des listes à 0, le nom de la balise de liste, et les deux blocs
+	 * initiaux représentant la liste de départ, et ses éléments
+	 */
+	function TPL_Block_ListeComposite($looptag, &$template)
+	{
+		$this->iNiv = 0;
+		$this->looptag = $looptag;
+		
+		$this->aTplsListes[$this->iNiv] = new TPL_Block($looptag, $template);
+		$this->sContenuListe = $this->aTplsListes[$this->iNiv]->retDonnees();
+		$this->aTplsElements[$this->iNiv] = new TPL_Block($looptag.'_el', $this->aTplsListes[$this->iNiv]);
+	}
+	
+	/**
+	 * Voir TPL_Block#beginLoop()
+	 */
+	function beginLoop()
+	{
+		$this->aTplsElements[$this->iNiv]->beginLoop();
+	}
+	
+	/**
+	 * Voir TPL_Block#nextLoop()
+	 */
+	function nextLoop($bComposite, $iNiv)
+	{
+		if ($iNiv <= $this->iNiv)
+			$this->_afficherNivsPrec($iNiv);
+		else
+			$this->iNiv = $iNiv;
+		
+		$this->aTplsElements[$this->iNiv]->nextLoop();
+
+		if ($bComposite)
+			$this->_prepNivSuiv();
+		else
+			$this->aTplsElements[$this->iNiv]->remplacer('[@'.$this->looptag.']', '');
+	}
+	
+	/**
+	 * Voir TPL_Block#afficher()
+	 */
+	function afficher()
+	{
+		$this->_afficherNivsPrec(0);
+		
+		$this->aTplsElements[$this->iNiv]->afficher();
+		$this->aTplsListes[$this->iNiv]->afficher();
+	}
+	
+	/**
+	 * Voir TPL_Block#remplacer()
+	 */
+	function remplacer($in, $out)
+	{
+		$this->aTplsListes[$this->iNiv]->remplacer($in, $out);
+		$this->aTplsElements[$this->iNiv]->remplacer($in, $out);
+	}
+
+	/**
+	 * Vérifie s'il faut afficher des niveaux antérieurs de l'arborescence, dont le traitement est terminé.
+	 * 
+	 * (appelée à partir de #nextLoop() lorsqu'on reste au même niveau mais qu'une sous-liste précédente pourrait
+	 * s'avérer vide de tout élément => on l'efface; ou si on est descendu d'un ou plusieurs niveaux depuis le dernier
+	 * appel, auquel cas il faudra afficher les sous-listes terminées)
+	 * 
+	 * @param	iNivMin	le niveau jusqu'auquel il faut redescendre. Tous les niveaux supérieurs résultant des
+	 * 			        précédentes itérations seront affichés 
+	 */
+	function _afficherNivsPrec($iNivMin)
+	{
+		if (isset($this->aTplsListes[$this->iNiv+1]))
+			$this->aTplsListes[$this->iNiv+1]->effacer();
+		
+		for ($i = $this->iNiv; $i > $iNivMin; $i--)
+		{
+			$this->aTplsElements[$i]->afficher();
+			$this->aTplsListes[$i]->afficher();
+
+			unset($this->aTplsElements[$i]);
+			unset($this->aTplsListes[$i]);
+		}
+		
+		$this->iNiv = $iNivMin;
+	}
+	
+	/**
+	 * Lorsqu'un élément est un composite (sous-liste), il faut insérer et initialiser dans le bloc de l'élément au
+	 * niveau courant, un bloc pour une nouvelle liste et également un nouveau bloc enfant de celle-ci pour ses éléments  
+	 */
+	function _prepNivSuiv()
+	{
+		$this->aTplsElements[$this->iNiv]->remplacer
+		(
+			'[@'.$this->looptag.']',
+			'['.$this->looptag.'+]'.$this->sContenuListe.'['.$this->looptag.'-]'
+		);
+		$this->aTplsListes[$this->iNiv+1] = new TPL_Block($this->looptag, $this->aTplsElements[$this->iNiv]);
+		$this->aTplsElements[$this->iNiv+1] = new TPL_Block($this->looptag.'_el', $this->aTplsListes[$this->iNiv+1]);
+		$this->aTplsElements[$this->iNiv+1]->beginLoop();
 	}
 }
 

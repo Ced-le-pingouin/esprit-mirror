@@ -1,6 +1,22 @@
 Esprit  Changelog 
 
 
+(This is just a short summary. New features are described, in french, in the 
+file doc/nouveautes_<version>.txt)
+
+v. 2.3 2007-10
+- TinyMCE, a Wysiwyg HTML editor, is now used as a replacement for the former 
+  internal HTML editor 
+- Multiple languages support: bidirectional input and display (arab) are now 
+  handled
+- Tool allowing copy/paste operations on various levels of a course
+- Tool for managing files and directories inside a course  
+
+= WARNING = Because the internal HTML editor has been replaced, database tables 
+containing "web" text need to be updated. Please read carefully the  
+src/install/sql/mises_a_jour/2.2_vers_2.3_README file
+
+
 v. 2.2  2007-03-20
 - Java tools code integration (awareness, chat), both client and server sides
 - homepage CMS : welcome text, links, news...

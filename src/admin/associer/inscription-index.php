@@ -2,22 +2,22 @@
 
 // This file is part of Esprit, a web Learning Management System, developped
 // by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
-//
+// 
 // Esprit is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License version 2,
+// it under the terms of the GNU General Public License version 2, 
 // as published by the Free Software Foundation.
-//
+// 
 // This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// but WITHOUT ANY WARRANTY; without even the implied warranty of 
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
 // See the GNU General Public License for more details.
-//
+// 
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, you can get one from the web page
 // http://www.gnu.org/licenses/gpl.html
-//
-// Copyright (C) 2001-2006  Unite de Technologie de l'Education,
-//                          Universite de Mons-Hainaut, Belgium.
+// 
+// Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
+//                          Universite de Mons-Hainaut, Belgium. 
 
 require_once("globals.inc.php");
 
@@ -26,8 +26,8 @@ $url_iIdForm = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
 $sTitrePrincipal = "Inscription";
 
 $oProjet = new CProjet();
-$oFormation = new CFormation($oProjet->oBdd, $url_iIdForm);
-$sNomFormation = is_object($oFormation) ? $oFormation->retNom() : NULL;
+$oFormation = new CFormation($oProjet->oBdd,$url_iIdForm);
+$sNomFormation = $oFormation->retNom();
 $oFormation = NULL;
 $oProjet->terminer();
 
@@ -59,7 +59,7 @@ $sFramePrincipal = "<frame"
 	." scrolling=\"no\""
 	." noresize=\"noresize\">";
 
-$oTpl = new Template(dir_theme("dialog-index.tpl",FALSE,TRUE));
+$oTpl = new Template(dir_theme("dialog-index-2.tpl",FALSE,TRUE));
 
 $oBlockHead = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlockHead->ajouter($sBlocHeadHtml);

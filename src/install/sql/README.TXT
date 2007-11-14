@@ -8,4 +8,4 @@ Les fichiers *.sql sont lus :
  - à la mise à jour, dans le sous-répertoire mises_a_jour.
 
 Les anciennes mises à jour sont disponibles dans les répertoires
-mises_a_jour/old_{version_de_destination}/ .
+mises_a_jour/{version_de_départ}_vers_{version_de_destination}/ .

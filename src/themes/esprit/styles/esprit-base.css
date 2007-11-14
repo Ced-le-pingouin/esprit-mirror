@@ -1,0 +1,81 @@
+@import url(base.css);
+
+body
+{
+	font-family: Verdana, Tahoma, Arial, sans-serif;
+	font-size: small;
+}
+
+a { text-decoration: none; }
+
+body
+{
+	background-color: rgb(238,234,221);
+	padding: 0;
+}
+
+/*** designs avec logos, barres etc. en position fixed ***/
+#barreBas
+{
+	background-color: rgb(175,165,138);
+	border-top: 1px solid black;
+	bottom: 0;
+	font-size: 0.8em;
+	height: 1.5em;
+	padding-top: 0.3em;
+	position: fixed;
+	text-align: right;
+	width: 100%;
+}
+* html #barreBas { position: absolute; bottom: -1px; right: 17px; }
+
+#barreBas a
+{
+	color: white;
+	margin: 0 0.5em 0 0.25em;
+	padding: 0 0.5em;
+}
+
+#barreBas a:hover { text-decoration: underline; }
+
+/*** barre d'outils et boutons ***/
+/*** boutons ***/
+.barreOutils
+{
+	background-color: white;
+	border: 1px solid rgb(127,157,185);
+	border-left: 6px solid rgb(127,157,185);
+	overflow: auto;
+	width: 99%;
+}
+
+.barreOutils div
+{
+	border-left: 1px solid rgb(127,157,185);
+	float: left;
+	padding: 4px 8px;
+}
+
+.barreOutils input, .ligneOutils input, .bouton
+{
+	background-color: rgb(239,241,246);
+	border: 1px solid rgb(224,232,246);
+	margin: 0 0.25em;
+}
+.barreOutils input:hover, .ligneOutils input:hover, .bouton:hover
+{
+	background-color: rgb(224,232,246);
+	border: 1px solid rgb(152,180,226);
+}
+
+
+/*** Erreurs ***/
+.erreurs p
+{
+	background-color: rgb(255,80,80);
+	color: rgb(200,200,200);
+	margin: 0.5em auto;
+	padding: 1em;
+	text-align: center;
+	width: 60%;
+}

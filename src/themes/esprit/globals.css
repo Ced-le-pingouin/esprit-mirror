@@ -1,13 +1,9 @@
-* {
-	color: #222222;
-	font-family: Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
-	font-size: 9pt;
-}
-
 body {
+	font-family: Verdana,Tahoma,Arial,Bitstream Vera Sans,Time;
+	font-size: 9pt;
 	background-color: rgb(255,255,255);
-	
-	/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de dÈfilements */
+
+	/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de d√©filements */
 	scrollbar-face-color: rgb(231,225,212);
 	scrollbar-highlight-color: rgb(251,249,238);
 	scrollbar-shadow-color: rgb(251,249,238);
@@ -168,7 +164,7 @@ td.description
 
 td.cellule_lien { text-align: left; }
 
-/* IntitulÈ */
+/* Intitul√© */
 .intitule { color: rgb(111,105,87); font-size: 8pt; font-weight: bold; }
 td.intitule { vertical-align: top; }
 

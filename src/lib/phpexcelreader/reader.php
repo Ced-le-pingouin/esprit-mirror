@@ -352,8 +352,10 @@ class Spreadsheet_Excel_Reader {
 
 									}
 							}
-						$retstr = ($asciiEncoding) ? $retstr : $this->_encodeUTF16($retstr);
-						//		echo "Str $i = $retstr\n";
+						$retstr = ($asciiEncoding)
+							 ? mb_convert_encoding($retstr,$this->_defaultEncoding,'ISO-8859-1')
+							 : $this->_encodeUTF16($retstr);
+						//echo "Str $i (ascii $asciiEncoding) = $retstr\n";
 						if ($richString){
 							$spos += 4 * $formattingRuns;
 						}
@@ -827,7 +829,7 @@ class xml  {
 
 	function xml()
 	{
-		$this->parser = xml_parser_create();
+		$this->parser = xml_parser_create('UTF-8');
 		xml_set_object($this->parser, $this);
 		xml_set_element_handler($this->parser, "xml_open", "xml_close");
 		xml_set_character_data_handler($this->parser, "xml_data");

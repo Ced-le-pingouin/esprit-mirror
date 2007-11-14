@@ -50,7 +50,7 @@ if (isset($_REQUEST['breves'])) { // popup des brèves
 	$oTpl->remplacer('{breves->titre}',$titres['breves']);
 	$oBlocBreve = new TPL_Block("BLOCK_BREVE",$oTpl);
 	$oBlocBreve->beginLoop();
-	$breves = $oAccueil->getBreves(TRUE,TRUE); // breves(visibles,date)
+	$breves = $oAccueil->getBreves(TRUE,FALSE); // breves(visibles,date)
 	if ($breves) {
 		foreach ($breves as $breve) {
 			$oBlocBreve->nextLoop();
@@ -163,11 +163,9 @@ if ($breves) {
 		$oBlocBreve->nextLoop();
 		$oBlocBreve->remplacer("{breve->info}",convertBaliseMetaVersHtml($breve->Texte));
 	}
-	if (count($breves)>MAX_BREVES) {
-		$oBlocBreve->ajouter('<a href="javascript: void(0);" onclick="window.open('
-		                     ."'login.php?breves=all','Toutes les breves','width=400,height=500,menubar=no,statusbar=no,resizable=yes,scrollbars=yes'"
-	                         .')" class="breve-centered">Toutes les brèves...</a>');
-	}
+	$oBlocBreve->ajouter('<a href="javascript: void(0);" onclick="window.open('
+	                     ."'login.php?breves=all','Toutes les breves','width=400,height=500,menubar=no,statusbar=no,resizable=yes,scrollbars=yes'"
+	                     .')" class="breve-centered">Toutes les brèves...</a>');
 	$oBlocBreve->afficher(); 
 } else {
 	$oBlocBreve->effacer();
@@ -191,7 +189,7 @@ if($liens){
 					$target=$lien->Lien.'" target="_blank"';
 					break;
 				case "popup":
-					$target='javascript:void(0)" onClick="window.open(\''.$lien->Lien."','popup','width=500,height=500');return false;\"";
+					$target='javascript:void(0)" onclick="window.open(\''.$lien->Lien."','popup','width=500,height=500');return false;\"";
 					break;
 			}
 			$sInfo = '<a href="'.$target.'>'.$lien->Texte."</a>"; 
