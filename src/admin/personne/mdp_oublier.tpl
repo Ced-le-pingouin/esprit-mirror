@@ -59,11 +59,14 @@ function valider()
 </table>
 </form>
 <p><strong>Attention</strong></p>
-<p>Si votre messagerie est équipée d'un filtre contre le courrier indésirable, il se peut que le message contenant vos données de connexion atterrisse 
-directement dans le dossier réservé à ce type de courrier (Hotmail, GMail etc. sont équipé d'un tel filtre). Vous devrez dans ce cas vous rendre dans ce dossier pour 
-lire le message.</p>
-<p><em>Si vous ne recevez pas du tout le message</em>, ajoutez l'adresse e-mail suivante à votre liste des expéditeurs autorisés: <em>{esprit->email}</em></p> 
-</p>
+
+<p>Si votre messagerie est dotée d'un filtre destiné à contrer les courriels indésirables, il se peut que le courriel qui vous est transmis atterrisse 
+dans un dossier intitulé  "Spam" (Gmail, Yahoo) ou "courrier indésirable" (hotmail), ou soit directement versé dans la "corbeille". Il vous suffit dans 
+ce cas de vous rendre dans ce dossier pour lire le message.</p>
+
+<p>Si le message ne se trouve dans aucun de vos dossiers, ajoutez l'adresse courriel suivante à votre liste des expéditeurs autorisés: <em>{esprit->email}</em>
+et... recommencez la procédure (nom et prénom puis valider).</p>
+
 </body>
 </html>
 [BLOCK_ENTRER_INFORMATIONS-]
