@@ -1479,6 +1479,7 @@ class CSousActiv
 			, array(LIEN_FORMULAIRE,"Activités en ligne")
 			/*, array(LIEN_GLOSSAIRE,"Glossaire")*/
 			, array(LIEN_TABLEAU_DE_BORD,"Tableau de bord")
+			, array(LIEN_HOTPOTATOES,"Exercices Hotpotatoes")
 		);
 	}
 	

@@ -336,6 +336,26 @@ if ($iIdMod > 0)
 					$oBlock_Cours->remplacer("{lien_texte_formatte}",($bStatutOuvert ? $oSet_TexteFormatte_Ouvert : $oSet_TexteFormatte_Ferme));
 					
 					break;
+
+				case LIEN_HOTPOTATOES:
+				//   --------------
+					$oBlock_Cours->ajouter($oSet_Page_Html);
+					list($sUrl) = explode(":",$aoRubriques[$r]->retDonnees());
+					
+					if ($bStatutOuvert && strlen($sUrl) > 0)
+					{
+						
+						$sUrl = $oProjet->retRepRubriques(rawurlencode($sUrl));
+						$oBlock_Cours->remplacer("{lien_hotpotatoes}",$oSet_Page_Html_Ouvert);
+						$oBlock_Cours->remplacer("{rubrique.url}",$sUrl);
+					}
+					else
+					{
+						$oBlock_Cours->remplacer("{lien_hotpotatoes}",$oSet_Page_Html_Ferme);
+					}
+					
+					break;
+					
 		}
 		
 		// Nom de l'unité

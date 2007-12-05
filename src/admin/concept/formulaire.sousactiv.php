@@ -371,6 +371,33 @@ else
 </div>
 <!-- Formulaire ]]-->
 
+<!--[[ Exercice Hotpotatoes (<?php echo LIEN_HOTPOTATOES ?>) -->
+<div id="lien_hotpotatoes" class="Cacher">
+<fieldset>
+<legend>&nbsp;Exercice Hotpotatoes&nbsp;</legend>
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+<tr>
+<td width="200"><div class="intitule">Choisir la page d'index&nbsp;:</div></td>
+<td>
+<select name="DONNEES[<?php echo LIEN_HOTPOTATOES; ?>]"<?php echo($g_bModifier ? NULL : " disabled"); ?>>
+<option value="">Pas de fichier actuellement</option>
+<?php
+for ($i=0; $i<count($asFichiers); $i++)
+{
+	echo "<option value=\"".$asFichiers[$i]."\""
+		.(($asFichiers[$i] == $sDonnee) ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+		.">".stripslashes($asFichiers[$i])."</option>\n";
+}
+?>
+</select>&nbsp;<?php echo boutonDeposer()?>
+</td>
+</tr>
+<?php selectionnerModalAff($aoModalitesAffichage,$url_iMode,"MODALITE_AFFICHAGE[".LIEN_HOTPOTATOES."]","div_description"); ?>
+</table>
+</fieldset>
+</div>
+<!-- Exercice Hotpotatoes ]]-->
+
 <?php 
 
 $sClassDescription = "Cacher";
@@ -455,6 +482,8 @@ if (document.getElementById)
 	aoType[9]  = document.getElementById("lien_texte_formate");
 	aoType[10] = document.getElementById("lien_glossaire");
 	aoType[11] = document.getElementById("lien_tableau_de_bord");
+	aoType[11] = document.getElementById("lien_tableau_de_bord");
+	aoType[12] = document.getElementById("lien_hotpotatoes");
 }
 
 choisirType(aoType,'<?php echo $amSousActiv["type"]?>');

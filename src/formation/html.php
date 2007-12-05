@@ -33,6 +33,7 @@
 */
 
 require_once("../../../globals.inc.php");
+require_once("hotpotatoes.inc.php");
 
 $oProjet = new CProjet();
 
@@ -41,6 +42,7 @@ $oProjet = new CProjet();
 // ---------------------
 $url_sNomFichier  = (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
 $url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
+$url_hotpotatoes  = (empty($_GET["hotpot"]) ? FALSE : TRUE);
 
 $bOk = FALSE;
 
@@ -60,6 +62,10 @@ if (!empty($url_sNomFichier))
 		eregi("(\.[[:alnum:]]+$)",$sNomFichier,$tmp);
 		$ext = mb_strtolower($tmp[0],"UTF-8");
 	}
+}
+
+if ($bOk && $url_hotpotatoes && ($ext == ".htm" || $ext == ".html")) {
+	$sNomFichier = hotpot_patch_file($sNomFichier);
 }
 
 if ($ext == ".htm" ||

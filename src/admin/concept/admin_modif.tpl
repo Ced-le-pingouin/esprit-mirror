@@ -4,7 +4,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/globals.css">
-<link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/onglet.css">
+<link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/onglet/onglet.css">
 <link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/concept.css">
 <script type="text/javascript" language="javascript" src="/ipfhainaut_dev/js/window.js"></script>
 <script type="text/javascript" language="javascript" src="admin_modif.js"></script>
