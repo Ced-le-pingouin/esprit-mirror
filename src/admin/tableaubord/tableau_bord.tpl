@@ -24,6 +24,7 @@
 <th>[TXT_ETUDIANTS_INSCRITS_AU_COURS]</th>
 [BLOCK_COLLECTICIEL_NOM+]<th id="{collecticiel.td.id}">{collecticiel.nom}</th>[BLOCK_COLLECTICIEL_NOM-]
 [BLOCK_FORMULAIRE_NOM+]<th id="{formulaire.td.id}">{formulaire.nom}</th>[BLOCK_FORMULAIRE_NOM-]
+[BLOCK_HOTPOTATOES_NOM+]<th id="{hotpotatoes.td.id}">{hotpotatoes.nom}</th>[BLOCK_HOTPOTATOES_NOM-]
 [BLOCK_FORUM_NOM+]<th id="{forum.td.id}">{forum.nom}</th>[BLOCK_FORUM_NOM-]
 [BLOCK_CHAT_NOM+]<th id="{chat.td.id}">{chat.parent.nom}<br><small>({chat.nom})</small></th>[BLOCK_CHAT_NOM-]
 </tr>
@@ -34,6 +35,7 @@
 <td>&nbsp;</td>
 [BLOCK_COLLECTICIEL_MODALITE+]<td class="cellule_modalite">{collecticiel.modalite}</td>[BLOCK_COLLECTICIEL_MODALITE-]
 [BLOCK_FORMULAIRE_MODALITE+]<td class="cellule_modalite">{formulaire.modalite}</td>[BLOCK_FORMULAIRE_MODALITE-]
+[BLOCK_HOTPOTATOES_MODALITE+]<td class="cellule_modalite">{hotpotatoes.modalite}</td>[BLOCK_HOTPOTATOES_MODALITE-]
 [BLOCK_FORUM_MODALITE+]<td class="cellule_modalite">{forum.modalite}</td>[BLOCK_FORUM_MODALITE-]
 [BLOCK_CHAT_MODALITE+]<td class="cellule_modalite">{chat.modalite}</td>[BLOCK_CHAT_MODALITE-]
 </tr>
@@ -63,6 +65,7 @@
 <td id="{personne.td.id}" class="cellule_etudiant"><a href="javascript: void(0);" onclick="choix_courriel('?idPers={personne.id}&amp;select=1'); return false;" onfocus="blur()" title="[TLT_ENVOYER_COURRIEL]">{personne.nom}&nbsp;{personne.prenom}</a>[BLOCK_PERSONNE_INDICE+]&nbsp;<img src="theme://icones/etoile.gif" width="13" height="13" border="0">[BLOCK_PERSONNE_INDICE-]</td>
 [BLOCK_COLLECTICIEL+]<td id="{collecticiel.td.id}">{collecticiel}{collecticiel.date}</td>[BLOCK_COLLECTICIEL-]
 [BLOCK_FORMULAIRE+]<td id="{formulaire.td.id}">{formulaire}{formulaire.date}</td>[BLOCK_FORMULAIRE-]
+[BLOCK_HOTPOTATOES+]<td id="{formulaire.td.id}">{hotpotatoes}{hotpotatoes.date}</td>[BLOCK_HOTPOTATOES-]
 [BLOCK_FORUM+]<td id="{forum.td.id}" title="[TLT_FORUM_NOMBRE_MESSAGES_FORUM]">{forum}{forum.date}</td>[BLOCK_FORUM-]
 [BLOCK_CHAT+]<td id="{chat.td.id}" title="[TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE]">{chat}</td>[BLOCK_CHAT-]
 </tr>
@@ -74,5 +77,6 @@
 </html>
 [SET_COLLECTICIEL+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')" title="[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL]">{collecticiel}</a>[SET_COLLECTICIEL-]
 [SET_FORMULAIRE+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')" title="[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE]">{formulaire}</a>[SET_FORMULAIRE-]
+[SET_HOTPOTATOES+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')" title="[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_HOTPOTATOES]">{hotpotatoes}</a>[SET_HOTPOTATOES-]
 [SET_FORUM+]{forum.nom}[SET_FORUM-]
 [SET_CHAT+]{chat_archives.nom}[SET_CHAT-]

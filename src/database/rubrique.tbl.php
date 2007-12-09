@@ -59,6 +59,7 @@ class CModule_Rubrique
 	var $aoMembres;				///< Tableau rempli par #initMembres(), contenant les personnes rattachées à la rubrique
 	
 	var $aoFormulaires;			///< Tableau rempli par #initFormulaires(), contenant les formulaires de la rubrique
+	var $aoHotpotatoes;			///< Tableau rempli par #initHotpotatoes(), contenant les exercices de la rubrique
 	var $oIntitule;				///< Objet de type CIntitule contenant l'intitulé de cette rubrique
 	
 	/**
@@ -1263,7 +1264,42 @@ class CModule_Rubrique
 		
 		return $iIdxFormulaire;
 	}
-	
+
+	/**
+	 * Initialise un tableau contenant tous les exercices Hotpotatoes
+	 * 
+	 * @param	v_iModalite le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE_)
+	 * 
+	 * @return	le nombre d'exercices trouvés
+	 */
+	function initHotpotatoes( $v_iModalite=NULL )
+	{
+		$iIdxHotpotatoes = 0;
+		$this->aoHotpotatoes = array();
+
+		$sRequeteSql = "SELECT SousActiv.*"
+			." FROM Activ"
+			." LEFT JOIN SousActiv USING (IdActiv)"
+			." WHERE Activ.IdRubrique='".$this->retId()."'"
+			." AND SousActiv.IdTypeSousActiv='".LIEN_HOTPOTATOES."'"
+			.(isset($v_iModalite)
+				? " AND (SousActiv.ModaliteSousActiv='{$v_iModalite}'"
+					." OR (SousActiv.ModaliteSousActiv='".MODALITE_IDEM_PARENT."' AND Activ.ModaliteActiv='{$v_iModalite}'))"
+				: NULL)
+			." ORDER BY Activ.OrdreActiv ASC, SousActiv.OrdreSousActiv ASC";
+
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
+		{
+			$this->aoHotpotatoes[$iIdxHotpotatoes] = new CSousActiv($this->oBdd);
+			$this->aoHotpotatoes[$iIdxHotpotatoes]->init($oEnreg);
+			$iIdxHotpotatoes++;
+		}
+		$this->oBdd->libererResult($hResult);
+
+		return $iIdxHotpotatoes;
+	}
+
 	/**
 	 * @return	le dossier associé à cette rubrique, donc celui où se trouvent ses fichiers associés
 	 */
