@@ -235,20 +235,29 @@ switch ($act)
 			case LIEN_HOTPOTATOES:
 			//   --------------
 				$url_sDonneesSousActiv = $_POST["DONNEES"][LIEN_HOTPOTATOES];
-				
+
 				// Nous allons essayer de récupérer automatiquement le titre
 				// de la page html qui se trouve entre les balises "<title>"
 				if (($url_sNomSousActiv == NULL ||
 					$url_sNomSousActiv == INTITULE_SOUS_ACTIV." sans nom") &&
 					ereg(".htm?\$",$url_sDonneesSousActiv))
 					$oSousActiv->defNom(retTitrePageHtml(dir_cours($g_iActiv,$g_iFormation,$url_sDonneesSousActiv)));
-				
-				$oSousActiv->defDonnees("{$url_sDonneesSousActiv};{$url_iModaliteAffichage};{$url_sIntitule}");
-				
+
+				$oHotpotatoes = new CHotpotatoes($oProjet->oBdd);
+				if ($oSousActiv->initHotpotatoes())
+					$oHotpotatoes = $oSousActiv->oHotpotatoes; // reprise
+				else
+					$oHotpotatoes->ajouter($g_iIdUtilisateur); // nouveau
+				$oHotpotatoes->defTitre( $oSousActiv->retNom() );
+				$oHotpotatoes->defFichier( $url_sDonneesSousActiv );
+				$oHotpotatoes->defIdPers( $oProjet->oUtilisateur->retId() );
+				$oHotpotatoes->enregistrer();
+
+				$oSousActiv->defDonnees("{$url_sDonneesSousActiv};{$url_iModaliteAffichage};{$url_sIntitule};".$oHotpotatoes->retId());
 				break;
-				
+
 		}
-		
+
 		break;
 }
 

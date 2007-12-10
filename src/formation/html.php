@@ -42,7 +42,7 @@ $oProjet = new CProjet();
 // ---------------------
 $url_sNomFichier  = (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
 $url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
-$url_hotpotatoes  = (empty($_GET["hotpot"]) ? FALSE : TRUE);
+$url_iIdHotpot  = (empty($_GET["IdHotpot"]) ? FALSE : $_GET["IdHotpot"]);
 
 $bOk = FALSE;
 
@@ -64,8 +64,8 @@ if (!empty($url_sNomFichier))
 	}
 }
 
-if ($bOk && $url_hotpotatoes && ($ext == ".htm" || $ext == ".html")) {
-	$sNomFichier = hotpot_patch_file($sNomFichier);
+if ($bOk && $url_iIdHotpot && ($ext == ".htm" || $ext == ".html")) {
+	$sNomFichier = hotpot_patch_file($sNomFichier,$url_iIdHotpot);
 }
 
 if ($ext == ".htm" ||

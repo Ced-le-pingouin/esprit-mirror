@@ -6,15 +6,38 @@
  * @param $nomFichier nom du fichier à modifier
  * @return      nom du fichier produit, ou FALSE en cas d'erreur
  */
-function hotpot_patch_file( $nomFichier ) {
+function hotpot_patch_file( $nomFichier, $IdHotpot ) {
 	$nouveauNomFichier = preg_replace('/\.html?$/','_HP-Esprit_.html',$nomFichier);
 	if (file_exists($nouveauNomFichier)) {
 		return $nouveauNomFichier;
 	}
 	$html = file_get_contents($nomFichier);
 	// modification du source HotPot
-	// ...
-	// function Finish(){
+	$insertJS = <<<ENDOFTEXT
+// CODE ESPRIT : DEBUT
+var xhr = null; 
+if (window.XMLHttpRequest) // Firefox et autres
+	xhr = new XMLHttpRequest(); 
+else if (window.ActiveXObject) { // Internet Explorer 
+	try {
+		xhr = new ActiveXObject("Msxml2.XMLHTTP");
+	} catch (e) {
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+} else { // XMLHttpRequest incompatible avec ce navigateur 
+	//alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest..."); 
+	xhr = false; 
+}
+
+function Finish() {
+	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score,true);
+	xhr.send(null);
+// CODE ESPRIT : FIN
+ENDOFTEXT;
+	$html = str_replace(
+			"function Finish(){",
+			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
+			$html );
 	// ...
 	file_put_contents($nouveauNomFichier, $html);
 	return $nouveauNomFichier;

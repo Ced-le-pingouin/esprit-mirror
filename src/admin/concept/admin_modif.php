@@ -97,6 +97,7 @@ if (isset($act))
 		.", Forum WRITE"
 		.", SujetForum WRITE"
 		.", MessageForum WRITE"
+		.", Hotpotatoes WRITE"
 		.", Chat WRITE";
 	$oProjet->oBdd->executerRequete($sRequeteSql);
 	

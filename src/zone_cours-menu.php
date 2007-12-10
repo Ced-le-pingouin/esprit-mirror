@@ -212,6 +212,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			switch ($oSousActiv->retType())
 			{
 				case LIEN_HOTPOTATOES:
+					$oSousActiv->initHotpotatoes();
 				case LIEN_PAGE_HTML:
 				//   --------------
 					$sRepCours = $oActiv->retRepCours("html.php",TRUE);
@@ -232,7 +233,8 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 									."?idActiv={$iIdActiv}"
 									."&idSousActiv={$iIdSousActiv}"
 									."&fi=".urlencode($sFichier)
-									.($oSousActiv->retType()==LIEN_HOTPOTATOES ? '&hotpot=1' : '')
+									.($oSousActiv->retType()==LIEN_HOTPOTATOES ?
+									  '&IdHotpot='.$oSousActiv->oHotpotatoes->retId() : '')
 									 ;
 							else
 								$sHref = dir_theme("blank.htm",FALSE);

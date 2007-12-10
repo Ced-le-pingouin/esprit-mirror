@@ -315,31 +315,19 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		$aoBlocs["modalite"]->beginLoop();
 		foreach ($oRubrique->aoHotpotatoes as $oHotpotatoes)
 		{
-			$abModalites[$iCol] = $oHotpotatoes->retModalite(TRUE);
-			list($iIdFormul) = explode(";",$oHotpotatoes->retDonnees());
-			$bAutoCorrection = false;
-			if(is_numeric($iIdFormul))
+			$abModalites[$iCol] = 'Modalite';
+			list( , , , $iIdHotpot) = explode(";",$oHotpotatoes->retDonnees());
+			if (is_numeric($iIdHotpot))
 			{
-				$oFormul = new CHotpotatoes($oProjet->oBdd,$iIdFormul);
-				if($oFormul->retAutoCorrection())
-					$bAutoCorrection = true;
+				$oFormul = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
 			}
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
-			if($bAutoCorrection)
-				$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oHotpotatoes->retNom())."</a>");
-			else
-				$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",emb_htmlentities($oHotpotatoes->retNom()));
-			
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oHotpotatoes->retNom())."</a>");
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer(
-				"{hotpotatoes.modalite}",
-				retTexteModalite($oHotpotatoes->oEnregBdd->type,$abModalites[$iCol])
-				);
-			
+			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
 			$iCol++;
 		}
-		
 		$aoBlocs["nom"]->afficher();
 		$aoBlocs["modalite"]->afficher();
 	}
