@@ -101,7 +101,8 @@ class CHotpotatoesScore
 	function retId() { return $this->oEnregBdd->IdHotpotScore; }
 	function retIdHotpot() { return $this->oEnregBdd->IdHotpot; }
 	function retIdPers() { return $this->oEnregBdd->IdPers; }
-	function retScore() { return $this->oEnregBdd->Score; }
+	function retScore() { return (isset($this->oEnregBdd->Score) ? $this->oEnregBdd->Score : '-'); }
+	function retDateModif() { return $this->oEnregBdd->DateModif; }
 	//@}
 }
 ?>

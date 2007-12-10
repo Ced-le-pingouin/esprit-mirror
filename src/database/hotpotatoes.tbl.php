@@ -26,6 +26,8 @@
  * Contient la classe de gestion des exercices Hotpot, en rapport avec la DB
  */
 
+require_once(dir_database("hotpotatoes_score.tbl.php"));
+
 /**
  * Gestion des exercices Hotpotatoes (table SQL "Hotpotatoes")
  */
@@ -34,6 +36,7 @@ class CHotpotatoes
 	var $oBdd;			///< Objet représentant la connexion à la DB
 	var $oEnregBdd;		///< champs SQL (l'objet est rempli à partir de la DB)
 	var $iId;			///< Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB
+	var $aoScores;      ///< Tableau des objets scores des étudiants
 
 	/**
 	 * Constructeur.	Voir CPersonne#CPersonne()
@@ -65,6 +68,43 @@ class CHotpotatoes
 			$this->oBdd->libererResult($hResult);
 		}
 		$this->iId = $this->oEnregBdd->IdHotpot;
+	}
+
+	/**
+	 * Récupère un objet score ou un tableau des scores pour un ou plusieurs étudiants
+	 *
+	 * @param	etudiants IdPers ou tableau d'IdPers
+	 *
+	 * @return	Objet CHotpotatoesScore ou tableau de ces objets
+	 */
+	function scores_par_etudiant( $etudiants )
+	{
+		if (empty($etudiants)) {
+			// TODO !!!!
+			return FALSE;
+		} elseif (is_array($etudiants)) {
+			$ids = join(',',$etudiants);
+		} else {
+			$ids = $etudiants;
+		}
+		$sRequeteSql = "SELECT * FROM Hotpotatoes_Score"
+			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot} AND IdPers IN ($ids)";
+		$this->oBdd->executerRequete($sRequeteSql);
+		if (is_array($etudiants)) {
+			$scores = array();
+			$i = 0;
+			while ($row = $this->oBdd->retEnregSuiv($hResult)) {
+				$score[$i] = new CHotpotatoesScore($this->oBdd);
+				$score[$i]->init( $row );
+				$i++;
+			}
+			return $scores;
+		} else {
+			$score = new CHotpotatoesScore( $this->oBdd );
+			$score->init( $this->oBdd->retEnregSuiv($hResult) );
+			return $score;
+		}
+
 	}
 
 	/**

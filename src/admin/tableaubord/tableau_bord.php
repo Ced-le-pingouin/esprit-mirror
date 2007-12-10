@@ -187,6 +187,7 @@ $sSetCollecticiel = $oTpl->defVariable("SET_COLLECTICIEL");
 $sSetFormulaire   = $oTpl->defVariable("SET_FORMULAIRE");
 $sSetForum        = $oTpl->defVariable("SET_FORUM");
 $sSetChat         = $oTpl->defVariable("SET_CHAT");
+$sSetHotpotatoes  = $oTpl->defVariable("SET_HOTPOTATOES");
 
 $asTplGlobalCommun = array(
 	"url_archives" => $oTpl->defVariable("SET_URL_CHAT_ARCHIVES")
@@ -302,7 +303,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	}
 	// }}}
 	
-	// {{{ Colonnes des exos hotpotatoes
+	// {{{ Colonnes des exos hotpotatoes (en-têtes)
 	$aoBlocs = array(
 		"nom" => new TPL_Block("BLOCK_HOTPOTATOES_NOM",$oBlocRubrique)
 		, "modalite" => new TPL_Block("BLOCK_HOTPOTATOES_MODALITE",$oBlocRubrique)
@@ -315,15 +316,15 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		$aoBlocs["modalite"]->beginLoop();
 		foreach ($oRubrique->aoHotpotatoes as $oHotpotatoes)
 		{
-			$abModalites[$iCol] = 'Modalite';
+			$abModalites[$iCol] = 'Hotpotatoes';
 			list( , , , $iIdHotpot) = explode(";",$oHotpotatoes->retDonnees());
-			if (is_numeric($iIdHotpot))
+			if (ctype_digit($iIdHotpot))
 			{
-				$oFormul = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
+				$oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
 			}
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oHotpotatoes->retNom())."</a>");
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oHotpotatoes->retTitre())."</a>");
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
 			$iCol++;
@@ -649,6 +650,32 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$iCol++;
 			}
 			
+			$oBloc->afficher();
+		}
+		else
+			$oBloc->effacer();
+		// }}}
+		
+		// {{{ Colonnes des exos Hotpotatoes (résultats des étudiants)
+		$oBloc = new TPL_Block("BLOCK_HOTPOTATOES",$oBlocTableauBord);
+		if ($bPeutAfficherFormulaires && $iNbHotpotatoes > 0)
+		{
+			$oBloc->beginLoop();
+			foreach ($oRubrique->aoHotpotatoes as $oHotpotatoes)
+			{
+				list( , , , $iIdHotpot) = explode(";",$oHotpotatoes->retDonnees());
+				if (ctype_digit($iIdHotpot))
+				{
+					$oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
+				}
+				$oBloc->nextLoop();
+				$oHotpotScore = $oHotpotatoes->scores_par_etudiant($iIdInscrit);
+				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
+					$oBloc->remplacer("{hotpotatoes}",$sSetHotpotatoes);
+				$oBloc->remplacer(array("{hotpotatoes.td.id}","{hotpotatoes}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$oHotpotScore->retScore()));
+				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));
+				$iCol++;
+			}
 			$oBloc->afficher();
 		}
 		else
