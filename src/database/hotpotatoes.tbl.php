@@ -127,7 +127,7 @@ class CHotpotatoes
 	function enregistrer()
 	{
 		$sRequeteSql = "UPDATE Hotpotatoes"
-			." SET Titre='".emb_htmlentities($this->oEnregBdd->Titre)."'"
+			." SET Titre='".mysql_real_escape_string($this->oEnregBdd->Titre)."'"
 			.", Fichier='".mysql_real_escape_string($this->oEnregBdd->Fichier)."'"
 			.", IdPers=".$this->oEnregBdd->IdPers
 			." WHERE IdHotpot=".$this->oEnregBdd->IdHotpot;
