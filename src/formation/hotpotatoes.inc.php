@@ -8,10 +8,6 @@
  */
 function hotpot_patch_file( $nomFichier, $IdHotpot ) {
 	global $oProjet;
-	$nouveauNomFichier = preg_replace('/\.html?$/','_HP-Esprit_.html',$nomFichier);
-	if (file_exists($nouveauNomFichier)) {
-		unlink($nouveauNomFichier);
-	}
 	$html = file_get_contents($nomFichier);
 	// modification du source HotPot
 	$insertJS = <<<ENDOFTEXT
@@ -39,9 +35,8 @@ ENDOFTEXT;
 			"function ShowMessage(Feedback){",
 			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
 			$html );
-	// ...
-	file_put_contents($nouveauNomFichier, $html);
-	return $nouveauNomFichier;
+	print $html;
+	exit();
 }
 
 

@@ -65,7 +65,8 @@ if (!empty($url_sNomFichier))
 }
 
 if ($bOk && $url_iIdHotpot && ($ext == ".htm" || $ext == ".html")) {
-	$sNomFichier = hotpot_patch_file($sNomFichier,$url_iIdHotpot);
+	hotpot_patch_file($sNomFichier,$url_iIdHotpot); // on affiche et on s'arrête
+	exit();
 }
 
 if ($ext == ".htm" ||
@@ -80,7 +81,6 @@ if ($ext == ".htm" ||
 {
 	if ($bOk)
 		header("Location: {$sNomFichier}");
-	
 	exit();
 }
 
