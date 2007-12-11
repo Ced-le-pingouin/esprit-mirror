@@ -324,7 +324,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			}
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}","<a href=\"javascript: PopupCenter('tableau_scores.php?IdFormul=$iIdFormul','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">".emb_htmlentities($oHotpotatoes->retTitre())."</a>");
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",emb_htmlentities($oHotpotatoes->retTitre()));
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
 			$iCol++;
@@ -661,15 +661,17 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		if ($bPeutAfficherFormulaires && $iNbHotpotatoes > 0)
 		{
 			$oBloc->beginLoop();
-			foreach ($oRubrique->aoHotpotatoes as $oHotpotatoes)
+			foreach ($oRubrique->aoHotpotatoes as $oSousActiv)
 			{
-				list( , , , $iIdHotpot) = explode(";",$oHotpotatoes->retDonnees());
+				list( , , , $iIdHotpot) = explode(";",$oSousActiv->retDonnees());
 				if (ctype_digit($iIdHotpot))
-				{
 					$oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
+				else {
+					error_log("ESPRIT : id Hotpot invalide : $iIdHotpot");
+					continue;
 				}
 				$oBloc->nextLoop();
-				$oHotpotScore = $oHotpotatoes->scores_par_etudiant($iIdInscrit);
+				$oHotpotScore = $oHotpotatoes->der_score_par_etudiant($iIdInscrit);
 				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
 					$oBloc->remplacer("{hotpotatoes}",$sSetHotpotatoes);
 				$oBloc->remplacer(
@@ -677,6 +679,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 						array("u{$iIdRubr}l{$iLigne}c{$iCol}",
 							( $oHotpotScore->retScore()!==NULL ? $oHotpotScore->retScore().'&nbsp;%' : '-' ))
 						);
+				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oSousActiv->retIdParent(),$oSousActiv->retId(),"&amp;idPers={$iIdInscrit}"));
 				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));
 				$iCol++;
 			}

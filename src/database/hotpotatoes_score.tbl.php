@@ -72,7 +72,7 @@ class CHotpotatoesScore
 	 */
 	function enregistrer()
 	{
-		$sRequeteSql = "REPLACE INTO Hotpotatoes_Score"
+		$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
 			." SET IdHotpot={$this->oEnregBdd->IdHotpot}"
 			.", IdPers={$this->oEnregBdd->IdPers}"
 			.", Score={$this->oEnregBdd->Score}";

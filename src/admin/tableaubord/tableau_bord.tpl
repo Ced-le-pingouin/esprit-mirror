@@ -77,6 +77,6 @@
 </html>
 [SET_COLLECTICIEL+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')" title="[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL]">{collecticiel}</a>[SET_COLLECTICIEL-]
 [SET_FORMULAIRE+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')" title="[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE]">{formulaire}</a>[SET_FORMULAIRE-]
-[SET_HOTPOTATOES+]<a href="javascript: void(0);">{hotpotatoes}</a>[SET_HOTPOTATOES-]
+[SET_HOTPOTATOES+]<a href="javascript: void(0);" onclick="return zone_de_cours('?idForm={formation.id}&amp;idMod={module.id}&amp;idUnite={rubrique.id}&amp;idActiv={activite.id}&amp;idSousActiv={sous_activite.id}{params.url}')">{hotpotatoes}</a>[SET_HOTPOTATOES-]
 [SET_FORUM+]{forum.nom}[SET_FORUM-]
 [SET_CHAT+]{chat_archives.nom}[SET_CHAT-]

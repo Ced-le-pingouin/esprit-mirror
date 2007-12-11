@@ -71,13 +71,13 @@ class CHotpotatoes
 	}
 
 	/**
-	 * Récupère un objet score ou un tableau des scores pour un ou plusieurs étudiants
+	 * Récupère un objet score ou un tableau des derniers scores pour un ou plusieurs étudiants
 	 *
 	 * @param	etudiants IdPers ou tableau d'IdPers
 	 *
 	 * @return	Objet CHotpotatoesScore ou tableau de ces objets
 	 */
-	function scores_par_etudiant( $etudiants )
+	function der_score_par_etudiant( $etudiants )
 	{
 		if (empty($etudiants)) {
 			// TODO !!!!
@@ -87,8 +87,9 @@ class CHotpotatoes
 		} else {
 			$ids = $etudiants;
 		}
-		$sRequeteSql = "SELECT * FROM Hotpotatoes_Score"
-			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot} AND IdPers IN ($ids)";
+		$sRequeteSql = "SELECT *, MAX(DateModif) AS DateH FROM Hotpotatoes_Score"
+			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot} AND IdPers IN ($ids)"
+			 ." GROUP BY IdHotpot";
 		$this->oBdd->executerRequete($sRequeteSql);
 		if (is_array($etudiants)) {
 			$scores = array();
@@ -105,6 +106,29 @@ class CHotpotatoes
 			return $score;
 		}
 
+	}
+
+	/**
+	 * Récupère un tableau des objets scores pour un étudiant
+	 *
+	 * @param	IdPers Id SQL de l'étudiant
+	 *
+	 * @return	Tableau d'objets CHotpotatoesScore
+	 */
+	function scores_par_etudiant( $IdPers )
+	{
+		$sRequeteSql = "SELECT * FROM Hotpotatoes_Score"
+			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot} AND IdPers=".$IdPers
+			 ." ORDER BY DateModif ASC";
+		$this->oBdd->executerRequete($sRequeteSql);
+		$scores = array();
+		$i = 0;
+		while ($row = $this->oBdd->retEnregSuiv($hResult)) {
+			$scores[$i] = new CHotpotatoesScore($this->oBdd);
+			$scores[$i]->init( $row );
+			$i++;
+		}
+		return $scores;
 	}
 
 	/**

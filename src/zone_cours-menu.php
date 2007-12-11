@@ -213,6 +213,15 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			{
 				case LIEN_HOTPOTATOES:
 					$oSousActiv->initHotpotatoes();
+					if (!empty($url_iIdPers)) {
+						$sHref = dir_sousactiv(LIEN_HOTPOTATOES,"scores.php",FALSE)
+							."?idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}"
+							.'&IdHotpot='.$oSousActiv->oHotpotatoes->retId()
+							."&idPers={$url_iIdPers}";
+						$oBlockSousActiv->ajouter($oSet_Page_Html1);
+						$bDeplacerSignet = TRUE;
+						break;
+					}
 				case LIEN_PAGE_HTML:
 				//   --------------
 					$sRepCours = $oActiv->retRepCours("html.php",TRUE);
