@@ -10,7 +10,7 @@ function hotpot_patch_file( $nomFichier, $IdHotpot ) {
 	global $oProjet;
 	$nouveauNomFichier = preg_replace('/\.html?$/','_HP-Esprit_.html',$nomFichier);
 	if (file_exists($nouveauNomFichier)) {
-		return $nouveauNomFichier;
+		unlink($nouveauNomFichier);
 	}
 	$html = file_get_contents($nomFichier);
 	// modification du source HotPot
