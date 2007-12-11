@@ -7,6 +7,7 @@
  * @return      nom du fichier produit, ou FALSE en cas d'erreur
  */
 function hotpot_patch_file( $nomFichier, $IdHotpot ) {
+	global $oProjet;
 	$nouveauNomFichier = preg_replace('/\.html?$/','_HP-Esprit_.html',$nomFichier);
 	if (file_exists($nouveauNomFichier)) {
 		return $nouveauNomFichier;
@@ -29,13 +30,13 @@ else if (window.ActiveXObject) { // Internet Explorer
 	xhr = false; 
 }
 
-function Finish() {
+function ShowMessage(Feedback){
 	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score,true);
 	xhr.send(null);
 // CODE ESPRIT : FIN
 ENDOFTEXT;
 	$html = str_replace(
-			"function Finish(){",
+			"function ShowMessage(Feedback){",
 			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
 			$html );
 	// ...

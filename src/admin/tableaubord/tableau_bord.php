@@ -672,7 +672,11 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$oHotpotScore = $oHotpotatoes->scores_par_etudiant($iIdInscrit);
 				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
 					$oBloc->remplacer("{hotpotatoes}",$sSetHotpotatoes);
-				$oBloc->remplacer(array("{hotpotatoes.td.id}","{hotpotatoes}"),array("u{$iIdRubr}l{$iLigne}c{$iCol}",$oHotpotScore->retScore()));
+				$oBloc->remplacer(
+						array("{hotpotatoes.td.id}", "{hotpotatoes}"),
+						array("u{$iIdRubr}l{$iLigne}c{$iCol}",
+							( $oHotpotScore->retScore()!==NULL ? $oHotpotScore->retScore().'&nbsp;%' : '-' ))
+						);
 				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));
 				$iCol++;
 			}
