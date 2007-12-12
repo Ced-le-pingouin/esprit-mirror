@@ -75,7 +75,9 @@ class CHotpotatoesScore
 		$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
 			." SET IdHotpot={$this->oEnregBdd->IdHotpot}"
 			.", IdPers={$this->oEnregBdd->IdPers}"
-			.", Score={$this->oEnregBdd->Score}";
+			.", Fini={$this->oEnregBdd->Fini}"
+			.", Score={$this->oEnregBdd->Score}"
+			.", DateDebut='{$this->oEnregBdd->DateDebut}'";
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 
@@ -93,7 +95,9 @@ class CHotpotatoesScore
 	//@{
 	function defIdHotpot( $v_iIdHotpot ) { $this->oEnregBdd->IdHotpot = $v_iIdHotpot; }
 	function defIdPers( $v_iIdPers ) { $this->oEnregBdd->IdPers = $v_iIdPers; }
+	function defFini( $arg ) { $this->oEnregBdd->Fini = $arg; }
 	function defScore( $v_iScore ) { $this->oEnregBdd->Score = $v_iScore; }
+	function defDateDebut( $arg ) { $this->oEnregBdd->DateDebut = $arg; }
 	//@}
 	
 	/** @name Fonctions de lecture des champs pour ce formulaire */
@@ -101,7 +105,9 @@ class CHotpotatoesScore
 	function retId() { return $this->oEnregBdd->IdHotpotScore; }
 	function retIdHotpot() { return $this->oEnregBdd->IdHotpot; }
 	function retIdPers() { return $this->oEnregBdd->IdPers; }
+	function retFini() { return $this->oEnregBdd->Fini; }
 	function retScore() { return (isset($this->oEnregBdd->Score) ? $this->oEnregBdd->Score : NULL); }
+	function retDateDebut() { return $this->oEnregBdd->DateDebut; }
 	function retDateModif() { return $this->oEnregBdd->DateModif; }
 	//@}
 }

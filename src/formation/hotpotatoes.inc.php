@@ -27,7 +27,7 @@ else if (window.ActiveXObject) { // Internet Explorer
 }
 
 function ShowMessage(Feedback){
-	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score,true);
+	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&Fini="+(Finished?"1":"0")+"&DateDebut="+HPNStartTime,true);
 	xhr.send(null);
 // CODE ESPRIT : FIN
 ENDOFTEXT;

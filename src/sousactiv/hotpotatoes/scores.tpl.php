@@ -13,13 +13,15 @@ td { padding: 3px 1ex; }
 <h3>Etudiant : <em><?php echo $oEtudiant->retNomComplet(); ?></em></h3>
 <table border="1">
 	<thead>
-		<tr><td>Date</td><td>Score</td></tr>
+		<tr><td>Date de début de l'exercice</td><td>Date de soumission</td><td>Exercice fini</td><td>Score</td></tr>
 	</thead>
 	<tbody>
 <?php
 foreach ($oHotpotScores as $oScore) {
 	echo '<tr>'
+		.'<td>'.retDateFormatter($oScore->retDateDebut(),'d/m/Y H:i').'</td>'
 		.'<td>'.retDateFormatter($oScore->retDateModif(),'d/m/Y H:i').'</td>'
+		.'<td>'.($oScore->retFini() ? "Fini" : "").'</td>'
 		.'<td>'.$oScore->retScore().'</td>'
 		.'</tr>';
 }

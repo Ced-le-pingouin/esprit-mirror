@@ -50,11 +50,19 @@ function hotpotScore( ) {
 	$Score = $_REQUEST['Score'];
 	if (!isset($_REQUEST['IdPers']) || !ctype_digit($_REQUEST['IdPers']))
 		return FALSE;
+	$Fini = 0;
+	if (!empty($_REQUEST['Fini']))
+		$Fini = 1;
+	$DateDebut = 0;
+	if (!empty($_REQUEST['DateDebut']) && ctype_digit($_REQUEST['DateDebut']) )
+		$DateDebut = date('Y-m-d H:i:s',$_REQUEST['DateDebut']/1000);
 	$IdPers = $_REQUEST['IdPers'];
 	$oHotpotScore = new CHotpotatoesScore($oProjet->oBdd);
 	$oHotpotScore->defIdHotpot($IdHotpot);
 	$oHotpotScore->defIdPers($IdPers);
+	$oHotpotScore->defFini($Fini);
 	$oHotpotScore->defScore($Score);
+	$oHotpotScore->defDateDebut($DateDebut);
 	$oHotpotScore->enregistrer();
 }
 
