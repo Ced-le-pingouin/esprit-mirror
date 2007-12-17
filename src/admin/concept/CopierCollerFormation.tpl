@@ -24,7 +24,7 @@
 
 <div id="cadreCopier">
 <h3>
-<label for="idFormationSrcId">Copier de la formation &lt;</label>
+<label for="idFormationSrcId">Copier de la formation&nbsp;:</label>
 <select name="idFormationSrc" id="idFormationSrcId">
   [formSrc_liste+]
   <option value="{formation.id}">{formation.titre}</option>
@@ -33,7 +33,7 @@
 <input type="submit" name="changerFormationSrc" value="Choisir" class="bouton"
  title="Choisir la formation source de la copie" />
 </h3>
-<table border="1">
+<div class="cadreScrollable"><table border="1">
   [formSrc_branche+]<tr>
   	<th>{branche.niv} {branche.type}</th>
     <td class="niv{branche.numNiv}">
@@ -42,14 +42,14 @@
       <label for="{branche.id}">{branche.titre}</label>
     </td>
   </tr>[formSrc_branche-]
-</table>
-<input type="submit" name="copier" value="Copier" class="bouton"
+</table></div><!--cadreScrollable-->
+<input type="submit" name="copier" id="copier" value="Copier" class="lien"
  title="copier les éléments cochés vers le presse-papiers" />
 </div><!--cadreCopier-->
 
 <div id="cadreColler">
 <h3>
-<label for="idFormationDestId">Coller dans la formation &gt;</label>
+<label for="idFormationDestId">Coller dans la formation&nbsp;:</label>
 <select name="idFormationDest" id="idFormationDestId">
   [formDest_liste+]
   <option value="{formation.id}">{formation.titre}</option>
@@ -58,7 +58,7 @@
 <input type="submit" name="changerFormationDest" value="Choisir" class="bouton"
  title="Choisir la formation cible de la copie" />
 </h3>
-<table border="1">
+<div class="cadreScrollable"><table border="1">
   [formDest_branche+]<tr>
   	<th>{branche.niv} {branche.type}</th>
     <td class="niv{branche.numNiv}">
@@ -67,14 +67,14 @@
       <label for="{branche.id}">{branche.titre}</label>
     </td>
   </tr>[formDest_branche-]
-</table>
-<input type="submit" name="coller" value="Coller" class="bouton"
+</table></div><!--cadreScrollable-->
+<input type="submit" name="coller" id="coller" value="Coller" class="lien"
  title="coller les éléments sélectionnés du presse-papiers vers la formation cible" />
 </div><!--cadreColler-->
 
 <div id="cadrePressePapiers">
-<h3>Contenu du presse-papiers</h3>
-<table border="1">
+<h3>Presse-papiers</h3>
+<div class="cadreScrollable"><table border="1">
   [pp_element+]<tr>
     <th>{pp.niv} {pp.type}</th>
     <td>
@@ -83,11 +83,11 @@
       <label for="{pp.id}">{pp.titre}</label>
     </td>
   </tr>[pp_element-]
-</table>
-<input type="submit" name="supprimerElemPp" value="Supprimer" class="bouton"
- title="supprimer les éléments cochés du presse-papiers" />
-<input type="submit" name="viderPp" value="Vider" class="bouton"
- title="vider complètement presse-papiers" />
+</table></div><!--cadreScrollable-->
+<input type="submit" name="supprimerElemPp" id="supprimerElemPp" class="lien"
+ value="Supprimer" title="supprimer les éléments cochés du presse-papiers" />
+<input type="submit" name="viderPp" id="viderPp" value="Vider"
+ title="vider complètement presse-papiers" class="lien" />
 </div><!-- cadrePressePapiers -->
 
 </form>

@@ -89,9 +89,9 @@ class CopierCollerFormation extends AfficheurPage
 		                        $this->aDonneesForm['ongletCourant'] : '';
 		
 		// init listes des formations pour onglets Copier et Coller
-		$this->oProjet->initFormations();
+		$this->oProjet->initFormations(NULL, FALSE);
 		$this->aoFormationsSrc = $this->oProjet->aoFormations;
-		$this->oProjet->initFormationsUtilisateur();
+		$this->oProjet->initFormationsUtilisateur(FALSE, TRUE, FALSE, FALSE);
 		$this->aoFormationsDest = $this->oProjet->aoFormations;
 	}
 	
@@ -103,6 +103,8 @@ class CopierCollerFormation extends AfficheurPage
 		// sélectionner la formation source: choisie, ou la 1ère de la liste
 		if (!empty($this->iIdFormationSrc))
 			$this->oFormationSrc = new CFormation($this->oProjet->oBdd, $this->iIdFormationSrc);
+		else if (!empty($this->oProjet->oFormationCourante))
+			$this->oFormationSrc = $this->oProjet->oFormationCourante;
 		else if (count($this->aoFormationsSrc) > 0)
 			$this->oFormationSrc = $this->aoFormationsSrc[0];
 		

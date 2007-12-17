@@ -731,18 +731,23 @@ class CProjet
 	 * 
 	 * @param	v_sRequeteSql	requête à exécuter pour initialiser les formations. Si \c null, utilise la requête
 	 * 							standard
+	 * @param	v_bOrdreNum		si \c true (défaut), les formations retournées sont classées par leur n°. Si \c false,
+	 * 							par ordre alphabétique selon leur nom
 	 * 
 	 * @return	le nombre de formations trouvées
 	 */
-	function initFormations($v_sRequeteSql = NULL)
+	function initFormations($v_sRequeteSql = NULL, $v_bOrdreNum = TRUE)
 	{
 		$iIdxForm = 0;
 		$this->aoFormations = array();
 		
 		if (empty($v_sRequeteSql))
-			$v_sRequeteSql = "SELECT Formation.* FROM Formation"
+			$v_sRequeteSql =
+				 " SELECT Formation.* FROM Formation"
 				." WHERE Formation.StatutForm <> '".STATUT_EFFACE."'"
-				." ORDER BY Formation.OrdreForm ASC";
+				.($v_bOrdreNum ? " ORDER BY Formation.OrdreForm ASC" : " ORDER BY Formation.NomForm ASC")
+				;
+			
 		$hResult = $this->oBdd->executerRequete($v_sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
@@ -769,20 +774,24 @@ class CProjet
 	 * 							enregistré (cookie) pour la session dans \c asInfosSession[SESSION_STATUT_UTILISATEUR], 
 	 * 							cette dernière étant utilisée si le paramètre est \c false.
 	 * @param	v_bDossierForms	si \c true, les formations sont celles du dossier de formations de l'utilisateur
+	 * @param	v_bOrdreNum		si \c true (défaut), les formations retournées sont classées par leur n°. Si \c false,
+	 * 							par ordre alphabétique selon leur nom
 	 * 
 	 * @return	le nombre de formations trouvées
 	 * 
 	 * @see		CFormation
 	 */
-	function initFormationsUtilisateur($v_bRechStricte = FALSE, $v_bStatutActuel = TRUE, $v_bDossierForms = FALSE)
+	function initFormationsUtilisateur($v_bRechStricte = FALSE, $v_bStatutActuel = TRUE, $v_bDossierForms = FALSE, $v_bOrdreNum = TRUE)
 	{
+		$sOrdre = $v_bOrdreNum ? " ORDER BY Formation.OrdreForm" : " ORDER BY Formation.NomForm";
+		
 		if (($iIdPers = $this->retIdUtilisateur()) > 0)
 		{
 			if ($this->verifPermission("PERM_MOD_TOUTES_SESSIONS"))
 			{
 				$sRequeteSql = "SELECT Formation.* FROM Formation"
 					." WHERE Formation.StatutForm<>'".STATUT_EFFACE."'"
-					." ORDER BY Formation.OrdreForm ASC";
+					.$sOrdre;
 			}
 			else
 			{
@@ -839,7 +848,7 @@ class CProjet
 				$sRequeteSql .= " WHERE Formation.StatutForm NOT IN ('".STATUT_EFFACE."'"
 					.") AND ({$sConditions})"
 					." GROUP BY Formation.IdForm"
-					." ORDER BY Formation.OrdreForm ASC";
+					.$sOrdre;
 			}
 		}
 		else
@@ -853,7 +862,7 @@ class CProjet
 				." WHERE"
 				.($iIdForm > 0 ? " Formation.IdForm='{$iIdForm}'" : " Formation.StatutForm='".STATUT_OUVERT."'")
 				." AND Formation.VisiteurAutoriser='1'"
-				." ORDER BY Formation.OrdreForm ASC";
+				.$sOrdre;
 		}
 		
 		$iNbFormations = $this->initFormations($sRequeteSql);

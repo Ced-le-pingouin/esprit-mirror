@@ -20,9 +20,9 @@ body
 	background-color: rgb(175,165,138);
 	border-top: 1px solid black;
 	bottom: 0;
-	font-size: 0.8em;
-	height: 1.5em;
-	padding-top: 0.3em;
+	font-size: 0.85em;
+	height: 1.6em;
+	padding-top: 0.4em;
 	position: fixed;
 	text-align: right;
 	width: 100%;
@@ -32,6 +32,7 @@ body
 #barreBas a
 {
 	color: white;
+	font-weight: bold;
 	margin: 0 0.5em 0 0.25em;
 	padding: 0 0.5em;
 }
@@ -68,6 +69,18 @@ body
 	border: 1px solid rgb(152,180,226);
 }
 
+input.lien
+{
+	background-color: transparent;
+	border: none;
+	color: inherit;
+	font: inherit;
+}
+
+input.lien:hover
+{
+	cursor: pointer;
+}
 
 /*** Erreurs ***/
 .erreurs p

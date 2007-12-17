@@ -124,7 +124,7 @@ iframe { border: 2px inset; }
 /*curseurs???*/
 
 /*** pour "simuler" le position: fixed en IE6 ***/
-/* (nécessite htmt id="fixes", et un bloc #contenuPrincipal) */
+/* (nécessite html id="fixes", et un bloc #contenuPrincipal) */
 /* pas de barres de défilement */
 * html#fixes { overflow: hidden; }
 /* le body occupe toute la hauteur */

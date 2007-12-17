@@ -40,12 +40,12 @@ function ajouterOngletsCopierColler()
 	var copier = document.createElement("a");
 	copier.setAttribute("href", "#");
 	copier.onclick = afficherCadreCopier;
-	copier.appendChild(document.createTextNode("Copier"));
+	copier.appendChild(document.createTextNode("Copier de"));
 	
 	var coller = document.createElement("a");
 	coller.setAttribute("href", "#");
 	coller.onclick = afficherCadreColler;
-	coller.appendChild(document.createTextNode("Coller"));
+	coller.appendChild(document.createTextNode("Coller vers"));
 	
 	var liCopier = document.createElement("li");
 	liCopier.setAttribute("id", "ongletCopier");
@@ -65,10 +65,23 @@ function ajouterOngletsCopierColler()
 	cadreOnglets.parentNode.insertBefore(ul, cadreOnglets);	
 }
 
+function enleverBoutonsChoisir()
+{
+	// les boutons Choisir disparaissent
+	document.getElementsByName("changerFormationSrc")[0].style.display = "none";
+	document.getElementsByName("changerFormationDest")[0].style.display = "none";
+	// tout changement dans leur liste associée est automatiquement soumis
+	document.getElementById("idFormationSrcId").onchange = function()
+	 { document.getElementsByName("changerFormationSrc")[0].click(); };
+	document.getElementById("idFormationDestId").onchange = function()
+	 { document.getElementsByName("changerFormationDest")[0].click(); };
+}
+
 function initPage()
 {
 	ajouterOngletsCopierColler();
 	restaurerOngletCourant();
+	enleverBoutonsChoisir();
 }
 
 var copierCollerForm_ancienOnLoad = window.onload || new Function();
