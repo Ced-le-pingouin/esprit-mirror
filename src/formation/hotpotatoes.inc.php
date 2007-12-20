@@ -10,7 +10,7 @@ function hotpot_patch_file( $nomFichier, $IdHotpot ) {
 	global $oProjet;
 	$html = file_get_contents($nomFichier);
 	// modification du source HotPot
-	$insertJS = <<<ENDOFTEXT
+	$insertJS1 = <<<ENDOFTEXT
 // CODE ESPRIT : DEBUT
 var xhr = null; 
 if (window.XMLHttpRequest) // Firefox et autres
@@ -27,14 +27,22 @@ else if (window.ActiveXObject) { // Internet Explorer
 }
 
 function ShowMessage(Feedback){
-	CheckFinished();
+	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&DateDebut="+HPNStartTime,true);
+	xhr.send(null);
+// CODE ESPRIT : FIN
+ENDOFTEXT;
+	$insertJS2 = <<<ENDOFTEXT
+function Finish(){
 	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&Fini="+(Finished?"1":"0")+"&DateDebut="+HPNStartTime,true);
 	xhr.send(null);
 // CODE ESPRIT : FIN
 ENDOFTEXT;
 	$html = str_replace(
-			"function ShowMessage(Feedback){",
-			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
+			array("function ShowMessage(Feedback){", "function Finish(){"),
+			array(
+				sprintf($insertJS1, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
+				sprintf($insertJS2, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
+				  ),
 			$html );
 	print $html;
 	exit();

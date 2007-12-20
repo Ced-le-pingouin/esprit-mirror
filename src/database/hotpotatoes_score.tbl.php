@@ -72,12 +72,21 @@ class CHotpotatoesScore
 	 */
 	function enregistrer()
 	{
-		$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
-			." SET IdHotpot={$this->oEnregBdd->IdHotpot}"
-			.", IdPers={$this->oEnregBdd->IdPers}"
-			.", Fini={$this->oEnregBdd->Fini}"
-			.", Score={$this->oEnregBdd->Score}"
-			.", DateDebut='{$this->oEnregBdd->DateDebut}'";
+		if ($this->oEnregBdd->Fini) {
+			$sRequeteSql = "UPDATE Hotpotatoes_Score"
+				." SET Fini=1"
+				." WHERE IdHotpot={$this->oEnregBdd->IdHotpot}"
+				."  AND IdPers={$this->oEnregBdd->IdPers}"
+				."  AND DateDebut='{$this->oEnregBdd->DateDebut}'"
+				." ORDER BY DateModif DESC LIMIT 1";
+		} else {
+			$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
+				." SET IdHotpot={$this->oEnregBdd->IdHotpot}"
+				.", IdPers={$this->oEnregBdd->IdPers}"
+				.", Fini=0"
+				.", Score={$this->oEnregBdd->Score}"
+				.", DateDebut='{$this->oEnregBdd->DateDebut}'";
+		}
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 
