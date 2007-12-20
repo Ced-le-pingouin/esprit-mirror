@@ -100,6 +100,24 @@ class CHotpotatoesScore
 			);
 	}
 
+	/**
+	 * Calcule la durée de réalisation du score
+	 */
+	function retDuree()
+	{
+		if (empty($this->oEnregBdd->DateDebut) || empty($this->oEnregBdd->DateModif))
+			return FALSE;
+		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateDebut);
+        $asDate = explode("-",$sDate);
+        $asTime = explode(":",$sTime);
+		$time1 = mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]);
+		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateModif);
+        $asDate = explode("-",$sDate);
+        $asTime = explode(":",$sTime);
+		$time2 = mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]);
+		return strftime("%M min. %S s.",$time2-$time1);
+	}
+
 	/** @name Fonctions de définition des champs pour cet exercice */
 	//@{
 	function defIdHotpot( $v_iIdHotpot ) { $this->oEnregBdd->IdHotpot = $v_iIdHotpot; }
