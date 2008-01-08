@@ -314,17 +314,13 @@ foreach ($oModule->aoRubriques as $oRubrique)
 	{
 		$aoBlocs["nom"]->beginLoop();
 		$aoBlocs["modalite"]->beginLoop();
-		foreach ($oRubrique->aoHotpotatoes as $oHotpotatoes)
+		foreach ($oRubrique->aoHotpotatoes as $oSousActiv)
 		{
 			$abModalites[$iCol] = 'Hotpotatoes';
-			list( , , , $iIdHotpot) = explode(";",$oHotpotatoes->retDonnees());
-			if (ctype_digit($iIdHotpot))
-			{
-				$oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
-			}
+			list( , , , $iIdHotpot) = explode(";",$oSousActiv->retDonnees());
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",emb_htmlentities($oHotpotatoes->retTitre()));
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",emb_htmlentities($oSousActiv->retNom()));
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
 			$iCol++;
