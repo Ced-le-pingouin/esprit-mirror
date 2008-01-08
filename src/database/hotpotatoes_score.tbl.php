@@ -85,7 +85,8 @@ class CHotpotatoesScore
 				.", IdPers={$this->oEnregBdd->IdPers}"
 				.", Fini=0"
 				.", Score={$this->oEnregBdd->Score}"
-				.", DateDebut='{$this->oEnregBdd->DateDebut}'";
+				.", DateDebut='{$this->oEnregBdd->DateDebut}'"
+				.", DateFin='{$this->oEnregBdd->DateFin}'";
 		}
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
@@ -103,19 +104,35 @@ class CHotpotatoesScore
 	/**
 	 * Calcule la durée de réalisation du score
 	 */
-	function retDuree()
+	function retDuree( $fr=TRUE )
 	{
-		if (empty($this->oEnregBdd->DateDebut) || empty($this->oEnregBdd->DateModif))
+		if (empty($this->oEnregBdd->DateDebut) || empty($this->oEnregBdd->DateFin))
 			return FALSE;
 		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateDebut);
         $asDate = explode("-",$sDate);
         $asTime = explode(":",$sTime);
 		$time1 = mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]);
-		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateModif);
+		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateFin);
         $asDate = explode("-",$sDate);
         $asTime = explode(":",$sTime);
 		$time2 = mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]);
-		return strftime("%M min. %S s.",$time2-$time1);
+		if ($fr)
+			return strftime("%M min. %S s.",$time2-$time1);
+		else
+			return ($time2-$time1);
+	}
+
+	/**
+	 * Calcule l'heure du début de l'exercice (sans utiliser la date utilisateur, peu fiable)
+	 */
+	function retDateInitiale() {
+		if (empty($this->oEnregBdd->DateModif) || ($this->retDuree===FALSE))
+			return FALSE;
+		list($sDate,$sTime) = explode(" ",$this->oEnregBdd->DateModif);
+        $asDate = explode("-",$sDate);
+        $asTime = explode(":",$sTime);
+		$time1 = mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]);
+		return ($time1 - $this->retDuree(FALSE));
 	}
 
 	/** @name Fonctions de définition des champs pour cet exercice */
@@ -125,6 +142,7 @@ class CHotpotatoesScore
 	function defFini( $arg ) { $this->oEnregBdd->Fini = $arg; }
 	function defScore( $v_iScore ) { $this->oEnregBdd->Score = $v_iScore; }
 	function defDateDebut( $arg ) { $this->oEnregBdd->DateDebut = $arg; }
+	function defDateFin( $arg ) { $this->oEnregBdd->DateFin = $arg; }
 	//@}
 	
 	/** @name Fonctions de lecture des champs pour ce formulaire */
@@ -135,6 +153,7 @@ class CHotpotatoesScore
 	function retFini() { return $this->oEnregBdd->Fini; }
 	function retScore() { return (isset($this->oEnregBdd->Score) ? $this->oEnregBdd->Score : NULL); }
 	function retDateDebut() { return $this->oEnregBdd->DateDebut; }
+	function retDateFin() { return $this->oEnregBdd->DateFin; }
 	function retDateModif() { return $this->oEnregBdd->DateModif; }
 	//@}
 }

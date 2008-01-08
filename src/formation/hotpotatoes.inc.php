@@ -27,13 +27,13 @@ else if (window.ActiveXObject) { // Internet Explorer
 }
 
 function ShowMessage(Feedback){
-	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&DateDebut="+HPNStartTime,true);
+	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&DateDebut="+HPNStartTime+"&DateFin="+(new Date()).getTime(),true);
 	xhr.send(null);
 // CODE ESPRIT : FIN
 ENDOFTEXT;
 	$insertJS2 = <<<ENDOFTEXT
 function Finish(){
-	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&Fini="+(Finished?"1":"0")+"&DateDebut="+HPNStartTime,true);
+	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&Fini="+(Finished?"1":"0")+"&DateDebut="+HPNStartTime+"&DateFin="+(new Date()).getTime(),true);
 	xhr.send(null);
 // CODE ESPRIT : FIN
 ENDOFTEXT;

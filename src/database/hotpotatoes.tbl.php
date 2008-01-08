@@ -89,7 +89,7 @@ class CHotpotatoes
 		}
 		$sRequeteSql = "SELECT HS.* FROM Hotpotatoes_Score HS"
 			." JOIN "
-				."(SELECT IdHotpot, IdPers, MAX(DateModif) AS MDM FROM Hotpotatoes_Score GROUP BY IdHotpot,IdPers ) T1"
+				."(SELECT IdHotpot, IdPers, MAX(DateModif) AS MDM FROM Hotpotatoes_Score WHERE Fini=1 GROUP BY IdHotpot,IdPers ) T1"
 				." ON (HS.DateModif=T1.MDM AND T1.IdHotpot=HS.IdHotpot)"
 			." WHERE HS.IdHotpot={$this->oEnregBdd->IdHotpot} AND HS.IdPers IN ($ids)"
 			." ORDER BY IdHotpot, IdPers";
