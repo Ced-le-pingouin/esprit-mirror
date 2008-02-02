@@ -4,17 +4,17 @@
  id="fixes">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Copier/Coller dans les formations</title>
+<title>Copier/coller</title>
 <link rel="stylesheet" type="text/css" 
  href="theme://styles/CopierCollerFormation.css" />
+<script type="text/javascript" src="theme://scripts/fenetreErreurs.js"></script>
 <script type="text/javascript" src="theme://scripts/insFermer.js"></script>
 <script type="text/javascript" src="CopierCollerFormation.js"></script>
 </head>
 <body>
-
 <div id="contenuPrincipal">
 
-<div class="erreurs">[erreurs+][erreurs-]</div>
+<div class="erreurs" id="erreurs">[erreurs+][erreurs-]</div>
 
 [pasErreur+]
 <div id="cadreOnglets">
@@ -45,6 +45,11 @@
 </table></div><!--cadreScrollable-->
 <input type="submit" name="copier" id="copier" value="Copier" class="lien"
  title="copier les éléments cochés vers le presse-papiers" />
+<input type="submit" name="collerDesactive" id="collerDesactive"
+ value="Coller (après)" class="lienDesactive" disabled="disabled" />
+<sup class="renvoi">*</sup>
+<input type="submit" name="supprimerCopier" id="supprimerCopier"
+ value="Supprimer" class="lienDesactive" disabled="disabled" />
 </div><!--cadreCopier-->
 
 <div id="cadreColler">
@@ -68,8 +73,15 @@
     </td>
   </tr>[formDest_branche-]
 </table></div><!--cadreScrollable-->
-<input type="submit" name="coller" id="coller" value="Coller" class="lien"
+<input type="submit" name="copierDesactive" id="copierDesactive"
+ value="Copier" class="lienDesactive" disabled="disabled" />
+<input type="submit" name="coller" id="coller" value="Coller (après)" class="lien"
  title="coller les éléments sélectionnés du presse-papiers vers la formation cible" />
+<sup class="renvoi">*</sup>
+<input type="submit" name="supprimerColler" id="supprimerColler"
+ value="Supprimer" class="lien" title="Supprimer l'élément sélectionné" />
+<p class="renvoi">(*) Au niveau approprié (un cours après un cours, une unité 
+après une unité, etc.)</p>
 </div><!--cadreColler-->
 
 <div id="cadrePressePapiers">

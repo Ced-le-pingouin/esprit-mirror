@@ -15,7 +15,7 @@ body
 }
 
 /*** designs avec logos, barres etc. en position fixed ***/
-#barreBas
+#barreBas, .barreBas2
 {
 	background-color: rgb(175,165,138);
 	border-top: 1px solid black;
@@ -27,9 +27,12 @@ body
 	text-align: right;
 	width: 100%;
 }
-* html #barreBas { position: absolute; bottom: -1px; right: 17px; }
+.barreBas2 { position: static; }
 
-#barreBas a
+* html #barreBas
+{ position: absolute; bottom: -1px; right: 17px; }
+
+#barreBas a, .barreBas2 a
 {
 	color: white;
 	font-weight: bold;
@@ -37,7 +40,7 @@ body
 	padding: 0 0.5em;
 }
 
-#barreBas a:hover { text-decoration: underline; }
+#barreBas a:hover, .barreBas2 a:hover { text-decoration: underline; }
 
 /*** barre d'outils et boutons ***/
 /*** boutons ***/
@@ -69,18 +72,18 @@ body
 	border: 1px solid rgb(152,180,226);
 }
 
-input.lien
+input.lien, input.lienDesactive
 {
 	background-color: transparent;
 	border: none;
 	color: inherit;
 	font: inherit;
 }
+input.lien:hover { cursor: pointer; }
 
-input.lien:hover
-{
-	cursor: pointer;
-}
+input.lienDesactive { color: rgb(133,135,129); }
+input.lienDesactive:hover { cursor: default; }
+
 
 /*** Erreurs ***/
 .erreurs p
@@ -90,5 +93,19 @@ input.lien:hover
 	margin: 0.5em auto;
 	padding: 1em;
 	text-align: center;
+	width: 60%;
+}
+
+.erreursFenetre
+{
+	border: 3px solid rgb(100,100,100);
+	background-color: rgb(231,225,212);
+	color: red;
+	font-weight: bold;
+	left: 20%;
+	padding: 0;
+	position: fixed;
+	text-align: center;
+	top: 20%;
 	width: 60%;
 }

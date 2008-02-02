@@ -284,7 +284,7 @@ class CopierCollerFormation extends AfficheurPage
 	}
 	
 	/**
-	 * Affiche la panneau Contenu du presse-papiers
+	 * Affiche le panneau Contenu du presse-papiers
 	 */
 	function afficherPressePapiers()
 	{

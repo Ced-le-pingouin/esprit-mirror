@@ -18,27 +18,26 @@ h3
 /*** onglets et cadres rattachés ***/
 ul.onglets
 {
-	margin: 0.5em 0 -1px 2em;
-	overflow: hidden;
-	/*car les onglets (li) on une marge de -1px => bord du 1er invisible sinon*/
-	padding: 0 0 0 1px;
+	margin: 0.5em 0 -1px 3%; /* modifier marges par défaut des ul et -1 pour le faire descendre devant le panneau */
+	overflow: hidden; /* force l'élément à contenir entièrement les flottants */
+	padding: 0; /* annuler padding par défaut des ul */
+	position: relative; /* IE: onglets au-dessus du panneau et non derrière */
 }
 
 ul.onglets li
 {
-	background: white url(../onglet/onglet-1x2.gif) repeat-x top left;
-	border: 1px solid rgb(222,230,230);
+	background: white url(../images/onglet-gauche.gif) no-repeat top left;
 	float: left;
 	list-style-type: none;
-	margin: 0.15em 0 -2px -1px;
-	padding: 0.2em 0.6em;
+	margin-right: 2px;
+	padding-left: 7px; /* taille minimum = largeur du bord gauche de l'onglet */
 }
 
-ul.onglets li.actif
+ul.onglets li a
 {
-	font-size: 1.1em;
-	font-weight: bold;
-	margin-top: 0;
+	background: url(../images/onglet-droit.gif) no-repeat top right;
+	display: block; /* pour que les padding/height/bg/etc. fonctionnent */
+	padding-right: 7px; /* taille minimum = largeur du bord droit de l'onglet */
 }
 
 #cadreOnglets
@@ -47,6 +46,38 @@ ul.onglets li.actif
 	margin: 0 auto;
 	padding: 0 0.5em;
 	width: 95%;
+}
+
+/*
+Parties des onglets modifiées en fonction de l'onglet sélectionné ou pas.
+   
+la somme des valeurs pour les border/margin/padding verticaux des "li"/"a"
+"non sélectionnés" doit égaler la somme des paddings top/bottom du "a" 
+"sélectionné", sinon un des onglets sera décalé par rapport à l'autre
+(pour le moment, c'est 8: 1 + 5 + 1 + 1 = 4 + 4)
+*/
+/* non sélectionné */
+ul.onglets li
+{
+	border-bottom: 1px solid rgb(222,230,230);
+	margin-top: 5px;
+}
+ul.onglets li a
+{
+	padding-top: 1px; /* paddings modifiés séparément car right déjà défini */
+	padding-bottom: 1px;
+}
+/* sélectionné */
+ul.onglets li.actif
+{
+	margin-top: 0;
+	border-bottom: none;
+}
+ul.onglets li.actif a
+{
+	font-weight: bold;
+	padding-top: 4px; /* paddings modifiés séparément car right déjà défini */
+	padding-bottom: 4px;
 }
 
 
@@ -59,11 +90,14 @@ html, body, #contenuPrincipal { height: 99%; }
 /* ensuite, on peut définir un taille en % pour chaque zone */
 #cadreCopier, #cadreColler { height: 58%; }
 #cadrePressePapiers { height: 38%; }
-.cadreScrollable { height: 75%; overflow: auto; } 
+.cadreScrollable { height: 75%; overflow: auto; }
+#cadrePressePapiers .cadreScrollable { height: 70%; } /* 75 trop gd pr pp */
+/* ce qui dépasse est caché pour certains panneaux (si fenêtre trop petite) */
+#cadreCopier, #cadreColler, #cadrePressePapiers { overflow: hidden; }
 
 
 /*** caractéristiques générales des différentes zones ***/
-/* titres */
+/* titres, liens par défaut */
 #cadreCopier h3
 {
 	background: url(../images/copier_pp.gif) no-repeat center left;
@@ -103,9 +137,22 @@ h3 select { color: black; font-weight: bold; width: 50%; }
 #cadreCopier td, #cadreColler td { border-bottom: 1px dashed rgb(180,180,180); }
 #cadrePressePapiers td { border-bottom: 1px solid rgb(180,180,180); }
 
-/* boutons/liens */
-input.lien { font-weight: bold; }
-#supprimerElemPp, #viderPp { color: rgb(125,63,65); }
+/* boutons/liens/renvois-notes bas de page */
+input[type=submit], input[type=button]
+{
+	margin: 0;
+	padding: 0.25em 0 0.25em 1em;
+	overflow: visible; /* hack débile pour qu'ie 6/7 accepte le padding */
+}
+input.lien, input.lienDesactive { font-weight: bold; }
+#supprimerColler, #supprimerElemPp, #viderPp
+{
+	color: rgb(125,63,65);
+}
+
+.renvoi { color: rgb(99,117,178); }
+p.renvoi { margin: 3px 0 0; padding: 0; }
+#cadreCopier .renvoi { visibility: hidden; } /* renvoi invisible ds Copier */
 
 /*** arbre de la formation ***/
 .niv2 { padding-left: 10px; }
