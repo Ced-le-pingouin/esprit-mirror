@@ -112,9 +112,11 @@ $oBlock->afficher();
 // Liens
 $oBlock = new TPL_Block("BLOCK_LIENS",$oTpl);
 if ($_REQUEST['onglet']==='liens') {
+	if (($aoLiens = $oAccueil->getLiens()) == NULL)
+		 $aoLiens = array();
 	$oBlock2 = new TPL_Block("BLOCK_LOOP_LIENS",$oBlock);
 	$oBlock2->beginLoop();
-	foreach ($oAccueil->getLiens() as $lien) {
+	foreach ($aoLiens as $lien) {
 		$oBlock2->nextLoop();
 		$oBlock2->remplacer("{lien_id}",emb_htmlentities($lien->Id));
 		$oBlock2->remplacer("{lien_text}",emb_htmlentities($lien->Texte));
