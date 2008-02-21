@@ -267,7 +267,8 @@ class CopierCollerFormation extends AfficheurPage
 				$tplBranche->nextLoop(TRUE, $iNiv);
 
 				$idCompose = $branche->retTypeNiveau().'_'.$branche->retId();
-
+				
+				$tplBranche->remplacer('{branche.numNiv}', $branche->retTypeNiveau());
 				$tplBranche->remplacer('{branche.symbole}', $branche->retSymbole());
 				$tplBranche->remplacer('{branche.id}', $donnees[0].'_'.$idCompose);
 				$tplBranche->remplacer('{branche.val}', $idCompose);

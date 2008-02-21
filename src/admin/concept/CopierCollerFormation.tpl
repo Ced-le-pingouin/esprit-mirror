@@ -35,7 +35,7 @@
 </h3>
 <div class="cadreScrollable">
 [formSrc_branche+]<ul>
-  [formSrc_branche_el+]<li>
+  [formSrc_branche_el+]<li class="niv{branche.numNiv}">
     <span>
     <em>{branche.symbole}</em>
   	<input type="checkbox" name="branchesSrcSel[]" id="{branche.id}"
@@ -68,7 +68,7 @@
 </h3>
 <div class="cadreScrollable">
 [formDest_branche+]<ul>
-  [formDest_branche_el+]<li>
+  [formDest_branche_el+]<li class="niv{branche.numNiv}">
     <span>
     <em>{branche.symbole}</em>
     <input type="radio" name="brancheDestSel" id="{branche.id}"
