@@ -130,18 +130,23 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Retourne le texte de l'intitulé avec son numéro d'ordre(optionnel)
+	 * @param	v_bAfficherNumOrdre	si \c true, retourne aussi le  n° d'ordre
+	 * 								après l'intitulé
+	 * @param	v_bPonctuation		si \c true, ajoute deux points après 
+	 * 								l'intitulé (et n° d'ordre éventuel)
 	 * 
-	 * @param	v_bAfficherNumOrdre si \c true(défaut) retourne aussi le numéro d'ordre
-	 * 
-	 * @return	le texte de l'intitulé
+	 * @return	l'intitulé de la rubrique avec éventuellement des infos 
+	 * 			supplémentaires
 	 */
-	function retTexteIntitule ($v_bAfficherNumOrdre=TRUE)
+	function retTexteIntitule($v_bAfficherNumOrdre = TRUE, $v_bPonctuation = FALSE)
 	{
 		$sTexteIntitule = $this->oIntitule->retNom();
 		
 		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0)
 				$sTexteIntitule .= "&nbsp;{$this->oEnregBdd->NumDepartIntitule}";
+		
+		if (strlen($sTexteIntitule) && $v_bPonctuation)
+			$sTexteIntitule .= ' :';
 		
 		return $sTexteIntitule;
 	}
@@ -999,6 +1004,12 @@ class CModule_Rubrique
 	{
 		return INTITULE_RUBRIQUE;
 	}
+	
+	/**
+	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
+	 * 			une simple abréviation) 
+	 */
+	function retSymbole() { return 'u'; }
 	
 	/**
 	 * Réinitialise l'objet \c oEnregBdd avec la rubrique courante

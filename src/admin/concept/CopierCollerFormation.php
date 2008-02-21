@@ -246,37 +246,40 @@ class CopierCollerFormation extends AfficheurPage
 			$tplListeFormations->afficher();
 			
 			// affichage des branches/nivaux (=contenu) de la formation active
-			$tplBranche = new TPL_Block("form{$donnees[0]}_branche", $this->tpl);
+			$tplBranche = new TPL_Block_ListeComposite("form{$donnees[0]}_branche", $this->tpl);
 			$tplBranche->beginLoop();
 			
 			$itrFormation = new IterateurRecursif(new IterateurElementFormation($donnees[2]),
 			                                      ITR_REC_PARENT_AVANT);
 			for ($i = 0; $itrFormation->estValide(); $i++)
 			{
-				$tplBranche->nextLoop();
 				if ($i > 0)
 				{
 					$branche = $itrFormation->courant();
+					$iNiv = $itrFormation->retNiveau() + 1;
 				}
 				else
 				{
 					$branche = $donnees[2];
-					if ($donnees[0] == 'Src')
-						$tplBranche->remplacer('<input ', '<input disabled="disabled" ');
+					$iNiv = 0;
 				}
+				
+				$tplBranche->nextLoop(TRUE, $iNiv);
+
 				$idCompose = $branche->retTypeNiveau().'_'.$branche->retId();
-				$tplBranche->remplacer('{branche.numNiv}', $branche->retTypeNiveau());
-				$tplBranche->remplacer('{branche.niv}', $branche->retTexteNiveau());
-				$tplBranche->remplacer('{branche.type}', $branche->retTypeNiveau() == TYPE_SOUS_ACTIVITE ? 
-				                                         $branche->retTexteType : '');
+
+				$tplBranche->remplacer('{branche.symbole}', $branche->retSymbole());
 				$tplBranche->remplacer('{branche.id}', $donnees[0].'_'.$idCompose);
 				$tplBranche->remplacer('{branche.val}', $idCompose);
+				$tplBranche->remplacer('{branche.intitule}', $branche->retTexteIntitule(TRUE, TRUE));
 				$tplBranche->remplacer('{branche.titre}', $branche->retNom());
 				
+				if ($donnees[0] == 'Src' && $iNiv == 0)
+					$tplBranche->remplacer('<input ', '<input disabled="disabled" ');
 				if ($donnees[0] == 'Dest' && $idCompose == $this->brancheDestSel)
-					$tplBranche->remplacer('<input ', '<input checked="checked"');
-					
-				if ($i > 0)
+					$tplBranche->remplacer('<input ', '<input checked="checked" ');
+				
+				if ($iNiv > 0)
 					$itrFormation->suiv();
 			}
 			$tplBranche->afficher();
@@ -299,11 +302,11 @@ class CopierCollerFormation extends AfficheurPage
 			$elem = ElementFormation::retElementFormation($this->oProjet->oBdd, $iTypeElem, $iIdElem);
 
 			$tplPressePapiers->nextLoop();
-			$tplPressePapiers->remplacer('{pp.niv}', $elem->retTexteNiveau());
-			$tplPressePapiers->remplacer('{pp.type}', $elem->retTypeNiveau() == TYPE_SOUS_ACTIVITE ? 
-			                                          $elem->retTexteType : '');
+			$tplPressePapiers->remplacer('{pp.numNiv}', $elem->retTypeNiveau());
+			$tplPressePapiers->remplacer('{pp.symbole}', $elem->retSymbole());
 			$tplPressePapiers->remplacer('{pp.id}', 'Pp_'.$idCompose);
 			$tplPressePapiers->remplacer('{pp.val}', $idCompose);
+			$tplPressePapiers->remplacer('{pp.intitule}', $elem->retTexteIntitule(TRUE, TRUE));
 			$tplPressePapiers->remplacer('{pp.titre}', $elem->retNom());
 			
 			if ($idCompose == $this->elemPpSel)

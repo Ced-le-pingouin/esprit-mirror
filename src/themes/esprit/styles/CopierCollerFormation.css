@@ -154,8 +154,49 @@ input.lien, input.lienDesactive { font-weight: bold; }
 p.renvoi { margin: 3px 0 0; padding: 0; }
 #cadreCopier .renvoi { visibility: hidden; } /* renvoi invisible ds Copier */
 
-/*** arbre de la formation ***/
-.niv2 { padding-left: 10px; }
-.niv3, .niv4 { padding-left: 20px; }
-.niv5 { padding-left: 30px; }
-.niv6 { padding-left: 40px; }
+/*** arborescence formation: différenciation des niveaux ***/
+.cadreScrollable ul { padding: 0 0 0 20px; }
+.cadreScrollable li { list-style-type: none; }
+
+/* formation */
+.cadreScrollable li strong, .niv1 strong { color: black; font-style: italic; }
+.cadreScrollable li span, .niv1 span
+{
+	color: rgb(93,96,65);
+	display: block;
+	font-weight: bold;
+	padding: 5px 0;
+}
+	/* module/(par)cours */
+	.cadreScrollable li li em, .niv2 em { color: rgb(227,170,68); padding: 0 0.5em; }
+	.cadreScrollable li li strong, .niv2 strong { color: rgb(69,69,66); font-style: normal; }
+	.cadreScrollable li li span, .niv2 span
+	{
+		background-color: rgb(238,234,221);
+		border-bottom: 1px solid rgb(219,211,197);
+		font-weight: normal;
+	}
+		/* rubrique/unité */
+		.cadreScrollable li li li em, .niv3 em { color: rgb(163,31,58); }
+		.cadreScrollable li li li strong, .niv3 strong { color: rgb(108,108,108); }
+		.cadreScrollable li li li span, .niv3 span
+		{
+			background-color: transparent;
+			border-bottom: 1px dashed rgb(180,180,180);
+			color: rgb(126,129,107);
+		}
+			/* activité/groupe d'actions */
+			.cadreScrollable li li li li em, .niv5 em { color: rgb(160,160,160); }
+			.cadreScrollable li li li li span, .niv5 span { color: rgb(126,129,107); }
+				/* sous-activité/action */
+				.cadreScrollable li li li li li em, .niv6 em { color: rgb(171,197,82); }
+				.cadreScrollable li li li li li strong, .niv6 strong { color: black; }
+				.cadreScrollable li li li li span, .niv6 span { color: rgb(64,68,35); }
+
+.niv1 span, .niv2 span, .niv3 span, .niv5 span, .niv6 span
+{
+	background-color: transparent;
+	border-bottom: 1px solid rgb(180,180,180);
+	padding-left: 0;
+}
+.niv1 em, .niv2 em, .niv3 em, .niv5 em, .niv6 em { float: left; width: 2em; }

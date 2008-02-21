@@ -626,14 +626,28 @@ class CModule
 		return ($v_bHtmlEntities ? emb_htmlentities($sNomComplet) : $sNomComplet);
 	}
 	
-	function retTexteIntitule ($v_bAfficherNumOrdre=TRUE)
+	/**
+	 * @param	v_bAfficherNumOrdre	si \c true, retourne aussi le  n° d'ordre
+	 * 								après l'intitulé
+	 * @param	v_bPonctuation		si \c true, ajoute deux points après 
+	 * 								l'intitulé (et n° d'ordre éventuel)
+	 * 
+	 * @return	l'intitulé du module avec éventuellement des infos 
+	 * 			supplémentaires
+	 */
+	function retTexteIntitule($v_bAfficherNumOrdre = TRUE, $v_bPonctuation = FALSE)
 	{
 		$sNomIntitule = $this->oIntitule->retNom();
 		
-		return (strlen($sNomIntitule) > 0 ? "{$sNomIntitule}" : NULL)
+		$sTexteIntitule = (strlen($sNomIntitule)? $sNomIntitule : NULL)
 			.($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0
 				? "&nbsp;{$this->oEnregBdd->NumDepartIntitule}"
 				: NULL);
+				
+		if (strlen($sTexteIntitule) && $v_bPonctuation)
+			$sTexteIntitule .= ' :';
+		
+		return $sTexteIntitule;
 	}
 	
 	function retDescr ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->DescrMod) : $this->oEnregBdd->DescrMod); }
@@ -1140,6 +1154,12 @@ class CModule
 	{
 		return INTITULE_MODULE;
 	}
+	
+	/**
+	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
+	 * 			une simple abréviation) 
+	 */
+	function retSymbole() { return 'c'; }
 	
 	/**
 	 * Retourne un tableau à 2 dimensions contenant l'intitulé d'un module

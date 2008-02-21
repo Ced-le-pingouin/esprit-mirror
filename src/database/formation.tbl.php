@@ -1187,6 +1187,32 @@ class CFormation
 	}
 	
 	/**
+	 * @param	v_bAfficherNumOrdre	si \c true, retourne aussi le n° d'ordre 
+	 * 								après l'intitulé (pour l'instant ce 
+	 * 								paramètre est présent pour compatibilité 
+	 * 								avec la méthode équivalente des autres 
+	 * 								niveaux de formation, mais le n° n'est 
+	 * 								jamais affiché)
+	 * @param	v_bPonctuation		si \c true, ajoute deux points après 
+	 * 								l'intitulé (et n° d'ordre éventuel)
+	 * 
+	 * @return	l'intitulé de la formation (ici égal à \p retTexteNiveau()) avec
+	 * 			éventuellement des infos supplémentaires
+	 */
+	function retTexteIntitule($v_bAfficherNumOrdre = FALSE, $v_bPonctuation = FALSE)
+	{
+		$sNumOrdre = ''; //$v_bAfficherNumOrdre?' '.$this->retNumOrdre():'';
+		$sPonctuation = $v_bPonctuation?' :':'';
+		return $this->retTexteNiveau().$sNumOrdre.$sPonctuation;
+	}
+	
+	/**
+	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
+	 * 			une simple abréviation) 
+	 */
+	function retSymbole() { return ''; }
+	
+	/**
 	 * Retourne le nom par défaut d'une formation
 	 * 
 	 * @return	le nom par défaut d'une formation
