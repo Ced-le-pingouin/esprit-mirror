@@ -89,11 +89,11 @@ class CHotpotatoes
 		}
 		$sRequeteSql = "SELECT HS.* FROM Hotpotatoes_Score HS"
 			." JOIN "
-				."(SELECT IdHotpot, IdPers, MAX(DateModif) AS MDM FROM Hotpotatoes_Score WHERE Fini=1 GROUP BY IdHotpot,IdPers ) T1"
+				."(SELECT IdHotpot, IdPers, MAX(DateModif) AS MDM FROM Hotpotatoes_Score GROUP BY IdHotpot,IdPers ) T1"
 				." ON (HS.DateModif=T1.MDM AND T1.IdHotpot=HS.IdHotpot)"
 			." WHERE HS.IdHotpot={$this->oEnregBdd->IdHotpot} AND HS.IdPers IN ($ids)"
 			." ORDER BY IdHotpot, IdPers";
-		$this->oBdd->executerRequete($sRequeteSql);
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		if (is_array($etudiants)) {
 			$scores = array();
 			$i = 0;
@@ -123,7 +123,7 @@ class CHotpotatoes
 		$sRequeteSql = "SELECT * FROM Hotpotatoes_Score"
 			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot} AND IdPers=".$IdPers
 			 ." ORDER BY DateModif ASC";
-		$this->oBdd->executerRequete($sRequeteSql);
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$scores = array();
 		$i = 0;
 		while ($row = $this->oBdd->retEnregSuiv($hResult)) {
@@ -132,6 +132,44 @@ class CHotpotatoes
 			$i++;
 		}
 		return $scores;
+	}
+
+	/**
+	 * Récupère la liste des étudiants ayant répondu
+	 *
+	 * @return	Tableau d'objets CPersonne
+	 */
+	function etudiants( )
+	{
+		$sRequeteSql = "SELECT DISTINCT Hotpotatoes_Score.IdPers FROM Hotpotatoes_Score"
+			 ." JOIN Personne USING (IdPers)"
+			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot}"
+		     ." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		$etudiants = array();
+		while ($row = $this->oBdd->retEnregSuiv($hResult)) {
+			$etudiants[] = new CPersonne($this->oBdd,$row->IdPers);
+		}
+		return $etudiants;
+	}
+
+	/**
+	 * Récupère le nombre max d'essais pour un exo
+	 *
+	 * @return	Entier
+	 */
+	function retMaxEssais( )
+	{
+		$sRequeteSql = "SELECT count(*) AS num FROM Hotpotatoes_Score"
+			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot}"
+		     ." GROUP BY IdPers";
+		$max = 0;
+		$hResult = $this->oBdd->executerRequete($sRequeteSql);
+		while ($row = $this->oBdd->retEnregSuiv($hResult)) {
+			if ($row->num > $max)
+				$max = $row->num;
+		}
+		return $max;
 	}
 
 	/**

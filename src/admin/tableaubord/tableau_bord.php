@@ -287,7 +287,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer(
 				"{formulaire.modalite}",
-				retTexteModalite($oFormulaire->oEnregBdd->type,$abModalites[$iCol])
+//				retTexteModalite($oFormulaire->oEnregBdd->type,$abModalites[$iCol])
+				retTexteModalite("AEL",$abModalites[$iCol])
 				);
 			
 			$iCol++;
@@ -320,7 +321,11 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			list( , , , $iIdHotpot) = explode(";",$oSousActiv->retDonnees());
 			$aoBlocs["nom"]->nextLoop();
 			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
-			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",emb_htmlentities($oSousActiv->retNom()));
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",
+				"<a href=\"javascript: PopupCenter('tableau_scores_hotpot.php?IdHotpot=$iIdHotpot&IdSousActiv=".$oSousActiv->retId()."','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">"
+				.$oSousActiv->retNom(true)
+				."</a>"
+				);
 			$aoBlocs["modalite"]->nextLoop();
 			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
 			$iCol++;

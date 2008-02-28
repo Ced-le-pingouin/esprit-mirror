@@ -27,17 +27,16 @@ if (empty($oHotpotScores)) {
 ?>
 <table border="1">
 	<thead>
-		<tr><th>Date de début de l'exercice</th><th>Durée</th><th>Exercice fini</th><th>Score</th></tr>
+		<tr><th>Date de début de l'exercice</th><th>Durée</th><th>Score</th></tr>
 	</thead>
 	<tbody>
 <?php
 $derDate = 0;
 foreach ($oHotpotScores as $oScore) {
 	$suite = ($oScore->retDateDebut()===$derDate ? true : false);
-	echo '<tr class="' .($oScore->retFini() ? 'fini' : 'inter') . ($suite?' suite':'') .'">'
+	echo '<tr>'
 		.'<td class="date">'.( $suite ? '' : date('d/m/Y H:i',$oScore->retDateInitiale()) ).'</td>'
 		.'<td>'.$oScore->retDuree().'</td>'
-		.'<td>'.($oScore->retFini() ? 'Fini' : "Intermédiaire").'</td>'
 		.'<td class="score">'.$oScore->retScore().' %</td>'
 		.'</tr>';
 	$derDate = $oScore->retDateDebut();

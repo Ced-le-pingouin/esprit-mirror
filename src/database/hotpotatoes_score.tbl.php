@@ -72,22 +72,12 @@ class CHotpotatoesScore
 	 */
 	function enregistrer()
 	{
-		if ($this->oEnregBdd->Fini) {
-			$sRequeteSql = "UPDATE Hotpotatoes_Score"
-				." SET Fini=1"
-				." WHERE IdHotpot={$this->oEnregBdd->IdHotpot}"
-				."  AND IdPers={$this->oEnregBdd->IdPers}"
-				."  AND DateDebut='{$this->oEnregBdd->DateDebut}'"
-				." ORDER BY DateModif DESC LIMIT 1";
-		} else {
-			$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
+		$sRequeteSql = "INSERT INTO Hotpotatoes_Score"
 				." SET IdHotpot={$this->oEnregBdd->IdHotpot}"
 				.", IdPers={$this->oEnregBdd->IdPers}"
-				.", Fini=0"
 				.", Score={$this->oEnregBdd->Score}"
 				.", DateDebut='{$this->oEnregBdd->DateDebut}'"
 				.", DateFin='{$this->oEnregBdd->DateFin}'";
-		}
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 
@@ -135,22 +125,20 @@ class CHotpotatoesScore
 		return ($time1 - $this->retDuree(FALSE));
 	}
 
-	/** @name Fonctions de définition des champs pour cet exercice */
+	/** @name Fonctions de définition des champs pour cet exercice Hotpot */
 	//@{
 	function defIdHotpot( $v_iIdHotpot ) { $this->oEnregBdd->IdHotpot = $v_iIdHotpot; }
 	function defIdPers( $v_iIdPers ) { $this->oEnregBdd->IdPers = $v_iIdPers; }
-	function defFini( $arg ) { $this->oEnregBdd->Fini = $arg; }
 	function defScore( $v_iScore ) { $this->oEnregBdd->Score = $v_iScore; }
 	function defDateDebut( $arg ) { $this->oEnregBdd->DateDebut = $arg; }
 	function defDateFin( $arg ) { $this->oEnregBdd->DateFin = $arg; }
 	//@}
 	
-	/** @name Fonctions de lecture des champs pour ce formulaire */
+	/** @name Fonctions de lecture des champs pour cet exercice Hotpot */
 	//@{
 	function retId() { return $this->oEnregBdd->IdHotpotScore; }
 	function retIdHotpot() { return $this->oEnregBdd->IdHotpot; }
 	function retIdPers() { return $this->oEnregBdd->IdPers; }
-	function retFini() { return $this->oEnregBdd->Fini; }
 	function retScore() { return (isset($this->oEnregBdd->Score) ? $this->oEnregBdd->Score : NULL); }
 	function retDateDebut() { return $this->oEnregBdd->DateDebut; }
 	function retDateFin() { return $this->oEnregBdd->DateFin; }
