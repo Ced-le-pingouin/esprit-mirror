@@ -75,6 +75,7 @@ $bPeutAfficherCollecticiels = ($url_iIdType == 0 | $url_iIdType == LIEN_COLLECTI
 $bPeutAfficherFormulaires   = ($url_iIdType == 0 | $url_iIdType == LIEN_FORMULAIRE);
 $bPeutAfficherForums        = ($url_iIdType == 0 | $url_iIdType == LIEN_FORUM);
 $bPeutAfficherChats         = ($url_iIdType == 0 | $url_iIdType == LIEN_CHAT);
+$bPeutAfficherHotpotatoes   = ($url_iIdType == 0 | $url_iIdType == LIEN_HOTPOTATOES);
 
 $bEstEtudiant = ($g_iIdStatutUtilisateur == STATUT_PERS_ETUDIANT);
 
@@ -310,7 +311,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		, "modalite" => new TPL_Block("BLOCK_HOTPOTATOES_MODALITE",$oBlocRubrique)
 	);
 	
-	if ($bPeutAfficherFormulaires
+	if ($bPeutAfficherHotpotatoes
 		&& ($iNbHotpotatoes = $oRubrique->initHotpotatoes($url_iIdModalite)) > 0)
 	{
 		$aoBlocs["nom"]->beginLoop();
@@ -659,7 +660,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		// {{{ Colonnes des exos Hotpotatoes (résultats des étudiants)
 		$oBloc = new TPL_Block("BLOCK_HOTPOTATOES",$oBlocTableauBord);
-		if ($bPeutAfficherFormulaires && $iNbHotpotatoes > 0)
+		if ($bPeutAfficherHotpotatoes && $iNbHotpotatoes > 0)
 		{
 			$oBloc->beginLoop();
 			foreach ($oRubrique->aoHotpotatoes as $oSousActiv)
