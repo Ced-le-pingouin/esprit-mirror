@@ -102,7 +102,7 @@ if ($NbrePers>0)
 		foreach ($aoScores as $aoScoresIndiv) {
 			$oBlocScores->nextLoop();
 			if (isset($aoScoresIndiv[$iEssai-1])) {
-				$oBlocScores->remplacer("{Score}",$aoScoresIndiv[$iEssai-1]->retScore()."<br /><em>"
+				$oBlocScores->remplacer("{Score}",$aoScoresIndiv[$iEssai-1]->retScore()."&nbsp;%<br /><em>"
 				                        .retDateFormatter($aoScoresIndiv[$iEssai-1]->retDateModif())."</em>");
 			} else {
 				$oBlocScores->remplacer("{Score}",'-');
