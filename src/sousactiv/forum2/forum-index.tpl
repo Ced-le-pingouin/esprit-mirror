@@ -17,7 +17,7 @@ function oFrmMessages() { return top.frames["MESSAGES"]; }
 function oFrmMessagesMenu() { return top.frames["MESSAGES_MENU"]; }
 //-->
 </script>
-<head>
+</head>
 <frameset rows="65,195,60,*,21,23" border="0" frameborder="0" framespacing="0">
 <frame name="TITRE" src="{frame['titre'].src}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
 <frame name="SUJETS" src="{frame['sujets'].src}" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" noresize="noresize">
