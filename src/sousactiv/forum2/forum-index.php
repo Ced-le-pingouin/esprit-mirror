@@ -73,7 +73,11 @@ $sParamsUrl = "?idForum={$url_iIdForum}"
 // ---------------------
 $oTpl = new Template("forum-index.tpl");
 
+$oTplFrameset = new Template(dir_theme("forum/forum-index.tpl", FALSE, TRUE));
+
 $oTpl->remplacer("{html.title}",emb_htmlentities($sTitrePrincipal));
+
+$oTpl->remplacer("{html.frameset}", $oTplFrameset->retDonnees());
 
 $oTpl->remplacer("{forum.id}",$url_iIdForum);
 
