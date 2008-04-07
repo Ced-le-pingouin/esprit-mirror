@@ -146,7 +146,7 @@ function envoyer(v_iIdStatut)
 <a href="javascript: retablir(); void(0);">R&eacute;tablir</a>
 &nbsp;</td>
 </tr>
-<table>
+</table>
 </div>
 
 

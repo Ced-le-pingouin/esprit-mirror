@@ -21,11 +21,11 @@ function changer(v_sName)
 </tr>
 <tr>
 <td><input type="checkbox" name="COPIER_SUJETS_FORUMS" value="1" onclick="changer(this.name)" checked></td>
-<td>&nbsp;&nbsp;Sujets des forums&nbsp;<sup><small>1</small></sub></td>
+<td>&nbsp;&nbsp;Sujets des forums&nbsp;<sup><small>1</small></sup></td>
 </tr>
 <tr>
 <td><input type="checkbox" name="COPIER_CHATS" value="1" onclick="changer(this.name)" checked></td>
-<td>&nbsp;&nbsp;Chats&nbsp;<sup><small>2</small></sub></td>
+<td>&nbsp;&nbsp;Chats&nbsp;<sup><small>2</small></sup></td>
 </tr>
 </table>
 </form>

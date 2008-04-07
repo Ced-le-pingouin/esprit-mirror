@@ -165,7 +165,7 @@ $oProjet->terminer();
 ?>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("trace.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
