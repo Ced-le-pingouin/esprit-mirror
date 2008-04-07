@@ -9,7 +9,7 @@ body { background: rgb(255,255,255) url('zone_cours-fond.gif') repeat-x fixed to
 #infos_utilisateur { cursor: help; }
 #prenom { text-transform: capitalize; }
 #nom { text-transform: uppercase; }
-#pseudo { text-transform: lowercase; }
+#pseudo { text-transform: none; }
 #statut { text-transform: none; }
 /* ''' */
 

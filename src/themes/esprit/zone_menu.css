@@ -1,4 +1,12 @@
-a { font-size: 9pt; font-weight: normal; }
+.description {
+background-color: rgb(251,249,238);
+border: rgb(174,163,141) none 1px;
+border-top-style: dashed;
+border-bottom-style: dashed;
+padding: 2em;
+font-size: 8pt;
+font-weight: normal;
+}
 a.forum { color: rgb(104,108,71); font-size: 9pt; font-weight: bold; }
 a.unite { font-size: 10pt; font-weight: normal; color: rgb(104,108,71); }
 .unite_passif { color: rgb(202,195,177); font-size: 9pt; font-weight: normal; }

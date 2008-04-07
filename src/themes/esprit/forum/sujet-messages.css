@@ -17,7 +17,7 @@ td.message_infos_auteur_alias, td.message_infos_auteur, td.message_infos_date { 
 td.message_infos_auteur_alias { }
 td.message_infos_auteur { font-size: 9pt; width: 99%; }
 td.message_infos_date { color: rgb(65,68,100); font-size: 7pt; text-align: right; }
-td.message_texte { padding: 20px; background-color: rgb(255,255,255); }
+td.message_texte { padding: 20px; background-color: rgb(255,255,255); font-size: 8pt; font-weight: normal; }
 .nb_messages_deposes_personne { font-size: 7pt; }
 hr { color: rgb(222,230,230); height: 2px; background-color: rgb(222,230,230); border: none; }
 

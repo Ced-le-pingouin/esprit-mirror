@@ -58,7 +58,7 @@ function init()
 <td colspan="4" align="center">
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <tr><td><img src="commun://espacer.gif" width="100%" height="10" alt=""></td></tr>
-<tr><td style="background-color: rgb(251,249,238); border: rgb(174,163,141) none 1px; border-top-style: dashed; border-bottom-style: dashed; padding: 2em;">{description_cours}</td></tr>
+<tr><td class="description">{description_cours}</td></tr>
 <tr><td><img src="commun://espacer.gif" width="100%" height="10" alt=""></td></tr>
 </table>
 </td>
