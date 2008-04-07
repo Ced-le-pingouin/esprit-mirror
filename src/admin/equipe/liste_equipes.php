@@ -100,7 +100,7 @@ function retFicheCompletee ($v_oPersonne)
 		, ($v_oPersonne->retSexe() == "F" ? $asSetsPersonne["sexe_feminin"] : $asSetsPersonne["sexe_masculin"])
 		, ($iIdPers == $g_iIdUtilisateur ? $asSetsPersonne["indice"] : NULL)
 		, (emailValide($sCourriel) || $g_iIdUtilisateur < 1 ? $asSetsPersonne["courriel"] : $asSetsPersonne["sans_courriel"])
-		, $sCourriel);
+		, "?idPers=".$iIdPers."&select=".$iIdPers);
 	
 	return str_replace($asTplRech,$asTplRepl,$asSetsPersonne["fiche_personne"]);
 }
@@ -128,12 +128,12 @@ $oTpl = new Template("liste_equipes.tpl");
 // {{{ Barre d'outils
 $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $oBlocBarreOutils->ajouter($asSetTplGlobale["envoi_courriel"]);
-$oBlocBarreOutils->remplacer("{envoi_courriel.params}","?idStatuts=".STATUT_PERS_TUTEUR."&idEquipes=tous&select=1");
+$oBlocBarreOutils->remplacer("{envoi_courriel.params}","?idStatuts=".STATUT_PERS_TUTEUR."&idEquipes=tous");
 $oBlocBarreOutils->remplacer("{envoi_courriel.icone}",$asSetTplGlobale["envoi_courriel_icone"]);
 $oBlocBarreOutils->remplacer("{envoi_courriel.texte}",NULL);
 $oBlocBarreOutils->afficher();
 // }}}
-
+ 
 $asSetsPersonne = array(
 	"fiche_personne" => $oTpl->defVariable("SET_FICHE_PERSONNE")
 	, "sexe_masculin" => $oTpl->defVariable("SET_SEXE_MASCULIN")
@@ -153,7 +153,7 @@ $asTplRech = array(
 	, "{personne.sexe}"
 	, "{personne.indice}"
 	, "{icones}"
-	, "{personne.courriel}");
+	, "{a.choix_courriel.href}");
 
 // {{{ Liste des tuteurs
 $oBlocTuteurs = new TPL_Block("BLOCK_TUTEURS",$oTpl);

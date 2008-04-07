@@ -176,7 +176,7 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [SET_ELEMENT_STATUT-]
 
 [SET_LISTE_MEMBRES+]
-[VAR_MEMBRE+]{membre.nom}&nbsp;{membre.prenom}[VAR_MEMBRE-]
+[VAR_MEMBRE+]{membre.nom}&nbsp;{membre.prenom}&nbsp;<small>({membre.pseudo})</small>[VAR_MEMBRE-]
 <div style="background-color: rgb(255,255,255); margin: 0px;">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 [BLOCK_MEMBRE+]<tr><td><input type="checkbox" name="idPers[]" onclick="selectionner(this,'{parent}',1,false)" value="{membre.id}"{membre.checkbox.disabled}{membre.checkbox.checked}></td><td style="border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 99%;">&nbsp;{membre}</td></tr>[BLOCK_MEMBRE-]

@@ -75,7 +75,7 @@ function init()
 [ARRAY_BARRE_OUTILS+]
 <td class="barre_icones" style="width: 1%;" onmouseover="this.className='cellule_icone_surbrillante'" onmouseout="this.className='barre_icones'"><a href="javascript: void(0);" onclick="return profil('?idPers={personne.id}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','profil')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')"><img src="commun://icones/16x16/profil.gif" width="16" height="16" border="0"></a></td>
 ###<td class="barre_icones" style="width: 1%;" onmouseover="this.className='cellule_icone_surbrillante'" onmouseout="this.className='barre_icones'"><a href="javascript: void(0);" onclick="return liste_equipes('{equipe.id}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','equipes')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')"><img src="commun://icones/16x16/equipe.gif" width="16" height="16" border="0"></a></td>
-###<td class="barre_icones" style="width: 1%;" onmouseover="this.className='cellule_icone_surbrillante'" onmouseout="this.className='barre_icones'"><a href="javascript: void(0);" onclick="return choix_courriel('?typeCourriel=courriel-unite{courriel.modalite}&select=1')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','courriel')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a></td>
+###<td class="barre_icones" style="width: 1%;" onmouseover="this.className='cellule_icone_surbrillante'" onmouseout="this.className='barre_icones'"><a href="javascript: void(0);" onclick="return choix_courriel('?typeCourriel=courriel-unite{courriel.modalite}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','courriel')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a></td>
 [ARRAY_BARRE_OUTILS-]
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr>{barre_outils}<td class="barre_icones">&nbsp;</td></tr>
@@ -132,7 +132,7 @@ function init()
 <area href="javascript: void(0);" onclick="return inverser_type_tri('{html.area.tri}','{html.area.type_tri.decroissant}')" shape="rect" coords="0,5,7,9" title="Tri d&eacute;croissant">
 </map>
 [SET_CHOISIR_TRI-]
-[SET_TRI_CROISSANT+]<a href="javascript: void(0);" onclick="return inverser_type_tri('{html.a.tri}','{html.a.type_tri}')"><img src="theme://sort-incr.gif" border="0"></a></a>[SET_TRI_CROISSANT-]
+[SET_TRI_CROISSANT+]<a href="javascript: void(0);" onclick="return inverser_type_tri('{html.a.tri}','{html.a.type_tri}')"><img src="theme://sort-incr.gif" border="0"></a>[SET_TRI_CROISSANT-]
 [SET_TRI_DECROISSANT+]<a href="javascript: void(0);" onclick="return inverser_type_tri('{html.a.tri}','{html.a.type_tri}')"><img src="theme://sort-desc.gif" border="0"></a>[SET_TRI_DECROISSANT-]
 
 [SET_LISTE_VOTANTS+]<a href="javascript: void(0);" onclick="return ressource_votants('{document.id}','{equipe.id}')" onfocus="blur()">{document.statut}</a>[SET_LISTE_VOTANTS-]

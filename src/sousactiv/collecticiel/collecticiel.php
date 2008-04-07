@@ -183,7 +183,7 @@ if ($g_bResponsable)
 		$oBlocCourriel->effacer();
 	else
 	{
-		$oBlocCourriel->remplacer("{fichier_de_base.courriel}",retLienEnvoiCourriel("?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&select=1"));
+		$oBlocCourriel->remplacer("{fichier_de_base.courriel}",retLienEnvoiCourriel("?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT));
 		$oBlocCourriel->afficher();
 	}
 }
@@ -363,6 +363,7 @@ if (count($aaCollecticiels) > 0)
 			if (MODALITE_PAR_EQUIPE == $g_iIdModalite)
 			{
 				$sParamsUrlCourriel .= "&idEquipes=".$amCollecticiel["id"];
+				$sParamsUrlCourriel .= "&selectEquipe=".$amCollecticiel["id"];
 				
 				if ($g_iIdEquipe == $amCollecticiel["id"])
 					$bPeutAjouterDocuments = TRUE;
@@ -372,6 +373,7 @@ if (count($aaCollecticiels) > 0)
 			else
 			{
 				$sParamsUrlCourriel .= "&idPers=".$amCollecticiel["id"];
+				$sParamsUrlCourriel .= "&selectEquipe=".$amCollecticiel["id"];
 				
 				if ($g_iIdPers == $amCollecticiel["id"])
 					$bPeutAjouterDocuments = TRUE;
@@ -380,7 +382,6 @@ if (count($aaCollecticiels) > 0)
 			}
 			
 			$sBarreOutils .= $asTableOutils[2];					// Boîte courrielle
-			
 			$sBarreOutils = str_replace("{courriel.modalite}",$sParamsUrlCourriel,$sBarreOutils);
 			
 			$oBlocBarreOutils->remplacer("{barre_outils}",$sBarreOutils);

@@ -65,8 +65,9 @@ $url_aiIdPers = (empty($_GET["idPers"])
 	? NULL
 	: explode("x",$_GET["idPers"]));
 
-$url_bSelectionnerPers = (empty($_GET["select"]) ? FALSE : $_GET["select"]);
-
+//$url_bSelectionnerPers = (empty($_GET["select"]) ? FALSE : $_GET["select"]);
+$url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
+$url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
 // ---------------------
 // Initialiser
 // ---------------------
@@ -145,9 +146,10 @@ if ($iNbStatuts > 0)
 				$bValidCourriel = emailValide($oPersonne->retEmail());
 				
 				if ($bValidCourriel)
+				{
 					$sMembre = $sVarMembre;
-				else
-					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+//				else
+//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 				
 				if ($oPersonne->retId() == $g_iIdPers)
 					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -157,9 +159,13 @@ if ($iNbStatuts > 0)
 				$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
 				$oBlocMembre->remplacer("{membre.nom}",emb_htmlentities($oPersonne->retNom()));
 				$oBlocMembre->remplacer("{membre.prenom}",emb_htmlentities($oPersonne->retPrenom()));
+				$oBlocMembre->remplacer("{membre.pseudo}",emb_htmlentities($oPersonne->retPseudo()));
 				$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
+				if ($url_iPersonneId == $oPersonne->retId()) $url_bSelectionnerPers=true;
+				else $url_bSelectionnerPers=False;
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatut}" : NULL));
+				}
 			}
 			
 			$oBlocMembre->afficher();
@@ -207,9 +213,10 @@ if ($iNbEquipes > 0)
 				$bValidCourriel = emailValide($oPersonne->retEmail());
 				
 				if ($bValidCourriel)
+				{
 					$sMembre = $sVarMembre;
-				else
-					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+//				else
+//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 				
 				if ($oPersonne->retId() == $g_iIdPers)
 					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -219,7 +226,9 @@ if ($iNbEquipes > 0)
 				$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
 				$oBlocMembre->remplacer("{membre.nom}",emb_htmlentities($oPersonne->retNom()));
 				$oBlocMembre->remplacer("{membre.prenom}",emb_htmlentities($oPersonne->retPrenom()));
+				$oBlocMembre->remplacer("{membre.pseudo}",emb_htmlentities($oPersonne->retPseudo()));
 				$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
+					(($url_iEquipeId == $iIdEquipe) || ($url_iPersonneId == $oPersonne->retId())) ? $url_bSelectionnerPers=true : $url_bSelectionnerPers=False;
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idEquipe" : NULL));
 				
@@ -227,6 +236,7 @@ if ($iNbEquipes > 0)
 				
 				if ($bValidCourriel && $url_bSelectionnerPers)
 					$iNbMembresSelectionnes++;
+				}
 			}
 			
 			$oBlocMembre->afficher();
@@ -268,9 +278,10 @@ if ($iNbPersonnes > 0)
 		$bValidCourriel = emailValide($oPersonne->retEmail());
 		
 		if ($bValidCourriel)
+		{
 			$sMembre = $sVarMembre;
-		else
-			$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+//		else
+//			$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 		
 		if ($oPersonne->retId() == $g_iIdPers)
 			$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -280,9 +291,12 @@ if ($iNbPersonnes > 0)
 		$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
 		$oBlocMembre->remplacer("{membre.nom}",emb_htmlentities($oPersonne->retNom()));
 		$oBlocMembre->remplacer("{membre.prenom}",emb_htmlentities($oPersonne->retPrenom()));
+		$oBlocMembre->remplacer("{membre.pseudo}",emb_htmlentities($oPersonne->retPseudo()));
 		$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
+				($url_iPersonneId == $oPersonne->retId()) ? $url_bSelectionnerPers=true : $url_bSelectionnerPers=False;
 		$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 		$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idPers" : NULL));
+		}
 	}
 	
 	$oBlocMembre->afficher();

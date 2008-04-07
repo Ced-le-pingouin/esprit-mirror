@@ -57,7 +57,7 @@ $url_sTypeEnvoiCourriel = (empty($_GET["typeCourriel"])
 // ---------------------
 // Permissions
 // ---------------------
-$bPermisUtiliserBoiteCourriellePC = !$url_bToutesPersonnes & $oProjet->verifPermission("PERM_UTILISER_BOITE_COURRIELLE_PC");
+$bPermisUtiliserBoiteCourriellePC = /*!$url_bToutesPersonnes & */ $oProjet->verifPermission("PERM_UTILISER_BOITE_COURRIELLE_PC");
 
 // ---------------------
 // Initialiser

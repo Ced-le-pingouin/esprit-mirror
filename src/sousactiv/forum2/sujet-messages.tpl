@@ -78,7 +78,7 @@ function select_deselect_message(v_sElem)
 <table id="id_message_{message->id}" border="0" cellspacing="0" cellpadding="2" width="100%" class="message">
 <tr>
 <td class="message_infos_auteur_alias">{personne->sexe}</td>
-<td class="message_infos_auteur">&nbsp;{personne->email}<img src="commun://espacer.gif" width="30" height="1" border="0"><span class="nb_messages_deposes_personne">{personne->nb_messages_deposes}&nbsp;message(s)</span>&nbsp;</td>
+<td class="message_infos_auteur">&nbsp;{personne->email}&nbsp;{personne->pseudo}<img src="commun://espacer.gif" width="30" height="1" border="0"><span class="nb_messages_deposes_personne">{personne->nb_messages_deposes}&nbsp;message(s)</span>&nbsp;</td>
 <td class="message_infos_date"><img src="theme://espacer.gif" width="150" height="1"><br>{message->date}</td>
 </tr>
 <tr><td class="message_texte" colspan="3">{message->texte}{message->ressources}</td></tr>
@@ -89,8 +89,8 @@ function select_deselect_message(v_sElem)
 <tr><td colspan="2">&nbsp;</td><td>{ligne_separation_sujets}&nbsp;</td><td>&nbsp;</td></tr>
 [SET_MESSAGE-]
 
-[SET_EMAIL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}'); return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel">{personne->pseudo}</a>[SET_EMAIL-]
-[SET_SANS_EMAIL+]<span class="sans_email" title="Pas dadresse email disponible">{personne->pseudo}</span>[SET_SANS_EMAIL-]
+[SET_EMAIL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}'); return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_EMAIL-]
+[SET_SANS_EMAIL+][SET_SANS_EMAIL-]
 
 [SET_SELECTIONNER_MESSAGE+]<input type="radio" name="idMessage" value="{message->id}" onclick="select_deselect_message('id_message_{message->id}')" onfocus="blur()">[SET_SELECTIONNER_MESSAGE-]
 

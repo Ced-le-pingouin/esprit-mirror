@@ -59,13 +59,14 @@ function init()
 [VAR_TITRE+]Envoyer &agrave;&nbsp;:[VAR_TITRE-]
 [VAR_TEXTE+]<iframe name="CHOIX_COURRIEL_LISTE" id="idListeDestinataires" src="{iframe.src}" border="0" frameborder="0" marginwidth="0" marginheight="0" width="100%" height="310" scrolling="yes"></iframe>[VAR_TEXTE-]
 [BLOCK_ENVOYER_A-]
+
 [BLOCK_CHOISIR_BOITE_COURRIEL+]
 [VAR_TITRE+]Choisir votre bo&icirc;te d'envoi&nbsp;:[VAR_TITRE-]
 [VAR_TEXTE+]
 <table border="0" cellspacing="0" cellpadding="1" width="100%">
-<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['plateforme'].value}" checked="checked"></td><td>Celle de la plate-forme</td></tr>
-[BLOCK_UTILISER_BOITE_COURRIELLE_PC+]<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['os'].value}"></td><td>Celle de votre ordinateur</td></tr>[BLOCK_UTILISER_BOITE_COURRIELLE_PC-]
-<tr><td>&nbsp;</td><td style="font-size: 7pt;">! Veuillez noter qu'une copie des courriels est enregistr&eacute;e afin de pouvoir réaliser une analyse statistique du déroulement de la formation. Cette analyse est confidentielle. Si vous ne désirez pas laisser de trace, utilisez votre gestionnaire habituel de courriels (Outlook, Eudora, Yahoo, Hotmail...).</td></tr>
+<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['plateforme'].value}" id="{radio['plateforme'].value}"></td><td><label for="{radio['plateforme'].value}">Celle de la plate-forme</label></td></tr>
+[BLOCK_UTILISER_BOITE_COURRIELLE_PC+]<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['os'].value}" id="{radio['os'].value}" checked="checked"></td><td><label for="{radio['os'].value}">Celle de votre ordinateur</label></td></tr>[BLOCK_UTILISER_BOITE_COURRIELLE_PC-]
+<tr><td>&nbsp;</td></tr>
 </table>
 [VAR_TEXTE-]
 [BLOCK_CHOISIR_BOITE_COURRIEL-]
