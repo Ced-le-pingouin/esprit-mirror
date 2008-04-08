@@ -34,6 +34,6 @@ extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|borde
 	setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
 	language : "fr",
-	docs_language : "en" // pas de doc en franÃ§ais ?
+	docs_language : "fr" // doc fr -> vérifiée
 });
 }
