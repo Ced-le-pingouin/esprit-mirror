@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="theme://globals.css">
 <link type="text/css" rel="stylesheet" href="theme://menu.css" />
 <link type="text/css" rel="stylesheet" href="theme://dialog-menu.css" />
 <title>Conception d'activité en ligne</title>

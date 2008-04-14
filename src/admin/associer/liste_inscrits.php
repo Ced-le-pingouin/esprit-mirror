@@ -108,7 +108,7 @@ $asPasDePersonnesTrouvees = array(
 		NULL,
 		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"),"UTF-8")),
 		NULL,
-		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"),"UTF-8")),
+		sprintf("Pas d'%s trouvé",mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"),"UTF-8")),
 		NULL
 	);
 
@@ -134,7 +134,7 @@ switch ($iStatutPers)
 				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
-				."<td>"
+				."<td class=\"personne\">"
 				.$oResp->aoPersonnes[$i]->retNomComplet(TRUE)
 				."</td>\n"
 				."</tr>\n";
@@ -185,7 +185,7 @@ switch ($iStatutPers)
 				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
-				."<td>"
+				."<td class=\"personne\">"
 				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">" : NULL)
 				.$aoConcepteurs[$i]->retNomComplet(TRUE)
 				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "</a >" : NULL)
@@ -219,7 +219,7 @@ switch ($iStatutPers)
 				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
-				."<td>"
+				."<td class=\"personne\">"
 				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">"
 				.$aoTuteurs[$i]->retNomComplet(TRUE)
 				."</a >"
@@ -254,7 +254,7 @@ switch ($iStatutPers)
 				.($i == 0 ? " checked" : NULL)
 				.">"
 				."</td>\n"
-				."<td>"
+				."<td class=\"personne\">"
 				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">"
 				.$oFormation->aoInscrits[$i]->retNomComplet(TRUE)
 				."</a >"

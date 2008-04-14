@@ -197,7 +197,7 @@ for ($i=0; $i<$iNbrPers; $i++)
 		."</tr>\n";
 
 if ($i < 1)
-	echo "<tr><td style=\"text-align: center;\">$sErrPers</td></tr>\n";
+	echo "<tr><td style=\"text-align: center;\" class=\"Infos\">&#8250;&nbsp;$sErrPers</td></tr>\n";
 ?>
 </table>
 <input type="hidden" name="FILTRE" value="<?php echo $iFiltre?>">

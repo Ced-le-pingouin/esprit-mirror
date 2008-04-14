@@ -151,14 +151,15 @@ if($oProjet->verifPermission('PERM_MOD_FORMULAIRES') || $oProjet->verifPermissio
 		foreach($aoFormulairesVisibles as $oFormulaireTmp)
 		{
 			$oBlockSelFormul->nextLoop();
-			$sNomFormulaire = enleverBaliseMeta($oFormulaireTmp->retTitre());
-			if($oFormulaireTmp->retNbUtilisationsDsSessions() || $oFormulaireTmp->retNbRemplisDsSessions() )
-				$sNomFormulaire = $sSymboleDejaUtilise.$sNomFormulaire;
-			$sNomFormulaireCourt = $sNomFormulaire;
-			if(mb_strlen($sNomFormulaireCourt,"UTF-8") > $iLargeurMax)
-				$sNomFormulaireCourt = mb_substr($sNomFormulaireCourt,0,$iLargeurMax-3,"UTF-8")."...";
-			$oBlockSelFormul->remplacer("{nom_formulaire}", htmlentities($sNomFormulaireCourt,ENT_COMPAT,"UTF-8"));
-			$oBlockSelFormul->remplacer("{infobulle_formulaire}", htmlentities($sNomFormulaire,ENT_COMPAT,"UTF-8"));
+			/// le code en commentaire n'affichait pas correctement les caractères
+//			$sNomFormulaire = enleverBaliseMeta($oFormulaireTmp->retTitre());
+//			if($oFormulaireTmp->retNbUtilisationsDsSessions() || $oFormulaireTmp->retNbRemplisDsSessions() )
+//				$sNomFormulaire = $sSymboleDejaUtilise.$sNomFormulaire;
+//			$sNomFormulaireCourt = $sNomFormulaire;
+//			if(mb_strlen($sNomFormulaireCourt,"UTF-8") > $iLargeurMax)
+//				$sNomFormulaireCourt = mb_substr($sNomFormulaireCourt,0,$iLargeurMax-3,"UTF-8")."...";
+			$oBlockSelFormul->remplacer("{nom_formulaire}", convertBaliseMetaVersHtml($oFormulaireTmp->retTitre()));
+			$oBlockSelFormul->remplacer("{infobulle_formulaire}", convertBaliseMetaVersHtml($oFormulaireTmp->retTitre()));
 			$oBlockSelFormul->remplacer("{id_formulaire}",$oFormulaireTmp->retId());
 			if($iIdPersCourant == $oFormulaireTmp->retIdPers() ) // auteur de l'activité ?
 				$oBlockSelFormul->remplacer("{couleur}","style=\"color:green;\"");
