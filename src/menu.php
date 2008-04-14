@@ -85,14 +85,18 @@ $sMenu = ($bPersInscrite
 	/*.($iIdRubrique < 1 && $oProjet->verifPermission("PERM_CLASSER_FORMATIONS")
 		? "<a href=\"javascript: void(0);\" onclick=\"changer_dossier(); return false;\" onfocus=\"blur()\">"._("Dossier")."</a>&nbsp;|&nbsp;"
 		: NULL)*/
-	.($iIdForm > 0
+	.(($iIdForm > 0) &&($bPersInscrite)
 		? "<a href=\"javascript: void(0);\" onclick=\"connexion(); return false;\" onfocus=\"blur()\">"._("Traces")."</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($iNbrOutils > 0
 		? "<a href=\"javascript: void(0);\" onclick=\"outils(); return false;\" onfocus=\"blur()\">"._("Outils")."</a>&nbsp;|&nbsp;" 
 		: NULL)
-	.'<a href="javascript: void(0);" onclick="multilingue(); return false;" onfocus="blur()">'._("Multilinguisme")."</a>&nbsp;|&nbsp;"
-	."<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idPers=tous'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+	.($bPersInscrite
+		? "<a href=\"javascript: void(0);\" onclick=\"multilingue(); return false;\" onfocus=\"blur()\">"._("Multilinguisme")."</a>&nbsp;|&nbsp;"
+		: NULL)
+	.($bPersInscrite
+		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idPers=tous'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+		: NULL)
 	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
 
 // ---------------------
