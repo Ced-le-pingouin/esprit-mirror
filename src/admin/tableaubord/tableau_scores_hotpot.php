@@ -44,8 +44,8 @@ $oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$v_iIdHotpot);
 if (isset($_GET["action"]) && $_GET["action"] == "exportation")
 {
 	$bExportation = true;
-	header("Content-type: application/excel; charset=utf-8");
-	header("Content-type: text/csv; charset=utf-8");
+	header("Content-Type: application/excel; charset=utf-8");
+	header("Content-Type: text/csv; charset=utf-8");
 	header('Content-Disposition: attachment; filename='.urlencode($oSousActiv->retNom()).'.csv');
 }
 else

@@ -45,7 +45,7 @@ function hotpotScore( ) {
 	if (empty($_REQUEST['IdHotpot']) || !ctype_digit($_REQUEST['IdHotpot']))
 		return FALSE;
 	$IdHotpot = $_REQUEST['IdHotpot'];
-	if (!isset($_REQUEST['Score']) || !ctype_digit($_REQUEST['Score']))
+	if (!isset($_REQUEST['Score']) || !preg_match('/^-?\d+$/',$_REQUEST['Score']))
 		return FALSE;
 	$Score = $_REQUEST['Score'];
 	if (!isset($_REQUEST['IdPers']) || !ctype_digit($_REQUEST['IdPers']))
