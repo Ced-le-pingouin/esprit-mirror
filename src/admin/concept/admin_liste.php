@@ -42,11 +42,13 @@ if (isset($_GET))
 {
 	$url_iType   = $_GET["type"];
 	$url_sParams = $_GET["params"];
+	$sTempParams = $_GET["params"];
 }
 else if (isset($_POST))
 {
 	$url_iType   = $_POST["type"];
 	$url_sParams = $_POST["params"];
+	$sTempParams = $_POST["params"];
 }
 
 // ---------------------
@@ -231,7 +233,8 @@ else
 	$oBlocSansFormation->afficher();
 }
 
-$oTpl->remplacer("{url.params}","?type={$url_iType}&params={$url_sParams}");
+$oTpl->remplacer("{url.params}","?type={$url_iType}&params={$sTempParams}");
+$oTpl->remplacer("{params.indice}","{$sTempParams}");
 
 $oTpl->afficher();
 

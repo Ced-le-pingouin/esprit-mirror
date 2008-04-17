@@ -79,8 +79,10 @@ function init() {}
 
 function rafraichir()
 {
-	oListe().location.replace(oListe().location);
-	oListe().location.reload();
+	var url = "http://"+oListe().location.hostname + oListe().location.pathname + "?type="+arguments[0]+"&params="+arguments[1];
+	oListe().location = url;
+	//oListe().location.replace(oListe().location);
+	//oListe().location.reload();
 }
 
 function choix_formation_callback(v_iIdForm)
