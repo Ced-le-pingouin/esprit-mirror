@@ -110,6 +110,7 @@ td.cellule_clair, td.cellule_clair_fonce, td.cellule_surbrillante
 	background-color: rgb(250,250,250);
 	border: rgb(240,240,240) none 1px;
 	border-top-style: solid;
+	font-size: 9pt;
 	border-bottom-style: solid;
 }
 

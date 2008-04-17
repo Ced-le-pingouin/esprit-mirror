@@ -48,7 +48,7 @@ td.admin_modif_menu
 	text-align: center;
 }
 td.admin_modif_outils { background-color: rgb(202,195,177); border: rgb(0,0,0) solid 1px; border-left-style: none; border-right-style: none; }
-div.admin_modif_nom_element { color: rgb(0,0,0); font-weight: bold; text-align: left; }
+div.admin_modif_nom_element { color: rgb(0,0,0); font-weight: bold; text-align: left; font-size: 10pt }
 
 .admin_modif_menu
 {

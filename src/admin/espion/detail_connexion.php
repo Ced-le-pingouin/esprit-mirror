@@ -119,11 +119,11 @@ while ($g_iIdxEven < $iNbrEven)
 		//if ($oEvenement->aoEvenements[$iIdxEven]->retIdFormation() <> $iIdFormActuelle)
 			//break;
 		
-		$sNomClasseCss = (isset($sNomClasseCss) ? NULL : " class=\"cellule_clair\"");
+		$sNomClasseCss = (isset($sNomClasseCss) ? " style=\"font-size: 9pt;\"" : " class=\"cellule_clair\"");
 		$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
 		
 		$sContenuTable .= "<tr>"
-			."<td width=\"1%\" class=\"numero_ligne\">".$iCompteur++."</td>"
+			."<td width=\"1%\" class=\"numero_ligne\" style=\"font-size: 9pt;\">".$iCompteur++."</td>"
 			."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
 			.$oEvenement->aoEvenements[$iIdxEven]->retConnexion()
 			."</td>"

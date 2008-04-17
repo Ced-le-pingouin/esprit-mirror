@@ -108,11 +108,11 @@ for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
 		($url_iIdPers > 0 && $oEvenement->aoEvenements[$iIdxEven]->oConnecte->retId() != $url_iIdPers))
 		continue;
 		
-	$sNomClasseCss = (isset($sNomClasseCss) ? NULL : " class=\"cellule_clair\"");
+	$sNomClasseCss = (isset($sNomClasseCss) ? " style=\"font-size: 9pt;\"" : " class=\"cellule_clair\"");
 	$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
 	
 	$sContenuTable .= "<tr>"
-		."<td class=\"numero_ligne\" align=\"right\">"
+		."<td class=\"numero_ligne\" align=\"right\" style=\"font-size: 9pt;\">"
 		.($iIdxEven+1)
 		."</td>"
 		."<td".($url_iTri == $oEvenement->TRI_NOM ? $sNomClasseCssTri : $sNomClasseCss)." nowrap=\"true\">"

@@ -202,7 +202,7 @@ function editeur_callback(v_sForm,v_sElem,v_sTexte) { document.forms[v_sForm].el
 </head>
 <body onload="afficherMenu()">
 <form name="FRM_GENERAL" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<table border="0" cellspacing="0" cellpadding="0" width="100%" style="font-size : 10pt;">
 <tr>
 <td align="left" valign="top">
 <?php

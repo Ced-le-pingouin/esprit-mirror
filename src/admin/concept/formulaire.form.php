@@ -83,7 +83,7 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 <tr><td colspan="2"><span class="intitule">&nbsp;Modalit&eacute; d'inscription des &eacute;tudiants aux cours&nbsp;:&nbsp;</span></td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>
+<td style="font-size : 10pt;">
 <input type="radio" name="INSCR_AUTO_MODULES" value="1"<?php echo ($bInscrAutoModules ? " checked" : NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;Tous les &eacute;tudiants sont automatiquement inscrits &agrave; tous les cours de cette formation
 <br>
 <input type="radio" name="INSCR_AUTO_MODULES" value="0"<?php echo ($bInscrAutoModules ? NULL : " checked").($g_bModifier ? NULL : " disabled"); ?>>&nbsp;Certains &eacute;tudiants seront inscrits &agrave; certains cours, d'autres pas
@@ -92,7 +92,7 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 <?php entrerDescription("descr_formation",$sDescription,NULL,urlencode(addslashes($sNom))); ?>
 <tr>
 <td>&nbsp;</td>
-<td align="right"><input name="VISITEUR_AUTORISER" type="checkbox"<?php echo $sVisiteurAutoriser.($g_bModifier ? NULL : " disabled")?>>&nbsp;&nbsp;Accessible aux visiteurs</td>
+<td align="right" style="font-size : 10pt;"><input name="VISITEUR_AUTORISER" type="checkbox"<?php echo $sVisiteurAutoriser.($g_bModifier ? NULL : " disabled")?>>&nbsp;&nbsp;Accessible aux visiteurs</td>
 </tr>
 </table>
 </fieldset>

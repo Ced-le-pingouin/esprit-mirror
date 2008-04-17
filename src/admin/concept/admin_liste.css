@@ -3,10 +3,10 @@ a.Formation, .Formation { font-size: 11pt; font-weight: bold; }
 .Cours { font-weight: bold; }
 #id_editer { position: absolute; left: 0px; top: 0px; width: 16px; height: 16px; visibility: hidden; }
 
-span.module_intitule { font-weight: 9pt; font-weight: bold; }
+span.module_intitule { font-size: 10pt; font-weight: bold; }
 hr.module { border: rgb(242,242,242) solid 1px; color: rgb(242,242,242); }
 
-span.rubrique_intitule { font-weight: 8pt; font-weight: bold; }
+span.rubrique_intitule { font-size: 10pt; font-weight: bold; }
 
 div.formation { padding: 0px 0px 0px 0px; white-space: nowrap; }
 div.module { padding: 10px 0px 0px 20px; white-space: nowrap; }

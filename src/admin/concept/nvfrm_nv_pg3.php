@@ -66,7 +66,7 @@ if (isset($bConfirmation) && $bConfirmation)
 .titre { font-weight: bold; }
 //-->
 </style>
-<table border="0" cellspacing="0" cellpadding="3" width="100%">
+<table border="0" cellspacing="0" cellpadding="3" width="100%" style="font-size : 10pt;">
 <tr><td colspan="3"><h5>Etape 2&nbsp;: Veuillez donner un nom et &eacute;ventuellement une description &agrave; cette formation</h5></td></tr>
 <?php
 
