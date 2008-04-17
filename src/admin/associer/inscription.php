@@ -136,7 +136,8 @@ function association_multiple()
 <select name="FILTRE" style="width: 100%" onchange="changerFiltre(value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),FORMATION.checked)">
 <?php echo $sOptionsFiltre; ?>
 </select>
-&nbsp;&nbsp;<input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" checked>de cette session uniquement
+&nbsp;&nbsp;
+<span style="font-size: 10pt"><input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" checked>de cette session uniquement</span>
 </td>
 <td>&nbsp;</td>
 <td class="intitule" height="1%">Statut&nbsp;des&nbsp;personnes&nbsp;:<br>

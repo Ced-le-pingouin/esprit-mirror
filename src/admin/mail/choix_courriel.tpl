@@ -64,8 +64,8 @@ function init()
 [VAR_TITRE+]Choisir votre bo&icirc;te d'envoi&nbsp;:[VAR_TITRE-]
 [VAR_TEXTE+]
 <table border="0" cellspacing="0" cellpadding="1" width="100%">
-<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['plateforme'].value}" id="{radio['plateforme'].value}"></td><td><label for="{radio['plateforme'].value}">Celle de la plate-forme</label></td></tr>
-[BLOCK_UTILISER_BOITE_COURRIELLE_PC+]<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['os'].value}" id="{radio['os'].value}" checked="checked"></td><td><label for="{radio['os'].value}">Celle de votre ordinateur</label></td></tr>[BLOCK_UTILISER_BOITE_COURRIELLE_PC-]
+<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['plateforme'].value}" id="{radio['plateforme'].value}"></td><td style="font-size: 10pt"><label for="{radio['plateforme'].value}">Celle de la plate-forme</label></td></tr>
+[BLOCK_UTILISER_BOITE_COURRIELLE_PC+]<tr><td><input type="radio" name="boiteCourrielle" onfocus="blur()" value="{radio['os'].value}" id="{radio['os'].value}" checked="checked"></td><td style="font-size: 10pt"><label for="{radio['os'].value}">Celle de votre ordinateur</label></td></tr>[BLOCK_UTILISER_BOITE_COURRIELLE_PC-]
 <tr><td>&nbsp;</td></tr>
 </table>
 [VAR_TEXTE-]

@@ -177,7 +177,7 @@ function init()
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get" target="_self">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">
 <?php
-$sClassTR = (" style=\"border: #EFEFEF none 1px; border-bottom-style: solid;\"");
+$sClassTR = (" style=\"border: #EFEFEF none 1px; border-bottom-style: solid;font-size: 10pt;\"");
 
 for ($i=0; $i<$iNbrPers; $i++)
 	echo "<tr>"

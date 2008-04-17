@@ -32,12 +32,12 @@ function init()
 </html>
 
 [SET_ENVOI_COURRIEL_REUSSI+]
-<p>Le courriel a bien été envoyé au membre de cette liste.</p>
+<p style="font-size: 10pt;">Le courriel a bien été envoyé au membre de cette liste.</p>
 [SET_ENVOI_COURRIEL_REUSSI-]
 
 [SET_ENVOI_COURRIEL_ECHOUE+]
 [VAR_ERREUR_PARTIELLE+]
-<p>Votre courriel a bien été envoyé aux personnes suivantes&nbsp;:</p>
+<p style="font-size: 10pt;">Votre courriel a bien été envoyé aux personnes suivantes&nbsp;:</p>
 <form>
 <select name="listeDestinatairesErrones" size="10" style="width: 260px;">
 </select>

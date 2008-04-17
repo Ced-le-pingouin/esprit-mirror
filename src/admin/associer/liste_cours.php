@@ -102,7 +102,7 @@ switch ($iIdStatut)
 		
 		for ($i=0; $i<$iNbrModules; $i++)
 			$sListeCours .= "<tr>"
-				."<td>"
+				."<td style=\"font-size: 10pt\">"
 				."<input type=\"checkbox\" name=\"IDCOURS[]\" value=\"".$aoModules[$i]->retId()."\""
 				.($aoModules[$i]->estSelectionne ? " checked" : NULL)
 				.">"
@@ -155,7 +155,7 @@ switch ($iIdStatut)
 				$sAppliquerChangements = NULL;
 				
 				$sListeCours .= "<tr>"
-					."<td>"
+					."<td style=\"font-size: 10pt\">"
 					."&nbsp;<img src=\"".dir_theme("cocher-plein-0.gif")."\" border=\"0\">"
 					."&nbsp;"
 					.($bAutoInscription ? "<span style=\"color: #CAC8BB;\">$sNomModule</span>" : $sNomModule)
@@ -166,7 +166,7 @@ switch ($iIdStatut)
 			else
 			{
 				$sListeCours .= "<tr>"
-					."<td>"
+					."<td style=\"font-size: 10pt\">"
 					."<input type=\"checkbox\" name=\"IDCOURS[]\" value=\"".$aoModules[$i]->retId()."\""
 					.($aoModules[$i]->estSelectionne ? " checked" : NULL)
 					.($bAutoInscription ? " readonly" : NULL)
