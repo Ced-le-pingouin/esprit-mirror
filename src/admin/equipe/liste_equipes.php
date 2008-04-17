@@ -100,7 +100,7 @@ function retFicheCompletee ($v_oPersonne)
 		, ($v_oPersonne->retSexe() == "F" ? $asSetsPersonne["sexe_feminin"] : $asSetsPersonne["sexe_masculin"])
 		, ($iIdPers == $g_iIdUtilisateur ? $asSetsPersonne["indice"] : NULL)
 		, (emailValide($sCourriel) || $g_iIdUtilisateur < 1 ? $asSetsPersonne["courriel"] : $asSetsPersonne["sans_courriel"])
-		, "?idPers=".$iIdPers."&select=".$iIdPers);
+		, "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$iIdPers."&select=".$iIdPers);
 	
 	return str_replace($asTplRech,$asTplRepl,$asSetsPersonne["fiche_personne"]);
 }

@@ -32,6 +32,7 @@
 */
 
 require_once("globals.inc.php");
+require_once("globals.icones.php");
 require_once(dir_admin("awareness","awareness.inc.php",TRUE));
 
 $oProjet = new CProjet();
@@ -94,9 +95,9 @@ $sMenu = ($bPersInscrite
 	.($bPersInscrite
 		? "<a href=\"javascript: void(0);\" onclick=\"multilingue(); return false;\" onfocus=\"blur()\">"._("Multilinguisme")."</a>&nbsp;|&nbsp;"
 		: NULL)
-	.($bPersInscrite
-		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idPers=tous'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
-		: NULL)
+//	.($bPersInscrite
+//		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+//		: NULL)
 	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
 
 // ---------------------

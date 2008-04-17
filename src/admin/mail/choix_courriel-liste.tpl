@@ -157,7 +157,7 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [BLOCK_LISTE_PERSONNES+]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 [BLOCK_PERSONNE+]
-<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idTous" onclick="selectionner(this,'',-2,true)" onfocus="blur()" value="-2"></td><td id="id_table_entete_2" class="cellule_sous_titre">&nbsp;Toutes les personnes</td></tr>
+<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idTous" onclick="selectionner(this,'',-2,true)" onfocus="blur()" value="-2"></td><td id="id_table_entete_2" class="cellule_sous_titre">&nbsp;{personne.nombre}</td></tr>
 <tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
 [BLOCK_PERSONNE-]
 </table>
@@ -179,7 +179,7 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [VAR_MEMBRE+]{membre.nom}&nbsp;{membre.prenom}&nbsp;<small>({membre.pseudo})</small>[VAR_MEMBRE-]
 <div style="background-color: rgb(255,255,255); margin: 0px;">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
-[BLOCK_MEMBRE+]<tr><td><input type="checkbox" name="idPers[]" onclick="selectionner(this,'{parent}',1,false)" value="{membre.id}"{membre.checkbox.disabled}{membre.checkbox.checked}></td><td style="border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 99%;">&nbsp;{membre}</td></tr>[BLOCK_MEMBRE-]
+[BLOCK_MEMBRE+]<tr><td><input type="checkbox" name="idPers[]" onclick="selectionner(this,'{parent}',1,false)" value="{membre.id}"{membre.checkbox.disabled}{membre.checkbox.checked}></td><td style="border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 99%; font-size: 9pt">&nbsp;{membre}</td></tr>[BLOCK_MEMBRE-]
 </table>
 </div>
 [SET_LISTE_MEMBRES-]

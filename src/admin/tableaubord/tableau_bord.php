@@ -199,7 +199,7 @@ $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $sBarreOutils = $asTplGlobalCommun["url_envoi_courriel"];
 $oBlocBarreOutils->remplacer(
 	array("{barre_outils}","{url.params}")
-	, array($sBarreOutils,"?idForm={$iIdForm}&amp;idMod={$iIdMod}&amp;idUnite={$iIdRubrique}&amp;".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idEquipes=tous" : "idStatuts=".STATUT_PERS_ETUDIANT)."&amp;typeCourriel=courriel-unite"."&amp;select=1")
+	, array($sBarreOutils,"?idForm={$iIdForm}&amp;idMod={$iIdMod}&amp;idUnite={$iIdRubrique}&amp;".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idStatuts=".STATUT_PERS_TUTEUR."&amp;idEquipes=tous" : "idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT)."&amp;typeCourriel=courriel-unite"."&amp;select=1")
 );
 $oBlocBarreOutils->afficher();
 // }}}

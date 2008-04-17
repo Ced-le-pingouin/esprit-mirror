@@ -68,6 +68,8 @@ $url_aiIdPers = (empty($_GET["idPers"])
 //$url_bSelectionnerPers = (empty($_GET["select"]) ? FALSE : $_GET["select"]);
 $url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
 $url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
+
+$url_iFormationId = (empty($_GET["ifForm"]) ? NULL : $_GET["idForm"]);
 // ---------------------
 // Initialiser
 // ---------------------
@@ -81,7 +83,7 @@ if (is_array($url_aiIdEquipes))
 	if ("tous" == $url_aiIdEquipes[0])
 	{
 		$iNbEquipes = $oProjet->initEquipes();
-		$aoEquipes  = $oProjet->aoEquipes;
+		$aoEquipes = $oProjet->aoEquipes;
 	}
 	else
 	{
@@ -268,6 +270,7 @@ if ($iNbPersonnes > 0)
 {
 	$oBlocPersonne = new TPL_Block("BLOCK_PERSONNE",$oBlocListePersonnes);
 	$oBlocPersonne->remplacer("{liste_membres}",$sSetListeMembres);
+	($iNbPersonnes > 1) ? $oBlocPersonne->remplacer("{personne.nombre}","Toutes les personnes") : $oBlocPersonne->remplacer("{personne.nombre}","La personne");
 	
 	$oBlocMembre = new TPL_Block("BLOCK_MEMBRE",$oBlocPersonne);
 	$sVarMembre = $oBlocPersonne->defVariable("VAR_MEMBRE");

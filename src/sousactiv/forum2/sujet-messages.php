@@ -134,7 +134,7 @@ foreach ($oSujetForum->aoMessages as $oMessageForum)
 	if (strlen($sEmail) > 0)
 	{
 		$oBloc_Message->remplacer("{personne->email}",$oSetEmail);
-		$oBloc_Message->remplacer("{a.choix_courriel.href}","?idPers=".$oMessageForum->oAuteur->retId()."&select=".$oMessageForum->oAuteur->retId()."&typeCourriel=courriel-forum@".$oForum->retId());
+		$oBloc_Message->remplacer("{a.choix_courriel.href}","?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$oMessageForum->oAuteur->retId()."&select=".$oMessageForum->oAuteur->retId()."&typeCourriel=courriel-forum@".$oForum->retId());
 		//$oBloc_Message->remplacer("{personne->email}",$oMessageForum->oAuteur->retEmail());
 	}
 	else
