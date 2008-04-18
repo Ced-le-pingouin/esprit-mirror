@@ -679,7 +679,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$oBloc->remplacer(
 						array("{hotpotatoes.td.id}", "{hotpotatoes}"),
 						array("u{$iIdRubr}l{$iLigne}c{$iCol}",
-							( $oHotpotScore->retScore()!==NULL ? $oHotpotScore->retScore().'&nbsp;%' : '-' ))
+							( $oHotpotScore->retScore()!==NULL ? '<div title="Non actif">'.$oHotpotScore->retScore().'&nbsp;%</div>' : '-' ))
 						);
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oSousActiv->retIdParent(),$oSousActiv->retId(),"&amp;idPers={$iIdInscrit}"));
 				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));
