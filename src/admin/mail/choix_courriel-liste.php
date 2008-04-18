@@ -70,6 +70,7 @@ $url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
 $url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
 
 $url_iFormationId = (empty($_GET["ifForm"]) ? NULL : $_GET["idForm"]);
+
 // ---------------------
 // Initialiser
 // ---------------------

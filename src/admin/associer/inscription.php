@@ -169,7 +169,7 @@ Rechercher&nbsp;:&nbsp;<input type="text" name="nomPersonneRech" onkeyup="rechPe
 </tr>
 <tr>
 <td height="1%">
-<span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafraichir</a>&nbsp;|&nbsp;</span>
+<span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafraîchir</a>&nbsp;|&nbsp;</span>
 <span><a href="javascript: void(0);" onclick="profil('?nv=1&titre=<?php echo rawurlencode('Nouvel utilisateur')?>')" onfocus="blur()">Ajouter un utilisateur</a>&nbsp;|&nbsp;</span>
 <span><a href="javascript: void(0);" onclick="importer_liste_personnes()" onfocus="blur()">Importer une liste</a></span>
 </td>

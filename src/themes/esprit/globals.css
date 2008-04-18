@@ -59,7 +59,7 @@ a:hover { text-decoration: underline; }
 .attention { color: rgb(180,115,58); font-weight: bold; }
 div.attention { text-align: center; background-color: rgb(236,233,216); border: rgb(174,165,138) dashed 2px; padding: 5px; width: 90%; }
 td.attention { text-align: center; background-color: rgb(236,233,216); border: rgb(174,165,138) dashed 2px; padding: 5px; }
-.afficher_curseur_aide { cursor: help; }
+.afficher_curseur_aide { cursor: help; font-size: 10pt;}
 
 .intitule_principal
 {
@@ -154,13 +154,13 @@ td.cellule_icone_surbrillante { background-color: rgb(193,210,238); border: rgb(
 
 td.description
 {
-	background-color: rgb(250,250,250);
-	border: rgb(240,240,228) none 1px;
-	border-top-style: solid;
-	border-bottom-style: solid;
+	background-color: rgb(251,249,238);
+	border: rgb(174,163,141) none 1px;
+	border-top-style: dashed;
+	border-bottom-style: dashed;
+	padding: 2em;
 	color: rgb(94,90,75);
 	font-size: 9pt;
-	padding: 10px;
 }
 
 td.cellule_lien { text-align: left; }

@@ -69,7 +69,7 @@ function div_forum ()
 		."<td width=\"99%\">{$sHtmlBaliseSelect}</td>"
 		."</tr>\n"
 		."<tr>"
-		."<td colspan=\"2\" align=\"right\">"
+		."<td colspan=\"2\" align=\"right\" style=\"font-size:10pt\">"
 		."<input"
 		." type=\"checkbox\""
 		." name=\"ACCESSIBLE_VISITEURS[".LIEN_FORUM."]\""
@@ -139,7 +139,7 @@ function div_galerie ()
 		.entrerDescription("DESCRIPTION[".LIEN_GALERIE."]",$oProjet->oSousActivCourante->retDescr(),"Consigne",urlencode(addslashes($oProjet->oSousActivCourante->retNom())),FALSE)
 		."<tr>"
 		."<td width=\"1%\" nowrap=\"nowrap\"><span class=\"intitule\">{$sCollecticielsAssocies}&nbsp;:</span></td>"
-		."<td>{$sPremierCollecticiel}</td>"
+		."<td style=\"font-size: 10pt\">{$sPremierCollecticiel}</td>"
 		."</tr>\n"
 		.$sAutresCollecticiels
 		."</table>"

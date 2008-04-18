@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="consigne">
-<p>Voici la liste des &eacute;tudiants qui sont inscrits au cours. Par d&eacute;faut, tous les &eacute;tudiants inscrits voient et peuvent activer une action que vous avez cr&eacute;&eacute;e et dont le statut est ouvert. Dans la liste ci-dessous, ils sont par d&eacute;faut, tous s&eacute;lectionn&eacute;s. Si vous d&eacute;sirez que certains &eacute;tudiants naient pas acc&egrave;s et ne voient pas le lien de laction en question, d&eacute;s&eacute;lectionnez-les.</p>
+<p>Voici la liste des &eacute;tudiants qui sont inscrits au cours. Par d&eacute;faut, tous les &eacute;tudiants inscrits voient et peuvent activer une action que vous avez cr&eacute;&eacute;e et dont le statut est ouvert. Dans la liste ci-dessous, ils sont par d&eacute;faut, tous s&eacute;lectionn&eacute;s. Si vous d&eacute;sirez que certains &eacute;tudiants n'aient pas acc&egrave;s et ne voient pas le lien de l'action en question, d&eacute;s&eacute;lectionnez-les.</p>
 </div>
 <form action="sousactiv_inv.php?idSousActiv={sousactiv.id}" method="post" target="_self">
 <table border="0" cellspacing="1" cellpadding="0" width="100%">

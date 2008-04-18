@@ -133,7 +133,7 @@ a, td {vertical-align: top;}
 
 <table border="0" cellpadding="0" cellspacing="0">
 <tr>
-<td valign="top"><img src="images/branchbottom.gif" width="20" height="20" border="0">&nbsp;<img src="images/folderopen.gif" border="0">&nbsp;<strong><?php echo $oActiv->retNom(); ?></strong></td></tr>
+<td valign="top" style="font-size:10pt"><img src="images/branchbottom.gif" width="20" height="20" border="0">&nbsp;<img src="images/folderopen.gif" border="0">&nbsp;<strong><?php echo $oActiv->retNom(); ?></strong></td></tr>
 <?php
 
 $tot = count ($aoListeFichiers);

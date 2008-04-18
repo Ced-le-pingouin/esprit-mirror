@@ -156,7 +156,7 @@ for ($iIdxMembre=0; $iIdxMembre<count($aoPersonnes); $iIdxMembre++)
 			: "<img src=\"{$sCocherVide}\" border=\"0\">")
 		."</td>"
 		."<td><img src=\"{$sRepIcone}/".($aoPersonnes[$iIdxMembre]->retSexe() == "F" ? "girl.gif" : "boy.gif")."\" border=\"0\"></td>"
-		."<td width=\"99%\" style=\"border: rgb(240,240,240) none 1px; border-bottom-style: dashed;\">"
+		."<td width=\"99%\" style=\"border: rgb(240,240,240) none 1px; border-bottom-style: dashed; font-size:10pt;\">"
 		."&nbsp;&nbsp;"
 		."<span id=\"nom_".($iIdxMembre+1)."\" style=\"display: none;\">".$aoPersonnes[$iIdxMembre]->retNom()."</span>"
 		."<a"
@@ -172,7 +172,7 @@ for ($iIdxMembre=0; $iIdxMembre<count($aoPersonnes); $iIdxMembre++)
 // Personne en vue
 // ---------------------------
 if ($iIdxMembre < 1)
-	$sCorpHtml = "<tr><td align=\"center\">Pas d'&eacute;tudiant trouv&eacute;</td></tr>\n";
+	$sCorpHtml = "<tr><td align=\"center\" style=\"font-size:10pt;\">Pas d'&eacute;tudiant trouv&eacute;</td></tr>\n";
 
 $oProjet->terminer();
 

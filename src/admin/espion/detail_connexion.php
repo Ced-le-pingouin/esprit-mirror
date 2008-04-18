@@ -141,10 +141,10 @@ while ($g_iIdxEven < $iNbrEven)
 	// --------------------------------
 	
 	$sContenuTable .= "<tr>"
-		."<td colspan=\"3\" align=\"right\">"
+		."<td colspan=\"3\" align=\"right\" style=\"font-size: 9pt;\">"
 		."<strong>Dur&eacute;e totale des connexions&nbsp;:</strong>"
 		."</td>"
-		."<td align=\"center\" width=\"1%\" style=\"border: #000000 none 1px; border-top-style: solid;\"><span class=\"Attention\">"
+		."<td align=\"center\" width=\"1%\" style=\"border: #000000 none 1px; border-top-style: solid; font-size: 9pt\"><span class=\"Attention\">"
 		."&nbsp;".$oEvenement->retDureeTotaleConnexions($iIdFormActuelle)."&nbsp;"
 		."</span></td>"
 		."</tr>\n";
@@ -155,7 +155,7 @@ while ($g_iIdxEven < $iNbrEven)
 
 if ($g_iIdxEven < 1)
 	$sContenuTable .= "<tr>"
-		."<td colspan=\"4\" align=\"center\">"
+		."<td colspan=\"4\" align=\"center\" style=\"font-size: 9pt;\">"
 		."<strong>Pas de trace de connexion trouvé</strong>"
 		."</td>"
 		."</tr>\n";

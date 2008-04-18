@@ -53,12 +53,12 @@ if (isset($aMenus) && is_array($aMenus))
 	$iCol = 1;
 	$sMenuColonne = NULL;
 	$sStyleColonne = "text-align: right;";
-	
+
 	foreach ($aMenus as $aMenu)
 	{
 		if (empty($aMenu[2]))
 			$aMenu[2] = $iCol;
-		
+
 		if ($iCol != $aMenu[2])
 		{
 			$sMenu .= "<td style=\"{$sStyleColonne}\">{$sMenuColonne}</td>";
@@ -68,7 +68,10 @@ if (isset($aMenus) && is_array($aMenus))
 		}
 		
 		$sTexteLien = (!isset($aMenu[4]) || $aMenu[4] ? emb_htmlentities($aMenu[0]) : $aMenu[0]);
-		$sMenuColonne .= (isset($sMenuColonne) ? "&nbsp;|&nbsp;" : NULL)
+		// filtre pour enlever les deux liens en développement
+		if (($sTexteLien != "Copier/Coller &agrave; partir d'autres formations") && ($sTexteLien != "G&eacute;rer les fichiers"))
+		{
+		$sMenuColonne .= (isset($sMenuColonne) ? "&nbsp;|&nbsp;" : NULL)	
 			.(isset($aMenu[1])
 				? "<a"
 					." href=\"javascript: void(0);\""
@@ -76,7 +79,7 @@ if (isset($aMenus) && is_array($aMenus))
 					." onfocus=\"blur()\""
 					.">{$sTexteLien}</a>"
 				: $sTexteLien);
-		
+		}
 		if (!empty($aMenu[3]))
 			$sStyleColonne = $aMenu[3];
 	}

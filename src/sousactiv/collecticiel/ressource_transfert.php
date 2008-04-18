@@ -275,11 +275,11 @@ if (isset($_POST["TRANSFERT"]))
 <body onload="init()">
 <?php if (isset($sTransfert)) echo $sTransfert; ?>
 <form action="ressource_transfert.php" method="post" target="_self">
-<h4>1.&nbsp;&nbsp;Choisissez les fichiers que vous voulez transférer vers un autre collecticiel</h4>
+<h6>1.&nbsp;&nbsp;Choisissez les fichiers que vous voulez transférer vers un autre collecticiel</h6>
 <?php echo $sListeFichiersCollecticiel; ?>
-<h4>2.&nbsp;&nbsp;Choisissez un collecticiel de destination</h4>
+<h6>2.&nbsp;&nbsp;Choisissez un collecticiel de destination</h6>
 <?php echo $sListeCollecticielEquipe; ?>
-<h4>3.&nbsp;&nbsp;Commencez le transfert</h4>
+<h6>3.&nbsp;&nbsp;Commencez le transfert</h6>
 <?php echo $sLienTransfere; ?>
 <input type="hidden" name="idPers" value="<?php echo $url_iIdPers; ?>">
 <input type="hidden" name="idModalite" value="<?php echo $url_iModalite; ?>">
