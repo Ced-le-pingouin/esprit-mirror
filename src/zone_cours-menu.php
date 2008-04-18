@@ -211,6 +211,17 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			
 			switch ($oSousActiv->retType())
 			{
+				case LIEN_HOTPOTATOES:
+					$oSousActiv->initHotpotatoes();
+					if (!empty($url_iIdPers)) {
+						$sHref = dir_sousactiv(LIEN_HOTPOTATOES,"scores.php",FALSE)
+							."?idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}"
+							.'&IdHotpot='.$oSousActiv->oHotpotatoes->retId()
+							."&idPers={$url_iIdPers}";
+						$oBlockSousActiv->ajouter($oSet_Page_Html1);
+						$bDeplacerSignet = TRUE;
+						break;
+					}
 				case LIEN_PAGE_HTML:
 				//   --------------
 					$sRepCours = $oActiv->retRepCours("html.php",TRUE);
@@ -230,7 +241,10 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 								$sHref = $oActiv->retRepCours("html.php",FALSE)
 									."?idActiv={$iIdActiv}"
 									."&idSousActiv={$iIdSousActiv}"
-									."&fi=".urlencode($sFichier);
+									."&fi=".urlencode($sFichier)
+									.($oSousActiv->retType()==LIEN_HOTPOTATOES ?
+									  '&IdHotpot='.$oSousActiv->oHotpotatoes->retId() : '')
+									 ;
 							else
 								$sHref = dir_theme("blank.htm",FALSE);
 							
@@ -523,6 +537,7 @@ $oTpl->remplacer("{texte_formatte.url}",dir_sousactiv(LIEN_PAGE_HTML,"descriptio
 $oTpl->remplacer("{glossaire.url}",dir_sousactiv(LIEN_GLOSSAIRE,"glossaire.php",FALSE));
 $oTpl->remplacer("{equipes.url}",dir_admin("equipe","liste_equipes-index.php"));
 $oTpl->remplacer("{tableau_de_bord.url}",dir_sousactiv(LIEN_PAGE_HTML,"tableaudebord.php",FALSE));
+$oTpl->remplacer("{hotpotatoes.url}",dir_sousactiv(LIEN_PAGE_HTML,"hotpotatoes.php",FALSE));
 // }}}
 
 // {{{ Types de statut

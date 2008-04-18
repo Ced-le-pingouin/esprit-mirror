@@ -33,6 +33,7 @@
 */
 
 require_once("../../../globals.inc.php");
+require_once("hotpotatoes.inc.php");
 
 $oProjet = new CProjet();
 
@@ -41,6 +42,7 @@ $oProjet = new CProjet();
 // ---------------------
 $url_sNomFichier  = (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
 $url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
+$url_iIdHotpot  = (empty($_GET["IdHotpot"]) ? FALSE : $_GET["IdHotpot"]);
 
 $bOk = FALSE;
 
@@ -62,6 +64,11 @@ if (!empty($url_sNomFichier))
 	}
 }
 
+if ($bOk && $url_iIdHotpot && ($ext == ".htm" || $ext == ".html")) {
+	hotpot_patch_file($sNomFichier,$url_iIdHotpot); // on affiche et on s'arrête
+	exit();
+}
+
 if ($ext == ".htm" ||
 	$ext == ".html" ||
 	$ext == ".doc" ||
@@ -74,7 +81,6 @@ if ($ext == ".htm" ||
 {
 	if ($bOk)
 		header("Location: {$sNomFichier}");
-	
 	exit();
 }
 

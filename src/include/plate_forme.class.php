@@ -84,6 +84,7 @@ define("LIEN_FORMULAIRE"			, 9);	/// Questionnaire = AEL (activité en ligne)			
 define("LIEN_TEXTE_FORMATTE"		, 10);	/// Texte avec possibilité de mise en forme	réduite par balises										@enum LIEN_TEXTE_FORMATTE
 define("LIEN_GLOSSAIRE"				, 11);	/// Glossaire																						@enum LIEN_GLOSSAIRE
 define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités			@enum LIEN_TABLEAU_DE_BORD
+define("LIEN_HOTPOTATOES"			, 13);	/// Exercice Hotpotatoes																			@enum LIEN_HOTPOTATOES
 //@}
 
 /** @name Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module_Rubrique */

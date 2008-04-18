@@ -116,7 +116,7 @@ else
 // {{{ Les types d'actions
 $oSousActiv = new CSousactiv($oProjet->oBdd);
 
-$aiIdType  = array(LIEN_COLLECTICIEL,LIEN_FORMULAIRE,LIEN_FORUM,LIEN_CHAT);
+$aiIdType  = array(LIEN_COLLECTICIEL,LIEN_FORMULAIRE,LIEN_FORUM,LIEN_CHAT,LIEN_HOTPOTATOES);
 $asRechTpl = array("{sous_activite_type.label}","{sous_activite_type.value}","{sous_activite_type.selected}");
 
 $oBloc = new TPL_Block("BLOCK_SOUS_ACTIVITE_TYPE",$oTpl);
@@ -163,4 +163,3 @@ $oTpl->afficher();
 $oProjet->terminer();
 
 ?>
-

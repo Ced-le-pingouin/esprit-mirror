@@ -299,6 +299,7 @@ function dir_sousactiv ($v_iLienSousActiv=NULL,$v_sFichierAInclure=NULL,$v_bChem
 		case LIEN_GALERIE: $sLienSousActiv = "galerie/"; break;
 		case LIEN_FORMULAIRE: $sLienSousActiv = "formulaire/"; break;
 		case LIEN_GLOSSAIRE: $sLienSousActiv = "glossaire/"; break;
+		case LIEN_HOTPOTATOES: $sLienSousActiv = "hotpotatoes/"; break;
 		default: $sLienSousActiv = NULL;
 	}
 	return dir_root_plateform("sousactiv/{$sLienSousActiv}{$v_sFichierAInclure}",$v_bCheminAbsolu);

@@ -75,6 +75,7 @@ $bPeutAfficherCollecticiels = ($url_iIdType == 0 | $url_iIdType == LIEN_COLLECTI
 $bPeutAfficherFormulaires   = ($url_iIdType == 0 | $url_iIdType == LIEN_FORMULAIRE);
 $bPeutAfficherForums        = ($url_iIdType == 0 | $url_iIdType == LIEN_FORUM);
 $bPeutAfficherChats         = ($url_iIdType == 0 | $url_iIdType == LIEN_CHAT);
+$bPeutAfficherHotpotatoes   = ($url_iIdType == 0 | $url_iIdType == LIEN_HOTPOTATOES);
 
 $bEstEtudiant = ($g_iIdStatutUtilisateur == STATUT_PERS_ETUDIANT);
 
@@ -187,6 +188,7 @@ $sSetCollecticiel = $oTpl->defVariable("SET_COLLECTICIEL");
 $sSetFormulaire   = $oTpl->defVariable("SET_FORMULAIRE");
 $sSetForum        = $oTpl->defVariable("SET_FORUM");
 $sSetChat         = $oTpl->defVariable("SET_CHAT");
+$sSetHotpotatoes  = $oTpl->defVariable("SET_HOTPOTATOES");
 
 $asTplGlobalCommun = array(
 	"url_archives" => $oTpl->defVariable("SET_URL_CHAT_ARCHIVES")
@@ -284,11 +286,51 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$aoBlocs["nom"]->remplacer("{formulaire.nom}",emb_htmlentities($oFormulaire->retNom()));
 			
 			$aoBlocs["modalite"]->nextLoop();
-			$aoBlocs["modalite"]->remplacer("{formulaire.modalite}",retTexteModalite("AEL",$abModalites[$iCol]));
+			$aoBlocs["modalite"]->remplacer(
+				"{formulaire.modalite}",
+//				retTexteModalite($oFormulaire->oEnregBdd->type,$abModalites[$iCol])
+				retTexteModalite("AEL",$abModalites[$iCol])
+				);
 			
 			$iCol++;
 		}
 		
+		$aoBlocs["nom"]->afficher();
+		$aoBlocs["modalite"]->afficher();
+	}
+	else
+	{
+		$aoBlocs["nom"]->effacer();
+		$aoBlocs["modalite"]->effacer();
+	}
+	// }}}
+	
+	// {{{ Colonnes des exos hotpotatoes (en-têtes)
+	$aoBlocs = array(
+		"nom" => new TPL_Block("BLOCK_HOTPOTATOES_NOM",$oBlocRubrique)
+		, "modalite" => new TPL_Block("BLOCK_HOTPOTATOES_MODALITE",$oBlocRubrique)
+	);
+	
+	if ($bPeutAfficherHotpotatoes
+		&& ($iNbHotpotatoes = $oRubrique->initHotpotatoes($url_iIdModalite)) > 0)
+	{
+		$aoBlocs["nom"]->beginLoop();
+		$aoBlocs["modalite"]->beginLoop();
+		foreach ($oRubrique->aoHotpotatoes as $oSousActiv)
+		{
+			$abModalites[$iCol] = 'Hotpotatoes';
+			list( , , , $iIdHotpot) = explode(";",$oSousActiv->retDonnees());
+			$aoBlocs["nom"]->nextLoop();
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.td.id}","u{$iIdRubr}c{$iCol}");
+			$aoBlocs["nom"]->remplacer("{hotpotatoes.nom}",
+				"<a href=\"javascript: PopupCenter('tableau_scores_hotpot.php?IdHotpot=$iIdHotpot&IdSousActiv=".$oSousActiv->retId()."','scores',640,480,'status=no,resizable=yes,scrollbars=yes');void(0);\">"
+				.$oSousActiv->retNom(true)
+				."</a>"
+				);
+			$aoBlocs["modalite"]->nextLoop();
+			$aoBlocs["modalite"]->remplacer("{hotpotatoes.modalite}",$abModalites[$iCol]);
+			$iCol++;
+		}
 		$aoBlocs["nom"]->afficher();
 		$aoBlocs["modalite"]->afficher();
 	}
@@ -610,6 +652,39 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				$iCol++;
 			}
 			
+			$oBloc->afficher();
+		}
+		else
+			$oBloc->effacer();
+		// }}}
+		
+		// {{{ Colonnes des exos Hotpotatoes (résultats des étudiants)
+		$oBloc = new TPL_Block("BLOCK_HOTPOTATOES",$oBlocTableauBord);
+		if ($bPeutAfficherHotpotatoes && $iNbHotpotatoes > 0)
+		{
+			$oBloc->beginLoop();
+			foreach ($oRubrique->aoHotpotatoes as $oSousActiv)
+			{
+				list( , , , $iIdHotpot) = explode(";",$oSousActiv->retDonnees());
+				if (ctype_digit($iIdHotpot))
+					$oHotpotatoes = new CHotpotatoes($oProjet->oBdd,$iIdHotpot);
+				else {
+					error_log("ESPRIT : id Hotpot invalide : $iIdHotpot");
+					continue;
+				}
+				$oBloc->nextLoop();
+				$oHotpotScore = $oHotpotatoes->der_score_par_etudiant($iIdInscrit);
+				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
+					$oBloc->remplacer("{hotpotatoes}",$sSetHotpotatoes);
+				$oBloc->remplacer(
+						array("{hotpotatoes.td.id}", "{hotpotatoes}"),
+						array("u{$iIdRubr}l{$iLigne}c{$iCol}",
+							( $oHotpotScore->retScore()!==NULL ? '<div title="Non actif">'.$oHotpotScore->retScore().'&nbsp;%</div>' : '-' ))
+						);
+				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oSousActiv->retIdParent(),$oSousActiv->retId(),"&amp;idPers={$iIdInscrit}"));
+				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));
+				$iCol++;
+			}
 			$oBloc->afficher();
 		}
 		else
