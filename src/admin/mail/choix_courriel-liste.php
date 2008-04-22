@@ -46,6 +46,31 @@ if ($g_iIdPers < 1)
 // ---------------------
 include_once(dir_database("personnes.class.php"));
 
+//----------------------
+// Fonction affichant d'où est appelé le courriel
+//----------------------
+function verifierAppelCourriel($v_asTypeCourriel, $v_iNbPersonnes=2)
+{
+	global $g_Type;
+	$g_Type = explode("-", $v_asTypeCourriel);
+	switch($g_Type[1]){
+		case "forum":
+		case "cours":
+			$v_BlocModif =  "du ".$g_Type[1];
+		break;
+		case "module":
+			$v_BlocModif = "du cours";
+		break;
+		case "formation":
+			$v_BlocModif = "de la ".$g_Type[1];
+		break;
+		default:
+			$v_BlocModif = "(".$g_Type[1].")";
+		break;
+	}
+	return $v_BlocModif;
+}
+
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
@@ -69,7 +94,7 @@ $url_aiIdPers = (empty($_GET["idPers"])
 $url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
 $url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
 
-$url_asTypeCourriel = (empty($_GET["typeCourriel"]) ? array("courriel-module") : explode("@",$_GET["typeCourriel"]));
+$url_asTypeCourriel = (empty($_GET["typeCourriel"]) ? array("courriel-cours") : explode("@",$_GET["typeCourriel"]));
 
 // si on se situe au niveau de la description de la formation
 $url_iFormationId = (empty($_GET["idForm"]) ? NULL : $_GET["idForm"]);
@@ -198,10 +223,11 @@ $oBlocListeStatuts = new TPL_Block("BLOCK_LISTE_STATUTS",$oTpl);
 if ($iNbStatuts > 0)
 {
 	$asListeStatuts = $oBlocListeStatuts->defTableau("ARRAY_STATUTS");
-	verifierAppelCourriel($oBlocListeStatuts,$url_asTypeCourriel[0]);
 	
 	$oBlocStatut = new TPL_Block("BLOCK_STATUT",$oBlocListeStatuts);
 	$oBlocStatut->remplacer("{liste_membres}",$sSetListeMembres);
+	$oBlocStatut->remplacer("{type.activite}",verifierAppelCourriel($url_asTypeCourriel[0]));
+	
 	$sVarMembre = $oBlocStatut->defVariable("VAR_MEMBRE");
 	$oBlocStatut->beginLoop();
 	
@@ -265,7 +291,7 @@ $oBlocListeEquipes = new TPL_Block("BLOCK_LISTE_EQUIPES",$oTpl);
 if ($iNbEquipes > 0)
 {
 	// si on est dans le forum -> toute les équipes 'du forum'
-	verifierAppelCourriel($oBlocListeEquipes, $url_asTypeCourriel[0]);
+	$oBlocListeEquipes->remplacer("{type.activite}",verifierAppelCourriel($url_asTypeCourriel[0]));
 
 	$oBlocEquipe = new TPL_Block("BLOCK_EQUIPE",$oBlocListeEquipes);
 	$oBlocEquipe->remplacer("{liste_membres}",$sSetListeMembres);
@@ -351,7 +377,7 @@ if ($iNbPersonnes > 0)
 	$oBlocPersonne->remplacer("{liste_membres}",$sSetListeMembres);
 	($iNbPersonnes > 1) ? $oBlocPersonne->remplacer("{personne.nombre}","Toutes les personnes") : $oBlocPersonne->remplacer("{personne.nombre}","La personne");
 	if ($iNbPersonnes < 2) $oBlocPersonne->remplacer("{type.activite}", "");
-	else verifierAppelCourriel($oBlocPersonne, $url_asTypeCourriel[0]);
+	else $oBlocPersonne->remplacer("{type.activite}",verifierAppelCourriel($url_asTypeCourriel[0]));
 	
 	$oBlocMembre = new TPL_Block("BLOCK_MEMBRE",$oBlocPersonne);
 	$sVarMembre = $oBlocPersonne->defVariable("VAR_MEMBRE");
@@ -390,27 +416,6 @@ if ($iNbPersonnes > 0)
 else
 {
 	$oBlocListePersonnes->effacer();
-}
-
-function verifierAppelCourriel($v_soBloc, $v_asTypeCourriel, $v_iNbPersonnes=2)
-{
-	global $g_Type;
-	$g_Type = explode("-", $v_asTypeCourriel);
-	switch($g_Type[1]){
-		case "forum":
-		case "cours":
-			$v_soBloc->remplacer("{type.activite}", "du ".$g_Type[1]);
-		break;
-		case "module":
-			$v_soBloc->remplacer("{type.activite}", "du cours");
-		break;
-		case "formation":
-			$v_soBloc->remplacer("{type.activite}", "da la ".$g_Type[1]);
-		break;
-		default:
-			$v_soBloc->remplacer("{type.activite}", "(".$g_Type[1].")");
-		break;
-	}
 }
 
 $oBlocAucunInscrit = new TPL_Block("BLOCK_AUCUN_INSCRIT",$oTpl);
