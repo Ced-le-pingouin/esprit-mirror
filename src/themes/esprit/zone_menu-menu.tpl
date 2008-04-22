@@ -58,7 +58,19 @@ function init()
 	var iY = ((aCoord[1]-100) > 0 ? aCoord[1]-100 : 0);
 	self.scrollTo(0,iY);
 }
-
+function oMenu()
+{
+return parent.frames["Menu"];
+}
+function rechargerMenuBas(v_iIdFormActuelle, v_iIdModActuel)
+{
+var url;
+	if (v_iIdModActuel == 0)
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod=0&idUnite=0&idSousActiv=0&idActiv=0&idNiveau="+v_iIdFormActuelle+"&typeNiveau=1";		
+	else
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod="+v_iIdModActuel+"&idUnite=0&idSousActiv=0&idActiv=0";
+	oMenu().location = url;
+}
 //-->
 </script>
 </head>
@@ -95,7 +107,7 @@ function init()
 [SET_DESCRIPTION_FORMATION+]
 <tr>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
-<td class="description"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description')" onfocus="blur()">Description</a></td>
+<td class="description"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description'); rechargerMenuBas({idFormAct}, 0);" onfocus="blur()">Description</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_DESCRIPTION_FORMATION-]
@@ -113,7 +125,7 @@ function init()
 [SET_COURS-]
 
 [SET_COURS_OUVERT+]
-[BLOCK_COURS_INTITULE+]<span class="cours">{intitule_cours}</span>[BLOCK_COURS_INTITULE-]{separateur_intitule}<a href="{href_cours}" target="Principal" onclick="restorer_position_cours(); changerTitres({index_formation},'mod_{id_cours}','{nom_cours_encoder}');" onfocus="blur()">{nom_cours}</a>
+[BLOCK_COURS_INTITULE+]<span class="cours">{intitule_cours}</span>[BLOCK_COURS_INTITULE-]{separateur_intitule}<a href="{href_cours}" target="Principal" onclick="restorer_position_cours(); changerTitres({index_formation},'mod_{id_cours}','{nom_cours_encoder}');rechargerMenuBas({idFormAct}, {idModAct});" onfocus="blur()">{nom_cours}</a>
 [SET_COURS_OUVERT-]
 
 [SET_SEPARATEUR_INTITULE+]&nbsp;:&nbsp;[SET_SEPARATEUR_INTITULE-]

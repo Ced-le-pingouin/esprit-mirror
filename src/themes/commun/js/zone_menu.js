@@ -13,4 +13,3 @@ function sauver_position_cours() {
 	else
 		top.sauver_position = 0;
 }
-

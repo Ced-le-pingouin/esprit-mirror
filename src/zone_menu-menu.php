@@ -166,6 +166,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 		$oBlocModule->remplacer("{index_formation}",$g_iIdxForm);
 		$oBlocModule->remplacer("{id_formation}",$iIdForm);
 		$oBlocModule->remplacer("{href_description}",dir_sousactiv(LIEN_PAGE_HTML,$sUrlDescr));
+		$oBlocModule->remplacer("{idFormAct}",$iIdForm);
 		
 		unset($sUrlDescr);
 	}
@@ -229,6 +230,8 @@ foreach ($oProjet->aoFormations as $oFormation)
 				$oBlocModule->remplacer("{href_cours}","zone_menu.php?idForm={$iIdForm}&idMod={$iIdMod}");
 				$oBlocModule->remplacer("{index_formation}",$g_iIdxForm);
 				$oBlocModule->remplacer("{nom_cours_encoder}",phpString2js($sIntitulePlusNomMod));
+				$oBlocModule->remplacer("{idFormAct}",$iIdForm);
+				$oBlocModule->remplacer("{idModAct}",$iIdMod);
 			}
 			else
 			{
