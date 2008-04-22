@@ -18,7 +18,7 @@
 [SET_ENVOI_COURRIEL_ICONE_PASSIVE+]<img src="commun://icones/pas_mail.gif" width="16" height="16" border="0">[SET_ENVOI_COURRIEL_ICONE_PASSIVE-]
 [SET_ENVOI_COURRIEL_MULTIPLE_ICONE+]<img src="commun://icones/24x24/courriel_envoye.gif" width="24" height="24" alt="Envoi courriel" border="0">[SET_ENVOI_COURRIEL_MULTIPLE_ICONE-]
 [SET_ENVOI_COURRIEL_TEXTE+]&nbsp;Envoi courriel[SET_ENVOI_COURRIEL_TEXTE-]
-[SET_MAIL_ACTIF+]<a href="mailto:{personne->email}" title="Envoyer un mail" onfocus="blur()"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_MAIL_ACTIF-]
+[SET_MAIL_ACTIF+]<a href="javascript: void(0);" onclick="choix_courriel('{personne->email}'); return false;" title="Envoyer un mail" onfocus="blur()"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_MAIL_ACTIF-]
 [SET_MAIL_PASSIF+]<img src="commun://icones/pas_mail.gif" width="16" height="16" border="0">[SET_MAIL_PASSIF-]
 [SET_ENVOI_COURRIEL+]<a href="javascript: void(0);" onclick="choix_courriel('{envoi_courriel.params}'); return false;" onfocus="blur()" title="Envoyer un courriel">{envoi_courriel.icone}{envoi_courriel.texte}</a>[SET_ENVOI_COURRIEL-]
 [SET_ENVOI_COURRIEL_PASSIF+]{envoi_courriel.icone}{envoi_courriel.texte}[SET_ENVOI_COURRIEL_PASSIF-]

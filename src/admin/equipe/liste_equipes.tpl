@@ -64,7 +64,7 @@ function init()
 
 [SET_SEXE_MASCULIN+]<img src="commun://icones/boy.gif" width="14" height="26" border="0">[SET_SEXE_MASCULIN-]
 [SET_SEXE_FEMININ+]<img src="commun://icones/girl.gif" width="15" height="26" border="0">[SET_SEXE_FEMININ-]
-[SET_COURRIEL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}'); return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_COURRIEL-]
+[SET_COURRIEL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}&typeCourriel=courriel-cours@cours'); return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_COURRIEL-]
 [SET_SANS_COURRIEL+]<img src="commun://icones/pas_mail.gif" width="16" height="16" border="0">[SET_SANS_COURRIEL-]
 [SET_INDICE+]<img src="theme://icones/etoile.gif" width="13" height="13" border="0">[SET_INDICE-]
 [SET_SEPARATEUR_BLOC+]<img src="commun://espacer.gif" border="0" height="15" width="100%">[SET_SEPARATEUR_BLOC-]

@@ -88,13 +88,13 @@ if ($iNbVotants > 0)
 	
 	$oBlocVotant = new TPL_Block("BLOCK_VOTANT",$oBlocTableVotants);
 	$oBlocVotant->beginloop();
-	
+
 	foreach ($oRSA->aoVotants as $oVotant)
-	{
+	{		
 		$sEmail        = $oVotant->retEmail();
 		$sIcones       = $sSetCourriel[emailValide($sEmail)];
 		$aiIdVotants[] = $oVotant->retId();
-		
+
 		$oBlocVotant->nextloop();
 		
 		$oBlocVotant->remplacer("{personne.sexe}",$sSetSexe[($oVotant->retSexe() == "M")]);
@@ -102,7 +102,7 @@ if ($iNbVotants > 0)
 		$oBlocVotant->remplacer("{personne.prenom}",$oVotant->retPrenom());
 		$oBlocVotant->remplacer("{outil.courriel}",$sIcones);
 		$oBlocVotant->remplacer("{personne.pseudo}",$oVotant->retPseudo());
-		$oBlocVotant->remplacer("{personne.courriel}",$sEmail);
+		$oBlocVotant->remplacer("{a.choix_courriel.href}", "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$oVotant->retId()."&select=".$oVotant->retId()."&typeCourriel=courriel-collecticiel@collecticiel");
 	}
 	
 	if ($g_bPeutEvaluer
@@ -129,7 +129,7 @@ if ($iNbVotants > 0)
 			$oBlocMembreNonVotant->remplacer("{personne.prenom}",$oMembre->retPrenom());
 			$oBlocMembreNonVotant->remplacer("{outil.courriel}",$sIcones);
 			$oBlocMembreNonVotant->remplacer("{personne.pseudo}",$oMembre->retPseudo());
-			$oBlocMembreNonVotant->remplacer("{personne.courriel}",$sEmail);
+			$oBlocMembreNonVotant->remplacer("{a.choix_courriel.href}", "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$iIdPers."&select=".$iIdPers."&typeCourriel=courriel-collecticiel@collecticiel");
 		}
 		
 		$oBlocMembreNonVotant->afficher();

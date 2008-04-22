@@ -55,14 +55,14 @@
 <tbody>
 <tr>
 <th>&nbsp;</th>
-<td colspan="{equipe.td.colspan}" class="cellule_equipe"><a href="javascript: void(0);" onclick="choix_courriel('?idEquipes={equipe.id}&amp;select=1'); return false;" onfocus="blur()" title="Envoyer un courriel">{equipe.nom}</a></td>
+<td colspan="{equipe.td.colspan}" class="cellule_equipe"><a href="javascript: void(0);" onclick="choix_courriel('?idStatuts={id.statut}&idEquipes={equipe.id}&amp;select=1&typeCourriel=courriel-Tableau%20de%20bord'); return false;" onfocus="blur()" title="Envoyer un courriel">{equipe.nom}</a></td>
 </tr>
 </tbody>
 [BLOCK_EQUIPE-]
 <tbody id="tb{personne.td.id}">
 <tr>
 <th>&nbsp;{personne.index}&nbsp;</th>
-<td id="{personne.td.id}" class="cellule_etudiant"><a href="javascript: void(0);" onclick="choix_courriel('?idPers={personne.id}&amp;select=1'); return false;" onfocus="blur()" title="[TLT_ENVOYER_COURRIEL]">{personne.nom}&nbsp;{personne.prenom}</a>[BLOCK_PERSONNE_INDICE+]&nbsp;<img src="theme://icones/etoile.gif" width="13" height="13" border="0">[BLOCK_PERSONNE_INDICE-]</td>
+<td id="{personne.td.id}" class="cellule_etudiant"><a href="javascript: void(0);" onclick="choix_courriel('?idStatuts={id.statut}&idPers={personne.id}&amp;select=1&typeCourriel=courriel-Tableau%20de%20bord'); return false;" onfocus="blur()" title="[TLT_ENVOYER_COURRIEL]">{personne.nom}&nbsp;{personne.prenom}</a>[BLOCK_PERSONNE_INDICE+]&nbsp;<img src="theme://icones/etoile.gif" width="13" height="13" border="0">[BLOCK_PERSONNE_INDICE-]</td>
 [BLOCK_COLLECTICIEL+]<td id="{collecticiel.td.id}">{collecticiel}{collecticiel.date}</td>[BLOCK_COLLECTICIEL-]
 [BLOCK_FORMULAIRE+]<td id="{formulaire.td.id}">{formulaire}{formulaire.date}</td>[BLOCK_FORMULAIRE-]
 [BLOCK_HOTPOTATOES+]<td id="{hotpotatoes.td.id}">{hotpotatoes}{hotpotatoes.date}</td>[BLOCK_HOTPOTATOES-]
@@ -80,3 +80,4 @@
 [SET_HOTPOTATOES+]{hotpotatoes}[SET_HOTPOTATOES-]
 [SET_FORUM+]{forum.nom}[SET_FORUM-]
 [SET_CHAT+]{chat_archives.nom}[SET_CHAT-]
+[SET_ENVOI_COURRIEL+]{url.params}[SET_ENVOI_COURRIEL-]

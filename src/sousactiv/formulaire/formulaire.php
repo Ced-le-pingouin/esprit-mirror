@@ -112,7 +112,7 @@ $oBlocFormulaire->remplacer("{formulaire->element}",$sSetListeIcones);
 $oBlocFormulaire->remplacer("{a.exporter.href}","formulaire_export.php?idSousActiv={$url_iIdSousActiv}");
 
 // Envoi courriel
-$oBlocFormulaire->remplacer("{a.choix_courriel.href}","choix_courriel('?typeCourriel=courriel-unite&idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."')");
+$oBlocFormulaire->remplacer("{a.choix_courriel.href}","choix_courriel('?typeCourriel=courriel-Activit&eacute;%20en%20ligne&idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."')");
 
 $asListeIcones = $oBlocFormulaire->defTableau("ARRAY_LISTE_ICONES","#@#");
 
@@ -273,7 +273,7 @@ foreach ($aiIdPers as $iIdPers)
 			, emb_htmlentities($oPersonne->retNomComplet()).($iIdPers == $iMonIdPers ? $asTplGlobale["icone->favori"] : NULL)
 			, emb_htmlentities($oPersonne->retPseudo())
 			, $asTplGlobale[(strlen($oPersonne->retEmail()) ? "mail->actif" : "mail->passif")]
-			, $oPersonne->retEmail()
+			, "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$oPersonne->retId()."&select=".$oPersonne->retId()."&typeCourriel=courriel-Activit&eacute;%20en%20ligne"
 		);
 		
 		$sListeTravauxSoumis .= str_replace($asInfosPersonne,$amRemplacer,$asTplGlobale["personne_infos"]);

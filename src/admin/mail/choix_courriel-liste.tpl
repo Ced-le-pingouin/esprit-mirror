@@ -135,18 +135,28 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 <body onload="init()">
 {form}
 [BLOCK_LISTE_STATUTS+]
-[ARRAY_STATUTS+]Tous,,,<b>Tous les responsables</b>,,,,<b>Tous les tuteurs</b>,,<b>Tous les &eacute;tudiants</b>[ARRAY_STATUTS-]
+[ARRAY_STATUTS+]Tous,,,Tous les responsables,,,,Tous les tuteurs,,Tous les &eacute;tudiants[ARRAY_STATUTS-]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 [BLOCK_STATUT+]
-<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2">&nbsp;{statut.nom}</td></tr>
+<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2">&nbsp;<b>{statut.nom} {type.activite}</b></td></tr>
 <tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
 [BLOCK_STATUT-]
 </table>
 [BLOCK_LISTE_STATUTS-]
 
+[BLOCK_LISTE_STATUTS_FORMATION+]
+[ARRAY_STATUTS_FORMATION+]Tous,,,<b>Tous les responsables de la formation</b>,,,,<b>Tous les tuteurs de la formation</b>,,<b>Tous les &eacute;tudiants de la formation</b>[ARRAY_STATUTS_FORMATION-]
+<table border="0" cellspacing="1" cellpadding="0" width="100%">
+[BLOCK_STATUT_FORMATION+]
+<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2">&nbsp;{statut.nom}</td></tr>
+<tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
+[BLOCK_STATUT_FORMATION-]
+</table>
+[BLOCK_LISTE_STATUTS_FORMATION-]
+
 [BLOCK_LISTE_EQUIPES+]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
-<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idEquipes" onclick="selectionner(this,'idEquipes',-1,true)" onfocus="blur()" value="-1"></td><td id="id_table_entete_2" class="cellule_sous_titre" colspan="2">&nbsp;<b>Toutes les &eacute;quipes</b></td></tr>
+<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idEquipes" onclick="selectionner(this,'idEquipes',-1,true)" onfocus="blur()" value="-1"></td><td id="id_table_entete_2" class="cellule_sous_titre" colspan="2">&nbsp;<b>Toutes les &eacute;quipes {type.activite}</b></td></tr>
 [BLOCK_EQUIPE+]
 <tr><td>&nbsp;</td><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idEquipes[]" onclick="selectionner(this,'idEquipes',0,true)" onfocus="blur()" value="0"{equipe.checked}></td><td id="id_table_entete_2" class="cellule_sous_titre">&nbsp;{equipe.nom}</td></tr>
 <tr><td>&nbsp;</td><td>&nbsp;</td><td>{liste_membres}</td></tr>
@@ -157,7 +167,7 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [BLOCK_LISTE_PERSONNES+]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 [BLOCK_PERSONNE+]
-<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idTous" onclick="selectionner(this,'',-2,true)" onfocus="blur()" value="-2"></td><td id="id_table_entete_2" class="cellule_sous_titre">&nbsp;{personne.nombre}</td></tr>
+<tr><td class="cellule_sous_titre" valign="top"><input type="checkbox" name="idTous" onclick="selectionner(this,'',-2,true)" onfocus="blur()" value="-2"></td><td id="id_table_entete_2" class="cellule_sous_titre">&nbsp;<b>{personne.nombre} {type.activite}</b></td></tr>
 <tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
 [BLOCK_PERSONNE-]
 </table>

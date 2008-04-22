@@ -45,6 +45,47 @@ class CPersonnes
 		$this->vider();
 	}
 	
+	/**
+	 * Initialise un tableau contenant toutes les personnes inscrites à cette formation
+	 * 
+	 * @param	v_iIdFormation donne le numéro de la formation
+	 *
+	 * @param	v_iIdStatutForm sélectionne les types de personnes (Repsonsables, tuteurs et/ou étudiants)
+	 *  
+	 * @return	le nombre de personnes inscrites dans cette formation
+	 */
+	function initGraceIdFormation($v_iIdFormation, $v_iIdStatutForm)
+	{
+		if (($iIdForm = $this->retIdForm()) < 1)
+			return 0;
+		
+		$aoPersonnes = array();
+		
+		switch ($v_iIdStatutForm)
+		{
+			case STATUT_PERS_RESPONSABLE:
+				$this->oProjet->oFormationCourante->initResponsables();
+				$aoPersonnes = &$this->oProjet->oFormationCourante->aoResponsables;
+				break;
+				
+			case STATUT_PERS_TUTEUR:
+				$this->oProjet->oFormationCourante->initTuteurs();
+				$aoPersonnes = &$this->oProjet->oFormationCourante->aoTuteurs;
+				break;
+				
+			case STATUT_PERS_ETUDIANT:
+				$this->oProjet->oFormationCourante->initInscrits();
+				$aoPersonnes = &$this->oProjet->oFormationCourante->aoInscrits;
+				break;
+		}
+		
+		foreach ($aoPersonnes as $oPersonne)
+			$this->aoPersonnes[$oPersonne->retPseudo()] = $oPersonne;
+		
+		return count($this->aoPersonnes);
+		
+		
+	}
 	function initPersonnes ($v_sRequeteSql)
 	{
 		$iIdxPers = 0;

@@ -331,6 +331,15 @@ function selectionnerType ($v_sNom,$v_aoTypes,$v_iTypeActuel=0,$v_sParametres=NU
 {
 	global $g_bModifier;
 	
+	// vérification si il n'y a qu'un seul type
+	// dans ce cas là, on n'affiche pas de liste
+	if (count($v_aoTypes) == 1)
+		$sType= "<tr>\n<td><div class=\"intitule\">Type&nbsp;:</div></td>\n"
+		."<td style=\"font-size: 10pt\">\n"
+		.$v_aoTypes[0][1]
+		."</td>\n</tr>\n";
+	else
+	{
 	$sType = "\n<!-- Sélectionnez un type -->\n\n"
 		."<tr>\n"
 		."<td><div class=\"intitule\">Type&nbsp;:</div></td>\n"
@@ -340,7 +349,7 @@ function selectionnerType ($v_sNom,$v_aoTypes,$v_iTypeActuel=0,$v_sParametres=NU
 		.($g_bModifier ? NULL : " disabled")
 		." style=\"width: 200px;\""
 		.">\n";
-	
+		
 	for ($i=0; $i<count($v_aoTypes); $i++)
 		$sType .= "\t<option"
 			." value=\"{$v_aoTypes[$i][0]}\""
@@ -353,7 +362,7 @@ function selectionnerType ($v_sNom,$v_aoTypes,$v_iTypeActuel=0,$v_sParametres=NU
 	$sType .= "</select>\n"
 		."</td>\n"
 		."</tr>\n";
-	
+	}
 	echo $sType;
 }
 

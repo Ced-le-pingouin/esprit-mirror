@@ -69,7 +69,11 @@ $url_aiIdPers = (empty($_GET["idPers"])
 $url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
 $url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
 
-$url_iFormationId = (empty($_GET["ifForm"]) ? NULL : $_GET["idForm"]);
+$url_asTypeCourriel = (empty($_GET["typeCourriel"]) ? array("courriel-module") : explode("@",$_GET["typeCourriel"]));
+
+// si on se situe au niveau de la description de la formation
+$url_iFormationId = (empty($_GET["idForm"]) ? NULL : $_GET["idForm"]);
+
 
 // ---------------------
 // Initialiser
@@ -118,6 +122,75 @@ $sSetListeMembres    = $oTpl->defVariable("SET_LISTE_MEMBRES");
 $sSetSeparateurTable = NULL; //$oTpl->defVariable("SET_SEPARATEUR_TABLE");
 
 // ---------------------
+// Liste des inscrits à la formation
+// Si on se trouve dans la description de la formation,
+// alors on affiche toutes les personnes inscrites à cette formation
+// ---------------------
+$oBlocListeStatutsFormation = new TPL_Block("BLOCK_LISTE_STATUTS_FORMATION",$oTpl);
+
+if ($url_iFormationId > 0)
+{
+	$asListeStatuts = $oBlocListeStatutsFormation->defTableau("ARRAY_STATUTS_FORMATION");
+	$v_aiIdStatutsForm = array(STATUT_PERS_RESPONSABLE, STATUT_PERS_TUTEUR, STATUT_PERS_ETUDIANT);
+	
+	$oBlocStatutFormation = new TPL_Block("BLOCK_STATUT_FORMATION",$oBlocListeStatutsFormation);
+	$oBlocStatutFormation->remplacer("{liste_membres}",$sSetListeMembres);
+	$sVarMembre = $oBlocStatutFormation->defVariable("VAR_MEMBRE");
+	$oBlocStatutFormation->beginLoop();
+	
+	foreach ($v_aiIdStatutsForm as $iIdStatutForm)
+	{
+		$oMembres = new CPersonnes($oProjet);
+		
+		if (($iNbStatutsForm = $oMembres->initGraceIdFormation($url_iFormationId, $iIdStatutForm)) > 0)
+		{
+			$oBlocStatutFormation->nextLoop();
+			$oBlocStatutFormation->remplacer("{statut.id}",$iIdStatutForm);
+			$oBlocStatutFormation->remplacer("{statut.nom}",$asListeStatuts[$iIdStatutForm]);
+			
+			$oBlocMembre = new TPL_Block("BLOCK_MEMBRE",$oBlocStatutFormation);
+			$oBlocMembre->beginLoop();
+			
+			foreach ($oMembres->aoPersonnes as $oPersonne)
+			{
+				$bValidCourriel = emailValide($oPersonne->retEmail());
+				
+				if ($bValidCourriel)
+				{
+					$sMembre = $sVarMembre;
+//				else
+//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+				
+				if ($oPersonne->retId() == $g_iIdPers)
+					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
+				
+				$oBlocMembre->nextLoop();
+				$oBlocMembre->remplacer("{membre}",$sMembre);
+				$oBlocMembre->remplacer("{membre.id}",$oPersonne->retId());
+				$oBlocMembre->remplacer("{membre.nom}",emb_htmlentities($oPersonne->retNom()));
+				$oBlocMembre->remplacer("{membre.prenom}",emb_htmlentities($oPersonne->retPrenom()));
+				$oBlocMembre->remplacer("{membre.pseudo}",emb_htmlentities($oPersonne->retPseudo()));
+				$oBlocMembre->remplacer("{membre.checkbox.disabled}",($bValidCourriel ? NULL : " disabled=\"disabled\""));
+				if ($url_iPersonneId == $oPersonne->retId()) $url_bSelectionnerPers=true;
+				else $url_bSelectionnerPers=False;
+				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
+				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatutForm}" : NULL));
+				}
+			}
+			
+			$oBlocMembre->afficher();
+		}
+	}
+	
+	$oBlocStatutFormation->afficher();
+}
+
+if ($url_iFormationId > 0)
+	$oBlocListeStatutsFormation->afficher();
+else
+	$oBlocListeStatutsFormation->effacer();
+	
+// ---------------------
 // Liste des statuts
 // ---------------------
 $oBlocListeStatuts = new TPL_Block("BLOCK_LISTE_STATUTS",$oTpl);
@@ -125,6 +198,7 @@ $oBlocListeStatuts = new TPL_Block("BLOCK_LISTE_STATUTS",$oTpl);
 if ($iNbStatuts > 0)
 {
 	$asListeStatuts = $oBlocListeStatuts->defTableau("ARRAY_STATUTS");
+	verifierAppelCourriel($oBlocListeStatuts,$url_asTypeCourriel[0]);
 	
 	$oBlocStatut = new TPL_Block("BLOCK_STATUT",$oBlocListeStatuts);
 	$oBlocStatut->remplacer("{liste_membres}",$sSetListeMembres);
@@ -190,8 +264,12 @@ $oBlocListeEquipes = new TPL_Block("BLOCK_LISTE_EQUIPES",$oTpl);
 
 if ($iNbEquipes > 0)
 {
+	// si on est dans le forum -> toute les équipes 'du forum'
+	verifierAppelCourriel($oBlocListeEquipes, $url_asTypeCourriel[0]);
+
 	$oBlocEquipe = new TPL_Block("BLOCK_EQUIPE",$oBlocListeEquipes);
 	$oBlocEquipe->remplacer("{liste_membres}",$sSetListeMembres);
+	
 	$sVarMembre = $oBlocEquipe->defVariable("VAR_MEMBRE");
 	$oBlocEquipe->beginLoop();
 	
@@ -272,6 +350,8 @@ if ($iNbPersonnes > 0)
 	$oBlocPersonne = new TPL_Block("BLOCK_PERSONNE",$oBlocListePersonnes);
 	$oBlocPersonne->remplacer("{liste_membres}",$sSetListeMembres);
 	($iNbPersonnes > 1) ? $oBlocPersonne->remplacer("{personne.nombre}","Toutes les personnes") : $oBlocPersonne->remplacer("{personne.nombre}","La personne");
+	if ($iNbPersonnes < 2) $oBlocPersonne->remplacer("{type.activite}", "");
+	else verifierAppelCourriel($oBlocPersonne, $url_asTypeCourriel[0]);
 	
 	$oBlocMembre = new TPL_Block("BLOCK_MEMBRE",$oBlocPersonne);
 	$sVarMembre = $oBlocPersonne->defVariable("VAR_MEMBRE");
@@ -312,9 +392,30 @@ else
 	$oBlocListePersonnes->effacer();
 }
 
+function verifierAppelCourriel($v_soBloc, $v_asTypeCourriel, $v_iNbPersonnes=2)
+{
+	global $g_Type;
+	$g_Type = explode("-", $v_asTypeCourriel);
+	switch($g_Type[1]){
+		case "forum":
+		case "cours":
+			$v_soBloc->remplacer("{type.activite}", "du ".$g_Type[1]);
+		break;
+		case "module":
+			$v_soBloc->remplacer("{type.activite}", "du cours");
+		break;
+		case "formation":
+			$v_soBloc->remplacer("{type.activite}", "da la ".$g_Type[1]);
+		break;
+		default:
+			$v_soBloc->remplacer("{type.activite}", "(".$g_Type[1].")");
+		break;
+	}
+}
+
 $oBlocAucunInscrit = new TPL_Block("BLOCK_AUCUN_INSCRIT",$oTpl);
 
-if ($iNbPersonnes > 0 || $iNbEquipes > 0 || $iNbStatuts > 0)
+if ($iNbPersonnes > 0 || $iNbEquipes > 0 || $iNbStatuts > 0 || $url_iFormationId >0)
 	$oBlocAucunInscrit->effacer();
 else
 	$oBlocAucunInscrit->afficher();

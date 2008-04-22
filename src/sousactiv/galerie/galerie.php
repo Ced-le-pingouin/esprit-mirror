@@ -181,7 +181,7 @@ if ($iNbCollecticiels > 0)
 				, $asSetTplGlobal["ENVOI_COURRIEL"]
 				, $asSetTplGlobal["ENVOI_COURRIEL_ICONE"]
 				, $asSetTplGlobal["ENVOI_COURRIEL_TEXTE"]
-				, "?typeCourriel=courriel-unite&amp;".$asExpediteurEquipe["courriel"]."&amp;select=1"
+				, "?typeCourriel=courriel-galerie&idStatuts=".STATUT_PERS_TUTEUR."&".$asExpediteurEquipe["courriel"]."&select=1"
 				  // }}}
 			);
 			

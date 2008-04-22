@@ -32,6 +32,7 @@ require_once(dir_database("evenement.tbl.php"));
 require_once(dir_database("formulaire.tbl.php"));
 require_once(dir_locale("globals.lang"));
 require_once(dir_chat("archive.class.php",TRUE));
+require_once(dir_root_plateform("globals.icones.php"));
 
 $oProjet = new CProjet();
 
@@ -192,7 +193,7 @@ $sSetHotpotatoes  = $oTpl->defVariable("SET_HOTPOTATOES");
 
 $asTplGlobalCommun = array(
 	"url_archives" => $oTpl->defVariable("SET_URL_CHAT_ARCHIVES")
-	, "url_envoi_courriel" => $oTpl->defVariable("SET_URL_ENVOI_COURRIEL")
+	, "url_envoi_courriel" => $oTpl->defVariable("SET_ENVOI_COURRIEL")
 	, "url_forum" => $oTpl->defVariable("SET_URL_FORUM")
 );
 
@@ -201,7 +202,7 @@ $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $sBarreOutils = $asTplGlobalCommun["url_envoi_courriel"];
 $oBlocBarreOutils->remplacer(
 	array("{barre_outils}","{url.params}")
-	, array($sBarreOutils,"?idForm={$iIdForm}&amp;idMod={$iIdMod}&amp;idUnite={$iIdRubrique}&amp;".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idStatuts=".STATUT_PERS_TUTEUR."&amp;idEquipes=tous" : "idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT)."&amp;typeCourriel=courriel-unite"."&amp;select=1")
+	, array($sBarreOutils,retLienEnvoiCourriel("?".(MODALITE_PAR_EQUIPE == $url_iIdModalite ? "idStatuts=".STATUT_PERS_TUTEUR."&idEquipes=tous" : "idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT)."&typeCourriel=courriel-Tableau%20de%20bord"."&amp;select=1"))
 );
 $oBlocBarreOutils->afficher();
 // }}}
@@ -543,8 +544,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 			$iIdEquipe  = $oInscrit->IdEquipe;
 			
 			$oBlocEquipe->remplacer(
-				array("{equipe.td.colspan}","{equipe.id}","{equipe.nom}")
-				, array($iNbColsEntete+1,$iIdEquipe,emb_htmlentities($sNomEquipe))
+				array("{equipe.td.colspan}","{equipe.id}","{equipe.nom}","{id.statut}")
+				, array($iNbColsEntete+1,$iIdEquipe,emb_htmlentities($sNomEquipe),STATUT_PERS_TUTEUR)
 			);
 			
 			$oBlocEquipe->afficher();
@@ -555,8 +556,8 @@ foreach ($oModule->aoRubriques as $oRubrique)
 		
 		// {{{ Colonne de l'étudiant
 		$oBlocTableauBord->remplacer(
-			array("{personne.td.id}","{personne.index}","{personne.id}","{personne.nom}","{personne.prenom}")
-			, array("u{$iIdRubr}l{$iLigne}",$iLigne,$iIdInscrit,strtoupper($oInscrit->retNom()),$oInscrit->retPrenom())
+			array("{personne.td.id}","{personne.index}","{personne.id}","{personne.nom}","{personne.prenom}","{id.statut}")
+			, array("u{$iIdRubr}l{$iLigne}",$iLigne,$iIdInscrit,strtoupper($oInscrit->retNom()),$oInscrit->retPrenom(),STATUT_PERS_TUTEUR)
 		);
 		
 		$oBloc = new TPL_Block("BLOCK_PERSONNE_INDICE",$oBlocTableauBord);

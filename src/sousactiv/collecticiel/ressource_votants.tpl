@@ -6,6 +6,9 @@
 <link type="text/css" rel="stylesheet" href="theme://dialogue.css">
 <link type="text/css" rel="stylesheet" href="theme://ressource_votants.css">
 <script type="text/javascript" language="javascript" src="ressource_votants.js"></script>
+<script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
+<script type="text/javascript" language="javascript" src="javascript://window.js"></script>
+<script type="text/javascript" language="javascript" src="javascript://outils_admin.js"></script>
 <head>
 <body>
 <h1>Liste des votants</h1>
@@ -43,5 +46,5 @@
 </html>
 [SET_SEXE_MASCULIN+]<img src="commun://icones/boy.gif" width="15" height="26" border="0" class="sexe">[SET_SEXE_MASCULIN-]
 [SET_SEXE_FEMININ+]<img src="commun://icones/girl.gif" width="15" height="26" border="0" class="sexe">[SET_SEXE_FEMININ-]
-[SET_COURRIEL+]<a href="mailto:{personne.courriel}" title="Envoyer un courriel" onfocus="blur()" class="courriel"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_COURRIEL-]
+[SET_COURRIEL+]<a href="javascript: void(0);" onclick="choix_courriel('{a.choix_courriel.href}'); return false;" title="Envoyer un courriel" onfocus="blur()" class="courriel"><img src="commun://icones/mail.gif" width="16" height="16" border="0"></a>[SET_COURRIEL-]
 [SET_SANS_COURRIEL+]<img src="commun://icones/pas_mail.gif" width="16" height="16" border="0" class="courriel">[SET_SANS_COURRIEL-]

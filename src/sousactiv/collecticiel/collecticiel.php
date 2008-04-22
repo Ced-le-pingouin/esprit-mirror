@@ -183,7 +183,7 @@ if ($g_bResponsable)
 		$oBlocCourriel->effacer();
 	else
 	{
-		$oBlocCourriel->remplacer("{fichier_de_base.courriel}",retLienEnvoiCourriel("?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT));
+		$oBlocCourriel->remplacer("{fichier_de_base.courriel}",retLienEnvoiCourriel("?typeCourriel=courriel-collecticiel@collecticiel&idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT));
 		$oBlocCourriel->afficher();
 	}
 }

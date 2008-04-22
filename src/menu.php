@@ -53,6 +53,12 @@ $iIdSousActiv = (is_object($oProjet->oSousActivCourante) ? $oProjet->oSousActivC
 $iNbrStatuts   = $oProjet->initStatutsUtilisateur($iIdRubrique > 0);
 $bPersInscrite = ($oProjet->retIdUtilisateur() > 0);
 
+// vérifier si on est dans un cours ou dans la description -> si description
+// on affichera la liste de tous les inscrits à la formation dans le lien courriel
+($iIdMod > 0 ? 
+$sParamCourriel = "idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT
+: $sParamCourriel = "idForm =".$iIdForm);
+
 // ---------------------
 // Compter le nombre d'outils
 // ---------------------
@@ -95,9 +101,15 @@ $sMenu = ($bPersInscrite
 	.($bPersInscrite
 		? "<a href=\"javascript: void(0);\" onclick=\"multilingue(); return false;\" onfocus=\"blur()\">"._("Multilinguisme")."</a>&nbsp;|&nbsp;"
 		: NULL)
-//	.($bPersInscrite
-//		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
-//		: NULL)
+	.($bPersInscrite && $iIdMod>0 && $iIdRubrique==0
+		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&typeCourriel=courriel-cours@cours'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+		: NULL)
+	.($bPersInscrite && $iIdMod>0 && $iIdRubrique>0
+		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&typeCourriel=courriel-cours@cours'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+		: NULL)
+	.($bPersInscrite && ($iIdMod==0)
+		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idForm=".$iIdForm."&typeCourriel=courriel-formation@formation'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+		: NULL)
 	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
 
 // ---------------------

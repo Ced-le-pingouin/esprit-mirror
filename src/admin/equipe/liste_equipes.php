@@ -128,7 +128,7 @@ $oTpl = new Template("liste_equipes.tpl");
 // {{{ Barre d'outils
 $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $oBlocBarreOutils->ajouter($asSetTplGlobale["envoi_courriel"]);
-$oBlocBarreOutils->remplacer("{envoi_courriel.params}","?idStatuts=".STATUT_PERS_TUTEUR."&idEquipes=tous");
+$oBlocBarreOutils->remplacer("{envoi_courriel.params}","?idStatuts=".STATUT_PERS_TUTEUR."&idEquipes=tous&typeCourriel=courriel-cours@cours");
 $oBlocBarreOutils->remplacer("{envoi_courriel.icone}",$asSetTplGlobale["envoi_courriel_icone"]);
 $oBlocBarreOutils->remplacer("{envoi_courriel.texte}",NULL);
 $oBlocBarreOutils->afficher();
