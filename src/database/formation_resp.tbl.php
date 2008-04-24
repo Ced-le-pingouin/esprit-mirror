@@ -52,9 +52,10 @@ class CFormation_Resp
 
 		if ($this->iId > 0)
 		{
-			$sRequeteSql = "SELECT * FROM Formation_Resp"
-				." WHERE IdForm='{$this->iId}'";
-
+			$sRequeteSql = "SELECT Personne.* FROM Personne"
+				." LEFT JOIN Formation_Resp USING(IdPers)"
+				." WHERE Formation_Resp.IdForm='{$this->iId}'"
+				." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 
 			while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))

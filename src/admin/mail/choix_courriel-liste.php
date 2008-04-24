@@ -181,10 +181,9 @@ if ($url_iFormationId > 0)
 				$bValidCourriel = emailValide($oPersonne->retEmail());
 				
 				if ($bValidCourriel)
-				{
 					$sMembre = $sVarMembre;
-//				else
-//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+				else
+					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 				
 				if ($oPersonne->retId() == $g_iIdPers)
 					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -199,8 +198,7 @@ if ($url_iFormationId > 0)
 				if ($url_iPersonneId == $oPersonne->retId()) $url_bSelectionnerPers=true;
 				else $url_bSelectionnerPers=False;
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
-				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatutForm}" : NULL));
-				}
+				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatutForm}" : NULL));				
 			}
 			
 			$oBlocMembre->afficher();
@@ -248,11 +246,10 @@ if ($iNbStatuts > 0)
 			{
 				$bValidCourriel = emailValide($oPersonne->retEmail());
 				
-				if ($bValidCourriel)
-				{
+				if ($bValidCourriel)	
 					$sMembre = $sVarMembre;
-//				else
-//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+				else
+					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 				
 				if ($oPersonne->retId() == $g_iIdPers)
 					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -268,7 +265,6 @@ if ($iNbStatuts > 0)
 				else $url_bSelectionnerPers=False;
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatut}" : NULL));
-				}
 			}
 			
 			$oBlocMembre->afficher();
@@ -320,10 +316,9 @@ if ($iNbEquipes > 0)
 				$bValidCourriel = emailValide($oPersonne->retEmail());
 				
 				if ($bValidCourriel)
-				{
 					$sMembre = $sVarMembre;
-//				else
-//					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+				else
+					$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 				
 				if ($oPersonne->retId() == $g_iIdPers)
 					$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -343,7 +338,6 @@ if ($iNbEquipes > 0)
 				
 				if ($bValidCourriel && $url_bSelectionnerPers)
 					$iNbMembresSelectionnes++;
-				}
 			}
 			
 			$oBlocMembre->afficher();
@@ -388,10 +382,9 @@ if ($iNbPersonnes > 0)
 		$bValidCourriel = emailValide($oPersonne->retEmail());
 		
 		if ($bValidCourriel)
-		{
 			$sMembre = $sVarMembre;
-//		else
-//			$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
+		else
+			$sMembre = "<span class=\"sans_adresse_courrielle\">{$sVarMembre}</span>";
 		
 		if ($oPersonne->retId() == $g_iIdPers)
 			$sMembre .= "&nbsp;<img src=\"theme://icones/etoile.gif\" width=\"13\" height=\"13\" alt=\"\" border=\"0\">";
@@ -406,7 +399,6 @@ if ($iNbPersonnes > 0)
 				($url_iPersonneId == $oPersonne->retId()) ? $url_bSelectionnerPers=true : $url_bSelectionnerPers=False;
 		$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 		$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idPers" : NULL));
-		}
 	}
 	
 	$oBlocMembre->afficher();

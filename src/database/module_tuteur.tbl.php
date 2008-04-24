@@ -116,7 +116,8 @@ class CFormation_Tuteur
 		
 		$sRequeteSql = "SELECT Personne.* FROM Formation_Tuteur"
 			." LEFT JOIN Personne USING(IdPers)"
-			." WHERE Formation_Tuteur.IdForm=".$this->iIdForm;
+			." WHERE Formation_Tuteur.IdForm=".$this->iIdForm
+			." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		

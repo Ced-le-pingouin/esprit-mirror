@@ -794,7 +794,7 @@ class CFormation
 	 * 
 	 * @return	le nombre de personnes(responsables) insérées dans le tableau
 	 */
-	function initResponsables ()
+	function initResponsables ($v_sModeTri="ASC")
 	{
 		$iIdxResp = 0;
 		$this->aoResponsables = array();
@@ -802,7 +802,8 @@ class CFormation
 		$sRequeteSql = "SELECT Personne.*"
 			." FROM Formation_Resp"
 			." LEFT JOIN Personne USING (IdPers)"
-			." WHERE Formation_Resp.IdForm='".$this->retId()."'";
+			." WHERE Formation_Resp.IdForm='".$this->retId()."'"
+			." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom ASC";
 		$hResult = $this->oBdd->executerRequete ($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
