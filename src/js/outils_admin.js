@@ -122,13 +122,6 @@ function permissions() {
 	win.focus();
 }
 
-function ouvrir_fenetre_mdp() {
-	var sUrl = GLOBALS["admin"] + "personne/mdp_index.php";
-	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=no";
-	var win = PopupCenter(sUrl,"winMotDePasse",500,600,sOptionsFenetre);
-	win.focus();
-}
-
 function profil(v_sParamUrl) {
 	var sUrl = GLOBALS["admin"] + "personne/profil-index.php";
 	
