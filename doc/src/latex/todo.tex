@@ -1,0 +1,182 @@
+\label{todo__todo000001}
+ \begin{description}
+\item[Membre \doxyref{CActiv::retTypes}{p.}{class_c_activ_e282e57e24a814d73d6f711f5fe5336c}() ]ce système sera modifié pour l'internationalisation de la plate-forme
+
+\end{description}
+
+
+\label{todo__todo000022}
+ \begin{description}
+\item[Membre \doxyref{CDOMDocument::CDOMDocument}{p.}{class_c_d_o_m_document_92b7d9c7f0191c518f8d2be31bef139b}(\$version= '1.0', \$encoding= 'UTF-8') ]Quelles sont les valeurs par défaut correctes des paramètres ? \end{description}
+
+
+\label{todo__todo000023}
+ \begin{description}
+\item[Membre \doxyref{CDOMDocument::createElement}{p.}{class_c_d_o_m_document_549cd2a0c7d235cd026706bffb926ced}(\$name, \$value=NULL) ]Normalement, la valeur de retour doit être FALSE si un problème est survenu à la création \end{description}
+
+
+\label{todo__todo000024}
+ \begin{description}
+\item[Membre \doxyref{CDOMDocument::save}{p.}{class_c_d_o_m_document_47977c50fabebc3bfb9a0d2314500ce8}(\$filename, \$options=0) ]le paramètre {\tt options} n'est pas implémenté ici (en PHP 5, il existe à partir de la version 5.1.0) \end{description}
+
+
+\label{todo__todo000025}
+ \begin{description}
+\item[Membre \doxyref{CDOMDocument::saveXML}{p.}{class_c_d_o_m_document_d0fe46b5ae5ded1e4a2f8af216825f49}(\$node=NULL, \$options=0) ]Pour l'instant, seul le document complet peut être retourné sous forme de chaîne, pas une sous-partie
+
+\end{description}
+
+
+\label{todo__todo000025}
+ \begin{description}
+\item[Membre \doxyref{CDOMDocument::saveXML}{p.}{class_c_d_o_m_document_d0fe46b5ae5ded1e4a2f8af216825f49}(\$node=NULL, \$options=0) ]Pour l'instant, aucune options supplémetnaire n'est prise en compte \end{description}
+
+
+\label{todo__todo000019}
+ \begin{description}
+\item[Membre \doxyref{CDOMElement::CDOMElement}{p.}{class_c_d_o_m_element_83adcf60034e908baeb6cd1a42826f31}(\$name, \$value=NULL, \$namespaceURI=NULL) ]L'attribution immédiate d'une valeur utilise la méthode {\tt setContent()} des objets DOM PHP4, cela semble fonctionner pour créer des éléments XML (balises) avec un contenu texte, mais je ne sais pas si d'autres utilisations sont possibles
+
+\end{description}
+
+
+\label{todo__todo000019}
+ \begin{description}
+\item[Membre \doxyref{CDOMElement::CDOMElement}{p.}{class_c_d_o_m_element_83adcf60034e908baeb6cd1a42826f31}(\$name, \$value=NULL, \$namespaceURI=NULL) ]Pour l'instant la création dans un espace de nom (3è paramètre) n'est pas implémentée \end{description}
+
+
+\label{todo__todo000021}
+ \begin{description}
+\item[Membre \doxyref{CDOMElement::setAttribute}{p.}{class_c_d_o_m_element_4b57f1fd3690eea06761b009c9c0a1d5}(\$name, \$value) ]La valeur de retour (un objet DomAttribute) n'est pas la même que pour le \char`\"{}vrai\char`\"{} DOM PHP 5 qui, d'après la doc PHP, retourne TRUE ou FALSE. A tester \end{description}
+
+
+\label{todo__todo000018}
+ \begin{description}
+\item[Membre \doxyref{CDOMNode::appendChild}{p.}{class_c_d_o_m_node_e95f28cb57dda33271248f013b318ff8}(\$newnode) ]La valeur de retour diffère entre le DOM XML PHP 4 et le DOM PHP 5, il faudra tester et uniformiser, même si la valeur de retour a peu d'intérêt dans cette méthode (en tout cas dans le type d'utilisation que j'en fais) \end{description}
+
+
+\label{todo__todo000002}
+ \begin{description}
+\item[Membre \doxyref{CFormation::\$aoElementsGlossaire}{p.}{class_c_formation_3c3233870719610d08226ae02de0ef4a} ]La table n'existe pas, travail commencé mais pas terminé... \end{description}
+
+
+\label{todo__todo000005}
+ \begin{description}
+\item[Membre \doxyref{CFormation::ajouterElementsGlossaire}{p.}{class_c_formation_cf5af63b05eafadd78edf6225f702600}(\$v\_\-iIdGlossaire, \$v\_\-aiIdsElementsGlossaire) ]La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{description}
+
+
+\label{todo__todo000006}
+ \begin{description}
+\item[Membre \doxyref{CFormation::effacerElementsGlossaire}{p.}{class_c_formation_d12a12375432b343eb3647dcc8836f4b}(\$v\_\-iIdGlossaire) ]La table n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{description}
+
+
+\label{todo__todo000004}
+ \begin{description}
+\item[Membre \doxyref{CFormation::initElementsGlossaire}{p.}{class_c_formation_b65ac7acc92dd1f46ab9cef556e44759}(\$v\_\-iIdGlossaire=NULL) ]La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{description}
+
+
+\label{todo__todo000003}
+ \begin{description}
+\item[Membre \doxyref{CFormation::initMembres}{p.}{class_c_formation_bd47962db5bab288716d29387db608b9}(\$v\_\-bAppartenirEquipe=TRUE, \$v\_\-iSensTri=TRI\_\-CROISSANT) ]on peut sûrement améliorer la première requête sql, elle met 7 sec a s'exécuter sur la version \char`\"{}production\char`\"{} pour ne retourner que peu d'enregistrements(+-30) \end{description}
+
+
+\label{todo__todo000007}
+ \begin{description}
+\item[Membre \doxyref{CFormation::retTypes}{p.}{class_c_formation_37c52316496b53a206b8bacb5ccd73c5}() ]ce système sera modifié pour l'internationalisation de la plate-forme
+
+\end{description}
+
+
+\label{todo__todo000008}
+ \begin{description}
+\item[Membre \doxyref{CModule::retTypes}{p.}{class_c_module_0949ac66209cdcbcd8fb215f9f10fb99}() ]ce système sera modifié pour l'internationalisation de la plate-forme
+
+\end{description}
+
+
+\label{todo__todo000013}
+ \begin{description}
+\item[Membre \doxyref{CProjet::retMdpCrypte}{p.}{class_c_projet_f5e4e82c124ecbec9eed8d4eb9396679}(\$v\_\-sMdp) ]Pour le moment, le cryptage se fait par la fonction {\tt PASSWORD()} de MySQL, ce qui était malheureusement une très mauvaise idée, car cette fonction ne devait être utilisée qu'en interne par MySQL, et a été modifiée dans MySQL 4.1, ce qui rendra les mots de passe déjà encodés incompatible avec la nouvelle version de la fonction
+
+\end{description}
+
+
+\label{todo__todo000014}
+ \begin{description}
+\item[Membre \doxyref{CProjet::verifPeutUtiliserOutils}{p.}{class_c_projet_01c655d531972e8e3b76db072e9eb0a7}(\$v\_\-sNomPermission=NULL) ]Vérifier que {\tt bPeutUtiliserOutils} ne devrait pas plutôt valoir {\tt false} au cas où la constante passée en paramètre n'existe pas \end{description}
+
+
+\label{todo__todo000032}
+ \begin{description}
+\item[Classe \doxyref{CTar}{p.}{class_c_tar} ]Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, seules des archives gzippées sont créées \end{description}
+
+
+\label{todo__todo000033}
+ \begin{description}
+\item[Membre \doxyref{CTar::CTar}{p.}{class_c_tar_5bc5b496551fd6c4a2874b25067c9c6f}(\$v\_\-sCheminArchive, \$v\_\-asEntrees=NULL, \$v\_\-bCreer=FALSE) ]Vérifier que le chemin/nom de l'archive à créer est valide \end{description}
+
+
+\label{todo__todo000016}
+ \begin{description}
+\item[Classe \doxyref{CTraverseurScorm}{p.}{class_c_traverseur_scorm} ]Liste:\begin{itemize}
+\item problème d'encodage des caractères dans les noms des fichiers ? (accents)\item réussir la validation dans divers outils: . les élément \char`\"{}item\char`\"{} non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais pas l'ADL Test Suite) =$>$ utiliser des description LOM, ou créer un item \char`\"{}enfant\char`\"{} initial qui contient la description ou l'interactivité ? . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI\item gérer l'effacement du paquet créé en tmp (en différé ?)\end{itemize}
+\end{description}
+
+
+tester sous Unix (backslashes dans les noms de fichiers)\begin{itemize}
+\item enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)\begin{itemize}
+\item donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux activités aient un look similaire à celui d'Esprit (ou autre), car sinon la plupart du temps il s'agit seulement de texte \char`\"{}formaté\char`\"{} et donc de simple texte noir sur fond blanc, avec des titres, §, gras, etc \end{itemize}
+\end{itemize}
+
+
+\label{todo__todo000034}
+ \begin{description}
+\item[Classe \doxyref{CZip}{p.}{class_c_zip} ]Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, il faudrait \char`\"{}synchroniser\char`\"{} cette classe avec \doxyref{CTar}{p.}{class_c_tar} (objet de base pour la (dé)compression puis héritage de chacune des deux classes ?), notamment au niveau des valeurs de retour \end{description}
+
+
+\label{todo__todo000035}
+ \begin{description}
+\item[Membre \doxyref{CZip::CZip}{p.}{class_c_zip_563e67694108a01c831a9b2c5363ef2e}(\$v\_\-sCheminArchive, \$v\_\-asEntrees=array(), \$v\_\-bCreer=FALSE) ]Vérifier que le chemin/nom de l'archive à créer est valide \end{description}
+
+
+\label{todo__todo000009}
+ \begin{description}
+\item[Classe \doxyref{ElementFormation}{p.}{class_element_formation} ]Cette classe devrait normalement devenir une classe de base (\char`\"{}mère\char`\"{}) dont devraient hériter les classes qui représentent un élément de formation \end{description}
+
+
+\label{todo__todo000027}
+ \begin{description}
+\item[Classe \doxyref{FichierAcces}{p.}{class_fichier_acces} ]Pour le moment, seul les méthodes dont j'ai eu besoin sont implémentées, il faudra compléter la classe au fur et à mesure \end{description}
+
+
+\label{todo__todo000028}
+ \begin{description}
+\item[Classe \doxyref{FichierInfo}{p.}{class_fichier_info} ]Il faudrait créer des méthodes pour:\begin{itemize}
+\item transformer un chemin relatif en absolu (et vice versa) sans obligation que le chemin fourni existe réellement quand c'est possible;\item déterminer la partie \char`\"{}racine\char`\"{} d'un chemin;\item etc \end{itemize}
+\end{description}
+
+
+\label{todo__todo000029}
+ \begin{description}
+\item[Classe \doxyref{IterateurRecursif}{p.}{class_iterateur_recursif} ]: taille(), rechercher(), estPremier(), et estDernier() ne fonctionnent pas correctement pour l'instant \end{description}
+
+
+\label{todo__todo000029}
+ \begin{description}
+\item[Classe \doxyref{IterateurRecursif}{p.}{class_iterateur_recursif} ]: prec() ??? (car on hérite d'IterateurTableau, bidirectionnel, gasp!) \end{description}
+
+
+\label{todo__todo000029}
+ \begin{description}
+\item[Classe \doxyref{IterateurRecursif}{p.}{class_iterateur_recursif} ]: voir s'il y a moyen de modifier la façon d'implémenter {\tt \_\-bDoitRetournerParent}, car le nom n'est pas clair, et également, y a-t-il moyen de faire tous les test le concernant dans \_\-trouverElementSuiv(), qui deviendrait peut-être lui-même suiv() (car pour le moment suiv() doit également effectuer des tests qui devraient peut-être être effectués par \_\-trouverElementSuiv()) \end{description}
+
+
+\label{todo__todo000015}
+ \begin{description}
+\item[Classe \doxyref{TPL\_\-Block}{p.}{class_t_p_l___block} ]Etudier la possibilité de faire hériter cette classe de \doxyref{Template}{p.}{class_template}, car certaines fonctions sont identiques \end{description}
+
+
+\label{todo__todo000017}
+ \begin{description}
+\item[Fichier \doxyref{export.php}{p.}{export_8php} ]\begin{itemize}
+\item transformer ce fouillis de tableaux en objets faciles à utiliser\item pour le moment, les infos sur les index et les clés étrangères dans les tables sont générés/rédigés avant l'exportation, puis lus. Il faudrait pouvoir récupérer ces infos dans la DB à la volée. Pour les clés étrangères, c'est difficile étant donné qu'il faut lire dans la DB de phpMyAdmin qui enregistre les relations entre tables (et que bien entendu ces relations décrites dans PMA soient à jour). Pour les index, y a-t-il des fonctions PHP qui demandent directement des infos sur les tableS/champs/index, ou faut-il utiliser mysql\_\-query pour récupérer ces infos en SQL ?\item intégrer ces classes d'exportation \char`\"{}pur DB\char`\"{} dans les classes d'Esprit \end{itemize}
+\end{description}

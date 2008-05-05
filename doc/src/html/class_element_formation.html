@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe ElementFormation</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe ElementFormation</h1><!-- doxytag: class="ElementFormation" -->
+<p>
+<a href="class_element_formation-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe utilitaire pour créer et obtenir des informations sur un "élément de formation", càd des objets de <a class="el" href="class_c_formation.html" title="Gestion des formations, et encapsulation de la table Formation de la DB.">CFormation</a>, <a class="el" href="class_c_module.html" title="Gestion des modules, et encapsulation de la table Module de la DB.">CModule</a>, etc. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000009">À faire:</a></b></dt><dd>Cette classe devrait normalement devenir une classe de base ("mère") dont devraient hériter les classes qui représentent un élément de formation </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element_formation.html#092f23f67d2744bceae00b084a67abbd">retElementFormation</a> (&amp;$v_oBdd, $v_iTypeElement, $v_iIdElement=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Fabrique" qui crée un élément de formation en utilisant la classe appropriée, selon le type d'élément passé (voir constantes TYPE_.  <a href="#092f23f67d2744bceae00b084a67abbd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element_formation.html#8df8594e52b1d99a2966452334b3fdf3">typeEstEnfantDe</a> ($v_iTypeEnfant, $v_iTypeParent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si un élément est de type (niveau) enfant au type d'un autre élément.  <a href="#8df8594e52b1d99a2966452334b3fdf3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element_formation.html#797aa12cd42f082cd1772ca5b56808e9">typeEstFrereDe</a> ($v_iType1, $v_iType2)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si deux éléments sont de types (niveaux) identiques ou équivalents.  <a href="#797aa12cd42f082cd1772ca5b56808e9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_element_formation.html#599357a6a1f6d66829f731d429106e0a">typeEstParentDe</a> ($v_iTypeParent, $v_iTypeEnfant)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si un élément est de type (niveau) parent au type d'un autre élément.  <a href="#599357a6a1f6d66829f731d429106e0a"></a><br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="092f23f67d2744bceae00b084a67abbd"></a><!-- doxytag: member="ElementFormation::retElementFormation" ref="092f23f67d2744bceae00b084a67abbd" args="(&amp;$v_oBdd, $v_iTypeElement, $v_iIdElement=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ElementFormation::retElementFormation           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeElement</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdElement</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Fabrique" qui crée un élément de formation en utilisant la classe appropriée, selon le type d'élément passé (voir constantes TYPE_. 
+<p>
+..)<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeElement</em>&nbsp;</td><td>le type (niveau) de l'élément à créer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdElement</em>&nbsp;</td><td>l'id de l'élément à créer</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'élément crée </dd></dl>
+
+<p>Référencé par <a class="el" href="_copier_coller_formation_8php-source.html#l00287">CopierCollerFormation::afficherPressePapiers()</a>, <a class="el" href="sous__activite_8tbl_8php-source.html#l00255">CSousActiv::copierAvecNumOrdre()</a>, <a class="el" href="rubrique_8tbl_8php-source.html#l00176">CModule_Rubrique::copierAvecNumOrdre()</a>, <a class="el" href="module_8tbl_8php-source.html#l00128">CModule::copierAvecNumOrdre()</a>, <a class="el" href="activite_8tbl_8php-source.html#l00122">CActiv::copierAvecNumOrdre()</a>, et <a class="el" href="_copier_coller_formation_8php-source.html#l00167">CopierCollerFormation::gererActions()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8df8594e52b1d99a2966452334b3fdf3"></a><!-- doxytag: member="ElementFormation::typeEstEnfantDe" ref="8df8594e52b1d99a2966452334b3fdf3" args="($v_iTypeEnfant, $v_iTypeParent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ElementFormation::typeEstEnfantDe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeEnfant</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeParent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si un élément est de type (niveau) enfant au type d'un autre élément. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeEnfant</em>&nbsp;</td><td>le type de l'élément dont on veut vérifier s'il est enfant de l'autre élément </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeEnfant</em>&nbsp;</td><td>le type de l'élément dont on veut vérifier si l'autre est sont enfant</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si <code>v_iTypeEnfant</code> est de type enfant au type de v_iTypeParent, <code>false</code> sinon </dd></dl>
+
+<p>Référencé par <a class="el" href="_copier_coller_formation_8php-source.html#l00101">CopierCollerFormation::validerDonnees()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="797aa12cd42f082cd1772ca5b56808e9"></a><!-- doxytag: member="ElementFormation::typeEstFrereDe" ref="797aa12cd42f082cd1772ca5b56808e9" args="($v_iType1, $v_iType2)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ElementFormation::typeEstFrereDe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iType1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iType2</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si deux éléments sont de types (niveaux) identiques ou équivalents. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iType1</em>&nbsp;</td><td>le type du premier élément </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iType2</em>&nbsp;</td><td>le type du second élément</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si les deux types sont identiques ou équivalents, <code>false</code> sinon </dd></dl>
+
+<p>Référencé par <a class="el" href="_copier_coller_formation_8php-source.html#l00167">CopierCollerFormation::gererActions()</a>, et <a class="el" href="_copier_coller_formation_8php-source.html#l00101">CopierCollerFormation::validerDonnees()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="599357a6a1f6d66829f731d429106e0a"></a><!-- doxytag: member="ElementFormation::typeEstParentDe" ref="599357a6a1f6d66829f731d429106e0a" args="($v_iTypeParent, $v_iTypeEnfant)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ElementFormation::typeEstParentDe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeParent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeEnfant</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si un élément est de type (niveau) parent au type d'un autre élément. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeParent</em>&nbsp;</td><td>le type de l'élément dont on veut vérifier s'il est parent de l'autre élément </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeEnfant</em>&nbsp;</td><td>le type de l'élément dont on veut vérifier si l'autre est sont parent</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si <code>v_iTypeParent</code> est de type parent au type de v_iTypeEnfant, <code>false</code> sinon </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/<a class="el" href="_element_formation_8php.html">ElementFormation.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

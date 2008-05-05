@@ -1,0 +1,2721 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CProjet</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CProjet</h1><!-- doxytag: class="CProjet" -->
+<p>
+<a href="class_c_projet-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe principale de la plate-forme. 
+<p>
+Elle est utilisée dans la majorité des pages, et effectue diverses initialisations sur les utilisateurs, statuts, formations, etc<p>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> <p>
+<a class="el" href="class_c_formation.html" title="Gestion des formations, et encapsulation de la table Formation de la DB.">CFormation</a> </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa44cc5310196811b98190e3a506ffa8"></a><!-- doxytag: member="CProjet::afficherInfosSession" ref="fa44cc5310196811b98190e3a506ffa8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#fa44cc5310196811b98190e3a506ffa8">afficherInfosSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche toutes les informations de la session utilisateur dans leur état actuel, ligne par ligne (fonction utilitaire). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#7838f3df998e11c24e7a1eb8567ee54b">ajouterStatut</a> ($v_iStatut)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un statut à la liste des statuts de l'utilisateur.  <a href="#7838f3df998e11c24e7a1eb8567ee54b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#37e2733dbaa81d910b7ffcba0ae58c64">changerStatutUtilisateur</a> ($v_iStatutUtilisateur, $v_bSauverDsCookie=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Modifie le statut actuel de l'utilisateur.  <a href="#37e2733dbaa81d910b7ffcba0ae58c64"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#492a919b1246b9e8e9c7ac5a4d5a3358">CProjet</a> ($v_bEffacerCookie=FALSE, $v_bRedirigerSiIncorrect=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#492a919b1246b9e8e9c7ac5a4d5a3358"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b21569abc9862643355c54fc3a70aa02">creerFichierStatut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée un fichier de définitions PHP représentant les statuts possibles pour les utilisateurs.  <a href="#b21569abc9862643355c54fc3a70aa02"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#7413f77ab99b039a9974bd2d734084bd">debug</a> ($v_sMessage, $v_iNumLigne=NULL, $v_sNomFichier=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche un message de débuggage.  <a href="#7413f77ab99b039a9974bd2d734084bd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#a9f0ef35e68965ba28aa362a0767a64a">defActivCourante</a> ($v_iActiv)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit l'activité courante.  <a href="#a9f0ef35e68965ba28aa362a0767a64a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2a0238d09694d8ff8b4e6da479df9d8b">defFormationCourante</a> ($v_iIdForm)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit la formation courante.  <a href="#2a0238d09694d8ff8b4e6da479df9d8b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2fa4d85ad89aaad7f625b3c277813a44">defModuleCourant</a> ($v_iIdModule, $v_bInitStatutsUtilisateur=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit le module courant.  <a href="#2fa4d85ad89aaad7f625b3c277813a44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#23b8caa01778ba8fd9c3288cbb2954ad">defRubriqueCourante</a> ($v_iUnite)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit la rubrique/unité courante.  <a href="#23b8caa01778ba8fd9c3288cbb2954ad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#9dd3708eff938611fb4945dd39ffaeaa">defSousActivCourante</a> ($v_iSousActiv)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit la sous-activité courante.  <a href="#9dd3708eff938611fb4945dd39ffaeaa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#82fc3dbc3c3399a6d53cbb4806198cfe">dir_cours</a> ($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante.  <a href="#82fc3dbc3c3399a6d53cbb4806198cfe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#853fbab9be9d4a1c9ef7473ae0d8a787">dir_formation</a> ($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire qui abrite les fichiers de la formation actuelle (initialisée).  <a href="#853fbab9be9d4a1c9ef7473ae0d8a787"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#8d41f8c43142177cd66aa790d45f959f">dir_images</a> ($v_sFichierInclure=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme.  <a href="#8d41f8c43142177cd66aa790d45f959f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#d027a6968bf03e3539fb61cb5f19bf84">dir_ressources</a> ($v_sFichierInclure=NULL, $v_bCheminAbsolu=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire ressources de l'activité courante.  <a href="#d027a6968bf03e3539fb61cb5f19bf84"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#be2917346669c0ce7393cfc1e7a9482d">ecrireEvenement</a> ($v_iTypeEven, $v_sDonneesEven=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ecrit un "événement" dans la DB, pour le moment il s'agit des connexions/déconnexions des utilisateurs.  <a href="#be2917346669c0ce7393cfc1e7a9482d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#c99ef648a6de605c0eb2974890149ec6">ecrireInfosSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre la totalité des données de la session utilisateur, dans leur état actuel, dans le cookie.  <a href="#c99ef648a6de605c0eb2974890149ec6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#bafddb9e532deb5a1665898d55f01f74">effacerInfosSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface complètement la session de l'utilisateur, ainsi que le cookie qui y est associé.  <a href="#bafddb9e532deb5a1665898d55f01f74"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b68864ffd5f2c66d64bf3e16b0700ece">enregistrerInfosSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre les données de session actuelles de l'utilisateur dans un cookie.  <a href="#b68864ffd5f2c66d64bf3e16b0700ece"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="82081a19c705121c15a9faf6f7decf6d"></a><!-- doxytag: member="CProjet::init" ref="82081a19c705121c15a9faf6f7decf6d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#82081a19c705121c15a9faf6f7decf6d">init</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les variables membres avec les informations du projet (nom, n° du port pour les chats, etc). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#79c5646314a112672190be9e0b77bbfa">initActivCourante</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'activité courante.  <a href="#79c5646314a112672190be9e0b77bbfa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#0d86118796497ed3738ba907ad23647d">initAdministrateurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les variables/objets représentant les admins du projet.  <a href="#0d86118796497ed3738ba907ad23647d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#e8728a62926af627dc11740b486149e9">initEquipe</a> ($v_bInitMembres=FALSE, $v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'équipe d'un utilisateur dans le contexte/niveau/élément courant (formation, module, etc).  <a href="#e8728a62926af627dc11740b486149e9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#de5c50304b6e4df7aa50c9beafa1bcb0">initEquipes</a> ($v_bInitMembres=FALSE, $v_iIdNiveau=NULL, $v_iTypeNiveau=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les équipes attachées à un élément déterminé d'une formation (la formation elle-même, module/cours, rubrique/unité, activité, sous-activité).  <a href="#de5c50304b6e4df7aa50c9beafa1bcb0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2f4af24718c8b45a4760fbd114cbeaa7">initFormationCourante</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la formation courante.  <a href="#2f4af24718c8b45a4760fbd114cbeaa7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#96a446c687ceded1b1b48467ef6b60ce">initFormations</a> ($v_sRequeteSql=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les formations existantes du projet.  <a href="#96a446c687ceded1b1b48467ef6b60ce"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#617bd561a875faad9a92ae40c60bbfbc">initFormationsUtilisateur</a> ($v_bRechStricte=FALSE, $v_bStatutActuel=TRUE, $v_bDossierForms=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau (<code>aoFormation</code>) contenant les formations disponibles à l'utilisateur.  <a href="#617bd561a875faad9a92ae40c60bbfbc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#4594bb12b378255596ee894fb9cee135">initInscritsFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la liste des inscrits à la formation courante.  <a href="#4594bb12b378255596ee894fb9cee135"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#3cb731a80bf0c2c0f5beefa5ce527f5b">initInscritsModule</a> ($v_bVerifInscrAutoModules=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la liste des inscrits au module courant.  <a href="#3cb731a80bf0c2c0f5beefa5ce527f5b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#76cc0c19be715c1b8982415115868e6d">initModuleCourant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise le module courant.  <a href="#76cc0c19be715c1b8982415115868e6d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#ff5b1e3e825d439ab7a14b54325ad00d">initPermisUtilisateur</a> ($v_bStatutActuel=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise toutes les permissions de la personne par rapport à son statut actuel.  <a href="#ff5b1e3e825d439ab7a14b54325ad00d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#f52582a3c19f158f81577dabd349dc60">initPersonnes</a> ($v_iIdStatutPers=NULL, $v_iIdForm=0, $v_iIdMod=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> (<code>aoPersonnes</code>) selon des critères de statut.  <a href="#f52582a3c19f158f81577dabd349dc60"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b9f399e1127546cf7e04c1fca1f73f97">initRubriqueCourante</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'unité courante.  <a href="#b9f399e1127546cf7e04c1fca1f73f97"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#fbc0057cfa99efda1cff58293d989ed8">initSousActivCourante</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la sous-activité courante.  <a href="#fbc0057cfa99efda1cff58293d989ed8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#3635ec55c2484e6aca953edaab7dbbdd">initStatutsUtilisateur</a> ($v_bVerifierStatutForm=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les statuts de l'utilisateur connecté.  <a href="#3635ec55c2484e6aca953edaab7dbbdd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#80da194c7fc3125a2b89ccc9a29ba780">initUtilisateur</a> ($v_bRedirigerSiIncorrect=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet <code>oUtilisateur</code> en fonction des données d'identification disponibles.  <a href="#80da194c7fc3125a2b89ccc9a29ba780"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2d4c9c33a047ea73e4e53474ea82af66">insererRessource</a> ($v_sNom, $v_sDescr, $v_sAuteur, $v_sUrl)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Insère dans la DB une nouvelle ressource (fichier) associée à une sous-activité.  <a href="#2d4c9c33a047ea73e4e53474ea82af66"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#d1d4cce96d216a65bb61bc66dd96722e">lireInfosSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Récupère les informations de la session actuelle de navigation de l'utilisateur.  <a href="#d1d4cce96d216a65bb61bc66dd96722e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#f27341b1bf3dc1d66fbe1b7d2c30ff17">modifierInfosSession</a> ($v_iNumSession, $v_mValeurSession, $v_bEnregistrer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Modifie une donnée de la session utilisateur, et réenregistre éventuellement la session (cookie).  <a href="#f27341b1bf3dc1d66fbe1b7d2c30ff17"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b6ea420275f7f0a8261ca9e18fb3075f">redirigerVersLogin</a> ($v_sPrenom=NULL, $v_sNom=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Effectue une redirection Http de l'utilisateur vers la page de login après avoir enregistré "l'événement".  <a href="#b6ea420275f7f0a8261ca9e18fb3075f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5aa5929785ade39418d1eb83ce906637"></a><!-- doxytag: member="CProjet::reinitStatuts" ref="5aa5929785ade39418d1eb83ce906637" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#5aa5929785ade39418d1eb83ce906637">reinitStatuts</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remet à <code>false</code> tous les statuts de l'utilisateur, comme s'ils n'étaient pas initialisés (=&gt;aucun statut). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#8687eaea66f7d355bf2ec3b4deca8e99">retEmail</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'adresse e-mail de contact du projet.  <a href="#8687eaea66f7d355bf2ec3b4deca8e99"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#6bde877c42f25152a8b542b6e08e66ea">retHautStatutUtilisateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le statut le plus élevé que l'utilisateur possède dans le contexte (session) actuel.  <a href="#6bde877c42f25152a8b542b6e08e66ea"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#ecb125df56a6325db0d8e636663def1d">retIdNiveau</a> ($v_iTypeNiveau=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de l'élément dans lequel on se trouve, par rapport au "niveau" (formation, module, rubrique, etc).  <a href="#ecb125df56a6325db0d8e636663def1d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#88489be800065d0068138e9b41509ebb">retIdUtilisateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de l'utilisateur identifié.  <a href="#88489be800065d0068138e9b41509ebb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#3f146254234d4303abb026f4cdb1bdc6">retInfosSession</a> ($v_iNumSession)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une donnée parmi celles enregistrées pour la session utilisateur.  <a href="#3f146254234d4303abb026f4cdb1bdc6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2c8ccb2f7dee381e1ee9e28a979a6a08">retLanguage</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la langue de l'utilisateur connecté.  <a href="#2c8ccb2f7dee381e1ee9e28a979a6a08"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#21f9b5f1e334e54b42d1643a08874709">retLien</a> ($v_sLien=NULL, $v_sIntitule=NULL, $v_iMode=NULL, $v_sInfoBulle=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres.  <a href="#21f9b5f1e334e54b42d1643a08874709"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#96691e19965890d7d9392bc31f1aa79b">retListeStatut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau multi-dimensionnel contenant, pour chaque indice de premier niveau, les infos sur un statut sous forme d'indices textuels <code>IdStatut</code> (l'id dans la DB), <code>NomStatut</code> (statut sous forme texte, au masculin) et <code>TxtStatut</code> (le nom de la constante représentant le statut).  <a href="#96691e19965890d7d9392bc31f1aa79b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#f5e4e82c124ecbec9eed8d4eb9396679">retMdpCrypte</a> ($v_sMdp)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une version cryptée d'une chaîne de caractère (mot de passe).  <a href="#f5e4e82c124ecbec9eed8d4eb9396679"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#11ab2caba5ac9cf7cd591489d835aaa9">retNom</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom du projet.  <a href="#11ab2caba5ac9cf7cd591489d835aaa9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#41e6131f411b23f0a9503abbefbedb67">retNumeroUniqueSession</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id unique de la session utilisateur.  <a href="#41e6131f411b23f0a9503abbefbedb67"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#240a40f7a2ecbfd9183c029657f8b54b">retNumPortAwareness</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le port TCP sur lequel est lancé le serveur d'awareness utilisé par les clients de la plate-forme.  <a href="#240a40f7a2ecbfd9183c029657f8b54b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#3ad147536b619103372e5a47befdf699">retNumPortChat</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le port TCP sur lequel est lancé le serveur de chat utilisé par les clients de la plate-forme.  <a href="#3ad147536b619103372e5a47befdf699"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#99f8d9fb2a55cccb8840109a6d08ca1f">retReelStatutUtilisateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le statut "réel" de l'utilisateur, càd celui qui est enregistré pour la session dans la variable asInfosSession.  <a href="#99f8d9fb2a55cccb8840109a6d08ca1f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#cb7ca559504253c1c9ec008ce89ace50">retRepRubriques</a> ($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme.  <a href="#cb7ca559504253c1c9ec008ce89ace50"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#2e842a2739628d4395e2bb06dcfb66ac">retStatutUtilisateur</a> ($v_bStatutActuel=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le statut de l'utilisateur connecté.  <a href="#2e842a2739628d4395e2bb06dcfb66ac"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#f2335a465cb463dff8b893cb4b6e38b9">retTexteStatutsUtilisateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une liste des termes employés pour désigner les différents statuts de l'utilisateur connecté.  <a href="#f2335a465cb463dff8b893cb4b6e38b9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#738225b3bf73d088946a8516d26eec56">retTexteStatutUtilisateur</a> ($v_iStatut=NULL, $v_sSexe=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le terme correspondant à un statut, en tenant compte du sexe M/F.  <a href="#738225b3bf73d088946a8516d26eec56"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#094d28ce4da62de5730e62fad216e738">retTexteUtilisateur</a> ($v_bStatutActuel=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom de l'utilisateur connecté, ou visiteur/invité s'il est inconnu.  <a href="#094d28ce4da62de5730e62fad216e738"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#21af2356dd2c60e02c69d196196fc0ca">retTriCol</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la colonne sur laquelle le tri est actuellement effectué, telle qu'enregistrée dans la session de l'utilisateur (cookie).  <a href="#21af2356dd2c60e02c69d196196fc0ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#0ff007358ed5a7320f0201655256d6c8">retTriDir</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le sens (normal ou inversé) actuel du tri sur des colonnes.  <a href="#0ff007358ed5a7320f0201655256d6c8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#0bc2784c08b05f089146a2b0e212b737">retTypeNiveau</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure formation-&gt;module-&gt;etc.  <a href="#0bc2784c08b05f089146a2b0e212b737"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#64614b5978a157d777ff09f44c38e0fa">terminer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Libère les ressources utilisées par l'objet <a class="el" href="class_c_projet.html" title="Classe principale de la plate-forme.">CProjet</a>.  <a href="#64614b5978a157d777ff09f44c38e0fa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#84caf89b16aa2a1b659a5a36acd50b2f">verifAccessibleVisiteurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un visiteur connecté a le droit de se trouver dans la formation actuelle.  <a href="#84caf89b16aa2a1b659a5a36acd50b2f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b519dca295ba0ea4529a33656a9f47bd">verifAdministrateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté est admin du projet.  <a href="#b519dca295ba0ea4529a33656a9f47bd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#7ffffbe6fdd0ec0837a9a1a030d92717">verifConcepteur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté est concepteur pour le module/cours courant.  <a href="#7ffffbe6fdd0ec0837a9a1a030d92717"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#e46f79202393c05968373c7e8ea03465">verifConcepteurPotentiel</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté est "concepteur potentiel".  <a href="#e46f79202393c05968373c7e8ea03465"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#603f57cc2e00cef4cf1136757cddd9ca">verifEquipe</a> ($v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'une équipe fait partie de la liste des équipes actuellement initialisées.  <a href="#603f57cc2e00cef4cf1136757cddd9ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#eb25c57d8d7ea53a9a9f6c42ccb24237">verifEtudiant</a> ($v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un utilisateur a le statut d'étudiant dans la formation courante.  <a href="#eb25c57d8d7ea53a9a9f6c42ccb24237"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#0d6127466ee1e1cd8b3fbc2ad04c4230">verifMembre</a> ($v_iIdPers=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un utilisateur est membre d'une des équipes actuellement initialisées.  <a href="#0d6127466ee1e1cd8b3fbc2ad04c4230"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#47bb51a4fb0df021cae629d80fde0ea8">verifModifierFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté a le droit de modifier la formation courante.  <a href="#47bb51a4fb0df021cae629d80fde0ea8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#94579ffa560e9477df1f3d9d95803093">verifModifierModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se rapporte à ce module (forum/chat/formulaire).  <a href="#94579ffa560e9477df1f3d9d95803093"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#e7db1d7ccbec89971b6cb9ed2ea03f34">verifPermission</a> ($v_sNomPermis)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté dispose d'une permission particulière.  <a href="#e7db1d7ccbec89971b6cb9ed2ea03f34"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#01c655d531972e8e3b76db072e9eb0a7">verifPeutUtiliserOutils</a> ($v_sNomPermission=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur a le droit d'utiliser les différents outils d'administration.  <a href="#01c655d531972e8e3b76db072e9eb0a7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#53a8080dd5737623bf9d6c633009113f">verifRespPotentiel</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté est "responsable potentiel".  <a href="#53a8080dd5737623bf9d6c633009113f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#842700419b586b9e59f811f686136aed">verifStatut</a> ($v_iStatut)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que l'utilisateur connecté possède un statut spécifique.  <a href="#842700419b586b9e59f811f686136aed"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#5a14631812b944364fa168cbbc16cf4e">verifTuteur</a> ($v_iIdPers=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un utilisateur a le statut de tuteur.  <a href="#5a14631812b944364fa168cbbc16cf4e"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f31ad26c8edf9fca8c19a0dfcaa641c1"></a><!-- doxytag: member="CProjet::$abStatutsUtilisateur" ref="f31ad26c8edf9fca8c19a0dfcaa641c1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#f31ad26c8edf9fca8c19a0dfcaa641c1">$abStatutsUtilisateur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Statuts de l'utilisateur connecté dans le contexte actuel (administrateur du projet, tuteur du module, etc). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1c8ad41a30992e52276ec686161e69e9"></a><!-- doxytag: member="CProjet::$aoAdmins" ref="1c8ad41a30992e52276ec686161e69e9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#1c8ad41a30992e52276ec686161e69e9">$aoAdmins</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les administrateurs de la plate-forme. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="876c9059868922af6403cb0d6e0ef98d"></a><!-- doxytag: member="CProjet::$aoEquipes" ref="876c9059868922af6403cb0d6e0ef98d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#876c9059868922af6403cb0d6e0ef98d">$aoEquipes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau des équipes pour l'activité courante. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e1734749dbacee94835f040dcef17c81"></a><!-- doxytag: member="CProjet::$aoFormations" ref="e1734749dbacee94835f040dcef17c81" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#e1734749dbacee94835f040dcef17c81">$aoFormations</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_projet.html#96a446c687ceded1b1b48467ef6b60ce" title="Initialise les formations existantes du projet.">initFormations()</a>, qui contiendra les formations de la plate-forme, recherchées suivant certains critères. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4b16e405dd0a4b331a6cb2597399f0e4"></a><!-- doxytag: member="CProjet::$aoInscrits" ref="4b16e405dd0a4b331a6cb2597399f0e4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#4b16e405dd0a4b331a6cb2597399f0e4">$aoInscrits</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau des inscrits à la formation courante. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9a43610885f4fce755d40a908fe17fd6"></a><!-- doxytag: member="CProjet::$aoPersonnes" ref="9a43610885f4fce755d40a908fe17fd6" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#9a43610885f4fce755d40a908fe17fd6">$aoPersonnes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_projet.html#f52582a3c19f158f81577dabd349dc60" title="Initialise un tableau d&#39;objets CPersonne (aoPersonnes) selon des critères de...">initPersonnes()</a>, qui contiendra les utilisateurs de la PF, recherchés suivant certains critères. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cde117f2bbe5ce2ac76c046695b4231b"></a><!-- doxytag: member="CProjet::$asInfosSession" ref="cde117f2bbe5ce2ac76c046695b4231b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#cde117f2bbe5ce2ac76c046695b4231b">$asInfosSession</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau des informations contenues dans le cookie utilisateur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cca9d4eb7540b266e0e9418262da7e7d"></a><!-- doxytag: member="CProjet::$bIdParFormulaire" ref="cca9d4eb7540b266e0e9418262da7e7d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#cca9d4eb7540b266e0e9418262da7e7d">$bIdParFormulaire</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Les infos utilisateurs ont-elles été transmises par formulaire ? Sinon, c'est par cookie. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="788607ec6a16852cb0dca7d3b409ef8e"></a><!-- doxytag: member="CProjet::$iCodeEtat" ref="788607ec6a16852cb0dca7d3b409ef8e" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#788607ec6a16852cb0dca7d3b409ef8e">$iCodeEtat</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Contient le résultat/état du login (constantes LOGIN_). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a968d981e52af23226a29392ece1705"></a><!-- doxytag: member="CProjet::$iStatutUtilisateur" ref="7a968d981e52af23226a29392ece1705" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#7a968d981e52af23226a29392ece1705">$iStatutUtilisateur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parmi les statuts possibles, lequel est utilisé ? <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="00fd5a41cb24e533c2eea67da97dbbb2"></a><!-- doxytag: member="CProjet::$oActivCourante" ref="00fd5a41cb24e533c2eea67da97dbbb2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#00fd5a41cb24e533c2eea67da97dbbb2">$oActivCourante</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Activité actuellement initialisée. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="82eb2638ffd71a550abd01b14ed15920"></a><!-- doxytag: member="CProjet::$oBdd" ref="82eb2638ffd71a550abd01b14ed15920" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#82eb2638ffd71a550abd01b14ed15920">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ece3e1e9e48698034112aaad3af357e7"></a><!-- doxytag: member="CProjet::$oEquipe" ref="ece3e1e9e48698034112aaad3af357e7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#ece3e1e9e48698034112aaad3af357e7">$oEquipe</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Equipe à laquelle l'utilisateur connecté appartient (si applicable). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5d28e0f250bf5c4550f275c291ce22ce"></a><!-- doxytag: member="CProjet::$oErreurs" ref="5d28e0f250bf5c4550f275c291ce22ce" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#5d28e0f250bf5c4550f275c291ce22ce">$oErreurs</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">:DEBUG: pour tester la classe <a class="el" href="class_c_constantes.html" title="Classe permettant de récupérer des constantes &#39;texte&#39; (consignes, messages...">CConstantes</a> <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="86d6bc4b57f96d7269dec9b64a3538d2"></a><!-- doxytag: member="CProjet::$oFormationCourante" ref="86d6bc4b57f96d7269dec9b64a3538d2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#86d6bc4b57f96d7269dec9b64a3538d2">$oFormationCourante</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Formation actuellement initialisée. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#0988f119005d56b2d9f92c1096889e2c">$oI18N</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet <a class="el" href="class_c_constantes.html" title="Classe permettant de récupérer des constantes &#39;texte&#39; (consignes, messages...">CConstantes</a> utilisé pour les traductions.  <a href="#0988f119005d56b2d9f92c1096889e2c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9dcc77db11e03672db041bd636fad5bd"></a><!-- doxytag: member="CProjet::$oModuleCourant" ref="9dcc77db11e03672db041bd636fad5bd" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#9dcc77db11e03672db041bd636fad5bd">$oModuleCourant</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Module actuellement initialisé pour cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e7d0f3181b736f22692d3cad2c82fcec"></a><!-- doxytag: member="CProjet::$oPermisUtilisateur" ref="e7d0f3181b736f22692d3cad2c82fcec" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#e7d0f3181b736f22692d3cad2c82fcec">$oPermisUtilisateur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permissions par rapport au statut courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1324e95e124d8f6ef48b6f62168e3a2c"></a><!-- doxytag: member="CProjet::$oRubriqueCourante" ref="1324e95e124d8f6ef48b6f62168e3a2c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#1324e95e124d8f6ef48b6f62168e3a2c">$oRubriqueCourante</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rubrique actuellement initialisée. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="491db1c2c6918167f8b536caeeab6968"></a><!-- doxytag: member="CProjet::$oSousActivCourante" ref="491db1c2c6918167f8b536caeeab6968" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#491db1c2c6918167f8b536caeeab6968">$oSousActivCourante</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sous-activité actuellement initialisée. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3bdbc1bc6c6331fac14694bb2374f155"></a><!-- doxytag: member="CProjet::$oUtilisateur" ref="3bdbc1bc6c6331fac14694bb2374f155" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#3bdbc1bc6c6331fac14694bb2374f155">$oUtilisateur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisateur actuellement connecté. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="be24362bdf3dda32a9054e31362bd154"></a><!-- doxytag: member="CProjet::$sCheminComplet" ref="be24362bdf3dda32a9054e31362bd154" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#be24362bdf3dda32a9054e31362bd154">$sCheminComplet</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chemin du projet sur le système de fichiers, à partir de la racine. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72e80ba5d13cd6f4df8c7cb7e544dfab"></a><!-- doxytag: member="CProjet::$sCheminWeb" ref="72e80ba5d13cd6f4df8c7cb7e544dfab" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#72e80ba5d13cd6f4df8c7cb7e544dfab">$sCheminWeb</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chemin du projet à partir de la racine du serveur web. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8fa224bed6fd02f05c72540eb8303820"></a><!-- doxytag: member="CProjet::$sNom" ref="8fa224bed6fd02f05c72540eb8303820" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#8fa224bed6fd02f05c72540eb8303820">$sNom</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom complet du projet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="77de0e944ec0b767bfb84f00003e9b13"></a><!-- doxytag: member="CProjet::$sNomCookie" ref="77de0e944ec0b767bfb84f00003e9b13" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#77de0e944ec0b767bfb84f00003e9b13">$sNomCookie</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom du cookie utilisateur associé au projet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b093306fc33a6082d83c3e9aed8cdfb1"></a><!-- doxytag: member="CProjet::$sNomRep" ref="b093306fc33a6082d83c3e9aed8cdfb1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#b093306fc33a6082d83c3e9aed8cdfb1">$sNomRep</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Uniquement le nom du répertoire du projet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="56c67756ee6e9d628b3f0a11dbd9db31"></a><!-- doxytag: member="CProjet::$sUrlAccueil" ref="56c67756ee6e9d628b3f0a11dbd9db31" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#56c67756ee6e9d628b3f0a11dbd9db31">$sUrlAccueil</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL complète de la page d'accueil du projet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c8cfe5d41cd77862740e689d1ae9594d"></a><!-- doxytag: member="CProjet::$sUrlLogin" ref="c8cfe5d41cd77862740e689d1ae9594d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#c8cfe5d41cd77862740e689d1ae9594d">$sUrlLogin</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">URL de la page permettant de s'identifier. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d72417e1c6875bb9c737d28b56b67881"></a><!-- doxytag: member="CProjet::$sVersion" ref="d72417e1c6875bb9c737d28b56b67881" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html#d72417e1c6875bb9c737d28b56b67881">$sVersion</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro de version (chaîne de caractères). <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="7838f3df998e11c24e7a1eb8567ee54b"></a><!-- doxytag: member="CProjet::ajouterStatut" ref="7838f3df998e11c24e7a1eb8567ee54b" args="($v_iStatut)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::ajouterStatut           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatut</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un statut à la liste des statuts de l'utilisateur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatut</em>&nbsp;</td><td>le numéro du statut à ajouter (voir constantes STATUT_PERS_) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="37e2733dbaa81d910b7ffcba0ae58c64"></a><!-- doxytag: member="CProjet::changerStatutUtilisateur" ref="37e2733dbaa81d910b7ffcba0ae58c64" args="($v_iStatutUtilisateur, $v_bSauverDsCookie=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::changerStatutUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatutUtilisateur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bSauverDsCookie</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Modifie le statut actuel de l'utilisateur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatutUtilisateur</em>&nbsp;</td><td>le numéro du statut à activer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bSauverDsCookie</em>&nbsp;</td><td>si <code>true</code>, enregistre immédiatement les données <em>complètes</em> de la session utilisateur, et donc le nouveau statut</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le numéro du statut demandé est valide</dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01731">ecrireInfosSession()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="492a919b1246b9e8e9c7ac5a4d5a3358"></a><!-- doxytag: member="CProjet::CProjet" ref="492a919b1246b9e8e9c7ac5a4d5a3358" args="($v_bEffacerCookie=FALSE, $v_bRedirigerSiIncorrect=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::CProjet           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEffacerCookie</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRedirigerSiIncorrect</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Initialise l'objet principal du projet, généralement unique et global<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bEffacerCookie</em>&nbsp;</td><td>si <code>true</code>, le cookie actuel de l'utilisateur, contenant les infos de sa session, est effacé. Cela a pour effet, entre autres, de le déconnecter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRedirigerSiIncorrect</em>&nbsp;</td><td>si <code>true</code>, en cas de problème d'identification, l'utilisateur est redirigé vers la page de login de la plate-forme </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01731">ecrireInfosSession()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00382">init()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00988">initFormationCourante()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00442">initUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01596">lireInfosSession()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b21569abc9862643355c54fc3a70aa02"></a><!-- doxytag: member="CProjet::creerFichierStatut" ref="b21569abc9862643355c54fc3a70aa02" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::creerFichierStatut           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée un fichier de définitions PHP représentant les statuts possibles pour les utilisateurs. 
+<p>
+Ce fichier doit être recréee lorsqu'on ajoute de nouveaux statuts, ce qui est rare. Par contre, on peut ajouter des permissions sans pour autant devoir régénérer ce fichier.<p>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd>include/def/statut.def.php </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l02186">retListeStatut()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7413f77ab99b039a9974bd2d734084bd"></a><!-- doxytag: member="CProjet::debug" ref="7413f77ab99b039a9974bd2d734084bd" args="($v_sMessage, $v_iNumLigne=NULL, $v_sNomFichier=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::debug           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumLigne</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomFichier</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche un message de débuggage. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sMessage</em>&nbsp;</td><td>le message à afficher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumLigne</em>&nbsp;</td><td>le numéro de ligne concerné (utiliser la constante magique PHP <code>__LINE__</code> à l'appel) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomFichier</em>&nbsp;</td><td>le fichier dans lequel on se trouve au moment du message (utiliser la constante magique PHP <code>__FILE__</code> à l'appel) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a9f0ef35e68965ba28aa362a0767a64a"></a><!-- doxytag: member="CProjet::defActivCourante" ref="a9f0ef35e68965ba28aa362a0767a64a" args="($v_iActiv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::defActivCourante           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iActiv</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit l'activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iActiv</em>&nbsp;</td><td>l'id de l'activité à définir</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_projet.html#79c5646314a112672190be9e0b77bbfa" title="Initialise l&#39;activité courante.">initActivCourante()</a></dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Les éléments anciennement appelés <em>activités</em>, y compris dans la DB, sont maintenant appelés <em>blocs d'activités</em> dans la pratique </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01094">initActivCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2a0238d09694d8ff8b4e6da479df9d8b"></a><!-- doxytag: member="CProjet::defFormationCourante" ref="2a0238d09694d8ff8b4e6da479df9d8b" args="($v_iIdForm)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::defFormationCourante           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit la formation courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_iIdForm</em>&nbsp;</td><td>l'id de la formation à définir</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_projet.html#2f4af24718c8b45a4760fbd114cbeaa7" title="Initialise la formation courante.">initFormationCourante()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00988">initFormationCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2fa4d85ad89aaad7f625b3c277813a44"></a><!-- doxytag: member="CProjet::defModuleCourant" ref="2fa4d85ad89aaad7f625b3c277813a44" args="($v_iIdModule, $v_bInitStatutsUtilisateur=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::defModuleCourant           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdModule</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitStatutsUtilisateur</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit le module courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdModule</em>&nbsp;</td><td>l'id du module à définir </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitStatutsUtilisateur</em>&nbsp;</td><td>si <code>true</code>, les statuts de l'utilisateur seront redéfinis en fonction du nouveau module</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_projet.html#76cc0c19be715c1b8982415115868e6d" title="Initialise le module courant.">initModuleCourant()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01026">initModuleCourant()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00547">initStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="23b8caa01778ba8fd9c3288cbb2954ad"></a><!-- doxytag: member="CProjet::defRubriqueCourante" ref="23b8caa01778ba8fd9c3288cbb2954ad" args="($v_iUnite)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::defRubriqueCourante           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iUnite</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit la rubrique/unité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iUnite</em>&nbsp;</td><td>l'id de la rubrique/unité à définir</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_projet.html#b9f399e1127546cf7e04c1fca1f73f97" title="Initialise l&#39;unité courante.">initRubriqueCourante()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01062">initRubriqueCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9dd3708eff938611fb4945dd39ffaeaa"></a><!-- doxytag: member="CProjet::defSousActivCourante" ref="9dd3708eff938611fb4945dd39ffaeaa" args="($v_iSousActiv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::defSousActivCourante           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iSousActiv</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit la sous-activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iSousActiv</em>&nbsp;</td><td>l'id de la sous-activité à définir.</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_projet.html#fbc0057cfa99efda1cff58293d989ed8" title="Initialise la sous-activité courante.">initSousActivCourante()</a></dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Les élémentes anciennement appelés <em>sous-activités</em>, y compris dans la DB, sont maintenant appelés <em>activités</em> dans la pratique </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01126">initSousActivCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="82fc3dbc3c3399a6d53cbb4806198cfe"></a><!-- doxytag: member="CProjet::dir_cours" ref="82fc3dbc3c3399a6d53cbb4806198cfe" args="($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::dir_cours           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierInclure</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCheminAbsolu</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCheminAbsolu</em>&nbsp;</td><td>si <code>true</code>, le chemin retourné sera absolu. Si <code>false</code>, il sera relatif</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le répertoire de l'activité courante </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01996">dir_images()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l02009">dir_ressources()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02072">retLien()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="853fbab9be9d4a1c9ef7473ae0d8a787"></a><!-- doxytag: member="CProjet::dir_formation" ref="853fbab9be9d4a1c9ef7473ae0d8a787" args="($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::dir_formation           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierInclure</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCheminAbsolu</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire qui abrite les fichiers de la formation actuelle (initialisée). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCheminAbsolu</em>&nbsp;</td><td>si <code>true</code>, le chemin retourné sera absolu. Si <code>false</code>, il sera relatif</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le répertoire de la formation courante </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l02022">retRepRubriques()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8d41f8c43142177cd66aa790d45f959f"></a><!-- doxytag: member="CProjet::dir_images" ref="8d41f8c43142177cd66aa790d45f959f" args="($v_sFichierInclure=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::dir_images           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierInclure</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le répertoire images pour l'activité courante </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01965">dir_cours()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d027a6968bf03e3539fb61cb5f19bf84"></a><!-- doxytag: member="CProjet::dir_ressources" ref="d027a6968bf03e3539fb61cb5f19bf84" args="($v_sFichierInclure=NULL, $v_bCheminAbsolu=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::dir_ressources           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierInclure</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCheminAbsolu</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire ressources de l'activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCheminAbsolu</em>&nbsp;</td><td>si <code>true</code>, le chemin retourné sera absolu. Si <code>false</code>, il sera relatif</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le répertoire ressources pour l'activité courante </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01965">dir_cours()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="be2917346669c0ce7393cfc1e7a9482d"></a><!-- doxytag: member="CProjet::ecrireEvenement" ref="be2917346669c0ce7393cfc1e7a9482d" args="($v_iTypeEven, $v_sDonneesEven=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::ecrireEvenement           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeEven</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDonneesEven</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ecrit un "événement" dans la DB, pour le moment il s'agit des connexions/déconnexions des utilisateurs. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeEven</em>&nbsp;</td><td>le numéro du type d'événement (voir constantes TYPE_EVEN_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sDonneesEven</em>&nbsp;</td><td>les données supplémentaires à associer à l'événement </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01710">enregistrerInfosSession()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00442">initUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00587">redirigerVersLogin()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c99ef648a6de605c0eb2974890149ec6"></a><!-- doxytag: member="CProjet::ecrireInfosSession" ref="c99ef648a6de605c0eb2974890149ec6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::ecrireInfosSession           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enregistre la totalité des données de la session utilisateur, dans leur état actuel, dans le cookie. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01710">enregistrerInfosSession()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01810">changerStatutUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00332">CProjet()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bafddb9e532deb5a1665898d55f01f74"></a><!-- doxytag: member="CProjet::effacerInfosSession" ref="bafddb9e532deb5a1665898d55f01f74" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::effacerInfosSession           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface complètement la session de l'utilisateur, ainsi que le cookie qui y est associé. 
+<p>
+Cela a pour effet l'annulation de son identification<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01710">enregistrerInfosSession()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00598">verifAccessibleVisiteurs()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b68864ffd5f2c66d64bf3e16b0700ece"></a><!-- doxytag: member="CProjet::enregistrerInfosSession" ref="b68864ffd5f2c66d64bf3e16b0700ece" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::enregistrerInfosSession           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enregistre les données de session actuelles de l'utilisateur dans un cookie. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01858">ecrireEvenement()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01731">ecrireInfosSession()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01776">effacerInfosSession()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01691">modifierInfosSession()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="79c5646314a112672190be9e0b77bbfa"></a><!-- doxytag: member="CProjet::initActivCourante" ref="79c5646314a112672190be9e0b77bbfa" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initActivCourante           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'activité courante. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'activité courante est valide </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01062">initRubriqueCourante()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01083">defActivCourante()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01126">initSousActivCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0d86118796497ed3738ba907ad23647d"></a><!-- doxytag: member="CProjet::initAdministrateurs" ref="0d86118796497ed3738ba907ad23647d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initAdministrateurs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les variables/objets représentant les admins du projet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'admins trouvés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e8728a62926af627dc11740b486149e9"></a><!-- doxytag: member="CProjet::initEquipe" ref="e8728a62926af627dc11740b486149e9" args="($v_bInitMembres=FALSE, $v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'équipe d'un utilisateur dans le contexte/niveau/élément courant (formation, module, etc). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de l'équipe. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_iIdPers</em>&nbsp;</td><td>l'id de l'utilisateur dont on veut connaître l'équipe. S'il est &lt;= 0, l'utilisateur connecté est pris pour la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur fait bien partie d'une équipe</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#306dee6bcb1f7293d29ca67c0c0c15c4" title="Initialise l&#39;équipe d&#39;un utilisateur dans un contexte/niveau/élément précis...">CEquipe::initEquipe()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00305">$oEquipe</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01342">retIdNiveau()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01323">retTypeNiveau()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01304">verifEquipe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="de5c50304b6e4df7aa50c9beafa1bcb0"></a><!-- doxytag: member="CProjet::initEquipes" ref="de5c50304b6e4df7aa50c9beafa1bcb0" args="($v_bInitMembres=FALSE, $v_iIdNiveau=NULL, $v_iTypeNiveau=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initEquipes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveau</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les équipes attachées à un élément déterminé d'une formation (la formation elle-même, module/cours, rubrique/unité, activité, sous-activité). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres des équipes </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes trouvées</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#697d9558f9cf790ef5959d1b74418f07" title="Initialise un tableau d&#39;équipes (aoEquipes) en les cherchant à partir d&#39;un...">CEquipe::initEquipesEx()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01342">retIdNiveau()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01323">retTypeNiveau()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01304">verifEquipe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2f4af24718c8b45a4760fbd114cbeaa7"></a><!-- doxytag: member="CProjet::initFormationCourante" ref="2f4af24718c8b45a4760fbd114cbeaa7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initFormationCourante           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la formation courante. 
+<p>
+Les droits de l'utilisateur et l'accès au visiteur sont également réinitialisés.<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la formation courante est valide </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00547">initStatutsUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00598">verifAccessibleVisiteurs()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00332">CProjet()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00974">defFormationCourante()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01026">initModuleCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="96a446c687ceded1b1b48467ef6b60ce"></a><!-- doxytag: member="CProjet::initFormations" ref="96a446c687ceded1b1b48467ef6b60ce" args="($v_sRequeteSql=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initFormations           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sRequeteSql</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les formations existantes du projet. 
+<p>
+Elles sont placées dans le tableau <code>aoFormations</code>. Par défaut, les formations avec le statut "effacée" (logiquement) ne sont pas récupérées<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sRequeteSql</em>&nbsp;</td><td>requête à exécuter pour initialiser les formations. Si <code>null</code>, utilise la requête standard</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formations trouvées </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="617bd561a875faad9a92ae40c60bbfbc"></a><!-- doxytag: member="CProjet::initFormationsUtilisateur" ref="617bd561a875faad9a92ae40c60bbfbc" args="($v_bRechStricte=FALSE, $v_bStatutActuel=TRUE, $v_bDossierForms=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initFormationsUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRechStricte</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bStatutActuel</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bDossierForms</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau (<code>aoFormation</code>) contenant les formations disponibles à l'utilisateur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bRechStricte</em>&nbsp;</td><td>si <code>true</code>, seules les formations pour lesquelles l'utilisateur a le statut exact demandé seront retournées si <code>false</code>, les formations pour lesquelles l'utilisateur a un statut inférieur à celui demandé seront aussi retournées </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bStatutActuel</em>&nbsp;</td><td>si <code>true</code>, recherche les formations par rapport au statut actuel de l'utilisateur, càd la variable <code>iStatutUtilisateur</code>, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans <code>asInfosSession</code>[SESSION_STATUT_UTILISATEUR], cette dernière étant utilisée si le paramètre est <code>false</code>. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bDossierForms</em>&nbsp;</td><td>si <code>true</code>, les formations sont celles du dossier de formations de l'utilisateur</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formations trouvées</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_formation.html" title="Gestion des formations, et encapsulation de la table Formation de la DB.">CFormation</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00737">initFormations()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01691">modifierInfosSession()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00535">retIdUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01424">retReelStatutUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02225">verifPermission()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4594bb12b378255596ee894fb9cee135"></a><!-- doxytag: member="CProjet::initInscritsFormation" ref="4594bb12b378255596ee894fb9cee135" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initInscritsFormation           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la liste des inscrits à la formation courante. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'inscrits trouvés</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_formation.html" title="Gestion des formations, et encapsulation de la table Formation de la DB.">CFormation</a> </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01166">initInscritsModule()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3cb731a80bf0c2c0f5beefa5ce527f5b"></a><!-- doxytag: member="CProjet::initInscritsModule" ref="3cb731a80bf0c2c0f5beefa5ce527f5b" args="($v_bVerifInscrAutoModules=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initInscritsModule           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bVerifInscrAutoModules</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la liste des inscrits au module courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bVerifInscrAutoModules</em>&nbsp;</td><td>si <code>true</code>, vérifie si tous les inscrits à la formation courante doivent automatiquement l'être à tous les modules de cette formation</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'inscrits trouvés </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01144">initInscritsFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="76cc0c19be715c1b8982415115868e6d"></a><!-- doxytag: member="CProjet::initModuleCourant" ref="76cc0c19be715c1b8982415115868e6d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initModuleCourant           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise le module courant. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le module courant est valide </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00988">initFormationCourante()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01014">defModuleCourant()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01062">initRubriqueCourante()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00547">initStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ff5b1e3e825d439ab7a14b54325ad00d"></a><!-- doxytag: member="CProjet::initPermisUtilisateur" ref="ff5b1e3e825d439ab7a14b54325ad00d" args="($v_bStatutActuel=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initPermisUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bStatutActuel</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise toutes les permissions de la personne par rapport à son statut actuel. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bStatutActuel</em>&nbsp;</td><td>si <code>true</code>, utilise le statut actuel de l'utilisateur, càd la variable <code>iStatutUtilisateur</code>, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans <code>asInfosSession</code>[SESSION_STATUT_UTILISATEUR], cette dernière est utilisée si le paramètre est <code>false</code>. </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00547">initStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f52582a3c19f158f81577dabd349dc60"></a><!-- doxytag: member="CProjet::initPersonnes" ref="f52582a3c19f158f81577dabd349dc60" args="($v_iIdStatutPers=NULL, $v_iIdForm=0, $v_iIdMod=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initPersonnes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdStatutPers</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> (<code>aoPersonnes</code>) selon des critères de statut. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdStatutPers</em>&nbsp;</td><td>la constante rerpésentant le statut désiré </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la session de formation à croiser avec le statut </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>l'id du module à croiser avec le statut, n'est pas requis pour certains statuts</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de personnes trouvées </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b9f399e1127546cf7e04c1fca1f73f97"></a><!-- doxytag: member="CProjet::initRubriqueCourante" ref="b9f399e1127546cf7e04c1fca1f73f97" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initRubriqueCourante           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'unité courante. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'unité courante est valide </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01026">initModuleCourant()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01051">defRubriqueCourante()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01094">initActivCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fbc0057cfa99efda1cff58293d989ed8"></a><!-- doxytag: member="CProjet::initSousActivCourante" ref="fbc0057cfa99efda1cff58293d989ed8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initSousActivCourante           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la sous-activité courante. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>si</code> la sous-activité courante est valide </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01094">initActivCourante()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01115">defSousActivCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3635ec55c2484e6aca953edaab7dbbdd"></a><!-- doxytag: member="CProjet::initStatutsUtilisateur" ref="3635ec55c2484e6aca953edaab7dbbdd" args="($v_bVerifierStatutForm=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initStatutsUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bVerifierStatutForm</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les statuts de l'utilisateur connecté. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_bVerifierStatutForm</em>&nbsp;</td><td>si <code>true</code>, les statuts seront déterminé par rapport à la formation courante</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de statuts trouvés pour cet utilisateur </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01026">initModuleCourant()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l02212">initPermisUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00535">retIdUtilisateur()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01014">defModuleCourant()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00988">initFormationCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="80da194c7fc3125a2b89ccc9a29ba780"></a><!-- doxytag: member="CProjet::initUtilisateur" ref="80da194c7fc3125a2b89ccc9a29ba780" args="($v_bRedirigerSiIncorrect=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::initUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRedirigerSiIncorrect</em> = <code>FALSE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'objet <code>oUtilisateur</code> en fonction des données d'identification disponibles. 
+<p>
+Les données d'id sont vérifiées dans le tableau <code>asInfosSession</code>, lui-même initialisé dans <a class="el" href="class_c_projet.html#d1d4cce96d216a65bb61bc66dd96722e" title="Récupère les informations de la session actuelle de navigation de l&#39;utilisateur...">lireInfosSession()</a><p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bRedirigerSiIncorrect</em>&nbsp;</td><td>si <code>true</code>, et qu'un problème survient avec l'identification de l'utilisateur, on arrête le chargement de la page et on le renvoie à l'écran de login (redirection HTTP), ce qui signifie que tout appel de cette fonction doit être fait avant d'écrire quoi que ce soit dans la page HTML </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01858">ecrireEvenement()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00587">redirigerVersLogin()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01844">retMdpCrypte()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00332">CProjet()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2d4c9c33a047ea73e4e53474ea82af66"></a><!-- doxytag: member="CProjet::insererRessource" ref="2d4c9c33a047ea73e4e53474ea82af66" args="($v_sNom, $v_sDescr, $v_sAuteur, $v_sUrl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::insererRessource           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDescr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sAuteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sUrl</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Insère dans la DB une nouvelle ressource (fichier) associée à une sous-activité. 
+<p>
+L'id utilisateur est celui de l'actuel connecté, et la sous-activité est celle qui est actuellement initialisée (logiquement celle dans laquelle l'utilisateur se trouve)<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNom</em>&nbsp;</td><td>le nom donné à la ressource (fichier) à insérer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sDescr</em>&nbsp;</td><td>la description de la ressource </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sAuteur</em>&nbsp;</td><td>l'auteur de la ressource, sous forme de texte (pas un id utilisateur) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sUrl</em>&nbsp;</td><td>le chemin de la ressource</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la ressource a bien été insérée, <code>false</code> si l'utilisateur courant n'est pas identifié, ou s'il ne se trouve pas dans une sous-activité (aucune initialisée), ou encore si un problème est survenu à l'insertion SQL </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d1d4cce96d216a65bb61bc66dd96722e"></a><!-- doxytag: member="CProjet::lireInfosSession" ref="d1d4cce96d216a65bb61bc66dd96722e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::lireInfosSession           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Récupère les informations de la session actuelle de navigation de l'utilisateur. 
+<p>
+Cette lecture a lieu soit dans le cookie, soit à partir des paramètres de l'url, les données passées par cette dernière ayant priorité. Ces données sont par exemple le pseudo de l'utilisateur, le mot de passe associé, le statut actuel, les ids des formation/module/rubrique/etc dans lesquels l'utilisateur se trouve actuellement 
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00332">CProjet()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f27341b1bf3dc1d66fbe1b7d2c30ff17"></a><!-- doxytag: member="CProjet::modifierInfosSession" ref="f27341b1bf3dc1d66fbe1b7d2c30ff17" args="($v_iNumSession, $v_mValeurSession, $v_bEnregistrer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::modifierInfosSession           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumSession</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_mValeurSession</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEnregistrer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Modifie une donnée de la session utilisateur, et réenregistre éventuellement la session (cookie). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumSession</em>&nbsp;</td><td>le numéro de la donnée de session à modifier (voir constantes SESSION_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_mValeurSession</em>&nbsp;</td><td>la nouvelle valeur pour la donnée </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bEnregistrer</em>&nbsp;</td><td>si <code>true</code>, la session <em>complète</em> sera réenregistrée dans un cookie</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le numéro de la donnée de session à enregistrer était correct</dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Si on décide d'enregistrer la session, étant donné que cela implique l'écriture d'un cookie, il faut qu'aucune sortie HTML/PHP n'ai eu lieu dans la page; cette fonction doit donc être appelée avant tout affichage </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01710">enregistrerInfosSession()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b6ea420275f7f0a8261ca9e18fb3075f"></a><!-- doxytag: member="CProjet::redirigerVersLogin" ref="b6ea420275f7f0a8261ca9e18fb3075f" args="($v_sPrenom=NULL, $v_sNom=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::redirigerVersLogin           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sPrenom</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNom</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Effectue une redirection Http de l'utilisateur vers la page de login après avoir enregistré "l'événement". 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sPrenom</em>&nbsp;</td><td>le prénom de l'utilisateur concerné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sNom</em>&nbsp;</td><td>le nom de l'utilisateur concerné </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01858">ecrireEvenement()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00442">initUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8687eaea66f7d355bf2ec3b4deca8e99"></a><!-- doxytag: member="CProjet::retEmail" ref="8687eaea66f7d355bf2ec3b4deca8e99" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retEmail           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'adresse e-mail de contact du projet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'adresse e-mail </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6bde877c42f25152a8b542b6e08e66ea"></a><!-- doxytag: member="CProjet::retHautStatutUtilisateur" ref="6bde877c42f25152a8b542b6e08e66ea" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retHautStatutUtilisateur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le statut le plus élevé que l'utilisateur possède dans le contexte (session) actuel. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le statut le plus élevé pour l'utilisateur </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ecb125df56a6325db0d8e636663def1d"></a><!-- doxytag: member="CProjet::retIdNiveau" ref="ecb125df56a6325db0d8e636663def1d" args="($v_iTypeNiveau=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retIdNiveau           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveau</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de l'élément dans lequel on se trouve, par rapport au "niveau" (formation, module, rubrique, etc). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveau</em>&nbsp;</td><td>le niveau pour lequel on désire recevoir un id d'élément. S'il est absent ou invalide, c'est le niveau le plus profond actuellement initialisé qui est utilisé (résultat de la fonction <a class="el" href="class_c_projet.html#0bc2784c08b05f089146a2b0e212b737" title="Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure...">retTypeNiveau()</a></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de l'élément initialisé qui se trouve au niveau demandé </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01323">retTypeNiveau()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01273">initEquipe()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01222">initEquipes()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="88489be800065d0068138e9b41509ebb"></a><!-- doxytag: member="CProjet::retIdUtilisateur" ref="88489be800065d0068138e9b41509ebb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retIdUtilisateur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de l'utilisateur identifié. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de l'utilisateur s'il est identifié, sinon 0 </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00547">initStatutsUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01452">retTexteUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01190">verifEtudiant()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01249">verifMembre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3f146254234d4303abb026f4cdb1bdc6"></a><!-- doxytag: member="CProjet::retInfosSession" ref="3f146254234d4303abb026f4cdb1bdc6" args="($v_iNumSession)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retInfosSession           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumSession</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une donnée parmi celles enregistrées pour la session utilisateur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumSession</em>&nbsp;</td><td>le numéro de la donnée de session à récupérer (voir les constantes SESSION_)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la donnée provenant de la session </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2c8ccb2f7dee381e1ee9e28a979a6a08"></a><!-- doxytag: member="CProjet::retLanguage" ref="2c8ccb2f7dee381e1ee9e28a979a6a08" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retLanguage           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la langue de l'utilisateur connecté. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un code qui représente la langue actuelle de l'utilisateur</dd></dl>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000007">Obsolète:</a></b></dt><dd>Cette fonction ne semble pas utilisée pour le moment, et sera remplacée par le système <code>gettext()</code> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="21f9b5f1e334e54b42d1643a08874709"></a><!-- doxytag: member="CProjet::retLien" ref="21f9b5f1e334e54b42d1643a08874709" args="($v_sLien=NULL, $v_sIntitule=NULL, $v_iMode=NULL, $v_sInfoBulle=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retLien           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sLien</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sIntitule</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iMode</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInfoBulle</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sLien</em>&nbsp;</td><td>l'url du lien </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sIntitule</em>&nbsp;</td><td>le texte à utiliser pour afficher le lien </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iMode</em>&nbsp;</td><td>le mode d'affichage de l'url lorsque le lien sera cliqué (voir constantes) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sInfoBulle</em>&nbsp;</td><td>le texte à afficher dans l'infobulle du lien (attribut "title"). Si <code>v_iMode</code> vaut MODE_LIEN_TELECHARGER, l'infobulle sera automatiquement un message indiquant qu'il s'agit d'un téléchargement</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le code HTML pour créer le lien demandé </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01965">dir_cours()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="96691e19965890d7d9392bc31f1aa79b"></a><!-- doxytag: member="CProjet::retListeStatut" ref="96691e19965890d7d9392bc31f1aa79b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retListeStatut           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau multi-dimensionnel contenant, pour chaque indice de premier niveau, les infos sur un statut sous forme d'indices textuels <code>IdStatut</code> (l'id dans la DB), <code>NomStatut</code> (statut sous forme texte, au masculin) et <code>TxtStatut</code> (le nom de la constante représentant le statut). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant les infos sur les types de statuts </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l02240">creerFichierStatut()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f5e4e82c124ecbec9eed8d4eb9396679"></a><!-- doxytag: member="CProjet::retMdpCrypte" ref="f5e4e82c124ecbec9eed8d4eb9396679" args="($v_sMdp)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retMdpCrypte           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sMdp</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une version cryptée d'une chaîne de caractère (mot de passe). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sMdp</em>&nbsp;</td><td>la chaîne à crypter</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la version cryptée de la chaîne <code>v_sMdp</code> </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000013">À faire:</a></b></dt><dd>Pour le moment, le cryptage se fait par la fonction <code>PASSWORD()</code> de MySQL, ce qui était malheureusement une très mauvaise idée, car cette fonction ne devait être utilisée qu'en interne par MySQL, et a été modifiée dans MySQL 4.1, ce qui rendra les mots de passe déjà encodés incompatible avec la nouvelle version de la fonction</dd></dl>
+Idéalement, il faudrait donc crypter avec une fonction standard comme <code>MD5()</code> si on veut garder des mots de passe indécryptables ou des fonctions comme <code>AES_CRYPT()/AES_DECRYPT()</code> si on veut pouvoir récupérer le mot de passe à tout moment (ça éviterait le système tordu mis en place après coup, qui consiste à écrire une version décryptée du mot de passe de chaque utilisateur dans le fichier <code>src/tmp/mdpncpte</code> protégé contre la lecture, à chaque fois que quelqu'un se connecte et passe le login 
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00442">initUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="11ab2caba5ac9cf7cd591489d835aaa9"></a><!-- doxytag: member="CProjet::retNom" ref="11ab2caba5ac9cf7cd591489d835aaa9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retNom           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom du projet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom du projet, tel qu'enregistré dans la DB </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="41e6131f411b23f0a9503abbefbedb67"></a><!-- doxytag: member="CProjet::retNumeroUniqueSession" ref="41e6131f411b23f0a9503abbefbedb67" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retNumeroUniqueSession           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id unique de la session utilisateur. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la session utilisateur </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="240a40f7a2ecbfd9183c029657f8b54b"></a><!-- doxytag: member="CProjet::retNumPortAwareness" ref="240a40f7a2ecbfd9183c029657f8b54b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retNumPortAwareness           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le port TCP sur lequel est lancé le serveur d'awareness utilisé par les clients de la plate-forme. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le port TCP associé au serveur d'awareness (JCVD-style :-D ) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3ad147536b619103372e5a47befdf699"></a><!-- doxytag: member="CProjet::retNumPortChat" ref="3ad147536b619103372e5a47befdf699" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retNumPortChat           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le port TCP sur lequel est lancé le serveur de chat utilisé par les clients de la plate-forme. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le port TCP associé au serveur chat </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="99f8d9fb2a55cccb8840109a6d08ca1f"></a><!-- doxytag: member="CProjet::retReelStatutUtilisateur" ref="99f8d9fb2a55cccb8840109a6d08ca1f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retReelStatutUtilisateur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le statut "réel" de l'utilisateur, càd celui qui est enregistré pour la session dans la variable asInfosSession. 
+<p>
+C'est le statut qui est choisi par l'utilisateur, et qui est transmis de page en page. Il se peut qu'on le change momentanément sur une page à l'aide de la variable iStatutUtilisateur, mais celui-ci ne sera pas enregistré dans la session tant qu'il n'a pas été également transféré dans asInfosSession<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le statut de l'utilisateur </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cb7ca559504253c1c9ec008ce89ace50"></a><!-- doxytag: member="CProjet::retRepRubriques" ref="cb7ca559504253c1c9ec008ce89ace50" args="($v_sFichierInclure=NULL, $v_bCheminAbsolu=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retRepRubriques           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierInclure</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCheminAbsolu</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCheminAbsolu</em>&nbsp;</td><td>si <code>true</code>, le chemin retourné sera absolu. Si <code>false</code>, il sera relatif</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le répertoire rubriques pour la formation courante </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01952">dir_formation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2e842a2739628d4395e2bb06dcfb66ac"></a><!-- doxytag: member="CProjet::retStatutUtilisateur" ref="2e842a2739628d4395e2bb06dcfb66ac" args="($v_bStatutActuel=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retStatutUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bStatutActuel</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le statut de l'utilisateur connecté. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bStatutActuel</em>&nbsp;</td><td>si <code>true</code>, retourne le statut actuel de l'utilisateur, càd la variable <code>iStatutUtilisateur</code>, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans <code>asInfosSession</code>[SESSION_STATUT_UTILISATEUR], cette dernière est utilisée si le paramètre est <code>false</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le statut de l'utilisateur </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01424">retReelStatutUtilisateur()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l02212">initPermisUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01468">retTexteStatutUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01452">retTexteUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00907">verifModifierFormation()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00938">verifModifierModule()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02277">verifPeutUtiliserOutils()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f2335a465cb463dff8b893cb4b6e38b9"></a><!-- doxytag: member="CProjet::retTexteStatutsUtilisateur" ref="f2335a465cb463dff8b893cb4b6e38b9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTexteStatutsUtilisateur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une liste des termes employés pour désigner les différents statuts de l'utilisateur connecté. 
+<p>
+Cette liste est séparée par des &lt;BR&gt;<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la liste des statuts, sous forme textuelle </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01468">retTexteStatutUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01388">verifStatut()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="738225b3bf73d088946a8516d26eec56"></a><!-- doxytag: member="CProjet::retTexteStatutUtilisateur" ref="738225b3bf73d088946a8516d26eec56" args="($v_iStatut=NULL, $v_sSexe=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTexteStatutUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatut</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sSexe</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le terme correspondant à un statut, en tenant compte du sexe M/F. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatut</em>&nbsp;</td><td>le statut pour lequel on veut le terme </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sSexe</em>&nbsp;</td><td>le genre à utiliser pour le terme</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le terme employé pour désigner le statut </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01490">retTexteStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="094d28ce4da62de5730e62fad216e738"></a><!-- doxytag: member="CProjet::retTexteUtilisateur" ref="094d28ce4da62de5730e62fad216e738" args="($v_bStatutActuel=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTexteUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bStatutActuel</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom de l'utilisateur connecté, ou visiteur/invité s'il est inconnu. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bStatutActuel</em>&nbsp;</td><td>si <code>true</code>, utilise le statut actuel de l'utilisateur, càd la variable <code>iStatutUtilisateur</code>, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans <code>asInfosSession</code>[SESSION_STATUT_UTILISATEUR], cette dernière est utilisée si le paramètre est <code>false</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom de l'utilisateur s'il est idientifié, sinon "visiteur/invité" </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00535">retIdUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="21af2356dd2c60e02c69d196196fc0ca"></a><!-- doxytag: member="CProjet::retTriCol" ref="21af2356dd2c60e02c69d196196fc0ca" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTriCol           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la colonne sur laquelle le tri est actuellement effectué, telle qu'enregistrée dans la session de l'utilisateur (cookie). 
+<p>
+Cette fonctionnalité est par exemple utilisée pour l'affichage des collecticiels<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la colonne sur lequel le tri est effectué, sous forme de chaîne de caractères (par ex "date") </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="0ff007358ed5a7320f0201655256d6c8"></a><!-- doxytag: member="CProjet::retTriDir" ref="0ff007358ed5a7320f0201655256d6c8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTriDir           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le sens (normal ou inversé) actuel du tri sur des colonnes. 
+<p>
+Cette fonctionnalité est par exemple utilisée pour l'affichage des collecticiels.<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le sens du tri (voir constantes TRI_) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="0bc2784c08b05f089146a2b0e212b737"></a><!-- doxytag: member="CProjet::retTypeNiveau" ref="0bc2784c08b05f089146a2b0e212b737" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::retTypeNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure formation-&gt;module-&gt;etc. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le numéro correspondant au (type de) niveau actuel (constantes TYPE_) </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01273">initEquipe()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01222">initEquipes()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01342">retIdNiveau()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="64614b5978a157d777ff09f44c38e0fa"></a><!-- doxytag: member="CProjet::terminer" ref="64614b5978a157d777ff09f44c38e0fa" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::terminer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Libère les ressources utilisées par l'objet <a class="el" href="class_c_projet.html" title="Classe principale de la plate-forme.">CProjet</a>. 
+<p>
+Pour le moment, seule la connexion à la DB est explicitement fermée 
+</div>
+</div><p>
+<a class="anchor" name="84caf89b16aa2a1b659a5a36acd50b2f"></a><!-- doxytag: member="CProjet::verifAccessibleVisiteurs" ref="84caf89b16aa2a1b659a5a36acd50b2f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifAccessibleVisiteurs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un visiteur connecté a le droit de se trouver dans la formation actuelle. 
+<p>
+Si ce n'est pas le cas, une redirection automatique vers le login a lieu 
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01776">effacerInfosSession()</a>.</p>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00988">initFormationCourante()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b519dca295ba0ea4529a33656a9f47bd"></a><!-- doxytag: member="CProjet::verifAdministrateur" ref="b519dca295ba0ea4529a33656a9f47bd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifAdministrateur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté est admin du projet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est inscrit dans la table des administrateurs, <code>false</code> dans le cas contraire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7ffffbe6fdd0ec0837a9a1a030d92717"></a><!-- doxytag: member="CProjet::verifConcepteur" ref="7ffffbe6fdd0ec0837a9a1a030d92717" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifConcepteur           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté est concepteur pour le module/cours courant. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est concepteur pour le module courant </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00907">verifModifierFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e46f79202393c05968373c7e8ea03465"></a><!-- doxytag: member="CProjet::verifConcepteurPotentiel" ref="e46f79202393c05968373c7e8ea03465" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifConcepteurPotentiel           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté est "concepteur potentiel". 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est concepteur potentiel sur le projet </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00907">verifModifierFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="603f57cc2e00cef4cf1136757cddd9ca"></a><!-- doxytag: member="CProjet::verifEquipe" ref="603f57cc2e00cef4cf1136757cddd9ca" args="($v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'une équipe fait partie de la liste des équipes actuellement initialisées. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'équipe à vérifier. S'il &lt;= 0, l'équipe actuellement initialisée est prise pour la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'équipe fait partie de la liste des équipes actuelles </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00305">$oEquipe</a>, <a class="el" href="plate__forme_8class_8php-source.html#l01273">initEquipe()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l01222">initEquipes()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="eb25c57d8d7ea53a9a9f6c42ccb24237"></a><!-- doxytag: member="CProjet::verifEtudiant" ref="eb25c57d8d7ea53a9a9f6c42ccb24237" args="($v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifEtudiant           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un utilisateur a le statut d'étudiant dans la formation courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de l'utilisateur à vérifier. Si <code>null</code>, c'est l'utilisateur connecté qui est vérifié</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur a le statut d'étudiant dans la formation courante </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00535">retIdUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0d6127466ee1e1cd8b3fbc2ad04c4230"></a><!-- doxytag: member="CProjet::verifMembre" ref="0d6127466ee1e1cd8b3fbc2ad04c4230" args="($v_iIdPers=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifMembre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un utilisateur est membre d'une des équipes actuellement initialisées. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de l'utilisateur concerné par la vérification. S'il est &lt;= 0, l'utilisateur connecté est pris pour la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est membre d'une des équipes actuellement initialisées</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#e78f47711f73779b537eb370c16f2b6f" title="Vérifier qu&#39;une personne est membre de l&#39;équipe (ou d&#39;une équipe spécifique)...">CEquipe::verifMembre()</a> </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l00305">$oEquipe</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l00535">retIdUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="47bb51a4fb0df021cae629d80fde0ea8"></a><!-- doxytag: member="CProjet::verifModifierFormation" ref="47bb51a4fb0df021cae629d80fde0ea8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifModifierFormation           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté a le droit de modifier la formation courante. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur peut modifier la formation courante </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00701">verifConcepteur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00672">verifConcepteurPotentiel()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02225">verifPermission()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="94579ffa560e9477df1f3d9d95803093"></a><!-- doxytag: member="CProjet::verifModifierModule" ref="94579ffa560e9477df1f3d9d95803093" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifModifierModule           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se rapporte à ce module (forum/chat/formulaire). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur a des droits sur le module actuel de la formation, <code>false</code> dans le cas contraire </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02225">verifPermission()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e7db1d7ccbec89971b6cb9ed2ea03f34"></a><!-- doxytag: member="CProjet::verifPermission" ref="e7db1d7ccbec89971b6cb9ed2ea03f34" args="($v_sNomPermis)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifPermission           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomPermis</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté dispose d'une permission particulière. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomPermis</em>&nbsp;</td><td>la constante représentant la permission à vérifier, mais <b>sous forme de chaîne</b></td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur connecté dispose de la permission </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l00777">initFormationsUtilisateur()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00907">verifModifierFormation()</a>, <a class="el" href="plate__forme_8class_8php-source.html#l00938">verifModifierModule()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02277">verifPeutUtiliserOutils()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="01c655d531972e8e3b76db072e9eb0a7"></a><!-- doxytag: member="CProjet::verifPeutUtiliserOutils" ref="01c655d531972e8e3b76db072e9eb0a7" args="($v_sNomPermission=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifPeutUtiliserOutils           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomPermission</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur a le droit d'utiliser les différents outils d'administration. 
+<p>
+Si l'utilisateur n'est pas identifié, est visiteur, ou n'a pas la permission requise, une page blanche est affichée<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomPermission</em>&nbsp;</td><td>la constante représentant la permission d'utiliser l'outil, mais <b>sous forme de chaîne</b></td></tr>
+  </table>
+</dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000014">À faire:</a></b></dt><dd>Vérifier que <code>bPeutUtiliserOutils</code> ne devrait pas plutôt valoir <code>false</code> au cas où la constante passée en paramètre n'existe pas </dd></dl>
+
+<p>Références <a class="el" href="plate__forme_8class_8php-source.html#l01406">retStatutUtilisateur()</a>, et <a class="el" href="plate__forme_8class_8php-source.html#l02225">verifPermission()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="53a8080dd5737623bf9d6c633009113f"></a><!-- doxytag: member="CProjet::verifRespPotentiel" ref="53a8080dd5737623bf9d6c633009113f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifRespPotentiel           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté est "responsable potentiel". 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est reponsable potentiel sur le projet </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="842700419b586b9e59f811f686136aed"></a><!-- doxytag: member="CProjet::verifStatut" ref="842700419b586b9e59f811f686136aed" args="($v_iStatut)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifStatut           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatut</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que l'utilisateur connecté possède un statut spécifique. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatut</em>&nbsp;</td><td>le numéro du statut à vérifier</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur possède ce statut </dd></dl>
+
+<p>Référencé par <a class="el" href="plate__forme_8class_8php-source.html#l01490">retTexteStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5a14631812b944364fa168cbbc16cf4e"></a><!-- doxytag: member="CProjet::verifTuteur" ref="5a14631812b944364fa168cbbc16cf4e" args="($v_iIdPers=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::verifTuteur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un utilisateur a le statut de tuteur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de l'utilisateur. S'il est absent, l'utilisateur connecté sera pris pour la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur est tuteur, <code>false</code> si ce n'est pas le cas <em>ou</em> que l'utilisateur à vérifier est invalide </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>Documentation des données membres</h2>
+<a class="anchor" name="0988f119005d56b2d9f92c1096889e2c"></a><!-- doxytag: member="CProjet::$oI18N" ref="0988f119005d56b2d9f92c1096889e2c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjet::$oI18N          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Objet <a class="el" href="class_c_constantes.html" title="Classe permettant de récupérer des constantes &#39;texte&#39; (consignes, messages...">CConstantes</a> utilisé pour les traductions. 
+<p>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000006">Obsolète:</a></b></dt><dd>Remplacé par le système <code>gettext()</code> </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/<a class="el" href="plate__forme_8class_8php.html">plate_forme.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

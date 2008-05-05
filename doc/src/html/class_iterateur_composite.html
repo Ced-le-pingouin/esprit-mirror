@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe IterateurComposite</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe IterateurComposite</h1><!-- doxytag: class="IterateurComposite" --><!-- doxytag: inherits="Iterateur" --><div class="dynheader">
+Graphe d'héritage de IterateurComposite:</div>
+<div class="dynsection">
+
+<p><center><img src="class_iterateur_composite.png" usemap="#IterateurComposite_map" border="0" alt=""></center>
+<map name="IterateurComposite_map">
+<area href="class_iterateur.html" alt="Iterateur" shape="rect" coords="0,0,117,24">
+</map>
+</div>
+
+<p>
+<a href="class_iterateur_composite-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Interface dérivée de l'itérateur simple, qui permet en plus de savoir si un élément a des "enfants" (qui pourraient) donc eux aussi être "itérés"). 
+<p>
+Si un itérateur implémente cette interface, il pourra être passé par le décorateur <a class="el" href="class_iterateur_recursif.html" title="constante interne à des fins de vérification">IterateurRecursif</a>, qui effectue une itération en descendant également dans les enfants de l'itérateur de base <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_composite.html#1b161ee694a4b1acd98116fb012d971e">aEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si l'élément courant est susceptible d'avoir des éléments "enfants".  <a href="#1b161ee694a4b1acd98116fb012d971e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_composite.html#28ed7a32058cc305a1cfa152f37c387a">retIterateurEnfants</a> ()</td></tr>
+
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="1b161ee694a4b1acd98116fb012d971e"></a><!-- doxytag: member="IterateurComposite::aEnfants" ref="1b161ee694a4b1acd98116fb012d971e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurComposite::aEnfants           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si l'élément courant est susceptible d'avoir des éléments "enfants". 
+<p>
+Par exemple, dans le cas d'un système de fichiers, on peut considérer que cette méthode retournerait <code>false</code> pour un fichier, mais <code>true</code> pour un dossier (car il peut lui-même contenir des fichiers ou dossiers). Idem pour un tableau : si l'un de ses éléments est lui-même un tableau, la méthode <a class="el" href="class_iterateur_composite.html#1b161ee694a4b1acd98116fb012d971e" title="Indique si l&#39;élément courant est susceptible d&#39;avoir des éléments &quot;enfants&quot;...">aEnfants()</a> de cet élément retourne <code>true</code>. Etc, etc 
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="28ed7a32058cc305a1cfa152f37c387a"></a><!-- doxytag: member="IterateurComposite::retIterateurEnfants" ref="28ed7a32058cc305a1cfa152f37c387a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurComposite::retIterateurEnfants           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le "sous-itérateur" qui permet de parcourir les enfants de l'élément courant </dd></dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_iterateur_composite_8php.html">IterateurComposite.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

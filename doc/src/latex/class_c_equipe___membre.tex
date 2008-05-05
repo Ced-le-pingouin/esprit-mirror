@@ -1,0 +1,179 @@
+\section{Référence de la classe CEquipe\_\-Membre}
+\label{class_c_equipe___membre}\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}}
+
+
+\subsection{Description détaillée}
+Aide à la gestion et manipulation des membres d'équipes. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouterMembres} (\$v\_\-aiIdPers)
+\begin{CompactList}\small\item\em Ajoute (dans la DB) une ou plusieurs personnes à l'équipe qui a servi à initialiser l'objet. \item\end{CompactList}\item 
+{\bf CEquipe\_\-Membre} (\&\$v\_\-oBdd, \$v\_\-iIdEquipe=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacerMembre} (\$v\_\-iIdPers, \$v\_\-iNiveau, \$v\_\-iIdNiveau)
+\begin{CompactList}\small\item\em Enlève une personne de toutes les équipes rattachées à un élément d'un niveau spécifié (formation, module, etc), MAIS aussi des équipes rattachées aux éléments enfants de celui spécifié. \item\end{CompactList}\item 
+{\bf effacerMembres} (\$v\_\-aiIdPers)
+\begin{CompactList}\small\item\em Enlève une ou plusieurs personnes de l'équipe dont l'id a servi à initialiser l'objet courant. \item\end{CompactList}\item 
+{\bf init} ()
+\begin{CompactList}\small\item\em Initialise un tableau de personnes ({\tt aoMembres}) sous forme d'objets \doxyref{CPersonne}{p.}{class_c_personne}, qui sont les membres de l'équipe actuellement représentée par {\tt iId} (qui peut être initialisé par le constructeur \doxyref{CEquipe\_\-Membre()}{p.}{class_c_equipe___membre_3a27ff28d301062b57ce5c5e42c3de9c}). \item\end{CompactList}\item 
+{\bf initMembresDe} (\$v\_\-iNiveau, \$v\_\-iIdNiveau, \$v\_\-bAppartenirEquipe=TRUE)
+\begin{CompactList}\small\item\em Initialise un tableau de personne ({\tt aoMembres}) avec les membres des équipes répondant à certains critères (équipe rattachée à une formation, un cours, etc. \item\end{CompactList}\item 
+{\bf optimiserTable} ()\label{class_c_equipe___membre_cfe9830cc88eb1ea95f3667475a3ea78}
+
+\begin{CompactList}\small\item\em Optimise la table Equipe\_\-Membre de la DB, souvent utilisée dans cette classe (l'optimisation est réalisée après des effacements). \item\end{CompactList}\item 
+{\bf retId} ()
+\begin{CompactList}\small\item\em Retourne l'id de l'objet courant, càd l'id de l'équipe qui a servi à initialiser l'objet. \item\end{CompactList}\item 
+{\bf STRING\_\-LOCK\_\-TABLES} ()
+\begin{CompactList}\small\item\em Fonction utilitaire pour les LOCK TABLES éventuels de cette classe. \item\end{CompactList}\item 
+{\bf verifMembre} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie qu'un personne est membre d'équipes spécifiques. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoMembres}\label{class_c_equipe___membre_0d1445fc8e5d94cb162ababe3a9434a4}
+
+\begin{CompactList}\small\item\em Tableau d'objets \doxyref{CPersonne}{p.}{class_c_personne} représentant les membres de l'équipe (rempli par \doxyref{init()}{p.}{class_c_equipe___membre_66365dd8a5de552ec27799eb7f1b0a6c} et initMembres()). \item\end{CompactList}\item 
+{\bf \$asNiveau}\label{class_c_equipe___membre_ed40ece6913a8a8ce83a8ff8d907305b}
+
+\begin{CompactList}\small\item\em Tableau contenant les chaînes correspondant aux noms des champs \char`\"{}de niveau\char`\"{} de la table Equipe (IdForm, IdMod, etc), rempli dans le constructeur. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_equipe___membre_28cedc5f708aab284eb9e778c091e98f}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de l'équipe à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_equipe___membre_a0f1f59380cf8b19f6f693dcf4775e77}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!ajouterMembres@{ajouterMembres}}
+\index{ajouterMembres@{ajouterMembres}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::ajouterMembres (\$ {\em v\_\-aiIdPers})}\label{class_c_equipe___membre_abdeb1e90f8ecac1caa957651ccb436d}
+
+
+Ajoute (dans la DB) une ou plusieurs personnes à l'équipe qui a servi à initialiser l'objet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]le tableau contenant les ids des personnes à ajouter à l'équipe. S'il s'agit d'une personne seule, il n'est pas nécessaire que le paramètre soit un tableau, juste un nombre \end{description}
+\end{Desc}
+\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!CEquipe\_\-Membre@{CEquipe\_\-Membre}}
+\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::CEquipe\_\-Membre (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdEquipe} = {\tt NULL})}\label{class_c_equipe___membre_3a27ff28d301062b57ce5c5e42c3de9c}
+
+
+Constructeur. 
+
+L'objet peut être initialisé avec un id d'équipe. Pour plus de détails sur les constructeurs qui initialisent des classes représentant des enregistrements de DB, voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608}
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \item[{\em v\_\-iIdEquipe}]l'id de l'équipe dont les membres seront récupérés dans la DB. S'il est omis ou si l'équipe demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB \end{description}
+\end{Desc}
+
+
+Références init().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!effacerMembre@{effacerMembre}}
+\index{effacerMembre@{effacerMembre}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::effacerMembre (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iNiveau}, \/  \$ {\em v\_\-iIdNiveau})}\label{class_c_equipe___membre_83460d0cf6f9582c81bc9d4042f5ba00}
+
+
+Enlève une personne de toutes les équipes rattachées à un élément d'un niveau spécifié (formation, module, etc), MAIS aussi des équipes rattachées aux éléments enfants de celui spécifié. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne à effacer des équipes \item[{\em v\_\-iNiveau}]le numéro représentant le type d'élément auquel doivent être rattachées les équipes dont on veut enlever la personne (voir les constantes TYPE\_\-) \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut trouver les équipes attachées afin d'en effacer la personne passée en {\tt v\_\-iIdPers}. La signification de cet id dépend du paramètre {\tt v\_\-iTypeNiveau} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'id de la personne passé en paramètre est valide, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références optimiserTable(), et STRING\_\-LOCK\_\-TABLES().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!effacerMembres@{effacerMembres}}
+\index{effacerMembres@{effacerMembres}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::effacerMembres (\$ {\em v\_\-aiIdPers})}\label{class_c_equipe___membre_ba4f71c26b599d4275b2916cdd559fb0}
+
+
+Enlève une ou plusieurs personnes de l'équipe dont l'id a servi à initialiser l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]le tableau contenant les ids des personnes à enlever de l'équipe. S'il s'agit d'une personne seule, il n'est pas nécessaire que le paramètre soit un tableau, juste un nombre\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si un ou plusieurs id ont bien été passés en paramètre et si une équipe est bien initialisée dans l'objet courant, ce qui rend l'effacement possible; {\tt false} dans le cas contraire \end{Desc}
+
+
+Références optimiserTable().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!init@{init}}
+\index{init@{init}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::init ()}\label{class_c_equipe___membre_66365dd8a5de552ec27799eb7f1b0a6c}
+
+
+Initialise un tableau de personnes ({\tt aoMembres}) sous forme d'objets \doxyref{CPersonne}{p.}{class_c_personne}, qui sont les membres de l'équipe actuellement représentée par {\tt iId} (qui peut être initialisé par le constructeur \doxyref{CEquipe\_\-Membre()}{p.}{class_c_equipe___membre_3a27ff28d301062b57ce5c5e42c3de9c}). 
+
+Les membres sont initialisés par ordre alphabétique sur le nom de famille 
+
+Références retId().
+
+Référencé par CEquipe\_\-Membre().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!initMembresDe@{initMembresDe}}
+\index{initMembresDe@{initMembresDe}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::initMembresDe (\$ {\em v\_\-iNiveau}, \/  \$ {\em v\_\-iIdNiveau}, \/  \$ {\em v\_\-bAppartenirEquipe} = {\tt TRUE})}\label{class_c_equipe___membre_01cffc811ecaa2e5d78f3048eec44b5f}
+
+
+Initialise un tableau de personne ({\tt aoMembres}) avec les membres des équipes répondant à certains critères (équipe rattachée à une formation, un cours, etc. 
+
+particuliers), ou avec les personnes $\ast$non$\ast$-membres d'équipes spécifiques
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNiveau}]le numéro représentant le type d'élément pour lequel on veut récupérer les (non-)membres d'équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE\_\-) \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut récupérer les (non-)membres d'équipes. Sa signification dépend du paramètre {\tt v\_\-iTypeNiveau} \item[{\em v\_\-bAppartenirEquipe}]si {\tt true}, ce sont les membres des équipes répondant aux critères passés en paramètres {\tt v\_\-iNiveau} et {\tt v\_\-iIdNiveau} qui sont retournés. Si {\tt false}, ce sont les personnes n'appartenant $\ast$pas$\ast$ à ces équipes\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de membres trouvés \end{Desc}
+\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!retId@{retId}}
+\index{retId@{retId}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::retId ()}\label{class_c_equipe___membre_ad2e681088e3de89aa94aa5a45c83d57}
+
+
+Retourne l'id de l'objet courant, càd l'id de l'équipe qui a servi à initialiser l'objet. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de l'équipe qui a servi à initialiser l'objet, ou {\tt 0} si non applicable \end{Desc}
+
+
+Référencé par init(), et verifMembre().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}}
+\index{STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::STRING\_\-LOCK\_\-TABLES ()}\label{class_c_equipe___membre_cf75ef26ff0a8dd5f43aa68ccc1446ab}
+
+
+Fonction utilitaire pour les LOCK TABLES éventuels de cette classe. 
+
+\begin{Desc}
+\item[Renvoie:]une chaîne de caractères contenant la liste des tables à \char`\"{}locker\char`\"{}, qui devra être précédée d'un \char`\"{}LOCK TABLES \char`\"{} pour l'exécution en SQL \end{Desc}
+
+
+Référencé par effacerMembre().\index{CEquipe\_\-Membre@{CEquipe\_\-Membre}!verifMembre@{verifMembre}}
+\index{verifMembre@{verifMembre}!CEquipe_Membre@{CEquipe\_\-Membre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe\_\-Membre::verifMembre (\$ {\em v\_\-iIdPers})}\label{class_c_equipe___membre_b5fbc63e765c3ffea3f984d74009f5d7}
+
+
+Vérifie qu'un personne est membre d'équipes spécifiques. 
+
+Ces équipes (et donc les membres) ont été déterminées lors d'appels au constructeur \doxyref{CEquipe\_\-Membre()}{p.}{class_c_equipe___membre_3a27ff28d301062b57ce5c5e42c3de9c}, à \doxyref{init()}{p.}{class_c_equipe___membre_66365dd8a5de552ec27799eb7f1b0a6c}, ou à \doxyref{initMembresDe()}{p.}{class_c_equipe___membre_01cffc811ecaa2e5d78f3048eec44b5f}, qui auront donc initialisés au préalable le tableau {\tt aoMembres}. Il est à noter que dans le cas de la dernière fonction, il est possible de rechercher les $\ast$non$\ast$-membres d'équipes spécifiées
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne dont on veut vérifier l'appartenance (ou la non-appartenance) à des équipes spécifiques\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne spécifiée est \char`\"{}membre\char`\"{} (existe dans le tableau {\tt aoMembres}); {\tt false} dans le cas contraire ou dans le cas ou l'id de la personne n'est pas valable ou le tableau {\tt aoMembres} n'est pas correctement initialisé \end{Desc}
+
+
+Références retId().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf equipe.tbl.php}\end{CompactItemize}

@@ -1,0 +1,92 @@
+\section{Référence du fichier src/admin/copieelement/copie\_\-activ.php}
+\label{copie__activ_8php}\index{src/admin/copieelement/copie\_\-activ.php@{src/admin/copieelement/copie\_\-activ.php}}
+
+
+\subsection{Description détaillée}
+Copie une activité d'une rubrique vers une autre. 
+
+\begin{Desc}
+\item[Date:]2006/04/13\end{Desc}
+\begin{Desc}
+\item[Auteur:]Jérôme TOUZE\end{Desc}
+\begin{Desc}
+\item[Date:]2005/07/12\end{Desc}
+\begin{Desc}
+\item[Auteur:]Filippo PORCO $<${\tt filippo.porco@umh.ac.be}$>$ 
+
+Jérôme TOUZE \end{Desc}
+
+
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$iIdActiv} = \$oActiv $\rightarrow$ copier(\$url\_\-iIdRubDst)\label{copie__activ_8php_1c89ea8552400fc8ff829395372a1649}
+
+\item 
+\textbf{\$iNumOrdreMaxActiv} = \$oActiv $\rightarrow$ retNumOrdreMax(\$url\_\-iIdRubDst)\label{copie__activ_8php_87a3c1e7fce012306b370a44b9d72655}
+
+\item 
+\textbf{\$oActiv} = new {\bf CActiv}(\$oProjet $\rightarrow$ oBdd,\$url\_\-iIdActivSrc)\label{copie__activ_8php_413194d684278980b62458b17872c4df}
+
+\item 
+\textbf{\$oBlocChoixDst} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-CHOIX\_\-DST\char`\"{},\$oTpl)\label{copie__activ_8php_a0f1cd44252709be7ca4d43a533220de}
+
+\item 
+\textbf{\$oBlocChoixSrc} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-CHOIX\_\-SRC\char`\"{},\$oTpl)\label{copie__activ_8php_4cecff766c78bea7967c9c00a8fde40d}
+
+\item 
+\textbf{\$oBlocFinal} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-FINAL\char`\"{},\$oTpl)\label{copie__activ_8php_0404b3d41507482ec262c7e0605fab5e}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{copie__activ_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oTpl} = new {\bf Template}(\char`\"{}copie\_\-activ.tpl\char`\"{})\label{copie__activ_8php_7de57ba665b7c068e98ea46469be2865}
+
+\item 
+\textbf{\$sRequeteSql}
+\item 
+\textbf{\$url\_\-iDstOk} = (empty(\$\_\-GET[\char`\"{}DstOk\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}DstOk\char`\"{}])\label{copie__activ_8php_42d909467c92be850ded5265fb08476f}
+
+\item 
+\textbf{\$url\_\-iIdActivSrc} = (empty(\$\_\-GET[\char`\"{}IdActivSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdActivSrc\char`\"{}])\label{copie__activ_8php_2476f217f96a9e2e79eceb4f136f2934}
+
+\item 
+\textbf{\$url\_\-iIdFormDst} = (empty(\$\_\-GET[\char`\"{}IdFormDst\char`\"{}]) ? \$url\_\-iIdFormSrc : \$\_\-GET[\char`\"{}IdFormDst\char`\"{}])\label{copie__activ_8php_567046dac06231cd778843179645aac5}
+
+\item 
+\textbf{\$url\_\-iIdFormSrc} = (empty(\$\_\-GET[\char`\"{}IdFormSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdFormSrc\char`\"{}])\label{copie__activ_8php_7d23b6d8e8be4b72aec972efac946e63}
+
+\item 
+\textbf{\$url\_\-iIdModDst} = (empty(\$\_\-GET[\char`\"{}IdModDst\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdModDst\char`\"{}])\label{copie__activ_8php_c41023b63574a7d174a663b4d124b1bc}
+
+\item 
+\textbf{\$url\_\-iIdModSrc} = (empty(\$\_\-GET[\char`\"{}IdModSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdModSrc\char`\"{}])\label{copie__activ_8php_404de3ff18f4725fee13ab25d228dfd4}
+
+\item 
+\textbf{\$url\_\-iIdRubDst} = (empty(\$\_\-GET[\char`\"{}IdRubDst\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdRubDst\char`\"{}])\label{copie__activ_8php_d38b2dba1867600ceebb02443bbd894d}
+
+\item 
+\textbf{\$url\_\-iIdRubSrc} = (empty(\$\_\-GET[\char`\"{}IdRubSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdRubSrc\char`\"{}])\label{copie__activ_8php_6f4b968c61928c1ec368acd93e89f7ef}
+
+\item 
+\textbf{\$url\_\-iOrdreActivDst} = (empty(\$\_\-GET[\char`\"{}OrdreActivDst\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}OrdreActivDst\char`\"{}])\label{copie__activ_8php_187e7840354d340879894d86c493d1e2}
+
+\item 
+\textbf{\$url\_\-iSrcOk} = (empty(\$\_\-GET[\char`\"{}SrcOk\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}SrcOk\char`\"{}])\label{copie__activ_8php_b57149b16534096f0ca81cd8e78fa958}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des variables}
+\index{copie\_\-activ.php@{copie\_\-activ.php}!\$sRequeteSql@{\$sRequeteSql}}
+\index{\$sRequeteSql@{\$sRequeteSql}!copie_activ.php@{copie\_\-activ.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$sRequeteSql}\label{copie__activ_8php_7fd44c997b9477ef9cf33ccb4eb5545e}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
+                    ." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE"
+\end{verbatim}
+\end{Code}

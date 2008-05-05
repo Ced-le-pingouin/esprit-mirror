@@ -1,0 +1,296 @@
+\section{Référence de la classe CPersonne}
+\label{class_c_personne}\index{CPersonne@{CPersonne}}
+
+
+\subsection{Description détaillée}
+Gestion des personnes, et encapsulation de la table Personne de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} ()
+\begin{CompactList}\small\item\em Insère une nouvelle personne dans la DB et retourne l'id de celle-ci. \item\end{CompactList}\item 
+{\bf CPersonne} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf enregistrer} ()
+\begin{CompactList}\small\item\em Enregistre la personne représentée par l'objet courant dans la DB. \item\end{CompactList}\item 
+{\bf estPseudoUnique} ()
+\begin{CompactList}\small\item\em Vérifie que le pseudo de cette personne n'existe pas encore dans la DB. \item\end{CompactList}\item 
+{\bf estUnique} ()
+\begin{CompactList}\small\item\em Vérifie que le couple nom+prénom de la personne n'existe pas encore dans la DB. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement. \item\end{CompactList}\item 
+{\bf initModules} (\$v\_\-iIdMod=0, \$v\_\-iIdForm=0)
+\begin{CompactList}\small\item\em Remplit un tableau ({\tt aoModules}) avec les modules pour lesquels cette personne est tuteur, avec possibilité de restreindre la recherche à une formation ou un module spécifique. \item\end{CompactList}\item 
+{\bf initPersonne} (\$v\_\-asInfosPers)
+\begin{CompactList}\small\item\em Initialise l'objet avec une personne de la DB sur base de critères spécifiques, pas seulement sur l'id. \item\end{CompactList}\item 
+{\bf retLienEmail} (\$v\_\-bComplet=FALSE, \$v\_\-sSujet=NULL, \$v\_\-sPseudo=FALSE)
+\begin{CompactList}\small\item\em Retourne le code HTML nécessaire à la représentation d'un lien \char`\"{}e-mail\char`\"{} de la personne. \item\end{CompactList}\item 
+{\bf retNomComplet} (\$v\_\-bInverser=FALSE)
+\begin{CompactList}\small\item\em Retourne le nom complet de la personne, càd ses nom et prénom, dans un ordre choisi. \item\end{CompactList}\item 
+{\bf retTableauDateNaiss} ()
+\begin{CompactList}\small\item\em Retourne la date de naissance de la personne sous forme de tableau. \item\end{CompactList}\item 
+{\bf verifTuteur} (\$v\_\-iIdMod)
+\begin{CompactList}\small\item\em Vérifie que la personne a le statut de tuteur dans un module indiqué. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette personne}\par
+\begin{CompactItemize}
+\item 
+\textbf{defAdresse} (\$v\_\-sAdresse)\label{class_c_personne_dfeecdb46bf3ee1c97614ab1884e8d33}
+
+\item 
+\textbf{defDateNaiss} (\$v\_\-sDateNaiss)\label{class_c_personne_d2ed8cfcdbf7b8fa958595ad589f8d98}
+
+\item 
+\textbf{defEmail} (\$v\_\-sEmail)\label{class_c_personne_01b404ac037ba38541f7aa8f389f7858}
+
+\item 
+\textbf{defMdp} (\$v\_\-sMdp)\label{class_c_personne_70e81addc861de864b1fa6cabca3d93c}
+
+\item 
+\textbf{defNom} (\$v\_\-sNom)\label{class_c_personne_d092447b0fac7fd4439532aaf072798c}
+
+\item 
+\textbf{defNumTel} (\$v\_\-sNumTel)\label{class_c_personne_79e1737520d85b1e8ae45ab8b56a35d8}
+
+\item 
+\textbf{defPrenom} (\$v\_\-sPrenom)\label{class_c_personne_cde64a0b075bf691ca867b93464a14c6}
+
+\item 
+\textbf{defPseudo} (\$v\_\-sPseudo)\label{class_c_personne_7a1bcb9cd430c1e953d9e6d414c2fe82}
+
+\item 
+\textbf{defSexe} (\$v\_\-cSexe)\label{class_c_personne_abc522efe4b944a26813b4536513aed1}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette personne}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAdresse} ()\label{class_c_personne_6ed5b7df5327b09f43885d8be843dac6}
+
+\item 
+\textbf{retDateNaiss} ()\label{class_c_personne_fce55170e9c4bc7a1221afa15c119637}
+
+\item 
+\textbf{retEmail} ()\label{class_c_personne_46049a00ea2f457ef5832910f28281a9}
+
+\item 
+\textbf{retId} ()\label{class_c_personne_7eb94ea559fc40ecc3816ac8f227d637}
+
+\item 
+\textbf{retMdp} ()\label{class_c_personne_8c297bdeb1420de182a2b48bba09d7e1}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_personne_35adc74e9b21b4163987956a2d24189a}
+
+\item 
+\textbf{retNumTel} ()\label{class_c_personne_cf91b468b28f4c2011110002cd60a766}
+
+\item 
+\textbf{retPrenom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_personne_6ccdf386f67c760c8a8400169b629676}
+
+\item 
+\textbf{retPseudo} ()\label{class_c_personne_0e1e19f127356d2597c6800192065c5c}
+
+\item 
+\textbf{retSexe} ()\label{class_c_personne_3d34599673dfb49ef3b5f0c851dbda5b}
+
+\item 
+\textbf{retUrlPerso} ()\label{class_c_personne_02be5d339c2e9955e1154c41bd53f80a}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoModules}\label{class_c_personne_c24a2804eee1de331262287c40833c6b}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initModules()}{p.}{class_c_personne_1aac5a726b68cfe53564d676ddeafb7e}, qui contiendra la liste des modules auxquels la personne participe. \item\end{CompactList}\item 
+{\bf \$aoPersonnes}
+\begin{CompactList}\small\item\em Tableau qui devrait être rempli par certaines fonctions, pour contenir une liste de personnes. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_personne_ed7906a27a518d8ebc729ad58a8bf1e6}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la personne à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_personne_daf4ad365488824177035307a8b576b3}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_personne_757f5c8f928bf352918f43ac85e4090a}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CPersonne@{CPersonne}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::ajouter ()}\label{class_c_personne_752267f10e430532ec912fc65fc1ff19}
+
+
+Insère une nouvelle personne dans la DB et retourne l'id de celle-ci. 
+
+L'enregistrement créé est \char`\"{}vide\char`\"{}, à part l'id, aucune information n'est enregistrée
+
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle personne insérée dans la DB \end{Desc}
+\index{CPersonne@{CPersonne}!CPersonne@{CPersonne}}
+\index{CPersonne@{CPersonne}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::CPersonne (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \item[{\em v\_\-iId}]l'id de la personne à récupérer dans la DB. S'il est omis ou si la personne demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}\end{Desc}
+\begin{Desc}
+\item[Note:]Le fonctionnement du constructeur est similaire pour presque toutes les classes encapsulant une table de la DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter le principe général \end{Desc}
+
+
+Références init().\index{CPersonne@{CPersonne}!enregistrer@{enregistrer}}
+\index{enregistrer@{enregistrer}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::enregistrer ()}\label{class_c_personne_9f6d65780ed4042d69fad583381c8a29}
+
+
+Enregistre la personne représentée par l'objet courant dans la DB. 
+
+S'il elle n'existe pas encore (id), un nouvel enregistrement est créé, sinon la personne existante voit ses infos mises à jour
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} \end{Desc}
+\index{CPersonne@{CPersonne}!estPseudoUnique@{estPseudoUnique}}
+\index{estPseudoUnique@{estPseudoUnique}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::estPseudoUnique ()}\label{class_c_personne_8e699d5aca21bcdff5f53b01f2868540}
+
+
+Vérifie que le pseudo de cette personne n'existe pas encore dans la DB. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le pseudo de cette personne n'est pas encore utilisé dans la DB \end{Desc}
+\index{CPersonne@{CPersonne}!estUnique@{estUnique}}
+\index{estUnique@{estUnique}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::estUnique ()}\label{class_c_personne_896ccfdad7d4b3fd342dc47daf633e53}
+
+
+Vérifie que le couple nom+prénom de la personne n'existe pas encore dans la DB. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le couple nom+prénom de cette personne n'existe pas encore dans la DB \end{Desc}
+\index{CPersonne@{CPersonne}!init@{init}}
+\index{init@{init}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::init (\$ {\em v\_\-oEnregExistant} = {\tt NULL})}\label{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}
+
+
+Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oEnregExistant}]l'objet PHP représentant un enregistrement de la DB. Cet objet provient généralement d'une requête antérieure, et doit avoir pour propriétés les noms des champs de la table Personne. Par défaut, ce paramètre est {\tt null}, ce qui signifie qu'une requête est automatiquement effectuée dans la table Personne, à la recherche de l'enregistrement qui a pour clé iId. Si l'enregistrement est trouvé, l'objet est rempli avec ce dernier (dans oEnregBdd). En général, c'est ce qui se produit, et iId a été rempli au préalable par le constructeur, qui appelle ensuite cette fonction\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]Le fonctionnement de \doxyref{init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1} est similaire pour presque toutes les classes encapsulant une table de la DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter le principe général \end{Desc}
+
+
+Référencé par CPersonne(), et initPersonne().\index{CPersonne@{CPersonne}!initModules@{initModules}}
+\index{initModules@{initModules}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::initModules (\$ {\em v\_\-iIdMod} = {\tt 0}, \/  \$ {\em v\_\-iIdForm} = {\tt 0})}\label{class_c_personne_1aac5a726b68cfe53564d676ddeafb7e}
+
+
+Remplit un tableau ({\tt aoModules}) avec les modules pour lesquels cette personne est tuteur, avec possibilité de restreindre la recherche à une formation ou un module spécifique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module unique sur lequel se fera la recherche (une valeur de retour maximum). Par défaut =0, donc recherche non restreinte à un module précis \item[{\em v\_\-iIdForm}]l'id de la formation dans laquelle se fera la recherche, donc seuls les modules de cette formation seront considérés. Par défaut =0, ce qui signifie que la recherche n'est pas restreinte à une formation précise\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de modules trouvés \end{Desc}
+\index{CPersonne@{CPersonne}!initPersonne@{initPersonne}}
+\index{initPersonne@{initPersonne}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::initPersonne (\$ {\em v\_\-asInfosPers})}\label{class_c_personne_fa04e189c3515e109c86835ccbf7bef1}
+
+
+Initialise l'objet avec une personne de la DB sur base de critères spécifiques, pas seulement sur l'id. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-asInfosPers}]le tableau contenant les critères, chaque clé étant le nom du champ de la DB qui sera pris en compte, et chaque valeur correspondante étant la vlaue qu'on attend pour ce champ. Par exemple, si \$v\_\-asInfosPers[\char`\"{}Nom\char`\"{}] = \char`\"{}Floquet\char`\"{} et \$v\_\-asInfosPers[\char`\"{}Prenom\char`\"{}] = \char`\"{}Cédric\char`\"{}, une requête SQL sera exécutée sur table Personne pour trouver Cédric Floquet dans la table\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes trouvées répondant aux critères (bien que seule la première trouvée serve à initialiser l'objet) \end{Desc}
+
+
+Références init().\index{CPersonne@{CPersonne}!retLienEmail@{retLienEmail}}
+\index{retLienEmail@{retLienEmail}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::retLienEmail (\$ {\em v\_\-bComplet} = {\tt FALSE}, \/  \$ {\em v\_\-sSujet} = {\tt NULL}, \/  \$ {\em v\_\-sPseudo} = {\tt FALSE})}\label{class_c_personne_f18f280b41477704af1b59e1fb204e10}
+
+
+Retourne le code HTML nécessaire à la représentation d'un lien \char`\"{}e-mail\char`\"{} de la personne. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bComplet}]si {\tt true}, les nom et prénom de la personne sont utilisés comme intitulé du lien \item[{\em v\_\-sSujet}]le texte à utiliser pour remplir automatiquement le sujet du mail lors d'un clic sur le lien \item[{\em v\_\-pseudo}]si {\tt true}, c'est le pseudo de la personne qui est utilisé comme intitulé du lien\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le code nécessaire à la représentation HTML du lien \char`\"{}e-mail\char`\"{} de la personne. Si celle-ci ne dispose pas d'adresse e-mail, ce n'est pas un lien mais un texte (nom et/ou prénom, ou pseudo) non-cliquable qui est retourné \end{Desc}
+
+
+Références retNomComplet().\index{CPersonne@{CPersonne}!retNomComplet@{retNomComplet}}
+\index{retNomComplet@{retNomComplet}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::retNomComplet (\$ {\em v\_\-bInverser} = {\tt FALSE})}\label{class_c_personne_ec0d9884b375b63a30297bbf68feff64}
+
+
+Retourne le nom complet de la personne, càd ses nom et prénom, dans un ordre choisi. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInverser}]si {\tt true}, le nom se trouvera devant le prénom dans la chaîne retourner. Si {\tt false}, le prénom précèdera le nom\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]une chaîne de caractère contenant les nom et prénom de la personne, dans l'odre voulu. Le nom est entièrement en majuscule, alors que pour le prénom seules la première lettre de chaque mot (si prénom composé) est capitalisée \end{Desc}
+
+
+Référencé par retLienEmail().\index{CPersonne@{CPersonne}!retTableauDateNaiss@{retTableauDateNaiss}}
+\index{retTableauDateNaiss@{retTableauDateNaiss}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::retTableauDateNaiss ()}\label{class_c_personne_6b0b9131496e613b323c6f3ab84ba62a}
+
+
+Retourne la date de naissance de la personne sous forme de tableau. 
+
+\begin{Desc}
+\item[Renvoie:]un tableau à 3 éléments, contenant respctivement le jour (jj), le mois (mm), et l'année (aaaa), représentant la date de naissance de la personne \end{Desc}
+\index{CPersonne@{CPersonne}!verifTuteur@{verifTuteur}}
+\index{verifTuteur@{verifTuteur}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::verifTuteur (\$ {\em v\_\-iIdMod})}\label{class_c_personne_6d0ad713eaa8497d1ebd435a46057691}
+
+
+Vérifie que la personne a le statut de tuteur dans un module indiqué. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module à vérifier\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si cette personne est bien tuteur dans le module indiqué \end{Desc}
+
+
+\subsection{Documentation des données membres}
+\index{CPersonne@{CPersonne}!\$aoPersonnes@{\$aoPersonnes}}
+\index{\$aoPersonnes@{\$aoPersonnes}!CPersonne@{CPersonne}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPersonne::\$aoPersonnes}\label{class_c_personne_7f3fad7f7be53a11377964c270439f48}
+
+
+Tableau qui devrait être rempli par certaines fonctions, pour contenir une liste de personnes. 
+
+\begin{Desc}
+\item[{\bf Obsolète}]Ne semble pas/plus utilisé ??? \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf personne.tbl.php}\end{CompactItemize}

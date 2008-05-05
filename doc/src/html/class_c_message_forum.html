@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CMessageForum</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CMessageForum</h1><!-- doxytag: class="CMessageForum" -->
+<p>
+<a href="class_c_message_forum-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des messages des forums, et encapsulation de la table MessageForum de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#b9a653c5bbca8aedce436bbbf0c32ac9">ajouter</a> ($v_sMessage, $v_iIdSujet, $v_iIdPers, $v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un message dans un sujet.  <a href="#b9a653c5bbca8aedce436bbbf0c32ac9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#79c958495f09693b57cdf2b350e92748">ajouterRessource</a> ($v_sNomRes, $v_sUrlRes, $v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un ressource au message.  <a href="#79c958495f09693b57cdf2b350e92748"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#5d14d803c54eab3d6a7256458433a384">associerMessageEquipe</a> ($v_iIdEquipe)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Associe un message à une équipe.  <a href="#5d14d803c54eab3d6a7256458433a384"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#e0c1373f4369f7361b74382e90099b83">CMessageForum</a> (&amp;$v_oBdd, $v_iId=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#e0c1373f4369f7361b74382e90099b83"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9af5f65caa14753c6cef6ac67cb84709"></a><!-- doxytag: member="CMessageForum::effacer" ref="9af5f65caa14753c6cef6ac67cb84709" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#9af5f65caa14753c6cef6ac67cb84709">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le message. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="06cef20b61fe46860935207e2a3d1320"></a><!-- doxytag: member="CMessageForum::effacerEquipesAssocieesMessage" ref="06cef20b61fe46860935207e2a3d1320" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#06cef20b61fe46860935207e2a3d1320">effacerEquipesAssocieesMessage</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les équipes associés à un message. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="34983c834f478f26faca155a9baed15c"></a><!-- doxytag: member="CMessageForum::effacerMessage" ref="34983c834f478f26faca155a9baed15c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#34983c834f478f26faca155a9baed15c">effacerMessage</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le message de la DB ainsi que les ressources et les équipes associées. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="60c91b356fae378921f7cb59d1905fd8"></a><!-- doxytag: member="CMessageForum::effacerRessources" ref="60c91b356fae378921f7cb59d1905fd8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#60c91b356fae378921f7cb59d1905fd8">effacerRessources</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les ressources liées au message. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aecbd68854bd6c30cab84bf7d071e1f9"></a><!-- doxytag: member="CMessageForum::enregistrer" ref="aecbd68854bd6c30cab84bf7d071e1f9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#aecbd68854bd6c30cab84bf7d071e1f9">enregistrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre(update) dans la DB le message courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="be0ca771de36fd9a060860c2f3ae8bff"></a><!-- doxytag: member="CMessageForum::init" ref="be0ca771de36fd9a060860c2f3ae8bff" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#be0ca771de36fd9a060860c2f3ae8bff">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="38390041c7249a6faf2b9788946a0d7f"></a><!-- doxytag: member="CMessageForum::initAuteur" ref="38390041c7249a6faf2b9788946a0d7f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#38390041c7249a6faf2b9788946a0d7f">initAuteur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise <code>oAuteur</code> avec la personne qui a. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#7194654ff194a147908b22b2ecc74f87">initRessources</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les ressources attachées au message.  <a href="#7194654ff194a147908b22b2ecc74f87"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="acb7abfc8044fd15ba0c4c90adfa33c0"></a><!-- doxytag: member="CMessageForum::optimiserTables" ref="acb7abfc8044fd15ba0c4c90adfa33c0" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#acb7abfc8044fd15ba0c4c90adfa33c0">optimiserTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Optimise les tables MessageForum, Ressource et MessageForum_Ressource. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#30e41b190ba43fac69106b54c4dc22da">STRING_LOCK_TABLES</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les tables à verrouiller de la DB.  <a href="#30e41b190ba43fac69106b54c4dc22da"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour ce message</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8ec2bcede6983ba5d9982b3f040ab824"></a><!-- doxytag: member="CMessageForum::defMessage" ref="8ec2bcede6983ba5d9982b3f040ab824" args="($v_sMessage)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defMessage</b> ($v_sMessage)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fad3ebba4962e409d3f29acb659c99bb"></a><!-- doxytag: member="CMessageForum::defRepRessources" ref="fad3ebba4962e409d3f29acb659c99bb" args="($v_sRepRessources)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defRepRessources</b> ($v_sRepRessources)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour ce message</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b5887735fbd2dcf67bd6f19b27700c97"></a><!-- doxytag: member="CMessageForum::retAuteur" ref="b5887735fbd2dcf67bd6f19b27700c97" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAuteur</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d4a762f50e12107dc000e7a48ff3dbfc"></a><!-- doxytag: member="CMessageForum::retDate" ref="d4a762f50e12107dc000e7a48ff3dbfc" args="($v_sFormatterDate=&quot;d/m/y H:i&quot;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDate</b> ($v_sFormatterDate=&quot;d/m/y H:i&quot;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4e3caac609b6f55aa56125a3f07fcf43"></a><!-- doxytag: member="CMessageForum::retId" ref="4e3caac609b6f55aa56125a3f07fcf43" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b4742e7139abbb63f0a8e8164302c10"></a><!-- doxytag: member="CMessageForum::retIdParent" ref="0b4742e7139abbb63f0a8e8164302c10" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdParent</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ae99645a9916ae408dbd69513aff07cd"></a><!-- doxytag: member="CMessageForum::retMessage" ref="ae99645a9916ae408dbd69513aff07cd" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retMessage</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="58e7c100ac490c8a64eb5ef97910832d"></a><!-- doxytag: member="CMessageForum::retRepRessources" ref="58e7c100ac490c8a64eb5ef97910832d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retRepRessources</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="370855b186fcfdbdf4983d9200af74f9"></a><!-- doxytag: member="CMessageForum::$aoRessources" ref="370855b186fcfdbdf4983d9200af74f9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#370855b186fcfdbdf4983d9200af74f9">$aoRessources</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_message_forum.html#7194654ff194a147908b22b2ecc74f87" title="Initialise un tableau contenant les ressources attachées au message.">initRessources()</a>, contenant les ressources attachées au message. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3a378d21ef30690d091a1280bc2f15bc"></a><!-- doxytag: member="CMessageForum::$iId" ref="3a378d21ef30690d091a1280bc2f15bc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#3a378d21ef30690d091a1280bc2f15bc">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="250c298254c3bc2cc563c8728e165f10"></a><!-- doxytag: member="CMessageForum::$oAuteur" ref="250c298254c3bc2cc563c8728e165f10" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#250c298254c3bc2cc563c8728e165f10">$oAuteur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>, contenant l'auteur du message. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="12c8ce53ba737c1a400952d32613e8c5"></a><!-- doxytag: member="CMessageForum::$oBdd" ref="12c8ce53ba737c1a400952d32613e8c5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#12c8ce53ba737c1a400952d32613e8c5">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a8c99365aae055c84fbb7e73378979aa"></a><!-- doxytag: member="CMessageForum::$oEnregBdd" ref="a8c99365aae055c84fbb7e73378979aa" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#a8c99365aae055c84fbb7e73378979aa">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="144f8e422b1266ad8ffa0c2fec17e9c8"></a><!-- doxytag: member="CMessageForum::$sRepRessources" ref="144f8e422b1266ad8ffa0c2fec17e9c8" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_message_forum.html#144f8e422b1266ad8ffa0c2fec17e9c8">$sRepRessources</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="b9a653c5bbca8aedce436bbbf0c32ac9"></a><!-- doxytag: member="CMessageForum::ajouter" ref="b9a653c5bbca8aedce436bbbf0c32ac9" args="($v_sMessage, $v_iIdSujet, $v_iIdPers, $v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sMessage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdSujet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un message dans un sujet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sMessage</em>&nbsp;</td><td>le message </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdSujet</em>&nbsp;</td><td>l'id du sujet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>id de l'équipe(optionnel) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="messageforum_8tbl_8php-source.html#l00115">associerMessageEquipe()</a>, et <a class="el" href="messageforum_8tbl_8php-source.html#l00067">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="79c958495f09693b57cdf2b350e92748"></a><!-- doxytag: member="CMessageForum::ajouterRessource" ref="79c958495f09693b57cdf2b350e92748" args="($v_sNomRes, $v_sUrlRes, $v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::ajouterRessource           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomRes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sUrlRes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un ressource au message. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomRes</em>&nbsp;</td><td>le nom de la ressource </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sUrlRes</em>&nbsp;</td><td>l'url de la ressource </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la ressource ajoutée </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5d14d803c54eab3d6a7256458433a384"></a><!-- doxytag: member="CMessageForum::associerMessageEquipe" ref="5d14d803c54eab3d6a7256458433a384" args="($v_iIdEquipe)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::associerMessageEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Associe un message à une équipe. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'équipe </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="messageforum_8tbl_8php-source.html#l00093">ajouter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e0c1373f4369f7361b74382e90099b83"></a><!-- doxytag: member="CMessageForum::CMessageForum" ref="e0c1373f4369f7361b74382e90099b83" args="(&amp;$v_oBdd, $v_iId=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::CMessageForum           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="messageforum_8tbl_8php-source.html#l00067">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7194654ff194a147908b22b2ecc74f87"></a><!-- doxytag: member="CMessageForum::initRessources" ref="7194654ff194a147908b22b2ecc74f87" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::initRessources           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les ressources attachées au message. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de ressources insérées dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="messageforum_8tbl_8php-source.html#l00041">$oEnregBdd</a>.</p>
+
+<p>Référencé par <a class="el" href="messageforum_8tbl_8php-source.html#l00285">effacerRessources()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="30e41b190ba43fac69106b54c4dc22da"></a><!-- doxytag: member="CMessageForum::STRING_LOCK_TABLES" ref="30e41b190ba43fac69106b54c4dc22da" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CMessageForum::STRING_LOCK_TABLES           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les tables à verrouiller de la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>les tables à verrouiller de la DB </dd></dl>
+
+<p>Référencé par <a class="el" href="sujetforum_8tbl_8php-source.html#l00451">CSujetForum::STRING_LOCK_TABLES()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="messageforum_8tbl_8php.html">messageforum.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

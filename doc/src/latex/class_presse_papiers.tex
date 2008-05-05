@@ -1,0 +1,75 @@
+\section{Référence de la classe PressePapiers}
+\label{class_presse_papiers}\index{PressePapiers@{PressePapiers}}
+
+
+\subsection{Description détaillée}
+Gestion de presse-papiers dans lequel on ajoute ou enlève des éléments et l'action qu'on désire y appliquer (copier etc. 
+
+) \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouterElement} (\$elem)
+\begin{CompactList}\small\item\em Ajoute un élément au presse-papiers. \item\end{CompactList}\item 
+{\bf enleverElement} (\$elem, \$differe=FALSE)
+\begin{CompactList}\small\item\em Enlève un élément du presse-papiers. \item\end{CompactList}\item 
+{\bf enleverElementsDiffere} ()\label{class_presse_papiers_6c766c5c9ee30c29571976abfbb18f55}
+
+\begin{CompactList}\small\item\em Enlève les éléments préalablement marqués pour suppression du presse-papiers. \item\end{CompactList}\item 
+{\bf estVide} ()
+\begin{CompactList}\small\item\em Indique si le presse-papiers est vide. \item\end{CompactList}\item 
+{\bf retIterateur} ()\label{class_presse_papiers_dfdf54daebaa1f4b861d307d21eddd31}
+
+\begin{CompactList}\small\item\em Retourne un objet \doxyref{IterateurTableau}{p.}{class_iterateur_tableau} sur les éléments du presse-papiers. \item\end{CompactList}\item 
+{\bf vider} ()\label{class_presse_papiers_538aa154bb963956effdbc9f006ce339}
+
+\begin{CompactList}\small\item\em Vide complètement le presse-papiers. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$\_\-aElements} = array()\label{class_presse_papiers_f6453d9a174125628c352c3716a78a8e}
+
+\begin{CompactList}\small\item\em Tableau des éléments du presse-papiers. \item\end{CompactList}\item 
+{\bf \$\_\-aElementsAEnlever} = array()\label{class_presse_papiers_4138ccde1105136b03ab5be3324f9aed}
+
+\begin{CompactList}\small\item\em Tableau des éléments marqués pour suppression \char`\"{}tardive\char`\"{}. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{PressePapiers@{PressePapiers}!ajouterElement@{ajouterElement}}
+\index{ajouterElement@{ajouterElement}!PressePapiers@{PressePapiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}PressePapiers::ajouterElement (\$ {\em elem})}\label{class_presse_papiers_5924949ddebd9e44825475b951a493f1}
+
+
+Ajoute un élément au presse-papiers. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em elem}]l'élément à ajouter (objet \doxyref{PressePapiersElement}{p.}{class_presse_papiers_element}) \end{description}
+\end{Desc}
+\index{PressePapiers@{PressePapiers}!enleverElement@{enleverElement}}
+\index{enleverElement@{enleverElement}!PressePapiers@{PressePapiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}PressePapiers::enleverElement (\$ {\em elem}, \/  \$ {\em differe} = {\tt FALSE})}\label{class_presse_papiers_aa6a1b1634225c9a7808d467cba52522}
+
+
+Enlève un élément du presse-papiers. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em elem}]l'élément à enlever du presse papier (objet \doxyref{PressePapiersElement}{p.}{class_presse_papiers_element}) \item[{\em differe}]si , l'élément est seulement \char`\"{}marqué\char`\"{} pour suppression, mais celle-ci n'est effective qu'à l'appel de \doxyref{enleverElementsDiffere()}{p.}{class_presse_papiers_6c766c5c9ee30c29571976abfbb18f55}. Si {\tt false} (défaut), l'élément est enlevé immédiatement \end{description}
+\end{Desc}
+\index{PressePapiers@{PressePapiers}!estVide@{estVide}}
+\index{estVide@{estVide}!PressePapiers@{PressePapiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}PressePapiers::estVide ()}\label{class_presse_papiers_f9e93bb252fa6f7e90f4413f532248d7}
+
+
+Indique si le presse-papiers est vide. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le presse-papiers ne comporte aucun élément, {\tt false} sinon \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf PressePapiers.php}\end{CompactItemize}

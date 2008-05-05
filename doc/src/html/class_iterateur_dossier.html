@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe IterateurDossier</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe IterateurDossier</h1><!-- doxytag: class="IterateurDossier" --><!-- doxytag: inherits="IterateurTableau" --><div class="dynheader">
+Graphe d'héritage de IterateurDossier:</div>
+<div class="dynsection">
+
+<p><center><img src="class_iterateur_dossier.png" usemap="#IterateurDossier_map" border="0" alt=""></center>
+<map name="IterateurDossier_map">
+<area href="class_iterateur_tableau.html" alt="IterateurTableau" shape="rect" coords="0,56,104,80">
+<area href="class_iterateur_abstrait.html" alt="IterateurAbstrait" shape="rect" coords="0,0,104,24">
+</map>
+</div>
+
+<p>
+<a href="class_iterateur_dossier-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe d'itérateur permettant d'effectuer des itérations sur un dossier. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Pour le moment, cet itérateur hérite directement d'IterateurTableau, car grâce à la fonction glob() de PHP, on peut directement ramener sous forme de tableau la liste des fichiers/dossiers d'un dossier, et donc se passer de opendir() et readdir(), qui auraient empêché une implémentation simple de <a class="el" href="class_iterateur_tableau.html#84d965b9328bfe44d4ec1690d1a29d93" title="Voir Iterateur::prec().">prec()</a>, ou de <a class="el" href="class_iterateur_tableau.html#1f896455d8cfa594532eb1e904f78524" title="Voir Iterateur::taille().">taille()</a> </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#6d994f8f279afa35b6c9494e4e6069d9">aEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur_composite.html#1b161ee694a4b1acd98116fb012d971e" title="Indique si l&#39;élément courant est susceptible d&#39;avoir des éléments &quot;enfants&quot;...">IterateurComposite::aEnfants()</a>.  <a href="#6d994f8f279afa35b6c9494e4e6069d9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7db55bc01316b3d40b69f89db9c7e8e2"></a><!-- doxytag: member="IterateurDossier::courant" ref="7db55bc01316b3d40b69f89db9c7e8e2" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#7db55bc01316b3d40b69f89db9c7e8e2">courant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#525e78b4e7c5aec4cc4e8003ca9e730b" title="Retourne l&#39;élément courant de l&#39;itérateur.">Iterateur::courant()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#0a25ec1731e3c16ca6bf9ff8ba5a1371">IterateurDossier</a> ($v_sChemin, $v_sFiltrePre= '*', $v_bTrier=FALSE, $v_bDossiersSeulement=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#0a25ec1731e3c16ca6bf9ff8ba5a1371"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#08c91ce6c0c9fee0f7ba8a520b56c997">retFiltrePre</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le filtre passé au constructeur (ou celui par défaut).  <a href="#08c91ce6c0c9fee0f7ba8a520b56c997"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="79230eddbad712995bac8d4ca191b4fa"></a><!-- doxytag: member="IterateurDossier::retIterateurEnfants" ref="79230eddbad712995bac8d4ca191b4fa" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#79230eddbad712995bac8d4ca191b4fa">retIterateurEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur_composite.html#28ed7a32058cc305a1cfa152f37c387a">IterateurComposite::retIterateurEnfants()</a>. <br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e36b386e32e7fdde45c71b47c1bc8f2d"></a><!-- doxytag: member="IterateurDossier::$bDossiersSeulement" ref="e36b386e32e7fdde45c71b47c1bc8f2d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#e36b386e32e7fdde45c71b47c1bc8f2d">$bDossiersSeulement</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si on a demandé, à l'initialisation, à recevoir uniquement les dossiers. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="51567899a93616a6fbbd73a99dc23786"></a><!-- doxytag: member="IterateurDossier::$bTrier" ref="51567899a93616a6fbbd73a99dc23786" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#51567899a93616a6fbbd73a99dc23786">$bTrier</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'indication du tri alphabétique demandé ou pas à l'initialisation de l'objet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2aba6be38b58f996331f024a8fa669b"></a><!-- doxytag: member="IterateurDossier::$oDossier" ref="d2aba6be38b58f996331f024a8fa669b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#d2aba6be38b58f996331f024a8fa669b">$oDossier</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'objet <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente le dossier dont le chemin a été passé en paramètre au constructeur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="51905c00b1716eceb2cce222a1603887"></a><!-- doxytag: member="IterateurDossier::$oFichierCourant" ref="51905c00b1716eceb2cce222a1603887" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#51905c00b1716eceb2cce222a1603887">$oFichierCourant</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'objet <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente l'élément courant de l'itérateur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c88d80f5a8c2b3704f839b5f246fa72a"></a><!-- doxytag: member="IterateurDossier::$sFiltrePre" ref="c88d80f5a8c2b3704f839b5f246fa72a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_dossier.html#c88d80f5a8c2b3704f839b5f246fa72a">$sFiltrePre</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="6d994f8f279afa35b6c9494e4e6069d9"></a><!-- doxytag: member="IterateurDossier::aEnfants" ref="6d994f8f279afa35b6c9494e4e6069d9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDossier::aEnfants           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Voir <a class="el" href="class_iterateur_composite.html#1b161ee694a4b1acd98116fb012d971e" title="Indique si l&#39;élément courant est susceptible d&#39;avoir des éléments &quot;enfants&quot;...">IterateurComposite::aEnfants()</a>. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'élément courant représente un dossier, <code>false</code> sinon </dd></dl>
+
+<p>Réimplémentée à partir de <a class="el" href="class_iterateur_tableau.html#16772d44e071812de21916ad2c7ba07c">IterateurTableau</a>.</p>
+
+<p>Références <a class="el" href="_iterateur_dossier_8php-source.html#l00082">courant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0a25ec1731e3c16ca6bf9ff8ba5a1371"></a><!-- doxytag: member="IterateurDossier::IterateurDossier" ref="0a25ec1731e3c16ca6bf9ff8ba5a1371" args="($v_sChemin, $v_sFiltrePre= '*', $v_bTrier=FALSE, $v_bDossiersSeulement=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDossier::IterateurDossier           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sChemin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFiltrePre</em> = <code>'*'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bTrier</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bDossiersSeulement</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sChemin</em>&nbsp;</td><td>le dossier sur lequel on effectuera l'itération </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sFiltre</em>&nbsp;</td><td>le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui utilisé par la fonction native PHP glob(). Par défaut, il comprend tous les fichiers/dossiers (apparemment les entrées dont le nom débute par un point ne sont pas prises en compte!!!) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bTrier</em>&nbsp;</td><td>indique si les entrées du dossier doivent être triées par ordre alphabétique (<code>false</code> par défaut) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bDossiersSeulement</em>&nbsp;</td><td>indique si on désire uniquement itérer sur les sous-dossiers, et donc omettre les fichiers</td></tr>
+  </table>
+</dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Contrairement aux filtres d'itérateurs (<a class="el" href="class_iterateur_filtre.html" title="Classe abstraite qui sert de filtre (sous forme de décorateur) à des objets dérivés...">IterateurFiltre</a> et sous-classes), le filtre agit ici directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs agissent pendant l'itération, pour déterminer à chaque élément s'il est accepté ou pas. </dd></dl>
+
+<p>Références <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_dossier_8php-source.html#l00120">retIterateurEnfants()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="08c91ce6c0c9fee0f7ba8a520b56c997"></a><!-- doxytag: member="IterateurDossier::retFiltrePre" ref="08c91ce6c0c9fee0f7ba8a520b56c997" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDossier::retFiltrePre           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le filtre passé au constructeur (ou celui par défaut). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le filtre passé au constructeur pour restreindre les fichiers/dossiers pris en compte par l'itérateur </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_iterateur_dossier_8php.html">IterateurDossier.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,184 @@
+\section{Référence du fichier src/install/sql/export/export.php}
+\label{export_8php}\index{src/install/sql/export/export.php@{src/install/sql/export/export.php}}
+
+
+\subsection{Description détaillée}
+Permet l'exportation en cascade d'enregistrements de la DB, dans ce cas, à partir d'ids de formations. 
+
+\begin{Desc}
+\item[{\bf À faire}]\begin{itemize}
+\item transformer ce fouillis de tableaux en objets faciles à utiliser\item pour le moment, les infos sur les index et les clés étrangères dans les tables sont générés/rédigés avant l'exportation, puis lus. Il faudrait pouvoir récupérer ces infos dans la DB à la volée. Pour les clés étrangères, c'est difficile étant donné qu'il faut lire dans la DB de phpMyAdmin qui enregistre les relations entre tables (et que bien entendu ces relations décrites dans PMA soient à jour). Pour les index, y a-t-il des fonctions PHP qui demandent directement des infos sur les tableS/champs/index, ou faut-il utiliser mysql\_\-query pour récupérer ces infos en SQL ?\item intégrer ces classes d'exportation \char`\"{}pur DB\char`\"{} dans les classes d'Esprit \end{itemize}
+\end{Desc}
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf CExportDb}
+\begin{CompactList}\small\item\em Classe de gestion des exportations d'enregistrements en cascade à partir de la DB. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Énumérations}
+\begin{CompactItemize}
+\item 
+enum \textbf{DEBUT\_\-EMPHASE} 
+\item 
+enum \textbf{ECHAPPER\_\-PAR\_\-DEFAUT} 
+\item 
+enum {\bf ENCODAGE} 
+\begin{CompactList}\small\item\em Spécifie l'encodage utilisé dans ce fichier (UTF-8). \item\end{CompactList}\item 
+enum \textbf{FCT\_\-ECHAPPER} 
+\item 
+enum \textbf{FIN\_\-EMPHASE} 
+\item 
+enum \textbf{LF} 
+\item 
+enum \textbf{MIME} 
+\item 
+enum \textbf{PIED\_\-DE\_\-PAGE} 
+\item 
+enum {\bf RECHERCHE\_\-RECURSIVE} 
+\begin{CompactList}\small\item\em Indique s'il faut respecter l'ordre des tables, ou si une table et ses descendants sont scannés. \item\end{CompactList}\item 
+enum \textbf{TAB} 
+\end{CompactItemize}
+\begin{Indent}{\bf Constantes utilitaires de la classe CExportDb}\par
+\begin{CompactItemize}
+\item 
+enum {\bf CHAMPS\_\-DEST} 
+\begin{CompactList}\small\item\em Position dans le tableau du nom des champs destination. \item\end{CompactList}\item 
+enum {\bf CHAMPS\_\-SRC} 
+\begin{CompactList}\small\item\em Position dans le tableau du nom des champs source. \item\end{CompactList}\item 
+enum {\bf TABLE\_\-DEST} 
+\begin{CompactList}\small\item\em Position dans le tableau du nom de la table destination. \item\end{CompactList}\item 
+enum {\bf TABLE\_\-SRC} 
+\begin{CompactList}\small\item\em Position dans le tableau du nom de la table source. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\subsection*{Fonctions}
+\begin{CompactItemize}
+\item 
+{\bf aff} (\$v\_\-sTexte, \$v\_\-bEchapper=ECHAPPER\_\-PAR\_\-DEFAUT)
+\begin{CompactList}\small\item\em Affiche une chaîne de caractères. \item\end{CompactList}\item 
+{\bf affd} (\$v\_\-sTexte, \$v\_\-bEchapper=ECHAPPER\_\-PAR\_\-DEFAUT)
+\begin{CompactList}\small\item\em Affiche une chaîne de caractères, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). \item\end{CompactList}\item 
+{\bf affln} (\$v\_\-sTexte, \$v\_\-bEchapper=ECHAPPER\_\-PAR\_\-DEFAUT)
+\begin{CompactList}\small\item\em Affiche une chaîne de caractères et se place à la ligne suivante. \item\end{CompactList}\item 
+{\bf afflnd} (\$v\_\-sTexte, \$v\_\-bEchapper=ECHAPPER\_\-PAR\_\-DEFAUT)
+\begin{CompactList}\small\item\em Affiche une chaîne de caractères et se place à la ligne suivante, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). \item\end{CompactList}\item 
+{\bf debutProf} ()\label{export_8php_bd4220de209adbf61ff587159525294d}
+
+\begin{CompactList}\small\item\em Débute la session de profiling (le moment courant est enregistré). \item\end{CompactList}\item 
+{\bf finProf} (\$v\_\-bAfficher=FALSE)
+\begin{CompactList}\small\item\em Met fin à la session de profiling, et calcule le temps écoulé depuis le début de la session. \item\end{CompactList}\item 
+{\bf microtime\_\-float} ()\label{export_8php_6b5adb70a7aed1d4f6cda2ffbca36d6b}
+
+\begin{CompactList}\small\item\em Retourne le \char`\"{}timestamp\char`\"{} courant (le temps écoulé depuis le 1er janvier 1970), en secondes, sous forme de nombre à virgule flottante, avec la précision jusqu'aux microsecondes. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+{\bf \$aiFormationsAExporter}
+\begin{CompactList}\small\item\em Les ids des formations à exporter se trouvent ici. \item\end{CompactList}\item 
+\textbf{\$asParamsFctEchapper} = array(ENT\_\-COMPAT, {\bf ENCODAGE})\label{export_8php_4f9e52578c04c80cb3a515dc2d96dbef}
+
+\item 
+\textbf{\$oExport} = new {\bf CExportDb}()\label{export_8php_f0a30f3cb5b0e8fa48607c62e8dbb307}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions}
+\index{export.php@{export.php}!aff@{aff}}
+\index{aff@{aff}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}aff (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-bEchapper} = {\tt ECHAPPER\_\-PAR\_\-DEFAUT})}\label{export_8php_8b3deed01230979dd4dab173b6c92ef8}
+
+
+Affiche une chaîne de caractères. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTexte}]le texte à afficher \item[{\em \$v\_\-bEchapper}]si {\tt true}, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER\_\-PAR\_\-DEFAUT) \end{description}
+\end{Desc}
+
+
+Référencé par affd(), affln(), CExportDb::ecrireFichierResultat(), finProf(), et CExportDb::trouverRelations().\index{export.php@{export.php}!affd@{affd}}
+\index{affd@{affd}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}affd (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-bEchapper} = {\tt ECHAPPER\_\-PAR\_\-DEFAUT})}\label{export_8php_7bc2aa80b7ba359091f30e86d19ea846}
+
+
+Affiche une chaîne de caractères, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTexte}]le texte à afficher \item[{\em \$v\_\-bEchapper}]si {\tt true}, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER\_\-PAR\_\-DEFAUT) \end{description}
+\end{Desc}
+
+
+Références aff().\index{export.php@{export.php}!affln@{affln}}
+\index{affln@{affln}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}affln (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-bEchapper} = {\tt ECHAPPER\_\-PAR\_\-DEFAUT})}\label{export_8php_6e87d59cc52c9aca7c69ce91c37746fd}
+
+
+Affiche une chaîne de caractères et se place à la ligne suivante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTexte}]le texte à afficher \item[{\em \$v\_\-bEchapper}]si {\tt true}, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER\_\-PAR\_\-DEFAUT) \end{description}
+\end{Desc}
+
+
+Références aff().
+
+Référencé par afflnd(), CExportDb::ecrireFichierResultat(), CExportDb::executerRequete(), et CExportDb::trouverRelations().\index{export.php@{export.php}!afflnd@{afflnd}}
+\index{afflnd@{afflnd}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}afflnd (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-bEchapper} = {\tt ECHAPPER\_\-PAR\_\-DEFAUT})}\label{export_8php_253741e7ce84a279331b97368b79a0eb}
+
+
+Affiche une chaîne de caractères et se place à la ligne suivante, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTexte}]le texte à afficher \item[{\em \$v\_\-bEchapper}]si {\tt true}, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER\_\-PAR\_\-DEFAUT) \end{description}
+\end{Desc}
+
+
+Références affln().
+
+Référencé par CExportDb::trouverRelations(), et CExportDb::trouverRelationsTable().\index{export.php@{export.php}!finProf@{finProf}}
+\index{finProf@{finProf}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}finProf (\$ {\em v\_\-bAfficher} = {\tt FALSE})}\label{export_8php_7978569f849ce15a2a4f5dcd0061cb49}
+
+
+Met fin à la session de profiling, et calcule le temps écoulé depuis le début de la session. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-bAfficher}]si {\tt true}, le temps écoulé est affiché entre parenthèses ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le temps écoulé pendant la session de profiling \end{Desc}
+
+
+Références aff(), et microtime\_\-float().
+
+Référencé par CExportDb::ecrireFichierResultat(), et CExportDb::trouverRelations().
+
+\subsection{Documentation des variables}
+\index{export.php@{export.php}!\$aiFormationsAExporter@{\$aiFormationsAExporter}}
+\index{\$aiFormationsAExporter@{\$aiFormationsAExporter}!export.php@{export.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$aiFormationsAExporter}\label{export_8php_330347cd4f9a9f14ad95e62e17c04bbf}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} array
+(
+    20, 40, 41, 42, 44, 48, 55, 68, 81, 82, 92, 93, 94, 95, 96, 99, 
+    100, 110, 111, 112, 113, 116, 128, 129, 139, 141, 143, 144, 145, 
+    146, 147, 148, 149, 150, 151, 152, 153
+)
+\end{verbatim}
+\end{Code}
+Les ids des formations à exporter se trouvent ici. 
+

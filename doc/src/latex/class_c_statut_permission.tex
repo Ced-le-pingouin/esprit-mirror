@@ -1,0 +1,111 @@
+\section{Référence de la classe CStatutPermission}
+\label{class_c_statut_permission}\index{CStatutPermission@{CStatutPermission}}
+
+
+\subsection{Description détaillée}
+Gestion des permissions d'un statut, et encapsulation de la table Statut\_\-Permission de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-iIdPermis, \$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Ajoute une permission à un statut. \item\end{CompactList}\item 
+{\bf CStatutPermission} (\&\$v\_\-oBdd)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacer} (\$v\_\-iIdPermis, \$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Efface une permission à un statut. \item\end{CompactList}\item 
+{\bf initPermissions} (\$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Initialise un tableau contenant une liste de permissions par rapport au statut fourni en paramètre. \item\end{CompactList}\item 
+{\bf optimiser} ()
+\begin{CompactList}\small\item\em Optimise la table Statut\_\-Permission. \item\end{CompactList}\item 
+{\bf verifPermission} (\$v\_\-sNomPermission)
+\begin{CompactList}\small\item\em Vérifie si le statut a cette permission. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$abPermissions}\label{class_c_statut_permission_8c4f1a588ea7a59c4f3de09ad8a9aaa2}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initPermissions()}{p.}{class_c_statut_permission_69582cf2907e92ab4267a50a5b182dc2}, contenant une liste des permissions d'un statut. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_statut_permission_d4214966f62e62d98f8298e91cdcd142}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_statut_permission_d3efad846bcc319a3ef02407712267a3}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CStatutPermission@{CStatutPermission}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::ajouter (\$ {\em v\_\-iIdPermis}, \/  \$ {\em v\_\-iIdStatut})}\label{class_c_statut_permission_937aeeebd0ff989c55e56ca74804c5eb}
+
+
+Ajoute une permission à un statut. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPermis}]l'id de la permission \item[{\em v\_\-iIdStatut}]l'id du statut \end{description}
+\end{Desc}
+\index{CStatutPermission@{CStatutPermission}!CStatutPermission@{CStatutPermission}}
+\index{CStatutPermission@{CStatutPermission}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::CStatutPermission (\&\$ {\em v\_\-oBdd})}\label{class_c_statut_permission_c261082661ddd6804926232e32b3a2b7}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \end{description}
+\end{Desc}
+\index{CStatutPermission@{CStatutPermission}!effacer@{effacer}}
+\index{effacer@{effacer}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::effacer (\$ {\em v\_\-iIdPermis}, \/  \$ {\em v\_\-iIdStatut})}\label{class_c_statut_permission_3b268b26a0fb0bf693d801de0b69ea48}
+
+
+Efface une permission à un statut. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPermis}]l'id de la permission \item[{\em v\_\-iIdStatut}]l'id du statut \end{description}
+\end{Desc}
+\index{CStatutPermission@{CStatutPermission}!initPermissions@{initPermissions}}
+\index{initPermissions@{initPermissions}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::initPermissions (\$ {\em v\_\-iIdStatut})}\label{class_c_statut_permission_69582cf2907e92ab4267a50a5b182dc2}
+
+
+Initialise un tableau contenant une liste de permissions par rapport au statut fourni en paramètre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdStatut}]l'id du statut\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de permissions insérées dans le tableau \end{Desc}
+\index{CStatutPermission@{CStatutPermission}!optimiser@{optimiser}}
+\index{optimiser@{optimiser}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::optimiser ()}\label{class_c_statut_permission_15facd82f6e9ee31bb70c24efb69c705}
+
+
+Optimise la table Statut\_\-Permission. 
+
+\index{CStatutPermission@{CStatutPermission}!verifPermission@{verifPermission}}
+\index{verifPermission@{verifPermission}!CStatutPermission@{CStatutPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CStatutPermission::verifPermission (\$ {\em v\_\-sNomPermission})}\label{class_c_statut_permission_0ce37c877d32cfb50231c73f94e79a81}
+
+
+Vérifie si le statut a cette permission. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomPermission}]le nom de la permission\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le statut a cette permission \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf statut\_\-permission.tbl.php}\end{CompactItemize}

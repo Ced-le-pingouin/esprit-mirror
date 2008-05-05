@@ -1,0 +1,82 @@
+MODIFS A REPERCUTER DANS LA "VRAIE" PLATE-FORME ESPRIT
+======================================================
+- dans include/plate_forme.class: ajouter la constante LIEN_FORMULAIRE;
+- dans database/sous_activite.tbl.php: ajouter "array(LIEN_FORMULAIRE,"Formulaire")" dans le tableau des types, ds la fct retListeTypes();
+- dans admin/concept/form_sousactiv.php: ajouter un "bloc" (commentaires HTML) pour le type de sous-activité "Formulaire";
+- dans admin/concept/form_sousactiv.php: ajouter ça à la fin en JS: aoType[8] = document.getElementById("lien_formulaire");
+- dans admin/concept/gestion_sousactiv.php: ajouter un "case LIEN_FORMULAIRE" dans le switch($iType);
+
+
+GENERAL
+=======
++ possibilité de copier un élément de formulaire
+- déplacer un objet : popup centrée. Et aussi, est-ce possible de placer la liste automatiquement à la position actuelle de l'objet 
+  sélectionné ? OU MIEUX: mettre la liste déroulante des positions possibles dans le la frame inférieure, càd celle des propriétés d'objet;
+-------->OK 1/2
+
+LISTE DES FORMULAIRES A GAUCHE
+==============================
+
+
+FORMULAIRE
+==========
+- encadrement du titre, j'aurais vu une fine ligne (noire?) autour du titre qui prend toute la largeur du formulaire, un peu comme en Word
+  (mais c'est vrai que ça risque d'entrer en conflit avec la ligne que tu as mise pour encadrer tout le formulaire, à voir...);
+-------->1/2
+
+GESTION DES AXES
+================
+J'ai eu une idée pour une gestion des axes simplifiée, mais vu qu'elle fusionne les deux parties en une seule, elle demanderait 
+beaucoup de modifs, donc il vaut mieux ne pas la faire maintenant. J'ai mis ce délire entre parenthèses à la fin du fichier...
+
+QUESTION TYPE NOMBRE
+====================
+? oubli de ma part (gasp), donc pour une future amélioration : normalement, ça aurait été mieux d'avoir un multiplicateur de poids pour chaque 
+  axe du formulaire, et pas seulement un multiplicateur global;
+
+
+
+
+((((
+La page se présenterait sous la forme de 2 listes affichées côte à côte, celle de gauche montrant tous les axes disponibles, et celle de de 
+droite montrant les axes actuellement associés au formulaire courant.
+
+Entre les 2 listes, des liens ">>" et "<<" l'un en dessous de l'autre permettraient d'associer/enlever les axes par rapport au formulaire 
+(en fait un clic sur un des lien recharge la page en provoquant l'action associer/enlever).
+
+Collé au bord inférieur de la liste de gauche, deux liens (un à gauche & un à droite) "Renommer" et "Supprimer" qui agiraient sur l'axe 
+sélectionné dans la liste. "Renommer" amènerait une popup très réduite avec juste le titre "Renommer un axe", une boîte de texte avec le nom 
+actuel de l'axe, et une barre (frame?) en dessous avec des liens "Valider" et "Annuler". Quand on clique "Valider", la page se ferme 
+automatiquement et recharge la page "parente" (popup principale de gestion des axes), après avoir modifié le nom dans la base de données.
+Le lien "Supprimer" sous la liste des axes, provoquerait l'affichage d'une confirmation en JS avant le rechargement de la page avec effacement 
+de l'axe (sauf s'il est associé à des formulaires, auquel cas on affiche le message d'interdiction).
+
+Enfin, un peu plus en desosus de la liste de gauche, il y aurait lien "Créer un nouvel axe", qui amènerait exactement la même petite popup que 
+le lien "Renommer", avec le titre qui change, et la case de texte forcément vide au départ qui permet de taper le nom du nouvel axe.
+
+Voilà un aperçu de la page
+
+	Axes disponibles								Axes associés à ce formulaire
+	----------------------------------				----------------------------------
+	|Détermination									|Travail en équipe
+	|Travail en équipe						>>		|Confiance en soi
+	|Confiance en soi						<<		|
+	|Capacité à accepter les compromis		|		|
+	----------------------------------		|		----------------------------------
+	Supprimer					Renommer	|
+									|		|
+			Créer un nouvel axe		|		+---------------------> liens pour associer/enlever les axes du formulaire
+				|					|
+				|-------------------+
+				|
+				V
+			+-----------------------------------------------+
+			|Popup											|
+			+-----------------------------------------------+
+			|												|
+			|	| Travail en équipe				|--------------------------------> boîte de texte
+			|												|
+			+-----------------------------------------------+
+			| Valider							Annuler		|
+			+-----------------------------------------------+
+))))

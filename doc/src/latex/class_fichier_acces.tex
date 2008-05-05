@@ -1,0 +1,122 @@
+\section{Référence de la classe FichierAcces}
+\label{class_fichier_acces}\index{FichierAcces@{FichierAcces}}
+Graphe d'héritage de FichierAcces::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_fichier_acces}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe qui permet d'effectuer des opérations physiques sur le contenu des fichiers, càd ouvrir, fermer, lire, écrire, etc. 
+
+\begin{Desc}
+\item[{\bf À faire}]Pour le moment, seul les méthodes dont j'ai eu besoin sont implémentées, il faudra compléter la classe au fur et à mesure \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf defChemin} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em voir \doxyref{FichierInfo::defChemin()}{p.}{class_fichier_info_2c91460658e8685287e3828a12f5f5ba}. \item\end{CompactList}\item 
+{\bf ecrire} (\$v\_\-sContenu)
+\begin{CompactList}\small\item\em Ecrit des données dans le fichier représenté par l'objet. \item\end{CompactList}\item 
+{\bf ecrireTout} (\$v\_\-sContenu)
+\begin{CompactList}\small\item\em Ecrit des données en une seule fois dans le fichier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf estOuvert} ()
+\begin{CompactList}\small\item\em Indique si le fichier actuellement représenté par l'objet est ouvert. \item\end{CompactList}\item 
+{\bf fermer} ()
+\begin{CompactList}\small\item\em Ferme le fichier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf ouvrir} (\$v\_\-iMode)
+\begin{CompactList}\small\item\em Ouvre le fichier représenté par l'objet courant pour pouvoir y effectuer des opérations de lecture ou écriture. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$hFichier} = NULL\label{class_fichier_acces_1703beb816ee2467c1ec970faf06992b}
+
+\begin{CompactList}\small\item\em Le handle pour la gestion du fichier. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{FichierAcces@{FichierAcces}!defChemin@{defChemin}}
+\index{defChemin@{defChemin}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::defChemin (\$ {\em v\_\-sChemin})}\label{class_fichier_acces_7818a88cccda4371ccd37558ed083d18}
+
+
+voir \doxyref{FichierInfo::defChemin()}{p.}{class_fichier_info_2c91460658e8685287e3828a12f5f5ba}. 
+
+Cette surcharge de la méthode d'origine ferme le fichier représenté par l'objet s'il était ouvert, avant de modifier le chemin de l'objet 
+
+Réimplémentée à partir de {\bf FichierInfo} \doxyref{}{p.}{class_fichier_info_2c91460658e8685287e3828a12f5f5ba}.
+
+Références estOuvert(), et fermer().\index{FichierAcces@{FichierAcces}!ecrire@{ecrire}}
+\index{ecrire@{ecrire}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::ecrire (\$ {\em v\_\-sContenu})}\label{class_fichier_acces_eb2a90f5cfd6830db2a05917697d4b8c}
+
+
+Ecrit des données dans le fichier représenté par l'objet. 
+
+Ce fichier doit être ouvert
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em les}]données à écrire dans le fichier, sous forme de chaîne;\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'octets effectivement écrits dans le fichier, ou {\tt false} si une erreur se produit \end{Desc}
+
+
+Référencé par ecrireTout().\index{FichierAcces@{FichierAcces}!ecrireTout@{ecrireTout}}
+\index{ecrireTout@{ecrireTout}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::ecrireTout (\$ {\em v\_\-sContenu})}\label{class_fichier_acces_2b256ad318d1414f21c2d70ef007a7a2}
+
+
+Ecrit des données en une seule fois dans le fichier représenté par l'objet courant. 
+
+Le fichier ne doit pas être ouvert préalablement 
+
+Références ecrire(), FichierInfo::existe(), fermer(), ouvrir(), et Erreur::provoquer().\index{FichierAcces@{FichierAcces}!estOuvert@{estOuvert}}
+\index{estOuvert@{estOuvert}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::estOuvert ()}\label{class_fichier_acces_aac9ba685e3f530532ce95050a815782}
+
+
+Indique si le fichier actuellement représenté par l'objet est ouvert. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le fichier est ouvert, {\tt false} sinon \end{Desc}
+
+
+Référencé par defChemin().\index{FichierAcces@{FichierAcces}!fermer@{fermer}}
+\index{fermer@{fermer}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::fermer ()}\label{class_fichier_acces_64348416bbd8eda55a1540fc14296801}
+
+
+Ferme le fichier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la fermeture s'est bien déroulée, {\tt false} en cas d'erreur \end{Desc}
+
+
+Référencé par defChemin(), et ecrireTout().\index{FichierAcces@{FichierAcces}!ouvrir@{ouvrir}}
+\index{ouvrir@{ouvrir}!FichierAcces@{FichierAcces}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierAcces::ouvrir (\$ {\em v\_\-iMode})}\label{class_fichier_acces_006abfbb95f2458dd6e75627c8cdeed0}
+
+
+Ouvre le fichier représenté par l'objet courant pour pouvoir y effectuer des opérations de lecture ou écriture. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iMode}]le mode d'ouverture du fichier, qui doit être l'une des constantes {\tt FICHIER\_\-MODE\_\-}...\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le handle du fichier ouvert, ou {\tt false} si l'ouverture a échoué \end{Desc}
+
+
+Références FichierInfo::retChemin().
+
+Référencé par ecrireTout().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf FichierAcces.php}\end{CompactItemize}

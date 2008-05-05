@@ -1,0 +1,1202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CActiv</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CActiv</h1><!-- doxytag: class="CActiv" -->
+<p>
+<a href="class_c_activ-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des activités, et encapsulation de la table Activ de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#af261735b582dc6e84433f29d6815346">Ajouter</a> ($v_iIdRubrique, $v_iIdUnite=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une nouvelle activité à la rubrique.  <a href="#af261735b582dc6e84433f29d6815346"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#fdd9fc774fa3bed34107b839afa1de58">CActiv</a> (&amp;$v_oBdd, $v_iIdActiv=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#fdd9fc774fa3bed34107b839afa1de58"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#95022cf990bbbb297ac55082c5b3adfb">copier</a> ($v_iIdRubrique, $v_bRecursive=TRUE, $v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie l'activité courante vers une rubrique spécifique.  <a href="#95022cf990bbbb297ac55082c5b3adfb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#e2b7ddb5a9d3ea2e4787b55b579c31be">copierActivite</a> ($v_iIdRubrique, $v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Insère une copie d'une activité dans la DB.  <a href="#e2b7ddb5a9d3ea2e4787b55b579c31be"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#cd5d7ce08e5c959405d4018dbab35558">copierAvecNumOrdre</a> ($v_iIdDest, $v_iNumOrdre=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre pour la copie de l'activité.  <a href="#cd5d7ce08e5c959405d4018dbab35558"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#91d25c92d0aa696a522ea5ed75139965">copierSousActivites</a> ($v_iIdActiv, $v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie les sous-activités de l'activité courante vers une autre.  <a href="#91d25c92d0aa696a522ea5ed75139965"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#267369a47ca92ff255c67a8b1539b42d">defRemettreDeOrdre</a> ($v_bRemettreDeOrdre=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit la variable booléenne <code>v_bRemettreDeOrdre</code>.  <a href="#267369a47ca92ff255c67a8b1539b42d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="84b689a4dc9b058c8c14be266ca765e1"></a><!-- doxytag: member="CActiv::effacer" ref="84b689a4dc9b058c8c14be266ca765e1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#84b689a4dc9b058c8c14be266ca765e1">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface la totalité d'une activité (sous-activités comprises). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="92d6a3ebe7675efd3834250121539623"></a><!-- doxytag: member="CActiv::effacerEquipes" ref="92d6a3ebe7675efd3834250121539623" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#92d6a3ebe7675efd3834250121539623">effacerEquipes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les équipes de cette activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#99340a2f0564df0c98e5c346b6b51abb">effacerRepChats</a> ($v_bEffacerRepertoire=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le répertoire(optionnel) et toutes les archives des chats.  <a href="#99340a2f0564df0c98e5c346b6b51abb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1f827aaca67315d5b0c72693751fdbb8">effacerRepDocuments</a> ($v_bEffacerRepertoire=TRUE, $sFiltreDocs=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les documents (collecticiel) et son répertoire(optionnel).  <a href="#1f827aaca67315d5b0c72693751fdbb8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="96d175403f6489c27fa851e5a2ad0d86"></a><!-- doxytag: member="CActiv::init" ref="96d175403f6489c27fa851e5a2ad0d86" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#96d175403f6489c27fa851e5a2ad0d86">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#f1117e471d2ac31b02555df8b5eceb22">initEquipe</a> ($v_iIdMembre, $v_bInitMembres=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise <code>oEquipe</code> avec l'équipe associée au niveau(activité-&gt;formation) auquel la personne, donnée en paramètre, appartient.  <a href="#f1117e471d2ac31b02555df8b5eceb22"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#e3bb5e033d2be034c36aedcb60352037">initEquipes</a> ($v_bInitMembres=FALSE, $v_iTypeNiveauDepart=<a class="el" href="plate__forme_8class_8php.html#f7c3406feb7a6f9a82fb895589b0924c">TYPE_ACTIVITE</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les équipes de l'activité.  <a href="#e3bb5e033d2be034c36aedcb60352037"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#fd966f68ac4f88e68f2b58cc28a5e3ce">initSousActivCourante</a> ($v_iIdSousActiv=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la sous-activité courante.  <a href="#fd966f68ac4f88e68f2b58cc28a5e3ce"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1f2827059996c683b394bf4d3e577b0d">initSousActivs</a> ($v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant une liste des sous-activités.  <a href="#1f2827059996c683b394bf4d3e577b0d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#194c5c75ca1ba81998418226c88b5b65">mettre_a_jour</a> ($v_sNomChamp, $v_mValeurChamp, $v_iIdActiv=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Met à jour un champ de la table Activ.  <a href="#194c5c75ca1ba81998418226c88b5b65"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="86a1cca432cbc10aa43e62eaeb684abe"></a><!-- doxytag: member="CActiv::rafraichir" ref="86a1cca432cbc10aa43e62eaeb684abe" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#86a1cca432cbc10aa43e62eaeb684abe">rafraichir</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réinitialise l'objet <code>oEnregBdd</code> avec l'activité courante. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#cbcb1d0e6074968e9d6e851b08cf6dd9">redistNumsOrdre</a> ($v_iNouveauNumOrdre=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Redistribue les numéros d'ordre des activités.  <a href="#cbcb1d0e6074968e9d6e851b08cf6dd9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#6f14f334c5a591b4484e0ec9c8899d0e">retDossier</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="da7f7fd0a47a8be00842827f36680daa"></a><!-- doxytag: member="CActiv::retElementsEnfants" ref="da7f7fd0a47a8be00842827f36680daa" args="()" -->
+&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#da7f7fd0a47a8be00842827f36680daa">retElementsEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne (après les avoir initialisés si nécessaire) les éléments enfants de l'activité, càd les sous-activités. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#0f81a810882418e8d5abf44bf2d7a1e7">retIdEnregPrecedent</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de l'activité précédente celle-ci.  <a href="#0f81a810882418e8d5abf44bf2d7a1e7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#698783a1874c0e83fdd7b543e49c99f1">retIdPremierePage</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de la première sous-activité.  <a href="#698783a1874c0e83fdd7b543e49c99f1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1f75b5eabe7f2b02c6660ed0da4f3ec6">retListeActivs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau avec la liste des activités de la rubrique.  <a href="#1f75b5eabe7f2b02c6660ed0da4f3ec6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1aa6373c192b0eb634de058beb38d366">retListeModalites</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau à 2 dimensions contenant les modalités d'une activité.  <a href="#1aa6373c192b0eb634de058beb38d366"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#a32ddbfa1f67b34245bbc8f443939c90">retNbrEquipes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'équipes ratachées à cette activité.  <a href="#a32ddbfa1f67b34245bbc8f443939c90"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#3ce98494cfe46ac73e1ab2bbfc300453">retNombreLignes</a> ($v_iNumParent=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'activités de cette rubrique.  <a href="#3ce98494cfe46ac73e1ab2bbfc300453"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#2e7897839983b2c39bf7fb4f2d903d29">retNumOrdreMax</a> ($v_iIdRubrique=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permet de connaître le numero d'ordre maximum des activités.  <a href="#2e7897839983b2c39bf7fb4f2d903d29"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#a29612ddd2c761acece5db4f05c443b8">retRemettreDeOrdre</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la valeur de la variable booléenne <code>v_bRemettreDeOrdre</code>.  <a href="#a29612ddd2c761acece5db4f05c443b8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#ae2bc0d988ac3e336603704dd999cafa">retRepCours</a> ($v_sFichierAInclure=NULL, $v_bCheminAbsolu=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante.  <a href="#ae2bc0d988ac3e336603704dd999cafa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1771fdbeca77f8c2d5a78e1b7cf0491e">retTexteModalite</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne en français la modalité(constante MODALITE_) de l'activité.  <a href="#1771fdbeca77f8c2d5a78e1b7cf0491e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#f05dae686ed1bf9a348757c41a77c2af">retTexteNiveau</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#1ec47167ab35cddc2dbd383eb9ccacd0">retTexteStatut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le statut(constante STATUT_) de l'activité.  <a href="#1ec47167ab35cddc2dbd383eb9ccacd0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#8f2b8a6d3b53aac9fa551b0205b9c3e0">retTypeNiveau</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la constante qui définit le niveau "activité", de la structure d'une formation.  <a href="#8f2b8a6d3b53aac9fa551b0205b9c3e0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#e282e57e24a814d73d6f711f5fe5336c">retTypes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau à 2 dimensions contenant l'intitulé d'une activité.  <a href="#e282e57e24a814d73d6f711f5fe5336c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#6c3c550f542c8337e4901ccb7fdbbe27">retTypeTransfert</a> ($v_iIdActivDst)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un nombre representant le type de transfert entre l'activité courante et une activité dont l'id est passé en paramètre.  <a href="#6c3c550f542c8337e4901ccb7fdbbe27"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour cette activité</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="af93ac03eb775394fa0965ba42c6105d"></a><!-- doxytag: member="CActiv::defAfficherModalite" ref="af93ac03eb775394fa0965ba42c6105d" args="($v_bAfficher)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAfficherModalite</b> ($v_bAfficher)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="51a4394017208549a367621f80e074bc"></a><!-- doxytag: member="CActiv::defAfficherStatut" ref="51a4394017208549a367621f80e074bc" args="($v_bAfficher)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAfficherStatut</b> ($v_bAfficher)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8d2df146a0a6a2beac01242e4e7bf2ac"></a><!-- doxytag: member="CActiv::defDescr" ref="8d2df146a0a6a2beac01242e4e7bf2ac" args="($v_sDescrActiv)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defDescr</b> ($v_sDescrActiv)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b8e7134b1fd6b6afd1f402e6d0d0d48d"></a><!-- doxytag: member="CActiv::defModalite" ref="b8e7134b1fd6b6afd1f402e6d0d0d48d" args="($v_iModalite)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defModalite</b> ($v_iModalite)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4fd86998d41559550948cc53021026d0"></a><!-- doxytag: member="CActiv::defNom" ref="4fd86998d41559550948cc53021026d0" args="($v_sNomActiv)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNom</b> ($v_sNomActiv)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="adab698d01c294651be3ca38af034c91"></a><!-- doxytag: member="CActiv::defNumOrdre" ref="adab698d01c294651be3ca38af034c91" args="($v_iOrdre)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNumOrdre</b> ($v_iOrdre)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4069ffcebd104cff27f86e1fb97a54ad"></a><!-- doxytag: member="CActiv::defStatut" ref="4069ffcebd104cff27f86e1fb97a54ad" args="($v_iStatut)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defStatut</b> ($v_iStatut)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour cette activité</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2e6bbd1df5f64fde46a423738c9d9421"></a><!-- doxytag: member="CActiv::retAfficherModalite" ref="2e6bbd1df5f64fde46a423738c9d9421" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAfficherModalite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="699d5c67fe42a733b278bfd3fc20b4f7"></a><!-- doxytag: member="CActiv::retAfficherStatut" ref="699d5c67fe42a733b278bfd3fc20b4f7" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAfficherStatut</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0dac29dae6a59ed6061703b462546a05"></a><!-- doxytag: member="CActiv::retDateDeb" ref="0dac29dae6a59ed6061703b462546a05" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateDeb</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ed96eaafe18f4020367f4b521928e567"></a><!-- doxytag: member="CActiv::retDateFin" ref="ed96eaafe18f4020367f4b521928e567" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateFin</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f433cce3a0f02806f4063c74277f366c"></a><!-- doxytag: member="CActiv::retDescr" ref="f433cce3a0f02806f4063c74277f366c" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDescr</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bdeede41528e27e9078a71c3ece331ad"></a><!-- doxytag: member="CActiv::retId" ref="bdeede41528e27e9078a71c3ece331ad" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="66805e0af73020493f00a5e682f56dc3"></a><!-- doxytag: member="CActiv::retIdFormation" ref="66805e0af73020493f00a5e682f56dc3" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdFormation</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b0cc1dd638af34e9b1b33f8482de585a"></a><!-- doxytag: member="CActiv::retIdModule" ref="b0cc1dd638af34e9b1b33f8482de585a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdModule</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="57ac24e32f0ae8028230c8b1368aa73d"></a><!-- doxytag: member="CActiv::retIdParent" ref="57ac24e32f0ae8028230c8b1368aa73d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdParent</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6796e78fca079b304eddc630750d6714"></a><!-- doxytag: member="CActiv::retIdRubrique" ref="6796e78fca079b304eddc630750d6714" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdRubrique</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a6d1e53d6ef90b33feb509281cda4c9"></a><!-- doxytag: member="CActiv::retInscrSpontEquipe" ref="7a6d1e53d6ef90b33feb509281cda4c9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInscrSpontEquipe</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b93d1482a87267730474a5d36bfd96a1"></a><!-- doxytag: member="CActiv::retModalite" ref="b93d1482a87267730474a5d36bfd96a1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retModalite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="39291fbe1419e33cf5c8f45abe9d8903"></a><!-- doxytag: member="CActiv::retNbMaxDsEquipe" ref="39291fbe1419e33cf5c8f45abe9d8903" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNbMaxDsEquipe</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2e55fa6f8ec2103ca806da78cfced85c"></a><!-- doxytag: member="CActiv::retNom" ref="2e55fa6f8ec2103ca806da78cfced85c" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNom</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a433f96cda8ce85fb7c5ba46cb3afc61"></a><!-- doxytag: member="CActiv::retNumOrdre" ref="a433f96cda8ce85fb7c5ba46cb3afc61" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNumOrdre</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2cf8fcd72df76550a8908a53301a987"></a><!-- doxytag: member="CActiv::retStatut" ref="d2cf8fcd72df76550a8908a53301a987" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retStatut</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a3cef2d5575afe58645bd83cdf9125ee"></a><!-- doxytag: member="CActiv::retTableauIdsParents" ref="a3cef2d5575afe58645bd83cdf9125ee" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retTableauIdsParents</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ffd140237793720c1ac168d404fcb07"></a><!-- doxytag: member="CActiv::$aoActivs" ref="9ffd140237793720c1ac168d404fcb07" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#9ffd140237793720c1ac168d404fcb07">$aoActivs</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_activ.html#1f75b5eabe7f2b02c6660ed0da4f3ec6" title="Initialise un tableau avec la liste des activités de la rubrique.">retListeActivs()</a>, contenant une liste des activités de la rubrique. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="baf4576e4864018669c948d5bba605f0"></a><!-- doxytag: member="CActiv::$aoEquipes" ref="baf4576e4864018669c948d5bba605f0" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#baf4576e4864018669c948d5bba605f0">$aoEquipes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_activ.html#e3bb5e033d2be034c36aedcb60352037" title="Initialise un tableau contenant les équipes de l&#39;activité.">initEquipes()</a>, contenant une liste des équipes de cette activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5c2de5aec2d3d39c1817b9340336844a"></a><!-- doxytag: member="CActiv::$aoSousActivs" ref="5c2de5aec2d3d39c1817b9340336844a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#5c2de5aec2d3d39c1817b9340336844a">$aoSousActivs</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_activ.html#1f2827059996c683b394bf4d3e577b0d" title="Initialise un tableau contenant une liste des sous-activités.">initSousActivs()</a>, contenant une liste des sous-activités de cette activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5dd04c1e35a60ad7b8711721d4f0b6ea"></a><!-- doxytag: member="CActiv::$b_RemettreDeOrdre" ref="5dd04c1e35a60ad7b8711721d4f0b6ea" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#5dd04c1e35a60ad7b8711721d4f0b6ea">$b_RemettreDeOrdre</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Valeur booléenne indiquant s'il faut réorganiser les numéros d'ordre des activités. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5be656e431082fce37be1046ec31bb82"></a><!-- doxytag: member="CActiv::$iId" ref="5be656e431082fce37be1046ec31bb82" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#5be656e431082fce37be1046ec31bb82">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de l'activité à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="320e3583f8c54b528528b5689850d445"></a><!-- doxytag: member="CActiv::$oBdd" ref="320e3583f8c54b528528b5689850d445" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#320e3583f8c54b528528b5689850d445">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aba06b67313feadb6f469373722e54b7"></a><!-- doxytag: member="CActiv::$oEnregBdd" ref="aba06b67313feadb6f469373722e54b7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#aba06b67313feadb6f469373722e54b7">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="67561b8f2c1fd8f4398ec33f2ade4121"></a><!-- doxytag: member="CActiv::$oEquipe" ref="67561b8f2c1fd8f4398ec33f2ade4121" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#67561b8f2c1fd8f4398ec33f2ade4121">$oEquipe</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> contenant une équipe. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b40e9bd4746250fa0c4502b8a8927538"></a><!-- doxytag: member="CActiv::$oSousActivCourante" ref="b40e9bd4746250fa0c4502b8a8927538" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_activ.html#b40e9bd4746250fa0c4502b8a8927538">$oSousActivCourante</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_c_sous_activ.html" title="Gestion des sous-activités, et encapsulation de la table SousActiv de la DB.">CSousActiv</a> contenant une activité. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="af261735b582dc6e84433f29d6815346"></a><!-- doxytag: member="CActiv::Ajouter" ref="af261735b582dc6e84433f29d6815346" args="($v_iIdRubrique, $v_iIdUnite=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::Ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdUnite</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une nouvelle activité à la rubrique. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>l'id de la rubrique </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdUnite</em>&nbsp;</td><td>l'id de "l'unité", n'est plus utilisé, champs toujours à 0</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>L'id de la nouvelle activité </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00278">retNombreLignes()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fdd9fc774fa3bed34107b839afa1de58"></a><!-- doxytag: member="CActiv::CActiv" ref="fdd9fc774fa3bed34107b839afa1de58" args="(&amp;$v_oBdd, $v_iIdActiv=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::CActiv           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdActiv</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00073">init()</a>.</p>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00151">copier()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00805">retTypeTransfert()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="95022cf990bbbb297ac55082c5b3adfb"></a><!-- doxytag: member="CActiv::copier" ref="95022cf990bbbb297ac55082c5b3adfb" args="($v_iIdRubrique, $v_bRecursive=TRUE, $v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::copier           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRecursive</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie l'activité courante vers une rubrique spécifique. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>l'id de la rubrique </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRecursive</em>&nbsp;</td><td>si <code>true</code>, copie aussi les sous-activités associées à l'activité</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la nouvelle activité </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00060">CActiv()</a>, <a class="el" href="activite_8tbl_8php-source.html#l00197">copierActivite()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00241">copierSousActivites()</a>.</p>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00122">copierAvecNumOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e2b7ddb5a9d3ea2e4787b55b579c31be"></a><!-- doxytag: member="CActiv::copierActivite" ref="e2b7ddb5a9d3ea2e4787b55b579c31be" args="($v_iIdRubrique, $v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::copierActivite           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Insère une copie d'une activité dans la DB. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>l'id de la rubrique</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la nouvelle activité </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00151">copier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd5d7ce08e5c959405d4018dbab35558"></a><!-- doxytag: member="CActiv::copierAvecNumOrdre" ref="cd5d7ce08e5c959405d4018dbab35558" args="($v_iIdDest, $v_iNumOrdre=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::copierAvecNumOrdre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumOrdre</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre pour la copie de l'activité. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdDest</em>&nbsp;</td><td>l'id de la rubrique de destination </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumOrdre</em>&nbsp;</td><td>le n° d'ordre de la copie de l'activité. Si <code>0</code> (défaut), elle sera dernière dans la rubrique destination</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la copie de l'activité </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00151">copier()</a>, <a class="el" href="_element_formation_8php-source.html#l00053">ElementFormation::retElementFormation()</a>, <a class="el" href="activite_8tbl_8php-source.html#l00100">retNumOrdreMax()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00768">retTypeNiveau()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="91d25c92d0aa696a522ea5ed75139965"></a><!-- doxytag: member="CActiv::copierSousActivites" ref="91d25c92d0aa696a522ea5ed75139965" args="($v_iIdActiv, $v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::copierSousActivites           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdActiv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie les sous-activités de l'activité courante vers une autre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdActiv</em>&nbsp;</td><td>l'id de l'activité de destination </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00479">initSousActivs()</a>.</p>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00151">copier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="267369a47ca92ff255c67a8b1539b42d"></a><!-- doxytag: member="CActiv::defRemettreDeOrdre" ref="267369a47ca92ff255c67a8b1539b42d" args="($v_bRemettreDeOrdre=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::defRemettreDeOrdre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRemettreDeOrdre</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit la variable booléenne <code>v_bRemettreDeOrdre</code>. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bRemettreDeOrdre</em>&nbsp;</td><td>valeur à définir: <code>true</code>(défaut) ou <code>false</code> </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="99340a2f0564df0c98e5c346b6b51abb"></a><!-- doxytag: member="CActiv::effacerRepChats" ref="99340a2f0564df0c98e5c346b6b51abb" args="($v_bEffacerRepertoire=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::effacerRepChats           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEffacerRepertoire</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface le répertoire(optionnel) et toutes les archives des chats. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bEffacerRepertoire</em>&nbsp;</td><td>si <code>true</code>(défaut), efface le répertoire </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1f827aaca67315d5b0c72693751fdbb8"></a><!-- doxytag: member="CActiv::effacerRepDocuments" ref="1f827aaca67315d5b0c72693751fdbb8" args="($v_bEffacerRepertoire=TRUE, $sFiltreDocs=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::effacerRepDocuments           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEffacerRepertoire</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sFiltreDocs</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface les documents (collecticiel) et son répertoire(optionnel). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bEffacerRepertoire</em>&nbsp;</td><td>si <code>true</code>(défaut), efface le répertoire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>sFiltreDocs</em>&nbsp;</td><td>filtre pour conserver certains documents (filtre sur une partie du nom du fichier) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f1117e471d2ac31b02555df8b5eceb22"></a><!-- doxytag: member="CActiv::initEquipe" ref="f1117e471d2ac31b02555df8b5eceb22" args="($v_iIdMembre, $v_bInitMembres=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::initEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMembre</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise <code>oEquipe</code> avec l'équipe associée au niveau(activité-&gt;formation) auquel la personne, donnée en paramètre, appartient. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMembre</em>&nbsp;</td><td>l'id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise les membres de l'équipe(<code>false</code> par défaut) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e3bb5e033d2be034c36aedcb60352037"></a><!-- doxytag: member="CActiv::initEquipes" ref="e3bb5e033d2be034c36aedcb60352037" args="($v_bInitMembres=FALSE, $v_iTypeNiveauDepart=TYPE_ACTIVITE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::initEquipes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveauDepart</em> = <code><a class="el" href="plate__forme_8class_8php.html#f7c3406feb7a6f9a82fb895589b0924c">TYPE_ACTIVITE</a></code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les équipes de l'activité. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de l'équipe (défaut à <code>false</code>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveauDepart</em>&nbsp;</td><td>le numéro représentant le type d'élément (formation/module/etc) par lequel on veut débuter la recherche des équipes à initialiser</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes insérés dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fd966f68ac4f88e68f2b58cc28a5e3ce"></a><!-- doxytag: member="CActiv::initSousActivCourante" ref="fd966f68ac4f88e68f2b58cc28a5e3ce" args="($v_iIdSousActiv=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::initSousActivCourante           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdSousActiv</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la sous-activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdSousActiv</em>&nbsp;</td><td>l'id de la sous-activité </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1f2827059996c683b394bf4d3e577b0d"></a><!-- doxytag: member="CActiv::initSousActivs" ref="1f2827059996c683b394bf4d3e577b0d" args="($v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::initSousActivs           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant une liste des sous-activités. 
+<p>
+Si l'id de la personne est fournie, elle l'initialise avec les sous-activités que cette personne peut voir<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne(optionnel)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de sous-activités insérés dans le tableau </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00241">copierSousActivites()</a>, <a class="el" href="activite_8tbl_8php-source.html#l00352">effacer()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00951">retElementsEnfants()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="194c5c75ca1ba81998418226c88b5b65"></a><!-- doxytag: member="CActiv::mettre_a_jour" ref="194c5c75ca1ba81998418226c88b5b65" args="($v_sNomChamp, $v_mValeurChamp, $v_iIdActiv=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::mettre_a_jour           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomChamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_mValeurChamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdActiv</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Met à jour un champ de la table Activ. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomChamp</em>&nbsp;</td><td>le nom du champ à mettre à jour </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_mValeurChamp</em>&nbsp;</td><td>la nouvelle valeur du champ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdActiv</em>&nbsp;</td><td>l'id de l'activité</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si il a mis à jour le champ dans la DB </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00835">redistNumsOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cbcb1d0e6074968e9d6e851b08cf6dd9"></a><!-- doxytag: member="CActiv::redistNumsOrdre" ref="cbcb1d0e6074968e9d6e851b08cf6dd9" args="($v_iNouveauNumOrdre=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::redistNumsOrdre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNouveauNumOrdre</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Redistribue les numéros d'ordre des activités. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNouveauNumOrdre</em>&nbsp;</td><td>le nouveau numéro d'ordre de l'activité courante</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si les numéros ont bien été modifiés </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00746">mettre_a_jour()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00775">retListeActivs()</a>.</p>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00352">effacer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6f14f334c5a591b4484e0ec9c8899d0e"></a><!-- doxytag: member="CActiv::retDossier" ref="6f14f334c5a591b4484e0ec9c8899d0e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retDossier           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le dossier associé à cette activité, donc celui où se trouvent ses fichiers associés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="0f81a810882418e8d5abf44bf2d7a1e7"></a><!-- doxytag: member="CActiv::retIdEnregPrecedent" ref="0f81a810882418e8d5abf44bf2d7a1e7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retIdEnregPrecedent           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de l'activité précédente celle-ci. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de l'activité précédente celle-ci </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00775">retListeActivs()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="698783a1874c0e83fdd7b543e49c99f1"></a><!-- doxytag: member="CActiv::retIdPremierePage" ref="698783a1874c0e83fdd7b543e49c99f1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retIdPremierePage           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de la première sous-activité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la première sous-activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1f75b5eabe7f2b02c6660ed0da4f3ec6"></a><!-- doxytag: member="CActiv::retListeActivs" ref="1f75b5eabe7f2b02c6660ed0da4f3ec6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retListeActivs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau avec la liste des activités de la rubrique. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'activités insérées dans le tableau </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00835">redistNumsOrdre()</a>, et <a class="el" href="activite_8tbl_8php-source.html#l00899">retIdEnregPrecedent()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1aa6373c192b0eb634de058beb38d366"></a><!-- doxytag: member="CActiv::retListeModalites" ref="1aa6373c192b0eb634de058beb38d366" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retListeModalites           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau à 2 dimensions contenant les modalités d'une activité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la liste des différentes modalités pour une activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a32ddbfa1f67b34245bbc8f443939c90"></a><!-- doxytag: member="CActiv::retNbrEquipes" ref="a32ddbfa1f67b34245bbc8f443939c90" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retNbrEquipes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'équipes ratachées à cette activité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes ratachées à cette activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3ce98494cfe46ac73e1ab2bbfc300453"></a><!-- doxytag: member="CActiv::retNombreLignes" ref="3ce98494cfe46ac73e1ab2bbfc300453" args="($v_iNumParent=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retNombreLignes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumParent</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'activités de cette rubrique. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumParent</em>&nbsp;</td><td>l'id de la rubrique</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'activités de cette rubrique </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00306">Ajouter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2e7897839983b2c39bf7fb4f2d903d29"></a><!-- doxytag: member="CActiv::retNumOrdreMax" ref="2e7897839983b2c39bf7fb4f2d903d29" args="($v_iIdRubrique=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retNumOrdreMax           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet de connaître le numero d'ordre maximum des activités. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le numéro d'ordre maximum </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00122">copierAvecNumOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a29612ddd2c761acece5db4f05c443b8"></a><!-- doxytag: member="CActiv::retRemettreDeOrdre" ref="a29612ddd2c761acece5db4f05c443b8" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retRemettreDeOrdre           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la valeur de la variable booléenne <code>v_bRemettreDeOrdre</code>. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la valeur de la variable booléenne <code>v_bRemettreDeOrdre</code> </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00352">effacer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ae2bc0d988ac3e336603704dd999cafa"></a><!-- doxytag: member="CActiv::retRepCours" ref="ae2bc0d988ac3e336603704dd999cafa" args="($v_sFichierAInclure=NULL, $v_bCheminAbsolu=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retRepCours           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFichierAInclure</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCheminAbsolu</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFichierAInclure</em>&nbsp;</td><td>le nom d'un éventuel fichier qui fera alors partie du chemin retourné </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCheminAbsolu</em>&nbsp;</td><td>si <code>true</code>, le chemin retourné sera absolu. Si <code>false</code>, il sera relatif</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le chemin vers le repertoire de l'activité courante </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1771fdbeca77f8c2d5a78e1b7cf0491e"></a><!-- doxytag: member="CActiv::retTexteModalite" ref="1771fdbeca77f8c2d5a78e1b7cf0491e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTexteModalite           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne en français la modalité(constante MODALITE_) de l'activité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la modalité de l'activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f05dae686ed1bf9a348757c41a77c2af"></a><!-- doxytag: member="CActiv::retTexteNiveau" ref="f05dae686ed1bf9a348757c41a77c2af" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTexteNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1ec47167ab35cddc2dbd383eb9ccacd0"></a><!-- doxytag: member="CActiv::retTexteStatut" ref="1ec47167ab35cddc2dbd383eb9ccacd0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTexteStatut           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le statut(constante STATUT_) de l'activité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le statut de l'activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8f2b8a6d3b53aac9fa551b0205b9c3e0"></a><!-- doxytag: member="CActiv::retTypeNiveau" ref="8f2b8a6d3b53aac9fa551b0205b9c3e0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTypeNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la constante qui définit le niveau "activité", de la structure d'une formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la constante qui définit le niveau "activité", de la structure d'une formation </dd></dl>
+
+<p>Référencé par <a class="el" href="activite_8tbl_8php-source.html#l00122">copierAvecNumOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e282e57e24a814d73d6f711f5fe5336c"></a><!-- doxytag: member="CActiv::retTypes" ref="e282e57e24a814d73d6f711f5fe5336c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTypes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau à 2 dimensions contenant l'intitulé d'une activité. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000001">À faire:</a></b></dt><dd>ce système sera modifié pour l'internationalisation de la plate-forme</dd></dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le mot français utilisé pour désigner une activité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6c3c550f542c8337e4901ccb7fdbbe27"></a><!-- doxytag: member="CActiv::retTypeTransfert" ref="6c3c550f542c8337e4901ccb7fdbbe27" args="($v_iIdActivDst)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CActiv::retTypeTransfert           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdActivDst</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un nombre representant le type de transfert entre l'activité courante et une activité dont l'id est passé en paramètre. 
+<p>
+Les transferts se font uniquement entre activités "collecticiels" et les 2 activités doivent se situer dans la même rubrique. Les types de transfert se différencient par les combinaisons possibles des modalités des collecticiels(individuel ou par équipe)<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdActivDst</em>&nbsp;</td><td>l'id de l'activité</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le type de transfert du collecticiel </dd></dl>
+
+<p>Références <a class="el" href="activite_8tbl_8php-source.html#l00060">CActiv()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="activite_8tbl_8php.html">activite.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

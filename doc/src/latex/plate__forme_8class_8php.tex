@@ -1,0 +1,292 @@
+\section{Référence du fichier src/include/plate\_\-forme.class.php}
+\label{plate__forme_8class_8php}\index{src/include/plate\_\-forme.class.php@{src/include/plate\_\-forme.class.php}}
+
+
+\subsection{Description détaillée}
+Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les \char`\"{}traductions\char`\"{}. 
+
+\begin{Desc}
+\item[Date:]2001/09/06\end{Desc}
+\begin{Desc}
+\item[Auteur:]Cédric FLOQUET 
+
+Filippo PORCO 
+
+Jérôme TOUZE 
+
+Ludovic FLAMME \end{Desc}
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf CConstantes}
+\begin{CompactList}\small\item\em Classe permettant de récupérer des constantes 'texte' (consignes, messages, etc) dans la base de données. \item\end{CompactList}\item 
+class {\bf CProjet}
+\begin{CompactList}\small\item\em Classe principale de la plate-forme. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Énumérations}
+\begin{Indent}{\bf Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module\_\-Rubrique}\par
+\begin{CompactItemize}
+\item 
+enum {\bf DONNEES\_\-INTITULE} 
+\begin{CompactList}\small\item\em Nom à afficher pour ce lien. \item\end{CompactList}\item 
+enum {\bf DONNEES\_\-MODE} 
+\begin{CompactList}\small\item\em Mode, par ex. pour l'affichage. \item\end{CompactList}\item 
+enum {\bf DONNEES\_\-URL} 
+\begin{CompactList}\small\item\em Url pour les liens. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - modalités d'affichage pour certains liens HTML de la plate-forme}\par
+\begin{CompactItemize}
+\item 
+enum {\bf FRAME\_\-CENTRALE\_\-DIRECT} 
+\begin{CompactList}\small\item\em Affichage immédiat dans la frame centrale. \item\end{CompactList}\item 
+enum {\bf FRAME\_\-CENTRALE\_\-INDIRECT} 
+\begin{CompactList}\small\item\em Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans la frame centrale. \item\end{CompactList}\item 
+enum {\bf MODE\_\-LIEN\_\-TELECHARGER} 
+\begin{CompactList}\small\item\em Force le téléchargement de la cible du lien. \item\end{CompactList}\item 
+enum {\bf NOUVELLE\_\-FENETRE\_\-DIRECT} 
+\begin{CompactList}\small\item\em Affichage immédiat dans une nouvelle fenêtre de navigateur. \item\end{CompactList}\item 
+enum {\bf NOUVELLE\_\-FENETRE\_\-INDIRECT} 
+\begin{CompactList}\small\item\em Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans une nouvelle fenêtre. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - types de \char`\"{}liens\char`\"{}, en fait les types de sous-activités possibles (dans la colonne de gauche d'une rubrique)}\par
+\begin{CompactItemize}
+\item 
+enum {\bf LIEN\_\-CHAT} 
+\begin{CompactList}\small\item\em Salon de discussion / Chat. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-COLLECTICIEL} 
+\begin{CompactList}\small\item\em Collecticiel. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-DOCUMENT\_\-TELECHARGER} 
+\begin{CompactList}\small\item\em Lien vers un document à télécharger. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-FORMULAIRE} 
+\begin{CompactList}\small\item\em Questionnaire = AEL (activité en ligne). \item\end{CompactList}\item 
+enum {\bf LIEN\_\-FORUM} 
+\begin{CompactList}\small\item\em Forum. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-GALERIE} 
+\begin{CompactList}\small\item\em Galerie, servant à mettre en avant des travaux sélectionnés d'un collecticiel précédent. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-GLOSSAIRE} 
+\begin{CompactList}\small\item\em Glossaire. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-PAGE\_\-HTML} 
+\begin{CompactList}\small\item\em Simple page HTML à afficher. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-SITE\_\-INTERNET} 
+\begin{CompactList}\small\item\em Lien externe vers un site web. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-TABLEAU\_\-DE\_\-BORD} 
+\begin{CompactList}\small\item\em Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-TEXTE\_\-FORMATTE} 
+\begin{CompactList}\small\item\em Texte avec possibilité de mise en forme réduite par balises. \item\end{CompactList}\item 
+enum {\bf LIEN\_\-UNITE} 
+\begin{CompactList}\small\item\em Unité d'apprentissage. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - état d'identification utilisateur}\par
+\begin{CompactItemize}
+\item 
+enum \textbf{LOGIN\_\-MDP\_\-INCORRECT} 
+\item 
+enum {\bf LOGIN\_\-OK} 
+\begin{CompactList}\small\item\em Le login s'est déroulé sans problème. \item\end{CompactList}\item 
+enum \textbf{LOGIN\_\-PAS\_\-ENCORE\_\-ID} 
+\item 
+enum \textbf{LOGIN\_\-PERSONNE\_\-INCONNUE} 
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - modalités individuelles ou par équipes pour certaines sous-activités}\par
+\begin{CompactItemize}
+\item 
+enum {\bf MODALITE\_\-IDEM\_\-PARENT} 
+\begin{CompactList}\small\item\em Reprend la modalité de l'élément parent. \item\end{CompactList}\item 
+enum {\bf MODALITE\_\-INDIVIDUEL} 
+\begin{CompactList}\small\item\em Activité individuelle. \item\end{CompactList}\item 
+enum {\bf MODALITE\_\-PAR\_\-EQUIPE} 
+\begin{CompactList}\small\item\em Isolée ==$>$ Les équipes ne voient pas les autres équipes. \item\end{CompactList}\item 
+enum {\bf MODALITE\_\-PAR\_\-EQUIPE\_\-COLLABORANTE} 
+\begin{CompactList}\small\item\em Collaborante ==$>$ Les équipes voient les autres équipes et peuvent collaborer. \item\end{CompactList}\item 
+enum {\bf MODALITE\_\-PAR\_\-EQUIPE\_\-INTERCONNECTEE} 
+\begin{CompactList}\small\item\em Interconnectée ==$>$ Les équipes voient les autres équipes mais ne peuvent pas collaborer entre elles. \item\end{CompactList}\item 
+enum {\bf MODALITE\_\-POUR\_\-TOUS} 
+\begin{CompactList}\small\item\em Tout le monde participe et voit la participation des autres, mais à titre individuel. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - types d'éléments dans les formulaires}\par
+\begin{CompactItemize}
+\item 
+enum {\bf OBJFORM\_\-MPSEPARATEUR} 
+\begin{CompactList}\small\item\em Ligne de séparation; élément de mise en page pure. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-MPTEXTE} 
+\begin{CompactList}\small\item\em Texte; élément de mise en page pure, pas de réponse à donner. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QCOCHER} 
+\begin{CompactList}\small\item\em Ensemble de cases à cocher à choix multiples. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QLISTEDEROUL} 
+\begin{CompactList}\small\item\em Liste déroulante à choix unique. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QNOMBRE} 
+\begin{CompactList}\small\item\em Boîte de texte où seuls les nombres sont autorisés. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QRADIO} 
+\begin{CompactList}\small\item\em Ensemble de boutons radio à choix unique. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QTEXTECOURT} 
+\begin{CompactList}\small\item\em Boîte de texte mono-ligne. \item\end{CompactList}\item 
+enum {\bf OBJFORM\_\-QTEXTELONG} 
+\begin{CompactList}\small\item\em Boîte de texte multi-lignes. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - tri à effectuer lorsque des affichages en colonnes sont présents}\par
+\begin{CompactItemize}
+\item 
+enum {\bf PAS\_\-TRI} 
+\begin{CompactList}\small\item\em Aucun tri ne doit avoir lieu. \item\end{CompactList}\item 
+enum {\bf TRI\_\-CROISSANT} 
+\begin{CompactList}\small\item\em Tri par ordre croissant. \item\end{CompactList}\item 
+enum {\bf TRI\_\-DECROISSANT} 
+\begin{CompactList}\small\item\em Tri par ordre décroissant. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - éléments de la session enregistrée dans le cookie}\par
+\begin{CompactItemize}
+\item 
+enum {\bf SESSION\_\-ACTIV} 
+\begin{CompactList}\small\item\em Numéro de l'activité. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-DEBUT} 
+\begin{CompactList}\small\item\em Représente toujours la 1ère constante de session (0); utilisée dans les boucles. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-DOSSIER\_\-FORMS} 
+\begin{CompactList}\small\item\em Numéro du dossier de formations. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-FIN} 
+\begin{CompactList}\small\item\em Devrait toujours être identique à la dernière constante de session; utilisée dans les boucles. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-FORM} 
+\begin{CompactList}\small\item\em Numéro de la formation courante. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-LANG} 
+\begin{CompactList}\small\item\em Langue de l'interface de l'utilisateur. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-MDP} 
+\begin{CompactList}\small\item\em Mot de passe de la personne. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-MOD} 
+\begin{CompactList}\small\item\em Numéro du module/cours courant. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-NOM} 
+\begin{CompactList}\small\item\em Nom de la personne. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-PRENOM} 
+\begin{CompactList}\small\item\em Prénom de la personne. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-PSEUDO} 
+\begin{CompactList}\small\item\em Pseudo de la personne. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-SOUSACTIV} 
+\begin{CompactList}\small\item\em Numéro de la sous-activité. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-STATUT\_\-ABSOLU} 
+\begin{CompactList}\small\item\em Statut de l'utilisateur le plus important. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-STATUT\_\-UTILISATEUR} 
+\begin{CompactList}\small\item\em Statut que l'utilisateur a choisi. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-TRI\_\-COLONNE} 
+\begin{CompactList}\small\item\em Pour les écrans où l'on peut trier des tableaux, la colonne de tri principale. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-TRI\_\-DIRECTION} 
+\begin{CompactList}\small\item\em Toujours pour les mêmes écrans, tri croissant ou décroissant ? \item\end{CompactList}\item 
+enum {\bf SESSION\_\-UID} 
+\begin{CompactList}\small\item\em Numéro ID unique donné par la table 'Evenement'. \item\end{CompactList}\item 
+enum {\bf SESSION\_\-UNITE} 
+\begin{CompactList}\small\item\em Numéro de l'unité courante (plus utilisé). \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - modalités de soumission d'un formulaire au tuteur}\par
+\begin{CompactItemize}
+\item 
+enum {\bf SOUMISSION\_\-AUTOMATIQUE} 
+\begin{CompactList}\small\item\em Le formulaire est automatiquement soumis au tuteur dès que l'étudiant l'a complété. \item\end{CompactList}\item 
+enum {\bf SOUMISSION\_\-MANUELLE} 
+\begin{CompactList}\small\item\em L'étudiant devra encore soumettre le document au tuteur quand il aura rempli le formulaire. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - statuts/disponibilité des éléments de structure}\par
+\begin{CompactItemize}
+\item 
+enum {\bf STATUT\_\-ARCHIVE} 
+\begin{CompactList}\small\item\em Pas certain que cette constante est utilisée actuellement. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-EFFACE} 
+\begin{CompactList}\small\item\em L'élément est effacé logiquement, un admin pourra le récupérer dans l'outil Corbeille. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-FERME} 
+\begin{CompactList}\small\item\em Le lien est visible mais pas accessible. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-IDEM\_\-PARENT} 
+\begin{CompactList}\small\item\em Reprend le statut ouvert/fermé/etc de la structure parente. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-INVISIBLE} 
+\begin{CompactList}\small\item\em Le lien n'est pas affiché. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-LECTURE\_\-SEULE} 
+\begin{CompactList}\small\item\em Le lien est visible, cliquable mais l'utilisateur ne pourra plus rien modifier. \item\end{CompactList}\item 
+enum {\bf STATUT\_\-OUVERT} 
+\begin{CompactList}\small\item\em Le lien est visible et accessible. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - éléments de \char`\"{}structure\char`\"{} de formation}\par
+\begin{CompactItemize}
+\item 
+enum {\bf TYPE\_\-ACTIVITE} 
+\begin{CompactList}\small\item\em Activité. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-FORMATION} 
+\begin{CompactList}\small\item\em Formation/Session. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-INCONNU} 
+\begin{CompactList}\small\item\em Type inconnu. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-MODULE} 
+\begin{CompactList}\small\item\em Module/Cours. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-RUBRIQUE} 
+\begin{CompactList}\small\item\em Rubrique. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-SOUS\_\-ACTIVITE} 
+\begin{CompactList}\small\item\em Sous-activité. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-UNITE} 
+\begin{CompactList}\small\item\em Unité. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - types d'événements (à logger)}\par
+\begin{CompactItemize}
+\item 
+enum {\bf TYPE\_\-EVEN\_\-DECONNEXION} 
+\begin{CompactList}\small\item\em L'utilisateur s'est explicitement déconnecté. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-EVEN\_\-LOGIN\_\-RATE} 
+\begin{CompactList}\small\item\em La tentative de login a echoué. \item\end{CompactList}\item 
+enum {\bf TYPE\_\-EVEN\_\-LOGIN\_\-REUSSI} 
+\begin{CompactList}\small\item\em La tentative de login a réussi. \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\subsection*{Fonctions}
+\begin{CompactItemize}
+\item 
+{\bf retListeStatuts} (\$v\_\-sGenre=\char`\"{}F\char`\"{})
+\begin{CompactList}\small\item\em Retourne un tableau de chaînes de caractères représentant la version textuelle d'un statut ouvert/fermé/etc pour les éléments des formations. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$sDirDatabase} = dir\_\-database()\label{plate__forme_8class_8php_10892d06666ceb83982eafff03ca80b5}
+
+\item 
+\textbf{\$sDirInclude} = dir\_\-include()\label{plate__forme_8class_8php_17b09941c14c8f755ebc693858657541}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation du type de l'énumération}
+\index{plate\_\-forme.class.php@{plate\_\-forme.class.php}!LIEN\_\-UNITE@{LIEN\_\-UNITE}}
+\index{LIEN\_\-UNITE@{LIEN\_\-UNITE}!plate_forme.class.php@{plate\_\-forme.class.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}enum {\bf LIEN\_\-UNITE}}\label{plate__forme_8class_8php_8e9eb37eca2ac544e3ca2971faaa4463}
+
+
+Unité d'apprentissage. 
+
+\begin{Desc}
+\item[{\bf À faire}]mieux expliquer différence Rubrique/Unité \end{Desc}
+\index{plate\_\-forme.class.php@{plate\_\-forme.class.php}!MODALITE\_\-POUR\_\-TOUS@{MODALITE\_\-POUR\_\-TOUS}}
+\index{MODALITE\_\-POUR\_\-TOUS@{MODALITE\_\-POUR\_\-TOUS}!plate_forme.class.php@{plate\_\-forme.class.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}enum {\bf MODALITE\_\-POUR\_\-TOUS}}\label{plate__forme_8class_8php_bda97b80518494d3673623461fbb4ecb}
+
+
+Tout le monde participe et voit la participation des autres, mais à titre individuel. 
+
+\begin{Desc}
+\item[{\bf À faire}]Confirmer cette description \end{Desc}
+\index{plate\_\-forme.class.php@{plate\_\-forme.class.php}!STATUT\_\-ARCHIVE@{STATUT\_\-ARCHIVE}}
+\index{STATUT\_\-ARCHIVE@{STATUT\_\-ARCHIVE}!plate_forme.class.php@{plate\_\-forme.class.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}enum {\bf STATUT\_\-ARCHIVE}}\label{plate__forme_8class_8php_76501146e29d32302e99e9e972f1f8b5}
+
+
+Pas certain que cette constante est utilisée actuellement. 
+
+\begin{Desc}
+\item[{\bf À faire}]Confirmer cette description \end{Desc}
+
+
+\subsection{Documentation des fonctions}
+\index{plate\_\-forme.class.php@{plate\_\-forme.class.php}!retListeStatuts@{retListeStatuts}}
+\index{retListeStatuts@{retListeStatuts}!plate_forme.class.php@{plate\_\-forme.class.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}retListeStatuts (\$ {\em v\_\-sGenre} = {\tt \char`\"{}F\char`\"{}})}\label{plate__forme_8class_8php_47415fa8c613805277ff7e3fdf81d6d8}
+
+
+Retourne un tableau de chaînes de caractères représentant la version textuelle d'un statut ouvert/fermé/etc pour les éléments des formations. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sGenre}]la chaîne {\tt F} pour obtenir la version au féminin du mot, {\tt M} pour la version au masculin\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le tableau contenant les versions texte des statuts, avec pour indices les constantes STATUT\_\- correspondantes \end{Desc}

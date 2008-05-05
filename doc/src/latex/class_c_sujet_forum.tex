@@ -1,0 +1,302 @@
+\section{Référence de la classe CSujetForum}
+\label{class_c_sujet_forum}\index{CSujetForum@{CSujetForum}}
+
+
+\subsection{Description détaillée}
+Gestion des sujets des forums, et encapsulation de la table SujetForum de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-sTitreSujet, \$v\_\-iModaliteSujet, \$v\_\-iStatutSujet, \$v\_\-bAccessibleVisiteur, \$v\_\-iIdForum, \$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Ajoute un sujet dans la DB. \item\end{CompactList}\item 
+{\bf associerEquipe} (\$v\_\-iIdEquipe)
+\begin{CompactList}\small\item\em Associe un sujet à une équipe. \item\end{CompactList}\item 
+{\bf CSujetForum} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf defRepRessources} (\$v\_\-sRepRessources)
+\begin{CompactList}\small\item\em Définie l'adresse du répertoire des ressources. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_sujet_forum_c4d8e59abcc4ee5dbdd82ae0f324a190}
+
+\begin{CompactList}\small\item\em Efface le sujet. \item\end{CompactList}\item 
+{\bf effacerEquipesAssocieesSujet} ()\label{class_c_sujet_forum_b36a142c74532c604df842df10903c84}
+
+\begin{CompactList}\small\item\em Efface les liens qui relient les équipes au sujet courant. \item\end{CompactList}\item 
+{\bf effacerMessages} ()\label{class_c_sujet_forum_c914378e59dc80246bf25797335d1e98}
+
+\begin{CompactList}\small\item\em Efface les messages contenus dans le sujet. \item\end{CompactList}\item 
+{\bf effacerSujet} ()\label{class_c_sujet_forum_aaf9f0e1b766bed5f495f0141213c948}
+
+\begin{CompactList}\small\item\em Efface le sujet courant dans la DB. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_sujet_forum_32bbb527151caf82458f8381ab685933}
+
+\begin{CompactList}\small\item\em Enregistre(update) dans la DB le sujet courant. \item\end{CompactList}\item 
+{\bf estPourTous} ()
+\begin{CompactList}\small\item\em Vérifie si le sujet est pour toute les équipes. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_sujet_forum_3979b8c8044b618ab20a542cd5d2357b}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initAuteur} ()\label{class_c_sujet_forum_e3fa5a78fef687ac974053298fa8e1c8}
+
+\begin{CompactList}\small\item\em Initialise la variable {\tt oAuteur} (de type \doxyref{CPersonne}{p.}{class_c_personne}) avec l'auteur du sujet. \item\end{CompactList}\item 
+{\bf initMessages} (\$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les messages de ce sujet. \item\end{CompactList}\item 
+{\bf retDateDernierMessagePoster} (\$v\_\-sFormatterDate=\char`\"{}d/m/y H:i\char`\"{}, \$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Retourne la date du dernier message posté dans ce sujet. \item\end{CompactList}\item 
+{\bf retForum} ()
+\begin{CompactList}\small\item\em Retourne le forum parent (de type \doxyref{CForum}{p.}{class_c_forum}). \item\end{CompactList}\item 
+{\bf retNbMessagesDeposesPersonne} (\$v\_\-iIdPers, \$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Retourne le nombre de messages que la personne a déposés dans ce sujet. \item\end{CompactList}\item 
+{\bf retNombreMessages} (\$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Retourne le nombre de messages contenus dans le sujet. \item\end{CompactList}\item 
+{\bf retRepRessources} ()
+\begin{CompactList}\small\item\em Retourne l'adresse du répertoire des ressources. \item\end{CompactList}\item 
+{\bf retTexteModalite} ()
+\begin{CompactList}\small\item\em Retourne en français la modalité courante du sujet. \item\end{CompactList}\item 
+{\bf STRING\_\-LOCK\_\-TABLES} ()
+\begin{CompactList}\small\item\em Retourne les tables à verrouiller de la DB. \item\end{CompactList}\item 
+{\bf verrouillerTables} (\$v\_\-bVerrouillerTables=TRUE)\label{class_c_sujet_forum_ac8140ef5dc33373428722cda80d5d31}
+
+\begin{CompactList}\small\item\em Verrouille les tables en relation avec la table SujetForum. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce sujet}\par
+\begin{CompactItemize}
+\item 
+\textbf{defAccessibleVisiteurs} (\$v\_\-iAccessibleVisiteurs)\label{class_c_sujet_forum_4d2eb17ce0ed17d7882ef5d4473b5ced}
+
+\item 
+\textbf{defModalite} (\$v\_\-iIdModalite)\label{class_c_sujet_forum_37981d1eb343b6aa403ee5be5e5c68d5}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iNumOrdre)\label{class_c_sujet_forum_bc82080757eb7ec47a0adbceb040665b}
+
+\item 
+\textbf{defStatut} (\$v\_\-iIdStatut)\label{class_c_sujet_forum_b5a635353eb738181b45e556de8e6496}
+
+\item 
+\textbf{defTitre} (\$v\_\-sTitre)\label{class_c_sujet_forum_4400f2ae1e9ae8fffb8df9b5c0e761c1}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce sujet}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAccessibleVisiteurs} ()\label{class_c_sujet_forum_20ff68531baec4a6ed3085c665eb54fd}
+
+\item 
+\textbf{retDate} (\$v\_\-sFormatterDate=\char`\"{}d/m/y H:i\char`\"{})\label{class_c_sujet_forum_14ab873c72c53628f4d131ba7b12d6cc}
+
+\item 
+\textbf{retId} ()\label{class_c_sujet_forum_8aed15c7cd18d425d39c7c424e4d6958}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_sujet_forum_ed026f63d35ca1805b81a8581450fcda}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_sujet_forum_ab758f503faba7b5a5d3df0af9ca0623}
+
+\item 
+\textbf{retModalite} ()\label{class_c_sujet_forum_e62c27ea6184231382056921922a223c}
+
+\item 
+\textbf{retNom} ()\label{class_c_sujet_forum_c505ecbbd3d98fe0f5c4317799435fd4}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_sujet_forum_b741a34c191562289c90ff58a780be39}
+
+\item 
+\textbf{retStatut} ()\label{class_c_sujet_forum_0b39fd80da1c317755f0502ac16daaf6}
+
+\item 
+\textbf{retTitre} ()\label{class_c_sujet_forum_5d4d0920994ec79d5496bf750101e6d7}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoMessages}\label{class_c_sujet_forum_4f80dfb9fa18d16cd27373e23dfe3b52}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initMessages()}{p.}{class_c_sujet_forum_895a0048ce61b3fae7813a89402438c3}, contenant les mesages du sujet. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_sujet_forum_0caa489528478e307840c01e7f5254d5}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oAuteur}\label{class_c_sujet_forum_0d1190037db8a4a7ee5bad3ef8c2b072}
+
+\begin{CompactList}\small\item\em Variable de type \doxyref{CPersonne}{p.}{class_c_personne}, contenant l'auteur du sujet. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_sujet_forum_aaf5413cc21f83c5520ce764750967d1}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_sujet_forum_3cb0b2eb365eafa8fbc364f3a80357b6}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$sRepRessources}\label{class_c_sujet_forum_4372f8c7d47ef9f353e8cfbf0a8e04b3}
+
+\begin{CompactList}\small\item\em Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CSujetForum@{CSujetForum}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::ajouter (\$ {\em v\_\-sTitreSujet}, \/  \$ {\em v\_\-iModaliteSujet}, \/  \$ {\em v\_\-iStatutSujet}, \/  \$ {\em v\_\-bAccessibleVisiteur}, \/  \$ {\em v\_\-iIdForum}, \/  \$ {\em v\_\-iIdPers})}\label{class_c_sujet_forum_c68c7bb38a0764018b66be88d9819d3e}
+
+
+Ajoute un sujet dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTitreSujet}]le titre du sujet \item[{\em v\_\-iModaliteSujet}]la modalité du sujet \{MODALITE\_\-IDEM\_\-PARENT $|$ MODALITE\_\-POUR\_\-TOUS $|$ MODALITE\_\-PAR\_\-EQUIPE\} \item[{\em v\_\-iStatutSujet}]statut du sujet \{STATUT\_\-OUVERT $|$ STATUT\_\-LECTURE\_\-SEULE $|$ STATUT\_\-FERME $|$ STATUT\_\-INVISIBLE\} \item[{\em v\_\-bAccessibleVisiteur}]boolean, ce sujet est-il accessible aux visiteurs ? \item[{\em v\_\-iIdForum}]l'id du forum parent \item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nouveau numéro d'identifiant du sujet \end{Desc}
+
+
+Références init().\index{CSujetForum@{CSujetForum}!associerEquipe@{associerEquipe}}
+\index{associerEquipe@{associerEquipe}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::associerEquipe (\$ {\em v\_\-iIdEquipe})}\label{class_c_sujet_forum_13bb4cc13ec8628dc7d8cd4d624fae6a}
+
+
+Associe un sujet à une équipe. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]id équipe \end{description}
+\end{Desc}
+\index{CSujetForum@{CSujetForum}!CSujetForum@{CSujetForum}}
+\index{CSujetForum@{CSujetForum}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::CSujetForum (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_sujet_forum_994a838bb39bee7a2641ef4cc95386dd}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CSujetForum@{CSujetForum}!defRepRessources@{defRepRessources}}
+\index{defRepRessources@{defRepRessources}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::defRepRessources (\$ {\em v\_\-sRepRessources})}\label{class_c_sujet_forum_e927bf9c99b48d6c01cbbcbd8e4d57aa}
+
+
+Définie l'adresse du répertoire des ressources. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sRepRessources}]l'adresse du répertoire des ressources \end{description}
+\end{Desc}
+\index{CSujetForum@{CSujetForum}!estPourTous@{estPourTous}}
+\index{estPourTous@{estPourTous}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::estPourTous ()}\label{class_c_sujet_forum_eb3498cfedff8230a918a2d14904cd65}
+
+
+Vérifie si le sujet est pour toute les équipes. 
+
+\begin{Desc}
+\item[Renvoie:]/c true si le sujet est pour toute les équipes \end{Desc}
+\index{CSujetForum@{CSujetForum}!initMessages@{initMessages}}
+\index{initMessages@{initMessages}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::initMessages (\$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_sujet_forum_895a0048ce61b3fae7813a89402438c3}
+
+
+Initialise un tableau contenant les messages de ce sujet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]si fourni, retourne les messages d'un forum dont la modalité est par équipe\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de messages insérés dans le tableau \end{Desc}
+
+
+Références \$oEnregBdd.
+
+Référencé par effacerMessages().\index{CSujetForum@{CSujetForum}!retDateDernierMessagePoster@{retDateDernierMessagePoster}}
+\index{retDateDernierMessagePoster@{retDateDernierMessagePoster}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retDateDernierMessagePoster (\$ {\em v\_\-sFormatterDate} = {\tt \char`\"{}d/m/y~H:i\char`\"{}}, \/  \$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_sujet_forum_58bf67f11bab6290c398a2796425f629}
+
+
+Retourne la date du dernier message posté dans ce sujet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFormatterDate}]format de la date \item[{\em v\_\-iIdEquipe}]id de l'équipe(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la date du dernier message posté dans ce sujet \end{Desc}
+
+
+Références \$oEnregBdd.\index{CSujetForum@{CSujetForum}!retForum@{retForum}}
+\index{retForum@{retForum}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retForum ()}\label{class_c_sujet_forum_6d66d540661531debd03bc0abb22b31b}
+
+
+Retourne le forum parent (de type \doxyref{CForum}{p.}{class_c_forum}). 
+
+\begin{Desc}
+\item[Renvoie:]le forum parent \end{Desc}
+\index{CSujetForum@{CSujetForum}!retNbMessagesDeposesPersonne@{retNbMessagesDeposesPersonne}}
+\index{retNbMessagesDeposesPersonne@{retNbMessagesDeposesPersonne}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retNbMessagesDeposesPersonne (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_sujet_forum_9463460fef601a237325626c7121dc4a}
+
+
+Retourne le nombre de messages que la personne a déposés dans ce sujet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]id de la personne \item[{\em v\_\-iIdEquipe}]id de l'équipe(optionnel) \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de messages dans ce sujet de la personne désiré. \end{Desc}
+\index{CSujetForum@{CSujetForum}!retNombreMessages@{retNombreMessages}}
+\index{retNombreMessages@{retNombreMessages}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retNombreMessages (\$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_sujet_forum_1f9470c80cec1c3214b7ded3c8ce5988}
+
+
+Retourne le nombre de messages contenus dans le sujet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]si fourni, le nombre de messages de l'équipe\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de messages contenus dans le sujet \end{Desc}
+\index{CSujetForum@{CSujetForum}!retRepRessources@{retRepRessources}}
+\index{retRepRessources@{retRepRessources}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retRepRessources ()}\label{class_c_sujet_forum_1ed9c19a271cfff8064033153c1b08f3}
+
+
+Retourne l'adresse du répertoire des ressources. 
+
+\begin{Desc}
+\item[Renvoie:]l'adresse du répertoire des ressources \end{Desc}
+
+
+Référencé par effacerMessages().\index{CSujetForum@{CSujetForum}!retTexteModalite@{retTexteModalite}}
+\index{retTexteModalite@{retTexteModalite}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::retTexteModalite ()}\label{class_c_sujet_forum_fc9fd146e425e28a30c78661d3004086}
+
+
+Retourne en français la modalité courante du sujet. 
+
+\begin{Desc}
+\item[Renvoie:]en français la modalité courante du sujet \end{Desc}
+\index{CSujetForum@{CSujetForum}!STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}}
+\index{STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}!CSujetForum@{CSujetForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSujetForum::STRING\_\-LOCK\_\-TABLES ()}\label{class_c_sujet_forum_3cd4dca04e91bb0dc5e5f98b3ea01e47}
+
+
+Retourne les tables à verrouiller de la DB. 
+
+\begin{Desc}
+\item[Renvoie:]les tables à verrouiller de la DB \end{Desc}
+
+
+Références CMessageForum::STRING\_\-LOCK\_\-TABLES().
+
+Référencé par CForum::STRING\_\-LOCK\_\-TABLES().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf sujetforum.tbl.php}\end{CompactItemize}

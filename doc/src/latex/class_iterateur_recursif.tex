@@ -1,0 +1,163 @@
+\section{Référence de la classe IterateurRecursif}
+\label{class_iterateur_recursif}\index{IterateurRecursif@{IterateurRecursif}}
+Graphe d'héritage de IterateurRecursif::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_iterateur_recursif}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+constante interne à des fins de vérification 
+
+Itérateur \char`\"{}décorateur\char`\"{} qui permet de parcourir automatiquement non seulement les éléments d'un itérateur, mais aussi les enfants de ce dernier lorsqu'il y en a. L'itérateur \char`\"{}décoré\char`\"{} doit implémenter l'interface \doxyref{IterateurComposite}{p.}{class_iterateur_composite} pour que ça fonctionne
+
+\begin{Desc}
+\item[{\bf À faire}]: \doxyref{taille()}{p.}{class_iterateur_decorateur_30ac1db0dd4f46fa5be76d2489fa0c29}, \doxyref{rechercher()}{p.}{class_iterateur_decorateur_90259cf14884dba26fea2249689fdbbd}, \doxyref{estPremier()}{p.}{class_iterateur_decorateur_d18c4f1eb863485ea629a70e24b47857}, et \doxyref{estDernier()}{p.}{class_iterateur_decorateur_38946bd116945c792f078b10672be663} ne fonctionnent pas correctement pour l'instant \end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]: prec() ??? (car on hérite d'IterateurTableau, bidirectionnel, gasp!) \end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]: voir s'il y a moyen de modifier la façon d'implémenter {\tt \_\-bDoitRetournerParent}, car le nom n'est pas clair, et également, y a-t-il moyen de faire tous les test le concernant dans \doxyref{\_\-trouverElementSuiv()}{p.}{class_iterateur_recursif_867453bc3d443e212b689230e8201708}, qui deviendrait peut-être lui-même \doxyref{suiv()}{p.}{class_iterateur_recursif_05e95b2a82b1bcbb81a954422a3da897} (car pour le moment \doxyref{suiv()}{p.}{class_iterateur_recursif_05e95b2a82b1bcbb81a954422a3da897} doit également effectuer des tests qui devraient peut-être être effectués par \doxyref{\_\-trouverElementSuiv()}{p.}{class_iterateur_recursif_867453bc3d443e212b689230e8201708}) \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf \_\-aSousIterateurs} ()
+\begin{CompactList}\small\item\em Indique si l'itérateur récursif se trouve actuellement dans un sous-itérateur, ou dans l'itérateur principal (passé à l'origine au constructeur). \item\end{CompactList}\item 
+{\bf \_\-initSousIterateur} ()\label{class_iterateur_recursif_b9f07fd756c3b478a742591534fc14ff}
+
+\begin{CompactList}\small\item\em Initialise un itérateur sur les enfants de l'élément courant de l'itérateur en cours. \item\end{CompactList}\item 
+\& {\bf \_\-retIterateurCourant} ()
+\item 
+\& {\bf \_\-terminerIterateurCourant} ()
+\begin{CompactList}\small\item\em Détruit les données de l'itérateur (normalement un sous-itérateur) courant. \item\end{CompactList}\item 
+{\bf \_\-trouverElementSuiv} ()
+\begin{CompactList}\small\item\em Détermine si l'élément courant de l'itérateur courant est celui qui devra réellement être retourné lors du prochain appel à \doxyref{courant()}{p.}{class_iterateur_recursif_2d18c67633c9097387b1cfa331aba43c}. \item\end{CompactList}\item 
+{\bf cle} ()\label{class_iterateur_recursif_b26f693b8eaa58fbc6e46ce4c3b6e134}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::cle()}{p.}{class_iterateur_0bc2b87d3fa65a6df5c4d5134402d4ba}. \item\end{CompactList}\item 
+{\bf courant} ()\label{class_iterateur_recursif_2d18c67633c9097387b1cfa331aba43c}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::courant()}{p.}{class_iterateur_525e78b4e7c5aec4cc4e8003ca9e730b}. \item\end{CompactList}\item 
+{\bf debut} ()\label{class_iterateur_recursif_39a17af13a13a1e550f85f98d9849fda}
+
+\begin{CompactList}\small\item\em Réinitialise l'itération au début de l'itérateur principal (les emplacement dans d'éventuels sous-itérateurs sont perdus). \item\end{CompactList}\item 
+{\bf estValide} ()\label{class_iterateur_recursif_a6219f3c1ebefc36df64216bfdc7eb2d}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::estValide()}{p.}{class_iterateur_33d904743c851b2c959c514ecce923c8}. \item\end{CompactList}\item 
+{\bf fin} ()
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::fin()}{p.}{class_iterateur_487fadeda3651d2add97628652fa6d1e}. \item\end{CompactList}\item 
+{\bf IterateurRecursif} (\$v\_\-oItr, \$v\_\-iMode={\bf ITR\_\-REC\_\-FEUILLES\_\-SEUL})
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf retNiveau} ()
+\item 
+{\bf suiv} ()
+\begin{CompactList}\small\item\em Déplace l'itérateur d'une position vers l'avant. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoItr} = array()\label{class_iterateur_recursif_e31cae0dbbcce8402b2bfdf6e3d598de}
+
+\begin{CompactList}\small\item\em Les différents niveau d'itérateurs courants (le principal est toujours l'indice 0). \item\end{CompactList}\item 
+{\bf \$iMode} = {\bf ITR\_\-REC\_\-FEUILLES\_\-SEUL}\label{class_iterateur_recursif_051594759c4a761511a2bd8c23a58bc2}
+
+\begin{CompactList}\small\item\em Le mode de récursion utilisé (voir constantes {\tt ITR\_\-REC\_\-}...). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurRecursif@{IterateurRecursif}!\_\-aSousIterateurs@{\_\-aSousIterateurs}}
+\index{\_\-aSousIterateurs@{\_\-aSousIterateurs}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::\_\-aSousIterateurs ()}\label{class_iterateur_recursif_a85a15c4e016da1b0b471aa51d9d523e}
+
+
+Indique si l'itérateur récursif se trouve actuellement dans un sous-itérateur, ou dans l'itérateur principal (passé à l'origine au constructeur). 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'itération a actuellement lieu dans un sous-itérateur, {\tt false} si l'itération est en cours dans l'itérateur principal \end{Desc}
+
+
+Référencé par \_\-trouverElementSuiv(), debut(), et fin().\index{IterateurRecursif@{IterateurRecursif}!\_\-retIterateurCourant@{\_\-retIterateurCourant}}
+\index{\_\-retIterateurCourant@{\_\-retIterateurCourant}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\& IterateurRecursif::\_\-retIterateurCourant ()}\label{class_iterateur_recursif_8a4d4a197bcf1b96622d881997b82bc1}
+
+
+\begin{Desc}
+\item[Renvoie:]une référence vers l'itérateur ou le sous-itérateur courant (celui sur lequel sont appliquées les opérations telles que \doxyref{suiv()}{p.}{class_iterateur_recursif_05e95b2a82b1bcbb81a954422a3da897}) \end{Desc}
+
+
+Référencé par \_\-initSousIterateur(), \_\-terminerIterateurCourant(), \_\-trouverElementSuiv(), cle(), courant(), estValide(), et suiv().\index{IterateurRecursif@{IterateurRecursif}!\_\-terminerIterateurCourant@{\_\-terminerIterateurCourant}}
+\index{\_\-terminerIterateurCourant@{\_\-terminerIterateurCourant}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\& IterateurRecursif::\_\-terminerIterateurCourant ()}\label{class_iterateur_recursif_4007163f320f0d3d0c7015235385ad24}
+
+
+Détruit les données de l'itérateur (normalement un sous-itérateur) courant. 
+
+\begin{Desc}
+\item[Renvoie:]une référence vers le parent du sous-itérateur qui vient d'être détruit \end{Desc}
+
+
+Références \_\-retIterateurCourant().
+
+Référencé par \_\-trouverElementSuiv(), debut(), et fin().\index{IterateurRecursif@{IterateurRecursif}!\_\-trouverElementSuiv@{\_\-trouverElementSuiv}}
+\index{\_\-trouverElementSuiv@{\_\-trouverElementSuiv}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::\_\-trouverElementSuiv ()}\label{class_iterateur_recursif_867453bc3d443e212b689230e8201708}
+
+
+Détermine si l'élément courant de l'itérateur courant est celui qui devra réellement être retourné lors du prochain appel à \doxyref{courant()}{p.}{class_iterateur_recursif_2d18c67633c9097387b1cfa331aba43c}. 
+
+Cette méthode se charge par exemple de passer dans un sous-itérateur sur les enfants de l'élément courant si c'est possible, de revenir dans un itérateur parent quand le sous-itérateur courant se termine, etc. 
+
+Références IterateurDecorateur::\$oItr, \_\-aSousIterateurs(), \_\-initSousIterateur(), \_\-retIterateurCourant(), \_\-terminerIterateurCourant(), estValide(), et suiv().
+
+Référencé par \_\-initSousIterateur(), debut(), fin(), et suiv().\index{IterateurRecursif@{IterateurRecursif}!fin@{fin}}
+\index{fin@{fin}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::fin ()}\label{class_iterateur_recursif_077f50f7e214a50643d0f477f80a09b1}
+
+
+Voir \doxyref{Iterateur::fin()}{p.}{class_iterateur_487fadeda3651d2add97628652fa6d1e}. 
+
+\begin{Desc}
+\item[Note:]Comme \doxyref{debut()}{p.}{class_iterateur_recursif_39a17af13a13a1e550f85f98d9849fda}, agit également uniquement sur l'itérateur principal, pas sur les sous-itérateurs éventuellements en cours \end{Desc}
+
+
+Réimplémentée à partir de {\bf IterateurDecorateur} \doxyref{}{p.}{class_iterateur_decorateur_9d4f3052b38a46171ce1ba55b7eedee1}.
+
+Références \_\-aSousIterateurs(), \_\-terminerIterateurCourant(), et \_\-trouverElementSuiv().\index{IterateurRecursif@{IterateurRecursif}!IterateurRecursif@{IterateurRecursif}}
+\index{IterateurRecursif@{IterateurRecursif}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::IterateurRecursif (\$ {\em v\_\-oItr}, \/  \$ {\em v\_\-iMode} = {\tt {\bf ITR\_\-REC\_\-FEUILLES\_\-SEUL}})}\label{class_iterateur_recursif_93a13afe47b5bf71dcc2061191d91080}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oItr}]l'itérateur qui sera parcouru en utilisant la récursion. Ce dernier doit implémenter l'interface ItérateurComposite \item[{\em v\_\-iMode}]le mode de récursion voulu pour l'itération (voir constantes {\tt ITR\_\-REC\_\-}...) \end{description}
+\end{Desc}
+
+
+Références debut(), OO::instanceDe(), et Erreur::provoquer().\index{IterateurRecursif@{IterateurRecursif}!retNiveau@{retNiveau}}
+\index{retNiveau@{retNiveau}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::retNiveau ()}\label{class_iterateur_recursif_9fa1c31eb9a23e922167427d1dab23df}
+
+
+\begin{Desc}
+\item[Renvoie:]le niveau de l'itérateur courant, càd le nombre d'ancêtres dont il dispose \end{Desc}
+\index{IterateurRecursif@{IterateurRecursif}!suiv@{suiv}}
+\index{suiv@{suiv}!IterateurRecursif@{IterateurRecursif}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurRecursif::suiv ()}\label{class_iterateur_recursif_05e95b2a82b1bcbb81a954422a3da897}
+
+
+Déplace l'itérateur d'une position vers l'avant. 
+
+Dans le cas de notre itérateur récursif, cela veut également dire que si un élément d'itérateur est lui-même \char`\"{}traversable\char`\"{}, l'itération continue également dans les enfants de cet élément (=sous-itérateur). De même, un appel à \doxyref{suiv()}{p.}{class_iterateur_recursif_05e95b2a82b1bcbb81a954422a3da897} lorsqu'un sous-itérateur est en position finale retourne le prochain élément de l'itérateur parent qui avait été \char`\"{}laissé\char`\"{} (si ce dernier en contient encore, évidemment) 
+
+Réimplémentée à partir de {\bf IterateurDecorateur} \doxyref{}{p.}{class_iterateur_decorateur_5eabb86ff35f180ca62ff15d7ae189eb}.
+
+Références IterateurDecorateur::\$oItr, \_\-retIterateurCourant(), et \_\-trouverElementSuiv().
+
+Référencé par \_\-trouverElementSuiv().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurRecursif.php}\end{CompactItemize}

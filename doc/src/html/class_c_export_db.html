@@ -1,0 +1,937 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CExportDb</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CExportDb</h1><!-- doxytag: class="CExportDb" -->
+<p>
+<a href="class_c_export_db-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe de gestion des exportations d'enregistrements en cascade à partir de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#ecd67c4b1bc102ef89473d6a34d81c1d">aEnregsAExporter</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détermine si une table a au moins un enregistrement marqué pour exportation.  <a href="#ecd67c4b1bc102ef89473d6a34d81c1d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#ebfbd4afd4875ae8c5908c00a7dbde2b">aEnregsAjoutes</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détermine si la table spécifiée a son drapeau "nouveaux enregistrements trouvés" activé.  <a href="#ebfbd4afd4875ae8c5908c00a7dbde2b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#5612de77e77175294b7158447e22a81b">aEnregsAjoutesToutesTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détermine si au moins une table a son drapeau "nouveaux enregistrements trouvés" activé.  <a href="#5612de77e77175294b7158447e22a81b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#684a7327e368ad6c2bc13596d32e2106">ajouterEnregAExporter</a> ($v_sTable, $v_sValeur)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute, pour une table, la valeur de clé primaire d'un enregistrement à exporter, si celui-ci n'est pas déjà marqué pour exportation.  <a href="#684a7327e368ad6c2bc13596d32e2106"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#d4c11f1d40245ba6002e6d5ec0b80cd4">ajouterEnregsAExporter</a> ($v_sTable, $v_asValeurs)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute, pour une table, les valeurs de clé primaire de plusieurs enregistrements à exporter, si ceux-ci ne sont pas déjà marqués pour exportation.  <a href="#d4c11f1d40245ba6002e6d5ec0b80cd4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#9f8651031fd5da8d780a37733d4a7e99">ajouterPrefixeCle</a> ($v_sPrefixe, $v_sCle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un préfixe et un point devant le nom d'un ou plusieurs champs (dans ce dernier cas, séparés par des virgules), et retourne la chaîne résultante.  <a href="#9f8651031fd5da8d780a37733d4a7e99"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#b0e7e2feacf6080b0b290971d4d064e3">aRelations</a> ($v_sTable, $v_sTypeRel)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détermine si une table possède des relations d'un certain type (parent/enfant) avec au moins une autre table.  <a href="#b0e7e2feacf6080b0b290971d4d064e3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7c48d5e504c989e9bf5ed6265af91474"></a><!-- doxytag: member="CExportDb::CExportDb" ref="7c48d5e504c989e9bf5ed6265af91474" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#7c48d5e504c989e9bf5ed6265af91474">CExportDb</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#cecf8f2f4d2dd15df665adade619e6ca">connecterDb</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réalise la connexion au serveur MySQL.  <a href="#cecf8f2f4d2dd15df665adade619e6ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#3366667eaf74b210ee84f0ed2a9926f6">defClePrimaire</a> ($v_sTable, $v_sCle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre en mémoire le(s) nom(s) du (des) champ(s) composant la clé primaire d'une table.  <a href="#3366667eaf74b210ee84f0ed2a9926f6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#031476f3dfa21dcfb45461141bdb84a4">defEnregsAjoutes</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Active le drapeau "nouveaux enregistrements trouvés" sur une table.  <a href="#031476f3dfa21dcfb45461141bdb84a4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="20c1fa883273f9d2341928faf58659b0"></a><!-- doxytag: member="CExportDb::defEnregsAjoutesToutesTables" ref="20c1fa883273f9d2341928faf58659b0" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#20c1fa883273f9d2341928faf58659b0">defEnregsAjoutesToutesTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Active le drapeau "nouveaux enregistrements trouvés" dans toutes les tables. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#f49b7a7713d79172695685d79cd7d0dd">ecrireFichierResultat</a> ($v_sNomFichier)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ecrit le fichier SQL contenant les résultat de l'exportation.  <a href="#f49b7a7713d79172695685d79cd7d0dd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#e3fbf2c79078c4cc71b35edb55a08c8a">estCommentee</a> ($v_sLigne)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si une chaîne de caractères représentant une ligne de fichier, est considérée comme commentée ou pas.  <a href="#e3fbf2c79078c4cc71b35edb55a08c8a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#dbb783eb9f178cc86216855f50e73cd4">executerRequete</a> ($v_sRequete, $v_bAfficher=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Exécute une requête SQL et renvoie le handle de résultat associé.  <a href="#dbb783eb9f178cc86216855f50e73cd4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#32a9894900288704394b454c54f25af8">executerRequeteSurIds</a> ($v_sRequete)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les ids (clé primaire) d'enregistrements trouvés par une requête SQL.  <a href="#32a9894900288704394b454c54f25af8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#a1a5e57f5d8e5b66e06cbc0be7751005">libererResult</a> ($v_hResult)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Libère les ressources associées à un résultat de requête MySQL.  <a href="#a1a5e57f5d8e5b66e06cbc0be7751005"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5b87ec1e8b408fcd8b2299b8b4e33cd1"></a><!-- doxytag: member="CExportDb::lireFichierClesPrimaires" ref="5b87ec1e8b408fcd8b2299b8b4e33cd1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#5b87ec1e8b408fcd8b2299b8b4e33cd1">lireFichierClesPrimaires</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lit le fichier contenant les infos sur les tables et leurs clés primaires, qui est au format CSV, et les enregistre en mémoire. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fa462d2cc85d116a8e282f3828632c81"></a><!-- doxytag: member="CExportDb::lireFichierEnfants" ref="fa462d2cc85d116a8e282f3828632c81" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#fa462d2cc85d116a8e282f3828632c81">lireFichierEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lit le fichier d'infos sur les relations parent&lt;-enfant entre les tables, et les enregistre en mémoire. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="100151376c1594e7c303671ca80668d5"></a><!-- doxytag: member="CExportDb::lireFichierParents" ref="100151376c1594e7c303671ca80668d5" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#100151376c1594e7c303671ca80668d5">lireFichierParents</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lit le fichier d'infos sur les relations enfant-&gt;parent entre les tables, et les enregistre en mémoire. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#12c172c570ecd8414a562bb9a2916ee7">reinitEnregsAjoutes</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réinitialise les drapeaux "nouveaux enregistrements trouvés" sur une table.  <a href="#12c172c570ecd8414a562bb9a2916ee7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="95b4cbfbf0d9926da6d550e9d7b774ef"></a><!-- doxytag: member="CExportDb::reinitEnregsAjoutesToutesTables" ref="95b4cbfbf0d9926da6d550e9d7b774ef" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#95b4cbfbf0d9926da6d550e9d7b774ef">reinitEnregsAjoutesToutesTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réinitialise les drapeaux "nouveeaux enregistrements trouvés" sur toutes les tables. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#f7179250481ce229d8c5382b343993d5">retClePrimaire</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le(s) nom(s) du (des) champ(s) constituant la clé d'une table.  <a href="#f7179250481ce229d8c5382b343993d5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#36d5dc456ed84867e3d6642055a1bb0a">retConditionCle</a> ($v_sPrefixe, $v_sCle, $v_asEnregsAExporter, $v_bInverser=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construit une condition SQL (qui pourra être ajoutée à la clause WHERE d'un SELECT) qui effectue une recherche des valeurs passées en paramètre, dans le ou les champs passé(s) également en paramètre.  <a href="#36d5dc456ed84867e3d6642055a1bb0a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#7934adfee7e7bd75e7298c9201a4c5f5">retEnregsAExporter</a> ($v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les les enregistrements actuellement marqués pour l'exportation dans une table.  <a href="#7934adfee7e7bd75e7298c9201a4c5f5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#78281e40eb72299ae23ab802521ac7e0">trouverRelations</a> ($v_bRecursif=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boucle principale de recherche des enregistrements à exporter.  <a href="#78281e40eb72299ae23ab802521ac7e0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#9da3b281b2618998f5f7197334a0c5dc">trouverRelationsTable</a> ($v_sTableSource, $v_sTypeRel, $v_bRecursif=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Effectue la recherche de nouveaux enregistrements à exporter, en se basant sur les relations parents ou enfants d'une table par rapport aux autres (les enregistrements d'autres tables, dépendants de ceux déjà marqués pour l'exportation dans la table traitée, seront eux aussi marqués pour l'exportation).  <a href="#9da3b281b2618998f5f7197334a0c5dc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#f186efe6376b388828dc6600f9dc64d1">trouverRelationsToutesTables</a> ($v_sTypeRel, $v_bRecursif=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boucle secondaire de recherche des enregistrements à exporter, pour toutes les tables, dans le cadre d'un type de relation spécifique avec les autres tables (soit parent, soit enfant).  <a href="#f186efe6376b388828dc6600f9dc64d1"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c9f44e7a100da302fa70666bcc524896"></a><!-- doxytag: member="CExportDb::$aaTables" ref="c9f44e7a100da302fa70666bcc524896" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#c9f44e7a100da302fa70666bcc524896">$aaTables</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les tables de la DB, leurs noms, relations, et enregistrements à exporter. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="463244f9577c4d22779bd55135ec53f7"></a><!-- doxytag: member="CExportDb::$asCommentairesFichiers" ref="463244f9577c4d22779bd55135ec53f7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#463244f9577c4d22779bd55135ec53f7">$asCommentairesFichiers</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les différents types de commentaires pris en compte dans les fichiers ci-dessus. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5ec79213cea9a0804241016561643341"></a><!-- doxytag: member="CExportDb::$hLien" ref="5ec79213cea9a0804241016561643341" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#5ec79213cea9a0804241016561643341">$hLien</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Handle de connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="be58f8ab3ee6f12b76f2afd16e8b07c9"></a><!-- doxytag: member="CExportDb::$sBase" ref="be58f8ab3ee6f12b76f2afd16e8b07c9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#be58f8ab3ee6f12b76f2afd16e8b07c9">$sBase</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Base de données concernée par l'exportation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="af35fe3d5c94e9555b696ff29dd07f5d"></a><!-- doxytag: member="CExportDb::$sFichierClesPrimaires" ref="af35fe3d5c94e9555b696ff29dd07f5d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#af35fe3d5c94e9555b696ff29dd07f5d">$sFichierClesPrimaires</a> = 'refs_db/cles_primaires.csv'</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chemin du fichier CSV contenant les infos sur les tables et leurs clés primaires. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7f4028e42363d5d93b1945b886ce0d46"></a><!-- doxytag: member="CExportDb::$sFichierRef" ref="7f4028e42363d5d93b1945b886ce0d46" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#7f4028e42363d5d93b1945b886ce0d46">$sFichierRef</a> = 'refs_db/src_reference_dest.csv'</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chemin du fichier CSV contenant les relations enfant-&gt;parent entre tables à prendre en compte. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a5438890b469def893d7985ce743bc6d"></a><!-- doxytag: member="CExportDb::$sFichierRefPar" ref="a5438890b469def893d7985ce743bc6d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#a5438890b469def893d7985ce743bc6d">$sFichierRefPar</a> = 'refs_db/src_referencee_par_dest.csv'</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chemin du fichier CSV contenant les relations parent&lt;-enfant entre tables à prendre en compte. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1a0e935d64f2905014803974adf09d62"></a><!-- doxytag: member="CExportDb::$sHote" ref="1a0e935d64f2905014803974adf09d62" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#1a0e935d64f2905014803974adf09d62">$sHote</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Hôte où se trouve le serveur MySQL. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6fcad6eaa8c95d7b1710d70560c78cc0"></a><!-- doxytag: member="CExportDb::$sMdp" ref="6fcad6eaa8c95d7b1710d70560c78cc0" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#6fcad6eaa8c95d7b1710d70560c78cc0">$sMdp</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mot de passe pour cet utilisateur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="60bb5baff822e69bb1d49fedffbcc1db"></a><!-- doxytag: member="CExportDb::$sUser" ref="60bb5baff822e69bb1d49fedffbcc1db" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html#60bb5baff822e69bb1d49fedffbcc1db">$sUser</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisateur à connecter au serveur MySQL. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="ecd67c4b1bc102ef89473d6a34d81c1d"></a><!-- doxytag: member="CExportDb::aEnregsAExporter" ref="ecd67c4b1bc102ef89473d6a34d81c1d" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::aEnregsAExporter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détermine si une table a au moins un enregistrement marqué pour exportation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table sur laquelle on veut effectuer la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la table spécifiée a des enregistrements à exporter </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, <a class="el" href="export_8php-source.html#l00373">trouverRelations()</a>, et <a class="el" href="export_8php-source.html#l00430">trouverRelationsToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ebfbd4afd4875ae8c5908c00a7dbde2b"></a><!-- doxytag: member="CExportDb::aEnregsAjoutes" ref="ebfbd4afd4875ae8c5908c00a7dbde2b" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::aEnregsAjoutes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détermine si la table spécifiée a son drapeau "nouveaux enregistrements trouvés" activé. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si au la table a son drapeau "nouveaux enregistrements trouvés" activé </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00706">aEnregsAjoutesToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5612de77e77175294b7158447e22a81b"></a><!-- doxytag: member="CExportDb::aEnregsAjoutesToutesTables" ref="5612de77e77175294b7158447e22a81b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::aEnregsAjoutesToutesTables           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détermine si au moins une table a son drapeau "nouveaux enregistrements trouvés" activé. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si au moins une table a son drapeau "nouveaux enregistrements trouvés" activé </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00720">aEnregsAjoutes()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00373">trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="684a7327e368ad6c2bc13596d32e2106"></a><!-- doxytag: member="CExportDb::ajouterEnregAExporter" ref="684a7327e368ad6c2bc13596d32e2106" args="($v_sTable, $v_sValeur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::ajouterEnregAExporter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sValeur</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute, pour une table, la valeur de clé primaire d'un enregistrement à exporter, si celui-ci n'est pas déjà marqué pour exportation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table pour laquelle il faut ajouter un enregistrement à exporter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_sValeur</em>&nbsp;</td><td>la valeur de clé primaire pour l'enregistrements à ajouter à l'exportation. S'il s'agit d'une table pour laquelle la clé primaire est constituée de plusieurs champs, les valeurs doivent être concaténées dans une chaîne, séparées par le caractère '&amp;'</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si au moins l'enregistrement a effectivement été ajouté pour exportation (pour cela il faut qu'il ne s'y trouve pas déjà bien entendu) </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00696">defEnregsAjoutes()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00738">ajouterEnregsAExporter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d4c11f1d40245ba6002e6d5ec0b80cd4"></a><!-- doxytag: member="CExportDb::ajouterEnregsAExporter" ref="d4c11f1d40245ba6002e6d5ec0b80cd4" args="($v_sTable, $v_asValeurs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::ajouterEnregsAExporter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asValeurs</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute, pour une table, les valeurs de clé primaire de plusieurs enregistrements à exporter, si ceux-ci ne sont pas déjà marqués pour exportation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table pour laquelle il faut ajouter/marquer des enregistrements à exporter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_asValeurs</em>&nbsp;</td><td>le tableau des valeurs de clé primaire pour les différents enregistrements à ajouter à l'exportation. S'il s'agit d'une table pour laquelle la clé primaire est constituée de plusieurs champs, les valeurs doivent être concaténées dans une chaîne, et séparées par le caractère '&amp;'</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si au moins un des enregistrements fournis a effectivement été ajouté pour exportation (pour qu'un enregistrement soit ajouté, il faut qu'il ne s'y trouve pas déjà bien entendu) </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00760">ajouterEnregAExporter()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9f8651031fd5da8d780a37733d4a7e99"></a><!-- doxytag: member="CExportDb::ajouterPrefixeCle" ref="9f8651031fd5da8d780a37733d4a7e99" args="($v_sPrefixe, $v_sCle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::ajouterPrefixeCle           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sPrefixe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sCle</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un préfixe et un point devant le nom d'un ou plusieurs champs (dans ce dernier cas, séparés par des virgules), et retourne la chaîne résultante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sPrefixe</em>&nbsp;</td><td>le préfixe à placer devant le ou les champs spécifié(s) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$sv_sCle</em>&nbsp;</td><td>le ou les champ(s) devant le(s)quel(s) ajouter le préfixe spécifié. Si plusieurs champs, ceux-ci seront séparés par des virgules, sans espaces</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la chaîne de caractères représentant le ou les champs donné(s) en entrée, avec le préfixe ajouté </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b0e7e2feacf6080b0b290971d4d064e3"></a><!-- doxytag: member="CExportDb::aRelations" ref="b0e7e2feacf6080b0b290971d4d064e3" args="($v_sTable, $v_sTypeRel)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::aRelations           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTypeRel</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détermine si une table possède des relations d'un certain type (parent/enfant) avec au moins une autre table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table pour laquelle on veut connaître l'existence de relations </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTypeRel</em>&nbsp;</td><td>le type de relation dont on veut connaître l'existence pour la table. Peut valoir <code>'parents'</code> ou <code>'enfants'</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la table spécifiée a des relations du type demandé avec d'autres tables </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cecf8f2f4d2dd15df665adade619e6ca"></a><!-- doxytag: member="CExportDb::connecterDb" ref="cecf8f2f4d2dd15df665adade619e6ca" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::connecterDb           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Réalise la connexion au serveur MySQL. 
+<p>
+Si celle-ci échoue, le script est stoppé 
+<p>Référencé par <a class="el" href="export_8php-source.html#l00200">CExportDb()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3366667eaf74b210ee84f0ed2a9926f6"></a><!-- doxytag: member="CExportDb::defClePrimaire" ref="3366667eaf74b210ee84f0ed2a9926f6" args="($v_sTable, $v_sCle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::defClePrimaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sCle</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enregistre en mémoire le(s) nom(s) du (des) champ(s) composant la clé primaire d'une table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table concernée </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_sCle</em>&nbsp;</td><td>le nom du (des) champ(s) constituant la clé de cette table. Si plusieurs champs, les noms doivent être séparés par un caractère '&amp;' et concaténés en une seule chaîne </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00227">lireFichierClesPrimaires()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="031476f3dfa21dcfb45461141bdb84a4"></a><!-- doxytag: member="CExportDb::defEnregsAjoutes" ref="031476f3dfa21dcfb45461141bdb84a4" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::defEnregsAjoutes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Active le drapeau "nouveaux enregistrements trouvés" sur une table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table pour laquelle il faut activer le drapeau </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00760">ajouterEnregAExporter()</a>, et <a class="el" href="export_8php-source.html#l00685">defEnregsAjoutesToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f49b7a7713d79172695685d79cd7d0dd"></a><!-- doxytag: member="CExportDb::ecrireFichierResultat" ref="f49b7a7713d79172695685d79cd7d0dd" args="($v_sNomFichier)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::ecrireFichierResultat           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomFichier</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ecrit le fichier SQL contenant les résultat de l'exportation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sNomFichier</em>&nbsp;</td><td>le chemin du fichier à écrire </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00781">aEnregsAExporter()</a>, <a class="el" href="export_8php-source.html#l00091">aff()</a>, <a class="el" href="export_8php-source.html#l00113">affln()</a>, <a class="el" href="export_8php-source.html#l00152">debutProf()</a>, <a class="el" href="export_8php-source.html#l00603">executerRequete()</a>, <a class="el" href="export_8php-source.html#l00161">finProf()</a>, <a class="el" href="export_8php-source.html#l00619">libererResult()</a>, <a class="el" href="export_8php-source.html#l00644">retClePrimaire()</a>, <a class="el" href="export_8php-source.html#l00836">retConditionCle()</a>, et <a class="el" href="export_8php-source.html#l00796">retEnregsAExporter()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00373">trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e3fbf2c79078c4cc71b35edb55a08c8a"></a><!-- doxytag: member="CExportDb::estCommentee" ref="e3fbf2c79078c4cc71b35edb55a08c8a" args="($v_sLigne)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::estCommentee           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sLigne</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si une chaîne de caractères représentant une ligne de fichier, est considérée comme commentée ou pas. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sLigne</em>&nbsp;</td><td>la chaîne de caractères représentant la ligne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la ligne est commentée </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00227">lireFichierClesPrimaires()</a>, <a class="el" href="export_8php-source.html#l00265">lireFichierEnfants()</a>, et <a class="el" href="export_8php-source.html#l00246">lireFichierParents()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="dbb783eb9f178cc86216855f50e73cd4"></a><!-- doxytag: member="CExportDb::executerRequete" ref="dbb783eb9f178cc86216855f50e73cd4" args="($v_sRequete, $v_bAfficher=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::executerRequete           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sRequete</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAfficher</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Exécute une requête SQL et renvoie le handle de résultat associé. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sRequete</em>&nbsp;</td><td>la requête SQL à exécuter </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bAfficher</em>&nbsp;</td><td>si <code>true</code>, affiche la requête avant de l'excécuter (pour le déboguage) (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le handle de résultat pour cette requête </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00113">affln()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, et <a class="el" href="export_8php-source.html#l00579">executerRequeteSurIds()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="32a9894900288704394b454c54f25af8"></a><!-- doxytag: member="CExportDb::executerRequeteSurIds" ref="32a9894900288704394b454c54f25af8" args="($v_sRequete)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::executerRequeteSurIds           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sRequete</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les ids (clé primaire) d'enregistrements trouvés par une requête SQL. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sRequete</em>&nbsp;</td><td>la requête SQL à exécuter</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant les valeurs des clés primaires des enregistrements trouvés, si la clé primaire est constituée de plusieurs champs, chaque élément du tableau est une chaîne concaténant les valeurs des champs de la clé primaire, séparées par le caractère '&amp;', par ex. si la clé primaire est IdPers et IdEquipe, les enregistrements trouvés pourraient être représentés par '1&amp;32' ou '22&amp;91' </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00603">executerRequete()</a>, et <a class="el" href="export_8php-source.html#l00619">libererResult()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a1a5e57f5d8e5b66e06cbc0be7751005"></a><!-- doxytag: member="CExportDb::libererResult" ref="a1a5e57f5d8e5b66e06cbc0be7751005" args="($v_hResult)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::libererResult           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_hResult</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Libère les ressources associées à un résultat de requête MySQL. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_hResult</em>&nbsp;</td><td>le handle de résultat dont il faut libérer les ressources </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, et <a class="el" href="export_8php-source.html#l00579">executerRequeteSurIds()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="12c172c570ecd8414a562bb9a2916ee7"></a><!-- doxytag: member="CExportDb::reinitEnregsAjoutes" ref="12c172c570ecd8414a562bb9a2916ee7" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::reinitEnregsAjoutes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Réinitialise les drapeaux "nouveaux enregistrements trouvés" sur une table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table pour laquelle il faut réinitialiser le drapeau </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00666">reinitEnregsAjoutesToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f7179250481ce229d8c5382b343993d5"></a><!-- doxytag: member="CExportDb::retClePrimaire" ref="f7179250481ce229d8c5382b343993d5" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::retClePrimaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le(s) nom(s) du (des) champ(s) constituant la clé d'une table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table de laquelle on veut connaître la clé primaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le(s) nom(s) du (des) champ(s) constituant la clé primaire pour la table spécifiée. Si plusieurs champs, leurs noms sont concaténés et séparés par le caractère '&amp;' dans la chaîne retournée </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, et <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="36d5dc456ed84867e3d6642055a1bb0a"></a><!-- doxytag: member="CExportDb::retConditionCle" ref="36d5dc456ed84867e3d6642055a1bb0a" args="($v_sPrefixe, $v_sCle, $v_asEnregsAExporter, $v_bInverser=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::retConditionCle           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sPrefixe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sCle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEnregsAExporter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInverser</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Construit une condition SQL (qui pourra être ajoutée à la clause WHERE d'un SELECT) qui effectue une recherche des valeurs passées en paramètre, dans le ou les champs passé(s) également en paramètre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sPrefixe</em>&nbsp;</td><td>le préfixe à placer devant le nom du ou des champ(s). Ce préfixe peut être vide </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_sCle</em>&nbsp;</td><td>le ou les champ(s), sous forme de chaîne de caractères, dans le(s)quel(s) il faudra effectuer la recherche. Si plusieurs, ils doivent être séparés par des virgules, sans espaces (et toujours sous forme de chaîne) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_asEnregsAExporter</em>&nbsp;</td><td>les valeurs à rechercher dans le(s) champ(s) spécifié(s), sous forme de tableau. Si plusieurs champs sont spécifiés dans <code>v_sCle</code>, chaque élément du tableau doit alors contenir des valeurs pour chaque champ, ces valeurs étant séparées par une virgule, sans espaces, le tout concaténé en chaîne de caractères</td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bInverser</em>&nbsp;</td><td>si <code>true</code>, la condition est inversée (NOT) (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la chaîne de caractère à ajouter au WHERE et représentant la condition demandée </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, et <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7934adfee7e7bd75e7298c9201a4c5f5"></a><!-- doxytag: member="CExportDb::retEnregsAExporter" ref="7934adfee7e7bd75e7298c9201a4c5f5" args="($v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::retEnregsAExporter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les les enregistrements actuellement marqués pour l'exportation dans une table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTable</em>&nbsp;</td><td>le nom de la table dont on veut récupérer les enregistrements à exporter</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le tableau des valeurs de clé primaire des enregistrements marqués pour l'exportation dans la table spécifiée. Si la clé primaire de cette table est constituée de plusieurs champs, les éléments du tableau sont représentées par une chaîne de caractères reprenant les valeurs de chaque champ, concaténées et séparées par le caractère '&amp;' </dd></dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, <a class="el" href="export_8php-source.html#l00373">trouverRelations()</a>, et <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="78281e40eb72299ae23ab802521ac7e0"></a><!-- doxytag: member="CExportDb::trouverRelations" ref="78281e40eb72299ae23ab802521ac7e0" args="($v_bRecursif=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::trouverRelations           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRecursif</em> = <code>FALSE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Boucle principale de recherche des enregistrements à exporter. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_bRecursif</em>&nbsp;</td><td>si <code>true</code>, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de passages successifs effectués dans les tables pour trouver tous les enregistrements dépendants à exporter </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00781">aEnregsAExporter()</a>, <a class="el" href="export_8php-source.html#l00706">aEnregsAjoutesToutesTables()</a>, <a class="el" href="export_8php-source.html#l00091">aff()</a>, <a class="el" href="export_8php-source.html#l00113">affln()</a>, <a class="el" href="export_8php-source.html#l00133">afflnd()</a>, <a class="el" href="export_8php-source.html#l00152">debutProf()</a>, <a class="el" href="export_8php-source.html#l00286">ecrireFichierResultat()</a>, <a class="el" href="export_8php-source.html#l00161">finProf()</a>, <a class="el" href="export_8php-source.html#l00666">reinitEnregsAjoutesToutesTables()</a>, <a class="el" href="export_8php-source.html#l00796">retEnregsAExporter()</a>, et <a class="el" href="export_8php-source.html#l00430">trouverRelationsToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9da3b281b2618998f5f7197334a0c5dc"></a><!-- doxytag: member="CExportDb::trouverRelationsTable" ref="9da3b281b2618998f5f7197334a0c5dc" args="($v_sTableSource, $v_sTypeRel, $v_bRecursif=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::trouverRelationsTable           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTableSource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTypeRel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRecursif</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Effectue la recherche de nouveaux enregistrements à exporter, en se basant sur les relations parents ou enfants d'une table par rapport aux autres (les enregistrements d'autres tables, dépendants de ceux déjà marqués pour l'exportation dans la table traitée, seront eux aussi marqués pour l'exportation). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTableSource</em>&nbsp;</td><td>la table dont il faut examiner les enregistrements marqués pour l'exportation, pour tenter de trouver des enregistrements d'autres tables qui en sont dépendants (et qui devront donc eux aussi être exportés) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTypeRel</em>&nbsp;</td><td>si <code>'enfants'</code>, la recherche porte, pour les enregistrements exportés de chaque table, sur les enregistrements des autres tables qui les référencent. Si <code>'parents'</code>, elle porte sur les enregistrements des autres tables qui sont référencés par les exportés de chaque table traitée </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bRecursif</em>&nbsp;</td><td>si <code>true</code>, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si de nouveaux enregistrements à exporter ont été trouvés et marqués pour exportation dans une ou plusieurs tables </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00133">afflnd()</a>, <a class="el" href="export_8php-source.html#l00738">ajouterEnregsAExporter()</a>, <a class="el" href="export_8php-source.html#l00811">ajouterPrefixeCle()</a>, <a class="el" href="export_8php-source.html#l00658">aRelations()</a>, <a class="el" href="export_8php-source.html#l00579">executerRequeteSurIds()</a>, <a class="el" href="export_8php-source.html#l00644">retClePrimaire()</a>, <a class="el" href="export_8php-source.html#l00836">retConditionCle()</a>, et <a class="el" href="export_8php-source.html#l00796">retEnregsAExporter()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00430">trouverRelationsToutesTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f186efe6376b388828dc6600f9dc64d1"></a><!-- doxytag: member="CExportDb::trouverRelationsToutesTables" ref="f186efe6376b388828dc6600f9dc64d1" args="($v_sTypeRel, $v_bRecursif=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CExportDb::trouverRelationsToutesTables           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTypeRel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRecursif</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Boucle secondaire de recherche des enregistrements à exporter, pour toutes les tables, dans le cadre d'un type de relation spécifique avec les autres tables (soit parent, soit enfant). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTypeRel</em>&nbsp;</td><td>si <code>'enfants'</code>, la recherche porte, pour les enregistrements exportés de chaque table, sur les enregistrements des autres tables qui les référencent. Si <code>'parents'</code>, elle porte sur les enregistrements des autres tables qui sont référencés par les exportés de chaque table traitée </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bRecursif</em>&nbsp;</td><td>si <code>true</code>, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si de nouveaux enregistrements à exporter ont été trouvés et ajoutés pour une ou plusieurs tables </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00781">aEnregsAExporter()</a>, et <a class="el" href="export_8php-source.html#l00459">trouverRelationsTable()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00373">trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/install/sql/export/<a class="el" href="export_8php.html">export.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

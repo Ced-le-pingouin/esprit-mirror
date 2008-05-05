@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe IterateurFiltre</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe IterateurFiltre</h1><!-- doxytag: class="IterateurFiltre" --><!-- doxytag: inherits="IterateurDecorateur" --><div class="dynheader">
+Graphe d'héritage de IterateurFiltre:</div>
+<div class="dynsection">
+
+<p><center><img src="class_iterateur_filtre.png" usemap="#IterateurFiltre_map" border="0" alt=""></center>
+<map name="IterateurFiltre_map">
+<area href="class_iterateur_decorateur.html" alt="IterateurDecorateur" shape="rect" coords="0,0,131,24">
+<area href="class_iterateur_filtre_dossier.html" alt="IterateurFiltreDossier" shape="rect" coords="0,112,131,136">
+</map>
+</div>
+
+<p>
+<a href="class_iterateur_filtre-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe abstraite qui sert de filtre (sous forme de décorateur) à des objets dérivés de <a class="el" href="class_iterateur.html" title="Interface qui définit les méthodes requises par un itérateur &quot;unidirectionnel&quot;...">Iterateur</a>. 
+<p>
+La méthode abstraite <a class="el" href="class_iterateur_filtre.html#0a6c563c9d39daa92177f697f7046e01" title="Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir...">accepter()</a> doit être redéfinie dans les sous-classes, de façon à déterminer si un élément est considéré comme "acceptable" ou pas selon le filtre utilisé.<p>
+L'algorithme utilisant <a class="el" href="class_iterateur_filtre.html#0a6c563c9d39daa92177f697f7046e01" title="Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir...">accepter()</a> pour retourner ou pas un élément de l'itérateur par la méthode <a class="el" href="class_iterateur_decorateur.html#0556823cb63bdd26ffb6740ac48d6d3a" title="Voir Iterateur::courant().">courant()</a> est quant à lui implémenté ici, et ne doit normalement pas être modifié <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#0a6c563c9d39daa92177f697f7046e01">accepter</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir si l'élément courant est "acceptable" ou pas selon le filtre voulu.  <a href="#0a6c563c9d39daa92177f697f7046e01"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="85e8706ed57553310e22ff0dd929f315"></a><!-- doxytag: member="IterateurFiltre::debut" ref="85e8706ed57553310e22ff0dd929f315" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#85e8706ed57553310e22ff0dd929f315">debut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#1600a0b47466d85a5bb4af10a634b1ed" title="Place l&#39;itérateur sur le premier élément.">Iterateur::debut()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="841092e08858f5f703954687a3c747fa"></a><!-- doxytag: member="IterateurFiltre::fin" ref="841092e08858f5f703954687a3c747fa" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#841092e08858f5f703954687a3c747fa">fin</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#487fadeda3651d2add97628652fa6d1e" title="Place l&#39;itérateur sur le dernier élément.">Iterateur::fin()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#20bef862b796a69638948f0dbc209202">rechercher</a> ($v_Cle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#b05ee08c7fc02253222a8f3604b65804" title="Déplace l&#39;itérateur jusqu&#39;à un emplacement donné en fonction d&#39;une...">Iterateur::rechercher()</a>.  <a href="#20bef862b796a69638948f0dbc209202"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="068dc6ef7df346ed27edf01a4a904c02"></a><!-- doxytag: member="IterateurFiltre::suiv" ref="068dc6ef7df346ed27edf01a4a904c02" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#068dc6ef7df346ed27edf01a4a904c02">suiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#b49e1eadf71ee40a816ed2d5134e0ba7" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">Iterateur::suiv()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#3f5ac10ad099e9820e39a256e272006f">taille</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#40a496bef151a677b180e7805f106acd" title="Retourne le nombre d&#39;éléments présents dans l&#39;itérateur.">Iterateur::taille()</a>.  <a href="#3f5ac10ad099e9820e39a256e272006f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3641e93b694163c659180a4d5c668051"></a><!-- doxytag: member="IterateurFiltre::trouverValideSuiv" ref="3641e93b694163c659180a4d5c668051" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_filtre.html#3641e93b694163c659180a4d5c668051">trouverValideSuiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Avance l'itérateur interne jusqu'au prochain élément qui soit valide (existant) ET accepté par le filtre utilisé. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="0a6c563c9d39daa92177f697f7046e01"></a><!-- doxytag: member="IterateurFiltre::accepter" ref="0a6c563c9d39daa92177f697f7046e01" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurFiltre::accepter           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir si l'élément courant est "acceptable" ou pas selon le filtre voulu. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'élément courant est accepté par le filtre, <code>false</code> sinon </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_iterateur_filtre_dossier.html#e77b977a90be8be025c05c601efd31b1">IterateurFiltreDossier</a>.</p>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_filtre_8php-source.html#l00118">rechercher()</a>, et <a class="el" href="_iterateur_filtre_8php-source.html#l00055">trouverValideSuiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="20bef862b796a69638948f0dbc209202"></a><!-- doxytag: member="IterateurFiltre::rechercher" ref="20bef862b796a69638948f0dbc209202" args="($v_Cle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurFiltre::rechercher           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_Cle</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Voir <a class="el" href="class_iterateur.html#b05ee08c7fc02253222a8f3604b65804" title="Déplace l&#39;itérateur jusqu&#39;à un emplacement donné en fonction d&#39;une...">Iterateur::rechercher()</a>. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Si l'élément recherché par rapport à sa clé est trouvé, mais qu'il ne satisfait pas le filtre, l'itérateur restera dans sa position actuelle et la méthode retournera <code>false</code> </dd></dl>
+
+<p>Réimplémentée à partir de <a class="el" href="class_iterateur_decorateur.html#90259cf14884dba26fea2249689fdbbd">IterateurDecorateur</a>.</p>
+
+<p>Références <a class="el" href="_iterateur_filtre_8php-source.html#l00047">accepter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3f5ac10ad099e9820e39a256e272006f"></a><!-- doxytag: member="IterateurFiltre::taille" ref="3f5ac10ad099e9820e39a256e272006f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurFiltre::taille           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Voir <a class="el" href="class_iterateur.html#40a496bef151a677b180e7805f106acd" title="Retourne le nombre d&#39;éléments présents dans l&#39;itérateur.">Iterateur::taille()</a>. 
+<p>
+<dl class="warning" compact><dt><b>Avertissement:</b></dt><dd>Même remarque sur la performance que pour <a class="el" href="class_iterateur.html#40a496bef151a677b180e7805f106acd" title="Retourne le nombre d&#39;éléments présents dans l&#39;itérateur.">Iterateur::taille()</a> </dd></dl>
+
+<p>Réimplémentée à partir de <a class="el" href="class_iterateur_decorateur.html#30ac1db0dd4f46fa5be76d2489fa0c29">IterateurDecorateur</a>.</p>
+
+<p>Références <a class="el" href="_iterateur_filtre_8php-source.html#l00071">debut()</a>, <a class="el" href="_iterateur_decorateur_8php-source.html#l00079">IterateurDecorateur::estValide()</a>, et <a class="el" href="_iterateur_filtre_8php-source.html#l00080">suiv()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_iterateur_filtre_8php.html">IterateurFiltre.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe IterateurRecursif</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe IterateurRecursif</h1><!-- doxytag: class="IterateurRecursif" --><!-- doxytag: inherits="IterateurDecorateur" --><div class="dynheader">
+Graphe d'héritage de IterateurRecursif:</div>
+<div class="dynsection">
+
+<p><center><img src="class_iterateur_recursif.png" usemap="#IterateurRecursif_map" border="0" alt=""></center>
+<map name="IterateurRecursif_map">
+<area href="class_iterateur_decorateur.html" alt="IterateurDecorateur" shape="rect" coords="0,0,123,24">
+</map>
+</div>
+
+<p>
+<a href="class_iterateur_recursif-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+constante interne à des fins de vérification 
+<p>
+Itérateur "décorateur" qui permet de parcourir automatiquement non seulement les éléments d'un itérateur, mais aussi les enfants de ce dernier lorsqu'il y en a. L'itérateur "décoré" doit implémenter l'interface <a class="el" href="class_iterateur_composite.html" title="Interface dérivée de l&#39;itérateur simple, qui permet en plus de savoir si un...">IterateurComposite</a> pour que ça fonctionne<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">À faire:</a></b></dt><dd>: <a class="el" href="class_iterateur_decorateur.html#30ac1db0dd4f46fa5be76d2489fa0c29" title="Voir Iterateur::taille().">taille()</a>, <a class="el" href="class_iterateur_decorateur.html#90259cf14884dba26fea2249689fdbbd" title="Voir Iterateur::rechercher().">rechercher()</a>, <a class="el" href="class_iterateur_decorateur.html#d18c4f1eb863485ea629a70e24b47857" title="Voir Iterateur::estPremier().">estPremier()</a>, et <a class="el" href="class_iterateur_decorateur.html#38946bd116945c792f078b10672be663" title="Voir Iterateur::estDernier().">estDernier()</a> ne fonctionnent pas correctement pour l'instant </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">À faire:</a></b></dt><dd>: prec() ??? (car on hérite d'IterateurTableau, bidirectionnel, gasp!) </dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000029">À faire:</a></b></dt><dd>: voir s'il y a moyen de modifier la façon d'implémenter <code>_bDoitRetournerParent</code>, car le nom n'est pas clair, et également, y a-t-il moyen de faire tous les test le concernant dans <a class="el" href="class_iterateur_recursif.html#867453bc3d443e212b689230e8201708" title="Détermine si l&#39;élément courant de l&#39;itérateur courant est celui qui devra...">_trouverElementSuiv()</a>, qui deviendrait peut-être lui-même <a class="el" href="class_iterateur_recursif.html#05e95b2a82b1bcbb81a954422a3da897" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">suiv()</a> (car pour le moment <a class="el" href="class_iterateur_recursif.html#05e95b2a82b1bcbb81a954422a3da897" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">suiv()</a> doit également effectuer des tests qui devraient peut-être être effectués par <a class="el" href="class_iterateur_recursif.html#867453bc3d443e212b689230e8201708" title="Détermine si l&#39;élément courant de l&#39;itérateur courant est celui qui devra...">_trouverElementSuiv()</a>) </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#a85a15c4e016da1b0b471aa51d9d523e">_aSousIterateurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si l'itérateur récursif se trouve actuellement dans un sous-itérateur, ou dans l'itérateur principal (passé à l'origine au constructeur).  <a href="#a85a15c4e016da1b0b471aa51d9d523e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b9f07fd756c3b478a742591534fc14ff"></a><!-- doxytag: member="IterateurRecursif::_initSousIterateur" ref="b9f07fd756c3b478a742591534fc14ff" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#b9f07fd756c3b478a742591534fc14ff">_initSousIterateur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un itérateur sur les enfants de l'élément courant de l'itérateur en cours. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#8a4d4a197bcf1b96622d881997b82bc1">_retIterateurCourant</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#4007163f320f0d3d0c7015235385ad24">_terminerIterateurCourant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détruit les données de l'itérateur (normalement un sous-itérateur) courant.  <a href="#4007163f320f0d3d0c7015235385ad24"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#867453bc3d443e212b689230e8201708">_trouverElementSuiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détermine si l'élément courant de l'itérateur courant est celui qui devra réellement être retourné lors du prochain appel à <a class="el" href="class_iterateur_recursif.html#2d18c67633c9097387b1cfa331aba43c" title="Voir Iterateur::courant().">courant()</a>.  <a href="#867453bc3d443e212b689230e8201708"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b26f693b8eaa58fbc6e46ce4c3b6e134"></a><!-- doxytag: member="IterateurRecursif::cle" ref="b26f693b8eaa58fbc6e46ce4c3b6e134" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#b26f693b8eaa58fbc6e46ce4c3b6e134">cle</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#0bc2b87d3fa65a6df5c4d5134402d4ba" title="Retourne la clé de l&#39;élément courant de l&#39;itérateur.">Iterateur::cle()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2d18c67633c9097387b1cfa331aba43c"></a><!-- doxytag: member="IterateurRecursif::courant" ref="2d18c67633c9097387b1cfa331aba43c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#2d18c67633c9097387b1cfa331aba43c">courant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#525e78b4e7c5aec4cc4e8003ca9e730b" title="Retourne l&#39;élément courant de l&#39;itérateur.">Iterateur::courant()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="39a17af13a13a1e550f85f98d9849fda"></a><!-- doxytag: member="IterateurRecursif::debut" ref="39a17af13a13a1e550f85f98d9849fda" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#39a17af13a13a1e550f85f98d9849fda">debut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réinitialise l'itération au début de l'itérateur principal (les emplacement dans d'éventuels sous-itérateurs sont perdus). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a6219f3c1ebefc36df64216bfdc7eb2d"></a><!-- doxytag: member="IterateurRecursif::estValide" ref="a6219f3c1ebefc36df64216bfdc7eb2d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#a6219f3c1ebefc36df64216bfdc7eb2d">estValide</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#33d904743c851b2c959c514ecce923c8" title="Indique si la position courante de l&#39;itérateur est valide, càd si un élément...">Iterateur::estValide()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#077f50f7e214a50643d0f477f80a09b1">fin</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#487fadeda3651d2add97628652fa6d1e" title="Place l&#39;itérateur sur le dernier élément.">Iterateur::fin()</a>.  <a href="#077f50f7e214a50643d0f477f80a09b1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#93a13afe47b5bf71dcc2061191d91080">IterateurRecursif</a> ($v_oItr, $v_iMode=<a class="el" href="_iterateur_recursif_8php.html#9e8bb901efc29d22a16161249c16a29d">ITR_REC_FEUILLES_SEUL</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#93a13afe47b5bf71dcc2061191d91080"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#9fa1c31eb9a23e922167427d1dab23df">retNiveau</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#05e95b2a82b1bcbb81a954422a3da897">suiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Déplace l'itérateur d'une position vers l'avant.  <a href="#05e95b2a82b1bcbb81a954422a3da897"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e31cae0dbbcce8402b2bfdf6e3d598de"></a><!-- doxytag: member="IterateurRecursif::$aoItr" ref="e31cae0dbbcce8402b2bfdf6e3d598de" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#e31cae0dbbcce8402b2bfdf6e3d598de">$aoItr</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Les différents niveau d'itérateurs courants (le principal est toujours l'indice 0). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="051594759c4a761511a2bd8c23a58bc2"></a><!-- doxytag: member="IterateurRecursif::$iMode" ref="051594759c4a761511a2bd8c23a58bc2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_recursif.html#051594759c4a761511a2bd8c23a58bc2">$iMode</a> = <a class="el" href="_iterateur_recursif_8php.html#9e8bb901efc29d22a16161249c16a29d">ITR_REC_FEUILLES_SEUL</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le mode de récursion utilisé (voir constantes <code>ITR_REC_</code>...). <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="a85a15c4e016da1b0b471aa51d9d523e"></a><!-- doxytag: member="IterateurRecursif::_aSousIterateurs" ref="a85a15c4e016da1b0b471aa51d9d523e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::_aSousIterateurs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si l'itérateur récursif se trouve actuellement dans un sous-itérateur, ou dans l'itérateur principal (passé à l'origine au constructeur). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'itération a actuellement lieu dans un sous-itérateur, <code>false</code> si l'itération est en cours dans l'itérateur principal </dd></dl>
+
+<p>Référencé par <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00209">debut()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00278">fin()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8a4d4a197bcf1b96622d881997b82bc1"></a><!-- doxytag: member="IterateurRecursif::_retIterateurCourant" ref="8a4d4a197bcf1b96622d881997b82bc1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">&amp; IterateurRecursif::_retIterateurCourant           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>une référence vers l'itérateur ou le sous-itérateur courant (celui sur lequel sont appliquées les opérations telles que <a class="el" href="class_iterateur_recursif.html#05e95b2a82b1bcbb81a954422a3da897" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">suiv()</a>) </dd></dl>
+
+<p>Référencé par <a class="el" href="_iterateur_recursif_8php-source.html#l00122">_initSousIterateur()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00101">_terminerIterateurCourant()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00255">cle()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00265">courant()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00245">estValide()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00232">suiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="4007163f320f0d3d0c7015235385ad24"></a><!-- doxytag: member="IterateurRecursif::_terminerIterateurCourant" ref="4007163f320f0d3d0c7015235385ad24" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">&amp; IterateurRecursif::_terminerIterateurCourant           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détruit les données de l'itérateur (normalement un sous-itérateur) courant. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>une référence vers le parent du sous-itérateur qui vient d'être détruit </dd></dl>
+
+<p>Références <a class="el" href="_iterateur_recursif_8php-source.html#l00091">_retIterateurCourant()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00209">debut()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00278">fin()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="867453bc3d443e212b689230e8201708"></a><!-- doxytag: member="IterateurRecursif::_trouverElementSuiv" ref="867453bc3d443e212b689230e8201708" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::_trouverElementSuiv           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détermine si l'élément courant de l'itérateur courant est celui qui devra réellement être retourné lors du prochain appel à <a class="el" href="class_iterateur_recursif.html#2d18c67633c9097387b1cfa331aba43c" title="Voir Iterateur::courant().">courant()</a>. 
+<p>
+Cette méthode se charge par exemple de passer dans un sous-itérateur sur les enfants de l'élément courant si c'est possible, de revenir dans un itérateur parent quand le sous-itérateur courant se termine, etc. 
+<p>Références <a class="el" href="_iterateur_decorateur_8php-source.html#l00036">IterateurDecorateur::$oItr</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00114">_aSousIterateurs()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00122">_initSousIterateur()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00091">_retIterateurCourant()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00101">_terminerIterateurCourant()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00245">estValide()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00232">suiv()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_recursif_8php-source.html#l00122">_initSousIterateur()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00209">debut()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00278">fin()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00232">suiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="077f50f7e214a50643d0f477f80a09b1"></a><!-- doxytag: member="IterateurRecursif::fin" ref="077f50f7e214a50643d0f477f80a09b1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::fin           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Voir <a class="el" href="class_iterateur.html#487fadeda3651d2add97628652fa6d1e" title="Place l&#39;itérateur sur le dernier élément.">Iterateur::fin()</a>. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Comme <a class="el" href="class_iterateur_recursif.html#39a17af13a13a1e550f85f98d9849fda" title="Réinitialise l&#39;itération au début de l&#39;itérateur principal (les emplacement...">debut()</a>, agit également uniquement sur l'itérateur principal, pas sur les sous-itérateurs éventuellements en cours </dd></dl>
+
+<p>Réimplémentée à partir de <a class="el" href="class_iterateur_decorateur.html#9d4f3052b38a46171ce1ba55b7eedee1">IterateurDecorateur</a>.</p>
+
+<p>Références <a class="el" href="_iterateur_recursif_8php-source.html#l00114">_aSousIterateurs()</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00101">_terminerIterateurCourant()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="93a13afe47b5bf71dcc2061191d91080"></a><!-- doxytag: member="IterateurRecursif::IterateurRecursif" ref="93a13afe47b5bf71dcc2061191d91080" args="($v_oItr, $v_iMode=ITR_REC_FEUILLES_SEUL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::IterateurRecursif           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oItr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iMode</em> = <code><a class="el" href="_iterateur_recursif_8php.html#9e8bb901efc29d22a16161249c16a29d">ITR_REC_FEUILLES_SEUL</a></code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oItr</em>&nbsp;</td><td>l'itérateur qui sera parcouru en utilisant la récursion. Ce dernier doit implémenter l'interface ItérateurComposite </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iMode</em>&nbsp;</td><td>le mode de récursion voulu pour l'itération (voir constantes <code>ITR_REC_</code>...) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_iterateur_recursif_8php-source.html#l00209">debut()</a>, <a class="el" href="_o_o_8php-source.html#l00159">OO::instanceDe()</a>, et <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9fa1c31eb9a23e922167427d1dab23df"></a><!-- doxytag: member="IterateurRecursif::retNiveau" ref="9fa1c31eb9a23e922167427d1dab23df" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::retNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le niveau de l'itérateur courant, càd le nombre d'ancêtres dont il dispose </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="05e95b2a82b1bcbb81a954422a3da897"></a><!-- doxytag: member="IterateurRecursif::suiv" ref="05e95b2a82b1bcbb81a954422a3da897" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurRecursif::suiv           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Déplace l'itérateur d'une position vers l'avant. 
+<p>
+Dans le cas de notre itérateur récursif, cela veut également dire que si un élément d'itérateur est lui-même "traversable", l'itération continue également dans les enfants de cet élément (=sous-itérateur). De même, un appel à <a class="el" href="class_iterateur_recursif.html#05e95b2a82b1bcbb81a954422a3da897" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">suiv()</a> lorsqu'un sous-itérateur est en position finale retourne le prochain élément de l'itérateur parent qui avait été "laissé" (si ce dernier en contient encore, évidemment) 
+<p>Réimplémentée à partir de <a class="el" href="class_iterateur_decorateur.html#5eabb86ff35f180ca62ff15d7ae189eb">IterateurDecorateur</a>.</p>
+
+<p>Références <a class="el" href="_iterateur_decorateur_8php-source.html#l00036">IterateurDecorateur::$oItr</a>, <a class="el" href="_iterateur_recursif_8php-source.html#l00091">_retIterateurCourant()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_recursif_8php-source.html#l00139">_trouverElementSuiv()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_iterateur_recursif_8php.html">IterateurRecursif.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

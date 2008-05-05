@@ -1,0 +1,355 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+infos
+breves
+GPL
+à propos
+------------------ */
+
+html {
+height:100%;
+/* \*/
+overflow:hidden;
+/**/
+}
+
+/* -- infos -- */
+html.infos,body.infos {
+margin:0;
+}
+
+body.infos h1 {
+font-size:24pt;
+}
+
+body.infos h1 p {
+text-align:right;
+border:#882525 none 1px;
+border-bottom-style:solid;
+}
+
+body.infos div,body.infos p {
+font-style:italic;
+font-size:8pt;
+}
+
+#logo {
+float:left;
+padding-top:20px;
+width:200px;
+text-align:center;
+}
+
+#informations {
+margin-left:0;
+padding:15px;
+}
+
+span#chat_port,span#awareness_port {
+font-style:normal;
+font-weight:bold;
+}
+
+span.administrateur {
+font-style:normal;
+font-weight:bold;
+}
+
+span.administrateur_courriel {
+padding:7px;
+}
+
+#courriel {
+font-weight:bold;
+}
+
+#session_responsables {
+border:#686c47 none 1px;
+border-bottom-style:dashed;
+}
+
+#session_serveur_chat {
+border:#686c47 none 1px;
+border-bottom-style:dashed;
+padding-top:5px;
+padding-bottom:10px;
+}
+
+#session_serveur_awareness {
+border:#686c47 none 1px;
+border-bottom-style:dashed;
+padding-top:5px;
+padding-bottom:10px;
+}
+/* ----- */
+
+/* -- breves -- */
+body.breves {
+margin:0;
+padding:0;
+overflow:hidden;
+height:100%;
+}
+
+#wrap {
+height:100%;
+overflow:auto;
+}
+
+body.breves h4 {
+font-weight:bold;
+font-size:12px;
+color:#FFF;
+background-color:#686c47;
+margin:0;
+padding:4px;
+}
+
+#breves {
+background-image:url("../themes/esprit/login/images/news.gif");
+background-repeat:no-repeat;
+margin:3px;
+padding-bottom:1.5em;
+}
+
+.breve-centered {
+padding:0;
+margin:5px auto;
+display:block;
+text-align:center;
+}
+
+.news-texte {
+font-style:normal;
+font-weight:normal;
+color:#000;
+background-color:#fff5d5;
+margin:0;
+padding:3px;
+}
+
+body.breves #pieddepage {
+position:absolute;
+bottom:0;
+left:0;
+height:1.5em;
+width:100%;
+background-color:#453f30;
+text-align:right;
+z-index:1;
+}
+
+body.breves #pieddepage span {
+margin-right:1em;
+color:#FFF;
+}
+
+body.breves #pieddepage span:hover {
+text-decoration:underline;
+cursor:pointer;
+}
+/* ----- */
+
+/* -- GPL -- */
+body.gpl {
+background-color:#fdf9ee;
+margin:0;
+padding:0;
+color:#000;
+font-family:Verdana,Tahoma,Arial,sans-serif;
+font-size:12px;
+height:100%;
+width:100%;
+overflow:hidden;
+}
+
+body.gpl ol.lettre {
+list-style-type:lower-alpha;
+}
+
+body.gpl label {
+display:block;
+font-weight:bold;
+margin:15px 0 5px;
+}
+
+body.gpl a {
+color:#00004b;
+font-weight:bold;
+text-decoration:none;
+}
+
+body.gpl a:hover {
+text-decoration:underline;
+}
+
+body.gpl #piedpage a {
+color:#fff;
+}
+
+body.gpl #principal {
+height:94%;
+overflow:auto;
+margin:0;
+padding:7px;
+}
+
+body.gpl #piedpage {
+height:6%;
+text-align:right;
+margin:0;
+padding:0 10px;
+border-top:solid #000 1px;
+background-color:#aea58a;
+/*vertical-align:center;*/
+}
+
+body.gpl #fermer {
+margin-top:-13px;
+padding-top:2%;
+display:block;
+}
+
+body.gpl #explication {
+font-size:10px;
+padding:7px;
+margin:5px;
+background-color:#fafafa;
+border:#000 dotted 1px;
+}
+
+body.gpl #explication li {
+list-style-type:none;
+margin:3px;
+padding:0;
+}
+
+body.gpl h1 {
+background-color:#fafafa;
+background-image:url("../themes/esprit/infos-logo.gif");
+background-repeat:no-repeat;
+background-position:5px 2px;
+border:#000 solid 1px;
+padding:5px;
+font-size:20px;
+font-weight:bold;
+padding:20px 0 0 200px;
+height:50px;
+}
+
+body.gpl h2 {
+font-size:18px;
+font-weight:bold;
+text-decoration:underline;
+}
+
+body.gpl h3 {
+font-size:16px;
+font-weight:bold;
+}
+
+body.gpl h4 {
+font-size:14px;
+font-weight:bold;
+}
+
+body.gpl #envoyer {
+display:block;
+margin-top:10px;
+}
+
+body.gpl form,#merci {
+border:#000 solid 1px;
+padding:3px 3px 5px 10px;
+background-color:#e1ddc4;
+width:600px;
+margin-bottom:25px;
+}
+/* ----- */
+
+/* -- à propos -- */
+body.propos
+{
+	margin: 0;
+	padding: 0;
+	color: black;
+	font-family: Verdana,Tahoma,Arial,sans-serif;
+	font-size: 12px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+body.propos h1
+{
+	font-size: 13px;
+	position: absolute;
+	left: 167px;
+	top: 47px;
+	margin: 0;
+	padding: 0;
+}
+body.propos a { color: #0019CF; }
+body.propos dl
+{
+	margin-left: 15px;
+}
+body.propos dt
+{
+	float: left;
+	display: inline;
+}
+body.propos dd
+{
+	margin-left: 165px;
+}
+#bandeau
+{
+	background-image: url('../dialog-titre-fond.gif');
+	background-repeat: repeat-x;
+	background-color: rgb(111,105,87);
+	background-position: 0 10px;
+	width: 100%;
+	height: 16%;
+}
+body.propos #tete
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+body.propos #contenu
+{
+	overflow: auto;
+	margin: 0;
+	padding: 5px;
+	height: 75%;
+}
+body.propos #pieddepage
+{
+	background-color: rgb(174,165,138);
+	color: white;
+	height: 9%;
+	border-top-color: black;
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+body.propos #fermer
+{
+	float: right;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+body.propos #pieddepage a
+{
+	font-size: 11px;
+	color: rgb(255,255,255);
+	font-weight: bold;
+	text-decoration:none;
+}
+body.propos #pieddepage a:hover
+{
+	text-decoration: underline;
+}
+/* ----- */

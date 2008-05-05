@@ -1,0 +1,904 @@
+\section{Référence de la classe CFormation}
+\label{class_c_formation}\index{CFormation@{CFormation}}
+
+
+\subsection{Description détaillée}
+Gestion des formations, et encapsulation de la table Formation de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf accessibleVisiteurs} ()
+\begin{CompactList}\small\item\em Retourne l'autorisation d'accès des visiteurs à la formation. \item\end{CompactList}\item 
+{\bf ajouter} (\$v\_\-sNomForm=NULL, \$v\_\-sDescrForm=NULL, \$v\_\-iInscrSpontForm=1, \$v\_\-iIdPers=0)
+\begin{CompactList}\small\item\em Ajoute une nouvelle formation. \item\end{CompactList}\item 
+{\bf ajouterElementsGlossaire} (\$v\_\-iIdGlossaire, \$v\_\-aiIdsElementsGlossaire)
+\item 
+{\bf ajouterGlossaire} (\$v\_\-sTitreGlossaire, \$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Ajoute un nouveau glossaire à la formation. \item\end{CompactList}\item 
+{\bf associerResponsable} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Ajoute la personne qui vient de créer une nouvelle formation dans la table des reponsables de formation. \item\end{CompactList}\item 
+{\bf CFormation} (\&\$v\_\-oBdd, \$v\_\-iIdForm=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-bRecursive=TRUE, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie la formation courante vers une autre. \item\end{CompactList}\item 
+{\bf copierFormation} (\$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Ajoute une copie de la formation actuelle dans la DB. \item\end{CompactList}\item 
+{\bf copierModules} (\$v\_\-iIdForm, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie tous les modules de la formation courante dans une autre. \item\end{CompactList}\item 
+{\bf defTrier} (\$v\_\-sNomChamps=NULL, \$v\_\-sSensTri=NULL)
+\begin{CompactList}\small\item\em Definit la variable du tri. \item\end{CompactList}\item 
+{\bf defTrierParAnnee} (\$v\_\-dDebut, \$v\_\-dFin)
+\begin{CompactList}\small\item\em Permet d'ajouter à la variable {\tt tri} un espace temporel (une selection entre 2 dates). \item\end{CompactList}\item 
+{\bf defTrierParType} (\$v\_\-iSensTri=NULL)
+\begin{CompactList}\small\item\em Initialise la variable {\tt tri} avec un tri sur le type de formation (GROUP BY TypeForm) et lui ajoute son sens. \item\end{CompactList}\item 
+{\bf defVisiteurAutoriser} (\$v\_\-bAutoriserVisiteur)
+\begin{CompactList}\small\item\em Permet de définir l'accès au visiteur de la formation. \item\end{CompactList}\item 
+{\bf detruire} ()\label{class_c_formation_4319ead687668830c8d6c411b4f3e9bf}
+
+\begin{CompactList}\small\item\em Efface les valeurs contenues dans {\tt iId}, {\tt oBdd}, {\tt oEnregBdd}, {\tt aoFormations}. \item\end{CompactList}\item 
+{\bf effacer} ()
+\begin{CompactList}\small\item\em Efface la totalité d'une formation. \item\end{CompactList}\item 
+{\bf effacerConcepteurs} ()\label{class_c_formation_ede561c81b286666e233aabd2c0f3282}
+
+\begin{CompactList}\small\item\em Efface tous les concepterus(Table Formation\_\-Concepteur) de la formation. \item\end{CompactList}\item 
+{\bf effacerElementsGlossaire} (\$v\_\-iIdGlossaire)
+\item 
+{\bf effacerEquipes} ()\label{class_c_formation_99b07552b380072f7518773180ae64e3}
+
+\begin{CompactList}\small\item\em Efface toutes les équipes d'une formation. \item\end{CompactList}\item 
+{\bf effacerEtudiants} ()\label{class_c_formation_395fc95af6428a2ee4f259c9e32162ed}
+
+\begin{CompactList}\small\item\em Efface tous les étudiants(Table Formation\_\-Inscrit) de la formation. \item\end{CompactList}\item 
+{\bf effacerEvenements} ()\label{class_c_formation_52756f322aa3c2e059fca796391ce8d0}
+
+\begin{CompactList}\small\item\em Efface tous les évenements relatifs à la formation. \item\end{CompactList}\item 
+{\bf effacerFormation} ()\label{class_c_formation_18dc01861a14254d832cc79ea8196310}
+
+\begin{CompactList}\small\item\em Efface la formation dans la DB. \item\end{CompactList}\item 
+{\bf effacerLogiquement} ()
+\begin{CompactList}\small\item\em Efface logiquement une formation, elle peut etre ensuite effacé physiquement (\doxyref{CFormation::effacer}{p.}{class_c_formation_b72452812fa8a34e7c15b2515eb4720b} ). \item\end{CompactList}\item 
+{\bf effacerModelesEquipes} ()
+\item 
+{\bf effacerModules} ()\label{class_c_formation_1664847d0205f124301b111bdc1da78c}
+
+\begin{CompactList}\small\item\em Efface tous les modules de la formation. \item\end{CompactList}\item 
+{\bf effacerResponsables} ()\label{class_c_formation_745a899a556e70d195b41060ea7eee57}
+
+\begin{CompactList}\small\item\em Efface tous les responsables(Table Formation\_\-Resp) de la formation. \item\end{CompactList}\item 
+{\bf effacerTuteurs} ()\label{class_c_formation_df15eb43f88bb06e080869c3b1b324ba}
+
+\begin{CompactList}\small\item\em Efface tous les tuteurs(Table Formation\_\-Tuteur) de la formation. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_formation_defaca528af3041b7706264eeafcc16f}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initAuteur} ()\label{class_c_formation_9ee85fec3017fcbd87b103e5900275ba}
+
+\begin{CompactList}\small\item\em Initialise les informations de la personne qui a créé cette formation. \item\end{CompactList}\item 
+{\bf initConcepteurs} (\$v\_\-sModeTri=\char`\"{}ASC\char`\"{})
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette formation. \item\end{CompactList}\item 
+{\bf initElementsGlossaire} (\$v\_\-iIdGlossaire=NULL)
+\item 
+{\bf initEquipes} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant les équipes relatives à la formation, et initialise également les membres de chaque équipe. \item\end{CompactList}\item 
+{\bf initFormations} (\$v\_\-bAdministrateur=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau contenant toutes les formations. \item\end{CompactList}\item 
+{\bf initFormationsEffacer} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant toutes les formations ayant le statut effacé. \item\end{CompactList}\item 
+{\bf initFormationsPourCopie} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Initialise un tableau contenant toutes les formations ayant le statut ouvert ou fermé, il n'insère que les formations dont la personne est responsable. \item\end{CompactList}\item 
+{\bf initGlossaires} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des glossaires appartenant à une formation. \item\end{CompactList}\item 
+{\bf initInscrits} (\$v\_\-sModeTri=\char`\"{}ASC\char`\"{})
+\begin{CompactList}\small\item\em Initialise un tableau avec les étudiants inscrits à la formation. \item\end{CompactList}\item 
+{\bf initMembres} (\$v\_\-bAppartenirEquipe=TRUE, \$v\_\-iSensTri={\bf TRI\_\-CROISSANT})
+\begin{CompactList}\small\item\em Initialise un tableau contenant soit les personnes inscrites dans une équipe de cette formation, soit les personnes inscrites à cette formation qui ne font partie d'aucune équipe. \item\end{CompactList}\item 
+{\bf initModuleCourant} (\$v\_\-iIdModule=NULL)
+\begin{CompactList}\small\item\em Initialise le module courant ({\tt oModuleCourant}) de la formation. \item\end{CompactList}\item 
+{\bf initModules} (\$v\_\-iIdPers=0, \$v\_\-iIdStatutUtilisateur=NULL, \$v\_\-bRechStricte=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des modules de la formation. \item\end{CompactList}\item 
+{\bf initResponsables} ()
+\begin{CompactList}\small\item\em Initialise un tableau avec les responsables (Formation\_\-Resp) de la formation. \item\end{CompactList}\item 
+{\bf initTuteurs} (\$v\_\-sModeTri=\char`\"{}ASC\char`\"{})
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les tuteurs inscrits aux cours de cette formation. \item\end{CompactList}\item 
+{\bf mettre\_\-a\_\-jour} (\$v\_\-sNomChamp, \$v\_\-mValeurChamp, \$v\_\-iIdForm=0)
+\begin{CompactList}\small\item\em Met à jour un champ de la table formation. \item\end{CompactList}\item 
+{\bf rafraichir} ()\label{class_c_formation_d257a3c8868ba9d458b6ac4da08b476a}
+
+\begin{CompactList}\small\item\em Réinitialise l'objet {\tt oEnregBdd} avec la formation courante. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iNouveauNumOrdre=NULL)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des formations. \item\end{CompactList}\item 
+{\bf retDossier} ()
+\item 
+{\bf retDossierFormations} ()
+\item 
+\& {\bf retElementsEnfants} ()\label{class_c_formation_c50929494c831909a1b9b3f8f3ced680}
+
+\begin{CompactList}\small\item\em Retourne (après les avoir initialisés si nécessaire) les éléments enfants de la formation, càd les modules. \item\end{CompactList}\item 
+{\bf retIdFormPrecedente} ()
+\begin{CompactList}\small\item\em Retourne l'id de la formation précédant celle-ci. \item\end{CompactList}\item 
+{\bf retListeStatuts} ()
+\begin{CompactList}\small\item\em Retourne la liste des statuts disponibles pour une formation. \item\end{CompactList}\item 
+{\bf retNombreLignes} ()
+\begin{CompactList}\small\item\em Permet de connaître le nombre de formation effacée logiquement. \item\end{CompactList}\item 
+{\bf retNomParDefaut} ()
+\begin{CompactList}\small\item\em Retourne le nom par défaut d'une formation. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} ()
+\begin{CompactList}\small\item\em Permet de connaitre le numero d'ordre maximum des formations. \item\end{CompactList}\item 
+{\bf retStatutHautUtilisateur} (\$v\_\-iIdPers, \$v\_\-iStatutActuelUtilisateur=NULL)
+\begin{CompactList}\small\item\em Retourne le plus haut statut que la personne peut avoir dans la formation. \item\end{CompactList}\item 
+{\bf retStatutsUtilisateur} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Retourne un tableau contenant tous les statuts possibles de la personne dans cette formation. \item\end{CompactList}\item 
+{\bf retTexteNiveau} ()
+\item 
+{\bf retTrier} ()
+\begin{CompactList}\small\item\em Retourne la variable tri. \item\end{CompactList}\item 
+\textbf{retTypeNiveau} ()\label{class_c_formation_97f35f03fb2bed6c65d7aafc72f3d575}
+
+\item 
+{\bf retTypes} ()
+\begin{CompactList}\small\item\em Retourne un tableau à 2 dimensions contenant l'intitulé d'une formation. \item\end{CompactList}\item 
+{\bf retValeurMax} (\$v\_\-iChamp)
+\begin{CompactList}\small\item\em Retourne soit le numero d'ordre maximum ou soit le type maximum des formations. \item\end{CompactList}\item 
+{\bf verifConcepteur} (\$v\_\-iIdPers, \$v\_\-bAuMoinsUnCours=TRUE)
+\begin{CompactList}\small\item\em Vérifie si la personne est concepteur de cours de cette formation. \item\end{CompactList}\item 
+{\bf verifEquipe} (\$v\_\-iIdEquipe, \$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Vérifie si une équipe à déja déposé un ou plusieurs documents. \item\end{CompactList}\item 
+{\bf verifEtudiant} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est étudiante de cette formation. \item\end{CompactList}\item 
+{\bf verifResponsable} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est responsable de cette formation. \item\end{CompactList}\item 
+{\bf verifTuteur} (\$v\_\-iIdPers, \$v\_\-bAuMoinsUnCours=TRUE)
+\begin{CompactList}\small\item\em Vérifie si la personne est tuteur de cours de cette formation. \item\end{CompactList}\item 
+{\bf verrouillerTables} ()\label{class_c_formation_07cb5c7ecb8cd6a22525e8aa9a82832e}
+
+\begin{CompactList}\small\item\em Verrouille les tables en relation avec la table Formation. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette formation}\par
+\begin{CompactItemize}
+\item 
+\textbf{defDescr} (\$v\_\-sDescrForm)\label{class_c_formation_56647b90f9655a70f88a6c98fd7d0cb7}
+
+\item 
+\textbf{defIdPers} (\$v\_\-iIdPers)\label{class_c_formation_e9a5d2e20a7e45ae26bfed09fa4a5191}
+
+\item 
+\textbf{defInscrAutoModules} (\$v\_\-bInscrAutoModules=TRUE)\label{class_c_formation_a3a93f2a88f6829e599ac405639f5f3c}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomForm)\label{class_c_formation_d8f7a17ec8fb48fb4f257e1ec7a3193d}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iNumOrdre)\label{class_c_formation_deacb7ebc65031608e31bb160a8490f6}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_formation_7fb545504e31dcd97eaa4d548978d990}
+
+\item 
+\textbf{defType} (\$v\_\-iType)\label{class_c_formation_24cc84515ea3c255dd25425369c5a784}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette formation}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDateDeb} ()\label{class_c_formation_2d0ea5a51d4a3ed13010839e8426ab1f}
+
+\item 
+\textbf{retDateFin} ()\label{class_c_formation_3cbc0b0c591fced2c1f19f65eaaf8410}
+
+\item 
+\textbf{retDescr} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_formation_560005fdb5f095319f9fa3af3e3edb3d}
+
+\item 
+\textbf{retId} ()\label{class_c_formation_b4e99b9a71558469851fd741d434eb00}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_formation_8676b2a742793c4e600cef4d26f9c6a1}
+
+\item 
+\textbf{retInscrAutoModules} ()\label{class_c_formation_b66ad86e8117230299a9bf6cdf1df9ee}
+
+\item 
+\textbf{retInscrSpontEquipe} ()\label{class_c_formation_a5594bb7cce0ff37a4ad39614a8c894e}
+
+\item 
+\textbf{retInscrSpontForm} ()\label{class_c_formation_f3e6aba6a21da18b74202bf251cddc54}
+
+\item 
+\textbf{retNbMaxDsEquipe} ()\label{class_c_formation_c722a7211c2056606dac01d983f2c996}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_formation_fd336a7019fc84c85dc9cb16cb57c826}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_formation_bfa8ae24c284f3912fa7419e0a8ae1d3}
+
+\item 
+\textbf{retStatut} ()\label{class_c_formation_ee871250d84b66bf70ccba531011098e}
+
+\item 
+\textbf{retType} ()\label{class_c_formation_86bbf8a50e25ff7aba1c431a5d428ceb}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoConcepteurs}\label{class_c_formation_f917954b82bd70a6abb71b4e9a9875c4}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initConcepteurs()}{p.}{class_c_formation_d474876080326603e0600514ac769fc4}, contenant tous les concepteurs inscrits aux cours de cette formation. \item\end{CompactList}\item 
+{\bf \$aoElementsGlossaire}
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initElementsGlossaire()}{p.}{class_c_formation_b65ac7acc92dd1f46ab9cef556e44759}, contenant une liste des éléments d'un glossaire. \item\end{CompactList}\item 
+{\bf \$aoFormations}\label{class_c_formation_8ced39d699eb82168c02910d518710b1}
+
+\begin{CompactList}\small\item\em Tableau rempli par certaines fonctions, contenant une liste de formations. \item\end{CompactList}\item 
+{\bf \$aoGlossaires}\label{class_c_formation_7e72d3aa11255f2c2acf82526582af7c}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initGlossaires()}{p.}{class_c_formation_289e2ecae2a504d71ee31b76dfbcbecf}, contenant une liste de glossaires de cette formation. \item\end{CompactList}\item 
+{\bf \$aoInscrits}\label{class_c_formation_257143fdcc79f91ce9f87442216682e5}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initInscrits()}{p.}{class_c_formation_0519d2b0707518dd60645415563b0245}, contenant tous les personnes inscrites à cette formation. \item\end{CompactList}\item 
+{\bf \$aoModules}\label{class_c_formation_6bab705cb0f023a4b3139e3bc8896e03}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initModules()}{p.}{class_c_formation_08f9e23de168fbb81375535fb9f670ad}, contenant une liste de modules. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_formation_9c42621dd21d08264577efa372e7770c}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oAuteur}\label{class_c_formation_313f9dcb085c1065d8e8e74c8208c002}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CPersonne}{p.}{class_c_personne} qui contiendra les renseignements de la personne qui a créé cette formation. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_formation_c3f5af3028c0ec444c40cb3a0602d0a4}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_formation_e606f7df85d498aab00fb6b320fa0d0b}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oModuleCourant}\label{class_c_formation_8650e34d98b56c595f7df3535e4e9a7e}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CModule}{p.}{class_c_module} contenant un module. \item\end{CompactList}\item 
+{\bf \$ORDRE} = 12\label{class_c_formation_cb612072cbf4094db89f6b702236a74f}
+
+\begin{CompactList}\small\item\em Pseudo-constante qui indique qu'une opération doit etre réalisée par rapport au champ OrdreForm. \item\end{CompactList}\item 
+{\bf \$sTri}\label{class_c_formation_bc16c7540ca86aaf8c66f19c2d7d65d7}
+
+\begin{CompactList}\small\item\em Variable de type string contenant le texte pour trier une requete sql. \item\end{CompactList}\item 
+{\bf \$TYPE} = 13\label{class_c_formation_b92bc8e40dfbdd9aa073e5b38a85b50f}
+
+\begin{CompactList}\small\item\em Pseudo-constante qui indique qu'une opération doit etre réalisée par rapport au champ TypeForm. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CFormation@{CFormation}!accessibleVisiteurs@{accessibleVisiteurs}}
+\index{accessibleVisiteurs@{accessibleVisiteurs}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::accessibleVisiteurs ()}\label{class_c_formation_55b20ed07e80593260d99a9521254d0b}
+
+
+Retourne l'autorisation d'accès des visiteurs à la formation. 
+
+\begin{Desc}
+\item[Renvoie:]1(accès aux visiteurs) ou 0 (pas d'accès aux visiteurs) \end{Desc}
+\index{CFormation@{CFormation}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::ajouter (\$ {\em v\_\-sNomForm} = {\tt NULL}, \/  \$ {\em v\_\-sDescrForm} = {\tt NULL}, \/  \$ {\em v\_\-iInscrSpontForm} = {\tt 1}, \/  \$ {\em v\_\-iIdPers} = {\tt 0})}\label{class_c_formation_ccb580cc4e12bfe8577fbc4ab2645b3f}
+
+
+Ajoute une nouvelle formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomForm}]le nom de la formation \item[{\em v\_\-sDescrForm}]la description de la formation \item[{\em v\_\-iInscrSpontForm}]si {\tt 1} alors tous les étudiants sont inscrits automatiquement à tous les cours \item[{\em v\_\-iIdPers}]le numéro d'identifiant de la personne qui vient de créer cette formation. \end{description}
+\end{Desc}
+
+
+Références associerResponsable(), init(), et retValeurMax().\index{CFormation@{CFormation}!ajouterElementsGlossaire@{ajouterElementsGlossaire}}
+\index{ajouterElementsGlossaire@{ajouterElementsGlossaire}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::ajouterElementsGlossaire (\$ {\em v\_\-iIdGlossaire}, \/  \$ {\em v\_\-aiIdsElementsGlossaire})}\label{class_c_formation_cf5af63b05eafadd78edf6225f702600}
+
+
+\begin{Desc}
+\item[{\bf À faire}]La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{Desc}
+\index{CFormation@{CFormation}!ajouterGlossaire@{ajouterGlossaire}}
+\index{ajouterGlossaire@{ajouterGlossaire}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::ajouterGlossaire (\$ {\em v\_\-sTitreGlossaire}, \/  \$ {\em v\_\-iIdPers})}\label{class_c_formation_9a2022237e2d7fcd9da7d824827414a1}
+
+
+Ajoute un nouveau glossaire à la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTitreGlossaire}]le nom du glossaire \item[{\em v\_\-iIdPers}]le numéro d'identifiant de la personne qui vient de créer ce glossaire \end{description}
+\end{Desc}
+\index{CFormation@{CFormation}!associerResponsable@{associerResponsable}}
+\index{associerResponsable@{associerResponsable}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::associerResponsable (\$ {\em v\_\-iIdPers})}\label{class_c_formation_c5496dbd135b83c895687a162555049c}
+
+
+Ajoute la personne qui vient de créer une nouvelle formation dans la table des reponsables de formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne \end{description}
+\end{Desc}
+
+
+Référencé par ajouter().\index{CFormation@{CFormation}!CFormation@{CFormation}}
+\index{CFormation@{CFormation}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::CFormation (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdForm} = {\tt NULL})}\label{class_c_formation_a50327147e8a776029c2adb6f79875b6}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par initFormations(), initFormationsEffacer(), et initFormationsPourCopie().\index{CFormation@{CFormation}!copier@{copier}}
+\index{copier@{copier}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::copier (\$ {\em v\_\-bRecursive} = {\tt TRUE}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_formation_acb26747c6e60b3adf6b603d1cb4aade}
+
+
+Copie la formation courante vers une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRecursive}]si {\tt true} (par défaut), copie aussi tous les modules\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle formation \end{Desc}
+
+
+Références copierFormation(), et copierModules().\index{CFormation@{CFormation}!copierFormation@{copierFormation}}
+\index{copierFormation@{copierFormation}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::copierFormation (\$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_formation_d68bbda8d745c18198276045f6f94b73}
+
+
+Ajoute une copie de la formation actuelle dans la DB. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle formation \end{Desc}
+
+
+Références retNumOrdreMax().
+
+Référencé par copier().\index{CFormation@{CFormation}!copierModules@{copierModules}}
+\index{copierModules@{copierModules}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::copierModules (\$ {\em v\_\-iIdForm}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_formation_e3c0411d6f8ec24261103cf981aefe27}
+
+
+Copie tous les modules de la formation courante dans une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation de destination \end{description}
+\end{Desc}
+
+
+Références initModules().
+
+Référencé par copier().\index{CFormation@{CFormation}!defTrier@{defTrier}}
+\index{defTrier@{defTrier}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::defTrier (\$ {\em v\_\-sNomChamps} = {\tt NULL}, \/  \$ {\em v\_\-sSensTri} = {\tt NULL})}\label{class_c_formation_6e5c75c2f8330e588515a3d3f2b8423b}
+
+
+Definit la variable du tri. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamps}]le nom du champ sur lequel le tri doit être effectué \item[{\em v\_\-sSensTri}]si {\tt \char`\"{}ASC\char`\"{}} (par défaut), tri croissant sur le champ, si {\tt \char`\"{}DESC\char`\"{}} tri décroissant \end{description}
+\end{Desc}
+
+
+Référencé par retTrier().\index{CFormation@{CFormation}!defTrierParAnnee@{defTrierParAnnee}}
+\index{defTrierParAnnee@{defTrierParAnnee}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::defTrierParAnnee (\$ {\em v\_\-dDebut}, \/  \$ {\em v\_\-dFin})}\label{class_c_formation_dce106040a4d750491933cb292dadba7}
+
+
+Permet d'ajouter à la variable {\tt tri} un espace temporel (une selection entre 2 dates). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-dDebut}]date de début au format SQL (YYYY-MM-DD) \item[{\em v\_\-dFin}]date de fin \end{description}
+\end{Desc}
+\index{CFormation@{CFormation}!defTrierParType@{defTrierParType}}
+\index{defTrierParType@{defTrierParType}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::defTrierParType (\$ {\em v\_\-iSensTri} = {\tt NULL})}\label{class_c_formation_629c1d925c5d368e2f78cbce5f11e429}
+
+
+Initialise la variable {\tt tri} avec un tri sur le type de formation (GROUP BY TypeForm) et lui ajoute son sens. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iSensTri}]si {\tt \char`\"{}ASC\char`\"{}} (par défaut), tri croissant sur le champ, si {\tt \char`\"{}DESC\char`\"{}} tri décroissant \end{description}
+\end{Desc}
+\index{CFormation@{CFormation}!defVisiteurAutoriser@{defVisiteurAutoriser}}
+\index{defVisiteurAutoriser@{defVisiteurAutoriser}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::defVisiteurAutoriser (\$ {\em v\_\-bAutoriserVisiteur})}\label{class_c_formation_98ece51392a41dbb2fe008d2d48cd9b5}
+
+
+Permet de définir l'accès au visiteur de la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAutoriserVisiteur}]peut prendre la valeur 1 ou 0 (pas d'accès au visiteur) \end{description}
+\end{Desc}
+
+
+Références mettre\_\-a\_\-jour().\index{CFormation@{CFormation}!effacer@{effacer}}
+\index{effacer@{effacer}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::effacer ()}\label{class_c_formation_b72452812fa8a34e7c15b2515eb4720b}
+
+
+Efface la totalité d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la formation précédant celle-ci \end{Desc}
+
+
+Références effacerConcepteurs(), effacerEquipes(), effacerEtudiants(), effacerEvenements(), effacerFormation(), effacerModules(), effacerResponsables(), effacerTuteurs(), redistNumsOrdre(), et retIdFormPrecedente().
+
+Référencé par effacerModules().\index{CFormation@{CFormation}!effacerElementsGlossaire@{effacerElementsGlossaire}}
+\index{effacerElementsGlossaire@{effacerElementsGlossaire}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::effacerElementsGlossaire (\$ {\em v\_\-iIdGlossaire})}\label{class_c_formation_d12a12375432b343eb3647dcc8836f4b}
+
+
+\begin{Desc}
+\item[{\bf À faire}]La table n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{Desc}
+\index{CFormation@{CFormation}!effacerLogiquement@{effacerLogiquement}}
+\index{effacerLogiquement@{effacerLogiquement}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::effacerLogiquement ()}\label{class_c_formation_7d38f7a765163f4257438d82ee2dcfa3}
+
+
+Efface logiquement une formation, elle peut etre ensuite effacé physiquement (\doxyref{CFormation::effacer}{p.}{class_c_formation_b72452812fa8a34e7c15b2515eb4720b} ). 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la formation précédant celle-ci \end{Desc}
+
+
+Références redistNumsOrdre(), et retIdFormPrecedente().\index{CFormation@{CFormation}!effacerModelesEquipes@{effacerModelesEquipes}}
+\index{effacerModelesEquipes@{effacerModelesEquipes}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::effacerModelesEquipes ()}\label{class_c_formation_8819ba584d1dee7618ee36533bff3b2e}
+
+
+\begin{Desc}
+\item[{\bf Obsolète}]Ne semble pas/plus utilisé ???\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt false} \end{Desc}
+\index{CFormation@{CFormation}!initConcepteurs@{initConcepteurs}}
+\index{initConcepteurs@{initConcepteurs}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initConcepteurs (\$ {\em v\_\-sModeTri} = {\tt \char`\"{}ASC\char`\"{}})}\label{class_c_formation_d474876080326603e0600514ac769fc4}
+
+
+Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sModeTri}]v\_\-sModeTri si {\tt \char`\"{}ASC\char`\"{}} (par défaut), tri croissant sur le nom, si {\tt \char`\"{}DESC\char`\"{}} tri décroissant\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de concepteurs insérés dans le tableau \end{Desc}
+\index{CFormation@{CFormation}!initElementsGlossaire@{initElementsGlossaire}}
+\index{initElementsGlossaire@{initElementsGlossaire}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initElementsGlossaire (\$ {\em v\_\-iIdGlossaire} = {\tt NULL})}\label{class_c_formation_b65ac7acc92dd1f46ab9cef556e44759}
+
+
+\begin{Desc}
+\item[{\bf À faire}]La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire \end{Desc}
+\index{CFormation@{CFormation}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initEquipes ()}\label{class_c_formation_508a24593b84f28e9d37ccc2d9450761}
+
+
+Initialise un tableau contenant les équipes relatives à la formation, et initialise également les membres de chaque équipe. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes de cette formation \end{Desc}
+\index{CFormation@{CFormation}!initFormations@{initFormations}}
+\index{initFormations@{initFormations}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initFormations (\$ {\em v\_\-bAdministrateur} = {\tt FALSE})}\label{class_c_formation_035f19512438c556ab03dcaf5d3c7739}
+
+
+Initialise un tableau contenant toutes les formations. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAdministrateur}]si {\tt false} (defaut) on ne voie que les formations ayant le statut ouvert ou fermé\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de formation insérées dans le tableau \end{Desc}
+
+
+Références CFormation().
+
+Référencé par redistNumsOrdre().\index{CFormation@{CFormation}!initFormationsEffacer@{initFormationsEffacer}}
+\index{initFormationsEffacer@{initFormationsEffacer}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initFormationsEffacer ()}\label{class_c_formation_25cbd17010a974fefb37950eea69691c}
+
+
+Initialise un tableau contenant toutes les formations ayant le statut effacé. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de formation insérées dans le tableau \end{Desc}
+
+
+Références CFormation().\index{CFormation@{CFormation}!initFormationsPourCopie@{initFormationsPourCopie}}
+\index{initFormationsPourCopie@{initFormationsPourCopie}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initFormationsPourCopie (\$ {\em v\_\-iIdPers})}\label{class_c_formation_6b445391175e1048bd2c9f3433041a6a}
+
+
+Initialise un tableau contenant toutes les formations ayant le statut ouvert ou fermé, il n'insère que les formations dont la personne est responsable. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne qui veut copier une formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de formation insérées dans le tableau \end{Desc}
+
+
+Références CFormation().\index{CFormation@{CFormation}!initGlossaires@{initGlossaires}}
+\index{initGlossaires@{initGlossaires}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initGlossaires ()}\label{class_c_formation_289e2ecae2a504d71ee31b76dfbcbecf}
+
+
+Initialise un tableau contenant la liste des glossaires appartenant à une formation. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre totale de glossaires trouvés ou zéro dans le cas contraire. \end{Desc}
+\index{CFormation@{CFormation}!initInscrits@{initInscrits}}
+\index{initInscrits@{initInscrits}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initInscrits (\$ {\em v\_\-sModeTri} = {\tt \char`\"{}ASC\char`\"{}})}\label{class_c_formation_0519d2b0707518dd60645415563b0245}
+
+
+Initialise un tableau avec les étudiants inscrits à la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sModeTri}]si {\tt \char`\"{}ASC\char`\"{}} (par défaut), tri croissant sur le nom, si {\tt \char`\"{}DESC\char`\"{}} tri décroissant\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(étudiants) insérées dans le tableau \end{Desc}
+\index{CFormation@{CFormation}!initMembres@{initMembres}}
+\index{initMembres@{initMembres}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initMembres (\$ {\em v\_\-bAppartenirEquipe} = {\tt TRUE}, \/  \$ {\em v\_\-iSensTri} = {\tt {\bf TRI\_\-CROISSANT}})}\label{class_c_formation_bd47962db5bab288716d29387db608b9}
+
+
+Initialise un tableau contenant soit les personnes inscrites dans une équipe de cette formation, soit les personnes inscrites à cette formation qui ne font partie d'aucune équipe. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAppartenirEquipe}]si {\tt true} (par défaut) le tableau est rempli par les personnes qui appartiennent à une équipe de cette formation, si {\tt false} il est rempli par les personnes qui n'appartiennent à aucune équipe de cette formation (mais qui y sont inscrites) \item[{\em v\_\-iSensTri}]indique si un tri doit être effectué ainsi que son sens (croissant par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(membres) insérées dans le tableau\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]on peut sûrement améliorer la première requête sql, elle met 7 sec a s'exécuter sur la version \char`\"{}production\char`\"{} pour ne retourner que peu d'enregistrements(+-30) \end{Desc}
+\index{CFormation@{CFormation}!initModuleCourant@{initModuleCourant}}
+\index{initModuleCourant@{initModuleCourant}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initModuleCourant (\$ {\em v\_\-iIdModule} = {\tt NULL})}\label{class_c_formation_bbff454bf8b77c81dc6772891e5360f4}
+
+
+Initialise le module courant ({\tt oModuleCourant}) de la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdModule}]l'id du module. Si le module n'appartient à la formation, l'initialisation n'a pas lieu \end{description}
+\end{Desc}
+\index{CFormation@{CFormation}!initModules@{initModules}}
+\index{initModules@{initModules}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initModules (\$ {\em v\_\-iIdPers} = {\tt 0}, \/  \$ {\em v\_\-iIdStatutUtilisateur} = {\tt NULL}, \/  \$ {\em v\_\-bRechStricte} = {\tt FALSE})}\label{class_c_formation_08f9e23de168fbb81375535fb9f670ad}
+
+
+Initialise un tableau contenant la liste des modules de la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]le numéro d'identifiant de la personne \item[{\em v\_\-iIdStatutUtilisateur}]l'id du statut de la personne utilisé comme critère pour la recherche. La signification de ce paramètre est modifiée par {\tt v\_\-bRechStricte}. Si le paramètre n'est pas fourni, tous les modules de la formation seront récupérés \item[{\em v\_\-bRechStricte}]si {\tt true} et {\tt v\_\-iIdStatutUtilisateur} fourni, alors seul les modules pour lesquels la personne a exactement le statut demandé seront récupérés. Si {\tt false}, les modules pour lesquels la personne a un statut inférieur ou égal à celui demandé seront également récupérés\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de module insérés dans le tableau \end{Desc}
+
+
+Référencé par copierModules(), effacerModules(), et retElementsEnfants().\index{CFormation@{CFormation}!initResponsables@{initResponsables}}
+\index{initResponsables@{initResponsables}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initResponsables ()}\label{class_c_formation_b74434748558448a71db54c562a6a3eb}
+
+
+Initialise un tableau avec les responsables (Formation\_\-Resp) de la formation. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(responsables) insérées dans le tableau \end{Desc}
+\index{CFormation@{CFormation}!initTuteurs@{initTuteurs}}
+\index{initTuteurs@{initTuteurs}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::initTuteurs (\$ {\em v\_\-sModeTri} = {\tt \char`\"{}ASC\char`\"{}})}\label{class_c_formation_872546f9180c339fd2c8c318680a312b}
+
+
+Initialise un tableau contenant tous les tuteurs inscrits aux cours de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sModeTri}]si {\tt \char`\"{}ASC\char`\"{}} (par défaut), tri croissant sur le nom, si {\tt \char`\"{}DESC\char`\"{}} tri décroissant\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de tuteurs insérés dans le tableau \end{Desc}
+\index{CFormation@{CFormation}!mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}}
+\index{mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::mettre\_\-a\_\-jour (\$ {\em v\_\-sNomChamp}, \/  \$ {\em v\_\-mValeurChamp}, \/  \$ {\em v\_\-iIdForm} = {\tt 0})}\label{class_c_formation_497c2b4f87285874926d17ea67f29ec0}
+
+
+Met à jour un champ de la table formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamp}]le nom du champ à mettre à jour \item[{\em v\_\-mValeurChamp}]la nouvelle valeur du champ \item[{\em v\_\-iIdForm}]l'id de la formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si il a mis à jour le champ dans la DB \end{Desc}
+
+
+Référencé par defVisiteurAutoriser(), et redistNumsOrdre().\index{CFormation@{CFormation}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::redistNumsOrdre (\$ {\em v\_\-iNouveauNumOrdre} = {\tt NULL})}\label{class_c_formation_a87eef621ebeceded9b129c12c924489}
+
+
+Redistribue les numéros d'ordre des formations. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouveauNumOrdre}]le nouveau numéro d'ordre de la formation courante\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les numéros ont bien été modifiés \end{Desc}
+
+
+Références initFormations(), et mettre\_\-a\_\-jour().
+
+Référencé par effacer(), et effacerLogiquement().\index{CFormation@{CFormation}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retDossier ()}\label{class_c_formation_2fd3805ad05f7a99b6f5f95b2c21a37e}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier associé à cette formation, donc celui où se trouvent les fichiers associés à la formation \end{Desc}
+\index{CFormation@{CFormation}!retDossierFormations@{retDossierFormations}}
+\index{retDossierFormations@{retDossierFormations}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retDossierFormations ()}\label{class_c_formation_679413c579a148c1eac4e902677f3ce3}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier où se trouvent tous les dossiers de toutes les formations, et donc leurs fichiers associés \end{Desc}
+\index{CFormation@{CFormation}!retIdFormPrecedente@{retIdFormPrecedente}}
+\index{retIdFormPrecedente@{retIdFormPrecedente}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retIdFormPrecedente ()}\label{class_c_formation_5895515d108fddbc27755f0dba8225fe}
+
+
+Retourne l'id de la formation précédant celle-ci. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la formation précédente \end{Desc}
+
+
+Référencé par effacer(), et effacerLogiquement().\index{CFormation@{CFormation}!retListeStatuts@{retListeStatuts}}
+\index{retListeStatuts@{retListeStatuts}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retListeStatuts ()}\label{class_c_formation_e5eb50b9debb45792cf1051c8071c98f}
+
+
+Retourne la liste des statuts disponibles pour une formation. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des statuts disponibles \end{Desc}
+\index{CFormation@{CFormation}!retNombreLignes@{retNombreLignes}}
+\index{retNombreLignes@{retNombreLignes}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retNombreLignes ()}\label{class_c_formation_3ec876d0e07ef847fa38149a6a6b6dca}
+
+
+Permet de connaître le nombre de formation effacée logiquement. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de formation ayant le statut effacé \end{Desc}
+\index{CFormation@{CFormation}!retNomParDefaut@{retNomParDefaut}}
+\index{retNomParDefaut@{retNomParDefaut}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retNomParDefaut ()}\label{class_c_formation_f0cc64a2e830c01a1759ba2dd8cad0dd}
+
+
+Retourne le nom par défaut d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]le nom par défaut d'une formation \end{Desc}
+\index{CFormation@{CFormation}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retNumOrdreMax ()}\label{class_c_formation_e7b75af2098dbde5d4fdbbc13ab8aa0b}
+
+
+Permet de connaitre le numero d'ordre maximum des formations. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Références retValeurMax().
+
+Référencé par copierFormation().\index{CFormation@{CFormation}!retStatutHautUtilisateur@{retStatutHautUtilisateur}}
+\index{retStatutHautUtilisateur@{retStatutHautUtilisateur}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retStatutHautUtilisateur (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iStatutActuelUtilisateur} = {\tt NULL})}\label{class_c_formation_5a6f51bbaf9ae2cac1414a14d1e26881}
+
+
+Retourne le plus haut statut que la personne peut avoir dans la formation. 
+
+\begin{Desc}
+\item[{\bf Obsolète}]Ne semble pas/plus utilisé ???\end{Desc}
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-iStatutActuelUtilisateur}]le statut les plus elevé à partir duquel on veffectue la vérification. Si {\tt null}, on commence au statut le plus elevé(STATUT\_\-PERS\_\-ADMIN). La vérification se termine par le statut le plus bas(STATUT\_\-PERS\_\-VISITEUR)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de statut le plus elevé \end{Desc}
+
+
+Références retStatutsUtilisateur().\index{CFormation@{CFormation}!retStatutsUtilisateur@{retStatutsUtilisateur}}
+\index{retStatutsUtilisateur@{retStatutsUtilisateur}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retStatutsUtilisateur (\$ {\em v\_\-iIdPers})}\label{class_c_formation_ee81927887297ce9ea71e2d83b46e848}
+
+
+Retourne un tableau contenant tous les statuts possibles de la personne dans cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant tous les statuts de la personne dans cette formation \end{Desc}
+
+
+Référencé par retStatutHautUtilisateur().\index{CFormation@{CFormation}!retTexteNiveau@{retTexteNiveau}}
+\index{retTexteNiveau@{retTexteNiveau}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retTexteNiveau ()}\label{class_c_formation_bf5f59e5f72913425a669012e4a37e1b}
+
+
+\begin{Desc}
+\item[Renvoie:]le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) \end{Desc}
+\index{CFormation@{CFormation}!retTrier@{retTrier}}
+\index{retTrier@{retTrier}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retTrier ()}\label{class_c_formation_65e372aaf8de5f95859ce4ad6c58d81f}
+
+
+Retourne la variable tri. 
+
+\begin{Desc}
+\item[Renvoie:]la variable tri, et l'initialise si besoin \end{Desc}
+
+
+Références defTrier().\index{CFormation@{CFormation}!retTypes@{retTypes}}
+\index{retTypes@{retTypes}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retTypes ()}\label{class_c_formation_37c52316496b53a206b8bacb5ccd73c5}
+
+
+Retourne un tableau à 2 dimensions contenant l'intitulé d'une formation. 
+
+\begin{Desc}
+\item[{\bf À faire}]ce système sera modifié pour l'internationalisation de la plate-forme\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le mot français utilisé pour désigner une formation \end{Desc}
+\index{CFormation@{CFormation}!retValeurMax@{retValeurMax}}
+\index{retValeurMax@{retValeurMax}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::retValeurMax (\$ {\em v\_\-iChamp})}\label{class_c_formation_b342ddf981681b9d248b666984931459}
+
+
+Retourne soit le numero d'ordre maximum ou soit le type maximum des formations. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iChamp}]si {\tt \$this-$>$ORDRE}, le maximum sera sur le champ OrdreForm, si {\tt \$this-$>$TYPE}, il sera sur TypeForm\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre maximum \end{Desc}
+
+
+Référencé par ajouter(), et retNumOrdreMax().\index{CFormation@{CFormation}!verifConcepteur@{verifConcepteur}}
+\index{verifConcepteur@{verifConcepteur}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::verifConcepteur (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-bAuMoinsUnCours} = {\tt TRUE})}\label{class_c_formation_932f9d5f1cf14bb586b289023c5a0e52}
+
+
+Vérifie si la personne est concepteur de cours de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-bAuMoinsUnCours}]l'utilisateur doit être au moins inscrit comme concepteur à un cours\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est concepteur \end{Desc}
+\index{CFormation@{CFormation}!verifEquipe@{verifEquipe}}
+\index{verifEquipe@{verifEquipe}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::verifEquipe (\$ {\em v\_\-iIdEquipe}, \/  \$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_formation_442e815074e097e2ccb9187d37548539}
+
+
+Vérifie si une équipe à déja déposé un ou plusieurs documents. 
+
+\begin{Desc}
+\item[{\bf Obsolète}]Ne semble pas/plus utilisé ???\end{Desc}
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]l'id de l'équipe à vérifier \item[{\em v\_\-iIdPers}]l'id de la personne(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'équipe a déjà déposé des documents \end{Desc}
+\index{CFormation@{CFormation}!verifEtudiant@{verifEtudiant}}
+\index{verifEtudiant@{verifEtudiant}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::verifEtudiant (\$ {\em v\_\-iIdPers})}\label{class_c_formation_7579ab63933977218e9ee908325b5ea9}
+
+
+Vérifie si la personne est étudiante de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est étudiante \end{Desc}
+\index{CFormation@{CFormation}!verifResponsable@{verifResponsable}}
+\index{verifResponsable@{verifResponsable}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::verifResponsable (\$ {\em v\_\-iIdPers})}\label{class_c_formation_197d068f64cb15d1d2ff0dfb4284aee4}
+
+
+Vérifie si la personne est responsable de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est responsable \end{Desc}
+\index{CFormation@{CFormation}!verifTuteur@{verifTuteur}}
+\index{verifTuteur@{verifTuteur}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::verifTuteur (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-bAuMoinsUnCours} = {\tt TRUE})}\label{class_c_formation_fb9ba5234e029f1668985b8d29aa4ff9}
+
+
+Vérifie si la personne est tuteur de cours de cette formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-bAuMoinsUnCours}]l'utilisateur doit être au moins inscrit comme concepteur à un cours\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est tuteur \end{Desc}
+
+
+\subsection{Documentation des données membres}
+\index{CFormation@{CFormation}!\$aoElementsGlossaire@{\$aoElementsGlossaire}}
+\index{\$aoElementsGlossaire@{\$aoElementsGlossaire}!CFormation@{CFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormation::\$aoElementsGlossaire}\label{class_c_formation_3c3233870719610d08226ae02de0ef4a}
+
+
+Tableau rempli par \doxyref{initElementsGlossaire()}{p.}{class_c_formation_b65ac7acc92dd1f46ab9cef556e44759}, contenant une liste des éléments d'un glossaire. 
+
+\begin{Desc}
+\item[{\bf À faire}]La table n'existe pas, travail commencé mais pas terminé... \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf formation.tbl.php}\end{CompactItemize}

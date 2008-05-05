@@ -1,0 +1,92 @@
+\section{Référence de la classe ElementFormation}
+\label{class_element_formation}\index{ElementFormation@{ElementFormation}}
+
+
+\subsection{Description détaillée}
+Classe utilitaire pour créer et obtenir des informations sur un \char`\"{}élément de formation\char`\"{}, càd des objets de \doxyref{CFormation}{p.}{class_c_formation}, \doxyref{CModule}{p.}{class_c_module}, etc. 
+
+\begin{Desc}
+\item[{\bf À faire}]Cette classe devrait normalement devenir une classe de base (\char`\"{}mère\char`\"{}) dont devraient hériter les classes qui représentent un élément de formation \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf retElementFormation} (\&\$v\_\-oBdd, \$v\_\-iTypeElement, \$v\_\-iIdElement=NULL)
+\begin{CompactList}\small\item\em \char`\"{}Fabrique\char`\"{} qui crée un élément de formation en utilisant la classe appropriée, selon le type d'élément passé (voir constantes TYPE\_\-. \item\end{CompactList}\item 
+{\bf typeEstEnfantDe} (\$v\_\-iTypeEnfant, \$v\_\-iTypeParent)
+\begin{CompactList}\small\item\em Indique si un élément est de type (niveau) enfant au type d'un autre élément. \item\end{CompactList}\item 
+{\bf typeEstFrereDe} (\$v\_\-iType1, \$v\_\-iType2)
+\begin{CompactList}\small\item\em Indique si deux éléments sont de types (niveaux) identiques ou équivalents. \item\end{CompactList}\item 
+{\bf typeEstParentDe} (\$v\_\-iTypeParent, \$v\_\-iTypeEnfant)
+\begin{CompactList}\small\item\em Indique si un élément est de type (niveau) parent au type d'un autre élément. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{ElementFormation@{ElementFormation}!retElementFormation@{retElementFormation}}
+\index{retElementFormation@{retElementFormation}!ElementFormation@{ElementFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ElementFormation::retElementFormation (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iTypeElement}, \/  \$ {\em v\_\-iIdElement} = {\tt NULL})}\label{class_element_formation_092f23f67d2744bceae00b084a67abbd}
+
+
+\char`\"{}Fabrique\char`\"{} qui crée un élément de formation en utilisant la classe appropriée, selon le type d'élément passé (voir constantes TYPE\_\-. 
+
+..)
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \item[{\em v\_\-iTypeElement}]le type (niveau) de l'élément à créer \item[{\em v\_\-iIdElement}]l'id de l'élément à créer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'élément crée \end{Desc}
+
+
+Référencé par CopierCollerFormation::afficherPressePapiers(), CSousActiv::copierAvecNumOrdre(), CModule\_\-Rubrique::copierAvecNumOrdre(), CModule::copierAvecNumOrdre(), CActiv::copierAvecNumOrdre(), et CopierCollerFormation::gererActions().\index{ElementFormation@{ElementFormation}!typeEstEnfantDe@{typeEstEnfantDe}}
+\index{typeEstEnfantDe@{typeEstEnfantDe}!ElementFormation@{ElementFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ElementFormation::typeEstEnfantDe (\$ {\em v\_\-iTypeEnfant}, \/  \$ {\em v\_\-iTypeParent})}\label{class_element_formation_8df8594e52b1d99a2966452334b3fdf3}
+
+
+Indique si un élément est de type (niveau) enfant au type d'un autre élément. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeEnfant}]le type de l'élément dont on veut vérifier s'il est enfant de l'autre élément \item[{\em v\_\-iTypeEnfant}]le type de l'élément dont on veut vérifier si l'autre est sont enfant\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si {\tt v\_\-iTypeEnfant} est de type enfant au type de v\_\-iTypeParent, {\tt false} sinon \end{Desc}
+
+
+Référencé par CopierCollerFormation::validerDonnees().\index{ElementFormation@{ElementFormation}!typeEstFrereDe@{typeEstFrereDe}}
+\index{typeEstFrereDe@{typeEstFrereDe}!ElementFormation@{ElementFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ElementFormation::typeEstFrereDe (\$ {\em v\_\-iType1}, \/  \$ {\em v\_\-iType2})}\label{class_element_formation_797aa12cd42f082cd1772ca5b56808e9}
+
+
+Indique si deux éléments sont de types (niveaux) identiques ou équivalents. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iType1}]le type du premier élément \item[{\em v\_\-iType2}]le type du second élément\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les deux types sont identiques ou équivalents, {\tt false} sinon \end{Desc}
+
+
+Référencé par CopierCollerFormation::gererActions(), et CopierCollerFormation::validerDonnees().\index{ElementFormation@{ElementFormation}!typeEstParentDe@{typeEstParentDe}}
+\index{typeEstParentDe@{typeEstParentDe}!ElementFormation@{ElementFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ElementFormation::typeEstParentDe (\$ {\em v\_\-iTypeParent}, \/  \$ {\em v\_\-iTypeEnfant})}\label{class_element_formation_599357a6a1f6d66829f731d429106e0a}
+
+
+Indique si un élément est de type (niveau) parent au type d'un autre élément. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeParent}]le type de l'élément dont on veut vérifier s'il est parent de l'autre élément \item[{\em v\_\-iTypeEnfant}]le type de l'élément dont on veut vérifier si l'autre est sont parent\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si {\tt v\_\-iTypeParent} est de type parent au type de v\_\-iTypeEnfant, {\tt false} sinon \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/{\bf ElementFormation.php}\end{CompactItemize}

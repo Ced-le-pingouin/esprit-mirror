@@ -1,0 +1,68 @@
+\section{Référence du fichier src/admin/tableaubord/tableau\_\-bord-filtre.php}
+\label{tableau__bord-filtre_8php}\index{src/admin/tableaubord/tableau\_\-bord-filtre.php@{src/admin/tableaubord/tableau\_\-bord-filtre.php}}
+
+
+\subsection{Description détaillée}
+\begin{Desc}
+\item[Date:]2006/11/27\end{Desc}
+\begin{Desc}
+\item[Auteur:]Filippo PORCO \end{Desc}
+
+
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$aiIdType} = array({\bf LIEN\_\-COLLECTICIEL},{\bf LIEN\_\-FORMULAIRE},{\bf LIEN\_\-FORUM},{\bf LIEN\_\-CHAT})\label{tableau__bord-filtre_8php_66478bacf11fbf99142cd12953bbc666}
+
+\item 
+\textbf{\$amReplTpl} = array(NULL,NULL)\label{tableau__bord-filtre_8php_a1feffdde6e2958694639834d8c37dc2}
+
+\item 
+\textbf{\$asRechTpl} = array(\char`\"{}\{sous\_\-activite\_\-type.label\}\char`\"{},\char`\"{}\{sous\_\-activite\_\-type.value\}\char`\"{},\char`\"{}\{sous\_\-activite\_\-type.selected\}\char`\"{})\label{tableau__bord-filtre_8php_bd07968245fb1e375199f35ae8ed642b}
+
+\item 
+\textbf{\$g\_\-iIdForm} = \$oIds $\rightarrow$ retIdForm()\label{tableau__bord-filtre_8php_05d94d475bb2aa9608256609f52d7de4}
+
+\item 
+\textbf{\$g\_\-iIdMod} = \$oIds $\rightarrow$ retIdMod()\label{tableau__bord-filtre_8php_5f4f12fccae354bcdaa0d7273ded512d}
+
+\item 
+\textbf{\$g\_\-iIdRubr} = \$oIds $\rightarrow$ retIdRubrique()\label{tableau__bord-filtre_8php_3e1c6c388b47b584cf7f2490c6354868}
+
+\item 
+\textbf{\$oBloc} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-SOUS\_\-ACTIVITE\_\-TYPE\char`\"{},\$oTpl)\label{tableau__bord-filtre_8php_d210a4d2f043e797de79c9d657e75a58}
+
+\item 
+\textbf{\$oBlocModule} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-MODULE\char`\"{},\$oTpl)\label{tableau__bord-filtre_8php_29f5e94b3196330a990eec98c9a9e0f0}
+
+\item 
+\textbf{\$oBlocRubrique} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-RUBRIQUE\char`\"{},\$oBlocModule)\label{tableau__bord-filtre_8php_b7f595d3192a04822b37aefca1472a4e}
+
+\item 
+\textbf{\$oFormation} = new {\bf CFormation}(\$oProjet $\rightarrow$ oBdd,\$g\_\-iIdForm)\label{tableau__bord-filtre_8php_5dbadfcf71ff9339b4bb2320f35a7b04}
+
+\item 
+\textbf{\$oIds} = new CIds(\$oProjet $\rightarrow$ oBdd,\$url\_\-iTypeNiveau,\$url\_\-iIdNiveau)\label{tableau__bord-filtre_8php_87e9fcad45d9de21f44bfbb0e94f46cd}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{tableau__bord-filtre_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oSousActiv} = new CSousactiv(\$oProjet $\rightarrow$ oBdd)\label{tableau__bord-filtre_8php_d04d9217757b17c226f60c1bb3ac5071}
+
+\item 
+\textbf{\$oTpl} = new {\bf Template}(\char`\"{}tableau\_\-bord-filtre.tpl\char`\"{})\label{tableau__bord-filtre_8php_7de57ba665b7c068e98ea46469be2865}
+
+\item 
+\textbf{\$url\_\-iIdModalite} = (empty(\$\_\-GET[\char`\"{}idModal\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idModal\char`\"{}])\label{tableau__bord-filtre_8php_2edc95399ae9c2596483c664df65e666}
+
+\item 
+\textbf{\$url\_\-iIdNiveau} = (empty(\$\_\-GET[\char`\"{}idNiveau\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idNiveau\char`\"{}])\label{tableau__bord-filtre_8php_14f74b59a1171eaf2411d94c3c8bf8dd}
+
+\item 
+\textbf{\$url\_\-iIdType} = (empty(\$\_\-GET[\char`\"{}idType\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}idType\char`\"{}])\label{tableau__bord-filtre_8php_7fea7f5b9f2fcee65976df1093b911aa}
+
+\item 
+\textbf{\$url\_\-iTypeNiveau} = (empty(\$\_\-GET[\char`\"{}typeNiveau\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}typeNiveau\char`\"{}])\label{tableau__bord-filtre_8php_526ed781c4213d7b78e267d1eeb0b7e4}
+
+\end{CompactItemize}

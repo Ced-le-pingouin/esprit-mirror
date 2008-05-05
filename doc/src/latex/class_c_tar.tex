@@ -1,0 +1,119 @@
+\section{Référence de la classe CTar}
+\label{class_c_tar}\index{CTar@{CTar}}
+
+
+\subsection{Description détaillée}
+Gestion d'archives GNU TAR, utilisant les fonctions de la bibliothèque PclTar. 
+
+\begin{Desc}
+\item[{\bf À faire}]Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, seules des archives gzippées sont créées \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouterEntreesDsListe} (\$v\_\-asEntrees, \$v\_\-bEffacerAnciennes=FALSE, \$v\_\-bCreer=FALSE)
+\begin{CompactList}\small\item\em Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. \item\end{CompactList}\item 
+{\bf creerArchive} ()
+\begin{CompactList}\small\item\em Crée l'archive. \item\end{CompactList}\item 
+{\bf CTar} (\$v\_\-sCheminArchive, \$v\_\-asEntrees=NULL, \$v\_\-bCreer=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf majArchive} (\$v\_\-asEntrees)
+\begin{CompactList}\small\item\em Ajoute des fichiers à l'archive, écrasant les versions plus anciennes éventuelles. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs de l'objet}\par
+\begin{CompactItemize}
+\item 
+\textbf{defModifsChemins} (\$v\_\-sCheminAAjouter=\char`\"{}\char`\"{}, \$v\_\-sCheminAEnlever=\char`\"{}\char`\"{})\label{class_c_tar_bca8f6577a34a8bcf240f55f7a4d3153}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs de l'objet}\par
+\begin{CompactItemize}
+\item 
+\textbf{retCheminArchive} ()\label{class_c_tar_5992fd5daee46088f17a36b7d4412b1c}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$asEntrees} = NULL\label{class_c_tar_6587282b22772ead3ee46c5efb3a1e27}
+
+\begin{CompactList}\small\item\em Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive. \item\end{CompactList}\item 
+{\bf \$iCodeRetour} = 1\label{class_c_tar_e0790b567a7fed7debed7e96bb046fbc}
+
+\begin{CompactList}\small\item\em Lorsqu'on demande la création d'archive directement dans le constructeur, on ne peut pas retourner de code d'erreur, il est donc stocké dans une propriété de l'objet. \item\end{CompactList}\item 
+{\bf \$sCheminAAjouter} = \char`\"{}\char`\"{}\label{class_c_tar_aaeb67a11830785f5a499646ac72b928}
+
+\begin{CompactList}\small\item\em Ce chemin sera ajouté devant la racine de chaque fichier inclus à l'archive. \item\end{CompactList}\item 
+{\bf \$sCheminAEnlever} = \char`\"{}\char`\"{}\label{class_c_tar_3324465787cf398ec8ed7f4da83e99a4}
+
+\begin{CompactList}\small\item\em Les fichiers inclus dans l'archive et dont le chemin commence par cette chaîne, auront cette chaîne enlevée du chemin. \item\end{CompactList}\item 
+{\bf \$sCheminArchive} = NULL\label{class_c_tar_7fb342a41e1d0b7e6976172a67b35150}
+
+\begin{CompactList}\small\item\em Chaîne de caractères contenant le chemin de l'archive à créer. \item\end{CompactList}\item 
+{\bf \$sCompression} = 'tgz'\label{class_c_tar_12aafbe9c54bfe37cca6d06100e0c122}
+
+\begin{CompactList}\small\item\em Type de compression à utiliser. Dépendante des fonctions de PclTar. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CTar@{CTar}!ajouterEntreesDsListe@{ajouterEntreesDsListe}}
+\index{ajouterEntreesDsListe@{ajouterEntreesDsListe}!CTar@{CTar}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTar::ajouterEntreesDsListe (\$ {\em v\_\-asEntrees}, \/  \$ {\em v\_\-bEffacerAnciennes} = {\tt FALSE}, \/  \$ {\em v\_\-bCreer} = {\tt FALSE})}\label{class_c_tar_d43036987c5d5649572d42bfc6839e48}
+
+
+Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-asEntrees}]la liste des entrées à inclure à l'archive, sous forme de tableau de chaînes de caractères, chacune représentant le chemin d'un fichier/dossier à inclure \item[{\em v\_\-bCreer}]si {\tt true}, l'archive est créée immédiatement, et le code de retour de cette opération est retourné\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt v\_\-bCreer} est à {\tt true}, le code de retour de l'opération de création de l'archive est retourné. Sinon, la valeur retournée est {\tt 1} \end{Desc}
+
+
+Références creerArchive().
+
+Référencé par CTar(), et majArchive().\index{CTar@{CTar}!creerArchive@{creerArchive}}
+\index{creerArchive@{creerArchive}!CTar@{CTar}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTar::creerArchive ()}\label{class_c_tar_542654d2a0886e58d6f49d3133461d08}
+
+
+Crée l'archive. 
+
+\begin{Desc}
+\item[Renvoie:]le code d'erreur de la fonction {\tt PclTarCreate()} (biblio externe), qui est 1 si l'opération est correcte \end{Desc}
+
+
+Référencé par ajouterEntreesDsListe(), et CTar().\index{CTar@{CTar}!CTar@{CTar}}
+\index{CTar@{CTar}!CTar@{CTar}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTar::CTar (\$ {\em v\_\-sCheminArchive}, \/  \$ {\em v\_\-asEntrees} = {\tt NULL}, \/  \$ {\em v\_\-bCreer} = {\tt FALSE})}\label{class_c_tar_5bc5b496551fd6c4a2874b25067c9c6f}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sCheminArchive}]le chemin complet de l'archive qu'on désire créer \item[{\em v\_\-asEntrees}]un tableau contenant les chemins de fichiers ou dossiers à compresser. Si {\tt null} (par défaut), il faudra ajouter des entrées plus tard à l'aide de la fonction \doxyref{ajouterEntreesDsListe()}{p.}{class_c_tar_d43036987c5d5649572d42bfc6839e48}, et le paramètre {\tt v\_\-bCreer} ne sera donc pas pris en compte (il vaudra {\tt false}) \item[{\em v\_\-bCreer}]si {\tt true}, crée immédiatement l'archive. Le code de retour de cette opération est stocké dans la propriété {\tt iCodeRetour} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Vérifier que le chemin/nom de l'archive à créer est valide \end{Desc}
+
+
+Références ajouterEntreesDsListe(), et creerArchive().\index{CTar@{CTar}!majArchive@{majArchive}}
+\index{majArchive@{majArchive}!CTar@{CTar}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTar::majArchive (\$ {\em v\_\-asEntrees})}\label{class_c_tar_154f8688a09c391316710d29fb781dcc}
+
+
+Ajoute des fichiers à l'archive, écrasant les versions plus anciennes éventuelles. 
+
+\begin{Desc}
+\item[Renvoie:]le code d'erreur de la fonction {\tt PclTarUpdate()} (biblio externe), qui est 1 si l'opération est correcte \end{Desc}
+
+
+Références ajouterEntreesDsListe().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/{\bf tar.class.php}\end{CompactItemize}

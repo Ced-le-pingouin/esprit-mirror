@@ -1,0 +1,85 @@
+\section{Référence de la classe IterateurFiltre}
+\label{class_iterateur_filtre}\index{IterateurFiltre@{IterateurFiltre}}
+Graphe d'héritage de IterateurFiltre::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_iterateur_filtre}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe abstraite qui sert de filtre (sous forme de décorateur) à des objets dérivés de \doxyref{Iterateur}{p.}{class_iterateur}. 
+
+La méthode abstraite \doxyref{accepter()}{p.}{class_iterateur_filtre_0a6c563c9d39daa92177f697f7046e01} doit être redéfinie dans les sous-classes, de façon à déterminer si un élément est considéré comme \char`\"{}acceptable\char`\"{} ou pas selon le filtre utilisé.
+
+L'algorithme utilisant \doxyref{accepter()}{p.}{class_iterateur_filtre_0a6c563c9d39daa92177f697f7046e01} pour retourner ou pas un élément de l'itérateur par la méthode \doxyref{courant()}{p.}{class_iterateur_decorateur_0556823cb63bdd26ffb6740ac48d6d3a} est quant à lui implémenté ici, et ne doit normalement pas être modifié \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf accepter} ()
+\begin{CompactList}\small\item\em Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir si l'élément courant est \char`\"{}acceptable\char`\"{} ou pas selon le filtre voulu. \item\end{CompactList}\item 
+{\bf debut} ()\label{class_iterateur_filtre_85e8706ed57553310e22ff0dd929f315}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::debut()}{p.}{class_iterateur_1600a0b47466d85a5bb4af10a634b1ed}. \item\end{CompactList}\item 
+{\bf fin} ()\label{class_iterateur_filtre_841092e08858f5f703954687a3c747fa}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::fin()}{p.}{class_iterateur_487fadeda3651d2add97628652fa6d1e}. \item\end{CompactList}\item 
+{\bf rechercher} (\$v\_\-Cle)
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::rechercher()}{p.}{class_iterateur_b05ee08c7fc02253222a8f3604b65804}. \item\end{CompactList}\item 
+{\bf suiv} ()\label{class_iterateur_filtre_068dc6ef7df346ed27edf01a4a904c02}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::suiv()}{p.}{class_iterateur_b49e1eadf71ee40a816ed2d5134e0ba7}. \item\end{CompactList}\item 
+{\bf taille} ()
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::taille()}{p.}{class_iterateur_40a496bef151a677b180e7805f106acd}. \item\end{CompactList}\item 
+{\bf trouverValideSuiv} ()\label{class_iterateur_filtre_3641e93b694163c659180a4d5c668051}
+
+\begin{CompactList}\small\item\em Avance l'itérateur interne jusqu'au prochain élément qui soit valide (existant) ET accepté par le filtre utilisé. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurFiltre@{IterateurFiltre}!accepter@{accepter}}
+\index{accepter@{accepter}!IterateurFiltre@{IterateurFiltre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurFiltre::accepter ()}\label{class_iterateur_filtre_0a6c563c9d39daa92177f697f7046e01}
+
+
+Méthode abstraite qui devra être surchargée dans les sous-classes, afin de définir si l'élément courant est \char`\"{}acceptable\char`\"{} ou pas selon le filtre voulu. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'élément courant est accepté par le filtre, {\tt false} sinon \end{Desc}
+
+
+Réimplémentée dans {\bf IterateurFiltreDossier} \doxyref{}{p.}{class_iterateur_filtre_dossier_e77b977a90be8be025c05c601efd31b1}.
+
+Références OO::abstraite().
+
+Référencé par rechercher(), et trouverValideSuiv().\index{IterateurFiltre@{IterateurFiltre}!rechercher@{rechercher}}
+\index{rechercher@{rechercher}!IterateurFiltre@{IterateurFiltre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurFiltre::rechercher (\$ {\em v\_\-Cle})}\label{class_iterateur_filtre_20bef862b796a69638948f0dbc209202}
+
+
+Voir \doxyref{Iterateur::rechercher()}{p.}{class_iterateur_b05ee08c7fc02253222a8f3604b65804}. 
+
+\begin{Desc}
+\item[Note:]Si l'élément recherché par rapport à sa clé est trouvé, mais qu'il ne satisfait pas le filtre, l'itérateur restera dans sa position actuelle et la méthode retournera {\tt false} \end{Desc}
+
+
+Réimplémentée à partir de {\bf IterateurDecorateur} \doxyref{}{p.}{class_iterateur_decorateur_90259cf14884dba26fea2249689fdbbd}.
+
+Références accepter().\index{IterateurFiltre@{IterateurFiltre}!taille@{taille}}
+\index{taille@{taille}!IterateurFiltre@{IterateurFiltre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurFiltre::taille ()}\label{class_iterateur_filtre_3f5ac10ad099e9820e39a256e272006f}
+
+
+Voir \doxyref{Iterateur::taille()}{p.}{class_iterateur_40a496bef151a677b180e7805f106acd}. 
+
+\begin{Desc}
+\item[Avertissement:]Même remarque sur la performance que pour \doxyref{Iterateur::taille()}{p.}{class_iterateur_40a496bef151a677b180e7805f106acd} \end{Desc}
+
+
+Réimplémentée à partir de {\bf IterateurDecorateur} \doxyref{}{p.}{class_iterateur_decorateur_30ac1db0dd4f46fa5be76d2489fa0c29}.
+
+Références debut(), IterateurDecorateur::estValide(), et suiv().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurFiltre.php}\end{CompactItemize}

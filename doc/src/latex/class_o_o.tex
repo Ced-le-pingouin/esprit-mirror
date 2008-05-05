@@ -1,0 +1,233 @@
+\section{Référence de la classe OO}
+\label{class_o_o}\index{OO@{OO}}
+
+
+\subsection{Description détaillée}
+Classe permettant de gérer de concepts \char`\"{}forcés\char`\"{} absents de PHP 4, comme la déclaration d'interfaces, l'obligation pour une classe d'implémenter une interface, les classes et méthodes abstraites, et les méthodes strictement statiques. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf \_\-defClasseQuiImplemente} (\$v\_\-sClasse, \$v\_\-sInterface)
+\begin{CompactList}\small\item\em Sauvegarde le fait qu'une classe implémente une interface. \item\end{CompactList}\item 
+{\bf \_\-estClasseQuiImplemente} (\$v\_\-sClasse, \$v\_\-sInterface)
+\begin{CompactList}\small\item\em Vérifie qu'un classe, ou une de ses classes parentes, implémente une interface donnée. \item\end{CompactList}\item 
+{\bf \_\-nomClasse} (\$v\_\-sClasse)
+\begin{CompactList}\small\item\em Retourne le nom d'une classe, converti selon le type de valeurs de retour des fonctions de gestion de classes/méthodes/fonctions du PHP courant (PHP 4 retourne tous les noms en minuscules, alors que PHP 5 les retourne tels qu'ils ont été déclarés). \item\end{CompactList}\item 
+{\bf \_\-retClasseAppelante} ()
+\begin{CompactList}\small\item\em Retourne le nom de la classe dans laquelle un appel à \doxyref{OO}{p.}{class_o_o} a été fait, en se basant sur le nom du fichier dans lequel a été effectué l'appel. \item\end{CompactList}\item 
+{\bf abstraite} ()
+\begin{CompactList}\small\item\em Placée dans une méthode d'une classe abstraite (ou une interface), provoquera volontairement une erreur si on tente d'appeler la méthode. \item\end{CompactList}\item 
+{\bf classeAbstraiteExiste} (\$v\_\-sClasseAbstraite, \$v\_\-bRechercheMinuscules=FALSE)
+\begin{CompactList}\small\item\em Vérifie l'existence d'une classe abstraite. \item\end{CompactList}\item 
+{\bf defClasseAbstraite} (\$v\_\-sClasseAbstraite=NULL)
+\begin{CompactList}\small\item\em Définit une classe PHP comme abstraite. \item\end{CompactList}\item 
+{\bf defInterface} (\$v\_\-sInterface=NULL)
+\begin{CompactList}\small\item\em Définit une classe PHP comme étant une interface. \item\end{CompactList}\item 
+{\bf implemente} (\$v\_\-sInterface, \$v\_\-sClasseQuiImplemente=NULL)
+\begin{CompactList}\small\item\em Indique qu'une classe doit implémenter une interface particulière. \item\end{CompactList}\item 
+{\bf instanceDe} (\$v\_\-oObjet, \$v\_\-sClasse)
+\begin{CompactList}\small\item\em Vérifie qu'un objet est une instance d'une classe X, ou d'une classe dérivée de X, ou que sa classe ou une de ses ancêtres implémente l'interface X. \item\end{CompactList}\item 
+{\bf interfaceExiste} (\$v\_\-sInterface, \$v\_\-bRechercheMinuscules=FALSE)
+\begin{CompactList}\small\item\em Vérifie l'existence d'une interface. \item\end{CompactList}\item 
+{\bf statique} ()
+\begin{CompactList}\small\item\em Vérifie que la méthode qui l'appelle a elle-même été appelée statiquement (avec l'opérateur '::'), et provoque une erreur dans le cas contraire. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{OO@{OO}!\_\-defClasseQuiImplemente@{\_\-defClasseQuiImplemente}}
+\index{\_\-defClasseQuiImplemente@{\_\-defClasseQuiImplemente}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::\_\-defClasseQuiImplemente (\$ {\em v\_\-sClasse}, \/  \$ {\em v\_\-sInterface})}\label{class_o_o_21312450d313b62eb524475fe1c1ed42}
+
+
+Sauvegarde le fait qu'une classe implémente une interface. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sClasse}]le nom de la classe qui implémente l'interface \item[{\em v\_\-sInterface}]le nom de l'interface implémentée\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]Méthode privée \end{Desc}
+
+
+Référencé par implemente().\index{OO@{OO}!\_\-estClasseQuiImplemente@{\_\-estClasseQuiImplemente}}
+\index{\_\-estClasseQuiImplemente@{\_\-estClasseQuiImplemente}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::\_\-estClasseQuiImplemente (\$ {\em v\_\-sClasse}, \/  \$ {\em v\_\-sInterface})}\label{class_o_o_adb133552bb0b4ae935ae4cf72ac683b}
+
+
+Vérifie qu'un classe, ou une de ses classes parentes, implémente une interface donnée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sClasse}]le nom de la classe \item[{\em v\_\-sInterface}]le nom de l'interface\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la classe ou une de ses classes parentes implémente l'interface, {\tt false} sinon\end{Desc}
+\begin{Desc}
+\item[Note:]Méthode privée \end{Desc}
+
+
+Référencé par instanceDe().\index{OO@{OO}!\_\-nomClasse@{\_\-nomClasse}}
+\index{\_\-nomClasse@{\_\-nomClasse}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::\_\-nomClasse (\$ {\em v\_\-sClasse})}\label{class_o_o_b31282b83532ad55ea96aca894bcae1f}
+
+
+Retourne le nom d'une classe, converti selon le type de valeurs de retour des fonctions de gestion de classes/méthodes/fonctions du PHP courant (PHP 4 retourne tous les noms en minuscules, alors que PHP 5 les retourne tels qu'ils ont été déclarés). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sClasse}]le nom de classe (ou méthode) à convertir\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nom de la classe, converti selon la version de PHP courante \end{Desc}
+
+
+Référencé par implemente().\index{OO@{OO}!\_\-retClasseAppelante@{\_\-retClasseAppelante}}
+\index{\_\-retClasseAppelante@{\_\-retClasseAppelante}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::\_\-retClasseAppelante ()}\label{class_o_o_e43277f0de3a0e95926f1996e3d1d3de}
+
+
+Retourne le nom de la classe dans laquelle un appel à \doxyref{OO}{p.}{class_o_o} a été fait, en se basant sur le nom du fichier dans lequel a été effectué l'appel. 
+
+Pour que cette méthode fonctionne :
+
+\begin{itemize}
+\item elle ne doit pas être appelée directement en dehors de \doxyref{OO}{p.}{class_o_o}\item le fichier duquel l'appel est effectué est censé définir une classe\item il doit s'agir d'une seule classe, et le fichier doit porter le même nom que la classe (avec toutefois une éventuelle extension)\end{itemize}
+
+
+\begin{Desc}
+\item[Renvoie:]le nom de la classe au sein de laquelle a été appelée la dernière méthode de \doxyref{OO}{p.}{class_o_o}\end{Desc}
+\begin{Desc}
+\item[Note:]Méthode privée \end{Desc}
+
+
+Référencé par defClasseAbstraite(), defInterface(), et implemente().\index{OO@{OO}!abstraite@{abstraite}}
+\index{abstraite@{abstraite}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::abstraite ()}\label{class_o_o_defce377a9e4e779d278dd0f15eccf44}
+
+
+Placée dans une méthode d'une classe abstraite (ou une interface), provoquera volontairement une erreur si on tente d'appeler la méthode. 
+
+Cela permet de s'assurer que les méthodes dans une classe abstraite (interface) ne seront jamais appelées. Si cette méthode est appelée par un constructeur d'une classe abstraite (interface), le message est adapté pour indiquer qu'il est impossible d'instancier ce type de classe. Si cette méthode
+
+exemple: function methodeClasseAbstraite() \{ \doxyref{OO::abstraite()}{p.}{class_o_o_defce377a9e4e779d278dd0f15eccf44}; \} 
+
+Références classeAbstraiteExiste(), interfaceExiste(), et Erreur::provoquer().
+
+Référencé par IterateurFiltre::accepter(), IterateurComposite::aEnfants(), AfficheurPage::afficherParties(), IterateurAbstrait::cle(), Iterateur::cle(), IterateurAbstrait::courant(), Iterateur::courant(), IterateurAbstrait::debut(), Iterateur::debut(), Iterateur::estDernier(), Iterateur::estPremier(), IterateurAbstrait::estValide(), Iterateur::estValide(), Iterateur::fin(), AfficheurPage::gererActions(), Iterateur::Iterateur(), IterateurAbstrait::IterateurAbstrait(), IterateurDecorateur::IterateurDecorateur(), IterateurBidir::prec(), Iterateur::rechercher(), AfficheurPage::recupererDonnees(), IterateurComposite::retIterateurEnfants(), IterateurAbstrait::suiv(), Iterateur::suiv(), Iterateur::taille(), et AfficheurPage::validerDonnees().\index{OO@{OO}!classeAbstraiteExiste@{classeAbstraiteExiste}}
+\index{classeAbstraiteExiste@{classeAbstraiteExiste}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::classeAbstraiteExiste (\$ {\em v\_\-sClasseAbstraite}, \/  \$ {\em v\_\-bRechercheMinuscules} = {\tt FALSE})}\label{class_o_o_011992bf5f79361fee87c3a2418262bd}
+
+
+Vérifie l'existence d'une classe abstraite. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sClasseAbstraite}]le nom de la classe abstraite dont il faut vérifier l'existence \item[{\em v\_\-bRechercheMinuscules}]si {\tt true}, la recherche se fait sur la version en minuscules des noms de classes abstraites déclarées. Si {\tt false} (défaut), la recherche se fait sur les noms des classes abstraites tels qu'ils ont été enregistrés (voir remarque \doxyref{interfaceExiste()}{p.}{class_o_o_528b20144b29a7f24350606a41ee78d8})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la classe abstraite existe, {\tt false} sinon \end{Desc}
+
+
+Référencé par abstraite(), et defClasseAbstraite().\index{OO@{OO}!defClasseAbstraite@{defClasseAbstraite}}
+\index{defClasseAbstraite@{defClasseAbstraite}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::defClasseAbstraite (\$ {\em v\_\-sClasseAbstraite} = {\tt NULL})}\label{class_o_o_089c6e0624839a8050f86baf5b232abe}
+
+
+Définit une classe PHP comme abstraite. 
+
+Il s'agit juste d'une information, et la seule conséquence est que lorsqu'une classe disposera d'au moins une méthode appelant \doxyref{abstraite()}{p.}{class_o_o_defce377a9e4e779d278dd0f15eccf44}, si cette classe n'est pas définie comme abstraite grâce à \doxyref{defClasseAbstraite()}{p.}{class_o_o_089c6e0624839a8050f86baf5b232abe}, une erreur sera générée. Je n'ai pas trouvé de moyen simple de pouvoir vérifier cela avant l'appel effectif d'une méthode \doxyref{OO::abstraite()}{p.}{class_o_o_defce377a9e4e779d278dd0f15eccf44} en PHP 4
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sClasseAbstraite}]le nom de la classe qui doit être considérée comme abstraite. S'il {\tt null} (par défaut), on tentera de déterminer le nom de la classe en fonction du fichier d'où provient l'appel, qui devra alors être un fichier qui définit la classe tout en portant le même nom (avec ou sans extension)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Avertissement:]Il est préférable, pour des raisons de cohérence, de placer le \doxyref{OO}{p.}{class_o_o}:\doxyref{defClasseAbstraite()}{p.}{class_o_o_089c6e0624839a8050f86baf5b232abe} après la définition de la classe PHP qu'on veut déclarer comme abstraite. Voir la remarque sur \doxyref{implemente()}{p.}{class_o_o_f02e35f8665ed9abf9280bd55f2ac14c} (valable même si elle concerne les interfaces) \end{Desc}
+
+
+Références \_\-retClasseAppelante(), et classeAbstraiteExiste().\index{OO@{OO}!defInterface@{defInterface}}
+\index{defInterface@{defInterface}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::defInterface (\$ {\em v\_\-sInterface} = {\tt NULL})}\label{class_o_o_8869450bc241b5ff5d2f0fd1449a4778}
+
+
+Définit une classe PHP comme étant une interface. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sInterface}]le nom de la classe qui doit être considérée comme une interface. S'il {\tt null} (par défaut), on tentera de déterminer le nom de l'interface (classe) en fonction du fichier d'où provient l'appel, qui devra alors être un fichier qui définit l'interface (classe) tout en portant le même nom (avec ou sans extension)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Avertissement:]Il est préférable, pour des raisons de cohérence, de placer le \doxyref{OO}{p.}{class_o_o}:\doxyref{defInterface()}{p.}{class_o_o_8869450bc241b5ff5d2f0fd1449a4778} après la définition de la classe PHP qu'on veut déclarer comme étant une interface. Voir la remarque sur \doxyref{implemente()}{p.}{class_o_o_f02e35f8665ed9abf9280bd55f2ac14c}. \end{Desc}
+
+
+Références \_\-retClasseAppelante(), et interfaceExiste().\index{OO@{OO}!implemente@{implemente}}
+\index{implemente@{implemente}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::implemente (\$ {\em v\_\-sInterface}, \/  \$ {\em v\_\-sClasseQuiImplemente} = {\tt NULL})}\label{class_o_o_f02e35f8665ed9abf9280bd55f2ac14c}
+
+
+Indique qu'une classe doit implémenter une interface particulière. 
+
+Si la classe ne dispose pas de toutes les méthodes de l'interface, une erreur sera générée. Si tout est ok, l'interface et la classe qui implémente sont enregistrées pour qu'on puisse par la suite vérifier plus rapidement que cette classe l'implémente bien (voir \doxyref{instanceDe()}{p.}{class_o_o_c27e07e635d3dd12a1c07b5484b67982})
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sInterface}]l'interface que la classe doit implémenter. Etant donné qu'en PHP 4, les interfaces n'existent pas, il s'agit en réalité d'une classe qui devra avoir été déclarée comme telle dans son fichier de définition, grâce à la méthode \doxyref{defInterface()}{p.}{class_o_o_8869450bc241b5ff5d2f0fd1449a4778} \item[{\em v\_\-sClasseQuiImplemente}]nom de la classe dont on veut vérifier qu'elle implémente l'interface. Si {\tt null} (défaut), c'est le nom du fichier d'où provient l'appel à la méthode qui sera utilisé comme nom de classe à vérifier. Cela implique que le fichier porte le même nom que la classe qu'il contient (extension non prise en compte)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Avertissement:]Au départ, je pensais placer des \doxyref{OO::implemente()}{p.}{class_o_o_f02e35f8665ed9abf9280bd55f2ac14c} devant la définition de la classe concernée (càd qui est censée implémenter une interface), dans son fichier source, mais ça pose problème (du moins selon mes tests en PHP 4), car malheureusement en adoptant cette méthode, au moment où OO::implémente() est appelée, la classe qui suit cet appel, dans le fichier source, n'a pas encore été lue par PHP, et donc ses méthodes n'existent pas (en fait il semble que ses méthodes sont connues, $\ast$sauf$\ast$ dans le cas où cette classe en étend une autre) =$>$ il vaut mieux placer le \doxyref{OO::implemente()}{p.}{class_o_o_f02e35f8665ed9abf9280bd55f2ac14c} $\ast$après$\ast$ la définition de la classe qui implémente \end{Desc}
+
+
+Références \_\-defClasseQuiImplemente(), \_\-nomClasse(), \_\-retClasseAppelante(), interfaceExiste(), et Erreur::provoquer().\index{OO@{OO}!instanceDe@{instanceDe}}
+\index{instanceDe@{instanceDe}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::instanceDe (\$ {\em v\_\-oObjet}, \/  \$ {\em v\_\-sClasse})}\label{class_o_o_c27e07e635d3dd12a1c07b5484b67982}
+
+
+Vérifie qu'un objet est une instance d'une classe X, ou d'une classe dérivée de X, ou que sa classe ou une de ses ancêtres implémente l'interface X. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oObjet}]l'objet à vérifier \item[{\em v\_\-sClasse}]la classe ou interface dont X doit être instancié ou dérivé\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si {\tt v\_\-sObjet} est bien une instance de {\tt v\_\-sClasse}, ou d'une classe dérivée de {\tt v\_\-sClasse}, ou que sa classe ou une classe ancêtre implémente {\tt v\_\-sClasse}. Sinon {\tt false} \end{Desc}
+
+
+Références \_\-estClasseQuiImplemente(), interfaceExiste(), et Erreur::provoquer().
+
+Référencé par IterateurFiltreDossier::IterateurFiltreDossier(), et IterateurRecursif::IterateurRecursif().\index{OO@{OO}!interfaceExiste@{interfaceExiste}}
+\index{interfaceExiste@{interfaceExiste}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::interfaceExiste (\$ {\em v\_\-sInterface}, \/  \$ {\em v\_\-bRechercheMinuscules} = {\tt FALSE})}\label{class_o_o_528b20144b29a7f24350606a41ee78d8}
+
+
+Vérifie l'existence d'une interface. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sInterface}]le nom de l'interface dont il faut vérifier l'existence \item[{\em v\_\-bRechercheMinuscules}]si {\tt true}, la recherche se fait sur la version en minuscules des noms d'interfaces déclarées. Si {\tt false} (défaut), la recherche se fait sur les noms des interfaces tels qu'ils ont été enregistrés. Ce paramètre est utile en PHP 4 si l'on veut passer en paramètre {\tt v\_\-sInterface} un nom de classe récupéré d'une fonction native PHP 4, car malheureusement, celles-ci retournent les noms de classes et méthodes connues entièrement en minuscules, et les noms tels qu'ils ont été déclarés, avec la casse originale, sont perdus\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'interface existe, {\tt false} sinon \end{Desc}
+
+
+Référencé par abstraite(), defInterface(), implemente(), et instanceDe().\index{OO@{OO}!statique@{statique}}
+\index{statique@{statique}!OO@{OO}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}OO::statique ()}\label{class_o_o_f67b07714c69848b910c35667f39a502}
+
+
+Vérifie que la méthode qui l'appelle a elle-même été appelée statiquement (avec l'opérateur '::'), et provoque une erreur dans le cas contraire. 
+
+Cela permet de forcer des méthodes à être statiques, étant donné que PHP 4 ne supporte pas le mot-clé qui forcerait ce type d'appel 
+
+Références Erreur::provoquer().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf OO.php}\end{CompactItemize}

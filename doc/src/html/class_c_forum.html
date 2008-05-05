@@ -1,0 +1,748 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CForum</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CForum</h1><!-- doxytag: class="CForum" -->Dérivée par CForumPrefs, et CForumTXT.
+<p>
+
+<p>
+<a href="class_c_forum-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des forums, et encapsulation de la table Forum de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#ac9f3fccbd9724a257b4bcac12cc4083">ajouter</a> ($v_sNomForum, $v_iModaliteForum, $v_iStatutForum, $v_bAccessibleVisiteursForum, $v_iIdMod, $v_iIdRubrique, $v_iIdSousActiv, $v_iIdForumParent, $v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un nouveau forum dans la table.  <a href="#ac9f3fccbd9724a257b4bcac12cc4083"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#b4b8b1a077bb2674248d0f2273b48fd4">CForum</a> (&amp;$v_oBdd, $v_iId=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#b4b8b1a077bb2674248d0f2273b48fd4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2575d760358e07a8da96e1199d37f409"></a><!-- doxytag: member="CForum::copier" ref="2575d760358e07a8da96e1199d37f409" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#2575d760358e07a8da96e1199d37f409">copier</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie le forum courant dans un autre. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a1684f39a81eda16b36e87aaee81a6fc"></a><!-- doxytag: member="CForum::detruire" ref="a1684f39a81eda16b36e87aaee81a6fc" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#a1684f39a81eda16b36e87aaee81a6fc">detruire</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les valeurs contenues dans <code>oBdd</code>, <code>oEnregBdd</code>, <code>iId</code>, <code>aoSousForums</code>, <code>aoSujets</code>, <code>iIdTypeForum</code>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e5fcb2c504fb8a0f07bcaae97b233625"></a><!-- doxytag: member="CForum::effacer" ref="e5fcb2c504fb8a0f07bcaae97b233625" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#e5fcb2c504fb8a0f07bcaae97b233625">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le forum. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1cc143b9f884071a3e26bbdafbb62940"></a><!-- doxytag: member="CForum::effacerForum" ref="1cc143b9f884071a3e26bbdafbb62940" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#1cc143b9f884071a3e26bbdafbb62940">effacerForum</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le forum ainsi que ses sujets. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b42b55ecee51ad62747eeb69fc7dbd31"></a><!-- doxytag: member="CForum::effacerForumsPrefs" ref="b42b55ecee51ad62747eeb69fc7dbd31" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#b42b55ecee51ad62747eeb69fc7dbd31">effacerForumsPrefs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les préférences des forums. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="14a1bee7dbed025055a2b582f9514042"></a><!-- doxytag: member="CForum::effacerSousForums" ref="14a1bee7dbed025055a2b582f9514042" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#14a1bee7dbed025055a2b582f9514042">effacerSousForums</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les sous-forums du forum courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="30854f5273d2ed6163aa369451e0bc9a"></a><!-- doxytag: member="CForum::effacerSujets" ref="30854f5273d2ed6163aa369451e0bc9a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#30854f5273d2ed6163aa369451e0bc9a">effacerSujets</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les sujets du forum courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="987e642701c09bac03fd52e060e528c1"></a><!-- doxytag: member="CForum::enregistrer" ref="987e642701c09bac03fd52e060e528c1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#987e642701c09bac03fd52e060e528c1">enregistrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre(update) dans la DB le forum courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#1ede1c45811f786c670f8c322cad67bc">estForumParEquipe</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que la modalité du forum est par équipe.  <a href="#1ede1c45811f786c670f8c322cad67bc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="134622a3b06cd66f2162ba892c156e58"></a><!-- doxytag: member="CForum::init" ref="134622a3b06cd66f2162ba892c156e58" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#134622a3b06cd66f2162ba892c156e58">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#a7383aed7c75ef131bef8e68c0f06aad">initForumParType</a> ($v_iType, $v_iIdType)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un forum de type rubrique ou sous-activité.  <a href="#a7383aed7c75ef131bef8e68c0f06aad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#e5f8475074269647628add32dde68be1">initForumsPrefs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant la liste des préférences du forum.  <a href="#e5f8475074269647628add32dde68be1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#77dd515379647e9c8d65a2a13b1f69ab">initSousForums</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les sous-forums du forum courant.  <a href="#77dd515379647e9c8d65a2a13b1f69ab"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#71f8092a02fa63157d7afcb4a452a7be">initSujets</a> ($v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant tous les sujets qui appartiennent au forum courant.  <a href="#71f8092a02fa63157d7afcb4a452a7be"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#15601b019f0ab1bb3723c476f798dbdf">retDernierSujets</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le dernier sujet du forum.  <a href="#15601b019f0ab1bb3723c476f798dbdf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#aae865ae436b2a9ea07f9b791f52177e">retIdNiveau</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne soit l'id du module, soit de la rubrique ou celui de la sous-activité parent(e).  <a href="#aae865ae436b2a9ea07f9b791f52177e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#385bb6dea51522658be7bff79ec3ac53">retListeModalites</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau contenant en français les modalités, les constantes MODALITE_ et les variables booléennes qui indiquent si c'est la modalité courante du forum.  <a href="#385bb6dea51522658be7bff79ec3ac53"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#a4f9b1afaa2e6bb32ece75067020b9ae">retNbMessages</a> ($v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de messages, ainsi que la date du plus récent du forum courant.  <a href="#a4f9b1afaa2e6bb32ece75067020b9ae"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#6ed42a5678d1463a7835bb809dfc5975">retNombreSujets</a> ($v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de sujet du forum.  <a href="#6ed42a5678d1463a7835bb809dfc5975"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#fc5e8fa130e2c99f9deb2b565488edf5">retNumOrdreMax</a> ($v_iIdMod, $v_iIdRubrique, $v_iIdSousActiv)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le numéro d'ordre maximum des forums.  <a href="#fc5e8fa130e2c99f9deb2b565488edf5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#6e7b0323008f4cf17eea6ec51477b38e">retTexteModalite</a> ($v_iIdModalite=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne en français la modalité courante du forum.  <a href="#6e7b0323008f4cf17eea6ec51477b38e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#843c085dec35f1aed47452d8bc551d48">retTypeNiveau</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la constante qui définit le niveau actuel, de la structure d'une formation (module, rubrique ou sous-activité).  <a href="#843c085dec35f1aed47452d8bc551d48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#b654df67f28b6a495a2423cb6b67e29a">STRING_LOCK_TABLES</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les tables à verrouiller de la DB.  <a href="#b654df67f28b6a495a2423cb6b67e29a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4e51a946148718d861caed7286485932"></a><!-- doxytag: member="CForum::supprimer" ref="4e51a946148718d861caed7286485932" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#4e51a946148718d861caed7286485932">supprimer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Supprime la totalité du forum courant dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a2b9b7eb8d8e329b85af7df87763fad4"></a><!-- doxytag: member="CForum::supprimerSujets" ref="a2b9b7eb8d8e329b85af7df87763fad4" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#a2b9b7eb8d8e329b85af7df87763fad4">supprimerSujets</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Supprime les sujets du forum courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#e6a3e42a2f2f61d97936662714381aaf">verrouillerTables</a> ($v_bVerrouillerTables=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verrouille ou déverouille les tables de la DB.  <a href="#e6a3e42a2f2f61d97936662714381aaf"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour ce forum</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="433808c24dabc076daa65dc58c2515c9"></a><!-- doxytag: member="CForum::defAccessibleVisiteurs" ref="433808c24dabc076daa65dc58c2515c9" args="($v_bAccessibleVisiteurs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAccessibleVisiteurs</b> ($v_bAccessibleVisiteurs)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2088878c3126dca14d18d390118b62e"></a><!-- doxytag: member="CForum::defModalite" ref="d2088878c3126dca14d18d390118b62e" args="($v_iIdModalite)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defModalite</b> ($v_iIdModalite)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e788f13afdbbd2fd6b0efc37b8fab1d3"></a><!-- doxytag: member="CForum::defNom" ref="e788f13afdbbd2fd6b0efc37b8fab1d3" args="($v_sNomForum)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNom</b> ($v_sNomForum)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="41c9f7ca0679fbc649039fbc3a609a44"></a><!-- doxytag: member="CForum::defStatut" ref="41c9f7ca0679fbc649039fbc3a609a44" args="($v_iIdStatut)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defStatut</b> ($v_iIdStatut)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour ce forum</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1af884c235f31d9cb0dfc93c66a3274c"></a><!-- doxytag: member="CForum::retAccessibleVisiteurs" ref="1af884c235f31d9cb0dfc93c66a3274c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAccessibleVisiteurs</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dda6c0f81d5edbb0076ebfd88c81aa8c"></a><!-- doxytag: member="CForum::retDateDernierMessage" ref="dda6c0f81d5edbb0076ebfd88c81aa8c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateDernierMessage</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5637d816537813436214bd5f53e9acb7"></a><!-- doxytag: member="CForum::retId" ref="5637d816537813436214bd5f53e9acb7" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f83f7cf76dfea81721a9c4940b0fc5ce"></a><!-- doxytag: member="CForum::retIdParent" ref="f83f7cf76dfea81721a9c4940b0fc5ce" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdParent</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5392dc88815685e512604e9b1a0e1417"></a><!-- doxytag: member="CForum::retIdPers" ref="5392dc88815685e512604e9b1a0e1417" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdPers</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0a19fdbb05eaf46410a6c3c179a9cc0f"></a><!-- doxytag: member="CForum::retModalite" ref="0a19fdbb05eaf46410a6c3c179a9cc0f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retModalite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ef746196ffacb275ebfa0fc86a266a7f"></a><!-- doxytag: member="CForum::retNom" ref="ef746196ffacb275ebfa0fc86a266a7f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNom</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2f6095a8e54c6664db52aab8fd3451d5"></a><!-- doxytag: member="CForum::retStatut" ref="2f6095a8e54c6664db52aab8fd3451d5" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retStatut</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="34d6157c4c607849764d46dc9fa1fb9a"></a><!-- doxytag: member="CForum::$aoForumsPrefs" ref="34d6157c4c607849764d46dc9fa1fb9a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#34d6157c4c607849764d46dc9fa1fb9a">$aoForumsPrefs</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_forum.html#e5f8475074269647628add32dde68be1" title="Initialise un tableau contenant la liste des préférences du forum.">initForumsPrefs()</a>, contenant les préférences des forums (CForumPrefs). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1d6e2a7a1d959c971e30854a1848ad94"></a><!-- doxytag: member="CForum::$aoSousForums" ref="1d6e2a7a1d959c971e30854a1848ad94" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#1d6e2a7a1d959c971e30854a1848ad94">$aoSousForums</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_forum.html#77dd515379647e9c8d65a2a13b1f69ab" title="Initialise un tableau contenant les sous-forums du forum courant.">initSousForums()</a>, contenant les sous-forums. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="395e51a14214001f53389de789d8e7fc"></a><!-- doxytag: member="CForum::$aoSujets" ref="395e51a14214001f53389de789d8e7fc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#395e51a14214001f53389de789d8e7fc">$aoSujets</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_forum.html#71f8092a02fa63157d7afcb4a452a7be" title="Initialise un tableau contenant tous les sujets qui appartiennent au forum courant...">initSujets()</a>, contenant les sujets des forums. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6ffb9f9f90a06262b6f914ff1f4cf3ce"></a><!-- doxytag: member="CForum::$iId" ref="6ffb9f9f90a06262b6f914ff1f4cf3ce" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#6ffb9f9f90a06262b6f914ff1f4cf3ce">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id du forum à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8e6ea2abaaca8280868e2580f07e0c6b"></a><!-- doxytag: member="CForum::$iIdTypeForum" ref="8e6ea2abaaca8280868e2580f07e0c6b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#8e6ea2abaaca8280868e2580f07e0c6b">$iIdTypeForum</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type entier, contenant le type des forums (rubrique ou sous-activité). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9bceb5ddccfc103fce5f8b07f38909f9"></a><!-- doxytag: member="CForum::$oBdd" ref="9bceb5ddccfc103fce5f8b07f38909f9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#9bceb5ddccfc103fce5f8b07f38909f9">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="73a8eea1df88229d72485b57954408b8"></a><!-- doxytag: member="CForum::$oEnregBdd" ref="73a8eea1df88229d72485b57954408b8" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_forum.html#73a8eea1df88229d72485b57954408b8">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="ac9f3fccbd9724a257b4bcac12cc4083"></a><!-- doxytag: member="CForum::ajouter" ref="ac9f3fccbd9724a257b4bcac12cc4083" args="($v_sNomForum, $v_iModaliteForum, $v_iStatutForum, $v_bAccessibleVisiteursForum, $v_iIdMod, $v_iIdRubrique, $v_iIdSousActiv, $v_iIdForumParent, $v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomForum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iModaliteForum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatutForum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAccessibleVisiteursForum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdSousActiv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForumParent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un nouveau forum dans la table. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomForum</em>&nbsp;</td><td>nom du forum </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iModaliteForum</em>&nbsp;</td><td>modalité du forum {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE} </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatutForum</em>&nbsp;</td><td>statut du forum {STATUT_OUVERT | STATUT_LECTURE_SEULE | STATUT_FERME | STATUT_INVISIBLE} </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAccessibleVisiteursForum</em>&nbsp;</td><td>boolean, ce forum est-il accessible aux visiteurs ? </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>numéro d'identifiant du module </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>numéro d'identifiant de la rubrique </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdSousActiv</em>&nbsp;</td><td>numéro d'identifiant de la sous-activité </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForumParent</em>&nbsp;</td><td>numéro d'identifiant du forum parent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>numéro d'identifiant de l'auteur du forum </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nouveau numéro d'identifiant du forum </dd></dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00070">init()</a>, et <a class="el" href="forum_8tbl_8php-source.html#l00175">retNumOrdreMax()</a>.</p>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00258">copier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b4b8b1a077bb2674248d0f2273b48fd4"></a><!-- doxytag: member="CForum::CForum" ref="b4b8b1a077bb2674248d0f2273b48fd4" args="(&amp;$v_oBdd, $v_iId=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::CForum           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00070">init()</a>.</p>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00343">initSousForums()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1ede1c45811f786c670f8c322cad67bc"></a><!-- doxytag: member="CForum::estForumParEquipe" ref="1ede1c45811f786c670f8c322cad67bc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::estForumParEquipe           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que la modalité du forum est par équipe. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la modalité du forum est par équipe </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a7383aed7c75ef131bef8e68c0f06aad"></a><!-- doxytag: member="CForum::initForumParType" ref="a7383aed7c75ef131bef8e68c0f06aad" args="($v_iType, $v_iIdType)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::initForumParType           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdType</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'objet avec un forum de type rubrique ou sous-activité. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iType</em>&nbsp;</td><td>le type du forum (TYPE_RUBRIQUE ou TYPE_SOUS_ACTIVITE) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdType</em>&nbsp;</td><td>l'id de la rubrique ou de la sous-activité </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00070">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e5f8475074269647628add32dde68be1"></a><!-- doxytag: member="CForum::initForumsPrefs" ref="e5f8475074269647628add32dde68be1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::initForumsPrefs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant la liste des préférences du forum. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'éléments insérés dans le tableau </dd></dl>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00306">effacerForumsPrefs()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="77dd515379647e9c8d65a2a13b1f69ab"></a><!-- doxytag: member="CForum::initSousForums" ref="77dd515379647e9c8d65a2a13b1f69ab" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::initSousForums           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les sous-forums du forum courant. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de sous-forums insérés dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00042">$oEnregBdd</a>, et <a class="el" href="forum_8tbl_8php-source.html#l00057">CForum()</a>.</p>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00317">effacerSousForums()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="71f8092a02fa63157d7afcb4a452a7be"></a><!-- doxytag: member="CForum::initSujets" ref="71f8092a02fa63157d7afcb4a452a7be" args="($v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::initSujets           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant tous les sujets qui appartiennent au forum courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'equipe (optionnel)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de sujets trouvés </dd></dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00042">$oEnregBdd</a>.</p>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00328">effacerSujets()</a>, et <a class="el" href="forum_8tbl_8php-source.html#l00554">supprimerSujets()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="15601b019f0ab1bb3723c476f798dbdf"></a><!-- doxytag: member="CForum::retDernierSujets" ref="15601b019f0ab1bb3723c476f798dbdf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retDernierSujets           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le dernier sujet du forum. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le dernier sujet du forum, objet de type <a class="el" href="class_c_sujet_forum.html" title="Gestion des sujets des forums, et encapsulation de la table SujetForum de la DB.">CSujetForum</a> </dd></dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00042">$oEnregBdd</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aae865ae436b2a9ea07f9b791f52177e"></a><!-- doxytag: member="CForum::retIdNiveau" ref="aae865ae436b2a9ea07f9b791f52177e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retIdNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne soit l'id du module, soit de la rubrique ou celui de la sous-activité parent(e). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id du parent </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="385bb6dea51522658be7bff79ec3ac53"></a><!-- doxytag: member="CForum::retListeModalites" ref="385bb6dea51522658be7bff79ec3ac53" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retListeModalites           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau contenant en français les modalités, les constantes MODALITE_ et les variables booléennes qui indiquent si c'est la modalité courante du forum. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant les modalités </dd></dl>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00481">retTexteModalite()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a4f9b1afaa2e6bb32ece75067020b9ae"></a><!-- doxytag: member="CForum::retNbMessages" ref="a4f9b1afaa2e6bb32ece75067020b9ae" args="($v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retNbMessages           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de messages, ainsi que la date du plus récent du forum courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>si fourni, la fonction retournera le nombre de message (+date du plus récent) de cette personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de messages, ainsi que la date du plus récent du forum courant </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6ed42a5678d1463a7835bb809dfc5975"></a><!-- doxytag: member="CForum::retNombreSujets" ref="6ed42a5678d1463a7835bb809dfc5975" args="($v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retNombreSujets           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de sujet du forum. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>si fourni, la fonction retournera le nombre de sujets de cette personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de sujet du forum </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fc5e8fa130e2c99f9deb2b565488edf5"></a><!-- doxytag: member="CForum::retNumOrdreMax" ref="fc5e8fa130e2c99f9deb2b565488edf5" args="($v_iIdMod, $v_iIdRubrique, $v_iIdSousActiv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retNumOrdreMax           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdSousActiv</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le numéro d'ordre maximum des forums. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>l'id du module </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>l'id de la rubrique </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdSousActiv</em>&nbsp;</td><td>l'id de la sous-activité</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le numéro d'ordre maximum </dd></dl>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00213">ajouter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6e7b0323008f4cf17eea6ec51477b38e"></a><!-- doxytag: member="CForum::retTexteModalite" ref="6e7b0323008f4cf17eea6ec51477b38e" args="($v_iIdModalite=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retTexteModalite           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdModalite</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne en français la modalité courante du forum. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>en français la modalité courante du forum </dd></dl>
+
+<p>Références <a class="el" href="forum_8tbl_8php-source.html#l00511">retListeModalites()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="843c085dec35f1aed47452d8bc551d48"></a><!-- doxytag: member="CForum::retTypeNiveau" ref="843c085dec35f1aed47452d8bc551d48" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::retTypeNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la constante qui définit le niveau actuel, de la structure d'une formation (module, rubrique ou sous-activité). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la constante qui définit le niveau actuel, de la structure d'une formation </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b654df67f28b6a495a2423cb6b67e29a"></a><!-- doxytag: member="CForum::STRING_LOCK_TABLES" ref="b654df67f28b6a495a2423cb6b67e29a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::STRING_LOCK_TABLES           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les tables à verrouiller de la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>les tables à verrouiller de la DB </dd></dl>
+
+<p>Références <a class="el" href="sujetforum_8tbl_8php-source.html#l00451">CSujetForum::STRING_LOCK_TABLES()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e6a3e42a2f2f61d97936662714381aaf"></a><!-- doxytag: member="CForum::verrouillerTables" ref="e6a3e42a2f2f61d97936662714381aaf" args="($v_bVerrouillerTables=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CForum::verrouillerTables           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bVerrouillerTables</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Verrouille ou déverouille les tables de la DB. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bVerrouillerTables</em>&nbsp;</td><td>si <code>true</code> verrouille, sinon, déverouille les tables </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00275">effacer()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="forum_8tbl_8php.html">forum.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

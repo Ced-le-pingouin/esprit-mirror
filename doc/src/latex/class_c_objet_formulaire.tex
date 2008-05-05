@@ -1,0 +1,147 @@
+\section{Référence de la classe CObjetFormulaire}
+\label{class_c_objet_formulaire}\index{CObjetFormulaire@{CObjetFormulaire}}
+
+
+\subsection{Description détaillée}
+Gestion des objets de formulaire, et encapsulation de la table ObjetFormulaire de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+\textbf{ajouter} ()\label{class_c_objet_formulaire_28a593e1e73b2cf413ffc60316c6a51f}
+
+\item 
+{\bf CObjetFormulaire} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{copier} (\$v\_\-iIdFormParent, \$iIdObjParent, \$v\_\-iOrdreObjet=NULL)\label{class_c_objet_formulaire_5293fb0a642cc7cf9e73dcbb2b07cb4c}
+
+\item 
+\textbf{DeplacerObjet} (\$v\_\-iNouvPos)\label{class_c_objet_formulaire_220537260bd2b180a39e08a1d638e129}
+
+\item 
+\textbf{effacer} ()\label{class_c_objet_formulaire_dc5125f5ceb18a5e3212b0791a7fbcd7}
+
+\item 
+\textbf{enregistrer} ()\label{class_c_objet_formulaire_dc5d3a6f37f1c033b303bcbbf251e51d}
+
+\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_objet_formulaire_f246f7984bebcf09761cf650f52d49c7}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initDetail} (\$v\_\-bInitValeursParAxe=FALSE, \$v\_\-sListeAxesAutorises=NULL)
+\begin{CompactList}\small\item\em Initialise l'objet oDetail selon le type de l'objet courant. \item\end{CompactList}\item 
+\textbf{initReponsesPossibles} (\$v\_\-bInitValeursParAxe=FALSE, \$v\_\-sListeAxesAutorises=NULL)\label{class_c_objet_formulaire_bd74a074920875a9b34935a21b30893a}
+
+\item 
+\textbf{NbObjForm} (\$v\_\-iNumForm)\label{class_c_objet_formulaire_4fa0cb8b1730b414082540b7369f0e7a}
+
+\item 
+\textbf{OrdreMaxObjForm} (\$v\_\-iNumForm)\label{class_c_objet_formulaire_da0db8b890a321c24ded958b997c9c6b}
+
+\item 
+\textbf{reorganiser} ()\label{class_c_objet_formulaire_4d9d9b2c360a12122c912e7ffbd3eb93}
+
+\item 
+{\bf retListeObjFormulaire} (\$v\_\-iIdFormulaire)
+\begin{CompactList}\small\item\em Retourne un tableau contenant la liste des objets de formulaire d'une formation. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cet objet formulaire}\par
+\begin{CompactItemize}
+\item 
+\textbf{defIdFormul} (\$v\_\-iIdForm)\label{class_c_objet_formulaire_0c4def6bb8b3013c2e5ab826c25defdc}
+
+\item 
+\textbf{defIdObjFormul} (\$v\_\-iIdObjForm)\label{class_c_objet_formulaire_b70f3039118b5c9e1a578007212205eb}
+
+\item 
+\textbf{defIdTypeObj} (\$v\_\-iTypeObj)\label{class_c_objet_formulaire_775930f65cb4aa65bb59e1817c481dd0}
+
+\item 
+\textbf{defOrdreObjFormul} (\$v\_\-iOrdre)\label{class_c_objet_formulaire_6e21925ddc0d628edec65618c3860d27}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cet objet formulaire}\par
+\begin{CompactItemize}
+\item 
+\textbf{retId} ()\label{class_c_objet_formulaire_de2095ae323174282db815770367a893}
+
+\item 
+\textbf{retIdFormul} ()\label{class_c_objet_formulaire_9d4482212c5fe249a7593e77cc04db0c}
+
+\item 
+\textbf{retIdType} ()\label{class_c_objet_formulaire_873dec57a59c0b1023b787c292caae6d}
+
+\item 
+\textbf{retIdTypeObj} ()\label{class_c_objet_formulaire_967debd8505b47ce27458e5d6fb296a7}
+
+\item 
+\textbf{retOrdre} ()\label{class_c_objet_formulaire_90353f33d6d6e0877618efa89f5f5085}
+
+\item 
+\textbf{retOrdreObjFormul} ()\label{class_c_objet_formulaire_f0effd70e4e52f7bf27efc3567acfd13}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+\textbf{\$aoReponsesPossibles}\label{class_c_objet_formulaire_f78b2545be47c461272e55c2e4a0cd67}
+
+\item 
+{\bf \$iId}\label{class_c_objet_formulaire_6483e667e52bb636a092d31927987694}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_objet_formulaire_2a91341555248b7628273a913f4038a2}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+\textbf{\$oDetail}\label{class_c_objet_formulaire_26bf28eb427e968eb5ad0eaea404715f}
+
+\item 
+{\bf \$oEnregBdd}\label{class_c_objet_formulaire_f98738e6bc505cba614b44f535775491}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CObjetFormulaire@{CObjetFormulaire}!CObjetFormulaire@{CObjetFormulaire}}
+\index{CObjetFormulaire@{CObjetFormulaire}!CObjetFormulaire@{CObjetFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CObjetFormulaire::CObjetFormulaire (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_objet_formulaire_36c9969d6ce58dee3b2b23062c38584c}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par retListeObjFormulaire().\index{CObjetFormulaire@{CObjetFormulaire}!initDetail@{initDetail}}
+\index{initDetail@{initDetail}!CObjetFormulaire@{CObjetFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CObjetFormulaire::initDetail (\$ {\em v\_\-bInitValeursParAxe} = {\tt FALSE}, \/  \$ {\em v\_\-sListeAxesAutorises} = {\tt NULL})}\label{class_c_objet_formulaire_20e7cef3b570530a60c0b535393ab7f4}
+
+
+Initialise l'objet oDetail selon le type de l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitValeursParAxe}]\item[{\em v\_\-sListeAxesAutorises}]\end{description}
+\end{Desc}
+\index{CObjetFormulaire@{CObjetFormulaire}!retListeObjFormulaire@{retListeObjFormulaire}}
+\index{retListeObjFormulaire@{retListeObjFormulaire}!CObjetFormulaire@{CObjetFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CObjetFormulaire::retListeObjFormulaire (\$ {\em v\_\-iIdFormulaire})}\label{class_c_objet_formulaire_1823e0d369ecf0e76275362c3eb26518}
+
+
+Retourne un tableau contenant la liste des objets de formulaire d'une formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdFormulaire}]l'id de la formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant la liste des objets de formulaire d'une formation \end{Desc}
+
+
+Références CObjetFormulaire().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf objetformulaire.tbl.php}\end{CompactItemize}

@@ -1,0 +1,65 @@
+TODO                                                                        TODO
+
+-------------------------------------------------
+Auteurs : Filippo PORCO
+Date de création : 25/01/2005
+-------------------------------------------------
+  Outils > Inscription
+  
+  *   Liste des formations est incorrecte
+
+-------------------------------------------------
+Auteurs : Filippo PORCO
+Date de création : 16/12/2004
+-------------------------------------------------
+
+COLLECTICIEL
+------------
+
+  *   Gestion d'une liste d'appréciation
+  *   Accepter par défaut dans l'évaluation
+  *   Dans la boite de dialogue de l'évaluatin d'un document, il faudra qu'on
+      affiche quelque part le nom de l'utilisateur
+
+
+-------------------------------------------------
+Auteurs : Filippo PORCO
+Date de création : 29/04/2004
+-------------------------------------------------
+
+GENERAL
+-------
+
+  *   Dans le cas d'un titre: si un titre se termine par "Titre ?" alors le
+      remplacer par "Titre&nbsp;?".
+
+GESTION DES EQUIPES
+-------------------
+
+  *   Obliger l'utilisateur de changer le nom de l'équipe
+      si celui existe déjà dans la base de données.
+
+CONCEPTION
+----------
+
+  *   Dans le cas d'un affichage d'une page html, eCONCEPT pourrait aller
+      rechercher automatiquement le titre dans la balise "<title>" de la page.
+	  > FAIT
+  *   Serait-il possible que eConcept remplace "Elément actif sans nom" par
+      "Forum" si l'utilisateur a choisit le type forum. ?
+	  > FAIT
+  *   Rajouter un nouveau type pour l'élément actif, il serait de
+      "Consigne". Il permettra d'afficher une simple description dans un cadre.
+
+ZONE DE COURS
+-------------
+
+  *   Pour un élément actif de type "Télécharger un document", on pourrait avoir
+      la possibilité de télécharger plus qu'un document (idée de Bruno).
+
+BALISES CFJ
+-----------
+
+  *   Une balise qui va remplacer l'ancienne balise pour les liens internet :
+      [site "http://umh.ac.be"]UTE[/site]
+

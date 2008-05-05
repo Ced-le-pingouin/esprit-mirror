@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CTar</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CTar</h1><!-- doxytag: class="CTar" -->
+<p>
+<a href="class_c_tar-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion d'archives GNU TAR, utilisant les fonctions de la bibliothèque PclTar. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000032">À faire:</a></b></dt><dd>Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, seules des archives gzippées sont créées </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#d43036987c5d5649572d42bfc6839e48">ajouterEntreesDsListe</a> ($v_asEntrees, $v_bEffacerAnciennes=FALSE, $v_bCreer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé.  <a href="#d43036987c5d5649572d42bfc6839e48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#542654d2a0886e58d6f49d3133461d08">creerArchive</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée l'archive.  <a href="#542654d2a0886e58d6f49d3133461d08"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#5bc5b496551fd6c4a2874b25067c9c6f">CTar</a> ($v_sCheminArchive, $v_asEntrees=NULL, $v_bCreer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#5bc5b496551fd6c4a2874b25067c9c6f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#154f8688a09c391316710d29fb781dcc">majArchive</a> ($v_asEntrees)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute des fichiers à l'archive, écrasant les versions plus anciennes éventuelles.  <a href="#154f8688a09c391316710d29fb781dcc"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs de l'objet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bca8f6577a34a8bcf240f55f7a4d3153"></a><!-- doxytag: member="CTar::defModifsChemins" ref="bca8f6577a34a8bcf240f55f7a4d3153" args="($v_sCheminAAjouter=&quot;&quot;, $v_sCheminAEnlever=&quot;&quot;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defModifsChemins</b> ($v_sCheminAAjouter=&quot;&quot;, $v_sCheminAEnlever=&quot;&quot;)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs de l'objet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5992fd5daee46088f17a36b7d4412b1c"></a><!-- doxytag: member="CTar::retCheminArchive" ref="5992fd5daee46088f17a36b7d4412b1c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retCheminArchive</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6587282b22772ead3ee46c5efb3a1e27"></a><!-- doxytag: member="CTar::$asEntrees" ref="6587282b22772ead3ee46c5efb3a1e27" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#6587282b22772ead3ee46c5efb3a1e27">$asEntrees</a> = NULL</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e0790b567a7fed7debed7e96bb046fbc"></a><!-- doxytag: member="CTar::$iCodeRetour" ref="e0790b567a7fed7debed7e96bb046fbc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#e0790b567a7fed7debed7e96bb046fbc">$iCodeRetour</a> = 1</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lorsqu'on demande la création d'archive directement dans le constructeur, on ne peut pas retourner de code d'erreur, il est donc stocké dans une propriété de l'objet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aaeb67a11830785f5a499646ac72b928"></a><!-- doxytag: member="CTar::$sCheminAAjouter" ref="aaeb67a11830785f5a499646ac72b928" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#aaeb67a11830785f5a499646ac72b928">$sCheminAAjouter</a> = &quot;&quot;</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ce chemin sera ajouté devant la racine de chaque fichier inclus à l'archive. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3324465787cf398ec8ed7f4da83e99a4"></a><!-- doxytag: member="CTar::$sCheminAEnlever" ref="3324465787cf398ec8ed7f4da83e99a4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#3324465787cf398ec8ed7f4da83e99a4">$sCheminAEnlever</a> = &quot;&quot;</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Les fichiers inclus dans l'archive et dont le chemin commence par cette chaîne, auront cette chaîne enlevée du chemin. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7fb342a41e1d0b7e6976172a67b35150"></a><!-- doxytag: member="CTar::$sCheminArchive" ref="7fb342a41e1d0b7e6976172a67b35150" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#7fb342a41e1d0b7e6976172a67b35150">$sCheminArchive</a> = NULL</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chaîne de caractères contenant le chemin de l'archive à créer. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="12aafbe9c54bfe37cca6d06100e0c122"></a><!-- doxytag: member="CTar::$sCompression" ref="12aafbe9c54bfe37cca6d06100e0c122" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_tar.html#12aafbe9c54bfe37cca6d06100e0c122">$sCompression</a> = 'tgz'</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Type de compression à utiliser. Dépendante des fonctions de PclTar. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="d43036987c5d5649572d42bfc6839e48"></a><!-- doxytag: member="CTar::ajouterEntreesDsListe" ref="d43036987c5d5649572d42bfc6839e48" args="($v_asEntrees, $v_bEffacerAnciennes=FALSE, $v_bCreer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTar::ajouterEntreesDsListe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEntrees</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEffacerAnciennes</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCreer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_asEntrees</em>&nbsp;</td><td>la liste des entrées à inclure à l'archive, sous forme de tableau de chaînes de caractères, chacune représentant le chemin d'un fichier/dossier à inclure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCreer</em>&nbsp;</td><td>si <code>true</code>, l'archive est créée immédiatement, et le code de retour de cette opération est retourné</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>si <code>v_bCreer</code> est à <code>true</code>, le code de retour de l'opération de création de l'archive est retourné. Sinon, la valeur retournée est <code>1</code> </dd></dl>
+
+<p>Références <a class="el" href="tar_8class_8php-source.html#l00108">creerArchive()</a>.</p>
+
+<p>Référencé par <a class="el" href="tar_8class_8php-source.html#l00063">CTar()</a>, et <a class="el" href="tar_8class_8php-source.html#l00118">majArchive()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="542654d2a0886e58d6f49d3133461d08"></a><!-- doxytag: member="CTar::creerArchive" ref="542654d2a0886e58d6f49d3133461d08" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTar::creerArchive           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée l'archive. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le code d'erreur de la fonction <code>PclTarCreate()</code> (biblio externe), qui est 1 si l'opération est correcte </dd></dl>
+
+<p>Référencé par <a class="el" href="tar_8class_8php-source.html#l00087">ajouterEntreesDsListe()</a>, et <a class="el" href="tar_8class_8php-source.html#l00063">CTar()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5bc5b496551fd6c4a2874b25067c9c6f"></a><!-- doxytag: member="CTar::CTar" ref="5bc5b496551fd6c4a2874b25067c9c6f" args="($v_sCheminArchive, $v_asEntrees=NULL, $v_bCreer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTar::CTar           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sCheminArchive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEntrees</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCreer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sCheminArchive</em>&nbsp;</td><td>le chemin complet de l'archive qu'on désire créer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_asEntrees</em>&nbsp;</td><td>un tableau contenant les chemins de fichiers ou dossiers à compresser. Si <code>null</code> (par défaut), il faudra ajouter des entrées plus tard à l'aide de la fonction <a class="el" href="class_c_tar.html#d43036987c5d5649572d42bfc6839e48" title="Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront...">ajouterEntreesDsListe()</a>, et le paramètre <code>v_bCreer</code> ne sera donc pas pris en compte (il vaudra <code>false</code>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCreer</em>&nbsp;</td><td>si <code>true</code>, crée immédiatement l'archive. Le code de retour de cette opération est stocké dans la propriété <code>iCodeRetour</code> </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000033">À faire:</a></b></dt><dd>Vérifier que le chemin/nom de l'archive à créer est valide </dd></dl>
+
+<p>Références <a class="el" href="tar_8class_8php-source.html#l00087">ajouterEntreesDsListe()</a>, et <a class="el" href="tar_8class_8php-source.html#l00108">creerArchive()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="154f8688a09c391316710d29fb781dcc"></a><!-- doxytag: member="CTar::majArchive" ref="154f8688a09c391316710d29fb781dcc" args="($v_asEntrees)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTar::majArchive           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEntrees</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute des fichiers à l'archive, écrasant les versions plus anciennes éventuelles. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le code d'erreur de la fonction <code>PclTarUpdate()</code> (biblio externe), qui est 1 si l'opération est correcte </dd></dl>
+
+<p>Références <a class="el" href="tar_8class_8php-source.html#l00087">ajouterEntreesDsListe()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/<a class="el" href="tar_8class_8php.html">tar.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

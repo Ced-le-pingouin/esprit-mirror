@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# DeltaChat Server
+#
+
+JAVA="`which java`"
+
+# Numéro du port
+PORT=$2
+
+# Nom du fichier
+PIDFILE=$PORT.pid
+
+case "$1" in
+	start)
+		if [ -f $PIDFILE ] ; then
+			echo "Le serveur chat est déjà lancé sur le port $PORT"
+			exit 0
+		fi
+		
+		echo "Démarrage du serveur Chat sur le port $PORT"
+		${JAVA} DeltaChat $PORT &
+		echo $! > $PIDFILE
+		sleep 1
+		;;
+	stop)
+		echo "Arrêter le serveur Chat du port $PORT"
+		if [ -f $PIDFILE ] ; then
+			PID=`cat $PIDFILE`
+			kill -TERM $PID
+			rm $PIDFILE
+			echo  `date +[%d/%m/%Y][%H:%M:%S]`[$PORT] -- Arrêt du serveur chat >> log/access_log
+		fi
+		echo
+		;;
+	restart)
+		echo "Redémarrage du serveur Chat du port $PORT"
+		
+		if [ -f $PIDFILE ] ; then
+			PID=`cat $PIDFILE`
+			kill -TERM $PID
+			rm $PIDFILE
+			sleep 2
+		fi
+		
+		${JAVA} DeltaChat $PORT &
+		echo $! > $PIDFILE
+		sleep 1
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart} Numéro de port"
+		exit 1
+esac
+
+unset PID PIDFILE JAVA PORT
+
+exit 0

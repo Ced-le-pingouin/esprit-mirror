@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe OO</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe OO</h1><!-- doxytag: class="OO" -->
+<p>
+<a href="class_o_o-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe permettant de gérer de concepts "forcés" absents de PHP 4, comme la déclaration d'interfaces, l'obligation pour une classe d'implémenter une interface, les classes et méthodes abstraites, et les méthodes strictement statiques. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#21312450d313b62eb524475fe1c1ed42">_defClasseQuiImplemente</a> ($v_sClasse, $v_sInterface)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sauvegarde le fait qu'une classe implémente une interface.  <a href="#21312450d313b62eb524475fe1c1ed42"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#adb133552bb0b4ae935ae4cf72ac683b">_estClasseQuiImplemente</a> ($v_sClasse, $v_sInterface)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un classe, ou une de ses classes parentes, implémente une interface donnée.  <a href="#adb133552bb0b4ae935ae4cf72ac683b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#b31282b83532ad55ea96aca894bcae1f">_nomClasse</a> ($v_sClasse)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom d'une classe, converti selon le type de valeurs de retour des fonctions de gestion de classes/méthodes/fonctions du PHP courant (PHP 4 retourne tous les noms en minuscules, alors que PHP 5 les retourne tels qu'ils ont été déclarés).  <a href="#b31282b83532ad55ea96aca894bcae1f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#e43277f0de3a0e95926f1996e3d1d3de">_retClasseAppelante</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom de la classe dans laquelle un appel à <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a> a été fait, en se basant sur le nom du fichier dans lequel a été effectué l'appel.  <a href="#e43277f0de3a0e95926f1996e3d1d3de"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#defce377a9e4e779d278dd0f15eccf44">abstraite</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Placée dans une méthode d'une classe abstraite (ou une interface), provoquera volontairement une erreur si on tente d'appeler la méthode.  <a href="#defce377a9e4e779d278dd0f15eccf44"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#011992bf5f79361fee87c3a2418262bd">classeAbstraiteExiste</a> ($v_sClasseAbstraite, $v_bRechercheMinuscules=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie l'existence d'une classe abstraite.  <a href="#011992bf5f79361fee87c3a2418262bd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#089c6e0624839a8050f86baf5b232abe">defClasseAbstraite</a> ($v_sClasseAbstraite=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit une classe PHP comme abstraite.  <a href="#089c6e0624839a8050f86baf5b232abe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#8869450bc241b5ff5d2f0fd1449a4778">defInterface</a> ($v_sInterface=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit une classe PHP comme étant une interface.  <a href="#8869450bc241b5ff5d2f0fd1449a4778"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#f02e35f8665ed9abf9280bd55f2ac14c">implemente</a> ($v_sInterface, $v_sClasseQuiImplemente=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique qu'une classe doit implémenter une interface particulière.  <a href="#f02e35f8665ed9abf9280bd55f2ac14c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#c27e07e635d3dd12a1c07b5484b67982">instanceDe</a> ($v_oObjet, $v_sClasse)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un objet est une instance d'une classe X, ou d'une classe dérivée de X, ou que sa classe ou une de ses ancêtres implémente l'interface X.  <a href="#c27e07e635d3dd12a1c07b5484b67982"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#528b20144b29a7f24350606a41ee78d8">interfaceExiste</a> ($v_sInterface, $v_bRechercheMinuscules=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie l'existence d'une interface.  <a href="#528b20144b29a7f24350606a41ee78d8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_o_o.html#f67b07714c69848b910c35667f39a502">statique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que la méthode qui l'appelle a elle-même été appelée statiquement (avec l'opérateur '::'), et provoque une erreur dans le cas contraire.  <a href="#f67b07714c69848b910c35667f39a502"></a><br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="21312450d313b62eb524475fe1c1ed42"></a><!-- doxytag: member="OO::_defClasseQuiImplemente" ref="21312450d313b62eb524475fe1c1ed42" args="($v_sClasse, $v_sInterface)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::_defClasseQuiImplemente           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInterface</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sauvegarde le fait qu'une classe implémente une interface. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasse</em>&nbsp;</td><td>le nom de la classe qui implémente l'interface </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sInterface</em>&nbsp;</td><td>le nom de l'interface implémentée</td></tr>
+  </table>
+</dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Méthode privée </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00108">implemente()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="adb133552bb0b4ae935ae4cf72ac683b"></a><!-- doxytag: member="OO::_estClasseQuiImplemente" ref="adb133552bb0b4ae935ae4cf72ac683b" args="($v_sClasse, $v_sInterface)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::_estClasseQuiImplemente           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInterface</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un classe, ou une de ses classes parentes, implémente une interface donnée. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasse</em>&nbsp;</td><td>le nom de la classe </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sInterface</em>&nbsp;</td><td>le nom de l'interface</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la classe ou une de ses classes parentes implémente l'interface, <code>false</code> sinon</dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Méthode privée </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00159">instanceDe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b31282b83532ad55ea96aca894bcae1f"></a><!-- doxytag: member="OO::_nomClasse" ref="b31282b83532ad55ea96aca894bcae1f" args="($v_sClasse)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::_nomClasse           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasse</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom d'une classe, converti selon le type de valeurs de retour des fonctions de gestion de classes/méthodes/fonctions du PHP courant (PHP 4 retourne tous les noms en minuscules, alors que PHP 5 les retourne tels qu'ils ont été déclarés). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasse</em>&nbsp;</td><td>le nom de classe (ou méthode) à convertir</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom de la classe, converti selon la version de PHP courante </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00108">implemente()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e43277f0de3a0e95926f1996e3d1d3de"></a><!-- doxytag: member="OO::_retClasseAppelante" ref="e43277f0de3a0e95926f1996e3d1d3de" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::_retClasseAppelante           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom de la classe dans laquelle un appel à <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a> a été fait, en se basant sur le nom du fichier dans lequel a été effectué l'appel. 
+<p>
+Pour que cette méthode fonctionne :<p>
+<ul>
+<li>elle ne doit pas être appelée directement en dehors de <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a></li><li>le fichier duquel l'appel est effectué est censé définir une classe</li><li>il doit s'agir d'une seule classe, et le fichier doit porter le même nom que la classe (avec toutefois une éventuelle extension)</li></ul>
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom de la classe au sein de laquelle a été appelée la dernière méthode de <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a></dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Méthode privée </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00204">defClasseAbstraite()</a>, <a class="el" href="_o_o_8php-source.html#l00049">defInterface()</a>, et <a class="el" href="_o_o_8php-source.html#l00108">implemente()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="defce377a9e4e779d278dd0f15eccf44"></a><!-- doxytag: member="OO::abstraite" ref="defce377a9e4e779d278dd0f15eccf44" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::abstraite           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Placée dans une méthode d'une classe abstraite (ou une interface), provoquera volontairement une erreur si on tente d'appeler la méthode. 
+<p>
+Cela permet de s'assurer que les méthodes dans une classe abstraite (interface) ne seront jamais appelées. Si cette méthode est appelée par un constructeur d'une classe abstraite (interface), le message est adapté pour indiquer qu'il est impossible d'instancier ce type de classe. Si cette méthode<p>
+exemple: function methodeClasseAbstraite() { <a class="el" href="class_o_o.html#defce377a9e4e779d278dd0f15eccf44" title="Placée dans une méthode d&#39;une classe abstraite (ou une interface), provoquera...">OO::abstraite()</a>; } 
+<p>Références <a class="el" href="_o_o_8php-source.html#l00227">classeAbstraiteExiste()</a>, <a class="el" href="_o_o_8php-source.html#l00072">interfaceExiste()</a>, et <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_filtre_8php-source.html#l00047">IterateurFiltre::accepter()</a>, <a class="el" href="_iterateur_composite_8php-source.html#l00044">IterateurComposite::aEnfants()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00237">AfficheurPage::afficherParties()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00074">IterateurAbstrait::cle()</a>, <a class="el" href="_iterateur_8php-source.html#l00080">Iterateur::cle()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00082">IterateurAbstrait::courant()</a>, <a class="el" href="_iterateur_8php-source.html#l00090">Iterateur::courant()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00050">IterateurAbstrait::debut()</a>, <a class="el" href="_iterateur_8php-source.html#l00050">Iterateur::debut()</a>, <a class="el" href="_iterateur_8php-source.html#l00142">Iterateur::estDernier()</a>, <a class="el" href="_iterateur_8php-source.html#l00132">Iterateur::estPremier()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00066">IterateurAbstrait::estValide()</a>, <a class="el" href="_iterateur_8php-source.html#l00070">Iterateur::estValide()</a>, <a class="el" href="_iterateur_8php-source.html#l00098">Iterateur::fin()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00108">AfficheurPage::gererActions()</a>, <a class="el" href="_iterateur_8php-source.html#l00042">Iterateur::Iterateur()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00042">IterateurAbstrait::IterateurAbstrait()</a>, <a class="el" href="_iterateur_decorateur_8php-source.html#l00043">IterateurDecorateur::IterateurDecorateur()</a>, <a class="el" href="_iterateur_bidir_8php-source.html#l00038">IterateurBidir::prec()</a>, <a class="el" href="_iterateur_8php-source.html#l00122">Iterateur::rechercher()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00082">AfficheurPage::recupererDonnees()</a>, <a class="el" href="_iterateur_composite_8php-source.html#l00052">IterateurComposite::retIterateurEnfants()</a>, <a class="el" href="_iterateur_abstrait_8php-source.html#l00058">IterateurAbstrait::suiv()</a>, <a class="el" href="_iterateur_8php-source.html#l00058">Iterateur::suiv()</a>, <a class="el" href="_iterateur_8php-source.html#l00108">Iterateur::taille()</a>, et <a class="el" href="_afficheur_page_8php-source.html#l00094">AfficheurPage::validerDonnees()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="011992bf5f79361fee87c3a2418262bd"></a><!-- doxytag: member="OO::classeAbstraiteExiste" ref="011992bf5f79361fee87c3a2418262bd" args="($v_sClasseAbstraite, $v_bRechercheMinuscules=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::classeAbstraiteExiste           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasseAbstraite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRechercheMinuscules</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie l'existence d'une classe abstraite. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasseAbstraite</em>&nbsp;</td><td>le nom de la classe abstraite dont il faut vérifier l'existence </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRechercheMinuscules</em>&nbsp;</td><td>si <code>true</code>, la recherche se fait sur la version en minuscules des noms de classes abstraites déclarées. Si <code>false</code> (défaut), la recherche se fait sur les noms des classes abstraites tels qu'ils ont été enregistrés (voir remarque <a class="el" href="class_o_o.html#528b20144b29a7f24350606a41ee78d8" title="Vérifie l&#39;existence d&#39;une interface.">interfaceExiste()</a>)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la classe abstraite existe, <code>false</code> sinon </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00243">abstraite()</a>, et <a class="el" href="_o_o_8php-source.html#l00204">defClasseAbstraite()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="089c6e0624839a8050f86baf5b232abe"></a><!-- doxytag: member="OO::defClasseAbstraite" ref="089c6e0624839a8050f86baf5b232abe" args="($v_sClasseAbstraite=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::defClasseAbstraite           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasseAbstraite</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit une classe PHP comme abstraite. 
+<p>
+Il s'agit juste d'une information, et la seule conséquence est que lorsqu'une classe disposera d'au moins une méthode appelant <a class="el" href="class_o_o.html#defce377a9e4e779d278dd0f15eccf44" title="Placée dans une méthode d&#39;une classe abstraite (ou une interface), provoquera...">abstraite()</a>, si cette classe n'est pas définie comme abstraite grâce à <a class="el" href="class_o_o.html#089c6e0624839a8050f86baf5b232abe" title="Définit une classe PHP comme abstraite.">defClasseAbstraite()</a>, une erreur sera générée. Je n'ai pas trouvé de moyen simple de pouvoir vérifier cela avant l'appel effectif d'une méthode <a class="el" href="class_o_o.html#defce377a9e4e779d278dd0f15eccf44" title="Placée dans une méthode d&#39;une classe abstraite (ou une interface), provoquera...">OO::abstraite()</a> en PHP 4<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasseAbstraite</em>&nbsp;</td><td>le nom de la classe qui doit être considérée comme abstraite. S'il <code>null</code> (par défaut), on tentera de déterminer le nom de la classe en fonction du fichier d'où provient l'appel, qui devra alors être un fichier qui définit la classe tout en portant le même nom (avec ou sans extension)</td></tr>
+  </table>
+</dl>
+<dl class="warning" compact><dt><b>Avertissement:</b></dt><dd>Il est préférable, pour des raisons de cohérence, de placer le <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a>:<a class="el" href="class_o_o.html#089c6e0624839a8050f86baf5b232abe" title="Définit une classe PHP comme abstraite.">defClasseAbstraite()</a> après la définition de la classe PHP qu'on veut déclarer comme abstraite. Voir la remarque sur <a class="el" href="class_o_o.html#f02e35f8665ed9abf9280bd55f2ac14c" title="Indique qu&#39;une classe doit implémenter une interface particulière.">implemente()</a> (valable même si elle concerne les interfaces) </dd></dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00347">_retClasseAppelante()</a>, et <a class="el" href="_o_o_8php-source.html#l00227">classeAbstraiteExiste()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8869450bc241b5ff5d2f0fd1449a4778"></a><!-- doxytag: member="OO::defInterface" ref="8869450bc241b5ff5d2f0fd1449a4778" args="($v_sInterface=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::defInterface           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInterface</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit une classe PHP comme étant une interface. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sInterface</em>&nbsp;</td><td>le nom de la classe qui doit être considérée comme une interface. S'il <code>null</code> (par défaut), on tentera de déterminer le nom de l'interface (classe) en fonction du fichier d'où provient l'appel, qui devra alors être un fichier qui définit l'interface (classe) tout en portant le même nom (avec ou sans extension)</td></tr>
+  </table>
+</dl>
+<dl class="warning" compact><dt><b>Avertissement:</b></dt><dd>Il est préférable, pour des raisons de cohérence, de placer le <a class="el" href="class_o_o.html" title="Classe permettant de gérer de concepts &quot;forcés&quot; absents de PHP 4, comme...">OO</a>:<a class="el" href="class_o_o.html#8869450bc241b5ff5d2f0fd1449a4778" title="Définit une classe PHP comme étant une interface.">defInterface()</a> après la définition de la classe PHP qu'on veut déclarer comme étant une interface. Voir la remarque sur <a class="el" href="class_o_o.html#f02e35f8665ed9abf9280bd55f2ac14c" title="Indique qu&#39;une classe doit implémenter une interface particulière.">implemente()</a>. </dd></dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00347">_retClasseAppelante()</a>, et <a class="el" href="_o_o_8php-source.html#l00072">interfaceExiste()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f02e35f8665ed9abf9280bd55f2ac14c"></a><!-- doxytag: member="OO::implemente" ref="f02e35f8665ed9abf9280bd55f2ac14c" args="($v_sInterface, $v_sClasseQuiImplemente=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::implemente           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInterface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasseQuiImplemente</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique qu'une classe doit implémenter une interface particulière. 
+<p>
+Si la classe ne dispose pas de toutes les méthodes de l'interface, une erreur sera générée. Si tout est ok, l'interface et la classe qui implémente sont enregistrées pour qu'on puisse par la suite vérifier plus rapidement que cette classe l'implémente bien (voir <a class="el" href="class_o_o.html#c27e07e635d3dd12a1c07b5484b67982" title="Vérifie qu&#39;un objet est une instance d&#39;une classe X, ou d&#39;une classe...">instanceDe()</a>)<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sInterface</em>&nbsp;</td><td>l'interface que la classe doit implémenter. Etant donné qu'en PHP 4, les interfaces n'existent pas, il s'agit en réalité d'une classe qui devra avoir été déclarée comme telle dans son fichier de définition, grâce à la méthode <a class="el" href="class_o_o.html#8869450bc241b5ff5d2f0fd1449a4778" title="Définit une classe PHP comme étant une interface.">defInterface()</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasseQuiImplemente</em>&nbsp;</td><td>nom de la classe dont on veut vérifier qu'elle implémente l'interface. Si <code>null</code> (défaut), c'est le nom du fichier d'où provient l'appel à la méthode qui sera utilisé comme nom de classe à vérifier. Cela implique que le fichier porte le même nom que la classe qu'il contient (extension non prise en compte)</td></tr>
+  </table>
+</dl>
+<dl class="warning" compact><dt><b>Avertissement:</b></dt><dd>Au départ, je pensais placer des <a class="el" href="class_o_o.html#f02e35f8665ed9abf9280bd55f2ac14c" title="Indique qu&#39;une classe doit implémenter une interface particulière.">OO::implemente()</a> devant la définition de la classe concernée (càd qui est censée implémenter une interface), dans son fichier source, mais ça pose problème (du moins selon mes tests en PHP 4), car malheureusement en adoptant cette méthode, au moment où OO::implémente() est appelée, la classe qui suit cet appel, dans le fichier source, n'a pas encore été lue par PHP, et donc ses méthodes n'existent pas (en fait il semble que ses méthodes sont connues, *sauf* dans le cas où cette classe en étend une autre) =&gt; il vaut mieux placer le <a class="el" href="class_o_o.html#f02e35f8665ed9abf9280bd55f2ac14c" title="Indique qu&#39;une classe doit implémenter une interface particulière.">OO::implemente()</a> *après* la définition de la classe qui implémente </dd></dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00295">_defClasseQuiImplemente()</a>, <a class="el" href="_o_o_8php-source.html#l00364">_nomClasse()</a>, <a class="el" href="_o_o_8php-source.html#l00347">_retClasseAppelante()</a>, <a class="el" href="_o_o_8php-source.html#l00072">interfaceExiste()</a>, et <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="c27e07e635d3dd12a1c07b5484b67982"></a><!-- doxytag: member="OO::instanceDe" ref="c27e07e635d3dd12a1c07b5484b67982" args="($v_oObjet, $v_sClasse)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::instanceDe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oObjet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sClasse</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un objet est une instance d'une classe X, ou d'une classe dérivée de X, ou que sa classe ou une de ses ancêtres implémente l'interface X. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oObjet</em>&nbsp;</td><td>l'objet à vérifier </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sClasse</em>&nbsp;</td><td>la classe ou interface dont X doit être instancié ou dérivé</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si <code>v_sObjet</code> est bien une instance de <code>v_sClasse</code>, ou d'une classe dérivée de <code>v_sClasse</code>, ou que sa classe ou une classe ancêtre implémente <code>v_sClasse</code>. Sinon <code>false</code> </dd></dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00310">_estClasseQuiImplemente()</a>, <a class="el" href="_o_o_8php-source.html#l00072">interfaceExiste()</a>, et <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+<p>Référencé par <a class="el" href="_iterateur_filtre_dossier_8php-source.html#l00048">IterateurFiltreDossier::IterateurFiltreDossier()</a>, et <a class="el" href="_iterateur_recursif_8php-source.html#l00063">IterateurRecursif::IterateurRecursif()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="528b20144b29a7f24350606a41ee78d8"></a><!-- doxytag: member="OO::interfaceExiste" ref="528b20144b29a7f24350606a41ee78d8" args="($v_sInterface, $v_bRechercheMinuscules=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::interfaceExiste           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sInterface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRechercheMinuscules</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie l'existence d'une interface. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sInterface</em>&nbsp;</td><td>le nom de l'interface dont il faut vérifier l'existence </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRechercheMinuscules</em>&nbsp;</td><td>si <code>true</code>, la recherche se fait sur la version en minuscules des noms d'interfaces déclarées. Si <code>false</code> (défaut), la recherche se fait sur les noms des interfaces tels qu'ils ont été enregistrés. Ce paramètre est utile en PHP 4 si l'on veut passer en paramètre <code>v_sInterface</code> un nom de classe récupéré d'une fonction native PHP 4, car malheureusement, celles-ci retournent les noms de classes et méthodes connues entièrement en minuscules, et les noms tels qu'ils ont été déclarés, avec la casse originale, sont perdus</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'interface existe, <code>false</code> sinon </dd></dl>
+
+<p>Référencé par <a class="el" href="_o_o_8php-source.html#l00243">abstraite()</a>, <a class="el" href="_o_o_8php-source.html#l00049">defInterface()</a>, <a class="el" href="_o_o_8php-source.html#l00108">implemente()</a>, et <a class="el" href="_o_o_8php-source.html#l00159">instanceDe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f67b07714c69848b910c35667f39a502"></a><!-- doxytag: member="OO::statique" ref="f67b07714c69848b910c35667f39a502" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">OO::statique           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que la méthode qui l'appelle a elle-même été appelée statiquement (avec l'opérateur '::'), et provoque une erreur dans le cas contraire. 
+<p>
+Cela permet de forcer des méthodes à être statiques, étant donné que PHP 4 ne supporte pas le mot-clé qui forcerait ce type d'appel 
+<p>Références <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_o_o_8php.html">OO.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

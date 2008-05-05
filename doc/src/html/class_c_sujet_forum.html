@@ -1,0 +1,594 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CSujetForum</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CSujetForum</h1><!-- doxytag: class="CSujetForum" -->
+<p>
+<a href="class_c_sujet_forum-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des sujets des forums, et encapsulation de la table SujetForum de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#c68c7bb38a0764018b66be88d9819d3e">ajouter</a> ($v_sTitreSujet, $v_iModaliteSujet, $v_iStatutSujet, $v_bAccessibleVisiteur, $v_iIdForum, $v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un sujet dans la DB.  <a href="#c68c7bb38a0764018b66be88d9819d3e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#13bb4cc13ec8628dc7d8cd4d624fae6a">associerEquipe</a> ($v_iIdEquipe)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Associe un sujet à une équipe.  <a href="#13bb4cc13ec8628dc7d8cd4d624fae6a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#994a838bb39bee7a2641ef4cc95386dd">CSujetForum</a> (&amp;$v_oBdd, $v_iId=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#994a838bb39bee7a2641ef4cc95386dd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#e927bf9c99b48d6c01cbbcbd8e4d57aa">defRepRessources</a> ($v_sRepRessources)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définie l'adresse du répertoire des ressources.  <a href="#e927bf9c99b48d6c01cbbcbd8e4d57aa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c4d8e59abcc4ee5dbdd82ae0f324a190"></a><!-- doxytag: member="CSujetForum::effacer" ref="c4d8e59abcc4ee5dbdd82ae0f324a190" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#c4d8e59abcc4ee5dbdd82ae0f324a190">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le sujet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b36a142c74532c604df842df10903c84"></a><!-- doxytag: member="CSujetForum::effacerEquipesAssocieesSujet" ref="b36a142c74532c604df842df10903c84" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#b36a142c74532c604df842df10903c84">effacerEquipesAssocieesSujet</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les liens qui relient les équipes au sujet courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c914378e59dc80246bf25797335d1e98"></a><!-- doxytag: member="CSujetForum::effacerMessages" ref="c914378e59dc80246bf25797335d1e98" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#c914378e59dc80246bf25797335d1e98">effacerMessages</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les messages contenus dans le sujet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aaf9f0e1b766bed5f495f0141213c948"></a><!-- doxytag: member="CSujetForum::effacerSujet" ref="aaf9f0e1b766bed5f495f0141213c948" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#aaf9f0e1b766bed5f495f0141213c948">effacerSujet</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le sujet courant dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="32bbb527151caf82458f8381ab685933"></a><!-- doxytag: member="CSujetForum::enregistrer" ref="32bbb527151caf82458f8381ab685933" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#32bbb527151caf82458f8381ab685933">enregistrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre(update) dans la DB le sujet courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#eb3498cfedff8230a918a2d14904cd65">estPourTous</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si le sujet est pour toute les équipes.  <a href="#eb3498cfedff8230a918a2d14904cd65"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3979b8c8044b618ab20a542cd5d2357b"></a><!-- doxytag: member="CSujetForum::init" ref="3979b8c8044b618ab20a542cd5d2357b" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#3979b8c8044b618ab20a542cd5d2357b">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e3fa5a78fef687ac974053298fa8e1c8"></a><!-- doxytag: member="CSujetForum::initAuteur" ref="e3fa5a78fef687ac974053298fa8e1c8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#e3fa5a78fef687ac974053298fa8e1c8">initAuteur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la variable <code>oAuteur</code> (de type <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>) avec l'auteur du sujet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#895a0048ce61b3fae7813a89402438c3">initMessages</a> ($v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les messages de ce sujet.  <a href="#895a0048ce61b3fae7813a89402438c3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#58bf67f11bab6290c398a2796425f629">retDateDernierMessagePoster</a> ($v_sFormatterDate=&quot;d/m/y H:i&quot;, $v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la date du dernier message posté dans ce sujet.  <a href="#58bf67f11bab6290c398a2796425f629"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#6d66d540661531debd03bc0abb22b31b">retForum</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le forum parent (de type <a class="el" href="class_c_forum.html" title="Gestion des forums, et encapsulation de la table Forum de la DB.">CForum</a>).  <a href="#6d66d540661531debd03bc0abb22b31b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#9463460fef601a237325626c7121dc4a">retNbMessagesDeposesPersonne</a> ($v_iIdPers, $v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de messages que la personne a déposés dans ce sujet.  <a href="#9463460fef601a237325626c7121dc4a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#1f9470c80cec1c3214b7ded3c8ce5988">retNombreMessages</a> ($v_iIdEquipe=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de messages contenus dans le sujet.  <a href="#1f9470c80cec1c3214b7ded3c8ce5988"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#1ed9c19a271cfff8064033153c1b08f3">retRepRessources</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'adresse du répertoire des ressources.  <a href="#1ed9c19a271cfff8064033153c1b08f3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#fc9fd146e425e28a30c78661d3004086">retTexteModalite</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne en français la modalité courante du sujet.  <a href="#fc9fd146e425e28a30c78661d3004086"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#3cd4dca04e91bb0dc5e5f98b3ea01e47">STRING_LOCK_TABLES</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les tables à verrouiller de la DB.  <a href="#3cd4dca04e91bb0dc5e5f98b3ea01e47"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ac8140ef5dc33373428722cda80d5d31"></a><!-- doxytag: member="CSujetForum::verrouillerTables" ref="ac8140ef5dc33373428722cda80d5d31" args="($v_bVerrouillerTables=TRUE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#ac8140ef5dc33373428722cda80d5d31">verrouillerTables</a> ($v_bVerrouillerTables=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verrouille les tables en relation avec la table SujetForum. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour ce sujet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4d2eb17ce0ed17d7882ef5d4473b5ced"></a><!-- doxytag: member="CSujetForum::defAccessibleVisiteurs" ref="4d2eb17ce0ed17d7882ef5d4473b5ced" args="($v_iAccessibleVisiteurs)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAccessibleVisiteurs</b> ($v_iAccessibleVisiteurs)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="37981d1eb343b6aa403ee5be5e5c68d5"></a><!-- doxytag: member="CSujetForum::defModalite" ref="37981d1eb343b6aa403ee5be5e5c68d5" args="($v_iIdModalite)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defModalite</b> ($v_iIdModalite)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc82080757eb7ec47a0adbceb040665b"></a><!-- doxytag: member="CSujetForum::defNumOrdre" ref="bc82080757eb7ec47a0adbceb040665b" args="($v_iNumOrdre)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNumOrdre</b> ($v_iNumOrdre)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b5a635353eb738181b45e556de8e6496"></a><!-- doxytag: member="CSujetForum::defStatut" ref="b5a635353eb738181b45e556de8e6496" args="($v_iIdStatut)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defStatut</b> ($v_iIdStatut)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4400f2ae1e9ae8fffb8df9b5c0e761c1"></a><!-- doxytag: member="CSujetForum::defTitre" ref="4400f2ae1e9ae8fffb8df9b5c0e761c1" args="($v_sTitre)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defTitre</b> ($v_sTitre)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour ce sujet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="20ff68531baec4a6ed3085c665eb54fd"></a><!-- doxytag: member="CSujetForum::retAccessibleVisiteurs" ref="20ff68531baec4a6ed3085c665eb54fd" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAccessibleVisiteurs</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="14ab873c72c53628f4d131ba7b12d6cc"></a><!-- doxytag: member="CSujetForum::retDate" ref="14ab873c72c53628f4d131ba7b12d6cc" args="($v_sFormatterDate=&quot;d/m/y H:i&quot;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDate</b> ($v_sFormatterDate=&quot;d/m/y H:i&quot;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8aed15c7cd18d425d39c7c424e4d6958"></a><!-- doxytag: member="CSujetForum::retId" ref="8aed15c7cd18d425d39c7c424e4d6958" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ed026f63d35ca1805b81a8581450fcda"></a><!-- doxytag: member="CSujetForum::retIdParent" ref="ed026f63d35ca1805b81a8581450fcda" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdParent</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ab758f503faba7b5a5d3df0af9ca0623"></a><!-- doxytag: member="CSujetForum::retIdPers" ref="ab758f503faba7b5a5d3df0af9ca0623" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdPers</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e62c27ea6184231382056921922a223c"></a><!-- doxytag: member="CSujetForum::retModalite" ref="e62c27ea6184231382056921922a223c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retModalite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c505ecbbd3d98fe0f5c4317799435fd4"></a><!-- doxytag: member="CSujetForum::retNom" ref="c505ecbbd3d98fe0f5c4317799435fd4" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNom</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b741a34c191562289c90ff58a780be39"></a><!-- doxytag: member="CSujetForum::retNumOrdre" ref="b741a34c191562289c90ff58a780be39" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNumOrdre</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b39fd80da1c317755f0502ac16daaf6"></a><!-- doxytag: member="CSujetForum::retStatut" ref="0b39fd80da1c317755f0502ac16daaf6" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retStatut</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5d4d0920994ec79d5496bf750101e6d7"></a><!-- doxytag: member="CSujetForum::retTitre" ref="5d4d0920994ec79d5496bf750101e6d7" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retTitre</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4f80dfb9fa18d16cd27373e23dfe3b52"></a><!-- doxytag: member="CSujetForum::$aoMessages" ref="4f80dfb9fa18d16cd27373e23dfe3b52" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#4f80dfb9fa18d16cd27373e23dfe3b52">$aoMessages</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_sujet_forum.html#895a0048ce61b3fae7813a89402438c3" title="Initialise un tableau contenant les messages de ce sujet.">initMessages()</a>, contenant les mesages du sujet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0caa489528478e307840c01e7f5254d5"></a><!-- doxytag: member="CSujetForum::$iId" ref="0caa489528478e307840c01e7f5254d5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#0caa489528478e307840c01e7f5254d5">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0d1190037db8a4a7ee5bad3ef8c2b072"></a><!-- doxytag: member="CSujetForum::$oAuteur" ref="0d1190037db8a4a7ee5bad3ef8c2b072" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#0d1190037db8a4a7ee5bad3ef8c2b072">$oAuteur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>, contenant l'auteur du sujet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="aaf5413cc21f83c5520ce764750967d1"></a><!-- doxytag: member="CSujetForum::$oBdd" ref="aaf5413cc21f83c5520ce764750967d1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#aaf5413cc21f83c5520ce764750967d1">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3cb0b2eb365eafa8fbc364f3a80357b6"></a><!-- doxytag: member="CSujetForum::$oEnregBdd" ref="3cb0b2eb365eafa8fbc364f3a80357b6" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#3cb0b2eb365eafa8fbc364f3a80357b6">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4372f8c7d47ef9f353e8cfbf0a8e04b3"></a><!-- doxytag: member="CSujetForum::$sRepRessources" ref="4372f8c7d47ef9f353e8cfbf0a8e04b3" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_sujet_forum.html#4372f8c7d47ef9f353e8cfbf0a8e04b3">$sRepRessources</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="c68c7bb38a0764018b66be88d9819d3e"></a><!-- doxytag: member="CSujetForum::ajouter" ref="c68c7bb38a0764018b66be88d9819d3e" args="($v_sTitreSujet, $v_iModaliteSujet, $v_iStatutSujet, $v_bAccessibleVisiteur, $v_iIdForum, $v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTitreSujet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iModaliteSujet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatutSujet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAccessibleVisiteur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForum</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un sujet dans la DB. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sTitreSujet</em>&nbsp;</td><td>le titre du sujet </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iModaliteSujet</em>&nbsp;</td><td>la modalité du sujet {MODALITE_IDEM_PARENT | MODALITE_POUR_TOUS | MODALITE_PAR_EQUIPE} </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatutSujet</em>&nbsp;</td><td>statut du sujet {STATUT_OUVERT | STATUT_LECTURE_SEULE | STATUT_FERME | STATUT_INVISIBLE} </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAccessibleVisiteur</em>&nbsp;</td><td>boolean, ce sujet est-il accessible aux visiteurs ? </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForum</em>&nbsp;</td><td>l'id du forum parent </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nouveau numéro d'identifiant du sujet </dd></dl>
+
+<p>Références <a class="el" href="sujetforum_8tbl_8php-source.html#l00067">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="13bb4cc13ec8628dc7d8cd4d624fae6a"></a><!-- doxytag: member="CSujetForum::associerEquipe" ref="13bb4cc13ec8628dc7d8cd4d624fae6a" args="($v_iIdEquipe)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::associerEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Associe un sujet à une équipe. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>id équipe </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="994a838bb39bee7a2641ef4cc95386dd"></a><!-- doxytag: member="CSujetForum::CSujetForum" ref="994a838bb39bee7a2641ef4cc95386dd" args="(&amp;$v_oBdd, $v_iId=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::CSujetForum           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="sujetforum_8tbl_8php-source.html#l00067">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e927bf9c99b48d6c01cbbcbd8e4d57aa"></a><!-- doxytag: member="CSujetForum::defRepRessources" ref="e927bf9c99b48d6c01cbbcbd8e4d57aa" args="($v_sRepRessources)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::defRepRessources           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sRepRessources</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définie l'adresse du répertoire des ressources. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sRepRessources</em>&nbsp;</td><td>l'adresse du répertoire des ressources </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="eb3498cfedff8230a918a2d14904cd65"></a><!-- doxytag: member="CSujetForum::estPourTous" ref="eb3498cfedff8230a918a2d14904cd65" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::estPourTous           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si le sujet est pour toute les équipes. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>/c true si le sujet est pour toute les équipes </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="895a0048ce61b3fae7813a89402438c3"></a><!-- doxytag: member="CSujetForum::initMessages" ref="895a0048ce61b3fae7813a89402438c3" args="($v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::initMessages           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les messages de ce sujet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>si fourni, retourne les messages d'un forum dont la modalité est par équipe</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de messages insérés dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="sujetforum_8tbl_8php-source.html#l00041">$oEnregBdd</a>.</p>
+
+<p>Référencé par <a class="el" href="sujetforum_8tbl_8php-source.html#l00232">effacerMessages()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="58bf67f11bab6290c398a2796425f629"></a><!-- doxytag: member="CSujetForum::retDateDernierMessagePoster" ref="58bf67f11bab6290c398a2796425f629" args="($v_sFormatterDate=&quot;d/m/y H:i&quot;, $v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retDateDernierMessagePoster           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sFormatterDate</em> = <code>&quot;d/m/y&nbsp;H:i&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la date du dernier message posté dans ce sujet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sFormatterDate</em>&nbsp;</td><td>format de la date </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>id de l'équipe(optionnel)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la date du dernier message posté dans ce sujet </dd></dl>
+
+<p>Références <a class="el" href="sujetforum_8tbl_8php-source.html#l00041">$oEnregBdd</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6d66d540661531debd03bc0abb22b31b"></a><!-- doxytag: member="CSujetForum::retForum" ref="6d66d540661531debd03bc0abb22b31b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retForum           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le forum parent (de type <a class="el" href="class_c_forum.html" title="Gestion des forums, et encapsulation de la table Forum de la DB.">CForum</a>). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le forum parent </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="9463460fef601a237325626c7121dc4a"></a><!-- doxytag: member="CSujetForum::retNbMessagesDeposesPersonne" ref="9463460fef601a237325626c7121dc4a" args="($v_iIdPers, $v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retNbMessagesDeposesPersonne           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de messages que la personne a déposés dans ce sujet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>id de l'équipe(optionnel) </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de messages dans ce sujet de la personne désiré. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1f9470c80cec1c3214b7ded3c8ce5988"></a><!-- doxytag: member="CSujetForum::retNombreMessages" ref="1f9470c80cec1c3214b7ded3c8ce5988" args="($v_iIdEquipe=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retNombreMessages           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>0</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de messages contenus dans le sujet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>si fourni, le nombre de messages de l'équipe</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de messages contenus dans le sujet </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1ed9c19a271cfff8064033153c1b08f3"></a><!-- doxytag: member="CSujetForum::retRepRessources" ref="1ed9c19a271cfff8064033153c1b08f3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retRepRessources           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'adresse du répertoire des ressources. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'adresse du répertoire des ressources </dd></dl>
+
+<p>Référencé par <a class="el" href="sujetforum_8tbl_8php-source.html#l00232">effacerMessages()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fc9fd146e425e28a30c78661d3004086"></a><!-- doxytag: member="CSujetForum::retTexteModalite" ref="fc9fd146e425e28a30c78661d3004086" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::retTexteModalite           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne en français la modalité courante du sujet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>en français la modalité courante du sujet </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3cd4dca04e91bb0dc5e5f98b3ea01e47"></a><!-- doxytag: member="CSujetForum::STRING_LOCK_TABLES" ref="3cd4dca04e91bb0dc5e5f98b3ea01e47" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CSujetForum::STRING_LOCK_TABLES           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les tables à verrouiller de la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>les tables à verrouiller de la DB </dd></dl>
+
+<p>Références <a class="el" href="messageforum_8tbl_8php-source.html#l00327">CMessageForum::STRING_LOCK_TABLES()</a>.</p>
+
+<p>Référencé par <a class="el" href="forum_8tbl_8php-source.html#l00613">CForum::STRING_LOCK_TABLES()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="sujetforum_8tbl_8php.html">sujetforum.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

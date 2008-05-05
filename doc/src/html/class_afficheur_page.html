@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe AfficheurPage</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe AfficheurPage</h1><!-- doxytag: class="AfficheurPage" --><div class="dynheader">
+Graphe d'héritage de AfficheurPage:</div>
+<div class="dynsection">
+
+<p><center><img src="class_afficheur_page.png" usemap="#AfficheurPage_map" border="0" alt=""></center>
+<map name="AfficheurPage_map">
+<area href="class_copier_coller_formation.html" alt="CopierCollerFormation" shape="rect" coords="0,56,140,80">
+<area href="class_navigateur_fichiers.html" alt="NavigateurFichiers" shape="rect" coords="150,56,290,80">
+<area href="class_gerer_fichiers_form.html" alt="GererFichiersForm" shape="rect" coords="150,112,290,136">
+</map>
+</div>
+
+<p>
+<a href="class_afficheur_page-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Contrôleur sommaire pour le système de templates. 
+<p>
+Prend en charge les erreurs à afficher, l'utilisation d'un template par défaut, la mise à disposition des variables GET/POST/SESSION, et surtout les quelques méthodes de base et leur ordre d'appel (récupération et validation des données, exécution des actions demandées, affichage des erreurs et/ou des autres parties de la page) <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0916d2ddc6ca08e573b6002b1b9bbbd4"></a><!-- doxytag: member="AfficheurPage::afficher" ref="0916d2ddc6ca08e573b6002b1b9bbbd4" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#0916d2ddc6ca08e573b6002b1b9bbbd4">afficher</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche les éventuelles erreurs, et s'il n'y a pas d'erreurs fatales, affiche les autres parties de la page. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#083b6a7c74be065f439a64078de7c384">afficherErreurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche les messages d'erreur qui ont été déclarés pendant le traitement de la page.  <a href="#083b6a7c74be065f439a64078de7c384"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#a4df93afa9e5d401c7230e22627952e4">afficherParties</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche les différentes parties de la page non relatives aux messages d'erreur.  <a href="#a4df93afa9e5d401c7230e22627952e4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#64085def765fa55e686e1c8c3ec65c4b">declarerErreur</a> ($sNomErreur, $bFatale=FALSE, $v_sTexte= '')</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Déclare qu'une erreur s'est produite.  <a href="#64085def765fa55e686e1c8c3ec65c4b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3807806671de6ba61d91b6dd2ed98c17"></a><!-- doxytag: member="AfficheurPage::declarerErreurAction" ref="3807806671de6ba61d91b6dd2ed98c17" args="($sNomErreur, $bFatale=FALSE, $v_sTexte= '')" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>declarerErreurAction</b> ($sNomErreur, $bFatale=FALSE, $v_sTexte= '')</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#6b71bedc59cac4abd9b6761b61ef9d91">defTpl</a> ($fichierTpl)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assigne un fichier template pour l'affichage de la page.  <a href="#6b71bedc59cac4abd9b6761b61ef9d91"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#f9117aebb7e08c4d7ae5b28c32d5006e">demarrer</a> ($fichierTpl=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lance l'affichage de la page.  <a href="#f9117aebb7e08c4d7ae5b28c32d5006e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#3bd5a7d7965888cf297e557954a5d629">detecterErreursPossibles</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Détecte les blocs nommés [erreur.  <a href="#3bd5a7d7965888cf297e557954a5d629"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#a91cf1d219d1c5f624d1147edee0ceba">erreurDeclaree</a> ($sNomErreur)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'une erreur est déjà déclarée.  <a href="#a91cf1d219d1c5f624d1147edee0ceba"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#08c73bc1fa58fc910e1ceda2c5fdd779">gererActions</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gère les actions demandées pour la page.  <a href="#08c73bc1fa58fc910e1ceda2c5fdd779"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#adf5a0aca3dec80470713d54c58c543e">recupererDonnees</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Récupère les données nécessaires à l'exécution de la page.  <a href="#adf5a0aca3dec80470713d54c58c543e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#3d9124d72bfa3313ed008197abe4ecc1">rediriger</a> ($sUrl)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Redirige l'utilisateur vers une autre adresse.  <a href="#3d9124d72bfa3313ed008197abe4ecc1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="baa8e305cfdb6a08d78252a4e3d4352f"></a><!-- doxytag: member="AfficheurPage::retNbErreurs" ref="baa8e305cfdb6a08d78252a4e3d4352f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#baa8e305cfdb6a08d78252a4e3d4352f">retNbErreurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre total d'erreurs déclarées, fatales ET non fatales. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c81571ee22ad39970a637bcdb980d527"></a><!-- doxytag: member="AfficheurPage::retNbErreursFatales" ref="c81571ee22ad39970a637bcdb980d527" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#c81571ee22ad39970a637bcdb980d527">retNbErreursFatales</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'erreurs fatales déclarées. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d24da1ed318dab4fd88ea8146add1760"></a><!-- doxytag: member="AfficheurPage::retNbErreursNonFatales" ref="d24da1ed318dab4fd88ea8146add1760" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#d24da1ed318dab4fd88ea8146add1760">retNbErreursNonFatales</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'erreurs non fatales déclarées. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#735f2e1007d303794f24cb80a2a649b6">validerDonnees</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Valide les données récupérées auparavant par la méthode <a class="el" href="class_afficheur_page.html#adf5a0aca3dec80470713d54c58c543e" title="Récupère les données nécessaires à l&#39;exécution de la page.">recupererDonnees()</a>.  <a href="#735f2e1007d303794f24cb80a2a649b6"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="02aeac05284278ba3339899dafafa6fa"></a><!-- doxytag: member="AfficheurPage::$aDonneesForm" ref="02aeac05284278ba3339899dafafa6fa" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#02aeac05284278ba3339899dafafa6fa">$aDonneesForm</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les variables passées par formulaire POST. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ef792fab1c47cf59f081248c555c369"></a><!-- doxytag: member="AfficheurPage::$aDonneesPersist" ref="9ef792fab1c47cf59f081248c555c369" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#9ef792fab1c47cf59f081248c555c369">$aDonneesPersist</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les variables persistantes, ici les variables de SESSION. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b4dfb6492301415b7263cdef7e3cd9f3"></a><!-- doxytag: member="AfficheurPage::$aDonneesUrl" ref="b4dfb6492301415b7263cdef7e3cd9f3" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#b4dfb6492301415b7263cdef7e3cd9f3">$aDonneesUrl</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les variables passées en URL (GET). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f8c55ca85295a6a35556e1093ff8d05b"></a><!-- doxytag: member="AfficheurPage::$aErreurs" ref="f8c55ca85295a6a35556e1093ff8d05b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#f8c55ca85295a6a35556e1093ff8d05b">$aErreurs</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui contient les erreurs non-fatales déclarées pendant l'affichage de la page (voir <a class="el" href="class_afficheur_page.html#64085def765fa55e686e1c8c3ec65c4b" title="Déclare qu&#39;une erreur s&#39;est produite.">declarerErreur()</a>). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6238cc2ee31e876360898888f0fdc1bc"></a><!-- doxytag: member="AfficheurPage::$aErreursFatales" ref="6238cc2ee31e876360898888f0fdc1bc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#6238cc2ee31e876360898888f0fdc1bc">$aErreursFatales</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui contient les erreurs fatales déclarées pendant l'affichage de la page. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d6ab7b68c14f6131a4214feda83b6384"></a><!-- doxytag: member="AfficheurPage::$aErreursPossibles" ref="d6ab7b68c14f6131a4214feda83b6384" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#d6ab7b68c14f6131a4214feda83b6384">$aErreursPossibles</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Si des blocs [erreur...+/-] sont présents dans la page HTML, ils sont détectés et enregistrés (voir <a class="el" href="class_afficheur_page.html#3bd5a7d7965888cf297e557954a5d629" title="Détecte les blocs nommés [erreur.">detecterErreursPossibles()</a>). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="93254533f312137ca3bd886753e3d637"></a><!-- doxytag: member="AfficheurPage::$fichierTpl" ref="93254533f312137ca3bd886753e3d637" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#93254533f312137ca3bd886753e3d637">$fichierTpl</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom du fichier template à utiliser pour afficher la page. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c33cc73cc7cfeffa12a4392e9fa252a9"></a><!-- doxytag: member="AfficheurPage::$sAction" ref="c33cc73cc7cfeffa12a4392e9fa252a9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#c33cc73cc7cfeffa12a4392e9fa252a9">$sAction</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chaîne destinée à recevoir le nom de "l'action" voulue pour la page (généralement définie dans <a class="el" href="class_afficheur_page.html#adf5a0aca3dec80470713d54c58c543e" title="Récupère les données nécessaires à l&#39;exécution de la page.">recupererDonnees()</a> d'une classe fille). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="50245d1e0709452c13446b2d03ecc8f2"></a><!-- doxytag: member="AfficheurPage::$tpl" ref="50245d1e0709452c13446b2d03ecc8f2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_afficheur_page.html#50245d1e0709452c13446b2d03ecc8f2">$tpl</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a> utilisé pour afficher la page. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="083b6a7c74be065f439a64078de7c384"></a><!-- doxytag: member="AfficheurPage::afficherErreurs" ref="083b6a7c74be065f439a64078de7c384" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::afficherErreurs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche les messages d'erreur qui ont été déclarés pendant le traitement de la page. 
+<p>
+Ils peuvent soit être présents au préalable dans le HTML, sous forme de blocs [erreur...] contenant le message voulu, soit sous la forme d'un seul bloc nommé [erreurs], dans lequel seront insérés les messages déclarés<p>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_afficheur_page.html#64085def765fa55e686e1c8c3ec65c4b" title="Déclare qu&#39;une erreur s&#39;est produite.">declarerErreur()</a> </dd></dl>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00166">afficher()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a4df93afa9e5d401c7230e22627952e4"></a><!-- doxytag: member="AfficheurPage::afficherParties" ref="a4df93afa9e5d401c7230e22627952e4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::afficherParties           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche les différentes parties de la page non relatives aux messages d'erreur. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>méthode à redéfinir dans les classes filles </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_copier_coller_formation.html#00d95ae27881b468b97575cdddac1dc1">CopierCollerFormation</a>, et <a class="el" href="class_navigateur_fichiers.html#6c9c73afc0f884ae0b4caedafc15193f">NavigateurFichiers</a>.</p>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00166">afficher()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="64085def765fa55e686e1c8c3ec65c4b"></a><!-- doxytag: member="AfficheurPage::declarerErreur" ref="64085def765fa55e686e1c8c3ec65c4b" args="($sNomErreur, $bFatale=FALSE, $v_sTexte= '')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::declarerErreur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sNomErreur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>bFatale</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em> = <code>''</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Déclare qu'une erreur s'est produite. 
+<p>
+Permet d'afficher des messages d'erreurs à la fin du traitement de la page, lors de l'affichage<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sNomErreur</em>&nbsp;</td><td>le nom de l'erreur déclarée. Si on omet <code>v_sTexte</code>, ce paramètre désigne le nom du bloc dans le template qui contient le message pour cette erreur, et qui sera donc affiché </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>bFatale</em>&nbsp;</td><td>indique si l'erreur est fatale, càd si elle empêchera l'exécution de l'action demandée pour la page et l'affichage des parties principales de la page </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sTexte</em>&nbsp;</td><td>le message de l'erreur déclarée. S'il n'est pas spécifié, le nom de l'erreur est considéré comme le nom du bloc de template qui contient le message à afficher. S'il est spécifié, ce texte sera affiché dans le bloc [erreurs] du template en tant que § </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="_navigateur_fichiers_8php-source.html#l00172">NavigateurFichiers::gererActions()</a>, <a class="el" href="_navigateur_fichiers_8php-source.html#l00084">NavigateurFichiers::validerDonnees()</a>, et <a class="el" href="_copier_coller_formation_8php-source.html#l00101">CopierCollerFormation::validerDonnees()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6b71bedc59cac4abd9b6761b61ef9d91"></a><!-- doxytag: member="AfficheurPage::defTpl" ref="6b71bedc59cac4abd9b6761b61ef9d91" args="($fichierTpl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::defTpl           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>fichierTpl</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Assigne un fichier template pour l'affichage de la page. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fichierTpl</em>&nbsp;</td><td>le nom du fichier template à utiliser. S'il n'est pas fourni, &lt;nom-de-la-classe&gt;.tpl est utilisé </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_afficheur_page_8php-source.html#l00040">$fichierTpl</a>.</p>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00056">demarrer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f9117aebb7e08c4d7ae5b28c32d5006e"></a><!-- doxytag: member="AfficheurPage::demarrer" ref="f9117aebb7e08c4d7ae5b28c32d5006e" args="($fichierTpl=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::demarrer           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>fichierTpl</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Lance l'affichage de la page. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>fichierTpl</em>&nbsp;</td><td>le chemin du fichier template à utiliser pour afficher la page. Par défaut, il s'agit de &lt;nom-de-la-classe&gt;.tpl (la classe peut être une classe fille) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_afficheur_page_8php-source.html#l00040">$fichierTpl</a>, <a class="el" href="_afficheur_page_8php-source.html#l00166">afficher()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00119">defTpl()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00247">detecterErreursPossibles()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00108">gererActions()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00082">recupererDonnees()</a>, <a class="el" href="_afficheur_page_8php-source.html#l00317">retNbErreursFatales()</a>, et <a class="el" href="_afficheur_page_8php-source.html#l00094">validerDonnees()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3bd5a7d7965888cf297e557954a5d629"></a><!-- doxytag: member="AfficheurPage::detecterErreursPossibles" ref="3bd5a7d7965888cf297e557954a5d629" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::detecterErreursPossibles           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Détecte les blocs nommés [erreur. 
+<p>
+..] dans le HTML du template (réservés pour les messages d'erreur), de façon à les enlever au moment l'affichage si l'erreur qu'ils représentent n'a pas été déclenchée (déclarée) 
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00056">demarrer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a91cf1d219d1c5f624d1147edee0ceba"></a><!-- doxytag: member="AfficheurPage::erreurDeclaree" ref="a91cf1d219d1c5f624d1147edee0ceba" args="($sNomErreur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::erreurDeclaree           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sNomErreur</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'une erreur est déjà déclarée. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sNomErreur</em>&nbsp;</td><td>le nom de l'erreur</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'erreur est déclarée, <code>false</code> sinon </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="08c73bc1fa58fc910e1ceda2c5fdd779"></a><!-- doxytag: member="AfficheurPage::gererActions" ref="08c73bc1fa58fc910e1ceda2c5fdd779" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::gererActions           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Gère les actions demandées pour la page. 
+<p>
+Généralement un switch/case sur <code>$this-&gt;sAction</code>. N'est pas appelée si une erreur fatale a été déclarée pendant la récupération ou la validation des données. On peut encore y déclarer des erreurs fatales, car elles déterminent également si la partie principale de la page sera affichée<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>méthode à redéfinir dans les classes filles </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_copier_coller_formation.html#15e4e2b272abcc452b28e33887895464">CopierCollerFormation</a>, et <a class="el" href="class_navigateur_fichiers.html#d912fbde728bd3ba8e7474b80b1e6564">NavigateurFichiers</a>.</p>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00056">demarrer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="adf5a0aca3dec80470713d54c58c543e"></a><!-- doxytag: member="AfficheurPage::recupererDonnees" ref="adf5a0aca3dec80470713d54c58c543e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::recupererDonnees           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Récupère les données nécessaires à l'exécution de la page. 
+<p>
+Dans une classe fille, on peut par exemple déclarer les différentes données utilisées pour le traitement et l'affichage en tant que propriétés de la classe, et les récupérer dans la méthode <a class="el" href="class_afficheur_page.html#adf5a0aca3dec80470713d54c58c543e" title="Récupère les données nécessaires à l&#39;exécution de la page.">recupererDonnees()</a><p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>méthode à redéfinir dans les classes filles </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_copier_coller_formation.html#3a66a0d5f6f4b6f312718dbdf47496d8">CopierCollerFormation</a>, <a class="el" href="class_gerer_fichiers_form.html#d79147cdbec306a791bc6337b0386ea1">GererFichiersForm</a>, et <a class="el" href="class_navigateur_fichiers.html#7d4f46ae11f31cd8d5b87548bd2aa804">NavigateurFichiers</a>.</p>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00056">demarrer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3d9124d72bfa3313ed008197abe4ecc1"></a><!-- doxytag: member="AfficheurPage::rediriger" ref="3d9124d72bfa3313ed008197abe4ecc1" args="($sUrl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::rediriger           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sUrl</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Redirige l'utilisateur vers une autre adresse. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sUrl</em>&nbsp;</td><td>l'adresse vers laquelle on redirige </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="735f2e1007d303794f24cb80a2a649b6"></a><!-- doxytag: member="AfficheurPage::validerDonnees" ref="735f2e1007d303794f24cb80a2a649b6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">AfficheurPage::validerDonnees           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Valide les données récupérées auparavant par la méthode <a class="el" href="class_afficheur_page.html#adf5a0aca3dec80470713d54c58c543e" title="Récupère les données nécessaires à l&#39;exécution de la page.">recupererDonnees()</a>. 
+<p>
+C'est ici qu'on ajuste leur valeur ou qu'on déclenche éventuellement une méthode <a class="el" href="class_afficheur_page.html#64085def765fa55e686e1c8c3ec65c4b" title="Déclare qu&#39;une erreur s&#39;est produite.">declarerErreur()</a><p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>méthode à redéfinir dans les classes filles </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_copier_coller_formation.html#4ae25bd26a8efed75b1a3c8f7ad02229">CopierCollerFormation</a>, et <a class="el" href="class_navigateur_fichiers.html#446e449f46bf506d1b145bca76a95a86">NavigateurFichiers</a>.</p>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+<p>Référencé par <a class="el" href="_afficheur_page_8php-source.html#l00056">demarrer()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_afficheur_page_8php.html">AfficheurPage.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

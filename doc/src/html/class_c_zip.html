@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CZip</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CZip</h1><!-- doxytag: class="CZip" -->
+<p>
+<a href="class_c_zip-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion d'archives PKZIP, utilisant les fonctions de la bibliothèque PclZip. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000034">À faire:</a></b></dt><dd>Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, il faudrait "synchroniser" cette classe avec <a class="el" href="class_c_tar.html" title="Gestion d&#39;archives GNU TAR, utilisant les fonctions de la bibliothèque PclTar...">CTar</a> (objet de base pour la (dé)compression puis héritage de chacune des deux classes ?), notamment au niveau des valeurs de retour </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#7f8f3839e237b4d884fc7c0019f53c1b">ajouterEntreesDsListe</a> ($v_asEntrees, $v_bEffacerAnciennes=FALSE, $v_bCreer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé.  <a href="#7f8f3839e237b4d884fc7c0019f53c1b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#901aa226a905b7c8316b160abcdd3dda">creerArchive</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée l'archive.  <a href="#901aa226a905b7c8316b160abcdd3dda"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#563e67694108a01c831a9b2c5363ef2e">CZip</a> ($v_sCheminArchive, $v_asEntrees=array(), $v_bCreer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#563e67694108a01c831a9b2c5363ef2e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#026d83104929ef24b2f4def16a2278d4">desarchiver</a> ($v_sDossierDest=NULL, $v_bEcraserExistant=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Décompresse une archive.  <a href="#026d83104929ef24b2f4def16a2278d4"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs de l'objet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eadc02d1d83aa7b07b50a00dcf184aae"></a><!-- doxytag: member="CZip::defModifsChemins" ref="eadc02d1d83aa7b07b50a00dcf184aae" args="($v_sCheminAAjouter=&quot;&quot;, $v_sCheminAEnlever=&quot;&quot;)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defModifsChemins</b> ($v_sCheminAAjouter=&quot;&quot;, $v_sCheminAEnlever=&quot;&quot;)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs de l'objet</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="56e9e637dd788d65990f000699d4dff5"></a><!-- doxytag: member="CZip::retCheminArchive" ref="56e9e637dd788d65990f000699d4dff5" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retCheminArchive</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6422a6a13ff1e82ad6bf4a7443ba6c54"></a><!-- doxytag: member="CZip::$asEntrees" ref="6422a6a13ff1e82ad6bf4a7443ba6c54" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#6422a6a13ff1e82ad6bf4a7443ba6c54">$asEntrees</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="beb10d2d0ca3fd0de058c9d4bbcc7900"></a><!-- doxytag: member="CZip::$iCodeRetour" ref="beb10d2d0ca3fd0de058c9d4bbcc7900" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#beb10d2d0ca3fd0de058c9d4bbcc7900">$iCodeRetour</a> = 0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lorsqu'on demande la création d'archive directement dans le constructeur, on ne peut pas retourner de code d'erreur, il est donc stocké dans une propriété de l'objet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c9e4d20072500f562e743e649c26c661"></a><!-- doxytag: member="CZip::$oArchive" ref="c9e4d20072500f562e743e649c26c661" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#c9e4d20072500f562e743e649c26c661">$oArchive</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet PclZip interne qui représente l'archive. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="39206348c871e58fbaaf63d8a991516a"></a><!-- doxytag: member="CZip::$sCheminAAjouter" ref="39206348c871e58fbaaf63d8a991516a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#39206348c871e58fbaaf63d8a991516a">$sCheminAAjouter</a> = &quot;&quot;</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ce chemin sera ajouté devant la racine de chaque fichier inclus à l'archive. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5b2d74fccc10f899b39ea2753eb34897"></a><!-- doxytag: member="CZip::$sCheminAEnlever" ref="5b2d74fccc10f899b39ea2753eb34897" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#5b2d74fccc10f899b39ea2753eb34897">$sCheminAEnlever</a> = &quot;&quot;</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Les fichiers inclus dans l'archive et dont le chemin commence par cette chaîne, auront cette chaîne enlevée du chemin. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d99b347eb98cb7b8a92f09125f11a971"></a><!-- doxytag: member="CZip::$sCheminArchive" ref="d99b347eb98cb7b8a92f09125f11a971" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_zip.html#d99b347eb98cb7b8a92f09125f11a971">$sCheminArchive</a> = NULL</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Chaîne de caractères contenant le chemin de l'archive à créer. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="7f8f3839e237b4d884fc7c0019f53c1b"></a><!-- doxytag: member="CZip::ajouterEntreesDsListe" ref="7f8f3839e237b4d884fc7c0019f53c1b" args="($v_asEntrees, $v_bEffacerAnciennes=FALSE, $v_bCreer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CZip::ajouterEntreesDsListe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEntrees</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEffacerAnciennes</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCreer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_asEntrees</em>&nbsp;</td><td>la liste des entrées à inclure à l'archive, sous forme de tableau de chaînes de caractères, chacune représentant le chemin d'un fichier/dossier à inclure </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCreer</em>&nbsp;</td><td>si <code>true</code>, l'archive est créée immédiatement, et le code de retour de cette opération est retourné</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>si <code>v_bCreer</code> est à <code>true</code>, le code de retour de l'opération de création de l'archive est retourné. Sinon, la valeur retournée est <code>1</code> </dd></dl>
+
+<p>Références <a class="el" href="zip_8class_8php-source.html#l00107">creerArchive()</a>.</p>
+
+<p>Référencé par <a class="el" href="zip_8class_8php-source.html#l00059">CZip()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="901aa226a905b7c8316b160abcdd3dda"></a><!-- doxytag: member="CZip::creerArchive" ref="901aa226a905b7c8316b160abcdd3dda" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CZip::creerArchive           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée l'archive. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la valeur de retour de la fonction <code>PclZip::create()</code> (biblio externe), qui est une liste de propriétés de fichiers si l'opération s'est bien déroulée, sinon <code>0</code> </dd></dl>
+
+<p>Référencé par <a class="el" href="zip_8class_8php-source.html#l00085">ajouterEntreesDsListe()</a>, et <a class="el" href="zip_8class_8php-source.html#l00059">CZip()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="563e67694108a01c831a9b2c5363ef2e"></a><!-- doxytag: member="CZip::CZip" ref="563e67694108a01c831a9b2c5363ef2e" args="($v_sCheminArchive, $v_asEntrees=array(), $v_bCreer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CZip::CZip           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sCheminArchive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asEntrees</em> = <code>array()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCreer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sCheminArchive</em>&nbsp;</td><td>le chemin complet de l'archive qu'on désire créer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_asEntrees</em>&nbsp;</td><td>un tableau contenant les chemins de fichiers ou dossiers à compresser. Si <code>null</code> (par défaut), il faudra ajouter des entrées plus tard à l'aide de la fonction <a class="el" href="class_c_zip.html#7f8f3839e237b4d884fc7c0019f53c1b" title="Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront...">ajouterEntreesDsListe()</a>, et le paramètre <code>v_bCreer</code> ne sera donc pas pris en compte (il vaudra <code>false</code>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bCreer</em>&nbsp;</td><td>si <code>true</code>, crée immédiatement l'archive. Le code de retour de cette opération est stocké dans la propriété <code>iCodeRetour</code> </td></tr>
+  </table>
+</dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000035">À faire:</a></b></dt><dd>Vérifier que le chemin/nom de l'archive à créer est valide </dd></dl>
+
+<p>Références <a class="el" href="zip_8class_8php-source.html#l00085">ajouterEntreesDsListe()</a>, et <a class="el" href="zip_8class_8php-source.html#l00107">creerArchive()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="026d83104929ef24b2f4def16a2278d4"></a><!-- doxytag: member="CZip::desarchiver" ref="026d83104929ef24b2f4def16a2278d4" args="($v_sDossierDest=NULL, $v_bEcraserExistant=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CZip::desarchiver           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDossierDest</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEcraserExistant</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Décompresse une archive. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sDossierDest</em>&nbsp;</td><td>le dossier de destination de la décompression </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bEcraserExistant</em>&nbsp;</td><td>si <code>true</code>, les éléments décompressés écraseront des éléments de même nom existants. Si <code>false</code>, les éléments existants seront conservés</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la valeur de retour de la fonction <code>PclZip::extract()</code> (biblio externe), supérieure à 0 si l'opération s'est bien déroulée, &lt;= 0 sinon </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/<a class="el" href="zip_8class_8php.html">zip.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

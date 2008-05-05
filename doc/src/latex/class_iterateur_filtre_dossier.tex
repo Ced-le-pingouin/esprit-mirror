@@ -1,0 +1,55 @@
+\section{Référence de la classe IterateurFiltreDossier}
+\label{class_iterateur_filtre_dossier}\index{IterateurFiltreDossier@{IterateurFiltreDossier}}
+Graphe d'héritage de IterateurFiltreDossier::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_iterateur_filtre_dossier}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe permettant de filtrer les éléments d'un itérateur de dossier, en fonction du nom de fichier/dossier de ceux-ci. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf accepter} ()\label{class_iterateur_filtre_dossier_e77b977a90be8be025c05c601efd31b1}
+
+\begin{CompactList}\small\item\em Voir \doxyref{IterateurFiltre::accepter()}{p.}{class_iterateur_filtre_0a6c563c9d39daa92177f697f7046e01}. \item\end{CompactList}\item 
+\textbf{aEnfants} ()\label{class_iterateur_filtre_dossier_9be5d6b450daa50783e8e5498059a4b6}
+
+\item 
+{\bf IterateurFiltreDossier} (\$v\_\-oItr, \$v\_\-sFiltre)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{retIterateurEnfants} ()\label{class_iterateur_filtre_dossier_263e219975453820cd28a1b65e9ba2b8}
+
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+\textbf{\$sFiltre}\label{class_iterateur_filtre_dossier_db508b5986c1fa4f338bedf0b84f9b24}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurFiltreDossier@{IterateurFiltreDossier}!IterateurFiltreDossier@{IterateurFiltreDossier}}
+\index{IterateurFiltreDossier@{IterateurFiltreDossier}!IterateurFiltreDossier@{IterateurFiltreDossier}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurFiltreDossier::IterateurFiltreDossier (\$ {\em v\_\-oItr}, \/  \$ {\em v\_\-sFiltre})}\label{class_iterateur_filtre_dossier_c1509c47b0fd31148a28cb9a2a57c2d1}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oItr}]l'itérateur (déjà créé) qui sera parcouru en utilisant le filtre \item[{\em v\_\-sFiltre}]la chaîne de caractère représentant une expression régulière, qui déterminera si un élement est accepté. La syntaxe est celle des expressions régulières Perl (fonctions preg\_\-...() en PHP)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]l'itérateur passé au constructeur est réinitialisé (\doxyref{debut()}{p.}{class_iterateur_filtre_85e8706ed57553310e22ff0dd929f315}) par défaut \end{Desc}
+
+
+Références IterateurFiltre::debut(), OO::instanceDe(), Erreur::provoquer(), et IterateurDecorateur::retIterateurInterne().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurFiltreDossier.php}\end{CompactItemize}

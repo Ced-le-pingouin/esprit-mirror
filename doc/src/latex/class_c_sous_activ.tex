@@ -1,0 +1,822 @@
+\section{Référence de la classe CSousActiv}
+\label{class_c_sous_activ}\index{CSousActiv@{CSousActiv}}
+
+
+\subsection{Description détaillée}
+Gestion des sous-activités, et encapsulation de la table SousActiv de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-iIdActiv)
+\begin{CompactList}\small\item\em Ajoute une sous-activité dans une activité. \item\end{CompactList}\item 
+{\bf ajouterChat} ()
+\begin{CompactList}\small\item\em Ajoute un chat à la sous-activité. \item\end{CompactList}\item 
+{\bf ajouterForum} ()\label{class_c_sous_activ_cb128b669880eb7a14c3f750d9bebb86}
+
+\begin{CompactList}\small\item\em Ajoute un forum de type sous-activité. \item\end{CompactList}\item 
+{\bf ajouterInscritsNonAutorises} (\$v\_\-aiIdInscritsNonAutorises)
+\begin{CompactList}\small\item\em Définit les personnes passées en paramètre comme ne pouvant pas voir cette sous-activité. \item\end{CompactList}\item 
+{\bf associerGlossaire} (\$v\_\-iIdGlossaire)
+\begin{CompactList}\small\item\em Associe un glossaire à la sous-activité. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iIdActiv, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie la sous-activité courante dans une activité spécifiée. \item\end{CompactList}\item 
+{\bf copierAvecNumOrdre} (\$v\_\-iIdDest, \$v\_\-iNumOrdre=0)
+\begin{CompactList}\small\item\em Copie la sous-activité courante vers une activité, en indiquant un n° d'ordre pour la copie de la sous-activité. \item\end{CompactList}\item 
+{\bf copierChats} (\$v\_\-iIdSousActiv)
+\begin{CompactList}\small\item\em Copie tout les chats de la sous-activité courante vers une autre. \item\end{CompactList}\item 
+{\bf copierForum} (\$v\_\-iIdSousActiv)
+\begin{CompactList}\small\item\em Copie le forum courant de type sous-activité dans une autre sous-activité. \item\end{CompactList}\item 
+{\bf copierSousActiv} (\$v\_\-iIdActiv, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Insère une copie d'une sous-activité dans la DB. \item\end{CompactList}\item 
+{\bf CSousActiv} (\&\$v\_\-oBdd, \$v\_\-iIdSousActiv=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_sous_activ_511b7cf4bf0faf36505beecfaca45a56}
+
+\begin{CompactList}\small\item\em Efface la sous-activité courante. \item\end{CompactList}\item 
+{\bf effacerChats} ()\label{class_c_sous_activ_f45867cea4a23ee56ae18ee085047a96}
+
+\begin{CompactList}\small\item\em Efface tout les chats de la sous-activité. \item\end{CompactList}\item 
+{\bf effacerCollecticiel} ()\label{class_c_sous_activ_261309802488fc4d7e12dd44b392da51}
+
+\begin{CompactList}\small\item\em Efface le collecticiel. \item\end{CompactList}\item 
+{\bf effacerEquipes} ()\label{class_c_sous_activ_893be3f6d4f4fc45c5f6e7ef15f81949}
+
+\begin{CompactList}\small\item\em Efface les équipes de la sous-activités. \item\end{CompactList}\item 
+{\bf effacerForum} ()\label{class_c_sous_activ_a8ffe2cbbf0c60268dbfb62534bdca71}
+
+\begin{CompactList}\small\item\em Efface le forum de type sous-activité. \item\end{CompactList}\item 
+{\bf effacerGalerie} ()\label{class_c_sous_activ_8264ce04edb753bafc1ca0e46cd8e481}
+
+\begin{CompactList}\small\item\em Efface la galerie. \item\end{CompactList}\item 
+{\bf effacerGlossaire} ()\label{class_c_sous_activ_b202fd1edfda0bf4f6d9b98c25562066}
+
+\begin{CompactList}\small\item\em Efface un glossaire de la table SousActiv\_\-Glossaire. \item\end{CompactList}\item 
+{\bf effacerSousActiv} ()\label{class_c_sous_activ_e51b848c627a0110a4a18edf7e5f19c8}
+
+\begin{CompactList}\small\item\em Efface dans la DB la sous-activité courante. \item\end{CompactList}\item 
+{\bf enregistrerEvaluation} (\$v\_\-iIdResSousActiv, \$v\_\-iIdPers, \$v\_\-sApprec, \$v\_\-sComment, \$v\_\-iStatutRes)
+\begin{CompactList}\small\item\em Enregistre une évaluation d'une ressource. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_sous_activ_85eef820a5718b7e1747d8539c93f2b9}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initActiv} ()\label{class_c_sous_activ_5d3df571d2ac439432ba974377517e5f}
+
+\begin{CompactList}\small\item\em Initialise l'objet {\tt oActiveParente} avec l'activité parente de la sous-activité. \item\end{CompactList}\item 
+{\bf initAuteur} ()\label{class_c_sous_activ_1062e9be22b602a140c6d5577b378f49}
+
+\begin{CompactList}\small\item\em Initialise l'objet {\tt oAuteur} de type \doxyref{CPersonne}{p.}{class_c_personne} contenant la personne qui a déposé la ressource. \item\end{CompactList}\item 
+{\bf initChats} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant les chats de type sous-activité. \item\end{CompactList}\item 
+{\bf initCollecticiel} ()\label{class_c_sous_activ_8bbc384932d28b31ae8f96bb9c542037}
+
+\begin{CompactList}\small\item\em Initialise le collecticiel. \item\end{CompactList}\item 
+{\bf initEquipe} (\$v\_\-iIdEquipe, \$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Initialise {\tt oEquipe} avec l'équipe dont l'id est passé en paramètre. \item\end{CompactList}\item 
+{\bf initEquipes} (\$v\_\-bInitMembres=FALSE, \$v\_\-iTypeNiveauDepart={\bf TYPE\_\-SOUS\_\-ACTIVITE})
+\begin{CompactList}\small\item\em Initialise un tableau contenant les équipes de la sous-activité. \item\end{CompactList}\item 
+{\bf initFormulairesCompletes} (\$v\_\-iIdPers=NULL, \$v\_\-mStatutFC=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les formulaires complétés de la sous-activité. \item\end{CompactList}\item 
+{\bf initForum} ()\label{class_c_sous_activ_16ef6bedd6c57bee4db348a054754145}
+
+\begin{CompactList}\small\item\em Initialise le forum de type sous-activité. \item\end{CompactList}\item 
+{\bf initGalerie} ()\label{class_c_sous_activ_74a9959773ce2fa4f4671cf9b0a27377}
+
+\begin{CompactList}\small\item\em Initalise {\tt oGalerie} avec la galerie(de type sous-activité). \item\end{CompactList}\item 
+{\bf initGlossaire} (\$v\_\-bInitElements=FALSE)
+\begin{CompactList}\small\item\em Initialise une sous-activité de type glossaire. \item\end{CompactList}\item 
+{\bf initIdsParents} ()
+\begin{CompactList}\small\item\em Retourne un objet contenant les id des niveaux supérieurs de la sous-activité, dans la structure d'une formation. \item\end{CompactList}\item 
+{\bf initInscritsNonAutorises} ()
+\begin{CompactList}\small\item\em Initialise le tableau contenant la liste des personnes ne pouvant pas voir cette sous-activité. \item\end{CompactList}\item 
+{\bf initRessources} (\$v\_\-sTri=\char`\"{}date\char`\"{}, \$v\_\-iTypeTri=NULL, \$v\_\-iModalite=0, \$v\_\-iIdPers=0, \$v\_\-iStatut=0, \$v\_\-sDate=0)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les ressources de la sous-activité. \item\end{CompactList}\item 
+{\bf majStatutRessource} (\$v\_\-iIdResSousActiv)
+\begin{CompactList}\small\item\em Met à jour le statut de la ressource. \item\end{CompactList}\item 
+{\bf mettre\_\-a\_\-jour} (\$v\_\-sNomChamp, \$v\_\-mValeurChamp, \$v\_\-iIdSousActiv=0)
+\begin{CompactList}\small\item\em Met à jour un champ de la table Activ. \item\end{CompactList}\item 
+{\bf rafraichir} ()\label{class_c_sous_activ_1a29700d45801b32feb69e103513f42b}
+
+\begin{CompactList}\small\item\em Réinitialise l'objet {\tt oEnregBdd} avec l'activité courante. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iNouveauNumOrdre=NULL)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des sous-activités. \item\end{CompactList}\item 
+{\bf retDossier} ()
+\item 
+\& {\bf retElementsEnfants} ()\label{class_c_sous_activ_17b3a78a940385a5384d8454d018daa5}
+
+\begin{CompactList}\small\item\em Retourne les éléments enfants de la sous-activité, càd {\tt null}. \item\end{CompactList}\item 
+{\bf retIdEnregPrecedent} ()
+\begin{CompactList}\small\item\em Retourne l'id de la sous-activité précédent celle-ci. \item\end{CompactList}\item 
+{\bf retListeDeroulements} ()
+\begin{CompactList}\small\item\em Retourne la liste des possibilités de soumission d'un document (constante SOUMISSION\_\-). \item\end{CompactList}\item 
+{\bf retListeModalites} ()
+\begin{CompactList}\small\item\em Retourne un tableau contenant les différents modalités d'une sous-activité. \item\end{CompactList}\item 
+{\bf retListeModes} ()
+\begin{CompactList}\small\item\em Retourne la liste des modes d'ouverture d'une sous-activité. \item\end{CompactList}\item 
+{\bf retListeSousActivs} (\$v\_\-iIdActiv=NULL, \$v\_\-iTypeSousActiv=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau des sous-activités de l'activité. \item\end{CompactList}\item 
+{\bf retListeStatuts} ()
+\begin{CompactList}\small\item\em Retourne la liste des statuts possibles d'un sous-activité. \item\end{CompactList}\item 
+{\bf retListeTypes} ()
+\begin{CompactList}\small\item\em Retourne la liste des types de sous-activités. \item\end{CompactList}\item 
+{\bf retNombreChats} ()
+\begin{CompactList}\small\item\em Retourne le nombre de chats de la sous-activité. \item\end{CompactList}\item 
+{\bf retNombreLignes} (\$v\_\-iNumParent=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre de sous-activités de cette activité. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} (\$v\_\-iIdActiv=NULL)
+\begin{CompactList}\small\item\em Permet de connaître le numero d'ordre maximum des sous-activités. \item\end{CompactList}\item 
+{\bf retStatutPlusHautFormulaire} (\$v\_\-miIdPers=NULL)
+\begin{CompactList}\small\item\em Retourne des informations concernant les formulaires complétés de cette sous-activité ayant le statut le plus élevé, et déposés par les personnes spécifiées. \item\end{CompactList}\item 
+{\bf retStatutPlusHautRes} (\$v\_\-miIdPers=NULL)
+\begin{CompactList}\small\item\em Retourne des informations concernant les ressources de cette sous-activité ayant le statut le plus élévé, et déposés par les personnes spécifiées. \item\end{CompactList}\item 
+{\bf retStatutReel} ()
+\begin{CompactList}\small\item\em Retourne le statut du parent(activité). \item\end{CompactList}\item 
+{\bf retTexteNiveau} ()
+\item 
+{\bf retTexteType} (\$v\_\-iType=NULL)
+\begin{CompactList}\small\item\em Retourne le texte en français du type de sous-activité. \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau \char`\"{}sous-activité\char`\"{}, de la structure d'une formation. \item\end{CompactList}\item 
+{\bf retVotesMinReels} ()
+\begin{CompactList}\small\item\em Retourne le nombre de vote minimum en nombre de personnes minimum votantes. \item\end{CompactList}\item 
+{\bf voterPourRessource} (\$v\_\-iIdResSousActiv, \$v\_\-iIdVotant)
+\begin{CompactList}\small\item\em Insère un vote pour une ressource de la sous-activité. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette sous-activité}\par
+\begin{CompactItemize}
+\item 
+\textbf{defDateDeb} (\$v\_\-dDateDeb)\label{class_c_sous_activ_b102c4af10c171ea86ecfa3f06d8bbef}
+
+\item 
+\textbf{defDateFin} (\$v\_\-dDateFin)\label{class_c_sous_activ_6a896ba3508abed2c3cbf225df381a69}
+
+\item 
+\textbf{defDescr} (\$v\_\-sDescrSousActiv)\label{class_c_sous_activ_3059c7c9e7f7f3ea527f4700576aa622}
+
+\item 
+\textbf{defDonnees} (\$v\_\-sDonnees)\label{class_c_sous_activ_cf3dc15bd8320db9142e52538eac83ca}
+
+\item 
+\textbf{defInfoBulle} (\$v\_\-sInfoBulle=NULL)\label{class_c_sous_activ_f5bf38b698fe140809f40a1310f7aec6}
+
+\item 
+\textbf{defModalite} (\$v\_\-iModalite)\label{class_c_sous_activ_8da3e973872bb4f06238ba3fde72caa7}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomSousActiv)\label{class_c_sous_activ_c19b0fc678fc09ce4ae5009fcc22ea1b}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iOrdre)\label{class_c_sous_activ_695f4ba33118bc7e66fb914a6cb86f05}
+
+\item 
+\textbf{defPremierePage} (\$v\_\-bPremierePage, \$v\_\-iIdRubrique)\label{class_c_sous_activ_594f784dbe8eeed65ebc1aef825c15ec}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_sous_activ_9fe366b93619e4110b0feb5d6f6f37db}
+
+\item 
+{\bf defType} (\$v\_\-iIdType)
+\begin{CompactList}\small\item\em Définit le type de la sous-activité et efface l'ancien type s'il était initialisé. \item\end{CompactList}\item 
+\textbf{setIdPers} (\$v\_\-iIdPers)\label{class_c_sous_activ_7bbd22921df53914cd0c4cbcff2442e3}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette sous-activité}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDateDeb} ()\label{class_c_sous_activ_b1b072e9d2b5133cd56a83fda397d419}
+
+\item 
+\textbf{retDateFin} ()\label{class_c_sous_activ_ecd6638053ccda814897f8049f5a2153}
+
+\item 
+\textbf{retDescr} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_sous_activ_d6b4f800577a1f6dbe0f3a9aa43a3869}
+
+\item 
+\textbf{retDonnee} (\$v\_\-iPartie)\label{class_c_sous_activ_5c6f3a45a88ef3334a6373f626d9cf6e}
+
+\item 
+\textbf{retDonnees} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_sous_activ_fa2b87c985c3dfcac2204e7c5c6141a3}
+
+\item 
+\textbf{retId} ()\label{class_c_sous_activ_085eb912fc703b157edbc810cdf0a88d}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_sous_activ_af49ed3642fcdef3fd3b807a01f95335}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_sous_activ_267e551e9f2be6dcfa7f798e6af02aad}
+
+\item 
+\textbf{retInfoBulle} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_sous_activ_a5a57d017f436dd145ce5e47663f81a0}
+
+\item 
+\textbf{retModalite} (\$v\_\-bModaliteParente=FALSE)\label{class_c_sous_activ_6a63efd09a88f563f85a46c5b43762c2}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_sous_activ_97650ed3352eeb087ab7771212314ed1}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_sous_activ_7468727ea62a39f5e0690536931c44c9}
+
+\item 
+\textbf{retPremierePage} ()\label{class_c_sous_activ_e8cd7182e34e59a7b72e490016f19735}
+
+\item 
+\textbf{retStatut} ()\label{class_c_sous_activ_ac55c60ecb1c7ab5e1fb3606c76c7209}
+
+\item 
+\textbf{retType} ()\label{class_c_sous_activ_3eaeb9b9dcc837123aa4e3a3126d4812}
+
+\item 
+\textbf{retVotesMin} ()\label{class_c_sous_activ_d2b62a5c5eb050c6159b90d3e3ba421b}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoChats}\label{class_c_sous_activ_c74a7cc420b5134d61d15a1b6d188256}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initChats()}{p.}{class_c_sous_activ_68694fa66c2519e16fe2cc4c1348a1ac}, contenant une liste des chats de cette sous-activité. \item\end{CompactList}\item 
+{\bf \$aoEquipes}\label{class_c_sous_activ_1dd830ed9ab70d241e04ac2831fd9b56}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initEquipes()}{p.}{class_c_sous_activ_387eb1fa4f824b411b17fe36cac4bf75}, contenant une liste des équipes de cette sous-activité. \item\end{CompactList}\item 
+{\bf \$aoRessources}\label{class_c_sous_activ_52d392bfa9e6b71d65eafcf48187d9ad}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initRessources()}{p.}{class_c_sous_activ_d89cf68d64278c806757508cd708eaaf}, contenant une liste des ressources de cette sous-activité. \item\end{CompactList}\item 
+{\bf \$aoSousActivs}\label{class_c_sous_activ_5ea474bc0e7f786026fbcb22a94b36c9}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{retListeSousActivs()}{p.}{class_c_sous_activ_be76c85a6afe6197036414d9537f3af4}, contenant une liste des sous-activités de l'activité. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_sous_activ_e23f336870f41ebe9e72a415620ab51e}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la sous-activité à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oActivParente}\label{class_c_sous_activ_c9c43b0b6ccd5761f39fc1641a4ebff2}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CActiv}{p.}{class_c_activ} contenant l'activité parente de la sous-activité courante. \item\end{CompactList}\item 
+{\bf \$oAuteur}\label{class_c_sous_activ_d94a4401e966f0c69b333191fd98a86b}
+
+\begin{CompactList}\small\item\em Objet de type Cpersonne contenant une personne. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_sous_activ_066642a3cdcd32a02251eaa70f25a5cd}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oCollecticiel}\label{class_c_sous_activ_061257b4719e7f197b33de1776bde193}
+
+\begin{CompactList}\small\item\em Objet de type CCollecticiel contenant un collecticiel. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_sous_activ_c0a6ada1674b83d3d36286feea9cae88}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oEquipe}\label{class_c_sous_activ_d3ad71747bfb628742b9696c1db7cf13}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CEquipe}{p.}{class_c_equipe} contenant une équipe. \item\end{CompactList}\item 
+{\bf \$oForum}\label{class_c_sous_activ_2c52b33ae4660904e08e676c5c35f773}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CForum}{p.}{class_c_forum} contenant un forum. \item\end{CompactList}\item 
+{\bf \$oGalerie}\label{class_c_sous_activ_f101f4c2e5d005d2785372ff2464f202}
+
+\begin{CompactList}\small\item\em Objet de type CGalerie contenant un collecticiel. \item\end{CompactList}\item 
+{\bf \$oGlossaire}\label{class_c_sous_activ_e14349a098e64b670c8acc02fa2e8fa5}
+
+\begin{CompactList}\small\item\em Objet de type CGlossaire contenant un glossaire. \item\end{CompactList}\item 
+{\bf \$oIdsParents}\label{class_c_sous_activ_ae17f133a62632a725ea86749ad3800a}
+
+\begin{CompactList}\small\item\em Objet contenant l'id de la formation, du module, de la rubrique et de l'activité. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CSousActiv@{CSousActiv}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::ajouter (\$ {\em v\_\-iIdActiv})}\label{class_c_sous_activ_ce79e13ec2264165d89ca22a3f449342}
+
+
+Ajoute une sous-activité dans une activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle sous-activité \end{Desc}
+
+
+Références init(), et retNombreLignes().\index{CSousActiv@{CSousActiv}!ajouterChat@{ajouterChat}}
+\index{ajouterChat@{ajouterChat}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::ajouterChat ()}\label{class_c_sous_activ_c968038ea424d5e81c2ca73ad9a310cc}
+
+
+Ajoute un chat à la sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau chat \end{Desc}
+\index{CSousActiv@{CSousActiv}!ajouterInscritsNonAutorises@{ajouterInscritsNonAutorises}}
+\index{ajouterInscritsNonAutorises@{ajouterInscritsNonAutorises}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::ajouterInscritsNonAutorises (\$ {\em v\_\-aiIdInscritsNonAutorises})}\label{class_c_sous_activ_34b787274c810d24b34012ca83f96677}
+
+
+Définit les personnes passées en paramètre comme ne pouvant pas voir cette sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdInscritsNonAutorises}]liste des id des personnes \end{description}
+\end{Desc}
+\index{CSousActiv@{CSousActiv}!associerGlossaire@{associerGlossaire}}
+\index{associerGlossaire@{associerGlossaire}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::associerGlossaire (\$ {\em v\_\-iIdGlossaire})}\label{class_c_sous_activ_b2cddcf098dcbd52754518d84eafd49f}
+
+
+Associe un glossaire à la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdGlossaire}]Numéro d'identifiant du glossaire \end{description}
+\end{Desc}
+\index{CSousActiv@{CSousActiv}!copier@{copier}}
+\index{copier@{copier}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::copier (\$ {\em v\_\-iIdActiv}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_sous_activ_31ef50e2701b445b0f3afccfedf65953}
+
+
+Copie la sous-activité courante dans une activité spécifiée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité de destination\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle sous-activité \end{Desc}
+
+
+Références copierChats(), copierForum(), et copierSousActiv().
+
+Référencé par copierAvecNumOrdre().\index{CSousActiv@{CSousActiv}!copierAvecNumOrdre@{copierAvecNumOrdre}}
+\index{copierAvecNumOrdre@{copierAvecNumOrdre}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::copierAvecNumOrdre (\$ {\em v\_\-iIdDest}, \/  \$ {\em v\_\-iNumOrdre} = {\tt 0})}\label{class_c_sous_activ_c07f7d221cd51d636bf0429e8b051dff}
+
+
+Copie la sous-activité courante vers une activité, en indiquant un n° d'ordre pour la copie de la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdDest}]l'id de l'activité de destination \item[{\em v\_\-iNumOrdre}]le n° d'ordre de la copie de la sous-activité. Si {\tt 0} (défaut), elle sera dernière dans l'activité destination\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la copie de la sous-activité \end{Desc}
+
+
+Références copier(), ElementFormation::retElementFormation(), retNumOrdreMax(), et retTypeNiveau().\index{CSousActiv@{CSousActiv}!copierChats@{copierChats}}
+\index{copierChats@{copierChats}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::copierChats (\$ {\em v\_\-iIdSousActiv})}\label{class_c_sous_activ_9593fb68a004db96090f63c83f115d33}
+
+
+Copie tout les chats de la sous-activité courante vers une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité de destination \end{description}
+\end{Desc}
+
+
+Références initChats().
+
+Référencé par copier().\index{CSousActiv@{CSousActiv}!copierForum@{copierForum}}
+\index{copierForum@{copierForum}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::copierForum (\$ {\em v\_\-iIdSousActiv})}\label{class_c_sous_activ_87ff23348f752b66f8ec4eaea1ab07f3}
+
+
+Copie le forum courant de type sous-activité dans une autre sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité de destination \end{description}
+\end{Desc}
+
+
+Références \$oForum.
+
+Référencé par copier().\index{CSousActiv@{CSousActiv}!copierSousActiv@{copierSousActiv}}
+\index{copierSousActiv@{copierSousActiv}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::copierSousActiv (\$ {\em v\_\-iIdActiv}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_sous_activ_e5793798eaedfc9060ea62914ec1bdc4}
+
+
+Insère une copie d'une sous-activité dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle sous-activité \end{Desc}
+
+
+Référencé par copier().\index{CSousActiv@{CSousActiv}!CSousActiv@{CSousActiv}}
+\index{CSousActiv@{CSousActiv}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::CSousActiv (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdSousActiv} = {\tt NULL})}\label{class_c_sous_activ_61e5cf83a5a01bee41392a81ad9a552d}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CSousActiv@{CSousActiv}!defType@{defType}}
+\index{defType@{defType}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::defType (\$ {\em v\_\-iIdType})}\label{class_c_sous_activ_9e4d042112539f303b6ff55bd119dd20}
+
+
+Définit le type de la sous-activité et efface l'ancien type s'il était initialisé. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdType}]le type de la sous-activité \end{description}
+\end{Desc}
+
+
+Références effacerChats(), effacerForum(), effacerGalerie(), et mettre\_\-a\_\-jour().\index{CSousActiv@{CSousActiv}!enregistrerEvaluation@{enregistrerEvaluation}}
+\index{enregistrerEvaluation@{enregistrerEvaluation}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::enregistrerEvaluation (\$ {\em v\_\-iIdResSousActiv}, \/  \$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-sApprec}, \/  \$ {\em v\_\-sComment}, \/  \$ {\em v\_\-iStatutRes})}\label{class_c_sous_activ_0a9f464ca8374248e9b9f1df4dd72ba3}
+
+
+Enregistre une évaluation d'une ressource. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdResSousActiv}]l'id dela ressource de la sous-activité(table Ressource\_\-Sous\_\-activ) \item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-sApprec}]l'appréciation de la ressource \item[{\em v\_\-sComment}]le commentaire de l'évaluation \item[{\em v\_\-iStatutRes}]le statut de la ressource(constante STATUT\_\-RES\_\-) \end{description}
+\end{Desc}
+\index{CSousActiv@{CSousActiv}!initChats@{initChats}}
+\index{initChats@{initChats}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initChats ()}\label{class_c_sous_activ_68694fa66c2519e16fe2cc4c1348a1ac}
+
+
+Initialise un tableau contenant les chats de type sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats insérés dans le tableau \end{Desc}
+
+
+Référencé par copierChats().\index{CSousActiv@{CSousActiv}!initEquipe@{initEquipe}}
+\index{initEquipe@{initEquipe}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initEquipe (\$ {\em v\_\-iIdEquipe}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_sous_activ_829679a79a00a305249dccbb42a5e4fb}
+
+
+Initialise {\tt oEquipe} avec l'équipe dont l'id est passé en paramètre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]l'id de l'équipe \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise les membres de l'équipe({\tt false} par défaut) \end{description}
+\end{Desc}
+\index{CSousActiv@{CSousActiv}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initEquipes (\$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-iTypeNiveauDepart} = {\tt {\bf TYPE\_\-SOUS\_\-ACTIVITE}})}\label{class_c_sous_activ_387eb1fa4f824b411b17fe36cac4bf75}
+
+
+Initialise un tableau contenant les équipes de la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe (défaut à {\tt false}) \item[{\em v\_\-iTypeNiveauDepart}]le numéro représentant le type d'élément (formation/module/etc) par lequel on veut débuter la recherche des équipes à initialiser\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes insérés dans le tableau \end{Desc}
+\index{CSousActiv@{CSousActiv}!initFormulairesCompletes@{initFormulairesCompletes}}
+\index{initFormulairesCompletes@{initFormulairesCompletes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initFormulairesCompletes (\$ {\em v\_\-iIdPers} = {\tt NULL}, \/  \$ {\em v\_\-mStatutFC} = {\tt NULL})}\label{class_c_sous_activ_79d07c0875b34e0de95dcd5c10c0438d}
+
+
+Initialise un tableau contenant les formulaires complétés de la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne(optionnel) \item[{\em v\_\-mStatutFC}]statut(optionnel) de la ressource(constantes STATUT\_\-RES\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]Le nombre de formulaires insérés dans le tableau \end{Desc}
+\index{CSousActiv@{CSousActiv}!initGlossaire@{initGlossaire}}
+\index{initGlossaire@{initGlossaire}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initGlossaire (\$ {\em v\_\-bInitElements} = {\tt FALSE})}\label{class_c_sous_activ_62f79a4b868807908e22e699b1150fb3}
+
+
+Initialise une sous-activité de type glossaire. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitElements}]si {\tt true}, inialise les éléments du glosaire ({\tt false} par défaut) \end{description}
+\end{Desc}
+\index{CSousActiv@{CSousActiv}!initIdsParents@{initIdsParents}}
+\index{initIdsParents@{initIdsParents}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initIdsParents ()}\label{class_c_sous_activ_5abc5d61d6785902a89d97bff792519e}
+
+
+Retourne un objet contenant les id des niveaux supérieurs de la sous-activité, dans la structure d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]un objet qui contient: l'id de la formation, du module, de la rubrique, et de l'activité \end{Desc}
+
+
+Référencé par effacer(), et retDossier().\index{CSousActiv@{CSousActiv}!initInscritsNonAutorises@{initInscritsNonAutorises}}
+\index{initInscritsNonAutorises@{initInscritsNonAutorises}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initInscritsNonAutorises ()}\label{class_c_sous_activ_de8943069157ebb21754eae0d0c086dc}
+
+
+Initialise le tableau contenant la liste des personnes ne pouvant pas voir cette sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes insérés dans le tableau \end{Desc}
+\index{CSousActiv@{CSousActiv}!initRessources@{initRessources}}
+\index{initRessources@{initRessources}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::initRessources (\$ {\em v\_\-sTri} = {\tt \char`\"{}date\char`\"{}}, \/  \$ {\em v\_\-iTypeTri} = {\tt NULL}, \/  \$ {\em v\_\-iModalite} = {\tt 0}, \/  \$ {\em v\_\-iIdPers} = {\tt 0}, \/  \$ {\em v\_\-iStatut} = {\tt 0}, \/  \$ {\em v\_\-sDate} = {\tt 0})}\label{class_c_sous_activ_d89cf68d64278c806757508cd708eaaf}
+
+
+Initialise un tableau contenant les ressources de la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTri}]le tri sera effectué sur ce champ \item[{\em v\_\-iTypeTri}]le le sens du tri (constante TRI\_\-) \item[{\em v\_\-iModalite}]la modalité de la ressource \item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-iStatut}]le satut de la ressource (constante STATUT\_\-RES\_\- et TRANSFERT\_\-FICHIERS) \item[{\em v\_\-sDate}]la date(optionnelle) à partie de laquelle on recherche les ressources\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de ressources insérés dans le tableau \end{Desc}
+\index{CSousActiv@{CSousActiv}!majStatutRessource@{majStatutRessource}}
+\index{majStatutRessource@{majStatutRessource}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::majStatutRessource (\$ {\em v\_\-iIdResSousActiv})}\label{class_c_sous_activ_a4ec76741164cff267dda27b319d2bfe}
+
+
+Met à jour le statut de la ressource. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdResSousActiv}]l'id de la ressource de la sous-activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le document est soumis (votes suffisants) \end{Desc}
+
+
+Références retVotesMinReels().
+
+Référencé par voterPourRessource().\index{CSousActiv@{CSousActiv}!mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}}
+\index{mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::mettre\_\-a\_\-jour (\$ {\em v\_\-sNomChamp}, \/  \$ {\em v\_\-mValeurChamp}, \/  \$ {\em v\_\-iIdSousActiv} = {\tt 0})}\label{class_c_sous_activ_06d1b8498e57b9d4e89429f9775eb131}
+
+
+Met à jour un champ de la table Activ. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamp}]le nom du champ à mettre à jour \item[{\em v\_\-mValeurChamp}]la nouvelle valeur du champ \item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si il a mis à jour le champ dans la DB \end{Desc}
+
+
+Référencé par defType(), et redistNumsOrdre().\index{CSousActiv@{CSousActiv}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::redistNumsOrdre (\$ {\em v\_\-iNouveauNumOrdre} = {\tt NULL})}\label{class_c_sous_activ_5a2d1db27af61ae1f1babb7f90e2e74d}
+
+
+Redistribue les numéros d'ordre des sous-activités. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouveauNumOrdre}]le nouveau numéro d'ordre de la sous-activité courante\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les numéros ont bien été modifiés \end{Desc}
+
+
+Références mettre\_\-a\_\-jour(), et retListeSousActivs().
+
+Référencé par effacer().\index{CSousActiv@{CSousActiv}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retDossier ()}\label{class_c_sous_activ_e9f03ecf3c7e326e694abab9db0e0938}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier associé à cette sous-activité, donc celui où se trouvent ses fichiers associés \end{Desc}
+
+
+Références initIdsParents().\index{CSousActiv@{CSousActiv}!retIdEnregPrecedent@{retIdEnregPrecedent}}
+\index{retIdEnregPrecedent@{retIdEnregPrecedent}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retIdEnregPrecedent ()}\label{class_c_sous_activ_319c0905e9365fe2cbcbac9022d4b45e}
+
+
+Retourne l'id de la sous-activité précédent celle-ci. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la sous-activité précédent celle-ci \end{Desc}
+
+
+Références retListeSousActivs().\index{CSousActiv@{CSousActiv}!retListeDeroulements@{retListeDeroulements}}
+\index{retListeDeroulements@{retListeDeroulements}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeDeroulements ()}\label{class_c_sous_activ_d9056c078834e2762b924f6e94f9151c}
+
+
+Retourne la liste des possibilités de soumission d'un document (constante SOUMISSION\_\-). 
+
+\begin{Desc}
+\item[Renvoie:]la liste des possibilités de soumission d'un document \end{Desc}
+\index{CSousActiv@{CSousActiv}!retListeModalites@{retListeModalites}}
+\index{retListeModalites@{retListeModalites}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeModalites ()}\label{class_c_sous_activ_1888f145ad0c4dad9c8f956fe7cbf461}
+
+
+Retourne un tableau contenant les différents modalités d'une sous-activité. 
+
+Il ne contient qu'un type de modalité, car elle indique que la sous-activité à la modalité de l'activité parente.
+
+\begin{Desc}
+\item[Renvoie:]Retourne un tableau contenant les différents modalités d'une sous activité \end{Desc}
+\index{CSousActiv@{CSousActiv}!retListeModes@{retListeModes}}
+\index{retListeModes@{retListeModes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeModes ()}\label{class_c_sous_activ_1aadcd909c2ce9c113a8c60b4246f291}
+
+
+Retourne la liste des modes d'ouverture d'une sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des modes d'ouverture d'une sous-activité \end{Desc}
+\index{CSousActiv@{CSousActiv}!retListeSousActivs@{retListeSousActivs}}
+\index{retListeSousActivs@{retListeSousActivs}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeSousActivs (\$ {\em v\_\-iIdActiv} = {\tt NULL}, \/  \$ {\em v\_\-iTypeSousActiv} = {\tt NULL})}\label{class_c_sous_activ_be76c85a6afe6197036414d9537f3af4}
+
+
+Initialise un tableau des sous-activités de l'activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité, si pas fourni, utilise l'id de l'activité parente \item[{\em v\_\-iTypeSousActiv}]le type de sous-activité(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de sous-activités insérés dans le tableau \end{Desc}
+
+
+Référencé par redistNumsOrdre(), et retIdEnregPrecedent().\index{CSousActiv@{CSousActiv}!retListeStatuts@{retListeStatuts}}
+\index{retListeStatuts@{retListeStatuts}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeStatuts ()}\label{class_c_sous_activ_197536315c05704e16eba31ca436aab5}
+
+
+Retourne la liste des statuts possibles d'un sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des statuts possibles d'un sous-activité \end{Desc}
+\index{CSousActiv@{CSousActiv}!retListeTypes@{retListeTypes}}
+\index{retListeTypes@{retListeTypes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retListeTypes ()}\label{class_c_sous_activ_4dee78a7dc538df16d507f048b48cfe9}
+
+
+Retourne la liste des types de sous-activités. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des types de sous-activités \end{Desc}
+
+
+Référencé par retTexteType().\index{CSousActiv@{CSousActiv}!retNombreChats@{retNombreChats}}
+\index{retNombreChats@{retNombreChats}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retNombreChats ()}\label{class_c_sous_activ_fe6abacfcd595c6d829a0d4bbf575c3c}
+
+
+Retourne le nombre de chats de la sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats de la sous-activité \end{Desc}
+\index{CSousActiv@{CSousActiv}!retNombreLignes@{retNombreLignes}}
+\index{retNombreLignes@{retNombreLignes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retNombreLignes (\$ {\em v\_\-iNumParent} = {\tt NULL})}\label{class_c_sous_activ_6247804b41816ce684b7f209e3c10c30}
+
+
+Retourne le nombre de sous-activités de cette activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumParent}]l'id de l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de sous-activités de cette activité \end{Desc}
+
+
+Référencé par ajouter().\index{CSousActiv@{CSousActiv}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retNumOrdreMax (\$ {\em v\_\-iIdActiv} = {\tt NULL})}\label{class_c_sous_activ_7596916485e25495d90358adc3df57e6}
+
+
+Permet de connaître le numero d'ordre maximum des sous-activités. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CSousActiv@{CSousActiv}!retStatutPlusHautFormulaire@{retStatutPlusHautFormulaire}}
+\index{retStatutPlusHautFormulaire@{retStatutPlusHautFormulaire}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retStatutPlusHautFormulaire (\$ {\em v\_\-miIdPers} = {\tt NULL})}\label{class_c_sous_activ_b2a160776940be2f3274d4b33adabc63}
+
+
+Retourne des informations concernant les formulaires complétés de cette sous-activité ayant le statut le plus élevé, et déposés par les personnes spécifiées. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-miIdPers}]la liste des id des personnes ou l'id d'une seule personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les informations suivantes: le statut le plus élevé des formulaires complétés (voir constantes STATUT\_\-RES\_\-), le nombre de formulaires ayant ce statut, et la date de dépôt du dernier de ces formulaires \end{Desc}
+\index{CSousActiv@{CSousActiv}!retStatutPlusHautRes@{retStatutPlusHautRes}}
+\index{retStatutPlusHautRes@{retStatutPlusHautRes}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retStatutPlusHautRes (\$ {\em v\_\-miIdPers} = {\tt NULL})}\label{class_c_sous_activ_cbae7501406b1680ad8e69d630aea39e}
+
+
+Retourne des informations concernant les ressources de cette sous-activité ayant le statut le plus élévé, et déposés par les personnes spécifiées. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-miIdPers}]la liste des id des personnes ou l'id d'une seule personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les informations suivantes: le statut le plus élévé des ressources, le nombre de ressources ayant ce statut, la date du dépot du fichier le plus récent qui a ce statut là, la personne qui a déposé ce fichier \end{Desc}
+\index{CSousActiv@{CSousActiv}!retStatutReel@{retStatutReel}}
+\index{retStatutReel@{retStatutReel}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retStatutReel ()}\label{class_c_sous_activ_9c553ac4b82a7eaf2cde927bba228a8d}
+
+
+Retourne le statut du parent(activité). 
+
+\begin{Desc}
+\item[Renvoie:]le statut du parent(activité) \end{Desc}
+\index{CSousActiv@{CSousActiv}!retTexteNiveau@{retTexteNiveau}}
+\index{retTexteNiveau@{retTexteNiveau}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retTexteNiveau ()}\label{class_c_sous_activ_08caea40cf2ae1f3d90097c8dd56d01f}
+
+
+\begin{Desc}
+\item[Renvoie:]le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) \end{Desc}
+\index{CSousActiv@{CSousActiv}!retTexteType@{retTexteType}}
+\index{retTexteType@{retTexteType}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retTexteType (\$ {\em v\_\-iType} = {\tt NULL})}\label{class_c_sous_activ_74cf8a93d87b19d593b8bf3a07256f8a}
+
+
+Retourne le texte en français du type de sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iType}]le type(optionnel) d'une sous-activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte du type de sous-activité \end{Desc}
+
+
+Références retListeTypes().\index{CSousActiv@{CSousActiv}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retTypeNiveau ()}\label{class_c_sous_activ_1ff3c7b6726e8f14b41ff40a37c37f87}
+
+
+Retourne la constante qui définit le niveau \char`\"{}sous-activité\char`\"{}, de la structure d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau \char`\"{}sous-activité\char`\"{}, de la structure d'une formation \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CSousActiv@{CSousActiv}!retVotesMinReels@{retVotesMinReels}}
+\index{retVotesMinReels@{retVotesMinReels}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::retVotesMinReels ()}\label{class_c_sous_activ_6c7105c0f90b861c2e12fb5867bd947a}
+
+
+Retourne le nombre de vote minimum en nombre de personnes minimum votantes. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de vote minimum en nombre de personnes minimum votantes \end{Desc}
+
+
+Référencé par majStatutRessource().\index{CSousActiv@{CSousActiv}!voterPourRessource@{voterPourRessource}}
+\index{voterPourRessource@{voterPourRessource}!CSousActiv@{CSousActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CSousActiv::voterPourRessource (\$ {\em v\_\-iIdResSousActiv}, \/  \$ {\em v\_\-iIdVotant})}\label{class_c_sous_activ_ab92f1cd9de2f77094209c3ad763d700}
+
+
+Insère un vote pour une ressource de la sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdResSousActiv}]l'id de la ressource de la sous-activité \item[{\em v\_\-iIdVotant}]l'id dela personne qui vote\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le document est soumis (votes suffisants) \end{Desc}
+
+
+Références majStatutRessource().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf sous\_\-activite.tbl.php}\end{CompactItemize}

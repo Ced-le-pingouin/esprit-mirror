@@ -1,0 +1,62 @@
+\section{Référence de la classe CDOMNode}
+\label{class_c_d_o_m_node}\index{CDOMNode@{CDOMNode}}
+Graphe d'héritage de CDOMNode::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_c_d_o_m_node}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe reproduisant en PHP 4 le comportement de la classe {\tt DOMNode} de la bibliothèque DOM PHP 5. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf appendChild} (\$newnode)
+\begin{CompactList}\small\item\em Ajoute un nouveau noeud enfant, à la fin des enfants existants. \item\end{CompactList}\item 
+{\bf CDOMNode} (\$name)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$\_\-oDOMNode} = NULL\label{class_c_d_o_m_node_0511d10c0c47f46be0a87fe689cad630}
+
+\begin{CompactList}\small\item\em objet de type DomNode (PHP 4) qui est utilisé en interne pour reproduire le comportement de DOMNode (PHP 5) \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CDOMNode@{CDOMNode}!appendChild@{appendChild}}
+\index{appendChild@{appendChild}!CDOMNode@{CDOMNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMNode::appendChild (\$ {\em newnode})}\label{class_c_d_o_m_node_e95f28cb57dda33271248f013b318ff8}
+
+
+Ajoute un nouveau noeud enfant, à la fin des enfants existants. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em newnode}]le noeud à ajouter, sous forme d'objet \doxyref{CDOMNode}{p.}{class_c_d_o_m_node} (ou d'une classe descendante)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le noeud ajouté (INCOMPLET)\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]La valeur de retour diffère entre le DOM XML PHP 4 et le DOM PHP 5, il faudra tester et uniformiser, même si la valeur de retour a peu d'intérêt dans cette méthode (en tout cas dans le type d'utilisation que j'en fais) \end{Desc}
+\index{CDOMNode@{CDOMNode}!CDOMNode@{CDOMNode}}
+\index{CDOMNode@{CDOMNode}!CDOMNode@{CDOMNode}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMNode::CDOMNode (\$ {\em name})}\label{class_c_d_o_m_node_1299634df167384043b22708829634c6}
+
+
+Constructeur. 
+
+Crée un nouveau noeud DOM
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em name}]le nom du noeud à créer \end{description}
+\end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/dom/{\bf dom-php4.class.php}\end{CompactItemize}

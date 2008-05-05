@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence du fichier src/install/sql/export/export.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/install/sql/export/export.php</h1><hr><a name="_details"></a><h2>Description détaillée</h2>
+Permet l'exportation en cascade d'enregistrements de la DB, dans ce cas, à partir d'ids de formations. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000017">À faire:</a></b></dt><dd><ul>
+<li>transformer ce fouillis de tableaux en objets faciles à utiliser</li><li>pour le moment, les infos sur les index et les clés étrangères dans les tables sont générés/rédigés avant l'exportation, puis lus. Il faudrait pouvoir récupérer ces infos dans la DB à la volée. Pour les clés étrangères, c'est difficile étant donné qu'il faut lire dans la DB de phpMyAdmin qui enregistre les relations entre tables (et que bien entendu ces relations décrites dans PMA soient à jour). Pour les index, y a-t-il des fonctions PHP qui demandent directement des infos sur les tableS/champs/index, ou faut-il utiliser mysql_query pour récupérer ces infos en SQL ?</li><li>intégrer ces classes d'exportation "pur DB" dans les classes d'Esprit </li></ul>
+</dd></dl>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_export_db.html">CExportDb</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Classe de gestion des exportations d'enregistrements en cascade à partir de la DB.  <a href="class_c_export_db.html#_details">Plus de détails...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Énumérations</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>DEBUT_EMPHASE</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>ECHAPPER_PAR_DEFAUT</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#a644ccee8f79b38d5df624759a6a989b">ENCODAGE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Spécifie l'encodage utilisé dans ce fichier (UTF-8). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>FCT_ECHAPPER</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>FIN_EMPHASE</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>LF</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>MIME</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>PIED_DE_PAGE</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#5fa0c3be47670f2dc9dabab7375ac258">RECHERCHE_RECURSIVE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique s'il faut respecter l'ordre des tables, ou si une table et ses descendants sont scannés. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>TAB</b> </td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Constantes utilitaires de la classe CExportDb</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#b7fab74edc52a37c6a1af06271648998">CHAMPS_DEST</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Position dans le tableau du nom des champs destination. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#757dc7a1234e40bbc2f8fb0b5462b559">CHAMPS_SRC</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Position dans le tableau du nom des champs source. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#32a079d302d8c8db4304107594df76c0">TABLE_DEST</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Position dans le tableau du nom de la table destination. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#82a98b73b1c54e6295b73430c1303898">TABLE_SRC</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Position dans le tableau du nom de la table source. <br></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#8b3deed01230979dd4dab173b6c92ef8">aff</a> ($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche une chaîne de caractères.  <a href="#8b3deed01230979dd4dab173b6c92ef8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#7bc2aa80b7ba359091f30e86d19ea846">affd</a> ($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche une chaîne de caractères, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister).  <a href="#7bc2aa80b7ba359091f30e86d19ea846"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#6e87d59cc52c9aca7c69ce91c37746fd">affln</a> ($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche une chaîne de caractères et se place à la ligne suivante.  <a href="#6e87d59cc52c9aca7c69ce91c37746fd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#253741e7ce84a279331b97368b79a0eb">afflnd</a> ($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche une chaîne de caractères et se place à la ligne suivante, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister).  <a href="#253741e7ce84a279331b97368b79a0eb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bd4220de209adbf61ff587159525294d"></a><!-- doxytag: member="export.php::debutProf" ref="bd4220de209adbf61ff587159525294d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#bd4220de209adbf61ff587159525294d">debutProf</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Débute la session de profiling (le moment courant est enregistré). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#7978569f849ce15a2a4f5dcd0061cb49">finProf</a> ($v_bAfficher=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Met fin à la session de profiling, et calcule le temps écoulé depuis le début de la session.  <a href="#7978569f849ce15a2a4f5dcd0061cb49"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6b5adb70a7aed1d4f6cda2ffbca36d6b"></a><!-- doxytag: member="export.php::microtime_float" ref="6b5adb70a7aed1d4f6cda2ffbca36d6b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#6b5adb70a7aed1d4f6cda2ffbca36d6b">microtime_float</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le "timestamp" courant (le temps écoulé depuis le 1er janvier 1970), en secondes, sous forme de nombre à virgule flottante, avec la précision jusqu'aux microsecondes. <br></td></tr>
+<tr><td colspan="2"><br><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="export_8php.html#330347cd4f9a9f14ad95e62e17c04bbf">$aiFormationsAExporter</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Les ids des formations à exporter se trouvent ici.  <a href="#330347cd4f9a9f14ad95e62e17c04bbf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4f9e52578c04c80cb3a515dc2d96dbef"></a><!-- doxytag: member="export.php::$asParamsFctEchapper" ref="4f9e52578c04c80cb3a515dc2d96dbef" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$asParamsFctEchapper</b> = array(ENT_COMPAT, <a class="el" href="export_8php.html#a644ccee8f79b38d5df624759a6a989b">ENCODAGE</a>)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f0a30f3cb5b0e8fa48607c62e8dbb307"></a><!-- doxytag: member="export.php::$oExport" ref="f0a30f3cb5b0e8fa48607c62e8dbb307" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oExport</b> = new <a class="el" href="class_c_export_db.html">CExportDb</a>()</td></tr>
+
+</table>
+<hr><h2>Documentation des fonctions</h2>
+<a class="anchor" name="8b3deed01230979dd4dab173b6c92ef8"></a><!-- doxytag: member="export.php::aff" ref="8b3deed01230979dd4dab173b6c92ef8" args="($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">aff           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEchapper</em> = <code>ECHAPPER_PAR_DEFAUT</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche une chaîne de caractères. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTexte</em>&nbsp;</td><td>le texte à afficher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bEchapper</em>&nbsp;</td><td>si <code>true</code>, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER_PAR_DEFAUT) </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00123">affd()</a>, <a class="el" href="export_8php-source.html#l00113">affln()</a>, <a class="el" href="export_8php-source.html#l00286">CExportDb::ecrireFichierResultat()</a>, <a class="el" href="export_8php-source.html#l00161">finProf()</a>, et <a class="el" href="export_8php-source.html#l00373">CExportDb::trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7bc2aa80b7ba359091f30e86d19ea846"></a><!-- doxytag: member="export.php::affd" ref="7bc2aa80b7ba359091f30e86d19ea846" args="($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">affd           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEchapper</em> = <code>ECHAPPER_PAR_DEFAUT</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche une chaîne de caractères, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTexte</em>&nbsp;</td><td>le texte à afficher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bEchapper</em>&nbsp;</td><td>si <code>true</code>, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER_PAR_DEFAUT) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00091">aff()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6e87d59cc52c9aca7c69ce91c37746fd"></a><!-- doxytag: member="export.php::affln" ref="6e87d59cc52c9aca7c69ce91c37746fd" args="($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">affln           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEchapper</em> = <code>ECHAPPER_PAR_DEFAUT</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche une chaîne de caractères et se place à la ligne suivante. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTexte</em>&nbsp;</td><td>le texte à afficher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bEchapper</em>&nbsp;</td><td>si <code>true</code>, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER_PAR_DEFAUT) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00091">aff()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00133">afflnd()</a>, <a class="el" href="export_8php-source.html#l00286">CExportDb::ecrireFichierResultat()</a>, <a class="el" href="export_8php-source.html#l00603">CExportDb::executerRequete()</a>, et <a class="el" href="export_8php-source.html#l00373">CExportDb::trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="253741e7ce84a279331b97368b79a0eb"></a><!-- doxytag: member="export.php::afflnd" ref="253741e7ce84a279331b97368b79a0eb" args="($v_sTexte, $v_bEchapper=ECHAPPER_PAR_DEFAUT)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">afflnd           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEchapper</em> = <code>ECHAPPER_PAR_DEFAUT</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche une chaîne de caractères et se place à la ligne suivante, uniquement si l'application tourne en mode DEBUG (la constante du même nom doit exister). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_sTexte</em>&nbsp;</td><td>le texte à afficher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>$v_bEchapper</em>&nbsp;</td><td>si <code>true</code>, le texte sera d'abord envoyé à une fonction d'échappement des caractères. La valeur par défaut dépend du type de sortie/affichage (voir constante ECHAPPER_PAR_DEFAUT) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00113">affln()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00373">CExportDb::trouverRelations()</a>, et <a class="el" href="export_8php-source.html#l00459">CExportDb::trouverRelationsTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7978569f849ce15a2a4f5dcd0061cb49"></a><!-- doxytag: member="export.php::finProf" ref="7978569f849ce15a2a4f5dcd0061cb49" args="($v_bAfficher=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">finProf           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAfficher</em> = <code>FALSE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Met fin à la session de profiling, et calcule le temps écoulé depuis le début de la session. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>$v_bAfficher</em>&nbsp;</td><td>si <code>true</code>, le temps écoulé est affiché entre parenthèses (<code>false</code> par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le temps écoulé pendant la session de profiling </dd></dl>
+
+<p>Références <a class="el" href="export_8php-source.html#l00091">aff()</a>, et <a class="el" href="export_8php-source.html#l00143">microtime_float()</a>.</p>
+
+<p>Référencé par <a class="el" href="export_8php-source.html#l00286">CExportDb::ecrireFichierResultat()</a>, et <a class="el" href="export_8php-source.html#l00373">CExportDb::trouverRelations()</a>.</p>
+
+</div>
+</div><p>
+<hr><h2>Documentation des variables</h2>
+<a class="anchor" name="330347cd4f9a9f14ad95e62e17c04bbf"></a><!-- doxytag: member="export.php::$aiFormationsAExporter" ref="330347cd4f9a9f14ad95e62e17c04bbf" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$aiFormationsAExporter          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valeur initiale :</b><div class="fragment"><pre class="fragment"> array
+(
+    20, 40, 41, 42, 44, 48, 55, 68, 81, 82, 92, 93, 94, 95, 96, 99, 
+    100, 110, 111, 112, 113, 116, 128, 129, 139, 141, 143, 144, 145, 
+    146, 147, 148, 149, 150, 151, 152, 153
+)
+</pre></div>Les ids des formations à exporter se trouvent ici. 
+<p>
+
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

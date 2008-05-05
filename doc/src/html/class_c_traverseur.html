@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CTraverseur</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CTraverseur</h1><!-- doxytag: class="CTraverseur" --><div class="dynheader">
+Graphe d'héritage de CTraverseur:</div>
+<div class="dynsection">
+
+<p><center><img src="class_c_traverseur.png" usemap="#CTraverseur_map" border="0" alt=""></center>
+<map name="CTraverseur_map">
+<area href="class_c_traverseur_scorm.html" alt="CTraverseurScorm" shape="rect" coords="0,56,120,80">
+</map>
+</div>
+
+<p>
+<a href="class_c_traverseur-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe de base pour les "traverseurs". 
+<p>
+Ceux-ci permettent de traverser une formation et tous ses descendants, càd modules, rubriques, etc, et d'effectuer des actions à chaque étape, en disposant des infos sur l'étape courante (id, nom, etc de la formation, module, etc; fichiers associés) <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#ee5cc47fd2b9f141c99855e7e24ae586">CTraverseur</a> (&amp;$v_oBdd, $v_iIdForm=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#ee5cc47fd2b9f141c99855e7e24ae586"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#e8ec112f8e4784e38b8af22545f103a2">defElementATraverser</a> ($v_iId, $v_iTypeElement=<a class="el" href="plate__forme_8class_8php.html#2563a936a6324888c5f1eb506166bb49">TYPE_FORMATION</a>, $v_bReInit=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit l'élément à partir duquel on va débuter la traversée.  <a href="#e8ec112f8e4784e38b8af22545f103a2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ebc4045e96640b3285667c924be1370b"></a><!-- doxytag: member="CTraverseur::demarrer" ref="ebc4045e96640b3285667c924be1370b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#ebc4045e96640b3285667c924be1370b">demarrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Débute la traversée d'une formation, ou d'un élément de formation, en appelant des fonctions de notifications prédéfinies en chemin (ces fonctions de notifications peuvent être redéfinies par des sous-classes). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="19a34b2d50e8c7ad65570cc52e9b8ca9"></a><!-- doxytag: member="CTraverseur::estDerniereActiv" ref="19a34b2d50e8c7ad65570cc52e9b8ca9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#19a34b2d50e8c7ad65570cc52e9b8ca9">estDerniereActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si l'activité actuellement traitée est la dernière de sa rubrique parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="01d9b9ed31336852fcb47ffcb6fe6e0d"></a><!-- doxytag: member="CTraverseur::estDerniereRubrique" ref="01d9b9ed31336852fcb47ffcb6fe6e0d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#01d9b9ed31336852fcb47ffcb6fe6e0d">estDerniereRubrique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si la rubrique actuellement traitée est la dernière de son module parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5caa8c57072d4f54c7068283de6aefab"></a><!-- doxytag: member="CTraverseur::estDerniereSousActiv" ref="5caa8c57072d4f54c7068283de6aefab" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#5caa8c57072d4f54c7068283de6aefab">estDerniereSousActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si la sous-activité actuellement traitée est la dernière de son activité parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="249cffb64298e76a230e12c84c935f07"></a><!-- doxytag: member="CTraverseur::estDernierModule" ref="249cffb64298e76a230e12c84c935f07" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#249cffb64298e76a230e12c84c935f07">estDernierModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si le module actuellement traité est le dernier de sa formation parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5f0ba57d7e838f6aeb1f0fc4580ef3c8"></a><!-- doxytag: member="CTraverseur::estPremiereActiv" ref="5f0ba57d7e838f6aeb1f0fc4580ef3c8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#5f0ba57d7e838f6aeb1f0fc4580ef3c8">estPremiereActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si l'activité actuellement traitée est la première de sa rubrique parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c89f88124331dc11cb969b34c0850f2c"></a><!-- doxytag: member="CTraverseur::estPremiereRubrique" ref="c89f88124331dc11cb969b34c0850f2c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#c89f88124331dc11cb969b34c0850f2c">estPremiereRubrique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si la rubrique actuellement traitée est la première de son module parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="131e91c446692e783d632df22c400142"></a><!-- doxytag: member="CTraverseur::estPremiereSousActiv" ref="131e91c446692e783d632df22c400142" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#131e91c446692e783d632df22c400142">estPremiereSousActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si la sous-activité actuellement traitée est la première de son activité parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="57b9e67776d604a02c27f7d44667d544"></a><!-- doxytag: member="CTraverseur::estPremierModule" ref="57b9e67776d604a02c27f7d44667d544" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#57b9e67776d604a02c27f7d44667d544">estPremierModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si le module actuellement traité est le premier de sa formation parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c059c2c84a029a4618ee4ba64072ed6e"></a><!-- doxytag: member="CTraverseur::parcourirActiv" ref="c059c2c84a029a4618ee4ba64072ed6e" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#c059c2c84a029a4618ee4ba64072ed6e">parcourirActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les sous-activités enfants de l'activité actuellement traitée, parcourt récursivement les sous-activités trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c0f786cf71b1d703ac28669c23ce1069"></a><!-- doxytag: member="CTraverseur::parcourirFormation" ref="c0f786cf71b1d703ac28669c23ce1069" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#c0f786cf71b1d703ac28669c23ce1069">parcourirFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les modules enfants de la formation actuellement traitée, parcourt récursivement les modules trouvés s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d07101ad564c864d6e5bd95d5ab43192"></a><!-- doxytag: member="CTraverseur::parcourirModule" ref="d07101ad564c864d6e5bd95d5ab43192" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#d07101ad564c864d6e5bd95d5ab43192">parcourirModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les rubriques enfants du module actuellement traité, parcourt récursivement les rubriques trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="92ae979a126c5a9595f89f46b0aa23a2"></a><!-- doxytag: member="CTraverseur::parcourirRubrique" ref="92ae979a126c5a9595f89f46b0aa23a2" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#92ae979a126c5a9595f89f46b0aa23a2">parcourirRubrique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les activités enfants de la rubrique actuellement traitée, parcourt récursivement les activités trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0d3497aae90750ff431a917ace5aaeee"></a><!-- doxytag: member="CTraverseur::parcourirSousActiv" ref="0d3497aae90750ff431a917ace5aaeee" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#0d3497aae90750ff431a917ace5aaeee">parcourirSousActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pour l'instant, aucune action spécifique n'est exécutée dans une sous-activité parcourue; seules les deux fonction de notification avant/après, qui peuvent être redéfinies dans des sous-classes, sont appelées. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1e7f432737a73ebe3d7fa963fa52ec68"></a><!-- doxytag: member="CTraverseur::reInit" ref="1e7f432737a73ebe3d7fa963fa52ec68" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#1e7f432737a73ebe3d7fa963fa52ec68">reInit</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remet à zéro les variables internes concernant les éléments (formation, module, etc) en cours de traitement. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions appelées automatiquement durant la traversée des éléments de formation, qui permettent, si</div></td></tr>
+<tr><td colspan="2"><div class="groupText">elles sont implémentées dans des sous-classes, d'effectuer des traitements spécifiques à chaque étape de la traversée <br><br></div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c8914f7050f91efb0855576df5d8da5d"></a><!-- doxytag: member="CTraverseur::debutActiv" ref="c8914f7050f91efb0855576df5d8da5d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutActiv</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d9c74e64627089f6fc020aac32530d21"></a><!-- doxytag: member="CTraverseur::debutFormation" ref="d9c74e64627089f6fc020aac32530d21" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutFormation</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f6c779769d1154b2d7d0441b9b4b3151"></a><!-- doxytag: member="CTraverseur::debutModule" ref="f6c779769d1154b2d7d0441b9b4b3151" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutModule</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bec502fe98b4a2ad9cf818ff21a2f702"></a><!-- doxytag: member="CTraverseur::debutRubrique" ref="bec502fe98b4a2ad9cf818ff21a2f702" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutRubrique</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d8d187e81a2ce21c5c59432eb2682e80"></a><!-- doxytag: member="CTraverseur::debutSousActiv" ref="d8d187e81a2ce21c5c59432eb2682e80" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutSousActiv</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4a1a8f4ae9d86cf5ddafa8b1803a743a"></a><!-- doxytag: member="CTraverseur::debutTraitement" ref="4a1a8f4ae9d86cf5ddafa8b1803a743a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>debutTraitement</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="89d644a470eeca3a846cbaf6c66c7363"></a><!-- doxytag: member="CTraverseur::finActiv" ref="89d644a470eeca3a846cbaf6c66c7363" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finActiv</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a00bfc0533cb3a54d2cec698d085a497"></a><!-- doxytag: member="CTraverseur::finFormation" ref="a00bfc0533cb3a54d2cec698d085a497" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finFormation</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f3caf96154c3633fc1c7a073e5a4f203"></a><!-- doxytag: member="CTraverseur::finModule" ref="f3caf96154c3633fc1c7a073e5a4f203" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finModule</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bf836519eb94877a284f92fd9b33be3d"></a><!-- doxytag: member="CTraverseur::finRubrique" ref="bf836519eb94877a284f92fd9b33be3d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finRubrique</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9f4dfc59123b559d1eff470dd48f78b5"></a><!-- doxytag: member="CTraverseur::finSousActiv" ref="9f4dfc59123b559d1eff470dd48f78b5" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finSousActiv</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="59b1af482ac9cfca8f446c8df320d9ee"></a><!-- doxytag: member="CTraverseur::finTraitement" ref="59b1af482ac9cfca8f446c8df320d9ee" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>finTraitement</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f91f63ef36b7721ef6d00b26db993bcd"></a><!-- doxytag: member="CTraverseur::$bDerniereActiv" ref="f91f63ef36b7721ef6d00b26db993bcd" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#f91f63ef36b7721ef6d00b26db993bcd">$bDerniereActiv</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que l'activité en cours de traitement est la dernière de sa rubrique parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f36105b9ed13d1ddb8714d5eb7e758a7"></a><!-- doxytag: member="CTraverseur::$bDerniereRubrique" ref="f36105b9ed13d1ddb8714d5eb7e758a7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#f36105b9ed13d1ddb8714d5eb7e758a7">$bDerniereRubrique</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que la rubrique en cours de traitement est la dernière de son module parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9781ae760ff60e27db6164245da0c63c"></a><!-- doxytag: member="CTraverseur::$bDerniereSousActiv" ref="9781ae760ff60e27db6164245da0c63c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#9781ae760ff60e27db6164245da0c63c">$bDerniereSousActiv</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que la sous-activité en cours de traitement est la dernière de son activité parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d7f7436c732b7bd98f22860f4af57a76"></a><!-- doxytag: member="CTraverseur::$bDernierModule" ref="d7f7436c732b7bd98f22860f4af57a76" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#d7f7436c732b7bd98f22860f4af57a76">$bDernierModule</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que le module en cours de traitement est le dernier de sa formation parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9212db73009ba23f54ca1cb553b19f4e"></a><!-- doxytag: member="CTraverseur::$bPremiereActiv" ref="9212db73009ba23f54ca1cb553b19f4e" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#9212db73009ba23f54ca1cb553b19f4e">$bPremiereActiv</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que l'activité en cours de traitement est la première de sa rubrique parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6079157d89f29efd09d1fe31eb24e467"></a><!-- doxytag: member="CTraverseur::$bPremiereRubrique" ref="6079157d89f29efd09d1fe31eb24e467" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#6079157d89f29efd09d1fe31eb24e467">$bPremiereRubrique</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que la rubrique en cours de traitement est la première de son module parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f1982cc4fb95c5858fa85637e50ec8ef"></a><!-- doxytag: member="CTraverseur::$bPremiereSousActiv" ref="f1982cc4fb95c5858fa85637e50ec8ef" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#f1982cc4fb95c5858fa85637e50ec8ef">$bPremiereSousActiv</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que la sous-activité en cours de traitement est la première de son activité parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="60c29d4b1b3caa38ae5de1e005932fd2"></a><!-- doxytag: member="CTraverseur::$bPremierModule" ref="60c29d4b1b3caa38ae5de1e005932fd2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#60c29d4b1b3caa38ae5de1e005932fd2">$bPremierModule</a> = FALSE</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indication que le module en cours de traitement est le premier de sa formation parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dcb88199ee81d3501327cdf4d3dd6d1a"></a><!-- doxytag: member="CTraverseur::$fnParcourir" ref="dcb88199ee81d3501327cdf4d3dd6d1a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#dcb88199ee81d3501327cdf4d3dd6d1a">$fnParcourir</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pointeur vers la fonction chargée de démarrer le traitement (dépend du niveau départ : formation, module, etc.). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7e9179aa22b8b3990dca257c5178eb22"></a><!-- doxytag: member="CTraverseur::$oActiv" ref="7e9179aa22b8b3990dca257c5178eb22" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#7e9179aa22b8b3990dca257c5178eb22">$oActiv</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet qui contiendra l'activité en cours de traitement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="47261733975cc4828e1d4af26a83c1dc"></a><!-- doxytag: member="CTraverseur::$oBdd" ref="47261733975cc4828e1d4af26a83c1dc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#47261733975cc4828e1d4af26a83c1dc">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7f23344495fb4ae5d2e8ff127ecc42c1"></a><!-- doxytag: member="CTraverseur::$oFormation" ref="7f23344495fb4ae5d2e8ff127ecc42c1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#7f23344495fb4ae5d2e8ff127ecc42c1">$oFormation</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet qui contiendra la formation en cours de traitement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="86590d8cdd7d89791d1e389af58e6764"></a><!-- doxytag: member="CTraverseur::$oModule" ref="86590d8cdd7d89791d1e389af58e6764" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#86590d8cdd7d89791d1e389af58e6764">$oModule</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet qui contiendra le module en train d'être traité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="418549b7bf5897d5bd22557353b43ec9"></a><!-- doxytag: member="CTraverseur::$oRubrique" ref="418549b7bf5897d5bd22557353b43ec9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#418549b7bf5897d5bd22557353b43ec9">$oRubrique</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet qui contiendra la rubrique en cours de traitement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ac828592ce35652499087c0357edea5d"></a><!-- doxytag: member="CTraverseur::$oSousActiv" ref="ac828592ce35652499087c0357edea5d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur.html#ac828592ce35652499087c0357edea5d">$oSousActiv</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet qui contiendra la sous-activité en cours de traitement. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="ee5cc47fd2b9f141c99855e7e24ae586"></a><!-- doxytag: member="CTraverseur::CTraverseur" ref="ee5cc47fd2b9f141c99855e7e24ae586" args="(&amp;$v_oBdd, $v_iIdForm=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseur::CTraverseur           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la formation à initialiser automatiquement en vue de la "traversée". S'il est omis, il faudra le définir en appelant <a class="el" href="class_c_traverseur.html#e8ec112f8e4784e38b8af22545f103a2" title="Définit l&#39;élément à partir duquel on va débuter la traversée.">defElementATraverser()</a> avant de démarrer la traversée </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="traverseur_8class_8php-source.html#l00086">defElementATraverser()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e8ec112f8e4784e38b8af22545f103a2"></a><!-- doxytag: member="CTraverseur::defElementATraverser" ref="e8ec112f8e4784e38b8af22545f103a2" args="($v_iId, $v_iTypeElement=TYPE_FORMATION, $v_bReInit=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseur::defElementATraverser           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeElement</em> = <code><a class="el" href="plate__forme_8class_8php.html#2563a936a6324888c5f1eb506166bb49">TYPE_FORMATION</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bReInit</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit l'élément à partir duquel on va débuter la traversée. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iId</em>&nbsp;</td><td>l'id de l'élément de départ à traverser </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeElement</em>&nbsp;</td><td>le type de l'élément de départ (formation, module, etc), conformément aux constantes <code>TYPE_</code> définies dans le fichier <a class="el" href="plate__forme_8class_8php.html" title="Contient la classe principale de la plate-forme, ainsi qu&#39;une classe pour le...">plate_forme.class.php</a> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bReInit</em>&nbsp;</td><td>si <code>true</code> (défaut), toutes les variables internes concernant les traitements en cours sont au préalable réinitialisées </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>, et <a class="el" href="traverseur_8class_8php-source.html#l00126">reInit()</a>.</p>
+
+<p>Référencé par <a class="el" href="traverseur_8class_8php-source.html#l00070">CTraverseur()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/traverseurs/<a class="el" href="traverseur_8class_8php.html">traverseur.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,367 @@
+\section{Référence de la classe CForum}
+\label{class_c_forum}\index{CForum@{CForum}}
+Dérivée par CForumPrefs, et CForumTXT.
+
+
+
+\subsection{Description détaillée}
+Gestion des forums, et encapsulation de la table Forum de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-sNomForum, \$v\_\-iModaliteForum, \$v\_\-iStatutForum, \$v\_\-bAccessibleVisiteursForum, \$v\_\-iIdMod, \$v\_\-iIdRubrique, \$v\_\-iIdSousActiv, \$v\_\-iIdForumParent, \$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Ajoute un nouveau forum dans la table. \item\end{CompactList}\item 
+{\bf CForum} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} ()\label{class_c_forum_2575d760358e07a8da96e1199d37f409}
+
+\begin{CompactList}\small\item\em Copie le forum courant dans un autre. \item\end{CompactList}\item 
+{\bf detruire} ()\label{class_c_forum_a1684f39a81eda16b36e87aaee81a6fc}
+
+\begin{CompactList}\small\item\em Efface les valeurs contenues dans {\tt oBdd}, {\tt oEnregBdd}, {\tt iId}, {\tt aoSousForums}, {\tt aoSujets}, {\tt iIdTypeForum}. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_forum_e5fcb2c504fb8a0f07bcaae97b233625}
+
+\begin{CompactList}\small\item\em Efface le forum. \item\end{CompactList}\item 
+{\bf effacerForum} ()\label{class_c_forum_1cc143b9f884071a3e26bbdafbb62940}
+
+\begin{CompactList}\small\item\em Efface le forum ainsi que ses sujets. \item\end{CompactList}\item 
+{\bf effacerForumsPrefs} ()\label{class_c_forum_b42b55ecee51ad62747eeb69fc7dbd31}
+
+\begin{CompactList}\small\item\em Efface les préférences des forums. \item\end{CompactList}\item 
+{\bf effacerSousForums} ()\label{class_c_forum_14a1bee7dbed025055a2b582f9514042}
+
+\begin{CompactList}\small\item\em Efface les sous-forums du forum courant. \item\end{CompactList}\item 
+{\bf effacerSujets} ()\label{class_c_forum_30854f5273d2ed6163aa369451e0bc9a}
+
+\begin{CompactList}\small\item\em Efface les sujets du forum courant. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_forum_987e642701c09bac03fd52e060e528c1}
+
+\begin{CompactList}\small\item\em Enregistre(update) dans la DB le forum courant. \item\end{CompactList}\item 
+{\bf estForumParEquipe} ()
+\begin{CompactList}\small\item\em Vérifie que la modalité du forum est par équipe. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_forum_134622a3b06cd66f2162ba892c156e58}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initForumParType} (\$v\_\-iType, \$v\_\-iIdType)
+\begin{CompactList}\small\item\em Initialise l'objet avec un forum de type rubrique ou sous-activité. \item\end{CompactList}\item 
+{\bf initForumsPrefs} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des préférences du forum. \item\end{CompactList}\item 
+{\bf initSousForums} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant les sous-forums du forum courant. \item\end{CompactList}\item 
+{\bf initSujets} (\$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les sujets qui appartiennent au forum courant. \item\end{CompactList}\item 
+{\bf retDernierSujets} ()
+\begin{CompactList}\small\item\em Retourne le dernier sujet du forum. \item\end{CompactList}\item 
+{\bf retIdNiveau} ()
+\begin{CompactList}\small\item\em Retourne soit l'id du module, soit de la rubrique ou celui de la sous-activité parent(e). \item\end{CompactList}\item 
+{\bf retListeModalites} ()
+\begin{CompactList}\small\item\em Retourne un tableau contenant en français les modalités, les constantes MODALITE\_\- et les variables booléennes qui indiquent si c'est la modalité courante du forum. \item\end{CompactList}\item 
+{\bf retNbMessages} (\$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre de messages, ainsi que la date du plus récent du forum courant. \item\end{CompactList}\item 
+{\bf retNombreSujets} (\$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre de sujet du forum. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} (\$v\_\-iIdMod, \$v\_\-iIdRubrique, \$v\_\-iIdSousActiv)
+\begin{CompactList}\small\item\em Retourne le numéro d'ordre maximum des forums. \item\end{CompactList}\item 
+{\bf retTexteModalite} (\$v\_\-iIdModalite=NULL)
+\begin{CompactList}\small\item\em Retourne en français la modalité courante du forum. \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau actuel, de la structure d'une formation (module, rubrique ou sous-activité). \item\end{CompactList}\item 
+{\bf STRING\_\-LOCK\_\-TABLES} ()
+\begin{CompactList}\small\item\em Retourne les tables à verrouiller de la DB. \item\end{CompactList}\item 
+{\bf supprimer} ()\label{class_c_forum_4e51a946148718d861caed7286485932}
+
+\begin{CompactList}\small\item\em Supprime la totalité du forum courant dans la DB. \item\end{CompactList}\item 
+{\bf supprimerSujets} ()\label{class_c_forum_a2b9b7eb8d8e329b85af7df87763fad4}
+
+\begin{CompactList}\small\item\em Supprime les sujets du forum courant. \item\end{CompactList}\item 
+{\bf verrouillerTables} (\$v\_\-bVerrouillerTables=TRUE)
+\begin{CompactList}\small\item\em Verrouille ou déverouille les tables de la DB. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce forum}\par
+\begin{CompactItemize}
+\item 
+\textbf{defAccessibleVisiteurs} (\$v\_\-bAccessibleVisiteurs)\label{class_c_forum_433808c24dabc076daa65dc58c2515c9}
+
+\item 
+\textbf{defModalite} (\$v\_\-iIdModalite)\label{class_c_forum_d2088878c3126dca14d18d390118b62e}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomForum)\label{class_c_forum_e788f13afdbbd2fd6b0efc37b8fab1d3}
+
+\item 
+\textbf{defStatut} (\$v\_\-iIdStatut)\label{class_c_forum_41c9f7ca0679fbc649039fbc3a609a44}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce forum}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAccessibleVisiteurs} ()\label{class_c_forum_1af884c235f31d9cb0dfc93c66a3274c}
+
+\item 
+\textbf{retDateDernierMessage} ()\label{class_c_forum_dda6c0f81d5edbb0076ebfd88c81aa8c}
+
+\item 
+\textbf{retId} ()\label{class_c_forum_5637d816537813436214bd5f53e9acb7}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_forum_f83f7cf76dfea81721a9c4940b0fc5ce}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_forum_5392dc88815685e512604e9b1a0e1417}
+
+\item 
+\textbf{retModalite} ()\label{class_c_forum_0a19fdbb05eaf46410a6c3c179a9cc0f}
+
+\item 
+\textbf{retNom} ()\label{class_c_forum_ef746196ffacb275ebfa0fc86a266a7f}
+
+\item 
+\textbf{retStatut} ()\label{class_c_forum_2f6095a8e54c6664db52aab8fd3451d5}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoForumsPrefs}\label{class_c_forum_34d6157c4c607849764d46dc9fa1fb9a}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initForumsPrefs()}{p.}{class_c_forum_e5f8475074269647628add32dde68be1}, contenant les préférences des forums (CForumPrefs). \item\end{CompactList}\item 
+{\bf \$aoSousForums}\label{class_c_forum_1d6e2a7a1d959c971e30854a1848ad94}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initSousForums()}{p.}{class_c_forum_77dd515379647e9c8d65a2a13b1f69ab}, contenant les sous-forums. \item\end{CompactList}\item 
+{\bf \$aoSujets}\label{class_c_forum_395e51a14214001f53389de789d8e7fc}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initSujets()}{p.}{class_c_forum_71f8092a02fa63157d7afcb4a452a7be}, contenant les sujets des forums. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_forum_6ffb9f9f90a06262b6f914ff1f4cf3ce}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du forum à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$iIdTypeForum}\label{class_c_forum_8e6ea2abaaca8280868e2580f07e0c6b}
+
+\begin{CompactList}\small\item\em Variable de type entier, contenant le type des forums (rubrique ou sous-activité). \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_forum_9bceb5ddccfc103fce5f8b07f38909f9}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_forum_73a8eea1df88229d72485b57954408b8}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CForum@{CForum}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::ajouter (\$ {\em v\_\-sNomForum}, \/  \$ {\em v\_\-iModaliteForum}, \/  \$ {\em v\_\-iStatutForum}, \/  \$ {\em v\_\-bAccessibleVisiteursForum}, \/  \$ {\em v\_\-iIdMod}, \/  \$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-iIdSousActiv}, \/  \$ {\em v\_\-iIdForumParent}, \/  \$ {\em v\_\-iIdPers})}\label{class_c_forum_ac9f3fccbd9724a257b4bcac12cc4083}
+
+
+Ajoute un nouveau forum dans la table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomForum}]nom du forum \item[{\em v\_\-iModaliteForum}]modalité du forum \{MODALITE\_\-IDEM\_\-PARENT $|$ MODALITE\_\-POUR\_\-TOUS $|$ MODALITE\_\-PAR\_\-EQUIPE\} \item[{\em v\_\-iStatutForum}]statut du forum \{STATUT\_\-OUVERT $|$ STATUT\_\-LECTURE\_\-SEULE $|$ STATUT\_\-FERME $|$ STATUT\_\-INVISIBLE\} \item[{\em v\_\-bAccessibleVisiteursForum}]boolean, ce forum est-il accessible aux visiteurs ? \item[{\em v\_\-iIdMod}]numéro d'identifiant du module \item[{\em v\_\-iIdRubrique}]numéro d'identifiant de la rubrique \item[{\em v\_\-iIdSousActiv}]numéro d'identifiant de la sous-activité \item[{\em v\_\-iIdForumParent}]numéro d'identifiant du forum parent \item[{\em v\_\-iIdPers}]numéro d'identifiant de l'auteur du forum \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nouveau numéro d'identifiant du forum \end{Desc}
+
+
+Références init(), et retNumOrdreMax().
+
+Référencé par copier().\index{CForum@{CForum}!CForum@{CForum}}
+\index{CForum@{CForum}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::CForum (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_forum_b4b8b1a077bb2674248d0f2273b48fd4}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par initSousForums().\index{CForum@{CForum}!estForumParEquipe@{estForumParEquipe}}
+\index{estForumParEquipe@{estForumParEquipe}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::estForumParEquipe ()}\label{class_c_forum_1ede1c45811f786c670f8c322cad67bc}
+
+
+Vérifie que la modalité du forum est par équipe. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la modalité du forum est par équipe \end{Desc}
+\index{CForum@{CForum}!initForumParType@{initForumParType}}
+\index{initForumParType@{initForumParType}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::initForumParType (\$ {\em v\_\-iType}, \/  \$ {\em v\_\-iIdType})}\label{class_c_forum_a7383aed7c75ef131bef8e68c0f06aad}
+
+
+Initialise l'objet avec un forum de type rubrique ou sous-activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iType}]le type du forum (TYPE\_\-RUBRIQUE ou TYPE\_\-SOUS\_\-ACTIVITE) \item[{\em v\_\-iIdType}]l'id de la rubrique ou de la sous-activité \end{description}
+\end{Desc}
+
+
+Références init().\index{CForum@{CForum}!initForumsPrefs@{initForumsPrefs}}
+\index{initForumsPrefs@{initForumsPrefs}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::initForumsPrefs ()}\label{class_c_forum_e5f8475074269647628add32dde68be1}
+
+
+Initialise un tableau contenant la liste des préférences du forum. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'éléments insérés dans le tableau \end{Desc}
+
+
+Référencé par effacerForumsPrefs().\index{CForum@{CForum}!initSousForums@{initSousForums}}
+\index{initSousForums@{initSousForums}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::initSousForums ()}\label{class_c_forum_77dd515379647e9c8d65a2a13b1f69ab}
+
+
+Initialise un tableau contenant les sous-forums du forum courant. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de sous-forums insérés dans le tableau \end{Desc}
+
+
+Références \$oEnregBdd, et CForum().
+
+Référencé par effacerSousForums().\index{CForum@{CForum}!initSujets@{initSujets}}
+\index{initSujets@{initSujets}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::initSujets (\$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_forum_71f8092a02fa63157d7afcb4a452a7be}
+
+
+Initialise un tableau contenant tous les sujets qui appartiennent au forum courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]l'id de l'equipe (optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de sujets trouvés \end{Desc}
+
+
+Références \$oEnregBdd.
+
+Référencé par effacerSujets(), et supprimerSujets().\index{CForum@{CForum}!retDernierSujets@{retDernierSujets}}
+\index{retDernierSujets@{retDernierSujets}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retDernierSujets ()}\label{class_c_forum_15601b019f0ab1bb3723c476f798dbdf}
+
+
+Retourne le dernier sujet du forum. 
+
+\begin{Desc}
+\item[Renvoie:]le dernier sujet du forum, objet de type \doxyref{CSujetForum}{p.}{class_c_sujet_forum} \end{Desc}
+
+
+Références \$oEnregBdd.\index{CForum@{CForum}!retIdNiveau@{retIdNiveau}}
+\index{retIdNiveau@{retIdNiveau}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retIdNiveau ()}\label{class_c_forum_aae865ae436b2a9ea07f9b791f52177e}
+
+
+Retourne soit l'id du module, soit de la rubrique ou celui de la sous-activité parent(e). 
+
+\begin{Desc}
+\item[Renvoie:]l'id du parent \end{Desc}
+\index{CForum@{CForum}!retListeModalites@{retListeModalites}}
+\index{retListeModalites@{retListeModalites}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retListeModalites ()}\label{class_c_forum_385bb6dea51522658be7bff79ec3ac53}
+
+
+Retourne un tableau contenant en français les modalités, les constantes MODALITE\_\- et les variables booléennes qui indiquent si c'est la modalité courante du forum. 
+
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les modalités \end{Desc}
+
+
+Référencé par retTexteModalite().\index{CForum@{CForum}!retNbMessages@{retNbMessages}}
+\index{retNbMessages@{retNbMessages}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retNbMessages (\$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_forum_a4f9b1afaa2e6bb32ece75067020b9ae}
+
+
+Retourne le nombre de messages, ainsi que la date du plus récent du forum courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]si fourni, la fonction retournera le nombre de message (+date du plus récent) de cette personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de messages, ainsi que la date du plus récent du forum courant \end{Desc}
+\index{CForum@{CForum}!retNombreSujets@{retNombreSujets}}
+\index{retNombreSujets@{retNombreSujets}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retNombreSujets (\$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_forum_6ed42a5678d1463a7835bb809dfc5975}
+
+
+Retourne le nombre de sujet du forum. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]si fourni, la fonction retournera le nombre de sujets de cette personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de sujet du forum \end{Desc}
+\index{CForum@{CForum}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retNumOrdreMax (\$ {\em v\_\-iIdMod}, \/  \$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-iIdSousActiv})}\label{class_c_forum_fc5e8fa130e2c99f9deb2b565488edf5}
+
+
+Retourne le numéro d'ordre maximum des forums. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module \item[{\em v\_\-iIdRubrique}]l'id de la rubrique \item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Référencé par ajouter().\index{CForum@{CForum}!retTexteModalite@{retTexteModalite}}
+\index{retTexteModalite@{retTexteModalite}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retTexteModalite (\$ {\em v\_\-iIdModalite} = {\tt NULL})}\label{class_c_forum_6e7b0323008f4cf17eea6ec51477b38e}
+
+
+Retourne en français la modalité courante du forum. 
+
+\begin{Desc}
+\item[Renvoie:]en français la modalité courante du forum \end{Desc}
+
+
+Références retListeModalites().\index{CForum@{CForum}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::retTypeNiveau ()}\label{class_c_forum_843c085dec35f1aed47452d8bc551d48}
+
+
+Retourne la constante qui définit le niveau actuel, de la structure d'une formation (module, rubrique ou sous-activité). 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau actuel, de la structure d'une formation \end{Desc}
+\index{CForum@{CForum}!STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}}
+\index{STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::STRING\_\-LOCK\_\-TABLES ()}\label{class_c_forum_b654df67f28b6a495a2423cb6b67e29a}
+
+
+Retourne les tables à verrouiller de la DB. 
+
+\begin{Desc}
+\item[Renvoie:]les tables à verrouiller de la DB \end{Desc}
+
+
+Références CSujetForum::STRING\_\-LOCK\_\-TABLES().\index{CForum@{CForum}!verrouillerTables@{verrouillerTables}}
+\index{verrouillerTables@{verrouillerTables}!CForum@{CForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CForum::verrouillerTables (\$ {\em v\_\-bVerrouillerTables} = {\tt TRUE})}\label{class_c_forum_e6a3e42a2f2f61d97936662714381aaf}
+
+
+Verrouille ou déverouille les tables de la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bVerrouillerTables}]si {\tt true} verrouille, sinon, déverouille les tables \end{description}
+\end{Desc}
+
+
+Référencé par effacer().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf forum.tbl.php}\end{CompactItemize}

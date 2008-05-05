@@ -1,0 +1,5 @@
+/**
+ * @author Silecs
+ * @copyright Copyright © 2007, Silecs.
+ */
+ tinyMCE.importPluginLanguagePack('tableaubord');var TinyMCE_TableauBordPlugin={getInfo:function(){return{longname:'Tableau de bord',author:'Silecs',authorurl:'http://www.silecs.info',infourl:'http://sourcesup.cru.fr/esprit/',version:'1.0'};},getControlHTML:function(cn){switch(cn){case "tableaubordi":return tinyMCE.getButtonHTML(cn,'lang_tableaubordi_desc','{$pluginurl}/images/tableaubord.gif','mceTableauBordI',false);case "tableauborde":return tinyMCE.getButtonHTML(cn,'lang_tableauborde_desc','{$pluginurl}/images/tableaubord.gif','mceTableauBordE',false);}return "";},execCommand:function(editor_id,element,command,user_interface,value){var inst=tinyMCE.getInstanceById(editor_id),h;switch(command){case "mceTableauBordI":tinyMCE.execInstanceCommand(editor_id,'mceInsertContent',false,'[tableaudebord /i]');return true;case "mceTableauBordE":tinyMCE.execInstanceCommand(editor_id,'mceInsertContent',false,'[tableaudebord /e]');return true;}return false;}};tinyMCE.addPlugin("tableaubord",TinyMCE_TableauBordPlugin);

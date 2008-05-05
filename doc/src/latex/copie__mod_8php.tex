@@ -1,0 +1,74 @@
+\section{Référence du fichier src/admin/copieelement/copie\_\-mod.php}
+\label{copie__mod_8php}\index{src/admin/copieelement/copie\_\-mod.php@{src/admin/copieelement/copie\_\-mod.php}}
+
+
+\subsection{Description détaillée}
+Copie un module d'une formation vers une autre. 
+
+\begin{Desc}
+\item[Date:]2006/04/13\end{Desc}
+\begin{Desc}
+\item[Auteur:]Jérôme TOUZE \end{Desc}
+
+
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$iIdMod} = \$oModule $\rightarrow$ copier(\$url\_\-iIdFormDst)\label{copie__mod_8php_9572be7281db5b7af02ded5a9a47e2b1}
+
+\item 
+\textbf{\$iNumOrdreMaxMod} = \$oModule $\rightarrow$ retNumOrdreMax(\$url\_\-iIdFormDst)\label{copie__mod_8php_abd35648076407e706d40892ea7172a1}
+
+\item 
+\textbf{\$oBlocChoixDst} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-CHOIX\_\-DST\char`\"{},\$oTpl)\label{copie__mod_8php_a0f1cd44252709be7ca4d43a533220de}
+
+\item 
+\textbf{\$oBlocChoixSrc} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-CHOIX\_\-SRC\char`\"{},\$oTpl)\label{copie__mod_8php_4cecff766c78bea7967c9c00a8fde40d}
+
+\item 
+\textbf{\$oBlocFinal} = new {\bf TPL\_\-Block}(\char`\"{}ETAPE\_\-FINAL\char`\"{},\$oTpl)\label{copie__mod_8php_0404b3d41507482ec262c7e0605fab5e}
+
+\item 
+\textbf{\$oModule} = new {\bf CModule}(\$oProjet $\rightarrow$ oBdd,\$url\_\-iIdModSrc)\label{copie__mod_8php_659cdbae85c53cc89808c9ff105614ad}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{copie__mod_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oTpl} = new {\bf Template}(\char`\"{}copie\_\-mod.tpl\char`\"{})\label{copie__mod_8php_7de57ba665b7c068e98ea46469be2865}
+
+\item 
+\textbf{\$sRequeteSql}
+\item 
+\textbf{\$url\_\-iDstOk} = (empty(\$\_\-GET[\char`\"{}DstOk\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}DstOk\char`\"{}])\label{copie__mod_8php_42d909467c92be850ded5265fb08476f}
+
+\item 
+\textbf{\$url\_\-iIdFormDst} = (empty(\$\_\-GET[\char`\"{}IdFormDst\char`\"{}]) ? \$url\_\-iIdFormSrc : \$\_\-GET[\char`\"{}IdFormDst\char`\"{}])\label{copie__mod_8php_567046dac06231cd778843179645aac5}
+
+\item 
+\textbf{\$url\_\-iIdFormSrc} = (empty(\$\_\-GET[\char`\"{}IdFormSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdFormSrc\char`\"{}])\label{copie__mod_8php_7d23b6d8e8be4b72aec972efac946e63}
+
+\item 
+\textbf{\$url\_\-iIdModSrc} = (empty(\$\_\-GET[\char`\"{}IdModSrc\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}IdModSrc\char`\"{}])\label{copie__mod_8php_404de3ff18f4725fee13ab25d228dfd4}
+
+\item 
+\textbf{\$url\_\-iOrdreModDst} = (empty(\$\_\-GET[\char`\"{}OrdreModDst\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}OrdreModDst\char`\"{}])\label{copie__mod_8php_843c44ae6202f7374f8a8999cfcf57bf}
+
+\item 
+\textbf{\$url\_\-iSrcOk} = (empty(\$\_\-GET[\char`\"{}SrcOk\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}SrcOk\char`\"{}])\label{copie__mod_8php_b57149b16534096f0ca81cd8e78fa958}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des variables}
+\index{copie\_\-mod.php@{copie\_\-mod.php}!\$sRequeteSql@{\$sRequeteSql}}
+\index{\$sRequeteSql@{\$sRequeteSql}!copie_mod.php@{copie\_\-mod.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$sRequeteSql}\label{copie__mod_8php_7fd44c997b9477ef9cf33ccb4eb5545e}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
+                    ." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE"
+\end{verbatim}
+\end{Code}

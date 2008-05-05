@@ -1,0 +1,107 @@
+\section{Référence de la classe CDOMDocument}
+\label{class_c_d_o_m_document}\index{CDOMDocument@{CDOMDocument}}
+Graphe d'héritage de CDOMDocument::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_c_d_o_m_document}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe reproduisant en PHP 4 le comportement de la classe {\tt DOMDocument} de la bibliothèque DOM PHP 5. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CDOMDocument} (\$version= '1.0', \$encoding= 'UTF-8')
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf createElement} (\$name, \$value=NULL)
+\begin{CompactList}\small\item\em Crée une nouvelle instance de la classe \doxyref{CDOMElement}{p.}{class_c_d_o_m_element}. \item\end{CompactList}\item 
+{\bf save} (\$filename, \$options=0)
+\begin{CompactList}\small\item\em Sauvegarde l'arborescence XML dans un fichier. \item\end{CompactList}\item 
+{\bf saveXML} (\$node=NULL, \$options=0)
+\begin{CompactList}\small\item\em Retourne l'arbre XML interne sous forme de chaîne de caractères. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$formatOutput} = FALSE\label{class_c_d_o_m_document_5adbb9746fde79b614a9f52987dbe67a}
+
+\begin{CompactList}\small\item\em Indique si on veut que la sortie du document soit mise en forme (sauts de ligne et tabulations). \item\end{CompactList}\item 
+{\bf \$xmlEncoding} = NULL\label{class_c_d_o_m_document_b180e53fe154ff3f03b6e2998f913a82}
+
+\begin{CompactList}\small\item\em Variable interne pour stocker l'encodage demandé à l'instanciation (et encoding dans PHP 5, qu'est-ce que c'est ?). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CDOMDocument@{CDOMDocument}!CDOMDocument@{CDOMDocument}}
+\index{CDOMDocument@{CDOMDocument}!CDOMDocument@{CDOMDocument}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMDocument::CDOMDocument (\$ {\em version} = {\tt '1.0'}, \/  \$ {\em encoding} = {\tt 'UTF-8'})}\label{class_c_d_o_m_document_92b7d9c7f0191c518f8d2be31bef139b}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em version}]le numéro de version du document en tant que partie de la déclaration XML \item[{\em encoding}]l'encodage du document en tant que partie de la déclaration XML\end{description}
+\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Quelles sont les valeurs par défaut correctes des paramètres ? \end{Desc}
+\index{CDOMDocument@{CDOMDocument}!createElement@{createElement}}
+\index{createElement@{createElement}!CDOMDocument@{CDOMDocument}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMDocument::createElement (\$ {\em name}, \/  \$ {\em value} = {\tt NULL})}\label{class_c_d_o_m_document_549cd2a0c7d235cd026706bffb926ced}
+
+
+Crée une nouvelle instance de la classe \doxyref{CDOMElement}{p.}{class_c_d_o_m_element}. 
+
+Ce noeud ne sera pas affiché dans le document, à moins qu'il ne soit inséré avec \doxyref{CDOMNode::appendChild()}{p.}{class_c_d_o_m_node_e95f28cb57dda33271248f013b318ff8}
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em name}]le nom de l'élément à créer \item[{\em value}]la valeur à donner à l'élément (le texte entre les balises)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'élément créé (INCOMPLET)\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Normalement, la valeur de retour doit être FALSE si un problème est survenu à la création \end{Desc}
+\index{CDOMDocument@{CDOMDocument}!save@{save}}
+\index{save@{save}!CDOMDocument@{CDOMDocument}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMDocument::save (\$ {\em filename}, \/  \$ {\em options} = {\tt 0})}\label{class_c_d_o_m_document_47977c50fabebc3bfb9a0d2314500ce8}
+
+
+Sauvegarde l'arborescence XML dans un fichier. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em filename}]le chemin du fichier dans lequel on veut sauver le XML \item[{\em options}]les options supplémentaires (voir la doc de PHP) (INCOMPLET)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'octets écrits, ou {\tt FALSE} si\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]le paramètre {\tt options} n'est pas implémenté ici (en PHP 5, il existe à partir de la version 5.1.0) \end{Desc}
+
+
+Références saveXML().\index{CDOMDocument@{CDOMDocument}!saveXML@{saveXML}}
+\index{saveXML@{saveXML}!CDOMDocument@{CDOMDocument}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CDOMDocument::saveXML (\$ {\em node} = {\tt NULL}, \/  \$ {\em options} = {\tt 0})}\label{class_c_d_o_m_document_d0fe46b5ae5ded1e4a2f8af216825f49}
+
+
+Retourne l'arbre XML interne sous forme de chaîne de caractères. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em node}]le noeud à retourner sous forme de chaîne, ou NULL si on désire tout le document. Dans le cas d'un noeud spécifique, il n'y aura pas de déclaration XML au début de la chaîne retournée (INCOMPLET) \item[{\em options}]les options supplémentaires (INCOMPLET)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Pour l'instant, seul le document complet peut être retourné sous forme de chaîne, pas une sous-partie\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Pour l'instant, aucune options supplémetnaire n'est prise en compte \end{Desc}
+
+
+Référencé par save().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/dom/{\bf dom-php4.class.php}\end{CompactItemize}

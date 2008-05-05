@@ -1,0 +1,251 @@
+\section{Référence de la classe AfficheurPage}
+\label{class_afficheur_page}\index{AfficheurPage@{AfficheurPage}}
+Graphe d'héritage de AfficheurPage::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_afficheur_page}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Contrôleur sommaire pour le système de templates. 
+
+Prend en charge les erreurs à afficher, l'utilisation d'un template par défaut, la mise à disposition des variables GET/POST/SESSION, et surtout les quelques méthodes de base et leur ordre d'appel (récupération et validation des données, exécution des actions demandées, affichage des erreurs et/ou des autres parties de la page) \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf afficher} ()\label{class_afficheur_page_0916d2ddc6ca08e573b6002b1b9bbbd4}
+
+\begin{CompactList}\small\item\em Affiche les éventuelles erreurs, et s'il n'y a pas d'erreurs fatales, affiche les autres parties de la page. \item\end{CompactList}\item 
+{\bf afficherErreurs} ()
+\begin{CompactList}\small\item\em Affiche les messages d'erreur qui ont été déclarés pendant le traitement de la page. \item\end{CompactList}\item 
+{\bf afficherParties} ()
+\begin{CompactList}\small\item\em Affiche les différentes parties de la page non relatives aux messages d'erreur. \item\end{CompactList}\item 
+{\bf declarerErreur} (\$sNomErreur, \$bFatale=FALSE, \$v\_\-sTexte= '')
+\begin{CompactList}\small\item\em Déclare qu'une erreur s'est produite. \item\end{CompactList}\item 
+\textbf{declarerErreurAction} (\$sNomErreur, \$bFatale=FALSE, \$v\_\-sTexte= '')\label{class_afficheur_page_3807806671de6ba61d91b6dd2ed98c17}
+
+\item 
+{\bf defTpl} (\$fichierTpl)
+\begin{CompactList}\small\item\em Assigne un fichier template pour l'affichage de la page. \item\end{CompactList}\item 
+{\bf demarrer} (\$fichierTpl=NULL)
+\begin{CompactList}\small\item\em Lance l'affichage de la page. \item\end{CompactList}\item 
+{\bf detecterErreursPossibles} ()
+\begin{CompactList}\small\item\em Détecte les blocs nommés [erreur. \item\end{CompactList}\item 
+{\bf erreurDeclaree} (\$sNomErreur)
+\begin{CompactList}\small\item\em Vérifie qu'une erreur est déjà déclarée. \item\end{CompactList}\item 
+{\bf gererActions} ()
+\begin{CompactList}\small\item\em Gère les actions demandées pour la page. \item\end{CompactList}\item 
+{\bf recupererDonnees} ()
+\begin{CompactList}\small\item\em Récupère les données nécessaires à l'exécution de la page. \item\end{CompactList}\item 
+{\bf rediriger} (\$sUrl)
+\begin{CompactList}\small\item\em Redirige l'utilisateur vers une autre adresse. \item\end{CompactList}\item 
+{\bf retNbErreurs} ()\label{class_afficheur_page_baa8e305cfdb6a08d78252a4e3d4352f}
+
+\begin{CompactList}\small\item\em Retourne le nombre total d'erreurs déclarées, fatales ET non fatales. \item\end{CompactList}\item 
+{\bf retNbErreursFatales} ()\label{class_afficheur_page_c81571ee22ad39970a637bcdb980d527}
+
+\begin{CompactList}\small\item\em Retourne le nombre d'erreurs fatales déclarées. \item\end{CompactList}\item 
+{\bf retNbErreursNonFatales} ()\label{class_afficheur_page_d24da1ed318dab4fd88ea8146add1760}
+
+\begin{CompactList}\small\item\em Retourne le nombre d'erreurs non fatales déclarées. \item\end{CompactList}\item 
+{\bf validerDonnees} ()
+\begin{CompactList}\small\item\em Valide les données récupérées auparavant par la méthode \doxyref{recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aDonneesForm}\label{class_afficheur_page_02aeac05284278ba3339899dafafa6fa}
+
+\begin{CompactList}\small\item\em Tableau contenant les variables passées par formulaire POST. \item\end{CompactList}\item 
+{\bf \$aDonneesPersist}\label{class_afficheur_page_9ef792fab1c47cf59f081248c555c369}
+
+\begin{CompactList}\small\item\em Tableau contenant les variables persistantes, ici les variables de SESSION. \item\end{CompactList}\item 
+{\bf \$aDonneesUrl}\label{class_afficheur_page_b4dfb6492301415b7263cdef7e3cd9f3}
+
+\begin{CompactList}\small\item\em Tableau contenant les variables passées en URL (GET). \item\end{CompactList}\item 
+{\bf \$aErreurs} = array()\label{class_afficheur_page_f8c55ca85295a6a35556e1093ff8d05b}
+
+\begin{CompactList}\small\item\em Tableau qui contient les erreurs non-fatales déclarées pendant l'affichage de la page (voir \doxyref{declarerErreur()}{p.}{class_afficheur_page_64085def765fa55e686e1c8c3ec65c4b}). \item\end{CompactList}\item 
+{\bf \$aErreursFatales} = array()\label{class_afficheur_page_6238cc2ee31e876360898888f0fdc1bc}
+
+\begin{CompactList}\small\item\em Tableau qui contient les erreurs fatales déclarées pendant l'affichage de la page. \item\end{CompactList}\item 
+{\bf \$aErreursPossibles} = array()\label{class_afficheur_page_d6ab7b68c14f6131a4214feda83b6384}
+
+\begin{CompactList}\small\item\em Si des blocs [erreur...+/-] sont présents dans la page HTML, ils sont détectés et enregistrés (voir \doxyref{detecterErreursPossibles()}{p.}{class_afficheur_page_3bd5a7d7965888cf297e557954a5d629}). \item\end{CompactList}\item 
+{\bf \$fichierTpl}\label{class_afficheur_page_93254533f312137ca3bd886753e3d637}
+
+\begin{CompactList}\small\item\em Nom du fichier template à utiliser pour afficher la page. \item\end{CompactList}\item 
+{\bf \$sAction}\label{class_afficheur_page_c33cc73cc7cfeffa12a4392e9fa252a9}
+
+\begin{CompactList}\small\item\em Chaîne destinée à recevoir le nom de \char`\"{}l'action\char`\"{} voulue pour la page (généralement définie dans \doxyref{recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e} d'une classe fille). \item\end{CompactList}\item 
+{\bf \$tpl}\label{class_afficheur_page_50245d1e0709452c13446b2d03ecc8f2}
+
+\begin{CompactList}\small\item\em Objet \doxyref{Template}{p.}{class_template} utilisé pour afficher la page. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{AfficheurPage@{AfficheurPage}!afficherErreurs@{afficherErreurs}}
+\index{afficherErreurs@{afficherErreurs}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::afficherErreurs ()}\label{class_afficheur_page_083b6a7c74be065f439a64078de7c384}
+
+
+Affiche les messages d'erreur qui ont été déclarés pendant le traitement de la page. 
+
+Ils peuvent soit être présents au préalable dans le HTML, sous forme de blocs [erreur...] contenant le message voulu, soit sous la forme d'un seul bloc nommé [erreurs], dans lequel seront insérés les messages déclarés
+
+\begin{Desc}
+\item[Voir également:]\doxyref{declarerErreur()}{p.}{class_afficheur_page_64085def765fa55e686e1c8c3ec65c4b} \end{Desc}
+
+
+Référencé par afficher().\index{AfficheurPage@{AfficheurPage}!afficherParties@{afficherParties}}
+\index{afficherParties@{afficherParties}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::afficherParties ()}\label{class_afficheur_page_a4df93afa9e5d401c7230e22627952e4}
+
+
+Affiche les différentes parties de la page non relatives aux messages d'erreur. 
+
+\begin{Desc}
+\item[Note:]méthode à redéfinir dans les classes filles \end{Desc}
+
+
+Réimplémentée dans {\bf CopierCollerFormation} \doxyref{}{p.}{class_copier_coller_formation_00d95ae27881b468b97575cdddac1dc1}, et {\bf NavigateurFichiers} \doxyref{}{p.}{class_navigateur_fichiers_6c9c73afc0f884ae0b4caedafc15193f}.
+
+Références OO::abstraite().
+
+Référencé par afficher().\index{AfficheurPage@{AfficheurPage}!declarerErreur@{declarerErreur}}
+\index{declarerErreur@{declarerErreur}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::declarerErreur (\$ {\em sNomErreur}, \/  \$ {\em bFatale} = {\tt FALSE}, \/  \$ {\em v\_\-sTexte} = {\tt ''})}\label{class_afficheur_page_64085def765fa55e686e1c8c3ec65c4b}
+
+
+Déclare qu'une erreur s'est produite. 
+
+Permet d'afficher des messages d'erreurs à la fin du traitement de la page, lors de l'affichage
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em sNomErreur}]le nom de l'erreur déclarée. Si on omet {\tt v\_\-sTexte}, ce paramètre désigne le nom du bloc dans le template qui contient le message pour cette erreur, et qui sera donc affiché \item[{\em bFatale}]indique si l'erreur est fatale, càd si elle empêchera l'exécution de l'action demandée pour la page et l'affichage des parties principales de la page \item[{\em v\_\-sTexte}]le message de l'erreur déclarée. S'il n'est pas spécifié, le nom de l'erreur est considéré comme le nom du bloc de template qui contient le message à afficher. S'il est spécifié, ce texte sera affiché dans le bloc [erreurs] du template en tant que § \end{description}
+\end{Desc}
+
+
+Référencé par NavigateurFichiers::gererActions(), NavigateurFichiers::validerDonnees(), et CopierCollerFormation::validerDonnees().\index{AfficheurPage@{AfficheurPage}!defTpl@{defTpl}}
+\index{defTpl@{defTpl}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::defTpl (\$ {\em fichierTpl})}\label{class_afficheur_page_6b71bedc59cac4abd9b6761b61ef9d91}
+
+
+Assigne un fichier template pour l'affichage de la page. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em fichierTpl}]le nom du fichier template à utiliser. S'il n'est pas fourni, $<$nom-de-la-classe$>$.tpl est utilisé \end{description}
+\end{Desc}
+
+
+Références \$fichierTpl.
+
+Référencé par demarrer().\index{AfficheurPage@{AfficheurPage}!demarrer@{demarrer}}
+\index{demarrer@{demarrer}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::demarrer (\$ {\em fichierTpl} = {\tt NULL})}\label{class_afficheur_page_f9117aebb7e08c4d7ae5b28c32d5006e}
+
+
+Lance l'affichage de la page. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em fichierTpl}]le chemin du fichier template à utiliser pour afficher la page. Par défaut, il s'agit de $<$nom-de-la-classe$>$.tpl (la classe peut être une classe fille) \end{description}
+\end{Desc}
+
+
+Références \$fichierTpl, afficher(), defTpl(), detecterErreursPossibles(), gererActions(), recupererDonnees(), retNbErreursFatales(), et validerDonnees().\index{AfficheurPage@{AfficheurPage}!detecterErreursPossibles@{detecterErreursPossibles}}
+\index{detecterErreursPossibles@{detecterErreursPossibles}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::detecterErreursPossibles ()}\label{class_afficheur_page_3bd5a7d7965888cf297e557954a5d629}
+
+
+Détecte les blocs nommés [erreur. 
+
+..] dans le HTML du template (réservés pour les messages d'erreur), de façon à les enlever au moment l'affichage si l'erreur qu'ils représentent n'a pas été déclenchée (déclarée) 
+
+Référencé par demarrer().\index{AfficheurPage@{AfficheurPage}!erreurDeclaree@{erreurDeclaree}}
+\index{erreurDeclaree@{erreurDeclaree}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::erreurDeclaree (\$ {\em sNomErreur})}\label{class_afficheur_page_a91cf1d219d1c5f624d1147edee0ceba}
+
+
+Vérifie qu'une erreur est déjà déclarée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em sNomErreur}]le nom de l'erreur\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'erreur est déclarée, {\tt false} sinon \end{Desc}
+\index{AfficheurPage@{AfficheurPage}!gererActions@{gererActions}}
+\index{gererActions@{gererActions}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::gererActions ()}\label{class_afficheur_page_08c73bc1fa58fc910e1ceda2c5fdd779}
+
+
+Gère les actions demandées pour la page. 
+
+Généralement un switch/case sur {\tt \$this-$>$sAction}. N'est pas appelée si une erreur fatale a été déclarée pendant la récupération ou la validation des données. On peut encore y déclarer des erreurs fatales, car elles déterminent également si la partie principale de la page sera affichée
+
+\begin{Desc}
+\item[Note:]méthode à redéfinir dans les classes filles \end{Desc}
+
+
+Réimplémentée dans {\bf CopierCollerFormation} \doxyref{}{p.}{class_copier_coller_formation_15e4e2b272abcc452b28e33887895464}, et {\bf NavigateurFichiers} \doxyref{}{p.}{class_navigateur_fichiers_d912fbde728bd3ba8e7474b80b1e6564}.
+
+Références OO::abstraite().
+
+Référencé par demarrer().\index{AfficheurPage@{AfficheurPage}!recupererDonnees@{recupererDonnees}}
+\index{recupererDonnees@{recupererDonnees}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::recupererDonnees ()}\label{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}
+
+
+Récupère les données nécessaires à l'exécution de la page. 
+
+Dans une classe fille, on peut par exemple déclarer les différentes données utilisées pour le traitement et l'affichage en tant que propriétés de la classe, et les récupérer dans la méthode \doxyref{recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}
+
+\begin{Desc}
+\item[Note:]méthode à redéfinir dans les classes filles \end{Desc}
+
+
+Réimplémentée dans {\bf CopierCollerFormation} \doxyref{}{p.}{class_copier_coller_formation_3a66a0d5f6f4b6f312718dbdf47496d8}, {\bf GererFichiersForm} \doxyref{}{p.}{class_gerer_fichiers_form_d79147cdbec306a791bc6337b0386ea1}, et {\bf NavigateurFichiers} \doxyref{}{p.}{class_navigateur_fichiers_7d4f46ae11f31cd8d5b87548bd2aa804}.
+
+Références OO::abstraite().
+
+Référencé par demarrer().\index{AfficheurPage@{AfficheurPage}!rediriger@{rediriger}}
+\index{rediriger@{rediriger}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::rediriger (\$ {\em sUrl})}\label{class_afficheur_page_3d9124d72bfa3313ed008197abe4ecc1}
+
+
+Redirige l'utilisateur vers une autre adresse. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em sUrl}]l'adresse vers laquelle on redirige \end{description}
+\end{Desc}
+\index{AfficheurPage@{AfficheurPage}!validerDonnees@{validerDonnees}}
+\index{validerDonnees@{validerDonnees}!AfficheurPage@{AfficheurPage}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}AfficheurPage::validerDonnees ()}\label{class_afficheur_page_735f2e1007d303794f24cb80a2a649b6}
+
+
+Valide les données récupérées auparavant par la méthode \doxyref{recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}. 
+
+C'est ici qu'on ajuste leur valeur ou qu'on déclenche éventuellement une méthode \doxyref{declarerErreur()}{p.}{class_afficheur_page_64085def765fa55e686e1c8c3ec65c4b}
+
+\begin{Desc}
+\item[Note:]méthode à redéfinir dans les classes filles \end{Desc}
+
+
+Réimplémentée dans {\bf CopierCollerFormation} \doxyref{}{p.}{class_copier_coller_formation_4ae25bd26a8efed75b1a3c8f7ad02229}, et {\bf NavigateurFichiers} \doxyref{}{p.}{class_navigateur_fichiers_446e449f46bf506d1b145bca76a95a86}.
+
+Références OO::abstraite().
+
+Référencé par demarrer().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf AfficheurPage.php}\end{CompactItemize}

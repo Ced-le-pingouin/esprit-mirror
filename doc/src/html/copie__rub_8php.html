@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence du fichier src/admin/copieelement/copie_rub.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/admin/copieelement/copie_rub.php</h1><hr><a name="_details"></a><h2>Description détaillée</h2>
+Copie une rubrique d'un module vers un autre. 
+<p>
+<dl class="date" compact><dt><b>Date:</b></dt><dd>2006/04/13</dd></dl>
+<dl class="author" compact><dt><b>Auteur:</b></dt><dd>Jérôme TOUZE </dd></dl>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8756afa7ac65ae2afc8d4b37a8b51efb"></a><!-- doxytag: member="copie_rub.php::$iIdRub" ref="8756afa7ac65ae2afc8d4b37a8b51efb" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iIdRub</b> = $oRubrique-&gt;copier($url_iIdModDst)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9526eae6ba9d36782b81efb3d7c34256"></a><!-- doxytag: member="copie_rub.php::$iNumOrdreMaxRub" ref="9526eae6ba9d36782b81efb3d7c34256" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iNumOrdreMaxRub</b> = $oRubrique-&gt;retNumOrdreMax($url_iIdModDst)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a0f1cd44252709be7ca4d43a533220de"></a><!-- doxytag: member="copie_rub.php::$oBlocChoixDst" ref="a0f1cd44252709be7ca4d43a533220de" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oBlocChoixDst</b> = new <a class="el" href="class_t_p_l___block.html">TPL_Block</a>(&quot;ETAPE_CHOIX_DST&quot;,$oTpl)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4cecff766c78bea7967c9c00a8fde40d"></a><!-- doxytag: member="copie_rub.php::$oBlocChoixSrc" ref="4cecff766c78bea7967c9c00a8fde40d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oBlocChoixSrc</b> = new <a class="el" href="class_t_p_l___block.html">TPL_Block</a>(&quot;ETAPE_CHOIX_SRC&quot;,$oTpl)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0404b3d41507482ec262c7e0605fab5e"></a><!-- doxytag: member="copie_rub.php::$oBlocFinal" ref="0404b3d41507482ec262c7e0605fab5e" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oBlocFinal</b> = new <a class="el" href="class_t_p_l___block.html">TPL_Block</a>(&quot;ETAPE_FINAL&quot;,$oTpl)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ec412e7ac901485e72b77d2185159421"></a><!-- doxytag: member="copie_rub.php::$oProjet" ref="ec412e7ac901485e72b77d2185159421" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oProjet</b> = new <a class="el" href="class_c_projet.html">CProjet</a>()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a16626531b85603a30a4f4d93c5758b1"></a><!-- doxytag: member="copie_rub.php::$oRubrique" ref="a16626531b85603a30a4f4d93c5758b1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oRubrique</b> = new <a class="el" href="class_c_module___rubrique.html">CModule_Rubrique</a>($oProjet-&gt;oBdd,$url_iIdRubSrc)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7de57ba665b7c068e98ea46469be2865"></a><!-- doxytag: member="copie_rub.php::$oTpl" ref="7de57ba665b7c068e98ea46469be2865" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oTpl</b> = new <a class="el" href="class_template.html">Template</a>(&quot;copie_rub.tpl&quot;)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><b>$sRequeteSql</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="42d909467c92be850ded5265fb08476f"></a><!-- doxytag: member="copie_rub.php::$url_iDstOk" ref="42d909467c92be850ded5265fb08476f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iDstOk</b> = (empty($_GET[&quot;DstOk&quot;]) ? 0 : $_GET[&quot;DstOk&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="567046dac06231cd778843179645aac5"></a><!-- doxytag: member="copie_rub.php::$url_iIdFormDst" ref="567046dac06231cd778843179645aac5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iIdFormDst</b> = (empty($_GET[&quot;IdFormDst&quot;]) ? $url_iIdFormSrc : $_GET[&quot;IdFormDst&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7d23b6d8e8be4b72aec972efac946e63"></a><!-- doxytag: member="copie_rub.php::$url_iIdFormSrc" ref="7d23b6d8e8be4b72aec972efac946e63" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iIdFormSrc</b> = (empty($_GET[&quot;IdFormSrc&quot;]) ? 0 : $_GET[&quot;IdFormSrc&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c41023b63574a7d174a663b4d124b1bc"></a><!-- doxytag: member="copie_rub.php::$url_iIdModDst" ref="c41023b63574a7d174a663b4d124b1bc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iIdModDst</b> = (empty($_GET[&quot;IdModDst&quot;]) ? 0 : $_GET[&quot;IdModDst&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="404de3ff18f4725fee13ab25d228dfd4"></a><!-- doxytag: member="copie_rub.php::$url_iIdModSrc" ref="404de3ff18f4725fee13ab25d228dfd4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iIdModSrc</b> = (empty($_GET[&quot;IdModSrc&quot;]) ? 0 : $_GET[&quot;IdModSrc&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6f4b968c61928c1ec368acd93e89f7ef"></a><!-- doxytag: member="copie_rub.php::$url_iIdRubSrc" ref="6f4b968c61928c1ec368acd93e89f7ef" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iIdRubSrc</b> = (empty($_GET[&quot;IdRubSrc&quot;]) ? 0 : $_GET[&quot;IdRubSrc&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="47d8b304be967ef2349ae4364b298328"></a><!-- doxytag: member="copie_rub.php::$url_iOrdreRubDst" ref="47d8b304be967ef2349ae4364b298328" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iOrdreRubDst</b> = (empty($_GET[&quot;OrdreRubDst&quot;]) ? 0 : $_GET[&quot;OrdreRubDst&quot;])</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b57149b16534096f0ca81cd8e78fa958"></a><!-- doxytag: member="copie_rub.php::$url_iSrcOk" ref="b57149b16534096f0ca81cd8e78fa958" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$url_iSrcOk</b> = (empty($_GET[&quot;SrcOk&quot;]) ? 0 : $_GET[&quot;SrcOk&quot;])</td></tr>
+
+</table>
+<hr><h2>Documentation des variables</h2>
+<a class="anchor" name="7fd44c997b9477ef9cf33ccb4eb5545e"></a><!-- doxytag: member="copie_rub.php::$sRequeteSql" ref="7fd44c997b9477ef9cf33ccb4eb5545e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$sRequeteSql          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<b>Valeur initiale :</b><div class="fragment"><pre class="fragment"> <span class="stringliteral">"LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"</span>
+                    .<span class="stringliteral">" Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE"</span>
+</pre></div>
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

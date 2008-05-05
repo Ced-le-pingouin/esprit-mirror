@@ -1,0 +1,285 @@
+\section{Référence de la classe CFormulaire}
+\label{class_c_formulaire}\index{CFormulaire@{CFormulaire}}
+
+
+\subsection{Description détaillée}
+Gestion des formulaires, et encapsulation de la table Formulaire de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$iIdPers)
+\begin{CompactList}\small\item\em Ajoute un nouveau formulaire dans la DB. \item\end{CompactList}\item 
+{\bf CFormulaire} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Copie le formulaire courant dans un nouveau formulaire appartenant à la nouvelle personne. \item\end{CompactList}\item 
+{\bf determinerDonneesAExporter} (\$v\_\-iValeurAxeNeutreMin=0, \$v\_\-iValeurAxeNeutreMax=0)
+\begin{CompactList}\small\item\em Initialise oExportation qui contiendra les données à exporter. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_formulaire_0f78e3c3cc1b6c11cbde3f700ee59a4d}
+
+\begin{CompactList}\small\item\em Efface le formulaire courant. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_formulaire_e12b63f4f8d780b57362b45db23e41fc}
+
+\begin{CompactList}\small\item\em Enregistre les données du formulaire courant dans la DB. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_formulaire_b74a056764300cdb7a917d3ff556d7c7}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initAxes} ()\label{class_c_formulaire_8613a76a7c1b34618a7d27decc101755}
+
+\begin{CompactList}\small\item\em Initialise un tableau contenant les axes du formulaire courant. \item\end{CompactList}\item 
+{\bf initObjets} (\$v\_\-bInitDetail=TRUE, \$v\_\-bInitValeursParAxe=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les objet du formulaire courant. \item\end{CompactList}\item 
+{\bf retListeFormulairesVisibles} (\$v\_\-iIdAuteur=NULL, \$v\_\-sType=NULL, \$v\_\-iStatut=NULL, \$v\_\-bToutMontrer=FALSE)
+\begin{CompactList}\small\item\em Retourne la liste des formulaires visibles. \item\end{CompactList}\item 
+{\bf retListeObjetFormulaire} ()
+\begin{CompactList}\small\item\em Retourne la liste des objets de formulaire. \item\end{CompactList}\item 
+{\bf retNbRemplisDsSessions} ()
+\begin{CompactList}\small\item\em Retourne le nombre de formulaire complété. \item\end{CompactList}\item 
+{\bf retNbreObjetFormulaire} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'éléments de cette activité en ligne. \item\end{CompactList}\item 
+{\bf retNbreObjetFormulaireNonAutoCorrige} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'éléments qui ne sont pas auto-corrigés. \item\end{CompactList}\item 
+{\bf retNbUtilisationsDsSessions} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'utilisation du formulaire. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce formulaire}\par
+\begin{CompactItemize}
+\item 
+\textbf{defAutoCorrection} (\$v\_\-iAutoCorrect)\label{class_c_formulaire_7347024923c727952c9fdc09f5a23e80}
+
+\item 
+\textbf{defEncadrer} (\$v\_\-iEncadrer)\label{class_c_formulaire_87e1a81adfce34a923c56d76e570b416}
+
+\item 
+\textbf{defIdPers} (\$v\_\-iIdPers)\label{class_c_formulaire_e329b2f409634627b8d15e9b482ff324}
+
+\item 
+\textbf{defInterElem} (\$v\_\-iInterElem)\label{class_c_formulaire_06821122d77efc878d497fcb2ce01560}
+
+\item 
+\textbf{defInterEnonRep} (\$v\_\-iInterEnonRep)\label{class_c_formulaire_9ef7bdc678ffe8ce71288bef5bc5673f}
+
+\item 
+\textbf{defLargeur} (\$v\_\-iLargeur)\label{class_c_formulaire_bc492d223ce03493340b3a196807ff61}
+
+\item 
+\textbf{defMethodeCorrection} (\$v\_\-iMethode)\label{class_c_formulaire_60207139fb2162fe44e4ceee125e2d63}
+
+\item 
+\textbf{defRemplirTout} (\$v\_\-bRemplirTout)\label{class_c_formulaire_07864c2760018764b983cb5e0434859c}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_formulaire_eac69f253bf0b7f04fcff4151e60da96}
+
+\item 
+\textbf{defTitre} (\$v\_\-sTitre)\label{class_c_formulaire_a4128856e26827433a7969424b375a42}
+
+\item 
+\textbf{defType} (\$v\_\-sType)\label{class_c_formulaire_bd9f38fdb5108a98dc1ea48597070209}
+
+\item 
+\textbf{defTypeLarg} (\$v\_\-sTypeLarg)\label{class_c_formulaire_66304a80e1d49f040a5f18070fa1bf1e}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce formulaire}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAutoCorrection} ()\label{class_c_formulaire_97b3cd269fc8e31ef9a42f29b60b1fbc}
+
+\item 
+\textbf{retEncadrer} ()\label{class_c_formulaire_e559d4db459c471697dbaf5e1bad9a78}
+
+\item 
+\textbf{retId} ()\label{class_c_formulaire_cd9fc2c5a82606ebd72ddc1d9c775d6b}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_formulaire_a6100bba63d3b335154585e86a0d6d92}
+
+\item 
+\textbf{retInterElem} ()\label{class_c_formulaire_312b84a2932ee43958904bce29c5e321}
+
+\item 
+\textbf{retInterEnonRep} ()\label{class_c_formulaire_a4e850e25e87c1132a555d1774b58d95}
+
+\item 
+\textbf{retLargeur} ()\label{class_c_formulaire_34294d6563286f280d51b06e446d9486}
+
+\item 
+\textbf{retMethodeCorrection} ()\label{class_c_formulaire_d05574110cc9edf1d7fd434ee1135c8a}
+
+\item 
+\textbf{retRemplirTout} ()\label{class_c_formulaire_d08af0bf9431abd3f56e46ffe6370602}
+
+\item 
+\textbf{retStatut} ()\label{class_c_formulaire_f6733258ce77a0ce5431d14b796e723b}
+
+\item 
+\textbf{retTitre} ()\label{class_c_formulaire_7710a97cd8fa1dcfeccc242aba12e986}
+
+\item 
+\textbf{retType} ()\label{class_c_formulaire_cf6a2bd98f3c1fd72af0d8d7f2d27582}
+
+\item 
+\textbf{retTypeLarg} ()\label{class_c_formulaire_c6569092afd7a27e1206f3776e7e7796}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoAxes}\label{class_c_formulaire_1719cf77c569320e0452201db3381169}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initAxes()}{p.}{class_c_formulaire_8613a76a7c1b34618a7d27decc101755}, contenant les axes du formulaire courant. \item\end{CompactList}\item 
+{\bf \$aoFormulaire}\label{class_c_formulaire_14e9c08ea2597e322705539a9ddb0886}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{retListeFormulairesVisibles()}{p.}{class_c_formulaire_ddf3e709535be3d52b0326d452570f1f}, contenant des formulaires. \item\end{CompactList}\item 
+{\bf \$aoObjets}\label{class_c_formulaire_1bb1252adfcf59a87bb90ce0f522d494}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initObjets()}{p.}{class_c_formulaire_bc08ddba6fbff30b39e3f829c2326264}, contenant des objets de formulaire. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_formulaire_4d0d41ddfceb2fa621fc9ac4cfc3fe64}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_formulaire_ba0d0fdcf33bb90abf75b57c9fe8b876}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_formulaire_05dbe46ffa1d6f4c5fcdced6e866776f}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oExportation}\label{class_c_formulaire_f93e8798487dedf2cdead06d853b330c}
+
+\begin{CompactList}\small\item\em objet initialisé par \doxyref{determinerDonneesAExporter()}{p.}{class_c_formulaire_860cca5e40a9c659a27323e8d2cf0238}, contenant les objet à exporter du formulaire courant \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CFormulaire@{CFormulaire}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::ajouter (\$ {\em iIdPers})}\label{class_c_formulaire_39a23f6568a607dc3898c2e9b5ed3878}
+
+
+Ajoute un nouveau formulaire dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau formulaire \end{Desc}
+\index{CFormulaire@{CFormulaire}!CFormulaire@{CFormulaire}}
+\index{CFormulaire@{CFormulaire}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::CFormulaire (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_formulaire_414eeb4612b51b829610e88eab8cdfb7}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par retListeFormulairesVisibles().\index{CFormulaire@{CFormulaire}!copier@{copier}}
+\index{copier@{copier}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::copier (\$ {\em v\_\-iIdPers})}\label{class_c_formulaire_246a5317f45989dc62e224ce5ffa9593}
+
+
+Copie le formulaire courant dans un nouveau formulaire appartenant à la nouvelle personne. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau formulaire \end{Desc}
+\index{CFormulaire@{CFormulaire}!determinerDonneesAExporter@{determinerDonneesAExporter}}
+\index{determinerDonneesAExporter@{determinerDonneesAExporter}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::determinerDonneesAExporter (\$ {\em v\_\-iValeurAxeNeutreMin} = {\tt 0}, \/  \$ {\em v\_\-iValeurAxeNeutreMax} = {\tt 0})}\label{class_c_formulaire_860cca5e40a9c659a27323e8d2cf0238}
+
+
+Initialise oExportation qui contiendra les données à exporter. 
+
+Exporte seulement les listes, radios, et cases à cocher. Les axes, objets, réponses possibles, et valeurs par axe doivent tous être initialisés pour que ça fonctionne
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iValeurAxeNeutreMin}]nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées. Cet intervalle correspond aux valeurs de l'axe qui ne sont pas prisent en compte lors de l'exportation \item[{\em v\_\-iValeurAxeNeutreMax}]nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées \end{description}
+\end{Desc}
+\index{CFormulaire@{CFormulaire}!initObjets@{initObjets}}
+\index{initObjets@{initObjets}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::initObjets (\$ {\em v\_\-bInitDetail} = {\tt TRUE}, \/  \$ {\em v\_\-bInitValeursParAxe} = {\tt FALSE})}\label{class_c_formulaire_bc08ddba6fbff30b39e3f829c2326264}
+
+
+Initialise un tableau contenant les objet du formulaire courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitDetail}]si {\tt true(defaut)} initialise les objets du formulaire, la fonction \doxyref{initAxes()}{p.}{class_c_formulaire_8613a76a7c1b34618a7d27decc101755} doit être appelée avant celle-ci \item[{\em v\_\-bInitValeursParAxe}]si {\tt true}({\tt false} par défaut), initialise les reponses de l'objet par axe \end{description}
+\end{Desc}
+\index{CFormulaire@{CFormulaire}!retListeFormulairesVisibles@{retListeFormulairesVisibles}}
+\index{retListeFormulairesVisibles@{retListeFormulairesVisibles}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retListeFormulairesVisibles (\$ {\em v\_\-iIdAuteur} = {\tt NULL}, \/  \$ {\em v\_\-sType} = {\tt NULL}, \/  \$ {\em v\_\-iStatut} = {\tt NULL}, \/  \$ {\em v\_\-bToutMontrer} = {\tt FALSE})}\label{class_c_formulaire_ddf3e709535be3d52b0326d452570f1f}
+
+
+Retourne la liste des formulaires visibles. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdAuteur}]l'id de l'auteur des formulaires \item[{\em v\_\-sType}]le type de formulaire \item[{\em v\_\-iStatut}]le statut du formulaire \item[{\em v\_\-bToutMontrer}]si {\tt true}({\tt false} par défaut), la liste complète des formulaires sera retournée\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la liste des formulaires visibles \end{Desc}
+
+
+Références CFormulaire().\index{CFormulaire@{CFormulaire}!retListeObjetFormulaire@{retListeObjetFormulaire}}
+\index{retListeObjetFormulaire@{retListeObjetFormulaire}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retListeObjetFormulaire ()}\label{class_c_formulaire_d2cdfb6d95381ce5aef3f94b6f63c2fe}
+
+
+Retourne la liste des objets de formulaire. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des objets de formulaire \end{Desc}
+
+
+Références \$oEnregBdd.\index{CFormulaire@{CFormulaire}!retNbRemplisDsSessions@{retNbRemplisDsSessions}}
+\index{retNbRemplisDsSessions@{retNbRemplisDsSessions}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retNbRemplisDsSessions ()}\label{class_c_formulaire_0b96da706e48f28e8120e186e80153eb}
+
+
+Retourne le nombre de formulaire complété. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de formulaire complété \end{Desc}
+\index{CFormulaire@{CFormulaire}!retNbreObjetFormulaire@{retNbreObjetFormulaire}}
+\index{retNbreObjetFormulaire@{retNbreObjetFormulaire}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retNbreObjetFormulaire ()}\label{class_c_formulaire_be61fa895c6370afcd74499480c00203}
+
+
+Retourne le nombre d'éléments de cette activité en ligne. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'éléments de cette activité en ligne \end{Desc}
+\index{CFormulaire@{CFormulaire}!retNbreObjetFormulaireNonAutoCorrige@{retNbreObjetFormulaireNonAutoCorrige}}
+\index{retNbreObjetFormulaireNonAutoCorrige@{retNbreObjetFormulaireNonAutoCorrige}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retNbreObjetFormulaireNonAutoCorrige ()}\label{class_c_formulaire_2f12b20106226efe911008ca44e897e3}
+
+
+Retourne le nombre d'éléments qui ne sont pas auto-corrigés. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'éléments qui ne sont pas auto-corrigés \end{Desc}
+\index{CFormulaire@{CFormulaire}!retNbUtilisationsDsSessions@{retNbUtilisationsDsSessions}}
+\index{retNbUtilisationsDsSessions@{retNbUtilisationsDsSessions}!CFormulaire@{CFormulaire}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CFormulaire::retNbUtilisationsDsSessions ()}\label{class_c_formulaire_144a6a828ed19f6b2aaef7374b4b5110}
+
+
+Retourne le nombre d'utilisation du formulaire. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'utilisation du formulaire \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf formulaire.tbl.php}\end{CompactItemize}

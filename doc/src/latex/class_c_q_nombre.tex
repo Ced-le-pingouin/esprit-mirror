@@ -1,0 +1,111 @@
+\section{Référence de la classe CQNombre}
+\label{class_c_q_nombre}\index{CQNombre@{CQNombre}}
+
+
+\subsection{Description détaillée}
+Gestion des questions de type \char`\"{}nombre\char`\"{} des activités en ligne, et encapsulation de la table QNombre de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+\textbf{ajouter} (\$v\_\-iIdObjForm)\label{class_c_q_nombre_423a42307a9b70dcfe2020a8da049a82}
+
+\item 
+\textbf{copier} (\$v\_\-iIdNvObjForm)\label{class_c_q_nombre_50be0ad7587465f0d4e3c29975555dd0}
+
+\item 
+{\bf CQNombre} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{defAlignEnonQN} (\$v\_\-sAlignEnonQN)\label{class_c_q_nombre_a84022ca93ac050fa493f64bdc3ba33c}
+
+\item 
+\textbf{defAlignRepQN} (\$v\_\-sAlignRepQN)\label{class_c_q_nombre_94546e943cdcf2d3b25061ee5e5ce05b}
+
+\item 
+\textbf{defEnonQN} (\$v\_\-sEnonQN)\label{class_c_q_nombre_8fa11f64ef3615f4cd75abfef94b9ebf}
+
+\item 
+\textbf{defIdObjFormul} (\$v\_\-iIdObjForm)\label{class_c_q_nombre_cf7e8a76b566c046a3279f96d059c9f7}
+
+\item 
+\textbf{defMultiQN} (\$v\_\-iMultiQN)\label{class_c_q_nombre_5d9ea58fe77b54e3e085da3a4f6a9d74}
+
+\item 
+\textbf{defNbMaxQN} (\$v\_\-iNbMaxQN)\label{class_c_q_nombre_c22775d9b2a8b6ffa50677c599cc32d9}
+
+\item 
+\textbf{defNbMinQN} (\$v\_\-iNbMinQN)\label{class_c_q_nombre_7db270363d2b1a387aac958e3a151cc2}
+
+\item 
+\textbf{defTxtApQN} (\$v\_\-sTxtApQN)\label{class_c_q_nombre_3323595d57fab069021d4e6d298b9cb9}
+
+\item 
+\textbf{defTxtAvQN} (\$v\_\-sTxtAvQN)\label{class_c_q_nombre_c4935b94547e9df2c01f165840f25a55}
+
+\item 
+\textbf{effacer} ()\label{class_c_q_nombre_70523b45a7ba4f4af096c7de72548c87}
+
+\item 
+\textbf{enregistrer} ()\label{class_c_q_nombre_7dac8ec65d4aefa24ecc5e66f85230b8}
+
+\item 
+\textbf{enregistrerRep} (\$v\_\-iIdFC, \$v\_\-iIdObjForm, \$v\_\-fReponsePersQTC)\label{class_c_q_nombre_5223accffee0d2a3c3a9fa3b7cb577df}
+
+\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_q_nombre_9d19579220ece9eb8446cc1319c103ac}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+\textbf{retAlignEnonQN} ()\label{class_c_q_nombre_9ebbf04d7616bcb03eddf6764ebf1aee}
+
+\item 
+\textbf{retAlignRepQN} ()\label{class_c_q_nombre_5cd39e5cc37a54fad0c44bb4bafd3184}
+
+\item 
+\textbf{retEnonQN} ()\label{class_c_q_nombre_9b537da9e53471d566b09f2aa4594c27}
+
+\item 
+\textbf{retId} ()\label{class_c_q_nombre_0f7b948d4d6b40d4e196e12195bd1d0b}
+
+\item 
+\textbf{retMultiQN} ()\label{class_c_q_nombre_382ec2caf9391f23b5ee5a1978c5c5fc}
+
+\item 
+\textbf{retNbMaxQN} ()\label{class_c_q_nombre_fe280038bc22155b81958ddb7f1c5926}
+
+\item 
+\textbf{retNbMinQN} ()\label{class_c_q_nombre_b04ab390aa25fc0b0a2613238e937f88}
+
+\item 
+\textbf{retTxtApQN} ()\label{class_c_q_nombre_40738fb3b125e2768a35d9cca6a877e2}
+
+\item 
+\textbf{retTxTAvQN} ()\label{class_c_q_nombre_921fea1e4e8590e9be59859100ba26bf}
+
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$iId}\label{class_c_q_nombre_aaeaa47ffe37faa9bb95577f7c6af0f9}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_q_nombre_906760f8ef054d1cd949babab8f3b539}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_q_nombre_93a3ce5217175b4fd84656f3696aba24}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CQNombre@{CQNombre}!CQNombre@{CQNombre}}
+\index{CQNombre@{CQNombre}!CQNombre@{CQNombre}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CQNombre::CQNombre (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_q_nombre_7f2aa9ce60ed2d6c8a06c7937355bb27}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf qnombre.tbl.php}\end{CompactItemize}

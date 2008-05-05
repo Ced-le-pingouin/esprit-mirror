@@ -1,0 +1,535 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CPersonne</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CPersonne</h1><!-- doxytag: class="CPersonne" -->
+<p>
+<a href="class_c_personne-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des personnes, et encapsulation de la table Personne de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#752267f10e430532ec912fc65fc1ff19">ajouter</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Insère une nouvelle personne dans la DB et retourne l'id de celle-ci.  <a href="#752267f10e430532ec912fc65fc1ff19"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608">CPersonne</a> (&amp;$v_oBdd, $v_iId=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#874e728c1a2a3a9bc1d8a414fde97608"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#9f6d65780ed4042d69fad583381c8a29">enregistrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre la personne représentée par l'objet courant dans la DB.  <a href="#9f6d65780ed4042d69fad583381c8a29"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#8e699d5aca21bcdff5f53b01f2868540">estPseudoUnique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que le pseudo de cette personne n'existe pas encore dans la DB.  <a href="#8e699d5aca21bcdff5f53b01f2868540"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#896ccfdad7d4b3fd342dc47daf633e53">estUnique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que le couple nom+prénom de la personne n'existe pas encore dans la DB.  <a href="#896ccfdad7d4b3fd342dc47daf633e53"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement.  <a href="#edafe238c93dd959c7bf2b6f471839c1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#1aac5a726b68cfe53564d676ddeafb7e">initModules</a> ($v_iIdMod=0, $v_iIdForm=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remplit un tableau (<code>aoModules</code>) avec les modules pour lesquels cette personne est tuteur, avec possibilité de restreindre la recherche à une formation ou un module spécifique.  <a href="#1aac5a726b68cfe53564d676ddeafb7e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#fa04e189c3515e109c86835ccbf7bef1">initPersonne</a> ($v_asInfosPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec une personne de la DB sur base de critères spécifiques, pas seulement sur l'id.  <a href="#fa04e189c3515e109c86835ccbf7bef1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#f18f280b41477704af1b59e1fb204e10">retLienEmail</a> ($v_bComplet=FALSE, $v_sSujet=NULL, $v_sPseudo=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le code HTML nécessaire à la représentation d'un lien "e-mail" de la personne.  <a href="#f18f280b41477704af1b59e1fb204e10"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#ec0d9884b375b63a30297bbf68feff64">retNomComplet</a> ($v_bInverser=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom complet de la personne, càd ses nom et prénom, dans un ordre choisi.  <a href="#ec0d9884b375b63a30297bbf68feff64"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#6b0b9131496e613b323c6f3ab84ba62a">retTableauDateNaiss</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la date de naissance de la personne sous forme de tableau.  <a href="#6b0b9131496e613b323c6f3ab84ba62a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#6d0ad713eaa8497d1ebd435a46057691">verifTuteur</a> ($v_iIdMod)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie que la personne a le statut de tuteur dans un module indiqué.  <a href="#6d0ad713eaa8497d1ebd435a46057691"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour cette personne</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dfeecdb46bf3ee1c97614ab1884e8d33"></a><!-- doxytag: member="CPersonne::defAdresse" ref="dfeecdb46bf3ee1c97614ab1884e8d33" args="($v_sAdresse)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAdresse</b> ($v_sAdresse)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d2ed8cfcdbf7b8fa958595ad589f8d98"></a><!-- doxytag: member="CPersonne::defDateNaiss" ref="d2ed8cfcdbf7b8fa958595ad589f8d98" args="($v_sDateNaiss)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defDateNaiss</b> ($v_sDateNaiss)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="01b404ac037ba38541f7aa8f389f7858"></a><!-- doxytag: member="CPersonne::defEmail" ref="01b404ac037ba38541f7aa8f389f7858" args="($v_sEmail)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defEmail</b> ($v_sEmail)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="70e81addc861de864b1fa6cabca3d93c"></a><!-- doxytag: member="CPersonne::defMdp" ref="70e81addc861de864b1fa6cabca3d93c" args="($v_sMdp)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defMdp</b> ($v_sMdp)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d092447b0fac7fd4439532aaf072798c"></a><!-- doxytag: member="CPersonne::defNom" ref="d092447b0fac7fd4439532aaf072798c" args="($v_sNom)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNom</b> ($v_sNom)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="79e1737520d85b1e8ae45ab8b56a35d8"></a><!-- doxytag: member="CPersonne::defNumTel" ref="79e1737520d85b1e8ae45ab8b56a35d8" args="($v_sNumTel)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNumTel</b> ($v_sNumTel)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cde64a0b075bf691ca867b93464a14c6"></a><!-- doxytag: member="CPersonne::defPrenom" ref="cde64a0b075bf691ca867b93464a14c6" args="($v_sPrenom)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defPrenom</b> ($v_sPrenom)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7a1bcb9cd430c1e953d9e6d414c2fe82"></a><!-- doxytag: member="CPersonne::defPseudo" ref="7a1bcb9cd430c1e953d9e6d414c2fe82" args="($v_sPseudo)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defPseudo</b> ($v_sPseudo)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="abc522efe4b944a26813b4536513aed1"></a><!-- doxytag: member="CPersonne::defSexe" ref="abc522efe4b944a26813b4536513aed1" args="($v_cSexe)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defSexe</b> ($v_cSexe)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour cette personne</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6ed5b7df5327b09f43885d8be843dac6"></a><!-- doxytag: member="CPersonne::retAdresse" ref="6ed5b7df5327b09f43885d8be843dac6" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAdresse</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fce55170e9c4bc7a1221afa15c119637"></a><!-- doxytag: member="CPersonne::retDateNaiss" ref="fce55170e9c4bc7a1221afa15c119637" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateNaiss</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="46049a00ea2f457ef5832910f28281a9"></a><!-- doxytag: member="CPersonne::retEmail" ref="46049a00ea2f457ef5832910f28281a9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retEmail</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7eb94ea559fc40ecc3816ac8f227d637"></a><!-- doxytag: member="CPersonne::retId" ref="7eb94ea559fc40ecc3816ac8f227d637" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8c297bdeb1420de182a2b48bba09d7e1"></a><!-- doxytag: member="CPersonne::retMdp" ref="8c297bdeb1420de182a2b48bba09d7e1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retMdp</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="35adc74e9b21b4163987956a2d24189a"></a><!-- doxytag: member="CPersonne::retNom" ref="35adc74e9b21b4163987956a2d24189a" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNom</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cf91b468b28f4c2011110002cd60a766"></a><!-- doxytag: member="CPersonne::retNumTel" ref="cf91b468b28f4c2011110002cd60a766" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNumTel</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6ccdf386f67c760c8a8400169b629676"></a><!-- doxytag: member="CPersonne::retPrenom" ref="6ccdf386f67c760c8a8400169b629676" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retPrenom</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0e1e19f127356d2597c6800192065c5c"></a><!-- doxytag: member="CPersonne::retPseudo" ref="0e1e19f127356d2597c6800192065c5c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retPseudo</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3d34599673dfb49ef3b5f0c851dbda5b"></a><!-- doxytag: member="CPersonne::retSexe" ref="3d34599673dfb49ef3b5f0c851dbda5b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retSexe</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="02be5d339c2e9955e1154c41bd53f80a"></a><!-- doxytag: member="CPersonne::retUrlPerso" ref="02be5d339c2e9955e1154c41bd53f80a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retUrlPerso</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c24a2804eee1de331262287c40833c6b"></a><!-- doxytag: member="CPersonne::$aoModules" ref="c24a2804eee1de331262287c40833c6b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#c24a2804eee1de331262287c40833c6b">$aoModules</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_personne.html#1aac5a726b68cfe53564d676ddeafb7e" title="Remplit un tableau (aoModules) avec les modules pour lesquels cette personne est...">initModules()</a>, qui contiendra la liste des modules auxquels la personne participe. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#7f3fad7f7be53a11377964c270439f48">$aoPersonnes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui devrait être rempli par certaines fonctions, pour contenir une liste de personnes.  <a href="#7f3fad7f7be53a11377964c270439f48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ed7906a27a518d8ebc729ad58a8bf1e6"></a><!-- doxytag: member="CPersonne::$iId" ref="ed7906a27a518d8ebc729ad58a8bf1e6" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#ed7906a27a518d8ebc729ad58a8bf1e6">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de la personne à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="daf4ad365488824177035307a8b576b3"></a><!-- doxytag: member="CPersonne::$oBdd" ref="daf4ad365488824177035307a8b576b3" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#daf4ad365488824177035307a8b576b3">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="757f5c8f928bf352918f43ac85e4090a"></a><!-- doxytag: member="CPersonne::$oEnregBdd" ref="757f5c8f928bf352918f43ac85e4090a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_personne.html#757f5c8f928bf352918f43ac85e4090a">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="752267f10e430532ec912fc65fc1ff19"></a><!-- doxytag: member="CPersonne::ajouter" ref="752267f10e430532ec912fc65fc1ff19" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::ajouter           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Insère une nouvelle personne dans la DB et retourne l'id de celle-ci. 
+<p>
+L'enregistrement créé est "vide", à part l'id, aucune information n'est enregistrée<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la nouvelle personne insérée dans la DB </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="874e728c1a2a3a9bc1d8a414fde97608"></a><!-- doxytag: member="CPersonne::CPersonne" ref="874e728c1a2a3a9bc1d8a414fde97608" args="(&amp;$v_oBdd, $v_iId=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::CPersonne           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iId</em>&nbsp;</td><td>l'id de la personne à récupérer dans la DB. S'il est omis ou si la personne demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">init()</a></dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Le fonctionnement du constructeur est similaire pour presque toutes les classes encapsulant une table de la DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter le principe général </dd></dl>
+
+<p>Références <a class="el" href="personne_8tbl_8php-source.html#l00090">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9f6d65780ed4042d69fad583381c8a29"></a><!-- doxytag: member="CPersonne::enregistrer" ref="9f6d65780ed4042d69fad583381c8a29" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::enregistrer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enregistre la personne représentée par l'objet courant dans la DB. 
+<p>
+S'il elle n'existe pas encore (id), un nouvel enregistrement est créé, sinon la personne existante voit ses infos mises à jour<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8e699d5aca21bcdff5f53b01f2868540"></a><!-- doxytag: member="CPersonne::estPseudoUnique" ref="8e699d5aca21bcdff5f53b01f2868540" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::estPseudoUnique           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que le pseudo de cette personne n'existe pas encore dans la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le pseudo de cette personne n'est pas encore utilisé dans la DB </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="896ccfdad7d4b3fd342dc47daf633e53"></a><!-- doxytag: member="CPersonne::estUnique" ref="896ccfdad7d4b3fd342dc47daf633e53" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::estUnique           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que le couple nom+prénom de la personne n'existe pas encore dans la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le couple nom+prénom de cette personne n'existe pas encore dans la DB </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="edafe238c93dd959c7bf2b6f471839c1"></a><!-- doxytag: member="CPersonne::init" ref="edafe238c93dd959c7bf2b6f471839c1" args="($v_oEnregExistant=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::init           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oEnregExistant</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oEnregExistant</em>&nbsp;</td><td>l'objet PHP représentant un enregistrement de la DB. Cet objet provient généralement d'une requête antérieure, et doit avoir pour propriétés les noms des champs de la table Personne. Par défaut, ce paramètre est <code>null</code>, ce qui signifie qu'une requête est automatiquement effectuée dans la table Personne, à la recherche de l'enregistrement qui a pour clé iId. Si l'enregistrement est trouvé, l'objet est rempli avec ce dernier (dans oEnregBdd). En général, c'est ce qui se produit, et iId a été rempli au préalable par le constructeur, qui appelle ensuite cette fonction</td></tr>
+  </table>
+</dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Le fonctionnement de <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">init()</a> est similaire pour presque toutes les classes encapsulant une table de la DB, c'est pourquoi la documentation d'autres classes renvoie à celle-ci, pour éviter d'en répéter le principe général </dd></dl>
+
+<p>Référencé par <a class="el" href="personne_8tbl_8php-source.html#l00066">CPersonne()</a>, et <a class="el" href="personne_8tbl_8php-source.html#l00121">initPersonne()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="1aac5a726b68cfe53564d676ddeafb7e"></a><!-- doxytag: member="CPersonne::initModules" ref="1aac5a726b68cfe53564d676ddeafb7e" args="($v_iIdMod=0, $v_iIdForm=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::initModules           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Remplit un tableau (<code>aoModules</code>) avec les modules pour lesquels cette personne est tuteur, avec possibilité de restreindre la recherche à une formation ou un module spécifique. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>l'id du module unique sur lequel se fera la recherche (une valeur de retour maximum). Par défaut =0, donc recherche non restreinte à un module précis </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la formation dans laquelle se fera la recherche, donc seuls les modules de cette formation seront considérés. Par défaut =0, ce qui signifie que la recherche n'est pas restreinte à une formation précise</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de modules trouvés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fa04e189c3515e109c86835ccbf7bef1"></a><!-- doxytag: member="CPersonne::initPersonne" ref="fa04e189c3515e109c86835ccbf7bef1" args="($v_asInfosPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::initPersonne           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_asInfosPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'objet avec une personne de la DB sur base de critères spécifiques, pas seulement sur l'id. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_asInfosPers</em>&nbsp;</td><td>le tableau contenant les critères, chaque clé étant le nom du champ de la DB qui sera pris en compte, et chaque valeur correspondante étant la vlaue qu'on attend pour ce champ. Par exemple, si $v_asInfosPers["Nom"] = "Floquet" et $v_asInfosPers["Prenom"] = "Cédric", une requête SQL sera exécutée sur table Personne pour trouver Cédric Floquet dans la table</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de personnes trouvées répondant aux critères (bien que seule la première trouvée serve à initialiser l'objet) </dd></dl>
+
+<p>Références <a class="el" href="personne_8tbl_8php-source.html#l00090">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f18f280b41477704af1b59e1fb204e10"></a><!-- doxytag: member="CPersonne::retLienEmail" ref="f18f280b41477704af1b59e1fb204e10" args="($v_bComplet=FALSE, $v_sSujet=NULL, $v_sPseudo=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::retLienEmail           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bComplet</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sSujet</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sPseudo</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le code HTML nécessaire à la représentation d'un lien "e-mail" de la personne. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bComplet</em>&nbsp;</td><td>si <code>true</code>, les nom et prénom de la personne sont utilisés comme intitulé du lien </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sSujet</em>&nbsp;</td><td>le texte à utiliser pour remplir automatiquement le sujet du mail lors d'un clic sur le lien </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_pseudo</em>&nbsp;</td><td>si <code>true</code>, c'est le pseudo de la personne qui est utilisé comme intitulé du lien</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le code nécessaire à la représentation HTML du lien "e-mail" de la personne. Si celle-ci ne dispose pas d'adresse e-mail, ce n'est pas un lien mais un texte (nom et/ou prénom, ou pseudo) non-cliquable qui est retourné </dd></dl>
+
+<p>Références <a class="el" href="personne_8tbl_8php-source.html#l00343">retNomComplet()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ec0d9884b375b63a30297bbf68feff64"></a><!-- doxytag: member="CPersonne::retNomComplet" ref="ec0d9884b375b63a30297bbf68feff64" args="($v_bInverser=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::retNomComplet           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInverser</em> = <code>FALSE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom complet de la personne, càd ses nom et prénom, dans un ordre choisi. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bInverser</em>&nbsp;</td><td>si <code>true</code>, le nom se trouvera devant le prénom dans la chaîne retourner. Si <code>false</code>, le prénom précèdera le nom</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>une chaîne de caractère contenant les nom et prénom de la personne, dans l'odre voulu. Le nom est entièrement en majuscule, alors que pour le prénom seules la première lettre de chaque mot (si prénom composé) est capitalisée </dd></dl>
+
+<p>Référencé par <a class="el" href="personne_8tbl_8php-source.html#l00173">retLienEmail()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6b0b9131496e613b323c6f3ab84ba62a"></a><!-- doxytag: member="CPersonne::retTableauDateNaiss" ref="6b0b9131496e613b323c6f3ab84ba62a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::retTableauDateNaiss           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la date de naissance de la personne sous forme de tableau. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau à 3 éléments, contenant respctivement le jour (jj), le mois (mm), et l'année (aaaa), représentant la date de naissance de la personne </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="6d0ad713eaa8497d1ebd435a46057691"></a><!-- doxytag: member="CPersonne::verifTuteur" ref="6d0ad713eaa8497d1ebd435a46057691" args="($v_iIdMod)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::verifTuteur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie que la personne a le statut de tuteur dans un module indiqué. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>l'id du module à vérifier</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si cette personne est bien tuteur dans le module indiqué </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>Documentation des données membres</h2>
+<a class="anchor" name="7f3fad7f7be53a11377964c270439f48"></a><!-- doxytag: member="CPersonne::$aoPersonnes" ref="7f3fad7f7be53a11377964c270439f48" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CPersonne::$aoPersonnes          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tableau qui devrait être rempli par certaines fonctions, pour contenir une liste de personnes. 
+<p>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000004">Obsolète:</a></b></dt><dd>Ne semble pas/plus utilisé ??? </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="personne_8tbl_8php.html">personne.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

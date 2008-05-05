@@ -1,0 +1,113 @@
+\section{Référence de la classe CPermission}
+\label{class_c_permission}\index{CPermission@{CPermission}}
+
+
+\subsection{Description détaillée}
+Gestion des permissions, et encapsulation de la table Permission de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CPermission} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_permission_78493d6c1a92a5b67a69164ed888e89b}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initPermissions} (\$v\_\-sFiltre=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant une liste de permission. \item\end{CompactList}\item 
+{\bf initPermissionsStatut} (\$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les permissions d'un statut. \item\end{CompactList}\item 
+{\bf verifPermission} (\$v\_\-sPermission)
+\begin{CompactList}\small\item\em Verifie si la permission est dans le tableau initialisé par \doxyref{initPermissionsStatut()}{p.}{class_c_permission_bebd18194676e24230d0dd6bb7dca60b}. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette permission}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDescr} ()\label{class_c_permission_025e6b87d9499e2ffb814a88f8a402d2}
+
+\item 
+\textbf{retId} ()\label{class_c_permission_820df72070083230f326251c119a508d}
+
+\item 
+\textbf{retNom} ()\label{class_c_permission_9befdefde8a14f08f50da6b012a6863a}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aiPermisStatut}\label{class_c_permission_f827701950e3593730257e9fd71e27d8}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initPermissionsStatut()}{p.}{class_c_permission_bebd18194676e24230d0dd6bb7dca60b}, contenant la liste des permissions d'un statut. \item\end{CompactList}\item 
+{\bf \$aoPermissions}\label{class_c_permission_d84e91546be91fea3b75beec019b6427}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initPermissions()}{p.}{class_c_permission_a878b5d5a459e29e7eb9fdd6f33fde13}, contenant une liste de permission. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_permission_2a3b0f886b1c10edd8a814f63f7f12f3}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la permission à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_permission_a9f74dc69fb05bb5f6771f1a8deea559}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_permission_c6a5d1ebcea0d29fd7104eddc05f64c1}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CPermission@{CPermission}!CPermission@{CPermission}}
+\index{CPermission@{CPermission}!CPermission@{CPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPermission::CPermission (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_permission_90497f4e951cc830b80d3dc5467a5367}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par initPermissions().\index{CPermission@{CPermission}!initPermissions@{initPermissions}}
+\index{initPermissions@{initPermissions}!CPermission@{CPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPermission::initPermissions (\$ {\em v\_\-sFiltre} = {\tt NULL})}\label{class_c_permission_a878b5d5a459e29e7eb9fdd6f33fde13}
+
+
+Initialise un tableau contenant une liste de permission. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFiltre}]chaine comprise dans le nom de la permission\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombe de permissions insérées dans le tableau \end{Desc}
+
+
+Références CPermission().\index{CPermission@{CPermission}!initPermissionsStatut@{initPermissionsStatut}}
+\index{initPermissionsStatut@{initPermissionsStatut}!CPermission@{CPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPermission::initPermissionsStatut (\$ {\em v\_\-iIdStatut})}\label{class_c_permission_bebd18194676e24230d0dd6bb7dca60b}
+
+
+Initialise un tableau contenant les permissions d'un statut. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdStatut}]l'id du statut\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de permissions insérées dans le tableau \end{Desc}
+\index{CPermission@{CPermission}!verifPermission@{verifPermission}}
+\index{verifPermission@{verifPermission}!CPermission@{CPermission}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPermission::verifPermission (\$ {\em v\_\-sPermission})}\label{class_c_permission_1d1993a7ba12c76bd834b2b27a61e552}
+
+
+Verifie si la permission est dans le tableau initialisé par \doxyref{initPermissionsStatut()}{p.}{class_c_permission_bebd18194676e24230d0dd6bb7dca60b}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sPermission}]nom de la permission\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la permission est trouvée \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf permission.tbl.php}\end{CompactItemize}

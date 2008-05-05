@@ -1,0 +1,131 @@
+\section{Référence de la classe Erreur}
+\label{class_erreur}\index{Erreur@{Erreur}}
+
+
+\subsection{Description détaillée}
+Classe de gestion des erreurs. 
+
+Pour l'instant, cette classe est minimale et permet seulement de \char`\"{}provoquer\char`\"{} une erreur dans du code perso, étant donné qu'en PHP 4 les exceptions n'existent pas \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf Erreur} (\$v\_\-sTexte, \$v\_\-iNiveau={\bf ERREUR\_\-AVERT})
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf erreurs} (\$v\_\-sTexte=TRUE, \$v\_\-iNiveau={\bf ERREUR\_\-AVERT})
+\begin{CompactList}\small\item\em Stocke une nouvelle erreur ou retourne les erreurs déjà stockées. \item\end{CompactList}\item 
+{\bf estErreur} (\$v\_\-oObjet)
+\begin{CompactList}\small\item\em Vérifie qu'un objet donné est de type \char`\"{}erreur\char`\"{} (appartient à cette classe). \item\end{CompactList}\item 
+{\bf mode} (\$v\_\-iMode=NULL)
+\begin{CompactList}\small\item\em Modifie ou retourne le mode de gestion des erreurs. \item\end{CompactList}\item 
+{\bf provoquer} (\$v\_\-sTexte, \$v\_\-iNiveau={\bf ERREUR\_\-AVERT})
+\begin{CompactList}\small\item\em Provoque une erreur grâce à une fonction native de PHP. \item\end{CompactList}\item 
+{\bf retNiveau} ()\label{class_erreur_eb86459c5de05f5da8c3067da7a0ec05}
+
+\begin{CompactList}\small\item\em Retourne le niveau de l'erreur (voir constantes {\tt ERREUR\_\-}). \item\end{CompactList}\item 
+{\bf retTexte} ()\label{class_erreur_94e8f6ec779c02f3b8fe9c17bce34670}
+
+\begin{CompactList}\small\item\em Retourne le texte de l'erreur. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$iNiveau}\label{class_erreur_0332148543e4c26a1d3c7e26f641c362}
+
+\begin{CompactList}\small\item\em Le niveau de gravité (erreur/avertissement/note) de l'objet créé par le constructeur. \item\end{CompactList}\item 
+{\bf \$sTexte}\label{class_erreur_f8d38289fc6d692f07a20dfb9aeecc38}
+
+\begin{CompactList}\small\item\em Le texte associé à l'objet erreur/avertissement/note créé par le constructeur. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{Erreur@{Erreur}!Erreur@{Erreur}}
+\index{Erreur@{Erreur}!Erreur@{Erreur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Erreur::Erreur (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-iNiveau} = {\tt {\bf ERREUR\_\-AVERT}})}\label{class_erreur_c0b1d43c6f00a40ee8b0f788a808f9b4}
+
+
+Constructeur. 
+
+La plupart des fonctions de cette classe sont des fonctions statiques, mais on peut tout de même instancier des objets de la classe, pour simuler différent types d'erreurs et les utiliser par exemple comme valeur de retour, pour ensuite les tester grâce à la fonction \doxyref{estErreur()}{p.}{class_erreur_2252580a9a3b9ce29b714c0b22c23257} (tout comme on peut en PHP 5 créer des objets de type {\tt Exception})
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTexte}]le texte qui décrit l'erreur \item[{\em v\_\-iNiveau}]le type d'erreur (voir constantes {\tt ERREUR\_\-}). Par défaut, il s'agit d'une erreur de type {\tt ERREUR\_\-AVERT} (contrairement à PHP, ou l'erreur par défaut pour {\tt trigger\_\-error()} est de type {\tt E\_\-USER\_\-NOTICE}, donc de moindre importance) \end{description}
+\end{Desc}
+
+
+Référencé par erreurs().\index{Erreur@{Erreur}!erreurs@{erreurs}}
+\index{erreurs@{erreurs}!Erreur@{Erreur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Erreur::erreurs (\$ {\em v\_\-sTexte} = {\tt TRUE}, \/  \$ {\em v\_\-iNiveau} = {\tt {\bf ERREUR\_\-AVERT}})}\label{class_erreur_a04bfeeb69a868de73a67383beff2866}
+
+
+Stocke une nouvelle erreur ou retourne les erreurs déjà stockées. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTexte}]si de type booléen, la méthode retourne les erreurs déjà stockées. si de type non-booléen, le paramètre est considéré comme le texte d'une nouvelle erreur à stocker\item[{\em v\_\-iNiveau}]si le {\tt v\_\-sTexte} est de type non-booléen, ceci représente le niveau de l'erreur à stocker (voir constantes {\tt ERREUR\_\-})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt v\_\-sTexte} est de type booléen, les erreurs déjà stockées s'il y en a, ou {\tt false} s'il n'y en a pas si {\tt v\_\-sTexte} est de type non-booléen, rien\end{Desc}
+\begin{Desc}
+\item[Note:]Cette fonction est censée être statique \end{Desc}
+
+
+Références Erreur().
+
+Référencé par provoquer().\index{Erreur@{Erreur}!estErreur@{estErreur}}
+\index{estErreur@{estErreur}!Erreur@{Erreur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Erreur::estErreur (\$ {\em v\_\-oObjet})}\label{class_erreur_2252580a9a3b9ce29b714c0b22c23257}
+
+
+Vérifie qu'un objet donné est de type \char`\"{}erreur\char`\"{} (appartient à cette classe). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em l'objet}]dont il faut vérifier s'il s'agit d'un objet \char`\"{}erreur\char`\"{}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'objet est de type \char`\"{}erreur\char`\"{}, {\tt false} sinon\end{Desc}
+\begin{Desc}
+\item[Note:]Cette fonction est censée être statique \end{Desc}
+\index{Erreur@{Erreur}!mode@{mode}}
+\index{mode@{mode}!Erreur@{Erreur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Erreur::mode (\$ {\em v\_\-iMode} = {\tt NULL})}\label{class_erreur_0295e51569b6d26a8646bdb277d930ee}
+
+
+Modifie ou retourne le mode de gestion des erreurs. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iMode}]si {\tt null}, le mode de de gestion actuel est retourné. Sinon, le paramètre est défini comme mode d'affichage (voir constantes {\tt ERREUR\_\-MODE\_\-}...)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si le paramètre {\tt v\_\-iMode} était {\tt null}, retourne le mode d'affichage actuel. Sinon, rien\end{Desc}
+\begin{Desc}
+\item[Note:]Cette fonction est censée être statique (méthode de classe, pas d'instance) \end{Desc}
+
+
+Référencé par provoquer().\index{Erreur@{Erreur}!provoquer@{provoquer}}
+\index{provoquer@{provoquer}!Erreur@{Erreur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Erreur::provoquer (\$ {\em v\_\-sTexte}, \/  \$ {\em v\_\-iNiveau} = {\tt {\bf ERREUR\_\-AVERT}})}\label{class_erreur_9e3cfeb2bdcf027921d4d24eef9ecda2}
+
+
+Provoque une erreur grâce à une fonction native de PHP. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTexte}]le texte qui décrit l'erreur \item[{\em v\_\-iNiveau}]le type d'erreur (voir constantes {\tt ERREUR\_\-}). Par défaut, il s'agit d'une erreur de type {\tt ERREUR\_\-AVERT} (contrairement à PHP, ou l'erreur par défaut pour {\tt trigger\_\-error()} est de type {\tt E\_\-USER\_\-NOTICE}, donc de moindre importance)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]Cette fonction est censée être statique (méthode de classe, pas d'instance) \end{Desc}
+
+
+Références erreurs(), et mode().
+
+Référencé par CTraverseurScorm::\_\-creerFichierPif(), OO::abstraite(), FichierInfo::convertirSeparateurs(), FichierInfo::copierDossier(), FichierInfo::copierFichier(), FichierInfo::creerDossier(), CTraverseur::defElementATraverser(), FichierInfo::defSeparateur(), FichierInfo::deplacer(), FichierAcces::ecrireTout(), OO::implemente(), OO::instanceDe(), IterateurDossier::IterateurDossier(), IterateurFiltreDossier::IterateurFiltreDossier(), IterateurRecursif::IterateurRecursif(), IterateurTableau::IterateurTableau(), FichierInfo::renommer(), FichierInfo::retTaille(), OO::statique(), FichierInfo::supprimer(), FichierInfo::supprimerDossier(), et FichierInfo::supprimerFichier().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf Erreur.php}\end{CompactItemize}

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CDOMElement</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CDOMElement</h1><!-- doxytag: class="CDOMElement" --><!-- doxytag: inherits="CDOMNode" --><div class="dynheader">
+Graphe d'héritage de CDOMElement:</div>
+<div class="dynsection">
+
+<p><center><img src="class_c_d_o_m_element.png" usemap="#CDOMElement_map" border="0" alt=""></center>
+<map name="CDOMElement_map">
+<area href="class_c_d_o_m_node.html" alt="CDOMNode" shape="rect" coords="0,0,95,24">
+</map>
+</div>
+
+<p>
+<a href="class_c_d_o_m_element-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe reproduisant en PHP 4 le comportement de la classe <code>DOMElement</code> de la bibliothèque DOM PHP 5. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_d_o_m_element.html#83adcf60034e908baeb6cd1a42826f31">CDOMElement</a> ($name, $value=NULL, $namespaceURI=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#83adcf60034e908baeb6cd1a42826f31"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_d_o_m_element.html#4b57f1fd3690eea06761b009c9c0a1d5">setAttribute</a> ($name, $value)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assigne une valeur à un attribut de l'élément.  <a href="#4b57f1fd3690eea06761b009c9c0a1d5"></a><br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="83adcf60034e908baeb6cd1a42826f31"></a><!-- doxytag: member="CDOMElement::CDOMElement" ref="83adcf60034e908baeb6cd1a42826f31" args="($name, $value=NULL, $namespaceURI=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDOMElement::CDOMElement           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>value</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>namespaceURI</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Crée un élément DOM<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>le nom de l'élément à créer </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>la valeur à attribuer à l'élément (A TESTER) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>namespaceURI</em>&nbsp;</td><td>l'URI d'un espace de nom pour créer l'élément dans un espace de nom spécifique (INCOMPLET)</td></tr>
+  </table>
+</dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000019">À faire:</a></b></dt><dd>L'attribution immédiate d'une valeur utilise la méthode <code>setContent()</code> des objets DOM PHP4, cela semble fonctionner pour créer des éléments XML (balises) avec un contenu texte, mais je ne sais pas si d'autres utilisations sont possibles</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000019">À faire:</a></b></dt><dd>Pour l'instant la création dans un espace de nom (3è paramètre) n'est pas implémentée </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="4b57f1fd3690eea06761b009c9c0a1d5"></a><!-- doxytag: member="CDOMElement::setAttribute" ref="4b57f1fd3690eea06761b009c9c0a1d5" args="($name, $value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDOMElement::setAttribute           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>value</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Assigne une valeur à un attribut de l'élément. 
+<p>
+Si l'attribut n'existe pas, il est créé<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>le nom de l'attribut auquel on veut assigner une valeur </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>value</em>&nbsp;</td><td>la valeur à assigner à l'attribut</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'ancien objet DomAttribute si l'attribut avait déjà une valeur, sinon le nouvel objet (INCOMPATIBLE)</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000021">À faire:</a></b></dt><dd>La valeur de retour (un objet DomAttribute) n'est pas la même que pour le "vrai" DOM PHP 5 qui, d'après la doc PHP, retourne TRUE ou FALSE. A tester </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/dom/<a class="el" href="dom-php4_8class_8php.html">dom-php4.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,15 @@
+La plateforme Esprit[1] a été développée par l'Unité de Technologie 
+de l'Education de l'Université de Mons-Hainaut (Belgique) avec la 
+collaboration de Grenoble Universités pour l'adaptation aux besoins 
+des formations en langues dans le cadre du projet FLODI[2].
+
+
+The Esprit platform[1] was developed by the Educational Technology Unit
+at the University of Mons-Hainaut (Belgium) with the collaboration of 
+Grenoble Universities to adapt to the needs of language trainings 
+within the framework of the FLODI project[2].
+
+
+[1] http://ute2.umh.ac.be/esprit
+[2] http://www.grenoble-universites.fr/flodi
+

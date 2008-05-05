@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CBddMySql</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CBddMySql</h1><!-- doxytag: class="CBddMySql" --><div class="dynheader">
+Graphe d'héritage de CBddMySql:</div>
+<div class="dynsection">
+
+<p><center><img src="class_c_bdd_my_sql.png" usemap="#CBddMySql_map" border="0" alt=""></center>
+<map name="CBddMySql_map">
+<area href="class_c_bdd.html" alt="CBdd" shape="rect" coords="0,56,78,80">
+</map>
+</div>
+
+<p>
+<a href="class_c_bdd_my_sql-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Interface avec une DB MySQL. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#455f3dae1f30d18bc866dbae92b16ee9">CBddMySql</a> ($v_sHote=&quot;localhost&quot;, $v_sLogin, $v_sMdp, $v_sNom)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#455f3dae1f30d18bc866dbae92b16ee9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72461404be6bab9e5c67723b86554c8f"></a><!-- doxytag: member="CBddMySql::deverrouillerTables" ref="72461404be6bab9e5c67723b86554c8f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#72461404be6bab9e5c67723b86554c8f">deverrouillerTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Exécute un "UNLOCK TABLES". <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#ec99c17587d4c993fdc582cd937e4999">executerRequete</a> ($v_sRequete, $v_bAfficher=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Exécute une requête SQL, et en cas de réussite enregistre le handle du résultat dans le tableau <code>ahResult</code>.  <a href="#ec99c17587d4c993fdc582cd937e4999"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#6583142bd04edec5d6584e7ba2415f70">libererResult</a> ($v_iNumResult=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Libère les ressources associées à un résultat de requête.  <a href="#6583142bd04edec5d6584e7ba2415f70"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#8f15c49fe80c289d9de31e7a06f239af">retDernierId</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id généré pour le dernier enregistrement inséré avec champ AUTO_INCREMENT.  <a href="#8f15c49fe80c289d9de31e7a06f239af"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#5fa33908129b475141901737d4c8ae89">retEnregPrecis</a> ($v_iNumResult=NULL, $v_iNumEnreg=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le premier champ d'un enregistrement donné dans un résultat de requête.  <a href="#5fa33908129b475141901737d4c8ae89"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#01bccb70d74c5a7db88e1bb2bb289a51">retEnregSuiv</a> ($v_iNumResult=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne sous forme d'objet PHP l'enregistrement suivant dans un résultat de requête.  <a href="#01bccb70d74c5a7db88e1bb2bb289a51"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#b3c35e818cc6ae022f5921a7a0ee7f01">retNbEnregsDsResult</a> ($v_iNumResult=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'enregistrements récupérés par une requête.  <a href="#b3c35e818cc6ae022f5921a7a0ee7f01"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#8416af46c85ea3b694d52dc22495c6c5">retNbResults</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de résultats de requêtes (tableau <code>ahResult</code>).  <a href="#8416af46c85ea3b694d52dc22495c6c5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#ed6bdc6798d6874a520119858112b37f">terminer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pseudo-destructeur (doit être appelé explicitement).  <a href="#ed6bdc6798d6874a520119858112b37f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#5cc1ccd11c09303dc37ddde1e7236ee6">traiterErreur</a> ($v_bEstFatale=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche la dernière erreur SQL survenue et arrête éventuellement le script PHP courant.  <a href="#5cc1ccd11c09303dc37ddde1e7236ee6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#06b56721dbc1132ed97564ac2fa74117">validerDonnee</a> ($v_sDonnee)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Fonction utilitaire pour "nettoyer" une donnée texte.  <a href="#06b56721dbc1132ed97564ac2fa74117"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f3f0e90c8f75c270de32e0aca92e90ae"></a><!-- doxytag: member="CBddMySql::$ahResult" ref="f3f0e90c8f75c270de32e0aca92e90ae" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#f3f0e90c8f75c270de32e0aca92e90ae">$ahResult</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau des handles de résultats de requêtes. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b8e6f5804c6bf2933c82e16fc3aed470"></a><!-- doxytag: member="CBddMySql::$hLien" ref="b8e6f5804c6bf2933c82e16fc3aed470" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#b8e6f5804c6bf2933c82e16fc3aed470">$hLien</a> = 0</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Handle de la connexion établie à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b4f48f60356c5b1250763e3b5a40cb19"></a><!-- doxytag: member="CBddMySql::$sHote" ref="b4f48f60356c5b1250763e3b5a40cb19" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#b4f48f60356c5b1250763e3b5a40cb19">$sHote</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Paramètre "hôte" pour la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6f2aa01cdf4975c465aa7ec082b59f27"></a><!-- doxytag: member="CBddMySql::$sLogin" ref="6f2aa01cdf4975c465aa7ec082b59f27" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#6f2aa01cdf4975c465aa7ec082b59f27">$sLogin</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Paramètre "username" pour la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0b7616063bc62fb32a63298e6976adf1"></a><!-- doxytag: member="CBddMySql::$sMdp" ref="0b7616063bc62fb32a63298e6976adf1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#0b7616063bc62fb32a63298e6976adf1">$sMdp</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Paramètre "mot de passe" pour la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b0d080ddca8da2674aeb767f52df69de"></a><!-- doxytag: member="CBddMySql::$sNom" ref="b0d080ddca8da2674aeb767f52df69de" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#b0d080ddca8da2674aeb767f52df69de">$sNom</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom de la DB de départ. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4c114b568b48e102239d86c4952073a8"></a><!-- doxytag: member="CBddMySql::$sRequete" ref="4c114b568b48e102239d86c4952073a8" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_bdd_my_sql.html#4c114b568b48e102239d86c4952073a8">$sRequete</a> = &quot;&quot;</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Dernière requête 'tentée' (pas forcément réussie). <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="455f3dae1f30d18bc866dbae92b16ee9"></a><!-- doxytag: member="CBddMySql::CBddMySql" ref="455f3dae1f30d18bc866dbae92b16ee9" args="($v_sHote=&quot;localhost&quot;, $v_sLogin, $v_sMdp, $v_sNom)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::CBddMySql           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sHote</em> = <code>&quot;localhost&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sLogin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sMdp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNom</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Effectue la connexion au serveur DB, et sélectionne automatiquement la DB spécifiée<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sHote</em>&nbsp;</td><td>l'adresse du serveur DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sLogin</em>&nbsp;</td><td>le username à utiliser pour la connexion </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sMdp</em>&nbsp;</td><td>le mot de passe à utiliser pour la connexion </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sNom</em>&nbsp;</td><td>le nom de la DB à sélectionner automatiquement </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="bdd__mysql_8class_8php-source.html#l00243">traiterErreur()</a>.</p>
+
+<p>Référencé par <a class="el" href="bdd_8class_8php-source.html#l00045">CBdd::CBdd()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ec99c17587d4c993fdc582cd937e4999"></a><!-- doxytag: member="CBddMySql::executerRequete" ref="ec99c17587d4c993fdc582cd937e4999" args="($v_sRequete, $v_bAfficher=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::executerRequete           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sRequete</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAfficher</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Exécute une requête SQL, et en cas de réussite enregistre le handle du résultat dans le tableau <code>ahResult</code>. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sRequete</em>&nbsp;</td><td>le texte de la requête, sans point-virgule final. Une seule requête à la fois donc </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAfficher</em>&nbsp;</td><td>si <code>true</code>, le texte de la requête est affiché dans la page (debug)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'indice du handle de résultat dans le tableau <code>ahResult</code> en cas de réussite de la requête, <code>false</code> en cas d'échec (erreur de syntaxe ou autre) </dd></dl>
+
+<p>Références <a class="el" href="bdd__mysql_8class_8php-source.html#l00243">traiterErreur()</a>.</p>
+
+<p>Référencé par <a class="el" href="bdd__mysql_8class_8php-source.html#l00233">deverrouillerTables()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6583142bd04edec5d6584e7ba2415f70"></a><!-- doxytag: member="CBddMySql::libererResult" ref="6583142bd04edec5d6584e7ba2415f70" args="($v_iNumResult=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::libererResult           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumResult</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Libère les ressources associées à un résultat de requête. 
+<p>
+Le résultat est également enlevé du tableau <code>ahResult</code> <p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumResult</em>&nbsp;</td><td>l'indice du résultat à libérer (voir <a class="el" href="class_c_bdd_my_sql.html#b3c35e818cc6ae022f5921a7a0ee7f01" title="Retourne le nombre d&#39;enregistrements récupérés par une requête.">retNbEnregsDsResult()</a>) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8f15c49fe80c289d9de31e7a06f239af"></a><!-- doxytag: member="CBddMySql::retDernierId" ref="8f15c49fe80c289d9de31e7a06f239af" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::retDernierId           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id généré pour le dernier enregistrement inséré avec champ AUTO_INCREMENT. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id du dernier enregistrement inséré avec colonne AUTO_INCREMENT </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5fa33908129b475141901737d4c8ae89"></a><!-- doxytag: member="CBddMySql::retEnregPrecis" ref="5fa33908129b475141901737d4c8ae89" args="($v_iNumResult=NULL, $v_iNumEnreg=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::retEnregPrecis           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumResult</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumEnreg</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le premier champ d'un enregistrement donné dans un résultat de requête. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumResult</em>&nbsp;</td><td>l'indice du résultat de requête à utiliser (voir <a class="el" href="class_c_bdd_my_sql.html#b3c35e818cc6ae022f5921a7a0ee7f01" title="Retourne le nombre d&#39;enregistrements récupérés par une requête.">retNbEnregsDsResult()</a>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumEnreg</em>&nbsp;</td><td>l'indice de l'enregistrement dans le résultat (le premier = 0)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le premier champ de l'enregistrement spécifié, dans le résultat de requête voulu</dd></dl>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Cette fonction est limitée au premier champ, elle est surtout utilisée pour les requêtes SELECT dont le résultat n'a qu'un enregistrement et un seul champ non nommé, comme <code>SELECT MD5("blah")</code> ou <code>SELECT COUNT(*) FROM Table</code> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="01bccb70d74c5a7db88e1bb2bb289a51"></a><!-- doxytag: member="CBddMySql::retEnregSuiv" ref="01bccb70d74c5a7db88e1bb2bb289a51" args="($v_iNumResult=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::retEnregSuiv           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumResult</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne sous forme d'objet PHP l'enregistrement suivant dans un résultat de requête. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumResult</em>&nbsp;</td><td>l'indice du résultat de requête à utiliser (voir <a class="el" href="class_c_bdd_my_sql.html#b3c35e818cc6ae022f5921a7a0ee7f01" title="Retourne le nombre d&#39;enregistrements récupérés par une requête.">retNbEnregsDsResult()</a>)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'objet PHP contenant les champs de l'enregistrement suivant du résultat de la requête </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b3c35e818cc6ae022f5921a7a0ee7f01"></a><!-- doxytag: member="CBddMySql::retNbEnregsDsResult" ref="b3c35e818cc6ae022f5921a7a0ee7f01" args="($v_iNumResult=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::retNbEnregsDsResult           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNumResult</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'enregistrements récupérés par une requête. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNumResult</em>&nbsp;</td><td>l'indice du handle de résultats à utiliser (plusieurs résultats peuvent être gardés, dans <code>ahResult</code>). Par défaut <code>null</code>, ce qui revient à traiter le résultat de la dernière requête réussie</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'enregistrements récupérés dans le résultat de requête spécifié </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8416af46c85ea3b694d52dc22495c6c5"></a><!-- doxytag: member="CBddMySql::retNbResults" ref="8416af46c85ea3b694d52dc22495c6c5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::retNbResults           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de résultats de requêtes (tableau <code>ahResult</code>). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de résultats de requêtes exploitables </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ed6bdc6798d6874a520119858112b37f"></a><!-- doxytag: member="CBddMySql::terminer" ref="ed6bdc6798d6874a520119858112b37f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::terminer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Pseudo-destructeur (doit être appelé explicitement). 
+<p>
+Ferme la connexion au serveur DB 
+<p>Références <a class="el" href="bdd__mysql_8class_8php-source.html#l00243">traiterErreur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5cc1ccd11c09303dc37ddde1e7236ee6"></a><!-- doxytag: member="CBddMySql::traiterErreur" ref="5cc1ccd11c09303dc37ddde1e7236ee6" args="($v_bEstFatale=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::traiterErreur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bEstFatale</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche la dernière erreur SQL survenue et arrête éventuellement le script PHP courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bEstFatale</em>&nbsp;</td><td>si <code>true</code> (défaut), le script PHP est stoppé </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="bdd__mysql_8class_8php-source.html#l00053">CBddMySql()</a>, <a class="el" href="bdd__mysql_8class_8php-source.html#l00091">executerRequete()</a>, et <a class="el" href="bdd__mysql_8class_8php-source.html#l00076">terminer()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="06b56721dbc1132ed97564ac2fa74117"></a><!-- doxytag: member="CBddMySql::validerDonnee" ref="06b56721dbc1132ed97564ac2fa74117" args="($v_sDonnee)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CBddMySql::validerDonnee           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDonnee</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Fonction utilitaire pour "nettoyer" une donnée texte. 
+<p>
+Pour le moment, il s'agit d'un trim suivi de l'enlèvement des backslashes<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sDonnee</em>&nbsp;</td><td>le texte à nettoyer</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte nettoyé </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/code_lib/<a class="el" href="bdd__mysql_8class_8php.html">bdd_mysql.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

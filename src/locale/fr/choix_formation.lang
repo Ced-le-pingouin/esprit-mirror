@@ -1,0 +1,4 @@
+<?php
+define("TXT_SELECTIONNER_FORMATION","Sélectionnez une formation dans la liste ci-dessous :");
+?>
+

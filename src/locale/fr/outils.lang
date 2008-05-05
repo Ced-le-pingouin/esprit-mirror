@@ -1,0 +1,39 @@
+<?php
+
+// @file outils.lang
+// @Description Traduction des différents outils de la plateforme.
+// @lang fr
+// @author Filippo PORCO <filippo.porco@umh.ac.be>
+// @modified 07/12/2005
+// @dtd TXT_%_TITRE: <input type="text" name="TXT_%_TITRE" value="TXT_%_TITRE">
+// @dtd TXT_%_DESCRIPTION: <textarea name="TXT_%_DESCRIPTION">TXT_%_DESCRIPTION</textarea
+define("TXT_ACCUEIL_DESCRIPTION","Pour modifier la page d'accueil d'Esprit");
+define("TXT_ACCUEIL_TITRE","Page d'accueil");
+define("TXT_CONSOLE_DESCRIPTION","Pour accéder à la console");
+define("TXT_CONSOLE_TITRE","Console");
+define("TXT_CORBEILLE_DESCRIPTION","Pour supprimer définitivement une formation effacée");
+define("TXT_CORBEILLE_TITRE","Corbeille");
+define("TXT_DOSSIERS_DESCRIPTION","Pour regrouper certaines formations sous forme de dossier");
+define("TXT_DOSSIERS_TITRE","Dossiers");
+define("TXT_ECONCEPT_DESCRIPTION","Pour créer ou modifier votre cours en ligne");
+define("TXT_ECONCEPT_TITRE","eConcept");
+define("TXT_ENVOI_COURRIEL_DESCRIPTION","Pour envoyer un courriel à toutes les personnes inscrites à la plateforme");
+define("TXT_ENVOI_COURRIEL_TITRE","Envoi courriel");
+define("TXT_EQUIPES_DESCRIPTION","Pour créer des équipes et y affecter des étudiants");
+define("TXT_EQUIPES_TITRE","Equipes");
+define("TXT_EXPORTER_INSCRITS_DESCRIPTION","Pour exporter sous forme csv ou html, une liste d’utilisateurs");
+define("TXT_EXPORTER_INSCRITS_TITRE","Exporter");
+define("TXT_FORMULAIRE_DESCRIPTION","Pour créer ou modifier des activités en ligne");
+define("TXT_FORMULAIRE_TITRE","Générateur d'activités en ligne");
+define("TXT_INSCRIPTION_DESCRIPTION","Pour inscrire les utilisateurs et leur donner un statut (étudiant, tuteur...)");
+define("TXT_INSCRIPTION_TITRE","Inscription");
+define("TXT_OUTILS_TITRE","Outils");
+define("TXT_PERMISSIONS_DESCRIPTION","Pour modifier les autorisations de chacun des statuts (étudiants, tuteurs…)");
+define("TXT_PERMISSIONS_TITRE","Permissions");
+define("TXT_PLATEFORME_DESCRIPTION","A propos d'Esprit");
+define("TXT_PLATEFORME_TITRE","");
+define("TXT_STATUTS_DESCRIPTION","Pour créer un fichier de statuts");
+define("TXT_STATUTS_TITRE","Création du fichier des statuts");
+define("TXT_TRANSFERT_FORMATIONS_DESCRIPTION","Pour transférer des formations d’une autre base de données");
+define("TXT_TRANSFERT_FORMATIONS_TITRE","Transfert de formations");
+?>

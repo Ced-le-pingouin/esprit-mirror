@@ -1,0 +1,96 @@
+\section{Référence du fichier src/admin/tableaubord/tableau\_\-bord-index.php}
+\label{tableau__bord-index_8php}\index{src/admin/tableaubord/tableau\_\-bord-index.php@{src/admin/tableaubord/tableau\_\-bord-index.php}}
+
+
+\subsection{Description détaillée}
+\begin{Desc}
+\item[Date:]2006/11/27\end{Desc}
+\begin{Desc}
+\item[Auteur:]Filippo PORCO \end{Desc}
+
+
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$g\_\-iIdStatutUtilisateur} = \$oProjet $\rightarrow$ retStatutUtilisateur()\label{tableau__bord-index_8php_0ba1c61df13b049d1934212b8b0e609c}
+
+\item 
+else \textbf{\$iHauteurFrameFiltre} = 1\label{tableau__bord-index_8php_9eaeddd985645748b24ee310ed2f01fe}
+
+\item 
+\textbf{\$oBlockHtmlHead} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-HEAD\char`\"{},\$oTpl)\label{tableau__bord-index_8php_43200cee341aed52a8892c72ce32f5a1}
+
+\item 
+\textbf{\$oFormation} = new {\bf CFormation}(\$oProjet $\rightarrow$ oBdd,\$oIds $\rightarrow$ retIdForm())\label{tableau__bord-index_8php_5dbadfcf71ff9339b4bb2320f35a7b04}
+
+\item 
+\textbf{\$oIds} = new CIds(\$oProjet $\rightarrow$ oBdd,\$url\_\-iTypeNiveau,\$url\_\-iIdNiveau)\label{tableau__bord-index_8php_87e9fcad45d9de21f44bfbb0e94f46cd}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{tableau__bord-index_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oTpl} = new {\bf Template}(dir\_\-theme(\char`\"{}dialog-index.tpl\char`\"{},FALSE,TRUE))\label{tableau__bord-index_8php_7de57ba665b7c068e98ea46469be2865}
+
+\item 
+\textbf{\$sBlockHtmlHead}
+\item 
+\textbf{\$sFramePrincipale}
+\item 
+\textbf{\$sParamsUrl} = NULL\label{tableau__bord-index_8php_51e1d6c58e7c827b19f08440f9f95f1d}
+
+\item 
+\textbf{\$sSousTitre} = \$oFormation $\rightarrow$ retNom()\label{tableau__bord-index_8php_9d1c9b88a447a7799c9d4ae766d48f97}
+
+\item 
+\textbf{\$sTitrePrincipal} = \char`\"{}Tableau de bord\char`\"{}\label{tableau__bord-index_8php_fea8d4fcd78ba359779b74b031511ea5}
+
+\item 
+\textbf{\$url\_\-iIdModalite} = (empty(\$\_\-GET[\char`\"{}idModal\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idModal\char`\"{}])\label{tableau__bord-index_8php_2edc95399ae9c2596483c664df65e666}
+
+\item 
+\textbf{\$url\_\-iIdNiveau} = (empty(\$\_\-GET[\char`\"{}idNiveau\char`\"{}]) ? \$oProjet $\rightarrow$ oFormationCourante $\rightarrow$ retId() : \$\_\-GET[\char`\"{}idNiveau\char`\"{}])\label{tableau__bord-index_8php_14f74b59a1171eaf2411d94c3c8bf8dd}
+
+\item 
+\textbf{\$url\_\-iIdType} = (empty(\$\_\-GET[\char`\"{}idType\char`\"{}]) ? 0 : \$\_\-GET[\char`\"{}idType\char`\"{}])\label{tableau__bord-index_8php_7fea7f5b9f2fcee65976df1093b911aa}
+
+\item 
+\textbf{\$url\_\-iTypeNiveau} = (empty(\$\_\-GET[\char`\"{}typeNiveau\char`\"{}]) ? TYPE\_\-FORMATION : \$\_\-GET[\char`\"{}typeNiveau\char`\"{}])\label{tableau__bord-index_8php_526ed781c4213d7b78e267d1eeb0b7e4}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des variables}
+\index{tableau\_\-bord-index.php@{tableau\_\-bord-index.php}!\$sBlockHtmlHead@{\$sBlockHtmlHead}}
+\index{\$sBlockHtmlHead@{\$sBlockHtmlHead}!tableau_bord-index.php@{tableau\_\-bord-index.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$sBlockHtmlHead}\label{tableau__bord-index_8php_bd9cfe63e954bd2db0a26ee7f01c3ec3}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} <<<BLOCK_HTML_HEAD
+<script type="text/javascript" language="javascript">
+<!--
+function oFiltre() { return top.frames["Filtre"]; }
+function oPrincipale() { return top.frames["Principale"]; }
+function rafraichir() { oFiltre().document.forms[0].submit(); }
+
+</script>
+BLOCK_HTML_HEAD
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord-index.php@{tableau\_\-bord-index.php}!\$sFramePrincipale@{\$sFramePrincipale}}
+\index{\$sFramePrincipale@{\$sFramePrincipale}!tableau_bord-index.php@{tableau\_\-bord-index.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$sFramePrincipale}\label{tableau__bord-index_8php_3e1657b01b48cd2928b752bbd726627e}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} <<<BLOCK_FRAME_PRINCIPALE
+<frameset rows="{$iHauteurFrameFiltre}px,*" frameborder="0" border="0">
+<frame name="Filtre" src="tableau_bord-filtre.php{$sParamsUrl}" frameborder="0" marginwidth="5" marginheight="5" scrolling="no" noresize="noresize">
+<frame name="Principale" src="" frameborder="0" marginwidth="5" marginheight="5" scrolling="auto" noresize="noresize">
+</frameset>
+BLOCK_FRAME_PRINCIPALE
+\end{verbatim}
+\end{Code}

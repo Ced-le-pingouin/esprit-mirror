@@ -1,0 +1,191 @@
+\section{Référence de la classe CTraverseur}
+\label{class_c_traverseur}\index{CTraverseur@{CTraverseur}}
+Graphe d'héritage de CTraverseur::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_c_traverseur}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe de base pour les \char`\"{}traverseurs\char`\"{}. 
+
+Ceux-ci permettent de traverser une formation et tous ses descendants, càd modules, rubriques, etc, et d'effectuer des actions à chaque étape, en disposant des infos sur l'étape courante (id, nom, etc de la formation, module, etc; fichiers associés) \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CTraverseur} (\&\$v\_\-oBdd, \$v\_\-iIdForm=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf defElementATraverser} (\$v\_\-iId, \$v\_\-iTypeElement={\bf TYPE\_\-FORMATION}, \$v\_\-bReInit=TRUE)
+\begin{CompactList}\small\item\em Définit l'élément à partir duquel on va débuter la traversée. \item\end{CompactList}\item 
+{\bf demarrer} ()\label{class_c_traverseur_ebc4045e96640b3285667c924be1370b}
+
+\begin{CompactList}\small\item\em Débute la traversée d'une formation, ou d'un élément de formation, en appelant des fonctions de notifications prédéfinies en chemin (ces fonctions de notifications peuvent être redéfinies par des sous-classes). \item\end{CompactList}\item 
+{\bf estDerniereActiv} ()\label{class_c_traverseur_19a34b2d50e8c7ad65570cc52e9b8ca9}
+
+\begin{CompactList}\small\item\em Indique si l'activité actuellement traitée est la dernière de sa rubrique parente. \item\end{CompactList}\item 
+{\bf estDerniereRubrique} ()\label{class_c_traverseur_01d9b9ed31336852fcb47ffcb6fe6e0d}
+
+\begin{CompactList}\small\item\em Indique si la rubrique actuellement traitée est la dernière de son module parent. \item\end{CompactList}\item 
+{\bf estDerniereSousActiv} ()\label{class_c_traverseur_5caa8c57072d4f54c7068283de6aefab}
+
+\begin{CompactList}\small\item\em Indique si la sous-activité actuellement traitée est la dernière de son activité parente. \item\end{CompactList}\item 
+{\bf estDernierModule} ()\label{class_c_traverseur_249cffb64298e76a230e12c84c935f07}
+
+\begin{CompactList}\small\item\em Indique si le module actuellement traité est le dernier de sa formation parente. \item\end{CompactList}\item 
+{\bf estPremiereActiv} ()\label{class_c_traverseur_5f0ba57d7e838f6aeb1f0fc4580ef3c8}
+
+\begin{CompactList}\small\item\em Indique si l'activité actuellement traitée est la première de sa rubrique parente. \item\end{CompactList}\item 
+{\bf estPremiereRubrique} ()\label{class_c_traverseur_c89f88124331dc11cb969b34c0850f2c}
+
+\begin{CompactList}\small\item\em Indique si la rubrique actuellement traitée est la première de son module parent. \item\end{CompactList}\item 
+{\bf estPremiereSousActiv} ()\label{class_c_traverseur_131e91c446692e783d632df22c400142}
+
+\begin{CompactList}\small\item\em Indique si la sous-activité actuellement traitée est la première de son activité parente. \item\end{CompactList}\item 
+{\bf estPremierModule} ()\label{class_c_traverseur_57b9e67776d604a02c27f7d44667d544}
+
+\begin{CompactList}\small\item\em Indique si le module actuellement traité est le premier de sa formation parente. \item\end{CompactList}\item 
+{\bf parcourirActiv} ()\label{class_c_traverseur_c059c2c84a029a4618ee4ba64072ed6e}
+
+\begin{CompactList}\small\item\em Initialise les sous-activités enfants de l'activité actuellement traitée, parcourt récursivement les sous-activités trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). \item\end{CompactList}\item 
+{\bf parcourirFormation} ()\label{class_c_traverseur_c0f786cf71b1d703ac28669c23ce1069}
+
+\begin{CompactList}\small\item\em Initialise les modules enfants de la formation actuellement traitée, parcourt récursivement les modules trouvés s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). \item\end{CompactList}\item 
+{\bf parcourirModule} ()\label{class_c_traverseur_d07101ad564c864d6e5bd95d5ab43192}
+
+\begin{CompactList}\small\item\em Initialise les rubriques enfants du module actuellement traité, parcourt récursivement les rubriques trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). \item\end{CompactList}\item 
+{\bf parcourirRubrique} ()\label{class_c_traverseur_92ae979a126c5a9595f89f46b0aa23a2}
+
+\begin{CompactList}\small\item\em Initialise les activités enfants de la rubrique actuellement traitée, parcourt récursivement les activités trouvées s'il y en a, et appelle des fonctions de notification en début et en fin pour d'éventuels traitements supplémentaires (dans des sous-classes de celle-ci). \item\end{CompactList}\item 
+{\bf parcourirSousActiv} ()\label{class_c_traverseur_0d3497aae90750ff431a917ace5aaeee}
+
+\begin{CompactList}\small\item\em Pour l'instant, aucune action spécifique n'est exécutée dans une sous-activité parcourue; seules les deux fonction de notification avant/après, qui peuvent être redéfinies dans des sous-classes, sont appelées. \item\end{CompactList}\item 
+{\bf reInit} ()\label{class_c_traverseur_1e7f432737a73ebe3d7fa963fa52ec68}
+
+\begin{CompactList}\small\item\em Remet à zéro les variables internes concernant les éléments (formation, module, etc) en cours de traitement. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions appelées automatiquement durant la traversée des éléments de formation, qui permettent, si}\par
+{\em elles sont implémentées dans des sous-classes, d'effectuer des traitements spécifiques à chaque étape de la traversée }\begin{CompactItemize}
+\item 
+\textbf{debutActiv} ()\label{class_c_traverseur_c8914f7050f91efb0855576df5d8da5d}
+
+\item 
+\textbf{debutFormation} ()\label{class_c_traverseur_d9c74e64627089f6fc020aac32530d21}
+
+\item 
+\textbf{debutModule} ()\label{class_c_traverseur_f6c779769d1154b2d7d0441b9b4b3151}
+
+\item 
+\textbf{debutRubrique} ()\label{class_c_traverseur_bec502fe98b4a2ad9cf818ff21a2f702}
+
+\item 
+\textbf{debutSousActiv} ()\label{class_c_traverseur_d8d187e81a2ce21c5c59432eb2682e80}
+
+\item 
+\textbf{debutTraitement} ()\label{class_c_traverseur_4a1a8f4ae9d86cf5ddafa8b1803a743a}
+
+\item 
+\textbf{finActiv} ()\label{class_c_traverseur_89d644a470eeca3a846cbaf6c66c7363}
+
+\item 
+\textbf{finFormation} ()\label{class_c_traverseur_a00bfc0533cb3a54d2cec698d085a497}
+
+\item 
+\textbf{finModule} ()\label{class_c_traverseur_f3caf96154c3633fc1c7a073e5a4f203}
+
+\item 
+\textbf{finRubrique} ()\label{class_c_traverseur_bf836519eb94877a284f92fd9b33be3d}
+
+\item 
+\textbf{finSousActiv} ()\label{class_c_traverseur_9f4dfc59123b559d1eff470dd48f78b5}
+
+\item 
+\textbf{finTraitement} ()\label{class_c_traverseur_59b1af482ac9cfca8f446c8df320d9ee}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$bDerniereActiv} = FALSE\label{class_c_traverseur_f91f63ef36b7721ef6d00b26db993bcd}
+
+\begin{CompactList}\small\item\em Indication que l'activité en cours de traitement est la dernière de sa rubrique parente. \item\end{CompactList}\item 
+{\bf \$bDerniereRubrique} = FALSE\label{class_c_traverseur_f36105b9ed13d1ddb8714d5eb7e758a7}
+
+\begin{CompactList}\small\item\em Indication que la rubrique en cours de traitement est la dernière de son module parent. \item\end{CompactList}\item 
+{\bf \$bDerniereSousActiv} = FALSE\label{class_c_traverseur_9781ae760ff60e27db6164245da0c63c}
+
+\begin{CompactList}\small\item\em Indication que la sous-activité en cours de traitement est la dernière de son activité parente. \item\end{CompactList}\item 
+{\bf \$bDernierModule} = FALSE\label{class_c_traverseur_d7f7436c732b7bd98f22860f4af57a76}
+
+\begin{CompactList}\small\item\em Indication que le module en cours de traitement est le dernier de sa formation parente. \item\end{CompactList}\item 
+{\bf \$bPremiereActiv} = FALSE\label{class_c_traverseur_9212db73009ba23f54ca1cb553b19f4e}
+
+\begin{CompactList}\small\item\em Indication que l'activité en cours de traitement est la première de sa rubrique parente. \item\end{CompactList}\item 
+{\bf \$bPremiereRubrique} = FALSE\label{class_c_traverseur_6079157d89f29efd09d1fe31eb24e467}
+
+\begin{CompactList}\small\item\em Indication que la rubrique en cours de traitement est la première de son module parent. \item\end{CompactList}\item 
+{\bf \$bPremiereSousActiv} = FALSE\label{class_c_traverseur_f1982cc4fb95c5858fa85637e50ec8ef}
+
+\begin{CompactList}\small\item\em Indication que la sous-activité en cours de traitement est la première de son activité parente. \item\end{CompactList}\item 
+{\bf \$bPremierModule} = FALSE\label{class_c_traverseur_60c29d4b1b3caa38ae5de1e005932fd2}
+
+\begin{CompactList}\small\item\em Indication que le module en cours de traitement est le premier de sa formation parente. \item\end{CompactList}\item 
+{\bf \$fnParcourir}\label{class_c_traverseur_dcb88199ee81d3501327cdf4d3dd6d1a}
+
+\begin{CompactList}\small\item\em Pointeur vers la fonction chargée de démarrer le traitement (dépend du niveau départ : formation, module, etc.). \item\end{CompactList}\item 
+{\bf \$oActiv}\label{class_c_traverseur_7e9179aa22b8b3990dca257c5178eb22}
+
+\begin{CompactList}\small\item\em Objet qui contiendra l'activité en cours de traitement. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_traverseur_47261733975cc4828e1d4af26a83c1dc}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oFormation}\label{class_c_traverseur_7f23344495fb4ae5d2e8ff127ecc42c1}
+
+\begin{CompactList}\small\item\em Objet qui contiendra la formation en cours de traitement. \item\end{CompactList}\item 
+{\bf \$oModule}\label{class_c_traverseur_86590d8cdd7d89791d1e389af58e6764}
+
+\begin{CompactList}\small\item\em Objet qui contiendra le module en train d'être traité. \item\end{CompactList}\item 
+{\bf \$oRubrique}\label{class_c_traverseur_418549b7bf5897d5bd22557353b43ec9}
+
+\begin{CompactList}\small\item\em Objet qui contiendra la rubrique en cours de traitement. \item\end{CompactList}\item 
+{\bf \$oSousActiv}\label{class_c_traverseur_ac828592ce35652499087c0357edea5d}
+
+\begin{CompactList}\small\item\em Objet qui contiendra la sous-activité en cours de traitement. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CTraverseur@{CTraverseur}!CTraverseur@{CTraverseur}}
+\index{CTraverseur@{CTraverseur}!CTraverseur@{CTraverseur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseur::CTraverseur (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdForm} = {\tt NULL})}\label{class_c_traverseur_ee5cc47fd2b9f141c99855e7e24ae586}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \item[{\em v\_\-iIdForm}]l'id de la formation à initialiser automatiquement en vue de la \char`\"{}traversée\char`\"{}. S'il est omis, il faudra le définir en appelant \doxyref{defElementATraverser()}{p.}{class_c_traverseur_e8ec112f8e4784e38b8af22545f103a2} avant de démarrer la traversée \end{description}
+\end{Desc}
+
+
+Références defElementATraverser().\index{CTraverseur@{CTraverseur}!defElementATraverser@{defElementATraverser}}
+\index{defElementATraverser@{defElementATraverser}!CTraverseur@{CTraverseur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseur::defElementATraverser (\$ {\em v\_\-iId}, \/  \$ {\em v\_\-iTypeElement} = {\tt {\bf TYPE\_\-FORMATION}}, \/  \$ {\em v\_\-bReInit} = {\tt TRUE})}\label{class_c_traverseur_e8ec112f8e4784e38b8af22545f103a2}
+
+
+Définit l'élément à partir duquel on va débuter la traversée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iId}]l'id de l'élément de départ à traverser \item[{\em v\_\-iTypeElement}]le type de l'élément de départ (formation, module, etc), conformément aux constantes {\tt TYPE\_\-} définies dans le fichier \doxyref{plate\_\-forme.class.php}{p.}{plate__forme_8class_8php} \item[{\em v\_\-bReInit}]si {\tt true} (défaut), toutes les variables internes concernant les traitements en cours sont au préalable réinitialisées \end{description}
+\end{Desc}
+
+
+Références Erreur::provoquer(), et reInit().
+
+Référencé par CTraverseur().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/traverseurs/{\bf traverseur.class.php}\end{CompactItemize}

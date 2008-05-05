@@ -1,0 +1,129 @@
+\section{Référence de la classe CopierCollerFormation}
+\label{class_copier_coller_formation}\index{CopierCollerFormation@{CopierCollerFormation}}
+Graphe d'héritage de CopierCollerFormation::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_copier_coller_formation}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Contrôleur pour l'outil de copier/coller de (bouts de) formations. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf afficherFormationsSrcEtDest} ()\label{class_copier_coller_formation_5710a4648cfdc9850f4b05f9df0653f8}
+
+\begin{CompactList}\small\item\em Affiche les données relatives aux panneaux Copier (formation source) et Coller (formation cible). \item\end{CompactList}\item 
+{\bf afficherParties} ()
+\item 
+{\bf afficherPressePapiers} ()\label{class_copier_coller_formation_8756d1a75c89e0e15cb3a76aa44aa688}
+
+\begin{CompactList}\small\item\em Affiche la panneau Contenu du presse-papiers. \item\end{CompactList}\item 
+{\bf gererActions} ()
+\item 
+{\bf recupererDonnees} ()
+\item 
+{\bf validerDonnees} ()
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aBranchesSrcSel}\label{class_copier_coller_formation_a6fd32adf5daaf042d1a6ccb14396412}
+
+\begin{CompactList}\small\item\em Branches (modules, rubriques, etc.) sélectionnées dans le panneau Copier. \item\end{CompactList}\item 
+{\bf \$aoFormationsDest}\label{class_copier_coller_formation_1f394c09a22747864ead99db3fd74ef7}
+
+\begin{CompactList}\small\item\em Liste des formations cible accessibles pour l'action Coller. \item\end{CompactList}\item 
+{\bf \$aoFormationsSrc}\label{class_copier_coller_formation_67aef3fe83eb3bb5010e5dd3c636ab00}
+
+\begin{CompactList}\small\item\em Liste des formations source accessibles pour l'action Copier. \item\end{CompactList}\item 
+{\bf \$brancheDestSel}\label{class_copier_coller_formation_8f7c41feea70efa791044969d545f2ea}
+
+\begin{CompactList}\small\item\em Branche cible sélectionnée dans le panneau Coller. \item\end{CompactList}\item 
+{\bf \$elemPpSel}\label{class_copier_coller_formation_6c520b0efe19deeab41031d3f8a04e09}
+
+\begin{CompactList}\small\item\em Elément sélectionné dans le panneau Presse-papiers. \item\end{CompactList}\item 
+{\bf \$iIdElemAColler}\label{class_copier_coller_formation_f963d003ce4c94e51d5b1c98311907f9}
+
+\begin{CompactList}\small\item\em Id de l'élément source de l'opération Coller. \item\end{CompactList}\item 
+{\bf \$iIdElemDest}\label{class_copier_coller_formation_66d8264c28da9dd20570a4feedd1930a}
+
+\begin{CompactList}\small\item\em Id de l'élément de destination de l'opération Coller. \item\end{CompactList}\item 
+{\bf \$iIdFormationDest}\label{class_copier_coller_formation_98b3e8eea24100845e907e725d1ddb2c}
+
+\begin{CompactList}\small\item\em Id de la formation cible sélectionnée, à afficher dans le panneau Coller. \item\end{CompactList}\item 
+{\bf \$iIdFormationSrc}\label{class_copier_coller_formation_7cd33f53bd66856bd1e4e60246c06ff2}
+
+\begin{CompactList}\small\item\em Id de la formation source sélectionnée, à afficher dans le panneau Copier. \item\end{CompactList}\item 
+{\bf \$iTypeElemAColler}\label{class_copier_coller_formation_b8a07217a14e3f301e270ec802bca971}
+
+\begin{CompactList}\small\item\em Type (niveau) de l'élément source de l'opération Coller. \item\end{CompactList}\item 
+{\bf \$iTypeElemDest}\label{class_copier_coller_formation_332700c35df6d39fc1b92258cc9bd807}
+
+\begin{CompactList}\small\item\em Type (niveau) de l'élément de destination de l'opération Coller. \item\end{CompactList}\item 
+{\bf \$oFormationDest}\label{class_copier_coller_formation_c7dc086e25fb8c35d76b98c3d939b068}
+
+\begin{CompactList}\small\item\em Objet qui contient la formation cible affichée. \item\end{CompactList}\item 
+{\bf \$oFormationSrc}\label{class_copier_coller_formation_40e3cfa37cf7df04403cafa18d61028b}
+
+\begin{CompactList}\small\item\em Objet qui contient la formation source affichée. \item\end{CompactList}\item 
+{\bf \$oPressePapiers}\label{class_copier_coller_formation_5567e8b0c8ff707a47343e955d1cfb07}
+
+\begin{CompactList}\small\item\em Objet qui représente le presse-papiers (contient des modules, rubriques, etc.). \item\end{CompactList}\item 
+{\bf \$oProjet}\label{class_copier_coller_formation_b032e18b53750230cc2ed1dda1af0760}
+
+\begin{CompactList}\small\item\em Accès aux méthodes et données du projet global. \item\end{CompactList}\item 
+{\bf \$sOngletCourant}\label{class_copier_coller_formation_0b1eb599aae73fa256e1860375e5441b}
+
+\begin{CompactList}\small\item\em Utile seulement si Javascript est activé, retient l'onglet (Copier ou Coller) actif. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CopierCollerFormation@{CopierCollerFormation}!afficherParties@{afficherParties}}
+\index{afficherParties@{afficherParties}!CopierCollerFormation@{CopierCollerFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierCollerFormation::afficherParties ()}\label{class_copier_coller_formation_00d95ae27881b468b97575cdddac1dc1}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::afficherParties()}{p.}{class_afficheur_page_a4df93afa9e5d401c7230e22627952e4} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_a4df93afa9e5d401c7230e22627952e4}.
+
+Références afficherFormationsSrcEtDest(), et afficherPressePapiers().\index{CopierCollerFormation@{CopierCollerFormation}!gererActions@{gererActions}}
+\index{gererActions@{gererActions}!CopierCollerFormation@{CopierCollerFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierCollerFormation::gererActions ()}\label{class_copier_coller_formation_15e4e2b272abcc452b28e33887895464}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::gererActions()}{p.}{class_afficheur_page_08c73bc1fa58fc910e1ceda2c5fdd779} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_08c73bc1fa58fc910e1ceda2c5fdd779}.
+
+Références ElementFormation::retElementFormation(), et ElementFormation::typeEstFrereDe().\index{CopierCollerFormation@{CopierCollerFormation}!recupererDonnees@{recupererDonnees}}
+\index{recupererDonnees@{recupererDonnees}!CopierCollerFormation@{CopierCollerFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierCollerFormation::recupererDonnees ()}\label{class_copier_coller_formation_3a66a0d5f6f4b6f312718dbdf47496d8}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}.\index{CopierCollerFormation@{CopierCollerFormation}!validerDonnees@{validerDonnees}}
+\index{validerDonnees@{validerDonnees}!CopierCollerFormation@{CopierCollerFormation}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierCollerFormation::validerDonnees ()}\label{class_copier_coller_formation_4ae25bd26a8efed75b1a3c8f7ad02229}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::validerDonnees()}{p.}{class_afficheur_page_735f2e1007d303794f24cb80a2a649b6} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_735f2e1007d303794f24cb80a2a649b6}.
+
+Références AfficheurPage::declarerErreur(), ElementFormation::typeEstEnfantDe(), et ElementFormation::typeEstFrereDe().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/admin/concept/{\bf CopierCollerFormation.php}\end{CompactItemize}

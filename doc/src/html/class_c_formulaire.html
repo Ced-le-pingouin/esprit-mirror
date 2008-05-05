@@ -1,0 +1,529 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CFormulaire</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CFormulaire</h1><!-- doxytag: class="CFormulaire" -->
+<p>
+<a href="class_c_formulaire-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des formulaires, et encapsulation de la table Formulaire de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#39a23f6568a607dc3898c2e9b5ed3878">ajouter</a> ($iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un nouveau formulaire dans la DB.  <a href="#39a23f6568a607dc3898c2e9b5ed3878"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#414eeb4612b51b829610e88eab8cdfb7">CFormulaire</a> (&amp;$v_oBdd, $v_iId=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#414eeb4612b51b829610e88eab8cdfb7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#246a5317f45989dc62e224ce5ffa9593">copier</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie le formulaire courant dans un nouveau formulaire appartenant à la nouvelle personne.  <a href="#246a5317f45989dc62e224ce5ffa9593"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#860cca5e40a9c659a27323e8d2cf0238">determinerDonneesAExporter</a> ($v_iValeurAxeNeutreMin=0, $v_iValeurAxeNeutreMax=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise oExportation qui contiendra les données à exporter.  <a href="#860cca5e40a9c659a27323e8d2cf0238"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0f78e3c3cc1b6c11cbde3f700ee59a4d"></a><!-- doxytag: member="CFormulaire::effacer" ref="0f78e3c3cc1b6c11cbde3f700ee59a4d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#0f78e3c3cc1b6c11cbde3f700ee59a4d">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface le formulaire courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e12b63f4f8d780b57362b45db23e41fc"></a><!-- doxytag: member="CFormulaire::enregistrer" ref="e12b63f4f8d780b57362b45db23e41fc" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#e12b63f4f8d780b57362b45db23e41fc">enregistrer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enregistre les données du formulaire courant dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b74a056764300cdb7a917d3ff556d7c7"></a><!-- doxytag: member="CFormulaire::init" ref="b74a056764300cdb7a917d3ff556d7c7" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#b74a056764300cdb7a917d3ff556d7c7">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8613a76a7c1b34618a7d27decc101755"></a><!-- doxytag: member="CFormulaire::initAxes" ref="8613a76a7c1b34618a7d27decc101755" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#8613a76a7c1b34618a7d27decc101755">initAxes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les axes du formulaire courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#bc08ddba6fbff30b39e3f829c2326264">initObjets</a> ($v_bInitDetail=TRUE, $v_bInitValeursParAxe=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les objet du formulaire courant.  <a href="#bc08ddba6fbff30b39e3f829c2326264"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#ddf3e709535be3d52b0326d452570f1f">retListeFormulairesVisibles</a> ($v_iIdAuteur=NULL, $v_sType=NULL, $v_iStatut=NULL, $v_bToutMontrer=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la liste des formulaires visibles.  <a href="#ddf3e709535be3d52b0326d452570f1f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#d2cdfb6d95381ce5aef3f94b6f63c2fe">retListeObjetFormulaire</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la liste des objets de formulaire.  <a href="#d2cdfb6d95381ce5aef3f94b6f63c2fe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#0b96da706e48f28e8120e186e80153eb">retNbRemplisDsSessions</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de formulaire complété.  <a href="#0b96da706e48f28e8120e186e80153eb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#be61fa895c6370afcd74499480c00203">retNbreObjetFormulaire</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'éléments de cette activité en ligne.  <a href="#be61fa895c6370afcd74499480c00203"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#2f12b20106226efe911008ca44e897e3">retNbreObjetFormulaireNonAutoCorrige</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'éléments qui ne sont pas auto-corrigés.  <a href="#2f12b20106226efe911008ca44e897e3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#144a6a828ed19f6b2aaef7374b4b5110">retNbUtilisationsDsSessions</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'utilisation du formulaire.  <a href="#144a6a828ed19f6b2aaef7374b4b5110"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour ce formulaire</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7347024923c727952c9fdc09f5a23e80"></a><!-- doxytag: member="CFormulaire::defAutoCorrection" ref="7347024923c727952c9fdc09f5a23e80" args="($v_iAutoCorrect)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defAutoCorrection</b> ($v_iAutoCorrect)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="87e1a81adfce34a923c56d76e570b416"></a><!-- doxytag: member="CFormulaire::defEncadrer" ref="87e1a81adfce34a923c56d76e570b416" args="($v_iEncadrer)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defEncadrer</b> ($v_iEncadrer)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e329b2f409634627b8d15e9b482ff324"></a><!-- doxytag: member="CFormulaire::defIdPers" ref="e329b2f409634627b8d15e9b482ff324" args="($v_iIdPers)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdPers</b> ($v_iIdPers)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="06821122d77efc878d497fcb2ce01560"></a><!-- doxytag: member="CFormulaire::defInterElem" ref="06821122d77efc878d497fcb2ce01560" args="($v_iInterElem)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defInterElem</b> ($v_iInterElem)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ef7bdc678ffe8ce71288bef5bc5673f"></a><!-- doxytag: member="CFormulaire::defInterEnonRep" ref="9ef7bdc678ffe8ce71288bef5bc5673f" args="($v_iInterEnonRep)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defInterEnonRep</b> ($v_iInterEnonRep)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc492d223ce03493340b3a196807ff61"></a><!-- doxytag: member="CFormulaire::defLargeur" ref="bc492d223ce03493340b3a196807ff61" args="($v_iLargeur)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defLargeur</b> ($v_iLargeur)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="60207139fb2162fe44e4ceee125e2d63"></a><!-- doxytag: member="CFormulaire::defMethodeCorrection" ref="60207139fb2162fe44e4ceee125e2d63" args="($v_iMethode)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defMethodeCorrection</b> ($v_iMethode)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="07864c2760018764b983cb5e0434859c"></a><!-- doxytag: member="CFormulaire::defRemplirTout" ref="07864c2760018764b983cb5e0434859c" args="($v_bRemplirTout)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defRemplirTout</b> ($v_bRemplirTout)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="eac69f253bf0b7f04fcff4151e60da96"></a><!-- doxytag: member="CFormulaire::defStatut" ref="eac69f253bf0b7f04fcff4151e60da96" args="($v_iStatut)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defStatut</b> ($v_iStatut)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a4128856e26827433a7969424b375a42"></a><!-- doxytag: member="CFormulaire::defTitre" ref="a4128856e26827433a7969424b375a42" args="($v_sTitre)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defTitre</b> ($v_sTitre)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bd9f38fdb5108a98dc1ea48597070209"></a><!-- doxytag: member="CFormulaire::defType" ref="bd9f38fdb5108a98dc1ea48597070209" args="($v_sType)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defType</b> ($v_sType)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="66304a80e1d49f040a5f18070fa1bf1e"></a><!-- doxytag: member="CFormulaire::defTypeLarg" ref="66304a80e1d49f040a5f18070fa1bf1e" args="($v_sTypeLarg)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defTypeLarg</b> ($v_sTypeLarg)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour ce formulaire</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="97b3cd269fc8e31ef9a42f29b60b1fbc"></a><!-- doxytag: member="CFormulaire::retAutoCorrection" ref="97b3cd269fc8e31ef9a42f29b60b1fbc" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retAutoCorrection</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e559d4db459c471697dbaf5e1bad9a78"></a><!-- doxytag: member="CFormulaire::retEncadrer" ref="e559d4db459c471697dbaf5e1bad9a78" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retEncadrer</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cd9fc2c5a82606ebd72ddc1d9c775d6b"></a><!-- doxytag: member="CFormulaire::retId" ref="cd9fc2c5a82606ebd72ddc1d9c775d6b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a6100bba63d3b335154585e86a0d6d92"></a><!-- doxytag: member="CFormulaire::retIdPers" ref="a6100bba63d3b335154585e86a0d6d92" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdPers</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="312b84a2932ee43958904bce29c5e321"></a><!-- doxytag: member="CFormulaire::retInterElem" ref="312b84a2932ee43958904bce29c5e321" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInterElem</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a4e850e25e87c1132a555d1774b58d95"></a><!-- doxytag: member="CFormulaire::retInterEnonRep" ref="a4e850e25e87c1132a555d1774b58d95" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInterEnonRep</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="34294d6563286f280d51b06e446d9486"></a><!-- doxytag: member="CFormulaire::retLargeur" ref="34294d6563286f280d51b06e446d9486" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retLargeur</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d05574110cc9edf1d7fd434ee1135c8a"></a><!-- doxytag: member="CFormulaire::retMethodeCorrection" ref="d05574110cc9edf1d7fd434ee1135c8a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retMethodeCorrection</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d08af0bf9431abd3f56e46ffe6370602"></a><!-- doxytag: member="CFormulaire::retRemplirTout" ref="d08af0bf9431abd3f56e46ffe6370602" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retRemplirTout</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f6733258ce77a0ce5431d14b796e723b"></a><!-- doxytag: member="CFormulaire::retStatut" ref="f6733258ce77a0ce5431d14b796e723b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retStatut</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7710a97cd8fa1dcfeccc242aba12e986"></a><!-- doxytag: member="CFormulaire::retTitre" ref="7710a97cd8fa1dcfeccc242aba12e986" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retTitre</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cf6a2bd98f3c1fd72af0d8d7f2d27582"></a><!-- doxytag: member="CFormulaire::retType" ref="cf6a2bd98f3c1fd72af0d8d7f2d27582" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retType</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c6569092afd7a27e1206f3776e7e7796"></a><!-- doxytag: member="CFormulaire::retTypeLarg" ref="c6569092afd7a27e1206f3776e7e7796" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retTypeLarg</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1719cf77c569320e0452201db3381169"></a><!-- doxytag: member="CFormulaire::$aoAxes" ref="1719cf77c569320e0452201db3381169" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#1719cf77c569320e0452201db3381169">$aoAxes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formulaire.html#8613a76a7c1b34618a7d27decc101755" title="Initialise un tableau contenant les axes du formulaire courant.">initAxes()</a>, contenant les axes du formulaire courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="14e9c08ea2597e322705539a9ddb0886"></a><!-- doxytag: member="CFormulaire::$aoFormulaire" ref="14e9c08ea2597e322705539a9ddb0886" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#14e9c08ea2597e322705539a9ddb0886">$aoFormulaire</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formulaire.html#ddf3e709535be3d52b0326d452570f1f" title="Retourne la liste des formulaires visibles.">retListeFormulairesVisibles()</a>, contenant des formulaires. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1bb1252adfcf59a87bb90ce0f522d494"></a><!-- doxytag: member="CFormulaire::$aoObjets" ref="1bb1252adfcf59a87bb90ce0f522d494" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#1bb1252adfcf59a87bb90ce0f522d494">$aoObjets</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formulaire.html#bc08ddba6fbff30b39e3f829c2326264" title="Initialise un tableau contenant les objet du formulaire courant.">initObjets()</a>, contenant des objets de formulaire. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4d0d41ddfceb2fa621fc9ac4cfc3fe64"></a><!-- doxytag: member="CFormulaire::$iId" ref="4d0d41ddfceb2fa621fc9ac4cfc3fe64" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#4d0d41ddfceb2fa621fc9ac4cfc3fe64">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba0d0fdcf33bb90abf75b57c9fe8b876"></a><!-- doxytag: member="CFormulaire::$oBdd" ref="ba0d0fdcf33bb90abf75b57c9fe8b876" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#ba0d0fdcf33bb90abf75b57c9fe8b876">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="05dbe46ffa1d6f4c5fcdced6e866776f"></a><!-- doxytag: member="CFormulaire::$oEnregBdd" ref="05dbe46ffa1d6f4c5fcdced6e866776f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#05dbe46ffa1d6f4c5fcdced6e866776f">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f93e8798487dedf2cdead06d853b330c"></a><!-- doxytag: member="CFormulaire::$oExportation" ref="f93e8798487dedf2cdead06d853b330c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formulaire.html#f93e8798487dedf2cdead06d853b330c">$oExportation</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">objet initialisé par <a class="el" href="class_c_formulaire.html#860cca5e40a9c659a27323e8d2cf0238" title="Initialise oExportation qui contiendra les données à exporter.">determinerDonneesAExporter()</a>, contenant les objet à exporter du formulaire courant <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="39a23f6568a607dc3898c2e9b5ed3878"></a><!-- doxytag: member="CFormulaire::ajouter" ref="39a23f6568a607dc3898c2e9b5ed3878" args="($iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un nouveau formulaire dans la DB. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id du nouveau formulaire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="414eeb4612b51b829610e88eab8cdfb7"></a><!-- doxytag: member="CFormulaire::CFormulaire" ref="414eeb4612b51b829610e88eab8cdfb7" args="(&amp;$v_oBdd, $v_iId=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::CFormulaire           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="formulaire_8tbl_8php-source.html#l00064">init()</a>.</p>
+
+<p>Référencé par <a class="el" href="formulaire_8tbl_8php-source.html#l00298">retListeFormulairesVisibles()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="246a5317f45989dc62e224ce5ffa9593"></a><!-- doxytag: member="CFormulaire::copier" ref="246a5317f45989dc62e224ce5ffa9593" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::copier           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie le formulaire courant dans un nouveau formulaire appartenant à la nouvelle personne. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id du nouveau formulaire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="860cca5e40a9c659a27323e8d2cf0238"></a><!-- doxytag: member="CFormulaire::determinerDonneesAExporter" ref="860cca5e40a9c659a27323e8d2cf0238" args="($v_iValeurAxeNeutreMin=0, $v_iValeurAxeNeutreMax=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::determinerDonneesAExporter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iValeurAxeNeutreMin</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iValeurAxeNeutreMax</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise oExportation qui contiendra les données à exporter. 
+<p>
+Exporte seulement les listes, radios, et cases à cocher. Les axes, objets, réponses possibles, et valeurs par axe doivent tous être initialisés pour que ça fonctionne<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iValeurAxeNeutreMin</em>&nbsp;</td><td>nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées. Cet intervalle correspond aux valeurs de l'axe qui ne sont pas prisent en compte lors de l'exportation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iValeurAxeNeutreMax</em>&nbsp;</td><td>nombre représentant le début de l'intervalle pour lequel les réponses ne seront pas exportées </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bc08ddba6fbff30b39e3f829c2326264"></a><!-- doxytag: member="CFormulaire::initObjets" ref="bc08ddba6fbff30b39e3f829c2326264" args="($v_bInitDetail=TRUE, $v_bInitValeursParAxe=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::initObjets           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitDetail</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitValeursParAxe</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les objet du formulaire courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitDetail</em>&nbsp;</td><td>si <code>true(defaut)</code> initialise les objets du formulaire, la fonction <a class="el" href="class_c_formulaire.html#8613a76a7c1b34618a7d27decc101755" title="Initialise un tableau contenant les axes du formulaire courant.">initAxes()</a> doit être appelée avant celle-ci </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitValeursParAxe</em>&nbsp;</td><td>si <code>true</code>(<code>false</code> par défaut), initialise les reponses de l'objet par axe </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ddf3e709535be3d52b0326d452570f1f"></a><!-- doxytag: member="CFormulaire::retListeFormulairesVisibles" ref="ddf3e709535be3d52b0326d452570f1f" args="($v_iIdAuteur=NULL, $v_sType=NULL, $v_iStatut=NULL, $v_bToutMontrer=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retListeFormulairesVisibles           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdAuteur</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sType</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatut</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bToutMontrer</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la liste des formulaires visibles. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdAuteur</em>&nbsp;</td><td>l'id de l'auteur des formulaires </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sType</em>&nbsp;</td><td>le type de formulaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatut</em>&nbsp;</td><td>le statut du formulaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bToutMontrer</em>&nbsp;</td><td>si <code>true</code>(<code>false</code> par défaut), la liste complète des formulaires sera retournée</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la liste des formulaires visibles </dd></dl>
+
+<p>Références <a class="el" href="formulaire_8tbl_8php-source.html#l00052">CFormulaire()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d2cdfb6d95381ce5aef3f94b6f63c2fe"></a><!-- doxytag: member="CFormulaire::retListeObjetFormulaire" ref="d2cdfb6d95381ce5aef3f94b6f63c2fe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retListeObjetFormulaire           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la liste des objets de formulaire. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la liste des objets de formulaire </dd></dl>
+
+<p>Références <a class="el" href="formulaire_8tbl_8php-source.html#l00038">$oEnregBdd</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="0b96da706e48f28e8120e186e80153eb"></a><!-- doxytag: member="CFormulaire::retNbRemplisDsSessions" ref="0b96da706e48f28e8120e186e80153eb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retNbRemplisDsSessions           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de formulaire complété. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formulaire complété </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="be61fa895c6370afcd74499480c00203"></a><!-- doxytag: member="CFormulaire::retNbreObjetFormulaire" ref="be61fa895c6370afcd74499480c00203" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retNbreObjetFormulaire           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'éléments de cette activité en ligne. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'éléments de cette activité en ligne </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2f12b20106226efe911008ca44e897e3"></a><!-- doxytag: member="CFormulaire::retNbreObjetFormulaireNonAutoCorrige" ref="2f12b20106226efe911008ca44e897e3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retNbreObjetFormulaireNonAutoCorrige           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'éléments qui ne sont pas auto-corrigés. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'éléments qui ne sont pas auto-corrigés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="144a6a828ed19f6b2aaef7374b4b5110"></a><!-- doxytag: member="CFormulaire::retNbUtilisationsDsSessions" ref="144a6a828ed19f6b2aaef7374b4b5110" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormulaire::retNbUtilisationsDsSessions           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'utilisation du formulaire. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'utilisation du formulaire </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="formulaire_8tbl_8php.html">formulaire.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CConstantes</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CConstantes</h1><!-- doxytag: class="CConstantes" -->
+<p>
+<a href="class_c_constantes-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe permettant de récupérer des constantes 'texte' (consignes, messages, etc) dans la base de données. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#8ee22843123851c029ef232a8d97ea38">CConstantes</a> (&amp;$v_oBdd, $v_sTable)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#8ee22843123851c029ef232a8d97ea38"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#f5741052d0f1f514744dadbfdd0455d1">creerFichierConstantes</a> ($v_sNomFichier=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée un fichier de constantes représentant les termes traduisibles.  <a href="#f5741052d0f1f514744dadbfdd0455d1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#58ed0a442e95f6c416bb091dead96b47">retTexte</a> ($v_iId, $v_bConversionHtml=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Récupère un texte traduit sur base de son id.  <a href="#58ed0a442e95f6c416bb091dead96b47"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ab8dc04e21f07a6adce26d77ce5b33f5"></a><!-- doxytag: member="CConstantes::$oBdd" ref="ab8dc04e21f07a6adce26d77ce5b33f5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#ab8dc04e21f07a6adce26d77ce5b33f5">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c270ada16e51b18dd9a04b405c53b13d"></a><!-- doxytag: member="CConstantes::$sTable" ref="c270ada16e51b18dd9a04b405c53b13d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#c270ada16e51b18dd9a04b405c53b13d">$sTable</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom de la table DB (i18n_fr) qui contient toutes les traductions dans une langue donnée. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="886c8de08718f95f8225334d0e997f79"></a><!-- doxytag: member="CConstantes::$sTableI18N" ref="886c8de08718f95f8225334d0e997f79" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html#886c8de08718f95f8225334d0e997f79">$sTableI18N</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom de la table DB (i18n) qui contient toutes les constantes des textes traduisibles. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="8ee22843123851c029ef232a8d97ea38"></a><!-- doxytag: member="CConstantes::CConstantes" ref="8ee22843123851c029ef232a8d97ea38" args="(&amp;$v_oBdd, $v_sTable)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CConstantes::CConstantes           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTable</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Initialise les paramètres de DB et de tables de l'objet<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sTable</em>&nbsp;</td><td>le nom de la table correspondant à la langue voulue. C'est dans cette table que seront récupérées les traductions </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f5741052d0f1f514744dadbfdd0455d1"></a><!-- doxytag: member="CConstantes::creerFichierConstantes" ref="f5741052d0f1f514744dadbfdd0455d1" args="($v_sNomFichier=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CConstantes::creerFichierConstantes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomFichier</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée un fichier de constantes représentant les termes traduisibles. 
+<p>
+Cette fonction doit être appelée lorsque de nouveaux termes à traduire ont été ajoutés dans la DB, sinon leur id sera inaccessible en PHP<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomFichier</em>&nbsp;</td><td>le nom du fichier de constantes à créer. Si <code>v_sNomFichier</code> n'est pas spécifié, le fichier aura le même nom que la table utilisée pour la langue (voir <a class="el" href="class_c_constantes.html#8ee22843123851c029ef232a8d97ea38" title="Constructeur.">CConstantes()</a>) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="58ed0a442e95f6c416bb091dead96b47"></a><!-- doxytag: member="CConstantes::retTexte" ref="58ed0a442e95f6c416bb091dead96b47" args="($v_iId, $v_bConversionHtml=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CConstantes::retTexte           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bConversionHtml</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Récupère un texte traduit sur base de son id. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iId</em>&nbsp;</td><td>l'id du texte à chercher </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bConversionHtml</em>&nbsp;</td><td>si <code>true</code>, remplace les caractères qui le nécessitent par des entités HTML dans le texte retourné</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte associé à l'Id, dans la langue voulue (définie dans le constructeur par un nom de table correspondant dans la DB) </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/<a class="el" href="plate__forme_8class_8php.html">plate_forme.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

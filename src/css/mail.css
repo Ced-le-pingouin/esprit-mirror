@@ -1,0 +1,19 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+mail general
+destinataires liste
+------------------ */
+
+/* -- mail general -- */
+#idChoisirDansListe {
+position: relative;
+}
+/* ----- */
+
+/* -- destinataires liste -- */
+body.destinataires_liste, body.destinataires_liste span, body.destinataires_liste div,body.destinataires_liste td { font-size: 8pt; }
+body.destinataires_liste table {  background-color: rgb(196,202,220); }
+span.destinataire_mail { color: rgb(140,140,140); }
+td.courriel_conforme, td.courriel_non_conforme { background-color: rgb(255,255,255); width: 99%; }
+/* ----- */

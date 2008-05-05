@@ -1,0 +1,47 @@
+Documentation des nouvelles fonctionnalités de la version 2.3
+
+
+** Remplacement de l'éditeur HTML
+**************************************
+L'éditeur HTML libre TinyMCE a été intégré dans Esprit, en remplacement de 
+l'ancien éditeur interne, qui produisait du pseudo-HTML.
+Des mises en forme plus riches sont disponibles, ainsi que la possibilité
+d'éditer entièrement en mode Wysiwyg.
+Un soin particulier a été apporté à la gestion du multilinguisme, avec 
+des spécificités pour les langues s'écrivant de droite à gauche.
+L'interface utilisateur est très peu modifiée : TinyMCE apparaît en lieu 
+et place de l'ancien éditeur.
+
+= ATTENTION = le remplacement de l'éditeur HTML impose de mettre à jour 
+les tables contenant du texte "web". Lisez attentivement le fichier 
+src/install/sql/mises_a_jour/2.2_vers_2.3_README
+
+
+** Interface de gestion des fichiers déposés
+********************************************
+Auparavant, le concepteur pouvait voir et récupérer les fichiers qu'il avait 
+déposés dans le cadre d'un groupe d'actions (les "blocs" du menu de gauche dans 
+une formation). Désormais, l'outil "Gérer les fichiers" présent dans eConcept 
+permet de naviguer dans tous les fichiers d'une même formation, et permet ainsi 
+d'avoir une vision beaucoup moins restreinte de ces fichiers.
+De plus, les fichiers -et dossiers- peuvent être copiés, déplacés, ou supprimés 
+(à l'exception de ceux créés automatiquement par la plate-forme), et de nouveaux
+dossiers peuvent être créés.
+Le lien est accessible dans la barre d'état (basse) de e-Concept.
+
+
+** Interface de copier/coller pour éléments de formations
+*********************************************************
+Toujours dans eConcept, il existe maintenant un outil permettant de copier des 
+modules/cours, rubriques/unités, ..., actions d'une formation vers une autre.
+Auparavant, la seule possibilité était de baser une nouvelle formation sur une 
+existante, ce qui impliquait une copie complète de la formation source, et du 
+coup l'effacement ultérieur par le concepteur de tout ce qui n'était pas 
+nécessaire à la nouvelle formation.   
+Le lien "Copier/Coller à partir d'autres formations" est accessible dans 
+la barre d'état (basse) de e-Concept.
+
+
+** Améliorations mineures
+*************************
+- l'importation de liste d'utilisateurs (nouveauté 2.2) a été légèrement améliorée

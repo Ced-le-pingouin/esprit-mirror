@@ -1,0 +1,4 @@
+Manifest-version: 1.0
+Created-By: Porco Filippo
+Main-Class: DeltaChat.class
+Class-Path: DeltaChatServer.jar

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe TPL_Block_ListeComposite</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe TPL_Block_ListeComposite</h1><!-- doxytag: class="TPL_Block_ListeComposite" -->
+<p>
+<a href="class_t_p_l___block___liste_composite-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion d'un bloc de template particulier, qui peut servir à afficher des listes d'éléments "composites", càd dont chaque élément peut être simple, ou lui-même une liste d'éléments composites. 
+<p>
+C'est donc différent d'une simple boucle, et sert par ex. à afficher une arborescence de fichiers (un dossier contient lui-même soit des fichiers, soit des dossiers, qui eux-même etc.), ou une arborescence de cours/unités/activités/etc. dans une formation.<p>
+Par exemple, pour afficher une liste de dossiers/fichiers, on peut définir le code HTML liste comme ceci:<p>
+<div class="fragment"><pre class="fragment"> [liste+]
+ &lt;ul&gt;
+   [liste_el+]&lt;li&gt;
+     {nom_fichier}
+     [@liste]
+   &lt;/li&gt;[liste_el-]
+ &lt;/ul&gt;
+ [liste-]
+</pre></div><p>
+Donc, la liste elle-même se définit exactement comme un <a class="el" href="class_t_p_l___block.html" title="Gestion des blocs de templates, càd des parties masquables ou répétables d&#39;un...">TPL_Block</a>. A l'intérieur de celle-ci, on encadre le code qui représente un élément de liste par un bloc du même nom que la liste mais avec le suffixe <code>_el</code>. Ensuite, on place où on veut dans le code de l'élément, une balise du même nom que la liste mais précédée de <code>@</code>, qui indique où s'insérera automatiquement une sous-liste du même type dans le cas où l'élément n'est pas "simple" mais de type composite (par ex. un dossier dans le cas de l'arborescence de fichiers).<p>
+Dans les méthodes de cette classe, la différence est principalement sur <a class="el" href="class_t_p_l___block___liste_composite.html#4529c5ebaa25dd53d835df4db110a3f5" title="Voir TPL_Block::nextLoop().">nextLoop()</a>, qui demande pour chaque itération deux paramètres: une indication que l'élément courant est composite ou pas (simple), et le niveau d'imbrication actuel de l'arborescance (commençant à 0 automatiquement).<p>
+Cette classe peut par exemple être utilisée avec un <a class="el" href="class_iterateur_recursif.html" title="constante interne à des fins de vérification">IterateurRecursif</a> de la lib std. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#6b3d3e874ec2fed4d1053f5be0bd1d50">_afficherNivsPrec</a> ($iNivMin)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie s'il faut afficher des niveaux antérieurs de l'arborescence, dont le traitement est terminé.  <a href="#6b3d3e874ec2fed4d1053f5be0bd1d50"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="395919ca8c21f052304ba8a154f53650"></a><!-- doxytag: member="TPL_Block_ListeComposite::_prepNivSuiv" ref="395919ca8c21f052304ba8a154f53650" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#395919ca8c21f052304ba8a154f53650">_prepNivSuiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lorsqu'un élément est un composite (sous-liste), il faut insérer et initialiser dans le bloc de l'élément au niveau courant, un bloc pour une nouvelle liste et également un nouveau bloc enfant de celle-ci pour ses éléments. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee25038dc4305ae6decbfe767c969d94"></a><!-- doxytag: member="TPL_Block_ListeComposite::afficher" ref="ee25038dc4305ae6decbfe767c969d94" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#ee25038dc4305ae6decbfe767c969d94">afficher</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_t_p_l___block.html#033c8864b8d6180d9163828454335ab0" title="Affiche le contenu du bloc de template dans son parent.">TPL_Block::afficher()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e2037981d3b79f1c2b2ff9a2d4b978a8"></a><!-- doxytag: member="TPL_Block_ListeComposite::beginLoop" ref="e2037981d3b79f1c2b2ff9a2d4b978a8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#e2037981d3b79f1c2b2ff9a2d4b978a8">beginLoop</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_t_p_l___block.html#042e3331ed17110ce4da1112f10c5a5a" title="Initialise les données du bloc pour les préparer à une boucle.">TPL_Block::beginLoop()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4529c5ebaa25dd53d835df4db110a3f5"></a><!-- doxytag: member="TPL_Block_ListeComposite::nextLoop" ref="4529c5ebaa25dd53d835df4db110a3f5" args="($bComposite, $iNiv)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#4529c5ebaa25dd53d835df4db110a3f5">nextLoop</a> ($bComposite, $iNiv)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_t_p_l___block.html#793f3c7ff34e3a8f2e88209e8735fe5e" title="Passe à l&#39;itération suivante d&#39;une boucle sur un bloc de template.">TPL_Block::nextLoop()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1202e00768e0f7fcb2062542da727639"></a><!-- doxytag: member="TPL_Block_ListeComposite::remplacer" ref="1202e00768e0f7fcb2062542da727639" args="($in, $out)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#1202e00768e0f7fcb2062542da727639">remplacer</a> ($in, $out)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_t_p_l___block.html#5f4d8f2f092746c0c2e41d7e86ac33c1" title="Remplace &quot;simplement&quot; des morceaux de bloc de template par d&#39;autres...">TPL_Block::remplacer()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#5543317fdd1d4a53cd2e95db55ae07dc">TPL_Block_ListeComposite</a> ($looptag, &amp;$template)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#5543317fdd1d4a53cd2e95db55ae07dc"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d8b7a7d60a9a586504d2da8f188b0c2b"></a><!-- doxytag: member="TPL_Block_ListeComposite::$aTplsElements" ref="d8b7a7d60a9a586504d2da8f188b0c2b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#d8b7a7d60a9a586504d2da8f188b0c2b">$aTplsElements</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui contient les éléments de chacune des listes ci-dessus. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2fb2b6a4b25257db5cb83fe9973de8f8"></a><!-- doxytag: member="TPL_Block_ListeComposite::$aTplsListes" ref="2fb2b6a4b25257db5cb83fe9973de8f8" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#2fb2b6a4b25257db5cb83fe9973de8f8">$aTplsListes</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui contient les différents niveaux de listes imbriquées. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c1e70fcb280ed33d801da094e5f99324"></a><!-- doxytag: member="TPL_Block_ListeComposite::$iNiv" ref="c1e70fcb280ed33d801da094e5f99324" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#c1e70fcb280ed33d801da094e5f99324">$iNiv</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Niveau actuel d'indentation de l'arborescence. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2440e847ca0f26923a7c7c8fff4da0f9"></a><!-- doxytag: member="TPL_Block_ListeComposite::$looptag" ref="2440e847ca0f26923a7c7c8fff4da0f9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#2440e847ca0f26923a7c7c8fff4da0f9">$looptag</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Balise qui entourait le bloc dans le template parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b53c69d22c123ada330f6c7549a50df1"></a><!-- doxytag: member="TPL_Block_ListeComposite::$sContenuListe" ref="b53c69d22c123ada330f6c7549a50df1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block___liste_composite.html#b53c69d22c123ada330f6c7549a50df1">$sContenuListe</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sauvegarde du contenu (code) de la liste initiale, qui sera inséré pour chaque sous-liste (élément composite). <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="6b3d3e874ec2fed4d1053f5be0bd1d50"></a><!-- doxytag: member="TPL_Block_ListeComposite::_afficherNivsPrec" ref="6b3d3e874ec2fed4d1053f5be0bd1d50" args="($iNivMin)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block_ListeComposite::_afficherNivsPrec           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>iNivMin</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie s'il faut afficher des niveaux antérieurs de l'arborescence, dont le traitement est terminé. 
+<p>
+(appelée à partir de <a class="el" href="class_t_p_l___block___liste_composite.html#4529c5ebaa25dd53d835df4db110a3f5" title="Voir TPL_Block::nextLoop().">nextLoop()</a> lorsqu'on reste au même niveau mais qu'une sous-liste précédente pourrait s'avérer vide de tout élément =&gt; on l'efface; ou si on est descendu d'un ou plusieurs niveaux depuis le dernier appel, auquel cas il faudra afficher les sous-listes terminées)<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>iNivMin</em>&nbsp;</td><td>le niveau jusqu'auquel il faut redescendre. Tous les niveaux supérieurs résultant des précédentes itérations seront affichés </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="template_8inc_8php-source.html#l00580">afficher()</a>, et <a class="el" href="template_8inc_8php-source.html#l00562">nextLoop()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5543317fdd1d4a53cd2e95db55ae07dc"></a><!-- doxytag: member="TPL_Block_ListeComposite::TPL_Block_ListeComposite" ref="5543317fdd1d4a53cd2e95db55ae07dc" args="($looptag, &amp;$template)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block_ListeComposite::TPL_Block_ListeComposite           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>template</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Initialise le niveau d'imbrication des listes à 0, le nom de la balise de liste, et les deux blocs initiaux représentant la liste de départ, et ses éléments 
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00530">$looptag</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/<a class="el" href="template_8inc_8php.html">template.inc.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

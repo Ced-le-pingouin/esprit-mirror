@@ -1,0 +1,28 @@
+Esprit  Roadmap
+
+
+Les prévisions ci-dessous sont strictement indicatives, et peuvent être soumises à
+changements : modifications de priorités, abandon...
+
+
+v. 2.4  (décembre 2007 ?)
+(Silecs)
+- importation d'activités Hot Potatoes ; récupération des scores
+
+
+
+v. 2.5 ?
+(Silecs)
+- Gestion de groupes d'individus ; groupes de groupes
+- Inscriptions de groupes à une formation
+- Refonte de la gestion de rôle par niveau de formation (0=global, 1=formation...)
+
+
+
+TODO, non planifiés :
+
+- Refonte de l'interface d'administration des individus (UTE)
+- Interface de rapport de bogue (Silecs ?)
+- Gestion des droits : changement de rôle au vol
+- Remplacement des serveurs Chat et Awareness par du PHP intégré
+- Aide en ligne contextuelle

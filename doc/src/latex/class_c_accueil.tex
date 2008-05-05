@@ -1,0 +1,148 @@
+\section{Référence de la classe CAccueil}
+\label{class_c_accueil}\index{CAccueil@{CAccueil}}
+
+
+\subsection{Description détaillée}
+Gestion de la page d'accueil en utilisant la table Accueil de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CAccueil} (\&\$v\_\-oBdd, \$init=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{deleteItem} (\$id)\label{class_c_accueil_12829ba18906523fa4154aebde4ad281}
+
+\item 
+{\bf getAvert} (\$Visible=0)\label{class_c_accueil_5d95d988edee93d2b3b4fb2fe3738810}
+
+\begin{CompactList}\small\item\em Renvoie le texte de l'avertissement à afficher sur la page d'accueil. \item\end{CompactList}\item 
+{\bf getBreves} (\$Visible=0, \$Date=FALSE)
+\begin{CompactList}\small\item\em Renvoie le tableau des brèves à afficher sur la page d'accueil. \item\end{CompactList}\item 
+{\bf getItem} (\$id)
+\begin{CompactList}\small\item\em Renvoie l'item (avertissement, texte, breve, lien) de la page d'accueil. \item\end{CompactList}\item 
+{\bf getLiens} (\$Visible=0)
+\begin{CompactList}\small\item\em Renvoie le tableau des liens à afficher sur la page d'accueil. \item\end{CompactList}\item 
+{\bf getNumByType} (\$type)
+\begin{CompactList}\small\item\em Renvoie le nombre d'item (avertissement, texte, breve, lien) du type donné. \item\end{CompactList}\item 
+{\bf getTexte} (\$Visible=0)\label{class_c_accueil_ab120918e85d61cc90f643897bc2ad26}
+
+\begin{CompactList}\small\item\em Renvoie le texte d'accueil. \item\end{CompactList}\item 
+{\bf getTitres} ()\label{class_c_accueil_58552c08ab761773f0f8fdb2471d4494}
+
+\begin{CompactList}\small\item\em Renvoie les titres des sections (breves, liens) de la page d'accueil. \item\end{CompactList}\item 
+{\bf init} ()\label{class_c_accueil_a1172c89f84eb6e36bb92cdaad61c9bd}
+
+\begin{CompactList}\small\item\em Lit l'intégralité de la table et met à jour l'objet. \item\end{CompactList}\item 
+\textbf{isVisible} (\$ele)\label{class_c_accueil_a9f926e3b523c975a7ae7e576f526b0e}
+
+\item 
+\textbf{setAvert} (\$txt)\label{class_c_accueil_2cd4e911c96661688f94886c09e43e45}
+
+\item 
+\textbf{setBreve} (\$txt, \$dateDeb='NULL', \$dateFin='NULL', \$visible=1, \$ordre='NULL', \$id=FALSE)\label{class_c_accueil_f7a8581a2f5d6732950ffb7771ff2d07}
+
+\item 
+\textbf{setLien} (\$txt, \$lien, \$typeLien='popup', \$visible=1, \$ordre='NULL', \$id=FALSE)\label{class_c_accueil_fd8de3f70ea1c7874ca095afa6753504}
+
+\item 
+\textbf{setTexte} (\$txt)\label{class_c_accueil_2110d9f2ab558d5742ce24a6cc17dec4}
+
+\item 
+{\bf setTitre} (\$rubrique, \$texte)
+\begin{CompactList}\small\item\em Affecte le titre d'une rubrique (breves, liens) de la page d'accueil. \item\end{CompactList}\item 
+\textbf{toggleVisible} (\$id)\label{class_c_accueil_e7c651a2bc5b5db4c228f94064fe730d}
+
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+\textbf{\$aoBreves}\label{class_c_accueil_244fa4e3be48aa35f5588a4e41da07cd}
+
+\item 
+\textbf{\$aoLiens}\label{class_c_accueil_28ed219744b732eb63be5f45d53453b3}
+
+\item 
+{\bf \$oBdd}\label{class_c_accueil_40a0493cd8c601604d1fd94c4816fe80}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+\textbf{\$sAvert}\label{class_c_accueil_bad010470685b00e5c23198ac0b06709}
+
+\item 
+\textbf{\$sTexte}\label{class_c_accueil_93df22a3b98ee1ea1629fbd904bdce8e}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CAccueil@{CAccueil}!CAccueil@{CAccueil}}
+\index{CAccueil@{CAccueil}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::CAccueil (\&\$ {\em v\_\-oBdd}, \/  \$ {\em init} = {\tt FALSE})}\label{class_c_accueil_caecfe0673c982582da78fb654c1d11e}
+
+
+Constructeur. 
+
+
+
+Références init().\index{CAccueil@{CAccueil}!getBreves@{getBreves}}
+\index{getBreves@{getBreves}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::getBreves (\$ {\em Visible} = {\tt 0}, \/  \$ {\em Date} = {\tt FALSE})}\label{class_c_accueil_6617e8dbf9119472d7d7e4548da12ffa}
+
+
+Renvoie le tableau des brèves à afficher sur la page d'accueil. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em Visible}]Si non nul, uniquement les éléments visibles. \item[{\em Date}]Si vrai, tient compte de la date courante \end{description}
+\end{Desc}
+\index{CAccueil@{CAccueil}!getItem@{getItem}}
+\index{getItem@{getItem}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::getItem (\$ {\em id})}\label{class_c_accueil_05dbb20c24dfe39dde30e9044556f47e}
+
+
+Renvoie l'item (avertissement, texte, breve, lien) de la page d'accueil. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em id}]L'ID SQL de l'item. \end{description}
+\end{Desc}
+\index{CAccueil@{CAccueil}!getLiens@{getLiens}}
+\index{getLiens@{getLiens}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::getLiens (\$ {\em Visible} = {\tt 0})}\label{class_c_accueil_04fdea106cc940842bb4f6b3ce4af528}
+
+
+Renvoie le tableau des liens à afficher sur la page d'accueil. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em Visible}]Si non nul, uniquement les éléments visibles. \end{description}
+\end{Desc}
+\index{CAccueil@{CAccueil}!getNumByType@{getNumByType}}
+\index{getNumByType@{getNumByType}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::getNumByType (\$ {\em type})}\label{class_c_accueil_145cb1b88eba4c551f07382dcabee84e}
+
+
+Renvoie le nombre d'item (avertissement, texte, breve, lien) du type donné. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em type}]Le type des items. \end{description}
+\end{Desc}
+\index{CAccueil@{CAccueil}!setTitre@{setTitre}}
+\index{setTitre@{setTitre}!CAccueil@{CAccueil}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAccueil::setTitre (\$ {\em rubrique}, \/  \$ {\em texte})}\label{class_c_accueil_87aa45bf7e64fd5984dfd4cadaf157c6}
+
+
+Affecte le titre d'une rubrique (breves, liens) de la page d'accueil. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em rubrique}]Le nom de la rubrique (breves, liens). \item[{\em texte}]Le nouveau titre. \end{description}
+\end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf accueil.tbl.php}\end{CompactItemize}

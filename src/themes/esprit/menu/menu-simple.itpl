@@ -1,0 +1,30 @@
+<!-- Template ...............: Menu simple
+  -- Date de création .......: 28/07/2007
+  -- Dernière modification ..: 31/07/2004
+  -- Auteurs ................: Filippo PORCO
+  -- Emails .................: ute@umh.ac.be
+  --
+  -- Unité de Technologie de l'Education
+  -- 18, Place du Parc
+  -- 7000 MONS
+  --
+  -- Remarque: Composer d'abord votre menu simple, puis insérer celui-ci dans le
+  --           template principal.
+  -->
+[SET_MENU_SIMPLE+]
+<table width="100%" border="0" cellspacing="0" cellpadding="1" align="center">
+<tr><td style="background-color: rgb(111,105,87); color: rgb(255,255,255); font-weight: bold; text-align: center;">{titre}</td></tr>
+<tr>
+<td style="background-color: rgb(111,105,87);">
+<table width="100%" border="0" cellspacing="1" cellpadding="3">
+[BLOCK_ELEMENT+]<tr><td style="background-color: rgb(231,225,212); color: rgb(0,0,0); font-weight: normal; text-align: center;">{element}</td></tr>[BLOCK_ELEMENT-]
+[BLOCK_MENU+]<tr><td style="background-color: rgb(202,195,177); color: rgb(0,0,0); font-weight: normal; text-align: center;">{menu}</td></tr>[BLOCK_MENU-]
+</table>
+</td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+</table>
+[SET_MENU_SIMPLE-]
+[SET_MENU_LIEN_ACTIF+]<a href="javascript: void(0);" onclick="{a['onclick']}" title="{a['title']}" onfocus="blur()">{a['label']}</a>[SET_MENU_SIMPLE_LIEN_ACTIF-]
+[SET_MENU_LIEN_PASSIF+]<span style="color: rgb(240,240,240);">{a['label']}</span></td></tr>[SET_MENU_SIMPLE_LIEN_PASSIF-]
+[SET_MENU_SEPARATEUR+]&nbsp;|&nbsp;[SET_MENU_SEPARATEUR-]

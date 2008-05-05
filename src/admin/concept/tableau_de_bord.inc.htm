@@ -1,0 +1,33 @@
+<!--[[ Tableau de bord -->
+<div id="lien_tableau_de_bord" class="Cacher">
+<fieldset>
+<legend>&nbsp;Tableau de bord&nbsp;</legend>
+<table>
+<tr>
+<td class="intitule">Modalit&eacute;&nbsp;:&nbsp;</td>
+<td>
+<select name="MODALITE[{sousactiv.type}]">
+<option value="0">m&ecirc;me modalit&eacute; que le groupe d'actions</option>
+<option value="{modalite.individuel.value}"{modalite.individuel.selected}>individuel</option>
+<option value="{modalite.par_equipe.value}"{modalite.par_equipe.selected}>par &eacute;quipe</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="intitule">Modalit&eacute; d'affichage&nbsp;:&nbsp;</td>
+<td>
+<select name="MODALITE_AFFICHAGE[{sousactiv.type}]" onchange="modalite_affichage('tableau_de_bord',{sousactiv.type})">
+<option value="{modalite_affichage.nouvelle_fenetre_direct.value}"{modalite_affichage.nouvelle_fenetre_direct.selected}>Nouvelle fen&ecirc;tre</option>
+<option value="{modalite_affichage.frame_centrale_direct.value}"{modalite_affichage.frame_centrale_direct.selected}>Affichage indirect + consignes</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="intitule">Consignes&nbsp;:&nbsp;</td>
+<td><textarea name="DESCRIPTION[{sousactiv.type}]" cols="55" rows="5"{description.disabled}>{description.texte}</textarea>&nbsp;&nbsp;[&nbsp;<a href="javascript: editeur('form_admin_modif','DESCRIPTION[{sousactiv.type}]','tableau_de_bord'); void(0);" onfocus="blur()">Editeur</a>&nbsp;]</span></td>
+</tr>
+</table>
+</fieldset>
+</div>
+<!-- Tableau de bord ]]-->
+

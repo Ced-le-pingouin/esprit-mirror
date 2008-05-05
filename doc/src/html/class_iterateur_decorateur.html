@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe IterateurDecorateur</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe IterateurDecorateur</h1><!-- doxytag: class="IterateurDecorateur" --><div class="dynheader">
+Graphe d'héritage de IterateurDecorateur:</div>
+<div class="dynsection">
+
+<p><center><img src="class_iterateur_decorateur.png" usemap="#IterateurDecorateur_map" border="0" alt=""></center>
+<map name="IterateurDecorateur_map">
+<area href="class_iterateur_filtre.html" alt="IterateurFiltre" shape="rect" coords="0,56,131,80">
+<area href="class_iterateur_recursif.html" alt="IterateurRecursif" shape="rect" coords="141,56,272,80">
+<area href="class_iterateur_filtre_dossier.html" alt="IterateurFiltreDossier" shape="rect" coords="0,112,131,136">
+</map>
+</div>
+
+<p>
+<a href="class_iterateur_decorateur-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe abstraite qui sert de base pour des décorateurs d'Iterateur. 
+<p>
+Elle n'a pas d'utilité tant qu'elle n'est pas sous-classée, mais elle permet de ne pas recopier dans chaque décorateur des "$this-&gt;oItr-&gt;...()" pour transférer chaque appel du décorateur vers son itérateur interne (par exemple <a class="el" href="class_iterateur_filtre.html" title="Classe abstraite qui sert de filtre (sous forme de décorateur) à des objets dérivés...">IterateurFiltre</a> dérive de cette classe) <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="38603f16d8f24be2243f1984531fc35a"></a><!-- doxytag: member="IterateurDecorateur::cle" ref="38603f16d8f24be2243f1984531fc35a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#38603f16d8f24be2243f1984531fc35a">cle</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#0bc2b87d3fa65a6df5c4d5134402d4ba" title="Retourne la clé de l&#39;élément courant de l&#39;itérateur.">Iterateur::cle()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0556823cb63bdd26ffb6740ac48d6d3a"></a><!-- doxytag: member="IterateurDecorateur::courant" ref="0556823cb63bdd26ffb6740ac48d6d3a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#0556823cb63bdd26ffb6740ac48d6d3a">courant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#525e78b4e7c5aec4cc4e8003ca9e730b" title="Retourne l&#39;élément courant de l&#39;itérateur.">Iterateur::courant()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="80cf0789992d21ad62da5d0d5f1ea194"></a><!-- doxytag: member="IterateurDecorateur::debut" ref="80cf0789992d21ad62da5d0d5f1ea194" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#80cf0789992d21ad62da5d0d5f1ea194">debut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#1600a0b47466d85a5bb4af10a634b1ed" title="Place l&#39;itérateur sur le premier élément.">Iterateur::debut()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="38946bd116945c792f078b10672be663"></a><!-- doxytag: member="IterateurDecorateur::estDernier" ref="38946bd116945c792f078b10672be663" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#38946bd116945c792f078b10672be663">estDernier</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#b90977faf081ea8db8e56415e0bc9e2f" title="Indique si l&#39;élément courant de l&#39;itérateur est le dernier.">Iterateur::estDernier()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d18c4f1eb863485ea629a70e24b47857"></a><!-- doxytag: member="IterateurDecorateur::estPremier" ref="d18c4f1eb863485ea629a70e24b47857" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#d18c4f1eb863485ea629a70e24b47857">estPremier</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#6e49a71af6b96a13d20aa137ddd9ac2d" title="Indique si l&#39;élément courant de l&#39;itérateur est le premier.">Iterateur::estPremier()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fab82d77af4d3708888d78174237dd3d"></a><!-- doxytag: member="IterateurDecorateur::estValide" ref="fab82d77af4d3708888d78174237dd3d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#fab82d77af4d3708888d78174237dd3d">estValide</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#33d904743c851b2c959c514ecce923c8" title="Indique si la position courante de l&#39;itérateur est valide, càd si un élément...">Iterateur::estValide()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9d4f3052b38a46171ce1ba55b7eedee1"></a><!-- doxytag: member="IterateurDecorateur::fin" ref="9d4f3052b38a46171ce1ba55b7eedee1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#9d4f3052b38a46171ce1ba55b7eedee1">fin</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#487fadeda3651d2add97628652fa6d1e" title="Place l&#39;itérateur sur le dernier élément.">Iterateur::fin()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#63665868f82a0bbbdc9d33971d80a369">IterateurDecorateur</a> ($v_oItr)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#63665868f82a0bbbdc9d33971d80a369"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#90259cf14884dba26fea2249689fdbbd">rechercher</a> ($v_Cle)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#b05ee08c7fc02253222a8f3604b65804" title="Déplace l&#39;itérateur jusqu&#39;à un emplacement donné en fonction d&#39;une...">Iterateur::rechercher()</a>.  <a href="#90259cf14884dba26fea2249689fdbbd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#9ccbfc5cd86e253db135beadb3c01a80">retIterateurInterne</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5eabb86ff35f180ca62ff15d7ae189eb"></a><!-- doxytag: member="IterateurDecorateur::suiv" ref="5eabb86ff35f180ca62ff15d7ae189eb" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#5eabb86ff35f180ca62ff15d7ae189eb">suiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#b49e1eadf71ee40a816ed2d5134e0ba7" title="Déplace l&#39;itérateur d&#39;une position vers l&#39;avant.">Iterateur::suiv()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="30ac1db0dd4f46fa5be76d2489fa0c29"></a><!-- doxytag: member="IterateurDecorateur::taille" ref="30ac1db0dd4f46fa5be76d2489fa0c29" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#30ac1db0dd4f46fa5be76d2489fa0c29">taille</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_iterateur.html#40a496bef151a677b180e7805f106acd" title="Retourne le nombre d&#39;éléments présents dans l&#39;itérateur.">Iterateur::taille()</a>. <br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="386ffcc4d4de1b1f5395761b2f85bce2"></a><!-- doxytag: member="IterateurDecorateur::$oItr" ref="386ffcc4d4de1b1f5395761b2f85bce2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_iterateur_decorateur.html#386ffcc4d4de1b1f5395761b2f85bce2">$oItr</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">l'itérateur interne qui sera réellement utilisé (déplacé etc.) <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="63665868f82a0bbbdc9d33971d80a369"></a><!-- doxytag: member="IterateurDecorateur::IterateurDecorateur" ref="63665868f82a0bbbdc9d33971d80a369" args="($v_oItr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDecorateur::IterateurDecorateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oItr</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oItr</em>&nbsp;</td><td>l'itérateur (déjà créé) qui sera parcouru en utilisant le décorateur </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_o_o_8php-source.html#l00243">OO::abstraite()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="90259cf14884dba26fea2249689fdbbd"></a><!-- doxytag: member="IterateurDecorateur::rechercher" ref="90259cf14884dba26fea2249689fdbbd" args="($v_Cle)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDecorateur::rechercher           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_Cle</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Voir <a class="el" href="class_iterateur.html#b05ee08c7fc02253222a8f3604b65804" title="Déplace l&#39;itérateur jusqu&#39;à un emplacement donné en fonction d&#39;une...">Iterateur::rechercher()</a>. 
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd>Si l'élément recherché par rapport à sa clé est trouvé, mais qu'il ne satisfait pas le filtre, l'itérateur restera dans sa position actuelle et la méthode retournera <code>false</code> </dd></dl>
+
+<p>Réimplémentée dans <a class="el" href="class_iterateur_filtre.html#20bef862b796a69638948f0dbc209202">IterateurFiltre</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="9ccbfc5cd86e253db135beadb3c01a80"></a><!-- doxytag: member="IterateurDecorateur::retIterateurInterne" ref="9ccbfc5cd86e253db135beadb3c01a80" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IterateurDecorateur::retIterateurInterne           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'itérateur interne, passé au constructeur lors de la création de l'objet </dd></dl>
+
+<p>Référencé par <a class="el" href="_iterateur_filtre_dossier_8php-source.html#l00048">IterateurFiltreDossier::IterateurFiltreDossier()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/std/<a class="el" href="_iterateur_decorateur_8php.html">IterateurDecorateur.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

@@ -1,0 +1,122 @@
+\section{Référence de la classe CZip}
+\label{class_c_zip}\index{CZip@{CZip}}
+
+
+\subsection{Description détaillée}
+Gestion d'archives PKZIP, utilisant les fonctions de la bibliothèque PclZip. 
+
+\begin{Desc}
+\item[{\bf À faire}]Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, il faudrait \char`\"{}synchroniser\char`\"{} cette classe avec \doxyref{CTar}{p.}{class_c_tar} (objet de base pour la (dé)compression puis héritage de chacune des deux classes ?), notamment au niveau des valeurs de retour \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouterEntreesDsListe} (\$v\_\-asEntrees, \$v\_\-bEffacerAnciennes=FALSE, \$v\_\-bCreer=FALSE)
+\begin{CompactList}\small\item\em Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. \item\end{CompactList}\item 
+{\bf creerArchive} ()
+\begin{CompactList}\small\item\em Crée l'archive. \item\end{CompactList}\item 
+{\bf CZip} (\$v\_\-sCheminArchive, \$v\_\-asEntrees=array(), \$v\_\-bCreer=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf desarchiver} (\$v\_\-sDossierDest=NULL, \$v\_\-bEcraserExistant=FALSE)
+\begin{CompactList}\small\item\em Décompresse une archive. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs de l'objet}\par
+\begin{CompactItemize}
+\item 
+\textbf{defModifsChemins} (\$v\_\-sCheminAAjouter=\char`\"{}\char`\"{}, \$v\_\-sCheminAEnlever=\char`\"{}\char`\"{})\label{class_c_zip_eadc02d1d83aa7b07b50a00dcf184aae}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs de l'objet}\par
+\begin{CompactItemize}
+\item 
+\textbf{retCheminArchive} ()\label{class_c_zip_56e9e637dd788d65990f000699d4dff5}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$asEntrees} = array()\label{class_c_zip_6422a6a13ff1e82ad6bf4a7443ba6c54}
+
+\begin{CompactList}\small\item\em Tableau de chaînes représentant les chemins des entrées (fichier/dossier) à inclure dans l'archive. \item\end{CompactList}\item 
+{\bf \$iCodeRetour} = 0\label{class_c_zip_beb10d2d0ca3fd0de058c9d4bbcc7900}
+
+\begin{CompactList}\small\item\em Lorsqu'on demande la création d'archive directement dans le constructeur, on ne peut pas retourner de code d'erreur, il est donc stocké dans une propriété de l'objet. \item\end{CompactList}\item 
+{\bf \$oArchive}\label{class_c_zip_c9e4d20072500f562e743e649c26c661}
+
+\begin{CompactList}\small\item\em Objet PclZip interne qui représente l'archive. \item\end{CompactList}\item 
+{\bf \$sCheminAAjouter} = \char`\"{}\char`\"{}\label{class_c_zip_39206348c871e58fbaaf63d8a991516a}
+
+\begin{CompactList}\small\item\em Ce chemin sera ajouté devant la racine de chaque fichier inclus à l'archive. \item\end{CompactList}\item 
+{\bf \$sCheminAEnlever} = \char`\"{}\char`\"{}\label{class_c_zip_5b2d74fccc10f899b39ea2753eb34897}
+
+\begin{CompactList}\small\item\em Les fichiers inclus dans l'archive et dont le chemin commence par cette chaîne, auront cette chaîne enlevée du chemin. \item\end{CompactList}\item 
+{\bf \$sCheminArchive} = NULL\label{class_c_zip_d99b347eb98cb7b8a92f09125f11a971}
+
+\begin{CompactList}\small\item\em Chaîne de caractères contenant le chemin de l'archive à créer. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CZip@{CZip}!ajouterEntreesDsListe@{ajouterEntreesDsListe}}
+\index{ajouterEntreesDsListe@{ajouterEntreesDsListe}!CZip@{CZip}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CZip::ajouterEntreesDsListe (\$ {\em v\_\-asEntrees}, \/  \$ {\em v\_\-bEffacerAnciennes} = {\tt FALSE}, \/  \$ {\em v\_\-bCreer} = {\tt FALSE})}\label{class_c_zip_7f8f3839e237b4d884fc7c0019f53c1b}
+
+
+Ajoute une entrée (fichier ou dossier) à la liste des entrées qui constitueront le fichier compressé. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-asEntrees}]la liste des entrées à inclure à l'archive, sous forme de tableau de chaînes de caractères, chacune représentant le chemin d'un fichier/dossier à inclure \item[{\em v\_\-bCreer}]si {\tt true}, l'archive est créée immédiatement, et le code de retour de cette opération est retourné\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt v\_\-bCreer} est à {\tt true}, le code de retour de l'opération de création de l'archive est retourné. Sinon, la valeur retournée est {\tt 1} \end{Desc}
+
+
+Références creerArchive().
+
+Référencé par CZip().\index{CZip@{CZip}!creerArchive@{creerArchive}}
+\index{creerArchive@{creerArchive}!CZip@{CZip}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CZip::creerArchive ()}\label{class_c_zip_901aa226a905b7c8316b160abcdd3dda}
+
+
+Crée l'archive. 
+
+\begin{Desc}
+\item[Renvoie:]la valeur de retour de la fonction {\tt PclZip::create()} (biblio externe), qui est une liste de propriétés de fichiers si l'opération s'est bien déroulée, sinon {\tt 0} \end{Desc}
+
+
+Référencé par ajouterEntreesDsListe(), et CZip().\index{CZip@{CZip}!CZip@{CZip}}
+\index{CZip@{CZip}!CZip@{CZip}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CZip::CZip (\$ {\em v\_\-sCheminArchive}, \/  \$ {\em v\_\-asEntrees} = {\tt array()}, \/  \$ {\em v\_\-bCreer} = {\tt FALSE})}\label{class_c_zip_563e67694108a01c831a9b2c5363ef2e}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sCheminArchive}]le chemin complet de l'archive qu'on désire créer \item[{\em v\_\-asEntrees}]un tableau contenant les chemins de fichiers ou dossiers à compresser. Si {\tt null} (par défaut), il faudra ajouter des entrées plus tard à l'aide de la fonction \doxyref{ajouterEntreesDsListe()}{p.}{class_c_zip_7f8f3839e237b4d884fc7c0019f53c1b}, et le paramètre {\tt v\_\-bCreer} ne sera donc pas pris en compte (il vaudra {\tt false}) \item[{\em v\_\-bCreer}]si {\tt true}, crée immédiatement l'archive. Le code de retour de cette opération est stocké dans la propriété {\tt iCodeRetour} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Vérifier que le chemin/nom de l'archive à créer est valide \end{Desc}
+
+
+Références ajouterEntreesDsListe(), et creerArchive().\index{CZip@{CZip}!desarchiver@{desarchiver}}
+\index{desarchiver@{desarchiver}!CZip@{CZip}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CZip::desarchiver (\$ {\em v\_\-sDossierDest} = {\tt NULL}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE})}\label{class_c_zip_026d83104929ef24b2f4def16a2278d4}
+
+
+Décompresse une archive. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDossierDest}]le dossier de destination de la décompression \item[{\em v\_\-bEcraserExistant}]si {\tt true}, les éléments décompressés écraseront des éléments de même nom existants. Si {\tt false}, les éléments existants seront conservés\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la valeur de retour de la fonction {\tt PclZip::extract()} (biblio externe), supérieure à 0 si l'opération s'est bien déroulée, $<$= 0 sinon \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/{\bf zip.class.php}\end{CompactItemize}

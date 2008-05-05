@@ -1,0 +1,180 @@
+\section{Référence de la classe CMessageForum}
+\label{class_c_message_forum}\index{CMessageForum@{CMessageForum}}
+
+
+\subsection{Description détaillée}
+Gestion des messages des forums, et encapsulation de la table MessageForum de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-sMessage, \$v\_\-iIdSujet, \$v\_\-iIdPers, \$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Ajoute un message dans un sujet. \item\end{CompactList}\item 
+{\bf ajouterRessource} (\$v\_\-sNomRes, \$v\_\-sUrlRes, \$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Ajoute un ressource au message. \item\end{CompactList}\item 
+{\bf associerMessageEquipe} (\$v\_\-iIdEquipe)
+\begin{CompactList}\small\item\em Associe un message à une équipe. \item\end{CompactList}\item 
+{\bf CMessageForum} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_message_forum_9af5f65caa14753c6cef6ac67cb84709}
+
+\begin{CompactList}\small\item\em Efface le message. \item\end{CompactList}\item 
+{\bf effacerEquipesAssocieesMessage} ()\label{class_c_message_forum_06cef20b61fe46860935207e2a3d1320}
+
+\begin{CompactList}\small\item\em Efface les équipes associés à un message. \item\end{CompactList}\item 
+{\bf effacerMessage} ()\label{class_c_message_forum_34983c834f478f26faca155a9baed15c}
+
+\begin{CompactList}\small\item\em Efface le message de la DB ainsi que les ressources et les équipes associées. \item\end{CompactList}\item 
+{\bf effacerRessources} ()\label{class_c_message_forum_60c91b356fae378921f7cb59d1905fd8}
+
+\begin{CompactList}\small\item\em Efface les ressources liées au message. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_message_forum_aecbd68854bd6c30cab84bf7d071e1f9}
+
+\begin{CompactList}\small\item\em Enregistre(update) dans la DB le message courant. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_message_forum_be0ca771de36fd9a060860c2f3ae8bff}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initAuteur} ()\label{class_c_message_forum_38390041c7249a6faf2b9788946a0d7f}
+
+\begin{CompactList}\small\item\em Initialise {\tt oAuteur} avec la personne qui a. \item\end{CompactList}\item 
+{\bf initRessources} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant les ressources attachées au message. \item\end{CompactList}\item 
+{\bf optimiserTables} ()\label{class_c_message_forum_acb7abfc8044fd15ba0c4c90adfa33c0}
+
+\begin{CompactList}\small\item\em Optimise les tables MessageForum, Ressource et MessageForum\_\-Ressource. \item\end{CompactList}\item 
+{\bf STRING\_\-LOCK\_\-TABLES} ()
+\begin{CompactList}\small\item\em Retourne les tables à verrouiller de la DB. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce message}\par
+\begin{CompactItemize}
+\item 
+\textbf{defMessage} (\$v\_\-sMessage)\label{class_c_message_forum_8ec2bcede6983ba5d9982b3f040ab824}
+
+\item 
+\textbf{defRepRessources} (\$v\_\-sRepRessources)\label{class_c_message_forum_fad3ebba4962e409d3f29acb659c99bb}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce message}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAuteur} ()\label{class_c_message_forum_b5887735fbd2dcf67bd6f19b27700c97}
+
+\item 
+\textbf{retDate} (\$v\_\-sFormatterDate=\char`\"{}d/m/y H:i\char`\"{})\label{class_c_message_forum_d4a762f50e12107dc000e7a48ff3dbfc}
+
+\item 
+\textbf{retId} ()\label{class_c_message_forum_4e3caac609b6f55aa56125a3f07fcf43}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_message_forum_0b4742e7139abbb63f0a8e8164302c10}
+
+\item 
+\textbf{retMessage} ()\label{class_c_message_forum_ae99645a9916ae408dbd69513aff07cd}
+
+\item 
+\textbf{retRepRessources} ()\label{class_c_message_forum_58e7c100ac490c8a64eb5ef97910832d}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoRessources}\label{class_c_message_forum_370855b186fcfdbdf4983d9200af74f9}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initRessources()}{p.}{class_c_message_forum_7194654ff194a147908b22b2ecc74f87}, contenant les ressources attachées au message. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_message_forum_3a378d21ef30690d091a1280bc2f15bc}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oAuteur}\label{class_c_message_forum_250c298254c3bc2cc563c8728e165f10}
+
+\begin{CompactList}\small\item\em Variable de type \doxyref{CPersonne}{p.}{class_c_personne}, contenant l'auteur du message. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_message_forum_12c8ce53ba737c1a400952d32613e8c5}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_message_forum_a8c99365aae055c84fbb7e73378979aa}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$sRepRessources}\label{class_c_message_forum_144f8e422b1266ad8ffa0c2fec17e9c8}
+
+\begin{CompactList}\small\item\em Variable de type chaîne de caratères, contenant l'adresse du répertoire des ressources. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CMessageForum@{CMessageForum}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::ajouter (\$ {\em v\_\-sMessage}, \/  \$ {\em v\_\-iIdSujet}, \/  \$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_message_forum_b9a653c5bbca8aedce436bbbf0c32ac9}
+
+
+Ajoute un message dans un sujet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sMessage}]le message \item[{\em v\_\-iIdSujet}]l'id du sujet \item[{\em v\_\-iIdPers}]l'id de la personne \item[{\em v\_\-iIdEquipe}]id de l'équipe(optionnel) \end{description}
+\end{Desc}
+
+
+Références associerMessageEquipe(), et init().\index{CMessageForum@{CMessageForum}!ajouterRessource@{ajouterRessource}}
+\index{ajouterRessource@{ajouterRessource}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::ajouterRessource (\$ {\em v\_\-sNomRes}, \/  \$ {\em v\_\-sUrlRes}, \/  \$ {\em v\_\-iIdPers})}\label{class_c_message_forum_79c958495f09693b57cdf2b350e92748}
+
+
+Ajoute un ressource au message. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomRes}]le nom de la ressource \item[{\em v\_\-sUrlRes}]l'url de la ressource \item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la ressource ajoutée \end{Desc}
+\index{CMessageForum@{CMessageForum}!associerMessageEquipe@{associerMessageEquipe}}
+\index{associerMessageEquipe@{associerMessageEquipe}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::associerMessageEquipe (\$ {\em v\_\-iIdEquipe})}\label{class_c_message_forum_5d14d803c54eab3d6a7256458433a384}
+
+
+Associe un message à une équipe. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]l'id de l'équipe \end{description}
+\end{Desc}
+
+
+Référencé par ajouter().\index{CMessageForum@{CMessageForum}!CMessageForum@{CMessageForum}}
+\index{CMessageForum@{CMessageForum}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::CMessageForum (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_message_forum_e0c1373f4369f7361b74382e90099b83}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CMessageForum@{CMessageForum}!initRessources@{initRessources}}
+\index{initRessources@{initRessources}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::initRessources ()}\label{class_c_message_forum_7194654ff194a147908b22b2ecc74f87}
+
+
+Initialise un tableau contenant les ressources attachées au message. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de ressources insérées dans le tableau \end{Desc}
+
+
+Références \$oEnregBdd.
+
+Référencé par effacerRessources().\index{CMessageForum@{CMessageForum}!STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}}
+\index{STRING\_\-LOCK\_\-TABLES@{STRING\_\-LOCK\_\-TABLES}!CMessageForum@{CMessageForum}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CMessageForum::STRING\_\-LOCK\_\-TABLES ()}\label{class_c_message_forum_30e41b190ba43fac69106b54c4dc22da}
+
+
+Retourne les tables à verrouiller de la DB. 
+
+\begin{Desc}
+\item[Renvoie:]les tables à verrouiller de la DB \end{Desc}
+
+
+Référencé par CSujetForum::STRING\_\-LOCK\_\-TABLES().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf messageforum.tbl.php}\end{CompactItemize}

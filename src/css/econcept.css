@@ -1,0 +1,269 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+admin liste
+ajouter formation
+concept
+sousactive inv
+
+------------------ */
+body {
+background-color:#fff;
+background-image:none;
+/*margin-left:30px;*/
+}
+
+/* -- admin liste -- */
+a.Formation,.Formation {
+font-size:11pt;
+font-weight:700;
+}
+
+.Cours {
+font-weight:700;
+}
+
+#id_editer {
+position:absolute;
+left:0;
+top:0;
+width:16px;
+height:16px;
+visibility:hidden;
+}
+
+span.module_intitule {
+font-size:10pt;
+font-weight:700;
+}
+
+hr.module {
+border:#f2f2f2 solid 1px;
+color:#f2f2f2;
+}
+
+span.rubrique_intitule {
+font-size:10pt;
+font-weight:700;
+}
+
+div.formation {
+padding:0;
+white-space:nowrap;
+}
+
+div.module {
+padding:10px 0 0 20px;
+white-space:nowrap;
+}
+
+div.rubrique {
+padding:5px 0 5px 20px;
+white-space:nowrap;
+}
+
+div.activite {
+padding-top:5px;
+padding-left:20px;
+white-space:nowrap;
+}
+
+div.sous_activite {
+padding-top:5px;
+padding-left:20px;
+white-space:nowrap;
+}
+/* ----- */
+
+/* -- ajouter formation -- */
+body.ajout {
+background-image:none;
+font-size : 10pt;
+}
+.titre_ajout { font-weight: bold; }
+td.dialog_logo_ajout {
+width:165px;
+}
+
+div.dialog_titre_principal_ajout {
+left:175px;
+}
+
+div.dialog_sous_titre_ajout {
+visibility:hidden;
+}
+
+textarea[name=formation_description] {
+width: 370px;
+height: 70px;
+}
+input[name=formation_nom] { width: 370px; }
+/* ----- */
+
+/* -- concept -- */
+body.econcept_liste {
+}
+
+body.econcept_modif {
+background-color:#e7e1d4;
+scrollbar-face-color:#fbf9ee;
+scrollbar-highlight-color:#e7e1d4;
+scrollbar-shadow-color:#e7e1d4;
+scrollbar-3dlight-color:#e7e1d4;
+scrollbar-arrow-color:#e7e1d4;
+scrollbar-track-color:#e7e1d4;
+scrollbar-darkshadow-color:#e7e1d4;
+}
+
+a {
+font-size:8pt;
+font-weight:400;
+text-align:center;
+}
+
+option.selected { background-color: #FFFFCC; }
+
+td.dialog_logo {
+text-align:right;
+width:210px;
+}
+
+div.dialog_titre_principal {
+left:220px;
+}
+
+div.dialog_sous_titre {
+left:250px;
+top:47px;
+height:20px;
+color:#141414;
+font-size:10pt;
+font-weight:700;
+text-align:right;
+visibility:hidden;
+}
+
+td.admin_modif_menu {
+background-image:none;
+background-color:#afa58a;
+border:#000 solid 1px;
+border-left-style:none;
+border-right-style:none;
+text-align:center;
+}
+
+td.admin_modif_outils {
+background-color:#cac3b1;
+border:#000 solid 1px;
+border-left-style:none;
+border-right-style:none;
+}
+
+div.admin_modif_nom_element {
+color:#000;
+font-weight:700;
+text-align:left;
+font-size:10pt;
+}
+
+.admin_modif_menu {
+background-image:none;
+background-color:#cac3b1;
+border:#000 none 1px;
+border-top-style:solid;
+text-align:center;
+}
+
+#id_titre {
+position:relative;
+font-size:11pt;
+font-weight:400;
+}
+
+/* Simple menu: style 1 */
+td.concept_menu_fond {
+background-color:#6f6957;
+}
+
+td.concept_menu_titre_principal {
+background-color:#6f6957;
+color:#fff;
+font-size:10pt;
+font-weight:700;
+text-align:center;
+}
+
+td.concept_menu_sous_titre {
+background-color:#e7e1d4;
+color:#000;
+font-size:10pt;
+font-weight:400;
+text-align:center;
+}
+
+td.concept_menu {
+background-color:#cac3b1;
+font-size:10pt;
+font-weight:400;
+text-align:center;
+}
+
+/* Simple menu: style 2 */
+td.concept_menu_fond_2 {
+background-color:#b2afa6;
+}
+
+td.concept_menu_titre_principal_2 {
+background-color:#b2afa6;
+color:#f0f0f0;
+font-size:10pt;
+font-weight:700;
+text-align:center;
+}
+
+td.concept_menu_sous_titre_2 {
+background-color:#e7e1d4;
+color:#000;
+font-size:10pt;
+font-weight:400;
+text-align:center;
+}
+
+td.concept_menu_2 {
+background-color:#fbf9ee;
+font-size:10pt;
+font-weight:400;
+text-align:center;
+}
+
+.intitule {
+text-align:right;
+font-size:10pt;
+}
+
+.lien_passif {
+color:#aea38d;
+}
+
+.Afficher {
+display:block;
+float:top;
+visibility:visible;
+}
+
+.Cacher {
+display:none;
+float:top;
+visibility:hidden;
+}
+/* ----- */
+
+/* -- sousactive inv -- */
+td.selection {
+width:1%;
+}
+
+.nom_grise {
+color:#969696;
+}
+/* ----- */

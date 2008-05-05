@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CStatutPermission</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CStatutPermission</h1><!-- doxytag: class="CStatutPermission" -->
+<p>
+<a href="class_c_statut_permission-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des permissions d'un statut, et encapsulation de la table Statut_Permission de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#937aeeebd0ff989c55e56ca74804c5eb">ajouter</a> ($v_iIdPermis, $v_iIdStatut)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une permission à un statut.  <a href="#937aeeebd0ff989c55e56ca74804c5eb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#c261082661ddd6804926232e32b3a2b7">CStatutPermission</a> (&amp;$v_oBdd)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#c261082661ddd6804926232e32b3a2b7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#3b268b26a0fb0bf693d801de0b69ea48">effacer</a> ($v_iIdPermis, $v_iIdStatut)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface une permission à un statut.  <a href="#3b268b26a0fb0bf693d801de0b69ea48"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#69582cf2907e92ab4267a50a5b182dc2">initPermissions</a> ($v_iIdStatut)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant une liste de permissions par rapport au statut fourni en paramètre.  <a href="#69582cf2907e92ab4267a50a5b182dc2"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#15facd82f6e9ee31bb70c24efb69c705">optimiser</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Optimise la table Statut_Permission.  <a href="#15facd82f6e9ee31bb70c24efb69c705"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#0ce37c877d32cfb50231c73f94e79a81">verifPermission</a> ($v_sNomPermission)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si le statut a cette permission.  <a href="#0ce37c877d32cfb50231c73f94e79a81"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8c4f1a588ea7a59c4f3de09ad8a9aaa2"></a><!-- doxytag: member="CStatutPermission::$abPermissions" ref="8c4f1a588ea7a59c4f3de09ad8a9aaa2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#8c4f1a588ea7a59c4f3de09ad8a9aaa2">$abPermissions</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_statut_permission.html#69582cf2907e92ab4267a50a5b182dc2" title="Initialise un tableau contenant une liste de permissions par rapport au statut fourni...">initPermissions()</a>, contenant une liste des permissions d'un statut. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d4214966f62e62d98f8298e91cdcd142"></a><!-- doxytag: member="CStatutPermission::$oBdd" ref="d4214966f62e62d98f8298e91cdcd142" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#d4214966f62e62d98f8298e91cdcd142">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d3efad846bcc319a3ef02407712267a3"></a><!-- doxytag: member="CStatutPermission::$oEnregBdd" ref="d3efad846bcc319a3ef02407712267a3" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_statut_permission.html#d3efad846bcc319a3ef02407712267a3">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="937aeeebd0ff989c55e56ca74804c5eb"></a><!-- doxytag: member="CStatutPermission::ajouter" ref="937aeeebd0ff989c55e56ca74804c5eb" args="($v_iIdPermis, $v_iIdStatut)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPermis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdStatut</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une permission à un statut. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPermis</em>&nbsp;</td><td>l'id de la permission </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdStatut</em>&nbsp;</td><td>l'id du statut </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c261082661ddd6804926232e32b3a2b7"></a><!-- doxytag: member="CStatutPermission::CStatutPermission" ref="c261082661ddd6804926232e32b3a2b7" args="(&amp;$v_oBdd)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::CStatutPermission           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3b268b26a0fb0bf693d801de0b69ea48"></a><!-- doxytag: member="CStatutPermission::effacer" ref="3b268b26a0fb0bf693d801de0b69ea48" args="($v_iIdPermis, $v_iIdStatut)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::effacer           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPermis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdStatut</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface une permission à un statut. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPermis</em>&nbsp;</td><td>l'id de la permission </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdStatut</em>&nbsp;</td><td>l'id du statut </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="69582cf2907e92ab4267a50a5b182dc2"></a><!-- doxytag: member="CStatutPermission::initPermissions" ref="69582cf2907e92ab4267a50a5b182dc2" args="($v_iIdStatut)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::initPermissions           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdStatut</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant une liste de permissions par rapport au statut fourni en paramètre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdStatut</em>&nbsp;</td><td>l'id du statut</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de permissions insérées dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="15facd82f6e9ee31bb70c24efb69c705"></a><!-- doxytag: member="CStatutPermission::optimiser" ref="15facd82f6e9ee31bb70c24efb69c705" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::optimiser           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Optimise la table Statut_Permission. 
+<p>
+
+</div>
+</div><p>
+<a class="anchor" name="0ce37c877d32cfb50231c73f94e79a81"></a><!-- doxytag: member="CStatutPermission::verifPermission" ref="0ce37c877d32cfb50231c73f94e79a81" args="($v_sNomPermission)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CStatutPermission::verifPermission           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomPermission</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si le statut a cette permission. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomPermission</em>&nbsp;</td><td>le nom de la permission</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si le statut a cette permission </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="statut__permission_8tbl_8php.html">statut_permission.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

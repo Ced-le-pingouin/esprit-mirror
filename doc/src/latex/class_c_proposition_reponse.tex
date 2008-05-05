@@ -1,0 +1,160 @@
+\section{Référence de la classe CPropositionReponse}
+\label{class_c_proposition_reponse}\index{CPropositionReponse@{CPropositionReponse}}
+
+
+\subsection{Description détaillée}
+Gestion des proposition de réponse des activés en ligne, et encapsulation de la table PropositionReponse de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} ()
+\begin{CompactList}\small\item\em Ajoute une proposition de réponse avec tous ses champs vides. \item\end{CompactList}\item 
+\textbf{copier} (\$v\_\-iIdObjFormul)\label{class_c_proposition_reponse_0579106f9c2d71d8f8c06a727965e587}
+
+\item 
+{\bf CPropositionReponse} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{effacer} ()\label{class_c_proposition_reponse_6adc3d2a5e8842814a5ac2e93c656a89}
+
+\item 
+\textbf{effacerRepObj} (\$v\_\-iIdObjFormul)\label{class_c_proposition_reponse_97b9c8016e0f128104334f9595d3501e}
+
+\item 
+\textbf{effacerRepPoidsObj} (\$v\_\-iIdObjFormul)\label{class_c_proposition_reponse_89c0efe3c56be82ac27cad8588d2956d}
+
+\item 
+\textbf{enregistrer} (\$v\_\-bModifOrdre=TRUE)\label{class_c_proposition_reponse_2e69dd8af8d96e473caf2b6e493d3784}
+
+\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_proposition_reponse_f1d1ed8fa7f30c65ceca23b4a70b0ae4}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+\textbf{initValeursParAxe} (\$v\_\-sListeAxesAutorises=NULL)\label{class_c_proposition_reponse_d714d803ef0075be3a8801f3465c206c}
+
+\item 
+{\bf retListePropRep} (\$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne une liste d'objet de type \doxyref{CPropositionReponse}{p.}{class_c_proposition_reponse}. \item\end{CompactList}\item 
+{\bf retMaxOrdre} (\$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne le numéro d'ordre maximum des propositions de réponse d'un objet formulaire. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette proposition de réponse}\par
+\begin{CompactItemize}
+\item 
+\textbf{defFeedbackPropRep} (\$v\_\-sFeedbackPropRep)\label{class_c_proposition_reponse_d06aad3c9d733c27e9dd8d892900f6c6}
+
+\item 
+\textbf{defId} (\$v\_\-iIdPropRep)\label{class_c_proposition_reponse_cc3f4fb3a27a538ee349406f8f8fce1a}
+
+\item 
+\textbf{defIdObjFormul} (\$v\_\-iIdObjFormul)\label{class_c_proposition_reponse_6892aeb2d942e7fa45846cf66d3bdb98}
+
+\item 
+\textbf{defOrdrePropRep} (\$v\_\-iOrdrePropRep)\label{class_c_proposition_reponse_45420c924361745db3a755a209f20ee9}
+
+\item 
+\textbf{defScorePropRep} (\$v\_\-iScorePropRep)\label{class_c_proposition_reponse_b28014cfad65bb6adeff1c7756f51769}
+
+\item 
+\textbf{defTextePropRep} (\$v\_\-sTextePropRep)\label{class_c_proposition_reponse_ff2859498884fa0022cd2445d4ec869b}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette proposition de réponse}\par
+\begin{CompactItemize}
+\item 
+\textbf{retFeedbackPropRep} ()\label{class_c_proposition_reponse_3b1bbbee455b732ac9dddaaa174882ad}
+
+\item 
+\textbf{retId} ()\label{class_c_proposition_reponse_bd1f11aa691eb5ca691dc4a31ccc8ae1}
+
+\item 
+\textbf{retIdObjFormul} ()\label{class_c_proposition_reponse_bab8b33e8e9f7810f82b7672577416b6}
+
+\item 
+\textbf{retOrdre} ()\label{class_c_proposition_reponse_b1ed5ccf9981bffe6460244a72a9a7ff}
+
+\item 
+\textbf{retOrdrePropRep} ()\label{class_c_proposition_reponse_400d6d2eddc3ddb9a3aed3f107273783}
+
+\item 
+\textbf{retScorePropRep} ()\label{class_c_proposition_reponse_16b10f5a3acc84339a502839289a9e2e}
+
+\item 
+\textbf{retTexte} ()\label{class_c_proposition_reponse_8c987a2856df1cbdc7c7d93bf4c17e2a}
+
+\item 
+\textbf{retTextePropRep} ()\label{class_c_proposition_reponse_3dac29e6ab88b98eec67fffe1b0f775c}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+\textbf{\$aiValeurAxe}\label{class_c_proposition_reponse_02e1247bde3e1dc8d0e23fea47cd7d1d}
+
+\item 
+{\bf \$iId}\label{class_c_proposition_reponse_a925a89f75beabcbe68e785a2f3eeaa1}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_proposition_reponse_53fda93bf3daa4e52d6c856597654c64}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_proposition_reponse_86d6b6f1482257195848b80d7582064e}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CPropositionReponse@{CPropositionReponse}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CPropositionReponse@{CPropositionReponse}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPropositionReponse::ajouter ()}\label{class_c_proposition_reponse_89d5657ae45662809cc85633ef787aea}
+
+
+Ajoute une proposition de réponse avec tous ses champs vides. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle proposition de réponse \end{Desc}
+\index{CPropositionReponse@{CPropositionReponse}!CPropositionReponse@{CPropositionReponse}}
+\index{CPropositionReponse@{CPropositionReponse}!CPropositionReponse@{CPropositionReponse}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPropositionReponse::CPropositionReponse (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_proposition_reponse_a7f4e746b2ab9d21e21838dd61687062}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par retListePropRep().\index{CPropositionReponse@{CPropositionReponse}!retListePropRep@{retListePropRep}}
+\index{retListePropRep@{retListePropRep}!CPropositionReponse@{CPropositionReponse}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPropositionReponse::retListePropRep (\$ {\em v\_\-iIdObjFormul})}\label{class_c_proposition_reponse_fe917acc14ae92afa318664854308976}
+
+
+Retourne une liste d'objet de type \doxyref{CPropositionReponse}{p.}{class_c_proposition_reponse}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdObjFormul}]l'id de l'objet de formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]une liste d'objet de type \doxyref{CPropositionReponse}{p.}{class_c_proposition_reponse} \end{Desc}
+
+
+Références CPropositionReponse().\index{CPropositionReponse@{CPropositionReponse}!retMaxOrdre@{retMaxOrdre}}
+\index{retMaxOrdre@{retMaxOrdre}!CPropositionReponse@{CPropositionReponse}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CPropositionReponse::retMaxOrdre (\$ {\em v\_\-iIdObjFormul})}\label{class_c_proposition_reponse_aa225418cc2e1b8c8f639f0382445146}
+
+
+Retourne le numéro d'ordre maximum des propositions de réponse d'un objet formulaire. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em iIdObjFormul}]l'id de l'objet formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum des réponses d'un objet formulaire \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf propositionreponse.tbl.php}\end{CompactItemize}

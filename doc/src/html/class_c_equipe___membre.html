@@ -1,0 +1,384 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CEquipe_Membre</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CEquipe_Membre</h1><!-- doxytag: class="CEquipe_Membre" -->
+<p>
+<a href="class_c_equipe___membre-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Aide à la gestion et manipulation des membres d'équipes. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#abdeb1e90f8ecac1caa957651ccb436d">ajouterMembres</a> ($v_aiIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute (dans la DB) une ou plusieurs personnes à l'équipe qui a servi à initialiser l'objet.  <a href="#abdeb1e90f8ecac1caa957651ccb436d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#3a27ff28d301062b57ce5c5e42c3de9c">CEquipe_Membre</a> (&amp;$v_oBdd, $v_iIdEquipe=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#3a27ff28d301062b57ce5c5e42c3de9c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#83460d0cf6f9582c81bc9d4042f5ba00">effacerMembre</a> ($v_iIdPers, $v_iNiveau, $v_iIdNiveau)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enlève une personne de toutes les équipes rattachées à un élément d'un niveau spécifié (formation, module, etc), MAIS aussi des équipes rattachées aux éléments enfants de celui spécifié.  <a href="#83460d0cf6f9582c81bc9d4042f5ba00"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#ba4f71c26b599d4275b2916cdd559fb0">effacerMembres</a> ($v_aiIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enlève une ou plusieurs personnes de l'équipe dont l'id a servi à initialiser l'objet courant.  <a href="#ba4f71c26b599d4275b2916cdd559fb0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#66365dd8a5de552ec27799eb7f1b0a6c">init</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau de personnes (<code>aoMembres</code>) sous forme d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>, qui sont les membres de l'équipe actuellement représentée par <code>iId</code> (qui peut être initialisé par le constructeur <a class="el" href="class_c_equipe___membre.html#3a27ff28d301062b57ce5c5e42c3de9c" title="Constructeur.">CEquipe_Membre()</a>).  <a href="#66365dd8a5de552ec27799eb7f1b0a6c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#01cffc811ecaa2e5d78f3048eec44b5f">initMembresDe</a> ($v_iNiveau, $v_iIdNiveau, $v_bAppartenirEquipe=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau de personne (<code>aoMembres</code>) avec les membres des équipes répondant à certains critères (équipe rattachée à une formation, un cours, etc.  <a href="#01cffc811ecaa2e5d78f3048eec44b5f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cfe9830cc88eb1ea95f3667475a3ea78"></a><!-- doxytag: member="CEquipe_Membre::optimiserTable" ref="cfe9830cc88eb1ea95f3667475a3ea78" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#cfe9830cc88eb1ea95f3667475a3ea78">optimiserTable</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Optimise la table Equipe_Membre de la DB, souvent utilisée dans cette classe (l'optimisation est réalisée après des effacements). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#ad2e681088e3de89aa94aa5a45c83d57">retId</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de l'objet courant, càd l'id de l'équipe qui a servi à initialiser l'objet.  <a href="#ad2e681088e3de89aa94aa5a45c83d57"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#cf75ef26ff0a8dd5f43aa68ccc1446ab">STRING_LOCK_TABLES</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Fonction utilitaire pour les LOCK TABLES éventuels de cette classe.  <a href="#cf75ef26ff0a8dd5f43aa68ccc1446ab"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#b5fbc63e765c3ffea3f984d74009f5d7">verifMembre</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie qu'un personne est membre d'équipes spécifiques.  <a href="#b5fbc63e765c3ffea3f984d74009f5d7"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0d1445fc8e5d94cb162ababe3a9434a4"></a><!-- doxytag: member="CEquipe_Membre::$aoMembres" ref="0d1445fc8e5d94cb162ababe3a9434a4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#0d1445fc8e5d94cb162ababe3a9434a4">$aoMembres</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> représentant les membres de l'équipe (rempli par <a class="el" href="class_c_equipe___membre.html#66365dd8a5de552ec27799eb7f1b0a6c" title="Initialise un tableau de personnes (aoMembres) sous forme d&#39;objets CPersonne...">init()</a> et initMembres()). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ed40ece6913a8a8ce83a8ff8d907305b"></a><!-- doxytag: member="CEquipe_Membre::$asNiveau" ref="ed40ece6913a8a8ce83a8ff8d907305b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#ed40ece6913a8a8ce83a8ff8d907305b">$asNiveau</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les chaînes correspondant aux noms des champs "de niveau" de la table Equipe (IdForm, IdMod, etc), rempli dans le constructeur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="28cedc5f708aab284eb9e778c091e98f"></a><!-- doxytag: member="CEquipe_Membre::$iId" ref="28cedc5f708aab284eb9e778c091e98f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#28cedc5f708aab284eb9e778c091e98f">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de l'équipe à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a0f1f59380cf8b19f6f693dcf4775e77"></a><!-- doxytag: member="CEquipe_Membre::$oBdd" ref="a0f1f59380cf8b19f6f693dcf4775e77" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe___membre.html#a0f1f59380cf8b19f6f693dcf4775e77">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="abdeb1e90f8ecac1caa957651ccb436d"></a><!-- doxytag: member="CEquipe_Membre::ajouterMembres" ref="abdeb1e90f8ecac1caa957651ccb436d" args="($v_aiIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::ajouterMembres           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_aiIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute (dans la DB) une ou plusieurs personnes à l'équipe qui a servi à initialiser l'objet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_aiIdPers</em>&nbsp;</td><td>le tableau contenant les ids des personnes à ajouter à l'équipe. S'il s'agit d'une personne seule, il n'est pas nécessaire que le paramètre soit un tableau, juste un nombre </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3a27ff28d301062b57ce5c5e42c3de9c"></a><!-- doxytag: member="CEquipe_Membre::CEquipe_Membre" ref="3a27ff28d301062b57ce5c5e42c3de9c" args="(&amp;$v_oBdd, $v_iIdEquipe=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::CEquipe_Membre           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+L'objet peut être initialisé avec un id d'équipe. Pour plus de détails sur les constructeurs qui initialisent des classes représentant des enregistrements de DB, voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a><p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'équipe dont les membres seront récupérés dans la DB. S'il est omis ou si l'équipe demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00655">init()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="83460d0cf6f9582c81bc9d4042f5ba00"></a><!-- doxytag: member="CEquipe_Membre::effacerMembre" ref="83460d0cf6f9582c81bc9d4042f5ba00" args="($v_iIdPers, $v_iNiveau, $v_iIdNiveau)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::effacerMembre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enlève une personne de toutes les équipes rattachées à un élément d'un niveau spécifié (formation, module, etc), MAIS aussi des équipes rattachées aux éléments enfants de celui spécifié. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne à effacer des équipes </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément auquel doivent être rattachées les équipes dont on veut enlever la personne (voir les constantes TYPE_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut trouver les équipes attachées afin d'en effacer la personne passée en <code>v_iIdPers</code>. La signification de cet id dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'id de la personne passé en paramètre est valide, <code>false</code> dans le cas contraire </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00791">optimiserTable()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00885">STRING_LOCK_TABLES()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ba4f71c26b599d4275b2916cdd559fb0"></a><!-- doxytag: member="CEquipe_Membre::effacerMembres" ref="ba4f71c26b599d4275b2916cdd559fb0" args="($v_aiIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::effacerMembres           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_aiIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Enlève une ou plusieurs personnes de l'équipe dont l'id a servi à initialiser l'objet courant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_aiIdPers</em>&nbsp;</td><td>le tableau contenant les ids des personnes à enlever de l'équipe. S'il s'agit d'une personne seule, il n'est pas nécessaire que le paramètre soit un tableau, juste un nombre</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si un ou plusieurs id ont bien été passés en paramètre et si une équipe est bien initialisée dans l'objet courant, ce qui rend l'effacement possible; <code>false</code> dans le cas contraire </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00791">optimiserTable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="66365dd8a5de552ec27799eb7f1b0a6c"></a><!-- doxytag: member="CEquipe_Membre::init" ref="66365dd8a5de552ec27799eb7f1b0a6c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::init           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau de personnes (<code>aoMembres</code>) sous forme d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>, qui sont les membres de l'équipe actuellement représentée par <code>iId</code> (qui peut être initialisé par le constructeur <a class="el" href="class_c_equipe___membre.html#3a27ff28d301062b57ce5c5e42c3de9c" title="Constructeur.">CEquipe_Membre()</a>). 
+<p>
+Les membres sont initialisés par ordre alphabétique sur le nom de famille 
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00785">retId()</a>.</p>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00639">CEquipe_Membre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="01cffc811ecaa2e5d78f3048eec44b5f"></a><!-- doxytag: member="CEquipe_Membre::initMembresDe" ref="01cffc811ecaa2e5d78f3048eec44b5f" args="($v_iNiveau, $v_iIdNiveau, $v_bAppartenirEquipe=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::initMembresDe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAppartenirEquipe</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau de personne (<code>aoMembres</code>) avec les membres des équipes répondant à certains critères (équipe rattachée à une formation, un cours, etc. 
+<p>
+particuliers), ou avec les personnes *non*-membres d'équipes spécifiques<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément pour lequel on veut récupérer les (non-)membres d'équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut récupérer les (non-)membres d'équipes. Sa signification dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAppartenirEquipe</em>&nbsp;</td><td>si <code>true</code>, ce sont les membres des équipes répondant aux critères passés en paramètres <code>v_iNiveau</code> et <code>v_iIdNiveau</code> qui sont retournés. Si <code>false</code>, ce sont les personnes n'appartenant *pas* à ces équipes</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de membres trouvés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ad2e681088e3de89aa94aa5a45c83d57"></a><!-- doxytag: member="CEquipe_Membre::retId" ref="ad2e681088e3de89aa94aa5a45c83d57" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::retId           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de l'objet courant, càd l'id de l'équipe qui a servi à initialiser l'objet. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de l'équipe qui a servi à initialiser l'objet, ou <code>0</code> si non applicable </dd></dl>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00655">init()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00741">verifMembre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cf75ef26ff0a8dd5f43aa68ccc1446ab"></a><!-- doxytag: member="CEquipe_Membre::STRING_LOCK_TABLES" ref="cf75ef26ff0a8dd5f43aa68ccc1446ab" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::STRING_LOCK_TABLES           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Fonction utilitaire pour les LOCK TABLES éventuels de cette classe. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>une chaîne de caractères contenant la liste des tables à "locker", qui devra être précédée d'un "LOCK TABLES " pour l'exécution en SQL </dd></dl>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00808">effacerMembre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b5fbc63e765c3ffea3f984d74009f5d7"></a><!-- doxytag: member="CEquipe_Membre::verifMembre" ref="b5fbc63e765c3ffea3f984d74009f5d7" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe_Membre::verifMembre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie qu'un personne est membre d'équipes spécifiques. 
+<p>
+Ces équipes (et donc les membres) ont été déterminées lors d'appels au constructeur <a class="el" href="class_c_equipe___membre.html#3a27ff28d301062b57ce5c5e42c3de9c" title="Constructeur.">CEquipe_Membre()</a>, à <a class="el" href="class_c_equipe___membre.html#66365dd8a5de552ec27799eb7f1b0a6c" title="Initialise un tableau de personnes (aoMembres) sous forme d&#39;objets CPersonne...">init()</a>, ou à <a class="el" href="class_c_equipe___membre.html#01cffc811ecaa2e5d78f3048eec44b5f" title="Initialise un tableau de personne (aoMembres) avec les membres des équipes répondant...">initMembresDe()</a>, qui auront donc initialisés au préalable le tableau <code>aoMembres</code>. Il est à noter que dans le cas de la dernière fonction, il est possible de rechercher les *non*-membres d'équipes spécifiées<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne dont on veut vérifier l'appartenance (ou la non-appartenance) à des équipes spécifiques</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne spécifiée est "membre" (existe dans le tableau <code>aoMembres</code>); <code>false</code> dans le cas contraire ou dans le cas ou l'id de la personne n'est pas valable ou le tableau <code>aoMembres</code> n'est pas correctement initialisé </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00785">retId()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="equipe_8tbl_8php.html">equipe.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

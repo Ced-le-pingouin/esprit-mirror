@@ -1,0 +1,161 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+profil
+exporter personnes
+associer personnes
+liste cours
+
+equipes
+------------------ */
+
+body {
+background-image:none;
+}
+
+/* -- profil -- */
+body.profil {
+background-image:none;
+}
+
+body.profil .intitule {
+text-align:right;
+width:165px;
+}
+
+body.profil .largeur_fixe {
+width:100%;
+}
+
+body.profil .champs_obligatoires {
+color:#ce6d0e;
+font-size:7pt;
+font-weight:700;
+}
+
+span#id_erreur,body.profil .erreur {
+color:#950623;
+font-size:7pt;
+}
+/* ----- */
+
+/* -- exporter personnes -- */
+body.exporter_personnes {
+background-image:none;
+}
+
+.panneau {
+background-color:#fafcfc;
+border:#dee6e6 none 1px;
+border-top-style:solid;
+border-bottom-style:solid;
+}
+
+a.vider {
+color:#e23420;
+}
+
+div.numero_position {
+font-size:8pt;
+text-align:center;
+}
+/* ----- */
+
+/* -- associer personnes -- */
+body.associer_personnes {
+background-color:#fff;
+background-image:none;
+}
+
+table.liste_personnes td{
+border: #EFEFEF none 1px;
+border-bottom-style: solid;
+}
+
+td.info {
+text-align: center; 
+}
+
+td.personne {
+font-size:8pt;
+text-decoration:none;
+}
+
+.SimpleContour {
+border:#DFDFDF solid 1px;
+}
+
+.TitreFormation {
+background-color:#749ACB;
+color:#345A8B;
+font-size:14pt;
+font-weight:bold;
+text-align:center;
+}
+
+.Filtre {
+color:#366;
+font-weight:bold;
+vertical-align:middle;
+}
+
+body.associer_personnes select,body.associer_personnes option {
+color:#000;
+background-color:#FFF;
+font-weight:normal;
+width: 100%
+}
+
+.Infos {
+color:#345A8B;
+font-weight:bold;
+text-align:center;
+}
+/* ----- */
+
+/* -- liste cours -- */
+span.auto_inscrit {
+color: #CAC8BB;
+}
+span.Attention {  cursor: help; }
+/* ----- */
+
+/* -- equipes -- */
+body.principal {
+background-color:#fff;
+}
+body.personnes,body.membres {
+background-image:none;
+background-color:#fff;
+}
+
+td.dialog_logo {
+text-align:right;
+width:181px;
+}
+
+td.bloc_personne {
+border: rgb(240,240,240) none 1px;
+border-bottom-style: dashed;
+}
+
+#barre_outils {
+margin-bottom:20px;
+margin-right:10px;
+text-align:right;
+}
+
+div.dialog_titre_principal {
+left:190px;
+}
+div.dialog_sous_titre {
+left:5px;
+}
+
+.lien_passif {
+color:#d2d2d2;
+font-weight:400;
+text-decoration:none;
+font-size:8pt;
+}
+/* ----- */

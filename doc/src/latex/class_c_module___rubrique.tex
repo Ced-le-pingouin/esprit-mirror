@@ -1,0 +1,810 @@
+\section{Référence de la classe CModule\_\-Rubrique}
+\label{class_c_module___rubrique}\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}}
+
+
+\subsection{Description détaillée}
+Gestion des rubriques, et encapsulation de la table Module\_\-Rubrique de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} ()
+\begin{CompactList}\small\item\em Insère une nouvelle rubrique. \item\end{CompactList}\item 
+{\bf ajouterChat} ()
+\begin{CompactList}\small\item\em Ajoute un chat à la rubrique. \item\end{CompactList}\item 
+{\bf CModule\_\-Rubrique} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iIdMod, \$v\_\-bRecursive=TRUE, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie la rubrique courante vers un module spécifique. \item\end{CompactList}\item 
+{\bf copierActivites} (\$v\_\-iIdRubrique, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie toutes les activités de la rubrique vers une autre. \item\end{CompactList}\item 
+{\bf copierAvecNumOrdre} (\$v\_\-iIdDest, \$v\_\-iNumOrdre=0)
+\begin{CompactList}\small\item\em Copie la rubrique courante vers un module, en indiquant un n° d'ordre pour la rubrique copiée. \item\end{CompactList}\item 
+{\bf copierChats} (\$v\_\-iIdRubrique)
+\begin{CompactList}\small\item\em Copie tout les chats de la rubrique courante vers une autre. \item\end{CompactList}\item 
+{\bf copierForum} (\$v\_\-iIdRubrique)
+\begin{CompactList}\small\item\em Copie le forum(= rubrique) vers une autre rubrique. \item\end{CompactList}\item 
+{\bf copierRubrique} (\$v\_\-iIdMod, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Insère une copie d'une rubrique dans la DB. \item\end{CompactList}\item 
+{\bf effacer} (\$v\_\-iIdRubrique=NULL)
+\begin{CompactList}\small\item\em Efface la totalité d'une rubrique. \item\end{CompactList}\item 
+{\bf effacerActivs} ()\label{class_c_module___rubrique_1f4bfa109e5bbbe16419867daa18eb1d}
+
+\begin{CompactList}\small\item\em Efface les activités de la rubrique. \item\end{CompactList}\item 
+{\bf effacerChats} ()\label{class_c_module___rubrique_e35eab8d85fe726d9eae0d37164424df}
+
+\begin{CompactList}\small\item\em Efface tous les chats de la rubrique. \item\end{CompactList}\item 
+{\bf effacerEquipes} ()\label{class_c_module___rubrique_3f432220c622017b2af8fb5adf0af8a0}
+
+\begin{CompactList}\small\item\em Efface les équipes associées à cette rubrique. \item\end{CompactList}\item 
+{\bf effacerForum} ()\label{class_c_module___rubrique_33ef9fba6620c98d91a4c3fc7919380f}
+
+\begin{CompactList}\small\item\em Efface les forums de la rubrique. \item\end{CompactList}\item 
+{\bf effacerRubrique} (\$v\_\-iIdRubrique)
+\begin{CompactList}\small\item\em Efface unne rubrique dans la DB. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_module___rubrique_77a66d175a63165c81b772b9b0d97984}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initActivCourante} (\$v\_\-iIdActiv=NULL)
+\begin{CompactList}\small\item\em Initialise l'activité courante. \item\end{CompactList}\item 
+{\bf initActivs} (\$v\_\-iStatut=NULL, \$v\_\-iModalite=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les activités de la rubrique. \item\end{CompactList}\item 
+{\bf initChats} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des chats de la rubrique. \item\end{CompactList}\item 
+{\bf initChats2} (\$v\_\-iIdModalite=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des chats de la rubrique et ceux des sous-activités. \item\end{CompactList}\item 
+{\bf initCollecticiels} (\$v\_\-iModalite=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les collecticiels de la rubrique. \item\end{CompactList}\item 
+{\bf initEquipes} (\$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau contenant les équipes de la rubrique. \item\end{CompactList}\item 
+{\bf initFormulaires} (\$v\_\-iModalite=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les formulaires. \item\end{CompactList}\item 
+{\bf initForums} (\$v\_\-miIdModalite=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les forums de cette rubriqe. \item\end{CompactList}\item 
+{\bf initIdForm} ()\label{class_c_module___rubrique_a2adceb83ceb24fb63627629e0f03943}
+
+\begin{CompactList}\small\item\em Initialise la variable {\tt iIdForm} avec l'id de la formation. \item\end{CompactList}\item 
+{\bf initIntitule} ()
+\begin{CompactList}\small\item\em Initialise l'objet {\tt oIntitule} avec l'intitulé de la rubrique. \item\end{CompactList}\item 
+{\bf initMembres} (\$v\_\-bAppartenirEquipe=TRUE, \$v\_\-bAutoInscrit=TRUE, \$v\_\-iSensTri={\bf TRI\_\-CROISSANT})
+\begin{CompactList}\small\item\em Initialise un tableau avec les étudiants inscrits à la formation. \item\end{CompactList}\item 
+{\bf mettre\_\-a\_\-jour} (\$v\_\-sNomChamp, \$v\_\-mValeurChamp, \$v\_\-iIdRubrique=0)
+\begin{CompactList}\small\item\em Met à jour un champ de la table Module\_\-Rubrique. \item\end{CompactList}\item 
+{\bf peutModifier} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne peut modifier la rubrique (concepteur(statut) ou créateur de la rubrique). \item\end{CompactList}\item 
+{\bf peutSupprimerIntitule} (\$v\_\-iIdIntitule)
+\begin{CompactList}\small\item\em Vérifie si l'intitulé est utilisé par plusieurs rubriques. \item\end{CompactList}\item 
+{\bf rafraichir} ()\label{class_c_module___rubrique_d5e1faafcf15356711214530988ff14e}
+
+\begin{CompactList}\small\item\em Réinitialise l'objet {\tt oEnregBdd} avec la rubrique courante. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iNouveauNumOrdre=NULL)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des rubriques. \item\end{CompactList}\item 
+{\bf retDossier} ()
+\item 
+\& {\bf retElementsEnfants} ()\label{class_c_module___rubrique_62ca8c56723cea1cc497af82662dbb81}
+
+\begin{CompactList}\small\item\em Retourne (après les avoir initialisés si nécessaire) les éléments enfants de la rubrique, càd les activités. \item\end{CompactList}\item 
+{\bf retIdEnregPrecedent} ()
+\begin{CompactList}\small\item\em Retourne l'id de la rubrique précedent la courante. \item\end{CompactList}\item 
+{\bf retInfosIntituleRubPrecedente} ()
+\begin{CompactList}\small\item\em Retourne un tableau contenant l'intitulé de la rubrique précedente. \item\end{CompactList}\item 
+{\bf retListeRubriques} (\$v\_\-iIdMod=NULL, \$v\_\-iTypeRubrique=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau avec la liste des rubriques d'un module. \item\end{CompactList}\item 
+{\bf retListeStatuts} ()
+\begin{CompactList}\small\item\em Retourne un tableau contenant la liste des statuts possibles d'une rubrique. \item\end{CompactList}\item 
+{\bf retListeTypes} ()
+\begin{CompactList}\small\item\em Retourne un tableau contenant la liste des différents types de rubrique. \item\end{CompactList}\item 
+{\bf retNbrEquipes} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'équipes attachées à une rubrique. \item\end{CompactList}\item 
+{\bf retNbrUnites} ()
+\begin{CompactList}\small\item\em Retourne le nombre de rubrique de type lien(LIEN\_\-UNITE). \item\end{CompactList}\item 
+{\bf retNombreChats} ()
+\begin{CompactList}\small\item\em Retourne le nombre de chats de la rubrique. \item\end{CompactList}\item 
+{\bf retNombreLignes} ()
+\begin{CompactList}\small\item\em Retourne le nombre de rubriques de ce module. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} (\$v\_\-iIdMod=NULL)
+\begin{CompactList}\small\item\em Permet de connaître le numero d'ordre maximum des rubriques. \item\end{CompactList}\item 
+{\bf retNumOrdreReel} ()
+\begin{CompactList}\small\item\em Retourne le numéro d'ordre des unités de type lien. \item\end{CompactList}\item 
+{\bf retPremierePageUnite} ()
+\item 
+{\bf retTexteIntitule} (\$v\_\-bAfficherNumOrdre=TRUE)
+\begin{CompactList}\small\item\em Retourne le texte de l'intitulé avec son numéro d'ordre(optionnel). \item\end{CompactList}\item 
+{\bf retTexteNiveau} ()
+\item 
+{\bf retTexteType} (\$v\_\-iType=NULL)
+\begin{CompactList}\small\item\em Retourne le texte en français du type de rubrique. \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau \char`\"{}rubrique\char`\"{}, de la structure d'une formation. \item\end{CompactList}\item 
+{\bf verifSaRubrique} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Verifie si la personne qui a crée la rubrique est la même que celle passé en paramètre. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette rubrique}\par
+\begin{CompactItemize}
+\item 
+\textbf{defDescr} (\$v\_\-sDescr)\label{class_c_module___rubrique_54049c7ef53aee4b56a5f79eadf902a4}
+
+\item 
+\textbf{defDonnees} (\$v\_\-sDonnees)\label{class_c_module___rubrique_235b41ec960e0c803168c894277c3964}
+
+\item 
+\textbf{defIdIntitule} (\$v\_\-iIdIntitule)\label{class_c_module___rubrique_f197d83bfa8dadd61a2d74d4de07b1bf}
+
+\item 
+\textbf{defIdParent} (\$v\_\-iIdModule)\label{class_c_module___rubrique_b34310dcaa993a539000a4fdff5497b0}
+
+\item 
+\textbf{defNom} (\$v\_\-sNom)\label{class_c_module___rubrique_1a9ddaff4b7c37f7b86b54461523efb4}
+
+\item 
+\textbf{defNumDepart} (\$v\_\-iNumDepart)\label{class_c_module___rubrique_67ee2c41662c07e87a43d1cf8a9e8bfe}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iNumOrdre)\label{class_c_module___rubrique_fa6890be5dadc1a9e7ecc7c6dd511d1f}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_module___rubrique_b5d7d408d0d60fbcd95a40f077b873c1}
+
+\item 
+\textbf{defType} (\$v\_\-iType)\label{class_c_module___rubrique_a8c7d3e3eb471e9f1baed4be0916d6cf}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette rubrique}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDescr} ()\label{class_c_module___rubrique_734e69330bede3ea373a31c2744cd6ed}
+
+\item 
+\textbf{retDonnee} (\$v\_\-iPartie)\label{class_c_module___rubrique_cdc0c2d27893f3511b77ad1e992a2a29}
+
+\item 
+\textbf{retDonnees} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_module___rubrique_8cb0164284c0274da14a0294370eb86f}
+
+\item 
+\textbf{retId} ()\label{class_c_module___rubrique_32fe6526c1a9c39bcc41078c41d6abef}
+
+\item 
+\textbf{retIdIntitule} ()\label{class_c_module___rubrique_8205ee130d2b585ef5f96568523d8efd}
+
+\item 
+\textbf{retIdModule} ()\label{class_c_module___rubrique_3e320746ec1ebc02265f92650fb39e9d}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_module___rubrique_5c06ac6b380b590711db796540325d9d}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_module___rubrique_ab3934cf448e6d4fa5375fe56e084494}
+
+\item 
+\textbf{retIdRubrique} ()\label{class_c_module___rubrique_40ba93ed868f51aaf2bd2f54c1f7f43d}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_module___rubrique_bbe61b273b49212984850a149dac4ec5}
+
+\item 
+\textbf{retNomComplet} ()\label{class_c_module___rubrique_522f777af8184d2e5bffbd8f6cc30afb}
+
+\item 
+\textbf{retNumDepart} ()\label{class_c_module___rubrique_9f8e682aaf052e913467734a8b348326}
+
+\item 
+\textbf{retNumeroterActiv} ()\label{class_c_module___rubrique_1eac8c6d27a1eb994415f6a87793b282}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_module___rubrique_0145cecffaf529ae698946b630b8fe42}
+
+\item 
+\textbf{retStatut} ()\label{class_c_module___rubrique_d996c31fb541f6b56be905441f07f5d8}
+
+\item 
+\textbf{retType} ()\label{class_c_module___rubrique_65fd4953568b04b686f44af509b18773}
+
+\item 
+\textbf{retTypeMenu} ()\label{class_c_module___rubrique_57d7d92c5be759db9c7d0483aaaea2e1}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoActivs}\label{class_c_module___rubrique_03eaa0b6719e7d309e9a39f19e818943}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initActivs()}{p.}{class_c_module___rubrique_a6af53090c4fc0abeb88dd1112ee80af} , contenant tous les activités d'une rubrique. \item\end{CompactList}\item 
+{\bf \$aoChats}\label{class_c_module___rubrique_909e4d7fea8016702c9f4841eb2d372b}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initChats()}{p.}{class_c_module___rubrique_120734a3e88ad9f83f568d9be6fe74f9} ou \doxyref{initChats2()}{p.}{class_c_module___rubrique_8197442082db7d7c93fce61e17e3c169}, contenant tous les chats de la rubrique. \item\end{CompactList}\item 
+{\bf \$aoCollecticiels}\label{class_c_module___rubrique_4a28d38d5e8b0964a3244d07ff523915}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initCollecticiels()}{p.}{class_c_module___rubrique_8b0752e65e66740293ea8b229a2c0568}, contenant tous les collecticiels de la rubrique. \item\end{CompactList}\item 
+{\bf \$aoEquipes}\label{class_c_module___rubrique_7147826edf6044804017bfa1bbd41112}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initEquipes()}{p.}{class_c_module___rubrique_4c350de340e07cf024ac8068712c56c0}, contenant tous les équipes de la rubrique. \item\end{CompactList}\item 
+{\bf \$aoFormulaires}\label{class_c_module___rubrique_bb0ccb2037d2ff83780170d15a794732}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initFormulaires()}{p.}{class_c_module___rubrique_f4b03425d3eabbf6890c6a006b1dc347}, contenant les formulaires de la rubrique. \item\end{CompactList}\item 
+{\bf \$aoMembres}\label{class_c_module___rubrique_674c51c7a68eaa6bd4edfc6c504f2680}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initMembres()}{p.}{class_c_module___rubrique_a254df4d379d3ae3a67b75c324bbfe03}, contenant les personnes rattachées à la rubrique. \item\end{CompactList}\item 
+{\bf \$aoRubriques}\label{class_c_module___rubrique_db83afc4f9a4273b31665e74950cc639}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{retListeRubriques()}{p.}{class_c_module___rubrique_5bd861bd4e3ae6f8afd5a649e70757e4}, contenant toutes les rubriques d'un module. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_module___rubrique_cd3354608651105f12fec749253afee0}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du module à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$iIdForm}\label{class_c_module___rubrique_ef497626f1f08131002e0f823c31e189}
+
+\begin{CompactList}\small\item\em Objet initialisé par \doxyref{initIdForm()}{p.}{class_c_module___rubrique_a2adceb83ceb24fb63627629e0f03943}, contient l'id de la formation. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_module___rubrique_b52348121bdd4a9e5c74b6d8fb0b6531}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_module___rubrique_d69d8c51fa5567f4dd616c182be63e00}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oIntitule}\label{class_c_module___rubrique_f051295f91885e19484baa95b8a19523}
+
+\begin{CompactList}\small\item\em Objet de type CIntitule contenant l'intitulé de cette rubrique. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::ajouter ()}\label{class_c_module___rubrique_97ab913d65ac2c5fd23a11ac1f303fd2}
+
+
+Insère une nouvelle rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle rubrique \end{Desc}
+
+
+Références init(), retInfosIntituleRubPrecedente(), et retNombreLignes().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!ajouterChat@{ajouterChat}}
+\index{ajouterChat@{ajouterChat}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::ajouterChat ()}\label{class_c_module___rubrique_ff1a2ad6e86e6f2f7f3bcb6c394ebe65}
+
+
+Ajoute un chat à la rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau chat \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!CModule\_\-Rubrique@{CModule\_\-Rubrique}}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::CModule\_\-Rubrique (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_module___rubrique_21aed53ada6a22539b3177afb18adb41}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copier@{copier}}
+\index{copier@{copier}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copier (\$ {\em v\_\-iIdMod}, \/  \$ {\em v\_\-bRecursive} = {\tt TRUE}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module___rubrique_1832c2f4d187d1f383e2ff0793c94a58}
+
+
+Copie la rubrique courante vers un module spécifique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module \item[{\em v\_\-bRecursive}]si {\tt true}, copie aussi les activités associées à la rubrique\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle rubrique \end{Desc}
+
+
+Références copierActivites(), copierChats(), copierForum(), et copierRubrique().
+
+Référencé par copierAvecNumOrdre().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copierActivites@{copierActivites}}
+\index{copierActivites@{copierActivites}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copierActivites (\$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module___rubrique_6b8ef8b273d9c4326a8683490daf9c49}
+
+
+Copie toutes les activités de la rubrique vers une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique de destination \end{description}
+\end{Desc}
+
+
+Références initActivs().
+
+Référencé par copier().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copierAvecNumOrdre@{copierAvecNumOrdre}}
+\index{copierAvecNumOrdre@{copierAvecNumOrdre}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copierAvecNumOrdre (\$ {\em v\_\-iIdDest}, \/  \$ {\em v\_\-iNumOrdre} = {\tt 0})}\label{class_c_module___rubrique_81bcd5b2343a381e01c79c1ab5a12052}
+
+
+Copie la rubrique courante vers un module, en indiquant un n° d'ordre pour la rubrique copiée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdDest}]l'id du module de destination \item[{\em v\_\-iNumOrdre}]le n° d'ordre de la copie de la rubrique. Si {\tt 0} (défaut), elle sera dernière dans le module destination\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la copie de la rubrique \end{Desc}
+
+
+Références copier(), ElementFormation::retElementFormation(), retNumOrdreMax(), et retTypeNiveau().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copierChats@{copierChats}}
+\index{copierChats@{copierChats}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copierChats (\$ {\em v\_\-iIdRubrique})}\label{class_c_module___rubrique_c194fd2a353aa983f7a037c9d72cacab}
+
+
+Copie tout les chats de la rubrique courante vers une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique de destination \end{description}
+\end{Desc}
+
+
+Références initChats().
+
+Référencé par copier().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copierForum@{copierForum}}
+\index{copierForum@{copierForum}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copierForum (\$ {\em v\_\-iIdRubrique})}\label{class_c_module___rubrique_94080262fc327e05c19740df19376781}
+
+
+Copie le forum(= rubrique) vers une autre rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique de destination \end{description}
+\end{Desc}
+
+
+Référencé par copier().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!copierRubrique@{copierRubrique}}
+\index{copierRubrique@{copierRubrique}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::copierRubrique (\$ {\em v\_\-iIdMod}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module___rubrique_859c0ddd4d8d85ed6e174afb1b1064fd}
+
+
+Insère une copie d'une rubrique dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle rubrique \end{Desc}
+
+
+Référencé par copier().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!effacer@{effacer}}
+\index{effacer@{effacer}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::effacer (\$ {\em v\_\-iIdRubrique} = {\tt NULL})}\label{class_c_module___rubrique_9e7dd229198fddf74021dddd0c92e452}
+
+
+Efface la totalité d'une rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la rubrique a bien été effacée \end{Desc}
+
+
+Références effacerActivs(), effacerEquipes(), effacerForum(), et effacerRubrique().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!effacerRubrique@{effacerRubrique}}
+\index{effacerRubrique@{effacerRubrique}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::effacerRubrique (\$ {\em v\_\-iIdRubrique})}\label{class_c_module___rubrique_beee43b1061caa01096801d53c867483}
+
+
+Efface unne rubrique dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique à effacer \end{description}
+\end{Desc}
+
+
+Références redistNumsOrdre().
+
+Référencé par effacer().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initActivCourante@{initActivCourante}}
+\index{initActivCourante@{initActivCourante}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initActivCourante (\$ {\em v\_\-iIdActiv} = {\tt NULL})}\label{class_c_module___rubrique_ae6024cb4ee1d5e5c59baf6d00ad486f}
+
+
+Initialise l'activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité. Si on essaie d'initialiser une activité qui n'appartient pas à cette rubrique, l'activité ne sera pas initialisée \end{description}
+\end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initActivs@{initActivs}}
+\index{initActivs@{initActivs}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initActivs (\$ {\em v\_\-iStatut} = {\tt NULL}, \/  \$ {\em v\_\-iModalite} = {\tt NULL})}\label{class_c_module___rubrique_a6af53090c4fc0abeb88dd1112ee80af}
+
+
+Initialise un tableau contenant les activités de la rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iStatut}]statut de la rubrique(optionnel) \item[{\em v\_\-iModalite}]modalité(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'activités insérées dans le tableau \end{Desc}
+
+
+Référencé par copierActivites(), effacerActivs(), retElementsEnfants(), et retNbrEquipes().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initChats@{initChats}}
+\index{initChats@{initChats}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initChats ()}\label{class_c_module___rubrique_120734a3e88ad9f83f568d9be6fe74f9}
+
+
+Initialise un tableau contenant la liste des chats de la rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats insérés dans le tableau \end{Desc}
+
+
+Référencé par copierChats().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initChats2@{initChats2}}
+\index{initChats2@{initChats2}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initChats2 (\$ {\em v\_\-iIdModalite} = {\tt NULL})}\label{class_c_module___rubrique_8197442082db7d7c93fce61e17e3c169}
+
+
+Initialise un tableau contenant la liste des chats de la rubrique et ceux des sous-activités. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdModalite}]le numéro(optionnel) représentant le type de modalité pour l'activité (voir les constantes MODALITE\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de chats insérés dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initCollecticiels@{initCollecticiels}}
+\index{initCollecticiels@{initCollecticiels}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initCollecticiels (\$ {\em v\_\-iModalite} = {\tt NULL})}\label{class_c_module___rubrique_8b0752e65e66740293ea8b229a2c0568}
+
+
+Initialise un tableau contenant tous les collecticiels de la rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iModalite}]le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de collecticiels insérés dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initEquipes (\$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_module___rubrique_4c350de340e07cf024ac8068712c56c0}
+
+
+Initialise un tableau contenant les équipes de la rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe (défaut à {\tt false})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes insérées dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initFormulaires@{initFormulaires}}
+\index{initFormulaires@{initFormulaires}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initFormulaires (\$ {\em v\_\-iModalite} = {\tt NULL})}\label{class_c_module___rubrique_f4b03425d3eabbf6890c6a006b1dc347}
+
+
+Initialise un tableau contenant tous les formulaires. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iModalite}]le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de formulaires insérés dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initForums@{initForums}}
+\index{initForums@{initForums}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initForums (\$ {\em v\_\-miIdModalite} = {\tt NULL})}\label{class_c_module___rubrique_904a4c599cddfd135e7eda21ab049099}
+
+
+Initialise un tableau contenant tous les forums de cette rubriqe. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-miIdModalite}]liste des modalités(optionnel), il peut etre de type tableau ou entier\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de forums insérés dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initIntitule@{initIntitule}}
+\index{initIntitule@{initIntitule}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initIntitule ()}\label{class_c_module___rubrique_c919e7f8b8aea66474cc8bd5ec93b57d}
+
+
+Initialise l'objet {\tt oIntitule} avec l'intitulé de la rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'objet a bien été initialisé \end{Desc}
+
+
+Référencé par init().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!initMembres@{initMembres}}
+\index{initMembres@{initMembres}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::initMembres (\$ {\em v\_\-bAppartenirEquipe} = {\tt TRUE}, \/  \$ {\em v\_\-bAutoInscrit} = {\tt TRUE}, \/  \$ {\em v\_\-iSensTri} = {\tt {\bf TRI\_\-CROISSANT}})}\label{class_c_module___rubrique_a254df4d379d3ae3a67b75c324bbfe03}
+
+
+Initialise un tableau avec les étudiants inscrits à la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAppartenirEquipe}]si {\tt true} (par défaut) le tableau est rempli par les personnes qui appartiennent à une équipe de cette rubrique, si {\tt false} voir paramètre {\tt v\_\-bAutoInscrit} \item[{\em v\_\-bAutoInscrit}]si {\tt true} (par défaut) le tableau est rempli par les personnes qui sont inscrites à la formation et qui n'appartiennent pas à une équipe de cette rubrique. Utilisé lorsque les personnes sont automatiquement inscrites aux rubriques de la formation. Si {\tt false} il est rempli par les personnes qui sont inscrites à cette rubrique et qui n'appartiennent pas à une équipe de cette rubrique \item[{\em v\_\-iSensTri}]indique si un tri doit être effectué ainsi que son sens (croissant par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(étudiants) insérées dans le tableau \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}}
+\index{mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::mettre\_\-a\_\-jour (\$ {\em v\_\-sNomChamp}, \/  \$ {\em v\_\-mValeurChamp}, \/  \$ {\em v\_\-iIdRubrique} = {\tt 0})}\label{class_c_module___rubrique_315ba46107f43b14683f7a54d6eaf0b5}
+
+
+Met à jour un champ de la table Module\_\-Rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamp}]le nom du champ à mettre à jour \item[{\em v\_\-mValeurChamp}]la nouvelle valeur du champ \item[{\em v\_\-iIdRubrique}]l'id de la rubrique\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si il a mis à jour le champ dans la DB \end{Desc}
+
+
+Référencé par redistNumsOrdre().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!peutModifier@{peutModifier}}
+\index{peutModifier@{peutModifier}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::peutModifier (\$ {\em v\_\-iIdPers})}\label{class_c_module___rubrique_051311e100f5be94708750a26ccf2789}
+
+
+Vérifie si la personne peut modifier la rubrique (concepteur(statut) ou créateur de la rubrique). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne peut modifier la rubrique \end{Desc}
+
+
+Références verifSaRubrique().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!peutSupprimerIntitule@{peutSupprimerIntitule}}
+\index{peutSupprimerIntitule@{peutSupprimerIntitule}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::peutSupprimerIntitule (\$ {\em v\_\-iIdIntitule})}\label{class_c_module___rubrique_218997644c589d78e88de832719d0d2c}
+
+
+Vérifie si l'intitulé est utilisé par plusieurs rubriques. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdIntitule}]l'id de l'intitulé\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt true} on peut supprimer l'intitulé \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::redistNumsOrdre (\$ {\em v\_\-iNouveauNumOrdre} = {\tt NULL})}\label{class_c_module___rubrique_8acd6dcacc295dce048ae16c26cd71df}
+
+
+Redistribue les numéros d'ordre des rubriques. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouveauNumOrdre}]le nouveau numéro d'ordre de la rubrique courante\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les numéros ont bien été modifiés \end{Desc}
+
+
+Références mettre\_\-a\_\-jour(), et retListeRubriques().
+
+Référencé par effacerRubrique().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retDossier ()}\label{class_c_module___rubrique_00ceb7624bef35b72261c75a1ecb0b18}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier associé à cette rubrique, donc celui où se trouvent ses fichiers associés \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retIdEnregPrecedent@{retIdEnregPrecedent}}
+\index{retIdEnregPrecedent@{retIdEnregPrecedent}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retIdEnregPrecedent ()}\label{class_c_module___rubrique_6dd2c2658000e3ddfc13e2f7b0001328}
+
+
+Retourne l'id de la rubrique précedent la courante. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la rubrique précedent la courante \end{Desc}
+
+
+Références retListeRubriques().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retInfosIntituleRubPrecedente@{retInfosIntituleRubPrecedente}}
+\index{retInfosIntituleRubPrecedente@{retInfosIntituleRubPrecedente}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retInfosIntituleRubPrecedente ()}\label{class_c_module___rubrique_aefbe0025ff0f99d42a031cef410801d}
+
+
+Retourne un tableau contenant l'intitulé de la rubrique précedente. 
+
+\begin{Desc}
+\item[Renvoie:]un tableau contenant l'intitulé de la rubrique précedente \end{Desc}
+
+
+Références \$oEnregBdd.
+
+Référencé par ajouter().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retListeRubriques@{retListeRubriques}}
+\index{retListeRubriques@{retListeRubriques}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retListeRubriques (\$ {\em v\_\-iIdMod} = {\tt NULL}, \/  \$ {\em v\_\-iTypeRubrique} = {\tt NULL})}\label{class_c_module___rubrique_5bd861bd4e3ae6f8afd5a649e70757e4}
+
+
+Initialise un tableau avec la liste des rubriques d'un module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module \item[{\em v\_\-iTypeRubrique}]type des rubriques que l'on veut retourner(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de rubriques insérées dans le tableau \end{Desc}
+
+
+Référencé par redistNumsOrdre(), et retIdEnregPrecedent().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retListeStatuts@{retListeStatuts}}
+\index{retListeStatuts@{retListeStatuts}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retListeStatuts ()}\label{class_c_module___rubrique_be28ce3006a8195f031d22b8de45ccbc}
+
+
+Retourne un tableau contenant la liste des statuts possibles d'une rubrique. 
+
+Cette liste se présente elle-même sous forme de tableaux, contenant chacun un statut possible de la rubrique (constante STATUT\_\-), l'intitulé de ce statut, et une valeur booléenne indiquant si la rubrique courante possède ce statut actuellement
+
+\begin{Desc}
+\item[Renvoie:]le tableau contenant la liste des statuts possibles d'une rubrique \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retListeTypes@{retListeTypes}}
+\index{retListeTypes@{retListeTypes}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retListeTypes ()}\label{class_c_module___rubrique_d7e4737ccadb5b6bf77ecc6345ad4cc6}
+
+
+Retourne un tableau contenant la liste des différents types de rubrique. 
+
+En fait, cette liste se présente elle-même sous forme de tableaux, contenant chacun le type de rubrique(constante LIEN\_\-), l'intitulé de ce type, et une valeur booléenne indiquant si la rubrique courante est de ce type
+
+\begin{Desc}
+\item[Renvoie:]le tableau contenant la liste des différents types de rubrique \end{Desc}
+
+
+Référencé par retTexteType().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNbrEquipes@{retNbrEquipes}}
+\index{retNbrEquipes@{retNbrEquipes}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNbrEquipes ()}\label{class_c_module___rubrique_dbe2d35e2288f5eb60173b4fa487a61f}
+
+
+Retourne le nombre d'équipes attachées à une rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes attachées à une rubrique \end{Desc}
+
+
+Références initActivs().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNbrUnites@{retNbrUnites}}
+\index{retNbrUnites@{retNbrUnites}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNbrUnites ()}\label{class_c_module___rubrique_e293fd2dff4128f7a13e3dfaccd5c39c}
+
+
+Retourne le nombre de rubrique de type lien(LIEN\_\-UNITE). 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de rubrique de type lien \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNombreChats@{retNombreChats}}
+\index{retNombreChats@{retNombreChats}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNombreChats ()}\label{class_c_module___rubrique_8cf00fa6cdab86bfb8ea441695c2f175}
+
+
+Retourne le nombre de chats de la rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats de la rubrique \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNombreLignes@{retNombreLignes}}
+\index{retNombreLignes@{retNombreLignes}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNombreLignes ()}\label{class_c_module___rubrique_303aee37dd9176b53e1c1f91cb31b4dc}
+
+
+Retourne le nombre de rubriques de ce module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de rubriques de ce module \end{Desc}
+
+
+Référencé par ajouter().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNumOrdreMax (\$ {\em v\_\-iIdMod} = {\tt NULL})}\label{class_c_module___rubrique_9d437ea6001f46a216d7789a3b0e1ce1}
+
+
+Permet de connaître le numero d'ordre maximum des rubriques. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retNumOrdreReel@{retNumOrdreReel}}
+\index{retNumOrdreReel@{retNumOrdreReel}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retNumOrdreReel ()}\label{class_c_module___rubrique_ce9bd41a462d7ca1af04b8d35788dba9}
+
+
+Retourne le numéro d'ordre des unités de type lien. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre des unités de type lien \end{Desc}
+
+
+Références \$iId.\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retPremierePageUnite@{retPremierePageUnite}}
+\index{retPremierePageUnite@{retPremierePageUnite}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retPremierePageUnite ()}\label{class_c_module___rubrique_ae5d89fbcfa8d4e71fd6cf0392e78769}
+
+
+\begin{Desc}
+\item[{\bf Obsolète}]Ne semble pas/plus utilisé ??? \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retTexteIntitule@{retTexteIntitule}}
+\index{retTexteIntitule@{retTexteIntitule}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retTexteIntitule (\$ {\em v\_\-bAfficherNumOrdre} = {\tt TRUE})}\label{class_c_module___rubrique_81d8df3c2daf377878fabb85418f48fb}
+
+
+Retourne le texte de l'intitulé avec son numéro d'ordre(optionnel). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAfficherNumOrdre}]si {\tt true}(défaut) retourne aussi le numéro d'ordre\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte de l'intitulé \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retTexteNiveau@{retTexteNiveau}}
+\index{retTexteNiveau@{retTexteNiveau}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retTexteNiveau ()}\label{class_c_module___rubrique_72e9db0c4eae420271c4f2819f1977ac}
+
+
+\begin{Desc}
+\item[Renvoie:]le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) \end{Desc}
+\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retTexteType@{retTexteType}}
+\index{retTexteType@{retTexteType}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retTexteType (\$ {\em v\_\-iType} = {\tt NULL})}\label{class_c_module___rubrique_ae1adf6e47e8fdfca456d42b4213b4c7}
+
+
+Retourne le texte en français du type de rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iType}]le type(optionnel) d'une rubrique\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte du type de rubrique \end{Desc}
+
+
+Références retListeTypes().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::retTypeNiveau ()}\label{class_c_module___rubrique_72b547cc6e475a3e9989ae9896965eb0}
+
+
+Retourne la constante qui définit le niveau \char`\"{}rubrique\char`\"{}, de la structure d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau \char`\"{}rubrique\char`\"{}, de la structure d'une formation \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CModule\_\-Rubrique@{CModule\_\-Rubrique}!verifSaRubrique@{verifSaRubrique}}
+\index{verifSaRubrique@{verifSaRubrique}!CModule_Rubrique@{CModule\_\-Rubrique}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule\_\-Rubrique::verifSaRubrique (\$ {\em v\_\-iIdPers})}\label{class_c_module___rubrique_d8916be19218eabcd1d84fea0f7cbf0e}
+
+
+Verifie si la personne qui a crée la rubrique est la même que celle passé en paramètre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne qui a crée la rubrique est la même que celle passé en paramètre \end{Desc}
+
+
+Référencé par peutModifier().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf rubrique.tbl.php}\end{CompactItemize}

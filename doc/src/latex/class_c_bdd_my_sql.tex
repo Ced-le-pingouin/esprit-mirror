@@ -1,0 +1,222 @@
+\section{Référence de la classe CBddMySql}
+\label{class_c_bdd_my_sql}\index{CBddMySql@{CBddMySql}}
+Graphe d'héritage de CBddMySql::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_c_bdd_my_sql}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Interface avec une DB MySQL. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CBddMySql} (\$v\_\-sHote=\char`\"{}localhost\char`\"{}, \$v\_\-sLogin, \$v\_\-sMdp, \$v\_\-sNom)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf deverrouillerTables} ()\label{class_c_bdd_my_sql_72461404be6bab9e5c67723b86554c8f}
+
+\begin{CompactList}\small\item\em Exécute un \char`\"{}UNLOCK TABLES\char`\"{}. \item\end{CompactList}\item 
+{\bf executerRequete} (\$v\_\-sRequete, \$v\_\-bAfficher=FALSE)
+\begin{CompactList}\small\item\em Exécute une requête SQL, et en cas de réussite enregistre le handle du résultat dans le tableau {\tt ahResult}. \item\end{CompactList}\item 
+{\bf libererResult} (\$v\_\-iNumResult=NULL)
+\begin{CompactList}\small\item\em Libère les ressources associées à un résultat de requête. \item\end{CompactList}\item 
+{\bf retDernierId} ()
+\begin{CompactList}\small\item\em Retourne l'id généré pour le dernier enregistrement inséré avec champ AUTO\_\-INCREMENT. \item\end{CompactList}\item 
+{\bf retEnregPrecis} (\$v\_\-iNumResult=NULL, \$v\_\-iNumEnreg=0)
+\begin{CompactList}\small\item\em Retourne le premier champ d'un enregistrement donné dans un résultat de requête. \item\end{CompactList}\item 
+{\bf retEnregSuiv} (\$v\_\-iNumResult=NULL)
+\begin{CompactList}\small\item\em Retourne sous forme d'objet PHP l'enregistrement suivant dans un résultat de requête. \item\end{CompactList}\item 
+{\bf retNbEnregsDsResult} (\$v\_\-iNumResult=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre d'enregistrements récupérés par une requête. \item\end{CompactList}\item 
+{\bf retNbResults} ()
+\begin{CompactList}\small\item\em Retourne le nombre de résultats de requêtes (tableau {\tt ahResult}). \item\end{CompactList}\item 
+{\bf terminer} ()
+\begin{CompactList}\small\item\em Pseudo-destructeur (doit être appelé explicitement). \item\end{CompactList}\item 
+{\bf traiterErreur} (\$v\_\-bEstFatale=TRUE)
+\begin{CompactList}\small\item\em Affiche la dernière erreur SQL survenue et arrête éventuellement le script PHP courant. \item\end{CompactList}\item 
+{\bf validerDonnee} (\$v\_\-sDonnee)
+\begin{CompactList}\small\item\em Fonction utilitaire pour \char`\"{}nettoyer\char`\"{} une donnée texte. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$ahResult}\label{class_c_bdd_my_sql_f3f0e90c8f75c270de32e0aca92e90ae}
+
+\begin{CompactList}\small\item\em Tableau des handles de résultats de requêtes. \item\end{CompactList}\item 
+{\bf \$hLien} = 0\label{class_c_bdd_my_sql_b8e6f5804c6bf2933c82e16fc3aed470}
+
+\begin{CompactList}\small\item\em Handle de la connexion établie à la DB. \item\end{CompactList}\item 
+{\bf \$sHote}\label{class_c_bdd_my_sql_b4f48f60356c5b1250763e3b5a40cb19}
+
+\begin{CompactList}\small\item\em Paramètre \char`\"{}hôte\char`\"{} pour la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$sLogin}\label{class_c_bdd_my_sql_6f2aa01cdf4975c465aa7ec082b59f27}
+
+\begin{CompactList}\small\item\em Paramètre \char`\"{}username\char`\"{} pour la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$sMdp}\label{class_c_bdd_my_sql_0b7616063bc62fb32a63298e6976adf1}
+
+\begin{CompactList}\small\item\em Paramètre \char`\"{}mot de passe\char`\"{} pour la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$sNom}\label{class_c_bdd_my_sql_b0d080ddca8da2674aeb767f52df69de}
+
+\begin{CompactList}\small\item\em Nom de la DB de départ. \item\end{CompactList}\item 
+{\bf \$sRequete} = \char`\"{}\char`\"{}\label{class_c_bdd_my_sql_4c114b568b48e102239d86c4952073a8}
+
+\begin{CompactList}\small\item\em Dernière requête 'tentée' (pas forcément réussie). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CBddMySql@{CBddMySql}!CBddMySql@{CBddMySql}}
+\index{CBddMySql@{CBddMySql}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::CBddMySql (\$ {\em v\_\-sHote} = {\tt \char`\"{}localhost\char`\"{}}, \/  \$ {\em v\_\-sLogin}, \/  \$ {\em v\_\-sMdp}, \/  \$ {\em v\_\-sNom})}\label{class_c_bdd_my_sql_455f3dae1f30d18bc866dbae92b16ee9}
+
+
+Constructeur. 
+
+Effectue la connexion au serveur DB, et sélectionne automatiquement la DB spécifiée
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sHote}]l'adresse du serveur DB \item[{\em v\_\-sLogin}]le username à utiliser pour la connexion \item[{\em v\_\-sMdp}]le mot de passe à utiliser pour la connexion \item[{\em v\_\-sNom}]le nom de la DB à sélectionner automatiquement \end{description}
+\end{Desc}
+
+
+Références traiterErreur().
+
+Référencé par CBdd::CBdd().\index{CBddMySql@{CBddMySql}!executerRequete@{executerRequete}}
+\index{executerRequete@{executerRequete}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::executerRequete (\$ {\em v\_\-sRequete}, \/  \$ {\em v\_\-bAfficher} = {\tt FALSE})}\label{class_c_bdd_my_sql_ec99c17587d4c993fdc582cd937e4999}
+
+
+Exécute une requête SQL, et en cas de réussite enregistre le handle du résultat dans le tableau {\tt ahResult}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sRequete}]le texte de la requête, sans point-virgule final. Une seule requête à la fois donc \item[{\em v\_\-bAfficher}]si {\tt true}, le texte de la requête est affiché dans la page (debug)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'indice du handle de résultat dans le tableau {\tt ahResult} en cas de réussite de la requête, {\tt false} en cas d'échec (erreur de syntaxe ou autre) \end{Desc}
+
+
+Références traiterErreur().
+
+Référencé par deverrouillerTables().\index{CBddMySql@{CBddMySql}!libererResult@{libererResult}}
+\index{libererResult@{libererResult}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::libererResult (\$ {\em v\_\-iNumResult} = {\tt NULL})}\label{class_c_bdd_my_sql_6583142bd04edec5d6584e7ba2415f70}
+
+
+Libère les ressources associées à un résultat de requête. 
+
+Le résultat est également enlevé du tableau {\tt ahResult} 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumResult}]l'indice du résultat à libérer (voir \doxyref{retNbEnregsDsResult()}{p.}{class_c_bdd_my_sql_b3c35e818cc6ae022f5921a7a0ee7f01}) \end{description}
+\end{Desc}
+\index{CBddMySql@{CBddMySql}!retDernierId@{retDernierId}}
+\index{retDernierId@{retDernierId}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::retDernierId ()}\label{class_c_bdd_my_sql_8f15c49fe80c289d9de31e7a06f239af}
+
+
+Retourne l'id généré pour le dernier enregistrement inséré avec champ AUTO\_\-INCREMENT. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du dernier enregistrement inséré avec colonne AUTO\_\-INCREMENT \end{Desc}
+\index{CBddMySql@{CBddMySql}!retEnregPrecis@{retEnregPrecis}}
+\index{retEnregPrecis@{retEnregPrecis}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::retEnregPrecis (\$ {\em v\_\-iNumResult} = {\tt NULL}, \/  \$ {\em v\_\-iNumEnreg} = {\tt 0})}\label{class_c_bdd_my_sql_5fa33908129b475141901737d4c8ae89}
+
+
+Retourne le premier champ d'un enregistrement donné dans un résultat de requête. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumResult}]l'indice du résultat de requête à utiliser (voir \doxyref{retNbEnregsDsResult()}{p.}{class_c_bdd_my_sql_b3c35e818cc6ae022f5921a7a0ee7f01}) \item[{\em v\_\-iNumEnreg}]l'indice de l'enregistrement dans le résultat (le premier = 0)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le premier champ de l'enregistrement spécifié, dans le résultat de requête voulu\end{Desc}
+\begin{Desc}
+\item[Note:]Cette fonction est limitée au premier champ, elle est surtout utilisée pour les requêtes SELECT dont le résultat n'a qu'un enregistrement et un seul champ non nommé, comme {\tt SELECT MD5(\char`\"{}blah\char`\"{})} ou {\tt SELECT COUNT($\ast$) FROM Table} \end{Desc}
+\index{CBddMySql@{CBddMySql}!retEnregSuiv@{retEnregSuiv}}
+\index{retEnregSuiv@{retEnregSuiv}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::retEnregSuiv (\$ {\em v\_\-iNumResult} = {\tt NULL})}\label{class_c_bdd_my_sql_01bccb70d74c5a7db88e1bb2bb289a51}
+
+
+Retourne sous forme d'objet PHP l'enregistrement suivant dans un résultat de requête. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumResult}]l'indice du résultat de requête à utiliser (voir \doxyref{retNbEnregsDsResult()}{p.}{class_c_bdd_my_sql_b3c35e818cc6ae022f5921a7a0ee7f01})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'objet PHP contenant les champs de l'enregistrement suivant du résultat de la requête \end{Desc}
+\index{CBddMySql@{CBddMySql}!retNbEnregsDsResult@{retNbEnregsDsResult}}
+\index{retNbEnregsDsResult@{retNbEnregsDsResult}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::retNbEnregsDsResult (\$ {\em v\_\-iNumResult} = {\tt NULL})}\label{class_c_bdd_my_sql_b3c35e818cc6ae022f5921a7a0ee7f01}
+
+
+Retourne le nombre d'enregistrements récupérés par une requête. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumResult}]l'indice du handle de résultats à utiliser (plusieurs résultats peuvent être gardés, dans {\tt ahResult}). Par défaut {\tt null}, ce qui revient à traiter le résultat de la dernière requête réussie\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'enregistrements récupérés dans le résultat de requête spécifié \end{Desc}
+\index{CBddMySql@{CBddMySql}!retNbResults@{retNbResults}}
+\index{retNbResults@{retNbResults}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::retNbResults ()}\label{class_c_bdd_my_sql_8416af46c85ea3b694d52dc22495c6c5}
+
+
+Retourne le nombre de résultats de requêtes (tableau {\tt ahResult}). 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de résultats de requêtes exploitables \end{Desc}
+\index{CBddMySql@{CBddMySql}!terminer@{terminer}}
+\index{terminer@{terminer}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::terminer ()}\label{class_c_bdd_my_sql_ed6bdc6798d6874a520119858112b37f}
+
+
+Pseudo-destructeur (doit être appelé explicitement). 
+
+Ferme la connexion au serveur DB 
+
+Références traiterErreur().\index{CBddMySql@{CBddMySql}!traiterErreur@{traiterErreur}}
+\index{traiterErreur@{traiterErreur}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::traiterErreur (\$ {\em v\_\-bEstFatale} = {\tt TRUE})}\label{class_c_bdd_my_sql_5cc1ccd11c09303dc37ddde1e7236ee6}
+
+
+Affiche la dernière erreur SQL survenue et arrête éventuellement le script PHP courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bEstFatale}]si {\tt true} (défaut), le script PHP est stoppé \end{description}
+\end{Desc}
+
+
+Référencé par CBddMySql(), executerRequete(), et terminer().\index{CBddMySql@{CBddMySql}!validerDonnee@{validerDonnee}}
+\index{validerDonnee@{validerDonnee}!CBddMySql@{CBddMySql}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CBddMySql::validerDonnee (\$ {\em v\_\-sDonnee})}\label{class_c_bdd_my_sql_06b56721dbc1132ed97564ac2fa74117}
+
+
+Fonction utilitaire pour \char`\"{}nettoyer\char`\"{} une donnée texte. 
+
+Pour le moment, il s'agit d'un trim suivi de l'enlèvement des backslashes
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDonnee}]le texte à nettoyer\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte nettoyé \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/code\_\-lib/{\bf bdd\_\-mysql.class.php}\end{CompactItemize}

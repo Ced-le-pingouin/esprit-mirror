@@ -1,0 +1,46 @@
+\section{Référence de la classe IterateurComposite}
+\label{class_iterateur_composite}\index{IterateurComposite@{IterateurComposite}}
+Graphe d'héritage de IterateurComposite::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_iterateur_composite}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Interface dérivée de l'itérateur simple, qui permet en plus de savoir si un élément a des \char`\"{}enfants\char`\"{} (qui pourraient) donc eux aussi être \char`\"{}itérés\char`\"{}). 
+
+Si un itérateur implémente cette interface, il pourra être passé par le décorateur \doxyref{IterateurRecursif}{p.}{class_iterateur_recursif}, qui effectue une itération en descendant également dans les enfants de l'itérateur de base \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf aEnfants} ()
+\begin{CompactList}\small\item\em Indique si l'élément courant est susceptible d'avoir des éléments \char`\"{}enfants\char`\"{}. \item\end{CompactList}\item 
+{\bf retIterateurEnfants} ()
+\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurComposite@{IterateurComposite}!aEnfants@{aEnfants}}
+\index{aEnfants@{aEnfants}!IterateurComposite@{IterateurComposite}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurComposite::aEnfants ()}\label{class_iterateur_composite_1b161ee694a4b1acd98116fb012d971e}
+
+
+Indique si l'élément courant est susceptible d'avoir des éléments \char`\"{}enfants\char`\"{}. 
+
+Par exemple, dans le cas d'un système de fichiers, on peut considérer que cette méthode retournerait {\tt false} pour un fichier, mais {\tt true} pour un dossier (car il peut lui-même contenir des fichiers ou dossiers). Idem pour un tableau : si l'un de ses éléments est lui-même un tableau, la méthode \doxyref{aEnfants()}{p.}{class_iterateur_composite_1b161ee694a4b1acd98116fb012d971e} de cet élément retourne {\tt true}. Etc, etc 
+
+Références OO::abstraite().\index{IterateurComposite@{IterateurComposite}!retIterateurEnfants@{retIterateurEnfants}}
+\index{retIterateurEnfants@{retIterateurEnfants}!IterateurComposite@{IterateurComposite}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurComposite::retIterateurEnfants ()}\label{class_iterateur_composite_28ed7a32058cc305a1cfa152f37c387a}
+
+
+\begin{Desc}
+\item[Renvoie:]le \char`\"{}sous-itérateur\char`\"{} qui permet de parcourir les enfants de l'élément courant \end{Desc}
+
+
+Références OO::abstraite().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurComposite.php}\end{CompactItemize}

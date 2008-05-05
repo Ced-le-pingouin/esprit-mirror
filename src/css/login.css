@@ -1,0 +1,454 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+login
+------------------ */
+
+/* -- login -- */
+html {
+height:100%;
+}
+body {
+margin:0;
+padding:0;
+color:#000;
+font:12px Verdana,Tahoma,Arial,sans-serif;
+background:#fff url('../themes/esprit/login/images/login-gauche-fond.jpg') repeat-y  top left;
+}
+
+#bandeau {
+width:100%;
+height:120px;
+background:#686560 url('../themes/esprit/login/images/login-haut-fond.jpg') repeat-x  228px 0;
+border-bottom:1px solid #000;
+}
+
+html>body #bandeau {
+position:fixed;
+z-index:10;
+}
+
+html>body #contenu {
+padding:125px 1em 3em;
+}
+
+#formlogin {
+position:absolute;
+top:120px;
+font-size:11px;
+left:26px;
+width:201px;
+margin:0;
+}
+
+#pieddepage {
+width:100%;
+height:3em;
+background:#dcd9d2 url('../themes/esprit/login/images/login-bas-image.gif') repeat-y 0 0;
+color:#FFF;
+border-top:1px solid #000;
+}
+
+html>body #pieddepage {
+position:fixed;
+bottom:0;
+z-index:10;
+}
+
+#contenu {
+margin:0 0 1px 228px;
+padding:0;
+}
+
+h1 {
+color:#FFF;
+padding:0;
+margin:0;
+letter-spacing:.2em;
+white-space:nowrap;
+font-weight: bold;
+font-size: 11px;
+}
+
+h2 {
+color:#882525;
+font-weight:bold;
+font-style:italic;
+font-size: 18px;
+text-align:center;
+}
+
+h3 {
+font-weight:bold;
+font-size:12px;
+}
+
+h4 {
+font-weight:bold;
+font-size:12px;
+color:#FFF;
+background-color:#686c47;
+margin:0 0 0 70px;
+padding:4px;
+}
+
+input {
+background-color:#fff;
+color:#000;
+border:#000 solid 1px;
+font-size:11px;
+width:84px;
+}
+
+label {
+padding-right:3px;
+}
+
+a {
+color:#882525;
+font-weight:400;
+text-decoration:none;
+}
+
+a:hover {
+text-decoration:underline;
+}
+
+form {
+padding:0;
+margin:0;
+}
+
+.aligndroite {
+text-align:right;
+}
+
+.BlockContent {
+background-color:#fdf9ee;
+padding:2px;
+margin:3px 0 20px 3px;
+}
+
+.btn_ok {
+background-color:#940320;
+color:#fff;
+border:#000 solid 1px;
+width:40px;
+}
+
+.imgpresentation {
+float:left;
+margin:5px;
+padding:0;
+}
+
+.touchesF {
+font-weight:700;
+color:#933;
+}
+
+#logo {
+position:absolute;
+top:55px;
+left:90px;
+z-index:3;
+}
+
+#logo-local {
+position:absolute;
+top:0;
+right:0;
+width:175px;
+background-color:#fff;
+z-index:2;
+}
+
+#bandeau h1 {
+position:absolute;
+padding-top:98px;
+margin-left:232px;
+font-family:Arial,sans-serif;
+font-stretch:ultra-expanded;
+}
+
+#bandeau div {
+position:absolute;
+background:url('../themes/esprit/login/images/login-haut-gauche.gif') no-repeat 0 0;
+top:0;
+left:0;
+height:120px;
+width:228px;
+}
+
+#formations {
+padding:2px;
+margin:3px 0 20px 3px;
+}
+
+#plateforme {
+background:url("../themes/esprit/login/images/Exercice1.gif") no-repeat 5px 5px;
+}
+
+#principes {
+background:url("../themes/esprit/login/images/Exercice2.gif") no-repeat 5px 5px;
+}
+
+#conception {
+background:url("../themes/esprit/login/images/Exercice4.gif") no-repeat 5px 5px;
+}
+
+#plateforme p,#plateforme h3,#principes h3,#conception h3,#conception p {
+margin:5px 0 10px 92px;
+}
+
+#principes ul {
+margin:5px 0 10px 92px;
+padding:0 0 0 13px;
+}
+
+#principes li,#choix li {
+margin:7px 0;
+}
+
+#choix ul {
+margin:5px 0 10px 10px;
+padding:0 0 0 15px;
+}
+
+#breves,#ressources,#adresses,#actus {
+margin:3px 0 20px;
+padding:0;
+}
+
+#breves {
+background:url("../themes/esprit/login/images/news.gif") no-repeat;
+}
+
+.breve-centered {
+padding:0 0 0 70px;
+margin:5px auto;
+display:block;
+text-align:center;
+}
+
+.news-texte {
+font-style:normal;
+font-weight:400;
+color:#000;
+background-color:#fff5d5;
+margin:0 0 0 70px;
+padding:10px;
+}
+
+#ressources {
+background:url("../themes/esprit/login/images/ressources.gif") no-repeat;
+}
+
+#adresses,#actus {
+background:url("../themes/esprit/login/images/aide.gif") no-repeat;
+}
+
+#ressources h4 {
+background-color:#b3a58a;
+}
+
+#ressources a {
+display:block;
+margin:4px 0 4px 70px;
+color:#963;
+font-size:12px;
+font-weight:400;
+}
+
+#ressources .discret {
+font-size:10px;
+}
+
+#adresses a {
+color:#cb6828;
+font-weight:bold;
+font-size:12px;
+}
+
+#adresses a:visited {
+color:#cbb09f;
+}
+
+#formlogin p {
+padding:0;
+margin:4px;
+}
+
+#formlogin a:link,#formlogin a:visited,#formlogin a:hover {
+color:#fff;
+}
+
+p#erreur_login {
+background-color:#fdf9ee;
+border:#882525 dashed 1px;
+color:#882525;
+text-align:center;
+padding:5px;
+}
+
+#avertissement_login {
+background-color:#fdf9ee;
+border:#882525 dashed 1px;
+color:#882525;
+padding:4px;
+margin:25px 5px 15px;
+height:12em;
+overflow:auto;
+}
+
+#avertissement_login a:link,#avertissement_login a:visited,#avertissement_login a:hover,#avertissement_login a:active {
+color:blue;
+}
+
+#tete {
+margin:0;
+padding:0;
+border-bottom:1px solid #000;
+border-top:1px solid #000;
+}
+
+#hautpieddepage {
+height:50%;
+}
+
+#baspieddepage {
+background-color:#272b1c;
+text-align:center;
+height:50%;
+padding:1px;
+margin:0;
+}
+
+#baspieddepage a {
+color:#c8c8c8;
+font-size:9px;
+font-weight:700;
+}
+
+.rss_box {
+border:solid 2px #dcb478;
+background-color:#fff;
+margin:0;
+width:100%;
+}
+
+.rss_title a {
+background-color:#ffefce;
+font:oblique bolder small arial;
+color:#000;
+width:100%;
+text-align:left;
+text-decoration:blink;
+margin-left:0;
+padding:0;
+}
+
+.rss_title {
+background-color:#ffefce;
+font:bolder 70% arial;
+color:#dc1803;
+text-align:left;
+margin-left:0;
+width:100%;
+text-decoration:none;
+padding:5px;
+}
+
+.rss_item a:visited {
+font:80% arial;
+color:#000;
+background-color:transparent;
+margin-top:0;
+margin-left:0;
+text-decoration:none;
+text-align:justify;
+}
+
+.rss_item a:hover {
+font-family:arial;
+font-size:80%;
+color:#dc1803;
+background-color:transparent;
+margin-top:0;
+margin-left:0;
+text-decoration:none;
+text-align:justify;
+}
+
+.rss_item a:active {
+font:80% arial;
+color:#884da7;
+background-color:transparent;
+margin-top:0;
+margin-left:0;
+text-decoration:none;
+text-align:justify;
+}
+
+.rss_items {
+font-size:100%;
+margin:0 10px 25px 25px;
+text-decoration:none;
+text-align:justify;
+}
+
+.ntic_org_image {
+border-width:0;
+text-align:left;
+}
+
+.ntic_org_tableau {
+background-color:#FFF;
+border:none;
+}
+
+.ntic_org_td_image {
+background-color:#FFF;
+border:none;
+width:0;
+}
+
+.ntic_org_td_nomfil {
+background-color:#FFF;
+border:none;
+padding-top:4px;
+text-align:justify;
+font:normal 700 12px Arial, Helvetica, sans-serif;
+color:#333;
+text-decoration:none;
+margin-top:auto;
+line-height:10pt;
+}
+
+.ntic_org_titre {
+background-color:#ffe57f;
+border:none;
+padding-top:4px;
+text-align:justify;
+font:normal 700 12px Arial, Helvetica, sans-serif;
+color:#333;
+text-decoration:none;
+margin-top:auto;
+line-height:10pt;
+}
+
+.ntic_org_description {
+background-color:#FFF;
+text-align:justify;
+border:none;
+font:normal 400 11px Arial, Helvetica, sans-serif;
+color:#333;
+text-decoration:none;
+margin-top:auto;
+line-height:10pt;
+}
+
+html>body #wrap,html>body #content-wrap {
+height:100%;
+}
+/* ----- */

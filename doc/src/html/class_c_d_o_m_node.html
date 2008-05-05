@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CDOMNode</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CDOMNode</h1><!-- doxytag: class="CDOMNode" --><div class="dynheader">
+Graphe d'héritage de CDOMNode:</div>
+<div class="dynsection">
+
+<p><center><img src="class_c_d_o_m_node.png" usemap="#CDOMNode_map" border="0" alt=""></center>
+<map name="CDOMNode_map">
+<area href="class_c_d_o_m_document.html" alt="CDOMDocument" shape="rect" coords="0,56,107,80">
+<area href="class_c_d_o_m_element.html" alt="CDOMElement" shape="rect" coords="117,56,224,80">
+</map>
+</div>
+
+<p>
+<a href="class_c_d_o_m_node-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe reproduisant en PHP 4 le comportement de la classe <code>DOMNode</code> de la bibliothèque DOM PHP 5. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_d_o_m_node.html#e95f28cb57dda33271248f013b318ff8">appendChild</a> ($newnode)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un nouveau noeud enfant, à la fin des enfants existants.  <a href="#e95f28cb57dda33271248f013b318ff8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_d_o_m_node.html#1299634df167384043b22708829634c6">CDOMNode</a> ($name)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#1299634df167384043b22708829634c6"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0511d10c0c47f46be0a87fe689cad630"></a><!-- doxytag: member="CDOMNode::$_oDOMNode" ref="0511d10c0c47f46be0a87fe689cad630" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_d_o_m_node.html#0511d10c0c47f46be0a87fe689cad630">$_oDOMNode</a> = NULL</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">objet de type DomNode (PHP 4) qui est utilisé en interne pour reproduire le comportement de DOMNode (PHP 5) <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="e95f28cb57dda33271248f013b318ff8"></a><!-- doxytag: member="CDOMNode::appendChild" ref="e95f28cb57dda33271248f013b318ff8" args="($newnode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDOMNode::appendChild           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>newnode</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un nouveau noeud enfant, à la fin des enfants existants. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>newnode</em>&nbsp;</td><td>le noeud à ajouter, sous forme d'objet <a class="el" href="class_c_d_o_m_node.html" title="Classe reproduisant en PHP 4 le comportement de la classe DOMNode de la bibliothèque...">CDOMNode</a> (ou d'une classe descendante)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le noeud ajouté (INCOMPLET)</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000018">À faire:</a></b></dt><dd>La valeur de retour diffère entre le DOM XML PHP 4 et le DOM PHP 5, il faudra tester et uniformiser, même si la valeur de retour a peu d'intérêt dans cette méthode (en tout cas dans le type d'utilisation que j'en fais) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1299634df167384043b22708829634c6"></a><!-- doxytag: member="CDOMNode::CDOMNode" ref="1299634df167384043b22708829634c6" args="($name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CDOMNode::CDOMNode           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>name</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Crée un nouveau noeud DOM<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>le nom du noeud à créer </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/lib/dom/<a class="el" href="dom-php4_8class_8php.html">dom-php4.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

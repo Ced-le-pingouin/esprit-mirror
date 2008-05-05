@@ -1,0 +1,102 @@
+\section{Référence de la classe CQRadio}
+\label{class_c_q_radio}\index{CQRadio@{CQRadio}}
+
+
+\subsection{Description détaillée}
+Gestion des questions de type \char`\"{}radio\char`\"{} des activités en ligne, et encapsulation de la table QRadio de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+\textbf{ajouter} (\$v\_\-iIdObjForm)\label{class_c_q_radio_f641245e31377a8f09b5e78b0fbcfccc}
+
+\item 
+\textbf{copier} (\$v\_\-iIdNvObjForm)\label{class_c_q_radio_2d022fcc14bd4c07cd84066680972360}
+
+\item 
+{\bf CQRadio} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+\textbf{defAlignEnonQR} (\$v\_\-sAlignEnonQR)\label{class_c_q_radio_ea327e1c59f0e69ee5033e9c5c172b41}
+
+\item 
+\textbf{defAlignRepQR} (\$v\_\-sAlignRepQR)\label{class_c_q_radio_a07463a16a5294627804eac7593e27c3}
+
+\item 
+\textbf{defDispQR} (\$v\_\-sDispQR)\label{class_c_q_radio_db1236b810c1edef8ca5933d81ce7cbe}
+
+\item 
+\textbf{defEnonQR} (\$v\_\-sEnonQR)\label{class_c_q_radio_e3dcddf7861a36765b401c9234dbc7fe}
+
+\item 
+\textbf{defIdObjFormul} (\$v\_\-iIdObjForm)\label{class_c_q_radio_8a66d845738eca2c6c37e5ce4bf0a357}
+
+\item 
+\textbf{defTxtApQR} (\$v\_\-sTxtApQR)\label{class_c_q_radio_9796eae6d68570f4cf5aae2000711e82}
+
+\item 
+\textbf{defTxtAvQR} (\$v\_\-sTxtAvQR)\label{class_c_q_radio_ab8a94b7b0712a34c3cbf790bc76048a}
+
+\item 
+\textbf{effacer} ()\label{class_c_q_radio_f4656e42c5740ff75d8a71b9102230c9}
+
+\item 
+\textbf{enregistrer} ()\label{class_c_q_radio_ae92ab61808fe7b9535e30135b805e47}
+
+\item 
+\textbf{enregistrerRep} (\$v\_\-iIdFC, \$v\_\-iIdObjForm, \$v\_\-sReponsePersQR)\label{class_c_q_radio_d2ce38762b95f3bebfc374f23ae17f2f}
+
+\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_q_radio_ad2f00f7f80395565d53218abd8a6cb9}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+\textbf{retAlignEnonQR} ()\label{class_c_q_radio_38760a7f5b3ee3aef12b0c14b16b2cc1}
+
+\item 
+\textbf{retAlignRepQR} ()\label{class_c_q_radio_1e8ca3abaf49671d95f44fc71dc750c8}
+
+\item 
+\textbf{retDispQR} ()\label{class_c_q_radio_18324b1500cd4c4cefa053a8ed044010}
+
+\item 
+\textbf{retEnonQR} ()\label{class_c_q_radio_b72ac7bde5e13c3773f05a648d380dd1}
+
+\item 
+\textbf{retId} ()\label{class_c_q_radio_8655771d5e17f49202d02c546eed9438}
+
+\item 
+\textbf{RetourReponseQRModif} (\$v\_\-iIdObjForm, \$v\_\-iIdFormulaire, \$v\_\-bAutoCorrection=false)\label{class_c_q_radio_42888cf618fd29978522db4e981991c9}
+
+\item 
+\textbf{retTxtApQR} ()\label{class_c_q_radio_d95c47ceedcbaf8e76fc3c4cbb32cee8}
+
+\item 
+\textbf{retTxTAvQR} ()\label{class_c_q_radio_2c2c8ba60dd2cfdc226eeacad2943803}
+
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$iId}\label{class_c_q_radio_826d36cd97414bd5de44ad1b04067952}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du sujet à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_q_radio_28dc889c3933de90d7951faed169f538}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_q_radio_19a743b9210df47f9ef47408425f22ec}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CQRadio@{CQRadio}!CQRadio@{CQRadio}}
+\index{CQRadio@{CQRadio}!CQRadio@{CQRadio}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CQRadio::CQRadio (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_q_radio_ca1f3289e9a499e40e749da9b41c9db4}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf qradio.tbl.php}\end{CompactItemize}

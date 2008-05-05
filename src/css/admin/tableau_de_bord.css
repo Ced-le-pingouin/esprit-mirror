@@ -1,0 +1,144 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+générales
+filtre
+
+------------------ */
+
+/* -- générales -- */
+body {
+background-color:#eeeadd;
+font-size:8pt;
+}
+
+h1 {
+background-color:#316ac5;
+border:#1f527e solid 1px;
+color:#fff;
+font-size:12pt;
+padding:5px;
+}
+
+h2 {
+color:#6f6957;
+font-size:10pt;
+margin:5px;
+padding:15px;
+}
+
+table {
+background-color:#f0f0f0;
+border:#7f9db9 solid 1px;
+padding:1px;
+margin-right:5px;
+}
+
+th small {
+color:#aea58a;
+}
+
+td {
+background-color:#fff;
+font-size:8pt;
+}
+
+small {
+font-size:7pt;
+}
+
+#barre_outils {
+text-align:right;
+}
+
+.largeur_1_pourcent {
+width:1%;
+}
+
+.cellule_modalite {
+text-align:center;
+font-style:italic;
+color:#969696;
+}
+
+.cellule_equipe {
+font-weight:bold;
+font-style:italic;
+}
+
+.cellule_etudiant {
+border:#fff solid 1px;
+}
+
+.cellule_valeur {
+border:#fff solid 1px;
+}
+
+.cellule_valeur_surbrillance,.cellule_valeur_en_evidence {
+background-color:#fafafa;
+border:#fafafa solid 1px;
+color:#000;
+}
+
+.cellule_valeur_en_evidence {
+border:#c1d2ee solid 1px;
+color:#c60;
+}
+
+.aucune_equipe_trouvee {
+font-size:8pt;
+text-align:center;
+}
+
+.ligne_en_evidence {
+background-color:#e0e8f6;
+color:#1f527e;
+border-width:1px;
+border-right-style:solid;
+border-right-color:#c60;
+}
+/* ----- */
+
+/* -- filtre -- */
+select {
+margin:2px 1px;
+}
+
+#idFiltres {
+text-align:center;
+}
+
+.module {
+font-weight:bold;
+}
+
+.rubrique {
+padding-left:15px;
+}
+
+option.titre {
+font-weight:bold;
+font-style:italic;
+}
+
+option.element {
+padding-left:15px;
+}
+
+#consigne {
+background-color:#fbf9ee;
+width:90%;
+margin:auto;
+padding:10px;
+-moz-border-radius:15px;
+}
+
+#tableau_de_bord {
+background-image:url(../commun/icones/24x24/tableaubord.gif);
+background-repeat:no-repeat;
+margin-top:15px;
+padding-left:27px;
+padding-top:3px;
+height:24px;
+}
+/* ----- */

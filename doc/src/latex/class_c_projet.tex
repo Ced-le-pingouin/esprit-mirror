@@ -1,0 +1,1340 @@
+\section{Référence de la classe CProjet}
+\label{class_c_projet}\index{CProjet@{CProjet}}
+
+
+\subsection{Description détaillée}
+Classe principale de la plate-forme. 
+
+Elle est utilisée dans la majorité des pages, et effectue diverses initialisations sur les utilisateurs, statuts, formations, etc
+
+\begin{Desc}
+\item[Voir également:]\doxyref{CPersonne}{p.}{class_c_personne} 
+
+\doxyref{CFormation}{p.}{class_c_formation} \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf afficherInfosSession} ()\label{class_c_projet_fa44cc5310196811b98190e3a506ffa8}
+
+\begin{CompactList}\small\item\em Affiche toutes les informations de la session utilisateur dans leur état actuel, ligne par ligne (fonction utilitaire). \item\end{CompactList}\item 
+{\bf ajouterStatut} (\$v\_\-iStatut)
+\begin{CompactList}\small\item\em Ajoute un statut à la liste des statuts de l'utilisateur. \item\end{CompactList}\item 
+{\bf changerStatutUtilisateur} (\$v\_\-iStatutUtilisateur, \$v\_\-bSauverDsCookie=TRUE)
+\begin{CompactList}\small\item\em Modifie le statut actuel de l'utilisateur. \item\end{CompactList}\item 
+{\bf CProjet} (\$v\_\-bEffacerCookie=FALSE, \$v\_\-bRedirigerSiIncorrect=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf creerFichierStatut} ()
+\begin{CompactList}\small\item\em Crée un fichier de définitions PHP représentant les statuts possibles pour les utilisateurs. \item\end{CompactList}\item 
+{\bf debug} (\$v\_\-sMessage, \$v\_\-iNumLigne=NULL, \$v\_\-sNomFichier=NULL)
+\begin{CompactList}\small\item\em Affiche un message de débuggage. \item\end{CompactList}\item 
+{\bf defActivCourante} (\$v\_\-iActiv)
+\begin{CompactList}\small\item\em Définit l'activité courante. \item\end{CompactList}\item 
+{\bf defFormationCourante} (\$v\_\-iIdForm)
+\begin{CompactList}\small\item\em Définit la formation courante. \item\end{CompactList}\item 
+{\bf defModuleCourant} (\$v\_\-iIdModule, \$v\_\-bInitStatutsUtilisateur=FALSE)
+\begin{CompactList}\small\item\em Définit le module courant. \item\end{CompactList}\item 
+{\bf defRubriqueCourante} (\$v\_\-iUnite)
+\begin{CompactList}\small\item\em Définit la rubrique/unité courante. \item\end{CompactList}\item 
+{\bf defSousActivCourante} (\$v\_\-iSousActiv)
+\begin{CompactList}\small\item\em Définit la sous-activité courante. \item\end{CompactList}\item 
+{\bf dir\_\-cours} (\$v\_\-sFichierInclure=NULL, \$v\_\-bCheminAbsolu=FALSE)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. \item\end{CompactList}\item 
+{\bf dir\_\-formation} (\$v\_\-sFichierInclure=NULL, \$v\_\-bCheminAbsolu=FALSE)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire qui abrite les fichiers de la formation actuelle (initialisée). \item\end{CompactList}\item 
+{\bf dir\_\-images} (\$v\_\-sFichierInclure=NULL)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme. \item\end{CompactList}\item 
+{\bf dir\_\-ressources} (\$v\_\-sFichierInclure=NULL, \$v\_\-bCheminAbsolu=TRUE)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire ressources de l'activité courante. \item\end{CompactList}\item 
+{\bf ecrireEvenement} (\$v\_\-iTypeEven, \$v\_\-sDonneesEven=NULL)
+\begin{CompactList}\small\item\em Ecrit un \char`\"{}événement\char`\"{} dans la DB, pour le moment il s'agit des connexions/déconnexions des utilisateurs. \item\end{CompactList}\item 
+{\bf ecrireInfosSession} ()
+\begin{CompactList}\small\item\em Enregistre la totalité des données de la session utilisateur, dans leur état actuel, dans le cookie. \item\end{CompactList}\item 
+{\bf effacerInfosSession} ()
+\begin{CompactList}\small\item\em Efface complètement la session de l'utilisateur, ainsi que le cookie qui y est associé. \item\end{CompactList}\item 
+{\bf enregistrerInfosSession} ()
+\begin{CompactList}\small\item\em Enregistre les données de session actuelles de l'utilisateur dans un cookie. \item\end{CompactList}\item 
+{\bf init} ()\label{class_c_projet_82081a19c705121c15a9faf6f7decf6d}
+
+\begin{CompactList}\small\item\em Initialise les variables membres avec les informations du projet (nom, n° du port pour les chats, etc). \item\end{CompactList}\item 
+{\bf initActivCourante} ()
+\begin{CompactList}\small\item\em Initialise l'activité courante. \item\end{CompactList}\item 
+{\bf initAdministrateurs} ()
+\begin{CompactList}\small\item\em Initialise les variables/objets représentant les admins du projet. \item\end{CompactList}\item 
+{\bf initEquipe} (\$v\_\-bInitMembres=FALSE, \$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Initialise l'équipe d'un utilisateur dans le contexte/niveau/élément courant (formation, module, etc). \item\end{CompactList}\item 
+{\bf initEquipes} (\$v\_\-bInitMembres=FALSE, \$v\_\-iIdNiveau=NULL, \$v\_\-iTypeNiveau=NULL)
+\begin{CompactList}\small\item\em Initialise les équipes attachées à un élément déterminé d'une formation (la formation elle-même, module/cours, rubrique/unité, activité, sous-activité). \item\end{CompactList}\item 
+{\bf initFormationCourante} ()
+\begin{CompactList}\small\item\em Initialise la formation courante. \item\end{CompactList}\item 
+{\bf initFormations} (\$v\_\-sRequeteSql=NULL)
+\begin{CompactList}\small\item\em Initialise les formations existantes du projet. \item\end{CompactList}\item 
+{\bf initFormationsUtilisateur} (\$v\_\-bRechStricte=FALSE, \$v\_\-bStatutActuel=TRUE, \$v\_\-bDossierForms=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau ({\tt aoFormation}) contenant les formations disponibles à l'utilisateur. \item\end{CompactList}\item 
+{\bf initInscritsFormation} ()
+\begin{CompactList}\small\item\em Initialise la liste des inscrits à la formation courante. \item\end{CompactList}\item 
+{\bf initInscritsModule} (\$v\_\-bVerifInscrAutoModules=TRUE)
+\begin{CompactList}\small\item\em Initialise la liste des inscrits au module courant. \item\end{CompactList}\item 
+{\bf initModuleCourant} ()
+\begin{CompactList}\small\item\em Initialise le module courant. \item\end{CompactList}\item 
+{\bf initPermisUtilisateur} (\$v\_\-bStatutActuel=TRUE)
+\begin{CompactList}\small\item\em Initialise toutes les permissions de la personne par rapport à son statut actuel. \item\end{CompactList}\item 
+{\bf initPersonnes} (\$v\_\-iIdStatutPers=NULL, \$v\_\-iIdForm=0, \$v\_\-iIdMod=0)
+\begin{CompactList}\small\item\em Initialise un tableau d'objets \doxyref{CPersonne}{p.}{class_c_personne} ({\tt aoPersonnes}) selon des critères de statut. \item\end{CompactList}\item 
+{\bf initRubriqueCourante} ()
+\begin{CompactList}\small\item\em Initialise l'unité courante. \item\end{CompactList}\item 
+{\bf initSousActivCourante} ()
+\begin{CompactList}\small\item\em Initialise la sous-activité courante. \item\end{CompactList}\item 
+{\bf initStatutsUtilisateur} (\$v\_\-bVerifierStatutForm=TRUE)
+\begin{CompactList}\small\item\em Initialise les statuts de l'utilisateur connecté. \item\end{CompactList}\item 
+{\bf initUtilisateur} (\$v\_\-bRedirigerSiIncorrect=FALSE)
+\begin{CompactList}\small\item\em Initialise l'objet {\tt oUtilisateur} en fonction des données d'identification disponibles. \item\end{CompactList}\item 
+{\bf insererRessource} (\$v\_\-sNom, \$v\_\-sDescr, \$v\_\-sAuteur, \$v\_\-sUrl)
+\begin{CompactList}\small\item\em Insère dans la DB une nouvelle ressource (fichier) associée à une sous-activité. \item\end{CompactList}\item 
+{\bf lireInfosSession} ()
+\begin{CompactList}\small\item\em Récupère les informations de la session actuelle de navigation de l'utilisateur. \item\end{CompactList}\item 
+{\bf modifierInfosSession} (\$v\_\-iNumSession, \$v\_\-mValeurSession, \$v\_\-bEnregistrer=FALSE)
+\begin{CompactList}\small\item\em Modifie une donnée de la session utilisateur, et réenregistre éventuellement la session (cookie). \item\end{CompactList}\item 
+{\bf redirigerVersLogin} (\$v\_\-sPrenom=NULL, \$v\_\-sNom=NULL)
+\begin{CompactList}\small\item\em Effectue une redirection Http de l'utilisateur vers la page de login après avoir enregistré \char`\"{}l'événement\char`\"{}. \item\end{CompactList}\item 
+{\bf reinitStatuts} ()\label{class_c_projet_5aa5929785ade39418d1eb83ce906637}
+
+\begin{CompactList}\small\item\em Remet à {\tt false} tous les statuts de l'utilisateur, comme s'ils n'étaient pas initialisés (=$>$aucun statut). \item\end{CompactList}\item 
+{\bf retEmail} ()
+\begin{CompactList}\small\item\em Retourne l'adresse e-mail de contact du projet. \item\end{CompactList}\item 
+{\bf retHautStatutUtilisateur} ()
+\begin{CompactList}\small\item\em Retourne le statut le plus élevé que l'utilisateur possède dans le contexte (session) actuel. \item\end{CompactList}\item 
+{\bf retIdNiveau} (\$v\_\-iTypeNiveau=NULL)
+\begin{CompactList}\small\item\em Retourne l'id de l'élément dans lequel on se trouve, par rapport au \char`\"{}niveau\char`\"{} (formation, module, rubrique, etc). \item\end{CompactList}\item 
+{\bf retIdUtilisateur} ()
+\begin{CompactList}\small\item\em Retourne l'id de l'utilisateur identifié. \item\end{CompactList}\item 
+{\bf retInfosSession} (\$v\_\-iNumSession)
+\begin{CompactList}\small\item\em Retourne une donnée parmi celles enregistrées pour la session utilisateur. \item\end{CompactList}\item 
+{\bf retLanguage} ()
+\begin{CompactList}\small\item\em Retourne la langue de l'utilisateur connecté. \item\end{CompactList}\item 
+{\bf retLien} (\$v\_\-sLien=NULL, \$v\_\-sIntitule=NULL, \$v\_\-iMode=NULL, \$v\_\-sInfoBulle=NULL)
+\begin{CompactList}\small\item\em Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres. \item\end{CompactList}\item 
+{\bf retListeStatut} ()
+\begin{CompactList}\small\item\em Retourne un tableau multi-dimensionnel contenant, pour chaque indice de premier niveau, les infos sur un statut sous forme d'indices textuels {\tt IdStatut} (l'id dans la DB), {\tt NomStatut} (statut sous forme texte, au masculin) et {\tt TxtStatut} (le nom de la constante représentant le statut). \item\end{CompactList}\item 
+{\bf retMdpCrypte} (\$v\_\-sMdp)
+\begin{CompactList}\small\item\em Retourne une version cryptée d'une chaîne de caractère (mot de passe). \item\end{CompactList}\item 
+{\bf retNom} ()
+\begin{CompactList}\small\item\em Retourne le nom du projet. \item\end{CompactList}\item 
+{\bf retNumeroUniqueSession} ()
+\begin{CompactList}\small\item\em Retourne l'id unique de la session utilisateur. \item\end{CompactList}\item 
+{\bf retNumPortAwareness} ()
+\begin{CompactList}\small\item\em Retourne le port TCP sur lequel est lancé le serveur d'awareness utilisé par les clients de la plate-forme. \item\end{CompactList}\item 
+{\bf retNumPortChat} ()
+\begin{CompactList}\small\item\em Retourne le port TCP sur lequel est lancé le serveur de chat utilisé par les clients de la plate-forme. \item\end{CompactList}\item 
+{\bf retReelStatutUtilisateur} ()
+\begin{CompactList}\small\item\em Retourne le statut \char`\"{}réel\char`\"{} de l'utilisateur, càd celui qui est enregistré pour la session dans la variable asInfosSession. \item\end{CompactList}\item 
+{\bf retRepRubriques} (\$v\_\-sFichierInclure=NULL, \$v\_\-bCheminAbsolu=FALSE)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme. \item\end{CompactList}\item 
+{\bf retStatutUtilisateur} (\$v\_\-bStatutActuel=TRUE)
+\begin{CompactList}\small\item\em Retourne le statut de l'utilisateur connecté. \item\end{CompactList}\item 
+{\bf retTexteStatutsUtilisateur} ()
+\begin{CompactList}\small\item\em Retourne une liste des termes employés pour désigner les différents statuts de l'utilisateur connecté. \item\end{CompactList}\item 
+{\bf retTexteStatutUtilisateur} (\$v\_\-iStatut=NULL, \$v\_\-sSexe=NULL)
+\begin{CompactList}\small\item\em Retourne le terme correspondant à un statut, en tenant compte du sexe M/F. \item\end{CompactList}\item 
+{\bf retTexteUtilisateur} (\$v\_\-bStatutActuel=TRUE)
+\begin{CompactList}\small\item\em Retourne le nom de l'utilisateur connecté, ou visiteur/invité s'il est inconnu. \item\end{CompactList}\item 
+{\bf retTriCol} ()
+\begin{CompactList}\small\item\em Retourne la colonne sur laquelle le tri est actuellement effectué, telle qu'enregistrée dans la session de l'utilisateur (cookie). \item\end{CompactList}\item 
+{\bf retTriDir} ()
+\begin{CompactList}\small\item\em Retourne le sens (normal ou inversé) actuel du tri sur des colonnes. \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure formation-$>$module-$>$etc. \item\end{CompactList}\item 
+{\bf terminer} ()
+\begin{CompactList}\small\item\em Libère les ressources utilisées par l'objet \doxyref{CProjet}{p.}{class_c_projet}. \item\end{CompactList}\item 
+{\bf verifAccessibleVisiteurs} ()
+\begin{CompactList}\small\item\em Vérifie qu'un visiteur connecté a le droit de se trouver dans la formation actuelle. \item\end{CompactList}\item 
+{\bf verifAdministrateur} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté est admin du projet. \item\end{CompactList}\item 
+{\bf verifConcepteur} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté est concepteur pour le module/cours courant. \item\end{CompactList}\item 
+{\bf verifConcepteurPotentiel} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté est \char`\"{}concepteur potentiel\char`\"{}. \item\end{CompactList}\item 
+{\bf verifEquipe} (\$v\_\-iIdEquipe=0)
+\begin{CompactList}\small\item\em Vérifie qu'une équipe fait partie de la liste des équipes actuellement initialisées. \item\end{CompactList}\item 
+{\bf verifEtudiant} (\$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Vérifie qu'un utilisateur a le statut d'étudiant dans la formation courante. \item\end{CompactList}\item 
+{\bf verifMembre} (\$v\_\-iIdPers=0)
+\begin{CompactList}\small\item\em Vérifie qu'un utilisateur est membre d'une des équipes actuellement initialisées. \item\end{CompactList}\item 
+{\bf verifModifierFormation} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté a le droit de modifier la formation courante. \item\end{CompactList}\item 
+{\bf verifModifierModule} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se rapporte à ce module (forum/chat/formulaire). \item\end{CompactList}\item 
+{\bf verifPermission} (\$v\_\-sNomPermis)
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté dispose d'une permission particulière. \item\end{CompactList}\item 
+{\bf verifPeutUtiliserOutils} (\$v\_\-sNomPermission=NULL)
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur a le droit d'utiliser les différents outils d'administration. \item\end{CompactList}\item 
+{\bf verifRespPotentiel} ()
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté est \char`\"{}responsable potentiel\char`\"{}. \item\end{CompactList}\item 
+{\bf verifStatut} (\$v\_\-iStatut)
+\begin{CompactList}\small\item\em Vérifie que l'utilisateur connecté possède un statut spécifique. \item\end{CompactList}\item 
+{\bf verifTuteur} (\$v\_\-iIdPers=0)
+\begin{CompactList}\small\item\em Vérifie qu'un utilisateur a le statut de tuteur. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$abStatutsUtilisateur}\label{class_c_projet_f31ad26c8edf9fca8c19a0dfcaa641c1}
+
+\begin{CompactList}\small\item\em Statuts de l'utilisateur connecté dans le contexte actuel (administrateur du projet, tuteur du module, etc). \item\end{CompactList}\item 
+{\bf \$aoAdmins}\label{class_c_projet_1c8ad41a30992e52276ec686161e69e9}
+
+\begin{CompactList}\small\item\em Tableau contenant les administrateurs de la plate-forme. \item\end{CompactList}\item 
+{\bf \$aoEquipes}\label{class_c_projet_876c9059868922af6403cb0d6e0ef98d}
+
+\begin{CompactList}\small\item\em Tableau des équipes pour l'activité courante. \item\end{CompactList}\item 
+{\bf \$aoFormations}\label{class_c_projet_e1734749dbacee94835f040dcef17c81}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initFormations()}{p.}{class_c_projet_96a446c687ceded1b1b48467ef6b60ce}, qui contiendra les formations de la plate-forme, recherchées suivant certains critères. \item\end{CompactList}\item 
+{\bf \$aoInscrits}\label{class_c_projet_4b16e405dd0a4b331a6cb2597399f0e4}
+
+\begin{CompactList}\small\item\em Tableau des inscrits à la formation courante. \item\end{CompactList}\item 
+{\bf \$aoPersonnes}\label{class_c_projet_9a43610885f4fce755d40a908fe17fd6}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initPersonnes()}{p.}{class_c_projet_f52582a3c19f158f81577dabd349dc60}, qui contiendra les utilisateurs de la PF, recherchés suivant certains critères. \item\end{CompactList}\item 
+{\bf \$asInfosSession}\label{class_c_projet_cde117f2bbe5ce2ac76c046695b4231b}
+
+\begin{CompactList}\small\item\em Tableau des informations contenues dans le cookie utilisateur. \item\end{CompactList}\item 
+{\bf \$bIdParFormulaire}\label{class_c_projet_cca9d4eb7540b266e0e9418262da7e7d}
+
+\begin{CompactList}\small\item\em Les infos utilisateurs ont-elles été transmises par formulaire ? Sinon, c'est par cookie. \item\end{CompactList}\item 
+{\bf \$iCodeEtat}\label{class_c_projet_788607ec6a16852cb0dca7d3b409ef8e}
+
+\begin{CompactList}\small\item\em Contient le résultat/état du login (constantes LOGIN\_\-). \item\end{CompactList}\item 
+{\bf \$iStatutUtilisateur}\label{class_c_projet_7a968d981e52af23226a29392ece1705}
+
+\begin{CompactList}\small\item\em Parmi les statuts possibles, lequel est utilisé ? \item\end{CompactList}\item 
+{\bf \$oActivCourante}\label{class_c_projet_00fd5a41cb24e533c2eea67da97dbbb2}
+
+\begin{CompactList}\small\item\em Activité actuellement initialisée. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_projet_82eb2638ffd71a550abd01b14ed15920}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEquipe}\label{class_c_projet_ece3e1e9e48698034112aaad3af357e7}
+
+\begin{CompactList}\small\item\em Equipe à laquelle l'utilisateur connecté appartient (si applicable). \item\end{CompactList}\item 
+{\bf \$oErreurs}\label{class_c_projet_5d28e0f250bf5c4550f275c291ce22ce}
+
+\begin{CompactList}\small\item\em :DEBUG: pour tester la classe \doxyref{CConstantes}{p.}{class_c_constantes} \item\end{CompactList}\item 
+{\bf \$oFormationCourante}\label{class_c_projet_86d6bc4b57f96d7269dec9b64a3538d2}
+
+\begin{CompactList}\small\item\em Formation actuellement initialisée. \item\end{CompactList}\item 
+{\bf \$oI18N}
+\begin{CompactList}\small\item\em Objet \doxyref{CConstantes}{p.}{class_c_constantes} utilisé pour les traductions. \item\end{CompactList}\item 
+{\bf \$oModuleCourant}\label{class_c_projet_9dcc77db11e03672db041bd636fad5bd}
+
+\begin{CompactList}\small\item\em Module actuellement initialisé pour cette formation. \item\end{CompactList}\item 
+{\bf \$oPermisUtilisateur}\label{class_c_projet_e7d0f3181b736f22692d3cad2c82fcec}
+
+\begin{CompactList}\small\item\em Permissions par rapport au statut courant. \item\end{CompactList}\item 
+{\bf \$oRubriqueCourante}\label{class_c_projet_1324e95e124d8f6ef48b6f62168e3a2c}
+
+\begin{CompactList}\small\item\em Rubrique actuellement initialisée. \item\end{CompactList}\item 
+{\bf \$oSousActivCourante}\label{class_c_projet_491db1c2c6918167f8b536caeeab6968}
+
+\begin{CompactList}\small\item\em Sous-activité actuellement initialisée. \item\end{CompactList}\item 
+{\bf \$oUtilisateur}\label{class_c_projet_3bdbc1bc6c6331fac14694bb2374f155}
+
+\begin{CompactList}\small\item\em Utilisateur actuellement connecté. \item\end{CompactList}\item 
+{\bf \$sCheminComplet}\label{class_c_projet_be24362bdf3dda32a9054e31362bd154}
+
+\begin{CompactList}\small\item\em Chemin du projet sur le système de fichiers, à partir de la racine. \item\end{CompactList}\item 
+{\bf \$sCheminWeb}\label{class_c_projet_72e80ba5d13cd6f4df8c7cb7e544dfab}
+
+\begin{CompactList}\small\item\em Chemin du projet à partir de la racine du serveur web. \item\end{CompactList}\item 
+{\bf \$sNom}\label{class_c_projet_8fa224bed6fd02f05c72540eb8303820}
+
+\begin{CompactList}\small\item\em Nom complet du projet. \item\end{CompactList}\item 
+{\bf \$sNomCookie}\label{class_c_projet_77de0e944ec0b767bfb84f00003e9b13}
+
+\begin{CompactList}\small\item\em Nom du cookie utilisateur associé au projet. \item\end{CompactList}\item 
+{\bf \$sNomRep}\label{class_c_projet_b093306fc33a6082d83c3e9aed8cdfb1}
+
+\begin{CompactList}\small\item\em Uniquement le nom du répertoire du projet. \item\end{CompactList}\item 
+{\bf \$sUrlAccueil}\label{class_c_projet_56c67756ee6e9d628b3f0a11dbd9db31}
+
+\begin{CompactList}\small\item\em URL complète de la page d'accueil du projet. \item\end{CompactList}\item 
+{\bf \$sUrlLogin}\label{class_c_projet_c8cfe5d41cd77862740e689d1ae9594d}
+
+\begin{CompactList}\small\item\em URL de la page permettant de s'identifier. \item\end{CompactList}\item 
+{\bf \$sVersion}\label{class_c_projet_d72417e1c6875bb9c737d28b56b67881}
+
+\begin{CompactList}\small\item\em Numéro de version (chaîne de caractères). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CProjet@{CProjet}!ajouterStatut@{ajouterStatut}}
+\index{ajouterStatut@{ajouterStatut}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::ajouterStatut (\$ {\em v\_\-iStatut})}\label{class_c_projet_7838f3df998e11c24e7a1eb8567ee54b}
+
+
+Ajoute un statut à la liste des statuts de l'utilisateur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iStatut}]le numéro du statut à ajouter (voir constantes STATUT\_\-PERS\_\-) \end{description}
+\end{Desc}
+\index{CProjet@{CProjet}!changerStatutUtilisateur@{changerStatutUtilisateur}}
+\index{changerStatutUtilisateur@{changerStatutUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::changerStatutUtilisateur (\$ {\em v\_\-iStatutUtilisateur}, \/  \$ {\em v\_\-bSauverDsCookie} = {\tt TRUE})}\label{class_c_projet_37e2733dbaa81d910b7ffcba0ae58c64}
+
+
+Modifie le statut actuel de l'utilisateur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iStatutUtilisateur}]le numéro du statut à activer \item[{\em v\_\-bSauverDsCookie}]si {\tt true}, enregistre immédiatement les données {\em complètes\/} de la session utilisateur, et donc le nouveau statut\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le numéro du statut demandé est valide\end{Desc}
+\begin{Desc}
+\item[Note:]L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction \end{Desc}
+
+
+Références ecrireInfosSession().\index{CProjet@{CProjet}!CProjet@{CProjet}}
+\index{CProjet@{CProjet}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::CProjet (\$ {\em v\_\-bEffacerCookie} = {\tt FALSE}, \/  \$ {\em v\_\-bRedirigerSiIncorrect} = {\tt FALSE})}\label{class_c_projet_492a919b1246b9e8e9c7ac5a4d5a3358}
+
+
+Constructeur. 
+
+Initialise l'objet principal du projet, généralement unique et global
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bEffacerCookie}]si {\tt true}, le cookie actuel de l'utilisateur, contenant les infos de sa session, est effacé. Cela a pour effet, entre autres, de le déconnecter \item[{\em v\_\-bRedirigerSiIncorrect}]si {\tt true}, en cas de problème d'identification, l'utilisateur est redirigé vers la page de login de la plate-forme \end{description}
+\end{Desc}
+
+
+Références ecrireInfosSession(), init(), initFormationCourante(), initUtilisateur(), et lireInfosSession().\index{CProjet@{CProjet}!creerFichierStatut@{creerFichierStatut}}
+\index{creerFichierStatut@{creerFichierStatut}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::creerFichierStatut ()}\label{class_c_projet_b21569abc9862643355c54fc3a70aa02}
+
+
+Crée un fichier de définitions PHP représentant les statuts possibles pour les utilisateurs. 
+
+Ce fichier doit être recréee lorsqu'on ajoute de nouveaux statuts, ce qui est rare. Par contre, on peut ajouter des permissions sans pour autant devoir régénérer ce fichier.
+
+\begin{Desc}
+\item[Voir également:]include/def/statut.def.php \end{Desc}
+
+
+Références retListeStatut().\index{CProjet@{CProjet}!debug@{debug}}
+\index{debug@{debug}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::debug (\$ {\em v\_\-sMessage}, \/  \$ {\em v\_\-iNumLigne} = {\tt NULL}, \/  \$ {\em v\_\-sNomFichier} = {\tt NULL})}\label{class_c_projet_7413f77ab99b039a9974bd2d734084bd}
+
+
+Affiche un message de débuggage. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sMessage}]le message à afficher \item[{\em v\_\-iNumLigne}]le numéro de ligne concerné (utiliser la constante magique PHP {\tt \_\-\_\-LINE\_\-\_\-} à l'appel) \item[{\em v\_\-sNomFichier}]le fichier dans lequel on se trouve au moment du message (utiliser la constante magique PHP {\tt \_\-\_\-FILE\_\-\_\-} à l'appel) \end{description}
+\end{Desc}
+\index{CProjet@{CProjet}!defActivCourante@{defActivCourante}}
+\index{defActivCourante@{defActivCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::defActivCourante (\$ {\em v\_\-iActiv})}\label{class_c_projet_a9f0ef35e68965ba28aa362a0767a64a}
+
+
+Définit l'activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iActiv}]l'id de l'activité à définir\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initActivCourante()}{p.}{class_c_projet_79c5646314a112672190be9e0b77bbfa}\end{Desc}
+\begin{Desc}
+\item[Note:]Les éléments anciennement appelés {\em activités\/}, y compris dans la DB, sont maintenant appelés {\em blocs d'activités\/} dans la pratique \end{Desc}
+
+
+Références initActivCourante().\index{CProjet@{CProjet}!defFormationCourante@{defFormationCourante}}
+\index{defFormationCourante@{defFormationCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::defFormationCourante (\$ {\em v\_\-iIdForm})}\label{class_c_projet_2a0238d09694d8ff8b4e6da479df9d8b}
+
+
+Définit la formation courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-iIdForm}]l'id de la formation à définir\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initFormationCourante()}{p.}{class_c_projet_2f4af24718c8b45a4760fbd114cbeaa7} \end{Desc}
+
+
+Références initFormationCourante().\index{CProjet@{CProjet}!defModuleCourant@{defModuleCourant}}
+\index{defModuleCourant@{defModuleCourant}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::defModuleCourant (\$ {\em v\_\-iIdModule}, \/  \$ {\em v\_\-bInitStatutsUtilisateur} = {\tt FALSE})}\label{class_c_projet_2fa4d85ad89aaad7f625b3c277813a44}
+
+
+Définit le module courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdModule}]l'id du module à définir \item[{\em v\_\-bInitStatutsUtilisateur}]si {\tt true}, les statuts de l'utilisateur seront redéfinis en fonction du nouveau module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initModuleCourant()}{p.}{class_c_projet_76cc0c19be715c1b8982415115868e6d} \end{Desc}
+
+
+Références initModuleCourant(), et initStatutsUtilisateur().\index{CProjet@{CProjet}!defRubriqueCourante@{defRubriqueCourante}}
+\index{defRubriqueCourante@{defRubriqueCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::defRubriqueCourante (\$ {\em v\_\-iUnite})}\label{class_c_projet_23b8caa01778ba8fd9c3288cbb2954ad}
+
+
+Définit la rubrique/unité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iUnite}]l'id de la rubrique/unité à définir\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initRubriqueCourante()}{p.}{class_c_projet_b9f399e1127546cf7e04c1fca1f73f97} \end{Desc}
+
+
+Références initRubriqueCourante().\index{CProjet@{CProjet}!defSousActivCourante@{defSousActivCourante}}
+\index{defSousActivCourante@{defSousActivCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::defSousActivCourante (\$ {\em v\_\-iSousActiv})}\label{class_c_projet_9dd3708eff938611fb4945dd39ffaeaa}
+
+
+Définit la sous-activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iSousActiv}]l'id de la sous-activité à définir.\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initSousActivCourante()}{p.}{class_c_projet_fbc0057cfa99efda1cff58293d989ed8}\end{Desc}
+\begin{Desc}
+\item[Note:]Les élémentes anciennement appelés {\em sous-activités\/}, y compris dans la DB, sont maintenant appelés {\em activités\/} dans la pratique \end{Desc}
+
+
+Références initSousActivCourante().\index{CProjet@{CProjet}!dir\_\-cours@{dir\_\-cours}}
+\index{dir\_\-cours@{dir\_\-cours}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::dir\_\-cours (\$ {\em v\_\-sFichierInclure} = {\tt NULL}, \/  \$ {\em v\_\-bCheminAbsolu} = {\tt FALSE})}\label{class_c_projet_82fc3dbc3c3399a6d53cbb4806198cfe}
+
+
+Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné \item[{\em v\_\-bCheminAbsolu}]si {\tt true}, le chemin retourné sera absolu. Si {\tt false}, il sera relatif\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le répertoire de l'activité courante \end{Desc}
+
+
+Référencé par dir\_\-images(), dir\_\-ressources(), et retLien().\index{CProjet@{CProjet}!dir\_\-formation@{dir\_\-formation}}
+\index{dir\_\-formation@{dir\_\-formation}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::dir\_\-formation (\$ {\em v\_\-sFichierInclure} = {\tt NULL}, \/  \$ {\em v\_\-bCheminAbsolu} = {\tt FALSE})}\label{class_c_projet_853fbab9be9d4a1c9ef7473ae0d8a787}
+
+
+Retourne le chemin du répertoire qui abrite les fichiers de la formation actuelle (initialisée). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné \item[{\em v\_\-bCheminAbsolu}]si {\tt true}, le chemin retourné sera absolu. Si {\tt false}, il sera relatif\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le répertoire de la formation courante \end{Desc}
+
+
+Référencé par retRepRubriques().\index{CProjet@{CProjet}!dir\_\-images@{dir\_\-images}}
+\index{dir\_\-images@{dir\_\-images}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::dir\_\-images (\$ {\em v\_\-sFichierInclure} = {\tt NULL})}\label{class_c_projet_8d41f8c43142177cd66aa790d45f959f}
+
+
+Retourne le chemin du répertoire images de l'activité courante, relatif à la racine de la plate-forme. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le répertoire images pour l'activité courante \end{Desc}
+
+
+Références dir\_\-cours().\index{CProjet@{CProjet}!dir\_\-ressources@{dir\_\-ressources}}
+\index{dir\_\-ressources@{dir\_\-ressources}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::dir\_\-ressources (\$ {\em v\_\-sFichierInclure} = {\tt NULL}, \/  \$ {\em v\_\-bCheminAbsolu} = {\tt TRUE})}\label{class_c_projet_d027a6968bf03e3539fb61cb5f19bf84}
+
+
+Retourne le chemin du répertoire ressources de l'activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné \item[{\em v\_\-bCheminAbsolu}]si {\tt true}, le chemin retourné sera absolu. Si {\tt false}, il sera relatif\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le répertoire ressources pour l'activité courante \end{Desc}
+
+
+Références dir\_\-cours().\index{CProjet@{CProjet}!ecrireEvenement@{ecrireEvenement}}
+\index{ecrireEvenement@{ecrireEvenement}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::ecrireEvenement (\$ {\em v\_\-iTypeEven}, \/  \$ {\em v\_\-sDonneesEven} = {\tt NULL})}\label{class_c_projet_be2917346669c0ce7393cfc1e7a9482d}
+
+
+Ecrit un \char`\"{}événement\char`\"{} dans la DB, pour le moment il s'agit des connexions/déconnexions des utilisateurs. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeEven}]le numéro du type d'événement (voir constantes TYPE\_\-EVEN\_\-) \item[{\em v\_\-sDonneesEven}]les données supplémentaires à associer à l'événement \end{description}
+\end{Desc}
+
+
+Références enregistrerInfosSession().
+
+Référencé par initUtilisateur(), et redirigerVersLogin().\index{CProjet@{CProjet}!ecrireInfosSession@{ecrireInfosSession}}
+\index{ecrireInfosSession@{ecrireInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::ecrireInfosSession ()}\label{class_c_projet_c99ef648a6de605c0eb2974890149ec6}
+
+
+Enregistre la totalité des données de la session utilisateur, dans leur état actuel, dans le cookie. 
+
+\begin{Desc}
+\item[Note:]L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction \end{Desc}
+
+
+Références enregistrerInfosSession().
+
+Référencé par changerStatutUtilisateur(), et CProjet().\index{CProjet@{CProjet}!effacerInfosSession@{effacerInfosSession}}
+\index{effacerInfosSession@{effacerInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::effacerInfosSession ()}\label{class_c_projet_bafddb9e532deb5a1665898d55f01f74}
+
+
+Efface complètement la session de l'utilisateur, ainsi que le cookie qui y est associé. 
+
+Cela a pour effet l'annulation de son identification
+
+\begin{Desc}
+\item[Note:]L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction \end{Desc}
+
+
+Références enregistrerInfosSession().
+
+Référencé par verifAccessibleVisiteurs().\index{CProjet@{CProjet}!enregistrerInfosSession@{enregistrerInfosSession}}
+\index{enregistrerInfosSession@{enregistrerInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::enregistrerInfosSession ()}\label{class_c_projet_b68864ffd5f2c66d64bf3e16b0700ece}
+
+
+Enregistre les données de session actuelles de l'utilisateur dans un cookie. 
+
+\begin{Desc}
+\item[Note:]L'écriture d'un cookie exige qu'aucune sortie HTML/PHP, donc aucun affichage, n'ait eu lieu avant l'appel de la fonction \end{Desc}
+
+
+Référencé par ecrireEvenement(), ecrireInfosSession(), effacerInfosSession(), et modifierInfosSession().\index{CProjet@{CProjet}!initActivCourante@{initActivCourante}}
+\index{initActivCourante@{initActivCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initActivCourante ()}\label{class_c_projet_79c5646314a112672190be9e0b77bbfa}
+
+
+Initialise l'activité courante. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'activité courante est valide \end{Desc}
+
+
+Références initRubriqueCourante().
+
+Référencé par defActivCourante(), et initSousActivCourante().\index{CProjet@{CProjet}!initAdministrateurs@{initAdministrateurs}}
+\index{initAdministrateurs@{initAdministrateurs}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initAdministrateurs ()}\label{class_c_projet_0d86118796497ed3738ba907ad23647d}
+
+
+Initialise les variables/objets représentant les admins du projet. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'admins trouvés \end{Desc}
+\index{CProjet@{CProjet}!initEquipe@{initEquipe}}
+\index{initEquipe@{initEquipe}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initEquipe (\$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_projet_e8728a62926af627dc11740b486149e9}
+
+
+Initialise l'équipe d'un utilisateur dans le contexte/niveau/élément courant (formation, module, etc). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe. \item[{\em \$v\_\-iIdPers}]l'id de l'utilisateur dont on veut connaître l'équipe. S'il est $<$= 0, l'utilisateur connecté est pris pour la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur fait bien partie d'une équipe\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CEquipe::initEquipe()}{p.}{class_c_equipe_306dee6bcb1f7293d29ca67c0c0c15c4} \end{Desc}
+
+
+Références \$oEquipe, retIdNiveau(), et retTypeNiveau().
+
+Référencé par verifEquipe().\index{CProjet@{CProjet}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initEquipes (\$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-iIdNiveau} = {\tt NULL}, \/  \$ {\em v\_\-iTypeNiveau} = {\tt NULL})}\label{class_c_projet_de5c50304b6e4df7aa50c9beafa1bcb0}
+
+
+Initialise les équipes attachées à un élément déterminé d'une formation (la formation elle-même, module/cours, rubrique/unité, activité, sous-activité). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres des équipes \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre {\tt v\_\-iTypeNiveau} \item[{\em v\_\-iTypeNiveau}]le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes trouvées\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CEquipe::initEquipesEx()}{p.}{class_c_equipe_697d9558f9cf790ef5959d1b74418f07} \end{Desc}
+
+
+Références retIdNiveau(), et retTypeNiveau().
+
+Référencé par verifEquipe().\index{CProjet@{CProjet}!initFormationCourante@{initFormationCourante}}
+\index{initFormationCourante@{initFormationCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initFormationCourante ()}\label{class_c_projet_2f4af24718c8b45a4760fbd114cbeaa7}
+
+
+Initialise la formation courante. 
+
+Les droits de l'utilisateur et l'accès au visiteur sont également réinitialisés.
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la formation courante est valide \end{Desc}
+
+
+Références initStatutsUtilisateur(), et verifAccessibleVisiteurs().
+
+Référencé par CProjet(), defFormationCourante(), et initModuleCourant().\index{CProjet@{CProjet}!initFormations@{initFormations}}
+\index{initFormations@{initFormations}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initFormations (\$ {\em v\_\-sRequeteSql} = {\tt NULL})}\label{class_c_projet_96a446c687ceded1b1b48467ef6b60ce}
+
+
+Initialise les formations existantes du projet. 
+
+Elles sont placées dans le tableau {\tt aoFormations}. Par défaut, les formations avec le statut \char`\"{}effacée\char`\"{} (logiquement) ne sont pas récupérées
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sRequeteSql}]requête à exécuter pour initialiser les formations. Si {\tt null}, utilise la requête standard\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de formations trouvées \end{Desc}
+
+
+Référencé par initFormationsUtilisateur().\index{CProjet@{CProjet}!initFormationsUtilisateur@{initFormationsUtilisateur}}
+\index{initFormationsUtilisateur@{initFormationsUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initFormationsUtilisateur (\$ {\em v\_\-bRechStricte} = {\tt FALSE}, \/  \$ {\em v\_\-bStatutActuel} = {\tt TRUE}, \/  \$ {\em v\_\-bDossierForms} = {\tt FALSE})}\label{class_c_projet_617bd561a875faad9a92ae40c60bbfbc}
+
+
+Initialise un tableau ({\tt aoFormation}) contenant les formations disponibles à l'utilisateur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRechStricte}]si {\tt true}, seules les formations pour lesquelles l'utilisateur a le statut exact demandé seront retournées si {\tt false}, les formations pour lesquelles l'utilisateur a un statut inférieur à celui demandé seront aussi retournées \item[{\em v\_\-bStatutActuel}]si {\tt true}, recherche les formations par rapport au statut actuel de l'utilisateur, càd la variable {\tt iStatutUtilisateur}, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans {\tt asInfosSession}[SESSION\_\-STATUT\_\-UTILISATEUR], cette dernière étant utilisée si le paramètre est {\tt false}. \item[{\em v\_\-bDossierForms}]si {\tt true}, les formations sont celles du dossier de formations de l'utilisateur\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de formations trouvées\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CFormation}{p.}{class_c_formation} \end{Desc}
+
+
+Références initFormations(), modifierInfosSession(), retIdUtilisateur(), retReelStatutUtilisateur(), retStatutUtilisateur(), et verifPermission().\index{CProjet@{CProjet}!initInscritsFormation@{initInscritsFormation}}
+\index{initInscritsFormation@{initInscritsFormation}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initInscritsFormation ()}\label{class_c_projet_4594bb12b378255596ee894fb9cee135}
+
+
+Initialise la liste des inscrits à la formation courante. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'inscrits trouvés\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CFormation}{p.}{class_c_formation} \end{Desc}
+
+
+Référencé par initInscritsModule().\index{CProjet@{CProjet}!initInscritsModule@{initInscritsModule}}
+\index{initInscritsModule@{initInscritsModule}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initInscritsModule (\$ {\em v\_\-bVerifInscrAutoModules} = {\tt TRUE})}\label{class_c_projet_3cb731a80bf0c2c0f5beefa5ce527f5b}
+
+
+Initialise la liste des inscrits au module courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bVerifInscrAutoModules}]si {\tt true}, vérifie si tous les inscrits à la formation courante doivent automatiquement l'être à tous les modules de cette formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'inscrits trouvés \end{Desc}
+
+
+Références initInscritsFormation().\index{CProjet@{CProjet}!initModuleCourant@{initModuleCourant}}
+\index{initModuleCourant@{initModuleCourant}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initModuleCourant ()}\label{class_c_projet_76cc0c19be715c1b8982415115868e6d}
+
+
+Initialise le module courant. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le module courant est valide \end{Desc}
+
+
+Références initFormationCourante().
+
+Référencé par defModuleCourant(), initRubriqueCourante(), et initStatutsUtilisateur().\index{CProjet@{CProjet}!initPermisUtilisateur@{initPermisUtilisateur}}
+\index{initPermisUtilisateur@{initPermisUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initPermisUtilisateur (\$ {\em v\_\-bStatutActuel} = {\tt TRUE})}\label{class_c_projet_ff5b1e3e825d439ab7a14b54325ad00d}
+
+
+Initialise toutes les permissions de la personne par rapport à son statut actuel. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bStatutActuel}]si {\tt true}, utilise le statut actuel de l'utilisateur, càd la variable {\tt iStatutUtilisateur}, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans {\tt asInfosSession}[SESSION\_\-STATUT\_\-UTILISATEUR], cette dernière est utilisée si le paramètre est {\tt false}. \end{description}
+\end{Desc}
+
+
+Références retStatutUtilisateur().
+
+Référencé par initStatutsUtilisateur().\index{CProjet@{CProjet}!initPersonnes@{initPersonnes}}
+\index{initPersonnes@{initPersonnes}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initPersonnes (\$ {\em v\_\-iIdStatutPers} = {\tt NULL}, \/  \$ {\em v\_\-iIdForm} = {\tt 0}, \/  \$ {\em v\_\-iIdMod} = {\tt 0})}\label{class_c_projet_f52582a3c19f158f81577dabd349dc60}
+
+
+Initialise un tableau d'objets \doxyref{CPersonne}{p.}{class_c_personne} ({\tt aoPersonnes}) selon des critères de statut. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdStatutPers}]la constante rerpésentant le statut désiré \item[{\em v\_\-iIdForm}]l'id de la session de formation à croiser avec le statut \item[{\em v\_\-iIdMod}]l'id du module à croiser avec le statut, n'est pas requis pour certains statuts\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes trouvées \end{Desc}
+\index{CProjet@{CProjet}!initRubriqueCourante@{initRubriqueCourante}}
+\index{initRubriqueCourante@{initRubriqueCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initRubriqueCourante ()}\label{class_c_projet_b9f399e1127546cf7e04c1fca1f73f97}
+
+
+Initialise l'unité courante. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'unité courante est valide \end{Desc}
+
+
+Références initModuleCourant().
+
+Référencé par defRubriqueCourante(), et initActivCourante().\index{CProjet@{CProjet}!initSousActivCourante@{initSousActivCourante}}
+\index{initSousActivCourante@{initSousActivCourante}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initSousActivCourante ()}\label{class_c_projet_fbc0057cfa99efda1cff58293d989ed8}
+
+
+Initialise la sous-activité courante. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt si} la sous-activité courante est valide \end{Desc}
+
+
+Références initActivCourante().
+
+Référencé par defSousActivCourante().\index{CProjet@{CProjet}!initStatutsUtilisateur@{initStatutsUtilisateur}}
+\index{initStatutsUtilisateur@{initStatutsUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initStatutsUtilisateur (\$ {\em v\_\-bVerifierStatutForm} = {\tt TRUE})}\label{class_c_projet_3635ec55c2484e6aca953edaab7dbbdd}
+
+
+Initialise les statuts de l'utilisateur connecté. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-bVerifierStatutForm}]si {\tt true}, les statuts seront déterminé par rapport à la formation courante\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de statuts trouvés pour cet utilisateur \end{Desc}
+
+
+Références initModuleCourant(), initPermisUtilisateur(), et retIdUtilisateur().
+
+Référencé par defModuleCourant(), et initFormationCourante().\index{CProjet@{CProjet}!initUtilisateur@{initUtilisateur}}
+\index{initUtilisateur@{initUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::initUtilisateur (\$ {\em v\_\-bRedirigerSiIncorrect} = {\tt FALSE})}\label{class_c_projet_80da194c7fc3125a2b89ccc9a29ba780}
+
+
+Initialise l'objet {\tt oUtilisateur} en fonction des données d'identification disponibles. 
+
+Les données d'id sont vérifiées dans le tableau {\tt asInfosSession}, lui-même initialisé dans \doxyref{lireInfosSession()}{p.}{class_c_projet_d1d4cce96d216a65bb61bc66dd96722e}
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRedirigerSiIncorrect}]si {\tt true}, et qu'un problème survient avec l'identification de l'utilisateur, on arrête le chargement de la page et on le renvoie à l'écran de login (redirection HTTP), ce qui signifie que tout appel de cette fonction doit être fait avant d'écrire quoi que ce soit dans la page HTML \end{description}
+\end{Desc}
+
+
+Références ecrireEvenement(), redirigerVersLogin(), et retMdpCrypte().
+
+Référencé par CProjet().\index{CProjet@{CProjet}!insererRessource@{insererRessource}}
+\index{insererRessource@{insererRessource}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::insererRessource (\$ {\em v\_\-sNom}, \/  \$ {\em v\_\-sDescr}, \/  \$ {\em v\_\-sAuteur}, \/  \$ {\em v\_\-sUrl})}\label{class_c_projet_2d4c9c33a047ea73e4e53474ea82af66}
+
+
+Insère dans la DB une nouvelle ressource (fichier) associée à une sous-activité. 
+
+L'id utilisateur est celui de l'actuel connecté, et la sous-activité est celle qui est actuellement initialisée (logiquement celle dans laquelle l'utilisateur se trouve)
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNom}]le nom donné à la ressource (fichier) à insérer \item[{\em v\_\-sDescr}]la description de la ressource \item[{\em v\_\-sAuteur}]l'auteur de la ressource, sous forme de texte (pas un id utilisateur) \item[{\em v\_\-sUrl}]le chemin de la ressource\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la ressource a bien été insérée, {\tt false} si l'utilisateur courant n'est pas identifié, ou s'il ne se trouve pas dans une sous-activité (aucune initialisée), ou encore si un problème est survenu à l'insertion SQL \end{Desc}
+\index{CProjet@{CProjet}!lireInfosSession@{lireInfosSession}}
+\index{lireInfosSession@{lireInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::lireInfosSession ()}\label{class_c_projet_d1d4cce96d216a65bb61bc66dd96722e}
+
+
+Récupère les informations de la session actuelle de navigation de l'utilisateur. 
+
+Cette lecture a lieu soit dans le cookie, soit à partir des paramètres de l'url, les données passées par cette dernière ayant priorité. Ces données sont par exemple le pseudo de l'utilisateur, le mot de passe associé, le statut actuel, les ids des formation/module/rubrique/etc dans lesquels l'utilisateur se trouve actuellement 
+
+Référencé par CProjet().\index{CProjet@{CProjet}!modifierInfosSession@{modifierInfosSession}}
+\index{modifierInfosSession@{modifierInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::modifierInfosSession (\$ {\em v\_\-iNumSession}, \/  \$ {\em v\_\-mValeurSession}, \/  \$ {\em v\_\-bEnregistrer} = {\tt FALSE})}\label{class_c_projet_f27341b1bf3dc1d66fbe1b7d2c30ff17}
+
+
+Modifie une donnée de la session utilisateur, et réenregistre éventuellement la session (cookie). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumSession}]le numéro de la donnée de session à modifier (voir constantes SESSION\_\-) \item[{\em v\_\-mValeurSession}]la nouvelle valeur pour la donnée \item[{\em v\_\-bEnregistrer}]si {\tt true}, la session {\em complète\/} sera réenregistrée dans un cookie\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le numéro de la donnée de session à enregistrer était correct\end{Desc}
+\begin{Desc}
+\item[Note:]Si on décide d'enregistrer la session, étant donné que cela implique l'écriture d'un cookie, il faut qu'aucune sortie HTML/PHP n'ai eu lieu dans la page; cette fonction doit donc être appelée avant tout affichage \end{Desc}
+
+
+Références enregistrerInfosSession().
+
+Référencé par initFormationsUtilisateur().\index{CProjet@{CProjet}!redirigerVersLogin@{redirigerVersLogin}}
+\index{redirigerVersLogin@{redirigerVersLogin}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::redirigerVersLogin (\$ {\em v\_\-sPrenom} = {\tt NULL}, \/  \$ {\em v\_\-sNom} = {\tt NULL})}\label{class_c_projet_b6ea420275f7f0a8261ca9e18fb3075f}
+
+
+Effectue une redirection Http de l'utilisateur vers la page de login après avoir enregistré \char`\"{}l'événement\char`\"{}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sPrenom}]le prénom de l'utilisateur concerné \item[{\em v\_\-sNom}]le nom de l'utilisateur concerné \end{description}
+\end{Desc}
+
+
+Références ecrireEvenement().
+
+Référencé par initUtilisateur().\index{CProjet@{CProjet}!retEmail@{retEmail}}
+\index{retEmail@{retEmail}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retEmail ()}\label{class_c_projet_8687eaea66f7d355bf2ec3b4deca8e99}
+
+
+Retourne l'adresse e-mail de contact du projet. 
+
+\begin{Desc}
+\item[Renvoie:]l'adresse e-mail \end{Desc}
+\index{CProjet@{CProjet}!retHautStatutUtilisateur@{retHautStatutUtilisateur}}
+\index{retHautStatutUtilisateur@{retHautStatutUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retHautStatutUtilisateur ()}\label{class_c_projet_6bde877c42f25152a8b542b6e08e66ea}
+
+
+Retourne le statut le plus élevé que l'utilisateur possède dans le contexte (session) actuel. 
+
+\begin{Desc}
+\item[Renvoie:]le statut le plus élevé pour l'utilisateur \end{Desc}
+\index{CProjet@{CProjet}!retIdNiveau@{retIdNiveau}}
+\index{retIdNiveau@{retIdNiveau}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retIdNiveau (\$ {\em v\_\-iTypeNiveau} = {\tt NULL})}\label{class_c_projet_ecb125df56a6325db0d8e636663def1d}
+
+
+Retourne l'id de l'élément dans lequel on se trouve, par rapport au \char`\"{}niveau\char`\"{} (formation, module, rubrique, etc). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeNiveau}]le niveau pour lequel on désire recevoir un id d'élément. S'il est absent ou invalide, c'est le niveau le plus profond actuellement initialisé qui est utilisé (résultat de la fonction \doxyref{retTypeNiveau()}{p.}{class_c_projet_0bc2784c08b05f089146a2b0e212b737}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de l'élément initialisé qui se trouve au niveau demandé \end{Desc}
+
+
+Références retTypeNiveau().
+
+Référencé par initEquipe(), et initEquipes().\index{CProjet@{CProjet}!retIdUtilisateur@{retIdUtilisateur}}
+\index{retIdUtilisateur@{retIdUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retIdUtilisateur ()}\label{class_c_projet_88489be800065d0068138e9b41509ebb}
+
+
+Retourne l'id de l'utilisateur identifié. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de l'utilisateur s'il est identifié, sinon 0 \end{Desc}
+
+
+Référencé par initFormationsUtilisateur(), initStatutsUtilisateur(), retTexteUtilisateur(), verifEtudiant(), et verifMembre().\index{CProjet@{CProjet}!retInfosSession@{retInfosSession}}
+\index{retInfosSession@{retInfosSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retInfosSession (\$ {\em v\_\-iNumSession})}\label{class_c_projet_3f146254234d4303abb026f4cdb1bdc6}
+
+
+Retourne une donnée parmi celles enregistrées pour la session utilisateur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumSession}]le numéro de la donnée de session à récupérer (voir les constantes SESSION\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la donnée provenant de la session \end{Desc}
+\index{CProjet@{CProjet}!retLanguage@{retLanguage}}
+\index{retLanguage@{retLanguage}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retLanguage ()}\label{class_c_projet_2c8ccb2f7dee381e1ee9e28a979a6a08}
+
+
+Retourne la langue de l'utilisateur connecté. 
+
+\begin{Desc}
+\item[Renvoie:]un code qui représente la langue actuelle de l'utilisateur\end{Desc}
+\begin{Desc}
+\item[{\bf Obsolète}]Cette fonction ne semble pas utilisée pour le moment, et sera remplacée par le système {\tt gettext()} \end{Desc}
+\index{CProjet@{CProjet}!retLien@{retLien}}
+\index{retLien@{retLien}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retLien (\$ {\em v\_\-sLien} = {\tt NULL}, \/  \$ {\em v\_\-sIntitule} = {\tt NULL}, \/  \$ {\em v\_\-iMode} = {\tt NULL}, \/  \$ {\em v\_\-sInfoBulle} = {\tt NULL})}\label{class_c_projet_21f9b5f1e334e54b42d1643a08874709}
+
+
+Retourne le code HTML nécessaire à la représentation d'un lien, en fonction de différents paramètres. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sLien}]l'url du lien \item[{\em v\_\-sIntitule}]le texte à utiliser pour afficher le lien \item[{\em v\_\-iMode}]le mode d'affichage de l'url lorsque le lien sera cliqué (voir constantes) \item[{\em v\_\-sInfoBulle}]le texte à afficher dans l'infobulle du lien (attribut \char`\"{}title\char`\"{}). Si {\tt v\_\-iMode} vaut MODE\_\-LIEN\_\-TELECHARGER, l'infobulle sera automatiquement un message indiquant qu'il s'agit d'un téléchargement\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le code HTML pour créer le lien demandé \end{Desc}
+
+
+Références dir\_\-cours().\index{CProjet@{CProjet}!retListeStatut@{retListeStatut}}
+\index{retListeStatut@{retListeStatut}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retListeStatut ()}\label{class_c_projet_96691e19965890d7d9392bc31f1aa79b}
+
+
+Retourne un tableau multi-dimensionnel contenant, pour chaque indice de premier niveau, les infos sur un statut sous forme d'indices textuels {\tt IdStatut} (l'id dans la DB), {\tt NomStatut} (statut sous forme texte, au masculin) et {\tt TxtStatut} (le nom de la constante représentant le statut). 
+
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les infos sur les types de statuts \end{Desc}
+
+
+Référencé par creerFichierStatut().\index{CProjet@{CProjet}!retMdpCrypte@{retMdpCrypte}}
+\index{retMdpCrypte@{retMdpCrypte}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retMdpCrypte (\$ {\em v\_\-sMdp})}\label{class_c_projet_f5e4e82c124ecbec9eed8d4eb9396679}
+
+
+Retourne une version cryptée d'une chaîne de caractère (mot de passe). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sMdp}]la chaîne à crypter\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la version cryptée de la chaîne {\tt v\_\-sMdp} \end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Pour le moment, le cryptage se fait par la fonction {\tt PASSWORD()} de MySQL, ce qui était malheureusement une très mauvaise idée, car cette fonction ne devait être utilisée qu'en interne par MySQL, et a été modifiée dans MySQL 4.1, ce qui rendra les mots de passe déjà encodés incompatible avec la nouvelle version de la fonction\end{Desc}
+Idéalement, il faudrait donc crypter avec une fonction standard comme {\tt MD5()} si on veut garder des mots de passe indécryptables ou des fonctions comme {\tt AES\_\-CRYPT()/AES\_\-DECRYPT()} si on veut pouvoir récupérer le mot de passe à tout moment (ça éviterait le système tordu mis en place après coup, qui consiste à écrire une version décryptée du mot de passe de chaque utilisateur dans le fichier {\tt src/tmp/mdpncpte} protégé contre la lecture, à chaque fois que quelqu'un se connecte et passe le login 
+
+Référencé par initUtilisateur().\index{CProjet@{CProjet}!retNom@{retNom}}
+\index{retNom@{retNom}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retNom ()}\label{class_c_projet_11ab2caba5ac9cf7cd591489d835aaa9}
+
+
+Retourne le nom du projet. 
+
+\begin{Desc}
+\item[Renvoie:]le nom du projet, tel qu'enregistré dans la DB \end{Desc}
+\index{CProjet@{CProjet}!retNumeroUniqueSession@{retNumeroUniqueSession}}
+\index{retNumeroUniqueSession@{retNumeroUniqueSession}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retNumeroUniqueSession ()}\label{class_c_projet_41e6131f411b23f0a9503abbefbedb67}
+
+
+Retourne l'id unique de la session utilisateur. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la session utilisateur \end{Desc}
+\index{CProjet@{CProjet}!retNumPortAwareness@{retNumPortAwareness}}
+\index{retNumPortAwareness@{retNumPortAwareness}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retNumPortAwareness ()}\label{class_c_projet_240a40f7a2ecbfd9183c029657f8b54b}
+
+
+Retourne le port TCP sur lequel est lancé le serveur d'awareness utilisé par les clients de la plate-forme. 
+
+\begin{Desc}
+\item[Renvoie:]le port TCP associé au serveur d'awareness (JCVD-style :-D ) \end{Desc}
+\index{CProjet@{CProjet}!retNumPortChat@{retNumPortChat}}
+\index{retNumPortChat@{retNumPortChat}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retNumPortChat ()}\label{class_c_projet_3ad147536b619103372e5a47befdf699}
+
+
+Retourne le port TCP sur lequel est lancé le serveur de chat utilisé par les clients de la plate-forme. 
+
+\begin{Desc}
+\item[Renvoie:]le port TCP associé au serveur chat \end{Desc}
+\index{CProjet@{CProjet}!retReelStatutUtilisateur@{retReelStatutUtilisateur}}
+\index{retReelStatutUtilisateur@{retReelStatutUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retReelStatutUtilisateur ()}\label{class_c_projet_99f8d9fb2a55cccb8840109a6d08ca1f}
+
+
+Retourne le statut \char`\"{}réel\char`\"{} de l'utilisateur, càd celui qui est enregistré pour la session dans la variable asInfosSession. 
+
+C'est le statut qui est choisi par l'utilisateur, et qui est transmis de page en page. Il se peut qu'on le change momentanément sur une page à l'aide de la variable iStatutUtilisateur, mais celui-ci ne sera pas enregistré dans la session tant qu'il n'a pas été également transféré dans asInfosSession
+
+\begin{Desc}
+\item[Renvoie:]le statut de l'utilisateur \end{Desc}
+
+
+Référencé par initFormationsUtilisateur(), et retStatutUtilisateur().\index{CProjet@{CProjet}!retRepRubriques@{retRepRubriques}}
+\index{retRepRubriques@{retRepRubriques}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retRepRubriques (\$ {\em v\_\-sFichierInclure} = {\tt NULL}, \/  \$ {\em v\_\-bCheminAbsolu} = {\tt FALSE})}\label{class_c_projet_cb7ca559504253c1c9ec008ce89ace50}
+
+
+Retourne le chemin du répertoire rubriques de la formation courante, relatif à la racine de la plate-forme. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné \item[{\em v\_\-bCheminAbsolu}]si {\tt true}, le chemin retourné sera absolu. Si {\tt false}, il sera relatif\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le répertoire rubriques pour la formation courante \end{Desc}
+
+
+Références dir\_\-formation().\index{CProjet@{CProjet}!retStatutUtilisateur@{retStatutUtilisateur}}
+\index{retStatutUtilisateur@{retStatutUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retStatutUtilisateur (\$ {\em v\_\-bStatutActuel} = {\tt TRUE})}\label{class_c_projet_2e842a2739628d4395e2bb06dcfb66ac}
+
+
+Retourne le statut de l'utilisateur connecté. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bStatutActuel}]si {\tt true}, retourne le statut actuel de l'utilisateur, càd la variable {\tt iStatutUtilisateur}, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans {\tt asInfosSession}[SESSION\_\-STATUT\_\-UTILISATEUR], cette dernière est utilisée si le paramètre est {\tt false} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le statut de l'utilisateur \end{Desc}
+
+
+Références retReelStatutUtilisateur().
+
+Référencé par initFormationsUtilisateur(), initPermisUtilisateur(), retTexteStatutUtilisateur(), retTexteUtilisateur(), verifModifierFormation(), verifModifierModule(), et verifPeutUtiliserOutils().\index{CProjet@{CProjet}!retTexteStatutsUtilisateur@{retTexteStatutsUtilisateur}}
+\index{retTexteStatutsUtilisateur@{retTexteStatutsUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTexteStatutsUtilisateur ()}\label{class_c_projet_f2335a465cb463dff8b893cb4b6e38b9}
+
+
+Retourne une liste des termes employés pour désigner les différents statuts de l'utilisateur connecté. 
+
+Cette liste est séparée par des $<$BR$>$
+
+\begin{Desc}
+\item[Renvoie:]la liste des statuts, sous forme textuelle \end{Desc}
+
+
+Références retTexteStatutUtilisateur(), et verifStatut().\index{CProjet@{CProjet}!retTexteStatutUtilisateur@{retTexteStatutUtilisateur}}
+\index{retTexteStatutUtilisateur@{retTexteStatutUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTexteStatutUtilisateur (\$ {\em v\_\-iStatut} = {\tt NULL}, \/  \$ {\em v\_\-sSexe} = {\tt NULL})}\label{class_c_projet_738225b3bf73d088946a8516d26eec56}
+
+
+Retourne le terme correspondant à un statut, en tenant compte du sexe M/F. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iStatut}]le statut pour lequel on veut le terme \item[{\em v\_\-sSexe}]le genre à utiliser pour le terme\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le terme employé pour désigner le statut \end{Desc}
+
+
+Références retStatutUtilisateur().
+
+Référencé par retTexteStatutsUtilisateur().\index{CProjet@{CProjet}!retTexteUtilisateur@{retTexteUtilisateur}}
+\index{retTexteUtilisateur@{retTexteUtilisateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTexteUtilisateur (\$ {\em v\_\-bStatutActuel} = {\tt TRUE})}\label{class_c_projet_094d28ce4da62de5730e62fad216e738}
+
+
+Retourne le nom de l'utilisateur connecté, ou visiteur/invité s'il est inconnu. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bStatutActuel}]si {\tt true}, utilise le statut actuel de l'utilisateur, càd la variable {\tt iStatutUtilisateur}, qui peut avoir changé par rapport au statut enregistré (cookie) pour la session dans {\tt asInfosSession}[SESSION\_\-STATUT\_\-UTILISATEUR], cette dernière est utilisée si le paramètre est {\tt false} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nom de l'utilisateur s'il est idientifié, sinon \char`\"{}visiteur/invité\char`\"{} \end{Desc}
+
+
+Références retIdUtilisateur(), et retStatutUtilisateur().\index{CProjet@{CProjet}!retTriCol@{retTriCol}}
+\index{retTriCol@{retTriCol}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTriCol ()}\label{class_c_projet_21af2356dd2c60e02c69d196196fc0ca}
+
+
+Retourne la colonne sur laquelle le tri est actuellement effectué, telle qu'enregistrée dans la session de l'utilisateur (cookie). 
+
+Cette fonctionnalité est par exemple utilisée pour l'affichage des collecticiels
+
+\begin{Desc}
+\item[Renvoie:]la colonne sur lequel le tri est effectué, sous forme de chaîne de caractères (par ex \char`\"{}date\char`\"{}) \end{Desc}
+\index{CProjet@{CProjet}!retTriDir@{retTriDir}}
+\index{retTriDir@{retTriDir}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTriDir ()}\label{class_c_projet_0ff007358ed5a7320f0201655256d6c8}
+
+
+Retourne le sens (normal ou inversé) actuel du tri sur des colonnes. 
+
+Cette fonctionnalité est par exemple utilisée pour l'affichage des collecticiels.
+
+\begin{Desc}
+\item[Renvoie:]le sens du tri (voir constantes TRI\_\-) \end{Desc}
+\index{CProjet@{CProjet}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::retTypeNiveau ()}\label{class_c_projet_0bc2784c08b05f089146a2b0e212b737}
+
+
+Retourne le niveau le plus profond auquel on se trouve actuellement dans la structure formation-$>$module-$>$etc. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro correspondant au (type de) niveau actuel (constantes TYPE\_\-) \end{Desc}
+
+
+Référencé par initEquipe(), initEquipes(), et retIdNiveau().\index{CProjet@{CProjet}!terminer@{terminer}}
+\index{terminer@{terminer}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::terminer ()}\label{class_c_projet_64614b5978a157d777ff09f44c38e0fa}
+
+
+Libère les ressources utilisées par l'objet \doxyref{CProjet}{p.}{class_c_projet}. 
+
+Pour le moment, seule la connexion à la DB est explicitement fermée \index{CProjet@{CProjet}!verifAccessibleVisiteurs@{verifAccessibleVisiteurs}}
+\index{verifAccessibleVisiteurs@{verifAccessibleVisiteurs}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifAccessibleVisiteurs ()}\label{class_c_projet_84caf89b16aa2a1b659a5a36acd50b2f}
+
+
+Vérifie qu'un visiteur connecté a le droit de se trouver dans la formation actuelle. 
+
+Si ce n'est pas le cas, une redirection automatique vers le login a lieu 
+
+Références effacerInfosSession().
+
+Référencé par initFormationCourante().\index{CProjet@{CProjet}!verifAdministrateur@{verifAdministrateur}}
+\index{verifAdministrateur@{verifAdministrateur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifAdministrateur ()}\label{class_c_projet_b519dca295ba0ea4529a33656a9f47bd}
+
+
+Vérifie que l'utilisateur connecté est admin du projet. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est inscrit dans la table des administrateurs, {\tt false} dans le cas contraire \end{Desc}
+\index{CProjet@{CProjet}!verifConcepteur@{verifConcepteur}}
+\index{verifConcepteur@{verifConcepteur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifConcepteur ()}\label{class_c_projet_7ffffbe6fdd0ec0837a9a1a030d92717}
+
+
+Vérifie que l'utilisateur connecté est concepteur pour le module/cours courant. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est concepteur pour le module courant \end{Desc}
+
+
+Référencé par verifModifierFormation().\index{CProjet@{CProjet}!verifConcepteurPotentiel@{verifConcepteurPotentiel}}
+\index{verifConcepteurPotentiel@{verifConcepteurPotentiel}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifConcepteurPotentiel ()}\label{class_c_projet_e46f79202393c05968373c7e8ea03465}
+
+
+Vérifie que l'utilisateur connecté est \char`\"{}concepteur potentiel\char`\"{}. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est concepteur potentiel sur le projet \end{Desc}
+
+
+Référencé par verifModifierFormation().\index{CProjet@{CProjet}!verifEquipe@{verifEquipe}}
+\index{verifEquipe@{verifEquipe}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifEquipe (\$ {\em v\_\-iIdEquipe} = {\tt 0})}\label{class_c_projet_603f57cc2e00cef4cf1136757cddd9ca}
+
+
+Vérifie qu'une équipe fait partie de la liste des équipes actuellement initialisées. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdEquipe}]l'id de l'équipe à vérifier. S'il $<$= 0, l'équipe actuellement initialisée est prise pour la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'équipe fait partie de la liste des équipes actuelles \end{Desc}
+
+
+Références \$oEquipe, initEquipe(), et initEquipes().\index{CProjet@{CProjet}!verifEtudiant@{verifEtudiant}}
+\index{verifEtudiant@{verifEtudiant}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifEtudiant (\$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_projet_eb25c57d8d7ea53a9a9f6c42ccb24237}
+
+
+Vérifie qu'un utilisateur a le statut d'étudiant dans la formation courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de l'utilisateur à vérifier. Si {\tt null}, c'est l'utilisateur connecté qui est vérifié\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur a le statut d'étudiant dans la formation courante \end{Desc}
+
+
+Références retIdUtilisateur().\index{CProjet@{CProjet}!verifMembre@{verifMembre}}
+\index{verifMembre@{verifMembre}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifMembre (\$ {\em v\_\-iIdPers} = {\tt 0})}\label{class_c_projet_0d6127466ee1e1cd8b3fbc2ad04c4230}
+
+
+Vérifie qu'un utilisateur est membre d'une des équipes actuellement initialisées. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de l'utilisateur concerné par la vérification. S'il est $<$= 0, l'utilisateur connecté est pris pour la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est membre d'une des équipes actuellement initialisées\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CEquipe::verifMembre()}{p.}{class_c_equipe_e78f47711f73779b537eb370c16f2b6f} \end{Desc}
+
+
+Références \$oEquipe, et retIdUtilisateur().\index{CProjet@{CProjet}!verifModifierFormation@{verifModifierFormation}}
+\index{verifModifierFormation@{verifModifierFormation}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifModifierFormation ()}\label{class_c_projet_47bb51a4fb0df021cae629d80fde0ea8}
+
+
+Vérifie que l'utilisateur connecté a le droit de modifier la formation courante. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur peut modifier la formation courante \end{Desc}
+
+
+Références retStatutUtilisateur(), verifConcepteur(), verifConcepteurPotentiel(), et verifPermission().\index{CProjet@{CProjet}!verifModifierModule@{verifModifierModule}}
+\index{verifModifierModule@{verifModifierModule}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifModifierModule ()}\label{class_c_projet_94579ffa560e9477df1f3d9d95803093}
+
+
+Vérifie que l'utilisateur a le droit d'ajouter/modifier/supprimer le module en cours et tout ce qui se rapporte à ce module (forum/chat/formulaire). 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur a des droits sur le module actuel de la formation, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références retStatutUtilisateur(), et verifPermission().\index{CProjet@{CProjet}!verifPermission@{verifPermission}}
+\index{verifPermission@{verifPermission}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifPermission (\$ {\em v\_\-sNomPermis})}\label{class_c_projet_e7db1d7ccbec89971b6cb9ed2ea03f34}
+
+
+Vérifie que l'utilisateur connecté dispose d'une permission particulière. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomPermis}]la constante représentant la permission à vérifier, mais {\bf sous forme de chaîne}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur connecté dispose de la permission \end{Desc}
+
+
+Référencé par initFormationsUtilisateur(), verifModifierFormation(), verifModifierModule(), et verifPeutUtiliserOutils().\index{CProjet@{CProjet}!verifPeutUtiliserOutils@{verifPeutUtiliserOutils}}
+\index{verifPeutUtiliserOutils@{verifPeutUtiliserOutils}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifPeutUtiliserOutils (\$ {\em v\_\-sNomPermission} = {\tt NULL})}\label{class_c_projet_01c655d531972e8e3b76db072e9eb0a7}
+
+
+Vérifie que l'utilisateur a le droit d'utiliser les différents outils d'administration. 
+
+Si l'utilisateur n'est pas identifié, est visiteur, ou n'a pas la permission requise, une page blanche est affichée
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomPermission}]la constante représentant la permission d'utiliser l'outil, mais {\bf sous forme de chaîne}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Vérifier que {\tt bPeutUtiliserOutils} ne devrait pas plutôt valoir {\tt false} au cas où la constante passée en paramètre n'existe pas \end{Desc}
+
+
+Références retStatutUtilisateur(), et verifPermission().\index{CProjet@{CProjet}!verifRespPotentiel@{verifRespPotentiel}}
+\index{verifRespPotentiel@{verifRespPotentiel}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifRespPotentiel ()}\label{class_c_projet_53a8080dd5737623bf9d6c633009113f}
+
+
+Vérifie que l'utilisateur connecté est \char`\"{}responsable potentiel\char`\"{}. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est reponsable potentiel sur le projet \end{Desc}
+\index{CProjet@{CProjet}!verifStatut@{verifStatut}}
+\index{verifStatut@{verifStatut}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifStatut (\$ {\em v\_\-iStatut})}\label{class_c_projet_842700419b586b9e59f811f686136aed}
+
+
+Vérifie que l'utilisateur connecté possède un statut spécifique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iStatut}]le numéro du statut à vérifier\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur possède ce statut \end{Desc}
+
+
+Référencé par retTexteStatutsUtilisateur().\index{CProjet@{CProjet}!verifTuteur@{verifTuteur}}
+\index{verifTuteur@{verifTuteur}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::verifTuteur (\$ {\em v\_\-iIdPers} = {\tt 0})}\label{class_c_projet_5a14631812b944364fa168cbbc16cf4e}
+
+
+Vérifie qu'un utilisateur a le statut de tuteur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de l'utilisateur. S'il est absent, l'utilisateur connecté sera pris pour la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur est tuteur, {\tt false} si ce n'est pas le cas {\em ou\/} que l'utilisateur à vérifier est invalide \end{Desc}
+
+
+\subsection{Documentation des données membres}
+\index{CProjet@{CProjet}!\$oI18N@{\$oI18N}}
+\index{\$oI18N@{\$oI18N}!CProjet@{CProjet}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CProjet::\$oI18N}\label{class_c_projet_0988f119005d56b2d9f92c1096889e2c}
+
+
+Objet \doxyref{CConstantes}{p.}{class_c_constantes} utilisé pour les traductions. 
+
+\begin{Desc}
+\item[{\bf Obsolète}]Remplacé par le système {\tt gettext()} \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/{\bf plate\_\-forme.class.php}\end{CompactItemize}

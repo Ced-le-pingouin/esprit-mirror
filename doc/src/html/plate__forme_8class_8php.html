@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence du fichier src/include/plate_forme.class.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/include/plate_forme.class.php</h1><hr><a name="_details"></a><h2>Description détaillée</h2>
+Contient la classe principale de la plate-forme, ainsi qu'une classe pour le moment inutilisée pour les "traductions". 
+<p>
+<dl class="date" compact><dt><b>Date:</b></dt><dd>2001/09/06</dd></dl>
+<dl class="author" compact><dt><b>Auteur:</b></dt><dd>Cédric FLOQUET <p>
+Filippo PORCO <p>
+Jérôme TOUZE <p>
+Ludovic FLAMME </dd></dl>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_constantes.html">CConstantes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Classe permettant de récupérer des constantes 'texte' (consignes, messages, etc) dans la base de données.  <a href="class_c_constantes.html#_details">Plus de détails...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_projet.html">CProjet</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Classe principale de la plate-forme.  <a href="class_c_projet.html#_details">Plus de détails...</a><br></td></tr>
+<tr><td colspan="2"><br><h2>Énumérations</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module_Rubrique</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d1fc755c38ec3abaffe961fe50926c5b">DONNEES_INTITULE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom à afficher pour ce lien. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#7550a1a79a3d346e84894cc8e38c66e7">DONNEES_MODE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mode, par ex. pour l'affichage. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#4d5b2012ed38aee79da9edd0e6103ede">DONNEES_URL</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Url pour les liens. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - modalités d'affichage pour certains liens HTML de la plate-forme</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#81b74df8343d68d2588d09715928c0cf">FRAME_CENTRALE_DIRECT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affichage immédiat dans la frame centrale. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#772bdb9e325f0663b42e5c9470a22495">FRAME_CENTRALE_INDIRECT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans la frame centrale. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#280d1543adc3264e36c48e518491c8a0">MODE_LIEN_TELECHARGER</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Force le téléchargement de la cible du lien. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#fbadc004f8e0751f67c9fcb6d8fbc642">NOUVELLE_FENETRE_DIRECT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affichage immédiat dans une nouvelle fenêtre de navigateur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#05fa0b5217865d15c883d50f0c89060a">NOUVELLE_FENETRE_INDIRECT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affichage d'une consigne préalable, contenant le lien, qui s'ouvrira dans une nouvelle fenêtre. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - types de "liens", en fait les types de sous-activités possibles (dans la colonne de gauche d'une rubrique)</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d3c684b7cf3017358bdad1311a78c6ef">LIEN_CHAT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Salon de discussion / Chat. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#770b32d965e4d4a31e3f9aaf9ca2acb6">LIEN_COLLECTICIEL</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Collecticiel. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c3894dd19f53db3837355e869d6d95b0">LIEN_DOCUMENT_TELECHARGER</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lien vers un document à télécharger. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#5c18eb91f46be5b813b9664aa39dd5f6">LIEN_FORMULAIRE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Questionnaire = AEL (activité en ligne). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c6a371f29098d6855f1096b4eb734c17">LIEN_FORUM</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Forum. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#e9220ac7b494778b8874ad0004c8d8fe">LIEN_GALERIE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Galerie, servant à mettre en avant des travaux sélectionnés d'un collecticiel précédent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c99254677a13cd88bca77037b3a48278">LIEN_GLOSSAIRE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Glossaire. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c58c4a6febd54b507e8dac94ead4a302">LIEN_PAGE_HTML</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Simple page HTML à afficher. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#f23728504b196cc8321251c2fe986e02">LIEN_SITE_INTERNET</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Lien externe vers un site web. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#89c786706a774266e67a9ac20ce2bfaa">LIEN_TABLEAU_DE_BORD</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#b3ca0c7865181ebf861651b95799fdfb">LIEN_TEXTE_FORMATTE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Texte avec possibilité de mise en forme réduite par balises. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#8e9eb37eca2ac544e3ca2971faaa4463">LIEN_UNITE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Unité d'apprentissage.  <a href="plate__forme_8class_8php.html#8e9eb37eca2ac544e3ca2971faaa4463">Plus de détails...</a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - état d'identification utilisateur</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>LOGIN_MDP_INCORRECT</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c2fa89dbcee80a9fb18b2bf0c8cb5a9b">LOGIN_OK</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le login s'est déroulé sans problème. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>LOGIN_PAS_ENCORE_ID</b> </td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>LOGIN_PERSONNE_INCONNUE</b> </td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Constantes - modalités individuelles ou par équipes pour certaines sous-activités</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#5f6c1126ebb16c4db7af66cc8eaabd28">MODALITE_IDEM_PARENT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reprend la modalité de l'élément parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#45a532832a9ae19134dd0d392db81c4e">MODALITE_INDIVIDUEL</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Activité individuelle. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#a352f51b478ae80df062cb7c4892d0e5">MODALITE_PAR_EQUIPE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Isolée ==&gt; Les équipes ne voient pas les autres équipes. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#49eeed6dbc0eb208715e4432178abac1">MODALITE_PAR_EQUIPE_COLLABORANTE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Collaborante ==&gt; Les équipes voient les autres équipes et peuvent collaborer. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d2b3e0e080e024f9df9d72d85afa484e">MODALITE_PAR_EQUIPE_INTERCONNECTEE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Interconnectée ==&gt; Les équipes voient les autres équipes mais ne peuvent pas collaborer entre elles. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#bda97b80518494d3673623461fbb4ecb">MODALITE_POUR_TOUS</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tout le monde participe et voit la participation des autres, mais à titre individuel.  <a href="plate__forme_8class_8php.html#bda97b80518494d3673623461fbb4ecb">Plus de détails...</a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - types d'éléments dans les formulaires</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#4520387eb2fb230d812f9c1686788c39">OBJFORM_MPSEPARATEUR</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ligne de séparation; élément de mise en page pure. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#bc25ed8b7e8eedd05dcbe51549b3658e">OBJFORM_MPTEXTE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Texte; élément de mise en page pure, pas de réponse à donner. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#604492e25a25633158fe2fceb32cb3b4">OBJFORM_QCOCHER</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ensemble de cases à cocher à choix multiples. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#5336f1ddf74b7d486b812b3735f5a5f8">OBJFORM_QLISTEDEROUL</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Liste déroulante à choix unique. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#087132961b9435ddd6cbc1d9d79ed5d6">OBJFORM_QNOMBRE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boîte de texte où seuls les nombres sont autorisés. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#2879d0f7b8a3bf8f2a163ce59d495706">OBJFORM_QRADIO</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ensemble de boutons radio à choix unique. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#0492ad006c53b323da8a90bba6cd6bdb">OBJFORM_QTEXTECOURT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boîte de texte mono-ligne. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#ce545ebb4f308f224bacb48823873ad3">OBJFORM_QTEXTELONG</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Boîte de texte multi-lignes. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - tri à effectuer lorsque des affichages en colonnes sont présents</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#5122cce5144e44956743738612ab7fea">PAS_TRI</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Aucun tri ne doit avoir lieu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#48be3f480c9ef331adfac4ea499a830e">TRI_CROISSANT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tri par ordre croissant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c0edef5000ae6b123e5428d916ef7c50">TRI_DECROISSANT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tri par ordre décroissant. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - éléments de la session enregistrée dans le cookie</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#b33d01ee4465440515a48562f910d94c">SESSION_ACTIV</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro de l'activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#dc6e8e1092537ccf2a8bd18af8df7709">SESSION_DEBUT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Représente toujours la 1ère constante de session (0); utilisée dans les boucles. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#24844e3ec88b30434142d0a5d4810829">SESSION_DOSSIER_FORMS</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro du dossier de formations. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#b69339def74853cd91a5fa1e11e88833">SESSION_FIN</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Devrait toujours être identique à la dernière constante de session; utilisée dans les boucles. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d159028367d73e6ffa052bb3fbc7ae57">SESSION_FORM</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro de la formation courante. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#31447d5dc0bdf2a1ef4599506a1e50da">SESSION_LANG</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Langue de l'interface de l'utilisateur. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#ab85bf101b4115871720d7d0b51400ea">SESSION_MDP</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mot de passe de la personne. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#050c2e933733058fb360f23a03d16196">SESSION_MOD</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro du module/cours courant. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#ec2140d817fa447bdd29cffe19b9132e">SESSION_NOM</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom de la personne. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#ed3c5bd3390604d5f6f84612e7baf301">SESSION_PRENOM</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prénom de la personne. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#987c327305d0365ef16f923ffeb4d9f1">SESSION_PSEUDO</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pseudo de la personne. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#40e06269222444190b2f1ea0332c9096">SESSION_SOUSACTIV</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro de la sous-activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#5be9cd96fb436a8427789a1766e98e8c">SESSION_STATUT_ABSOLU</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Statut de l'utilisateur le plus important. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#b3083c069b2919fe4ef21ab267d7ee7c">SESSION_STATUT_UTILISATEUR</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Statut que l'utilisateur a choisi. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#7153d09b54655eed864f3a67229c7f2e">SESSION_TRI_COLONNE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pour les écrans où l'on peut trier des tableaux, la colonne de tri principale. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d12aff9f3e2f1e2f8f04e4a2289c61cd">SESSION_TRI_DIRECTION</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Toujours pour les mêmes écrans, tri croissant ou décroissant ? <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#d9f796cabb883697ddb3b8527bae440b">SESSION_UID</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro ID unique donné par la table 'Evenement'. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#231b4b162230d3728ec2527d6802a376">SESSION_UNITE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Numéro de l'unité courante (plus utilisé). <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - modalités de soumission d'un formulaire au tuteur</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#2a826157e95090f4a65fb7cdbc37e63b">SOUMISSION_AUTOMATIQUE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le formulaire est automatiquement soumis au tuteur dès que l'étudiant l'a complété. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#24df923120ce23ec8aae5844973b10d7">SOUMISSION_MANUELLE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'étudiant devra encore soumettre le document au tuteur quand il aura rempli le formulaire. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - statuts/disponibilité des éléments de structure</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#76501146e29d32302e99e9e972f1f8b5">STATUT_ARCHIVE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pas certain que cette constante est utilisée actuellement.  <a href="plate__forme_8class_8php.html#76501146e29d32302e99e9e972f1f8b5">Plus de détails...</a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#8a3e50ac56dcaa15ea5b43983bf2bc12">STATUT_EFFACE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'élément est effacé logiquement, un admin pourra le récupérer dans l'outil Corbeille. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#b66dc89d5dbe8a6e9399fa850b25ec16">STATUT_FERME</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le lien est visible mais pas accessible. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#c86130fc5d3dcd422feaffda0b91f940">STATUT_IDEM_PARENT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reprend le statut ouvert/fermé/etc de la structure parente. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#206e770a590aa774b30abd5b20ddbc1b">STATUT_INVISIBLE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le lien n'est pas affiché. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#35ee2841bac7490cd61bda9ce325f354">STATUT_LECTURE_SEULE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le lien est visible, cliquable mais l'utilisateur ne pourra plus rien modifier. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#a72d1d4f1fd472995243e53441efbc65">STATUT_OUVERT</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Le lien est visible et accessible. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - éléments de "structure" de formation</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#f7c3406feb7a6f9a82fb895589b0924c">TYPE_ACTIVITE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#2563a936a6324888c5f1eb506166bb49">TYPE_FORMATION</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Formation/Session. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#25aa9b3f5e8c547508569210cf2bcdd7">TYPE_INCONNU</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Type inconnu. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#de8f20d9806915426dc66d1cb9d9db64">TYPE_MODULE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Module/Cours. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#94329c4c186db4a55ef8a921de3d36dc">TYPE_RUBRIQUE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rubrique. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#1e16b4c73fff6f4b2a1fa6050331c798">TYPE_SOUS_ACTIVITE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sous-activité. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#dbd0a24877083af36650122550b18e6b">TYPE_UNITE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Unité. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Constantes - types d'événements (à logger)</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#7182a5086d4ae9f34e28698f7aa1de89">TYPE_EVEN_DECONNEXION</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">L'utilisateur s'est explicitement déconnecté. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#81325a706d7b6d0b2a7f4736db2da434">TYPE_EVEN_LOGIN_RATE</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">La tentative de login a echoué. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#34d991d38298c6d8c24afc1cb1d48a56">TYPE_EVEN_LOGIN_REUSSI</a> </td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">La tentative de login a réussi. <br></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="plate__forme_8class_8php.html#47415fa8c613805277ff7e3fdf81d6d8">retListeStatuts</a> ($v_sGenre=&quot;F&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau de chaînes de caractères représentant la version textuelle d'un statut ouvert/fermé/etc pour les éléments des formations.  <a href="#47415fa8c613805277ff7e3fdf81d6d8"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="10892d06666ceb83982eafff03ca80b5"></a><!-- doxytag: member="plate_forme.class.php::$sDirDatabase" ref="10892d06666ceb83982eafff03ca80b5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$sDirDatabase</b> = dir_database()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="17b09941c14c8f755ebc693858657541"></a><!-- doxytag: member="plate_forme.class.php::$sDirInclude" ref="17b09941c14c8f755ebc693858657541" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$sDirInclude</b> = dir_include()</td></tr>
+
+</table>
+<hr><h2>Documentation du type de l'énumération</h2>
+<a class="anchor" name="8e9eb37eca2ac544e3ca2971faaa4463"></a><!-- doxytag: member="plate_forme.class.php::LIEN_UNITE" ref="8e9eb37eca2ac544e3ca2971faaa4463" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="plate__forme_8class_8php.html#8e9eb37eca2ac544e3ca2971faaa4463">LIEN_UNITE</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Unité d'apprentissage. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000010">À faire:</a></b></dt><dd>mieux expliquer différence Rubrique/Unité </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bda97b80518494d3673623461fbb4ecb"></a><!-- doxytag: member="plate_forme.class.php::MODALITE_POUR_TOUS" ref="bda97b80518494d3673623461fbb4ecb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="plate__forme_8class_8php.html#bda97b80518494d3673623461fbb4ecb">MODALITE_POUR_TOUS</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tout le monde participe et voit la participation des autres, mais à titre individuel. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000012">À faire:</a></b></dt><dd>Confirmer cette description </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="76501146e29d32302e99e9e972f1f8b5"></a><!-- doxytag: member="plate_forme.class.php::STATUT_ARCHIVE" ref="76501146e29d32302e99e9e972f1f8b5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="plate__forme_8class_8php.html#76501146e29d32302e99e9e972f1f8b5">STATUT_ARCHIVE</a>          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Pas certain que cette constante est utilisée actuellement. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000011">À faire:</a></b></dt><dd>Confirmer cette description </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>Documentation des fonctions</h2>
+<a class="anchor" name="47415fa8c613805277ff7e3fdf81d6d8"></a><!-- doxytag: member="plate_forme.class.php::retListeStatuts" ref="47415fa8c613805277ff7e3fdf81d6d8" args="($v_sGenre=&quot;F&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retListeStatuts           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sGenre</em> = <code>&quot;F&quot;</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau de chaînes de caractères représentant la version textuelle d'un statut ouvert/fermé/etc pour les éléments des formations. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sGenre</em>&nbsp;</td><td>la chaîne <code>F</code> pour obtenir la version au féminin du mot, <code>M</code> pour la version au masculin</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le tableau contenant les versions texte des statuts, avec pour indices les constantes STATUT_ correspondantes </dd></dl>
+
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

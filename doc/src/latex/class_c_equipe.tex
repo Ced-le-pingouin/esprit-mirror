@@ -1,0 +1,350 @@
+\section{Référence de la classe CEquipe}
+\label{class_c_equipe}\index{CEquipe@{CEquipe}}
+
+
+\subsection{Description détaillée}
+Gestion des équipes, et encapsulation de la table Equipe de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} ()
+\begin{CompactList}\small\item\em Insère une nouvelle équipe dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet \doxyref{CEquipe}{p.}{class_c_equipe} (par les fonctions def. \item\end{CompactList}\item 
+{\bf ajouterMembres} (\$v\_\-aiIdPers)
+\begin{CompactList}\small\item\em Ajoute des nouveaux membres à l'équipe dans la DB. \item\end{CompactList}\item 
+{\bf CEquipe} (\&\$v\_\-oBdd, \$v\_\-iId=NULL, \$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_equipe_cc000b885fbd0307e089601aa86a2213}
+
+\begin{CompactList}\small\item\em Efface de la DB l'équipe actuellement initialisée dans l'objet. \item\end{CompactList}\item 
+{\bf effacerParNiveau} (\$v\_\-iNiveau, \$v\_\-iIdNiveau)
+\begin{CompactList}\small\item\em Efface les équipes appartenant à un niveau spécifique (formation, module, etc). \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregBdd=NULL)\label{class_c_equipe_8b9180b389a5903f23d7f52a3e1d07f6}
+
+\begin{CompactList}\small\item\em Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initEquipe} (\$v\_\-iIdPers, \$v\_\-iIdNiveau, \$v\_\-iTypeNiveau, \$v\_\-bInitMembres=FALSE, \$v\_\-iIdNiveauDernier={\bf TYPE\_\-FORMATION})
+\begin{CompactList}\small\item\em Initialise l'équipe d'un utilisateur dans un contexte/niveau/élément précis (formation, module, etc). \item\end{CompactList}\item 
+{\bf initEquipes} (\$v\_\-iIdForm=NULL, \$v\_\-iIdMod=NULL, \$v\_\-iIdRubrique=NULL, \$v\_\-iIdActiv=NULL, \$v\_\-iIdSousActiv=NULL, \$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau d'équipes ({\tt aoEquipes}) selon le niveau (formation/module/etc) où elles sont définies. \item\end{CompactList}\item 
+{\bf initEquipesEx} (\$v\_\-iIdNiveauDepart, \$v\_\-iTypeNiveauDepart, \$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Initialise un tableau d'équipes ({\tt aoEquipes}) en les cherchant à partir d'un certain niveau de la structure (formation/module/etc), tout en passant au niveau supérieur (parent) à chaque fois qu'aucune équipe n'est trouvée au niveau courant, et cela jusqu'au \char`\"{}dernier\char`\"{} niveau, càd TYPE\_\-FORMATION. \item\end{CompactList}\item 
+{\bf initEquipesNiveau} (\$v\_\-iTypeNiveau, \$v\_\-iIdNiveau, \$v\_\-bInitMembres=FALSE, \$v\_\-bNonEquipesEnfants=TRUE)
+\begin{CompactList}\small\item\em Initialise un tableau d'équipes ({\tt aoEquipes}) selon le niveau (formation/module/etc) où elles sont définies. \item\end{CompactList}\item 
+{\bf initGraceIdEquipes} (\$v\_\-aiIdEquipes)
+\begin{CompactList}\small\item\em Initialise un tableau d'équipes ({\tt aoEquipes}) en se basant sur une série d'ids d'équipes. \item\end{CompactList}\item 
+{\bf initMembres} ()
+\begin{CompactList}\small\item\em Initialise les membres de l'équipe (dans le tableau {\tt aoMembres} - objets \doxyref{CPersonne}{p.}{class_c_personne}). \item\end{CompactList}\item 
+{\bf retLien} ()
+\begin{CompactList}\small\item\em Retourne le code HTML nécessaire à la création d'un lien qui ouvrira une popup avec renseignements sur l'équipe. \item\end{CompactList}\item 
+{\bf retNbMembres} ()
+\begin{CompactList}\small\item\em Retourne le nombre de personnes/membres composant l'équipe. \item\end{CompactList}\item 
+{\bf sauvegarder} ()
+\begin{CompactList}\small\item\em Met à jour l'équipe courante dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet \doxyref{CEquipe}{p.}{class_c_equipe} (par les fonctions def. \item\end{CompactList}\item 
+{\bf verifMembre} (\$v\_\-iIdPers, \$v\_\-iIdEquipe=NULL)
+\begin{CompactList}\small\item\em Vérifier qu'une personne est membre de l'équipe (ou d'une équipe spécifique). \item\end{CompactList}\item 
+{\bf verrouillerTables} (\$v\_\-bExecuterRequete=TRUE)
+\begin{CompactList}\small\item\em Verrouille ou retourne les noms des tables généralement utilisées lors des requêtes relatives aux équipes. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette équipe}\par
+\begin{CompactItemize}
+\item 
+\textbf{defIdActivite} (\$v\_\-iIdActiv)\label{class_c_equipe_b30dbfcd1540b1bc4090873599d9bf0f}
+
+\item 
+\textbf{defIdFormation} (\$v\_\-iIdFormation)\label{class_c_equipe_e10d921f9c359905417011b3befefb6d}
+
+\item 
+\textbf{defIdModule} (\$v\_\-iIdModule)\label{class_c_equipe_d18464b6c11eb53db06e3db1bfca9984}
+
+\item 
+\textbf{defIdRubrique} (\$v\_\-iIdRubrique)\label{class_c_equipe_72054df780a0cc7843b1c0fe39709893}
+
+\item 
+\textbf{defIdSousActivite} (\$v\_\-iIdSousActiv)\label{class_c_equipe_f70d2facae073575a655b691a85d8175}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomEquipe)\label{class_c_equipe_0008ba233dd26d3285382a22a85b452b}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette équipe}\par
+\begin{CompactItemize}
+\item 
+\textbf{retId} ()\label{class_c_equipe_6529bd9e906e8d3043ae7f99f744b931}
+
+\item 
+\textbf{retIdActivite} ()\label{class_c_equipe_ee6523c14f858b4c6b8eadcae609c5c9}
+
+\item 
+\textbf{retIdFormation} ()\label{class_c_equipe_94511b794799c2e266b753c8408844dd}
+
+\item 
+\textbf{retIdModule} ()\label{class_c_equipe_96b84ddcc6bec4ed4b2f4d3f5e31e66d}
+
+\item 
+\textbf{retIdRubrique} ()\label{class_c_equipe_fcf510273967336213b8ba5ae427edb9}
+
+\item 
+\textbf{retIdSousActivite} ()\label{class_c_equipe_f8f17838c06c26cfd6e9dadcb05501ec}
+
+\item 
+{\bf retNom} (\$v\_\-sMode=NULL)
+\begin{CompactList}\small\item\em Retourne le nom de l'équipe, avec possibilité d'encodages en html ou en \char`\"{}url\char`\"{}. \item\end{CompactList}\item 
+\textbf{retNumOrdre} ()\label{class_c_equipe_d93f9a45afe0a6dcc74800d9ef41192b}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoEquipes}\label{class_c_equipe_88eabb5a121751b45cc596bb2590d344}
+
+\begin{CompactList}\small\item\em Tableau d'objets \doxyref{CEquipe}{p.}{class_c_equipe} rempli par diverses fonctions d'initialisation sur des critères spécifiques. \item\end{CompactList}\item 
+{\bf \$aoMembres}\label{class_c_equipe_57f677dd577433391c289f19e5f91e50}
+
+\begin{CompactList}\small\item\em Tableau d'objets \doxyref{CPersonne}{p.}{class_c_personne} représentant les membres de l'équipe (rempli par \doxyref{initMembres()}{p.}{class_c_equipe_59ad255ea193112fb6906a8b62c58be6}). \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_equipe_1b5caddc4e7fe53d0feb48dc9ba4c3d9}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de l'équipe à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_equipe_1dc76a561164dc0579a3b589d8bc72f6}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_equipe_40a9090a880dcf9df0c5916f43ae80e2}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CEquipe@{CEquipe}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::ajouter ()}\label{class_c_equipe_3100b92893691130db878898d2538193}
+
+
+Insère une nouvelle équipe dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet \doxyref{CEquipe}{p.}{class_c_equipe} (par les fonctions def. 
+
+..()). La fonction \doxyref{init()}{p.}{class_c_equipe_8b9180b389a5903f23d7f52a3e1d07f6} est ensuite rappelée pour initialiser complètement l'objet courant 
+
+Références init(), et retNom().\index{CEquipe@{CEquipe}!ajouterMembres@{ajouterMembres}}
+\index{ajouterMembres@{ajouterMembres}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::ajouterMembres (\$ {\em v\_\-aiIdPers})}\label{class_c_equipe_d611eb4ea25bc7db111f2f235d6753b5}
+
+
+Ajoute des nouveaux membres à l'équipe dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]le tableau contenant les id des personnes à ajouter à l'équipe\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{CEquipe\_\-Membre::ajouterMembres()}{p.}{class_c_equipe___membre_abdeb1e90f8ecac1caa957651ccb436d} \end{Desc}
+\index{CEquipe@{CEquipe}!CEquipe@{CEquipe}}
+\index{CEquipe@{CEquipe}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::CEquipe (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_equipe_5ba3481422689d6b253b9d60c788d491}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion courante à la DB \item[{\em v\_\-iId}]l'id de l'équipe à récupérer dans la DB. S'il est omis ou si l'équipe demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB \item[{\em v\_\-bInitMembres}]si {\tt true}, les personnes composant l'équipe seront initialisées automatiquement dans le tableau {\tt aoMembres}, sous forme d'objets \doxyref{CPersonne}{p.}{class_c_personne}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{init()}{p.}{class_c_equipe_8b9180b389a5903f23d7f52a3e1d07f6} \end{Desc}
+
+
+Références init(), et initMembres().
+
+Référencé par initEquipes(), initEquipesNiveau(), et initGraceIdEquipes().\index{CEquipe@{CEquipe}!effacerParNiveau@{effacerParNiveau}}
+\index{effacerParNiveau@{effacerParNiveau}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::effacerParNiveau (\$ {\em v\_\-iNiveau}, \/  \$ {\em v\_\-iIdNiveau})}\label{class_c_equipe_47c4d48d47ef1d01b175f7023e0d7991}
+
+
+Efface les équipes appartenant à un niveau spécifique (formation, module, etc). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNiveau}]le numéro représentant le type d'élément pour lequel on veut effacer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE\_\-) \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut effacer les équipes. Sa signification dépend du paramètre {\tt v\_\-iNiveau} \end{description}
+\end{Desc}
+\index{CEquipe@{CEquipe}!initEquipe@{initEquipe}}
+\index{initEquipe@{initEquipe}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initEquipe (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iIdNiveau}, \/  \$ {\em v\_\-iTypeNiveau}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-iIdNiveauDernier} = {\tt {\bf TYPE\_\-FORMATION}})}\label{class_c_equipe_306dee6bcb1f7293d29ca67c0c0c15c4}
+
+
+Initialise l'équipe d'un utilisateur dans un contexte/niveau/élément précis (formation, module, etc). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de l'utilisateur dont on veut connaître l'équipe \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre {\tt v\_\-iTypeNiveau} \item[{\em v\_\-iTypeNiveau}]le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE\_\-) \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe \item[{\em v\_\-iIdNiveauDernier}]le niveau maximum jusqu'auquel il faut \char`\"{}remonter\char`\"{} pour chercher l'équipe de l'utilisateur. Par défaut, la rechercher s'effectue jusqu'à la \char`\"{}racine\char`\"{}, càd les équipes créées au niveau de la formation, en passant éventuellement par sous-activité, activité, rubrique, et module, car le niveau de départ (minimum) de la recherche dépend du paramètre {\tt v\_\-iTypeNiveau} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'utilisateur fait bien partie d'une équipe \end{Desc}
+
+
+Références init(), et initMembres().\index{CEquipe@{CEquipe}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initEquipes (\$ {\em v\_\-iIdForm} = {\tt NULL}, \/  \$ {\em v\_\-iIdMod} = {\tt NULL}, \/  \$ {\em v\_\-iIdRubrique} = {\tt NULL}, \/  \$ {\em v\_\-iIdActiv} = {\tt NULL}, \/  \$ {\em v\_\-iIdSousActiv} = {\tt NULL}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_equipe_24f8c8e46f3a30038af3af10f307fd2b}
+
+
+Initialise un tableau d'équipes ({\tt aoEquipes}) selon le niveau (formation/module/etc) où elles sont définies. 
+
+Plusieurs niveaux peuvent être spécifiés en paramètres en même temps
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation dans laquelle il faut chercher les équipes à récupérer. Si {\tt null} (défaut), la recherche ne porte pas sur l'appartenance à une formation \item[{\em v\_\-iIdMod}]l'id du module dans lequel il faut chercher les équipes à récupérer. Si {\tt null} (défaut), la recherche ne porte pas sur l'appartenance à un module \item[{\em v\_\-iIdRubrique}]l'id de la rubrique dans laquelle il faut chercher les équipes à récupérer. Si {\tt null} (défaut), la recherche ne porte pas sur l'appartenance à une rubrique \item[{\em v\_\-iIdActiv}]l'id de l'activité dans laquelle il faut chercher les équipes à récupérer Si {\tt null} (défaut), la recherche ne porte pas sur l'appartenance à une activité \item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité dans laquelle il faut chercher les équipes à récupérer. Si {\tt null} (défaut), la recherche ne porte pas sur l'appartenance à une sous-activité \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe (défaut à {\tt false})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes trouvées \end{Desc}
+
+
+Références CEquipe().\index{CEquipe@{CEquipe}!initEquipesEx@{initEquipesEx}}
+\index{initEquipesEx@{initEquipesEx}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initEquipesEx (\$ {\em v\_\-iIdNiveauDepart}, \/  \$ {\em v\_\-iTypeNiveauDepart}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_equipe_697d9558f9cf790ef5959d1b74418f07}
+
+
+Initialise un tableau d'équipes ({\tt aoEquipes}) en les cherchant à partir d'un certain niveau de la structure (formation/module/etc), tout en passant au niveau supérieur (parent) à chaque fois qu'aucune équipe n'est trouvée au niveau courant, et cela jusqu'au \char`\"{}dernier\char`\"{} niveau, càd TYPE\_\-FORMATION. 
+
+Si une ou plusieurs équipe sont trouvées à un niveau, la recherche s'arrête
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdNiveauDepart}]l'id de l'élément de départ pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre {\tt v\_\-iTypeNiveau} \item[{\em v\_\-iTypeNiveauDepart}]le numéro représentant le type d'élément (formation/module/etc) par lequel on veut débuter la recherche des équipes à initialiser \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe (défaut à {\tt false})\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes trouvées\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initEquipesNiveau()}{p.}{class_c_equipe_30a4bf363736b3a3c69ef7e8e0966de6} \end{Desc}
+
+
+Références initEquipesNiveau().\index{CEquipe@{CEquipe}!initEquipesNiveau@{initEquipesNiveau}}
+\index{initEquipesNiveau@{initEquipesNiveau}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initEquipesNiveau (\$ {\em v\_\-iTypeNiveau}, \/  \$ {\em v\_\-iIdNiveau}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-bNonEquipesEnfants} = {\tt TRUE})}\label{class_c_equipe_30a4bf363736b3a3c69ef7e8e0966de6}
+
+
+Initialise un tableau d'équipes ({\tt aoEquipes}) selon le niveau (formation/module/etc) où elles sont définies. 
+
+Un seul niveau est passé en paramètre, contrairement à \doxyref{initEquipes()}{p.}{class_c_equipe_24f8c8e46f3a30038af3af10f307fd2b}. Permet aussi de restreindre aux équipes qui sont explicitement définies au niveau spécifié (qui ne sont pas des équipes définie à un niveau plus élevé et \char`\"{}héritées\char`\"{}
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeNiveau}]le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE\_\-) \item[{\em v\_\-iIdNiveau}]l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre {\tt v\_\-iTypeNiveau} \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de chaque équipe (défaut à {\tt false}) \item[{\em v\_\-bNonEquipesEnfants}]si {\tt true}, la recherche des équipes à initialiser se restreint aux équipes explicitement définies au niveau spécifié par {\tt v\_\-iTypeNiveau}, càd pas des équipes définies à un niveau plus élevé et héritée à ce niveau\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipe trouvées, ou 0 si v\_\-iTypeNiveau ou v\_\-iIdNiveau sont $<$ 1 ou invalides \end{Desc}
+
+
+Références CEquipe().
+
+Référencé par initEquipesEx().\index{CEquipe@{CEquipe}!initGraceIdEquipes@{initGraceIdEquipes}}
+\index{initGraceIdEquipes@{initGraceIdEquipes}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initGraceIdEquipes (\$ {\em v\_\-aiIdEquipes})}\label{class_c_equipe_02e7f868b7bbb4d39f02fee08dc7174b}
+
+
+Initialise un tableau d'équipes ({\tt aoEquipes}) en se basant sur une série d'ids d'équipes. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdEquipes}]un tableau contenant les ids des équipes qu'on veut initialiser et qui rempliront le tableau {\tt aoEquipes} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes initialisées \end{Desc}
+
+
+Références CEquipe().\index{CEquipe@{CEquipe}!initMembres@{initMembres}}
+\index{initMembres@{initMembres}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::initMembres ()}\label{class_c_equipe_59ad255ea193112fb6906a8b62c58be6}
+
+
+Initialise les membres de l'équipe (dans le tableau {\tt aoMembres} - objets \doxyref{CPersonne}{p.}{class_c_personne}). 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de membres de l'équipe \end{Desc}
+
+
+Référencé par CEquipe(), et initEquipe().\index{CEquipe@{CEquipe}!retLien@{retLien}}
+\index{retLien@{retLien}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::retLien ()}\label{class_c_equipe_2c19b960f045afae59cce1c8828634fe}
+
+
+Retourne le code HTML nécessaire à la création d'un lien qui ouvrira une popup avec renseignements sur l'équipe. 
+
+\begin{Desc}
+\item[Renvoie:]le code HTML du lien \end{Desc}
+
+
+Références retNom().\index{CEquipe@{CEquipe}!retNbMembres@{retNbMembres}}
+\index{retNbMembres@{retNbMembres}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::retNbMembres ()}\label{class_c_equipe_cfbd0032f34e508d61c0505851867986}
+
+
+Retourne le nombre de personnes/membres composant l'équipe. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de membres de l'équipe, ou 0 si celle-ci n'a pas encore été initialisée par \doxyref{initMembres()}{p.}{class_c_equipe_59ad255ea193112fb6906a8b62c58be6}\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{initMembres()}{p.}{class_c_equipe_59ad255ea193112fb6906a8b62c58be6} \end{Desc}
+\index{CEquipe@{CEquipe}!retNom@{retNom}}
+\index{retNom@{retNom}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::retNom (\$ {\em v\_\-sMode} = {\tt NULL})}\label{class_c_equipe_a963669c75e8b87a1ec2ce7e551377ca}
+
+
+Retourne le nom de l'équipe, avec possibilité d'encodages en html ou en \char`\"{}url\char`\"{}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sMode}]si {\tt \char`\"{}html\char`\"{}}, les caractères spéciaux sont remplacés par des entités HTML. Si {\tt \char`\"{}url\char`\"{}}, le nom sera encodé en URL. Si autre valeur (ou {\tt null}), le nom de l'équipe est retourné tel quel\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nom de l'équipe dans l'encodage choisi par {\tt v\_\-sMode} \end{Desc}
+
+
+Référencé par ajouter(), retLien(), et sauvegarder().\index{CEquipe@{CEquipe}!sauvegarder@{sauvegarder}}
+\index{sauvegarder@{sauvegarder}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::sauvegarder ()}\label{class_c_equipe_43a984783590ff5a1462f79174cdccb4}
+
+
+Met à jour l'équipe courante dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet \doxyref{CEquipe}{p.}{class_c_equipe} (par les fonctions def. 
+
+..()) 
+
+Références retNom().\index{CEquipe@{CEquipe}!verifMembre@{verifMembre}}
+\index{verifMembre@{verifMembre}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::verifMembre (\$ {\em v\_\-iIdPers}, \/  \$ {\em v\_\-iIdEquipe} = {\tt NULL})}\label{class_c_equipe_e78f47711f73779b537eb370c16f2b6f}
+
+
+Vérifier qu'une personne est membre de l'équipe (ou d'une équipe spécifique). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne dont on veut vérifier l'appartenance à une équipe \item[{\em v\_\-iIdEquipe}]l'id de l'équipe dont on veut vérifier si elle comprend la personne spécifiée par v\_\-iIdPers. Si {\tt null}, c'est l'équipe actuellement initialisée qui est prise pour la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est bien membre de l'équipe (courante ou spécifiée en paramètre) \end{Desc}
+\index{CEquipe@{CEquipe}!verrouillerTables@{verrouillerTables}}
+\index{verrouillerTables@{verrouillerTables}!CEquipe@{CEquipe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CEquipe::verrouillerTables (\$ {\em v\_\-bExecuterRequete} = {\tt TRUE})}\label{class_c_equipe_52ffa2dc46f2ff81ed3969d1530ea733}
+
+
+Verrouille ou retourne les noms des tables généralement utilisées lors des requêtes relatives aux équipes. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bExecuterRequete}]si {\tt true}, la requête LOCK TABLES sur les tables utilisées pendant les requêtes concernant les équipes est réellement exécutée. Si {\tt false}, les noms de ces tables nécessaires à une requête LOCK TABLES seront retournés, mais le lock ne sera pas exécuté\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]les noms des tables utilisées pendant les requêtes concernant les équipes, suivi de WRITE et séparés par des virgules. La chaîne retournée pourra donc être utilisée pour composer une requête LOCK TABLES \end{Desc}
+
+
+Référencé par CFormation::verrouillerTables().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf equipe.tbl.php}\end{CompactItemize}

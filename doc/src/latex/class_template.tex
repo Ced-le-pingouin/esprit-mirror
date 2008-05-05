@@ -1,0 +1,161 @@
+\section{Référence de la classe Template}
+\label{class_template}\index{Template@{Template}}
+
+
+\subsection{Description détaillée}
+Gestion de templates, avec possibilité de remplacements de variables, de répétition et masquage de blocs. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf activerBloc} (\$looptag, \$activ=TRUE)
+\begin{CompactList}\small\item\em Active un bloc de template (ou le désactive, en fonction d'une condition). \item\end{CompactList}\item 
+{\bf afficher} ()
+\begin{CompactList}\small\item\em Affiche les données contenues actuellement dans le template. \item\end{CompactList}\item 
+{\bf ajouterTemplate} (\$v\_\-sTplFichier)
+\begin{CompactList}\small\item\em Ajoute le contenu d'un fichier template à la fin du contenu actuel. \item\end{CompactList}\item 
+{\bf caracteres} ()
+\begin{CompactList}\small\item\em Retourne le nombre de caractères contenu dans le template, tel qu'il se trouve après les éventuels traitements de blocs, remplacements, etc. \item\end{CompactList}\item 
+{\bf defVariable} (\$looptag, \$effacer=TRUE)
+\begin{CompactList}\small\item\em Retourne une \char`\"{}variable de template\char`\"{}, càd un bloc entre balises [bloc+][bloc-]. \item\end{CompactList}\item 
+{\bf desactiverBloc} (\$looptag)
+\begin{CompactList}\small\item\em Désactive un bloc de template. \item\end{CompactList}\item 
+{\bf remplacer} (\$in, \$out)
+\begin{CompactList}\small\item\em Remplace \char`\"{}simplement\char`\"{} des morceaux de template par d'autres. \item\end{CompactList}\item 
+{\bf retDonnees} ()
+\begin{CompactList}\small\item\em Retourne le contenu actuel du template, avec les remplacements et autres traitements de blocs éventuels. \item\end{CompactList}\item 
+{\bf Template} (\$v\_\-sTplFichier)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$data} = NULL\label{class_template_07f0a8b3a5bc75882afcbd91bb57de06}
+
+\begin{CompactList}\small\item\em Contenu textuel du template, avec les remplacements éventuels. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{Template@{Template}!activerBloc@{activerBloc}}
+\index{activerBloc@{activerBloc}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::activerBloc (\$ {\em looptag}, \/  \$ {\em activ} = {\tt TRUE})}\label{class_template_793e4350944eaea971181453239b6f01}
+
+
+Active un bloc de template (ou le désactive, en fonction d'une condition). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \item[{\em activ}]si spécifié, et {\tt true}, le bloc sera bien activé; si {\tt false} par contre, le bloc sera désactivé \end{description}
+\end{Desc}
+
+
+Références desactiverBloc().\index{Template@{Template}!afficher@{afficher}}
+\index{afficher@{afficher}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::afficher ()}\label{class_template_a7ab8000ab4b857801067cefae17cbea}
+
+
+Affiche les données contenues actuellement dans le template. 
+
+Généralement appelé à la fin du script PHP qui utilise le template. Un remplacement automatique se fait avant l'affichage, sur les faux protocoles {\tt  \char`\"{}racine://\char`\"{}, \char`\"{}admin://\char`\"{}, \char`\"{}commun://\char`\"{}, \char`\"{}theme://\char`\"{}, \char`\"{}javascript://\char`\"{},} et {\tt \char`\"{}lib://\char`\"{}}, qui sont remplacés par, respectivement, les resultats des appels aux fonctions globales {\tt dir\_\-root\_\-plateform(), dir\_\-admin(), dir\_\-theme\_\-commun(), dir\_\-theme(), dir\_\-javascript(),} et {\tt dir\_\-lib()} 
+
+\begin{Desc}
+\item[Voir également:]\doxyref{retDonnees()}{p.}{class_template_e490cc905eeab29467b7d46d0e17390a} \end{Desc}
+
+
+Références retDonnees().\index{Template@{Template}!ajouterTemplate@{ajouterTemplate}}
+\index{ajouterTemplate@{ajouterTemplate}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::ajouterTemplate (\$ {\em v\_\-sTplFichier})}\label{class_template_01156f28c82f226c5c1675d96566675e}
+
+
+Ajoute le contenu d'un fichier template à la fin du contenu actuel. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTplFichier}]le nom du fichier template à ajouter \end{description}
+\end{Desc}
+
+
+Références Template().\index{Template@{Template}!caracteres@{caracteres}}
+\index{caracteres@{caracteres}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::caracteres ()}\label{class_template_a7e2ce30121b8a7dff29117d6184836a}
+
+
+Retourne le nombre de caractères contenu dans le template, tel qu'il se trouve après les éventuels traitements de blocs, remplacements, etc. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de caractères contenus dans le template après traitements \end{Desc}
+\index{Template@{Template}!defVariable@{defVariable}}
+\index{defVariable@{defVariable}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::defVariable (\$ {\em looptag}, \/  \$ {\em effacer} = {\tt TRUE})}\label{class_template_41b771d6eab27fd8fd9fe738f65c6db0}
+
+
+Retourne une \char`\"{}variable de template\char`\"{}, càd un bloc entre balises [bloc+][bloc-]. 
+
+Par exemple si le template contient un segment \char`\"{}[bloc+]contenu[bloc-]\char`\"{}, un appel {\tt defVariable(\char`\"{}bloc\char`\"{})} renvoie le texte {\tt \char`\"{}contenu\char`\"{}} 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc dont les balises entourent la variable de template\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la variable trouvée. S'il n'existe pas de variable définie par des blocs [looptag+][lopptag-], renvoie {\tt null} \end{Desc}
+\index{Template@{Template}!desactiverBloc@{desactiverBloc}}
+\index{desactiverBloc@{desactiverBloc}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::desactiverBloc (\$ {\em looptag})}\label{class_template_945aba01c8d0cd933c0d85076f720357}
+
+
+Désactive un bloc de template. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \end{description}
+\end{Desc}
+
+
+Référencé par activerBloc().\index{Template@{Template}!remplacer@{remplacer}}
+\index{remplacer@{remplacer}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::remplacer (\$ {\em in}, \/  \$ {\em out})}\label{class_template_805dfe1c011cc3f3a8538f9374129cdc}
+
+
+Remplace \char`\"{}simplement\char`\"{} des morceaux de template par d'autres. 
+
+Utilisé pour inclure des variables dans le template qui seront remplacées en PHP, par exemple un appel {\tt remplacer(\char`\"{}\{utilisateur\}\char`\"{}, \$oProjet-$>$oUtilisateur-$>$retPseudo())} remplace toutes les chaînes {\tt \char`\"{}\{utilisateur\}\char`\"{}} trouvées dans le template par le pseudo de l'utilisateur connecté
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em in}]la chaîne de caractère à trouver dans le template \item[{\em out}]la chaîne par laquelle on veut remplacer toutes les occurences de {\tt in} \end{description}
+\end{Desc}
+\index{Template@{Template}!retDonnees@{retDonnees}}
+\index{retDonnees@{retDonnees}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::retDonnees ()}\label{class_template_e490cc905eeab29467b7d46d0e17390a}
+
+
+Retourne le contenu actuel du template, avec les remplacements et autres traitements de blocs éventuels. 
+
+\begin{Desc}
+\item[Renvoie:]le contenu du template après traitements \end{Desc}
+
+
+Référencé par afficher().\index{Template@{Template}!Template@{Template}}
+\index{Template@{Template}!Template@{Template}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Template::Template (\$ {\em v\_\-sTplFichier})}\label{class_template_2d0d3a7d6cc69f06f53e45467c2d95d7}
+
+
+Constructeur. 
+
+Initialise le le template avec le contenu d'un fichier, théoriquement au format HTML
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTplFichier}]le nom du fichier template à charger \end{description}
+\end{Desc}
+
+
+Référencé par ajouterTemplate().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/{\bf template.inc.php}\end{CompactItemize}

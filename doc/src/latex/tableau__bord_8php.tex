@@ -1,0 +1,320 @@
+\section{Référence du fichier src/admin/tableaubord/tableau\_\-bord.php}
+\label{tableau__bord_8php}\index{src/admin/tableaubord/tableau\_\-bord.php@{src/admin/tableaubord/tableau\_\-bord.php}}
+
+
+\subsection{Description détaillée}
+\begin{Desc}
+\item[Date:]2006/11/27\end{Desc}
+\begin{Desc}
+\item[Auteur:]Filippo PORCO \end{Desc}
+
+
+\subsection*{Fonctions}
+\begin{CompactItemize}
+\item 
+\textbf{retTexteModalite} (\$v\_\-sTexteType, \$v\_\-iIdModalite)\label{tableau__bord_8php_6f6f71d52ad2e0533620aa3234c319a2}
+
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$\_\-aiEquipes} = array()\label{tableau__bord_8php_5ed8e9be3df27e959cc9cf402b557de6}
+
+\item 
+\textbf{\$abModalites} [\$iCol] = \$oChat $\rightarrow$ retModalite(TRUE)\label{tableau__bord_8php_dc03c967648afca553106c9f0705d9bb}
+
+\item 
+\textbf{\$abModalites} = array()\label{tableau__bord_8php_748f5c2f20e3a889d857f79e9f11c48e}
+
+\item 
+else \textbf{\$aiIdPers} [$\,$] = \$iIdInscrit\label{tableau__bord_8php_011b12ccc39756c455a1ee74609df5d4}
+
+\item 
+\textbf{\$aiStatutPlusHautRes} = \$oCollecticiel $\rightarrow$ retStatutPlusHautRes(\$aiIdPers)\label{tableau__bord_8php_c8e552938c78391792e2c9c47358bcf5}
+
+\item 
+\textbf{\$amNbMessages} = \$oForum $\rightarrow$ retNbMessages(\$iIdInscrit)\label{tableau__bord_8php_dda8e5359e1b65c2b5ead97deac48641}
+
+\item 
+\textbf{\$aoBlocs}
+\item 
+\textbf{\$aoInscrits} = \&\$oFormation $\rightarrow$ aoInscrits\label{tableau__bord_8php_438e55a165e3380d09d91c3505dfdcc3}
+
+\item 
+\textbf{\$asRechTpl}
+\item 
+\textbf{\$asReplTpl}
+\item 
+\textbf{\$asTplGlobalCommun}
+\item 
+\textbf{\$bAutoCorrection} = false\label{tableau__bord_8php_64aee1c5a9db38afe79eba56dee9a91f}
+
+\item 
+\textbf{\$bChatModalitePourTous} = (\$abModalites[\$iCol] == {\bf MODALITE\_\-INDIVIDUEL})\label{tableau__bord_8php_61995fbbf3e161259c4c507f1d33864a}
+
+\item 
+\textbf{\$bEquipe} = (strlen(\$sNomEquipe) $>$ 0)\label{tableau__bord_8php_fb3cbe8f61757476361977c7194c8083}
+
+\item 
+\textbf{\$bEstEtudiant} = (\$g\_\-iIdStatutUtilisateur == STATUT\_\-PERS\_\-ETUDIANT)\label{tableau__bord_8php_d7da8af0cfb477679c7c4ee39d645252}
+
+\item 
+\textbf{\$bPeutAfficherChats} = (\$url\_\-iIdType == 0 $|$ \$url\_\-iIdType == {\bf LIEN\_\-CHAT})\label{tableau__bord_8php_1fdf5dde0ad1cdedee25e888af5ec3f6}
+
+\item 
+\textbf{\$bPeutAfficherCollecticiels} = (\$url\_\-iIdType == 0 $|$ \$url\_\-iIdType == {\bf LIEN\_\-COLLECTICIEL})\label{tableau__bord_8php_7923ce077d3ce86a52d7824f93c59384}
+
+\item 
+\textbf{\$bPeutAfficherFormulaires} = (\$url\_\-iIdType == 0 $|$ \$url\_\-iIdType == {\bf LIEN\_\-FORMULAIRE})\label{tableau__bord_8php_e8616508bab880436d3f973290c0520b}
+
+\item 
+\textbf{\$bPeutAfficherForums} = (\$url\_\-iIdType == 0 $|$ \$url\_\-iIdType == {\bf LIEN\_\-FORUM})\label{tableau__bord_8php_d2b4187141781ef1fd2baa4ba092526a}
+
+\item 
+\textbf{\$g\_\-bModaliteParEquipe} = ({\bf MODALITE\_\-PAR\_\-EQUIPE} == \$url\_\-iIdModalite)\label{tableau__bord_8php_da761177b2bec00d2b02457a86593c28}
+
+\item 
+\textbf{\$g\_\-iIdStatutUtilisateur} = \$oProjet $\rightarrow$ retStatutUtilisateur()\label{tableau__bord_8php_0ba1c61df13b049d1934212b8b0e609c}
+
+\item 
+\textbf{\$g\_\-iIdUtilisateur} = \$oProjet $\rightarrow$ retIdUtilisateur()\label{tableau__bord_8php_1ebb3e47a5e19f14b29a1a59acc1ca3f}
+
+\item 
+\textbf{\$iCol} = 1\label{tableau__bord_8php_f7defc861bb651b36bedb967e2e33b43}
+
+\item 
+\textbf{\$iIdForm} = \$oIds $\rightarrow$ retIdForm()\label{tableau__bord_8php_10bbbf9a09bd557fee247125095711ff}
+
+\item 
+\textbf{\$iIdMod} = \$oIds $\rightarrow$ retIdMod()\label{tableau__bord_8php_9572be7281db5b7af02ded5a9a47e2b1}
+
+\item 
+\textbf{\$iIdModalite}
+\item 
+\textbf{\$iIdNiveau} = \$oForum $\rightarrow$ retIdNiveau()\label{tableau__bord_8php_53c16b2aa31a765b4f22041ae2dde3ba}
+
+\item 
+\textbf{\$iIdRubr} = \$oRubrique $\rightarrow$ retId()\label{tableau__bord_8php_3abdab7bf509e369e21b6f1668e672eb}
+
+\item 
+\textbf{\$iIdRubrique} = \$oIds $\rightarrow$ retIdRubrique()\label{tableau__bord_8php_7e7c4458a7909f5b5d70084de05a2d8c}
+
+\item 
+\textbf{\$iLigne} = 1\label{tableau__bord_8php_fcbf9ca101fdc3384d3803689d92e4e4}
+
+\item 
+\textbf{\$iModaliteChat}
+\item 
+\textbf{\$iNbConnexions} = \$oEven $\rightarrow$ initEvenements(\$iIdInscrit,\$iIdForm)\label{tableau__bord_8php_7ac24b12bd0d7e2cf151eaf282f806c6}
+
+\item 
+\textbf{\$iStatutPlusHautFormulaire} = \$aiStatutPlusHautFormulaire[0]\label{tableau__bord_8php_92d4b8ea89f93a7fdb8f1607d749599f}
+
+\item 
+\textbf{\$iStatutPlusHautRes} = \$aiStatutPlusHautRes[\char`\"{}StatutResPlusHaut\char`\"{}]\label{tableau__bord_8php_24aae0e27da3a6d4263dd97eef6c88c9}
+
+\item 
+\textbf{\$iTypeNiveau} = \$oForum $\rightarrow$ retTypeNiveau()\label{tableau__bord_8php_9ca83d7d15b877e382bbb453e5459ef0}
+
+\item 
+\textbf{\$oArchives} = new CArchives(\$sRepChatLog)\label{tableau__bord_8php_95ed803d11eebb0ab86f24a284d1e5db}
+
+\item 
+\textbf{\$oBloc} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-PERSONNE\_\-INDICE\char`\"{},\$oBlocTableauBord)\label{tableau__bord_8php_d210a4d2f043e797de79c9d657e75a58}
+
+\item 
+\textbf{\$oBlocBarreOutils} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-BARRE\_\-OUTILS\char`\"{},\$oTpl)\label{tableau__bord_8php_77d79a88a29952705bd65ce7ce0e7686}
+
+\item 
+\textbf{\$oBlocEquipe} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-EQUIPE\char`\"{},\$oBlocTableauBord)\label{tableau__bord_8php_7820f950ae68247a0e345bced4b81ce8}
+
+\item 
+\textbf{\$oBlocRubrique} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-RUBRIQUE\char`\"{},\$oTpl)\label{tableau__bord_8php_b7f595d3192a04822b37aefca1472a4e}
+
+\item 
+\textbf{\$oBlocTableauBord} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-TABLEAU\_\-BORD\char`\"{},\$oBlocRubrique)\label{tableau__bord_8php_4beef6d7d0ed3103654d1d13f4aa087a}
+
+\item 
+\textbf{\$oEquipe} = new {\bf CEquipe}(\$oProjet $\rightarrow$ oBdd)\label{tableau__bord_8php_f794066fd612bb940c5b1e84e9cf8ad9}
+
+\item 
+\textbf{\$oFormation} = new {\bf CFormation}(\$oProjet $\rightarrow$ oBdd,\$iIdForm)\label{tableau__bord_8php_5dbadfcf71ff9339b4bb2320f35a7b04}
+
+\item 
+\textbf{\$oIds} = new CIds(\$oProjet $\rightarrow$ oBdd,\$url\_\-iTypeNiveau,\$url\_\-iIdNiveau)\label{tableau__bord_8php_87e9fcad45d9de21f44bfbb0e94f46cd}
+
+\item 
+\textbf{\$oModule} = new {\bf CModule}(\$oProjet $\rightarrow$ oBdd,\$iIdMod)\label{tableau__bord_8php_659cdbae85c53cc89808c9ff105614ad}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{tableau__bord_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oResSousActiv} = new CRessourceSousActiv(\$oProjet $\rightarrow$ oBdd)\label{tableau__bord_8php_637f8fddd951261188dcd2e48e537f54}
+
+\item 
+\textbf{\$oTpl} = new {\bf Template}(\char`\"{}tableau\_\-bord.tpl\char`\"{})\label{tableau__bord_8php_7de57ba665b7c068e98ea46469be2865}
+
+\item 
+\textbf{\$sBarreOutils} = \$asTplGlobalCommun[\char`\"{}url\_\-envoi\_\-courriel\char`\"{}]\label{tableau__bord_8php_bb6678b10e98640d38f7fd08298f2207}
+
+\item 
+else \textbf{\$sDate} = \char`\"{}-\char`\"{}\label{tableau__bord_8php_75cc78b03d984bdda5402b50fba74ed7}
+
+\item 
+\textbf{\$sNomChat} = \$oChat $\rightarrow$ retNom()\label{tableau__bord_8php_f10fd6e6be3f67069554b2fc9eecc318}
+
+\item 
+\textbf{\$sNomEquipe} = \$oEquipe $\rightarrow$ retNom()\label{tableau__bord_8php_80459fde8b65d00eca874c7dc372daf6}
+
+\item 
+\textbf{\$sNomFichierArchivePrecedent} = NULL\label{tableau__bord_8php_22c5934cb13991f142b3be4a9a767a3e}
+
+\item 
+\textbf{\$sPseudoInscrit} = \$oInscrit $\rightarrow$ retPseudo()\label{tableau__bord_8php_fbc975ac9d6bf189539f16374c5ef0a4}
+
+\item 
+\textbf{\$sRepChatLog} = dir\_\-chat\_\-log(\$oChat $\rightarrow$ oParent $\rightarrow$ retIdParent(),\$iIdForm,NULL,TRUE)\label{tableau__bord_8php_338569e06ec0e348d6a898afc48391c8}
+
+\item 
+\textbf{\$sSetChat} = \$oTpl $\rightarrow$ defVariable(\char`\"{}SET\_\-CHAT\char`\"{})\label{tableau__bord_8php_fc68f585c8b274920e4f877e34d0918a}
+
+\item 
+\textbf{\$sSetCollecticiel} = \$oTpl $\rightarrow$ defVariable(\char`\"{}SET\_\-COLLECTICIEL\char`\"{})\label{tableau__bord_8php_5387bfa4e38b4e58b1ac905534d093ea}
+
+\item 
+\textbf{\$sSetFormulaire} = \$oTpl $\rightarrow$ defVariable(\char`\"{}SET\_\-FORMULAIRE\char`\"{})\label{tableau__bord_8php_613343ddc58380bf7a27f1ecff1e92d3}
+
+\item 
+\textbf{\$sSetForum} = \$oTpl $\rightarrow$ defVariable(\char`\"{}SET\_\-FORUM\char`\"{})\label{tableau__bord_8php_33ea9edf8df0bab645eb8da717e1f9bb}
+
+\item 
+\textbf{\$sStatutPlusHautFormulaire} = \$oResSousActiv $\rightarrow$ retTexteStatut(\$iStatutPlusHautFormulaire)\label{tableau__bord_8php_59220cb41af161ad9df02203e47b4313}
+
+\item 
+\textbf{\$sStatutPlusHautRes}
+\item 
+\textbf{\$url\_\-iIdModalite} = (empty(\$\_\-GET[\char`\"{}idModal\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idModal\char`\"{}])\label{tableau__bord_8php_2edc95399ae9c2596483c664df65e666}
+
+\item 
+\textbf{\$url\_\-iIdNiveau} = (empty(\$\_\-GET[\char`\"{}idNiveau\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idNiveau\char`\"{}])\label{tableau__bord_8php_14f74b59a1171eaf2411d94c3c8bf8dd}
+
+\item 
+\textbf{\$url\_\-iIdType} = (empty(\$\_\-GET[\char`\"{}idType\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}idType\char`\"{}])\label{tableau__bord_8php_7fea7f5b9f2fcee65976df1093b911aa}
+
+\item 
+\textbf{\$url\_\-iTypeNiveau} = (empty(\$\_\-GET[\char`\"{}typeNiveau\char`\"{}]) ? NULL : \$\_\-GET[\char`\"{}typeNiveau\char`\"{}])\label{tableau__bord_8php_526ed781c4213d7b78e267d1eeb0b7e4}
+
+\item 
+else \$oModule \textbf{aoRubriques} = array(new {\bf CModule\_\-Rubrique}(\$oProjet $\rightarrow$ oBdd,\$url\_\-iIdNiveau))\label{tableau__bord_8php_f4e7de5d5b5866afc15c3990db02567d}
+
+\end{CompactItemize}
+
+
+\subsection{Documentation des variables}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$aoBlocs@{\$aoBlocs}}
+\index{\$aoBlocs@{\$aoBlocs}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$aoBlocs}\label{tableau__bord_8php_ed9ce5a81158e9ca9f751483dc1354aa}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} array(
+        "nom" => new TPL_Block("BLOCK_COLLECTICIEL_NOM",$oBlocRubrique)
+        , "modalite" => new TPL_Block("BLOCK_COLLECTICIEL_MODALITE",$oBlocRubrique)
+    )
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$asRechTpl@{\$asRechTpl}}
+\index{\$asRechTpl@{\$asRechTpl}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$asRechTpl}\label{tableau__bord_8php_bd07968245fb1e375199f35ae8ed642b}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} array(
+    "[TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE]"
+    , "[TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE]"
+    , "[TXT_ETUDIANTS_INSCRITS_AU_COURS]"
+    , "[TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE]"
+    , "[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL]"
+    , "[TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE]"
+    , "[TLT_FORUM_NOMBRE_MESSAGES_FORUM]"
+    // {{{ Termes globaux
+    , "[TLT_ENVOYER_COURRIEL]"
+    // }}}
+)
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$asReplTpl@{\$asReplTpl}}
+\index{\$asReplTpl@{\$asReplTpl}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$asReplTpl}\label{tableau__bord_8php_64ffb4601c629c09cca5f34df46ac39d}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} array(
+    emb_htmlentities(TXT_AUCUNE_EQUIPE_TROUVEE_DANS_CETTE_UNITE)
+    , emb_htmlentities(TXT_AUCUN_INSCRIT_DANS_CETTE_UNITE)
+    , emb_htmlentities(TXT_ETUDIANTS_INSCRITS_AU_COURS)
+    , emb_htmlentities(TLT_CHAT_NOMBRE_MESSAGES_ARCHIVE)
+    , emb_htmlentities(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_COLLECTICIEL)
+    , emb_htmlentities(TLT_CLIQUER_ICI_POUR_ACCEDER_AU_FORMULAIRE)
+    , emb_htmlentities(TLT_FORUM_NOMBRE_MESSAGES_FORUM)
+    // {{{ Termes globaux
+    , emb_htmlentities(TLT_ENVOYER_COURRIEL)
+    // }}}
+)
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$asTplGlobalCommun@{\$asTplGlobalCommun}}
+\index{\$asTplGlobalCommun@{\$asTplGlobalCommun}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$asTplGlobalCommun}\label{tableau__bord_8php_5397d2056f6d0551fd87e3cb2b918a30}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} array(
+    "url_archives" => $oTpl->defVariable("SET_URL_CHAT_ARCHIVES")
+    , "url_envoi_courriel" => $oTpl->defVariable("SET_URL_ENVOI_COURRIEL")
+    , "url_forum" => $oTpl->defVariable("SET_URL_FORUM")
+)
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$iIdModalite@{\$iIdModalite}}
+\index{\$iIdModalite@{\$iIdModalite}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$iIdModalite}\label{tableau__bord_8php_8ffd5d58fcf7816f84524b458f8adb5d}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} (isset($url_iIdModalite)
+        ? ($g_bModaliteParEquipe ? array(MODALITE_PAR_EQUIPE, MODALITE_PAR_EQUIPE_INTERCONNECTEE, MODALITE_PAR_EQUIPE_COLLABORANTE) : MODALITE_POUR_TOUS)
+        : NULL)
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$iModaliteChat@{\$iModaliteChat}}
+\index{\$iModaliteChat@{\$iModaliteChat}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$iModaliteChat}\label{tableau__bord_8php_a65aa6851049308964e691986bd335a1}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} (isset($url_iIdModalite)
+        ? ($g_bModaliteParEquipe ? 1 : 0)
+        : NULL)
+\end{verbatim}
+\end{Code}
+\index{tableau\_\-bord.php@{tableau\_\-bord.php}!\$sStatutPlusHautRes@{\$sStatutPlusHautRes}}
+\index{\$sStatutPlusHautRes@{\$sStatutPlusHautRes}!tableau_bord.php@{tableau\_\-bord.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\$sStatutPlusHautRes}\label{tableau__bord_8php_1e744ba9d955763114be9335ae6143ed}
+
+
+\textbf{Valeur initiale :}
+
+\begin{Code}\begin{verbatim} $oResSousActiv->retTexteStatut($iStatutPlusHautRes)
+                    .($iStatutPlusHautRes > STATUT_RES_EN_COURS && $aiStatutPlusHautRes["StatutResPlusHautNb"] > 1
+                        ? "&nbsp;(".$aiStatutPlusHautRes["StatutResPlusHautNb"].")"
+                        : NULL)
+\end{verbatim}
+\end{Code}

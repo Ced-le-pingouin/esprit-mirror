@@ -1,0 +1,159 @@
+FAQ des listes esprit-admin et esprit-users
+===========================================
+$Id: faq-esprit.txt 333 2007-01-29 15:57:47Z g_allegre $
+
+
+A. Installation (liste esprit-admin)
+======================================
+
+1. Où trouver la dernière version installable d'Esprit ?
+
+R : le référentiel de développement d'Esprit est hébergé par la plateforme 
+SourceSup du CRU (Comité Réseau des Universités). La page d'accueil du projet 
+est http://sourcesup.cru.fr/projects/esprit/.
+La dernière version diffusée est disponible dans l'onglet Files, 
+ou directement à l'URL :
+http://sourcesup.cru.fr/frs/?group_id=204
+
+
+2. Où trouver la version en développement de la plate-forme ?
+
+R : dans le référentiel Subversion (SVN) du projet. Pour la télécharger,
+il faut avoir un client subversion. La ligne de commande est :
+  svn checkout svn://subversion.cru.fr:/esprit dossier_local
+ou
+  svn checkout https://subversion.cru.fr:/esprit dossier_local
+
+
+3. Comment installer les modules Awareness et Chat ?
+
+Techniquement, ces deux modules sont écrits en Java, et fonctionnent en mode
+client/serveur, indépendamment du Web.
+Cela veut dire qu'ils nécessitent la présence d'une machine virtuelle Java 
+à la fois sur le serveur et sur la machine de chaque utilisateur désirant 
+avoir accès à ces fonctions. De plus, le navigateur web doit être configuré
+pour exécuter les applets Java.
+Les applets (clients) de ces modules se trouvent dans les dossiers suivants :
+ - src/sousactiv/chat/client
+ - src/admin/awareness/client
+
+Quant aux sources java, aussi bien des clients que des serveurs, elles se 
+trouvent dans un dossier /java à la racine du projet.
+Dans les sources de chaque module en java, il existe un Makefile permettant de 
+compiler automatiquement les fichiers nécessaires, grâce à la commande "make".
+Notez que les modules en Java ont été développés à l'origine en Java 1.1, c'est
+pourquoi une option "-target 1.1" est utilisée lors de la compilation, et une 
+option "-source 1.2" est utilisée pour éviter une erreur avec les JDK récentes. 
+Des avertissements concernant l'utilisation d'API obsolètes peuvent également 
+apparaître à la compilation.
+Si vous recompilez les modules en Java, étant donné qu'ils sont parfois 
+interdépendants, il vaut mieux les recompiler dans cet ordre :
+  (1) serveur Awareness
+  (2) client Awareness (celui-ci dépend du (1))
+  (3) serveur Chat
+  (4) client Chat (celui-ci dépend du (2))
+
+Après compilation, dans le cas des applets/clients, vous pouvez installer les 
+classes Java à l'endroit approprié à l'aide de la commande "make install".
+Les classes compilées des serveurs peuvent rester à leur emplacement initial.
+
+Les deux applis serveurs doivent être lancées par les commandes 
+"java AwarenessServer 2501" et "java DeltaChat 2555", ou par les scripts de 
+type "daemon", nommés AwarenessServer et DeltaChatServer, présents dans le 
+dossier de chaque serveur, et permettant également d'arrêter les serveurs.
+Les numéros indiqués sont les ports TCP/IP utilisés. Ils doivent être 
+ouverts sur le serveur.
+Dans la DB d'esprit, dans la table Projet, on peut modifier les ports
+vers lesquels les applets tenteront de se connecter (les serveurs
+doivent tourner sur le même serveur que les pages clientes).
+
+Pour exploiter les archives du chat, il faut paramétrer une option du
+serveur : dans le fichier deltachat.properties, définir la variable
+DOCUMENT_ROOT =
+(en indiquant le répertoire père de esprit/ )
+(!!! Sous Windows, il faut doubler les backslashes dans le chemin indiqué)
+
+Attention, pour l'enregistrement des archives du chat, il faut que le service
+DeltaChat soit lancé par le même utilisateur qu'Apache (www-data sous Debian).
+
+NOTE : les scripts de "make" et de lancement des serveurs sont rédigés pour 
+       un système GNU/Linux avec shell bash, mais ils ont été testés avec 
+	   succès sous Windows en utilisant le sous-système Cygwin 
+	   (http://www.cygwin.com/).
+
+
+
+B. Administration (liste esprit-admin)
+======================================
+
+1. Comment attribuer le rôle de responsable de plate-forme à 
+plusieurs personnes ?
+
+R : Cela se fait par le menu Outils > Permissions, puis l'onglet "Admin".
+Évidemment, c'est accessible uniquement à l'administrateur en titre.
+
+
+2. Comment importer une liste de personnes à inscrire ?
+
+R : Pour l'administrateur, c'est possible à partir du menu standard :
+Outils > Inscription.
+La fenêtre pop-up "Inscription" comporte un lien "importer une liste" 
+qui ouvre une nouvelle fenêtre "Importation d'utilisateurs".
+L'administrateur peut télécharger un canevas au format xls, csv ou ods.
+
+
+3. Dans le plan d'une formation, les noms des différents niveaux 
+ne correspondent pas aux noms des tables. Comment s'y retrouver ?
+
+R : Comme d'habitude, ce sont des raisons historiques qui expliquent cette 
+particularité. Dans les évolutions d'Esprit, les noms des niveaux du plan ont
+évolué, mais les noms utilisés dans le code (fichiers, fonctions...) et les 
+tables se réfèrent toujours à l'ancien nommage. 
+Voici une table de correspondance :
+
+Niv   Interface web     Base de Données
+---------------------------------------
+ 1.   Formation         Formation
+ 2.   Cours             Module
+ 3.   Unité             Module_Rubrique
+ 4.   Groupe d'actions  Activ
+ 5.   Action            SousActiv
+
+
+
+C. Utilisation (liste esprit-users)
+===================================
+
+1. Comment déposer une archive de documents structurés en liens de telle
+façon que le fichier index soit bien proposé à l'affichage par Esprit 
+(pour HotPotatoes par exemple) ?
+
+R : Actuellement, il faut envoyer un fichier d'archives compressé (.zip) qui 
+contienne le fichier index *à la racine de l'archive obligatoirement*.
+Le résultat dépend de la manière de créer le fichier zippé. 
+Sous Windows, avec certains programmes, si on clique-droit sur un dossier pour 
+demander de créer un zip, le zip contiendra à sa racine uniquement un dossier
+du même nom, et les fichiers seront dans ce dernier. 
+La plupart du temps, la méthode pour zipper des fichiers en s'assurant
+qu'ils se trouvent directement à la racine d'un zip est la suivante : il
+faut se rendre *dans* le dossier qui contient les fichiers (ou sous-dossiers)
+à zipper, les sélectionner tous (Ctrl-A sous Windows), cliquer droit, et 
+demander de zipper les fichiers/dossiers sélectionnés. Cela créera un fichier 
+zippé où les fichiers/dossiers se trouvent directement à la racine du zip 
+(et qui seront dézippés tels quels dans Esprit).
+Dans le futur, cette limitation devrait être supprimée : voir 
+la demande de fonctionnalité n°915 dans Sourcesup/Esprit.
+http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=915&group_id=204&atid=909
+
+
+2. Comment fait-on le ménage dans ces documents ?
+(comment les supprimer du serveur, les déplacer pour les remonter à la
+racine par ex) ?
+
+R : Malheureusement, il n'y a pas d'autre moyen pour le moment que de le
+faire directement dans le système de fichiers du serveur.
+Dans le futur, il sera possible de le faire par l'interface web : voir 
+la demande de fonctionnalité n°916 dans Sourcesup/Esprit.
+http://sourcesup.cru.fr/tracker/index.php?func=detail&aid=916&group_id=204&atid=909
+
+

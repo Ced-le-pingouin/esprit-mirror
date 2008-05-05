@@ -1,0 +1,708 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CTraverseurScorm</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CTraverseurScorm</h1><!-- doxytag: class="CTraverseurScorm" --><!-- doxytag: inherits="CTraverseur" --><div class="dynheader">
+Graphe d'héritage de CTraverseurScorm:</div>
+<div class="dynsection">
+
+<p><center><img src="class_c_traverseur_scorm.png" usemap="#CTraverseurScorm_map" border="0" alt=""></center>
+<map name="CTraverseurScorm_map">
+<area href="class_c_traverseur.html" alt="CTraverseur" shape="rect" coords="0,0,120,24">
+</map>
+</div>
+
+<p>
+<a href="class_c_traverseur_scorm-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000016">À faire:</a></b></dt><dd>Liste:<ul>
+<li>problème d'encodage des caractères dans les noms des fichiers ? (accents)</li><li>réussir la validation dans divers outils: . les élément "item" non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais pas l'ADL Test Suite) =&gt; utiliser des description LOM, ou créer un item "enfant" initial qui contient la description ou l'interactivité ? . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI</li><li>gérer l'effacement du paquet créé en tmp (en différé ?)</li></ul>
+</dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#61f58b8e68de51013ffcd6fb84d07455">_cbExporterFichierRessource</a> ($v_oFichierSrc, $v_oFichierDest, $v_bCopieReussie)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Intègre un fichier à un ensemble de ressources exportées (balise "file" en SCORM).  <a href="#61f58b8e68de51013ffcd6fb84d07455"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="32af19446c59cd119804d4184b267230"></a><!-- doxytag: member="CTraverseurScorm::_creerFichierHtml" ref="32af19446c59cd119804d4184b267230" args="($v_sCheminFichier, $v_sTitre, $v_sContenuBody)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>_creerFichierHtml</b> ($v_sCheminFichier, $v_sTitre, $v_sContenuBody)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#795933b28939f301c4ea349030b77716">_creerFichierPif</a> ($v_sNomFichier)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le fichier PIF (=PKZIP) contenant le paquet.  <a href="#795933b28939f301c4ea349030b77716"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#406891e32a6bd8c3bda2900ab63676b4">_declarerRessourceExportee</a> ($v_sNomRes, &amp;$v_oElementXmlRessource)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Déclare une ressource ou en ensemble de ressources comme exporté(e).  <a href="#406891e32a6bd8c3bda2900ab63676b4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#5c39b960acbaa4980ea40079a627e62c">_exporterRessources</a> ($v_iNiveau, &amp;$v_oElementPhp, &amp;$v_oElementXml)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prend en charge l'exportation de toutes les ressources d'un niveau de formation.  <a href="#5c39b960acbaa4980ea40079a627e62c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#7c3a0b75efa6cf04282e30caf4c65bc3">_ressourceDejaExportee</a> ($v_sNomRes)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indique si une ressource ou un ensemble de ressources a déjà été exporté(e) (décrit en xml).  <a href="#7c3a0b75efa6cf04282e30caf4c65bc3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#76239b789fc2befd2d77a1162959bd28">debutActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le début de l'élément xml "item" correspondant à une activité.  <a href="#76239b789fc2befd2d77a1162959bd28"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#65e58304313abc5abf1a97261f293276">debutFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le début de l'élément xml "item" correspondant à une formation.  <a href="#65e58304313abc5abf1a97261f293276"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#47cdb89f4be86236b0de7559e2412673">debutModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le début de l'élément xml "item" correspondant à un module.  <a href="#47cdb89f4be86236b0de7559e2412673"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#ccafcc6ef8793794692f2263711b8142">debutRubrique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le début de l'élément xml "item" correspondant à une rubrique.  <a href="#ccafcc6ef8793794692f2263711b8142"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#f013f865163ba8bb6a0ddfe88933abba">debutSousActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le début de l'élément xml "item" correspondant à une sous-activité.  <a href="#f013f865163ba8bb6a0ddfe88933abba"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#fe1ed540dea8da7e535ffdb358ac4bd6">debutTraitement</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée les noeuds xml présents au début du manifest (jusqu'à organization, sans les items).  <a href="#fe1ed540dea8da7e535ffdb358ac4bd6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#aeab324bca7f7ccd28ec8565e2a213ed">defElementCourant</a> (&amp;$v_poElementCourant)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité.  <a href="#aeab324bca7f7ccd28ec8565e2a213ed"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#b71cd260666b0e047e0438129f850270">defElementParent</a> (&amp;$v_poElementEnfant, &amp;$v_poElementParent)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir rattacher par la suite l'enfant à l'élément correct.  <a href="#b71cd260666b0e047e0438129f850270"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#e412332bfd9419fd3bc30eb6feefa920">effacerPaquetScorm</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface du système de fichiers le dossier temporaire utilisé pour la création du paquet SCORM, et tout son contenu.  <a href="#e412332bfd9419fd3bc30eb6feefa920"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6004282218fd05498299e4e7f1ecf02b"></a><!-- doxytag: member="CTraverseurScorm::enregistrerPaquetScorm" ref="6004282218fd05498299e4e7f1ecf02b" args="($v_sNomFichier= 'esprit-scorm.zip')" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#6004282218fd05498299e4e7f1ecf02b">enregistrerPaquetScorm</a> ($v_sNomFichier= 'esprit-scorm.zip')</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Crée le paquet SCORM correspondant aux éléments de formations traversés. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6f44344d1fd48556f7bf7099da6f5163"></a><!-- doxytag: member="CTraverseurScorm::envoyerPaquetScorm" ref="6f44344d1fd48556f7bf7099da6f5163" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#6f44344d1fd48556f7bf7099da6f5163">envoyerPaquetScorm</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">envoie le paquet en téléchargement à l'utilisateur <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1ce44ac3796765c23dff57ee71fa6b91"></a><!-- doxytag: member="CTraverseurScorm::finActiv" ref="1ce44ac3796765c23dff57ee71fa6b91" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#1ce44ac3796765c23dff57ee71fa6b91">finActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache le noeud xml "item" correspondant à une activité, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b06a1531807ea26cd3887ef31efb630f"></a><!-- doxytag: member="CTraverseurScorm::finFormation" ref="b06a1531807ea26cd3887ef31efb630f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#b06a1531807ea26cd3887ef31efb630f">finFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache le noeud xml "item" correspondant à une formation, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="51df05419fae5b35b2e774ba289f6fc8"></a><!-- doxytag: member="CTraverseurScorm::finModule" ref="51df05419fae5b35b2e774ba289f6fc8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#51df05419fae5b35b2e774ba289f6fc8">finModule</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache le noeud xml "item" correspondant à un module, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fe6be70ad9e7c297fa86647490a1e9c8"></a><!-- doxytag: member="CTraverseurScorm::finRubrique" ref="fe6be70ad9e7c297fa86647490a1e9c8" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#fe6be70ad9e7c297fa86647490a1e9c8">finRubrique</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache le noeud xml "item" correspondant à une rubrique, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ebc3103e55b8c089d06243b3c39ffe08"></a><!-- doxytag: member="CTraverseurScorm::finSousActiv" ref="ebc3103e55b8c089d06243b3c39ffe08" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#ebc3103e55b8c089d06243b3c39ffe08">finSousActiv</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache le noeud xml "item" correspondant à une sous-activité, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#1a3879af5a2f51b93219bea8cbf03a63">finTraitement</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Rattache les noeuds xml les plus extérieurs (ceux qui ne sont pas des "item") à la racine du fichier manifest.  <a href="#1a3879af5a2f51b93219bea8cbf03a63"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#d30c51e02a49b66f95a46237d9824ab7">retContenuManifest</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le contenu généré pour la création du fichier imsmanifest.xml.  <a href="#d30c51e02a49b66f95a46237d9824ab7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#124885caf4a2aad72bcb284afa57ff57">retElementCourant</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la référence à l'item (noeud xml du manifest) actuellement traité.  <a href="#124885caf4a2aad72bcb284afa57ff57"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b2e7f9dd87aa7c2dadad701a96153530"></a><!-- doxytag: member="CTraverseurScorm::$asRes" ref="b2e7f9dd87aa7c2dadad701a96153530" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#b2e7f9dd87aa7c2dadad701a96153530">$asRes</a> = array()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="06d5be943f7b12f23091b99840b405d4"></a><!-- doxytag: member="CTraverseurScorm::$oDocXml" ref="06d5be943f7b12f23091b99840b405d4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#06d5be943f7b12f23091b99840b405d4">$oDocXml</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet interne qui représente le document xml du manifest. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="59ab8c9cc48465dde08aec8b9736562b"></a><!-- doxytag: member="CTraverseurScorm::$oDossierPaquet" ref="59ab8c9cc48465dde08aec8b9736562b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#59ab8c9cc48465dde08aec8b9736562b">$oDossierPaquet</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente le chemin de la racine du paquet créé. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="23836e35fd3594258d4baeaad8ee48fa"></a><!-- doxytag: member="CTraverseurScorm::$oDossierRessources" ref="23836e35fd3594258d4baeaad8ee48fa" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#23836e35fd3594258d4baeaad8ee48fa">$oDossierRessources</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente le chemin du dossier où seront placées les ressources du paquet SCORM. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="58697547b746fb8f6703d15b8a8c9979"></a><!-- doxytag: member="CTraverseurScorm::$poElementParent" ref="58697547b746fb8f6703d15b8a8c9979" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#58697547b746fb8f6703d15b8a8c9979">$poElementParent</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Référence à l'objet "noeud xml" parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="42a387671bd84e03d83accce352709a1"></a><!-- doxytag: member="CTraverseurScorm::$sEncodage" ref="42a387671bd84e03d83accce352709a1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#42a387671bd84e03d83accce352709a1">$sEncodage</a> = 'UTF-8'</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Encodage utilisé pour le fichier imsmanifest.xml (pas modifiable pour l'instant). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0109ecd5918f6f3039dc40c603565b4d"></a><!-- doxytag: member="CTraverseurScorm::$sNomFichierPif" ref="0109ecd5918f6f3039dc40c603565b4d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#0109ecd5918f6f3039dc40c603565b4d">$sNomFichierPif</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nom du fichier PIF (PKZIP) qui a été créé pour contenir le paquet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ab46d0f637ac72c67db8d3f2f1930c4a"></a><!-- doxytag: member="CTraverseurScorm::$sSeparateurOrigine" ref="ab46d0f637ac72c67db8d3f2f1930c4a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#ab46d0f637ac72c67db8d3f2f1930c4a">$sSeparateurOrigine</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pour sauvegarder le séparateur de chemins initial (pour les noms de fichiers/dossier). <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2d6e64f4b46350dfcdd0833af30b12d4"></a><!-- doxytag: member="CTraverseurScorm::$oElementActiv" ref="2d6e64f4b46350dfcdd0833af30b12d4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementActiv</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a76f146e37a8af696333e9a42936922b"></a><!-- doxytag: member="CTraverseurScorm::$oElementFormation" ref="a76f146e37a8af696333e9a42936922b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementFormation</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3749089dc94464b546bbac3334d9db1c"></a><!-- doxytag: member="CTraverseurScorm::$oElementManifest" ref="3749089dc94464b546bbac3334d9db1c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_traverseur_scorm.html#3749089dc94464b546bbac3334d9db1c">$oElementManifest</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objets internes qui contiendront les noeuds xml nécessaires pendant la création du manifest. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="51f211ecce5435734bb45734d576e6b9"></a><!-- doxytag: member="CTraverseurScorm::$oElementModule" ref="51f211ecce5435734bb45734d576e6b9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementModule</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="284c01d1719b211aa829c6dc86c4d62a"></a><!-- doxytag: member="CTraverseurScorm::$oElementOrg" ref="284c01d1719b211aa829c6dc86c4d62a" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementOrg</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5c609e65abe27206459ae7b6b4a04fc6"></a><!-- doxytag: member="CTraverseurScorm::$oElementOrgs" ref="5c609e65abe27206459ae7b6b4a04fc6" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementOrgs</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7473fd4397a6017d57e42d4b37518672"></a><!-- doxytag: member="CTraverseurScorm::$oElementRessource" ref="7473fd4397a6017d57e42d4b37518672" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementRessource</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3c6e04d5a790191b291e09990e97e0c4"></a><!-- doxytag: member="CTraverseurScorm::$oElementRessources" ref="3c6e04d5a790191b291e09990e97e0c4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementRessources</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="82632a525ed8e0a73f394806abed961f"></a><!-- doxytag: member="CTraverseurScorm::$oElementRubrique" ref="82632a525ed8e0a73f394806abed961f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementRubrique</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e822510b7bca27f8f9ff618bad0eed93"></a><!-- doxytag: member="CTraverseurScorm::$oElementSousActiv" ref="e822510b7bca27f8f9ff618bad0eed93" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oElementSousActiv</b></td></tr>
+
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="61f58b8e68de51013ffcd6fb84d07455"></a><!-- doxytag: member="CTraverseurScorm::_cbExporterFichierRessource" ref="61f58b8e68de51013ffcd6fb84d07455" args="($v_oFichierSrc, $v_oFichierDest, $v_bCopieReussie)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::_cbExporterFichierRessource           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oFichierSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_oFichierDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bCopieReussie</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Intègre un fichier à un ensemble de ressources exportées (balise "file" en SCORM). 
+<p>
+Cette fonction est appelée en callback par un objet <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> chargé de copier les fichiers d'un élément de formation<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>l'objet</em>&nbsp;</td><td><a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente le fichier source qui est exporté (il se trouve dans les rubriques ou sous-activités) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>l'objet</em>&nbsp;</td><td><a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> qui représente le fichier copié, dans son emplacement final au sein du paquet SCORM créé dans un dossier temporaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>si</em>&nbsp;</td><td><code>true</code>, la copie du fichier s'est bien déroulée (ce paramètre est requis pour les fonctions callback de <a class="el" href="class_fichier_info.html" title="Classe d&#39;information sur les fichiers/dossiers du système de fichier: interrogations...">FichierInfo</a> dans le cadre des copies) </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="795933b28939f301c4ea349030b77716"></a><!-- doxytag: member="CTraverseurScorm::_creerFichierPif" ref="795933b28939f301c4ea349030b77716" args="($v_sNomFichier)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::_creerFichierPif           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomFichier</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le fichier PIF (=PKZIP) contenant le paquet. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomFichier</em>&nbsp;</td><td>le nom du fichier PIF à créer </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="_erreur_8php-source.html#l00116">Erreur::provoquer()</a>.</p>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00389">enregistrerPaquetScorm()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="406891e32a6bd8c3bda2900ab63676b4"></a><!-- doxytag: member="CTraverseurScorm::_declarerRessourceExportee" ref="406891e32a6bd8c3bda2900ab63676b4" args="($v_sNomRes, &amp;$v_oElementXmlRessource)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::_declarerRessourceExportee           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomRes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oElementXmlRessource</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Déclare une ressource ou en ensemble de ressources comme exporté(e). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomRes</em>&nbsp;</td><td>l'identificateur de la ressource exportée </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_oElementXmlRessource</em>&nbsp;</td><td>l'objet xml qui représente cette ressource en SCORM </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5c39b960acbaa4980ea40079a627e62c"></a><!-- doxytag: member="CTraverseurScorm::_exporterRessources" ref="5c39b960acbaa4980ea40079a627e62c" args="($v_iNiveau, &amp;$v_oElementPhp, &amp;$v_oElementXml)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::_exporterRessources           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oElementPhp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oElementXml</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Prend en charge l'exportation de toutes les ressources d'un niveau de formation. 
+<p>
+Cela implique la copie des fichiers dans le paquet SCORM en création, l'écriture des balises correspondantes, la transformation de ressources au format Esprit vers un format lisible et utilisable dans un paquet SCORM, etc<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNiveau</em>&nbsp;</td><td>le niveau pour lequel s'effectue l'exportation de ressources (rubrique, (sous-)activité, etc) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_oElementPhp</em>&nbsp;</td><td>l'objet qui représente l'élément de formation en terme de classes Esprit, càd <a class="el" href="class_c_formation.html" title="Gestion des formations, et encapsulation de la table Formation de la DB.">CFormation</a>, <a class="el" href="class_c_module.html" title="Gestion des modules, et encapsulation de la table Module de la DB.">CModule</a>, etc </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_oElementXml</em>&nbsp;</td><td>l'objet qui représente l'élément de formation sous sa forme *exportée*, càd dire en DOM XML </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00745">_declarerRessourceExportee()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00757">_ressourceDejaExportee()</a>.</p>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00317">debutActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00224">debutFormation()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00255">debutModule()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00286">debutRubrique()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00348">debutSousActiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7c3a0b75efa6cf04282e30caf4c65bc3"></a><!-- doxytag: member="CTraverseurScorm::_ressourceDejaExportee" ref="7c3a0b75efa6cf04282e30caf4c65bc3" args="($v_sNomRes)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::_ressourceDejaExportee           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomRes</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Indique si une ressource ou un ensemble de ressources a déjà été exporté(e) (décrit en xml). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomRes</em>&nbsp;</td><td>l'identificateur de la ressource à vérifier</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si cette (ces) ressource(s) a (ont) déjà été exportée(s), <code>false</code> sinon </dd></dl>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="76239b789fc2befd2d77a1162959bd28"></a><!-- doxytag: member="CTraverseurScorm::debutActiv" ref="76239b789fc2befd2d77a1162959bd28" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutActiv           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le début de l'élément xml "item" correspondant à une activité. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00111">defElementParent()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00099">retElementCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="65e58304313abc5abf1a97261f293276"></a><!-- doxytag: member="CTraverseurScorm::debutFormation" ref="65e58304313abc5abf1a97261f293276" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutFormation           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le début de l'élément xml "item" correspondant à une formation. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00111">defElementParent()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00099">retElementCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="47cdb89f4be86236b0de7559e2412673"></a><!-- doxytag: member="CTraverseurScorm::debutModule" ref="47cdb89f4be86236b0de7559e2412673" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutModule           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le début de l'élément xml "item" correspondant à un module. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00111">defElementParent()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00099">retElementCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ccafcc6ef8793794692f2263711b8142"></a><!-- doxytag: member="CTraverseurScorm::debutRubrique" ref="ccafcc6ef8793794692f2263711b8142" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutRubrique           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le début de l'élément xml "item" correspondant à une rubrique. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00111">defElementParent()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00099">retElementCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="f013f865163ba8bb6a0ddfe88933abba"></a><!-- doxytag: member="CTraverseurScorm::debutSousActiv" ref="f013f865163ba8bb6a0ddfe88933abba" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutSousActiv           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée le début de l'élément xml "item" correspondant à une sous-activité. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00466">_exporterRessources()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00111">defElementParent()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00099">retElementCourant()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="fe1ed540dea8da7e535ffdb358ac4bd6"></a><!-- doxytag: member="CTraverseurScorm::debutTraitement" ref="fe1ed540dea8da7e535ffdb358ac4bd6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::debutTraitement           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Crée les noeuds xml présents au début du manifest (jusqu'à organization, sans les items). 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="traverseur__scorm_8class_8php-source.html#l00089">defElementCourant()</a>, et <a class="el" href="_fichier_info_8php-source.html#l00258">FichierInfo::separateurParDefaut()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="aeab324bca7f7ccd28ec8565e2a213ed"></a><!-- doxytag: member="CTraverseurScorm::defElementCourant" ref="aeab324bca7f7ccd28ec8565e2a213ed" args="(&amp;$v_poElementCourant)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::defElementCourant           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_poElementCourant</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_poElementCourant</em>&nbsp;</td><td>l'objet "noeud XML" à sauvegarder (référence) </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00317">debutActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00224">debutFormation()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00255">debutModule()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00286">debutRubrique()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00348">debutSousActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00120">debutTraitement()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00337">finActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00244">finFormation()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00275">finModule()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00306">finRubrique()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00368">finSousActiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b71cd260666b0e047e0438129f850270"></a><!-- doxytag: member="CTraverseurScorm::defElementParent" ref="b71cd260666b0e047e0438129f850270" args="(&amp;$v_poElementEnfant, &amp;$v_poElementParent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::defElementParent           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_poElementEnfant</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_poElementParent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir rattacher par la suite l'enfant à l'élément correct. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_poElementEnfant</em>&nbsp;</td><td>l'élément enfant dans lequel on va sauvegarder la référence au parent (référence) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_poElementParent</em>&nbsp;</td><td>l'élément parent (référence) </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00317">debutActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00224">debutFormation()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00255">debutModule()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00286">debutRubrique()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00348">debutSousActiv()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e412332bfd9419fd3bc30eb6feefa920"></a><!-- doxytag: member="CTraverseurScorm::effacerPaquetScorm" ref="e412332bfd9419fd3bc30eb6feefa920" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::effacerPaquetScorm           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface du système de fichiers le dossier temporaire utilisé pour la création du paquet SCORM, et tout son contenu. 
+<p>
+<dl class="warning" compact><dt><b>Avertissement:</b></dt><dd>Cette fonction est donc à appeler uniquement lorsqu'on a récupéré le paquet et qu'on est certain de ne plus en avoir besoin </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="1a3879af5a2f51b93219bea8cbf03a63"></a><!-- doxytag: member="CTraverseurScorm::finTraitement" ref="1a3879af5a2f51b93219bea8cbf03a63" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::finTraitement           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Rattache les noeuds xml les plus extérieurs (ceux qui ne sont pas des "item") à la racine du fichier manifest. 
+<p>
+Cette fonction est appelée en interne uniquement 
+<p>Réimplémentée à partir de <a class="el" href="class_c_traverseur.html">CTraverseur</a>.</p>
+
+<p>Références <a class="el" href="_fichier_info_8php-source.html#l00258">FichierInfo::separateurParDefaut()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d30c51e02a49b66f95a46237d9824ab7"></a><!-- doxytag: member="CTraverseurScorm::retContenuManifest" ref="d30c51e02a49b66f95a46237d9824ab7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CTraverseurScorm::retContenuManifest           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le contenu généré pour la création du fichier imsmanifest.xml. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la chaîne de texte générée pendant la traversée des (éléments de) formations, et qui constituera le contenu du fichier imsmanifest.xml créé pour le paquet SCORM </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="124885caf4a2aad72bcb284afa57ff57"></a><!-- doxytag: member="CTraverseurScorm::retElementCourant" ref="124885caf4a2aad72bcb284afa57ff57" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">&amp; CTraverseurScorm::retElementCourant           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la référence à l'item (noeud xml du manifest) actuellement traité. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'objet (noeud xml) actuellement traité dans la traversée </dd></dl>
+
+<p>Référencé par <a class="el" href="traverseur__scorm_8class_8php-source.html#l00317">debutActiv()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00224">debutFormation()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00255">debutModule()</a>, <a class="el" href="traverseur__scorm_8class_8php-source.html#l00286">debutRubrique()</a>, et <a class="el" href="traverseur__scorm_8class_8php-source.html#l00348">debutSousActiv()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/traverseurs/<a class="el" href="traverseur__scorm_8class_8php.html">traverseur_scorm.class.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

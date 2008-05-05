@@ -1,0 +1,761 @@
+\section{Référence de la classe CModule}
+\label{class_c_module}\index{CModule@{CModule}}
+
+
+\subsection{Description détaillée}
+Gestion des modules, et encapsulation de la table Module de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\$v\_\-iIdForm=NULL, \$v\_\-iIdPers=0)
+\begin{CompactList}\small\item\em Ajoute un nouveau module à la formation. \item\end{CompactList}\item 
+{\bf ajouterChat} ()
+\begin{CompactList}\small\item\em Ajoute un chat au module. \item\end{CompactList}\item 
+{\bf associerConcepteur} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Inscrit la personne en tant que concepteur de ce module. \item\end{CompactList}\item 
+{\bf CModule} (\&\$v\_\-oBdd, \$v\_\-iIdMod=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iIdForm, \$v\_\-bRecursive=TRUE, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie le module courant vers une formation spécifique. \item\end{CompactList}\item 
+{\bf copierAvecNumOrdre} (\$v\_\-iIdDest, \$v\_\-iNumOrdre=0)
+\begin{CompactList}\small\item\em Copie le module courant vers une formation, en indiquant un n° d'ordre pour la copie du module. \item\end{CompactList}\item 
+{\bf copierModule} (\$v\_\-iIdForm, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Insère une copie d'un module dans la DB. \item\end{CompactList}\item 
+{\bf copierRubriques} (\$v\_\-iIdMod, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie les rubriques du module courant dans un autre. \item\end{CompactList}\item 
+{\bf defId} (\$v\_\-iId, \$v\_\-bInit=TRUE)
+\begin{CompactList}\small\item\em Définit l'id du module et initialise l'objet(optionnel). \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_module_74d17378e07ee961937992ef822538c8}
+
+\begin{CompactList}\small\item\em Efface la totalité d'un module. \item\end{CompactList}\item 
+{\bf effacerChats} ()\label{class_c_module_db5ce3e0b04a559e0f4e60c8e5601602}
+
+\begin{CompactList}\small\item\em Efface tous les chats du module. \item\end{CompactList}\item 
+{\bf effacerConcepteurs} ()\label{class_c_module_4647fc77b6f24a1acbc9f1fcd9c380d8}
+
+\begin{CompactList}\small\item\em Efface les concepteurs associés à ce module. \item\end{CompactList}\item 
+{\bf effacerEquipes} ()\label{class_c_module_3bf7fd891990ebb1c6f754bd5930ad6d}
+
+\begin{CompactList}\small\item\em Efface les équipes associées à ce module. \item\end{CompactList}\item 
+{\bf effacerEtudiants} ()\label{class_c_module_80d60c1bc421fcdf8bde00ac35c51ba1}
+
+\begin{CompactList}\small\item\em Efface les étudiants associés à ce module. \item\end{CompactList}\item 
+{\bf effacerForums} ()\label{class_c_module_08d1edf5af8888e36a9c167e1a9748ea}
+
+\begin{CompactList}\small\item\em Efface tous les forums associés à ce module. \item\end{CompactList}\item 
+{\bf effacerModule} ()\label{class_c_module_8fe2774a1f1978658e1718856754f434}
+
+\begin{CompactList}\small\item\em Efface un module dans la DB. \item\end{CompactList}\item 
+{\bf effacerRubriques} ()\label{class_c_module_ee683276ced554630b4d3aa284e4698c}
+
+\begin{CompactList}\small\item\em Efface les rubriques associés à ce module. \item\end{CompactList}\item 
+{\bf effacerTuteurs} ()\label{class_c_module_5c750501806a9817f931f288fed1d6b9}
+
+\begin{CompactList}\small\item\em Efface les tuteurs associés à ce module. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_module_5a662410538fe96083dca4ea01f01543}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initChats} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des chats du module. \item\end{CompactList}\item 
+{\bf initCollecticiels} (\$v\_\-iModaliteSousActiv=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les collecticiels du module. \item\end{CompactList}\item 
+{\bf initConcepteurs} ()
+\begin{CompactList}\small\item\em Initialise un tableau avec les concepteurs (table Module\_\-Concepteur) du module. \item\end{CompactList}\item 
+{\bf initFormation} ()\label{class_c_module_4b2fc3d66311a859b580d86587faf10c}
+
+\begin{CompactList}\small\item\em Initialise, à partir de la DB, l'objet {\tt oFormation} interne, qui représente le parent du module courant. \item\end{CompactList}\item 
+{\bf initForums} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant tous les forums de ce module. \item\end{CompactList}\item 
+{\bf initInscrits} ()
+\begin{CompactList}\small\item\em Initialise un tableau avec les étudiants inscrits à ce module. \item\end{CompactList}\item 
+{\bf initMembres} (\$v\_\-bAppartenirEquipe=TRUE, \$v\_\-bAutoInscrit=TRUE, \$v\_\-iSensTri={\bf TRI\_\-CROISSANT})
+\begin{CompactList}\small\item\em Initialise un tableau avec les étudiants inscrits à la formation. \item\end{CompactList}\item 
+{\bf initRubriqueCourante} (\$v\_\-iIdRubrique=NULL)
+\begin{CompactList}\small\item\em Initialise la rubrique courant ({\tt oRubriqueCourante}) du module. \item\end{CompactList}\item 
+{\bf initRubriques} (\$v\_\-iTypeRubriques=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des rubriques appartenant à ce module. \item\end{CompactList}\item 
+{\bf initTuteurs} ()
+\begin{CompactList}\small\item\em Initialise un tableau avec les tuteurs (table Module\_\-Tuteur) du module. \item\end{CompactList}\item 
+{\bf inscrireEtudiants} (\$v\_\-aiIdPers)
+\begin{CompactList}\small\item\em Rajoute les personnes comme étudiantes rattachées au module. \item\end{CompactList}\item 
+{\bf inscrirePersonnes} (\$v\_\-aiIdPers, \$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Inscrit les personnes comme soit étudiant, soit tuteur, ou soit concepteur d'un module. \item\end{CompactList}\item 
+{\bf inscrireTuteurs} (\$v\_\-aiIdPers)
+\begin{CompactList}\small\item\em Rajoute les personnes comme tuteurs du module. \item\end{CompactList}\item 
+{\bf mettre\_\-a\_\-jour} (\$v\_\-sNomChamp, \$v\_\-mValeurChamp, \$v\_\-iIdMod=0)
+\begin{CompactList}\small\item\em Met à jour un champ de la table Module. \item\end{CompactList}\item 
+{\bf peutSupprimerIntitule} (\$v\_\-iIdIntitule)
+\begin{CompactList}\small\item\em Vérifie si l'intitulé est utilisé par plusieurs modules. \item\end{CompactList}\item 
+{\bf rafraichir} ()\label{class_c_module_98d8e5ea4d85f147611a9840302c4e86}
+
+\begin{CompactList}\small\item\em Réinitialise l'objet {\tt oEnregBdd} avec le module courant. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iNouveauNumOrdre=NULL)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des modules. \item\end{CompactList}\item 
+{\bf retDossier} ()
+\item 
+\& {\bf retElementsEnfants} ()\label{class_c_module_3eeeb6b35c0dc046aaa6cfb7bd745146}
+
+\begin{CompactList}\small\item\em Retourne (après les avoir initialisés si nécessaire) les éléments enfants du module, càd les rubriques. \item\end{CompactList}\item 
+{\bf retInfosIntituleModPrecedent} (\$v\_\-iIdForm)
+\begin{CompactList}\small\item\em Retourne l'intitulé du module précédent. \item\end{CompactList}\item 
+{\bf retirerPersonnes} (\$v\_\-aiIdPers, \$v\_\-iIdStatut)
+\begin{CompactList}\small\item\em Retire des personnes inscrites comme soit étudiant, soit tuteur, ou soit concepteur d'un module. \item\end{CompactList}\item 
+{\bf retListeModules} ()
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des modules de la formation. \item\end{CompactList}\item 
+{\bf retNombreChats} ()
+\begin{CompactList}\small\item\em Retourne le nombre de chats du module. \item\end{CompactList}\item 
+{\bf retNombreLignes} (\$v\_\-iIdForm=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre de modules d'une formation. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} (\$v\_\-iIdForm=NULL)
+\begin{CompactList}\small\item\em Retourne le numero d'ordre maximum des modules. \item\end{CompactList}\item 
+{\bf retTexteNiveau} ()
+\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau \char`\"{}module\char`\"{}, de la structure d'une formation. \item\end{CompactList}\item 
+{\bf retTypes} ()
+\begin{CompactList}\small\item\em Retourne un tableau à 2 dimensions contenant l'intitulé d'un module. \item\end{CompactList}\item 
+{\bf verifConcepteur} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est \char`\"{}concepteur\char`\"{} du module. \item\end{CompactList}\item 
+{\bf verifEtudiant} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est étudiante du module. \item\end{CompactList}\item 
+{\bf verifInscrit} (\$v\_\-sRequeteSql)
+\begin{CompactList}\small\item\em Execute une requête sql et vérifie s'il elle retourne un enregistrement. \item\end{CompactList}\item 
+{\bf verifMembre} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est membre d'une équipe rattachée au module. \item\end{CompactList}\item 
+{\bf verifTuteur} (\$v\_\-iIdPers)
+\begin{CompactList}\small\item\em Vérifie si la personne est \char`\"{}tuteur\char`\"{} du module. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce module}\par
+\begin{CompactItemize}
+\item 
+\textbf{defDescr} (\$v\_\-sDescr)\label{class_c_module_3398d693db3a9f14e3a60adc329ccf25}
+
+\item 
+\textbf{defIdIntitule} (\$v\_\-iIdIntitule)\label{class_c_module_f297e75fe3ea37e3fbc7a03d697014fa}
+
+\item 
+\textbf{defNom} (\$v\_\-sNom)\label{class_c_module_7471195631f809374ddc37a629cc8c8c}
+
+\item 
+\textbf{defNumDepart} (\$v\_\-iNumDepart)\label{class_c_module_7ad383632d3b0d86a3d724df08606d96}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iNumOrdre)\label{class_c_module_48ced2899d03b230ebfe5bf838c105b0}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_module_8347e74871251350524101ccaf9805c7}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce module}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDateDeb} ()\label{class_c_module_4e3d70b07fcf870e317331865520a45a}
+
+\item 
+\textbf{retDateFin} ()\label{class_c_module_6924ae65bf9e5db6c19d3675808d561f}
+
+\item 
+\textbf{retDescr} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_module_b2dc926d8db7b1e7ce6f9c33058647d4}
+
+\item 
+\textbf{retId} ()\label{class_c_module_a6a54a3c4bfb56871eeb83d6fb65c5fb}
+
+\item 
+\textbf{retIdIntitule} ()\label{class_c_module_dab62ae3559b97226366be6dd394bcf8}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_module_d4abb4faa8c698f24acda2a1d3b17a68}
+
+\item 
+\textbf{retIdPers} ()\label{class_c_module_de3e6dedfbea15eefbb7a9a340d24a65}
+
+\item 
+\textbf{retInscrSpontEquipe} ()\label{class_c_module_bd5470548296701a71b6b9f2b33942c4}
+
+\item 
+\textbf{retNbMaxDsEquipe} ()\label{class_c_module_be5e11996f023685833ae42ffa0e2615}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_module_450371dd9e36de36bfcc22df6b0a385b}
+
+\item 
+\textbf{retNomComplet} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_module_c71c5eca5ec51b79c6199264f815aea9}
+
+\item 
+\textbf{retNumDepart} ()\label{class_c_module_f47d13d0b2dafd21fd2d1d1e960cc42d}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_module_dd00c4f89b90fbe1a60d605a362cb6e5}
+
+\item 
+\textbf{retStatut} ()\label{class_c_module_1b9cdb74f4b595d824e0147cdc906c38}
+
+\item 
+\textbf{retTexteIntitule} (\$v\_\-bAfficherNumOrdre=TRUE)\label{class_c_module_5f0554acb74dd165da68c126f0517ff6}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoCollecticiels}\label{class_c_module_3a055ed2a29e0955d9e5986cac0f7373}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initCollecticiels()}{p.}{class_c_module_0e48aa1d469a7a888a45de8c5fdb3861}, contenant tous les collecticiels du module. \item\end{CompactList}\item 
+{\bf \$aoForums}\label{class_c_module_ea7cae2bb5e0355820072115ffc9500b}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initForums()}{p.}{class_c_module_6e5d5b3727d4e2971fc21cb5aca42cc2}, contenant tous les forums du module. \item\end{CompactList}\item 
+{\bf \$aoInscrits}\label{class_c_module_b913c3ec2ed365d59ba6c93237464b9a}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initInscrits()}{p.}{class_c_module_4eb84e7ab313c0d03eec900af5f71f5e}, contenant tous les personnes inscrites à cette formation. \item\end{CompactList}\item 
+{\bf \$aoModules}\label{class_c_module_c8402b51d959e96c5445704cfb24f2bc}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{retListeModules()}{p.}{class_c_module_b302365ad37249b3c9a73d3127ee1ea7}, contenant tous les modules d'une formation. \item\end{CompactList}\item 
+{\bf \$aoRubriques}\label{class_c_module_3436f9c8064b2850bf78b1e919e020c0}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initRubriques()}{p.}{class_c_module_5fb10bbdac6f14c55abf80d0374e1660}, contenant une liste des rubriques de ce module. \item\end{CompactList}\item 
+{\bf \$aoTuteurs}\label{class_c_module_e16647c2d4af8630614f97d3b9f52bd2}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initTuteurs()}{p.}{class_c_module_fe48a3c2c7d930742bbe368522993ece}, contenant tous les tuteurs de ce module. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_module_c5182359d999d414640b9767a949f263}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du module à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_module_0bbc0cf8c365bf953e4f41e7740b3791}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_module_d7c3f502b7b057bc1098442af613a800}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oFormation}\label{class_c_module_31545c5bc6a617dfd722838a4209ec18}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CFormation}{p.}{class_c_formation} qui représente le parent du module courant, et devra être initialisé par \doxyref{initFormation()}{p.}{class_c_module_4b2fc3d66311a859b580d86587faf10c}. \item\end{CompactList}\item 
+{\bf \$oIntitule}\label{class_c_module_e7f364d286a770b7616310205eed010f}
+
+\begin{CompactList}\small\item\em Objet de type CIntitule contenant l'intitulé de ce module. \item\end{CompactList}\item 
+{\bf \$oRubriqueCourante}\label{class_c_module_73bdaf8bb6dbcec7f0c96d1117cc0700}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} contenant une rubrique d'un module. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CModule@{CModule}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::ajouter (\$ {\em v\_\-iIdForm} = {\tt NULL}, \/  \$ {\em v\_\-iIdPers} = {\tt 0})}\label{class_c_module_bfd50109824647801e1b0082246d3d9c}
+
+
+Ajoute un nouveau module à la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation \item[{\em v\_\-iIdPers}]l'id de la personne conceptrice du module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau module \end{Desc}
+
+
+Références associerConcepteur(), init(), retInfosIntituleModPrecedent(), et retNombreLignes().\index{CModule@{CModule}!ajouterChat@{ajouterChat}}
+\index{ajouterChat@{ajouterChat}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::ajouterChat ()}\label{class_c_module_c3a8bfd56f0099dfe6ded39e07107976}
+
+
+Ajoute un chat au module. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau chat \end{Desc}
+\index{CModule@{CModule}!associerConcepteur@{associerConcepteur}}
+\index{associerConcepteur@{associerConcepteur}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::associerConcepteur (\$ {\em v\_\-iIdPers})}\label{class_c_module_137e7903b179fbd17c132772b3849e7d}
+
+
+Inscrit la personne en tant que concepteur de ce module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne \end{description}
+\end{Desc}
+
+
+Référencé par ajouter().\index{CModule@{CModule}!CModule@{CModule}}
+\index{CModule@{CModule}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::CModule (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdMod} = {\tt NULL})}\label{class_c_module_0579f0d09faf4fd6f9dd64b549ea09e9}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CModule@{CModule}!copier@{copier}}
+\index{copier@{copier}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::copier (\$ {\em v\_\-iIdForm}, \/  \$ {\em v\_\-bRecursive} = {\tt TRUE}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module_e5c4334bad6a24c4d34f877e72bdec61}
+
+
+Copie le module courant vers une formation spécifique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation \item[{\em v\_\-bRecursive}]si {\tt true}, copie aussi les rubriques associées au module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau module \end{Desc}
+
+
+Références copierModule(), et copierRubriques().
+
+Référencé par copierAvecNumOrdre().\index{CModule@{CModule}!copierAvecNumOrdre@{copierAvecNumOrdre}}
+\index{copierAvecNumOrdre@{copierAvecNumOrdre}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::copierAvecNumOrdre (\$ {\em v\_\-iIdDest}, \/  \$ {\em v\_\-iNumOrdre} = {\tt 0})}\label{class_c_module_c9349b9fea6a84b8628336becb57d719}
+
+
+Copie le module courant vers une formation, en indiquant un n° d'ordre pour la copie du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdDest}]l'id de la formation de destination \item[{\em v\_\-iNumOrdre}]le n° d'ordre de la copie du module. Si {\tt 0} (défaut), il sera dernier dans la formation destination\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la copie du module \end{Desc}
+
+
+Références copier(), ElementFormation::retElementFormation(), retNumOrdreMax(), et retTypeNiveau().\index{CModule@{CModule}!copierModule@{copierModule}}
+\index{copierModule@{copierModule}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::copierModule (\$ {\em v\_\-iIdForm}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module_c97453f151a9d1f48f7a6e07c1f8b650}
+
+
+Insère une copie d'un module dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau module \end{Desc}
+
+
+Référencé par copier().\index{CModule@{CModule}!copierRubriques@{copierRubriques}}
+\index{copierRubriques@{copierRubriques}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::copierRubriques (\$ {\em v\_\-iIdMod}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_module_07ec97f3eaeafde7256fdcd38237ab25}
+
+
+Copie les rubriques du module courant dans un autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMod}]l'id du module de destination \end{description}
+\end{Desc}
+
+
+Références initRubriques().
+
+Référencé par copier().\index{CModule@{CModule}!defId@{defId}}
+\index{defId@{defId}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::defId (\$ {\em v\_\-iId}, \/  \$ {\em v\_\-bInit} = {\tt TRUE})}\label{class_c_module_c9a23292628b3b7b45f273803e1f3c77}
+
+
+Définit l'id du module et initialise l'objet(optionnel). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iId}]l'id du module \item[{\em v\_\-bInit}]si {\tt true}(par défaut), initialise l'objet \end{description}
+\end{Desc}
+
+
+Références init().\index{CModule@{CModule}!initChats@{initChats}}
+\index{initChats@{initChats}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initChats ()}\label{class_c_module_e6eef68569c9dc002367e3a1c5ba48e5}
+
+
+Initialise un tableau contenant la liste des chats du module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats insérés dans le tableau \end{Desc}
+\index{CModule@{CModule}!initCollecticiels@{initCollecticiels}}
+\index{initCollecticiels@{initCollecticiels}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initCollecticiels (\$ {\em v\_\-iModaliteSousActiv} = {\tt NULL})}\label{class_c_module_0e48aa1d469a7a888a45de8c5fdb3861}
+
+
+Initialise un tableau contenant tous les collecticiels du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iModaliteSousActiv}]le numéro représentant le type de modalité pour l'activité (voir les constantes MODALITE\_\-)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de collecticiels insérés dans le tableau \end{Desc}
+\index{CModule@{CModule}!initConcepteurs@{initConcepteurs}}
+\index{initConcepteurs@{initConcepteurs}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initConcepteurs ()}\label{class_c_module_7d7ff053f59807983c07cc18a8c26402}
+
+
+Initialise un tableau avec les concepteurs (table Module\_\-Concepteur) du module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(concepteurs) insérées dans le tableau \end{Desc}
+\index{CModule@{CModule}!initForums@{initForums}}
+\index{initForums@{initForums}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initForums ()}\label{class_c_module_6e5d5b3727d4e2971fc21cb5aca42cc2}
+
+
+Initialise un tableau contenant tous les forums de ce module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de forums de ce module \end{Desc}
+
+
+Référencé par effacerForums().\index{CModule@{CModule}!initInscrits@{initInscrits}}
+\index{initInscrits@{initInscrits}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initInscrits ()}\label{class_c_module_4eb84e7ab313c0d03eec900af5f71f5e}
+
+
+Initialise un tableau avec les étudiants inscrits à ce module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(étudiants) insérées dans le tableau \end{Desc}
+\index{CModule@{CModule}!initMembres@{initMembres}}
+\index{initMembres@{initMembres}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initMembres (\$ {\em v\_\-bAppartenirEquipe} = {\tt TRUE}, \/  \$ {\em v\_\-bAutoInscrit} = {\tt TRUE}, \/  \$ {\em v\_\-iSensTri} = {\tt {\bf TRI\_\-CROISSANT}})}\label{class_c_module_c8c60987095bdabe8c9cc23a2d641de4}
+
+
+Initialise un tableau avec les étudiants inscrits à la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bAppartenirEquipe}]si {\tt true} (par défaut) le tableau est rempli par les personnes qui appartiennent à une équipe de ce module, si {\tt false} voir paramètre {\tt v\_\-bAutoInscrit} \item[{\em v\_\-bAutoInscrit}]si {\tt true} (par défaut) le tableau est rempli par les personnes qui sont inscrites à la formation et qui n'appartiennent pas à une équipe de ce module. Utilisé lorsque les personnes sont automatiquement inscrites aux modules de la formation. Si {\tt false} il est rempli par les personnes qui sont inscrites au module et qui n' appartiennent pas à une équipe de ce module\item[{\em v\_\-iSensTri}]indique si un tri doit être effectué ainsi que son sens (croissant par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(étudiants) insérées dans le tableau \end{Desc}
+\index{CModule@{CModule}!initRubriqueCourante@{initRubriqueCourante}}
+\index{initRubriqueCourante@{initRubriqueCourante}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initRubriqueCourante (\$ {\em v\_\-iIdRubrique} = {\tt NULL})}\label{class_c_module_fcfd08c378ee2308aadd9b7232d917fe}
+
+
+Initialise la rubrique courant ({\tt oRubriqueCourante}) du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique \end{description}
+\end{Desc}
+\index{CModule@{CModule}!initRubriques@{initRubriques}}
+\index{initRubriques@{initRubriques}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initRubriques (\$ {\em v\_\-iTypeRubriques} = {\tt NULL})}\label{class_c_module_5fb10bbdac6f14c55abf80d0374e1660}
+
+
+Initialise un tableau contenant la liste des rubriques appartenant à ce module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iTypeRubriques}]sélection sur le type de rubrique(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de rubrique insérés dans le tableau \end{Desc}
+
+
+Référencé par copierRubriques(), effacerRubriques(), et retElementsEnfants().\index{CModule@{CModule}!initTuteurs@{initTuteurs}}
+\index{initTuteurs@{initTuteurs}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::initTuteurs ()}\label{class_c_module_fe48a3c2c7d930742bbe368522993ece}
+
+
+Initialise un tableau avec les tuteurs (table Module\_\-Tuteur) du module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de personnes(tuteurs) insérées dans le tableau \end{Desc}
+\index{CModule@{CModule}!inscrireEtudiants@{inscrireEtudiants}}
+\index{inscrireEtudiants@{inscrireEtudiants}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::inscrireEtudiants (\$ {\em v\_\-aiIdPers})}\label{class_c_module_730e72e819a8605e3ee0d5726e2d388e}
+
+
+Rajoute les personnes comme étudiantes rattachées au module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]tableau contenant les id des personnes \end{description}
+\end{Desc}
+
+
+Références inscrirePersonnes().\index{CModule@{CModule}!inscrirePersonnes@{inscrirePersonnes}}
+\index{inscrirePersonnes@{inscrirePersonnes}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::inscrirePersonnes (\$ {\em v\_\-aiIdPers}, \/  \$ {\em v\_\-iIdStatut})}\label{class_c_module_b8d13d8c578e316514fb560945834a7a}
+
+
+Inscrit les personnes comme soit étudiant, soit tuteur, ou soit concepteur d'un module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]tableau contenat les id des personnes \item[{\em v\_\-iIdStatut}]le statut des personnes à inséré\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt false} si l'objet {\tt oEnregBdd} n'a pas été initialisé \end{Desc}
+
+
+Référencé par inscrireEtudiants(), et inscrireTuteurs().\index{CModule@{CModule}!inscrireTuteurs@{inscrireTuteurs}}
+\index{inscrireTuteurs@{inscrireTuteurs}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::inscrireTuteurs (\$ {\em v\_\-aiIdPers})}\label{class_c_module_7158058b143e8cfcf12bdcf196a94680}
+
+
+Rajoute les personnes comme tuteurs du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]\end{description}
+\end{Desc}
+
+
+Références inscrirePersonnes().\index{CModule@{CModule}!mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}}
+\index{mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::mettre\_\-a\_\-jour (\$ {\em v\_\-sNomChamp}, \/  \$ {\em v\_\-mValeurChamp}, \/  \$ {\em v\_\-iIdMod} = {\tt 0})}\label{class_c_module_84437b7fd08c9731824bdcc7d9782426}
+
+
+Met à jour un champ de la table Module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamp}]le nom du champ à mettre à jour \item[{\em v\_\-mValeurChamp}]la nouvelle valeur du champ \item[{\em v\_\-iIdMod}]l'id du module\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si il a mis à jour le champ dans la DB \end{Desc}
+
+
+Référencé par redistNumsOrdre().\index{CModule@{CModule}!peutSupprimerIntitule@{peutSupprimerIntitule}}
+\index{peutSupprimerIntitule@{peutSupprimerIntitule}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::peutSupprimerIntitule (\$ {\em v\_\-iIdIntitule})}\label{class_c_module_c3a83900900762aeeb080e9b49c70254}
+
+
+Vérifie si l'intitulé est utilisé par plusieurs modules. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdIntitule}]l'id de l'intitulé\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt true} on peut supprimer l'intitulé \end{Desc}
+\index{CModule@{CModule}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::redistNumsOrdre (\$ {\em v\_\-iNouveauNumOrdre} = {\tt NULL})}\label{class_c_module_ab5898ab9a2b3bf25072e5df76f5977e}
+
+
+Redistribue les numéros d'ordre des modules. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouveauNumOrdre}]le nouveau numéro d'ordre du module courant\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les numéros ont bien été modifiés \end{Desc}
+
+
+Références mettre\_\-a\_\-jour(), et retListeModules().
+
+Référencé par effacer().\index{CModule@{CModule}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retDossier ()}\label{class_c_module_187ec246840889f13854adc5600cef6f}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier associé à ce module, donc celui où se trouvent ses fichiers associés \end{Desc}
+
+
+Références initFormation().\index{CModule@{CModule}!retInfosIntituleModPrecedent@{retInfosIntituleModPrecedent}}
+\index{retInfosIntituleModPrecedent@{retInfosIntituleModPrecedent}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retInfosIntituleModPrecedent (\$ {\em v\_\-iIdForm})}\label{class_c_module_9d3e708b446be719823f8d71c18f8dd9}
+
+
+Retourne l'intitulé du module précédent. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau avec l'intitulé du module précédent ou s'il n'existe pas, un intitulé de base. \end{Desc}
+
+
+Références \$oEnregBdd.
+
+Référencé par ajouter().\index{CModule@{CModule}!retirerPersonnes@{retirerPersonnes}}
+\index{retirerPersonnes@{retirerPersonnes}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retirerPersonnes (\$ {\em v\_\-aiIdPers}, \/  \$ {\em v\_\-iIdStatut})}\label{class_c_module_fd8457fd9d7b98c23e7855f2d92eed79}
+
+
+Retire des personnes inscrites comme soit étudiant, soit tuteur, ou soit concepteur d'un module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-aiIdPers}]tableau contenat les id des personnes \item[{\em v\_\-iIdStatut}]le statut des personnes à effacé\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt false} si l'objet {\tt oEnregBdd} n'a pas été initialisé \end{Desc}
+\index{CModule@{CModule}!retListeModules@{retListeModules}}
+\index{retListeModules@{retListeModules}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retListeModules ()}\label{class_c_module_b302365ad37249b3c9a73d3127ee1ea7}
+
+
+Initialise un tableau contenant la liste des modules de la formation. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de modules insérés dans le tableau \end{Desc}
+
+
+Référencé par redistNumsOrdre().\index{CModule@{CModule}!retNombreChats@{retNombreChats}}
+\index{retNombreChats@{retNombreChats}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retNombreChats ()}\label{class_c_module_a81ff8a3f02ceef9aceae7bb93ce6059}
+
+
+Retourne le nombre de chats du module. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de chats du module \end{Desc}
+\index{CModule@{CModule}!retNombreLignes@{retNombreLignes}}
+\index{retNombreLignes@{retNombreLignes}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retNombreLignes (\$ {\em v\_\-iIdForm} = {\tt NULL})}\label{class_c_module_b5be16c5a299179f074d2692ee80efbd}
+
+
+Retourne le nombre de modules d'une formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdForm}]l'id de la formation\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de modules d'une formation \end{Desc}
+
+
+Référencé par ajouter().\index{CModule@{CModule}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retNumOrdreMax (\$ {\em v\_\-iIdForm} = {\tt NULL})}\label{class_c_module_c7b8461e7e9b22c8bbbc027ed2e84317}
+
+
+Retourne le numero d'ordre maximum des modules. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CModule@{CModule}!retTexteNiveau@{retTexteNiveau}}
+\index{retTexteNiveau@{retTexteNiveau}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retTexteNiveau ()}\label{class_c_module_22cbf5fdf745138251b6a095a40d797e}
+
+
+\begin{Desc}
+\item[Renvoie:]le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) \end{Desc}
+\index{CModule@{CModule}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retTypeNiveau ()}\label{class_c_module_f14e85fba2040ba67daf0866d77b730e}
+
+
+Retourne la constante qui définit le niveau \char`\"{}module\char`\"{}, de la structure d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau \char`\"{}module\char`\"{}, de la structure d'une formation \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CModule@{CModule}!retTypes@{retTypes}}
+\index{retTypes@{retTypes}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::retTypes ()}\label{class_c_module_0949ac66209cdcbcd8fb215f9f10fb99}
+
+
+Retourne un tableau à 2 dimensions contenant l'intitulé d'un module. 
+
+\begin{Desc}
+\item[{\bf À faire}]ce système sera modifié pour l'internationalisation de la plate-forme\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le mot français utilisé pour désigner un module \end{Desc}
+\index{CModule@{CModule}!verifConcepteur@{verifConcepteur}}
+\index{verifConcepteur@{verifConcepteur}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::verifConcepteur (\$ {\em v\_\-iIdPers})}\label{class_c_module_1be98743b52317515f8c716742035285}
+
+
+Vérifie si la personne est \char`\"{}concepteur\char`\"{} du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est \char`\"{}concepteur\char`\"{} \end{Desc}
+
+
+Références verifInscrit().\index{CModule@{CModule}!verifEtudiant@{verifEtudiant}}
+\index{verifEtudiant@{verifEtudiant}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::verifEtudiant (\$ {\em v\_\-iIdPers})}\label{class_c_module_4b1a9e7181f334d8c87ab60c651103b2}
+
+
+Vérifie si la personne est étudiante du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est étudiante \end{Desc}
+\index{CModule@{CModule}!verifInscrit@{verifInscrit}}
+\index{verifInscrit@{verifInscrit}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::verifInscrit (\$ {\em v\_\-sRequeteSql})}\label{class_c_module_e6ca7b80566b7b6af9ab01d5629e9f5f}
+
+
+Execute une requête sql et vérifie s'il elle retourne un enregistrement. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sRequeteSql}]la requête sql\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} s'il existe un enregistrement \end{Desc}
+
+
+Référencé par verifConcepteur(), verifMembre(), et verifTuteur().\index{CModule@{CModule}!verifMembre@{verifMembre}}
+\index{verifMembre@{verifMembre}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::verifMembre (\$ {\em v\_\-iIdPers})}\label{class_c_module_ae226236ada2934202c748470305cd4f}
+
+
+Vérifie si la personne est membre d'une équipe rattachée au module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est membre d'un équipe rattachée au module \end{Desc}
+
+
+Références verifInscrit().\index{CModule@{CModule}!verifTuteur@{verifTuteur}}
+\index{verifTuteur@{verifTuteur}!CModule@{CModule}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CModule::verifTuteur (\$ {\em v\_\-iIdPers})}\label{class_c_module_fc1f264ee7736db61f50bc6c243faa17}
+
+
+Vérifie si la personne est \char`\"{}tuteur\char`\"{} du module. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la personne est \char`\"{}tuteur\char`\"{} \end{Desc}
+
+
+Références verifInscrit().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf module.tbl.php}\end{CompactItemize}

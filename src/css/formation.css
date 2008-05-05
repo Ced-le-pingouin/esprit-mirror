@@ -1,0 +1,58 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+inscription
+dossier formations titre
+dossier formations events
+dossier formations liste
+dossier formation
+------------------ */
+
+span.formation_trouvee {
+background-color: rgb(0,255,0);
+}
+
+/* -- inscription -- */
+body.inscription { background-color: rgb(255,255,255); background-image: none; }
+.intitule { border: rgb(207,195,163) none 1px; border-bottom-style: solid; padding-bottom: 3px; margin-bottom: 7px; font-size: 11pt; }
+body.inscription a { font-size: 10pt; font-weight: normal; }
+/* ----- */
+
+/* -- dossier formation titre -- */
+td.dialog_logo { width: 180px; }
+div.dialog_titre_principal { left: 185px; }
+/* ----- */
+
+/* -- dossier formations events -- */
+body.formation_event input, body.inscription_event select, body.inscription_event .label { display: block; float: left; margin-bottom: 5px; text-align: left; }
+body.formation_event .label { margin-left: 5px; font-size: 8pt; font-weight: bold; text-align: right; width: 120px; padding-top: 2px; padding-right: 10px; }
+body.formation_event br { clear: left; }
+
+#idDossierNom { width: 260px; }
+#idDossierNumeroOrdre { }
+
+#suppression { text-align: center; }
+#suppression_confirmer { font-weight: bold; }
+/* ----- */
+
+/* -- dossier formations liste -- */
+body.formation_liste { background-color: rgb(240,235,224); }
+body.formation_liste p { font-size: 8pt; }
+#liste { background-color: rgb(255,255,255); margin: 5px; padding: 2px; border: rgb(127,157,185) solid 1px; }
+.dossier, .dossier_surbrillance, .dossier_selectionner { background-color: rgb(255,255,255); text-align: center; border: rgb(255,255,255) solid 1px; }
+.dossier_surbrillance { background-color: rgb(224,232,246); border: rgb(152,180,226) solid 1px; cursor: pointer; }
+.dossier_selectionner { background-color: rgb(239,241,246); border: rgb(224,232,246) solid 1px; cursor: pointer; }
+span.titre { margin-bottom: 2px; font-size: 8pt; }
+/* ----- */
+
+/* -- dossier formation -- */
+body.formation { margin: 10px; background-color: rgb(238,234,221); }
+body.formation input { margin: 0; }
+
+#titre { background-color: rgb(49,106,197); border: rgb(31,82,126) solid 1px; color: rgb(255,255,255); margin-bottom: 10px; padding: 5px; font-weight: bold; font-size: 10pt; }
+#titre span { color: rgb(255,255,255); font-size: 8pt; font-weight: normal; }
+#liste_formations { }
+body.formation tr { background-color: rgb(255,255,255); }
+.liste_formations { border: rgb(122,151,178) solid 1px; }
+.liste_formations_sauver { border: rgb(136,37,37) solid 1px; }
+/* ----- */

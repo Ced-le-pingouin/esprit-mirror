@@ -1,0 +1,82 @@
+\section{Référence du fichier src/admin/tableaubord/tableau\_\-scores.php}
+\label{tableau__scores_8php}\index{src/admin/tableaubord/tableau\_\-scores.php@{src/admin/tableaubord/tableau\_\-scores.php}}
+
+
+\subsection{Description détaillée}
+Affiche les scores des étudiants d'une activité en ligne de type auto-corrigé. 
+
+\begin{Desc}
+\item[Date:]2006/11/30\end{Desc}
+\begin{Desc}
+\item[Auteur:]Jérôme TOUZE \end{Desc}
+
+
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+\textbf{\$aoListePropRep} = \$oPropositionReponse $\rightarrow$ retListePropRep(\$oObjetFormulaire $\rightarrow$ retId())\label{tableau__scores_8php_c8d9df4f59cc3a09252904ff589d972f}
+
+\item 
+else \textbf{\$fScore} = CalculerScore(\$iNbrePropRepCorrecte,\$iNbrePropRepFausse,\$iNbreRepCorrecte,\$iNbreRepFausse,\$oFormul $\rightarrow$ retMethodeCorrection())\label{tableau__scores_8php_cfcc8cae8b3c856cb17a4867ee761592}
+
+\item 
+\textbf{\$iIdReponseEtu} = retReponseEntier(\$oProjet $\rightarrow$ oBdd,\$aoListeFC[\$i] $\rightarrow$ IdFC,\$oObjetFormulaire $\rightarrow$ retId())\label{tableau__scores_8php_ba2a35489dd8f5990af874621d51d5fe}
+
+\item 
+\textbf{\$iNumeroQuestion} = 0\label{tableau__scores_8php_1835aae2c989884e936f03c5c1446978}
+
+\item 
+\textbf{\$iPourcentage} = round((\$aiScorePers[\$i]/\$iScoreMax)$\ast$100)\label{tableau__scores_8php_f49ce0f4de4e0ca3325c04e5cc4fae18}
+
+\item 
+\textbf{\$iScoreMax} = 0\label{tableau__scores_8php_84681fcc8744ae9f9c91f5c792104ef8}
+
+\item 
+\textbf{\$NbrePers} = count(\$aoListeFC)\label{tableau__scores_8php_adb77df1aee6a1d1af248c602aa8cd1c}
+
+\item 
+\textbf{\$oBlocScores} = new {\bf TPL\_\-Block}(\char`\"{}BLOCK\_\-SCORES\char`\"{},\$oBlocQuestions)\label{tableau__scores_8php_6ba1de44898abe4888b37ee0c9614a39}
+
+\item 
+\textbf{\$oFC} = \$aoListeFC[\$i]\label{tableau__scores_8php_114086c386b52b86afb024b53ed647fe}
+
+\item 
+\textbf{\$oFormul} = new {\bf CFormulaire}(\$oProjet $\rightarrow$ oBdd,\$v\_\-iIdFormul)\label{tableau__scores_8php_2945155ce2d28cb9fd90d9b31447a64d}
+
+\item 
+\textbf{\$oFormulComplete} = new {\bf CFormulaireComplete}(\$oProjet $\rightarrow$ oBdd)\label{tableau__scores_8php_04ce7bd983f3808cf826a3eacd5c1c49}
+
+\item 
+\textbf{\$oProjet} = new {\bf CProjet}()\label{tableau__scores_8php_ec412e7ac901485e72b77d2185159421}
+
+\item 
+\textbf{\$oPropositionReponse} = new {\bf CPropositionReponse}(\$oProjet $\rightarrow$ oBdd)\label{tableau__scores_8php_9d8d6c3032a74c6899fb9707f3fc23e0}
+
+\item 
+else \textbf{\$v\_\-iIdFormul} = 0\label{tableau__scores_8php_4e4b0658a95dd7eca2670bc084fd65b8}
+
+\item 
+default \textbf{\_\-\_\-pad38\_\-\_\-}\label{tableau__scores_8php_986842749407fc12715451ab1b5e2535}
+
+\item 
+default \textbf{\_\-\_\-pad39\_\-\_\-}\label{tableau__scores_8php_f1cd14a2ab9d1487567c264239c2fb18}
+
+\item 
+\textbf{break}\label{tableau__scores_8php_91cf6fbebedd86150a36e5ac3d5d3bfc}
+
+\item 
+else print \textbf{n}\label{tableau__scores_8php_2278a16be518a3ddf4d0a315be97fc77}
+
+\item 
+case \textbf{OBJFORM\_\-QCOCHER}\label{tableau__scores_8php_32be139a5154afa75b95b81a17242d51}
+
+\item 
+case \textbf{OBJFORM\_\-QNOMBRE}\label{tableau__scores_8php_256e65a67ed5add9d8619d7cacd225b6}
+
+\item 
+case \textbf{OBJFORM\_\-QRADIO}\label{tableau__scores_8php_7e7f00700a09fd01f0f653498c88a574}
+
+\item 
+case \textbf{OBJFORM\_\-QTEXTECOURT}\label{tableau__scores_8php_7086e52296f594ecab7aef00fe84038f}
+
+\end{CompactItemize}

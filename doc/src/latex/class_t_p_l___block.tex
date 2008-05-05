@@ -1,0 +1,343 @@
+\section{Référence de la classe TPL\_\-Block}
+\label{class_t_p_l___block}\index{TPL\_\-Block@{TPL\_\-Block}}
+
+
+\subsection{Description détaillée}
+Gestion des blocs de templates, càd des parties masquables ou répétables d'un template. 
+
+\begin{Desc}
+\item[{\bf À faire}]Etudier la possibilité de faire hériter cette classe de \doxyref{Template}{p.}{class_template}, car certaines fonctions sont identiques \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf activerBloc} (\$looptag, \$activ=TRUE)
+\begin{CompactList}\small\item\em Active un bloc de template (ou le désactive, en fonction d'une condition). \item\end{CompactList}\item 
+{\bf afficher} ()
+\begin{CompactList}\small\item\em Affiche le contenu du bloc de template dans son parent. \item\end{CompactList}\item 
+{\bf ajouter} (\$sTexteAjout)
+\begin{CompactList}\small\item\em Ajouter du texte à la suite du contenu actuel du bloc de template. \item\end{CompactList}\item 
+{\bf beginLoop} ()
+\begin{CompactList}\small\item\em Initialise les données du bloc pour les préparer à une boucle. \item\end{CompactList}\item 
+{\bf caracteres} ()
+\begin{CompactList}\small\item\em Retourne le nombre de caractères qui composent le contenu du bloc de template. \item\end{CompactList}\item 
+{\bf countLoops} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'itérations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template. \item\end{CompactList}\item 
+{\bf cycle} (\$v\_\-iCycle=NULL)
+\begin{CompactList}\small\item\em Remplace, dans l'itération courante d'une boucle, une balise de type [CYCLE:] par sa valeur pour cette itération. \item\end{CompactList}\item 
+{\bf defDonnees} (\$v\_\-sDonnees)
+\begin{CompactList}\small\item\em Définit le contenu du bloc de template. \item\end{CompactList}\item 
+{\bf defTableau} (\$looptag, \$v\_\-sSeparateur=\char`\"{},\char`\"{})
+\begin{CompactList}\small\item\em Raccourci vers la fonction \doxyref{defVariable()}{p.}{class_t_p_l___block_8824cc865a6707aaa0e4f5d7024dae5a} avec l'option tableau à {\tt true}, et le séparateur par défaut à ','. \item\end{CompactList}\item 
+{\bf defVariable} (\$looptag, \$v\_\-bRetTableau=FALSE, \$v\_\-sSeparateur=\char`\"{}\#\#\#\char`\"{})
+\begin{CompactList}\small\item\em Récupère les variables situées à l'intérieur d'un bloc. \item\end{CompactList}\item 
+{\bf desactiverBloc} (\$looptag)
+\begin{CompactList}\small\item\em Désactive un bloc de template. \item\end{CompactList}\item 
+{\bf effacer} ()
+\begin{CompactList}\small\item\em Effacer complètement ce bloc dans le template parent. \item\end{CompactList}\item 
+{\bf effacerVariable} (\$looptag)
+\begin{CompactList}\small\item\em Efface complètement un bloc (variable) dans un bloc de template. \item\end{CompactList}\item 
+{\bf extraire} ()
+\begin{CompactList}\small\item\em \char`\"{}Extrait\char`\"{} le bloc de son template parent. \item\end{CompactList}\item 
+{\bf nextLoop} ()
+\begin{CompactList}\small\item\em Passe à l'itération suivante d'une boucle sur un bloc de template. \item\end{CompactList}\item 
+{\bf remplacer} (\$in, \$out)
+\begin{CompactList}\small\item\em Remplace \char`\"{}simplement\char`\"{} des morceaux de bloc de template par d'autres. \item\end{CompactList}\item 
+{\bf retDonnees} ()
+\begin{CompactList}\small\item\em Retourne le contenu actuel du bloc de template, avec les remplacements et autres traitements de éventuels. \item\end{CompactList}\item 
+{\bf TPL\_\-Block} (\$looptag, \&\$template)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$asData}\label{class_t_p_l___block_ee4d91195d1cf39cf9aa36810a01c60b}
+
+\begin{CompactList}\small\item\em Tableau qui contient les données traitées (remplacements) pour chaque itération pendant une boucle. \item\end{CompactList}\item 
+{\bf \$copy\_\-data}\label{class_t_p_l___block_dd621c575e8645d730bf5ea9dc0e865d}
+
+\begin{CompactList}\small\item\em Pendant une boucle, contient les données originales du bloc de template, sans aucun traitement, de façon à la récupérer au début de chaque itération. \item\end{CompactList}\item 
+{\bf \$data}\label{class_t_p_l___block_5f19bb314bd99313fc0a62f948a61e04}
+
+\begin{CompactList}\small\item\em Contenu textuel courant du bloc, donc avec les remplacements et répétitions éventuels. \item\end{CompactList}\item 
+{\bf \$iNbLoops}\label{class_t_p_l___block_02f19e3f9809a4ed0465b0245999f8d3}
+
+\begin{CompactList}\small\item\em Nombre courant d'itération en cas de boucles sur un bloc. \item\end{CompactList}\item 
+{\bf \$looptag}\label{class_t_p_l___block_a8aba9e3e98352bcbee4f3388ea81dc7}
+
+\begin{CompactList}\small\item\em Balise qui entourait le bloc dans le template parent. \item\end{CompactList}\item 
+{\bf \$template\_\-parent}\label{class_t_p_l___block_a0c12b1fa6d17b47d2a7ac0a2c74c509}
+
+\begin{CompactList}\small\item\em Objet \doxyref{Template}{p.}{class_template} parent, auquel appartient le bloc courant. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{TPL\_\-Block@{TPL\_\-Block}!activerBloc@{activerBloc}}
+\index{activerBloc@{activerBloc}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::activerBloc (\$ {\em looptag}, \/  \$ {\em activ} = {\tt TRUE})}\label{class_t_p_l___block_2685f4f6a441c844f69da8752a5df508}
+
+
+Active un bloc de template (ou le désactive, en fonction d'une condition). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \item[{\em activ}]si spécifié, et {\tt true}, le bloc sera bien activé; si {\tt false} par contre, le bloc sera désactivé \end{description}
+\end{Desc}
+
+
+Références \$looptag, et desactiverBloc().\index{TPL\_\-Block@{TPL\_\-Block}!afficher@{afficher}}
+\index{afficher@{afficher}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::afficher ()}\label{class_t_p_l___block_033c8864b8d6180d9163828454335ab0}
+
+
+Affiche le contenu du bloc de template dans son parent. 
+
+Si le bloc est une boucle, cette fonction doit tout de même n'être appelée qu'une seule fois, après la boucle (composée d'appels à \doxyref{beginLoop()}{p.}{class_t_p_l___block_042e3331ed17110ce4da1112f10c5a5a}, \doxyref{nextLoop()}{p.}{class_t_p_l___block_793f3c7ff34e3a8f2e88209e8735fe5e}, \doxyref{remplacer()}{p.}{class_t_p_l___block_5f4d8f2f092746c0c2e41d7e86ac33c1}), ce qui a pour effet d'afficher en une seule fois toutes les itérations de la boucle
+
+\begin{Desc}
+\item[Voir également:]\doxyref{Template::afficher()}{p.}{class_template_a7ab8000ab4b857801067cefae17cbea} \end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::ajouter (\$ {\em sTexteAjout})}\label{class_t_p_l___block_2f9136eb76c481b09ab8797d9f161b8c}
+
+
+Ajouter du texte à la suite du contenu actuel du bloc de template. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em sTexteAjout}]le texte à ajouter \end{description}
+\end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!beginLoop@{beginLoop}}
+\index{beginLoop@{beginLoop}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::beginLoop ()}\label{class_t_p_l___block_042e3331ed17110ce4da1112f10c5a5a}
+
+
+Initialise les données du bloc pour les préparer à une boucle. 
+
+Le bloc pourra être répété plusieurs fois de suite dans le template, à son emplacement d'origine et avec des remplacements différents par itérations. Utilisé par exemple pour créer les lignes d'une table HTML \index{TPL\_\-Block@{TPL\_\-Block}!caracteres@{caracteres}}
+\index{caracteres@{caracteres}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::caracteres ()}\label{class_t_p_l___block_c0892eec63160e89fec0f8e623bc8172}
+
+
+Retourne le nombre de caractères qui composent le contenu du bloc de template. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre de cractères contenus dans le bloc \end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!countLoops@{countLoops}}
+\index{countLoops@{countLoops}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::countLoops ()}\label{class_t_p_l___block_f656703cd39afef0ae01a92c4bb99dae}
+
+
+Retourne le nombre d'itérations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre actuel d'itérations dans un boucle sur un bloc de template \end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!cycle@{cycle}}
+\index{cycle@{cycle}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::cycle (\$ {\em v\_\-iCycle} = {\tt NULL})}\label{class_t_p_l___block_bf74652ad12e34c4d14ed77885a99688}
+
+
+Remplace, dans l'itération courante d'une boucle, une balise de type [CYCLE:] par sa valeur pour cette itération. 
+
+Voici un exemple de balise qui permettrait, pour chaque itération d'une une boucle créant des lignes de table HTML, de modifier la classe CSS de chaque ligne afin d'en alterner les couleurs (classes ligneImpaire et lignePaire) :
+
+
+
+\begin{Code}\begin{verbatim} [bloc+]
+ <tr class="[CYCLE:ligneImpaire|lignePaire]">
+   <td>{nom_utilisateur}</td>
+   <td>{prenom_utilisateur}</td>
+ </tr>
+ [bloc-]
+\end{verbatim}
+\end{Code}
+
+
+
+Les valeurs possibles pour les cycles sont donc séparées par un carcatère '$|$'.
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iCycle}]l'index de la variable de cycle (la première ayant l'index zéro) qui remplacera la balise. S'il est absent, on prend l'index résultant de l'opération : (index de l'itération courante modulo nb total de cycles possibles) Ce qui entraînera un cycle croissant dans les valeurs possibles (pour l'exemple, cela donne ligneImpaire pour la 1ère itération, lignePaire pour la 2è, ligneImpaire pour la 3è, etc. \end{description}
+\end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!defDonnees@{defDonnees}}
+\index{defDonnees@{defDonnees}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::defDonnees (\$ {\em v\_\-sDonnees})}\label{class_t_p_l___block_b241348fbfaf30841205a34247f99efa}
+
+
+Définit le contenu du bloc de template. 
+
+Cela écrase l'ancien contenu
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDonnees}]le texte représentant le nouveau contenu du bloc de template \end{description}
+\end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!defTableau@{defTableau}}
+\index{defTableau@{defTableau}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::defTableau (\$ {\em looptag}, \/  \$ {\em v\_\-sSeparateur} = {\tt \char`\"{},\char`\"{}})}\label{class_t_p_l___block_e675163c245a573267d613538fc7e154}
+
+
+Raccourci vers la fonction \doxyref{defVariable()}{p.}{class_t_p_l___block_8824cc865a6707aaa0e4f5d7024dae5a} avec l'option tableau à {\tt true}, et le séparateur par défaut à ','. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \char`\"{}variable\char`\"{}, tel qu'utilisé dans les balises de délimitation + et - \item[{\em v\_\-sSeparateur}]la chaîne de caracères à utiliser pour séparer les éléments de la variables, qui seront retournés sous forme de tableau\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau de chaînes de caractères représentant le contenu de la variable délimitée par le bloc\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{defVariable()}{p.}{class_t_p_l___block_8824cc865a6707aaa0e4f5d7024dae5a} \end{Desc}
+
+
+Références \$looptag, et defVariable().\index{TPL\_\-Block@{TPL\_\-Block}!defVariable@{defVariable}}
+\index{defVariable@{defVariable}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::defVariable (\$ {\em looptag}, \/  \$ {\em v\_\-bRetTableau} = {\tt FALSE}, \/  \$ {\em v\_\-sSeparateur} = {\tt \char`\"{}\#\#\#\char`\"{}})}\label{class_t_p_l___block_8824cc865a6707aaa0e4f5d7024dae5a}
+
+
+Récupère les variables situées à l'intérieur d'un bloc. 
+
+Les \char`\"{}variables\char`\"{} sont délimitées par des balises [bloc+][bloc-], mais le contenu des balises, plutôt que d'être considéré comme des données à afficher comme c'est le cas pour un véritable bloc, est retourné comme \char`\"{}variable\char`\"{}, soit sous forme de chaîne (défaut), soit sous forme de tableau. Dans ce dernier cas, le contenu des balises doit comprendre des séparateurs, qui seront utilisés pour diviser le contenu en éléments de tableau. Au retour de la fonction, le bloc et son contenu sont effacés du template. Une variable ne peut donc être récupérée qu'une seule fois dans un template
+
+Exemple:
+
+
+
+\begin{Code}\begin{verbatim} [variable+]<img src="image1.gif">|<img src="image2.gif">[variable-]
+\end{verbatim}
+\end{Code}
+
+
+
+Si le code ci-dessus se trouve dans un bloc de template représenté en PHP par l'objet {\tt \$oBloc}, un appel de type {\tt \$oBloc-$>$defVariable(\char`\"{}variable\char`\"{}, \$asTableau, '$|$');} retournera un tableau de deux éléments (chaînes), le premier contenant {\tt $<$img src=\char`\"{}image1.gif\char`\"{}$>$}, la seconde {\tt $<$img src=\char`\"{}image2.gif\char`\"{}$>$ }
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \char`\"{}variable\char`\"{}, tel qu'utilisé dans les balises de délimitation + et - \item[{\em v\_\-bRetTableau}]si {\tt true}, le contenu devra être retourné sous forme de tableau \item[{\em v\_\-sSeparateur}]lorsque {\tt v\_\-bRetTableau} vaut {\tt true}, ce paramètre est utilisé pour déterminer les éléments à extraire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]une chaîne de caractères ou un tableau de chaîne de caractères représentant le contenu de la variable délimitée par le bloc \end{Desc}
+
+
+Référencé par defTableau(), et effacerVariable().\index{TPL\_\-Block@{TPL\_\-Block}!desactiverBloc@{desactiverBloc}}
+\index{desactiverBloc@{desactiverBloc}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::desactiverBloc (\$ {\em looptag})}\label{class_t_p_l___block_cd38b794a519b39fa1be31f9257e3643}
+
+
+Désactive un bloc de template. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc \end{description}
+\end{Desc}
+
+
+Références \$looptag.
+
+Référencé par activerBloc().\index{TPL\_\-Block@{TPL\_\-Block}!effacer@{effacer}}
+\index{effacer@{effacer}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::effacer ()}\label{class_t_p_l___block_324462aad0f9b1cb0c7cc4f16f40e68d}
+
+
+Effacer complètement ce bloc dans le template parent. 
+
+Cela qui implique l'effacement de la balise temporaire qui avait été créée dans le parent, pour la durée des traitements/remplacements \index{TPL\_\-Block@{TPL\_\-Block}!effacerVariable@{effacerVariable}}
+\index{effacerVariable@{effacerVariable}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::effacerVariable (\$ {\em looptag})}\label{class_t_p_l___block_3f8082652d2ccd70457654e3e4c6072e}
+
+
+Efface complètement un bloc (variable) dans un bloc de template. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom du bloc contenant la variable, tel qu'utilisé dans les balises + et - \end{description}
+\end{Desc}
+
+
+Références \$looptag, et defVariable().\index{TPL\_\-Block@{TPL\_\-Block}!extraire@{extraire}}
+\index{extraire@{extraire}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::extraire ()}\label{class_t_p_l___block_7c5346f2119de102acf56f74a51f3f3d}
+
+
+\char`\"{}Extrait\char`\"{} le bloc de son template parent. 
+
+Cela consiste à remplacer dans ce dernier le bloc et son contenu par un texte temporaire, qui pourra ensuite être remplacé par le bloc après traitements comme les boucles et remplacements.
+
+Par exemple le bloc suivant :
+
+
+
+\begin{Code}\begin{verbatim} [bloc+]
+ <tr>
+   <td>{nom_utilisateur}</td>
+   <td>{prenom_utilisateur}</td>
+ </tr>
+ [bloc-]
+\end{verbatim}
+\end{Code}
+
+
+
+sera entièrement remplacé, le temps des traitements sur le bloc (avant l'appel à \doxyref{afficher()}{p.}{class_t_p_l___block_033c8864b8d6180d9163828454335ab0} donc), par {\tt }[bloc\_\-tmp] dans son template parent. Lorsque les traitements sont terminés et qu'on demande l'affichage du bloc résultant, {\tt }[bloc\_\-tmp] sera remplacé dans le \doxyref{Template}{p.}{class_template} parent par ce bloc résultant 
+
+Référencé par TPL\_\-Block().\index{TPL\_\-Block@{TPL\_\-Block}!nextLoop@{nextLoop}}
+\index{nextLoop@{nextLoop}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::nextLoop ()}\label{class_t_p_l___block_793f3c7ff34e3a8f2e88209e8735fe5e}
+
+
+Passe à l'itération suivante d'une boucle sur un bloc de template. 
+
+Les données ayant subi des traitements (remplacements) dans l'itération courante sont sauvegardées d'abord \index{TPL\_\-Block@{TPL\_\-Block}!remplacer@{remplacer}}
+\index{remplacer@{remplacer}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::remplacer (\$ {\em in}, \/  \$ {\em out})}\label{class_t_p_l___block_5f4d8f2f092746c0c2e41d7e86ac33c1}
+
+
+Remplace \char`\"{}simplement\char`\"{} des morceaux de bloc de template par d'autres. 
+
+Utilisé pour inclure des variables dans le bloc de template, qui seront remplacées en PHP
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em in}]la chaîne de caractère à trouver dans le bloc de template \item[{\em out}]la chaîne par laquelle on veut remplacer toutes les occurences de {\tt in} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{Template::remplacer()}{p.}{class_template_805dfe1c011cc3f3a8538f9374129cdc} \end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!retDonnees@{retDonnees}}
+\index{retDonnees@{retDonnees}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::retDonnees ()}\label{class_t_p_l___block_5f96415d0920acbf8a69c0d80a44033c}
+
+
+Retourne le contenu actuel du bloc de template, avec les remplacements et autres traitements de éventuels. 
+
+\begin{Desc}
+\item[Renvoie:]le contenu du bloc de template après traitements \end{Desc}
+\index{TPL\_\-Block@{TPL\_\-Block}!TPL\_\-Block@{TPL\_\-Block}}
+\index{TPL\_\-Block@{TPL\_\-Block}!TPL_Block@{TPL\_\-Block}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}TPL\_\-Block::TPL\_\-Block (\$ {\em looptag}, \/  \&\$ {\em template})}\label{class_t_p_l___block_7b1484c82120001d8cc1cd97ff5d5583}
+
+
+Constructeur. 
+
+Initialise la balise \char`\"{}nom du bloc\char`\"{}, le template parent, et débute le traitement sur ce dernier
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em looptag}]le nom des balises entourant le bloc de template \item[{\em template}]l'objet \doxyref{Template}{p.}{class_template} parent\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Voir également:]\doxyref{extraire()}{p.}{class_t_p_l___block_7c5346f2119de102acf56f74a51f3f3d} \end{Desc}
+
+
+Références \$looptag, et extraire().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/{\bf template.inc.php}\end{CompactItemize}

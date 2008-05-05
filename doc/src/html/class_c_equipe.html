@@ -1,0 +1,755 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CEquipe</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CEquipe</h1><!-- doxytag: class="CEquipe" -->
+<p>
+<a href="class_c_equipe-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des équipes, et encapsulation de la table Equipe de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#3100b92893691130db878898d2538193">ajouter</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Insère une nouvelle équipe dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> (par les fonctions def.  <a href="#3100b92893691130db878898d2538193"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#d611eb4ea25bc7db111f2f235d6753b5">ajouterMembres</a> ($v_aiIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute des nouveaux membres à l'équipe dans la DB.  <a href="#d611eb4ea25bc7db111f2f235d6753b5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#5ba3481422689d6b253b9d60c788d491">CEquipe</a> (&amp;$v_oBdd, $v_iId=NULL, $v_bInitMembres=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#5ba3481422689d6b253b9d60c788d491"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cc000b885fbd0307e089601aa86a2213"></a><!-- doxytag: member="CEquipe::effacer" ref="cc000b885fbd0307e089601aa86a2213" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#cc000b885fbd0307e089601aa86a2213">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface de la DB l'équipe actuellement initialisée dans l'objet. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#47c4d48d47ef1d01b175f7023e0d7991">effacerParNiveau</a> ($v_iNiveau, $v_iIdNiveau)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les équipes appartenant à un niveau spécifique (formation, module, etc).  <a href="#47c4d48d47ef1d01b175f7023e0d7991"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8b9180b389a5903f23d7f52a3e1d07f6"></a><!-- doxytag: member="CEquipe::init" ref="8b9180b389a5903f23d7f52a3e1d07f6" args="($v_oEnregBdd=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#8b9180b389a5903f23d7f52a3e1d07f6">init</a> ($v_oEnregBdd=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#306dee6bcb1f7293d29ca67c0c0c15c4">initEquipe</a> ($v_iIdPers, $v_iIdNiveau, $v_iTypeNiveau, $v_bInitMembres=FALSE, $v_iIdNiveauDernier=<a class="el" href="plate__forme_8class_8php.html#2563a936a6324888c5f1eb506166bb49">TYPE_FORMATION</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'équipe d'un utilisateur dans un contexte/niveau/élément précis (formation, module, etc).  <a href="#306dee6bcb1f7293d29ca67c0c0c15c4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#24f8c8e46f3a30038af3af10f307fd2b">initEquipes</a> ($v_iIdForm=NULL, $v_iIdMod=NULL, $v_iIdRubrique=NULL, $v_iIdActiv=NULL, $v_iIdSousActiv=NULL, $v_bInitMembres=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau d'équipes (<code>aoEquipes</code>) selon le niveau (formation/module/etc) où elles sont définies.  <a href="#24f8c8e46f3a30038af3af10f307fd2b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#697d9558f9cf790ef5959d1b74418f07">initEquipesEx</a> ($v_iIdNiveauDepart, $v_iTypeNiveauDepart, $v_bInitMembres=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau d'équipes (<code>aoEquipes</code>) en les cherchant à partir d'un certain niveau de la structure (formation/module/etc), tout en passant au niveau supérieur (parent) à chaque fois qu'aucune équipe n'est trouvée au niveau courant, et cela jusqu'au "dernier" niveau, càd TYPE_FORMATION.  <a href="#697d9558f9cf790ef5959d1b74418f07"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#30a4bf363736b3a3c69ef7e8e0966de6">initEquipesNiveau</a> ($v_iTypeNiveau, $v_iIdNiveau, $v_bInitMembres=FALSE, $v_bNonEquipesEnfants=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau d'équipes (<code>aoEquipes</code>) selon le niveau (formation/module/etc) où elles sont définies.  <a href="#30a4bf363736b3a3c69ef7e8e0966de6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#02e7f868b7bbb4d39f02fee08dc7174b">initGraceIdEquipes</a> ($v_aiIdEquipes)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau d'équipes (<code>aoEquipes</code>) en se basant sur une série d'ids d'équipes.  <a href="#02e7f868b7bbb4d39f02fee08dc7174b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#59ad255ea193112fb6906a8b62c58be6">initMembres</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les membres de l'équipe (dans le tableau <code>aoMembres</code> - objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>).  <a href="#59ad255ea193112fb6906a8b62c58be6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#2c19b960f045afae59cce1c8828634fe">retLien</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le code HTML nécessaire à la création d'un lien qui ouvrira une popup avec renseignements sur l'équipe.  <a href="#2c19b960f045afae59cce1c8828634fe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#cfbd0032f34e508d61c0505851867986">retNbMembres</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de personnes/membres composant l'équipe.  <a href="#cfbd0032f34e508d61c0505851867986"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#43a984783590ff5a1462f79174cdccb4">sauvegarder</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Met à jour l'équipe courante dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> (par les fonctions def.  <a href="#43a984783590ff5a1462f79174cdccb4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#e78f47711f73779b537eb370c16f2b6f">verifMembre</a> ($v_iIdPers, $v_iIdEquipe=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifier qu'une personne est membre de l'équipe (ou d'une équipe spécifique).  <a href="#e78f47711f73779b537eb370c16f2b6f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#52ffa2dc46f2ff81ed3969d1530ea733">verrouillerTables</a> ($v_bExecuterRequete=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verrouille ou retourne les noms des tables généralement utilisées lors des requêtes relatives aux équipes.  <a href="#52ffa2dc46f2ff81ed3969d1530ea733"></a><br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour cette équipe</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b30dbfcd1540b1bc4090873599d9bf0f"></a><!-- doxytag: member="CEquipe::defIdActivite" ref="b30dbfcd1540b1bc4090873599d9bf0f" args="($v_iIdActiv)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdActivite</b> ($v_iIdActiv)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e10d921f9c359905417011b3befefb6d"></a><!-- doxytag: member="CEquipe::defIdFormation" ref="e10d921f9c359905417011b3befefb6d" args="($v_iIdFormation)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdFormation</b> ($v_iIdFormation)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d18464b6c11eb53db06e3db1bfca9984"></a><!-- doxytag: member="CEquipe::defIdModule" ref="d18464b6c11eb53db06e3db1bfca9984" args="($v_iIdModule)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdModule</b> ($v_iIdModule)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="72054df780a0cc7843b1c0fe39709893"></a><!-- doxytag: member="CEquipe::defIdRubrique" ref="72054df780a0cc7843b1c0fe39709893" args="($v_iIdRubrique)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdRubrique</b> ($v_iIdRubrique)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f70d2facae073575a655b691a85d8175"></a><!-- doxytag: member="CEquipe::defIdSousActivite" ref="f70d2facae073575a655b691a85d8175" args="($v_iIdSousActiv)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdSousActivite</b> ($v_iIdSousActiv)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="0008ba233dd26d3285382a22a85b452b"></a><!-- doxytag: member="CEquipe::defNom" ref="0008ba233dd26d3285382a22a85b452b" args="($v_sNomEquipe)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNom</b> ($v_sNomEquipe)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour cette équipe</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6529bd9e906e8d3043ae7f99f744b931"></a><!-- doxytag: member="CEquipe::retId" ref="6529bd9e906e8d3043ae7f99f744b931" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee6523c14f858b4c6b8eadcae609c5c9"></a><!-- doxytag: member="CEquipe::retIdActivite" ref="ee6523c14f858b4c6b8eadcae609c5c9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdActivite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="94511b794799c2e266b753c8408844dd"></a><!-- doxytag: member="CEquipe::retIdFormation" ref="94511b794799c2e266b753c8408844dd" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdFormation</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="96b84ddcc6bec4ed4b2f4d3f5e31e66d"></a><!-- doxytag: member="CEquipe::retIdModule" ref="96b84ddcc6bec4ed4b2f4d3f5e31e66d" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdModule</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fcf510273967336213b8ba5ae427edb9"></a><!-- doxytag: member="CEquipe::retIdRubrique" ref="fcf510273967336213b8ba5ae427edb9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdRubrique</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f8f17838c06c26cfd6e9dadcb05501ec"></a><!-- doxytag: member="CEquipe::retIdSousActivite" ref="f8f17838c06c26cfd6e9dadcb05501ec" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdSousActivite</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#a963669c75e8b87a1ec2ce7e551377ca">retNom</a> ($v_sMode=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom de l'équipe, avec possibilité d'encodages en html ou en "url".  <a href="#a963669c75e8b87a1ec2ce7e551377ca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d93f9a45afe0a6dcc74800d9ef41192b"></a><!-- doxytag: member="CEquipe::retNumOrdre" ref="d93f9a45afe0a6dcc74800d9ef41192b" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNumOrdre</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="88eabb5a121751b45cc596bb2590d344"></a><!-- doxytag: member="CEquipe::$aoEquipes" ref="88eabb5a121751b45cc596bb2590d344" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#88eabb5a121751b45cc596bb2590d344">$aoEquipes</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau d'objets <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> rempli par diverses fonctions d'initialisation sur des critères spécifiques. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="57f677dd577433391c289f19e5f91e50"></a><!-- doxytag: member="CEquipe::$aoMembres" ref="57f677dd577433391c289f19e5f91e50" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#57f677dd577433391c289f19e5f91e50">$aoMembres</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> représentant les membres de l'équipe (rempli par <a class="el" href="class_c_equipe.html#59ad255ea193112fb6906a8b62c58be6" title="Initialise les membres de l&#39;équipe (dans le tableau aoMembres - objets CPersonne)...">initMembres()</a>). <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1b5caddc4e7fe53d0feb48dc9ba4c3d9"></a><!-- doxytag: member="CEquipe::$iId" ref="1b5caddc4e7fe53d0feb48dc9ba4c3d9" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#1b5caddc4e7fe53d0feb48dc9ba4c3d9">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de l'équipe à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1dc76a561164dc0579a3b589d8bc72f6"></a><!-- doxytag: member="CEquipe::$oBdd" ref="1dc76a561164dc0579a3b589d8bc72f6" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#1dc76a561164dc0579a3b589d8bc72f6">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="40a9090a880dcf9df0c5916f43ae80e2"></a><!-- doxytag: member="CEquipe::$oEnregBdd" ref="40a9090a880dcf9df0c5916f43ae80e2" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_equipe.html#40a9090a880dcf9df0c5916f43ae80e2">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="3100b92893691130db878898d2538193"></a><!-- doxytag: member="CEquipe::ajouter" ref="3100b92893691130db878898d2538193" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::ajouter           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Insère une nouvelle équipe dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> (par les fonctions def. 
+<p>
+..()). La fonction <a class="el" href="class_c_equipe.html#8b9180b389a5903f23d7f52a3e1d07f6" title="Voir CPersonne::init().">init()</a> est ensuite rappelée pour initialiser complètement l'objet courant 
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00075">init()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00583">retNom()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d611eb4ea25bc7db111f2f235d6753b5"></a><!-- doxytag: member="CEquipe::ajouterMembres" ref="d611eb4ea25bc7db111f2f235d6753b5" args="($v_aiIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::ajouterMembres           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_aiIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute des nouveaux membres à l'équipe dans la DB. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_aiIdPers</em>&nbsp;</td><td>le tableau contenant les id des personnes à ajouter à l'équipe</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe___membre.html#abdeb1e90f8ecac1caa957651ccb436d" title="Ajoute (dans la DB) une ou plusieurs personnes à l&#39;équipe qui a servi à initialiser...">CEquipe_Membre::ajouterMembres()</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5ba3481422689d6b253b9d60c788d491"></a><!-- doxytag: member="CEquipe::CEquipe" ref="5ba3481422689d6b253b9d60c788d491" args="(&amp;$v_oBdd, $v_iId=NULL, $v_bInitMembres=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::CEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iId</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>l'objet <a class="el" href="class_c_bdd.html" title="Gestion de la DB, adaptée à Esprit, utilisant des variables globales du projet...">CBdd</a> qui représente la connexion courante à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iId</em>&nbsp;</td><td>l'id de l'équipe à récupérer dans la DB. S'il est omis ou si l'équipe demandée n'existe pas dans la DB, l'objet est créé mais ne contient aucune donnée provenant de la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, les personnes composant l'équipe seront initialisées automatiquement dans le tableau <code>aoMembres</code>, sous forme d'objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a></td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#8b9180b389a5903f23d7f52a3e1d07f6" title="Voir CPersonne::init().">init()</a> </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00075">init()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00336">initMembres()</a>.</p>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00204">initEquipes()</a>, <a class="el" href="equipe_8tbl_8php-source.html#l00255">initEquipesNiveau()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00415">initGraceIdEquipes()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="47c4d48d47ef1d01b175f7023e0d7991"></a><!-- doxytag: member="CEquipe::effacerParNiveau" ref="47c4d48d47ef1d01b175f7023e0d7991" args="($v_iNiveau, $v_iIdNiveau)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::effacerParNiveau           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface les équipes appartenant à un niveau spécifique (formation, module, etc). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément pour lequel on veut effacer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut effacer les équipes. Sa signification dépend du paramètre <code>v_iNiveau</code> </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="306dee6bcb1f7293d29ca67c0c0c15c4"></a><!-- doxytag: member="CEquipe::initEquipe" ref="306dee6bcb1f7293d29ca67c0c0c15c4" args="($v_iIdPers, $v_iIdNiveau, $v_iTypeNiveau, $v_bInitMembres=FALSE, $v_iIdNiveauDernier=TYPE_FORMATION)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveauDernier</em> = <code><a class="el" href="plate__forme_8class_8php.html#2563a936a6324888c5f1eb506166bb49">TYPE_FORMATION</a></code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise l'équipe d'un utilisateur dans un contexte/niveau/élément précis (formation, module, etc). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de l'utilisateur dont on veut connaître l'équipe </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de l'équipe </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveauDernier</em>&nbsp;</td><td>le niveau maximum jusqu'auquel il faut "remonter" pour chercher l'équipe de l'utilisateur. Par défaut, la rechercher s'effectue jusqu'à la "racine", càd les équipes créées au niveau de la formation, en passant éventuellement par sous-activité, activité, rubrique, et module, car le niveau de départ (minimum) de la recherche dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'utilisateur fait bien partie d'une équipe </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00075">init()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00336">initMembres()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="24f8c8e46f3a30038af3af10f307fd2b"></a><!-- doxytag: member="CEquipe::initEquipes" ref="24f8c8e46f3a30038af3af10f307fd2b" args="($v_iIdForm=NULL, $v_iIdMod=NULL, $v_iIdRubrique=NULL, $v_iIdActiv=NULL, $v_iIdSousActiv=NULL, $v_bInitMembres=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initEquipes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdMod</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdRubrique</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdActiv</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdSousActiv</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau d'équipes (<code>aoEquipes</code>) selon le niveau (formation/module/etc) où elles sont définies. 
+<p>
+Plusieurs niveaux peuvent être spécifiés en paramètres en même temps<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la formation dans laquelle il faut chercher les équipes à récupérer. Si <code>null</code> (défaut), la recherche ne porte pas sur l'appartenance à une formation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdMod</em>&nbsp;</td><td>l'id du module dans lequel il faut chercher les équipes à récupérer. Si <code>null</code> (défaut), la recherche ne porte pas sur l'appartenance à un module </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdRubrique</em>&nbsp;</td><td>l'id de la rubrique dans laquelle il faut chercher les équipes à récupérer. Si <code>null</code> (défaut), la recherche ne porte pas sur l'appartenance à une rubrique </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdActiv</em>&nbsp;</td><td>l'id de l'activité dans laquelle il faut chercher les équipes à récupérer Si <code>null</code> (défaut), la recherche ne porte pas sur l'appartenance à une activité </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdSousActiv</em>&nbsp;</td><td>l'id de la sous-activité dans laquelle il faut chercher les équipes à récupérer. Si <code>null</code> (défaut), la recherche ne porte pas sur l'appartenance à une sous-activité </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de l'équipe (défaut à <code>false</code>)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes trouvées </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00058">CEquipe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="697d9558f9cf790ef5959d1b74418f07"></a><!-- doxytag: member="CEquipe::initEquipesEx" ref="697d9558f9cf790ef5959d1b74418f07" args="($v_iIdNiveauDepart, $v_iTypeNiveauDepart, $v_bInitMembres=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initEquipesEx           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveauDepart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveauDepart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau d'équipes (<code>aoEquipes</code>) en les cherchant à partir d'un certain niveau de la structure (formation/module/etc), tout en passant au niveau supérieur (parent) à chaque fois qu'aucune équipe n'est trouvée au niveau courant, et cela jusqu'au "dernier" niveau, càd TYPE_FORMATION. 
+<p>
+Si une ou plusieurs équipe sont trouvées à un niveau, la recherche s'arrête<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveauDepart</em>&nbsp;</td><td>l'id de l'élément de départ pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveauDepart</em>&nbsp;</td><td>le numéro représentant le type d'élément (formation/module/etc) par lequel on veut débuter la recherche des équipes à initialiser </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de l'équipe (défaut à <code>false</code>)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes trouvées</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#30a4bf363736b3a3c69ef7e8e0966de6" title="Initialise un tableau d&#39;équipes (aoEquipes) selon le niveau (formation/module/etc)...">initEquipesNiveau()</a> </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00255">initEquipesNiveau()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="30a4bf363736b3a3c69ef7e8e0966de6"></a><!-- doxytag: member="CEquipe::initEquipesNiveau" ref="30a4bf363736b3a3c69ef7e8e0966de6" args="($v_iTypeNiveau, $v_iIdNiveau, $v_bInitMembres=FALSE, $v_bNonEquipesEnfants=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initEquipesNiveau           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iTypeNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNiveau</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bInitMembres</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bNonEquipesEnfants</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau d'équipes (<code>aoEquipes</code>) selon le niveau (formation/module/etc) où elles sont définies. 
+<p>
+Un seul niveau est passé en paramètre, contrairement à <a class="el" href="class_c_equipe.html#24f8c8e46f3a30038af3af10f307fd2b" title="Initialise un tableau d&#39;équipes (aoEquipes) selon le niveau (formation/module/etc)...">initEquipes()</a>. Permet aussi de restreindre aux équipes qui sont explicitement définies au niveau spécifié (qui ne sont pas des équipes définie à un niveau plus élevé et "héritées"<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iTypeNiveau</em>&nbsp;</td><td>le numéro représentant le type d'élément pour lequel on veut récupérer les équipes, càd formation, module, rubrique, activité, sous-activité (voir les constantes TYPE_) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNiveau</em>&nbsp;</td><td>l'id de l'élément pour lequel on veut récupérer les équipes. Sa signification dépend du paramètre <code>v_iTypeNiveau</code> </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bInitMembres</em>&nbsp;</td><td>si <code>true</code>, initialise également les membres de chaque équipe (défaut à <code>false</code>) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bNonEquipesEnfants</em>&nbsp;</td><td>si <code>true</code>, la recherche des équipes à initialiser se restreint aux équipes explicitement définies au niveau spécifié par <code>v_iTypeNiveau</code>, càd pas des équipes définies à un niveau plus élevé et héritée à ce niveau</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipe trouvées, ou 0 si v_iTypeNiveau ou v_iIdNiveau sont &lt; 1 ou invalides </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00058">CEquipe()</a>.</p>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00312">initEquipesEx()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="02e7f868b7bbb4d39f02fee08dc7174b"></a><!-- doxytag: member="CEquipe::initGraceIdEquipes" ref="02e7f868b7bbb4d39f02fee08dc7174b" args="($v_aiIdEquipes)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initGraceIdEquipes           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_aiIdEquipes</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau d'équipes (<code>aoEquipes</code>) en se basant sur une série d'ids d'équipes. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_aiIdEquipes</em>&nbsp;</td><td>un tableau contenant les ids des équipes qu'on veut initialiser et qui rempliront le tableau <code>aoEquipes</code> </td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes initialisées </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00058">CEquipe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="59ad255ea193112fb6906a8b62c58be6"></a><!-- doxytag: member="CEquipe::initMembres" ref="59ad255ea193112fb6906a8b62c58be6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::initMembres           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les membres de l'équipe (dans le tableau <code>aoMembres</code> - objets <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a>). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de membres de l'équipe </dd></dl>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00058">CEquipe()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00129">initEquipe()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2c19b960f045afae59cce1c8828634fe"></a><!-- doxytag: member="CEquipe::retLien" ref="2c19b960f045afae59cce1c8828634fe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::retLien           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le code HTML nécessaire à la création d'un lien qui ouvrira une popup avec renseignements sur l'équipe. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le code HTML du lien </dd></dl>
+
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00583">retNom()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cfbd0032f34e508d61c0505851867986"></a><!-- doxytag: member="CEquipe::retNbMembres" ref="cfbd0032f34e508d61c0505851867986" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::retNbMembres           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de personnes/membres composant l'équipe. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de membres de l'équipe, ou 0 si celle-ci n'a pas encore été initialisée par <a class="el" href="class_c_equipe.html#59ad255ea193112fb6906a8b62c58be6" title="Initialise les membres de l&#39;équipe (dans le tableau aoMembres - objets CPersonne)...">initMembres()</a></dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_c_equipe.html#59ad255ea193112fb6906a8b62c58be6" title="Initialise les membres de l&#39;équipe (dans le tableau aoMembres - objets CPersonne)...">initMembres()</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a963669c75e8b87a1ec2ce7e551377ca"></a><!-- doxytag: member="CEquipe::retNom" ref="a963669c75e8b87a1ec2ce7e551377ca" args="($v_sMode=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::retNom           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sMode</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom de l'équipe, avec possibilité d'encodages en html ou en "url". 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sMode</em>&nbsp;</td><td>si <code>"html"</code>, les caractères spéciaux sont remplacés par des entités HTML. Si <code>"url"</code>, le nom sera encodé en URL. Si autre valeur (ou <code>null</code>), le nom de l'équipe est retourné tel quel</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom de l'équipe dans l'encodage choisi par <code>v_sMode</code> </dd></dl>
+
+<p>Référencé par <a class="el" href="equipe_8tbl_8php-source.html#l00432">ajouter()</a>, <a class="el" href="equipe_8tbl_8php-source.html#l00607">retLien()</a>, et <a class="el" href="equipe_8tbl_8php-source.html#l00532">sauvegarder()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="43a984783590ff5a1462f79174cdccb4"></a><!-- doxytag: member="CEquipe::sauvegarder" ref="43a984783590ff5a1462f79174cdccb4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::sauvegarder           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Met à jour l'équipe courante dans la DB, en utilisant les champs Nom, IdForm, IdMod, IdRubrique, IdActiv, IdSousActiv, et Ordre actuellement définis dans l'objet <a class="el" href="class_c_equipe.html" title="Gestion des équipes, et encapsulation de la table Equipe de la DB.">CEquipe</a> (par les fonctions def. 
+<p>
+..()) 
+<p>Références <a class="el" href="equipe_8tbl_8php-source.html#l00583">retNom()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e78f47711f73779b537eb370c16f2b6f"></a><!-- doxytag: member="CEquipe::verifMembre" ref="e78f47711f73779b537eb370c16f2b6f" args="($v_iIdPers, $v_iIdEquipe=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::verifMembre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifier qu'une personne est membre de l'équipe (ou d'une équipe spécifique). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne dont on veut vérifier l'appartenance à une équipe </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'équipe dont on veut vérifier si elle comprend la personne spécifiée par v_iIdPers. Si <code>null</code>, c'est l'équipe actuellement initialisée qui est prise pour la vérification</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne est bien membre de l'équipe (courante ou spécifiée en paramètre) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="52ffa2dc46f2ff81ed3969d1530ea733"></a><!-- doxytag: member="CEquipe::verrouillerTables" ref="52ffa2dc46f2ff81ed3969d1530ea733" args="($v_bExecuterRequete=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CEquipe::verrouillerTables           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bExecuterRequete</em> = <code>TRUE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Verrouille ou retourne les noms des tables généralement utilisées lors des requêtes relatives aux équipes. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bExecuterRequete</em>&nbsp;</td><td>si <code>true</code>, la requête LOCK TABLES sur les tables utilisées pendant les requêtes concernant les équipes est réellement exécutée. Si <code>false</code>, les noms de ces tables nécessaires à une requête LOCK TABLES seront retournés, mais le lock ne sera pas exécuté</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>les noms des tables utilisées pendant les requêtes concernant les équipes, suivi de WRITE et séparés par des virgules. La chaîne retournée pourra donc être utilisée pour composer une requête LOCK TABLES </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00128">CFormation::verrouillerTables()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="equipe_8tbl_8php.html">equipe.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

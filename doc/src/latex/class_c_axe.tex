@@ -1,0 +1,125 @@
+\section{Référence de la classe CAxe}
+\label{class_c_axe}\index{CAxe@{CAxe}}
+
+
+\subsection{Description détaillée}
+Gestion des axes, et encapsulation de la table Axe de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} ()
+\begin{CompactList}\small\item\em Ajoute un nouvel axe. \item\end{CompactList}\item 
+{\bf CAxe} (\&\$v\_\-oBdd, \$v\_\-iId=0)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf effacer} (\$v\_\-bVerification=TRUE)
+\begin{CompactList}\small\item\em Efface l'axe courant. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_axe_0a4394ed4340fa5118087a01ae3369fb}
+
+\begin{CompactList}\small\item\em Met à jour l'axe courant. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_axe_fdb74c3a7e62837ba8ec05712c909c8a}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf retListeAxes} (\$bTriAlpha=TRUE)
+\begin{CompactList}\small\item\em Retourne un tableau contenant la liste des axes. \item\end{CompactList}\item 
+{\bf verificationdependances} (\$v\_\-bEnTete=FALSE)
+\begin{CompactList}\small\item\em Verifie si l'axe courant est utilisé dans des formulaires. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cet axe}\par
+\begin{CompactItemize}
+\item 
+\textbf{defDescAxe} (\$v\_\-sDescAxe)\label{class_c_axe_8c4e76b726a97126ffe06b3fb9f14a0b}
+
+\item 
+\textbf{defIdAxe} (\$v\_\-iIdAxe)\label{class_c_axe_02a08332d48f1d116586e6fb72f33be0}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cet axe}\par
+\begin{CompactItemize}
+\item 
+\textbf{retDesc} ()\label{class_c_axe_7e176e897ac1730ba25805c331ab5c32}
+
+\item 
+\textbf{retDescAxe} ()\label{class_c_axe_834bb114da090403cfeade151e9fd5f1}
+
+\item 
+\textbf{retId} ()\label{class_c_axe_466f6c4452349e7c74ffe0d94af96937}
+
+\item 
+\textbf{retNom} ()\label{class_c_axe_d91905ed7838af8a9bee56c9f8a4ab4e}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$iId}\label{class_c_axe_1c20ef484ad0b7ca8e81fae83c17a318}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_axe_48f4117a0f0e941a755c93c3ad1a0cff}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_axe_76ff1c3871a1574b2b626a2be625bfa5}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CAxe@{CAxe}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CAxe@{CAxe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAxe::ajouter ()}\label{class_c_axe_6134a644a87c2e3d4eeb82450339aa51}
+
+
+Ajoute un nouvel axe. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du nouvel axe \end{Desc}
+\index{CAxe@{CAxe}!CAxe@{CAxe}}
+\index{CAxe@{CAxe}!CAxe@{CAxe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAxe::CAxe (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt 0})}\label{class_c_axe_e419ced99c54e9a5dfd65a2ce1c95ce0}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().\index{CAxe@{CAxe}!effacer@{effacer}}
+\index{effacer@{effacer}!CAxe@{CAxe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAxe::effacer (\$ {\em v\_\-bVerification} = {\tt TRUE})}\label{class_c_axe_7ad79416e055ca844df0a79a504a7cf1}
+
+
+Efface l'axe courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bVerification}]si {\tt true}, verification que le l'axe n'est plus utilisé par des formulaires\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant en premier une valeur booléenne qui est à {\tt true} si l'axe a été effacé et en deuxième paramètre le texte à afficher \end{Desc}
+\index{CAxe@{CAxe}!retListeAxes@{retListeAxes}}
+\index{retListeAxes@{retListeAxes}!CAxe@{CAxe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAxe::retListeAxes (\$ {\em bTriAlpha} = {\tt TRUE})}\label{class_c_axe_df0475e3a3fbdc1a196e3c370482c2b4}
+
+
+Retourne un tableau contenant la liste des axes. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em bTriAlpha}]si {\tt true}, le tableau sera trié alphabétiquement sur le champ DescAxe\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant la liste des axes \end{Desc}
+\index{CAxe@{CAxe}!verificationdependances@{verificationdependances}}
+\index{verificationdependances@{verificationdependances}!CAxe@{CAxe}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CAxe::verificationdependances (\$ {\em v\_\-bEnTete} = {\tt FALSE})}\label{class_c_axe_f1f4fa98dff410638f595c7f8141e07d}
+
+
+Verifie si l'axe courant est utilisé dans des formulaires. 
+
+\begin{Desc}
+\item[Renvoie:]la liste à afficher des dépendances \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf axe.tbl.php}\end{CompactItemize}

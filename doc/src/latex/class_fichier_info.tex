@@ -1,0 +1,596 @@
+\section{Référence de la classe FichierInfo}
+\label{class_fichier_info}\index{FichierInfo@{FichierInfo}}
+Graphe d'héritage de FichierInfo::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_fichier_info}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe d'information sur les fichiers/dossiers du système de fichier: interrogations des caractéristiques, accès, etc. 
+
+\begin{Desc}
+\item[Note:]Un objet de cette classe ne doit pas obligatoirement représenter un fichier existant, il s'agit seulement d'un chemin, qui peut ensuite être vérifié (il y a une exception : \doxyref{FichierInfo::retCheminReel()}{p.}{class_fichier_info_4c767ac01bd5d6ef4dddd197a7483178})
+
+Cette classe ne gère PAS les lectures/écritures DANS un fichier
+
+Cette classe utilise des fonctions str...(), qui ne sont par défaut pas compatibles multibyte, mais je pense que pour les noms de fichiers/dossiers récupérés par l'OS, ça ne devrait pas poser de problèmes\end{Desc}
+\begin{Desc}
+\item[{\bf À faire}]Il faudrait créer des méthodes pour:\begin{itemize}
+\item transformer un chemin relatif en absolu (et vice versa) sans obligation que le chemin fourni existe réellement quand c'est possible;\item déterminer la partie \char`\"{}racine\char`\"{} d'un chemin;\item etc \end{itemize}
+\end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf cheminContientDossier} ()
+\begin{CompactList}\small\item\em Indique si le chemin actuellement représenté par l'objet contient explicitement un dossier, ou s'il s'agit d'un simple nom de fichier. \item\end{CompactList}\item 
+{\bf convertirSeparateurs} (\$v\_\-sChemin, \$v\_\-sSeparateurSrc=DIRECTORY\_\-SEPARATOR, \$v\_\-sSeparateurDst=NULL)
+\begin{CompactList}\small\item\em Convertit, dans un chemin, les séparateurs de fichier/dossiers par défaut de l'OS courant, en séparateurs exigés par l'attribut {\tt sSeparateur} de l'objet (détecté par \doxyref{defChemin()}{p.}{class_fichier_info_2c91460658e8685287e3828a12f5f5ba} ou modifié par \doxyref{defSeparateur()}{p.}{class_fichier_info_ef733683b64b2a8e77b45929eb84030f}). \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-sDossierDest, \$v\_\-bEcraserExistant=FALSE, \$v\_\-bCreerDsDest=TRUE, \$v\_\-bRecursif=FALSE, \$v\_\-fnCallback=NULL)
+\begin{CompactList}\small\item\em Copie le fichier ou dossier représenté par l'objet courant dans un autre dossier. \item\end{CompactList}\item 
+{\bf copierDossier} (\$v\_\-sDossierDest, \$v\_\-bEcraserExistant=FALSE, \$v\_\-bCreerDsDest=TRUE, \$v\_\-bRecursif=FALSE, \$v\_\-fnCallback=NULL)
+\begin{CompactList}\small\item\em Copie le dossier représenté par l'objet courant $\ast$dans$\ast$ un autre dossier. \item\end{CompactList}\item 
+{\bf copierFichier} (\$v\_\-sDossierDest, \$v\_\-bEcraserExistant=FALSE, \$v\_\-fnCallback=NULL)
+\begin{CompactList}\small\item\em Copie le fichier représenté par l'objet courant dans un autre dossier. \item\end{CompactList}\item 
+{\bf creerDossier} (\$v\_\-sCreerEnfant=NULL, \$v\_\-bCreerInterm=FALSE, \$v\_\-iMode=0777)
+\begin{CompactList}\small\item\em Crée le dossier représenté dans l'objet courant. \item\end{CompactList}\item 
+{\bf defChemin} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em Initialise un chemin dans l'objet. \item\end{CompactList}\item 
+{\bf defSeparateur} (\$v\_\-sSeparateur, \$v\_\-bRemplacerExistant=TRUE)
+\begin{CompactList}\small\item\em Définit un séparateur de chemin pour l'objet. \item\end{CompactList}\item 
+{\bf deplacer} (\$v\_\-sDossierDest, \$v\_\-bEcraserExistant=FALSE, \$v\_\-bRemplacer=FALSE, \$v\_\-fnCallback=NULL)
+\begin{CompactList}\small\item\em Déplace le fichier ou dossier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf detecterSeparateur} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em Détecte et retourne le séparateur utilisé dans un chemin. \item\end{CompactList}\item 
+{\bf enleverSeparateursDeDebut} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em Enlève les séparateurs de dossier qui se trouveraient au début d'un chemin. \item\end{CompactList}\item 
+{\bf enleverSeparateursDeFin} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em Enlève les séparateurs de dossier qui se trouveraient à la fin d'un chemin. \item\end{CompactList}\item 
+\textbf{estDescendantDe} (\$v\_\-sDossierSource)\label{class_fichier_info_16b8ad7d6686b20d4601f2c4ac9461e9}
+
+\item 
+{\bf estDossier} ()
+\begin{CompactList}\small\item\em Indique si l'objet du système de fichier représenté par le chemin courant est bien de type \char`\"{}dossier\char`\"{}. \item\end{CompactList}\item 
+{\bf estFichier} ()
+\begin{CompactList}\small\item\em Indique si l'objet du système de fichier représenté par le chemin courant est bien de type \char`\"{}fichier\char`\"{}. \item\end{CompactList}\item 
+{\bf estLisible} ()
+\begin{CompactList}\small\item\em Indique si le fichier/dossier représenté par le chemin courant est accessible en lecture. \item\end{CompactList}\item 
+{\bf estModifiable} ()
+\begin{CompactList}\small\item\em Indique si le fichier/dossier représenté par le chemin courant est accessible en écriture. \item\end{CompactList}\item 
+{\bf existe} ()
+\begin{CompactList}\small\item\em Indique si le fichier/dossier représenté par le chemin courant existe bien. \item\end{CompactList}\item 
+{\bf FichierInfo} (\$v\_\-sChemin)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf formerChemin} (\$v\_\-sSupplement, \$v\_\-bRemplacer=FALSE)
+\begin{CompactList}\small\item\em Crée et retourne un chemin construit sur base du chemin représenté par l'objet, en lui ajoutant de nouvelles composantes. \item\end{CompactList}\item 
+{\bf reduireChemin} (\$v\_\-sPartieAEnlever, \$v\_\-bRemplacer=FALSE)
+\begin{CompactList}\small\item\em Enlève le début du chemin représenté par l'objet, si ce début correspond à une chaîne donnée. \item\end{CompactList}\item 
+{\bf renommer} (\$v\_\-sCheminDest, \$v\_\-bEcraserExistant=FALSE, \$v\_\-bRemplacer=FALSE, \$v\_\-fnCallback=NULL)
+\begin{CompactList}\small\item\em Renomme le fichier ou dossier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf retChemin} ()
+\begin{CompactList}\small\item\em Retourne le chemin qui est représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf retCheminReel} ()
+\begin{CompactList}\small\item\em Retourne le chemin réel représenté par l'objet, càd sa forme absolue et canonique (séparateurs corrects pour l'OS et chemins '. \item\end{CompactList}\item 
+{\bf retDossier} (\$v\_\-bPasDePoint=TRUE)
+\begin{CompactList}\small\item\em Retourne le nom du dossier parent extrait du chemin représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf retExtension} ()
+\begin{CompactList}\small\item\em Retourne l'extension du fichier/dossier contenue dans le chemin représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf retNom} ()
+\begin{CompactList}\small\item\em Retourne le nom du fichier/dossier contenu dans le chemin représenté par l'objet courant, y compris son éventuelle extension. \item\end{CompactList}\item 
+{\bf retNomSansExtension} ()
+\begin{CompactList}\small\item\em Retourne le nom du fichier/dossier contenu dans le chemin représenté par l'objet courant, SANS son éventuelle extension. \item\end{CompactList}\item 
+{\bf retSeparateur} ()
+\item 
+{\bf retTaille} ()
+\item 
+{\bf separateurParDefaut} (\$v\_\-sSeparateur=NULL)
+\begin{CompactList}\small\item\em Définit un séparateur par défaut pour tous les objets de cette classe qui seront créés. \item\end{CompactList}\item 
+{\bf supprimer} (\$v\_\-bRecursif=FALSE)
+\begin{CompactList}\small\item\em Supprime le fichier ou dossier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf supprimerDossier} (\$v\_\-bRecursif=FALSE)
+\begin{CompactList}\small\item\em Supprime le dossier représenté par l'objet courant. \item\end{CompactList}\item 
+{\bf supprimerFichier} ()
+\begin{CompactList}\small\item\em Supprime le fichier représenté par l'objet courant. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$sChemin}\label{class_fichier_info_b98d35ce94a21fd4897659a39d781728}
+
+\begin{CompactList}\small\item\em Le chemin représenté par l'objet. \item\end{CompactList}\item 
+{\bf \$sSeparateur} = DIRECTORY\_\-SEPARATOR\label{class_fichier_info_3f9fb781a7447413748485bea54e237b}
+
+\begin{CompactList}\small\item\em Le séparateur de dossiers à utiliser pour ce chemin (les chemins retournés utiliseront celui-là). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{FichierInfo@{FichierInfo}!cheminContientDossier@{cheminContientDossier}}
+\index{cheminContientDossier@{cheminContientDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::cheminContientDossier ()}\label{class_fichier_info_b047bc23b0c79c5546aba00158d50802}
+
+
+Indique si le chemin actuellement représenté par l'objet contient explicitement un dossier, ou s'il s'agit d'un simple nom de fichier. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le chemin contient une référence à un dossier (par ex \char`\"{}/monDossier/monFichier.ext\char`\"{}, ou même \char`\"{}./monFichier.ext\char`\"{} et \char`\"{}../monFichier.ext\char`\"{}), {\tt false} sinon (par ex \char`\"{}monFichier.ext\char`\"{})\end{Desc}
+\begin{Desc}
+\item[Note:]Je me sers de cette méthode pour différencier les chemins \char`\"{}./monFichier.ext\char`\"{} et \char`\"{}monFichier.ext\char`\"{}, qui en temps normal sont \char`\"{}égaux\char`\"{} et représentent tous les deux \char`\"{}./monFichier.ext\char`\"{}, mais qui dans certaines circonstances devraient pouvoir être différenciés pour modifier le comportement d'une méthode en fonction du type de chemin utilisé (par exemple dans \doxyref{renommer()}{p.}{class_fichier_info_d725bf8ce2284bd9412a41e968f72003}, où le fichier sera toujours renommé dans son dossier d'origine si aucun dossier n'est spécifié explicitement dans le chemin de destination, mais où il sera $\ast$déplacé dans le dossier courant$\ast$ si un \char`\"{}./\char`\"{} est spécifié devant le nom dans le chemin de destination) \end{Desc}
+
+
+Références retChemin(), et retNom().
+
+Référencé par renommer().\index{FichierInfo@{FichierInfo}!convertirSeparateurs@{convertirSeparateurs}}
+\index{convertirSeparateurs@{convertirSeparateurs}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::convertirSeparateurs (\$ {\em v\_\-sChemin}, \/  \$ {\em v\_\-sSeparateurSrc} = {\tt DIRECTORY\_\-SEPARATOR}, \/  \$ {\em v\_\-sSeparateurDst} = {\tt NULL})}\label{class_fichier_info_0f81f49c4176820224c85075f5e1a141}
+
+
+Convertit, dans un chemin, les séparateurs de fichier/dossiers par défaut de l'OS courant, en séparateurs exigés par l'attribut {\tt sSeparateur} de l'objet (détecté par \doxyref{defChemin()}{p.}{class_fichier_info_2c91460658e8685287e3828a12f5f5ba} ou modifié par \doxyref{defSeparateur()}{p.}{class_fichier_info_ef733683b64b2a8e77b45929eb84030f}). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin dans lequel il faut convertir les séparateurs \item[{\em v\_\-sSeparateurSrc}]le séparateur à remplacer. Par défaut, il s'agit du séparateur standard de l'OS \item[{\em v\_\-sSeparateurDst}]le séparateur qui doit remplacer celui spécifié par le paramètre {\tt v\_\-sSeparateurSrc}. Par défaut, il s'agit de l'attribut {\tt sSeparateur} défini pour l'objet courant \end{description}
+\end{Desc}
+
+
+Références Erreur::provoquer().
+
+Référencé par defSeparateur(), retCheminReel(), retDossier(), et retNom().\index{FichierInfo@{FichierInfo}!copier@{copier}}
+\index{copier@{copier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::copier (\$ {\em v\_\-sDossierDest}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE}, \/  \$ {\em v\_\-bCreerDsDest} = {\tt TRUE}, \/  \$ {\em v\_\-bRecursif} = {\tt FALSE}, \/  \$ {\em v\_\-fnCallback} = {\tt NULL})}\label{class_fichier_info_cd196ed68c55f6b607a435c7c7b90328}
+
+
+Copie le fichier ou dossier représenté par l'objet courant dans un autre dossier. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDossierDest}]le chemin du dossier destination, $\ast$dans$\ast$ lequel le fichier ou dossier source sera copié \item[{\em v\_\-bEcraserExistant}]si {\tt true}, les dossiers ou fichiers existants seront créés/copiés, même si la cible existait déjà, sans provoquer d'erreur ou d'avertissement. Si {\tt false}, tout fichier cible existant au cours de la copie provoquera une erreur \item[{\em v\_\-bCreerDsDest}]uniquement utilisé dans le cas où la source de la copie est un dossier. Voir le paramètre du même nom dans \doxyref{copierDossier()}{p.}{class_fichier_info_bec25686dcf31de07caafab443afce61} \item[{\em v\_\-bRecursif}]si {\tt true}, les sous-dossiers du dossier source, et leur contenu, seront également copiés. Ce paramètre n'est donc utile qu'au cas ou le chemin représenté par l'objet courant est un dossier \item[{\em v\_\-fnCallback}]voir le paramètre du même nom de \doxyref{copierFichier()}{p.}{class_fichier_info_1e8e255a08534249b18c1dbf6fa1865c}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références copierDossier(), copierFichier(), et estDossier().\index{FichierInfo@{FichierInfo}!copierDossier@{copierDossier}}
+\index{copierDossier@{copierDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::copierDossier (\$ {\em v\_\-sDossierDest}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE}, \/  \$ {\em v\_\-bCreerDsDest} = {\tt TRUE}, \/  \$ {\em v\_\-bRecursif} = {\tt FALSE}, \/  \$ {\em v\_\-fnCallback} = {\tt NULL})}\label{class_fichier_info_bec25686dcf31de07caafab443afce61}
+
+
+Copie le dossier représenté par l'objet courant $\ast$dans$\ast$ un autre dossier. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDossierDest}]le chemin du dossier destination, $\ast$dans$\ast$ lequel le dossier source sera copié \item[{\em v\_\-bEcraserExistant}]si {\tt true}, les dossiers ou fichiers existants seront créés/copiés, même si la cible existait déjà, sans provoquer d'erreur ou d'avertissement. Si {\tt false}, tout fichier cible existant au cours de la copie provoquera une erreur \item[{\em v\_\-bCreerDsDest}]si {\tt true} (défaut), un dossier du même nom que le source sera d'abord créé dans le dossier de destination, avant d'y copier le contenu de source. Si {\tt false}, le contenu du dossier source sera copié directement dans le dossier cible spécifié \item[{\em v\_\-bRecursif}]si {\tt true}, les sous-dossiers et leur contenu seront également copiés \item[{\em v\_\-fnCallback}]voir le paramètre du même nom de \doxyref{copierFichier()}{p.}{class_fichier_info_1e8e255a08534249b18c1dbf6fa1865c}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références estDossier(), estFichier(), estModifiable(), existe(), FichierInfo(), formerChemin(), Erreur::provoquer(), retChemin(), retDossier(), et retNom().
+
+Référencé par copier().\index{FichierInfo@{FichierInfo}!copierFichier@{copierFichier}}
+\index{copierFichier@{copierFichier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::copierFichier (\$ {\em v\_\-sDossierDest}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE}, \/  \$ {\em v\_\-fnCallback} = {\tt NULL})}\label{class_fichier_info_1e8e255a08534249b18c1dbf6fa1865c}
+
+
+Copie le fichier représenté par l'objet courant dans un autre dossier. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDossierDest}]le chemin du dossier destination pour la copie du fichier \item[{\em v\_\-bEcraserExistant}]si {\tt true}, les dossiers ou fichiers existants seront créés/copiés, même si la cible existait déjà, sans provoquer d'erreur ou d'avertissement. Si {\tt false}, tout fichier cible existant au cours de la copie provoquera une erreur \item[{\em v\_\-fnCallback}]la fonction à appeler lorsqu'un fichier est copié. Ce paramètre doit représenter un type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra accepter 3 paramètres : les deux premiers de type \doxyref{FichierInfo}{p.}{class_fichier_info}, représenteront respectivement le fichier source qui devait être copié, et le fichier destination. Le 3è sera la valeur de retour de l'opération de copie\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références estDossier(), estFichier(), estLisible(), estModifiable(), existe(), FichierInfo(), Erreur::provoquer(), retChemin(), et retNom().
+
+Référencé par copier().\index{FichierInfo@{FichierInfo}!creerDossier@{creerDossier}}
+\index{creerDossier@{creerDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::creerDossier (\$ {\em v\_\-sCreerEnfant} = {\tt NULL}, \/  \$ {\em v\_\-bCreerInterm} = {\tt FALSE}, \/  \$ {\em v\_\-iMode} = {\tt 0777})}\label{class_fichier_info_e32d3eed4036b79642d10e53d02dfc72}
+
+
+Crée le dossier représenté dans l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sCreerEnfant}]le nom du dossier à créer $\ast$dans$\ast$ le dossier actuellement représenté par l'objet. Si {\tt null}, c'est le chemin actuellement représenté par l'objet qui est considéré comme le dossier à créer \item[{\em v\_\-bCreerInterm}]si {\tt true}, crée également les dossiers parents (intermédiaires) si ceux-ci n'existent pas \item[{\em v\_\-iMode}]le mode utilisé pour créer le dossier (permissions sur les système Unix, ignoré sous Windows)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références existe(), FichierInfo(), formerChemin(), Erreur::provoquer(), retChemin(), retDossier(), et retNom().\index{FichierInfo@{FichierInfo}!defChemin@{defChemin}}
+\index{defChemin@{defChemin}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::defChemin (\$ {\em v\_\-sChemin})}\label{class_fichier_info_2c91460658e8685287e3828a12f5f5ba}
+
+
+Initialise un chemin dans l'objet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin qui sera représenté par l'objet courant. Le chemin, même s'il contient un type de séparateur qui n'est pas celui par défaut de l'OS courant (par exemple un chemin contenant des séparateurs '/' sous Windows), utilisera par défaut ce séparateur pour ses opérations internes et dans les valeurs de retour des méthodes publiques de cette classe \end{description}
+\end{Desc}
+
+
+Réimplémentée dans {\bf FichierAcces} \doxyref{}{p.}{class_fichier_acces_7818a88cccda4371ccd37558ed083d18}.
+
+Références detecterSeparateur(), et enleverSeparateursDeFin().
+
+Référencé par FichierInfo(), formerChemin(), reduireChemin(), et renommer().\index{FichierInfo@{FichierInfo}!defSeparateur@{defSeparateur}}
+\index{defSeparateur@{defSeparateur}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::defSeparateur (\$ {\em v\_\-sSeparateur}, \/  \$ {\em v\_\-bRemplacerExistant} = {\tt TRUE})}\label{class_fichier_info_ef733683b64b2a8e77b45929eb84030f}
+
+
+Définit un séparateur de chemin pour l'objet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sSeparateur}]le séparateur qu'on veut \char`\"{}reconnu\char`\"{} comme tel pour les chemins stockés dans l'objet \item[{\em v\_\-bRemplacerExistant}]si {\tt true} (défaut), le chemin actuellement stocké est converti pour utiliser le nouveau séparateur défini \end{description}
+\end{Desc}
+
+
+Références convertirSeparateurs(), et Erreur::provoquer().\index{FichierInfo@{FichierInfo}!deplacer@{deplacer}}
+\index{deplacer@{deplacer}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::deplacer (\$ {\em v\_\-sDossierDest}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE}, \/  \$ {\em v\_\-bRemplacer} = {\tt FALSE}, \/  \$ {\em v\_\-fnCallback} = {\tt NULL})}\label{class_fichier_info_67460877e7fedacd6c7cf14ac118b3c6}
+
+
+Déplace le fichier ou dossier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sDossierDest}]le dossier de destination du déplacement \item[{\em v\_\-bEcraserExistant}]si {\tt true}, et que nouvel emplacement du fichier/dossier à renommer existe déjà, ce dernier sera écrasé. Sinon, l'opération provoque une erreur \item[{\em v\_\-bRemplacer}]indique si le chemin du fichier ou dossier de départ enregistré dans l'objet doit être immédiatement remplacé par le chemin du fichier/dossier déplacé, dans le cas où l'opération s'est déroulée correctement \item[{\em v\_\-fnCallback}]la fonction à appeler lorsqu'un fichier est déplacé. Ce paramètre doit représenter un type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra accepter 3 paramètres : les deux premiers de type \doxyref{FichierInfo}{p.}{class_fichier_info}, représenteront respectivement le fichier/dossier source qui devait être déplacé, et le nouveau fichier/dossier résultant du déplacement. Le 3è sera la valeur de retour de l'opération de déplacement\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire\end{Desc}
+\begin{Desc}
+\item[Note:]Cette méthode est un cas particulier de \doxyref{renommer()}{p.}{class_fichier_info_d725bf8ce2284bd9412a41e968f72003} et y fait appel avec des paramètres prédéfinis \end{Desc}
+
+
+Références estDossier(), FichierInfo(), formerChemin(), Erreur::provoquer(), renommer(), retChemin(), et retNom().\index{FichierInfo@{FichierInfo}!detecterSeparateur@{detecterSeparateur}}
+\index{detecterSeparateur@{detecterSeparateur}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::detecterSeparateur (\$ {\em v\_\-sChemin})}\label{class_fichier_info_cc31ffe2c181945be8e7deb767bcafdc}
+
+
+Détecte et retourne le séparateur utilisé dans un chemin. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin dont il faut détecter les séparateur\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le séparateur utilisé dans le chemin, soit FICHIER\_\-SEPARATEUR\_\-UNIX ou FICHIER\_\-SEPARATEUR\_\-WINDOWS. Dans le cas où le chemin passé est relatif et ne contient aucun séparateur reconnu, le séparateur par défaut est retourné. Pour connaître le séparateur par défaut, voir \doxyref{separateurParDefaut()}{p.}{class_fichier_info_3fc5d3f6aed4a3a476bdba0fe72f3059} \end{Desc}
+
+
+Références separateurParDefaut().
+
+Référencé par defChemin().\index{FichierInfo@{FichierInfo}!enleverSeparateursDeDebut@{enleverSeparateursDeDebut}}
+\index{enleverSeparateursDeDebut@{enleverSeparateursDeDebut}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::enleverSeparateursDeDebut (\$ {\em v\_\-sChemin})}\label{class_fichier_info_0397bd8e6e9d820e99a079d8ef89bb2f}
+
+
+Enlève les séparateurs de dossier qui se trouveraient au début d'un chemin. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin à \char`\"{}nettoyer\char`\"{}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin passé en paramètre, nettoyé d'éventuels séparateurs initiaux \end{Desc}
+
+
+Référencé par formerChemin(), et reduireChemin().\index{FichierInfo@{FichierInfo}!enleverSeparateursDeFin@{enleverSeparateursDeFin}}
+\index{enleverSeparateursDeFin@{enleverSeparateursDeFin}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::enleverSeparateursDeFin (\$ {\em v\_\-sChemin})}\label{class_fichier_info_f146d8c6b68c232fca738e3bba038d60}
+
+
+Enlève les séparateurs de dossier qui se trouveraient à la fin d'un chemin. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin à \char`\"{}nettoyer\char`\"{}\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin passé en paramètre, nettoyé d'éventuels séparateurs finaux \end{Desc}
+
+
+Référencé par defChemin(), et formerChemin().\index{FichierInfo@{FichierInfo}!estDossier@{estDossier}}
+\index{estDossier@{estDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::estDossier ()}\label{class_fichier_info_575a967da4e703387ce55cfc1be69ad4}
+
+
+Indique si l'objet du système de fichier représenté par le chemin courant est bien de type \char`\"{}dossier\char`\"{}. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le l'objet du système de fichiers représenté par l'objet courant est un dossier, {\tt false} sinon \end{Desc}
+
+
+Référencé par copier(), copierDossier(), copierFichier(), deplacer(), supprimer(), et supprimerDossier().\index{FichierInfo@{FichierInfo}!estFichier@{estFichier}}
+\index{estFichier@{estFichier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::estFichier ()}\label{class_fichier_info_92479d48cf54ed1095c7b7f37adb694a}
+
+
+Indique si l'objet du système de fichier représenté par le chemin courant est bien de type \char`\"{}fichier\char`\"{}. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le l'objet du système de fichiers représenté par l'objet courant est un fichier, {\tt false} sinon \end{Desc}
+
+
+Référencé par copierDossier(), copierFichier(), retTaille(), et supprimerFichier().\index{FichierInfo@{FichierInfo}!estLisible@{estLisible}}
+\index{estLisible@{estLisible}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::estLisible ()}\label{class_fichier_info_b33526919e97ec55eaa8643eeab2de41}
+
+
+Indique si le fichier/dossier représenté par le chemin courant est accessible en lecture. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le le fichier/dossier représenté par l'objet est accessible en lecture, {\tt false} sinon \end{Desc}
+
+
+Référencé par copierFichier(), et renommer().\index{FichierInfo@{FichierInfo}!estModifiable@{estModifiable}}
+\index{estModifiable@{estModifiable}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::estModifiable ()}\label{class_fichier_info_9401ce00509c0961ecee0bdb59da120e}
+
+
+Indique si le fichier/dossier représenté par le chemin courant est accessible en écriture. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le le fichier/dossier représenté par l'objet est accessible en écriture, {\tt false} sinon \end{Desc}
+
+
+Référencé par copierDossier(), copierFichier(), renommer(), et supprimerFichier().\index{FichierInfo@{FichierInfo}!existe@{existe}}
+\index{existe@{existe}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::existe ()}\label{class_fichier_info_6319485595ae8cef58f2a5a6a87e7bf1}
+
+
+Indique si le fichier/dossier représenté par le chemin courant existe bien. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le fichier/dossier existe, {\tt false} sinon \end{Desc}
+
+
+Référencé par copierDossier(), copierFichier(), creerDossier(), FichierAcces::ecrireTout(), renommer(), et supprimer().\index{FichierInfo@{FichierInfo}!FichierInfo@{FichierInfo}}
+\index{FichierInfo@{FichierInfo}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::FichierInfo (\$ {\em v\_\-sChemin})}\label{class_fichier_info_df6e4854aab881c94a6c04fe39083199}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le chemin qui sera représenté par l'objet. Ce chemin peut être absolu ou relatif, et n'est pas obligé de représenter un fichier/dossier existant ou lisible dans un premier temps. \end{description}
+\end{Desc}
+
+
+Références defChemin().
+
+Référencé par copierDossier(), copierFichier(), creerDossier(), deplacer(), et renommer().\index{FichierInfo@{FichierInfo}!formerChemin@{formerChemin}}
+\index{formerChemin@{formerChemin}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::formerChemin (\$ {\em v\_\-sSupplement}, \/  \$ {\em v\_\-bRemplacer} = {\tt FALSE})}\label{class_fichier_info_3eeab1400fadfff06320e0bdf5142c21}
+
+
+Crée et retourne un chemin construit sur base du chemin représenté par l'objet, en lui ajoutant de nouvelles composantes. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sSupplement}]la chaîne représentant les composantes à ajouter au chemin courant \item[{\em v\_\-bRemplacer}]indique si le chemin formé, en plus d'être retourné, doit également remplacer le chemin actuellement enregistré dans l'objet\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un nouveau chemin, formé à partir de celui représenté dans l'objet + les composantes passées en paramètre \end{Desc}
+
+
+Références defChemin(), enleverSeparateursDeDebut(), et enleverSeparateursDeFin().
+
+Référencé par copierDossier(), creerDossier(), deplacer(), et renommer().\index{FichierInfo@{FichierInfo}!reduireChemin@{reduireChemin}}
+\index{reduireChemin@{reduireChemin}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::reduireChemin (\$ {\em v\_\-sPartieAEnlever}, \/  \$ {\em v\_\-bRemplacer} = {\tt FALSE})}\label{class_fichier_info_131656c9b5a1e53243d2e626666f57ed}
+
+
+Enlève le début du chemin représenté par l'objet, si ce début correspond à une chaîne donnée. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sPartieAEnlever}]la partie qu'on veut enlever du chemin, et qui doit se trouver au début de celui-ci \item[{\em v\_\-bRemplacer}]indique si le chemin réduit, en plus d'être retourné, doit également remplacer le chemin actuellement enregistré dans l'objet\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nouveau chemin, dont la partie initiale aura été supprimée si elle correspondait au paramètre {\tt v\_\-sPartieAEnlever} \end{Desc}
+
+
+Références defChemin(), et enleverSeparateursDeDebut().\index{FichierInfo@{FichierInfo}!renommer@{renommer}}
+\index{renommer@{renommer}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::renommer (\$ {\em v\_\-sCheminDest}, \/  \$ {\em v\_\-bEcraserExistant} = {\tt FALSE}, \/  \$ {\em v\_\-bRemplacer} = {\tt FALSE}, \/  \$ {\em v\_\-fnCallback} = {\tt NULL})}\label{class_fichier_info_d725bf8ce2284bd9412a41e968f72003}
+
+
+Renomme le fichier ou dossier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sCheminDest}]le chemin du nouveau fichier/dossier \item[{\em v\_\-bEcraserExistant}]si {\tt true}, et que nouvel emplacement du fichier/dossier à renommer existe déjà, ce dernier sera écrasé. Sinon, l'opération provoque une erreur \item[{\em v\_\-bRemplacer}]indique si le chemin du fichier ou dossier de départ enregistré dans l'objet doit être immédiatement remplacé par le chemin du fichier/dossier renommé, dans le cas où l'opération s'est déroulée correctement \item[{\em v\_\-fnCallback}]la fonction à appeler lorsqu'un fichier est renommé. Ce paramètre doit représenter un type 'callback' valide, tel que reconnu par PHP. La fonction appelée devra accepter 3 paramètres : les deux premiers de type \doxyref{FichierInfo}{p.}{class_fichier_info}, représenteront respectivement le fichier/dossier source qui devait être renommé, et le nouveau fichier/dossier résultant du renommage. Le 3è sera la valeur de retour de l'opération de renommage\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références cheminContientDossier(), defChemin(), estLisible(), estModifiable(), existe(), FichierInfo(), formerChemin(), Erreur::provoquer(), retChemin(), retCheminReel(), retDossier(), et retNom().
+
+Référencé par deplacer().\index{FichierInfo@{FichierInfo}!retChemin@{retChemin}}
+\index{retChemin@{retChemin}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retChemin ()}\label{class_fichier_info_6a8b830244afd1c930b3289bc713a275}
+
+
+Retourne le chemin qui est représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Renvoie:]le chemin représenté par l'objet courant \end{Desc}
+
+
+Référencé par cheminContientDossier(), copierDossier(), copierFichier(), creerDossier(), deplacer(), FichierAcces::ouvrir(), renommer(), retTaille(), supprimer(), supprimerDossier(), et supprimerFichier().\index{FichierInfo@{FichierInfo}!retCheminReel@{retCheminReel}}
+\index{retCheminReel@{retCheminReel}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retCheminReel ()}\label{class_fichier_info_4c767ac01bd5d6ef4dddd197a7483178}
+
+
+Retourne le chemin réel représenté par l'objet, càd sa forme absolue et canonique (séparateurs corrects pour l'OS et chemins '. 
+
+' et '..' résolus)
+
+\begin{Desc}
+\item[Renvoie:]le chemin absolu représenté par l'objet courant\end{Desc}
+\begin{Desc}
+\item[Avertissement:]Le chemin doit représenter un dossier/fichier existant pour que cette méthode fonctionne \end{Desc}
+
+
+Références convertirSeparateurs().
+
+Référencé par renommer().\index{FichierInfo@{FichierInfo}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retDossier (\$ {\em v\_\-bPasDePoint} = {\tt TRUE})}\label{class_fichier_info_3ac0018b27f882771c154fc08292d7de}
+
+
+Retourne le nom du dossier parent extrait du chemin représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bPasDePoint}]si {\tt true} (défaut), la méthode ne retournera pas le dossier sous forme de point ('.') lorsque celui-ci représente un \char`\"{}dossier courant\char`\"{}, elle retournera une chaîne vide\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nom du dossier parent dans le chemin représenté par l'objet courant \end{Desc}
+
+
+Références convertirSeparateurs().
+
+Référencé par copierDossier(), creerDossier(), et renommer().\index{FichierInfo@{FichierInfo}!retExtension@{retExtension}}
+\index{retExtension@{retExtension}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retExtension ()}\label{class_fichier_info_76bc8bf99d901d905054799f277508a1}
+
+
+Retourne l'extension du fichier/dossier contenue dans le chemin représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Renvoie:]le nom de l'extension du fichier/dossier représenté par l'objet courant, s'il y en a une (sinon chaîne vide) \end{Desc}
+
+
+Référencé par retNomSansExtension().\index{FichierInfo@{FichierInfo}!retNom@{retNom}}
+\index{retNom@{retNom}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retNom ()}\label{class_fichier_info_2640e9ee3bc409de58af2843ec6a362b}
+
+
+Retourne le nom du fichier/dossier contenu dans le chemin représenté par l'objet courant, y compris son éventuelle extension. 
+
+\begin{Desc}
+\item[Renvoie:]le nom du fichier/dossier dans le chemin représenté par l'objet courant \end{Desc}
+
+
+Références convertirSeparateurs().
+
+Référencé par cheminContientDossier(), copierDossier(), copierFichier(), creerDossier(), deplacer(), renommer(), et retNomSansExtension().\index{FichierInfo@{FichierInfo}!retNomSansExtension@{retNomSansExtension}}
+\index{retNomSansExtension@{retNomSansExtension}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retNomSansExtension ()}\label{class_fichier_info_071bcfb730010248dcf63cd65bd6cb9c}
+
+
+Retourne le nom du fichier/dossier contenu dans le chemin représenté par l'objet courant, SANS son éventuelle extension. 
+
+\begin{Desc}
+\item[Renvoie:]le nom du fichier/dossier dans le chemin représenté par l'objet courant, sans extension \end{Desc}
+
+
+Références retExtension(), et retNom().\index{FichierInfo@{FichierInfo}!retSeparateur@{retSeparateur}}
+\index{retSeparateur@{retSeparateur}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retSeparateur ()}\label{class_fichier_info_850afe8ba3ce6deca35c5e38134a709b}
+
+
+\begin{Desc}
+\item[Renvoie:]le séparateur défini pour l'objet courant \end{Desc}
+\index{FichierInfo@{FichierInfo}!retTaille@{retTaille}}
+\index{retTaille@{retTaille}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::retTaille ()}\label{class_fichier_info_b024fe44937cba749b6a2c6675c6403e}
+
+
+\begin{Desc}
+\item[Renvoie:]la taille en octets du fichier représenté par l'objet courant \end{Desc}
+
+
+Références estFichier(), Erreur::provoquer(), et retChemin().\index{FichierInfo@{FichierInfo}!separateurParDefaut@{separateurParDefaut}}
+\index{separateurParDefaut@{separateurParDefaut}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::separateurParDefaut (\$ {\em v\_\-sSeparateur} = {\tt NULL})}\label{class_fichier_info_3fc5d3f6aed4a3a476bdba0fe72f3059}
+
+
+Définit un séparateur par défaut pour tous les objets de cette classe qui seront créés. 
+
+Si cette méthode n'est jamais appelée, le séparateur par défaut est celui de l'OS. Cette méthode retourne l'actuel séparateur par défaut si elle est appelée sans paramètre
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sSeparateur}]le séparateur par défaut à utiliser pour tous les objets de la classe. Si {\tt null} (défaut), alors la méthode ne définit pas le séparateur par défaut, mais le retourne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]si {\tt v\_\-sSeparateur} est {\tt null}, le séparateur par défaut actuel \end{Desc}
+
+
+Référencé par CTraverseurScorm::debutTraitement(), detecterSeparateur(), et CTraverseurScorm::finTraitement().\index{FichierInfo@{FichierInfo}!supprimer@{supprimer}}
+\index{supprimer@{supprimer}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::supprimer (\$ {\em v\_\-bRecursif} = {\tt FALSE})}\label{class_fichier_info_5458ba48f74d569489d5463757349d54}
+
+
+Supprime le fichier ou dossier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRecursif}]si {\tt true}, indique qu'il faut également effacer les fichiers et dossiers présents dans le dossier de base. Si {\tt false}, le dossier sera supprimé uniquement s'il est vide. Ce paramètre n'est donc utile qu'au cas ou le chemin représenté par l'objet courant est un dossier\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références estDossier(), existe(), Erreur::provoquer(), retChemin(), supprimerDossier(), et supprimerFichier().\index{FichierInfo@{FichierInfo}!supprimerDossier@{supprimerDossier}}
+\index{supprimerDossier@{supprimerDossier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::supprimerDossier (\$ {\em v\_\-bRecursif} = {\tt FALSE})}\label{class_fichier_info_c83d10575c625950a76f1561f11a651f}
+
+
+Supprime le dossier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRecursif}]si {\tt true}, indique qu'il faut également effacer les fichiers et dossiers présents dans le dossier de base. Si {\tt false}, le dossier sera supprimé uniquement s'il est vide\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références estDossier(), Erreur::provoquer(), et retChemin().
+
+Référencé par supprimer().\index{FichierInfo@{FichierInfo}!supprimerFichier@{supprimerFichier}}
+\index{supprimerFichier@{supprimerFichier}!FichierInfo@{FichierInfo}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}FichierInfo::supprimerFichier ()}\label{class_fichier_info_ac2f29df1a222c7364b4c7f76410d4d3}
+
+
+Supprime le fichier représenté par l'objet courant. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'opération s'est bien déroulée, {\tt false} dans le cas contraire \end{Desc}
+
+
+Références estFichier(), estModifiable(), Erreur::provoquer(), et retChemin().
+
+Référencé par supprimer().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf FichierInfo.php}\end{CompactItemize}

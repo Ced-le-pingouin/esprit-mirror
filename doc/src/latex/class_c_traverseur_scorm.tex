@@ -1,0 +1,359 @@
+\section{Référence de la classe CTraverseurScorm}
+\label{class_c_traverseur_scorm}\index{CTraverseurScorm@{CTraverseurScorm}}
+Graphe d'héritage de CTraverseurScorm::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{class_c_traverseur_scorm}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe d'exportation des (éléments de) formations vers un paquet SCORM 2004. 
+
+\begin{Desc}
+\item[{\bf À faire}]Liste:\begin{itemize}
+\item problème d'encodage des caractères dans les noms des fichiers ? (accents)\item réussir la validation dans divers outils: . les élément \char`\"{}item\char`\"{} non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais pas l'ADL Test Suite) =$>$ utiliser des description LOM, ou créer un item \char`\"{}enfant\char`\"{} initial qui contient la description ou l'interactivité ? . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI\item gérer l'effacement du paquet créé en tmp (en différé ?)\end{itemize}
+\end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf \_\-cbExporterFichierRessource} (\$v\_\-oFichierSrc, \$v\_\-oFichierDest, \$v\_\-bCopieReussie)
+\begin{CompactList}\small\item\em Intègre un fichier à un ensemble de ressources exportées (balise \char`\"{}file\char`\"{} en SCORM). \item\end{CompactList}\item 
+\textbf{\_\-creerFichierHtml} (\$v\_\-sCheminFichier, \$v\_\-sTitre, \$v\_\-sContenuBody)\label{class_c_traverseur_scorm_32af19446c59cd119804d4184b267230}
+
+\item 
+{\bf \_\-creerFichierPif} (\$v\_\-sNomFichier)
+\begin{CompactList}\small\item\em Crée le fichier PIF (=PKZIP) contenant le paquet. \item\end{CompactList}\item 
+{\bf \_\-declarerRessourceExportee} (\$v\_\-sNomRes, \&\$v\_\-oElementXmlRessource)
+\begin{CompactList}\small\item\em Déclare une ressource ou en ensemble de ressources comme exporté(e). \item\end{CompactList}\item 
+{\bf \_\-exporterRessources} (\$v\_\-iNiveau, \&\$v\_\-oElementPhp, \&\$v\_\-oElementXml)
+\begin{CompactList}\small\item\em Prend en charge l'exportation de toutes les ressources d'un niveau de formation. \item\end{CompactList}\item 
+{\bf \_\-ressourceDejaExportee} (\$v\_\-sNomRes)
+\begin{CompactList}\small\item\em Indique si une ressource ou un ensemble de ressources a déjà été exporté(e) (décrit en xml). \item\end{CompactList}\item 
+{\bf debutActiv} ()
+\begin{CompactList}\small\item\em Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une activité. \item\end{CompactList}\item 
+{\bf debutFormation} ()
+\begin{CompactList}\small\item\em Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une formation. \item\end{CompactList}\item 
+{\bf debutModule} ()
+\begin{CompactList}\small\item\em Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à un module. \item\end{CompactList}\item 
+{\bf debutRubrique} ()
+\begin{CompactList}\small\item\em Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une rubrique. \item\end{CompactList}\item 
+{\bf debutSousActiv} ()
+\begin{CompactList}\small\item\em Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une sous-activité. \item\end{CompactList}\item 
+{\bf debutTraitement} ()
+\begin{CompactList}\small\item\em Crée les noeuds xml présents au début du manifest (jusqu'à organization, sans les items). \item\end{CompactList}\item 
+{\bf defElementCourant} (\&\$v\_\-poElementCourant)
+\begin{CompactList}\small\item\em Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité. \item\end{CompactList}\item 
+{\bf defElementParent} (\&\$v\_\-poElementEnfant, \&\$v\_\-poElementParent)
+\begin{CompactList}\small\item\em Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir rattacher par la suite l'enfant à l'élément correct. \item\end{CompactList}\item 
+{\bf effacerPaquetScorm} ()
+\begin{CompactList}\small\item\em Efface du système de fichiers le dossier temporaire utilisé pour la création du paquet SCORM, et tout son contenu. \item\end{CompactList}\item 
+{\bf enregistrerPaquetScorm} (\$v\_\-sNomFichier= 'esprit-scorm.zip')\label{class_c_traverseur_scorm_6004282218fd05498299e4e7f1ecf02b}
+
+\begin{CompactList}\small\item\em Crée le paquet SCORM correspondant aux éléments de formations traversés. \item\end{CompactList}\item 
+{\bf envoyerPaquetScorm} ()\label{class_c_traverseur_scorm_6f44344d1fd48556f7bf7099da6f5163}
+
+\begin{CompactList}\small\item\em envoie le paquet en téléchargement à l'utilisateur \item\end{CompactList}\item 
+{\bf finActiv} ()\label{class_c_traverseur_scorm_1ce44ac3796765c23dff57ee71fa6b91}
+
+\begin{CompactList}\small\item\em Rattache le noeud xml \char`\"{}item\char`\"{} correspondant à une activité, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. \item\end{CompactList}\item 
+{\bf finFormation} ()\label{class_c_traverseur_scorm_b06a1531807ea26cd3887ef31efb630f}
+
+\begin{CompactList}\small\item\em Rattache le noeud xml \char`\"{}item\char`\"{} correspondant à une formation, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. \item\end{CompactList}\item 
+{\bf finModule} ()\label{class_c_traverseur_scorm_51df05419fae5b35b2e774ba289f6fc8}
+
+\begin{CompactList}\small\item\em Rattache le noeud xml \char`\"{}item\char`\"{} correspondant à un module, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. \item\end{CompactList}\item 
+{\bf finRubrique} ()\label{class_c_traverseur_scorm_fe6be70ad9e7c297fa86647490a1e9c8}
+
+\begin{CompactList}\small\item\em Rattache le noeud xml \char`\"{}item\char`\"{} correspondant à une rubrique, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. \item\end{CompactList}\item 
+{\bf finSousActiv} ()\label{class_c_traverseur_scorm_ebc3103e55b8c089d06243b3c39ffe08}
+
+\begin{CompactList}\small\item\em Rattache le noeud xml \char`\"{}item\char`\"{} correspondant à une sous-activité, et tout son contenu, à l'élément xml parent Cette fonction est appelée en interne uniquement. \item\end{CompactList}\item 
+{\bf finTraitement} ()
+\begin{CompactList}\small\item\em Rattache les noeuds xml les plus extérieurs (ceux qui ne sont pas des \char`\"{}item\char`\"{}) à la racine du fichier manifest. \item\end{CompactList}\item 
+{\bf retContenuManifest} ()
+\begin{CompactList}\small\item\em Retourne le contenu généré pour la création du fichier imsmanifest.xml. \item\end{CompactList}\item 
+\& {\bf retElementCourant} ()
+\begin{CompactList}\small\item\em Retourne la référence à l'item (noeud xml du manifest) actuellement traité. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$asRes} = array()\label{class_c_traverseur_scorm_b2e7f9dd87aa7c2dadad701a96153530}
+
+\begin{CompactList}\small\item\em Tableau contenant les objet xml qui représentent des ressources de rubriques ou de sous-activités. \item\end{CompactList}\item 
+{\bf \$oDocXml}\label{class_c_traverseur_scorm_06d5be943f7b12f23091b99840b405d4}
+
+\begin{CompactList}\small\item\em Objet interne qui représente le document xml du manifest. \item\end{CompactList}\item 
+{\bf \$oDossierPaquet}\label{class_c_traverseur_scorm_59ab8c9cc48465dde08aec8b9736562b}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{FichierInfo}{p.}{class_fichier_info} qui représente le chemin de la racine du paquet créé. \item\end{CompactList}\item 
+{\bf \$oDossierRessources}\label{class_c_traverseur_scorm_23836e35fd3594258d4baeaad8ee48fa}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{FichierInfo}{p.}{class_fichier_info} qui représente le chemin du dossier où seront placées les ressources du paquet SCORM. \item\end{CompactList}\item 
+{\bf \$poElementParent}\label{class_c_traverseur_scorm_58697547b746fb8f6703d15b8a8c9979}
+
+\begin{CompactList}\small\item\em Référence à l'objet \char`\"{}noeud xml\char`\"{} parent des noeuds en cours de construction (utile pour les rattacher au document une fois créés). \item\end{CompactList}\item 
+{\bf \$sEncodage} = 'UTF-8'\label{class_c_traverseur_scorm_42a387671bd84e03d83accce352709a1}
+
+\begin{CompactList}\small\item\em Encodage utilisé pour le fichier imsmanifest.xml (pas modifiable pour l'instant). \item\end{CompactList}\item 
+{\bf \$sNomFichierPif}\label{class_c_traverseur_scorm_0109ecd5918f6f3039dc40c603565b4d}
+
+\begin{CompactList}\small\item\em Nom du fichier PIF (PKZIP) qui a été créé pour contenir le paquet. \item\end{CompactList}\item 
+{\bf \$sSeparateurOrigine}\label{class_c_traverseur_scorm_ab46d0f637ac72c67db8d3f2f1930c4a}
+
+\begin{CompactList}\small\item\em Pour sauvegarder le séparateur de chemins initial (pour les noms de fichiers/dossier). \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf }\par
+\begin{CompactItemize}
+\item 
+\textbf{\$oElementActiv}\label{class_c_traverseur_scorm_2d6e64f4b46350dfcdd0833af30b12d4}
+
+\item 
+\textbf{\$oElementFormation}\label{class_c_traverseur_scorm_a76f146e37a8af696333e9a42936922b}
+
+\item 
+{\bf \$oElementManifest}\label{class_c_traverseur_scorm_3749089dc94464b546bbac3334d9db1c}
+
+\begin{CompactList}\small\item\em Objets internes qui contiendront les noeuds xml nécessaires pendant la création du manifest. \item\end{CompactList}\item 
+\textbf{\$oElementModule}\label{class_c_traverseur_scorm_51f211ecce5435734bb45734d576e6b9}
+
+\item 
+\textbf{\$oElementOrg}\label{class_c_traverseur_scorm_284c01d1719b211aa829c6dc86c4d62a}
+
+\item 
+\textbf{\$oElementOrgs}\label{class_c_traverseur_scorm_5c609e65abe27206459ae7b6b4a04fc6}
+
+\item 
+\textbf{\$oElementRessource}\label{class_c_traverseur_scorm_7473fd4397a6017d57e42d4b37518672}
+
+\item 
+\textbf{\$oElementRessources}\label{class_c_traverseur_scorm_3c6e04d5a790191b291e09990e97e0c4}
+
+\item 
+\textbf{\$oElementRubrique}\label{class_c_traverseur_scorm_82632a525ed8e0a73f394806abed961f}
+
+\item 
+\textbf{\$oElementSousActiv}\label{class_c_traverseur_scorm_e822510b7bca27f8f9ff618bad0eed93}
+
+\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CTraverseurScorm@{CTraverseurScorm}!\_\-cbExporterFichierRessource@{\_\-cbExporterFichierRessource}}
+\index{\_\-cbExporterFichierRessource@{\_\-cbExporterFichierRessource}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::\_\-cbExporterFichierRessource (\$ {\em v\_\-oFichierSrc}, \/  \$ {\em v\_\-oFichierDest}, \/  \$ {\em v\_\-bCopieReussie})}\label{class_c_traverseur_scorm_61f58b8e68de51013ffcd6fb84d07455}
+
+
+Intègre un fichier à un ensemble de ressources exportées (balise \char`\"{}file\char`\"{} en SCORM). 
+
+Cette fonction est appelée en callback par un objet \doxyref{FichierInfo}{p.}{class_fichier_info} chargé de copier les fichiers d'un élément de formation
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em l'objet}]\doxyref{FichierInfo}{p.}{class_fichier_info} qui représente le fichier source qui est exporté (il se trouve dans les rubriques ou sous-activités) \item[{\em l'objet}]\doxyref{FichierInfo}{p.}{class_fichier_info} qui représente le fichier copié, dans son emplacement final au sein du paquet SCORM créé dans un dossier temporaire \item[{\em si}]{\tt true}, la copie du fichier s'est bien déroulée (ce paramètre est requis pour les fonctions callback de \doxyref{FichierInfo}{p.}{class_fichier_info} dans le cadre des copies) \end{description}
+\end{Desc}
+\index{CTraverseurScorm@{CTraverseurScorm}!\_\-creerFichierPif@{\_\-creerFichierPif}}
+\index{\_\-creerFichierPif@{\_\-creerFichierPif}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::\_\-creerFichierPif (\$ {\em v\_\-sNomFichier})}\label{class_c_traverseur_scorm_795933b28939f301c4ea349030b77716}
+
+
+Crée le fichier PIF (=PKZIP) contenant le paquet. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomFichier}]le nom du fichier PIF à créer \end{description}
+\end{Desc}
+
+
+Références Erreur::provoquer().
+
+Référencé par enregistrerPaquetScorm().\index{CTraverseurScorm@{CTraverseurScorm}!\_\-declarerRessourceExportee@{\_\-declarerRessourceExportee}}
+\index{\_\-declarerRessourceExportee@{\_\-declarerRessourceExportee}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::\_\-declarerRessourceExportee (\$ {\em v\_\-sNomRes}, \/  \&\$ {\em v\_\-oElementXmlRessource})}\label{class_c_traverseur_scorm_406891e32a6bd8c3bda2900ab63676b4}
+
+
+Déclare une ressource ou en ensemble de ressources comme exporté(e). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomRes}]l'identificateur de la ressource exportée \item[{\em v\_\-oElementXmlRessource}]l'objet xml qui représente cette ressource en SCORM \end{description}
+\end{Desc}
+
+
+Référencé par \_\-exporterRessources().\index{CTraverseurScorm@{CTraverseurScorm}!\_\-exporterRessources@{\_\-exporterRessources}}
+\index{\_\-exporterRessources@{\_\-exporterRessources}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::\_\-exporterRessources (\$ {\em v\_\-iNiveau}, \/  \&\$ {\em v\_\-oElementPhp}, \/  \&\$ {\em v\_\-oElementXml})}\label{class_c_traverseur_scorm_5c39b960acbaa4980ea40079a627e62c}
+
+
+Prend en charge l'exportation de toutes les ressources d'un niveau de formation. 
+
+Cela implique la copie des fichiers dans le paquet SCORM en création, l'écriture des balises correspondantes, la transformation de ressources au format Esprit vers un format lisible et utilisable dans un paquet SCORM, etc
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNiveau}]le niveau pour lequel s'effectue l'exportation de ressources (rubrique, (sous-)activité, etc) \item[{\em v\_\-oElementPhp}]l'objet qui représente l'élément de formation en terme de classes Esprit, càd \doxyref{CFormation}{p.}{class_c_formation}, \doxyref{CModule}{p.}{class_c_module}, etc \item[{\em v\_\-oElementXml}]l'objet qui représente l'élément de formation sous sa forme $\ast$exportée$\ast$, càd dire en DOM XML \end{description}
+\end{Desc}
+
+
+Références \_\-declarerRessourceExportee(), et \_\-ressourceDejaExportee().
+
+Référencé par debutActiv(), debutFormation(), debutModule(), debutRubrique(), et debutSousActiv().\index{CTraverseurScorm@{CTraverseurScorm}!\_\-ressourceDejaExportee@{\_\-ressourceDejaExportee}}
+\index{\_\-ressourceDejaExportee@{\_\-ressourceDejaExportee}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::\_\-ressourceDejaExportee (\$ {\em v\_\-sNomRes})}\label{class_c_traverseur_scorm_7c3a0b75efa6cf04282e30caf4c65bc3}
+
+
+Indique si une ressource ou un ensemble de ressources a déjà été exporté(e) (décrit en xml). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomRes}]l'identificateur de la ressource à vérifier\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si cette (ces) ressource(s) a (ont) déjà été exportée(s), {\tt false} sinon \end{Desc}
+
+
+Référencé par \_\-exporterRessources().\index{CTraverseurScorm@{CTraverseurScorm}!debutActiv@{debutActiv}}
+\index{debutActiv@{debutActiv}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutActiv ()}\label{class_c_traverseur_scorm_76239b789fc2befd2d77a1162959bd28}
+
+
+Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une activité. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références \_\-exporterRessources(), defElementCourant(), defElementParent(), et retElementCourant().\index{CTraverseurScorm@{CTraverseurScorm}!debutFormation@{debutFormation}}
+\index{debutFormation@{debutFormation}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutFormation ()}\label{class_c_traverseur_scorm_65e58304313abc5abf1a97261f293276}
+
+
+Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une formation. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références \_\-exporterRessources(), defElementCourant(), defElementParent(), et retElementCourant().\index{CTraverseurScorm@{CTraverseurScorm}!debutModule@{debutModule}}
+\index{debutModule@{debutModule}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutModule ()}\label{class_c_traverseur_scorm_47cdb89f4be86236b0de7559e2412673}
+
+
+Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à un module. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références \_\-exporterRessources(), defElementCourant(), defElementParent(), et retElementCourant().\index{CTraverseurScorm@{CTraverseurScorm}!debutRubrique@{debutRubrique}}
+\index{debutRubrique@{debutRubrique}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutRubrique ()}\label{class_c_traverseur_scorm_ccafcc6ef8793794692f2263711b8142}
+
+
+Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une rubrique. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références \_\-exporterRessources(), defElementCourant(), defElementParent(), et retElementCourant().\index{CTraverseurScorm@{CTraverseurScorm}!debutSousActiv@{debutSousActiv}}
+\index{debutSousActiv@{debutSousActiv}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutSousActiv ()}\label{class_c_traverseur_scorm_f013f865163ba8bb6a0ddfe88933abba}
+
+
+Crée le début de l'élément xml \char`\"{}item\char`\"{} correspondant à une sous-activité. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références \_\-exporterRessources(), defElementCourant(), defElementParent(), et retElementCourant().\index{CTraverseurScorm@{CTraverseurScorm}!debutTraitement@{debutTraitement}}
+\index{debutTraitement@{debutTraitement}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::debutTraitement ()}\label{class_c_traverseur_scorm_fe1ed540dea8da7e535ffdb358ac4bd6}
+
+
+Crée les noeuds xml présents au début du manifest (jusqu'à organization, sans les items). 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références defElementCourant(), et FichierInfo::separateurParDefaut().\index{CTraverseurScorm@{CTraverseurScorm}!defElementCourant@{defElementCourant}}
+\index{defElementCourant@{defElementCourant}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::defElementCourant (\&\$ {\em v\_\-poElementCourant})}\label{class_c_traverseur_scorm_aeab324bca7f7ccd28ec8565e2a213ed}
+
+
+Sauvegarde une référence à l'item (noeud xml du manifest) actuellement traité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-poElementCourant}]l'objet \char`\"{}noeud XML\char`\"{} à sauvegarder (référence) \end{description}
+\end{Desc}
+
+
+Référencé par debutActiv(), debutFormation(), debutModule(), debutRubrique(), debutSousActiv(), debutTraitement(), finActiv(), finFormation(), finModule(), finRubrique(), et finSousActiv().\index{CTraverseurScorm@{CTraverseurScorm}!defElementParent@{defElementParent}}
+\index{defElementParent@{defElementParent}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::defElementParent (\&\$ {\em v\_\-poElementEnfant}, \/  \&\$ {\em v\_\-poElementParent})}\label{class_c_traverseur_scorm_b71cd260666b0e047e0438129f850270}
+
+
+Sauvegarde la référence à un élément parent (noeud xml) dans un élément enfant, de façon à pouvoir rattacher par la suite l'enfant à l'élément correct. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-poElementEnfant}]l'élément enfant dans lequel on va sauvegarder la référence au parent (référence) \item[{\em v\_\-poElementParent}]l'élément parent (référence) \end{description}
+\end{Desc}
+
+
+Référencé par debutActiv(), debutFormation(), debutModule(), debutRubrique(), et debutSousActiv().\index{CTraverseurScorm@{CTraverseurScorm}!effacerPaquetScorm@{effacerPaquetScorm}}
+\index{effacerPaquetScorm@{effacerPaquetScorm}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::effacerPaquetScorm ()}\label{class_c_traverseur_scorm_e412332bfd9419fd3bc30eb6feefa920}
+
+
+Efface du système de fichiers le dossier temporaire utilisé pour la création du paquet SCORM, et tout son contenu. 
+
+\begin{Desc}
+\item[Avertissement:]Cette fonction est donc à appeler uniquement lorsqu'on a récupéré le paquet et qu'on est certain de ne plus en avoir besoin \end{Desc}
+\index{CTraverseurScorm@{CTraverseurScorm}!finTraitement@{finTraitement}}
+\index{finTraitement@{finTraitement}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::finTraitement ()}\label{class_c_traverseur_scorm_1a3879af5a2f51b93219bea8cbf03a63}
+
+
+Rattache les noeuds xml les plus extérieurs (ceux qui ne sont pas des \char`\"{}item\char`\"{}) à la racine du fichier manifest. 
+
+Cette fonction est appelée en interne uniquement 
+
+Réimplémentée à partir de {\bf CTraverseur} \doxyref{}{p.}{class_c_traverseur}.
+
+Références FichierInfo::separateurParDefaut().\index{CTraverseurScorm@{CTraverseurScorm}!retContenuManifest@{retContenuManifest}}
+\index{retContenuManifest@{retContenuManifest}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CTraverseurScorm::retContenuManifest ()}\label{class_c_traverseur_scorm_d30c51e02a49b66f95a46237d9824ab7}
+
+
+Retourne le contenu généré pour la création du fichier imsmanifest.xml. 
+
+\begin{Desc}
+\item[Renvoie:]la chaîne de texte générée pendant la traversée des (éléments de) formations, et qui constituera le contenu du fichier imsmanifest.xml créé pour le paquet SCORM \end{Desc}
+\index{CTraverseurScorm@{CTraverseurScorm}!retElementCourant@{retElementCourant}}
+\index{retElementCourant@{retElementCourant}!CTraverseurScorm@{CTraverseurScorm}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\& CTraverseurScorm::retElementCourant ()}\label{class_c_traverseur_scorm_124885caf4a2aad72bcb284afa57ff57}
+
+
+Retourne la référence à l'item (noeud xml du manifest) actuellement traité. 
+
+\begin{Desc}
+\item[Renvoie:]l'objet (noeud xml) actuellement traité dans la traversée \end{Desc}
+
+
+Référencé par debutActiv(), debutFormation(), debutModule(), debutRubrique(), et debutSousActiv().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/traverseurs/{\bf traverseur\_\-scorm.class.php}\end{CompactItemize}

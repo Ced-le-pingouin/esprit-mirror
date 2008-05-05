@@ -1,0 +1,33 @@
+\section{Référence du fichier src/lib/std/Erreur.php}
+\label{_erreur_8php}\index{src/lib/std/Erreur.php@{src/lib/std/Erreur.php}}
+
+
+\subsection{Description détaillée}
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf Erreur}
+\begin{CompactList}\small\item\em Classe de gestion des erreurs. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Énumérations}
+\begin{Indent}{\bf Constantes - types d'erreurs}\par
+{\em Celles-ci reprennent les constantes {\tt E\_\-USER\_\-} de PHP.
+
+Plus tard, il faudrait qu'elles deviennent des constantes de classe en laissant tomber le préfixe {\tt ERREUR\_\-} au passage, mais les constantes de classe n'existent qu'en PHP 5 }\begin{CompactItemize}
+\item 
+enum {\bf ERREUR\_\-AVERT} 
+\begin{CompactList}\small\item\em l'erreur correspond aux warnings de PHP =$>$ pas d'arrêt du script mais elles sont affichées par défaut \item\end{CompactList}\item 
+enum {\bf ERREUR\_\-FATALE} 
+\begin{CompactList}\small\item\em l'erreur correspond aux erreurs fatales de PHP, elle provoquera donc l'arrêt du script \item\end{CompactList}\item 
+enum {\bf ERREUR\_\-NOTE} 
+\begin{CompactList}\small\item\em l'erreur correspond aux notices de PHP =$>$ je pense que par défaut elles ne sont pas affichées \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Constantes - modes de gestion des erreurs}\par
+\begin{CompactItemize}
+\item 
+enum {\bf ERREUR\_\-MODE\_\-AFFICHAGE} 
+\begin{CompactList}\small\item\em les erreurs sont affichée immédiatement (mode par défaut) \item\end{CompactList}\item 
+enum {\bf ERREUR\_\-MODE\_\-STOCKAGE} 
+\begin{CompactList}\small\item\em les erreurs sont stockées dans un tableau et peuvent être récupérées en différé \item\end{CompactList}\end{CompactItemize}
+\end{Indent}

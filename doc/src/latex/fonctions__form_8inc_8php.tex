@@ -1,0 +1,238 @@
+\section{Référence du fichier src/database/fonctions\_\-form.inc.php}
+\label{fonctions__form_8inc_8php}\index{src/database/fonctions\_\-form.inc.php@{src/database/fonctions\_\-form.inc.php}}
+
+
+\subsection{Description détaillée}
+Contient les fonctions communes aux formulaires. 
+
+\begin{Desc}
+\item[Date:]2004/06/22\end{Desc}
+\begin{Desc}
+\item[Auteur:]Ludovic FLAMME \end{Desc}
+
+
+\subsection*{Fonctions}
+\begin{CompactItemize}
+\item 
+{\bf Alignement} (\$sAlignEnon, \$sAlignRep)
+\begin{CompactList}\small\item\em Sert à cocher les cases concernant l'alignement d'un énonce et de sa réponse. \item\end{CompactList}\item 
+{\bf CalculerScore} (\$v\_\-iNbrePropRepCorrecte, \$v\_\-iNbrePropRepFausse, \$v\_\-iNbreRepCorrecte, \$v\_\-iNbreRepFausse, \$bForGuessing=true, \$v\_\-iPoids=1)
+\begin{CompactList}\small\item\em Calcule le score d'une réponse d'une activité en ligne. \item\end{CompactList}\item 
+{\bf CopieFormulaire\_\-Axe} (\&\$v\_\-oBdd, \$v\_\-iIdForm, \$v\_\-iIdNvForm)
+\begin{CompactList}\small\item\em Copie le lien (Axe - Formulaire) entre deux activités en lignes. \item\end{CompactList}\item 
+{\bf CopieReponse\_\-Axe} (\&\$v\_\-oBdd, \$v\_\-iIdPropRep, \$v\_\-iIdNvReponse)
+\begin{CompactList}\small\item\em Copie les poids des propositions de réponses par rapport à un axe. \item\end{CompactList}\item 
+{\bf CopieReponses} (\&\$v\_\-oBdd, \$v\_\-iIdObjFormul, \$v\_\-iIdNvObjForm)
+\begin{CompactList}\small\item\em Copie les propositions de réponses d'un objet de formulaire vers un autre. \item\end{CompactList}\item 
+{\bf CopierUnFormulaire} (\&\$v\_\-oBdd, \$v\_\-iIdFormulaire, \$iIdNvPers)
+\begin{CompactList}\small\item\em Copie une activité en ligne. \item\end{CompactList}\item 
+{\bf CopierUnObjetFormulaire} (\&\$v\_\-oBdd, \&\$v\_\-oObjForm, \$v\_\-iIdFormulaireDest, \$v\_\-iOrdreObjet=NULL)
+\begin{CompactList}\small\item\em Copie un objet de formulaire. \item\end{CompactList}\item 
+{\bf RetourPoidsReponse} (\&\$v\_\-oBdd, \$v\_\-iIdFormulaire, \$v\_\-iIdObjFormul, \$v\_\-iIdPropRep)
+\begin{CompactList}\small\item\em Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids pour chaque axe de l'activité en ligne. \item\end{CompactList}\item 
+{\bf retReponseEntier} (\&\$v\_\-oBdd, \$v\_\-iIdFC, \$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne les id des propositions de réponses que l'étudiant a choisies. \item\end{CompactList}\item 
+{\bf retReponseFlottant} (\&\$v\_\-oBdd, \$v\_\-iIdFC, \$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne une réponse de type \char`\"{}nombre\char`\"{} d'un étudiant. \item\end{CompactList}\item 
+{\bf retReponseTexteCourt} (\&\$v\_\-oBdd, \$v\_\-iIdFC, \$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne une réponse de type \char`\"{}texte court\char`\"{} d'un étudiant. \item\end{CompactList}\item 
+{\bf retReponseTexteLong} (\&\$v\_\-oBdd, \$v\_\-iIdFC, \$v\_\-iIdObjFormul)
+\begin{CompactList}\small\item\em Retourne une réponse de type \char`\"{}texte long\char`\"{} d'un étudiant. \item\end{CompactList}\item 
+{\bf validerTexte} (\$v\_\-sTexte)
+\begin{CompactList}\small\item\em Supprime les espaces (ou d'autres caractères) en début et fin de chaîne, supprime les anti-slash d'une chaîne, et protège les caractères spéciaux d'une commande SQL. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!Alignement@{Alignement}}
+\index{Alignement@{Alignement}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Alignement (\$ {\em sAlignEnon}, \/  \$ {\em sAlignRep})}\label{fonctions__form_8inc_8php_ed82bcba8c9e3b5afe8832c29121af9e}
+
+
+Sert à cocher les cases concernant l'alignement d'un énonce et de sa réponse. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em sAlignEnon}]contient la chaine de caractère \{left,right,center ou justify) pour l'alignement de l'énoncé \item[{\em sAlignRep}]contient la chaine de caractère \{left,right,center ou justify) pour l'alignement de la réponse\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant des chaînes de caractères, deux contenant 'checked=\char`\"{}checked\char`\"{}' et les autres sont vides \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CalculerScore@{CalculerScore}}
+\index{CalculerScore@{CalculerScore}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CalculerScore (\$ {\em v\_\-iNbrePropRepCorrecte}, \/  \$ {\em v\_\-iNbrePropRepFausse}, \/  \$ {\em v\_\-iNbreRepCorrecte}, \/  \$ {\em v\_\-iNbreRepFausse}, \/  \$ {\em bForGuessing} = {\tt true}, \/  \$ {\em v\_\-iPoids} = {\tt 1})}\label{fonctions__form_8inc_8php_8e427f12344f6543e309cf8f4844f8ec}
+
+
+Calcule le score d'une réponse d'une activité en ligne. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNbrePropRepCorrecte}]le nombre de proposition correcte de la question \item[{\em v\_\-iNbrePropRepFausse}]le nombre de proposition fausse de la question \item[{\em v\_\-iNbreRepCorrecte}]le nombre de réponses correctes \item[{\em v\_\-iNbreRepFausse}]le nombre de réponses fausses \item[{\em bForGuessing}]si {\tt true}, avec correction for guessing \item[{\em v\_\-iPoids}]le poids de la question\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le score d'une réponse d'une activité en ligne \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CopieFormulaire\_\-Axe@{CopieFormulaire\_\-Axe}}
+\index{CopieFormulaire\_\-Axe@{CopieFormulaire\_\-Axe}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopieFormulaire\_\-Axe (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdForm}, \/  \$ {\em v\_\-iIdNvForm})}\label{fonctions__form_8inc_8php_a686c3fda524fcd49da75758c8fee6f7}
+
+
+Copie le lien (Axe - Formulaire) entre deux activités en lignes. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdForm}]l'id de l'activité en ligne (formulaire) source \item[{\em v\_\-iIdNvForm}]l'id de l'activité en ligne de destination \end{description}
+\end{Desc}
+
+
+Référencé par CopierUnFormulaire().\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CopieReponse\_\-Axe@{CopieReponse\_\-Axe}}
+\index{CopieReponse\_\-Axe@{CopieReponse\_\-Axe}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopieReponse\_\-Axe (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdPropRep}, \/  \$ {\em v\_\-iIdNvReponse})}\label{fonctions__form_8inc_8php_8e65f59ba6593f05bf0cd75ae77ed9dc}
+
+
+Copie les poids des propositions de réponses par rapport à un axe. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdReponse}]l'id de la proposition de réponse \item[{\em v\_\-iIdNvReponse}]l'id de la nouvelle proposition de réponse \end{description}
+\end{Desc}
+
+
+Référencé par CopieReponses().\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CopieReponses@{CopieReponses}}
+\index{CopieReponses@{CopieReponses}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopieReponses (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdObjFormul}, \/  \$ {\em v\_\-iIdNvObjForm})}\label{fonctions__form_8inc_8php_7d56b26503395feaec8d871d5d80d29b}
+
+
+Copie les propositions de réponses d'un objet de formulaire vers un autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire à copier \item[{\em v\_\-iIdNvObjForm}]l'id de l'objet formulaire de destination \end{description}
+\end{Desc}
+
+
+Références CopieReponse\_\-Axe().
+
+Référencé par CopierUnObjetFormulaire().\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CopierUnFormulaire@{CopierUnFormulaire}}
+\index{CopierUnFormulaire@{CopierUnFormulaire}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierUnFormulaire (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFormulaire}, \/  \$ {\em iIdNvPers})}\label{fonctions__form_8inc_8php_3c92dd8530b76e472d93667bfde22374}
+
+
+Copie une activité en ligne. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFormulaire}]l'id de l'activité en ligne (formulaire) \item[{\em iIdNvPers}]l'id de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de l'activité en ligne (formulaire) copiée \end{Desc}
+
+
+Références CopieFormulaire\_\-Axe(), et CopierUnObjetFormulaire().\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!CopierUnObjetFormulaire@{CopierUnObjetFormulaire}}
+\index{CopierUnObjetFormulaire@{CopierUnObjetFormulaire}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CopierUnObjetFormulaire (\&\$ {\em v\_\-oBdd}, \/  \&\$ {\em v\_\-oObjForm}, \/  \$ {\em v\_\-iIdFormulaireDest}, \/  \$ {\em v\_\-iOrdreObjet} = {\tt NULL})}\label{fonctions__form_8inc_8php_de03d16812ef29364f08c02333b59fc4}
+
+
+Copie un objet de formulaire. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-oObjForm}]Objet contenant un enregistrement de la table ObjetFormulaire \item[{\em v\_\-iIdFormulaireDest}]l'id de l'objet de formulaire de destination \item[{\em v\_\-iOrdreObjet}]le numéro d'ordre du nouvel objet de formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouvel objet de formulaire \end{Desc}
+
+
+Références CopieReponses().
+
+Référencé par CopierUnFormulaire().\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!RetourPoidsReponse@{RetourPoidsReponse}}
+\index{RetourPoidsReponse@{RetourPoidsReponse}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}RetourPoidsReponse (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFormulaire}, \/  \$ {\em v\_\-iIdObjFormul}, \/  \$ {\em v\_\-iIdPropRep})}\label{fonctions__form_8inc_8php_d5c1c0a4e46479088cf8c2d57311cd1e}
+
+
+Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids pour chaque axe de l'activité en ligne. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFormulaire}]l'id de l'activité en ligne (formulaire) \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire \item[{\em v\_\-iIdPropRep}]l'id de la proposition de réponse\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]Code Html contenant le(s) poid(s) + mise en page + modification possible \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!retReponseEntier@{retReponseEntier}}
+\index{retReponseEntier@{retReponseEntier}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}retReponseEntier (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFC}, \/  \$ {\em v\_\-iIdObjFormul})}\label{fonctions__form_8inc_8php_13805948594d68a0b5199395ff18e4ad}
+
+
+Retourne les id des propositions de réponses que l'étudiant a choisies. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFC}]l'id du formulaire (activité en ligne) complété \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les id des propositions de réponses que l'étudiant a choisies \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!retReponseFlottant@{retReponseFlottant}}
+\index{retReponseFlottant@{retReponseFlottant}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}retReponseFlottant (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFC}, \/  \$ {\em v\_\-iIdObjFormul})}\label{fonctions__form_8inc_8php_06ca52c1a9709fc72a5c7ef24e438fe8}
+
+
+Retourne une réponse de type \char`\"{}nombre\char`\"{} d'un étudiant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFC}]l'id du formulaire (activité en ligne) complété \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la réponse de type nombre (flottant) \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!retReponseTexteCourt@{retReponseTexteCourt}}
+\index{retReponseTexteCourt@{retReponseTexteCourt}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}retReponseTexteCourt (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFC}, \/  \$ {\em v\_\-iIdObjFormul})}\label{fonctions__form_8inc_8php_33815c21bf5a724d9759518441661a15}
+
+
+Retourne une réponse de type \char`\"{}texte court\char`\"{} d'un étudiant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFC}]l'id du formulaire (activité en ligne) complété \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte de la réponse de type \char`\"{}texte court\char`\"{} \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!retReponseTexteLong@{retReponseTexteLong}}
+\index{retReponseTexteLong@{retReponseTexteLong}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}retReponseTexteLong (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdFC}, \/  \$ {\em v\_\-iIdObjFormul})}\label{fonctions__form_8inc_8php_a3f685e4409a939ff7f0cdbc327048bb}
+
+
+Retourne une réponse de type \char`\"{}texte long\char`\"{} d'un étudiant. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]Objet représentant la connexion à la DB \item[{\em v\_\-iIdFC}]l'id du formulaire (activité en ligne) complété \item[{\em v\_\-iIdObjFormul}]l'id de l'objet formulaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte de la réponse de type \char`\"{}texte long\char`\"{} \end{Desc}
+\index{fonctions\_\-form.inc.php@{fonctions\_\-form.inc.php}!validerTexte@{validerTexte}}
+\index{validerTexte@{validerTexte}!fonctions_form.inc.php@{fonctions\_\-form.inc.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}validerTexte (\$ {\em v\_\-sTexte})}\label{fonctions__form_8inc_8php_54992d950b6dc3a5d37700481688fdfc}
+
+
+Supprime les espaces (ou d'autres caractères) en début et fin de chaîne, supprime les anti-slash d'une chaîne, et protège les caractères spéciaux d'une commande SQL. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sTexte}]la chaîne de caractère à traiter\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la chaîne de caractère traitée \end{Desc}
+
+
+Référencé par CFormulaire::enregistrer().

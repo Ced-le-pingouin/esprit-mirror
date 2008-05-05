@@ -1,0 +1,38 @@
+\section{Référence du fichier src/lib/std/IterateurRecursif.php}
+\label{_iterateur_recursif_8php}\index{src/lib/std/IterateurRecursif.php@{src/lib/std/IterateurRecursif.php}}
+
+
+\subsection{Description détaillée}
+
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf IterateurRecursif}
+\begin{CompactList}\small\item\em constante interne à des fins de vérification \item\end{CompactList}\end{CompactItemize}
+\subsection*{Énumérations}
+\begin{Indent}{\bf Constantes - modes de récursion}\par
+\begin{CompactItemize}
+\item 
+enum {\bf ITR\_\-REC\_\-ENFANTS\_\-AVANT} 
+\begin{CompactList}\small\item\em les éléments qui ont des enfants seront retournés par courant() après que l'itération sur leurs enfants ait eu lieu \item\end{CompactList}\item 
+enum {\bf ITR\_\-REC\_\-FEUILLES\_\-SEUL} 
+\begin{CompactList}\small\item\em constante interne à des fins de vérification \item\end{CompactList}\item 
+enum \textbf{ITR\_\-REC\_\-MODE\_\-DERNIER} 
+\item 
+enum \textbf{ITR\_\-REC\_\-MODE\_\-PREMIER} 
+\item 
+enum {\bf ITR\_\-REC\_\-PARENT\_\-AVANT} 
+\begin{CompactList}\small\item\em les éléments qui ont des enfants seront retournés par courant() avant que l'itération sur leurs enfants ait lieu \item\end{CompactList}\end{CompactItemize}
+\end{Indent}
+
+
+\subsection{Documentation du type de l'énumération}
+\index{IterateurRecursif.php@{IterateurRecursif.php}!ITR\_\-REC\_\-FEUILLES\_\-SEUL@{ITR\_\-REC\_\-FEUILLES\_\-SEUL}}
+\index{ITR\_\-REC\_\-FEUILLES\_\-SEUL@{ITR\_\-REC\_\-FEUILLES\_\-SEUL}!IterateurRecursif.php@{IterateurRecursif.php}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}enum {\bf ITR\_\-REC\_\-FEUILLES\_\-SEUL}}\label{_iterateur_recursif_8php_9e8bb901efc29d22a16161249c16a29d}
+
+
+constante interne à des fins de vérification 
+
+les éléments qui on des enfants ne seront pas retournés par courant() (bien entendu, ils seront tout de même parcourus) 

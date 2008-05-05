@@ -1,0 +1,76 @@
+\section{Référence de la classe CConstantes}
+\label{class_c_constantes}\index{CConstantes@{CConstantes}}
+
+
+\subsection{Description détaillée}
+Classe permettant de récupérer des constantes 'texte' (consignes, messages, etc) dans la base de données. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf CConstantes} (\&\$v\_\-oBdd, \$v\_\-sTable)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf creerFichierConstantes} (\$v\_\-sNomFichier=NULL)
+\begin{CompactList}\small\item\em Crée un fichier de constantes représentant les termes traduisibles. \item\end{CompactList}\item 
+{\bf retTexte} (\$v\_\-iId, \$v\_\-bConversionHtml=TRUE)
+\begin{CompactList}\small\item\em Récupère un texte traduit sur base de son id. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$oBdd}\label{class_c_constantes_ab8dc04e21f07a6adce26d77ce5b33f5}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$sTable}\label{class_c_constantes_c270ada16e51b18dd9a04b405c53b13d}
+
+\begin{CompactList}\small\item\em Nom de la table DB (i18n\_\-fr) qui contient toutes les traductions dans une langue donnée. \item\end{CompactList}\item 
+{\bf \$sTableI18N}\label{class_c_constantes_886c8de08718f95f8225334d0e997f79}
+
+\begin{CompactList}\small\item\em Nom de la table DB (i18n) qui contient toutes les constantes des textes traduisibles. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CConstantes@{CConstantes}!CConstantes@{CConstantes}}
+\index{CConstantes@{CConstantes}!CConstantes@{CConstantes}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CConstantes::CConstantes (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-sTable})}\label{class_c_constantes_8ee22843123851c029ef232a8d97ea38}
+
+
+Constructeur. 
+
+Initialise les paramètres de DB et de tables de l'objet
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oBdd}]l'objet \doxyref{CBdd}{p.}{class_c_bdd} qui représente la connexion à la DB \item[{\em v\_\-sTable}]le nom de la table correspondant à la langue voulue. C'est dans cette table que seront récupérées les traductions \end{description}
+\end{Desc}
+\index{CConstantes@{CConstantes}!creerFichierConstantes@{creerFichierConstantes}}
+\index{creerFichierConstantes@{creerFichierConstantes}!CConstantes@{CConstantes}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CConstantes::creerFichierConstantes (\$ {\em v\_\-sNomFichier} = {\tt NULL})}\label{class_c_constantes_f5741052d0f1f514744dadbfdd0455d1}
+
+
+Crée un fichier de constantes représentant les termes traduisibles. 
+
+Cette fonction doit être appelée lorsque de nouveaux termes à traduire ont été ajoutés dans la DB, sinon leur id sera inaccessible en PHP
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomFichier}]le nom du fichier de constantes à créer. Si {\tt v\_\-sNomFichier} n'est pas spécifié, le fichier aura le même nom que la table utilisée pour la langue (voir \doxyref{CConstantes()}{p.}{class_c_constantes_8ee22843123851c029ef232a8d97ea38}) \end{description}
+\end{Desc}
+\index{CConstantes@{CConstantes}!retTexte@{retTexte}}
+\index{retTexte@{retTexte}!CConstantes@{CConstantes}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CConstantes::retTexte (\$ {\em v\_\-iId}, \/  \$ {\em v\_\-bConversionHtml} = {\tt TRUE})}\label{class_c_constantes_58ed0a442e95f6c416bb091dead96b47}
+
+
+Récupère un texte traduit sur base de son id. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iId}]l'id du texte à chercher \item[{\em v\_\-bConversionHtml}]si {\tt true}, remplace les caractères qui le nécessitent par des entités HTML dans le texte retourné\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le texte associé à l'Id, dans la langue voulue (définie dans le constructeur par un nom de table correspondant dans la DB) \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/{\bf plate\_\-forme.class.php}\end{CompactItemize}

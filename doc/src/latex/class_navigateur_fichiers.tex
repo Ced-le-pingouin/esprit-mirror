@@ -1,0 +1,119 @@
+\section{Référence de la classe NavigateurFichiers}
+\label{class_navigateur_fichiers}\index{NavigateurFichiers@{NavigateurFichiers}}
+Graphe d'héritage de NavigateurFichiers::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_navigateur_fichiers}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Contrôleur pour l'outil \char`\"{}navigateur de fichiers\char`\"{}. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf afficherArborescence} ()\label{class_navigateur_fichiers_e9e027f3e3ec2320f52ec92a6f16532f}
+
+\begin{CompactList}\small\item\em Affiche le panneau contenant l'arborescence des dossiers à partir du dossier racine. \item\end{CompactList}\item 
+{\bf afficherContenu} ()\label{class_navigateur_fichiers_7f3b9163e56df6492f3e9b70c5174781}
+
+\begin{CompactList}\small\item\em Affiche le panneau du contenu du dossier actif. \item\end{CompactList}\item 
+{\bf afficherParties} ()
+\item 
+{\bf afficherPressePapiers} ()\label{class_navigateur_fichiers_becf65033537032a0e1051143d4d9523}
+
+\begin{CompactList}\small\item\em Affiche le panneau du contenu du presse-papiers. \item\end{CompactList}\item 
+{\bf gererActions} ()
+\item 
+{\bf recupererDonnees} ()
+\item 
+{\bf validerDonnees} ()
+\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aFichiersSel}\label{class_navigateur_fichiers_ae8e47e4ca7a129fa73fe2dbb2c72731}
+
+\begin{CompactList}\small\item\em Tableau des fichiers sélectionnés (formulaire). \item\end{CompactList}\item 
+{\bf \$bDezipperFichierDepose}\label{class_navigateur_fichiers_6f0b8cd1365925c48d2362d1f2f65e56}
+
+\begin{CompactList}\small\item\em Lors de l'action Déposer un fichier, indique si on doit dézipper s'il s'agit d'un fichier zippé. \item\end{CompactList}\item 
+{\bf \$oDossierCourant}\label{class_navigateur_fichiers_232273bc91f14aa347dee2c870cc88eb}
+
+\begin{CompactList}\small\item\em Objet \doxyref{FichierInfo}{p.}{class_fichier_info} représentant le dossier actif (panneau Contenu). \item\end{CompactList}\item 
+{\bf \$oDossierRacine}\label{class_navigateur_fichiers_e97f4a6afdaba74a5244d8d0084fcc8e}
+
+\begin{CompactList}\small\item\em Objet \doxyref{FichierInfo}{p.}{class_fichier_info} représentant le dossier racine (panneau Arborescence). \item\end{CompactList}\item 
+{\bf \$oFichierARenommer}\label{class_navigateur_fichiers_2a81e3c9da7e5dbe1b03c436ceaa15a9}
+
+\begin{CompactList}\small\item\em Lors de l'action Renommer, objet représentant le fichier/dossier à renommer. \item\end{CompactList}\item 
+{\bf \$oFichierATelecharger}\label{class_navigateur_fichiers_3137017ead8eda269450916d0831c720}
+
+\begin{CompactList}\small\item\em Lors de l'action télécharger, objet représentant le fichier à télécharger. \item\end{CompactList}\item 
+{\bf \$oPressePapiers}\label{class_navigateur_fichiers_f632d65e22344a0979c8d17cd9136e30}
+
+\begin{CompactList}\small\item\em Objet représentant le presse-papiers. \item\end{CompactList}\item 
+{\bf \$sDossierACreer}\label{class_navigateur_fichiers_6ae2e48ddc435e161dc5fc4dab58712e}
+
+\begin{CompactList}\small\item\em Lors de l'action Créer un dossier, objet représentant ce dossier. \item\end{CompactList}\item 
+{\bf \$sFichierDeposeNom}\label{class_navigateur_fichiers_24205d5bda63ea175dee04eb42cffa5c}
+
+\begin{CompactList}\small\item\em Lors de l'action Déposer un fichier, nom de ce dernier. \item\end{CompactList}\item 
+{\bf \$sFichierRenomme}\label{class_navigateur_fichiers_aa4fd1c6c4ed983338f21e38bbda9253}
+
+\begin{CompactList}\small\item\em Nouveau nom pour le fichier/dossier à renommer. \item\end{CompactList}\item 
+{\bf \$sFiltreFichiers}\label{class_navigateur_fichiers_f55ae7ddf73c0c7a3d071c6691febe76}
+
+\begin{CompactList}\small\item\em Regex représentant les noms de fichiers/dossiers sur lesquels les actions sont interdites (non défini ici, destiné aux classes filles). \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{NavigateurFichiers@{NavigateurFichiers}!afficherParties@{afficherParties}}
+\index{afficherParties@{afficherParties}!NavigateurFichiers@{NavigateurFichiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}NavigateurFichiers::afficherParties ()}\label{class_navigateur_fichiers_6c9c73afc0f884ae0b4caedafc15193f}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::afficherParties()}{p.}{class_afficheur_page_a4df93afa9e5d401c7230e22627952e4} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_a4df93afa9e5d401c7230e22627952e4}.
+
+Références afficherArborescence(), afficherContenu(), et afficherPressePapiers().\index{NavigateurFichiers@{NavigateurFichiers}!gererActions@{gererActions}}
+\index{gererActions@{gererActions}!NavigateurFichiers@{NavigateurFichiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}NavigateurFichiers::gererActions ()}\label{class_navigateur_fichiers_d912fbde728bd3ba8e7474b80b1e6564}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::gererActions()}{p.}{class_afficheur_page_08c73bc1fa58fc910e1ceda2c5fdd779} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_08c73bc1fa58fc910e1ceda2c5fdd779}.
+
+Références AfficheurPage::declarerErreur().\index{NavigateurFichiers@{NavigateurFichiers}!recupererDonnees@{recupererDonnees}}
+\index{recupererDonnees@{recupererDonnees}!NavigateurFichiers@{NavigateurFichiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}NavigateurFichiers::recupererDonnees ()}\label{class_navigateur_fichiers_7d4f46ae11f31cd8d5b87548bd2aa804}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::recupererDonnees()}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_adf5a0aca3dec80470713d54c58c543e}.
+
+Réimplémentée dans {\bf GererFichiersForm} \doxyref{}{p.}{class_gerer_fichiers_form_d79147cdbec306a791bc6337b0386ea1}.\index{NavigateurFichiers@{NavigateurFichiers}!validerDonnees@{validerDonnees}}
+\index{validerDonnees@{validerDonnees}!NavigateurFichiers@{NavigateurFichiers}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}NavigateurFichiers::validerDonnees ()}\label{class_navigateur_fichiers_446e449f46bf506d1b145bca76a95a86}
+
+
+\begin{Desc}
+\item[Voir également:]\doxyref{AfficheurPage::validerDonnees()}{p.}{class_afficheur_page_735f2e1007d303794f24cb80a2a649b6} \end{Desc}
+
+
+Réimplémentée à partir de {\bf AfficheurPage} \doxyref{}{p.}{class_afficheur_page_735f2e1007d303794f24cb80a2a649b6}.
+
+Références AfficheurPage::declarerErreur().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/include/nav\_\-fichiers/{\bf NavigateurFichiers.php}\end{CompactItemize}

@@ -1,0 +1,29 @@
+T E M P L A T E
+
+Mots-clés
+---------
+
+globals
+   
+   § {titre_page_html}
+     Remplace par le titre de la page html
+	 
+   § {rep_theme}
+     Remplace par le chemin absolu du thème
+	 (Exemple: "/plate-forme/themes/esprit/")
+	 
+    § {rep_javascript}
+
+Ces mots-clés doivent impérativement se figurer dans les fichiers suivant :
+
+index_formations.tpl
+   
+   § {src_frame_titre}
+   § {src_frame_formation}
+   § {src_frame_principal}
+   § {src_frame_menu}
+
+cours.tpl
+
+   § {intitule_unite}
+   § {lien_unite}

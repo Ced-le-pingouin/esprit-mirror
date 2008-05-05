@@ -1,0 +1,7 @@
+ Le remplacement de l'éditeur HTML par TinyMCE impose de mettre à jour les tables
+ contenant du texte "web". Le pseudo-HTML utilisé précédemment est remplacé par
+ du HTML standard.
+ Pour cela, le script perl utils/esprit_convHTML.pl est fourni.
+ La documentation est lisible par :  ./esprit_convHTML.pl --man
+ Il est conseillé de faire un dump de la base avant d'appliquer ce script, 
+ pour pouvoir la restaurer au besoin.

@@ -1,0 +1,595 @@
+\section{Référence de la classe CActiv}
+\label{class_c_activ}\index{CActiv@{CActiv}}
+
+
+\subsection{Description détaillée}
+Gestion des activités, et encapsulation de la table Activ de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf Ajouter} (\$v\_\-iIdRubrique, \$v\_\-iIdUnite=0)
+\begin{CompactList}\small\item\em Ajoute une nouvelle activité à la rubrique. \item\end{CompactList}\item 
+{\bf CActiv} (\&\$v\_\-oBdd, \$v\_\-iIdActiv=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iIdRubrique, \$v\_\-bRecursive=TRUE, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie l'activité courante vers une rubrique spécifique. \item\end{CompactList}\item 
+{\bf copierActivite} (\$v\_\-iIdRubrique, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Insère une copie d'une activité dans la DB. \item\end{CompactList}\item 
+{\bf copierAvecNumOrdre} (\$v\_\-iIdDest, \$v\_\-iNumOrdre=0)
+\begin{CompactList}\small\item\em Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre pour la copie de l'activité. \item\end{CompactList}\item 
+{\bf copierSousActivites} (\$v\_\-iIdActiv, \$v\_\-sExportation=NULL)
+\begin{CompactList}\small\item\em Copie les sous-activités de l'activité courante vers une autre. \item\end{CompactList}\item 
+{\bf defRemettreDeOrdre} (\$v\_\-bRemettreDeOrdre=TRUE)
+\begin{CompactList}\small\item\em Définit la variable booléenne {\tt v\_\-bRemettreDeOrdre}. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_activ_84b689a4dc9b058c8c14be266ca765e1}
+
+\begin{CompactList}\small\item\em Efface la totalité d'une activité (sous-activités comprises). \item\end{CompactList}\item 
+{\bf effacerEquipes} ()\label{class_c_activ_92d6a3ebe7675efd3834250121539623}
+
+\begin{CompactList}\small\item\em Efface les équipes de cette activité. \item\end{CompactList}\item 
+{\bf effacerRepChats} (\$v\_\-bEffacerRepertoire=TRUE)
+\begin{CompactList}\small\item\em Efface le répertoire(optionnel) et toutes les archives des chats. \item\end{CompactList}\item 
+{\bf effacerRepDocuments} (\$v\_\-bEffacerRepertoire=TRUE, \$sFiltreDocs=NULL)
+\begin{CompactList}\small\item\em Efface les documents (collecticiel) et son répertoire(optionnel). \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_activ_96d175403f6489c27fa851e5a2ad0d86}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initEquipe} (\$v\_\-iIdMembre, \$v\_\-bInitMembres=FALSE)
+\begin{CompactList}\small\item\em Initialise {\tt oEquipe} avec l'équipe associée au niveau(activité-$>$formation) auquel la personne, donnée en paramètre, appartient. \item\end{CompactList}\item 
+{\bf initEquipes} (\$v\_\-bInitMembres=FALSE, \$v\_\-iTypeNiveauDepart={\bf TYPE\_\-ACTIVITE})
+\begin{CompactList}\small\item\em Initialise un tableau contenant les équipes de l'activité. \item\end{CompactList}\item 
+{\bf initSousActivCourante} (\$v\_\-iIdSousActiv=NULL)
+\begin{CompactList}\small\item\em Initialise la sous-activité courante. \item\end{CompactList}\item 
+{\bf initSousActivs} (\$v\_\-iIdPers=NULL)
+\begin{CompactList}\small\item\em Initialise un tableau contenant une liste des sous-activités. \item\end{CompactList}\item 
+{\bf mettre\_\-a\_\-jour} (\$v\_\-sNomChamp, \$v\_\-mValeurChamp, \$v\_\-iIdActiv=0)
+\begin{CompactList}\small\item\em Met à jour un champ de la table Activ. \item\end{CompactList}\item 
+{\bf rafraichir} ()\label{class_c_activ_86a1cca432cbc10aa43e62eaeb684abe}
+
+\begin{CompactList}\small\item\em Réinitialise l'objet {\tt oEnregBdd} avec l'activité courante. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iNouveauNumOrdre=NULL)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des activités. \item\end{CompactList}\item 
+{\bf retDossier} ()
+\item 
+\& {\bf retElementsEnfants} ()\label{class_c_activ_da7f7fd0a47a8be00842827f36680daa}
+
+\begin{CompactList}\small\item\em Retourne (après les avoir initialisés si nécessaire) les éléments enfants de l'activité, càd les sous-activités. \item\end{CompactList}\item 
+{\bf retIdEnregPrecedent} ()
+\begin{CompactList}\small\item\em Retourne l'id de l'activité précédente celle-ci. \item\end{CompactList}\item 
+{\bf retIdPremierePage} ()
+\begin{CompactList}\small\item\em Retourne l'id de la première sous-activité. \item\end{CompactList}\item 
+{\bf retListeActivs} ()
+\begin{CompactList}\small\item\em Initialise un tableau avec la liste des activités de la rubrique. \item\end{CompactList}\item 
+{\bf retListeModalites} ()
+\begin{CompactList}\small\item\em Retourne un tableau à 2 dimensions contenant les modalités d'une activité. \item\end{CompactList}\item 
+{\bf retNbrEquipes} ()
+\begin{CompactList}\small\item\em Retourne le nombre d'équipes ratachées à cette activité. \item\end{CompactList}\item 
+{\bf retNombreLignes} (\$v\_\-iNumParent=NULL)
+\begin{CompactList}\small\item\em Retourne le nombre d'activités de cette rubrique. \item\end{CompactList}\item 
+{\bf retNumOrdreMax} (\$v\_\-iIdRubrique=NULL)
+\begin{CompactList}\small\item\em Permet de connaître le numero d'ordre maximum des activités. \item\end{CompactList}\item 
+{\bf retRemettreDeOrdre} ()
+\begin{CompactList}\small\item\em Retourne la valeur de la variable booléenne {\tt v\_\-bRemettreDeOrdre}. \item\end{CompactList}\item 
+{\bf retRepCours} (\$v\_\-sFichierAInclure=NULL, \$v\_\-bCheminAbsolu=TRUE)
+\begin{CompactList}\small\item\em Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. \item\end{CompactList}\item 
+{\bf retTexteModalite} ()
+\begin{CompactList}\small\item\em Retourne en français la modalité(constante MODALITE\_\-) de l'activité. \item\end{CompactList}\item 
+{\bf retTexteNiveau} ()
+\item 
+{\bf retTexteStatut} ()
+\begin{CompactList}\small\item\em Retourne le statut(constante STATUT\_\-) de l'activité. \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau \char`\"{}activité\char`\"{}, de la structure d'une formation. \item\end{CompactList}\item 
+{\bf retTypes} ()
+\begin{CompactList}\small\item\em Retourne un tableau à 2 dimensions contenant l'intitulé d'une activité. \item\end{CompactList}\item 
+{\bf retTypeTransfert} (\$v\_\-iIdActivDst)
+\begin{CompactList}\small\item\em Retourne un nombre representant le type de transfert entre l'activité courante et une activité dont l'id est passé en paramètre. \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour cette activité}\par
+\begin{CompactItemize}
+\item 
+\textbf{defAfficherModalite} (\$v\_\-bAfficher)\label{class_c_activ_af93ac03eb775394fa0965ba42c6105d}
+
+\item 
+\textbf{defAfficherStatut} (\$v\_\-bAfficher)\label{class_c_activ_51a4394017208549a367621f80e074bc}
+
+\item 
+\textbf{defDescr} (\$v\_\-sDescrActiv)\label{class_c_activ_8d2df146a0a6a2beac01242e4e7bf2ac}
+
+\item 
+\textbf{defModalite} (\$v\_\-iModalite)\label{class_c_activ_b8e7134b1fd6b6afd1f402e6d0d0d48d}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomActiv)\label{class_c_activ_4fd86998d41559550948cc53021026d0}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iOrdre)\label{class_c_activ_adab698d01c294651be3ca38af034c91}
+
+\item 
+\textbf{defStatut} (\$v\_\-iStatut)\label{class_c_activ_4069ffcebd104cff27f86e1fb97a54ad}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour cette activité}\par
+\begin{CompactItemize}
+\item 
+\textbf{retAfficherModalite} ()\label{class_c_activ_2e6bbd1df5f64fde46a423738c9d9421}
+
+\item 
+\textbf{retAfficherStatut} ()\label{class_c_activ_699d5c67fe42a733b278bfd3fc20b4f7}
+
+\item 
+\textbf{retDateDeb} ()\label{class_c_activ_0dac29dae6a59ed6061703b462546a05}
+
+\item 
+\textbf{retDateFin} ()\label{class_c_activ_ed96eaafe18f4020367f4b521928e567}
+
+\item 
+\textbf{retDescr} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_activ_f433cce3a0f02806f4063c74277f366c}
+
+\item 
+\textbf{retId} ()\label{class_c_activ_bdeede41528e27e9078a71c3ece331ad}
+
+\item 
+\textbf{retIdFormation} ()\label{class_c_activ_66805e0af73020493f00a5e682f56dc3}
+
+\item 
+\textbf{retIdModule} ()\label{class_c_activ_b0cc1dd638af34e9b1b33f8482de585a}
+
+\item 
+\textbf{retIdParent} ()\label{class_c_activ_57ac24e32f0ae8028230c8b1368aa73d}
+
+\item 
+\textbf{retIdRubrique} ()\label{class_c_activ_6796e78fca079b304eddc630750d6714}
+
+\item 
+\textbf{retInscrSpontEquipe} ()\label{class_c_activ_7a6d1e53d6ef90b33feb509281cda4c9}
+
+\item 
+\textbf{retModalite} ()\label{class_c_activ_b93d1482a87267730474a5d36bfd96a1}
+
+\item 
+\textbf{retNbMaxDsEquipe} ()\label{class_c_activ_39291fbe1419e33cf5c8f45abe9d8903}
+
+\item 
+\textbf{retNom} (\$v\_\-bHtmlEntities=FALSE)\label{class_c_activ_2e55fa6f8ec2103ca806da78cfced85c}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_activ_a433f96cda8ce85fb7c5ba46cb3afc61}
+
+\item 
+\textbf{retStatut} ()\label{class_c_activ_d2cf8fcd72df76550a8908a53301a987}
+
+\item 
+\textbf{retTableauIdsParents} ()\label{class_c_activ_a3cef2d5575afe58645bd83cdf9125ee}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoActivs}\label{class_c_activ_9ffd140237793720c1ac168d404fcb07}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{retListeActivs()}{p.}{class_c_activ_1f75b5eabe7f2b02c6660ed0da4f3ec6}, contenant une liste des activités de la rubrique. \item\end{CompactList}\item 
+{\bf \$aoEquipes}\label{class_c_activ_baf4576e4864018669c948d5bba605f0}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initEquipes()}{p.}{class_c_activ_e3bb5e033d2be034c36aedcb60352037}, contenant une liste des équipes de cette activité. \item\end{CompactList}\item 
+{\bf \$aoSousActivs}\label{class_c_activ_5c2de5aec2d3d39c1817b9340336844a}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initSousActivs()}{p.}{class_c_activ_1f2827059996c683b394bf4d3e577b0d}, contenant une liste des sous-activités de cette activité. \item\end{CompactList}\item 
+{\bf \$b\_\-RemettreDeOrdre}\label{class_c_activ_5dd04c1e35a60ad7b8711721d4f0b6ea}
+
+\begin{CompactList}\small\item\em Valeur booléenne indiquant s'il faut réorganiser les numéros d'ordre des activités. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_activ_5be656e431082fce37be1046ec31bb82}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id de l'activité à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_activ_320e3583f8c54b528528b5689850d445}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_activ_aba06b67313feadb6f469373722e54b7}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oEquipe}\label{class_c_activ_67561b8f2c1fd8f4398ec33f2ade4121}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CEquipe}{p.}{class_c_equipe} contenant une équipe. \item\end{CompactList}\item 
+{\bf \$oSousActivCourante}\label{class_c_activ_b40e9bd4746250fa0c4502b8a8927538}
+
+\begin{CompactList}\small\item\em Objet de type \doxyref{CSousActiv}{p.}{class_c_sous_activ} contenant une activité. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CActiv@{CActiv}!Ajouter@{Ajouter}}
+\index{Ajouter@{Ajouter}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::Ajouter (\$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-iIdUnite} = {\tt 0})}\label{class_c_activ_af261735b582dc6e84433f29d6815346}
+
+
+Ajoute une nouvelle activité à la rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique \item[{\em v\_\-iIdUnite}]l'id de \char`\"{}l'unité\char`\"{}, n'est plus utilisé, champs toujours à 0\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]L'id de la nouvelle activité \end{Desc}
+
+
+Références retNombreLignes().\index{CActiv@{CActiv}!CActiv@{CActiv}}
+\index{CActiv@{CActiv}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::CActiv (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iIdActiv} = {\tt NULL})}\label{class_c_activ_fdd9fc774fa3bed34107b839afa1de58}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par copier(), et retTypeTransfert().\index{CActiv@{CActiv}!copier@{copier}}
+\index{copier@{copier}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::copier (\$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-bRecursive} = {\tt TRUE}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_activ_95022cf990bbbb297ac55082c5b3adfb}
+
+
+Copie l'activité courante vers une rubrique spécifique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique \item[{\em v\_\-bRecursive}]si {\tt true}, copie aussi les sous-activités associées à l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle activité \end{Desc}
+
+
+Références CActiv(), copierActivite(), et copierSousActivites().
+
+Référencé par copierAvecNumOrdre().\index{CActiv@{CActiv}!copierActivite@{copierActivite}}
+\index{copierActivite@{copierActivite}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::copierActivite (\$ {\em v\_\-iIdRubrique}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_activ_e2b7ddb5a9d3ea2e4787b55b579c31be}
+
+
+Insère une copie d'une activité dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdRubrique}]l'id de la rubrique\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la nouvelle activité \end{Desc}
+
+
+Référencé par copier().\index{CActiv@{CActiv}!copierAvecNumOrdre@{copierAvecNumOrdre}}
+\index{copierAvecNumOrdre@{copierAvecNumOrdre}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::copierAvecNumOrdre (\$ {\em v\_\-iIdDest}, \/  \$ {\em v\_\-iNumOrdre} = {\tt 0})}\label{class_c_activ_cd5d7ce08e5c959405d4018dbab35558}
+
+
+Copie l'activité courante vers une rubrique, en indiquant un n° d'ordre pour la copie de l'activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdDest}]l'id de la rubrique de destination \item[{\em v\_\-iNumOrdre}]le n° d'ordre de la copie de l'activité. Si {\tt 0} (défaut), elle sera dernière dans la rubrique destination\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id de la copie de l'activité \end{Desc}
+
+
+Références copier(), ElementFormation::retElementFormation(), retNumOrdreMax(), et retTypeNiveau().\index{CActiv@{CActiv}!copierSousActivites@{copierSousActivites}}
+\index{copierSousActivites@{copierSousActivites}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::copierSousActivites (\$ {\em v\_\-iIdActiv}, \/  \$ {\em v\_\-sExportation} = {\tt NULL})}\label{class_c_activ_91d25c92d0aa696a522ea5ed75139965}
+
+
+Copie les sous-activités de l'activité courante vers une autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActiv}]l'id de l'activité de destination \end{description}
+\end{Desc}
+
+
+Références initSousActivs().
+
+Référencé par copier().\index{CActiv@{CActiv}!defRemettreDeOrdre@{defRemettreDeOrdre}}
+\index{defRemettreDeOrdre@{defRemettreDeOrdre}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::defRemettreDeOrdre (\$ {\em v\_\-bRemettreDeOrdre} = {\tt TRUE})}\label{class_c_activ_267369a47ca92ff255c67a8b1539b42d}
+
+
+Définit la variable booléenne {\tt v\_\-bRemettreDeOrdre}. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bRemettreDeOrdre}]valeur à définir: {\tt true}(défaut) ou {\tt false} \end{description}
+\end{Desc}
+\index{CActiv@{CActiv}!effacerRepChats@{effacerRepChats}}
+\index{effacerRepChats@{effacerRepChats}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::effacerRepChats (\$ {\em v\_\-bEffacerRepertoire} = {\tt TRUE})}\label{class_c_activ_99340a2f0564df0c98e5c346b6b51abb}
+
+
+Efface le répertoire(optionnel) et toutes les archives des chats. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bEffacerRepertoire}]si {\tt true}(défaut), efface le répertoire \end{description}
+\end{Desc}
+\index{CActiv@{CActiv}!effacerRepDocuments@{effacerRepDocuments}}
+\index{effacerRepDocuments@{effacerRepDocuments}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::effacerRepDocuments (\$ {\em v\_\-bEffacerRepertoire} = {\tt TRUE}, \/  \$ {\em sFiltreDocs} = {\tt NULL})}\label{class_c_activ_1f827aaca67315d5b0c72693751fdbb8}
+
+
+Efface les documents (collecticiel) et son répertoire(optionnel). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bEffacerRepertoire}]si {\tt true}(défaut), efface le répertoire \item[{\em sFiltreDocs}]filtre pour conserver certains documents (filtre sur une partie du nom du fichier) \end{description}
+\end{Desc}
+\index{CActiv@{CActiv}!initEquipe@{initEquipe}}
+\index{initEquipe@{initEquipe}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::initEquipe (\$ {\em v\_\-iIdMembre}, \/  \$ {\em v\_\-bInitMembres} = {\tt FALSE})}\label{class_c_activ_f1117e471d2ac31b02555df8b5eceb22}
+
+
+Initialise {\tt oEquipe} avec l'équipe associée au niveau(activité-$>$formation) auquel la personne, donnée en paramètre, appartient. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdMembre}]l'id de la personne \item[{\em v\_\-bInitMembres}]si {\tt true}, initialise les membres de l'équipe({\tt false} par défaut) \end{description}
+\end{Desc}
+\index{CActiv@{CActiv}!initEquipes@{initEquipes}}
+\index{initEquipes@{initEquipes}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::initEquipes (\$ {\em v\_\-bInitMembres} = {\tt FALSE}, \/  \$ {\em v\_\-iTypeNiveauDepart} = {\tt {\bf TYPE\_\-ACTIVITE}})}\label{class_c_activ_e3bb5e033d2be034c36aedcb60352037}
+
+
+Initialise un tableau contenant les équipes de l'activité. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-bInitMembres}]si {\tt true}, initialise également les membres de l'équipe (défaut à {\tt false}) \item[{\em v\_\-iTypeNiveauDepart}]le numéro représentant le type d'élément (formation/module/etc) par lequel on veut débuter la recherche des équipes à initialiser\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes insérés dans le tableau \end{Desc}
+\index{CActiv@{CActiv}!initSousActivCourante@{initSousActivCourante}}
+\index{initSousActivCourante@{initSousActivCourante}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::initSousActivCourante (\$ {\em v\_\-iIdSousActiv} = {\tt NULL})}\label{class_c_activ_fd966f68ac4f88e68f2b58cc28a5e3ce}
+
+
+Initialise la sous-activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdSousActiv}]l'id de la sous-activité \end{description}
+\end{Desc}
+\index{CActiv@{CActiv}!initSousActivs@{initSousActivs}}
+\index{initSousActivs@{initSousActivs}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::initSousActivs (\$ {\em v\_\-iIdPers} = {\tt NULL})}\label{class_c_activ_1f2827059996c683b394bf4d3e577b0d}
+
+
+Initialise un tableau contenant une liste des sous-activités. 
+
+Si l'id de la personne est fournie, elle l'initialise avec les sous-activités que cette personne peut voir
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdPers}]l'id de la personne(optionnel)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de sous-activités insérés dans le tableau \end{Desc}
+
+
+Référencé par copierSousActivites(), effacer(), et retElementsEnfants().\index{CActiv@{CActiv}!mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}}
+\index{mettre\_\-a\_\-jour@{mettre\_\-a\_\-jour}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::mettre\_\-a\_\-jour (\$ {\em v\_\-sNomChamp}, \/  \$ {\em v\_\-mValeurChamp}, \/  \$ {\em v\_\-iIdActiv} = {\tt 0})}\label{class_c_activ_194c5c75ca1ba81998418226c88b5b65}
+
+
+Met à jour un champ de la table Activ. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sNomChamp}]le nom du champ à mettre à jour \item[{\em v\_\-mValeurChamp}]la nouvelle valeur du champ \item[{\em v\_\-iIdActiv}]l'id de l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si il a mis à jour le champ dans la DB \end{Desc}
+
+
+Référencé par redistNumsOrdre().\index{CActiv@{CActiv}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::redistNumsOrdre (\$ {\em v\_\-iNouveauNumOrdre} = {\tt NULL})}\label{class_c_activ_cbcb1d0e6074968e9d6e851b08cf6dd9}
+
+
+Redistribue les numéros d'ordre des activités. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouveauNumOrdre}]le nouveau numéro d'ordre de l'activité courante\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si les numéros ont bien été modifiés \end{Desc}
+
+
+Références mettre\_\-a\_\-jour(), et retListeActivs().
+
+Référencé par effacer().\index{CActiv@{CActiv}!retDossier@{retDossier}}
+\index{retDossier@{retDossier}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retDossier ()}\label{class_c_activ_6f14f334c5a591b4484e0ec9c8899d0e}
+
+
+\begin{Desc}
+\item[Renvoie:]le dossier associé à cette activité, donc celui où se trouvent ses fichiers associés \end{Desc}
+\index{CActiv@{CActiv}!retIdEnregPrecedent@{retIdEnregPrecedent}}
+\index{retIdEnregPrecedent@{retIdEnregPrecedent}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retIdEnregPrecedent ()}\label{class_c_activ_0f81a810882418e8d5abf44bf2d7a1e7}
+
+
+Retourne l'id de l'activité précédente celle-ci. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de l'activité précédente celle-ci \end{Desc}
+
+
+Références retListeActivs().\index{CActiv@{CActiv}!retIdPremierePage@{retIdPremierePage}}
+\index{retIdPremierePage@{retIdPremierePage}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retIdPremierePage ()}\label{class_c_activ_698783a1874c0e83fdd7b543e49c99f1}
+
+
+Retourne l'id de la première sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]l'id de la première sous-activité \end{Desc}
+\index{CActiv@{CActiv}!retListeActivs@{retListeActivs}}
+\index{retListeActivs@{retListeActivs}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retListeActivs ()}\label{class_c_activ_1f75b5eabe7f2b02c6660ed0da4f3ec6}
+
+
+Initialise un tableau avec la liste des activités de la rubrique. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'activités insérées dans le tableau \end{Desc}
+
+
+Référencé par redistNumsOrdre(), et retIdEnregPrecedent().\index{CActiv@{CActiv}!retListeModalites@{retListeModalites}}
+\index{retListeModalites@{retListeModalites}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retListeModalites ()}\label{class_c_activ_1aa6373c192b0eb634de058beb38d366}
+
+
+Retourne un tableau à 2 dimensions contenant les modalités d'une activité. 
+
+\begin{Desc}
+\item[Renvoie:]la liste des différentes modalités pour une activité \end{Desc}
+\index{CActiv@{CActiv}!retNbrEquipes@{retNbrEquipes}}
+\index{retNbrEquipes@{retNbrEquipes}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retNbrEquipes ()}\label{class_c_activ_a32ddbfa1f67b34245bbc8f443939c90}
+
+
+Retourne le nombre d'équipes ratachées à cette activité. 
+
+\begin{Desc}
+\item[Renvoie:]le nombre d'équipes ratachées à cette activité \end{Desc}
+\index{CActiv@{CActiv}!retNombreLignes@{retNombreLignes}}
+\index{retNombreLignes@{retNombreLignes}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retNombreLignes (\$ {\em v\_\-iNumParent} = {\tt NULL})}\label{class_c_activ_3ce98494cfe46ac73e1ab2bbfc300453}
+
+
+Retourne le nombre d'activités de cette rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNumParent}]l'id de la rubrique\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre d'activités de cette rubrique \end{Desc}
+
+
+Référencé par Ajouter().\index{CActiv@{CActiv}!retNumOrdreMax@{retNumOrdreMax}}
+\index{retNumOrdreMax@{retNumOrdreMax}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retNumOrdreMax (\$ {\em v\_\-iIdRubrique} = {\tt NULL})}\label{class_c_activ_2e7897839983b2c39bf7fb4f2d903d29}
+
+
+Permet de connaître le numero d'ordre maximum des activités. 
+
+\begin{Desc}
+\item[Renvoie:]le numéro d'ordre maximum \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CActiv@{CActiv}!retRemettreDeOrdre@{retRemettreDeOrdre}}
+\index{retRemettreDeOrdre@{retRemettreDeOrdre}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retRemettreDeOrdre ()}\label{class_c_activ_a29612ddd2c761acece5db4f05c443b8}
+
+
+Retourne la valeur de la variable booléenne {\tt v\_\-bRemettreDeOrdre}. 
+
+\begin{Desc}
+\item[Renvoie:]la valeur de la variable booléenne {\tt v\_\-bRemettreDeOrdre} \end{Desc}
+
+
+Référencé par effacer().\index{CActiv@{CActiv}!retRepCours@{retRepCours}}
+\index{retRepCours@{retRepCours}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retRepCours (\$ {\em v\_\-sFichierAInclure} = {\tt NULL}, \/  \$ {\em v\_\-bCheminAbsolu} = {\tt TRUE})}\label{class_c_activ_ae2bc0d988ac3e336603704dd999cafa}
+
+
+Retourne le chemin du répertoire qui abrite les fichiers de l'activité courante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sFichierAInclure}]le nom d'un éventuel fichier qui fera alors partie du chemin retourné \item[{\em v\_\-bCheminAbsolu}]si {\tt true}, le chemin retourné sera absolu. Si {\tt false}, il sera relatif\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le chemin vers le repertoire de l'activité courante \end{Desc}
+\index{CActiv@{CActiv}!retTexteModalite@{retTexteModalite}}
+\index{retTexteModalite@{retTexteModalite}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTexteModalite ()}\label{class_c_activ_1771fdbeca77f8c2d5a78e1b7cf0491e}
+
+
+Retourne en français la modalité(constante MODALITE\_\-) de l'activité. 
+
+\begin{Desc}
+\item[Renvoie:]la modalité de l'activité \end{Desc}
+\index{CActiv@{CActiv}!retTexteNiveau@{retTexteNiveau}}
+\index{retTexteNiveau@{retTexteNiveau}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTexteNiveau ()}\label{class_c_activ_f05dae686ed1bf9a348757c41a77c2af}
+
+
+\begin{Desc}
+\item[Renvoie:]le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) \end{Desc}
+\index{CActiv@{CActiv}!retTexteStatut@{retTexteStatut}}
+\index{retTexteStatut@{retTexteStatut}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTexteStatut ()}\label{class_c_activ_1ec47167ab35cddc2dbd383eb9ccacd0}
+
+
+Retourne le statut(constante STATUT\_\-) de l'activité. 
+
+\begin{Desc}
+\item[Renvoie:]le statut de l'activité \end{Desc}
+\index{CActiv@{CActiv}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTypeNiveau ()}\label{class_c_activ_8f2b8a6d3b53aac9fa551b0205b9c3e0}
+
+
+Retourne la constante qui définit le niveau \char`\"{}activité\char`\"{}, de la structure d'une formation. 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau \char`\"{}activité\char`\"{}, de la structure d'une formation \end{Desc}
+
+
+Référencé par copierAvecNumOrdre().\index{CActiv@{CActiv}!retTypes@{retTypes}}
+\index{retTypes@{retTypes}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTypes ()}\label{class_c_activ_e282e57e24a814d73d6f711f5fe5336c}
+
+
+Retourne un tableau à 2 dimensions contenant l'intitulé d'une activité. 
+
+\begin{Desc}
+\item[{\bf À faire}]ce système sera modifié pour l'internationalisation de la plate-forme\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le mot français utilisé pour désigner une activité \end{Desc}
+\index{CActiv@{CActiv}!retTypeTransfert@{retTypeTransfert}}
+\index{retTypeTransfert@{retTypeTransfert}!CActiv@{CActiv}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CActiv::retTypeTransfert (\$ {\em v\_\-iIdActivDst})}\label{class_c_activ_6c3c550f542c8337e4901ccb7fdbbe27}
+
+
+Retourne un nombre representant le type de transfert entre l'activité courante et une activité dont l'id est passé en paramètre. 
+
+Les transferts se font uniquement entre activités \char`\"{}collecticiels\char`\"{} et les 2 activités doivent se situer dans la même rubrique. Les types de transfert se différencient par les combinaisons possibles des modalités des collecticiels(individuel ou par équipe)
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdActivDst}]l'id de l'activité\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le type de transfert du collecticiel \end{Desc}
+
+
+Références CActiv().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf activite.tbl.php}\end{CompactItemize}

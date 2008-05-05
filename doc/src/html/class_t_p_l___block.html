@@ -1,0 +1,671 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe TPL_Block</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe TPL_Block</h1><!-- doxytag: class="TPL_Block" -->
+<p>
+<a href="class_t_p_l___block-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des blocs de templates, càd des parties masquables ou répétables d'un template. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000015">À faire:</a></b></dt><dd>Etudier la possibilité de faire hériter cette classe de <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a>, car certaines fonctions sont identiques </dd></dl>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#2685f4f6a441c844f69da8752a5df508">activerBloc</a> ($looptag, $activ=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Active un bloc de template (ou le désactive, en fonction d'une condition).  <a href="#2685f4f6a441c844f69da8752a5df508"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#033c8864b8d6180d9163828454335ab0">afficher</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Affiche le contenu du bloc de template dans son parent.  <a href="#033c8864b8d6180d9163828454335ab0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#2f9136eb76c481b09ab8797d9f161b8c">ajouter</a> ($sTexteAjout)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajouter du texte à la suite du contenu actuel du bloc de template.  <a href="#2f9136eb76c481b09ab8797d9f161b8c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#042e3331ed17110ce4da1112f10c5a5a">beginLoop</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les données du bloc pour les préparer à une boucle.  <a href="#042e3331ed17110ce4da1112f10c5a5a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#c0892eec63160e89fec0f8e623bc8172">caracteres</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre de caractères qui composent le contenu du bloc de template.  <a href="#c0892eec63160e89fec0f8e623bc8172"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#f656703cd39afef0ae01a92c4bb99dae">countLoops</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nombre d'itérations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template.  <a href="#f656703cd39afef0ae01a92c4bb99dae"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#bf74652ad12e34c4d14ed77885a99688">cycle</a> ($v_iCycle=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remplace, dans l'itération courante d'une boucle, une balise de type [CYCLE:] par sa valeur pour cette itération.  <a href="#bf74652ad12e34c4d14ed77885a99688"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#b241348fbfaf30841205a34247f99efa">defDonnees</a> ($v_sDonnees)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Définit le contenu du bloc de template.  <a href="#b241348fbfaf30841205a34247f99efa"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#e675163c245a573267d613538fc7e154">defTableau</a> ($looptag, $v_sSeparateur=&quot;,&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Raccourci vers la fonction <a class="el" href="class_t_p_l___block.html#8824cc865a6707aaa0e4f5d7024dae5a" title="Récupère les variables situées à l&#39;intérieur d&#39;un bloc.">defVariable()</a> avec l'option tableau à <code>true</code>, et le séparateur par défaut à ','.  <a href="#e675163c245a573267d613538fc7e154"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#8824cc865a6707aaa0e4f5d7024dae5a">defVariable</a> ($looptag, $v_bRetTableau=FALSE, $v_sSeparateur=&quot;###&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Récupère les variables situées à l'intérieur d'un bloc.  <a href="#8824cc865a6707aaa0e4f5d7024dae5a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#cd38b794a519b39fa1be31f9257e3643">desactiverBloc</a> ($looptag)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Désactive un bloc de template.  <a href="#cd38b794a519b39fa1be31f9257e3643"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#324462aad0f9b1cb0c7cc4f16f40e68d">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Effacer complètement ce bloc dans le template parent.  <a href="#324462aad0f9b1cb0c7cc4f16f40e68d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#3f8082652d2ccd70457654e3e4c6072e">effacerVariable</a> ($looptag)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface complètement un bloc (variable) dans un bloc de template.  <a href="#3f8082652d2ccd70457654e3e4c6072e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#7c5346f2119de102acf56f74a51f3f3d">extraire</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">"Extrait" le bloc de son template parent.  <a href="#7c5346f2119de102acf56f74a51f3f3d"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#793f3c7ff34e3a8f2e88209e8735fe5e">nextLoop</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Passe à l'itération suivante d'une boucle sur un bloc de template.  <a href="#793f3c7ff34e3a8f2e88209e8735fe5e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#5f4d8f2f092746c0c2e41d7e86ac33c1">remplacer</a> ($in, $out)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remplace "simplement" des morceaux de bloc de template par d'autres.  <a href="#5f4d8f2f092746c0c2e41d7e86ac33c1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#5f96415d0920acbf8a69c0d80a44033c">retDonnees</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le contenu actuel du bloc de template, avec les remplacements et autres traitements de éventuels.  <a href="#5f96415d0920acbf8a69c0d80a44033c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#7b1484c82120001d8cc1cd97ff5d5583">TPL_Block</a> ($looptag, &amp;$template)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#7b1484c82120001d8cc1cd97ff5d5583"></a><br></td></tr>
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee4d91195d1cf39cf9aa36810a01c60b"></a><!-- doxytag: member="TPL_Block::$asData" ref="ee4d91195d1cf39cf9aa36810a01c60b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#ee4d91195d1cf39cf9aa36810a01c60b">$asData</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau qui contient les données traitées (remplacements) pour chaque itération pendant une boucle. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="dd621c575e8645d730bf5ea9dc0e865d"></a><!-- doxytag: member="TPL_Block::$copy_data" ref="dd621c575e8645d730bf5ea9dc0e865d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#dd621c575e8645d730bf5ea9dc0e865d">$copy_data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pendant une boucle, contient les données originales du bloc de template, sans aucun traitement, de façon à la récupérer au début de chaque itération. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="5f19bb314bd99313fc0a62f948a61e04"></a><!-- doxytag: member="TPL_Block::$data" ref="5f19bb314bd99313fc0a62f948a61e04" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#5f19bb314bd99313fc0a62f948a61e04">$data</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Contenu textuel courant du bloc, donc avec les remplacements et répétitions éventuels. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="02f19e3f9809a4ed0465b0245999f8d3"></a><!-- doxytag: member="TPL_Block::$iNbLoops" ref="02f19e3f9809a4ed0465b0245999f8d3" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#02f19e3f9809a4ed0465b0245999f8d3">$iNbLoops</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Nombre courant d'itération en cas de boucles sur un bloc. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a8aba9e3e98352bcbee4f3388ea81dc7"></a><!-- doxytag: member="TPL_Block::$looptag" ref="a8aba9e3e98352bcbee4f3388ea81dc7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#a8aba9e3e98352bcbee4f3388ea81dc7">$looptag</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Balise qui entourait le bloc dans le template parent. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a0c12b1fa6d17b47d2a7ac0a2c74c509"></a><!-- doxytag: member="TPL_Block::$template_parent" ref="a0c12b1fa6d17b47d2a7ac0a2c74c509" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_t_p_l___block.html#a0c12b1fa6d17b47d2a7ac0a2c74c509">$template_parent</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a> parent, auquel appartient le bloc courant. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="2685f4f6a441c844f69da8752a5df508"></a><!-- doxytag: member="TPL_Block::activerBloc" ref="2685f4f6a441c844f69da8752a5df508" args="($looptag, $activ=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::activerBloc           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>activ</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Active un bloc de template (ou le désactive, en fonction d'une condition). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom du bloc </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>activ</em>&nbsp;</td><td>si spécifié, et <code>true</code>, le bloc sera bien activé; si <code>false</code> par contre, le bloc sera désactivé </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00191">$looptag</a>, et <a class="el" href="template_8inc_8php-source.html#l00491">desactiverBloc()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="033c8864b8d6180d9163828454335ab0"></a><!-- doxytag: member="TPL_Block::afficher" ref="033c8864b8d6180d9163828454335ab0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::afficher           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Affiche le contenu du bloc de template dans son parent. 
+<p>
+Si le bloc est une boucle, cette fonction doit tout de même n'être appelée qu'une seule fois, après la boucle (composée d'appels à <a class="el" href="class_t_p_l___block.html#042e3331ed17110ce4da1112f10c5a5a" title="Initialise les données du bloc pour les préparer à une boucle.">beginLoop()</a>, <a class="el" href="class_t_p_l___block.html#793f3c7ff34e3a8f2e88209e8735fe5e" title="Passe à l&#39;itération suivante d&#39;une boucle sur un bloc de template.">nextLoop()</a>, <a class="el" href="class_t_p_l___block.html#5f4d8f2f092746c0c2e41d7e86ac33c1" title="Remplace &quot;simplement&quot; des morceaux de bloc de template par d&#39;autres...">remplacer()</a>), ce qui a pour effet d'afficher en une seule fois toutes les itérations de la boucle<p>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_template.html#a7ab8000ab4b857801067cefae17cbea" title="Affiche les données contenues actuellement dans le template.">Template::afficher()</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="2f9136eb76c481b09ab8797d9f161b8c"></a><!-- doxytag: member="TPL_Block::ajouter" ref="2f9136eb76c481b09ab8797d9f161b8c" args="($sTexteAjout)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sTexteAjout</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajouter du texte à la suite du contenu actuel du bloc de template. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sTexteAjout</em>&nbsp;</td><td>le texte à ajouter </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="042e3331ed17110ce4da1112f10c5a5a"></a><!-- doxytag: member="TPL_Block::beginLoop" ref="042e3331ed17110ce4da1112f10c5a5a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::beginLoop           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise les données du bloc pour les préparer à une boucle. 
+<p>
+Le bloc pourra être répété plusieurs fois de suite dans le template, à son emplacement d'origine et avec des remplacements différents par itérations. Utilisé par exemple pour créer les lignes d'une table HTML 
+</div>
+</div><p>
+<a class="anchor" name="c0892eec63160e89fec0f8e623bc8172"></a><!-- doxytag: member="TPL_Block::caracteres" ref="c0892eec63160e89fec0f8e623bc8172" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::caracteres           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre de caractères qui composent le contenu du bloc de template. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de cractères contenus dans le bloc </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f656703cd39afef0ae01a92c4bb99dae"></a><!-- doxytag: member="TPL_Block::countLoops" ref="f656703cd39afef0ae01a92c4bb99dae" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::countLoops           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nombre d'itérations de boucle qui ont eu lieu jusqu'ici sur ce bloc de template. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre actuel d'itérations dans un boucle sur un bloc de template </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bf74652ad12e34c4d14ed77885a99688"></a><!-- doxytag: member="TPL_Block::cycle" ref="bf74652ad12e34c4d14ed77885a99688" args="($v_iCycle=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::cycle           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iCycle</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Remplace, dans l'itération courante d'une boucle, une balise de type [CYCLE:] par sa valeur pour cette itération. 
+<p>
+Voici un exemple de balise qui permettrait, pour chaque itération d'une une boucle créant des lignes de table HTML, de modifier la classe CSS de chaque ligne afin d'en alterner les couleurs (classes ligneImpaire et lignePaire) :<p>
+<div class="fragment"><pre class="fragment"> [bloc+]
+ &lt;tr <span class="keyword">class</span>=<span class="stringliteral">"[CYCLE:ligneImpaire|lignePaire]"</span>&gt;
+   &lt;td&gt;{nom_utilisateur}&lt;/td&gt;
+   &lt;td&gt;{prenom_utilisateur}&lt;/td&gt;
+ &lt;/tr&gt;
+ [bloc-]
+</pre></div><p>
+Les valeurs possibles pour les cycles sont donc séparées par un carcatère '|'.<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iCycle</em>&nbsp;</td><td>l'index de la variable de cycle (la première ayant l'index zéro) qui remplacera la balise. S'il est absent, on prend l'index résultant de l'opération : (index de l'itération courante modulo nb total de cycles possibles) Ce qui entraînera un cycle croissant dans les valeurs possibles (pour l'exemple, cela donne ligneImpaire pour la 1ère itération, lignePaire pour la 2è, ligneImpaire pour la 3è, etc. </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b241348fbfaf30841205a34247f99efa"></a><!-- doxytag: member="TPL_Block::defDonnees" ref="b241348fbfaf30841205a34247f99efa" args="($v_sDonnees)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::defDonnees           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDonnees</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Définit le contenu du bloc de template. 
+<p>
+Cela écrase l'ancien contenu<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sDonnees</em>&nbsp;</td><td>le texte représentant le nouveau contenu du bloc de template </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e675163c245a573267d613538fc7e154"></a><!-- doxytag: member="TPL_Block::defTableau" ref="e675163c245a573267d613538fc7e154" args="($looptag, $v_sSeparateur=&quot;,&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::defTableau           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sSeparateur</em> = <code>&quot;,&quot;</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Raccourci vers la fonction <a class="el" href="class_t_p_l___block.html#8824cc865a6707aaa0e4f5d7024dae5a" title="Récupère les variables situées à l&#39;intérieur d&#39;un bloc.">defVariable()</a> avec l'option tableau à <code>true</code>, et le séparateur par défaut à ','. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom du bloc "variable", tel qu'utilisé dans les balises de délimitation + et - </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sSeparateur</em>&nbsp;</td><td>la chaîne de caracères à utiliser pour séparer les éléments de la variables, qui seront retournés sous forme de tableau</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau de chaînes de caractères représentant le contenu de la variable délimitée par le bloc</dd></dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_t_p_l___block.html#8824cc865a6707aaa0e4f5d7024dae5a" title="Récupère les variables situées à l&#39;intérieur d&#39;un bloc.">defVariable()</a> </dd></dl>
+
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00191">$looptag</a>, et <a class="el" href="template_8inc_8php-source.html#l00361">defVariable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8824cc865a6707aaa0e4f5d7024dae5a"></a><!-- doxytag: member="TPL_Block::defVariable" ref="8824cc865a6707aaa0e4f5d7024dae5a" args="($looptag, $v_bRetTableau=FALSE, $v_sSeparateur=&quot;###&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::defVariable           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRetTableau</em> = <code>FALSE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sSeparateur</em> = <code>&quot;###&quot;</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Récupère les variables situées à l'intérieur d'un bloc. 
+<p>
+Les "variables" sont délimitées par des balises [bloc+][bloc-], mais le contenu des balises, plutôt que d'être considéré comme des données à afficher comme c'est le cas pour un véritable bloc, est retourné comme "variable", soit sous forme de chaîne (défaut), soit sous forme de tableau. Dans ce dernier cas, le contenu des balises doit comprendre des séparateurs, qui seront utilisés pour diviser le contenu en éléments de tableau. Au retour de la fonction, le bloc et son contenu sont effacés du template. Une variable ne peut donc être récupérée qu'une seule fois dans un template<p>
+Exemple:<p>
+<div class="fragment"><pre class="fragment"> [variable+]&lt;img src=<span class="stringliteral">"image1.gif"</span>&gt;|&lt;img src=<span class="stringliteral">"image2.gif"</span>&gt;[variable-]
+</pre></div><p>
+Si le code ci-dessus se trouve dans un bloc de template représenté en PHP par l'objet <code>$oBloc</code>, un appel de type <code>$oBloc-&gt;defVariable("variable", $asTableau, '|');</code> retournera un tableau de deux éléments (chaînes), le premier contenant <code>&lt;img src="image1.gif"&gt;</code>, la seconde <code>&lt;img src="image2.gif"&gt; </code><p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom du bloc "variable", tel qu'utilisé dans les balises de délimitation + et - </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRetTableau</em>&nbsp;</td><td>si <code>true</code>, le contenu devra être retourné sous forme de tableau </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sSeparateur</em>&nbsp;</td><td>lorsque <code>v_bRetTableau</code> vaut <code>true</code>, ce paramètre est utilisé pour déterminer les éléments à extraire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>une chaîne de caractères ou un tableau de chaîne de caractères représentant le contenu de la variable délimitée par le bloc </dd></dl>
+
+<p>Référencé par <a class="el" href="template_8inc_8php-source.html#l00392">defTableau()</a>, et <a class="el" href="template_8inc_8php-source.html#l00402">effacerVariable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cd38b794a519b39fa1be31f9257e3643"></a><!-- doxytag: member="TPL_Block::desactiverBloc" ref="cd38b794a519b39fa1be31f9257e3643" args="($looptag)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::desactiverBloc           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Désactive un bloc de template. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom du bloc </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00191">$looptag</a>.</p>
+
+<p>Référencé par <a class="el" href="template_8inc_8php-source.html#l00478">activerBloc()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="324462aad0f9b1cb0c7cc4f16f40e68d"></a><!-- doxytag: member="TPL_Block::effacer" ref="324462aad0f9b1cb0c7cc4f16f40e68d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::effacer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Effacer complètement ce bloc dans le template parent. 
+<p>
+Cela qui implique l'effacement de la balise temporaire qui avait été créée dans le parent, pour la durée des traitements/remplacements 
+</div>
+</div><p>
+<a class="anchor" name="3f8082652d2ccd70457654e3e4c6072e"></a><!-- doxytag: member="TPL_Block::effacerVariable" ref="3f8082652d2ccd70457654e3e4c6072e" args="($looptag)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::effacerVariable           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface complètement un bloc (variable) dans un bloc de template. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom du bloc contenant la variable, tel qu'utilisé dans les balises + et - </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00191">$looptag</a>, et <a class="el" href="template_8inc_8php-source.html#l00361">defVariable()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7c5346f2119de102acf56f74a51f3f3d"></a><!-- doxytag: member="TPL_Block::extraire" ref="7c5346f2119de102acf56f74a51f3f3d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::extraire           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+"Extrait" le bloc de son template parent. 
+<p>
+Cela consiste à remplacer dans ce dernier le bloc et son contenu par un texte temporaire, qui pourra ensuite être remplacé par le bloc après traitements comme les boucles et remplacements.<p>
+Par exemple le bloc suivant :<p>
+<div class="fragment"><pre class="fragment"> [bloc+]
+ &lt;tr&gt;
+   &lt;td&gt;{nom_utilisateur}&lt;/td&gt;
+   &lt;td&gt;{prenom_utilisateur}&lt;/td&gt;
+ &lt;/tr&gt;
+ [bloc-]
+</pre></div><p>
+sera entièrement remplacé, le temps des traitements sur le bloc (avant l'appel à <a class="el" href="class_t_p_l___block.html#033c8864b8d6180d9163828454335ab0" title="Affiche le contenu du bloc de template dans son parent.">afficher()</a> donc), par <code></code>[bloc_tmp] dans son template parent. Lorsque les traitements sont terminés et qu'on demande l'affichage du bloc résultant, <code></code>[bloc_tmp] sera remplacé dans le <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a> parent par ce bloc résultant 
+<p>Référencé par <a class="el" href="template_8inc_8php-source.html#l00206">TPL_Block()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="793f3c7ff34e3a8f2e88209e8735fe5e"></a><!-- doxytag: member="TPL_Block::nextLoop" ref="793f3c7ff34e3a8f2e88209e8735fe5e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::nextLoop           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Passe à l'itération suivante d'une boucle sur un bloc de template. 
+<p>
+Les données ayant subi des traitements (remplacements) dans l'itération courante sont sauvegardées d'abord 
+</div>
+</div><p>
+<a class="anchor" name="5f4d8f2f092746c0c2e41d7e86ac33c1"></a><!-- doxytag: member="TPL_Block::remplacer" ref="5f4d8f2f092746c0c2e41d7e86ac33c1" args="($in, $out)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::remplacer           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>out</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Remplace "simplement" des morceaux de bloc de template par d'autres. 
+<p>
+Utilisé pour inclure des variables dans le bloc de template, qui seront remplacées en PHP<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>in</em>&nbsp;</td><td>la chaîne de caractère à trouver dans le bloc de template </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>out</em>&nbsp;</td><td>la chaîne par laquelle on veut remplacer toutes les occurences de <code>in</code> </td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_template.html#805dfe1c011cc3f3a8538f9374129cdc" title="Remplace &quot;simplement&quot; des morceaux de template par d&#39;autres.">Template::remplacer()</a> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5f96415d0920acbf8a69c0d80a44033c"></a><!-- doxytag: member="TPL_Block::retDonnees" ref="5f96415d0920acbf8a69c0d80a44033c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::retDonnees           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le contenu actuel du bloc de template, avec les remplacements et autres traitements de éventuels. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le contenu du bloc de template après traitements </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7b1484c82120001d8cc1cd97ff5d5583"></a><!-- doxytag: member="TPL_Block::TPL_Block" ref="7b1484c82120001d8cc1cd97ff5d5583" args="($looptag, &amp;$template)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TPL_Block::TPL_Block           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>looptag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>template</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Initialise la balise "nom du bloc", le template parent, et débute le traitement sur ce dernier<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>looptag</em>&nbsp;</td><td>le nom des balises entourant le bloc de template </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>template</em>&nbsp;</td><td>l'objet <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a> parent</td></tr>
+  </table>
+</dl>
+<dl class="see" compact><dt><b>Voir également:</b></dt><dd><a class="el" href="class_t_p_l___block.html#7c5346f2119de102acf56f74a51f3f3d" title="&quot;Extrait&quot; le bloc de son template parent.">extraire()</a> </dd></dl>
+
+<p>Références <a class="el" href="template_8inc_8php-source.html#l00191">$looptag</a>, et <a class="el" href="template_8inc_8php-source.html#l00281">extraire()</a>.</p>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/include/<a class="el" href="template_8inc_8php.html">template.inc.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:04 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

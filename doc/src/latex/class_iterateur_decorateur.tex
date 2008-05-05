@@ -1,0 +1,97 @@
+\section{Référence de la classe IterateurDecorateur}
+\label{class_iterateur_decorateur}\index{IterateurDecorateur@{IterateurDecorateur}}
+Graphe d'héritage de IterateurDecorateur::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_iterateur_decorateur}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe abstraite qui sert de base pour des décorateurs d'Iterateur. 
+
+Elle n'a pas d'utilité tant qu'elle n'est pas sous-classée, mais elle permet de ne pas recopier dans chaque décorateur des \char`\"{}\$this $\rightarrow$ oItr $\rightarrow$ ...()\char`\"{} pour transférer chaque appel du décorateur vers son itérateur interne (par exemple \doxyref{IterateurFiltre}{p.}{class_iterateur_filtre} dérive de cette classe) \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf cle} ()\label{class_iterateur_decorateur_38603f16d8f24be2243f1984531fc35a}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::cle()}{p.}{class_iterateur_0bc2b87d3fa65a6df5c4d5134402d4ba}. \item\end{CompactList}\item 
+{\bf courant} ()\label{class_iterateur_decorateur_0556823cb63bdd26ffb6740ac48d6d3a}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::courant()}{p.}{class_iterateur_525e78b4e7c5aec4cc4e8003ca9e730b}. \item\end{CompactList}\item 
+{\bf debut} ()\label{class_iterateur_decorateur_80cf0789992d21ad62da5d0d5f1ea194}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::debut()}{p.}{class_iterateur_1600a0b47466d85a5bb4af10a634b1ed}. \item\end{CompactList}\item 
+{\bf estDernier} ()\label{class_iterateur_decorateur_38946bd116945c792f078b10672be663}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::estDernier()}{p.}{class_iterateur_b90977faf081ea8db8e56415e0bc9e2f}. \item\end{CompactList}\item 
+{\bf estPremier} ()\label{class_iterateur_decorateur_d18c4f1eb863485ea629a70e24b47857}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::estPremier()}{p.}{class_iterateur_6e49a71af6b96a13d20aa137ddd9ac2d}. \item\end{CompactList}\item 
+{\bf estValide} ()\label{class_iterateur_decorateur_fab82d77af4d3708888d78174237dd3d}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::estValide()}{p.}{class_iterateur_33d904743c851b2c959c514ecce923c8}. \item\end{CompactList}\item 
+{\bf fin} ()\label{class_iterateur_decorateur_9d4f3052b38a46171ce1ba55b7eedee1}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::fin()}{p.}{class_iterateur_487fadeda3651d2add97628652fa6d1e}. \item\end{CompactList}\item 
+{\bf IterateurDecorateur} (\$v\_\-oItr)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf rechercher} (\$v\_\-Cle)
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::rechercher()}{p.}{class_iterateur_b05ee08c7fc02253222a8f3604b65804}. \item\end{CompactList}\item 
+{\bf retIterateurInterne} ()
+\item 
+{\bf suiv} ()\label{class_iterateur_decorateur_5eabb86ff35f180ca62ff15d7ae189eb}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::suiv()}{p.}{class_iterateur_b49e1eadf71ee40a816ed2d5134e0ba7}. \item\end{CompactList}\item 
+{\bf taille} ()\label{class_iterateur_decorateur_30ac1db0dd4f46fa5be76d2489fa0c29}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::taille()}{p.}{class_iterateur_40a496bef151a677b180e7805f106acd}. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$oItr}\label{class_iterateur_decorateur_386ffcc4d4de1b1f5395761b2f85bce2}
+
+\begin{CompactList}\small\item\em l'itérateur interne qui sera réellement utilisé (déplacé etc.) \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurDecorateur@{IterateurDecorateur}!IterateurDecorateur@{IterateurDecorateur}}
+\index{IterateurDecorateur@{IterateurDecorateur}!IterateurDecorateur@{IterateurDecorateur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDecorateur::IterateurDecorateur (\$ {\em v\_\-oItr})}\label{class_iterateur_decorateur_63665868f82a0bbbdc9d33971d80a369}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oItr}]l'itérateur (déjà créé) qui sera parcouru en utilisant le décorateur \end{description}
+\end{Desc}
+
+
+Références OO::abstraite().\index{IterateurDecorateur@{IterateurDecorateur}!rechercher@{rechercher}}
+\index{rechercher@{rechercher}!IterateurDecorateur@{IterateurDecorateur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDecorateur::rechercher (\$ {\em v\_\-Cle})}\label{class_iterateur_decorateur_90259cf14884dba26fea2249689fdbbd}
+
+
+Voir \doxyref{Iterateur::rechercher()}{p.}{class_iterateur_b05ee08c7fc02253222a8f3604b65804}. 
+
+\begin{Desc}
+\item[Note:]Si l'élément recherché par rapport à sa clé est trouvé, mais qu'il ne satisfait pas le filtre, l'itérateur restera dans sa position actuelle et la méthode retournera {\tt false} \end{Desc}
+
+
+Réimplémentée dans {\bf IterateurFiltre} \doxyref{}{p.}{class_iterateur_filtre_20bef862b796a69638948f0dbc209202}.\index{IterateurDecorateur@{IterateurDecorateur}!retIterateurInterne@{retIterateurInterne}}
+\index{retIterateurInterne@{retIterateurInterne}!IterateurDecorateur@{IterateurDecorateur}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDecorateur::retIterateurInterne ()}\label{class_iterateur_decorateur_9ccbfc5cd86e253db135beadb3c01a80}
+
+
+\begin{Desc}
+\item[Renvoie:]l'itérateur interne, passé au constructeur lors de la création de l'objet \end{Desc}
+
+
+Référencé par IterateurFiltreDossier::IterateurFiltreDossier().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurDecorateur.php}\end{CompactItemize}

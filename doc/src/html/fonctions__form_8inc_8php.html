@@ -1,0 +1,684 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence du fichier src/database/fonctions_form.inc.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/database/fonctions_form.inc.php</h1><hr><a name="_details"></a><h2>Description détaillée</h2>
+Contient les fonctions communes aux formulaires. 
+<p>
+<dl class="date" compact><dt><b>Date:</b></dt><dd>2004/06/22</dd></dl>
+<dl class="author" compact><dt><b>Auteur:</b></dt><dd>Ludovic FLAMME </dd></dl>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#ed82bcba8c9e3b5afe8832c29121af9e">Alignement</a> ($sAlignEnon, $sAlignRep)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sert à cocher les cases concernant l'alignement d'un énonce et de sa réponse.  <a href="#ed82bcba8c9e3b5afe8832c29121af9e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#8e427f12344f6543e309cf8f4844f8ec">CalculerScore</a> ($v_iNbrePropRepCorrecte, $v_iNbrePropRepFausse, $v_iNbreRepCorrecte, $v_iNbreRepFausse, $bForGuessing=true, $v_iPoids=1)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calcule le score d'une réponse d'une activité en ligne.  <a href="#8e427f12344f6543e309cf8f4844f8ec"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#a686c3fda524fcd49da75758c8fee6f7">CopieFormulaire_Axe</a> (&amp;$v_oBdd, $v_iIdForm, $v_iIdNvForm)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie le lien (Axe - Formulaire) entre deux activités en lignes.  <a href="#a686c3fda524fcd49da75758c8fee6f7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#8e65f59ba6593f05bf0cd75ae77ed9dc">CopieReponse_Axe</a> (&amp;$v_oBdd, $v_iIdPropRep, $v_iIdNvReponse)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie les poids des propositions de réponses par rapport à un axe.  <a href="#8e65f59ba6593f05bf0cd75ae77ed9dc"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#7d56b26503395feaec8d871d5d80d29b">CopieReponses</a> (&amp;$v_oBdd, $v_iIdObjFormul, $v_iIdNvObjForm)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie les propositions de réponses d'un objet de formulaire vers un autre.  <a href="#7d56b26503395feaec8d871d5d80d29b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#3c92dd8530b76e472d93667bfde22374">CopierUnFormulaire</a> (&amp;$v_oBdd, $v_iIdFormulaire, $iIdNvPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie une activité en ligne.  <a href="#3c92dd8530b76e472d93667bfde22374"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#de03d16812ef29364f08c02333b59fc4">CopierUnObjetFormulaire</a> (&amp;$v_oBdd, &amp;$v_oObjForm, $v_iIdFormulaireDest, $v_iOrdreObjet=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie un objet de formulaire.  <a href="#de03d16812ef29364f08c02333b59fc4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#d5c1c0a4e46479088cf8c2d57311cd1e">RetourPoidsReponse</a> (&amp;$v_oBdd, $v_iIdFormulaire, $v_iIdObjFormul, $v_iIdPropRep)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids pour chaque axe de l'activité en ligne.  <a href="#d5c1c0a4e46479088cf8c2d57311cd1e"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#13805948594d68a0b5199395ff18e4ad">retReponseEntier</a> (&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne les id des propositions de réponses que l'étudiant a choisies.  <a href="#13805948594d68a0b5199395ff18e4ad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#06ca52c1a9709fc72a5c7ef24e438fe8">retReponseFlottant</a> (&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une réponse de type "nombre" d'un étudiant.  <a href="#06ca52c1a9709fc72a5c7ef24e438fe8"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#33815c21bf5a724d9759518441661a15">retReponseTexteCourt</a> (&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une réponse de type "texte court" d'un étudiant.  <a href="#33815c21bf5a724d9759518441661a15"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#a3f685e4409a939ff7f0cdbc327048bb">retReponseTexteLong</a> (&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne une réponse de type "texte long" d'un étudiant.  <a href="#a3f685e4409a939ff7f0cdbc327048bb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="fonctions__form_8inc_8php.html#54992d950b6dc3a5d37700481688fdfc">validerTexte</a> ($v_sTexte)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Supprime les espaces (ou d'autres caractères) en début et fin de chaîne, supprime les anti-slash d'une chaîne, et protège les caractères spéciaux d'une commande SQL.  <a href="#54992d950b6dc3a5d37700481688fdfc"></a><br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions</h2>
+<a class="anchor" name="ed82bcba8c9e3b5afe8832c29121af9e"></a><!-- doxytag: member="fonctions_form.inc.php::Alignement" ref="ed82bcba8c9e3b5afe8832c29121af9e" args="($sAlignEnon, $sAlignRep)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Alignement           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sAlignEnon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>sAlignRep</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Sert à cocher les cases concernant l'alignement d'un énonce et de sa réponse. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>sAlignEnon</em>&nbsp;</td><td>contient la chaine de caractère {left,right,center ou justify) pour l'alignement de l'énoncé </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>sAlignRep</em>&nbsp;</td><td>contient la chaine de caractère {left,right,center ou justify) pour l'alignement de la réponse</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant des chaînes de caractères, deux contenant 'checked="checked"' et les autres sont vides </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="8e427f12344f6543e309cf8f4844f8ec"></a><!-- doxytag: member="fonctions_form.inc.php::CalculerScore" ref="8e427f12344f6543e309cf8f4844f8ec" args="($v_iNbrePropRepCorrecte, $v_iNbrePropRepFausse, $v_iNbreRepCorrecte, $v_iNbreRepFausse, $bForGuessing=true, $v_iPoids=1)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CalculerScore           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNbrePropRepCorrecte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNbrePropRepFausse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNbreRepCorrecte</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNbreRepFausse</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>bForGuessing</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iPoids</em> = <code>1</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Calcule le score d'une réponse d'une activité en ligne. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNbrePropRepCorrecte</em>&nbsp;</td><td>le nombre de proposition correcte de la question </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNbrePropRepFausse</em>&nbsp;</td><td>le nombre de proposition fausse de la question </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNbreRepCorrecte</em>&nbsp;</td><td>le nombre de réponses correctes </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iNbreRepFausse</em>&nbsp;</td><td>le nombre de réponses fausses </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>bForGuessing</em>&nbsp;</td><td>si <code>true</code>, avec correction for guessing </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iPoids</em>&nbsp;</td><td>le poids de la question</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le score d'une réponse d'une activité en ligne </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a686c3fda524fcd49da75758c8fee6f7"></a><!-- doxytag: member="fonctions_form.inc.php::CopieFormulaire_Axe" ref="a686c3fda524fcd49da75758c8fee6f7" args="(&amp;$v_oBdd, $v_iIdForm, $v_iIdNvForm)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CopieFormulaire_Axe           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNvForm</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie le lien (Axe - Formulaire) entre deux activités en lignes. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de l'activité en ligne (formulaire) source </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNvForm</em>&nbsp;</td><td>l'id de l'activité en ligne de destination </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="fonctions__form_8inc_8php-source.html#l00217">CopierUnFormulaire()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8e65f59ba6593f05bf0cd75ae77ed9dc"></a><!-- doxytag: member="fonctions_form.inc.php::CopieReponse_Axe" ref="8e65f59ba6593f05bf0cd75ae77ed9dc" args="(&amp;$v_oBdd, $v_iIdPropRep, $v_iIdNvReponse)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CopieReponse_Axe           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPropRep</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNvReponse</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie les poids des propositions de réponses par rapport à un axe. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdReponse</em>&nbsp;</td><td>l'id de la proposition de réponse </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNvReponse</em>&nbsp;</td><td>l'id de la nouvelle proposition de réponse </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="fonctions__form_8inc_8php-source.html#l00312">CopieReponses()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="7d56b26503395feaec8d871d5d80d29b"></a><!-- doxytag: member="fonctions_form.inc.php::CopieReponses" ref="7d56b26503395feaec8d871d5d80d29b" args="(&amp;$v_oBdd, $v_iIdObjFormul, $v_iIdNvObjForm)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CopieReponses           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdNvObjForm</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie les propositions de réponses d'un objet de formulaire vers un autre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire à copier </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdNvObjForm</em>&nbsp;</td><td>l'id de l'objet formulaire de destination </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="fonctions__form_8inc_8php-source.html#l00334">CopieReponse_Axe()</a>.</p>
+
+<p>Référencé par <a class="el" href="fonctions__form_8inc_8php-source.html#l00250">CopierUnObjetFormulaire()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="3c92dd8530b76e472d93667bfde22374"></a><!-- doxytag: member="fonctions_form.inc.php::CopierUnFormulaire" ref="3c92dd8530b76e472d93667bfde22374" args="(&amp;$v_oBdd, $v_iIdFormulaire, $iIdNvPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CopierUnFormulaire           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFormulaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>iIdNvPers</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie une activité en ligne. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFormulaire</em>&nbsp;</td><td>l'id de l'activité en ligne (formulaire) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>iIdNvPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de l'activité en ligne (formulaire) copiée </dd></dl>
+
+<p>Références <a class="el" href="fonctions__form_8inc_8php-source.html#l00355">CopieFormulaire_Axe()</a>, et <a class="el" href="fonctions__form_8inc_8php-source.html#l00250">CopierUnObjetFormulaire()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="de03d16812ef29364f08c02333b59fc4"></a><!-- doxytag: member="fonctions_form.inc.php::CopierUnObjetFormulaire" ref="de03d16812ef29364f08c02333b59fc4" args="(&amp;$v_oBdd, &amp;$v_oObjForm, $v_iIdFormulaireDest, $v_iOrdreObjet=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CopierUnObjetFormulaire           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oObjForm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFormulaireDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iOrdreObjet</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie un objet de formulaire. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_oObjForm</em>&nbsp;</td><td>Objet contenant un enregistrement de la table ObjetFormulaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFormulaireDest</em>&nbsp;</td><td>l'id de l'objet de formulaire de destination </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iOrdreObjet</em>&nbsp;</td><td>le numéro d'ordre du nouvel objet de formulaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id du nouvel objet de formulaire </dd></dl>
+
+<p>Références <a class="el" href="fonctions__form_8inc_8php-source.html#l00312">CopieReponses()</a>.</p>
+
+<p>Référencé par <a class="el" href="fonctions__form_8inc_8php-source.html#l00217">CopierUnFormulaire()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d5c1c0a4e46479088cf8c2d57311cd1e"></a><!-- doxytag: member="fonctions_form.inc.php::RetourPoidsReponse" ref="d5c1c0a4e46479088cf8c2d57311cd1e" args="(&amp;$v_oBdd, $v_iIdFormulaire, $v_iIdObjFormul, $v_iIdPropRep)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RetourPoidsReponse           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFormulaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPropRep</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Renvoie pour chaque proposition de réponse de l'objet de formulaire courant le poids pour chaque axe de l'activité en ligne. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFormulaire</em>&nbsp;</td><td>l'id de l'activité en ligne (formulaire) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPropRep</em>&nbsp;</td><td>l'id de la proposition de réponse</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>Code Html contenant le(s) poid(s) + mise en page + modification possible </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="13805948594d68a0b5199395ff18e4ad"></a><!-- doxytag: member="fonctions_form.inc.php::retReponseEntier" ref="13805948594d68a0b5199395ff18e4ad" args="(&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retReponseEntier           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne les id des propositions de réponses que l'étudiant a choisies. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFC</em>&nbsp;</td><td>l'id du formulaire (activité en ligne) complété </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant les id des propositions de réponses que l'étudiant a choisies </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="06ca52c1a9709fc72a5c7ef24e438fe8"></a><!-- doxytag: member="fonctions_form.inc.php::retReponseFlottant" ref="06ca52c1a9709fc72a5c7ef24e438fe8" args="(&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retReponseFlottant           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une réponse de type "nombre" d'un étudiant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFC</em>&nbsp;</td><td>l'id du formulaire (activité en ligne) complété </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la réponse de type nombre (flottant) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="33815c21bf5a724d9759518441661a15"></a><!-- doxytag: member="fonctions_form.inc.php::retReponseTexteCourt" ref="33815c21bf5a724d9759518441661a15" args="(&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retReponseTexteCourt           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une réponse de type "texte court" d'un étudiant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFC</em>&nbsp;</td><td>l'id du formulaire (activité en ligne) complété </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte de la réponse de type "texte court" </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="a3f685e4409a939ff7f0cdbc327048bb"></a><!-- doxytag: member="fonctions_form.inc.php::retReponseTexteLong" ref="a3f685e4409a939ff7f0cdbc327048bb" args="(&amp;$v_oBdd, $v_iIdFC, $v_iIdObjFormul)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retReponseTexteLong           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdFC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdObjFormul</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne une réponse de type "texte long" d'un étudiant. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_oBdd</em>&nbsp;</td><td>Objet représentant la connexion à la DB </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdFC</em>&nbsp;</td><td>l'id du formulaire (activité en ligne) complété </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdObjFormul</em>&nbsp;</td><td>l'id de l'objet formulaire</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte de la réponse de type "texte long" </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="54992d950b6dc3a5d37700481688fdfc"></a><!-- doxytag: member="fonctions_form.inc.php::validerTexte" ref="54992d950b6dc3a5d37700481688fdfc" args="($v_sTexte)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">validerTexte           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTexte</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Supprime les espaces (ou d'autres caractères) en début et fin de chaîne, supprime les anti-slash d'une chaîne, et protège les caractères spéciaux d'une commande SQL. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sTexte</em>&nbsp;</td><td>la chaîne de caractère à traiter</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la chaîne de caractère traitée </dd></dl>
+
+<p>Référencé par <a class="el" href="formulaire_8tbl_8php-source.html#l00222">CFormulaire::enregistrer()</a>.</p>
+
+</div>
+</div><p>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

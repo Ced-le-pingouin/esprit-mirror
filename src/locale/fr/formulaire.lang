@@ -1,0 +1,20 @@
+<?php
+
+/*
+** Fichier ................: formulaire.lang
+** Description ............:
+** Date de création .......: 22/09/2005
+** Dernière modification ..: 22/09/2005
+** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
+**
+** Unité de Technologie de l'Education
+** 18, Place du Parc
+** 7000 MONS
+*/
+
+define("TXT_POUR_COMMENCER","Pour commencer");
+define("TXT_FORMULAIRE_DE_BASE_A_REMPLIR","Formulaire de base à remplir");
+define("TXT_TRAVAUX_SOUMIS_POUR_EVALUATION","Travaux soumis pour évaluation");
+
+?>
+

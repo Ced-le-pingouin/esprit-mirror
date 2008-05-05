@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Liste des choses à faire</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1><a class="anchor" name="todo">Liste des choses à faire </a></h1><a class="anchor" name="_todo000001"></a> <dl>
+<dt>Membre <a class="el" href="class_c_activ.html#e282e57e24a814d73d6f711f5fe5336c">CActiv::retTypes</a> () </dt>
+<dd>ce système sera modifié pour l'internationalisation de la plate-forme<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000022"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_document.html#92b7d9c7f0191c518f8d2be31bef139b">CDOMDocument::CDOMDocument</a> ($version= '1.0', $encoding= 'UTF-8') </dt>
+<dd>Quelles sont les valeurs par défaut correctes des paramètres ? </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000023"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_document.html#549cd2a0c7d235cd026706bffb926ced">CDOMDocument::createElement</a> ($name, $value=NULL) </dt>
+<dd>Normalement, la valeur de retour doit être FALSE si un problème est survenu à la création </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000024"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_document.html#47977c50fabebc3bfb9a0d2314500ce8">CDOMDocument::save</a> ($filename, $options=0) </dt>
+<dd>le paramètre <code>options</code> n'est pas implémenté ici (en PHP 5, il existe à partir de la version 5.1.0) </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000025"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_document.html#d0fe46b5ae5ded1e4a2f8af216825f49">CDOMDocument::saveXML</a> ($node=NULL, $options=0) </dt>
+<dd>Pour l'instant, seul le document complet peut être retourné sous forme de chaîne, pas une sous-partie<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000025"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_document.html#d0fe46b5ae5ded1e4a2f8af216825f49">CDOMDocument::saveXML</a> ($node=NULL, $options=0) </dt>
+<dd>Pour l'instant, aucune options supplémetnaire n'est prise en compte </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000019"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_element.html#83adcf60034e908baeb6cd1a42826f31">CDOMElement::CDOMElement</a> ($name, $value=NULL, $namespaceURI=NULL) </dt>
+<dd>L'attribution immédiate d'une valeur utilise la méthode <code>setContent()</code> des objets DOM PHP4, cela semble fonctionner pour créer des éléments XML (balises) avec un contenu texte, mais je ne sais pas si d'autres utilisations sont possibles<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000019"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_element.html#83adcf60034e908baeb6cd1a42826f31">CDOMElement::CDOMElement</a> ($name, $value=NULL, $namespaceURI=NULL) </dt>
+<dd>Pour l'instant la création dans un espace de nom (3è paramètre) n'est pas implémentée </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000021"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_element.html#4b57f1fd3690eea06761b009c9c0a1d5">CDOMElement::setAttribute</a> ($name, $value) </dt>
+<dd>La valeur de retour (un objet DomAttribute) n'est pas la même que pour le "vrai" DOM PHP 5 qui, d'après la doc PHP, retourne TRUE ou FALSE. A tester </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000018"></a> <dl>
+<dt>Membre <a class="el" href="class_c_d_o_m_node.html#e95f28cb57dda33271248f013b318ff8">CDOMNode::appendChild</a> ($newnode) </dt>
+<dd>La valeur de retour diffère entre le DOM XML PHP 4 et le DOM PHP 5, il faudra tester et uniformiser, même si la valeur de retour a peu d'intérêt dans cette méthode (en tout cas dans le type d'utilisation que j'en fais) </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000002"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#3c3233870719610d08226ae02de0ef4a">CFormation::$aoElementsGlossaire</a>  </dt>
+<dd>La table n'existe pas, travail commencé mais pas terminé... </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000005"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#cf5af63b05eafadd78edf6225f702600">CFormation::ajouterElementsGlossaire</a> ($v_iIdGlossaire, $v_aiIdsElementsGlossaire) </dt>
+<dd>La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000006"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#d12a12375432b343eb3647dcc8836f4b">CFormation::effacerElementsGlossaire</a> ($v_iIdGlossaire) </dt>
+<dd>La table n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000004"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#b65ac7acc92dd1f46ab9cef556e44759">CFormation::initElementsGlossaire</a> ($v_iIdGlossaire=NULL) </dt>
+<dd>La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000003"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#bd47962db5bab288716d29387db608b9">CFormation::initMembres</a> ($v_bAppartenirEquipe=TRUE, $v_iSensTri=TRI_CROISSANT) </dt>
+<dd>on peut sûrement améliorer la première requête sql, elle met 7 sec a s'exécuter sur la version "production" pour ne retourner que peu d'enregistrements(+-30) </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000007"></a> <dl>
+<dt>Membre <a class="el" href="class_c_formation.html#37c52316496b53a206b8bacb5ccd73c5">CFormation::retTypes</a> () </dt>
+<dd>ce système sera modifié pour l'internationalisation de la plate-forme<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000008"></a> <dl>
+<dt>Membre <a class="el" href="class_c_module.html#0949ac66209cdcbcd8fb215f9f10fb99">CModule::retTypes</a> () </dt>
+<dd>ce système sera modifié pour l'internationalisation de la plate-forme<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000013"></a> <dl>
+<dt>Membre <a class="el" href="class_c_projet.html#f5e4e82c124ecbec9eed8d4eb9396679">CProjet::retMdpCrypte</a> ($v_sMdp) </dt>
+<dd>Pour le moment, le cryptage se fait par la fonction <code>PASSWORD()</code> de MySQL, ce qui était malheureusement une très mauvaise idée, car cette fonction ne devait être utilisée qu'en interne par MySQL, et a été modifiée dans MySQL 4.1, ce qui rendra les mots de passe déjà encodés incompatible avec la nouvelle version de la fonction<p>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000014"></a> <dl>
+<dt>Membre <a class="el" href="class_c_projet.html#01c655d531972e8e3b76db072e9eb0a7">CProjet::verifPeutUtiliserOutils</a> ($v_sNomPermission=NULL) </dt>
+<dd>Vérifier que <code>bPeutUtiliserOutils</code> ne devrait pas plutôt valoir <code>false</code> au cas où la constante passée en paramètre n'existe pas </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000032"></a> <dl>
+<dt>Classe <a class="el" href="class_c_tar.html">CTar</a>  </dt>
+<dd>Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, seules des archives gzippées sont créées </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000033"></a> <dl>
+<dt>Membre <a class="el" href="class_c_tar.html#5bc5b496551fd6c4a2874b25067c9c6f">CTar::CTar</a> ($v_sCheminArchive, $v_asEntrees=NULL, $v_bCreer=FALSE) </dt>
+<dd>Vérifier que le chemin/nom de l'archive à créer est valide </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000016"></a> <dl>
+<dt>Classe <a class="el" href="class_c_traverseur_scorm.html">CTraverseurScorm</a>  </dt>
+<dd>Liste:<ul>
+<li>problème d'encodage des caractères dans les noms des fichiers ? (accents)</li><li>réussir la validation dans divers outils: . les élément "item" non terminaux ne peuvent référencer une ressource (Reload s'en moque, mais pas l'ADL Test Suite) =&gt; utiliser des description LOM, ou créer un item "enfant" initial qui contient la description ou l'interactivité ? . les href de certains fichiers de la formation Intercomp italien ne sont pas valides pour le type anyURI</li><li>gérer l'effacement du paquet créé en tmp (en différé ?)</li></ul>
+</dd>
+</dl>
+<p>
+tester sous Unix (backslashes dans les noms de fichiers)<ul>
+<li>enlever les ressources déposées dans le cadre des activités par les étudiants (sauf si on ajoute une option pour exporter des activités entamées ou terminées, avec production des étudiants puis évaluations)<ul>
+<li>donner la possibilité d'exporter également un css pour que les pages html du paquet correspondant aux activités aient un look similaire à celui d'Esprit (ou autre), car sinon la plupart du temps il s'agit seulement de texte "formaté" et donc de simple texte noir sur fond blanc, avec des titres, §, gras, etc </li></ul>
+</li></ul>
+<p>
+<a class="anchor" name="_todo000034"></a> <dl>
+<dt>Classe <a class="el" href="class_c_zip.html">CZip</a>  </dt>
+<dd>Cette classe est incomplète, elle ne gère pas la décompression des archives, uniquement la compression. De plus, il faudrait "synchroniser" cette classe avec <a class="el" href="class_c_tar.html" title="Gestion d&#39;archives GNU TAR, utilisant les fonctions de la bibliothèque PclTar...">CTar</a> (objet de base pour la (dé)compression puis héritage de chacune des deux classes ?), notamment au niveau des valeurs de retour </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000035"></a> <dl>
+<dt>Membre <a class="el" href="class_c_zip.html#563e67694108a01c831a9b2c5363ef2e">CZip::CZip</a> ($v_sCheminArchive, $v_asEntrees=array(), $v_bCreer=FALSE) </dt>
+<dd>Vérifier que le chemin/nom de l'archive à créer est valide </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000009"></a> <dl>
+<dt>Classe <a class="el" href="class_element_formation.html">ElementFormation</a>  </dt>
+<dd>Cette classe devrait normalement devenir une classe de base ("mère") dont devraient hériter les classes qui représentent un élément de formation </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000027"></a> <dl>
+<dt>Classe <a class="el" href="class_fichier_acces.html">FichierAcces</a>  </dt>
+<dd>Pour le moment, seul les méthodes dont j'ai eu besoin sont implémentées, il faudra compléter la classe au fur et à mesure </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000028"></a> <dl>
+<dt>Classe <a class="el" href="class_fichier_info.html">FichierInfo</a>  </dt>
+<dd>Il faudrait créer des méthodes pour:<ul>
+<li>transformer un chemin relatif en absolu (et vice versa) sans obligation que le chemin fourni existe réellement quand c'est possible;</li><li>déterminer la partie "racine" d'un chemin;</li><li>etc </li></ul>
+</dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000029"></a> <dl>
+<dt>Classe <a class="el" href="class_iterateur_recursif.html">IterateurRecursif</a>  </dt>
+<dd>: taille(), rechercher(), estPremier(), et estDernier() ne fonctionnent pas correctement pour l'instant </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000029"></a> <dl>
+<dt>Classe <a class="el" href="class_iterateur_recursif.html">IterateurRecursif</a>  </dt>
+<dd>: prec() ??? (car on hérite d'IterateurTableau, bidirectionnel, gasp!) </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000029"></a> <dl>
+<dt>Classe <a class="el" href="class_iterateur_recursif.html">IterateurRecursif</a>  </dt>
+<dd>: voir s'il y a moyen de modifier la façon d'implémenter <code>_bDoitRetournerParent</code>, car le nom n'est pas clair, et également, y a-t-il moyen de faire tous les test le concernant dans _trouverElementSuiv(), qui deviendrait peut-être lui-même suiv() (car pour le moment suiv() doit également effectuer des tests qui devraient peut-être être effectués par _trouverElementSuiv()) </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000015"></a> <dl>
+<dt>Classe <a class="el" href="class_t_p_l___block.html">TPL_Block</a>  </dt>
+<dd>Etudier la possibilité de faire hériter cette classe de <a class="el" href="class_template.html" title="Gestion de templates, avec possibilité de remplacements de variables, de répétition...">Template</a>, car certaines fonctions sont identiques </dd>
+</dl>
+<p>
+<a class="anchor" name="_todo000017"></a> <dl>
+<dt>Fichier <a class="el" href="export_8php.html">export.php</a>  </dt>
+<dd><ul>
+<li>transformer ce fouillis de tableaux en objets faciles à utiliser</li><li>pour le moment, les infos sur les index et les clés étrangères dans les tables sont générés/rédigés avant l'exportation, puis lus. Il faudrait pouvoir récupérer ces infos dans la DB à la volée. Pour les clés étrangères, c'est difficile étant donné qu'il faut lire dans la DB de phpMyAdmin qui enregistre les relations entre tables (et que bien entendu ces relations décrites dans PMA soient à jour). Pour les index, y a-t-il des fonctions PHP qui demandent directement des infos sur les tableS/champs/index, ou faut-il utiliser mysql_query pour récupérer ces infos en SQL ?</li><li>intégrer ces classes d'exportation "pur DB" dans les classes d'Esprit </li></ul>
+</dd>
+</dl>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

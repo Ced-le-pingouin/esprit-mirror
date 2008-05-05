@@ -1,0 +1,452 @@
+\section{Référence de la classe CExportDb}
+\label{class_c_export_db}\index{CExportDb@{CExportDb}}
+
+
+\subsection{Description détaillée}
+Classe de gestion des exportations d'enregistrements en cascade à partir de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf aEnregsAExporter} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Détermine si une table a au moins un enregistrement marqué pour exportation. \item\end{CompactList}\item 
+{\bf aEnregsAjoutes} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Détermine si la table spécifiée a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé. \item\end{CompactList}\item 
+{\bf aEnregsAjoutesToutesTables} ()
+\begin{CompactList}\small\item\em Détermine si au moins une table a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé. \item\end{CompactList}\item 
+{\bf ajouterEnregAExporter} (\$v\_\-sTable, \$v\_\-sValeur)
+\begin{CompactList}\small\item\em Ajoute, pour une table, la valeur de clé primaire d'un enregistrement à exporter, si celui-ci n'est pas déjà marqué pour exportation. \item\end{CompactList}\item 
+{\bf ajouterEnregsAExporter} (\$v\_\-sTable, \$v\_\-asValeurs)
+\begin{CompactList}\small\item\em Ajoute, pour une table, les valeurs de clé primaire de plusieurs enregistrements à exporter, si ceux-ci ne sont pas déjà marqués pour exportation. \item\end{CompactList}\item 
+{\bf ajouterPrefixeCle} (\$v\_\-sPrefixe, \$v\_\-sCle)
+\begin{CompactList}\small\item\em Ajoute un préfixe et un point devant le nom d'un ou plusieurs champs (dans ce dernier cas, séparés par des virgules), et retourne la chaîne résultante. \item\end{CompactList}\item 
+{\bf aRelations} (\$v\_\-sTable, \$v\_\-sTypeRel)
+\begin{CompactList}\small\item\em Détermine si une table possède des relations d'un certain type (parent/enfant) avec au moins une autre table. \item\end{CompactList}\item 
+{\bf CExportDb} ()\label{class_c_export_db_7c48d5e504c989e9bf5ed6265af91474}
+
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf connecterDb} ()
+\begin{CompactList}\small\item\em Réalise la connexion au serveur MySQL. \item\end{CompactList}\item 
+{\bf defClePrimaire} (\$v\_\-sTable, \$v\_\-sCle)
+\begin{CompactList}\small\item\em Enregistre en mémoire le(s) nom(s) du (des) champ(s) composant la clé primaire d'une table. \item\end{CompactList}\item 
+{\bf defEnregsAjoutes} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Active le drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} sur une table. \item\end{CompactList}\item 
+{\bf defEnregsAjoutesToutesTables} ()\label{class_c_export_db_20c1fa883273f9d2341928faf58659b0}
+
+\begin{CompactList}\small\item\em Active le drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} dans toutes les tables. \item\end{CompactList}\item 
+{\bf ecrireFichierResultat} (\$v\_\-sNomFichier)
+\begin{CompactList}\small\item\em Ecrit le fichier SQL contenant les résultat de l'exportation. \item\end{CompactList}\item 
+{\bf estCommentee} (\$v\_\-sLigne)
+\begin{CompactList}\small\item\em Indique si une chaîne de caractères représentant une ligne de fichier, est considérée comme commentée ou pas. \item\end{CompactList}\item 
+{\bf executerRequete} (\$v\_\-sRequete, \$v\_\-bAfficher=FALSE)
+\begin{CompactList}\small\item\em Exécute une requête SQL et renvoie le handle de résultat associé. \item\end{CompactList}\item 
+{\bf executerRequeteSurIds} (\$v\_\-sRequete)
+\begin{CompactList}\small\item\em Retourne les ids (clé primaire) d'enregistrements trouvés par une requête SQL. \item\end{CompactList}\item 
+{\bf libererResult} (\$v\_\-hResult)
+\begin{CompactList}\small\item\em Libère les ressources associées à un résultat de requête MySQL. \item\end{CompactList}\item 
+{\bf lireFichierClesPrimaires} ()\label{class_c_export_db_5b87ec1e8b408fcd8b2299b8b4e33cd1}
+
+\begin{CompactList}\small\item\em Lit le fichier contenant les infos sur les tables et leurs clés primaires, qui est au format CSV, et les enregistre en mémoire. \item\end{CompactList}\item 
+{\bf lireFichierEnfants} ()\label{class_c_export_db_fa462d2cc85d116a8e282f3828632c81}
+
+\begin{CompactList}\small\item\em Lit le fichier d'infos sur les relations parent$<$-enfant entre les tables, et les enregistre en mémoire. \item\end{CompactList}\item 
+{\bf lireFichierParents} ()\label{class_c_export_db_100151376c1594e7c303671ca80668d5}
+
+\begin{CompactList}\small\item\em Lit le fichier d'infos sur les relations enfant-$>$parent entre les tables, et les enregistre en mémoire. \item\end{CompactList}\item 
+{\bf reinitEnregsAjoutes} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Réinitialise les drapeaux \char`\"{}nouveaux enregistrements trouvés\char`\"{} sur une table. \item\end{CompactList}\item 
+{\bf reinitEnregsAjoutesToutesTables} ()\label{class_c_export_db_95b4cbfbf0d9926da6d550e9d7b774ef}
+
+\begin{CompactList}\small\item\em Réinitialise les drapeaux \char`\"{}nouveeaux enregistrements trouvés\char`\"{} sur toutes les tables. \item\end{CompactList}\item 
+{\bf retClePrimaire} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Retourne le(s) nom(s) du (des) champ(s) constituant la clé d'une table. \item\end{CompactList}\item 
+{\bf retConditionCle} (\$v\_\-sPrefixe, \$v\_\-sCle, \$v\_\-asEnregsAExporter, \$v\_\-bInverser=FALSE)
+\begin{CompactList}\small\item\em Construit une condition SQL (qui pourra être ajoutée à la clause WHERE d'un SELECT) qui effectue une recherche des valeurs passées en paramètre, dans le ou les champs passé(s) également en paramètre. \item\end{CompactList}\item 
+{\bf retEnregsAExporter} (\$v\_\-sTable)
+\begin{CompactList}\small\item\em Retourne les les enregistrements actuellement marqués pour l'exportation dans une table. \item\end{CompactList}\item 
+{\bf trouverRelations} (\$v\_\-bRecursif=FALSE)
+\begin{CompactList}\small\item\em Boucle principale de recherche des enregistrements à exporter. \item\end{CompactList}\item 
+{\bf trouverRelationsTable} (\$v\_\-sTableSource, \$v\_\-sTypeRel, \$v\_\-bRecursif=FALSE)
+\begin{CompactList}\small\item\em Effectue la recherche de nouveaux enregistrements à exporter, en se basant sur les relations parents ou enfants d'une table par rapport aux autres (les enregistrements d'autres tables, dépendants de ceux déjà marqués pour l'exportation dans la table traitée, seront eux aussi marqués pour l'exportation). \item\end{CompactList}\item 
+{\bf trouverRelationsToutesTables} (\$v\_\-sTypeRel, \$v\_\-bRecursif=FALSE)
+\begin{CompactList}\small\item\em Boucle secondaire de recherche des enregistrements à exporter, pour toutes les tables, dans le cadre d'un type de relation spécifique avec les autres tables (soit parent, soit enfant). \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aaTables}\label{class_c_export_db_c9f44e7a100da302fa70666bcc524896}
+
+\begin{CompactList}\small\item\em Tableau contenant les tables de la DB, leurs noms, relations, et enregistrements à exporter. \item\end{CompactList}\item 
+{\bf \$asCommentairesFichiers}\label{class_c_export_db_463244f9577c4d22779bd55135ec53f7}
+
+\begin{CompactList}\small\item\em Tableau contenant les différents types de commentaires pris en compte dans les fichiers ci-dessus. \item\end{CompactList}\item 
+{\bf \$hLien}\label{class_c_export_db_5ec79213cea9a0804241016561643341}
+
+\begin{CompactList}\small\item\em Handle de connexion à la DB. \item\end{CompactList}\item 
+{\bf \$sBase}\label{class_c_export_db_be58f8ab3ee6f12b76f2afd16e8b07c9}
+
+\begin{CompactList}\small\item\em Base de données concernée par l'exportation. \item\end{CompactList}\item 
+{\bf \$sFichierClesPrimaires} = 'refs\_\-db/cles\_\-primaires.csv'\label{class_c_export_db_af35fe3d5c94e9555b696ff29dd07f5d}
+
+\begin{CompactList}\small\item\em Chemin du fichier CSV contenant les infos sur les tables et leurs clés primaires. \item\end{CompactList}\item 
+{\bf \$sFichierRef} = 'refs\_\-db/src\_\-reference\_\-dest.csv'\label{class_c_export_db_7f4028e42363d5d93b1945b886ce0d46}
+
+\begin{CompactList}\small\item\em Chemin du fichier CSV contenant les relations enfant-$>$parent entre tables à prendre en compte. \item\end{CompactList}\item 
+{\bf \$sFichierRefPar} = 'refs\_\-db/src\_\-referencee\_\-par\_\-dest.csv'\label{class_c_export_db_a5438890b469def893d7985ce743bc6d}
+
+\begin{CompactList}\small\item\em Chemin du fichier CSV contenant les relations parent$<$-enfant entre tables à prendre en compte. \item\end{CompactList}\item 
+{\bf \$sHote}\label{class_c_export_db_1a0e935d64f2905014803974adf09d62}
+
+\begin{CompactList}\small\item\em Hôte où se trouve le serveur MySQL. \item\end{CompactList}\item 
+{\bf \$sMdp}\label{class_c_export_db_6fcad6eaa8c95d7b1710d70560c78cc0}
+
+\begin{CompactList}\small\item\em Mot de passe pour cet utilisateur. \item\end{CompactList}\item 
+{\bf \$sUser}\label{class_c_export_db_60bb5baff822e69bb1d49fedffbcc1db}
+
+\begin{CompactList}\small\item\em Utilisateur à connecter au serveur MySQL. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CExportDb@{CExportDb}!aEnregsAExporter@{aEnregsAExporter}}
+\index{aEnregsAExporter@{aEnregsAExporter}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::aEnregsAExporter (\$ {\em v\_\-sTable})}\label{class_c_export_db_ecd67c4b1bc102ef89473d6a34d81c1d}
+
+
+Détermine si une table a au moins un enregistrement marqué pour exportation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table sur laquelle on veut effectuer la vérification\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la table spécifiée a des enregistrements à exporter \end{Desc}
+
+
+Référencé par ecrireFichierResultat(), trouverRelations(), et trouverRelationsToutesTables().\index{CExportDb@{CExportDb}!aEnregsAjoutes@{aEnregsAjoutes}}
+\index{aEnregsAjoutes@{aEnregsAjoutes}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::aEnregsAjoutes (\$ {\em v\_\-sTable})}\label{class_c_export_db_ebfbd4afd4875ae8c5908c00a7dbde2b}
+
+
+Détermine si la table spécifiée a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si au la table a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé \end{Desc}
+
+
+Référencé par aEnregsAjoutesToutesTables().\index{CExportDb@{CExportDb}!aEnregsAjoutesToutesTables@{aEnregsAjoutesToutesTables}}
+\index{aEnregsAjoutesToutesTables@{aEnregsAjoutesToutesTables}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::aEnregsAjoutesToutesTables ()}\label{class_c_export_db_5612de77e77175294b7158447e22a81b}
+
+
+Détermine si au moins une table a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si au moins une table a son drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} activé \end{Desc}
+
+
+Références aEnregsAjoutes().
+
+Référencé par trouverRelations().\index{CExportDb@{CExportDb}!ajouterEnregAExporter@{ajouterEnregAExporter}}
+\index{ajouterEnregAExporter@{ajouterEnregAExporter}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::ajouterEnregAExporter (\$ {\em v\_\-sTable}, \/  \$ {\em v\_\-sValeur})}\label{class_c_export_db_684a7327e368ad6c2bc13596d32e2106}
+
+
+Ajoute, pour une table, la valeur de clé primaire d'un enregistrement à exporter, si celui-ci n'est pas déjà marqué pour exportation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table pour laquelle il faut ajouter un enregistrement à exporter \item[{\em \$v\_\-sValeur}]la valeur de clé primaire pour l'enregistrements à ajouter à l'exportation. S'il s'agit d'une table pour laquelle la clé primaire est constituée de plusieurs champs, les valeurs doivent être concaténées dans une chaîne, séparées par le caractère '\&'\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si au moins l'enregistrement a effectivement été ajouté pour exportation (pour cela il faut qu'il ne s'y trouve pas déjà bien entendu) \end{Desc}
+
+
+Références defEnregsAjoutes().
+
+Référencé par ajouterEnregsAExporter().\index{CExportDb@{CExportDb}!ajouterEnregsAExporter@{ajouterEnregsAExporter}}
+\index{ajouterEnregsAExporter@{ajouterEnregsAExporter}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::ajouterEnregsAExporter (\$ {\em v\_\-sTable}, \/  \$ {\em v\_\-asValeurs})}\label{class_c_export_db_d4c11f1d40245ba6002e6d5ec0b80cd4}
+
+
+Ajoute, pour une table, les valeurs de clé primaire de plusieurs enregistrements à exporter, si ceux-ci ne sont pas déjà marqués pour exportation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table pour laquelle il faut ajouter/marquer des enregistrements à exporter \item[{\em \$v\_\-asValeurs}]le tableau des valeurs de clé primaire pour les différents enregistrements à ajouter à l'exportation. S'il s'agit d'une table pour laquelle la clé primaire est constituée de plusieurs champs, les valeurs doivent être concaténées dans une chaîne, et séparées par le caractère '\&'\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si au moins un des enregistrements fournis a effectivement été ajouté pour exportation (pour qu'un enregistrement soit ajouté, il faut qu'il ne s'y trouve pas déjà bien entendu) \end{Desc}
+
+
+Références ajouterEnregAExporter().
+
+Référencé par trouverRelationsTable().\index{CExportDb@{CExportDb}!ajouterPrefixeCle@{ajouterPrefixeCle}}
+\index{ajouterPrefixeCle@{ajouterPrefixeCle}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::ajouterPrefixeCle (\$ {\em v\_\-sPrefixe}, \/  \$ {\em v\_\-sCle})}\label{class_c_export_db_9f8651031fd5da8d780a37733d4a7e99}
+
+
+Ajoute un préfixe et un point devant le nom d'un ou plusieurs champs (dans ce dernier cas, séparés par des virgules), et retourne la chaîne résultante. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sPrefixe}]le préfixe à placer devant le ou les champs spécifié(s) \item[{\em \$sv\_\-sCle}]le ou les champ(s) devant le(s)quel(s) ajouter le préfixe spécifié. Si plusieurs champs, ceux-ci seront séparés par des virgules, sans espaces\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la chaîne de caractères représentant le ou les champs donné(s) en entrée, avec le préfixe ajouté \end{Desc}
+
+
+Référencé par trouverRelationsTable().\index{CExportDb@{CExportDb}!aRelations@{aRelations}}
+\index{aRelations@{aRelations}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::aRelations (\$ {\em v\_\-sTable}, \/  \$ {\em v\_\-sTypeRel})}\label{class_c_export_db_b0e7e2feacf6080b0b290971d4d064e3}
+
+
+Détermine si une table possède des relations d'un certain type (parent/enfant) avec au moins une autre table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table pour laquelle on veut connaître l'existence de relations \item[{\em \$v\_\-sTypeRel}]le type de relation dont on veut connaître l'existence pour la table. Peut valoir {\tt 'parents'} ou {\tt 'enfants'} \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la table spécifiée a des relations du type demandé avec d'autres tables \end{Desc}
+
+
+Référencé par trouverRelationsTable().\index{CExportDb@{CExportDb}!connecterDb@{connecterDb}}
+\index{connecterDb@{connecterDb}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::connecterDb ()}\label{class_c_export_db_cecf8f2f4d2dd15df665adade619e6ca}
+
+
+Réalise la connexion au serveur MySQL. 
+
+Si celle-ci échoue, le script est stoppé 
+
+Référencé par CExportDb().\index{CExportDb@{CExportDb}!defClePrimaire@{defClePrimaire}}
+\index{defClePrimaire@{defClePrimaire}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::defClePrimaire (\$ {\em v\_\-sTable}, \/  \$ {\em v\_\-sCle})}\label{class_c_export_db_3366667eaf74b210ee84f0ed2a9926f6}
+
+
+Enregistre en mémoire le(s) nom(s) du (des) champ(s) composant la clé primaire d'une table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table concernée \item[{\em \$v\_\-sCle}]le nom du (des) champ(s) constituant la clé de cette table. Si plusieurs champs, les noms doivent être séparés par un caractère '\&' et concaténés en une seule chaîne \end{description}
+\end{Desc}
+
+
+Référencé par lireFichierClesPrimaires().\index{CExportDb@{CExportDb}!defEnregsAjoutes@{defEnregsAjoutes}}
+\index{defEnregsAjoutes@{defEnregsAjoutes}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::defEnregsAjoutes (\$ {\em v\_\-sTable})}\label{class_c_export_db_031476f3dfa21dcfb45461141bdb84a4}
+
+
+Active le drapeau \char`\"{}nouveaux enregistrements trouvés\char`\"{} sur une table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table pour laquelle il faut activer le drapeau \end{description}
+\end{Desc}
+
+
+Référencé par ajouterEnregAExporter(), et defEnregsAjoutesToutesTables().\index{CExportDb@{CExportDb}!ecrireFichierResultat@{ecrireFichierResultat}}
+\index{ecrireFichierResultat@{ecrireFichierResultat}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::ecrireFichierResultat (\$ {\em v\_\-sNomFichier})}\label{class_c_export_db_f49b7a7713d79172695685d79cd7d0dd}
+
+
+Ecrit le fichier SQL contenant les résultat de l'exportation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sNomFichier}]le chemin du fichier à écrire \end{description}
+\end{Desc}
+
+
+Références aEnregsAExporter(), aff(), affln(), debutProf(), executerRequete(), finProf(), libererResult(), retClePrimaire(), retConditionCle(), et retEnregsAExporter().
+
+Référencé par trouverRelations().\index{CExportDb@{CExportDb}!estCommentee@{estCommentee}}
+\index{estCommentee@{estCommentee}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::estCommentee (\$ {\em v\_\-sLigne})}\label{class_c_export_db_e3fbf2c79078c4cc71b35edb55a08c8a}
+
+
+Indique si une chaîne de caractères représentant une ligne de fichier, est considérée comme commentée ou pas. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sLigne}]la chaîne de caractères représentant la ligne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si la ligne est commentée \end{Desc}
+
+
+Référencé par lireFichierClesPrimaires(), lireFichierEnfants(), et lireFichierParents().\index{CExportDb@{CExportDb}!executerRequete@{executerRequete}}
+\index{executerRequete@{executerRequete}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::executerRequete (\$ {\em v\_\-sRequete}, \/  \$ {\em v\_\-bAfficher} = {\tt FALSE})}\label{class_c_export_db_dbb783eb9f178cc86216855f50e73cd4}
+
+
+Exécute une requête SQL et renvoie le handle de résultat associé. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sRequete}]la requête SQL à exécuter \item[{\em \$v\_\-bAfficher}]si {\tt true}, affiche la requête avant de l'excécuter (pour le déboguage) ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le handle de résultat pour cette requête \end{Desc}
+
+
+Références affln().
+
+Référencé par ecrireFichierResultat(), et executerRequeteSurIds().\index{CExportDb@{CExportDb}!executerRequeteSurIds@{executerRequeteSurIds}}
+\index{executerRequeteSurIds@{executerRequeteSurIds}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::executerRequeteSurIds (\$ {\em v\_\-sRequete})}\label{class_c_export_db_32a9894900288704394b454c54f25af8}
+
+
+Retourne les ids (clé primaire) d'enregistrements trouvés par une requête SQL. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sRequete}]la requête SQL à exécuter\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]un tableau contenant les valeurs des clés primaires des enregistrements trouvés, si la clé primaire est constituée de plusieurs champs, chaque élément du tableau est une chaîne concaténant les valeurs des champs de la clé primaire, séparées par le caractère '\&', par ex. si la clé primaire est IdPers et IdEquipe, les enregistrements trouvés pourraient être représentés par '1\&32' ou '22\&91' \end{Desc}
+
+
+Références executerRequete(), et libererResult().
+
+Référencé par trouverRelationsTable().\index{CExportDb@{CExportDb}!libererResult@{libererResult}}
+\index{libererResult@{libererResult}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::libererResult (\$ {\em v\_\-hResult})}\label{class_c_export_db_a1a5e57f5d8e5b66e06cbc0be7751005}
+
+
+Libère les ressources associées à un résultat de requête MySQL. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-hResult}]le handle de résultat dont il faut libérer les ressources \end{description}
+\end{Desc}
+
+
+Référencé par ecrireFichierResultat(), et executerRequeteSurIds().\index{CExportDb@{CExportDb}!reinitEnregsAjoutes@{reinitEnregsAjoutes}}
+\index{reinitEnregsAjoutes@{reinitEnregsAjoutes}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::reinitEnregsAjoutes (\$ {\em v\_\-sTable})}\label{class_c_export_db_12c172c570ecd8414a562bb9a2916ee7}
+
+
+Réinitialise les drapeaux \char`\"{}nouveaux enregistrements trouvés\char`\"{} sur une table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table pour laquelle il faut réinitialiser le drapeau \end{description}
+\end{Desc}
+
+
+Référencé par reinitEnregsAjoutesToutesTables().\index{CExportDb@{CExportDb}!retClePrimaire@{retClePrimaire}}
+\index{retClePrimaire@{retClePrimaire}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::retClePrimaire (\$ {\em v\_\-sTable})}\label{class_c_export_db_f7179250481ce229d8c5382b343993d5}
+
+
+Retourne le(s) nom(s) du (des) champ(s) constituant la clé d'une table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table de laquelle on veut connaître la clé primaire\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le(s) nom(s) du (des) champ(s) constituant la clé primaire pour la table spécifiée. Si plusieurs champs, leurs noms sont concaténés et séparés par le caractère '\&' dans la chaîne retournée \end{Desc}
+
+
+Référencé par ecrireFichierResultat(), et trouverRelationsTable().\index{CExportDb@{CExportDb}!retConditionCle@{retConditionCle}}
+\index{retConditionCle@{retConditionCle}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::retConditionCle (\$ {\em v\_\-sPrefixe}, \/  \$ {\em v\_\-sCle}, \/  \$ {\em v\_\-asEnregsAExporter}, \/  \$ {\em v\_\-bInverser} = {\tt FALSE})}\label{class_c_export_db_36d5dc456ed84867e3d6642055a1bb0a}
+
+
+Construit une condition SQL (qui pourra être ajoutée à la clause WHERE d'un SELECT) qui effectue une recherche des valeurs passées en paramètre, dans le ou les champs passé(s) également en paramètre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sPrefixe}]le préfixe à placer devant le nom du ou des champ(s). Ce préfixe peut être vide \item[{\em \$v\_\-sCle}]le ou les champ(s), sous forme de chaîne de caractères, dans le(s)quel(s) il faudra effectuer la recherche. Si plusieurs, ils doivent être séparés par des virgules, sans espaces (et toujours sous forme de chaîne) \item[{\em \$v\_\-asEnregsAExporter}]les valeurs à rechercher dans le(s) champ(s) spécifié(s), sous forme de tableau. Si plusieurs champs sont spécifiés dans {\tt v\_\-sCle}, chaque élément du tableau doit alors contenir des valeurs pour chaque champ, ces valeurs étant séparées par une virgule, sans espaces, le tout concaténé en chaîne de caractères\item[{\em \$v\_\-bInverser}]si {\tt true}, la condition est inversée (NOT) ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]la chaîne de caractère à ajouter au WHERE et représentant la condition demandée \end{Desc}
+
+
+Référencé par ecrireFichierResultat(), et trouverRelationsTable().\index{CExportDb@{CExportDb}!retEnregsAExporter@{retEnregsAExporter}}
+\index{retEnregsAExporter@{retEnregsAExporter}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::retEnregsAExporter (\$ {\em v\_\-sTable})}\label{class_c_export_db_7934adfee7e7bd75e7298c9201a4c5f5}
+
+
+Retourne les les enregistrements actuellement marqués pour l'exportation dans une table. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTable}]le nom de la table dont on veut récupérer les enregistrements à exporter\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le tableau des valeurs de clé primaire des enregistrements marqués pour l'exportation dans la table spécifiée. Si la clé primaire de cette table est constituée de plusieurs champs, les éléments du tableau sont représentées par une chaîne de caractères reprenant les valeurs de chaque champ, concaténées et séparées par le caractère '\&' \end{Desc}
+
+
+Référencé par ecrireFichierResultat(), trouverRelations(), et trouverRelationsTable().\index{CExportDb@{CExportDb}!trouverRelations@{trouverRelations}}
+\index{trouverRelations@{trouverRelations}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::trouverRelations (\$ {\em v\_\-bRecursif} = {\tt FALSE})}\label{class_c_export_db_78281e40eb72299ae23ab802521ac7e0}
+
+
+Boucle principale de recherche des enregistrements à exporter. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-bRecursif}]si {\tt true}, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de passages successifs effectués dans les tables pour trouver tous les enregistrements dépendants à exporter \end{Desc}
+
+
+Références aEnregsAExporter(), aEnregsAjoutesToutesTables(), aff(), affln(), afflnd(), debutProf(), ecrireFichierResultat(), finProf(), reinitEnregsAjoutesToutesTables(), retEnregsAExporter(), et trouverRelationsToutesTables().\index{CExportDb@{CExportDb}!trouverRelationsTable@{trouverRelationsTable}}
+\index{trouverRelationsTable@{trouverRelationsTable}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::trouverRelationsTable (\$ {\em v\_\-sTableSource}, \/  \$ {\em v\_\-sTypeRel}, \/  \$ {\em v\_\-bRecursif} = {\tt FALSE})}\label{class_c_export_db_9da3b281b2618998f5f7197334a0c5dc}
+
+
+Effectue la recherche de nouveaux enregistrements à exporter, en se basant sur les relations parents ou enfants d'une table par rapport aux autres (les enregistrements d'autres tables, dépendants de ceux déjà marqués pour l'exportation dans la table traitée, seront eux aussi marqués pour l'exportation). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTableSource}]la table dont il faut examiner les enregistrements marqués pour l'exportation, pour tenter de trouver des enregistrements d'autres tables qui en sont dépendants (et qui devront donc eux aussi être exportés) \item[{\em \$v\_\-sTypeRel}]si {\tt 'enfants'}, la recherche porte, pour les enregistrements exportés de chaque table, sur les enregistrements des autres tables qui les référencent. Si {\tt 'parents'}, elle porte sur les enregistrements des autres tables qui sont référencés par les exportés de chaque table traitée \item[{\em \$v\_\-bRecursif}]si {\tt true}, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si de nouveaux enregistrements à exporter ont été trouvés et marqués pour exportation dans une ou plusieurs tables \end{Desc}
+
+
+Références afflnd(), ajouterEnregsAExporter(), ajouterPrefixeCle(), aRelations(), executerRequeteSurIds(), retClePrimaire(), retConditionCle(), et retEnregsAExporter().
+
+Référencé par trouverRelationsToutesTables().\index{CExportDb@{CExportDb}!trouverRelationsToutesTables@{trouverRelationsToutesTables}}
+\index{trouverRelationsToutesTables@{trouverRelationsToutesTables}!CExportDb@{CExportDb}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CExportDb::trouverRelationsToutesTables (\$ {\em v\_\-sTypeRel}, \/  \$ {\em v\_\-bRecursif} = {\tt FALSE})}\label{class_c_export_db_f186efe6376b388828dc6600f9dc64d1}
+
+
+Boucle secondaire de recherche des enregistrements à exporter, pour toutes les tables, dans le cadre d'un type de relation spécifique avec les autres tables (soit parent, soit enfant). 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em \$v\_\-sTypeRel}]si {\tt 'enfants'}, la recherche porte, pour les enregistrements exportés de chaque table, sur les enregistrements des autres tables qui les référencent. Si {\tt 'parents'}, elle porte sur les enregistrements des autres tables qui sont référencés par les exportés de chaque table traitée \item[{\em \$v\_\-bRecursif}]si {\tt true}, tous les enregistrements des tables enfants/parents de la table traitée sont cherchés et ramenés avant de passer à la table suivante dans la liste ({\tt false} par défaut)\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si de nouveaux enregistrements à exporter ont été trouvés et ajoutés pour une ou plusieurs tables \end{Desc}
+
+
+Références aEnregsAExporter(), et trouverRelationsTable().
+
+Référencé par trouverRelations().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/install/sql/export/{\bf export.php}\end{CompactItemize}

@@ -1,0 +1,22 @@
+\section{Référence du fichier src/lib/dom/dom-php4.class.php}
+\label{dom-php4_8class_8php}\index{src/lib/dom/dom-php4.class.php@{src/lib/dom/dom-php4.class.php}}
+
+
+\subsection{Description détaillée}
+Contient les classes d'encapsulation du DOM à utiliser en PHP 4, mais avec les noms de méthodes des classes DOM PHP 5. 
+
+Ces classes portent le même nom que les classes correspondantes en DOM PHP 5, précédé de la lettre C.
+
+Dans la mesure du possible, elles reproduisent les méthodes du DOM PHP 5 (nom, nombre de paramètres) en utilisant en interne la bibliothèque DOM XML de PHP 4. Cependant, certains paramètres sont ignorés si leur comportement ne peut être aisément reproduit en PHP 4, ou tout simplement si l'utilisation du DOM XML dans le projet Esprit ne les requiert pas; cela permet de ne pas récrire entièrement une version PHP 4 du DOM PHP 5.
+
+Les noms des paramètres ne respectent pas les conventions de noms utilisées habituellement dans nos projets, ils sont repris à l'identique de la documentation de DOM pour PHP 5. 
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class {\bf CDOMDocument}
+\begin{CompactList}\small\item\em Classe reproduisant en PHP 4 le comportement de la classe {\tt DOMDocument} de la bibliothèque DOM PHP 5. \item\end{CompactList}\item 
+class {\bf CDOMElement}
+\begin{CompactList}\small\item\em Classe reproduisant en PHP 4 le comportement de la classe {\tt DOMElement} de la bibliothèque DOM PHP 5. \item\end{CompactList}\item 
+class {\bf CDOMNode}
+\begin{CompactList}\small\item\em Classe reproduisant en PHP 4 le comportement de la classe {\tt DOMNode} de la bibliothèque DOM PHP 5. \item\end{CompactList}\end{CompactItemize}

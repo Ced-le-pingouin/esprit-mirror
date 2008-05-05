@@ -1,0 +1,96 @@
+\section{Référence de la classe IterateurDossier}
+\label{class_iterateur_dossier}\index{IterateurDossier@{IterateurDossier}}
+Graphe d'héritage de IterateurDossier::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3cm]{class_iterateur_dossier}
+\end{center}
+\end{figure}
+
+
+\subsection{Description détaillée}
+Classe d'itérateur permettant d'effectuer des itérations sur un dossier. 
+
+\begin{Desc}
+\item[Note:]Pour le moment, cet itérateur hérite directement d'IterateurTableau, car grâce à la fonction glob() de PHP, on peut directement ramener sous forme de tableau la liste des fichiers/dossiers d'un dossier, et donc se passer de opendir() et readdir(), qui auraient empêché une implémentation simple de \doxyref{prec()}{p.}{class_iterateur_tableau_84d965b9328bfe44d4ec1690d1a29d93}, ou de \doxyref{taille()}{p.}{class_iterateur_tableau_1f896455d8cfa594532eb1e904f78524} \end{Desc}
+\subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf aEnfants} ()
+\begin{CompactList}\small\item\em Voir \doxyref{IterateurComposite::aEnfants()}{p.}{class_iterateur_composite_1b161ee694a4b1acd98116fb012d971e}. \item\end{CompactList}\item 
+{\bf courant} ()\label{class_iterateur_dossier_7db55bc01316b3d40b69f89db9c7e8e2}
+
+\begin{CompactList}\small\item\em Voir \doxyref{Iterateur::courant()}{p.}{class_iterateur_525e78b4e7c5aec4cc4e8003ca9e730b}. \item\end{CompactList}\item 
+{\bf IterateurDossier} (\$v\_\-sChemin, \$v\_\-sFiltrePre= '$\ast$', \$v\_\-bTrier=FALSE, \$v\_\-bDossiersSeulement=FALSE)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf retFiltrePre} ()
+\begin{CompactList}\small\item\em Retourne le filtre passé au constructeur (ou celui par défaut). \item\end{CompactList}\item 
+{\bf retIterateurEnfants} ()\label{class_iterateur_dossier_79230eddbad712995bac8d4ca191b4fa}
+
+\begin{CompactList}\small\item\em Voir \doxyref{IterateurComposite::retIterateurEnfants()}{p.}{class_iterateur_composite_28ed7a32058cc305a1cfa152f37c387a}. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$bDossiersSeulement}\label{class_iterateur_dossier_e36b386e32e7fdde45c71b47c1bc8f2d}
+
+\begin{CompactList}\small\item\em Indique si on a demandé, à l'initialisation, à recevoir uniquement les dossiers. \item\end{CompactList}\item 
+{\bf \$bTrier}\label{class_iterateur_dossier_51567899a93616a6fbbd73a99dc23786}
+
+\begin{CompactList}\small\item\em L'indication du tri alphabétique demandé ou pas à l'initialisation de l'objet. \item\end{CompactList}\item 
+{\bf \$oDossier}\label{class_iterateur_dossier_d2aba6be38b58f996331f024a8fa669b}
+
+\begin{CompactList}\small\item\em L'objet \doxyref{FichierInfo}{p.}{class_fichier_info} qui représente le dossier dont le chemin a été passé en paramètre au constructeur. \item\end{CompactList}\item 
+{\bf \$oFichierCourant}\label{class_iterateur_dossier_51905c00b1716eceb2cce222a1603887}
+
+\begin{CompactList}\small\item\em L'objet \doxyref{FichierInfo}{p.}{class_fichier_info} qui représente l'élément courant de l'itérateur. \item\end{CompactList}\item 
+{\bf \$sFiltrePre}\label{class_iterateur_dossier_c88d80f5a8c2b3704f839b5f246fa72a}
+
+\begin{CompactList}\small\item\em La chaîne qui contient le filtre passé au constructeur pour restreindre la recherche des fichiers/dossiers. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{IterateurDossier@{IterateurDossier}!aEnfants@{aEnfants}}
+\index{aEnfants@{aEnfants}!IterateurDossier@{IterateurDossier}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDossier::aEnfants ()}\label{class_iterateur_dossier_6d994f8f279afa35b6c9494e4e6069d9}
+
+
+Voir \doxyref{IterateurComposite::aEnfants()}{p.}{class_iterateur_composite_1b161ee694a4b1acd98116fb012d971e}. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'élément courant représente un dossier, {\tt false} sinon \end{Desc}
+
+
+Réimplémentée à partir de {\bf IterateurTableau} \doxyref{}{p.}{class_iterateur_tableau_16772d44e071812de21916ad2c7ba07c}.
+
+Références courant().\index{IterateurDossier@{IterateurDossier}!IterateurDossier@{IterateurDossier}}
+\index{IterateurDossier@{IterateurDossier}!IterateurDossier@{IterateurDossier}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDossier::IterateurDossier (\$ {\em v\_\-sChemin}, \/  \$ {\em v\_\-sFiltrePre} = {\tt '$\ast$'}, \/  \$ {\em v\_\-bTrier} = {\tt FALSE}, \/  \$ {\em v\_\-bDossiersSeulement} = {\tt FALSE})}\label{class_iterateur_dossier_0a25ec1731e3c16ca6bf9ff8ba5a1371}
+
+
+Constructeur. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-sChemin}]le dossier sur lequel on effectuera l'itération \item[{\em v\_\-sFiltre}]le filtre à utiliser pour ne ramener que certains fichiers spécifiques. Ce filtre est celui utilisé par la fonction native PHP glob(). Par défaut, il comprend tous les fichiers/dossiers (apparemment les entrées dont le nom débute par un point ne sont pas prises en compte!!!) \item[{\em v\_\-bTrier}]indique si les entrées du dossier doivent être triées par ordre alphabétique ({\tt false} par défaut) \item[{\em v\_\-bDossiersSeulement}]indique si on désire uniquement itérer sur les sous-dossiers, et donc omettre les fichiers\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Note:]Contrairement aux filtres d'itérateurs (\doxyref{IterateurFiltre}{p.}{class_iterateur_filtre} et sous-classes), le filtre agit ici directement, avant que les éléments de l'itérateur ne soient trouvés, alors que les filtres d'itérateurs agissent pendant l'itération, pour déterminer à chaque élément s'il est accepté ou pas. \end{Desc}
+
+
+Références Erreur::provoquer().
+
+Référencé par retIterateurEnfants().\index{IterateurDossier@{IterateurDossier}!retFiltrePre@{retFiltrePre}}
+\index{retFiltrePre@{retFiltrePre}!IterateurDossier@{IterateurDossier}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}IterateurDossier::retFiltrePre ()}\label{class_iterateur_dossier_08c91ce6c0c9fee0f7ba8a520b56c997}
+
+
+Retourne le filtre passé au constructeur (ou celui par défaut). 
+
+\begin{Desc}
+\item[Renvoie:]le filtre passé au constructeur pour restreindre les fichiers/dossiers pris en compte par l'itérateur \end{Desc}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/lib/std/{\bf IterateurDossier.php}\end{CompactItemize}

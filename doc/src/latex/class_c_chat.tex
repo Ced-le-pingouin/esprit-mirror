@@ -1,0 +1,326 @@
+\section{Référence de la classe CChat}
+\label{class_c_chat}\index{CChat@{CChat}}
+
+
+\subsection{Description détaillée}
+Gestion des chats, et encapsulation de la table Chat de la DB. \subsection*{Fonctions membres publiques}
+\begin{CompactItemize}
+\item 
+{\bf ajouter} (\&\$v\_\-oObjNiveau)
+\begin{CompactList}\small\item\em Ajoute un chat dans la DB. \item\end{CompactList}\item 
+{\bf CChat} (\&\$v\_\-oBdd, \$v\_\-iId=NULL)
+\begin{CompactList}\small\item\em Constructeur. \item\end{CompactList}\item 
+{\bf copier} (\$v\_\-iNouvId)
+\begin{CompactList}\small\item\em Copie le chat courant d'un niveau vers un autre. \item\end{CompactList}\item 
+{\bf effacer} ()\label{class_c_chat_338e39571c8a049003b3ef0085350cc2}
+
+\begin{CompactList}\small\item\em Efface le chat de la DB. \item\end{CompactList}\item 
+{\bf effacerChats} (\&\$v\_\-oObjNiveau)
+\begin{CompactList}\small\item\em Efface tous les chats appartenant à un niveau. \item\end{CompactList}\item 
+{\bf enregistrer} ()\label{class_c_chat_7b5dcdc7a3ca6fdc8d345f2fcfce7fcf}
+
+\begin{CompactList}\small\item\em Met à jour l'enregistrement dans la DB. \item\end{CompactList}\item 
+{\bf init} (\$v\_\-oEnregExistant=NULL)\label{class_c_chat_b0fa875e8f7bf082185aed887ee66dbb}
+
+\begin{CompactList}\small\item\em Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir \doxyref{CPersonne::init()}{p.}{class_c_personne_edafe238c93dd959c7bf2b6f471839c1}. \item\end{CompactList}\item 
+{\bf initChats} (\&\$v\_\-oObjNiveau)
+\begin{CompactList}\small\item\em Initialise un tableau contenant la liste des chats de la sous-activité ou de la rubrique. \item\end{CompactList}\item 
+{\bf initParent} ()
+\begin{CompactList}\small\item\em Initialise {\tt oParent} avec un objet de type rubrique ou sous-activité. \item\end{CompactList}\item 
+{\bf peutEffacerArchives} (\$v\_\-iIdStatutUtilisateur)
+\begin{CompactList}\small\item\em Verifie si le statut donné peut effacer les archives des chats. \item\end{CompactList}\item 
+{\bf redistNumsOrdre} (\$v\_\-iAnciennePos, \$v\_\-iNouvellePos)
+\begin{CompactList}\small\item\em Redistribue les numéros d'ordre des chats. \item\end{CompactList}\item 
+{\bf remettreDelOrdre} ()\label{class_c_chat_d527ad94facf645a356c3d7ce4514c2d}
+
+\begin{CompactList}\small\item\em Enlève les trous dans les numéros d'ordre des chats. \item\end{CompactList}\item 
+{\bf retCouleurDefaut} ()
+\begin{CompactList}\small\item\em Retourne en français et en RVB la couleur par défaut d'un chat. \item\end{CompactList}\item 
+{\bf retIdNiveau} ()
+\begin{CompactList}\small\item\em Retourne soit l'id de la rubrique ou soit celui de la sous-activité parente. \item\end{CompactList}\item 
+{\bf retNombreChats} (\&\$v\_\-oObjNiveau)
+\begin{CompactList}\small\item\em Retourne le nombre de chats appartenant au niveau de la formation. \item\end{CompactList}\item 
+{\bf retNomCouleurDefaut} ()
+\begin{CompactList}\small\item\em Retourne en français la couleur par défaut(constante CHAT\_\-NOM\_\-COULEUR\_\-DEFAUT). \item\end{CompactList}\item 
+{\bf retNomDefaut} ()
+\begin{CompactList}\small\item\em Retourne le nom par défaut d'un chat(constante CHAT\_\-NOM\_\-DEFAUT). \item\end{CompactList}\item 
+{\bf retTypeNiveau} ()
+\begin{CompactList}\small\item\em Retourne la constante qui définit le niveau actuel, de la structure d'une formation (rubrique ou sous-activité). \item\end{CompactList}\item 
+{\bf retValeurCouleurDefaut} ()
+\begin{CompactList}\small\item\em Retourne la couleur en RVB par défaut d'un chat(constante CHAT\_\-RVB\_\-COULEUR\_\-DEFAUT). \item\end{CompactList}\end{CompactItemize}
+\begin{Indent}{\bf Fonctions de définition des champs pour ce chat}\par
+\begin{CompactItemize}
+\item 
+\textbf{defCouleur} (\$v\_\-sCouleurChat)\label{class_c_chat_c44bb8e3e98afe2b780dc6b5d7ae3385}
+
+\item 
+\textbf{defEnregConversation} (\$v\_\-bEnregChat)\label{class_c_chat_6db63ced1a459346c61333a94886e850}
+
+\item 
+\textbf{defIdSousActiv} (\$v\_\-iIdSousActiv)\label{class_c_chat_0ca291b2f87e5533efb9b49947a7cb2b}
+
+\item 
+\textbf{defModalite} (\$v\_\-bModaliteChat)\label{class_c_chat_7297023eedd091d7bc21a35c37382756}
+
+\item 
+\textbf{defNom} (\$v\_\-sNomChat)\label{class_c_chat_a5cb445c1bf8bf05d9f95e0a92a90177}
+
+\item 
+\textbf{defNumOrdre} (\$v\_\-iNouvellePos)\label{class_c_chat_3ab414f024366ecf6522109b0f51dcbb}
+
+\item 
+\textbf{defSalonPrive} (\$v\_\-bSalonPriveChat)\label{class_c_chat_0c0e9a063f23c9b2f0448b4e9a4103ec}
+
+\end{CompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Fonctions de lecture des champs pour ce chat}\par
+\begin{CompactItemize}
+\item 
+\textbf{retCouleur} ()\label{class_c_chat_6a8dfcde585fbaf7cc0462fd89a9d542}
+
+\item 
+\textbf{retEnregConversation} ()\label{class_c_chat_cf9c94c1b958fce152689b20f4818b15}
+
+\item 
+\textbf{retId} ()\label{class_c_chat_0c89158c9bbe8704a9ca57cffc70eb64}
+
+\item 
+\textbf{retIdRubrique} ()\label{class_c_chat_feb8e14f37c699449da6044f9ec497b4}
+
+\item 
+\textbf{retIdSousActiv} ()\label{class_c_chat_637a70fd2eccd3779069b86e261ce1c5}
+
+\item 
+\textbf{retModalite} (\$v\_\-bTransformer=FALSE)\label{class_c_chat_be672b4f3f993049106600fba69ef34f}
+
+\item 
+\textbf{retNom} (\$v\_\-sMode=NULL)\label{class_c_chat_d68bfbfe89d9b42d35f1ec61350f80d9}
+
+\item 
+\textbf{retNomCouleur} ()\label{class_c_chat_44ca44567c91061d6833c90db7651d89}
+
+\item 
+\textbf{retNumOrdre} ()\label{class_c_chat_f76519e2198dd7eacdc10bfb21c6f17b}
+
+\item 
+\textbf{retSalonPrive} ()\label{class_c_chat_b0b5ea58866a93d005dc1ce8efc09e34}
+
+\item 
+\textbf{retValeurCouleur} ()\label{class_c_chat_5b409f32f8db5dfa6219e9131e44888f}
+
+\end{CompactItemize}
+\end{Indent}
+\subsection*{Attributs publics}
+\begin{CompactItemize}
+\item 
+{\bf \$aoChats}\label{class_c_chat_468598e33a44d0692ec7d773a68c6305}
+
+\begin{CompactList}\small\item\em Tableau rempli par \doxyref{initChats()}{p.}{class_c_chat_e43873b31030053a15960336d173d88c}, contenant une liste de chats. \item\end{CompactList}\item 
+{\bf \$iId}\label{class_c_chat_ef7a3185c99da085555fa8cbd686d5e7}
+
+\begin{CompactList}\small\item\em Utilisé dans le constructeur, pour indiquer l'id du chat à récupérer dans la DB. \item\end{CompactList}\item 
+{\bf \$oBdd}\label{class_c_chat_0ea95f8d68494290c5c4ff49bc0e1fd5}
+
+\begin{CompactList}\small\item\em Objet représentant la connexion à la DB. \item\end{CompactList}\item 
+{\bf \$oEnregBdd}\label{class_c_chat_a00636bfc634f6724e9a59d1b0a3fc11}
+
+\begin{CompactList}\small\item\em Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. \item\end{CompactList}\item 
+{\bf \$oParent}\label{class_c_chat_b697ee9b20aca2b2ee367380171dae81}
+
+\begin{CompactList}\small\item\em Objet (de type \doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} ou \doxyref{CSousActiv}{p.}{class_c_sous_activ}) contenant le parent du chat. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Documentation des fonctions membres}
+\index{CChat@{CChat}!ajouter@{ajouter}}
+\index{ajouter@{ajouter}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::ajouter (\&\$ {\em v\_\-oObjNiveau})}\label{class_c_chat_7e4d2857fddf88bb74977e6ddf501644}
+
+
+Ajoute un chat dans la DB. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oObjNiveau}]objet (\doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} ou \doxyref{CSousActiv}{p.}{class_c_sous_activ}) du niveau auquel le chat appartient\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]l'id du nouveau chat \end{Desc}
+
+
+Références retNombreChats(), et retTypeNiveau().\index{CChat@{CChat}!CChat@{CChat}}
+\index{CChat@{CChat}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::CChat (\&\$ {\em v\_\-oBdd}, \/  \$ {\em v\_\-iId} = {\tt NULL})}\label{class_c_chat_4c57abb175cb4636c95af6fcb6587a5b}
+
+
+Constructeur. 
+
+Voir \doxyref{CPersonne::CPersonne()}{p.}{class_c_personne_874e728c1a2a3a9bc1d8a414fde97608} 
+
+Références init().
+
+Référencé par initChats().\index{CChat@{CChat}!copier@{copier}}
+\index{copier@{copier}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::copier (\$ {\em v\_\-iNouvId})}\label{class_c_chat_e5e483c21e3ce4d7d4ff1d01def5f65c}
+
+
+Copie le chat courant d'un niveau vers un autre. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iNouvId}]l'id du niveau de destination \end{description}
+\end{Desc}
+\index{CChat@{CChat}!effacerChats@{effacerChats}}
+\index{effacerChats@{effacerChats}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::effacerChats (\&\$ {\em v\_\-oObjNiveau})}\label{class_c_chat_030f3622a7ab1489379b6cc8749afdcf}
+
+
+Efface tous les chats appartenant à un niveau. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oObjNiveau}]objet (\doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} ou \doxyref{CSousActiv}{p.}{class_c_sous_activ}) du niveau auquel le chat appartient \end{description}
+\end{Desc}
+\index{CChat@{CChat}!initChats@{initChats}}
+\index{initChats@{initChats}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::initChats (\&\$ {\em v\_\-oObjNiveau})}\label{class_c_chat_e43873b31030053a15960336d173d88c}
+
+
+Initialise un tableau contenant la liste des chats de la sous-activité ou de la rubrique. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oObjNiveau}]objet (\doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} ou \doxyref{CSousActiv}{p.}{class_c_sous_activ}) du niveau auquel le chat appartient\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de chats insérés dans le tableau \end{Desc}
+
+
+Références CChat(), et retTypeNiveau().\index{CChat@{CChat}!initParent@{initParent}}
+\index{initParent@{initParent}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::initParent ()}\label{class_c_chat_98d23db4b0be6f6696274fb6e7767872}
+
+
+Initialise {\tt oParent} avec un objet de type rubrique ou sous-activité. 
+
+\begin{Desc}
+\item[Renvoie:]{\tt true} si l'objet a bien été initialisé \end{Desc}
+
+
+Références retIdNiveau(), et retTypeNiveau().\index{CChat@{CChat}!peutEffacerArchives@{peutEffacerArchives}}
+\index{peutEffacerArchives@{peutEffacerArchives}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::peutEffacerArchives (\$ {\em v\_\-iIdStatutUtilisateur})}\label{class_c_chat_d442a7fd8f223a3754bbca26e7fa1a5e}
+
+
+Verifie si le statut donné peut effacer les archives des chats. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iIdStatutUtilisateur}]l'id du statut de la personne\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]{\tt true} si le statut peut effacer les archives \end{Desc}
+\index{CChat@{CChat}!redistNumsOrdre@{redistNumsOrdre}}
+\index{redistNumsOrdre@{redistNumsOrdre}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::redistNumsOrdre (\$ {\em v\_\-iAnciennePos}, \/  \$ {\em v\_\-iNouvellePos})}\label{class_c_chat_6b1cd54eaf7028193e2776eb8686ab5c}
+
+
+Redistribue les numéros d'ordre des chats. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-iAnciennePos}]l'ancien numéro d'ordre du chat \item[{\em v\_\-iNouvellePos}]le nouveau numéro d'ordre du chat \end{description}
+\end{Desc}
+
+
+Références retTypeNiveau().\index{CChat@{CChat}!retCouleurDefaut@{retCouleurDefaut}}
+\index{retCouleurDefaut@{retCouleurDefaut}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retCouleurDefaut ()}\label{class_c_chat_3c0c2c0b4d38d4eb626dd0a694fbf4f6}
+
+
+Retourne en français et en RVB la couleur par défaut d'un chat. 
+
+\begin{Desc}
+\item[Renvoie:]en français et en RVB la couleur par défaut d'un chat \end{Desc}
+
+
+Références retNomCouleurDefaut(), et retValeurCouleurDefaut().\index{CChat@{CChat}!retIdNiveau@{retIdNiveau}}
+\index{retIdNiveau@{retIdNiveau}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retIdNiveau ()}\label{class_c_chat_6da7571fbd479ba793c0ca9f730f4c44}
+
+
+Retourne soit l'id de la rubrique ou soit celui de la sous-activité parente. 
+
+\begin{Desc}
+\item[Renvoie:]l'id du parent \end{Desc}
+
+
+Référencé par initParent().\index{CChat@{CChat}!retNombreChats@{retNombreChats}}
+\index{retNombreChats@{retNombreChats}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retNombreChats (\&\$ {\em v\_\-oObjNiveau})}\label{class_c_chat_d109876b46923a30d26bbc53540d1313}
+
+
+Retourne le nombre de chats appartenant au niveau de la formation. 
+
+\begin{Desc}
+\item[Paramètres:]
+\begin{description}
+\item[{\em v\_\-oObjNiveau}]objet (\doxyref{CModule\_\-Rubrique}{p.}{class_c_module___rubrique} ou \doxyref{CSousActiv}{p.}{class_c_sous_activ}) du niveau auquel le chat appartient\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Renvoie:]le nombre de chats \end{Desc}
+
+
+Références retTypeNiveau().
+
+Référencé par ajouter().\index{CChat@{CChat}!retNomCouleurDefaut@{retNomCouleurDefaut}}
+\index{retNomCouleurDefaut@{retNomCouleurDefaut}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retNomCouleurDefaut ()}\label{class_c_chat_67aba5b409c28fa9688f66d9c2fe8ba3}
+
+
+Retourne en français la couleur par défaut(constante CHAT\_\-NOM\_\-COULEUR\_\-DEFAUT). 
+
+\begin{Desc}
+\item[Renvoie:]en français la couleur par défaut \end{Desc}
+
+
+Référencé par retCouleurDefaut().\index{CChat@{CChat}!retNomDefaut@{retNomDefaut}}
+\index{retNomDefaut@{retNomDefaut}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retNomDefaut ()}\label{class_c_chat_d16dd0ee9b6c7ef97c136375fda449ab}
+
+
+Retourne le nom par défaut d'un chat(constante CHAT\_\-NOM\_\-DEFAUT). 
+
+\begin{Desc}
+\item[Renvoie:]le nom par défaut d'un chat \end{Desc}
+\index{CChat@{CChat}!retTypeNiveau@{retTypeNiveau}}
+\index{retTypeNiveau@{retTypeNiveau}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retTypeNiveau ()}\label{class_c_chat_a63f330dd2f8c0cd1be50b4f9bee02c0}
+
+
+Retourne la constante qui définit le niveau actuel, de la structure d'une formation (rubrique ou sous-activité). 
+
+\begin{Desc}
+\item[Renvoie:]la constante qui définit le niveau actuel, de la structure d'une formation \end{Desc}
+
+
+Référencé par ajouter(), initChats(), initParent(), redistNumsOrdre(), remettreDelOrdre(), et retNombreChats().\index{CChat@{CChat}!retValeurCouleurDefaut@{retValeurCouleurDefaut}}
+\index{retValeurCouleurDefaut@{retValeurCouleurDefaut}!CChat@{CChat}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}CChat::retValeurCouleurDefaut ()}\label{class_c_chat_300c7fb9a020c5e25ec17dacacb3a735}
+
+
+Retourne la couleur en RVB par défaut d'un chat(constante CHAT\_\-RVB\_\-COULEUR\_\-DEFAUT). 
+
+\begin{Desc}
+\item[Renvoie:]la couleur en RVB par défaut d'un chat \end{Desc}
+
+
+Référencé par retCouleurDefaut().
+
+La documentation de cette classe a été générée à partir du fichier suivant :\begin{CompactItemize}
+\item 
+src/database/{\bf chat.tbl.php}\end{CompactItemize}

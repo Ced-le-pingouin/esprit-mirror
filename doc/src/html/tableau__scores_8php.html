@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence du fichier src/admin/tableaubord/tableau_scores.php</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li><a href="classes.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence du fichier src/admin/tableaubord/tableau_scores.php</h1><hr><a name="_details"></a><h2>Description détaillée</h2>
+Affiche les scores des étudiants d'une activité en ligne de type auto-corrigé. 
+<p>
+<dl class="date" compact><dt><b>Date:</b></dt><dd>2006/11/30</dd></dl>
+<dl class="author" compact><dt><b>Auteur:</b></dt><dd>Jérôme TOUZE </dd></dl>
+
+<p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c8d9df4f59cc3a09252904ff589d972f"></a><!-- doxytag: member="tableau_scores.php::$aoListePropRep" ref="c8d9df4f59cc3a09252904ff589d972f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$aoListePropRep</b> = $oPropositionReponse-&gt;retListePropRep($oObjetFormulaire-&gt;retId())</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cfcc8cae8b3c856cb17a4867ee761592"></a><!-- doxytag: member="tableau_scores.php::$fScore" ref="cfcc8cae8b3c856cb17a4867ee761592" args="" -->
+else&nbsp;</td><td class="memItemRight" valign="bottom"><b>$fScore</b> = CalculerScore($iNbrePropRepCorrecte,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormul-&gt;retMethodeCorrection())</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ba2a35489dd8f5990af874621d51d5fe"></a><!-- doxytag: member="tableau_scores.php::$iIdReponseEtu" ref="ba2a35489dd8f5990af874621d51d5fe" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iIdReponseEtu</b> = retReponseEntier($oProjet-&gt;oBdd,$aoListeFC[$i]-&gt;IdFC,$oObjetFormulaire-&gt;retId())</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1835aae2c989884e936f03c5c1446978"></a><!-- doxytag: member="tableau_scores.php::$iNumeroQuestion" ref="1835aae2c989884e936f03c5c1446978" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iNumeroQuestion</b> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f49ce0f4de4e0ca3325c04e5cc4fae18"></a><!-- doxytag: member="tableau_scores.php::$iPourcentage" ref="f49ce0f4de4e0ca3325c04e5cc4fae18" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iPourcentage</b> = round(($aiScorePers[$i]/$iScoreMax)*100)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="84681fcc8744ae9f9c91f5c792104ef8"></a><!-- doxytag: member="tableau_scores.php::$iScoreMax" ref="84681fcc8744ae9f9c91f5c792104ef8" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$iScoreMax</b> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="adb77df1aee6a1d1af248c602aa8cd1c"></a><!-- doxytag: member="tableau_scores.php::$NbrePers" ref="adb77df1aee6a1d1af248c602aa8cd1c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$NbrePers</b> = count($aoListeFC)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6ba1de44898abe4888b37ee0c9614a39"></a><!-- doxytag: member="tableau_scores.php::$oBlocScores" ref="6ba1de44898abe4888b37ee0c9614a39" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oBlocScores</b> = new <a class="el" href="class_t_p_l___block.html">TPL_Block</a>(&quot;BLOCK_SCORES&quot;,$oBlocQuestions)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="114086c386b52b86afb024b53ed647fe"></a><!-- doxytag: member="tableau_scores.php::$oFC" ref="114086c386b52b86afb024b53ed647fe" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oFC</b> = $aoListeFC[$i]</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2945155ce2d28cb9fd90d9b31447a64d"></a><!-- doxytag: member="tableau_scores.php::$oFormul" ref="2945155ce2d28cb9fd90d9b31447a64d" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oFormul</b> = new <a class="el" href="class_c_formulaire.html">CFormulaire</a>($oProjet-&gt;oBdd,$v_iIdFormul)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="04ce7bd983f3808cf826a3eacd5c1c49"></a><!-- doxytag: member="tableau_scores.php::$oFormulComplete" ref="04ce7bd983f3808cf826a3eacd5c1c49" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oFormulComplete</b> = new <a class="el" href="class_c_formulaire_complete.html">CFormulaireComplete</a>($oProjet-&gt;oBdd)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ec412e7ac901485e72b77d2185159421"></a><!-- doxytag: member="tableau_scores.php::$oProjet" ref="ec412e7ac901485e72b77d2185159421" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oProjet</b> = new <a class="el" href="class_c_projet.html">CProjet</a>()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9d8d6c3032a74c6899fb9707f3fc23e0"></a><!-- doxytag: member="tableau_scores.php::$oPropositionReponse" ref="9d8d6c3032a74c6899fb9707f3fc23e0" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>$oPropositionReponse</b> = new <a class="el" href="class_c_proposition_reponse.html">CPropositionReponse</a>($oProjet-&gt;oBdd)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4e4b0658a95dd7eca2670bc084fd65b8"></a><!-- doxytag: member="tableau_scores.php::$v_iIdFormul" ref="4e4b0658a95dd7eca2670bc084fd65b8" args="" -->
+else&nbsp;</td><td class="memItemRight" valign="bottom"><b>$v_iIdFormul</b> = 0</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="986842749407fc12715451ab1b5e2535"></a><!-- doxytag: member="tableau_scores.php::__pad38__" ref="986842749407fc12715451ab1b5e2535" args="" -->
+default&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad38__</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f1cd14a2ab9d1487567c264239c2fb18"></a><!-- doxytag: member="tableau_scores.php::__pad39__" ref="f1cd14a2ab9d1487567c264239c2fb18" args="" -->
+default&nbsp;</td><td class="memItemRight" valign="bottom"><b>__pad39__</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="91cf6fbebedd86150a36e5ac3d5d3bfc"></a><!-- doxytag: member="tableau_scores.php::break" ref="91cf6fbebedd86150a36e5ac3d5d3bfc" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>break</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2278a16be518a3ddf4d0a315be97fc77"></a><!-- doxytag: member="tableau_scores.php::n" ref="2278a16be518a3ddf4d0a315be97fc77" args="" -->
+else print&nbsp;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="32be139a5154afa75b95b81a17242d51"></a><!-- doxytag: member="tableau_scores.php::OBJFORM_QCOCHER" ref="32be139a5154afa75b95b81a17242d51" args="" -->
+case&nbsp;</td><td class="memItemRight" valign="bottom"><b>OBJFORM_QCOCHER</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="256e65a67ed5add9d8619d7cacd225b6"></a><!-- doxytag: member="tableau_scores.php::OBJFORM_QNOMBRE" ref="256e65a67ed5add9d8619d7cacd225b6" args="" -->
+case&nbsp;</td><td class="memItemRight" valign="bottom"><b>OBJFORM_QNOMBRE</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7e7f00700a09fd01f0f653498c88a574"></a><!-- doxytag: member="tableau_scores.php::OBJFORM_QRADIO" ref="7e7f00700a09fd01f0f653498c88a574" args="" -->
+case&nbsp;</td><td class="memItemRight" valign="bottom"><b>OBJFORM_QRADIO</b></td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7086e52296f594ecab7aef00fe84038f"></a><!-- doxytag: member="tableau_scores.php::OBJFORM_QTEXTECOURT" ref="7086e52296f594ecab7aef00fe84038f" args="" -->
+case&nbsp;</td><td class="memItemRight" valign="bottom"><b>OBJFORM_QTEXTECOURT</b></td></tr>
+
+</table>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:02 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>

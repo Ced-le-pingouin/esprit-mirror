@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" identifier="Esprit-SCORM-2004" version="1.3" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>CAM 1.3</schemaversion>
+  </metadata>
+  <organizations default="ORG-1">
+    <organization identifier="ORG-1">
+      <title>Esprit</title>
+      <item identifier="FORM-186" identifierref="RES-1-186">
+        <title>Master UTICEF (sept2007)</title>
+        <item identifier="MOD-770" identifierref="RES-2-770">
+          <title>Analyse et conception des scénarios d'apprentissage</title>
+          <item identifier="RUB-3001" identifierref="RES-3-3001">
+            <title>Séparateur</title>
+          </item>
+          <item identifier="RUB-3002" identifierref="RES-3-3002">
+            <title>Informations générales et FAQ (Forum)</title>
+          </item>
+          <item identifier="RUB-3003" identifierref="RES-3-3003">
+            <title>Salon de discussion synchrone (Chat)</title>
+          </item>
+          <item identifier="RUB-3058" identifierref="RES-3-3058">
+            <title>Séparateur</title>
+          </item>
+          <item identifier="RUB-3004" identifierref="RES-3-3004">
+            <title>Prise en main de la plateforme Esprit</title>
+            <item identifier="ACTIV-4723" identifierref="RES-5-4723">
+              <title>Présentation de l'unité</title>
+              <item identifier="SOUSACTIV-10964" identifierref="RES-6-10964">
+                <title>Bienvenue</title>
+              </item>
+              <item identifier="SOUSACTIV-10965" identifierref="RES-6-10965">
+                <title>Manuel de l'utilisateur</title>
+              </item>
+            </item>
+          </item>
+          <item identifier="RUB-3005" identifierref="RES-3-3005">
+            <title>Analyse et conception des scénarios d'apprentissage</title>
+            <item identifier="ACTIV-4724" identifierref="RES-5-4724">
+              <title>Cours</title>
+              <item identifier="SOUSACTIV-10966" identifierref="RES-6-10966">
+                <title>Bienvenue</title>
+              </item>
+              <item identifier="SOUSACTIV-10968" identifierref="RES-6-10968">
+                <title>Prendre connaissance du contenu du cours</title>
+              </item>
+            </item>
+            <item identifier="ACTIV-4725" identifierref="RES-5-4725">
+              <title>Activité 1 : Appropriation des contenus (Galanet)</title>
+              <item identifier="SOUSACTIV-10969" identifierref="RES-6-10969">
+                <title>Consignes</title>
+              </item>
+              <item identifier="SOUSACTIV-10970" identifierref="RES-6-10970">
+                <title>1. Descriptif du scénario</title>
+              </item>
+              <item identifier="SOUSACTIV-10971" identifierref="RES-6-10971">
+                <title>2. Diagramme d'activité</title>
+              </item>
+              <item identifier="SOUSACTIV-10972" identifierref="RES-6-10972">
+                <title>3. Tableau de spécification</title>
+              </item>
+              <item identifier="SOUSACTIV-10973" identifierref="RES-6-10973">
+                <title>4. Analyse du scénario</title>
+              </item>
+              <item identifier="SOUSACTIV-10974" identifierref="RES-6-10974">
+                <title>Forum du groupe</title>
+              </item>
+            </item>
+            <item identifier="ACTIV-4726" identifierref="RES-5-4726">
+              <title>Activité 2 : Application (Psycho educ)</title>
+              <item identifier="SOUSACTIV-10975" identifierref="RES-6-10975">
+                <title>Consignes et collecticiel</title>
+              </item>
+              <item identifier="SOUSACTIV-10976" identifierref="RES-6-10976">
+                <title>Forum d'équipe</title>
+              </item>
+              <item identifier="SOUSACTIV-10977" identifierref="RES-6-10977">
+                <title>Chat d'équipe</title>
+              </item>
+              <item identifier="SOUSACTIV-11164" identifierref="RES-6-11164">
+                <title>Galerie des travaux d'équipe</title>
+              </item>
+              <item identifier="SOUSACTIV-10978" identifierref="RES-6-10978">
+                <title>Tableau de bord</title>
+              </item>
+            </item>
+            <item identifier="ACTIV-4727" identifierref="RES-5-4727">
+              <title>Activité 3 : Transfert (Projet personnel)</title>
+              <item identifier="SOUSACTIV-10979" identifierref="RES-6-10979">
+                <title>Consignes et collecticiel</title>
+              </item>
+              <item identifier="SOUSACTIV-10980" identifierref="RES-6-10980">
+                <title>Galerie des travaux</title>
+              </item>
+              <item identifier="SOUSACTIV-10981" identifierref="RES-6-10981">
+                <title>Tableau de bord</title>
+              </item>
+            </item>
+          </item>
+          <item identifier="RUB-3006" identifierref="RES-3-3006">
+            <title>Bilan et évaluation du séminaire</title>
+            <item identifier="ACTIV-4728" identifierref="RES-5-4728">
+              <title>Bilan et évaluation du séminaire</title>
+              <item identifier="SOUSACTIV-10982" identifierref="RES-6-10982">
+                <title>Questionnaire aux apprennants</title>
+              </item>
+              <item identifier="SOUSACTIV-10983" identifierref="RES-6-10983">
+                <title>Tableau de bord</title>
+              </item>
+              <item identifier="SOUSACTIV-10984" identifierref="RES-6-10984">
+                <title>Rapport d'évaluation (24 juin)</title>
+              </item>
+            </item>
+          </item>
+          <item identifier="RUB-3007" identifierref="RES-3-3007">
+            <title>Foire aux questions</title>
+          </item>
+          <item identifier="RUB-3008" identifierref="RES-3-3008">
+            <title>Syllabus du cours pour impression (Version .doc zippée)</title>
+          </item>
+          <item identifier="RUB-3009" identifierref="RES-3-3009">
+            <title>Cours en Format HTML compressé avec ZIP</title>
+          </item>
+          <item identifier="RUB-3056" identifierref="RES-3-3056">
+            <title>Unité sans nom</title>
+          </item>
+        </item>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-1-186" type="webcontent" adlcp:scormType="asset" href="fichiers/res-1-186.html">
+      <file href="fichiers/res-1-186.html"/>
+    </resource>
+    <resource identifier="RES-2-770" type="webcontent" adlcp:scormType="asset" href="fichiers/res-2-770.html">
+      <file href="fichiers/res-2-770.html"/>
+    </resource>
+    <resource identifier="RES-RUB-FORM-186" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-3-3001" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3001.html">
+      <file href="fichiers/rubriques/res-3-3001.html"/>
+    </resource>
+    <resource identifier="RES-3-3002" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3002.html">
+      <file href="fichiers/rubriques/res-3-3002.html"/>
+    </resource>
+    <resource identifier="RES-3-3003" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3003.html">
+      <file href="fichiers/rubriques/res-3-3003.html"/>
+    </resource>
+    <resource identifier="RES-3-3058" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3058.html">
+      <file href="fichiers/rubriques/res-3-3058.html"/>
+    </resource>
+    <resource identifier="RES-3-3004" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3004.html">
+      <file href="fichiers/rubriques/res-3-3004.html"/>
+    </resource>
+    <resource identifier="RES-5-4723" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4723/res-5-4723.html">
+      <file href="fichiers/activ_4723/res-5-4723.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4723" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10964" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4723/res-6-10964.html">
+      <file href="fichiers/activ_4723/res-6-10964.html"/>
+    </resource>
+    <resource identifier="RES-6-10965" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4723/Esprit-manuel-utilisation.doc">
+      <dependency identifierref="RES-ACTIV-4723"/>
+    </resource>
+    <resource identifier="RES-3-3005" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3005.html">
+      <file href="fichiers/rubriques/res-3-3005.html"/>
+    </resource>
+    <resource identifier="RES-5-4724" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4724/res-5-4724.html">
+      <file href="fichiers/activ_4724/res-5-4724.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4724" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10966" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4724/res-6-10966.html">
+      <file href="fichiers/activ_4724/res-6-10966.html"/>
+    </resource>
+    <resource identifier="RES-6-10968" type="webcontent" adlcp:scormType="asset" href="http://ute2.umh.ac.be/uticef/master/2006/mXXX/"/>
+    <resource identifier="RES-5-4725" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/res-5-4725.html">
+      <file href="fichiers/activ_4725/res-5-4725.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4725" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10969" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/res-6-10969.html">
+      <file href="fichiers/activ_4725/res-6-10969.html"/>
+    </resource>
+    <resource identifier="RES-6-10970" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/Scénario2_Galanet.rtf">
+      <dependency identifierref="RES-ACTIV-4725"/>
+    </resource>
+    <resource identifier="RES-6-10971" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/Diagramme-activité2-1.jpg">
+      <dependency identifierref="RES-ACTIV-4725"/>
+    </resource>
+    <resource identifier="RES-6-10972" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/Tableau_spécification.rtf">
+      <dependency identifierref="RES-ACTIV-4725"/>
+    </resource>
+    <resource identifier="RES-6-10973" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/ac1.pdf">
+      <dependency identifierref="RES-ACTIV-4725"/>
+    </resource>
+    <resource identifier="RES-6-10974" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4725/res-6-10974.html">
+      <file href="fichiers/activ_4725/res-6-10974.html"/>
+    </resource>
+    <resource identifier="RES-5-4726" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-5-4726.html">
+      <file href="fichiers/activ_4726/res-5-4726.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4726" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10975" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-6-10975.html">
+      <file href="fichiers/activ_4726/res-6-10975.html"/>
+      <dependency identifierref="RES-ACTIV-4726"/>
+    </resource>
+    <resource identifier="RES-6-10976" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-6-10976.html">
+      <file href="fichiers/activ_4726/res-6-10976.html"/>
+    </resource>
+    <resource identifier="RES-6-10977" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-6-10977.html">
+      <file href="fichiers/activ_4726/res-6-10977.html"/>
+    </resource>
+    <resource identifier="RES-6-11164" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-6-11164.html">
+      <file href="fichiers/activ_4726/res-6-11164.html"/>
+    </resource>
+    <resource identifier="RES-6-10978" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4726/res-6-10978.html">
+      <file href="fichiers/activ_4726/res-6-10978.html"/>
+    </resource>
+    <resource identifier="RES-5-4727" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4727/res-5-4727.html">
+      <file href="fichiers/activ_4727/res-5-4727.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4727" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10979" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4727/res-6-10979.html">
+      <file href="fichiers/activ_4727/res-6-10979.html"/>
+      <dependency identifierref="RES-ACTIV-4727"/>
+    </resource>
+    <resource identifier="RES-6-10980" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4727/res-6-10980.html">
+      <file href="fichiers/activ_4727/res-6-10980.html"/>
+    </resource>
+    <resource identifier="RES-6-10981" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4727/res-6-10981.html">
+      <file href="fichiers/activ_4727/res-6-10981.html"/>
+    </resource>
+    <resource identifier="RES-3-3006" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3006.html">
+      <file href="fichiers/rubriques/res-3-3006.html"/>
+    </resource>
+    <resource identifier="RES-5-4728" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4728/res-5-4728.html">
+      <file href="fichiers/activ_4728/res-5-4728.html"/>
+    </resource>
+    <resource identifier="RES-ACTIV-4728" type="webcontent" adlcp:scormType="asset"/>
+    <resource identifier="RES-6-10982" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4728/res-6-10982.html">
+      <file href="fichiers/activ_4728/res-6-10982.html"/>
+    </resource>
+    <resource identifier="RES-6-10983" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4728/res-6-10983.html">
+      <file href="fichiers/activ_4728/res-6-10983.html"/>
+    </resource>
+    <resource identifier="RES-6-10984" type="webcontent" adlcp:scormType="asset" href="fichiers/activ_4728/Evaluation du séminaire.doc">
+      <dependency identifierref="RES-ACTIV-4728"/>
+    </resource>
+    <resource identifier="RES-3-3007" type="webcontent" adlcp:scormType="asset" href="http://ute2.umh.ac.be%2Fdutice%2Fuv3b%2Ffaq-2.htm:2"/>
+    <resource identifier="RES-3-3008" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/mScénarisation.zip:2">
+      <dependency identifierref="RES-RUB-FORM-186"/>
+    </resource>
+    <resource identifier="RES-3-3009" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/Mxxx.zip:2">
+      <dependency identifierref="RES-RUB-FORM-186"/>
+    </resource>
+    <resource identifier="RES-3-3056" type="webcontent" adlcp:scormType="asset" href="fichiers/rubriques/res-3-3056.html">
+      <file href="fichiers/rubriques/res-3-3056.html"/>
+    </resource>
+  </resources>
+</manifest>

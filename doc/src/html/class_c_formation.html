@@ -1,0 +1,1861 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Esprit: Référence de la classe CFormation</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css">
+<link href="tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+<!-- Généré par Doxygen 1.5.5 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="index.html"><span>Page&nbsp;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&nbsp;associées</span></a></li>
+      <li class="current"><a href="classes.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Fichiers</span></a></li>
+    </ul>
+  </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="classes.html"><span>Liste&nbsp;alphabétique</span></a></li>
+      <li><a href="annotated.html"><span>Liste&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="hierarchy.html"><span>Hiérarchie&nbsp;des&nbsp;classes</span></a></li>
+      <li><a href="functions.html"><span>Membres&nbsp;de&nbsp;classe</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="contents">
+<h1>Référence de la classe CFormation</h1><!-- doxytag: class="CFormation" -->
+<p>
+<a href="class_c_formation-members.html">Liste de tous les membres</a><hr><a name="_details"></a><h2>Description détaillée</h2>
+Gestion des formations, et encapsulation de la table Formation de la DB. <table border="0" cellpadding="0" cellspacing="0">
+<tr><td></td></tr>
+<tr><td colspan="2"><br><h2>Fonctions membres publiques</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#55b20ed07e80593260d99a9521254d0b">accessibleVisiteurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'autorisation d'accès des visiteurs à la formation.  <a href="#55b20ed07e80593260d99a9521254d0b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#ccb580cc4e12bfe8577fbc4ab2645b3f">ajouter</a> ($v_sNomForm=NULL, $v_sDescrForm=NULL, $v_iInscrSpontForm=1, $v_iIdPers=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une nouvelle formation.  <a href="#ccb580cc4e12bfe8577fbc4ab2645b3f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#cf5af63b05eafadd78edf6225f702600">ajouterElementsGlossaire</a> ($v_iIdGlossaire, $v_aiIdsElementsGlossaire)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#9a2022237e2d7fcd9da7d824827414a1">ajouterGlossaire</a> ($v_sTitreGlossaire, $v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute un nouveau glossaire à la formation.  <a href="#9a2022237e2d7fcd9da7d824827414a1"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#c5496dbd135b83c895687a162555049c">associerResponsable</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute la personne qui vient de créer une nouvelle formation dans la table des reponsables de formation.  <a href="#c5496dbd135b83c895687a162555049c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#a50327147e8a776029c2adb6f79875b6">CFormation</a> (&amp;$v_oBdd, $v_iIdForm=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructeur.  <a href="#a50327147e8a776029c2adb6f79875b6"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#acb26747c6e60b3adf6b603d1cb4aade">copier</a> ($v_bRecursive=TRUE, $v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie la formation courante vers une autre.  <a href="#acb26747c6e60b3adf6b603d1cb4aade"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#d68bbda8d745c18198276045f6f94b73">copierFormation</a> ($v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Ajoute une copie de la formation actuelle dans la DB.  <a href="#d68bbda8d745c18198276045f6f94b73"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#e3c0411d6f8ec24261103cf981aefe27">copierModules</a> ($v_iIdForm, $v_sExportation=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copie tous les modules de la formation courante dans une autre.  <a href="#e3c0411d6f8ec24261103cf981aefe27"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#6e5c75c2f8330e588515a3d3f2b8423b">defTrier</a> ($v_sNomChamps=NULL, $v_sSensTri=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Definit la variable du tri.  <a href="#6e5c75c2f8330e588515a3d3f2b8423b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#dce106040a4d750491933cb292dadba7">defTrierParAnnee</a> ($v_dDebut, $v_dFin)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permet d'ajouter à la variable <code>tri</code> un espace temporel (une selection entre 2 dates).  <a href="#dce106040a4d750491933cb292dadba7"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#629c1d925c5d368e2f78cbce5f11e429">defTrierParType</a> ($v_iSensTri=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise la variable <code>tri</code> avec un tri sur le type de formation (GROUP BY TypeForm) et lui ajoute son sens.  <a href="#629c1d925c5d368e2f78cbce5f11e429"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#98ece51392a41dbb2fe008d2d48cd9b5">defVisiteurAutoriser</a> ($v_bAutoriserVisiteur)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permet de définir l'accès au visiteur de la formation.  <a href="#98ece51392a41dbb2fe008d2d48cd9b5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="4319ead687668830c8d6c411b4f3e9bf"></a><!-- doxytag: member="CFormation::detruire" ref="4319ead687668830c8d6c411b4f3e9bf" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#4319ead687668830c8d6c411b4f3e9bf">detruire</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface les valeurs contenues dans <code>iId</code>, <code>oBdd</code>, <code>oEnregBdd</code>, <code>aoFormations</code>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#b72452812fa8a34e7c15b2515eb4720b">effacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface la totalité d'une formation.  <a href="#b72452812fa8a34e7c15b2515eb4720b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ede561c81b286666e233aabd2c0f3282"></a><!-- doxytag: member="CFormation::effacerConcepteurs" ref="ede561c81b286666e233aabd2c0f3282" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#ede561c81b286666e233aabd2c0f3282">effacerConcepteurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les concepterus(Table Formation_Concepteur) de la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#d12a12375432b343eb3647dcc8836f4b">effacerElementsGlossaire</a> ($v_iIdGlossaire)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="99b07552b380072f7518773180ae64e3"></a><!-- doxytag: member="CFormation::effacerEquipes" ref="99b07552b380072f7518773180ae64e3" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#99b07552b380072f7518773180ae64e3">effacerEquipes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface toutes les équipes d'une formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="395fc95af6428a2ee4f259c9e32162ed"></a><!-- doxytag: member="CFormation::effacerEtudiants" ref="395fc95af6428a2ee4f259c9e32162ed" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#395fc95af6428a2ee4f259c9e32162ed">effacerEtudiants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les étudiants(Table Formation_Inscrit) de la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="52756f322aa3c2e059fca796391ce8d0"></a><!-- doxytag: member="CFormation::effacerEvenements" ref="52756f322aa3c2e059fca796391ce8d0" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#52756f322aa3c2e059fca796391ce8d0">effacerEvenements</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les évenements relatifs à la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="18dc01861a14254d832cc79ea8196310"></a><!-- doxytag: member="CFormation::effacerFormation" ref="18dc01861a14254d832cc79ea8196310" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#18dc01861a14254d832cc79ea8196310">effacerFormation</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface la formation dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#7d38f7a765163f4257438d82ee2dcfa3">effacerLogiquement</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface logiquement une formation, elle peut etre ensuite effacé physiquement (<a class="el" href="class_c_formation.html#b72452812fa8a34e7c15b2515eb4720b" title="Efface la totalité d&#39;une formation.">CFormation::effacer</a> ).  <a href="#7d38f7a765163f4257438d82ee2dcfa3"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#8819ba584d1dee7618ee36533bff3b2e">effacerModelesEquipes</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="1664847d0205f124301b111bdc1da78c"></a><!-- doxytag: member="CFormation::effacerModules" ref="1664847d0205f124301b111bdc1da78c" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#1664847d0205f124301b111bdc1da78c">effacerModules</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les modules de la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="745a899a556e70d195b41060ea7eee57"></a><!-- doxytag: member="CFormation::effacerResponsables" ref="745a899a556e70d195b41060ea7eee57" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#745a899a556e70d195b41060ea7eee57">effacerResponsables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les responsables(Table Formation_Resp) de la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="df15eb43f88bb06e080869c3b1b324ba"></a><!-- doxytag: member="CFormation::effacerTuteurs" ref="df15eb43f88bb06e080869c3b1b324ba" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#df15eb43f88bb06e080869c3b1b324ba">effacerTuteurs</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Efface tous les tuteurs(Table Formation_Tuteur) de la formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="defaca528af3041b7706264eeafcc16f"></a><!-- doxytag: member="CFormation::init" ref="defaca528af3041b7706264eeafcc16f" args="($v_oEnregExistant=NULL)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#defaca528af3041b7706264eeafcc16f">init</a> ($v_oEnregExistant=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise l'objet avec un enregistrement de la DB ou un objet PHP existant représentant un tel enregistrement Voir <a class="el" href="class_c_personne.html#edafe238c93dd959c7bf2b6f471839c1" title="Initialise l&#39;objet avec un enregistrement de la DB ou un objet PHP existant représentant...">CPersonne::init()</a>. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9ee85fec3017fcbd87b103e5900275ba"></a><!-- doxytag: member="CFormation::initAuteur" ref="9ee85fec3017fcbd87b103e5900275ba" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#9ee85fec3017fcbd87b103e5900275ba">initAuteur</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise les informations de la personne qui a créé cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#d474876080326603e0600514ac769fc4">initConcepteurs</a> ($v_sModeTri=&quot;ASC&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette formation.  <a href="#d474876080326603e0600514ac769fc4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#b65ac7acc92dd1f46ab9cef556e44759">initElementsGlossaire</a> ($v_iIdGlossaire=NULL)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#508a24593b84f28e9d37ccc2d9450761">initEquipes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant les équipes relatives à la formation, et initialise également les membres de chaque équipe.  <a href="#508a24593b84f28e9d37ccc2d9450761"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#035f19512438c556ab03dcaf5d3c7739">initFormations</a> ($v_bAdministrateur=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant toutes les formations.  <a href="#035f19512438c556ab03dcaf5d3c7739"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#25cbd17010a974fefb37950eea69691c">initFormationsEffacer</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant toutes les formations ayant le statut effacé.  <a href="#25cbd17010a974fefb37950eea69691c"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#6b445391175e1048bd2c9f3433041a6a">initFormationsPourCopie</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant toutes les formations ayant le statut ouvert ou fermé, il n'insère que les formations dont la personne est responsable.  <a href="#6b445391175e1048bd2c9f3433041a6a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#289e2ecae2a504d71ee31b76dfbcbecf">initGlossaires</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant la liste des glossaires appartenant à une formation.  <a href="#289e2ecae2a504d71ee31b76dfbcbecf"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#0519d2b0707518dd60645415563b0245">initInscrits</a> ($v_sModeTri=&quot;ASC&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau avec les étudiants inscrits à la formation.  <a href="#0519d2b0707518dd60645415563b0245"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#bd47962db5bab288716d29387db608b9">initMembres</a> ($v_bAppartenirEquipe=TRUE, $v_iSensTri=<a class="el" href="plate__forme_8class_8php.html#48be3f480c9ef331adfac4ea499a830e">TRI_CROISSANT</a>)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant soit les personnes inscrites dans une équipe de cette formation, soit les personnes inscrites à cette formation qui ne font partie d'aucune équipe.  <a href="#bd47962db5bab288716d29387db608b9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#bbff454bf8b77c81dc6772891e5360f4">initModuleCourant</a> ($v_iIdModule=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise le module courant (<code>oModuleCourant</code>) de la formation.  <a href="#bbff454bf8b77c81dc6772891e5360f4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#08f9e23de168fbb81375535fb9f670ad">initModules</a> ($v_iIdPers=0, $v_iIdStatutUtilisateur=NULL, $v_bRechStricte=FALSE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant la liste des modules de la formation.  <a href="#08f9e23de168fbb81375535fb9f670ad"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#b74434748558448a71db54c562a6a3eb">initResponsables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau avec les responsables (Formation_Resp) de la formation.  <a href="#b74434748558448a71db54c562a6a3eb"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#872546f9180c339fd2c8c318680a312b">initTuteurs</a> ($v_sModeTri=&quot;ASC&quot;)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Initialise un tableau contenant tous les tuteurs inscrits aux cours de cette formation.  <a href="#872546f9180c339fd2c8c318680a312b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#497c2b4f87285874926d17ea67f29ec0">mettre_a_jour</a> ($v_sNomChamp, $v_mValeurChamp, $v_iIdForm=0)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Met à jour un champ de la table formation.  <a href="#497c2b4f87285874926d17ea67f29ec0"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d257a3c8868ba9d458b6ac4da08b476a"></a><!-- doxytag: member="CFormation::rafraichir" ref="d257a3c8868ba9d458b6ac4da08b476a" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#d257a3c8868ba9d458b6ac4da08b476a">rafraichir</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Réinitialise l'objet <code>oEnregBdd</code> avec la formation courante. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#a87eef621ebeceded9b129c12c924489">redistNumsOrdre</a> ($v_iNouveauNumOrdre=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Redistribue les numéros d'ordre des formations.  <a href="#a87eef621ebeceded9b129c12c924489"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#2fd3805ad05f7a99b6f5f95b2c21a37e">retDossier</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#679413c579a148c1eac4e902677f3ce3">retDossierFormations</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c50929494c831909a1b9b3f8f3ced680"></a><!-- doxytag: member="CFormation::retElementsEnfants" ref="c50929494c831909a1b9b3f8f3ced680" args="()" -->
+&amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#c50929494c831909a1b9b3f8f3ced680">retElementsEnfants</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne (après les avoir initialisés si nécessaire) les éléments enfants de la formation, càd les modules. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#5895515d108fddbc27755f0dba8225fe">retIdFormPrecedente</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne l'id de la formation précédant celle-ci.  <a href="#5895515d108fddbc27755f0dba8225fe"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#e5eb50b9debb45792cf1051c8071c98f">retListeStatuts</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la liste des statuts disponibles pour une formation.  <a href="#e5eb50b9debb45792cf1051c8071c98f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#3ec876d0e07ef847fa38149a6a6b6dca">retNombreLignes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permet de connaître le nombre de formation effacée logiquement.  <a href="#3ec876d0e07ef847fa38149a6a6b6dca"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#f0cc64a2e830c01a1759ba2dd8cad0dd">retNomParDefaut</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le nom par défaut d'une formation.  <a href="#f0cc64a2e830c01a1759ba2dd8cad0dd"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#e7b75af2098dbde5d4fdbbc13ab8aa0b">retNumOrdreMax</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Permet de connaitre le numero d'ordre maximum des formations.  <a href="#e7b75af2098dbde5d4fdbbc13ab8aa0b"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#5a6f51bbaf9ae2cac1414a14d1e26881">retStatutHautUtilisateur</a> ($v_iIdPers, $v_iStatutActuelUtilisateur=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne le plus haut statut que la personne peut avoir dans la formation.  <a href="#5a6f51bbaf9ae2cac1414a14d1e26881"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#ee81927887297ce9ea71e2d83b46e848">retStatutsUtilisateur</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau contenant tous les statuts possibles de la personne dans cette formation.  <a href="#ee81927887297ce9ea71e2d83b46e848"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#bf5f59e5f72913425a669012e4a37e1b">retTexteNiveau</a> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#65e372aaf8de5f95859ce4ad6c58d81f">retTrier</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne la variable tri.  <a href="#65e372aaf8de5f95859ce4ad6c58d81f"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="97f35f03fb2bed6c65d7aafc72f3d575"></a><!-- doxytag: member="CFormation::retTypeNiveau" ref="97f35f03fb2bed6c65d7aafc72f3d575" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retTypeNiveau</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#37c52316496b53a206b8bacb5ccd73c5">retTypes</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne un tableau à 2 dimensions contenant l'intitulé d'une formation.  <a href="#37c52316496b53a206b8bacb5ccd73c5"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#b342ddf981681b9d248b666984931459">retValeurMax</a> ($v_iChamp)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retourne soit le numero d'ordre maximum ou soit le type maximum des formations.  <a href="#b342ddf981681b9d248b666984931459"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#932f9d5f1cf14bb586b289023c5a0e52">verifConcepteur</a> ($v_iIdPers, $v_bAuMoinsUnCours=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si la personne est concepteur de cours de cette formation.  <a href="#932f9d5f1cf14bb586b289023c5a0e52"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#442e815074e097e2ccb9187d37548539">verifEquipe</a> ($v_iIdEquipe, $v_iIdPers=NULL)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si une équipe à déja déposé un ou plusieurs documents.  <a href="#442e815074e097e2ccb9187d37548539"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#7579ab63933977218e9ee908325b5ea9">verifEtudiant</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si la personne est étudiante de cette formation.  <a href="#7579ab63933977218e9ee908325b5ea9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#197d068f64cb15d1d2ff0dfb4284aee4">verifResponsable</a> ($v_iIdPers)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si la personne est responsable de cette formation.  <a href="#197d068f64cb15d1d2ff0dfb4284aee4"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#fb9ba5234e029f1668985b8d29aa4ff9">verifTuteur</a> ($v_iIdPers, $v_bAuMoinsUnCours=TRUE)</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vérifie si la personne est tuteur de cours de cette formation.  <a href="#fb9ba5234e029f1668985b8d29aa4ff9"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="07cb5c7ecb8cd6a22525e8aa9a82832e"></a><!-- doxytag: member="CFormation::verrouillerTables" ref="07cb5c7ecb8cd6a22525e8aa9a82832e" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#07cb5c7ecb8cd6a22525e8aa9a82832e">verrouillerTables</a> ()</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Verrouille les tables en relation avec la table Formation. <br></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Fonctions de définition des champs pour cette formation</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="56647b90f9655a70f88a6c98fd7d0cb7"></a><!-- doxytag: member="CFormation::defDescr" ref="56647b90f9655a70f88a6c98fd7d0cb7" args="($v_sDescrForm)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defDescr</b> ($v_sDescrForm)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e9a5d2e20a7e45ae26bfed09fa4a5191"></a><!-- doxytag: member="CFormation::defIdPers" ref="e9a5d2e20a7e45ae26bfed09fa4a5191" args="($v_iIdPers)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defIdPers</b> ($v_iIdPers)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a3a93f2a88f6829e599ac405639f5f3c"></a><!-- doxytag: member="CFormation::defInscrAutoModules" ref="a3a93f2a88f6829e599ac405639f5f3c" args="($v_bInscrAutoModules=TRUE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defInscrAutoModules</b> ($v_bInscrAutoModules=TRUE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="d8f7a17ec8fb48fb4f257e1ec7a3193d"></a><!-- doxytag: member="CFormation::defNom" ref="d8f7a17ec8fb48fb4f257e1ec7a3193d" args="($v_sNomForm)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNom</b> ($v_sNomForm)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="deacb7ebc65031608e31bb160a8490f6"></a><!-- doxytag: member="CFormation::defNumOrdre" ref="deacb7ebc65031608e31bb160a8490f6" args="($v_iNumOrdre)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defNumOrdre</b> ($v_iNumOrdre)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7fb545504e31dcd97eaa4d548978d990"></a><!-- doxytag: member="CFormation::defStatut" ref="7fb545504e31dcd97eaa4d548978d990" args="($v_iStatut)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defStatut</b> ($v_iStatut)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="24cc84515ea3c255dd25425369c5a784"></a><!-- doxytag: member="CFormation::defType" ref="24cc84515ea3c255dd25425369c5a784" args="($v_iType)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>defType</b> ($v_iType)</td></tr>
+
+<tr><td colspan="2"><div class="groupHeader">Fonctions de lecture des champs pour cette formation</div></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="2d0ea5a51d4a3ed13010839e8426ab1f"></a><!-- doxytag: member="CFormation::retDateDeb" ref="2d0ea5a51d4a3ed13010839e8426ab1f" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateDeb</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="3cbc0b0c591fced2c1f19f65eaaf8410"></a><!-- doxytag: member="CFormation::retDateFin" ref="3cbc0b0c591fced2c1f19f65eaaf8410" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDateFin</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="560005fdb5f095319f9fa3af3e3edb3d"></a><!-- doxytag: member="CFormation::retDescr" ref="560005fdb5f095319f9fa3af3e3edb3d" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retDescr</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b4e99b9a71558469851fd741d434eb00"></a><!-- doxytag: member="CFormation::retId" ref="b4e99b9a71558469851fd741d434eb00" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retId</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8676b2a742793c4e600cef4d26f9c6a1"></a><!-- doxytag: member="CFormation::retIdPers" ref="8676b2a742793c4e600cef4d26f9c6a1" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retIdPers</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b66ad86e8117230299a9bf6cdf1df9ee"></a><!-- doxytag: member="CFormation::retInscrAutoModules" ref="b66ad86e8117230299a9bf6cdf1df9ee" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInscrAutoModules</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="a5594bb7cce0ff37a4ad39614a8c894e"></a><!-- doxytag: member="CFormation::retInscrSpontEquipe" ref="a5594bb7cce0ff37a4ad39614a8c894e" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInscrSpontEquipe</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f3e6aba6a21da18b74202bf251cddc54"></a><!-- doxytag: member="CFormation::retInscrSpontForm" ref="f3e6aba6a21da18b74202bf251cddc54" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retInscrSpontForm</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c722a7211c2056606dac01d983f2c996"></a><!-- doxytag: member="CFormation::retNbMaxDsEquipe" ref="c722a7211c2056606dac01d983f2c996" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNbMaxDsEquipe</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="fd336a7019fc84c85dc9cb16cb57c826"></a><!-- doxytag: member="CFormation::retNom" ref="fd336a7019fc84c85dc9cb16cb57c826" args="($v_bHtmlEntities=FALSE)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNom</b> ($v_bHtmlEntities=FALSE)</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bfa8ae24c284f3912fa7419e0a8ae1d3"></a><!-- doxytag: member="CFormation::retNumOrdre" ref="bfa8ae24c284f3912fa7419e0a8ae1d3" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retNumOrdre</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="ee871250d84b66bf70ccba531011098e"></a><!-- doxytag: member="CFormation::retStatut" ref="ee871250d84b66bf70ccba531011098e" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retStatut</b> ()</td></tr>
+
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="86bbf8a50e25ff7aba1c431a5d428ceb"></a><!-- doxytag: member="CFormation::retType" ref="86bbf8a50e25ff7aba1c431a5d428ceb" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><b>retType</b> ()</td></tr>
+
+<tr><td colspan="2"><br><h2>Attributs publics</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="f917954b82bd70a6abb71b4e9a9875c4"></a><!-- doxytag: member="CFormation::$aoConcepteurs" ref="f917954b82bd70a6abb71b4e9a9875c4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#f917954b82bd70a6abb71b4e9a9875c4">$aoConcepteurs</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formation.html#d474876080326603e0600514ac769fc4" title="Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette...">initConcepteurs()</a>, contenant tous les concepteurs inscrits aux cours de cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#3c3233870719610d08226ae02de0ef4a">$aoElementsGlossaire</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formation.html#b65ac7acc92dd1f46ab9cef556e44759">initElementsGlossaire()</a>, contenant une liste des éléments d'un glossaire.  <a href="#3c3233870719610d08226ae02de0ef4a"></a><br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8ced39d699eb82168c02910d518710b1"></a><!-- doxytag: member="CFormation::$aoFormations" ref="8ced39d699eb82168c02910d518710b1" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#8ced39d699eb82168c02910d518710b1">$aoFormations</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par certaines fonctions, contenant une liste de formations. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="7e72d3aa11255f2c2acf82526582af7c"></a><!-- doxytag: member="CFormation::$aoGlossaires" ref="7e72d3aa11255f2c2acf82526582af7c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#7e72d3aa11255f2c2acf82526582af7c">$aoGlossaires</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formation.html#289e2ecae2a504d71ee31b76dfbcbecf" title="Initialise un tableau contenant la liste des glossaires appartenant à une formation...">initGlossaires()</a>, contenant une liste de glossaires de cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="257143fdcc79f91ce9f87442216682e5"></a><!-- doxytag: member="CFormation::$aoInscrits" ref="257143fdcc79f91ce9f87442216682e5" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#257143fdcc79f91ce9f87442216682e5">$aoInscrits</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formation.html#0519d2b0707518dd60645415563b0245" title="Initialise un tableau avec les étudiants inscrits à la formation.">initInscrits()</a>, contenant tous les personnes inscrites à cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="6bab705cb0f023a4b3139e3bc8896e03"></a><!-- doxytag: member="CFormation::$aoModules" ref="6bab705cb0f023a4b3139e3bc8896e03" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#6bab705cb0f023a4b3139e3bc8896e03">$aoModules</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tableau rempli par <a class="el" href="class_c_formation.html#08f9e23de168fbb81375535fb9f670ad" title="Initialise un tableau contenant la liste des modules de la formation.">initModules()</a>, contenant une liste de modules. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="9c42621dd21d08264577efa372e7770c"></a><!-- doxytag: member="CFormation::$iId" ref="9c42621dd21d08264577efa372e7770c" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#9c42621dd21d08264577efa372e7770c">$iId</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Utilisé dans le constructeur, pour indiquer l'id de la formation à récupérer dans la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="313f9dcb085c1065d8e8e74c8208c002"></a><!-- doxytag: member="CFormation::$oAuteur" ref="313f9dcb085c1065d8e8e74c8208c002" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#313f9dcb085c1065d8e8e74c8208c002">$oAuteur</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_c_personne.html" title="Gestion des personnes, et encapsulation de la table Personne de la DB.">CPersonne</a> qui contiendra les renseignements de la personne qui a créé cette formation. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="c3f5af3028c0ec444c40cb3a0602d0a4"></a><!-- doxytag: member="CFormation::$oBdd" ref="c3f5af3028c0ec444c40cb3a0602d0a4" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#c3f5af3028c0ec444c40cb3a0602d0a4">$oBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet représentant la connexion à la DB. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="e606f7df85d498aab00fb6b320fa0d0b"></a><!-- doxytag: member="CFormation::$oEnregBdd" ref="e606f7df85d498aab00fb6b320fa0d0b" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#e606f7df85d498aab00fb6b320fa0d0b">$oEnregBdd</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Quand l'objet a été rempli à partir de la DB, les champs de l'enregistrement sont disponibles ici. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="8650e34d98b56c595f7df3535e4e9a7e"></a><!-- doxytag: member="CFormation::$oModuleCourant" ref="8650e34d98b56c595f7df3535e4e9a7e" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#8650e34d98b56c595f7df3535e4e9a7e">$oModuleCourant</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Objet de type <a class="el" href="class_c_module.html" title="Gestion des modules, et encapsulation de la table Module de la DB.">CModule</a> contenant un module. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="cb612072cbf4094db89f6b702236a74f"></a><!-- doxytag: member="CFormation::$ORDRE" ref="cb612072cbf4094db89f6b702236a74f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#cb612072cbf4094db89f6b702236a74f">$ORDRE</a> = 12</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pseudo-constante qui indique qu'une opération doit etre réalisée par rapport au champ OrdreForm. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="bc16c7540ca86aaf8c66f19c2d7d65d7"></a><!-- doxytag: member="CFormation::$sTri" ref="bc16c7540ca86aaf8c66f19c2d7d65d7" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#bc16c7540ca86aaf8c66f19c2d7d65d7">$sTri</a></td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Variable de type string contenant le texte pour trier une requete sql. <br></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="anchor" name="b92bc8e40dfbdd9aa073e5b38a85b50f"></a><!-- doxytag: member="CFormation::$TYPE" ref="b92bc8e40dfbdd9aa073e5b38a85b50f" args="" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_formation.html#b92bc8e40dfbdd9aa073e5b38a85b50f">$TYPE</a> = 13</td></tr>
+
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pseudo-constante qui indique qu'une opération doit etre réalisée par rapport au champ TypeForm. <br></td></tr>
+</table>
+<hr><h2>Documentation des fonctions membres</h2>
+<a class="anchor" name="55b20ed07e80593260d99a9521254d0b"></a><!-- doxytag: member="CFormation::accessibleVisiteurs" ref="55b20ed07e80593260d99a9521254d0b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::accessibleVisiteurs           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'autorisation d'accès des visiteurs à la formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>1(accès aux visiteurs) ou 0 (pas d'accès aux visiteurs) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="ccb580cc4e12bfe8577fbc4ab2645b3f"></a><!-- doxytag: member="CFormation::ajouter" ref="ccb580cc4e12bfe8577fbc4ab2645b3f" args="($v_sNomForm=NULL, $v_sDescrForm=NULL, $v_iInscrSpontForm=1, $v_iIdPers=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::ajouter           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomForm</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sDescrForm</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iInscrSpontForm</em> = <code>1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une nouvelle formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomForm</em>&nbsp;</td><td>le nom de la formation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sDescrForm</em>&nbsp;</td><td>la description de la formation </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iInscrSpontForm</em>&nbsp;</td><td>si <code>1</code> alors tous les étudiants sont inscrits automatiquement à tous les cours </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>le numéro d'identifiant de la personne qui vient de créer cette formation. </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00222">associerResponsable()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00087">init()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00163">retValeurMax()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="cf5af63b05eafadd78edf6225f702600"></a><!-- doxytag: member="CFormation::ajouterElementsGlossaire" ref="cf5af63b05eafadd78edf6225f702600" args="($v_iIdGlossaire, $v_aiIdsElementsGlossaire)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::ajouterElementsGlossaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdGlossaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_aiIdsElementsGlossaire</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000005">À faire:</a></b></dt><dd>La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="9a2022237e2d7fcd9da7d824827414a1"></a><!-- doxytag: member="CFormation::ajouterGlossaire" ref="9a2022237e2d7fcd9da7d824827414a1" args="($v_sTitreGlossaire, $v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::ajouterGlossaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sTitreGlossaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute un nouveau glossaire à la formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sTitreGlossaire</em>&nbsp;</td><td>le nom du glossaire </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>le numéro d'identifiant de la personne qui vient de créer ce glossaire </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="c5496dbd135b83c895687a162555049c"></a><!-- doxytag: member="CFormation::associerResponsable" ref="c5496dbd135b83c895687a162555049c" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::associerResponsable           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute la personne qui vient de créer une nouvelle formation dans la table des reponsables de formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00186">ajouter()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a50327147e8a776029c2adb6f79875b6"></a><!-- doxytag: member="CFormation::CFormation" ref="a50327147e8a776029c2adb6f79875b6" args="(&amp;$v_oBdd, $v_iIdForm=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::CFormation           </td>
+          <td>(</td>
+          <td class="paramtype">&amp;$&nbsp;</td>
+          <td class="paramname"> <em>v_oBdd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Constructeur. 
+<p>
+Voir <a class="el" href="class_c_personne.html#874e728c1a2a3a9bc1d8a414fde97608" title="Constructeur.">CPersonne::CPersonne()</a> 
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00087">init()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00946">initFormations()</a>, <a class="el" href="formation_8tbl_8php-source.html#l01285">initFormationsEffacer()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00915">initFormationsPourCopie()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="acb26747c6e60b3adf6b603d1cb4aade"></a><!-- doxytag: member="CFormation::copier" ref="acb26747c6e60b3adf6b603d1cb4aade" args="($v_bRecursive=TRUE, $v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::copier           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRecursive</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie la formation courante vers une autre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bRecursive</em>&nbsp;</td><td>si <code>true</code> (par défaut), copie aussi tous les modules</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la nouvelle formation </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00353">copierFormation()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00388">copierModules()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d68bbda8d745c18198276045f6f94b73"></a><!-- doxytag: member="CFormation::copierFormation" ref="d68bbda8d745c18198276045f6f94b73" args="($v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::copierFormation           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Ajoute une copie de la formation actuelle dans la DB. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la nouvelle formation </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00240">retNumOrdreMax()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00266">copier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e3c0411d6f8ec24261103cf981aefe27"></a><!-- doxytag: member="CFormation::copierModules" ref="e3c0411d6f8ec24261103cf981aefe27" args="($v_iIdForm, $v_sExportation=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::copierModules           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sExportation</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Copie tous les modules de la formation courante dans une autre. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la formation de destination </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00983">initModules()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00266">copier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6e5c75c2f8330e588515a3d3f2b8423b"></a><!-- doxytag: member="CFormation::defTrier" ref="6e5c75c2f8330e588515a3d3f2b8423b" args="($v_sNomChamps=NULL, $v_sSensTri=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::defTrier           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomChamps</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sSensTri</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Definit la variable du tri. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomChamps</em>&nbsp;</td><td>le nom du champ sur lequel le tri doit être effectué </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_sSensTri</em>&nbsp;</td><td>si <code>"ASC"</code> (par défaut), tri croissant sur le champ, si <code>"DESC"</code> tri décroissant </td></tr>
+  </table>
+</dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00859">retTrier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="dce106040a4d750491933cb292dadba7"></a><!-- doxytag: member="CFormation::defTrierParAnnee" ref="dce106040a4d750491933cb292dadba7" args="($v_dDebut, $v_dFin)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::defTrierParAnnee           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_dDebut</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_dFin</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet d'ajouter à la variable <code>tri</code> un espace temporel (une selection entre 2 dates). 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_dDebut</em>&nbsp;</td><td>date de début au format SQL (YYYY-MM-DD) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_dFin</em>&nbsp;</td><td>date de fin </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="629c1d925c5d368e2f78cbce5f11e429"></a><!-- doxytag: member="CFormation::defTrierParType" ref="629c1d925c5d368e2f78cbce5f11e429" args="($v_iSensTri=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::defTrierParType           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iSensTri</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise la variable <code>tri</code> avec un tri sur le type de formation (GROUP BY TypeForm) et lui ajoute son sens. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iSensTri</em>&nbsp;</td><td>si <code>"ASC"</code> (par défaut), tri croissant sur le champ, si <code>"DESC"</code> tri décroissant </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="98ece51392a41dbb2fe008d2d48cd9b5"></a><!-- doxytag: member="CFormation::defVisiteurAutoriser" ref="98ece51392a41dbb2fe008d2d48cd9b5" args="($v_bAutoriserVisiteur)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::defVisiteurAutoriser           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAutoriserVisiteur</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet de définir l'accès au visiteur de la formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bAutoriserVisiteur</em>&nbsp;</td><td>peut prendre la valeur 1 ou 0 (pas d'accès au visiteur) </td></tr>
+  </table>
+</dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l01208">mettre_a_jour()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b72452812fa8a34e7c15b2515eb4720b"></a><!-- doxytag: member="CFormation::effacer" ref="b72452812fa8a34e7c15b2515eb4720b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::effacer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface la totalité d'une formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la formation précédant celle-ci </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00672">effacerConcepteurs()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00630">effacerEquipes()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00692">effacerEtudiants()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00447">effacerEvenements()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00437">effacerFormation()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00702">effacerModules()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00662">effacerResponsables()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00682">effacerTuteurs()</a>, <a class="el" href="formation_8tbl_8php-source.html#l01232">redistNumsOrdre()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00717">retIdFormPrecedente()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00702">effacerModules()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="d12a12375432b343eb3647dcc8836f4b"></a><!-- doxytag: member="CFormation::effacerElementsGlossaire" ref="d12a12375432b343eb3647dcc8836f4b" args="($v_iIdGlossaire)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::effacerElementsGlossaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdGlossaire</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000006">À faire:</a></b></dt><dd>La table n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7d38f7a765163f4257438d82ee2dcfa3"></a><!-- doxytag: member="CFormation::effacerLogiquement" ref="7d38f7a765163f4257438d82ee2dcfa3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::effacerLogiquement           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Efface logiquement une formation, elle peut etre ensuite effacé physiquement (<a class="el" href="class_c_formation.html#b72452812fa8a34e7c15b2515eb4720b" title="Efface la totalité d&#39;une formation.">CFormation::effacer</a> ). 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la formation précédant celle-ci </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l01232">redistNumsOrdre()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00717">retIdFormPrecedente()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="8819ba584d1dee7618ee36533bff3b2e"></a><!-- doxytag: member="CFormation::effacerModelesEquipes" ref="8819ba584d1dee7618ee36533bff3b2e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::effacerModelesEquipes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000001">Obsolète:</a></b></dt><dd>Ne semble pas/plus utilisé ???</dd></dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>false</code> </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="d474876080326603e0600514ac769fc4"></a><!-- doxytag: member="CFormation::initConcepteurs" ref="d474876080326603e0600514ac769fc4" args="($v_sModeTri=&quot;ASC&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initConcepteurs           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sModeTri</em> = <code>&quot;ASC&quot;</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant tous les concepteurs inscrits aux cours de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sModeTri</em>&nbsp;</td><td>v_sModeTri si <code>"ASC"</code> (par défaut), tri croissant sur le nom, si <code>"DESC"</code> tri décroissant</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de concepteurs insérés dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b65ac7acc92dd1f46ab9cef556e44759"></a><!-- doxytag: member="CFormation::initElementsGlossaire" ref="b65ac7acc92dd1f46ab9cef556e44759" args="($v_iIdGlossaire=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initElementsGlossaire           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdGlossaire</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000004">À faire:</a></b></dt><dd>La table GlossaireElement n'existe pas, travail commencé mais pas terminé... les éléments d'un glossaire </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="508a24593b84f28e9d37ccc2d9450761"></a><!-- doxytag: member="CFormation::initEquipes" ref="508a24593b84f28e9d37ccc2d9450761" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initEquipes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant les équipes relatives à la formation, et initialise également les membres de chaque équipe. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre d'équipes de cette formation </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="035f19512438c556ab03dcaf5d3c7739"></a><!-- doxytag: member="CFormation::initFormations" ref="035f19512438c556ab03dcaf5d3c7739" args="($v_bAdministrateur=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initFormations           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAdministrateur</em> = <code>FALSE</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant toutes les formations. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bAdministrateur</em>&nbsp;</td><td>si <code>false</code> (defaut) on ne voie que les formations ayant le statut ouvert ou fermé</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formation insérées dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00074">CFormation()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l01232">redistNumsOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="25cbd17010a974fefb37950eea69691c"></a><!-- doxytag: member="CFormation::initFormationsEffacer" ref="25cbd17010a974fefb37950eea69691c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initFormationsEffacer           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant toutes les formations ayant le statut effacé. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formation insérées dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00074">CFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="6b445391175e1048bd2c9f3433041a6a"></a><!-- doxytag: member="CFormation::initFormationsPourCopie" ref="6b445391175e1048bd2c9f3433041a6a" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initFormationsPourCopie           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant toutes les formations ayant le statut ouvert ou fermé, il n'insère que les formations dont la personne est responsable. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne qui veut copier une formation</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formation insérées dans le tableau </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00074">CFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="289e2ecae2a504d71ee31b76dfbcbecf"></a><!-- doxytag: member="CFormation::initGlossaires" ref="289e2ecae2a504d71ee31b76dfbcbecf" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initGlossaires           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant la liste des glossaires appartenant à une formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre totale de glossaires trouvés ou zéro dans le cas contraire. </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="0519d2b0707518dd60645415563b0245"></a><!-- doxytag: member="CFormation::initInscrits" ref="0519d2b0707518dd60645415563b0245" args="($v_sModeTri=&quot;ASC&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initInscrits           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sModeTri</em> = <code>&quot;ASC&quot;</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau avec les étudiants inscrits à la formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sModeTri</em>&nbsp;</td><td>si <code>"ASC"</code> (par défaut), tri croissant sur le nom, si <code>"DESC"</code> tri décroissant</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de personnes(étudiants) insérées dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bd47962db5bab288716d29387db608b9"></a><!-- doxytag: member="CFormation::initMembres" ref="bd47962db5bab288716d29387db608b9" args="($v_bAppartenirEquipe=TRUE, $v_iSensTri=TRI_CROISSANT)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initMembres           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAppartenirEquipe</em> = <code>TRUE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iSensTri</em> = <code><a class="el" href="plate__forme_8class_8php.html#48be3f480c9ef331adfac4ea499a830e">TRI_CROISSANT</a></code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant soit les personnes inscrites dans une équipe de cette formation, soit les personnes inscrites à cette formation qui ne font partie d'aucune équipe. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_bAppartenirEquipe</em>&nbsp;</td><td>si <code>true</code> (par défaut) le tableau est rempli par les personnes qui appartiennent à une équipe de cette formation, si <code>false</code> il est rempli par les personnes qui n'appartiennent à aucune équipe de cette formation (mais qui y sont inscrites) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iSensTri</em>&nbsp;</td><td>indique si un tri doit être effectué ainsi que son sens (croissant par défaut)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de personnes(membres) insérées dans le tableau</dd></dl>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000003">À faire:</a></b></dt><dd>on peut sûrement améliorer la première requête sql, elle met 7 sec a s'exécuter sur la version "production" pour ne retourner que peu d'enregistrements(+-30) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="bbff454bf8b77c81dc6772891e5360f4"></a><!-- doxytag: member="CFormation::initModuleCourant" ref="bbff454bf8b77c81dc6772891e5360f4" args="($v_iIdModule=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initModuleCourant           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdModule</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise le module courant (<code>oModuleCourant</code>) de la formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdModule</em>&nbsp;</td><td>l'id du module. Si le module n'appartient à la formation, l'initialisation n'a pas lieu </td></tr>
+  </table>
+</dl>
+
+</div>
+</div><p>
+<a class="anchor" name="08f9e23de168fbb81375535fb9f670ad"></a><!-- doxytag: member="CFormation::initModules" ref="08f9e23de168fbb81375535fb9f670ad" args="($v_iIdPers=0, $v_iIdStatutUtilisateur=NULL, $v_bRechStricte=FALSE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initModules           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdStatutUtilisateur</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bRechStricte</em> = <code>FALSE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant la liste des modules de la formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>le numéro d'identifiant de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdStatutUtilisateur</em>&nbsp;</td><td>l'id du statut de la personne utilisé comme critère pour la recherche. La signification de ce paramètre est modifiée par <code>v_bRechStricte</code>. Si le paramètre n'est pas fourni, tous les modules de la formation seront récupérés </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bRechStricte</em>&nbsp;</td><td>si <code>true</code> et <code>v_iIdStatutUtilisateur</code> fourni, alors seul les modules pour lesquels la personne a exactement le statut demandé seront récupérés. Si <code>false</code>, les modules pour lesquels la personne a un statut inférieur ou égal à celui demandé seront également récupérés</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de module insérés dans le tableau </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00388">copierModules()</a>, <a class="el" href="formation_8tbl_8php-source.html#l00702">effacerModules()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l01518">retElementsEnfants()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="b74434748558448a71db54c562a6a3eb"></a><!-- doxytag: member="CFormation::initResponsables" ref="b74434748558448a71db54c562a6a3eb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initResponsables           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau avec les responsables (Formation_Resp) de la formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de personnes(responsables) insérées dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="872546f9180c339fd2c8c318680a312b"></a><!-- doxytag: member="CFormation::initTuteurs" ref="872546f9180c339fd2c8c318680a312b" args="($v_sModeTri=&quot;ASC&quot;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::initTuteurs           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sModeTri</em> = <code>&quot;ASC&quot;</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Initialise un tableau contenant tous les tuteurs inscrits aux cours de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sModeTri</em>&nbsp;</td><td>si <code>"ASC"</code> (par défaut), tri croissant sur le nom, si <code>"DESC"</code> tri décroissant</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de tuteurs insérés dans le tableau </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="497c2b4f87285874926d17ea67f29ec0"></a><!-- doxytag: member="CFormation::mettre_a_jour" ref="497c2b4f87285874926d17ea67f29ec0" args="($v_sNomChamp, $v_mValeurChamp, $v_iIdForm=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::mettre_a_jour           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_sNomChamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_mValeurChamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdForm</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Met à jour un champ de la table formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_sNomChamp</em>&nbsp;</td><td>le nom du champ à mettre à jour </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_mValeurChamp</em>&nbsp;</td><td>la nouvelle valeur du champ </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdForm</em>&nbsp;</td><td>l'id de la formation</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si il a mis à jour le champ dans la DB </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00895">defVisiteurAutoriser()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l01232">redistNumsOrdre()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="a87eef621ebeceded9b129c12c924489"></a><!-- doxytag: member="CFormation::redistNumsOrdre" ref="a87eef621ebeceded9b129c12c924489" args="($v_iNouveauNumOrdre=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::redistNumsOrdre           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iNouveauNumOrdre</em> = <code>NULL</code>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Redistribue les numéros d'ordre des formations. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iNouveauNumOrdre</em>&nbsp;</td><td>le nouveau numéro d'ordre de la formation courante</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si les numéros ont bien été modifiés </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00946">initFormations()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l01208">mettre_a_jour()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00401">effacer()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00651">effacerLogiquement()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="2fd3805ad05f7a99b6f5f95b2c21a37e"></a><!-- doxytag: member="CFormation::retDossier" ref="2fd3805ad05f7a99b6f5f95b2c21a37e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retDossier           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le dossier associé à cette formation, donc celui où se trouvent les fichiers associés à la formation </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="679413c579a148c1eac4e902677f3ce3"></a><!-- doxytag: member="CFormation::retDossierFormations" ref="679413c579a148c1eac4e902677f3ce3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retDossierFormations           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le dossier où se trouvent tous les dossiers de toutes les formations, et donc leurs fichiers associés </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="5895515d108fddbc27755f0dba8225fe"></a><!-- doxytag: member="CFormation::retIdFormPrecedente" ref="5895515d108fddbc27755f0dba8225fe" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retIdFormPrecedente           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne l'id de la formation précédant celle-ci. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de la formation précédente </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00401">effacer()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00651">effacerLogiquement()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="e5eb50b9debb45792cf1051c8071c98f"></a><!-- doxytag: member="CFormation::retListeStatuts" ref="e5eb50b9debb45792cf1051c8071c98f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retListeStatuts           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la liste des statuts disponibles pour une formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la liste des statuts disponibles </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="3ec876d0e07ef847fa38149a6a6b6dca"></a><!-- doxytag: member="CFormation::retNombreLignes" ref="3ec876d0e07ef847fa38149a6a6b6dca" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retNombreLignes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet de connaître le nombre de formation effacée logiquement. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre de formation ayant le statut effacé </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="f0cc64a2e830c01a1759ba2dd8cad0dd"></a><!-- doxytag: member="CFormation::retNomParDefaut" ref="f0cc64a2e830c01a1759ba2dd8cad0dd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retNomParDefaut           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le nom par défaut d'une formation. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nom par défaut d'une formation </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="e7b75af2098dbde5d4fdbbc13ab8aa0b"></a><!-- doxytag: member="CFormation::retNumOrdreMax" ref="e7b75af2098dbde5d4fdbbc13ab8aa0b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retNumOrdreMax           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Permet de connaitre le numero d'ordre maximum des formations. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le numéro d'ordre maximum </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00163">retValeurMax()</a>.</p>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00353">copierFormation()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="5a6f51bbaf9ae2cac1414a14d1e26881"></a><!-- doxytag: member="CFormation::retStatutHautUtilisateur" ref="5a6f51bbaf9ae2cac1414a14d1e26881" args="($v_iIdPers, $v_iStatutActuelUtilisateur=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retStatutHautUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iStatutActuelUtilisateur</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne le plus haut statut que la personne peut avoir dans la formation. 
+<p>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000003">Obsolète:</a></b></dt><dd>Ne semble pas/plus utilisé ???</dd></dl>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iStatutActuelUtilisateur</em>&nbsp;</td><td>le statut les plus elevé à partir duquel on veffectue la vérification. Si <code>null</code>, on commence au statut le plus elevé(STATUT_PERS_ADMIN). La vérification se termine par le statut le plus bas(STATUT_PERS_VISITEUR)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>l'id de statut le plus elevé </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l01456">retStatutsUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="ee81927887297ce9ea71e2d83b46e848"></a><!-- doxytag: member="CFormation::retStatutsUtilisateur" ref="ee81927887297ce9ea71e2d83b46e848" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retStatutsUtilisateur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau contenant tous les statuts possibles de la personne dans cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>un tableau contenant tous les statuts de la personne dans cette formation </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l01474">retStatutHautUtilisateur()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="bf5f59e5f72913425a669012e4a37e1b"></a><!-- doxytag: member="CFormation::retTexteNiveau" ref="bf5f59e5f72913425a669012e4a37e1b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retTexteNiveau           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le texte (nom) qui désigne ce niveau de la formation (formation, module, rubrique, etc) </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="65e372aaf8de5f95859ce4ad6c58d81f"></a><!-- doxytag: member="CFormation::retTrier" ref="65e372aaf8de5f95859ce4ad6c58d81f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retTrier           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne la variable tri. 
+<p>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>la variable tri, et l'initialise si besoin </dd></dl>
+
+<p>Références <a class="el" href="formation_8tbl_8php-source.html#l00842">defTrier()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="37c52316496b53a206b8bacb5ccd73c5"></a><!-- doxytag: member="CFormation::retTypes" ref="37c52316496b53a206b8bacb5ccd73c5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retTypes           </td>
+          <td>(</td>
+          <td class="paramname">          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne un tableau à 2 dimensions contenant l'intitulé d'une formation. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000007">À faire:</a></b></dt><dd>ce système sera modifié pour l'internationalisation de la plate-forme</dd></dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le mot français utilisé pour désigner une formation </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="b342ddf981681b9d248b666984931459"></a><!-- doxytag: member="CFormation::retValeurMax" ref="b342ddf981681b9d248b666984931459" args="($v_iChamp)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::retValeurMax           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iChamp</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Retourne soit le numero d'ordre maximum ou soit le type maximum des formations. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iChamp</em>&nbsp;</td><td>si <code>$this-&gt;ORDRE</code>, le maximum sera sur le champ OrdreForm, si <code>$this-&gt;TYPE</code>, il sera sur TypeForm</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd>le nombre maximum </dd></dl>
+
+<p>Référencé par <a class="el" href="formation_8tbl_8php-source.html#l00186">ajouter()</a>, et <a class="el" href="formation_8tbl_8php-source.html#l00240">retNumOrdreMax()</a>.</p>
+
+</div>
+</div><p>
+<a class="anchor" name="932f9d5f1cf14bb586b289023c5a0e52"></a><!-- doxytag: member="CFormation::verifConcepteur" ref="932f9d5f1cf14bb586b289023c5a0e52" args="($v_iIdPers, $v_bAuMoinsUnCours=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::verifConcepteur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAuMoinsUnCours</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si la personne est concepteur de cours de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAuMoinsUnCours</em>&nbsp;</td><td>l'utilisateur doit être au moins inscrit comme concepteur à un cours</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne est concepteur </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="442e815074e097e2ccb9187d37548539"></a><!-- doxytag: member="CFormation::verifEquipe" ref="442e815074e097e2ccb9187d37548539" args="($v_iIdEquipe, $v_iIdPers=NULL)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::verifEquipe           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdEquipe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em> = <code>NULL</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si une équipe à déja déposé un ou plusieurs documents. 
+<p>
+<dl compact><dt><b><a class="el" href="deprecated.html#_deprecated000002">Obsolète:</a></b></dt><dd>Ne semble pas/plus utilisé ???</dd></dl>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdEquipe</em>&nbsp;</td><td>l'id de l'équipe à vérifier </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne(optionnel)</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si l'équipe a déjà déposé des documents </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="7579ab63933977218e9ee908325b5ea9"></a><!-- doxytag: member="CFormation::verifEtudiant" ref="7579ab63933977218e9ee908325b5ea9" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::verifEtudiant           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si la personne est étudiante de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne est étudiante </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="197d068f64cb15d1d2ff0dfb4284aee4"></a><!-- doxytag: member="CFormation::verifResponsable" ref="197d068f64cb15d1d2ff0dfb4284aee4" args="($v_iIdPers)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::verifResponsable           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>          </td>
+          <td>&nbsp;)&nbsp;</td>
+          <td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si la personne est responsable de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne est responsable </dd></dl>
+
+</div>
+</div><p>
+<a class="anchor" name="fb9ba5234e029f1668985b8d29aa4ff9"></a><!-- doxytag: member="CFormation::verifTuteur" ref="fb9ba5234e029f1668985b8d29aa4ff9" args="($v_iIdPers, $v_bAuMoinsUnCours=TRUE)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::verifTuteur           </td>
+          <td>(</td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_iIdPers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&nbsp;</td>
+          <td class="paramname"> <em>v_bAuMoinsUnCours</em> = <code>TRUE</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td width="100%"></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Vérifie si la personne est tuteur de cours de cette formation. 
+<p>
+<dl compact><dt><b>Paramètres:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>v_iIdPers</em>&nbsp;</td><td>l'id de la personne </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>v_bAuMoinsUnCours</em>&nbsp;</td><td>l'utilisateur doit être au moins inscrit comme concepteur à un cours</td></tr>
+  </table>
+</dl>
+<dl class="return" compact><dt><b>Renvoie:</b></dt><dd><code>true</code> si la personne est tuteur </dd></dl>
+
+</div>
+</div><p>
+<hr><h2>Documentation des données membres</h2>
+<a class="anchor" name="3c3233870719610d08226ae02de0ef4a"></a><!-- doxytag: member="CFormation::$aoElementsGlossaire" ref="3c3233870719610d08226ae02de0ef4a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CFormation::$aoElementsGlossaire          </td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>
+Tableau rempli par <a class="el" href="class_c_formation.html#b65ac7acc92dd1f46ab9cef556e44759">initElementsGlossaire()</a>, contenant une liste des éléments d'un glossaire. 
+<p>
+<dl compact><dt><b><a class="el" href="todo.html#_todo000002">À faire:</a></b></dt><dd>La table n'existe pas, travail commencé mais pas terminé... </dd></dl>
+
+</div>
+</div><p>
+<hr>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
+<li>src/database/<a class="el" href="formation_8tbl_8php.html">formation.tbl.php</a></ul>
+</div>
+<hr size="1"><address style="text-align: right;"><small>Généré le Wed Apr 2 16:36:03 2008 pour Esprit par&nbsp;
+<a href="http://www.doxygen.org/index.html">
+<img src="doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.5 </small></address>
+</body>
+</html>
