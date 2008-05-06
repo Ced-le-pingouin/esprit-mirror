@@ -1,5 +1,5 @@
 body { /*background-image: url(barre_outils-fond.gif); background-repeat: repeat-x; */ background-color: rgb(238,234,221); margin: 0; }
-input, select { margin 0; padding: 0; }
+input, select { margin: 0; padding: 0; }
 .cellule_icone_normale, .cellule_icone_surbrillante { float: left; width: 23px; height: 20px; margin: 1px; text-align: center; }
 .cellule_separateur { float: left; margin: 3px 0 0 0; }
 .cellule_icone_normale {  background-color: transparent; border: rgb(222,216,202) solid 1px; }
