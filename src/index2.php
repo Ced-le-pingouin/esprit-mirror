@@ -20,7 +20,7 @@ function changerStatutUtilisateur(v_sNouvStatutUtilisateur) {
 	if (top.frames["INDEX"].frames["Titre"] &&
 		top.frames["INDEX"].frames["Titre"].document.getElementById &&
 		top.frames["INDEX"].frames["Titre"].document.getElementById("statut"))
-		top.frames["INDEX"].frames["Titre"].document.getElementById("statut").innerHTML = urldecode(unescape(v_sNouvStatutUtilisateur));
+		top.frames["INDEX"].frames["Titre"].document.getElementById("statut").innerHTML = unescape(v_sNouvStatutUtilisateur);
 }
 //-->
 </script>
@@ -30,4 +30,3 @@ function changerStatutUtilisateur(v_sNouvStatutUtilisateur) {
 <frame name="INDEX" src="zone_menu-index.php" frameborder="0" scrolling="no" noresize="noresize">
 </frameset>
 </html>
-
