@@ -119,18 +119,18 @@ while ($g_iIdxEven < $iNbrEven)
 		//if ($oEvenement->aoEvenements[$iIdxEven]->retIdFormation() <> $iIdFormActuelle)
 			//break;
 		
-		$sNomClasseCss = (isset($sNomClasseCss) ? " " : " class=\"cellule_clair\"");
-		$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
+		$sNomClasseCss = " class=\"cellule_clair\""; //(isset($sNomClasseCss) ? " " : " class=\"cellule_clair\"");
+		$sNomClasseCssTri = " class=\"cellule_clair_fonce\""; //(isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
 		
 		$sContenuTable .= "<tr>"
 			."<td width=\"1%\" class=\"numero_ligne\">".$iCompteur++."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+			."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss).">"
 			.$oEvenement->aoEvenements[$iIdxEven]->retConnexion()
 			."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+			."<td".($url_iTri == $oEvenement->TRI_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss).">"
 			.$oEvenement->aoEvenements[$iIdxEven]->retDeconnexion()
 			."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\" width=\"1%\">"
+			."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\">"
 			."&nbsp;".$oEvenement->aoEvenements[$iIdxEven]->retTempsConnexion()."&nbsp;"
 			."</td>"
 			."</tr>\n";

@@ -55,7 +55,7 @@ body { background-image: none; }
 <div style="position: absolute; left: 0px; top: 0px; width: 200px; height: 100px;">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="formulaire" method="post">
 <table border="0" cellspacing="1" cellpadding="5" width="100%" height="100%">
-<tr><td colspan="2" align="center" style="background-color: rgb(250,250,251); font-weight: bold;">Voulez-vous cr&eacute;er le fichier statut.def.php&nbsp;?</td></tr>
+<tr><td colspan="2" align="center" class="bold_center">Voulez-vous cr&eacute;er le fichier statut.def.php&nbsp;?</td></tr>
 <tr><td align="center" class="cellule_sous_titre"><a href="javascript: document.forms[0].submit(); close();">Oui</a></td><td align="center" class="cellule_sous_titre"><a href="javascript: close()">Non</a></td></tr>
 </table>
 <input type="hidden" name="StatutForm" value="creer">

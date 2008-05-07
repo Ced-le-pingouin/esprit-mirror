@@ -9,10 +9,6 @@ ressources votants
 ------------------ */
 
 /* -- général -- */
-body.collecticiel {
-background-color:#fff;
-}
-
 #consigne {
 background-color:#f9fbfb;
 border:#dce6e6 none 2px;
@@ -39,20 +35,13 @@ font-size:8pt;
 
 /* ''' Barre des icônes */
 /* ''' Document du collecticiel */
-div.titre a {
-font-size:8pt;
-}
-
-a.titre,a.date,a.statut {
+div.titre a, a.titre,a.date,a.statut {
 font-size:8pt;
 }
 
 div.auteur,div.date,div.statut,div.evalue,div.texte_associe,div.sans_document {
 text-align:center;
 font-size:8pt;
-}
-
-a.evalue, a.texte_associe {
 }
 
 div.gestion_documents_gauche,div.gestion_documents_droite {
@@ -69,7 +58,7 @@ div.gestion_documents_gauche {
 float:left;
 }
 
-div.gestion_documents_droite {
+div.gestion_documents_droite, .courriel {
 float:right;
 }
 
@@ -113,9 +102,7 @@ text-decoration:none;
 
 /* Frame principale */
 hr {
-border-style:solid;
-border-color:#aea58a;
-border-width:1px;
+border:1px solid #aea58a;
 }
 
 .Message {
@@ -141,7 +128,6 @@ vertical-align:top;
 
 p.commentaire,p.appreciation {
 text-align:left;
-font-weight:normal;
 border:#aea58a none 1px;
 border-bottom-style:dotted;
 padding:5px;
@@ -229,10 +215,6 @@ float:left;
 padding:0 2px 2px;
 }
 
-.courriel {
-float:right;
-}
-
 .nom_complet {
 border:#aea58a none 1px;
 border-bottom-style:dashed;
@@ -244,9 +226,7 @@ padding-bottom:3px;
 .pseudo {
 clear:right;
 font-size:7pt;
-margin:0;
-margin-left:20px;
-margin-bottom:5px;
+margin:0 0 5px 20px;
 }
 
 .pas_de_votant_trouve {

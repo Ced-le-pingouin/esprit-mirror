@@ -23,7 +23,7 @@ function init() { location.hash = "formation_actuelle"; }
 <body onload="init()" class="inscription">
 <table border="0" cellspacing="0" cellpadding="3" width="100%">
 [BLOCK_MESSAGE+]
-[VAR_SANS_FORMATION+]<tr><td><p>&nbsp;</p><p>&nbsp;</p><p style="font-weight: bold; text-align: center;">Aucune formation n'est disponible pour l'instant</p></td></tr>[VAR_SANS_FORMATION-]
+[VAR_SANS_FORMATION+]<tr><td><p>&nbsp;</p><p>&nbsp;</p><p class="bold_center">Aucune formation n'est disponible pour l'instant</p></td></tr>[VAR_SANS_FORMATION-]
 [VAR_SELECTIONNER_FORMATION+]<tr><td>&nbsp;</td><td colspan="3"><div class="intitule">S&eacute;lectionnez une formation dans la liste ci-dessous&nbsp;:</div></td></tr>[VAR_SELECTIONNER_FORMATION-]
 {message}
 [BLOCK_MESSAGE-]

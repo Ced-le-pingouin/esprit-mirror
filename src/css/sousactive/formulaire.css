@@ -12,26 +12,6 @@ ZDC
 ------------------ */
 
 /* -- général -- */
-html {
-font-size:100%;
-}
-
-body {
-background-color:#fff;
-color:#222;
-font-family:Verdana, Tahoma, Arial, Bitstream Vera Sans, Time;
-font-size:.8em;
-margin:0;
-padding:0;
-scrollbar-face-color:#e7e1d4;
-scrollbar-highlight-color:#fbf9ee;
-scrollbar-shadow-color:#fbf9ee;
-scrollbar-3dlight-color:#fbf9ee;
-scrollbar-arrow-color:#aea68a;
-scrollbar-track-color:#fbf9ee;
-scrollbar-darkshadow-color:#fbf9ee;
-}
-
 body.menumodifbas {
 background-color:#cac3b1;
 border-top:#000 solid 1px;
@@ -129,25 +109,18 @@ padding-top:25px;
 
 #valider_global {
 float:left;
-margin-left:5px;
-margin-right:5px;
-margin-top:5px;
+margin:5px 5px 0;
 }
 
 #fermer_global {
 float:right;
-margin-left:5px;
-margin-right:5px;
-margin-top:5px;
+margin:5px 5px 0;
 }
 /* ----- */
 
 /* -- formulaire menu -- */
 body.formulaire_menu {
-background-attachment:fixed;
-background-image:url('../../themes/esprit/pixel_noir.gif');
-background-position:top right;
-background-repeat:repeat-y;
+background:url('../../themes/esprit/pixel_noir.gif') repeat-y fixed top right;
 }
 
 body.formulaire_menu p {
@@ -203,7 +176,6 @@ height:100%;
 body.formulaire_axe {
 background-color:#fdf9ee;
 color:#000;
-font-family:Verdana,Tahoma,Arial,sans-serif;
 height:100%;
 overflow:hidden;
 width:100%;
@@ -261,11 +233,7 @@ margin:0 5px;
 
 /* -- formulaire modif -- */
 body.formulaire_modif {
-background-attachment:fixed;
-background-color:#e7e1d4;
-background-image:url('../pixel_noir.gif');
-background-position:top left;
-background-repeat:repeat-x;
+background:#e7e1d4 url('../../themes/esprit/pixel_noir.gif') repeat-x fixed top left;
 }
 
 .feedback_formmodif {
@@ -320,23 +288,20 @@ text-align:right;
 }
 
 #zonereponse li,#zoneproposition li {
-list-style-image:none;
-list-style-type:none;
+list-style:none none;
 margin:0 0 7px;
 padding:0;
 }
 
 #zoneenonce li,#zonempsep li,#alignrep li {
 display:inline;
-list-style-image:none;
-list-style-type:none;
+list-style:none;
 margin:0;
 padding:3px 7px;
 }
 
 #calcul {
-margin-left:17px;
-margin-top:4px;
+margin:4px 0 0 17px;
 }
 
 #calcul dd {
@@ -349,8 +314,7 @@ padding:0;
 }
 
 #options li {
-list-style-image:none;
-list-style-type:none;
+list-style:none;
 margin:5px 0;
 }
 /* ----- */
@@ -360,7 +324,9 @@ body.modifier_formulaire {
 padding:45px 0 0;
 }
 
-#barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,#autocorrect a:link,#autocorrect a:active,#autocorrect a:visited,#autocorrect a:hover {
+#barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,
+#autocorrect a:link,#autocorrect a:active,#autocorrect a:visited,#autocorrect a:hover,
+#barreaction a:link,#barreaction a:visited,#barreaction a:hover {
 color:#fff;
 font-size:.85em;
 font-weight:bold;
@@ -370,16 +336,19 @@ body.modifier_formulaire input,body.modifier_formulaire select {
 margin:0 5px;
 }
 
-.feedback {
-background-color:#f8f4e7;
+.feedback, .feedback_titre {
 border:1px solid #d5ccbd;
 display:none;
 height:3.5em;
+-moz-border-radius-topleft:3px;
+-moz-border-radius-bottomleft:3px;
+}
+
+.feedback {
+background-color:#f8f4e7;
 margin:7px 0;
 overflow:auto;
 padding:0;
--moz-border-radius-topright:3px;
--moz-border-radius-bottomright:3px;
 }
 
 .feedback p,.feedback_titre p {
@@ -388,17 +357,12 @@ margin:3px;
 
 .feedback_titre {
 background-color:#eeeadd;
-border:1px solid #d5ccbd;
 border-right:none;
-display:none;
 float:left;
-height:3.5em;
 margin:7px 0 0;
 padding:0 3px 0 0;
 text-align:center;
 width:100px;
--moz-border-radius-topleft:3px;
--moz-border-radius-bottomleft:3px;
 }
 
 * html .feedback_titre {
@@ -442,26 +406,23 @@ position:static;
 color:#fff;
 }
 
-#Etat {
+#Etat,#Eval{
 background-color:#fafafa;
 border:#dee6e6 1px solid;
-float:right;
 margin:20px 0 0;
 padding:0;
-width:33%;
 -moz-border-radius-topleft:5px;
 -moz-border-radius-bottomleft:5px;
 }
 
+#Etat {
+float:right;
+width:33%;
+}
+
 #Eval {
-background-color:#fafafa;
-border:#dee6e6 1px solid;
 float:left;
-margin:20px 0 0;
-padding:0;
 width:63%;
--moz-border-radius-topright:5px;
--moz-border-radius-bottomright:5px;
 }
 
 #Eval h3,#Etat h3 {
@@ -518,12 +479,6 @@ bottom:0;
 height:22px;
 position:absolute;
 width:100%;
-}
-
-#barreaction a:link,#barreaction a:visited,#barreaction a:hover {
-color:#fff;
-font-size:.85em;
-font-weight:bold;
 }
 /* ----- */
 

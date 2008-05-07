@@ -115,7 +115,7 @@ selectionnerNumeroOrdre("ORDRE",$oProjet->oSousActivCourante->retNombreLignes(),
 entrerNom("NOM",$sNomSousActiv,TRUE);
 selectionnerStatut("STATUT",$oProjet->oSousActivCourante->retListeStatuts(),$oProjet->oSousActivCourante->retStatut());
 ?>
-<tr><td>&nbsp;</td><td style="font-size: 10pt"><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?php echo $g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
+<tr><td>&nbsp;</td><td><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?php echo $g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
 <!-- Type -->
 <tr><td>&nbsp;</td><td><hr></td></tr>
 <tr>

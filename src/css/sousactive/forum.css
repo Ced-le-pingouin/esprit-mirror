@@ -1,6 +1,8 @@
 /* ------------------
 INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
 
+commun
+
 sujet
 messages menu
 forum export
@@ -11,45 +13,44 @@ sujet infos
 sujet messages
 ------------------ */
 
-/* -- sujet -- */
-body.sujet {
-background-color:#fff;
-background-image:none;
-font-size:8pt;
+/* -- commun -- */
+body.sujet_infos,body.message {
+background-color:#f8f9fb;
+/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
+scrollbar-face-color:#e6f0f3;
+scrollbar-shadow-color:#e6f0f3;
+scrollbar-3dlight-color:#f8f9fb;
+scrollbar-arrow-color:#fff;
+scrollbar-track-color:#f8f9fb;
+scrollbar-highlight-color:#f8f9fb;
+scrollbar-darkshadow-color:#f8f9fb;
 }
+/* ----- */
 
+/* -- sujet -- */
 body.sujet td {
 border:#c6dce1 none 1px;
 border-bottom-style:dashed;
 }
 
-.sujet_numero_ligne {
+.sujet_nombre_messages,.sujet_date_dernier_message,.sujet_numero_ligne {
 color:#485ea5;
 font-size:7pt;
+white-space:nowrap;
+}
+
+.sujet_numero_ligne {
 font-weight:bold;
 }
 
 .sujet_titre {
 font-size:8pt;
 }
-
-.sujet_nombre_messages {
-color:#485ea5;
-font-size:7pt;
-white-space:nowrap;
-}
-
-.sujet_date_dernier_message {
-color:#485ea5;
-font-size:7pt;
-}
 /* ----- */
 
 /* -- messages menu -- */
 body.changer_message {
-background-color: rgb(248,249,251);
-background-image: none;
-border-style: none;
+background-color:#f8f9fb;
 }
 
 td.nouveau_message_equipes {
@@ -61,30 +62,16 @@ width:99%;
 text-align:center;
 }
 
-td.modifier_message {
-text-align:right;
-}
-
-td.supprimer_message {
+td.modifier_message,td.supprimer_message {
 text-align:right;
 }
 
 a.nouveau_message {
-font-size:8pt;
 font-weight:bold;
-}
-
-a.modifier_message {
-}
-
-a.supprimer_message {
 }
 /* ----- */
 
 /* -- forum export -- */
-form.export {
-}
-
 form.export *,form.export legend {
 font-size:8pt;
 }
@@ -116,38 +103,30 @@ background-color:#fdf9ee;
 padding:5px;
 }
 
-body.dialog_important p.titre {
+.dialog_important p.titre {
 border:#aea58a none 1px;
 border-bottom-style:dashed;
 font-weight:bold;
 }
 
-body.dialog_important td.message {
-font-size:10pt;
+.dialog_important td.message,.dialog_important td.question, .dialog_important div.message {
 text-align:center;
 }
 
-body.dialog_important div.message {
-text-align:center;
-}
-
-body.dialog_important td.question {
-font-size:10pt;
+.dialog_important td.question {
 font-weight:bold;
-text-align:center;
 }
 
-body.dialog_important .largeur_page {
+.dialog_important .largeur_page {
 width:100%;
 }
 
-body.dialog_important td.intitule {
+.dialog_important td.intitule {
 text-align:right;
 vertical-align:middle;
 }
 
-body.dialog_important div.barre_de_progression {
-background-color:#fff;
+.dialog_important div.barre_de_progression {
 position:absolute;
 top:0;
 left:5px;
@@ -156,7 +135,7 @@ height:100%;
 visibility:hidden;
 }
 
-body.dialog_important textarea.editeur_texte {
+.dialog_important textarea.editeur_texte {
 width:100%;
 height:370px;
 }
@@ -164,17 +143,12 @@ height:370px;
 
 /* -- forum sujets -- */
 body.changer_sujet {
-background-color:#fff;
-background-image:none;
+background:#fff none;
 margin:0;
 height:190px;
 }
 
-body.changer_sujet a {
-font-size:7pt;
-}
-
-body.changer_sujet .intitule,body.changer_sujet select {
+.changer_sujet a,.changer_sujet .intitule,.changer_sujet select {
 font-size:7pt;
 }
 
@@ -187,29 +161,14 @@ width:99%;
 text-align:right;
 }
 
-td.menu_modifier_sujet {
+td.menu_modifier_sujet,td.menu_supprimer_sujet {
 width:1%;
 }
 
-td.menu_supprimer_sujet {
-width:1%;
-}
 /* ----- */
-
 /* -- sujet infos -- */
 body.sujet_infos {
-background:#f8f9fb url('../../themes/esprit/forum/sujet_infos-fond.gif') repeat-x;
-/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
-scrollbar-face-color:#e6f0f3;
-scrollbar-shadow-color:#e6f0f3;
-scrollbar-3dlight-color:#f8f9fb;
-scrollbar-arrow-color:#fff;
-scrollbar-track-color:#f8f9fb;
-scrollbar-highlight-color:#f8f9fb;
-scrollbar-darkshadow-color:#f8f9fb;
-}
-
-table.sujet_infos {
+background:url('../../themes/esprit/forum/sujet_infos-fond.gif') repeat-x;
 }
 
 td.sujet_titre {
@@ -225,26 +184,15 @@ text-align:right;
 /* ----- */
 
 /* -- sujet messages -- */
-body.message {
-background-color:#f8f9fb;
-background-image:none;
-/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
-scrollbar-face-color:#e6f0f3;
-scrollbar-shadow-color:#e6f0f3;
-scrollbar-3dlight-color:#f8f9fb;
-scrollbar-arrow-color:#fff;
-scrollbar-track-color:#f8f9fb;
-scrollbar-highlight-color:#f8f9fb;
-scrollbar-darkshadow-color:#f8f9fb;
+table.bloc_message {
+border:#e6e6e6 solid 1px;
 }
 
 table.message {
-background-color:#fff;
 border:#e2e8e8 dashed 1px;
 }
 
 table.message_selectionne {
-background-color:#fff;
 border:#ca6306 dashed 1px;
 }
 
@@ -254,11 +202,7 @@ border:#e2e8e8 none 1px;
 border-bottom-style:solid;
 }
 
-td.message_infos_auteur_alias {
-}
-
 td.message_infos_auteur {
-font-size:9pt;
 width:99%;
 }
 
@@ -270,9 +214,7 @@ text-align:right;
 
 td.message_texte {
 padding:20px;
-background-color:#fff;
 font-size:8pt;
-font-weight:normal;
 }
 
 .nb_messages_deposes_personne {

@@ -11,9 +11,6 @@ body
 {
 	background: rgb(255,255,255) url("theme://fond-titre-zdc.gif") repeat-x;
 }
-
-.infos_utilisateur { color: rgb(0,0,0); }
-
 //-->
 </style>
 <script type="text/javascript" language="javascript">

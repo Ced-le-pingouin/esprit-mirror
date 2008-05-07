@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Activité en ligne</title>
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <style type="text/css">
 <!--

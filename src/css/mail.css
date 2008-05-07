@@ -7,13 +7,30 @@ destinataires liste
 
 /* -- mail general -- */
 #idChoisirDansListe {
-position: relative;
+position:relative;
 }
 /* ----- */
 
 /* -- destinataires liste -- */
-body.destinataires_liste, body.destinataires_liste span, body.destinataires_liste div,body.destinataires_liste td { font-size: 8pt; }
-body.destinataires_liste table {  background-color: rgb(196,202,220); }
-span.destinataire_mail { color: rgb(140,140,140); }
-td.courriel_conforme, td.courriel_non_conforme { background-color: rgb(255,255,255); width: 99%; }
+.destinataires_liste,.destinataires_liste span,.destinataires_liste div,.destinataires_liste td {
+font-size:8pt;
+}
+
+select[name=expediteurCourriel],input[name=sujetCourriel] {
+font-size:10pt;
+width:100%;
+}
+
+.destinataires_liste table {
+background-color:#c4cadc;
+}
+
+span.destinataire_mail {
+color:#8c8c8c;
+}
+
+td.courriel_conforme,td.courriel_non_conforme {
+background-color:#fff;
+width:99%;
+}
 /* ----- */

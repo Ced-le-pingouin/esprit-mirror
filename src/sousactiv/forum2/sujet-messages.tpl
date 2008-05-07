@@ -61,7 +61,7 @@ function select_deselect_message(v_sElem)
 </head>
 <body onload="init()" class="message">
 <form action="{form->action}" method="get">
-<table border="0" cellspacing="0" cellpadding="2" width="100%" style="background-color: rgb(255,255,255); border: rgb(230,230,230) solid 1px;">
+<table border="0" cellspacing="0" cellpadding="2" width="100%" class="bloc_message">
 <tr><td>&nbsp;</td></tr>
 [BLOCK_MESSAGE+][BLOCK_MESSAGE-]
 </table>

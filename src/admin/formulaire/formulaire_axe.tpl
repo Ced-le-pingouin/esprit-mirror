@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestion des Axes/Tendances</title>
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script type="text/javascript" language="javascript" src="{chemin_windows.js}"></script>
 <script type="text/javascript">

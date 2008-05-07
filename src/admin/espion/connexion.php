@@ -112,31 +112,31 @@ for ($iIdxEven=0; $iIdxEven<$iNbrEven; $iIdxEven++)
 	$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
 	
 	$sContenuTable .= "<tr>"
-		."<td class=\"numero_ligne\" align=\"right\">"
+		."<td class=\"numero_ligne\">"
 		.($iIdxEven+1)
 		."</td>"
 		."<td".($url_iTri == $oEvenement->TRI_NOM ? $sNomClasseCssTri : $sNomClasseCss)." nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retNom()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_PRENOM ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\" nowrap=\"true\">"
+		."<td".($url_iTri == $oEvenement->TRI_PRENOM ? $sNomClasseCssTri : $sNomClasseCss)." nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retPrenom()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_PSEUDO ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\" nowrap=\"true\">"
+		."<td".($url_iTri == $oEvenement->TRI_PSEUDO ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retPseudo()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_NBR_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\">"
+		."<td".($url_iTri == $oEvenement->TRI_NBR_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->retNbrConnexion()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_DERNIERE_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\" nowrap=\"true\">"
+		."<td".($url_iTri == $oEvenement->TRI_DERNIERE_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->retDateDerniereConnexion()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_DERNIERE_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\" nowrap=\"true\">"
+		."<td".($url_iTri == $oEvenement->TRI_DERNIERE_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" nowrap=\"true\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->retDateDerniereDeconnexion()
 		."</td>"
-		."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\" align=\"center\">"
+		."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\">"
 		.$oEvenement->aoEvenements[$iIdxEven]->retTempsConnexion(TRUE)
 		."</td>"
-		."<td{$sNomClasseCss} width=\"1%\" align=\"center\">&nbsp;"
+		."<td{$sNomClasseCss} width=\"1%\">&nbsp;"
 		."<a href=\"javascript: details('".$oEvenement->aoEvenements[$iIdxEven]->oConnecte->retId()."');\""
 		." title=\"Cliquez ici pour voir la liste complète des connexions\""
 		." onfocus=\"blur()\">D&eacute;tails</a>"

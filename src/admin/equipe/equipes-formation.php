@@ -262,11 +262,6 @@ function envoyer()
 
 //-->
 </script>
-<style type="text/css">
-<!--
-body { background-image: none; }
--->
-</style>
 </head>
 <body class="gauche" onload="init()">
 <form>

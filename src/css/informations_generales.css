@@ -6,7 +6,6 @@ breves
 GPL
 à propos
 ------------------ */
-
 html {
 height:100%;
 /* \*/
@@ -15,7 +14,7 @@ overflow:hidden;
 }
 
 /* -- infos -- */
-html.infos,body.infos {
+body.infos {
 margin:0;
 }
 
@@ -46,13 +45,7 @@ margin-left:0;
 padding:15px;
 }
 
-span#chat_port,span#awareness_port {
-font-style:normal;
-font-weight:bold;
-}
-
-span.administrateur {
-font-style:normal;
+span#chat_port,span#awareness_port,span.administrateur,#courriel {
 font-weight:bold;
 }
 
@@ -60,27 +53,13 @@ span.administrateur_courriel {
 padding:7px;
 }
 
-#courriel {
-font-weight:bold;
-}
-
-#session_responsables {
+#session_responsables,#session_serveur_chat,#session_serveur_awareness {
 border:#686c47 none 1px;
 border-bottom-style:dashed;
 }
 
-#session_serveur_chat {
-border:#686c47 none 1px;
-border-bottom-style:dashed;
-padding-top:5px;
-padding-bottom:10px;
-}
-
-#session_serveur_awareness {
-border:#686c47 none 1px;
-border-bottom-style:dashed;
-padding-top:5px;
-padding-bottom:10px;
+#session_serveur_chat,#session_serveur_awareness {
+padding:5px 0 10px;
 }
 /* ----- */
 
@@ -107,8 +86,7 @@ padding:4px;
 }
 
 #breves {
-background-image:url("../themes/esprit/login/images/news.gif");
-background-repeat:no-repeat;
+background:url("../themes/esprit/login/images/news.gif") no-repeat;
 margin:3px;
 padding-bottom:1.5em;
 }
@@ -121,8 +99,6 @@ text-align:center;
 }
 
 .news-texte {
-font-style:normal;
-font-weight:normal;
 color:#000;
 background-color:#fff5d5;
 margin:0;
@@ -157,8 +133,7 @@ background-color:#fdf9ee;
 margin:0;
 padding:0;
 color:#000;
-font-family:Verdana,Tahoma,Arial,sans-serif;
-font-size:12px;
+font:12px Verdana,Tahoma,Arial,sans-serif;
 height:100%;
 width:100%;
 overflow:hidden;
@@ -202,7 +177,6 @@ margin:0;
 padding:0 10px;
 border-top:solid #000 1px;
 background-color:#aea58a;
-/*vertical-align:center;*/
 }
 
 body.gpl #fermer {
@@ -226,10 +200,7 @@ padding:0;
 }
 
 body.gpl h1 {
-background-color:#fafafa;
-background-image:url("../themes/esprit/infos-logo.gif");
-background-repeat:no-repeat;
-background-position:5px 2px;
+background:#fafafa url("../themes/esprit/infos-logo.gif") no-repeat 5px 2px;
 border:#000 solid 1px;
 padding:5px;
 font-size:20px;
@@ -269,87 +240,82 @@ margin-bottom:25px;
 /* ----- */
 
 /* -- à propos -- */
-body.propos
-{
-	margin: 0;
-	padding: 0;
-	color: black;
-	font-family: Verdana,Tahoma,Arial,sans-serif;
-	font-size: 12px;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
+body.propos {
+margin:0;
+padding:0;
+color:#000;
+font-family:Verdana,Tahoma,Arial,sans-serif;
+font-size:12px;
+height:100%;
+width:100%;
+overflow:hidden;
 }
-body.propos h1
-{
-	font-size: 13px;
-	position: absolute;
-	left: 167px;
-	top: 47px;
-	margin: 0;
-	padding: 0;
+
+body.propos h1 {
+font-size:13px;
+position:absolute;
+left:167px;
+top:47px;
+margin:0;
+padding:0;
 }
-body.propos a { color: #0019CF; }
-body.propos dl
-{
-	margin-left: 15px;
+
+body.propos a {
+color:#0019CF;
 }
-body.propos dt
-{
-	float: left;
-	display: inline;
+
+body.propos dl {
+margin-left:15px;
 }
-body.propos dd
-{
-	margin-left: 165px;
+
+body.propos dt {
+float:left;
+display:inline;
 }
-#bandeau
-{
-	background-image: url('../dialog-titre-fond.gif');
-	background-repeat: repeat-x;
-	background-color: rgb(111,105,87);
-	background-position: 0 10px;
-	width: 100%;
-	height: 16%;
+
+body.propos dd {
+margin-left:165px;
 }
-body.propos #tete
-{
-	position: absolute;
-	top: 0;
-	right: 0;
+
+#bandeau {
+background:#6f6957 url('../dialog-titre-fond.gif') repeat-x 0 10px;
+width:100%;
+height:16%;
 }
-body.propos #contenu
-{
-	overflow: auto;
-	margin: 0;
-	padding: 5px;
-	height: 75%;
+
+body.propos #tete {
+position:absolute;
+top:0;
+right:0;
 }
-body.propos #pieddepage
-{
-	background-color: rgb(174,165,138);
-	color: white;
-	height: 9%;
-	border-top-color: black;
-	border-top-style: solid;
-	border-top-width: 1px;
+
+body.propos #contenu {
+overflow:auto;
+margin:0;
+padding:5px;
+height:75%;
 }
-body.propos #fermer
-{
-	float: right;
-	margin-top: 5px;
-	margin-left: 5px;
-	margin-right: 5px;
+
+body.propos #pieddepage {
+background-color:#aea58a;
+color:#FFF;
+height:9%;
+border-top:1px solid #000;
 }
-body.propos #pieddepage a
-{
-	font-size: 11px;
-	color: rgb(255,255,255);
-	font-weight: bold;
-	text-decoration:none;
+
+body.propos #fermer {
+float:right;
+margin:5px 5px 0;
 }
-body.propos #pieddepage a:hover
-{
-	text-decoration: underline;
+
+body.propos #pieddepage a {
+font-size:11px;
+color:#fff;
+font-weight:bold;
+text-decoration:none;
+}
+
+body.propos #pieddepage a:hover {
+text-decoration:underline;
 }
 /* ----- */

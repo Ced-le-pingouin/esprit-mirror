@@ -59,7 +59,7 @@ BLOCK_HTML_HEAD;
 
 // {{{ Frame principale
 $sFramePrincipale = <<<BLOCK_FRAME_PRINCIPALE
-<frame name="Principale" src="infos.php{$sParamsUrl}" frameborder="0" marginwidth="5" marginheight="5" scrolling="auto" noresize="noresize">
+<frame name="Principale" src="infos.php{$sParamsUrl}" frameborder="0" marginwidth="5" marginheight="5" scrolling="yes" noresize="noresize">
 BLOCK_FRAME_PRINCIPALE;
 // }}}
 

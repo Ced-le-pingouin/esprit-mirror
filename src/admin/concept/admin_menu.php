@@ -290,7 +290,7 @@ function dessinerMenu ($v_asMenu,$v_sStyleExt=NULL)
 	// *************************************
 	
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"1\" width=\"190px\" align=\"center\">\n"
-		."<tr><td class=\"concept_menu_titre_principal{$v_sStyleExt}\"><b>".$v_asMenu[0][0]."</b></td></tr>\n";
+		."<tr><td class=\"concept_menu_titre_principal{$v_sStyleExt}\">".$v_asMenu[0][0]."</td></tr>\n";
 	
 	// *************************************
 	// Afficher les articles du menu

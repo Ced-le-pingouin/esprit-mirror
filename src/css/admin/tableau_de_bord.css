@@ -9,7 +9,6 @@ filtre
 /* -- générales -- */
 body {
 background-color:#eeeadd;
-font-size:8pt;
 }
 
 h1 {
@@ -45,10 +44,6 @@ font-size:8pt;
 
 small {
 font-size:7pt;
-}
-
-#barre_outils {
-text-align:right;
 }
 
 .largeur_1_pourcent {

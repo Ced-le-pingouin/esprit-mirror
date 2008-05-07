@@ -22,11 +22,11 @@ function init()
 </html>
 
 [SET_MESSAGE_ENREGISTRER+]
-<p>&nbsp;</p><p style="text-align: center; font-weight: bold;">L'&eacute;valuation a bien &eacute;t&eacute; enregistr&eacute;.</p>
+<p>&nbsp;</p><p class="bold_center">L'&eacute;valuation a bien &eacute;t&eacute; enregistr&eacute;.</p>
 [SET_MESSAGE_ENREGISTRER-]
 
 [SET_MESSAGE_PAS_EVALUE+]
-<p>&nbsp;</p><p style="text-align: center; font-weight: bold;">Ce tuteur n'a pas encore &eacute;valu&eacute; ce formulaire</p>
+<p>&nbsp;</p><p class="bold_center">Ce tuteur n'a pas encore &eacute;valu&eacute; ce formulaire</p>
 [SET_MESSAGE_PAS_EVALUE-]
 
 [SET_EVALUATION_TUTEUR+]

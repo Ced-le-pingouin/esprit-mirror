@@ -2,6 +2,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://mail.css">
 <link type="text/css" rel="stylesheet" href="css://commun/barre_outils.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript">
@@ -82,9 +83,9 @@ function envoyer()
 <body onload="changerTitreFenetre()">
 {form}
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
-<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">De&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><select name="expediteurCourriel" style="width: 100%">{html_options}</select></td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">De&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><select name="expediteurCourriel">{html_options}</select></td><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td><td valign="top"><div class="intitule" style="text-align: right; padding-top: 5px;">A&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><iframe src="{iframe->src}" name="emails" width="100%" height="80" frameborder="0" marginwidth="0" marginheight="0" scrolling="yes"></iframe></td><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">Sujet&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><input type="text" name="sujetCourriel" value="{sujet_courriel}" onkeyup="changerTitreFenetre()" style="width: 100%"></td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">Sujet&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><input type="text" name="sujetCourriel" value="{sujet_courriel}" onkeyup="changerTitreFenetre()"></td><td>&nbsp;</td></tr>
 </table>
 <div id="id_emails" style="visibility: hidden; display: none;">
 <textarea name="messageCourriel">{message_courriel}</textarea>

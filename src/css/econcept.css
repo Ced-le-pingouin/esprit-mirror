@@ -7,20 +7,14 @@ concept
 sousactive inv
 
 ------------------ */
-body {
-background-color:#fff;
-background-image:none;
-/*margin-left:30px;*/
-}
-
 /* -- admin liste -- */
 a.Formation,.Formation {
 font-size:11pt;
-font-weight:700;
+font-weight:bold;
 }
 
 .Cours {
-font-weight:700;
+font-weight:bold;
 }
 
 #id_editer {
@@ -32,19 +26,9 @@ height:16px;
 visibility:hidden;
 }
 
-span.module_intitule {
-font-size:10pt;
-font-weight:700;
-}
-
 hr.module {
 border:#f2f2f2 solid 1px;
 color:#f2f2f2;
-}
-
-span.rubrique_intitule {
-font-size:10pt;
-font-weight:700;
 }
 
 div.formation {
@@ -62,13 +46,7 @@ padding:5px 0 5px 20px;
 white-space:nowrap;
 }
 
-div.activite {
-padding-top:5px;
-padding-left:20px;
-white-space:nowrap;
-}
-
-div.sous_activite {
+div.activite, div.sous_activite {
 padding-top:5px;
 padding-left:20px;
 white-space:nowrap;
@@ -76,11 +54,11 @@ white-space:nowrap;
 /* ----- */
 
 /* -- ajouter formation -- */
-body.ajout {
-background-image:none;
-font-size : 10pt;
+.titre_ajout {
+font-weight:bold;
+text-align:left;
 }
-.titre_ajout { font-weight: bold; }
+
 td.dialog_logo_ajout {
 width:165px;
 }
@@ -101,9 +79,6 @@ input[name=formation_nom] { width: 370px; }
 /* ----- */
 
 /* -- concept -- */
-body.econcept_liste {
-}
-
 body.econcept_modif {
 background-color:#e7e1d4;
 scrollbar-face-color:#fbf9ee;
@@ -116,9 +91,7 @@ scrollbar-darkshadow-color:#e7e1d4;
 }
 
 a {
-font-size:8pt;
-font-weight:400;
-text-align:center;
+font-weight:normal;
 }
 
 option.selected { background-color: #FFFFCC; }
@@ -137,47 +110,42 @@ left:250px;
 top:47px;
 height:20px;
 color:#141414;
-font-size:10pt;
-font-weight:700;
+font-weight:bold;
 text-align:right;
 visibility:hidden;
 }
 
-td.admin_modif_menu {
-background-image:none;
-background-color:#afa58a;
+td.admin_modif_menu, td.admin_modif_outils{
 border:#000 solid 1px;
 border-left-style:none;
 border-right-style:none;
+}
+
+td.admin_modif_menu {
+background-color:#afa58a;
 text-align:center;
 }
 
-td.admin_modif_outils {
+td.admin_modif_outils, .admin_modif_menu {
 background-color:#cac3b1;
-border:#000 solid 1px;
-border-left-style:none;
-border-right-style:none;
 }
 
 div.admin_modif_nom_element {
-color:#000;
-font-weight:700;
+font-weight:bold;
 text-align:left;
-font-size:10pt;
 }
 
 .admin_modif_menu {
-background-image:none;
-background-color:#cac3b1;
 border:#000 none 1px;
 border-top-style:solid;
 text-align:center;
 }
 
+
 #id_titre {
 position:relative;
 font-size:11pt;
-font-weight:400;
+font-weight:normal;
 }
 
 /* Simple menu: style 1 */
@@ -188,23 +156,17 @@ background-color:#6f6957;
 td.concept_menu_titre_principal {
 background-color:#6f6957;
 color:#fff;
-font-size:10pt;
-font-weight:700;
+font-weight:bold;
 text-align:center;
 }
 
-td.concept_menu_sous_titre {
+td.concept_menu_sous_titre,td.concept_menu_sous_titre_2 {
 background-color:#e7e1d4;
-color:#000;
-font-size:10pt;
-font-weight:400;
 text-align:center;
 }
 
 td.concept_menu {
 background-color:#cac3b1;
-font-size:10pt;
-font-weight:400;
 text-align:center;
 }
 
@@ -216,29 +178,17 @@ background-color:#b2afa6;
 td.concept_menu_titre_principal_2 {
 background-color:#b2afa6;
 color:#f0f0f0;
-font-size:10pt;
-font-weight:700;
-text-align:center;
-}
-
-td.concept_menu_sous_titre_2 {
-background-color:#e7e1d4;
-color:#000;
-font-size:10pt;
-font-weight:400;
+font-weight:bold;
 text-align:center;
 }
 
 td.concept_menu_2 {
 background-color:#fbf9ee;
-font-size:10pt;
-font-weight:400;
 text-align:center;
 }
 
 .intitule {
 text-align:right;
-font-size:10pt;
 }
 
 .lien_passif {

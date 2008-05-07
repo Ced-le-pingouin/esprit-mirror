@@ -9,21 +9,13 @@ traces
 /* -- copie element -- */
 body.copie_element {
 color:#000;
-font-family:Verdana,Tahoma,Arial,Times;
-font-size:13px;
+font:normal 13px Verdana,Tahoma,Arial,Times;
 text-decoration:none;
 margin:3px;
 padding:0;
 }
 
-body.copie_element a:link {
-color:#05054b;
-font-size:8pt;
-font-weight:bold;
-text-decoration:none;
-}
-
-body.copie_element a:visited {
+body.copie_element a:link, body.copie_element a:visited {
 color:#05054b;
 font-size:8pt;
 font-weight:bold;
@@ -41,7 +33,7 @@ body.copie_element #navmenu {
 position:absolute;
 bottom:0;
 left:0;
-background:#aea58a url('dialog-menu-fond.gif');
+background:#aea58a url('../../themes/esprit/dialog-menu-fond.gif');
 height:23px;
 width:100%;
 padding:0;
@@ -58,16 +50,12 @@ width:400px;
 
 body.copie_element #fermer,body.copie_element #annuler {
 float:left;
-margin-top:5px;
-margin-left:5px;
-margin-right:5px;
+margin:5px 5px 0;
 }
 
 body.copie_element #suivant,body.copie_element #valider,body.copie_element #menu {
 float:right;
-margin-top:5px;
-margin-left:5px;
-margin-right:5px;
+margin:5px 5px 0;
 }
 
 body.copie_element h4 {
@@ -140,13 +128,12 @@ font-weight:bold;
 /* ----- */
 
 /* -- traces -- */
-body.traces {
-background-image:none;
-border-style:none;
+td.numero_ligne {
+text-align:right;
 }
+
 td.duree_totale {
 border: #000000 none 1px;
 border-top-style: solid;
-font-size: 9pt;
 }
 /* ----- */

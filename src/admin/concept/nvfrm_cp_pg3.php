@@ -78,23 +78,11 @@ if (isset($bConfirmation) && $bConfirmation)
 
 ?>
 
-<style type="text/css">
-<!--
-
-.titre
-{
-	font-weight: bold;
-	text-align: left;
-}
-
-//-->
-</style>
-
 <h5>Etape 3&nbsp;: Veuillez donner un nom et &eacute;ventuellement une description &agrave; cette formation</h5>
-<table border="0" cellspacing="0" cellpadding="3" width="100%" style="font-size : 10pt;">
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
 <?php
 echo "<tr>"
-	."<td class=\"titre\" nowrap=\"1\">Nom</td>"
+	."<td class=\"titre_ajout\" nowrap=\"1\">Nom</td>"
 	."<td width=\"5\">:</td>"
 	."<td><input"
 	." type=\"text\""
@@ -106,7 +94,7 @@ echo "<tr>"
 	."\"></td>"
 	."</tr>\n"
 	."<tr>\n"
-	."<td class=\"titre\" valign=\"top\" nowrap=\"nowrap\">Description</td>"
+	."<td class=\"titre_ajout\" valign=\"top\" nowrap=\"nowrap\">Description</td>"
 	."<td valign=\"top\" width=\"5\">:</td>"
 	."<td>"
 	."<textarea name=\"formation_description\" cols=\"50\" rows=\"4\">"
@@ -118,7 +106,7 @@ echo "<tr>"
 	."</td>\n"
 	."</tr>\n"
 	."<tr>\n"
-	."<td class=\"titre\" nowrap=\"1\">Date de cr&eacute;ation</td>"
+	."<td class=\"titre_ajout\" nowrap=\"1\">Date de cr&eacute;ation</td>"
 	."<td width=\"5\">:</td>"
 	."<td nowrap=\"1\">"
 	.$oProjet->oFormationCourante->retDateDeb()

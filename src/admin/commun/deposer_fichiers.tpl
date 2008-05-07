@@ -42,7 +42,7 @@ function activer_boutton_deposer()
 [BLOCK_DEPOSER_FICHIERS+]
 [VAR_ONGLET_TITRE+]{title}[VAR_ONGLET_TITRE-]
 [VAR_ONGLET_TEXTE+]
-<table border="0" cellpadding="2" cellspacing="0" align="left" style="font-size:9pt">
+<table border="0" cellpadding="2" cellspacing="0" align="left">
 <tr><td><b>Rechercher le fichier&nbsp;:</b><br><input type="file" name="nomFichierCopier"><br><br><b>D&eacute;poser dans le r&eacute;pertoire&nbsp;:</b><br>
 <select name="nomRepertoireCopie">[BLOCK_NOM_REPERTOIRE_COPIE+]<option value="{option.value}">{option.label}</option>[BLOCK_NOM_REPERTOIRE_COPIE-]</select></td>
 <td valign="top"><table border="0" cellspacing="0" cellpadding="0">

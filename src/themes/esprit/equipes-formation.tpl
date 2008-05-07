@@ -1,7 +1,7 @@
 <table border="0" cellpadding="0" cellspacing="1" width="100%">
 <tr><td colspan="5">&nbsp;</td></tr>
 <tr>
-<td style="background-color: rgb(255,255,255);">
+<td>
 <table border="0" cellpadding="2" cellspacing="1" width="100%">
 [BLOCK_FORMATION_OUVERT+]
 <tr>

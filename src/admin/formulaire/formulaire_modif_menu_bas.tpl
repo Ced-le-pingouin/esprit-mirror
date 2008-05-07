@@ -17,6 +17,7 @@ function annuler()
 }
 //-->
 </script>
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <title>Conception d'activités en ligne</title>
 </head>

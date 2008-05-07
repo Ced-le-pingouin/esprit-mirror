@@ -72,13 +72,13 @@ et... recommencez la procédure (nom et prénom puis valider).</p>
 [BLOCK_ENTRER_INFORMATIONS-]
 
 [BLOCK_COURRIEL_ENVOYER+]
-[VAR_OK+]<tr><td><img src="commun://icones/64x64/courriel_envoye.gif" width="64" height="64" alt="0" border="0"></td><td><p style="text-align: center; font-size: 9pt; font-weight: bold;">Votre pseudo ainsi que votre mot de passe vous ont été envoyés à l'adresse suivante&nbsp;: &laquo;&nbsp;<span style="color: rgb(64,64,153);">{personne->email}</span>&nbsp;&raquo;.</p></td></tr>[VAR_OK-]
+[VAR_OK+]<tr><td><img src="commun://icones/64x64/courriel_envoye.gif" width="64" height="64" alt="0" border="0"></td><td><p class="bold_center">Votre pseudo ainsi que votre mot de passe vous ont été envoyés à l'adresse suivante&nbsp;: &laquo;&nbsp;<span style="color: rgb(64,64,153);">{personne->email}</span>&nbsp;&raquo;.</p></td></tr>[VAR_OK-]
 [VAR_NOM_PRENOM_INCORRECT+]
 <tr>
 <td valign="top"><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="font-size: 9pt; font-weight: bold;">Le nom/prénom que vous avez indiqué n'a pas été reconnu par la plateforme.</p>
-<p style="font-size: 9pt;">Deux causes possibles&nbsp;:
+<p style="font-weight: bold;">Le nom/prénom que vous avez indiqué n'a pas été reconnu par la plateforme.</p>
+<p>Deux causes possibles&nbsp;:
 <ul><li>vous n'êtes pas inscrit à une formation hébergée par {plateforme.nom}, dans ce cas contactez votre enseignant.<br><br></li><li>vous avez mal introduit votre nom ou prénom. Essayez à nouveau.</li></ul></p>
 </td>
 </tr>
@@ -87,7 +87,7 @@ et... recommencez la procédure (nom et prénom puis valider).</p>
 <tr>
 <td><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="text-align: center; font-size: 9pt; font-weight: bold;">Aucune adresse courrielle n'est associée à votre nom. Il nous est donc impossible de vous envoyer votre pseudo et mot de passe. Veuillez contacter votre enseignant.</p>
+<p class="bold_center">Aucune adresse courrielle n'est associée à votre nom. Il nous est donc impossible de vous envoyer votre pseudo et mot de passe. Veuillez contacter votre enseignant.</p>
 </td>
 </tr>
 [VAR_AUCUNE_ADRESSE-]
@@ -95,7 +95,7 @@ et... recommencez la procédure (nom et prénom puis valider).</p>
 <tr>
 <td><img src="commun://icones/64x64/courriel_pas_envoye.gif" width="64" height="64" alt="0" border="0"></td>
 <td>
-<p style="text-align: center; font-size: 9pt; font-weight: bold;">Désolé notre système d'envoi de courriel a échoué. Essayez à nouveau.</p>
+<p class="bold_center">Désolé notre système d'envoi de courriel a échoué. Essayez à nouveau.</p>
 </td>
 </tr>
 [VAR_ERREUR_ENVOI_COURRIEL-]

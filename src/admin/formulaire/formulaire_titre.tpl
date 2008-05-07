@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
 <link type="text/css" rel="stylesheet" href="css://econcept.css">
-<script type="text/javascript" language="javascript" src="commun://js//dialog-titre.js"></script>
+<script type="text/javascript" language="javascript" src="commun://js/dialog-titre.js"></script>
 <title>Conception d'activités en ligne</title>
 </head>
 <body class="haut_2">

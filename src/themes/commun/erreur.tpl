@@ -6,7 +6,7 @@
 <body>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<div style="text-align: center;"><span style="font-weight: bold; font-size: 10pt;">{message_erreur.texte}</span></div>
+<div class="bold_center"><span>{message_erreur.texte}</span></div>
 </body>
 </html>
 

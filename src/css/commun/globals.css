@@ -11,9 +11,9 @@ barre filtres
 
 /* -- globals -- */
 body {
-font-family:Verdana,Tahoma,Arial,Bitstream Vera Sans,Time;
-font-size:10pt;
-background-color:#fff;
+font:normal 10pt Verdana,Tahoma,Arial,Bitstream Vera Sans,Time;
+background:#fff none;
+border:none;
 /* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
 scrollbar-face-color:#e7e1d4;
 scrollbar-highlight-color:#fbf9ee;
@@ -43,44 +43,33 @@ border:#ccc dashed 1px;
 font-size:8pt;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
 color:#222;
-font-size:16pt;
 font-weight:bold;
+}
+h1 {
+font-size:16pt;
 }
 
 h2 {
-color:#222;
 font-size:14pt;
-font-weight:bold;
 }
 
 h3 {
-color:#222;
 font-size:13pt;
-font-weight:bold;
 }
 
 h4 {
-color:#222;
 font-size:12pt;
-font-weight:bold;
 }
 
 h5 {
-color:#222;
 font-size:11pt;
-font-weight:bold;
 }
 
-h6 {
-color:#222;
+h6, table, td, div, span, th {
 font-size:10pt;
-font-weight:bold;
-}
-
-table, td {
-font-size: 10pt;
+border:none;
 }
 
 th {
@@ -89,22 +78,18 @@ border:#eeeadd solid 1px;
 border-top-color:#fff;
 border-bottom-color:#cac3b1;
 color:#6f6957;
-font-weight:normal;
-font-size:9pt;
 text-align:center;
 padding:1px;
+}
+
+.aligndroite {
+text-align:right;
 }
 
 th.surbrillance {
 background-color:#e0e8f6;
 border-bottom-color:#c60;
 color:#1f527e;
-}
-
-textarea,input {
-font-family:Verdana,Tahoma,Arial,Time;
-font-weight:normal;
-font-size:10pt;
 }
 
 .texte_grise {
@@ -128,8 +113,7 @@ text-decoration:underline;
 
 .lien_passif {
 color:#cac3b1;
-font-size:9pt;
-font-weight:normal;
+font-size:10pt;
 text-decoration:none;
 }
 
@@ -138,31 +122,29 @@ color:#b4733a;
 font-weight:bold;
 }
 
-div.attention {
+
+td.attention, div.attention {
 text-align:center;
 background-color:#ece9d8;
 border:#aea58a dashed 2px;
 padding:5px;
+}
+
+div.attention {
 width:90%;
 }
 
-td.attention {
-text-align:center;
-background-color:#ece9d8;
-border:#aea58a dashed 2px;
-padding:5px;
-}
-
-.afficher_curseur_aide {
+.afficher_curseur_aide, #infos_utilisateur,span.sans_email,span.Attention,.participants {
 cursor:help;
-font-size:10pt;
+}
+.bold_center, .intitule_principal {
+text-align: center;
+font-weight: bold;
 }
 
 .intitule_principal {
 color:#000;
 font-size:11pt;
-font-weight:bold;
-text-align:center;
 padding:1px;
 }
 
@@ -177,10 +159,6 @@ background-color:#fff;
 cursor:auto;
 }
 
-td.numero_ligne {
-font-size:9pt;
-}
-
 td.cellule_titre_principal {
 color:#000;
 font-size:13pt;
@@ -191,21 +169,19 @@ padding:1px;
 div.cellule_sous_titre,td.cellule_sous_titre,td.cellule_sous_titre_surbrillance {
 background:#eeeadd none repeat-x top left;
 border:#d5ccbd none 1px;
-border-style:none;
 border-bottom-style:solid;
 border-top-color:#fff;
 border-top-style:solid;
 color:#6f6957;
-font-weight:normal;
-font-size:9pt;
 text-align:center;
 padding:1px;
 }
 
+td.cellule_clair,td.cellule_fonce,td.cellule_surbrillante, td.cellule_clair_fonce {
+text-align:center;
+}
 td.cellule_clair,td.cellule_fonce,td.cellule_surbrillante {
-background-image:none;
 color:#5e5a4b;
-font-size:9pt;
 padding:3px;
 }
 
@@ -213,7 +189,6 @@ td.cellule_clair,td.cellule_clair_fonce,td.cellule_surbrillante {
 background-color:#fafafa;
 border:#f0f0f0 none 1px;
 border-top-style:solid;
-font-size:9pt;
 border-bottom-style:solid;
 }
 
@@ -236,17 +211,15 @@ border-bottom-style:solid;
 }
 
 td.cellule_description {
-background-image:none;
 background-color:#fafafa;
 border:#f0f0e4 none 1px;
 border-top-style:solid;
 border-bottom-style:solid;
 color:#5e5a4b;
-font-size:9pt;
 padding:5px;
 }
 
-td.barre_icones {
+td.barre_icones,td.barre_icones_1 {
 border:#fff solid 1px;
 height:25px;
 }
@@ -277,7 +250,6 @@ text-align:left;
 /* Intitulé */
 .intitule {
 color:#6f6957;
-font-size:8pt;
 font-weight:bold;
 }
 
@@ -286,16 +258,10 @@ vertical-align:top;
 }
 
 /* email */
-a.email {
-font-size:8pt;
-font-weight:normal;
-}
 
 span.sans_email {
-cursor:help;
 font-style:italic;
 font-size:8pt;
-font-weight:normal;
 }
 
 /* arabe */
@@ -342,7 +308,6 @@ vertical-align:bottom;
 .onglet_1x2 {
 color:#0046d5;
 font-size:9pt;
-font-weight:normal;
 text-align:center;
 }
 
@@ -364,46 +329,23 @@ body.menu {
 background:#aea58a url('../../themes/esprit/fond-menu.gif') repeat-x fixed top left;
 }
 
-/*body.menu td {
-background-color:transparent;
-}
-*/
 td.retour_menu {
 background-color:#416e96;
-border-style:none;
 font-weight:bold;
 }
 
 td.deconnexion {
 background-color:#8d0623;
-border-style:none;
 font-weight:bold;
 }
 
 body.menu a {
 color:#fff;
-font-size:8pt;
-text-decoration:none;
-}
-
-body.menu a:hover {
-text-decoration:underline;
-}
-
-#status_bar {
-color:#fff;
-font-size:10pt;
-font-weight:normal;
 }
 /* ----- */
 
 /* -- outils -- */
-body.outils {
-background-image:none;
-}
-
 a.titre_outil {
-font-size:8pt;
 font-weight:bold;
 }
 
@@ -412,19 +354,17 @@ font-size:8pt;
 color:gray;
 }
 
-td.outil_fond_clair {
-background-color:#fff;
+td.outil_fond_fonce, td.outil_fond_clair {
+border:1px #B4B4B4;
+border-style: none none dashed;
 }
 
-td.outil_fond_fonce {
+td.outil_fond_fonce, td.outil_fond_fonce_img {
 background-color:#fafafb;
 }
 /* ----- */
 
 /* -- statuts -- */
-body.statut {
-background-image:none;
-}
 /* ----- */
 
 /* -- barre filtres -- */
@@ -433,8 +373,13 @@ background-image:none;
 background-color:#ece9d8;
 }
 
-body.barre_filtres #barre_filtres {
+#barre_filtres {
 text-align:center;
 margin:5px;
+}
+
+#barre_outils {
+margin:0 10px 10px 0;
+text-align:right;
 }
 /* ----- */

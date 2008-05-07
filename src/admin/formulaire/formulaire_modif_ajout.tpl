@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Ajouter un élément</title>
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script src="selectionobj.js" type="text/javascript"></script>
 </head>
