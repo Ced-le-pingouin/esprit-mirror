@@ -3,7 +3,7 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="changer_dossier.css">
+<link type="text/css" rel="stylesheet" href="theme://dossierforms/changer_dossier.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="changer_dossier.js"></script>
 </head>
