@@ -162,6 +162,10 @@ td.description
 	color: rgb(94,90,75);
 	font-size: 9pt;
 }
+td.description p
+{
+	font-size: 9pt;
+}
 
 td.cellule_lien { text-align: left; }
 
