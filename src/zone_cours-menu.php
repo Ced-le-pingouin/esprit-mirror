@@ -278,7 +278,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 					
 					if ($iType == FRAME_CENTRALE_INDIRECT)
 					{
-						$oBlockSousActiv->ajouter($oSet_Document_Telecharger);
+						$oBlockSousActiv->ajouter($oSet_Page_Html1);
 						$sHref = "{lien.url}?idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}";
 						$oBlockSousActiv->remplacer("{sousactiv.lien.cible}","Principal");
 					}
@@ -286,7 +286,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 					{
 						$sSignet = NULL;
 						
-						$oBlockSousActiv->ajouter($oSet_Page_Html1);
+						$oBlockSousActiv->ajouter($oSet_Document_Telecharger);
 						
 						$sHref = dir_lib("download.php",FALSE)
 							."?f=".$oActiv->retRepCours($sFichier,FALSE)
