@@ -411,7 +411,7 @@ if (!empty($iNbrRubriques) && $oProjet->verifPermission("PERM_OUTIL_TABLEAU_DE_B
 else
 	$oTpl->remplacer("{outils.tableau_de_bord}",NULL);
 
-$oTpl->remplacer("{outils.choix_courriel}",retLienEnvoiCourriel("?idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&typeCourriel=courriel-cours@cours"));
+$oTpl->remplacer("{outils.choix_courriel}",retLienEnvoiCourriel("?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."x".STATUT_PERS_RESPONSABLE."&typeCourriel=courriel-cours@cours"));
 $oTpl->remplacer("{outils.liste_inscrits}",retLienListeInscrits());
 // }}}
 

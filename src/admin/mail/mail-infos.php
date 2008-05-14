@@ -133,7 +133,7 @@ if (strlen($url_sTypeCourriel) > 0)
 	$asTplRemplacer[] = $oProjet->retNom();
 	$asTplRemplacer[] = dir_http_plateform();
 	$asTplRemplacer[] = $oProjet->oFormationCourante->retNom();
-	$asTplRemplacer[] = $oProjet->oModuleCourant->retNom();
+	$asTplRemplacer[] = (isset($oProjet->oModuleCourant) && is_object($oProjet->oModuleCourant) ? $oProjet->oModuleCourant->retNom() : NULL);
 	$asTplRemplacer[] = (isset($oProjet->oRubriqueCourante) && is_object($oProjet->oRubriqueCourante) ? $oProjet->oRubriqueCourante->retNom() : NULL);
 	$asTplRemplacer[] = (isset($oProjet->oSousActivCourante) && is_object($oProjet->oSousActivCourante) ? $oProjet->oSousActivCourante->retNom() : NULL);
 	$asTplRemplacer[] = $oProjet->oUtilisateur->retNom();

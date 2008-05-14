@@ -54,7 +54,6 @@ function verifierAppelCourriel($v_asTypeCourriel, $v_iNbPersonnes=2)
 	global $g_Type;
 	$g_Type = explode("-", $v_asTypeCourriel);
 	switch($g_Type[1]){
-		case "forum":
 		case "cours":
 			$v_BlocModif =  "du ".$g_Type[1];
 		break;
@@ -156,7 +155,7 @@ $oBlocListeStatutsFormation = new TPL_Block("BLOCK_LISTE_STATUTS_FORMATION",$oTp
 if ($url_iFormationId > 0)
 {
 	$asListeStatuts = $oBlocListeStatutsFormation->defTableau("ARRAY_STATUTS_FORMATION");
-	$v_aiIdStatutsForm = array(STATUT_PERS_RESPONSABLE, STATUT_PERS_TUTEUR, STATUT_PERS_ETUDIANT);
+	$v_aiIdStatutsForm = array(STATUT_PERS_TUTEUR, STATUT_PERS_ETUDIANT, STATUT_PERS_RESPONSABLE);
 	
 	$oBlocStatutFormation = new TPL_Block("BLOCK_STATUT_FORMATION",$oBlocListeStatutsFormation);
 	$oBlocStatutFormation->remplacer("{liste_membres}",$sSetListeMembres);

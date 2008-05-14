@@ -102,7 +102,7 @@ $sMenu = ($bPersInscrite
 		? "<a href=\"javascript: void(0);\" onclick=\"multilingue(); return false;\" onfocus=\"blur()\">"._("Multilinguisme")."</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($bPersInscrite && $iIdMod>0 && $iIdRubrique==0
-		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_RESPONSABLE."x".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&typeCourriel=courriel-cours@cours'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."x".STATUT_PERS_RESPONSABLE."&typeCourriel=courriel-cours@cours'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
 		: NULL)
 	.($bPersInscrite && $iIdMod>0 && $iIdRubrique>0
 		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idStatuts=".STATUT_PERS_TUTEUR."x".STATUT_PERS_ETUDIANT."&typeCourriel=courriel-cours@cours'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
