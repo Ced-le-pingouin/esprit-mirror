@@ -2,69 +2,59 @@
  * @author Silecs
  * @copyright Copyright © 2007, Silecs.
  */
+ (function() {
+	// Load plugin specific language pack
+	tinymce.PluginManager.requireLangPack('tableaubord');
 
-/* Import plugin specific language pack */
-tinyMCE.importPluginLanguagePack('tableaubord');
+	tinymce.create('tinymce.plugins.TableauBordPlugin', {
+		/**
+		 * Initializes the plugin, this will be executed after the plugin has been created.
+		 * This call is done before the editor instance has finished it's initialization so use the onInit event
+		 * of the editor instance to intercept that event.
+		 *
+		 * @param {tinymce.Editor} ed Editor instance that the plugin is initialized in.
+		 * @param {string} url Absolute URL to where the plugin is located.
+		 */
+		init : function(ed) {
+			// Register example button
+			var imgtab = '../../js/tiny_mce/plugins/tableaubord/img/tableaubord.gif';
+			ed.addButton('tableauborde', {
+				title : 'tableaubord.tableauborde_desc',
+				cmd : 'mceTableauBorde',
+				image : imgtab,
+				onclick : function(editor_id, element, command, user_interface, value) {
+					tinyMCE.execCommand('mceInsertContent', false, '[tableaudebord /e]');
+					return false;
+				}
+			});
+			ed.addButton('tableaubordi', {
+				title : 'tableaubord.tableaubordi_desc',
+				cmd : 'mceTableauBordi',
+				image : imgtab,
+				onclick : function(editor_id, element, command, user_interface, value) {
+					tinyMCE.execCommand('mceInsertContent', false, '[tableaudebord /i]');
+					return false;
+				}
+			});
+		},
 
-var TinyMCE_TableauBordPlugin = {
-	getInfo : function() {
-		return {
-			longname : 'Tableau de bord',
-			author : 'Silecs',
-			authorurl : 'http://www.silecs.info',
-			infourl : 'http://sourcesup.cru.fr/esprit/',
-			version : '1.0'
-		};
-	},
+		/**
+		 * Returns information about the plugin as a name/value array.
+		 * The current keys are longname, author, authorurl, infourl and version.
+		 *
+		 * @return {Object} Name/value array containing information about the plugin.
+		 */
+		getInfo : function() {
+			return {
+				longname : 'Tableau de bord',
+				author : 'Silecs',
+				authorurl : 'http://www.silecs.info',
+				infourl : 'http://sourcesup.cru.fr/projects/esprit/',
+				version : '2.0 (mise à jour pour v3 de tiny)'
+			};
+		},
+	});
 
-	/**
-	 * Returns the HTML code for a specific control or empty string if this plugin doesn't have that control.
-	 * A control can be a button, select list or any other HTML item to present in the TinyMCE user interface.
-	 * The variable {$editor_id} will be replaced with the current editor instance id and {$pluginurl} will be replaced
-	 * with the URL of the plugin. Language variables such as {$lang_somekey} will also be replaced with contents from
-	 * the language packs.
-	 *
-	 * @param {string} cn Editor control/button name to get HTML for.
-	 * @return HTML code for a specific control or empty string.
-	 * @type string
-	 */
-	getControlHTML : function(cn) {
-		switch (cn) {
-			case "tableaubordi":
-				return tinyMCE.getButtonHTML(cn, 'lang_tableaubordi_desc', '{$pluginurl}/images/tableaubord.gif', 'mceTableauBordI', false);
-			case "tableauborde":
-				return tinyMCE.getButtonHTML(cn, 'lang_tableauborde_desc', '{$pluginurl}/images/tableaubord.gif', 'mceTableauBordE', false);
-		}
-
-		return "";
-	},
-
-	/**
-	 * Executes a specific command, this function handles plugin commands.
-	 *
-	 * @param {string} editor_id TinyMCE editor instance id that issued the command.
-	 * @param {HTMLElement} element Body or root element for the editor instance.
-	 * @param {string} command Command name to be executed.
-	 * @param {string} user_interface True/false if a user interface should be presented.
-	 * @param {mixed} value Custom value argument, can be anything.
-	 * @return true/false if the command was executed by this plugin or not.
-	 * @type
-	 */
-	execCommand : function(editor_id, element, command, user_interface, value) {
-		var inst = tinyMCE.getInstanceById(editor_id), h;
-
-		switch (command) {
-			case "mceTableauBordI":
-				tinyMCE.execInstanceCommand(editor_id, 'mceInsertContent', false, '[tableaudebord /i]');
-				return true;
-			case "mceTableauBordE":
-				tinyMCE.execInstanceCommand(editor_id, 'mceInsertContent', false, '[tableaudebord /e]');
-				return true;
-		}
-
-		return false;
-	}
-
-};
-
-tinyMCE.addPlugin("tableaubord", TinyMCE_TableauBordPlugin);
+	// Register plugin
+	tinymce.PluginManager.add('tableaubord', tinymce.plugins.TableauBordPlugin);
+})();
