@@ -10,9 +10,10 @@ function initEditeur( Mode, Elements, tableauDeBord ) {
 	} else {
 		onchangeCallback = "";
 	}
+	
 tinyMCE.init({
 	theme : "advanced",
-	plugins : "save,advhr,advimage,advlink,insertdatetime,zoom,searchreplace,contextmenu,directionality,paste"
+	plugins : "save,advhr,advimage,advlink,insertdatetime,searchreplace,contextmenu,directionality,paste,safari"
 		+(tableauDeBord?",tableaubord":""),
 
 	theme_advanced_buttons1_add : "fontselect,fontsizeselect,forecolor,backcolor",
@@ -60,30 +61,31 @@ tinyMCE.init({
 	docs_language : "fr"
 });
 }
+
 function convertWord(type, content) {
 	content = content.replace(/-moz-use-text-color/gi, ""); // on enlève les balises spéciales créées par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
 	content = content.replace(/\s?mso-[^\"]*/gi, ""); // on enlève les balises spéciales créées par IE
 	
-	// enleve les balises à l'intérieur d'un 'paragraphe' vide, sinon bug sur les tableaux
-	var recherche_p = /<p(\s?[^>]*)>((<[^>]*>)*).?nbsp.?((<[^>]*>)*)<\/p>/gi;
+	// remplace les balises 'paragraphe' vide dans le tableau par <br/>
+	var recherche_p = /<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)+((<\/[^>]*>)*)<\/p>/gi;
 	recherche_p.exec(content);
-	content = content.replace(recherche_p,"<p"+RegExp.$1+">&nbsp;</p>");
+	content = content.replace(recherche_p,"<br />");
 	
-	recherche_td = content.match(/(td).+(border).{0,7}(:)[a-z0-9\s]*(; )/gi); // recherche des <td...></td>
+	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
 	if (recherche_td)
 	{
 		for(i=0;i<recherche_td.length;++i)
 		{
-			content = content.replace(/(border-).{1,7}(:)[a-z0-9\s]*(; )/gi, ""); // enleve les style 'border-color'... dans le td
+			content = content.replace(/(border).{0,7}(:)[^;]*;\s?/gi, ""); // enleve les style 'border-color'... dans le td
 		}
 	}
-	recherche_tab = content.match(/(table).+(border).{0,7}(:)[a-z0-9\s]*(; )/gi); // recherche des <table...> contenant un style border
+	recherche_tab = content.match(/(table).+(border).{0,7}(:)[a-z0-9\s]*(;\s?)/gi); // recherche des <table...> contenant un style border
 	if (recherche_tab)
 	{
 		for(i=0;i<recherche_tab.length;++i)
 		{
-			content = content.replace(/(border).{0,}(:)[a-z0-9\s]*((;)|(; ))/gi, ""); // enleve les style 'border-color'... dans la table
+			content = content.replace(/(border).{0,}(:)[a-z0-9\s]*((;)|(;\s?))/gi, ""); // enleve les style 'border-color'... dans la table
 		}
 	}
 
