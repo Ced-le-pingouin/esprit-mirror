@@ -49,7 +49,7 @@ tinyMCE.init({
 	fix_nesting : true,
 	preformatted : false,
 	
-	plugin_insertdate_dateFormat : "%Y-%m-%d",
+	plugin_insertdate_dateFormat : "%d-%m-%Y",
 	plugin_insertdate_timeFormat : "%H:%M:%S",
 	extended_valid_elements : "a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style]",
 	invalid_elements : "p[style]",
@@ -57,21 +57,33 @@ tinyMCE.init({
 	elements : Elements,
 	setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
+	save_callback : "nettoyage",
 	language : "fr",
 	docs_language : "fr"
 });
+}
+
+/* 	nettoyage des éléments du tableau au moment de la validation dans l'éditeur
+	ce qui permet d'enlever les <p...>&nbsp;</p> du tableau ajoutés après insertion par 'pasteword'
+	et évite les pertes des cadres du tableau causées par les paragraphes.
+*/
+function nettoyage(element_id, html, body) {
+	var recherche_p = /<td[^>]*>([^<]*(<br \/>[^<]*)*<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>\s?)*<\/td>/i;
+	bool = recherche_p.test(html);
+	while (bool)
+	{
+		html = html.replace(/<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>/i, "<br />");
+		bool = recherche_p.test(html);
+	}
+	return html;
 }
 
 function convertWord(type, content) {
 	content = content.replace(/-moz-use-text-color/gi, ""); // on enlève les balises spéciales créées par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
 	content = content.replace(/\s?mso-[^\"]*/gi, ""); // on enlève les balises spéciales créées par IE
-	
-	// remplace les balises 'paragraphe' vide dans le tableau par <br/>
-	var recherche_p = /<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)+((<\/[^>]*>)*)<\/p>/gi;
-	recherche_p.exec(content);
-	content = content.replace(recherche_p,"<br />");
-	
+	//content = content.replace(/<p\s?[^>]*>Version:[0-9.]*\s*Start[^<]*<\/p>/gi, ""); // supprime la ligne générée par Safari en collant depuis OpenOffice
+
 	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
 	if (recherche_td)
 	{
