@@ -20,7 +20,7 @@ function changerStatutUtilisateur(v_sNouvStatutUtilisateur) {
 	if (top.frames["INDEX"].frames["Titre"] &&
 		top.frames["INDEX"].frames["Titre"].document.getElementById &&
 		top.frames["INDEX"].frames["Titre"].document.getElementById("statut"))
-		top.frames["INDEX"].frames["Titre"].document.getElementById("statut").innerHTML = unescape(v_sNouvStatutUtilisateur);
+		top.frames["INDEX"].frames["Titre"].document.getElementById("statut").innerHTML = (v_sNouvStatutUtilisateur);
 }
 //-->
 </script>

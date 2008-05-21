@@ -50,7 +50,7 @@ $url_bIndirect   = (empty($_GET["indirect"]) ? FALSE : (bool)$_GET["indirect"]);
 // ---------------------
 $oIds = new CIds($oProjet->oBdd,$url_iTypeNiveau,$url_iIdNiveau);
 
-$sStatutUtilisateur = urlencode($oProjet->retTexteStatutUtilisateur());
+$sStatutUtilisateur = $oProjet->retTexteStatutUtilisateur());
 
 if (!$url_bIndirect)
 {

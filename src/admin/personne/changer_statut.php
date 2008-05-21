@@ -84,13 +84,13 @@ $iIdForm = 0;
 $iIdMod = 0;
 $bInscritAutoModules = TRUE;
 
-if (is_object($oProjet->oRubriqueCourante))
+if (is_object($oProjet->oModuleCourant))
 	if (is_object($oProjet->oFormationCourante))
 	{
 		$iIdForm = $oProjet->oFormationCourante->retId();
 		$bInscritAutoModules = $oProjet->oFormationCourante->retInscrAutoModules();
 		
-		if (isset($oProjet->oModuleCourant) && is_object($oProjet->oModuleCourant))
+		if (isset($oProjet->oModuleCourant))
 			$iIdMod = $oProjet->oModuleCourant->retId();
 	}
 

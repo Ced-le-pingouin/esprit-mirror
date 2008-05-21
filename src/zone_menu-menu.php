@@ -183,7 +183,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 	}
 	else
 	{
-		// Afficher les modules
+		// Afficher les modules		
 		foreach ($oFormation->aoModules as $oModule)
 		{
 			$iIdMod = $oModule->retId();
@@ -194,6 +194,9 @@ foreach ($oProjet->aoFormations as $oFormation)
 				$oStatutUtilisateur->initStatuts($iIdForm,$iIdMod,$oFormation->retInscrAutoModules());
 				$oPermisUtilisateur->initPermissions($oStatutUtilisateur->retSuperieurStatut($g_iReelStatutUtilisateur));
 				
+				// permet de vérifier à quel cours un tuteur est inscrit dans une formation et de l'afficher
+				// si le statut n'est pas tuteur, la personne peut tout voir
+				$bTuteurPeutVoirModule = $g_iReelStatutUtilisateur == '7' ? $oModule->verifTuteur($g_iIdPers): true;
 				$bPeutVoirModFerme = $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_FERME");
 				$bPeutVoirModInv   = $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_INV");
 			}
@@ -222,7 +225,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 			$oBlocModule->ajouter($oSet_Cours);
 			
 			if (STATUT_OUVERT == $iStatutFormation &&
-				STATUT_OUVERT == $iStatutModule)
+				STATUT_OUVERT == $iStatutModule && $bTuteurPeutVoirModule)
 			{
 				// Module ouvert
 				$oBlocModule->remplacer("{cours}",$oSet_Cours_Ouvert);
