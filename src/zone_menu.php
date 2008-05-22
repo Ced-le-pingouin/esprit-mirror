@@ -127,6 +127,10 @@ $oSet_TexteFormatte_Ouvert = $oTpl->defVariable("SET_TEXTE_FORMATTE_OUVERT");
 $oSet_TexteFormatte_Ferme  = $oTpl->defVariable("SET_TEXTE_FORMATTE_FERME");
 // }}}
 
+// {{{ Intitulé non activable
+$oSet_NonActivable			= $oTpl->defVariable("SET_INTITULE_NONACTIV");
+// }}}
+
 // {{{ Autres
 $oSet_Unite_Espacer = $oTpl->defVariable("SET_UNITE_ESPACE");
 // }}}
@@ -355,6 +359,13 @@ if ($iIdMod > 0)
 					}
 					
 					break;
+				
+				case LIEN_NON_ACTIVABLE:
+				//   -------------------				
+					$oBlock_Cours->ajouter($oSet_NonActivable);
+					$IntituleNom = $aoRubriques[$r]->retDescr();
+					$oBlock_Cours->remplacer("{nonactiv.nom}", $IntituleNom);
+					break;
 					
 		}
 		
@@ -382,7 +393,7 @@ $oAwareness->afficher();
 
 $oTpl->remplacer("{rubrique.niveau.id}",TYPE_RUBRIQUE);
 
-$oTpl->remplacer("{personne.statut:urlencode}",rawurlencode($oProjet->retTexteStatutUtilisateur()));
+$oTpl->remplacer("{personne.statut:urlencode}",($oProjet->retTexteStatutUtilisateur()));
 
 $oTpl->remplacer("{unite.url}","zone_cours-index.php");
 $oTpl->remplacer("{telechargement.url}",dir_lib("download.php"));

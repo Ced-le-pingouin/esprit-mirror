@@ -153,3 +153,9 @@ function init()
 [SET_TEXTE_FORMATTE_OUVERT+]<a href="javascript: void(0);" onclick="texte_formatte('{rubrique.id}','{rubrique.niveau.id}'); return false;" onfocus="blur()">{rubrique.nom}</a>[SET_TEXTE_FORMATTE_OUVERT-]
 [SET_TEXTE_FORMATTE_FERME+]<span title="Ce lien est ferm&eacute;" class="unite_passif">{rubrique.nom}</span>[SET_TEXTE_FORMATTE_FERME-]
 
+[SET_INTITULE_NONACTIV+]
+<tr>
+<td><img src="commun://espacer.gif" width="10" height="10" border="0"></td>
+<td colspan="4" width="99%">{nonactiv.nom}</td>
+</tr>
+[SET_INTITULE_NONACTIV-]

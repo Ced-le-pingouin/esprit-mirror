@@ -85,6 +85,7 @@ define("LIEN_TEXTE_FORMATTE"		, 10);	/// Texte avec possibilité de mise en form
 define("LIEN_GLOSSAIRE"				, 11);	/// Glossaire																						@enum LIEN_GLOSSAIRE
 define("LIEN_TABLEAU_DE_BORD"		, 12);	/// Tableau de bord, aperçu de l'avancée des travaux d'étudiants dans les sous-activités			@enum LIEN_TABLEAU_DE_BORD
 define("LIEN_HOTPOTATOES"			, 13);	/// Exercice Hotpotatoes																			@enum LIEN_HOTPOTATOES
+define("LIEN_NON_ACTIVABLE"			, 14);	/// Intitulé non activable																			@enum LIEN_NON_ACTIVABLE			
 //@}
 
 /** @name Constantes - positions des différentes données dans les champs Donnees de la DB, pour SousActiv ou Module_Rubrique */

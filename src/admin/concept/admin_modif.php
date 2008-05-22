@@ -158,8 +158,8 @@ else
 
 // Titre principal
 $g_sTitre = ($g_iFormation > 0) ? $oProjet->oFormationCourante->retNom() : "Accueil";
-
 function formatSousTitre ($v_sType,$v_sNom)
+
 {
 	return "<b>{$v_sType}</b>"
 		."&nbsp;&raquo;&nbsp;"
@@ -182,6 +182,7 @@ else if ($g_iRubrique > 0)
 {
 	$oRub = new CModule_Rubrique($oProjet->oBdd,$g_iRubrique);
 	$g_sSous_Titre = formatSousTitre(INTITULE_RUBRIQUE,$oRub->retNom());
+	$sDescrRub = $oRub->retDescr();
 	unset($oRub);
 }
 else if ($g_iModule > 0)
@@ -551,6 +552,41 @@ function menu()
 	obj.top = iPosMenu - 17;
 }
 
+function cacher(controleur, span_check)
+{
+	if (span_check == 'chkb_style') // si on coche AU MOINS UN des styles de police, alors on désactive les types de ligne
+	{
+			var objControleur1 = document.getElementById("chkb_1");
+			var objControleur2 = document.getElementById("chkb_2");
+			var objControleur3 = document.getElementById("chkb_3");
+			if ((objControleur1.checked==true) || (objControleur2.checked==true) || (objControleur3.checked==true))
+			{
+				document.form_admin_modif.vide.disabled=true;
+				document.form_admin_modif.ligne.disabled=true;
+			}
+			else
+			{
+				document.form_admin_modif.vide.disabled=false;
+				document.form_admin_modif.ligne.disabled=false;
+			}
+	}
+	else // sinon, si on coche UN type de ligne, on désactive toutes les autres cases.
+	{
+		var objControleur = document.getElementById(controleur);
+		for (var i=1; i<=5; i++)
+		{
+			var checkbox = "chkb_" + i;
+			if (checkbox != controleur) 
+			{
+				var objControle = document.getElementById(checkbox);
+				objControle.checked=false;
+				objControle.disabled=(objControleur.checked==false)?false:true;
+			}
+		}
+	}
+	return true;
+}
+
 function init()
 {
 	var sParams = "";
@@ -568,8 +604,21 @@ function init()
 //-->
 </script>
 </head>
-<body class="econcept_modif" onload="init()">
 <?php
+	// on vérifie que la description existe
+if (isset($sDescrRub))
+{
+		// si la description contient '&nbsp;' (ou '<hr />') SEUL, on désactive les autres options 
+	if (eregi("&nbsp;", $sDescrRub) && !eregi("[^&]+\s*&nbsp;\s*.+", $sDescrRub))
+		echo "<body class=\"econcept_modif\" onload=\"init();cacher('chkb_4','')\">";
+	else if (eregi("<hr />", $sDescrRub) && !eregi("[^<]+\s*<hr />\s*.+", $sDescrRub))
+		echo "<body class=\"econcept_modif\" onload=\"init();cacher('chkb_5','')\">";
+	else if (eregi("^(<[a-z]+>)+[^<]*(<\/[a-z]+>)*$", $sDescrRub)) // chaine qui commence par <quelquechose> et fini par </quelquechose>
+		echo "<body class=\"econcept_modif\" onload=\"init();cacher('chkb_1','chkb_style')\">";
+	else echo "<body class=\"econcept_modif\" onload=\"init()\">";
+}
+else echo "<body class=\"econcept_modif\" onload=\"init()\">";
+
 if (!isset($rafraichir))
 {
 	include_once("formulaire.init.php");

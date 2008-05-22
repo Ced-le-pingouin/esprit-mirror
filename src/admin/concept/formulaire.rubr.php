@@ -81,7 +81,7 @@ selectionnerStatut("statut_rubrique",$oProjet->oRubriqueCourante->retListeStatut
 <tr>
 <td style="vertical-align: top;"><div class="intitule" style="padding-top: 3px;">Type&nbsp;:</div></td>
 <td>
-<select name="type_rubrique" onchange="javascript: afficherElementType('div_donnee_',this.options[this.selectedIndex].value,'<?php echo LIEN_GLOSSAIRE?>');" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<select name="type_rubrique" onchange="javascript: afficherElementType('div_donnee_',this.options[this.selectedIndex].value,'15'<?php /*echo LIEN_GLOSSAIRE*/?>);" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
 <?php
 $asTypesUnite = $oProjet->oRubriqueCourante->retListeTypes();
 for ($i=0; $i<count($asTypesUnite); $i++)
@@ -277,6 +277,49 @@ echo "<!-- Forum -->"
 	."</fieldset>"
 	."</div>\n";
 
+// ---------------------------
+// Intitulé non activable
+// ---------------------------
+$sStyle = "position: relative;"
+	." visibility: ".($iType == LIEN_NON_ACTIVABLE 
+		? "visible; display: block;" 
+		: "hidden; display: none;");
+
+echo "<!-- Non activable -->"
+	."<div id=\"div_donnee_".LIEN_NON_ACTIVABLE."\" style=\"{$sStyle}\">\n"
+	."<br>"
+	."<fieldset>"
+	."<legend>"
+	."&nbsp;Intitul&eacute; non activable&nbsp;"
+	."</legend>"
+	."<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\">\n"
+	."<tr>\n"
+	."<td><div class=\"intitule\">Style&nbsp;:</div></td>\n"
+	."<td width=\"99%\">"
+	."<span style=\"border: 1px solid #888; padding:5px\" id=\"chkb_style\">"
+	."<input type=\"checkbox\" id=\"chkb_1\" value=\"strong\" name=\"check[]\" "
+		.(eregi("<strong>",$sDescrRub) ? "checked" : NULL)
+		." onclick=\"javascript:cacher('chkb_1','chkb_style');\"><label for=\"chkb_1\"><strong>Gras</strong></label>&nbsp;&nbsp;"
+	."<input type=\"checkbox\" id=\"chkb_2\" value=\"em\" name=\"check[]\" "
+		.(eregi("<em>",$sDescrRub) ? "checked" : NULL)
+		." onclick=\"javascript:cacher('chkb_2','chkb_style');\"><label for=\"chkb_2\"><em>Italique</em></label>&nbsp;&nbsp;"
+	."<input type=\"checkbox\" id=\"chkb_3\" value=\"u\" name=\"check[]\" "
+		.(eregi("<u>",$sDescrRub) ? "checked" : NULL)
+		." onclick=\"javascript:cacher('chkb_3','chkb_style');\"><label for=\"chkb_3\"><u>Soulign&eacute;</u></label></span>&nbsp;&nbsp;"
+	."<span style=\"border: 1px solid #888; padding:5px\">"
+	."<input type=\"checkbox\" id=\"chkb_4\" value=\"\" name=\"vide\" "
+		.(eregi("&nbsp;",$sDescrRub) ? "checked" : NULL)
+		." onclick=\"javascript:cacher('chkb_4','');\"><label for=\"chkb_4\">Saut de ligne</label></span>&nbsp;&nbsp;" // si sélectionné, on désactive les autres checkbox
+	."<span style=\"border: 1px solid #888; padding:5px\">"
+	."<input type=\"checkbox\" id=\"chkb_5\" value=\"\" name=\"ligne\" "
+		.(eregi("<hr />",$sDescrRub) ? "checked" : NULL)
+		." onclick=\"javascript:cacher('chkb_5','');\"><label for=\"chkb_5\">Ligne horizontale</label></span>" // si sélectionné, on désactive les autres checkbox
+	."</td>\n"
+	."</tr>\n"
+	."</table>\n"
+	."</fieldset>"
+	."</div>\n";
+	
 // ---------------------
 // Chat
 // ---------------------

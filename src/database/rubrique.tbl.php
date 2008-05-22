@@ -932,6 +932,7 @@ class CModule_Rubrique
 				, array(LIEN_FORUM,"Forum",($iTypeRubrique == LIEN_FORUM))
 				, array(LIEN_CHAT,"Chat",($iTypeRubrique == LIEN_CHAT))
 				, array(LIEN_TEXTE_FORMATTE,"Texte format&eacute;")
+				, array(LIEN_NON_ACTIVABLE,"Intitul&eacute; non activable",($iTypeRubrique == LIEN_NON_ACTIVABLE))
 			);
 		
 		return $aoTypes;

@@ -189,6 +189,29 @@ switch ($act)
 			if ($oRubrique->initChats() == 0)
 				$oRubrique->ajouterChat();
 		}
+		else if (LIEN_NON_ACTIVABLE == $url_iTypeRubrique)
+		{
+			if (isset($_POST["ligne"]))
+			{
+				$sStyleNonActivable = "<hr />";
+			}
+			else if (isset($_POST["vide"]))
+			{
+				$sStyleNonActivable = "&nbsp;";
+			}
+			else if (isset($_POST["check"]))
+			{
+				$url_sStyle = $_POST["check"];
+				for ($i=0; $i<count($url_sStyle);$i++)
+				{
+					$sStyleDebut .= "<".$url_sStyle[$i].">";
+					$sStyleFin .= "</".$url_sStyle[count($url_sStyle)-($i+1)].">";
+				}
+				$sStyleNonActivable = $sStyleDebut.$url_sNomRubrique.$sStyleFin;
+			}
+			$oRubrique->defDescr($sStyleNonActivable);
+			$oRubrique->defStatut("2"); // on force le statut à ouvert!
+		}
 		
 		break;
 }
