@@ -18,20 +18,9 @@ function mySetContent(editor_id, body, doc) {
 }
 
 function redimensionner() {
-	var iHauteur, iLargeur;
-	if (window.innerHeight) {
-		iHauteur = window.innerHeight;
-		iLargeur = window.innerWidth;
-	} else if (document.body) {
-		iHauteur = window.document.body.clientHeight;
-		iLargeur = window.document.body.clientWidth;
-	}
-	var elEd = document.getElementById("mce_editor_0");
-	var tmp = iHauteur-110;
-	if (tmp < 35) tmp = 35;
-	elEd.style.height = tmp + 'px';
-	// redimensionnement horizontal : pb de frames ?
-	// ...
+	var elEd = document.getElementById("id_{editeur->nom}");
+	elEd.style.height = '100%';
+	elEd.style.width = '100%';
 }
 
 //-->

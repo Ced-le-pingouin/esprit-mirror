@@ -26,6 +26,8 @@ tinyMCE.init({
 	theme_advanced_toolbar_location : "top",
 	theme_advanced_toolbar_align : "left",
 	theme_advanced_path_location : "bottom",
+	theme_advanced_resizing_use_cookie : false,
+	theme_advanced_resizing : true,
 
 	paste_create_paragraphs : true,
 	paste_create_linebreaks : false,
