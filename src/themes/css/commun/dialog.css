@@ -1,0 +1,164 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+dialog
+dialogue
+menu
+sous-menu
+------------------ */
+
+/* -- dialog -- */
+body.haut {
+background:#fff url("../../esprit/dialog-titre-fond.gif") repeat-x;
+}
+
+body.haut_2 {
+background:#fff url("../../esprit/dialog-titre-fond-2.gif") repeat-x;
+}
+
+td.dialog_logo {
+background-color:#cac3b1;
+text-align:right;
+width:125px;
+}
+
+.dialog_titre_2 {
+color:#000;
+font-weight:bold;
+font-size:12pt;
+}
+
+div.dialog_titre_principal,.titre_haut {
+position:absolute;
+left:130px;
+top:37px;
+height:20px;
+}
+
+div.dialog_titre_principal_2 {
+left:170px;
+top:46px;
+height:20px;
+}
+
+div.dialog_titre_image_1,div.dialog_titre_image_2 {
+position:absolute;
+left:0;
+top:0;
+width:100%;
+text-align:right;
+}
+
+span#titre_principal {
+color:#000;
+font-size:10pt;
+font-weight:bold;
+}
+
+div.dialog_sous_titre {
+position:absolute;
+left:0;
+height:20px;
+top:57px;
+width:100%;
+text-align:center;
+}
+
+span#sous_titre {
+color:#535d33;
+}
+
+body.gauche {
+background-color:#fbf9ee;
+}
+
+td.gauche_titre_principal {
+background-color:#f0f0f0;
+}
+
+td.gauche_menu {
+background-color:#fff;
+}
+
+td.gauche_menu_lien {
+background-color:#f5f5f5;
+}
+/* ----- */
+
+/* -- dialogue -- */
+body.dialogue {
+background-color:#ece9d8;
+}
+
+h1.dialogue {
+background-color:#316ac5;
+border:#1f527e solid 1px;
+color:#fff;
+font-size:12pt;
+padding:5px;
+}
+
+h1.dialogue small {
+font-size:8pt;
+}
+
+table.dialogue {
+background-color:#f0f0f0;
+border:#7f9db9 solid 1px;
+padding:0;
+width:100%;
+}
+
+td.dialogue {
+background-color:#fff;
+font-size:8pt;
+}
+/* ----- */
+
+/* -- menu -- */
+body.menu {
+background:#aea58a url('../../esprit/dialog-menu-fond.gif') repeat-x fixed top left;
+}
+
+a.menu {
+color:#fff;
+font-size:8pt;
+font-weight:bold;
+}
+
+td.dialog_menu_fond {
+background-color:#6f6957;
+}
+
+td.dialog_menu_titre {
+background-color:#6f6957;
+color:#fff;
+font-weight:bold;
+text-align:center;
+}
+
+td.dialog_menu_intitule,td.dialog_menu {
+color:#000;
+text-align:center;
+}
+td.dialog_menu_intitule {
+background-color:#e7e1d4;
+}
+
+td.dialog_menu {
+background-color:#cac3b1;
+}
+/* ----- */
+
+/* -- sous-menu -- */
+body.dialog_sous_menu {
+background-color:#cac3b1;
+border:#000 none 1px;
+border-top-style:solid;
+}
+
+a.dialog_sous_menu {
+color:#3f4322;
+font-size:8pt;
+}
+/* ----- */

@@ -1,0 +1,102 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+galerie
+composer galerie
+------------------ */
+
+/* -- galerie -- */
+body {
+margin:0 20px;
+padding:0;
+}
+
+h1 {
+color:#5589b7;
+font-size:18pt;
+padding-top:25px;
+border:#5589b7 none 1px;
+border-bottom-style:dashed;
+}
+
+h3 {
+color:#6f6957;
+margin-left:20px;
+}
+
+h4 {
+font-size:10pt;
+text-align:center;
+margin:0;
+padding:5px;
+cursor:help;
+}
+
+#consigne {
+background-color:#fbf9ee;
+color:#706957;
+text-align:justify;
+margin:20px 0;
+padding:15px;
+-moz-border-radius:20px;
+}
+
+#aucun_document_trouve {
+text-align:center;
+}
+
+.conteneur_documents {
+clear:both;
+float:left;
+margin:5px;
+width:100%;
+}
+
+.conteneur_documents .document,.document_surbrillance {
+background-color:#fafafa;
+border:#f0f0f0 solid 1px;
+float:left;
+list-style-type:none;
+padding:5px;
+margin:5px;
+width:250px;
+overflow:hidden;
+-moz-border-radius:20px;
+}
+
+.document_surbrillance {
+background-color:#eef9fe;
+border:#c1d2ee solid 1px;
+}
+
+/* [[ Document */
+div.icone,div.infos {
+float:left;
+}
+
+li p {
+margin:1px;
+margin-bottom:3px;
+}
+
+li img {
+vertical-align:middle;
+}
+
+span.auteur {
+border:#c8c8c8 none 1px;
+border-bottom-style:dotted;
+padding-bottom:3px;
+}
+/* ]] */
+/* ----- */
+
+/* -- composer galerie */
+th.checkbox {
+width:1%;
+}
+
+td.etat, td.auteur {
+text-align:center;
+}
+/* ----- */
