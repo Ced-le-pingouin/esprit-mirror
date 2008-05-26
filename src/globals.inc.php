@@ -58,7 +58,7 @@ function retPageVide () { return dir_root_plateform('blank.php',FALSE); }
 // ---------------------
 function dir_include ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE) { return dir_root_plateform("include/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
 function dir_lang ($v_sLang="fr",$v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE) { return dir_root_plateform("lang/{$v_sLang}/{$v_sFichierAInclure}",$v_bCheminAbsolu); }
-function dir_css ($v_sFichierAInclure=NULL) { return dir_root_plateform("css/{$v_sFichierAInclure}", FALSE); }
+function dir_css ($v_sFichierAInclure=NULL) { return dir_root_plateform("themes/css/{$v_sFichierAInclure}", FALSE); }
 
 // *************************************
 // REPERTOIRE CONTENANT LES FICHIERS DE DEFINITION
