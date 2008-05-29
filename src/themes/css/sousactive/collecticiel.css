@@ -1,0 +1,242 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+général
+evaluation ressources
+ressources evaluation
+ressources evaluation tuteurs
+ressources votants
+------------------ */
+
+/* -- général -- */
+#consigne {
+background-color:#f9fbfb;
+border:#dce6e6 none 2px;
+border-top-style:solid;
+border-bottom-style:solid;
+font-size:8pt;
+margin:20px;
+padding:20px;
+}
+
+#fichier_de_base {
+margin-bottom:30px;
+}
+
+#sans_collecticiel {
+margin-top:50px;
+text-align:center;
+font-weight:bold;
+}
+
+td.cellule_sous_titre {
+font-size:8pt;
+}
+
+/* ''' Barre des icônes */
+/* ''' Document du collecticiel */
+div.titre a, a.titre,a.date,a.statut {
+font-size:8pt;
+}
+
+div.auteur,div.date,div.statut,div.evalue,div.texte_associe,div.sans_document {
+text-align:center;
+font-size:8pt;
+}
+
+div.gestion_documents_gauche,div.gestion_documents_droite {
+margin:10px 5px 0;
+font-size:7pt;
+color:#c8c8c8;
+}
+
+div.gestion_documents_gauche a,div.gestion_documents_droite a {
+font-size:7pt;
+}
+
+div.gestion_documents_gauche {
+float:left;
+}
+
+div.gestion_documents_droite, .courriel {
+float:right;
+}
+
+div.spacer {
+clear:both;
+margin:5px;
+}
+
+td.titre,td.auteur,td.date,td.statut,td.evalue,td.texte_associe {
+}
+
+/* ''' Couleurs des états des documents */
+span.en_cours {
+font-size:8pt;
+}
+/* ----- */
+
+/* -- evaluation ressources -- */
+/* Frame du titre */
+/* td.dialog_logo,div.dialog_titre_principal {
+}
+*/
+
+/*div.dialog_sous_titre {	left: 220px; }*/
+/* Frame des tuteurs */
+body.tuteurs {
+background-color:#ece9d8;
+}
+
+a.tuteur {
+border:#ece9d8 solid 1px;
+padding:2px;
+}
+
+a.tuteur:hover {
+background-color:#c1d2ee;
+border-color:#316ac5;
+color:#000;
+text-decoration:none;
+}
+
+/* Frame principale */
+hr {
+border:1px solid #aea58a;
+}
+
+.Message {
+text-align:center;
+color:#000;
+font-weight:bold;
+}
+
+.Etat_Document,.Commentaire {
+color:#000;
+font-weight:bold;
+text-align:right;
+}
+
+.Evaluation {
+padding:5px;
+text-align:center;
+}
+
+.Commentaire {
+vertical-align:top;
+}
+
+p.commentaire,p.appreciation {
+text-align:left;
+border:#aea58a none 1px;
+border-bottom-style:dotted;
+padding:5px;
+}
+
+td.cellule_clair {
+text-align:center;
+}
+
+div.pas_encore_evaluer {
+background-color:#cac3b1;
+border:#6f6957 solid 1px;
+font-weight:bold;
+text-align:center;
+padding:10px;
+width:90%;
+}
+/* ----- */
+
+/* -- ressources evaluation -- */
+body.evaluation {
+margin:0;
+padding:0;
+}
+
+td.dialog_logo {
+width:147px;
+}
+
+div.dialog_titre_principal {
+left:155px;
+}
+
+div.cellule_icone_surbrillante {
+background-color:#fbf9ee;
+border:#cac3b1 solid 1px;
+padding-top:3px;
+}
+
+div.cellule_icone_surbrillante a {
+color:#6f6957;
+}
+
+#tuteurs {
+background-color:#6f6957;
+border:#000 none 1px;
+border-right-style:solid;
+color:#fff;
+float:left;
+padding-top:3px;
+width:146px;
+height:25px;
+text-align:right;
+margin:0 5px 3px 0;
+}
+/* ----- */
+
+/* -- ressources evaluation tuteurs -- */
+.cellule_icone_normale,.cellule_icone_surbrillante {
+padding:2px;
+width:auto;
+height:auto;
+}
+/* ----- */
+
+/* -- ressources votants -- */
+body.ressources_votants {
+margin:10px;
+}
+
+.liste {
+background-color:#fff;
+border:#c1d2ee solid 1px;
+padding:8px;
+margin-bottom:25px;
+}
+
+.liste input {
+float:left;
+margin:3px 0 0;
+}
+
+.sexe {
+float:left;
+padding:0 2px 2px;
+}
+
+.nom_complet {
+border:#aea58a none 1px;
+border-bottom-style:dashed;
+margin:0;
+margin-left:20px;
+padding-bottom:3px;
+}
+
+.pseudo {
+clear:right;
+font-size:7pt;
+margin:0 0 5px 20px;
+}
+
+.pas_de_votant_trouve {
+margin:0;
+text-align:center;
+}
+
+#voter {
+text-align:right;
+padding:0;
+margin:0;
+}
+/* ----- */

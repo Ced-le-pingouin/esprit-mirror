@@ -1,0 +1,388 @@
+/* ------------------
+INDEX
+
+globals
+onglets
+menu bas
+outils
+liste_personne
+barre filtres
+------------------ */
+
+/* -- globals -- */
+body {
+font:normal 10pt Verdana,Tahoma,Arial,Bitstream Vera Sans,Time;
+background:#fff none;
+border:none;
+/* Pour Internet Explorer >= 5.5 Changer les couleurs des barres de défilements */
+scrollbar-face-color:#e7e1d4;
+scrollbar-highlight-color:#fbf9ee;
+scrollbar-shadow-color:#fbf9ee;
+scrollbar-3dlight-color:#fbf9ee;
+scrollbar-arrow-color:#aea68a;
+scrollbar-track-color:#fbf9ee;
+scrollbar-darkshadow-color:#fbf9ee;
+}
+
+img {
+border:0;
+}
+
+legend {
+font-size:8pt;
+}
+
+iframe {
+border:#dee6e6 solid 1px;
+}
+
+div.formation {
+background-color:#fafafa;
+padding:15px;
+border:#ccc dashed 1px;
+font-size:8pt;
+}
+
+h1, h2, h3, h4, h5, h6 {
+color:#222;
+font-weight:bold;
+}
+h1 {
+font-size:16pt;
+}
+
+h2 {
+font-size:14pt;
+}
+
+h3 {
+font-size:13pt;
+}
+
+h4 {
+font-size:12pt;
+}
+
+h5 {
+font-size:11pt;
+}
+
+h6, td, div, span, th, p {
+font-size:10pt;
+}
+
+th {
+background-color:#eeeadd;
+border:#eeeadd solid 1px;
+border-top-color:#fff;
+border-bottom-color:#cac3b1;
+color:#6f6957;
+text-align:center;
+padding:1px;
+}
+
+.aligndroite {
+text-align:right;
+}
+
+th.surbrillance {
+background-color:#e0e8f6;
+border-bottom-color:#c60;
+color:#1f527e;
+}
+
+.texte_grise {
+color:#c8c8c8;
+}
+
+small {
+font-size:7pt;
+}
+
+/* Lien */
+a {
+color:#3f4322;
+font-size:8pt;
+text-decoration:none;
+}
+
+a:hover {
+text-decoration:underline;
+}
+
+.lien_passif {
+color:#cac3b1;
+font-size:10pt;
+text-decoration:none;
+}
+
+.attention {
+color:#b4733a;
+font-weight:bold;
+}
+
+
+td.attention, div.attention {
+text-align:center;
+background-color:#ece9d8;
+border:#aea58a dashed 2px;
+padding:5px;
+}
+
+div.attention {
+width:90%;
+}
+
+.afficher_curseur_aide, #infos_utilisateur,span.sans_email,span.Attention,.participants {
+cursor:help;
+}
+.bold_center, .intitule_principal {
+text-align: center;
+font-weight: bold;
+}
+
+.intitule_principal {
+color:#000;
+font-size:11pt;
+padding:1px;
+}
+
+/* Tableau */
+.ligne_surlignee {
+background-color:#fdf9ee;
+cursor:pointer;
+}
+
+.ligne_normale {
+background-color:#fff;
+cursor:auto;
+}
+
+td.cellule_titre_principal {
+color:#000;
+font-size:13pt;
+font-weight:bold;
+padding:1px;
+}
+
+div.cellule_sous_titre,td.cellule_sous_titre,td.cellule_sous_titre_surbrillance {
+background:#eeeadd none repeat-x top left;
+border:#d5ccbd none 1px;
+border-bottom-style:solid;
+border-top-color:#fff;
+border-top-style:solid;
+color:#6f6957;
+text-align:center;
+padding:1px;
+}
+
+td.cellule_clair,td.cellule_fonce,td.cellule_surbrillante, td.cellule_clair_fonce {
+text-align:center;
+}
+td.cellule_clair,td.cellule_fonce,td.cellule_surbrillante {
+color:#5e5a4b;
+padding:3px;
+}
+
+td.cellule_clair,td.cellule_clair_fonce,td.cellule_surbrillante {
+background-color:#fafafa;
+border:#f0f0f0 none 1px;
+border-top-style:solid;
+border-bottom-style:solid;
+}
+
+td.cellule_surbrillante {
+background-color:#cfe0e6;
+border:#7a97b2 none 1px;
+border-top-style:solid;
+border-bottom-style:solid;
+}
+
+td.cellule_clair_fonce {
+background-color:#f0f0f0;
+}
+
+td.cellule_fonce {
+background-color:#fff;
+border:#f0f0e4 none 1px;
+border-top-style:solid;
+border-bottom-style:solid;
+}
+
+td.cellule_description {
+background-color:#fafafa;
+border:#f0f0e4 none 1px;
+border-top-style:solid;
+border-bottom-style:solid;
+color:#5e5a4b;
+padding:5px;
+}
+
+td.barre_icones,td.barre_icones_1 {
+border:#fff solid 1px;
+height:25px;
+}
+
+td.cellule_icone_normale {
+background-color:transparent;
+border:#eeeadd solid 1px;
+}
+
+td.cellule_icone_surbrillante {
+background-color:#c1d2ee;
+border:#316ac5 solid 1px;
+}
+
+.description {
+background-color:#fbf9ee;
+border:#aea38d none 1px;
+border-top-style:dashed;
+border-bottom-style:dashed;
+padding:2em;
+color:#5e5a4b;
+}
+
+td.cellule_lien {
+text-align:left;
+}
+
+/* Intitulé */
+.intitule {
+color:#6f6957;
+font-weight:bold;
+}
+
+td.intitule {
+vertical-align:top;
+}
+
+/* email */
+
+span.sans_email {
+font-style:italic;
+font-size:8pt;
+}
+
+/* arabe */
+.rtl {
+font-size:150%;
+}
+
+h1.rtl {
+font-size:22pt;
+}
+
+h2.rtl {
+font-size:18pt;
+}
+
+h3.rtl {
+font-size:16pt;
+}
+
+h4.rtl {
+font-size:15pt;
+}
+
+h5.rtl {
+font-size:13pt;
+}
+
+h6.rtl {
+font-size:12pt;
+}
+
+.rtl font {
+font-size:150%;
+}
+/* ----- */
+
+/* -- onglets -- */
+.onglet_ligne_inferieure {
+border:#dee6e6 none 1px;
+border-bottom-style:solid;
+vertical-align:bottom;
+}
+
+.onglet_1x2 {
+color:#0046d5;
+font-size:9pt;
+text-align:center;
+}
+
+.onglet_tab_1x2 {
+background:#fff url('../../esprit/onglet/onglet_tab-1x2.gif') repeat-x top left;
+color:#485ea5;
+font-size:8pt;
+font-weight:bold;
+text-align:center;
+}
+
+.onglet_tab_rect_1x2 {
+background:url('../../esprit/onglet_tab_rect-1x2.gif') repeat-x bottom left;
+}
+/* ----- */
+
+/* --menu bas -- */
+body.menu {
+background:#aea58a url('../../esprit/fond-menu.gif') repeat-x fixed top left;
+}
+
+td.retour_menu {
+background-color:#416e96;
+font-weight:bold;
+}
+
+td.deconnexion {
+background-color:#8d0623;
+font-weight:bold;
+}
+
+body.menu a {
+color:#fff;
+}
+/* ----- */
+
+/* -- outils -- */
+a.titre_outil {
+font-weight:bold;
+}
+
+span.description_outils {
+font-size:8pt;
+color:gray;
+}
+
+td.outil_fond_fonce, td.outil_fond_clair {
+border:1px #B4B4B4;
+border-style: none none dashed;
+}
+
+td.outil_fond_fonce, td.outil_fond_fonce_img {
+background-color:#fafafb;
+}
+/* ----- */
+
+/* -- liste_personne -- */
+span.personne_liste {
+font-size:8pt;
+font-weight:bold;
+}
+/* ----- */
+
+/* -- barre filtres -- */
+body.barre_filtres {
+background-image:none;
+background-color:#ece9d8;
+}
+
+#barre_filtres {
+text-align:center;
+margin:5px;
+}
+
+#barre_outils {
+margin:0 10px 10px 0;
+text-align:right;
+}
+/* ----- */

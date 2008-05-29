@@ -1,0 +1,61 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+install
+------------------ */
+
+/* -- install -- */
+body {
+background:#fbf9ee;
+margin:5px;
+padding:0;
+color:#000;
+font:normal 12px Verdana,Tahoma,Arial,sans-serif;
+}
+
+h1 {
+border:1px dotted #ABA18E;
+padding:5px;
+width:12em;
+}
+
+h3 {
+margin-top:5ex;
+}
+
+pre {
+padding:1em;
+background-color:#e1ddc4;
+border:#882525 dashed 1px;
+line-height:1.4em;
+}
+
+.erreur {
+color:#882525;
+font-weight:bold;
+}
+
+/* Formulaire */
+form label {
+display:inline-block;
+line-height:1.8;
+vertical-align:top;
+width:18em;
+}
+
+form input {
+margin:0;
+padding:1px;
+}
+
+fieldset ol {
+margin:0;
+padding:0;
+}
+
+fieldset li {
+list-style:none outside none;
+padding:4px;
+margin:0;
+}
+/* ----- */

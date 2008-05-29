@@ -1,0 +1,27 @@
+/* ------------------
+INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+
+login IE
+------------------ */
+/* -- login IE -- */#bandeau,#pieddepage {
+position:absolute;
+z-index:10;
+}
+
+#bandeau {
+top:expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop : document.body.scrollTop);
+}
+
+#wrap,#content-wrap {
+height:100%;
+background:#fff url('../esprit/login/images/login-gauche-fond.jpg') repeat-y fixed top left;
+}
+
+#contenu {
+padding:125px 1em 0;
+}
+
+#pieddepage {
+top:expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop 0 : document.body.scrollTop 0;
+}
+/* ----- */
