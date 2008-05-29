@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://exporter-personnes.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://admin/personnes.css">
 <script type="text/javascript" language="javascript">
 <!--
 function exporter()
@@ -20,7 +19,7 @@ function exporter()
 //-->
 </script>
 </head>
-<body>
+<body class="exporter_personnes">
 <form action="export-fichier.php" method="post">
 <p>Sélectionnez dans la liste ci-dessous, les champs dont vous avez besoin.</p>
 [BLOCK_ONGLET_CHAMPS+][BLOCK_ONGLET_CHAMPS-]

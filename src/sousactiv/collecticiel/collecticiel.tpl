@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="theme://collecticiel.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/collecticiel.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
@@ -46,16 +45,16 @@ function init()
 //-->
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" class="collecticiel">
 [BLOCK_CONSIGNE+]
 <div id="consigne">{consigne}</div>
 [BLOCK_CONSIGNE-]
 
 [BLOCK_FICHIER_DE_BASE+]
 <div id="fichier_de_base">
-[BLOCK_ICONE_DOCUMENT_TELECHARGER+]<div style="float: left;">&nbsp;<img src="theme://icones/disquette.gif" border="0" style="vertical-align: middle;">&nbsp;&nbsp;<a href="{fichier_de_base.href}" onfocus="blur()">{fichier_de_base.label}</a></div><p>&nbsp;</p>[BLOCK_ICONE_DOCUMENT_TELECHARGER-]
-[BLOCK_ICONE_TRANSFERER_DOCUMENTS+]<div style="float: right;">&nbsp;<a href="javascript: void(0);" onclick="return ressource_transfert({transfert_fichiers.paramsUrl});"><img src="commun://icones/24x24/transfert_fichiers.gif" width="24" height="24" title="Transf&eacute;rer des documents" border="0"></a>&nbsp;</div>[BLOCK_ICONE_TRANSFERER_DOCUMENTS-]
-[BLOCK_ICONE_COURRIEL+]<div style="float: right;">&nbsp;{fichier_de_base.courriel}&nbsp;</div>[BLOCK_ICONE_COURRIEL-]
+[BLOCK_ICONE_DOCUMENT_TELECHARGER+]<div class="gestion_documents_gauche">&nbsp;<img src="theme://icones/disquette.gif" border="0" style="vertical-align: middle;">&nbsp;&nbsp;<a href="{fichier_de_base.href}" onfocus="blur()">{fichier_de_base.label}</a></div><p>&nbsp;</p>[BLOCK_ICONE_DOCUMENT_TELECHARGER-]
+[BLOCK_ICONE_TRANSFERER_DOCUMENTS+]<div class="gestion_documents_droite">&nbsp;<a href="javascript: void(0);" onclick="return ressource_transfert({transfert_fichiers.paramsUrl});"><img src="commun://icones/24x24/transfert_fichiers.gif" width="24" height="24" title="Transf&eacute;rer des documents" border="0"></a>&nbsp;</div>[BLOCK_ICONE_TRANSFERER_DOCUMENTS-]
+[BLOCK_ICONE_COURRIEL+]<div class="gestion_documents_droite">&nbsp;{fichier_de_base.courriel}&nbsp;</div>[BLOCK_ICONE_COURRIEL-]
 </div>
 [BLOCK_FICHIER_DE_BASE-]
 

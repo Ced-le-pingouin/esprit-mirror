@@ -77,7 +77,7 @@ $sNomsInscrits = "Aucun compte administrateur";
 ?>
 <html>
 <head>
-		<?php inserer_feuille_style("associer_personnes.css"); ?>
+		<?php inserer_feuille_style("admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="<?=dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
@@ -89,7 +89,7 @@ function init() {<?php echo (isset($sMajListeCours) ? " {$sMajListeCours} " : NU
 //-->
 </script>
 </head>
-<body style="background-color: #FFFFFF;" onload="init()">
+<body style="background-color: #FFFFFF;" onload="init()" class="associer_personnes">
 <form method="get">
 <table border="0" cellspacing="2" cellpadding="0" width="100%">
 <?php 

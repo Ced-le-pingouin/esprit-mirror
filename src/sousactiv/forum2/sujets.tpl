@@ -2,8 +2,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://forum/sujets.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
@@ -51,11 +51,11 @@ function afficher_indice(v_iIdSujet)
 //-->
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" class="sujet">
 <form action="{form->action}" method="get" target="SUJETS_LISTE">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 [BLOCK_SUJET+]
-<tr onmouseover="this.className='ligne_surlignee'" onmouseout="this.className='ligne_normale'" onclick="afficher_infos_sujet('{sujet->id}')">
+<tr class="ligne_normale" onmouseover="this.className='ligne_surlignee'" onmouseout="this.className='ligne_normale'" onclick="afficher_infos_sujet('{sujet->id}')">
 <td><span id="id_indice_{sujet->id}">&nbsp;</span></td>
 <td><span class="sujet_numero_ligne">{sujet->numero_ordre}.&nbsp;&nbsp;</span></td>
 <td width="99%"><b><a href="javascript: void(0);" onclick="return afficher_infos_sujet('{sujet->id}')" onfocus="blur()"><span class="sujet_titre">{sujet->titre}</span></a></b></td>

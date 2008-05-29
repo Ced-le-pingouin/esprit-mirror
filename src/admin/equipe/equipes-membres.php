@@ -88,7 +88,7 @@ for ($iIdxMembre=0; $iIdxMembre<$iNbMembres; $iIdxMembre++)
 		.">"
 		."</td>"
 		."<td><img src=\"{$sRepIcone}/".($oEquipe->aoMembres[$iIdxMembre]->retSexe() == "F" ? "girl.gif" : "boy.gif")."\" border=\"0\"></td>"
-		."<td width=\"99%\" style=\"border: rgb(240,240,240) none 1px; border-bottom-style: dashed;\">"
+		."<td width=\"99%\" class=\"bloc_personne\">"
 		."&nbsp;&nbsp;"
 		."<a"
 		." href=\"javascript: profil('?idPers=".$oEquipe->aoMembres[$iIdxMembre]->retId()."'); void(0);\""
@@ -117,7 +117,7 @@ if (empty($sCorpHtml))
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <META HTTP-EQUIV="Pragma" CONTENT="NO-CACHE">
-<?php inserer_feuille_style("equipes.css"); ?>
+<?php inserer_feuille_style("admin/personnes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>

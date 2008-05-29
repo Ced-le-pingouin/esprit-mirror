@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://barre_filtres.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <script type="text/javascript" language="javascript" src="composer_galerie-filtre.js"></script>
 </head>
-<body>
+<body class="barre_filtres">
 <div id="barre_filtres">
 <form action="composer_galerie.php" method="post" target="Principale">
 [BLOCK_COLLECTICIELS+]

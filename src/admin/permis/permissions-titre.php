@@ -38,7 +38,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php echo inserer_feuille_style("barre_outils.css")?>
+<?php echo inserer_feuille_style("commun/barre_outils.css")?>
 <style type="text/css">
 <!--
 div.toolbar { position: absolute; left: 0px; top: 0px; width: 100%; height: 32px; }

@@ -2,129 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css://informations_generales.css" />
 <title>La plate-forme Esprit devient un logiciel libre</title>
 <style type="text/css">
-html
-{
-	height: 100%;
-	/* \*/ overflow: hidden; /**/
-}
-body
-{
-	background-color: rgb(253,249,238);
-	margin: 0;
-	padding: 0;
-	color: rgb(0,0,0);
-	font-family: Verdana,Tahoma,Arial,sans-serif;
-	font-size: 12px;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-}
-ol.lettre
-{
-	list-style-type: lower-alpha;
-}
-label
-{
-	display: block;
-	font-weight: bold;
-	margin: 15px 0 5px 0;
-}
-a
-{
-	color: rgb(0,0,75);
-	font-weight: bold;
-	text-decoration: none;
-}
-a:hover
-{
-	text-decoration: underline;
-}
-#piedpage a
-{
-	color: rgb(255,255,255);
-}
-#principal
-{
-	height: 94%;
-	overflow: auto;
-	margin: 0;
-	padding: 7px;
-}
-#piedpage
-{
-	height: 6%;
-	text-align: right;
-	margin: 0;
-	padding: 0 10px;
-	border-top: solid black 1px;
-	background-color: rgb(174,165,138);
-	vertical-align: center;
-}
-#fermer
-{
-	margin-top: -13px;
-	padding-top: 2%;
-	display: block;
-}
-#explication
-{
-	font-size: 10px;
-	padding: 7px;
-	margin: 5px;
-	background-color: rgb(250,250,250);
-	border: black dotted 1px;
-}
-#explication li
-{
-	list-style-type: none;
-	margin: 3px;
-	padding: 0;
-}
-h1
-{
-	background-color: rgb(250,250,250);
-	background-image: url("theme://infos-logo.gif");
-	background-repeat: no-repeat;
-	background-position: 5px 2px;
-	border: black solid 1px;
-	padding: 5px;
-	font-size: 20px;
-	font-weight: bold;
-	padding: 20px 0 0 200px;
-	height: 50px;
-}
-h2
-{
-	font-size: 18px;
-	font-weight: bold;
-	text-decoration: underline;
-}
-h3
-{
-	font-size: 16px;
-	font-weight: bold;
-}
-h4
-{
-	font-size: 14px;
-	font-weight: bold;
-}
-#envoyer
-{
-	display: block;
-	margin-top: 10px;
-}
-form, #merci
-{
-	border: black solid 1px;
-	padding: 3px 3px 5px 10px;
-	background-color: rgb(225,221,196);
-	width: 600px;
-	margin-bottom: 25px;
-}
-
 #champs
 {
 	margin-top: 5px;
@@ -133,7 +13,7 @@ form, #merci
 }
 </style>
 </head>
-<body>
+<body class="gpl">
 <div id="principal">
 <h1>La plate-forme Esprit est un logiciel libre</h1>
 <h2>1. Qu'est-ce qu'un logiciel libre ?</h2>

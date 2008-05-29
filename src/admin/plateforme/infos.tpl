@@ -1,10 +1,10 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="infos.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://informations_generales.css">
 </head>
-<body>
+<body class="infos">
 <!--<div id="logo"><img src="theme://infos-logo.gif" border="0" alt="logo"></div>-->
 <div id="informations">
 <h1><img src="theme://infos-logo.gif" border="0" alt="logo"><p><a id="courriel" href="mailto:{plateforme.courriel}" onfocus="blur()">{plateforme.courriel}</a></p></h1>

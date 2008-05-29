@@ -115,7 +115,7 @@ if (isset($fonction))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Ajouter une nouvelle formation</title>
-<?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; econcept.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php')?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>
@@ -202,7 +202,7 @@ function editeur_callback(v_sForm,v_sElem,v_sTexte) { document.forms[v_sForm].el
 </head>
 <body onload="afficherMenu()">
 <form name="FRM_GENERAL" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-<table border="0" cellspacing="0" cellpadding="0" width="100%" style="font-size : 10pt;">
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
 <td align="left" valign="top">
 <?php

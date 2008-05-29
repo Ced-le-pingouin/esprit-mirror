@@ -183,7 +183,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 	}
 	else
 	{
-		// Afficher les modules		
+		// Afficher les modules
 		foreach ($oFormation->aoModules as $oModule)
 		{
 			$iIdMod = $oModule->retId();

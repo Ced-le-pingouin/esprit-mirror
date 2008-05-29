@@ -1,7 +1,0 @@
-body { background-color: rgb(240,235,224); }
-p { font-size: 8pt; }
-#liste { background-color: rgb(255,255,255); margin: 5px; padding: 2px; border: rgb(127,157,185) solid 1px; }
-.dossier, .dossier_surbrillance, .dossier_selectionner { background-color: rgb(255,255,255); text-align: center; border: rgb(255,255,255) solid 1px; }
-.dossier_surbrillance { background-color: rgb(224,232,246); border: rgb(152,180,226) solid 1px; cursor: pointer; }
-.dossier_selectionner { background-color: rgb(239,241,246); border: rgb(224,232,246) solid 1px; cursor: pointer; }
-span.titre { margin-bottom: 2px; font-size: 8pt; }

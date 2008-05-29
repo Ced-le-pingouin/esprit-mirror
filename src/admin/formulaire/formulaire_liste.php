@@ -118,7 +118,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 		$iInterEnonRep = $oFormulaire->retInterEnonRep();
 		$iIdPersForm = $oFormulaire->retIdPers();
 		if ($oFormulaire->retEncadrer() == 1)				//Vérifie s'il faut encadrer le titre ou non et compose le code html
-			$sEncadrer = "style=\"border:1px solid black;\"";
+			$sEncadrer = "name=\"encadrer\"";
 		else
 			$sEncadrer = "";
 		$iLargeur = $oFormulaire->retLargeur();

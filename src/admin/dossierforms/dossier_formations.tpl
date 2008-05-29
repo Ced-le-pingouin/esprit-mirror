@@ -1,11 +1,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dossierforms/dossier_formations.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://formation.css">
 <script type="text/javascript" language="javascript" src="dossier_formations.js"></script>
 </head>
-<body>
+<body class="formation">
 <h1 id="titre">[TITRE_CREER_MODIFIER_DOSSIER][BLOCK_NOM_DOSSIER+]<span>&nbsp;&raquo;&nbsp;{dossier.nom}</span>[BLOCK_NOM_DOSSIER-]</h1>
 <p>S&eacute;lectionnez les formations que vous voulez placer dans ce dossier. Vous pouvez &eacute;galement indiquer un num&eacute;ro d'ordre pour chacune d'entre elles. Cliquez ensuite sur le lien &laquo;&nbsp;Enregistrer les modifications&nbsp;&raquo; pour valider les changements.</p>
 <form action="dossier_formations.php" method="get">

@@ -1,7 +1,7 @@
 <?php
 require_once("globals.inc.php");
 $sHead = <<<BLOCK_HTML_HEAD
-<link type="text/css" rel="stylesheet" href="theme://dossierforms/dossier_formations-titre.css">
+<link type="text/css" rel="stylesheet" href="css://formation.css">
 BLOCK_HTML_HEAD;
 $sTitrePrincipal = NULL;
 $sSousTitre = NULL;

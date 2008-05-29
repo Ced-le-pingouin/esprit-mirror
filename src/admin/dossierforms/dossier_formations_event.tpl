@@ -3,11 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dossierforms/dossier_formations_event.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://formation.css">
 <script type="text/javascript" language="javascript" src="dossier_formations_event.js"></script>
 </head>
-<body>
+<body class="formation_event">
 <form action="dossier_formations_event.php" method="get">
 [BLOCK_MODIFIER_DOSSIER+]
 <span class="label">Nom&nbsp;:</span><input id="idNomDossierForms" type="text" name="nomDossierForms" value="{dossier.nom}"><br>

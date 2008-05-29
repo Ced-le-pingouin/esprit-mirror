@@ -2,12 +2,12 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="theme://menu_zdc.css">
-<link type="text/css" rel="stylesheet" href="theme://dialogue/dialog-menu.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="forum.js"></script></head>
-<body>
+<body class="menu">
 <form action="liste_forums.php" method="get" target="FORUMS">
 [BLOCK_MENU_FORUM+][BLOCK_MENU_FORUM-]
 </form>

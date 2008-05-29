@@ -1,45 +1,10 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://accueil.css">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<style type="text/css">
-div.hidden { display:none; }
-h1 { font-size:18px; }
-h2 { font-size:16px; }
-div.valider { float:right; text-align:right; }
-div.valider a { color:black; font-size:13px; border:1px solid black; background-color:#C0C0C0; padding:2px 3px; }
-div.valider a:hover { background-color:#D0D0D0;}
-div.valider span { color:red; font-style:italic; margin-right:1em;}
-form.liensForm input { width:70ex; }
-form.liensForm button { margin-left:5ex; }
-form.liensForm label { display:block; margin:2px 0; padding:0; }
-form.liensForm label span {
-  width:8ex; 
-  display: -moz-inline-box;
-  display: inline-block;
-  text-align: left;
-  margin: 0;
-  padding: 0 1em 0 1em;
-}
-
-#breves ul { list-style-type: none; margin:0; padding:0; }
-#brevesForm li {
-  margin:4px 0;
-  clear:both;
-}
-#brevesForm li label span {
-  float:left;
-  width:51ex; 
-  border: 1px solid gray;
-  text-align: left;
-  margin: 0;
-}
-input.date {
-  margin-left:1ex;
-  width:14ex;
-}
-</style>
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
@@ -188,7 +153,7 @@ initEditeur("textareas", "", false );
 [BLOCK_LOOP_BREVES-]
 [BLOCK_EDIT_BREVE+]
 <div class="valider"><span></span><br /><br /><a href="#" onclick="valider('breves')">Valider</a></div>
-  <button name="retour" value="breves" type="submit" style="position:absolute;top:2px;right:2px">Retour à la liste</button>
+  <button name="retour" value="breves" type="submit">Retour à la liste</button>
   <input name="editBreve" value="{breve_id}" type="hidden" />
 <!--   <button name="editBreve" value="{breve_id}" type="submit">Valider</button><br /> -->
   <li><label><span>Date de début : <em>(yyyy-mm-dd ou vide)</em></span><input type="text" name="dateDeb" class="date" value="{breve_dateDeb}" onchange="changed()" /></label></li>

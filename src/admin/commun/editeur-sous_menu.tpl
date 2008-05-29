@@ -1,8 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://barre_outils.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/barre_outils.css">
 <script type="text/javascript" language="javascript">
 <!--
 function afficher_editer() { document.getElementById("idVisualiser").className = "cacher"; document.getElementById("idEditer").className = "afficher"; }

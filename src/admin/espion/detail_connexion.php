@@ -119,18 +119,18 @@ while ($g_iIdxEven < $iNbrEven)
 		//if ($oEvenement->aoEvenements[$iIdxEven]->retIdFormation() <> $iIdFormActuelle)
 			//break;
 		
-		$sNomClasseCss = (isset($sNomClasseCss) ? " style=\"font-size: 9pt;\"" : " class=\"cellule_clair\"");
-		$sNomClasseCssTri = (isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
+		$sNomClasseCss = " class=\"cellule_clair\""; //(isset($sNomClasseCss) ? " " : " class=\"cellule_clair\"");
+		$sNomClasseCssTri = " class=\"cellule_clair_fonce\""; //(isset($sNomClasseCss) ? " class=\"cellule_clair_fonce\"" : " class=\"cellule_clair\"");
 		
 		$sContenuTable .= "<tr>"
-			."<td width=\"1%\" class=\"numero_ligne\" style=\"font-size: 9pt;\">".$iCompteur++."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+			."<td width=\"1%\" class=\"numero_ligne\">".$iCompteur++."</td>"
+			."<td".($url_iTri == $oEvenement->TRI_CONNEXION ? $sNomClasseCssTri : $sNomClasseCss).">"
 			.$oEvenement->aoEvenements[$iIdxEven]->retConnexion()
 			."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\">"
+			."<td".($url_iTri == $oEvenement->TRI_DECONNEXION ? $sNomClasseCssTri : $sNomClasseCss).">"
 			.$oEvenement->aoEvenements[$iIdxEven]->retDeconnexion()
 			."</td>"
-			."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." align=\"center\" width=\"1%\">"
+			."<td".($url_iTri == $oEvenement->TRI_TEMPS_CONNEXIONS ? $sNomClasseCssTri : $sNomClasseCss)." width=\"1%\">"
 			."&nbsp;".$oEvenement->aoEvenements[$iIdxEven]->retTempsConnexion()."&nbsp;"
 			."</td>"
 			."</tr>\n";
@@ -141,10 +141,10 @@ while ($g_iIdxEven < $iNbrEven)
 	// --------------------------------
 	
 	$sContenuTable .= "<tr>"
-		."<td colspan=\"3\" align=\"right\" style=\"font-size: 9pt;\">"
+		."<td colspan=\"3\" align=\"right\">"
 		."<strong>Dur&eacute;e totale des connexions&nbsp;:</strong>"
 		."</td>"
-		."<td align=\"center\" width=\"1%\" style=\"border: #000000 none 1px; border-top-style: solid; font-size: 9pt\"><span class=\"Attention\">"
+		."<td align=\"center\" width=\"1%\" class=\"duree_totale\"><span class=\"Attention\">"
 		."&nbsp;".$oEvenement->retDureeTotaleConnexions($iIdFormActuelle)."&nbsp;"
 		."</span></td>"
 		."</tr>\n";
@@ -155,7 +155,7 @@ while ($g_iIdxEven < $iNbrEven)
 
 if ($g_iIdxEven < 1)
 	$sContenuTable .= "<tr>"
-		."<td colspan=\"4\" align=\"center\" style=\"font-size: 9pt;\">"
+		."<td colspan=\"4\" align=\"center\">"
 		."<strong>Pas de trace de connexion trouvé</strong>"
 		."</td>"
 		."</tr>\n";
@@ -166,7 +166,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("trace.css"); ?>
+<?php inserer_feuille_style("admin/admin_general.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 function changerSousTitre() {
@@ -175,7 +175,7 @@ function changerSousTitre() {
 //-->
 </script>
 </head>
-<body onload="changerSousTitre()">
+<body onload="changerSousTitre()" class="traces">
 <table border="0" cellpadding="5" cellspacing="1" width="100%">
 <?php echo $sContenuTable?>
 </table>

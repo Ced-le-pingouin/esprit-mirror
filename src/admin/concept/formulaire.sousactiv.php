@@ -115,7 +115,7 @@ selectionnerNumeroOrdre("ORDRE",$oProjet->oSousActivCourante->retNombreLignes(),
 entrerNom("NOM",$sNomSousActiv,TRUE);
 selectionnerStatut("STATUT",$oProjet->oSousActivCourante->retListeStatuts(),$oProjet->oSousActivCourante->retStatut());
 ?>
-<tr><td>&nbsp;</td><td style="font-size: 10pt"><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?php echo $g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
+<tr><td>&nbsp;</td><td><input type="checkbox" name="PREMIERE_PAGE" onfocus="blur()"<?php echo (($oProjet->oSousActivCourante->retPremierePage()) ? " checked": NULL).($g_bModifier ? NULL : " disabled"); ?>>&nbsp;&nbsp;Premi&egrave;re&nbsp;page&nbsp;<img src="<?php echo $g_sRepTheme?>icones/etoile.gif" width="13" height="13" border="0"></td>
 <!-- Type -->
 <tr><td>&nbsp;</td><td><hr></td></tr>
 <tr>
@@ -159,7 +159,7 @@ $iTmpType = NULL;
 for ($i=0; $i<count($asFichiers); $i++)
 {
 	echo "<option value=\"".$asFichiers[$i]."\""
-		.(($asFichiers[$i] == $sDonnee) ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+		.(($asFichiers[$i] == $sDonnee) ? " class=\"selected\" selected" : NULL)
 		.">".stripslashes($asFichiers[$i])."</option>\n";
 }
 ?>
@@ -185,7 +185,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 <?php
 for ($i=0; $i<count($asFichiers); $i++)
 	echo "<option"
-		." value=\"".$asFichiers[$i]."\"".($asFichiers[$i] == $sDonnee ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+		." value=\"".$asFichiers[$i]."\"".($asFichiers[$i] == $sDonnee ? " class=\"selected\" selected" : NULL)
 		.">$asFichiers[$i]</option>\n";
 ?>
 </select>
@@ -261,7 +261,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 <?php
 for ($i=0; $i<count($asFichiers); $i++)
 	echo "<option value=\"".$asFichiers[$i]."\""
-		.(($asFichiers[$i] == $sDonnee) ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+		.(($asFichiers[$i] == $sDonnee) ? " class=\"selected\" selected" : NULL)
 		.">$asFichiers[$i]</option>\n";
 
 if (empty($sIntitule))
@@ -350,7 +350,7 @@ $oFormulaire = new CFormulaire($oProjet->oBdd);
 $aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles($g_iIdUtilisateur, 'public', NULL); // , 1);
 foreach($aoFormulairesVisibles as $oFormulaireCourant)
 	echo "<option value=\"".$oFormulaireCourant->retId()."\""
-	  .(($oFormulaireCourant->retId() == $sDonnee) ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+	  .(($oFormulaireCourant->retId() == $sDonnee) ? " class=\"selected\" selected" : NULL)
 	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
@@ -385,7 +385,7 @@ else
 for ($i=0; $i<count($asFichiers); $i++)
 {
 	echo "<option value=\"".$asFichiers[$i]."\""
-		.(($asFichiers[$i] == $sDonnee) ? " style=\"background-color: #FFFFCC;\" selected" : NULL)
+		.(($asFichiers[$i] == $sDonnee) ? " class=\"selected\" selected" : NULL)
 		.">".stripslashes($asFichiers[$i])."</option>\n";
 }
 ?>

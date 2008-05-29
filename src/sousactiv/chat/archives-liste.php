@@ -184,7 +184,7 @@ $oBlockMenu->afficher();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("dialog.css; archives.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; chat.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 

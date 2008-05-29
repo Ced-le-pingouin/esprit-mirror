@@ -61,7 +61,7 @@ $bPeutGererTousMessages |= ($oProjet->verifPermission("PERM_MOD_MESSAGES_FORUM")
 $bPeutGererSonMessage  = $oProjet->verifPermission("PERM_MOD_MESSAGE_FORUM");
 $bPeutGererSonMessage |= $oProjet->verifPermission("PERM_SUP_MESSAGE_FORUM");
 
-//echo "<span style=\"font-size: 7pt;\">[ Peut gérer tous les messages: {$bPeutGererTousMessages} | Peut gérer que son message: {$bPeutGererSonMessage} ]</span>";
+//echo "<span>[ Peut gérer tous les messages: {$bPeutGererTousMessages} | Peut gérer que son message: {$bPeutGererSonMessage} ]</span>";
 
 // ---------------------
 // Initialiser le sujet du forum

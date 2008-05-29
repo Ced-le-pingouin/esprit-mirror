@@ -26,7 +26,7 @@ if (isset($_GET["titre"]))
 else
 	$sTitre = "Utilisateur";
 
-$sLienCSS = lien_feuille_style("concept.css");
+$sLienCSS = lien_feuille_style("econcept.css");
 
 $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
 

@@ -176,7 +176,7 @@ function valider() { document.forms[0].submit(); }
 <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 <table border="0" cellspacing="0" cellpadding="5" width="100%">
 <tr>
-<td><img src="<?php echo dir_theme("icones/equipe.gif")?>" border="0"></td>
+<td><img src="<?php echo dir_theme_commun("icones/16x16/equipe.gif")?>" border="0"></td>
 <td width="99%"><?php echo $sCorpHtml?></td>
 </tr>
 </table>

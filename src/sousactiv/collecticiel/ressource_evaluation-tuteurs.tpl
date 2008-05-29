@@ -1,10 +1,9 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://barre_outils.css">
-<link type="text/css" rel="stylesheet" href="ressource_evaluation-tuteurs.css">
-<link type="text/css" rel="stylesheet" href="theme://ressource_evaluation.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/barre_outils.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/collecticiel.css">
 <script type="text/javascript" language="javascript">
 <!--
 var g_sIdTuteur = null;
@@ -33,7 +32,7 @@ function init()
 //-->
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" class="evaluation">
 <div id="tuteurs">Tuteurs&nbsp;:&nbsp;</div>
 [BLOCK_TUTEUR+][BLOCK_SEPARATEUR_TUTEURS+]<div class="cellule_separateur">::</div>[BLOCK_SEPARATEUR_TUTEURS-]<div id="id_tuteur_{tuteur.id}" class="cellule_icone_normale"><a href="javascript: void(0);" onclick="return changer_tuteur('?idPers={tuteur.id}&amp;idResSA={ressource.id}','id_tuteur_{tuteur.id}')" title="Cliquer ici pour voir l'évaluation de ce tuteur" onfocus="blur()">{tuteur.nom}&nbsp;{tuteur.prenom}</a></div>[BLOCK_TUTEUR-]
 </body>

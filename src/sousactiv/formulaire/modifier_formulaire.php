@@ -327,7 +327,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 						$fScore += CalculerScore(1,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
-					$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
+					$sHtmlListeObjForm .= "</select id=\"autocorrect\">\n".$sAutoCorr;
 					$sHtmlListeObjForm .= convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
 										."</div>\n".$sFeedback."\n";
 					break;
@@ -401,9 +401,9 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 							}
 							if($oQRadio->retDispQR() == 'Ver')
 								$sHtmlListeObjForm .= "<tr><td><input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" "
-										."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+										."value=\"".$oPropRep->retId()."\" $sPreSelection /></td><td id=\"autocorrect\">".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
 							else
-								$sHtmlListeObjForm .= "<input type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
+								$sHtmlListeObjForm .= "<input id=\"autocorrect\" type=\"radio\" name=\"".$oPropRep->retIdObjFormul()."\" value=\"".$oPropRep->retId()."\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 						}
 					}
 					if($bAutoCorrection)
@@ -493,9 +493,9 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 							}
 							if($oQCocher->retDispQC() == 'Ver')
 								$sPropRepQCocher.= "<tr><td><input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
-										."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td>".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
+										."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQcocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection /></td><td id=\"autocorrect\">".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr</td></tr>\n";
 							else
-								$sPropRepQCocher .= "<input type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
+								$sPropRepQCocher .= "<input id=\"autocorrect\" type=\"checkbox\" name=\"".$oPropRep->retIdObjFormul()."[]\" "
 										."value=\"".$oPropRep->retId()."\" onclick=\"verifNbQocher($NbRepMaxQCTemp,'$MessMaxQCTemp')\" $sPreSelection />".convertBaliseMetaVersHtml($oPropRep->retTextePropRep())." $sAutoCorr \n";
 						}
 					}

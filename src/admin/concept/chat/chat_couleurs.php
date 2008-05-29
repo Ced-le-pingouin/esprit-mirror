@@ -39,7 +39,7 @@ while (@list(,$sLigne) = each($asTableau))
 	list($sNomCouleur,$sValeurCouleur) = split(";",$sLigne);
 	
 	$sListeCouleurs .= "<tr>"
-		."<td width=\"1%\" style=\"background-color: #FFFFFF\">"
+		."<td width=\"1%\">"
 		."<input"
 		." type=\"radio\""
 		." name=\"CouleurChat\""
@@ -48,7 +48,7 @@ while (@list(,$sLigne) = each($asTableau))
 		.($url_sCouleurChat == $sLigne ? " checked" : NULL)
 		.">"
 		."</td>"
-		."<td style=\"background-color: #FFFFFF\"><b>{$sNomCouleur}</b></td>"
+		."<td><b>{$sNomCouleur}</b></td>"
 		."<td width=\"50%\" style=\"background-color: rgb({$sValeurCouleur});\">&nbsp;</td>"
 		."</tr>\n";
 }
@@ -57,7 +57,7 @@ while (@list(,$sLigne) = each($asTableau))
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("chat.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; chat.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 
@@ -75,7 +75,7 @@ function ChangerCouleur()
 //-->
 </script>
 </head>
-<body class="couleurs">
+<body>
 <form>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr><td style="background-color: #222222;">

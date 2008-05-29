@@ -146,9 +146,11 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 }
 
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
-<?php inserer_feuille_style("associer_personnes.css"); ?>
+<?php inserer_feuille_style("admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('globals.js.php')?>" ></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
@@ -172,19 +174,18 @@ function init()
 //-->
 </script>
 </head>
-<body onload="init()" style="background-color: #FFFFFF;">
+<body onload="init()" class="associer_personnes">
 <a name="top"></a>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get" target="_self">
-<table border="0" cellspacing="1" cellpadding="1" width="100%">
+<table border="0" cellspacing="1" cellpadding="1" width="100%" class="liste_personnes">
 <?php
-$sClassTR = (" style=\"border: #EFEFEF none 1px; border-bottom-style: solid;font-size: 10pt;\"");
 
 for ($i=0; $i<$iNbrPers; $i++)
 	echo "<tr>"
-		."<td{$sClassTR}>"
+		."<td>"
 		."<input type=\"checkbox\" name=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
-		."<td width=\"98%\"{$sClassTR}>"
+		."<td width=\"98%\">"
 		."<a name=\"pos".($i+1)."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
 		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
@@ -193,11 +194,11 @@ for ($i=0; $i<$iNbrPers; $i++)
 		."</span>"
 		."</a>"
 		."</td>\n"
-		."<td{$sClassTR}>&nbsp;"._("Infos")."&nbsp;</td>"
+		."<td>&nbsp;"._("Infos")."&nbsp;</td>"
 		."</tr>\n";
 
 if ($i < 1)
-	echo "<tr><td style=\"text-align: center;\" class=\"Infos\">&#8250;&nbsp;$sErrPers</td></tr>\n";
+	echo "<tr><td class=\"Infos\">&#8250;&nbsp;$sErrPers</td></tr>\n";
 ?>
 </table>
 <input type="hidden" name="FILTRE" value="<?php echo $iFiltre?>">

@@ -2,9 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-[BLOCK_STYLESHEET_ERREUR+]<link type="text/css" rel="stylesheet" href="theme://dialogue/dialog-important.css">[BLOCK_STYLESHEET_ERREUR-]
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+[BLOCK_STYLESHEET_ERREUR+]<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">[BLOCK_STYLESHEET_ERREUR-]
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript">
@@ -47,16 +46,9 @@ function Annuler()
 function supprimer() { return document.forms[0].submit(); }
 //-->
 </script>
-<style type="text/css">
-<!--
-.largeur_page { width: 100%; }
-td.intitule { text-align: right; vertical-align: middle; }
-div.barre_de_progression { background-color: rgb(255,255,255); position: absolute; top: 0; left: 5; width: 100%; height: 100%; visibility: hidden; }
-textarea.editeur_texte { width: 100%; height: 370px; }
--->
-</style>
+
 </head>
-<body onload="init()">
+<body onload="init()" class="dialog_important">
 <form action="{form->action}" method="post" enctype="multipart/form-data">
 [BLOCK_MESSAGE+][BLOCK_MESSAGE-]
 <input type="hidden" name="modaliteFenetre" value="{fenetre->modalite}">

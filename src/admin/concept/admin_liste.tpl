@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://concept.css">
-<link type="text/css" rel="stylesheet" href="admin_liste.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://econcept.css">
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://dom.element.js"></script>
 <script type="text/javascript" language="javascript">
@@ -95,7 +94,7 @@ function init()
 <hr class="module">
 [BLOCK_RUBRIQUE+]
 <div class="rubrique">
-<span id="{formation.id}:{module.id}:{rubrique.id}:0:0:0" class="rubrique_intitule">{rubrique.intitule}<a id="a.{formation.id}:{module.id}:{rubrique.id}:0:0:0" href="admin_modif.php?type={rubrique.type}&params={formation.id}:{module.id}:{rubrique.id}:0:0:0" target="ADMINFRAMEMODIF" onclick="changerMenu({rubrique.type},{formation.id},{module.id},{rubrique.id},0,0,0); afficherIndice('{formation.id}:{module.id}:{rubrique.id}:0:0:0'); changerStyle(this);" onfocus="blur()" title="{rubrique.nom}">{rubrique.nom}</a>&nbsp;&nbsp;<span style="font-size: 7pt; font-weight: normal;">({rubrique.index})</span>
+<span id="{formation.id}:{module.id}:{rubrique.id}:0:0:0" class="rubrique_intitule">{rubrique.intitule}<a id="a.{formation.id}:{module.id}:{rubrique.id}:0:0:0" href="admin_modif.php?type={rubrique.type}&params={formation.id}:{module.id}:{rubrique.id}:0:0:0" target="ADMINFRAMEMODIF" onclick="changerMenu({rubrique.type},{formation.id},{module.id},{rubrique.id},0,0,0); afficherIndice('{formation.id}:{module.id}:{rubrique.id}:0:0:0'); changerStyle(this);" onfocus="blur()" title="{rubrique.nom}">{rubrique.nom}</a>&nbsp;&nbsp;<span style="font-size: 7pt;">({rubrique.index})</span>
 [BLOCK_ACTIVITE+]
 <div class="activite">
 <span id="{formation.id}:{module.id}:{rubrique.id}:0:{activite.id}:0">{activite.index}.&nbsp;&nbsp;<a id="a.{formation.id}:{module.id}:{rubrique.id}:0:{activite.id}:0" href="admin_modif.php?type={activite.type}&params={formation.id}:{module.id}:{rubrique.id}:0:{activite.id}:0" target="ADMINFRAMEMODIF" title="{activite.nom}" onclick="changerMenu({activite.type},{formation.id},{module.id},{rubrique.id},0,{activite.id},0); afficherIndice('{formation.id}:{module.id}:{rubrique.id}:0:{activite.id}:0'); changerStyle(this);" onfocus="blur()">{activite.nom}</a></span>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php echo inserer_feuille_style("dialog.css")?>
+<?php echo inserer_feuille_style("commun/dialog.css")?>
 <style type="text/css">
 <!--
 body.dialog_sous_menu { background-image: none; border-left-style: none; }

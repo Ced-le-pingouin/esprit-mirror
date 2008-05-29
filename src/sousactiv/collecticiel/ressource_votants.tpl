@@ -2,16 +2,16 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dialogue.css">
-<link type="text/css" rel="stylesheet" href="theme://ressource_votants.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/collecticiel.css">
 <script type="text/javascript" language="javascript" src="ressource_votants.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://outils_admin.js"></script>
 <head>
-<body>
-<h1>Liste des votants</h1>
+<body class="ressources_votants">
+<h1 class="dialogue">Liste des votants</h1>
 [BLOCK_TABLE_VOTANTS+]
 <div class="liste">
 [BLOCK_VOTANT+]
@@ -26,7 +26,7 @@
 
 [BLOCK_TABLE_VOTANTS_MANQUANTS+]
 <form action="ressource_votants.php" method="get">
-<h1>Liste des votants manquants</h1>
+<h1 class="dialogue">Liste des votants manquants</h1>
 <p>Pour pouvoir soumettre ce document, il vous suffit de sélectionner le/les membre(s) de l'équipe qui n'a(ont) pas encore voté(s). Puis de cliquer sur le lien &laquo;&nbsp;Je vote pour eux&nbsp;&raquo;.
 <div class="liste">
 [BLOCK_VOTANT_MANQUANT+]

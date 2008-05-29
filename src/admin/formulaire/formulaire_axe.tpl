@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestion des Axes/Tendances</title>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_axe.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script type="text/javascript" language="javascript" src="{chemin_windows.js}"></script>
 <script type="text/javascript">
 <!--
@@ -19,7 +19,7 @@ function appliquer()
 //-->
 </script>
 </head>
-<body>
+<body class="formulaire_axe">
 <div id="principal">
 [BLOCK_CHOIX+]
 <form name="formaxe" action="formulaire_axe.php" method="post">
@@ -49,9 +49,9 @@ function appliquer()
 [BLOCK_CONFIRM-]
 </div>
 <div id="piedpage">
-	<a href="javascript: self.close();" id="fermer">Fermer</a>
+	<a href="javascript: self.close();" id="fermer_global">Fermer</a>
 	[BLOCK_LIEN+]
-	<a href="javascript: appliquer();" id="valider">Valider</a>
+	<a href="javascript: appliquer();" id="valider_global">Valider</a>
 	<a href="#" onclick="gestionaxes();" id="gestion">Gestion des axes (ajout/suppression)</a>
 	[BLOCK_LIEN-]
 </div>

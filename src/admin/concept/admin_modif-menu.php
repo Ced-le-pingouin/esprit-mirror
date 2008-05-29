@@ -58,7 +58,7 @@ else
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php echo inserer_feuille_style("concept.css")?>
+<?php echo inserer_feuille_style("econcept.css")?>
 <script type="text/javascript" language="javascript">
 <!--
 function verifier()

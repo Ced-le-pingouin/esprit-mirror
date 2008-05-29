@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Copie d'une rubrique</title>
-<link rel="stylesheet" type="text/css" href="copie_element.css" />
+<link rel="stylesheet" type="text/css" href="css://admin/admin_general.css" />
 <script language="javascript" type="text/javascript">
 <!--
 function EnvoyerSrc()
@@ -39,7 +39,7 @@ function Menu()
 //-->
 </script>
 </head>
-<body>
+<body class="copie_element">
 [ETAPE_CHOIX_SRC+]
 <h4>S&eacute;lectionnez la rubrique source</h4>
 <form name="choixrubsrc" action="copie_rub.php" method="get">

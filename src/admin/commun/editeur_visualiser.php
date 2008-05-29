@@ -6,7 +6,7 @@ $sTexteFormatte = (empty($_POST["edition"]) ? NULL : convertBaliseMetaVersHtml($
 <head>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("description.css"); ?>
+<?php inserer_feuille_style("globals.css"); ?>
 </head>
 <body>
 <?php echo $sTexteFormatte?>

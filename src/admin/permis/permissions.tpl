@@ -2,9 +2,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title></title>
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <style type="text/css">
 <!--
 body { background-image: none; }

@@ -1,13 +1,12 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="theme://exporter-personnes.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://admin/personnes.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript" src="exporter.js"></script>
 </head>
-<body>
+<body class="exporter_personnes">
 <form action="exporter-personnes.php" method="get">
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 <tr>

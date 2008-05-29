@@ -44,7 +44,7 @@ else
 // ---------------------
 // Initialiser
 // ---------------------
-$sBlockHead = "<link type=\"text/css\" rel=\"stylesheet\" href=\"theme://equipes.css\">";
+$sBlockHead = "<link type=\"text/css\" rel=\"stylesheet\" href=\"css://admin/personnes.css\">";
 
 // ---------------------
 // Template

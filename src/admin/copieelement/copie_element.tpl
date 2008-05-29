@@ -3,9 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Copie d'un élément de la structure d'une formation</title>
-<link rel="stylesheet" type="text/css" href="copie_element.css" />
+<link rel="stylesheet" type="text/css" href="css://admin/admin_general.css" />
 </head>
-<body>
+<body class="copie_element">
 <h4>S&eacute;lectionnez le type d'&eacute;l&eacute;ment source</h4>
 <fieldset>
 <legend>Type d'&eacute;l&eacute;ment&nbsp;</legend>

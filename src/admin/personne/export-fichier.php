@@ -91,7 +91,7 @@ $oProjet->terminer();
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php echo inserer_feuille_style("exporter-personnes.css")?>
+<?php echo inserer_feuille_style("admin/personnes.css")?>
 <script type="text/javascript" language="javascript">
 <!--
 function exporter()
@@ -102,7 +102,7 @@ function exporter()
 //-->
 </script>
 </head>
-<body onload="exporter()">
+<body onload="exporter()" class="exporter_personnes">
 <p>&nbsp;</p>
 <div align="center">
 <p>Exportation de la liste des inscrits termin&eacute;e.</p>

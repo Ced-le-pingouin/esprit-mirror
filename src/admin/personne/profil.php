@@ -110,12 +110,12 @@ if ($iIdPers >= 0)
 			echo "<html>\n"
 				."<head>"
 			        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
-				.inserer_feuille_style("profil.css")
+				.inserer_feuille_style("admin/personnes.css")
 				."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
 				."function corriger() { top.frames[\"Bas\"].location = \"personne-bas.php?corriger=1\"; }\n"
 				."</script>\n"
 				."</head>\n"
-				."<body onload=\"corriger()\">\n"
+				."<body onload=\"corriger()\" class=\"profil\">\n"
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
@@ -247,7 +247,7 @@ $asMois = $sTexteOption = $sValeurOption = NULL;
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("dialog.css; profil.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; admin/personnes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
@@ -258,7 +258,7 @@ function afficher_erreur(v_sErreur)
 //-->
 </script>
 </head>
-<body>
+<body class="profil">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
 

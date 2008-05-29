@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Gestion des Axes/Tendances</title>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_axe.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script type="text/javascript">
 function fermer()
 {
@@ -13,7 +13,7 @@ function fermer()
 }
 </script>
 </head>
-<body>
+<body class="formulaire_axe">
 <div id="principal">
 <h1>Gestion des axes</h1>
 [BLOCK_SUPPRESSION+]
@@ -61,9 +61,9 @@ function fermer()
 {Message}
 </div>
 <div id="piedpage">
-	<a href="#" onclick="fermer();" id="fermer">Fermer</a>
+	<a href="#" onclick="fermer();" id="fermer_global">Fermer</a>
 	[BLOCK_LIEN+]
-	<a href="#" onclick="document.forms['formgestion'].submit();" id="valider">{Titre_Lien}</a>
+	<a href="#" onclick="document.forms['formgestion'].submit();" id="valider_global">{Titre_Lien}</a>
 	[BLOCK_LIEN-]
 </div>
 </body>

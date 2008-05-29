@@ -25,7 +25,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php 
 
-lierFichiersCSS("dialog.css");
+lierFichiersCSS("commun/dialog.css");
 
 if (!isset($sDialogueTitre))
 	$sDialogueTitre = _("Bo&icirc;te de dialogue sans titre");

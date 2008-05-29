@@ -1,8 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://forum/sujet-infos.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">
 <script type="text/javascript" language="javascript">
 <!--
 function init() { 
@@ -18,7 +18,7 @@ function init() {
 //-->
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" class="sujet_infos">
 [BLOCK_INFOS_SUJET+]
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="50" class="sujet_infos">
 <tr>

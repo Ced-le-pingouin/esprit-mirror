@@ -1,9 +1,0 @@
-body { margin: 10px; }
-.liste { background-color: rgb(255,255,255); border: rgb(193,210,238) solid 1px; padding: 8px; margin-bottom: 25px; }
-.liste input { float: left; margin: 3px 0 0 0; }
-.sexe { float: left; padding: 0 2px 2px 2px; }
-.courriel { float: right; }
-.nom_complet { border: rgb(174,165,138) none 1px; border-bottom-style: dashed; margin: 0; margin-left: 20px; padding-bottom: 3px; }
-.pseudo { clear: right; font-size: 7pt; margin: 0; margin-left: 20px; margin-bottom: 5px; }
-.pas_de_votant_trouve { margin: 0; text-align: center; }
-#voter { text-align: right; padding: 0; margin: 0; }

@@ -1,8 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dialog.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
 </head>
 <body class="dialog_sous_menu">
 <table border="0" cellpadding="3" cellspacing="0" width="100%" height="100%" class="dialog_sous_menu">

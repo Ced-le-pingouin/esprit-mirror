@@ -80,7 +80,7 @@ if (($iNbrFormations = $oProjet->initFormationsUtilisateur()) > 0)
 			if (stristr($sNomFormation,$url_sFiltre) === FALSE)
 				continue;
 			else
-				$sNomFormation = eregi_replace("($url_sFiltre)([:alnum:]*)","<span style='background-color: rgb(0,255,0);'>\\1</span>\\2",$sNomFormation);
+				$sNomFormation = eregi_replace("($url_sFiltre)([:alnum:]*)","<span class=\"formation_trouvee\">\\1</span>\\2",$sNomFormation);
 		}
 		
 		$iIdForm = $oFormation->retId();

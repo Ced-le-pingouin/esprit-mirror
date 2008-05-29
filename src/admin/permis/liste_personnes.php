@@ -105,7 +105,7 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 ?>
 <html>
 <head>
-<?php inserer_feuille_style("associer_personnes.css"); ?>
+<?php inserer_feuille_style("admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript"  src="<?=dir_javascript('globals.js.php')?>" ></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
@@ -129,7 +129,7 @@ function init()
 //-->
 </script>
 </head>
-<body onload="init()" style="background-color: #FFFFFF;">
+<body onload="init()" style="background-color: #FFFFFF;" class="associer_personnes">
 <a name="top"></a>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get" target="_self">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">

@@ -2,17 +2,16 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://menu.css" />
-<link type="text/css" rel="stylesheet" href="theme://dialog-menu.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css" />
 <title>Conception d'activité en ligne</title>
 </head>
-<body>
+<body class="menu">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr>
 <td>&nbsp;</td>
 <td style="width: 99%; text-align: center;"><span id="id_status">&nbsp;</span></td>
-<td align="right"><a href="javascript: void(0);" onclick="top.close()" onfocus="blur()">Fermer</a></td>
+<td align="right"><a href="javascript: void(0);" onclick="top.close()" onfocus="blur()" class="menu">Fermer</a></td>
 <td>&nbsp;</td>
 </tr>
 </table>

@@ -265,7 +265,7 @@ echo "<!-- Forum -->"
 	."</td>\n"
 	."</tr>\n"
 	."<tr>"
-	."<td colspan=\"2\" align=\"right\" style=\"font-size: 10pt\">"
+	."<td colspan=\"2\" align=\"right\">"
 	."<input type=\"checkbox\" name=\"accessible_visiteurs_forum\"".($oForum->retAccessibleVisiteurs() ? " checked" : NULL)
 	.($g_bModifier ? NULL : " disabled")
 	.">"

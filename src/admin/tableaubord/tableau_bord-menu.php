@@ -51,7 +51,7 @@ BLOCK_HTML_HEAD;
 // Composer le menu
 // ---------------------
 $aMenus = array();
-$aMenus[] = array("<span id=\"id_title\" style=\"font-size: 7pt;\"></span>",NULL,1,"text-align: left; width: 99%;",FALSE);
+$aMenus[] = array("<span id=\"id_title\"></span>",NULL,1,"text-align: left; width: 99%;",FALSE);
 $aMenus[] = array(BTN_RAFRAICHIR,"top.rafraichir()",2,"text-align: right;");
 $aMenus[] = array("&nbsp;&nbsp;&nbsp;",NULL,3,NULL,FALSE);
 $aMenus[] = array(BTN_FERMER,"top.close()",4);

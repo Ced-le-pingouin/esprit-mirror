@@ -93,7 +93,7 @@ $sBlocPageHtml = <<<BLOC_PAGE_HTML
 </head>
 <body>
 <p>&nbsp;</p>
-<p style="text-align: center; font-weight: bold;">Ce type de fichier n'est pas autorisé par la plate-forme</p>
+<p class="bold_center">Ce type de fichier n'est pas autorisé par la plate-forme</p>
 </body>
 </html>
 BLOC_PAGE_HTML;

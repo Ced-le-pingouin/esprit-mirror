@@ -3,6 +3,10 @@
 <head>
 <title>Esprit : page d'accueil</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="css://login.css" />
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="css://login-ie.css">
+<![endif]-->
 <script type="text/javascript" language="javascript" src="js/window.js"></script>
 <script type="text/javascript" language="javascript" src="themes/commun/js/login.js.php"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
@@ -24,10 +28,6 @@ function GPL()
 }
 //-->
 </script>
-<link rel="stylesheet" type="text/css" href="theme://login/login.css" />
-<!--[if lt IE 7]>
-<link rel="stylesheet" type="text/css" href="theme://login/login-ie.css">
-<![endif]-->
 </head>
 <body>
 <div id="wrap">

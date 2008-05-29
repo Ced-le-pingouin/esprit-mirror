@@ -23,7 +23,7 @@ $aMenus = array();
 $aMenus[] = array("Permissions","top.frames['Principale'].showOnly('permission'); top.frames['Haut'].showTitre('permission'); top.frames['Haut'].init();");
 $aMenus[] = array("Admin","top.frames['Principale'].showOnly('admin');top.frames['Haut'].showTitre('admin')");
 
-$aMenus[] = array("<Fermer>","top.close()");
+$aMenus[] = array("Fermer","top.close()");
 
 // ---------------------
 // Afficher le menu

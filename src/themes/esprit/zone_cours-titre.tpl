@@ -1,8 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://zone_menu-titre.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://toute_zone.css">
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>
 <style type="text/css">
 <!--
@@ -11,9 +11,6 @@ body
 {
 	background: rgb(255,255,255) url("theme://fond-titre-zdc.gif") repeat-x;
 }
-
-.infos_utilisateur { color: rgb(0,0,0); }
-
 //-->
 </style>
 <script type="text/javascript" language="javascript">

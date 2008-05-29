@@ -3,9 +3,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://zone_menu-menu.css">
-<link type="text/css" rel="stylesheet" href="theme://bloc_menu.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://toute_zone.css">
 <script type="text/javascript" language="javascript" src="javascript://indice.js"></script>
 <script type="text/javascript" language="javascript" src="commun://js/zone_menu.js"></script>
 <script type="text/javascript" language="javascript">
@@ -107,7 +106,7 @@ var url;
 [SET_DESCRIPTION_FORMATION+]
 <tr>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
-<td class="description"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description'); rechargerMenuBas({idFormAct}, 0);" onfocus="blur()">Description</a></td>
+<td class="description_menu"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description'); rechargerMenuBas({idFormAct}, 0);" onfocus="blur()">Description</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_DESCRIPTION_FORMATION-]

@@ -100,7 +100,7 @@ $sContenuTable .= "<tr>"
 	."<td colspan=\"3\" align=\"right\">"
 	."<strong>Dur&eacute;e totale des connexions&nbsp;:</strong>"
 	."</td>"
-	."<td align=\"center\" width=\"1%\" style=\"border: #000000 none 1px; border-top-style: solid;\"><span class=\"Attention\">"
+	."<td align=\"center\" width=\"1%\" class=\"duree_totale\"><span class=\"Attention\">"
 	."&nbsp;".$oEvenement->retDureeTotaleConnexions()."&nbsp;"
 	."</span></td>"
 	."</tr>\n";

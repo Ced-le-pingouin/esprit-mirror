@@ -41,7 +41,6 @@ function dialogue_afficher_menu ()
 	echo "<html>"
 		."<head>"
 	        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
-		.lierFichiersCSS("menu.css",FALSE)
 		."</head>"
 		."<body>"
 		."<table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" width=\"100%\" height=\"100%\">"

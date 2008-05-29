@@ -95,7 +95,7 @@ $oBlocEnvoyerA->remplacer("{onglet->titre}",$oBlocEnvoyerA->defVariable("VAR_TIT
 $oBlocEnvoyerA->remplacer("{onglet->texte}",$oBlocEnvoyerA->defVariable("VAR_TEXTE"));
 $oBlocEnvoyerA->afficher();
 
-$oBlocChoisirBoiteCourriel->ajouter("<div id=\"idChoisirDansListe\" style=\"position: relative;\">{$sOnglet}</div>");
+$oBlocChoisirBoiteCourriel->ajouter("<div id=\"idChoisirDansListe\">{$sOnglet}</div>");
 $oBlocChoisirBoiteCourriel->remplacer("{onglet->titre}",$oBlocChoisirBoiteCourriel->defVariable("VAR_TITRE"));
 $oBlocChoisirBoiteCourriel->remplacer("{onglet->texte}",$oBlocChoisirBoiteCourriel->defVariable("VAR_TEXTE"));
 

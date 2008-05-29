@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_menu.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script type="text/javascript">
 <!--
 function suppression(TypeAct)
@@ -47,7 +47,7 @@ function ajouter(TypeAct)
 <script src="selectionobj.js" type="text/javascript"></script>
 <title>Conception d'activités en ligne</title>
 </head>
-<body>
+<body class="formulaire_menu">
 <form name="listeformulaire" action="formulaire_menu.php" method="get">
 <input type="checkbox" name="bMesForms" id="bMesForms" value="1" onclick="this.form.submit();" {bMesFormsCoche} /><label for="bMesForms">uniquement mes activités</label>
 <input type="hidden" name="typeaction" value="selection" />

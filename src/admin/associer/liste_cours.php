@@ -102,7 +102,7 @@ switch ($iIdStatut)
 		
 		for ($i=0; $i<$iNbrModules; $i++)
 			$sListeCours .= "<tr>"
-				."<td style=\"font-size: 10pt\">"
+				."<td>"
 				."<input type=\"checkbox\" name=\"IDCOURS[]\" value=\"".$aoModules[$i]->retId()."\""
 				.($aoModules[$i]->estSelectionne ? " checked" : NULL)
 				.">"
@@ -155,10 +155,10 @@ switch ($iIdStatut)
 				$sAppliquerChangements = NULL;
 				
 				$sListeCours .= "<tr>"
-					."<td style=\"font-size: 10pt\">"
+					."<td>"
 					."&nbsp;<img src=\"".dir_theme("cocher-plein-0.gif")."\" border=\"0\">"
 					."&nbsp;"
-					.($bAutoInscription ? "<span style=\"color: #CAC8BB;\">$sNomModule</span>" : $sNomModule)
+					.($bAutoInscription ? "<span class=\"auto_inscrit\">$sNomModule</span>" : $sNomModule)
 					."<input type=\"hidden\" name=\"IDCOURS[]\" value=\"".$aoModules[$i]->retId()."\">"
 					."</td>"
 					."</tr>\n";
@@ -166,13 +166,13 @@ switch ($iIdStatut)
 			else
 			{
 				$sListeCours .= "<tr>"
-					."<td style=\"font-size: 10pt\">"
+					."<td>"
 					."<input type=\"checkbox\" name=\"IDCOURS[]\" value=\"".$aoModules[$i]->retId()."\""
 					.($aoModules[$i]->estSelectionne ? " checked" : NULL)
 					.($bAutoInscription ? " readonly" : NULL)
 					.">"
 					."&nbsp;"
-					.($aoModules[$i]->estMembre ? "<span class=\"Attention\" style=\"cursor: help;\" title=\""._("Associ&eacute; &agrave; une &eacute;quipe")."\">$sNomModule</span>" : $sNomModule)
+					.($aoModules[$i]->estMembre ? "<span class=\"Attention\" title=\""._("Associ&eacute; &agrave; une &eacute;quipe")."\">$sNomModule</span>" : $sNomModule)
 					."</td>"
 					."</tr>\n";
 			}
@@ -192,9 +192,11 @@ if ($iNbrModules < 1)
 $oProjet->terminer();
 
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
-<?php inserer_feuille_style("associer_personnes.css"); ?>
+<?php inserer_feuille_style("admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="globals.js"></script>
 <script type="text/javascript" language="javascript">
@@ -210,7 +212,7 @@ function rechargerListeCours()
 //-->
 </script>
 </head>
-<body>
+<body class="associer_personnes">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
 <?php echo $sAppliquerChangements?>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">

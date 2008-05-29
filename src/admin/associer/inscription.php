@@ -100,10 +100,12 @@ $asToolTip = array(
 );
 
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
 <head>
 <title>Associer des personnes</title>
-<?php inserer_feuille_style("barre_outils.css;associer_personnes.css"); ?>
+<?php inserer_feuille_style("commun/barre_outils.css; admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('globals.js.php'); ?>"></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
@@ -127,21 +129,21 @@ function association_multiple()
 //-->
 </script>
 </head>
-<body>
+<body class="associer_personnes">
 <form method="get">
 <table border="0" cellpadding="4" cellspacing="0" width="100%">
 <tr>
 <td width="50%" height="1%">
 <span class="intitule">Filtre&nbsp;:</span>
-<select name="FILTRE" style="width: 100%" onchange="changerFiltre(value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),FORMATION.checked)">
+<select name="FILTRE" onchange="changerFiltre(value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),FORMATION.checked)">
 <?php echo $sOptionsFiltre; ?>
 </select>
 &nbsp;&nbsp;
-<span style="font-size: 10pt"><input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" checked>de cette session uniquement</span>
+<span><input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" checked>de cette session uniquement</span>
 </td>
 <td>&nbsp;</td>
 <td class="intitule" height="1%">Statut&nbsp;des&nbsp;personnes&nbsp;:<br>
-<select name="STATUT_PERS" style="width: 100%" onchange="changerStatut(value,<?php echo $url_iIdForm?>)">
+<select name="STATUT_PERS" onchange="changerStatut(value,<?php echo $url_iIdForm?>)">
 <?php echo $sOptionsStatut; ?></select></td>
 </tr>
 <tr>

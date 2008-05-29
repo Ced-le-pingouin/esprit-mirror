@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_zdc.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://outils_admin.js"></script>
@@ -35,7 +34,7 @@
 
 [SET_DESCRIPTION+]
 <table border="0" cellspacing="0" cellpadding="0" width="90%">
-<tr><td class="description">{description->texte}</td></tr>
+<tr><td class="description_zdc">{description->texte}</td></tr>
 <tr><td>&nbsp;</td></tr>
 </table>
 [SET_DESCRIPTION-]

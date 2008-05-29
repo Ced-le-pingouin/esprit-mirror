@@ -1,7 +1,0 @@
-body { background-image: none; }
-a.acceder_salon { color: rgb(127,134,102); font-size: 9pt; font-weight: bold; }
-.nom_salon { color: rgb(34,34,34); font-size: 12pt; font-weight: bold; }
-.mode_salon { color: rgb(65,110,150); font-size: 9pt; font-weight: normal; text-align: right; }
-td.lien_salon { background-color: rgb(255,255,255); }
-td.acceder { background-color: rgb(255,255,255); text-align: left; }
-.archives { font-size: 8pt; text-align: right; } 

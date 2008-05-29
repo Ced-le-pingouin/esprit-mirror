@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_liste.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <style type="text/css">
 <!--
 form
@@ -41,7 +41,7 @@ function allerAPos(v_iNpos)
 </script>
 <title>Modification des activités en ligne</title>
 </head>
-<body {onload}>
+<body {onload} class="liste">
 [BLOCK_INTRO+]
 <div id="titrepagevierge">
 	<img src="../../images/doc-plein.gif" alt="logo" />

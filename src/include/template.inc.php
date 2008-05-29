@@ -125,8 +125,8 @@ class Template
 	function afficher()
 	{
 		// {{{ Ajouté par Fil
-		$asRechercher = array("racine://", "admin://", "commun://", "theme://", "javascript://", "lib://");
-		$asRemplacer = array(dir_root_plateform(NULL, FALSE),dir_admin(), dir_theme_commun(), dir_theme(), dir_javascript(), dir_lib());
+		$asRechercher = array("racine://", "admin://", "commun://", "theme://", "javascript://", "lib://", "css://");
+		$asRemplacer = array(dir_root_plateform(NULL, FALSE),dir_admin(), dir_theme_commun(), dir_theme(), dir_javascript(), dir_lib(), dir_css());
 		$this->data = str_replace($asRechercher, $asRemplacer, $this->data);
 		// }}}
 		echo $this->retDonnees();

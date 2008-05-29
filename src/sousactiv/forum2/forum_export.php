@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 
 if (!$oProjet->verifPermission("PERM_FORUM_EXPORTER_CSV"))
-	exit("<html><body></body></html>");
+	exit("<html><body class=\"dialogue\"></body></html>");
 
 // ---------------------
 // Récupérer les variables de l'url

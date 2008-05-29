@@ -7,7 +7,7 @@ include('claviervirtuel.php');
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>Multilinguisme</title>
-<link rel="stylesheet" type="text/css" href="clavier.css">
+<link rel="stylesheet" type="text/css" href="../../themes/css/clavier.css">
 <?php
 if (!empty($_REQUEST['size']) && !empty($_REQUEST['id'])) {
 	echo '<style type="text/css">';

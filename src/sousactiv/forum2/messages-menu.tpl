@@ -1,15 +1,14 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dialog.css">
-<link type="text/css" rel="stylesheet" href="theme://dialogue/dialog-sous_menu.css">
-<link type="text/css" rel="stylesheet" href="theme://forum/messages-menu.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="forum.js"></script>
 </head>
-<body>
+<body class="changer_message">
 <table border="0" cellspacing="0" cellpadding="0" width="100%" height="18">
 <tr>
 {menu_messages}

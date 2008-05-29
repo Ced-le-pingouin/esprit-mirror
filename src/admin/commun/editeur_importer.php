@@ -95,7 +95,7 @@ $oTpl_BarreProgression = new Template(dir_theme("barre_de_progression.inc.tpl",F
 $oSet_BarreProgression = $oTpl_BarreProgression->defVariable("SET_BARRE_DE_PROGRESSION");
 
 $oBloc_BarreProgression->ajouter($oSet_BarreProgression);
-$oBloc_BarreProgression->remplacer("{information}","Un instant svp");
+$oBloc_BarreProgression->remplacer("{barre_de_progression->message}","Un instant svp");
 $oBloc_BarreProgression->afficher();
 
 $oTpl->afficher();

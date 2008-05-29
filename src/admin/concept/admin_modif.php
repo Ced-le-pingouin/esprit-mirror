@@ -119,7 +119,7 @@ if (isset($act))
 	
 	echo "<html>"
 		."<head>"
-		.inserer_feuille_style("concept.css")
+		.inserer_feuille_style("econcept.css")
 		."<script type=\"text/javascript\" language=\"javascript\">"
 		."<!--\n\n"
 		."function rechargerPages()\n"
@@ -158,8 +158,8 @@ else
 
 // Titre principal
 $g_sTitre = ($g_iFormation > 0) ? $oProjet->oFormationCourante->retNom() : "Accueil";
-function formatSousTitre ($v_sType,$v_sNom)
 
+function formatSousTitre ($v_sType,$v_sNom)
 {
 	return "<b>{$v_sType}</b>"
 		."&nbsp;&raquo;&nbsp;"
@@ -336,7 +336,7 @@ function selectionnerType ($v_sNom,$v_aoTypes,$v_iTypeActuel=0,$v_sParametres=NU
 	// dans ce cas l√†, on n'affiche pas de liste
 	if (count($v_aoTypes) == 1)
 		$sType= "<tr>\n<td><div class=\"intitule\">Type&nbsp;:</div></td>\n"
-		."<td style=\"font-size: 10pt\">\n"
+		."<td>\n"
 		.$v_aoTypes[0][1]
 		."</td>\n</tr>\n";
 	else
@@ -439,7 +439,7 @@ $sCheminJavascript = dir_javascript();
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<?php echo inserer_feuille_style("onglet.css; concept.css")?>
+<?php echo inserer_feuille_style("econcept.css")?>
 <script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}globals.js.php"?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}window.js"?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo "{$sCheminJavascript}outils_admin.js"?>"></script>
@@ -554,7 +554,8 @@ function menu()
 
 function cacher(controleur, span_check)
 {
-	if (span_check == 'chkb_style') // si on coche AU MOINS UN des styles de police, alors on d√©sactive les types de ligne
+	var objNomRubrique = document.forms['form_admin_modif'].elements['nom_rubrique'];
+	if (span_check == 'chkb_style') // si on coche AU MOINS UN des styles de police, alors on dÈsactive les types de ligne
 	{
 			var objControleur1 = document.getElementById("chkb_1");
 			var objControleur2 = document.getElementById("chkb_2");
@@ -570,7 +571,7 @@ function cacher(controleur, span_check)
 				document.form_admin_modif.ligne.disabled=false;
 			}
 	}
-	else // sinon, si on coche UN type de ligne, on d√©sactive toutes les autres cases.
+	else // sinon, si on coche UN type de ligne, on dÈsactive toutes les autres cases.
 	{
 		var objControleur = document.getElementById(controleur);
 		for (var i=1; i<=5; i++)
@@ -583,6 +584,11 @@ function cacher(controleur, span_check)
 				objControle.disabled=(objControleur.checked==false)?false:true;
 			}
 		}
+		if (objControleur.name == "vide") type_ligne = "Saut de ligne";
+		if (objControleur.name == "ligne") type_ligne = "Ligne horizontale";
+		objNomRubrique.value = (objControleur.checked==true)? type_ligne : unescape("Unit%E9 sans nom");
+		objNomRubrique.readOnly =(objControleur.checked==false)?false:true;
+		objNomRubrique.style.background=(objControleur.checked==true) ? "#D3D3D3" : "#FFF";
 	}
 	return true;
 }

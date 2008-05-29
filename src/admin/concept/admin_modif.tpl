@@ -3,9 +3,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/globals.css">
-<link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="/ipfhainaut_dev/themes/ipfhainaut/concept.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://econcept.css">
 <script type="text/javascript" language="javascript" src="/ipfhainaut_dev/js/window.js"></script>
 <script type="text/javascript" language="javascript" src="admin_modif.js"></script>
 <script type="text/javascript" language="javascript">
@@ -160,7 +159,7 @@ function init()
 <!-- Position ancien checkbox Première page -->
 <tr>
 <td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[1]" onfocus="blur()"></td>
-<td style="font-size: 10pt">Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td>
+<td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td>
 </tr>
 
 <tr>
@@ -275,7 +274,7 @@ function init()
 <td><textarea name="DESCRIPTION[7]" cols="55" rows="3"></textarea></td>
 </tr>
 
-<tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[7]"></td><td style="font-size:10pt">Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table>
+<tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[7]"></td><td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table>
 
 </div>
 
@@ -313,7 +312,7 @@ function init()
 </table>
 </div>
 <!-- :FIN: Forum -->
-<!-- :DEBUT: Galerie --><div id="lien_galerie" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td class="intitule" width="1%">Consigne&nbsp;:</td><td><textarea rows="5" cols="50" name="DESCRIPTION[6]"></textarea></td></tr><tr><td class="intitule" width="1%" nowrap="1">Collecticiels associ&eacute;s&nbsp;:</td><td>Pas de collecticiel trouvé<br><br></td></tr><tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[6]"></td><td style="font-size: 10pt">Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table></div><!-- :FIN: Galerie -->
+<!-- :DEBUT: Galerie --><div id="lien_galerie" class="Cacher"><table border="0" cellspacing="0" cellpadding="2" width="100%"><tr><td class="intitule" width="1%">Consigne&nbsp;:</td><td><textarea rows="5" cols="50" name="DESCRIPTION[6]"></textarea></td></tr><tr><td class="intitule" width="1%" nowrap="1">Collecticiels associ&eacute;s&nbsp;:</td><td>Pas de collecticiel trouvé<br><br></td></tr><tr><td class="intitule"><input type="checkbox" name="PREMIERE_PAGE[6]"></td><td>Premi&egrave;re page&nbsp;<img src="/ipfhainaut_dev/themes/ipfhainaut/icones/etoile.gif" border="0"></td></tr></table></div><!-- :FIN: Galerie -->
 
 <hr>
 

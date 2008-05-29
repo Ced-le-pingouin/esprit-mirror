@@ -1,8 +1,0 @@
-body { /*background-image: url(barre_outils-fond.gif); background-repeat: repeat-x; */ background-color: rgb(238,234,221); margin: 0; }
-input, select { margin: 0; padding: 0; }
-.cellule_icone_normale, .cellule_icone_surbrillante { float: left; width: 23px; height: 20px; margin: 1px; text-align: center; }
-.cellule_separateur { float: left; margin: 3px 0 0 0; }
-.cellule_icone_normale {  background-color: transparent; border: rgb(222,216,202) solid 1px; }
-.cellule_icone_surbrillante { background-color: rgb(224,232,246); border: rgb(152,180,226) solid 1px; }
-.cellule_intitule { background-color: rgb(111,105,87); color: white; text-align: center; float: left; font-size: 8pt; font-weight: bold; margin: 0 2px 0 0; padding: 5px; height: 23px; width: 125px; border: rgb(0,0,0) none 1px; border-right-style: solid; }
-

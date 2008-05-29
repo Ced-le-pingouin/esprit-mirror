@@ -28,7 +28,7 @@ $url_bTerminer = (empty($_GET["fin"]) ? FALSE : $_GET["fin"]);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php inserer_feuille_style("menu.css; dialog-menu.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 
@@ -46,7 +46,7 @@ function fermer() { top.frames['main'].recharger(); }
 //-->
 </script>
 </head>
-<body>
+<body class="menu">
 <table border="0" cellspacing="1" cellpadding="2" width="100%" height="100%">
 <tr>
 <?php
@@ -57,20 +57,20 @@ if (!$url_bTerminer)
 	echo "<td class=\"dialogue_menu\" align=\"right\">";
 	
 	if ($url_iEtape > 1)
-		echo "<a href=\"javascript: precedent();\">&#8249;&nbsp;Précédent</a>&nbsp;|&nbsp;";
+		echo "<a href=\"javascript: precedent();\" class=\"menu\">&#8249;&nbsp;Précédent</a>&nbsp;|&nbsp;";
 	
 	if ($url_iEtape < $url_iNbEtapes)
-		echo "<a href=\"javascript: suivant();\">Suivant&nbsp;&#8250;</a>&nbsp;";
+		echo "<a href=\"javascript: suivant();\" class=\"menu\">Suivant&nbsp;&#8250;</a>&nbsp;";
 	
 	if ($url_iEtape >= $url_iNbEtapes)
-		echo "<a href=\"javascript: valider();\">Valider</a>&nbsp;";
+		echo "<a href=\"javascript: valider();\" class=\"menu\">Valider</a>&nbsp;";
 	
 	echo "</td>";
 }
 else
 {
 	echo "<td class=\"dialogue_menu\" align=\"right\" width=\"99%\">"
-		."<a href=\"javascript: fermer();\">Fermer</a>"
+		."<a href=\"javascript: fermer();\" class=\"menu\">Fermer</a>"
 		."</td>"
 		."<td>&nbsp;</td>"
 		."\n";

@@ -2,8 +2,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://forum/sujet-messages.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
@@ -59,9 +59,9 @@ function select_deselect_message(v_sElem)
 //-->
 </script>
 </head>
-<body onload="init()">
+<body onload="init()" class="message">
 <form action="{form->action}" method="get">
-<table border="0" cellspacing="0" cellpadding="2" width="100%" style="background-color: rgb(255,255,255); border: rgb(230,230,230) solid 1px;">
+<table border="0" cellspacing="0" cellpadding="2" width="100%" class="bloc_message">
 <tr><td>&nbsp;</td></tr>
 [BLOCK_MESSAGE+][BLOCK_MESSAGE-]
 </table>

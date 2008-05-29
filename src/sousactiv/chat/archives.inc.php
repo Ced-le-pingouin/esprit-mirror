@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv=Content-Type content="text/html;  charset=utf-8">
 <title><?php echo $oArchive->retSalon()?></title>
-<?php inserer_feuille_style("archives.css"); ?>
+<?php inserer_feuille_style("chat.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 

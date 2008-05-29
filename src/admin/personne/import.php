@@ -109,10 +109,10 @@ if (!empty($_POST['importer'])) {
 	}
 	echo '<head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-'. inserer_feuille_style("dialog.css; profil.css",false). '
+'. inserer_feuille_style("commun/dialog.css; admin/personnes.css",false). '
 <script type="text/javascript" language="javascript" src="'. dir_javascript("window.js") .'"></script>
 </head>
-<body>
+<body class="profil">
 <h1>Inscription groupée</h1>';
 	echo "\n<ol>";
 	$inscrits=0;
@@ -155,13 +155,13 @@ if (!empty($_POST['importer'])) {
 ?><html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("dialog.css; profil.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; admin/personnes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
 <style type="text/css">
 hr { margin:5ex 0; }
 </style>
 </head>
-<body>
+<body class="profil">
 <h1>Inscription groupée</h1>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="fichier" method="POST" enctype="multipart/form-data">
 <p>
@@ -181,7 +181,7 @@ Télécharger le modèle de feuille de tableur
 <?php /* BUGS IN PARSER <li>au format <a href="esprit_inscriptions.ods">ODS</a></li> */ ?>
 </ul>
 <p>Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.</p>
-<p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des premières lignes s'affichent mal, ce n'est pas le cas.</p>
+<p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p>
 </body>
 </html>
 

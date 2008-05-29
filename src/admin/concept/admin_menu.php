@@ -290,7 +290,7 @@ function dessinerMenu ($v_asMenu,$v_sStyleExt=NULL)
 	// *************************************
 	
 	echo "<table border=\"0\" cellspacing=\"0\" cellpadding=\"1\" width=\"190px\" align=\"center\">\n"
-		."<tr><td class=\"concept_menu_titre_principal{$v_sStyleExt}\"><b>".$v_asMenu[0][0]."</b></td></tr>\n";
+		."<tr><td class=\"concept_menu_titre_principal{$v_sStyleExt}\">".$v_asMenu[0][0]."</td></tr>\n";
 	
 	// *************************************
 	// Afficher les articles du menu
@@ -463,7 +463,7 @@ if (isset($oProjet->oRubriqueCourante) &&
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<?php inserer_feuille_style("dialog.css; concept.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; econcept.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_admin('concept','admin_modif.js')?>"></script>
 <script type="text/javascript" language="javascript">

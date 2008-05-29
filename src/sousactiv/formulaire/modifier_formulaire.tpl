@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Activité en ligne</title>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/modifier_formulaire.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <style type="text/css">
 <!--
 form
@@ -28,7 +28,7 @@ form
 <script src="{formulaire_js}" type="text/javascript"></script>
 <script src="{general_js_php}" type="text/javascript"></script>
 </head>
-<body>
+<body class="modifier_formulaire">
 <div id="entete"><h3>{Nom_etudiant}{Info_ael}</h3></div>
 <table {sEncadrer} align="center" class="titre">
 <tr>

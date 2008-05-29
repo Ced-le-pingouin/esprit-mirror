@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 </head>
 <body>
 <div class="attention" align="center">Attention, vous avez chang&eacute; le type de l'action.</div>

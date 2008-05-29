@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Ajouter un élément</title>
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire.css" />
-<link type="text/css" rel="stylesheet" href="theme://formulaire/formulaire_modif_ajout.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <script src="selectionobj.js" type="text/javascript"></script>
 </head>
-<body {onload}>
+<body {onload} class="modif_ajout">
 <div id="contenu">
 	<form action="formulaire_modif_ajout.php" name="formajout" method ="get">
 	<select name="idtypeobj">
@@ -21,8 +21,8 @@
 	</form>
 </div>
 <div id="barreaction">
-	<a id="valider" href="#" onclick="document.forms['formajout'].submit();">Valider</a>
-	<a id="fermer" href="#" onclick="window.close ();">Fermer</a>
+	<a id="valider_global" href="#" onclick="document.forms['formajout'].submit();">Valider</a>
+	<a id="fermer_global" href="#" onclick="window.close ();">Fermer</a>
 </div>
 </body>
 </html>

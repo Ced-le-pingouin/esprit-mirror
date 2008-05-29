@@ -1,12 +1,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://barre_filtres.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <script type="text/javascript" language="javascript" src="javascript://dom.window.js"></script>
 <script type="text/javascript" language="javascript" src="collecticiel-filtre.js"></script>
 </head>
-<body onload="init()">
+<body onload="init()" class="barre_filtres">
 <form action="collecticiel.php" method="get" target="collecticiel">
 <div id="barre_filtres">
 <select name="sltPersEquipe" onchange="changer_personne(this.options)" size="1">

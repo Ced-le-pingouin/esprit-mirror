@@ -1,8 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 [BLOCK_HTML_HEAD+][BLOCK_HTML_HEAD-]
 <script type="text/javascript" language="javascript">
 <!--
@@ -47,7 +46,7 @@ function init()
 [SET_FICHE_PERSONNE+]
 <tr>
 <td rowspan="2" valign="top">{personne->alias}</td>
-<td width="99%"><span style="font-size: 8pt; font-weight: bold;"><span id="id_surbrillance_{personne->index}">{personne->nom}&nbsp;{personne->prenom}&nbsp;{personne->indice}</span></td>
+<td width="99%"><span id="id_surbrillance_{personne->index}" class="personne_liste">{personne->nom}&nbsp;{personne->prenom}&nbsp;{personne->indice}</span></td>
 <td nowrap="nowrap"><span onmouseover="surbrillance('id_surbrillance_{personne->index}',true)" onmouseout="surbrillance('id_surbrillance_{personne->index}',false)">{personne->mail}</span></td>
 </tr>
 <tr>

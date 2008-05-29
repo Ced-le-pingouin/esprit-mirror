@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <link type="text/css" rel="stylesheet" href="theme://zone_menu-titre.css">
 <script type="text/javascript" language="javascript" src="commun://js/titre_menu.js"></script>
 <script type="text/javascript" language="javascript" src="theme://propos/propos.js"></script>

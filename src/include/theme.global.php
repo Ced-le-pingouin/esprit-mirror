@@ -36,14 +36,14 @@ function lien_feuille_style ($v_sFichierAInclure)
 	return "<link"
 		." type=\"text/css\""
 		." rel=\"stylesheet\""
-		." href=\"".dir_theme(trim($v_sFichierAInclure),FALSE,FALSE)."\""
+		." href=\"".dir_css(trim($v_sFichierAInclure),FALSE,FALSE)."\""
 		.">\n";
 }
 
 function inserer_feuille_style ($v_asFichiersCSS=NULL,$v_bAfficher=TRUE)
 {
 	// Le fichier "globals.css" est le premier feuille de style à afficher
-	$sLienFichiersCSS = lien_feuille_style("globals.css");
+	$sLienFichiersCSS = lien_feuille_style("commun/globals.css");
 	
 	if ($v_asFichiersCSS != NULL)
 		foreach(explode(";",trim($v_asFichiersCSS)) as $sFeuilleDeStyle)

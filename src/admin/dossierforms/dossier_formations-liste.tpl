@@ -1,12 +1,12 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dossierforms/dossier_formations-liste.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://formation.css">
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="dossier_formations-liste.js"></script>
 </head>
-<body>
+<body class="formation_liste">
 <div id="liste">
 [BLOCK_DOSSIER_FORMATIONS+]<div class="dossier">{dossier}</div>[BLOCK_DOSSIER_FORMATIONS-]
 </div>

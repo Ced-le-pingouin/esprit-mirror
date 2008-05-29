@@ -4,12 +4,11 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="expires" content="0" />
-<link type="text/css" rel="stylesheet" href="theme://globals.css" />
-<link type="text/css" rel="stylesheet" href="theme://dialog.css" />
-<link type="text/css" rel="stylesheet" href="theme://statuts.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css" />
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css" />
 <title>Statuts</title>
 </head>
-<body>
+<body class="statut">
 <form action="changer_statut.php" method="post">
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>

@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
-<link type="text/css" rel="stylesheet" href="theme://exporter-personnes.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://admin/personnes.css">
 <script type="text/javascript" language="javascript" src="exporter.js"></script>
 <script type="text/javascript" language="javascript">
 <!--
@@ -11,7 +10,7 @@ function rechercher() { document.forms[0].submit(); }
 //-->
 </script>
 </head>
-<body onload="rechercher()">
+<body onload="rechercher()" class="exporter_personnes">
 <form name="form_filtres" action="exporter-personnes.php" target="personnes" method="get">
 <table border="0" cellspacing="2" cellpading="2" width="100%">
 <tr>

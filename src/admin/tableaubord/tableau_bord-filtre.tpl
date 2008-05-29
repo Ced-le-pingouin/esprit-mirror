@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link tyle="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://tableau_bord.css">
-<link type="text/css" rel="stylesheet" href="theme://tableau_bord-filtre.css">
+<link tyle="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://admin/tableau_de_bord.css">
 <script type="text/javascript" language="javascript" src="tableau_bord-filtre.js"></script>
 </head>
 <body>

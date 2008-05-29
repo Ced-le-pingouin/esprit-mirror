@@ -1,9 +1,8 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://zone_menu.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://toute_zone.css">
 [BLOCK_HTML_HEAD+][BLOCK_HTML_HEAD-]
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="commun://js/zone_menu.js"></script>
@@ -48,9 +47,9 @@ function init()
 [VAR_SEPARATEUR_INTITULE_COURS+]&nbsp;:&nbsp;&nbsp;&nbsp;[VAR_SEPARATEUR_INTITULE_COURS-]
 <tr>
 <td width="1%">&nbsp;</td>
-<td colspan="4" style="border: rgb(174,165,138) none 1px; border-bottom-style: dashed; color: rgb(171,161,142); font-size: 17pt; font-weight: bold;">{cours.intitule}{cours.titre}</td>
+<td colspan="4" class="intitule_cours">{cours.intitule}{cours.titre}</td>
 </tr>
-<tr><td style="text-align: right;" colspan="5">{outils.tableau_de_bord}&nbsp;{outils.choix_courriel}&nbsp;{outils.liste_inscrits}</td></tr>
+<tr><td class="aligndroite" colspan="5">{outils.tableau_de_bord}&nbsp;{outils.choix_courriel}&nbsp;{outils.liste_inscrits}</td></tr>
 [BLOCK_TITRE_COURS-]
 [BLOCK_DESCRIPTION+]
 <tr>
@@ -94,7 +93,7 @@ function init()
 [VAR_UNITE_FERME+]<span class="unite_passif">{rubrique.nom}</span>[VAR_UNITE_FERME-]
 <tr>
 <td><img src="commun://espacer.gif" width="10" height="1" border="0"></td>
-<td style="border: rgb(202,195,177) none 1px; border-right-style: dotted;">&nbsp;</td>
+<td class="ligne_verticale">&nbsp;</td>
 <td>&nbsp;</td>
 {lien_unite}
 </tr>

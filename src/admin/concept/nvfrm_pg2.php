@@ -29,7 +29,7 @@
 **
 */
   
-echo "<table border=\"0\" cellpadding=\"0\" cellspacing=\"2\" width=\"100%\" style=\"font-size : 10pt;\">\n"
+echo "<table border=\"0\" cellpadding=\"0\" cellspacing=\"2\" width=\"100%\">\n"
 	."<tr><td><h5>Etape 2&nbsp;: Choisissez la formation &agrave; copier</h5></td></tr>"
 	."<tr>\n"
 	."<td align=\"right\" valign=\"middle\">"

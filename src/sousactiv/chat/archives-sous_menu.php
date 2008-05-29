@@ -23,7 +23,7 @@ require_once("globals.inc.php"); ?>
 <html>
 <head>
 <meta http-equiv=Content-Type content="text/html;  charset=utf-8">
-<?php inserer_feuille_style("dialog.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 

@@ -3,9 +3,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="expires" content="0">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://zone_cours-menu.css">
-<link type="text/css" rel="stylesheet" href="theme://bloc_menu.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://toute_zone.css">
 [BLOCK_HTML_HEAD+][BLOCK_HTML_HEAD-]
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://indice.js"></script>

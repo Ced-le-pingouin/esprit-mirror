@@ -2,8 +2,8 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title></title>
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://glossaire/glossaire_composer.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://glossaire_composer.css">
 <script type="text/javascript" language="javascript" src="commun://glossaire/glossaire.js"></script>
 </head>
 <body class="gauche">

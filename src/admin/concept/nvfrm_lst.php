@@ -47,7 +47,7 @@ $sens_tri = isset($_GET["SENS_TRI"]) ? $_GET["SENS_TRI"] : NULL;
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<?php inserer_feuille_style("dialog.css; ajouter_formation.css"); ?>
+<?php inserer_feuille_style("commun/dialog.css; econcept.css"); ?>
 <script type="text/javascript" language="javascript">
 <!--
 

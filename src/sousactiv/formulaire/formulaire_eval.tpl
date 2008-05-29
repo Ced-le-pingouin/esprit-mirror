@@ -1,8 +1,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://onglet/onglet.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://sous_activ.js"></script>
@@ -22,11 +21,11 @@ function init()
 </html>
 
 [SET_MESSAGE_ENREGISTRER+]
-<p>&nbsp;</p><p style="text-align: center; font-weight: bold;">L'&eacute;valuation a bien &eacute;t&eacute; enregistr&eacute;.</p>
+<p>&nbsp;</p><p class="bold_center">L'&eacute;valuation a bien &eacute;t&eacute; enregistr&eacute;.</p>
 [SET_MESSAGE_ENREGISTRER-]
 
 [SET_MESSAGE_PAS_EVALUE+]
-<p>&nbsp;</p><p style="text-align: center; font-weight: bold;">Ce tuteur n'a pas encore &eacute;valu&eacute; ce formulaire</p>
+<p>&nbsp;</p><p class="bold_center">Ce tuteur n'a pas encore &eacute;valu&eacute; ce formulaire</p>
 [SET_MESSAGE_PAS_EVALUE-]
 
 [SET_EVALUATION_TUTEUR+]

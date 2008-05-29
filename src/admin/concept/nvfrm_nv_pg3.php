@@ -61,12 +61,8 @@ if (isset($bConfirmation) && $bConfirmation)
 	}
 }
 ?>
-<style type="text/css">
-<!--
-.titre { font-weight: bold; }
-//-->
-</style>
-<table border="0" cellspacing="0" cellpadding="3" width="100%" style="font-size : 10pt;">
+
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
 <tr><td colspan="3"><h5>Etape 2&nbsp;: Veuillez donner un nom et &eacute;ventuellement une description &agrave; cette formation</h5></td></tr>
 <?php
 
@@ -74,30 +70,28 @@ $oFormation = new CFormation($oProjet->oBdd);
 $iMaxType = $oFormation->retValeurMax($oFormation->TYPE) + 1;
 
 echo "<tr>"
-	."<td class=\"titre\" nowrap=\"1\">Nom</td>"
+	."<td class=\"titre_ajout\" nowrap=\"1\">Nom</td>"
 	."<td width=\"5\">:</td>"
 	."<td>"
 	."<input"
 	." type=\"text\""
 	." name=\"formation_nom\""
 	." value=\"{$url_sNomForm}\""
-	." size=\"50\""
-	." style=\"width: 370px;\""
-	.">"
+	." size=\"50\">"
 	."</td>"
 	."</tr>"
 	."<tr>"
-	."<td class=\"titre\" nowrap=\"1\" valign=\"top\">Description</td>"
+	."<td class=\"titre_ajout\" nowrap=\"1\" valign=\"top\">Description</td>"
 	."<td width=\"5\" valign=\"top\">:</td>"
 	."<td>"
-	."<textarea name=\"formation_description\" cols=\"50\" rows=\"4\" style=\"width: 370px; height: 70px;\">"
+	."<textarea name=\"formation_description\" cols=\"50\" rows=\"4\">"
 	.mb_convert_encoding($url_sDescrForm, 'UTF-8', 'HTML-ENTITIES')
 	."</textarea>"
 	."&nbsp;&nbsp;[&nbsp;<a href=\"javascript: void(0);\" onclick=\"editeur('FRM_GENERAL','formation_description','editeur')\" onfocus=\"blur()\">Editeur</a>&nbsp;]</span>"
 	."</td>"
 	."</tr>"
 	."<tr>"
-	."<td class=\"titre\" nowrap=\"1\">Date de cr&eacute;ation</td>"
+	."<td class=\"titre_ajout\" nowrap=\"1\">Date de cr&eacute;ation</td>"
 	."<td width=\"5\">:</td>"
 	."<td nowrap=\"1\">".date("d-m-Y")."</td>"
 	."</tr>";

@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="theme://globals.css">
-<link type="text/css" rel="stylesheet" href="theme://dialogue.css">
-<link type="text/css" rel="stylesheet" href="theme://composer_galerie.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/dialog.css">
+<link type="text/css" rel="stylesheet" href="css://sousactive/galerie.css">
 <script type="text/javascript" language="javascript" src="javascript://globals.js"></script>
 <script type="text/javascript" language="javascript" src="composer_galerie.js"></script>
 </head>
-<body>
-<h1>[TXT_GALERIE_TITRE]&nbsp;<small>&raquo;&nbsp;{sousactiv.nom}</small></h1>
+<body class="dialogue">
+<h1 class="dialogue">[TXT_GALERIE_TITRE]&nbsp;<small>&raquo;&nbsp;{sousactiv.nom}</small></h1>
 <p>[TXT_COMPOSER_SA_GALERIE_CONSIGNE]</p>
 <form action="composer_galerie.php" method="post" target="Principale">
-<table id="liste_ressources">
+<table id="liste_ressources" class="dialogue">
 <thead>
 <tr>
 <th class="checkbox"><input type="checkbox" name="ressources" value="0"{ressource.checked}></th>
@@ -41,7 +41,7 @@
 
 [SET_RESSOURCE+]
 <tr>
-<td><input type="checkbox" name="ressources[]" value="{ressource.id}"{ressource.checked}></td>
+<td class="dialogue"><input type="checkbox" name="ressources[]" value="{ressource.id}"{ressource.checked}></td>
 <td class="document">{ressource.nom}</td>
 <td class="etat">&nbsp;{ressource.etat}&nbsp;</td>
 <td class="auteur">&nbsp;{ressource.auteur}&nbsp;</td>
