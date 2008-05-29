@@ -155,6 +155,6 @@ function init()
 [SET_INTITULE_NONACTIV+]
 <tr>
 <td><img src="commun://espacer.gif" width="10" height="10" border="0"></td>
-<td colspan="4" width="99%">{nonactiv.nom}</td>
+<td colspan="4" width="99%" class="intitule_nonactif">{nonactiv.nom}</td>
 </tr>
 [SET_INTITULE_NONACTIV-]

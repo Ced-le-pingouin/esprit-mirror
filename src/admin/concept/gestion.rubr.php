@@ -209,6 +209,7 @@ switch ($act)
 				}
 				$sStyleNonActivable = $sStyleDebut.$url_sNomRubrique.$sStyleFin;
 			}
+			else $sStyleNonActivable = $url_sNomRubrique;
 			$oRubrique->defDescr($sStyleNonActivable);
 			$oRubrique->defStatut("2"); // on force le statut à ouvert!
 		}
