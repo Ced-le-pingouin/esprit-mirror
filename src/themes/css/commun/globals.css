@@ -147,6 +147,23 @@ font-size:11pt;
 padding:1px;
 }
 
+div.barre_de_progression {
+position:absolute;
+top:0;
+left:5px;
+width:100%;
+height:100%;
+visibility:hidden;
+background-color: rgb(255,255,255);
+text-align: center;
+}
+
+div#barre_de_progression {
+display: none;
+visibility: hidden;
+text-align: center;
+}
+
 /* Tableau */
 .ligne_surlignee {
 background-color:#fdf9ee;

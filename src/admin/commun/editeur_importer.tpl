@@ -2,20 +2,6 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="css://commun/globals.css">
-<style type="text/css">
-<!--
-div.barre_de_progression {
-	background-color: rgb(255,255,255);
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 450;
-	height: 125;
-	text-align: center;
-	visibility: hidden;
-}
--->
-</style>
 </head>
 <body>
 <form action="editeur_importer.php" method="post" enctype="multipart/form-data">

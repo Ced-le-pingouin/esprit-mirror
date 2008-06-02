@@ -126,15 +126,6 @@ text-align:right;
 vertical-align:middle;
 }
 
-.dialog_important div.barre_de_progression {
-position:absolute;
-top:0;
-left:5px;
-width:100%;
-height:100%;
-visibility:hidden;
-}
-
 .dialog_important textarea.editeur_texte {
 width:100%;
 height:370px;

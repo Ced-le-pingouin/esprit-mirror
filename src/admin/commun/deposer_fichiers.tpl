@@ -31,7 +31,6 @@ function activer_boutton_deposer()
 </script>
 <style type="text/css">
 <!--
-#barre_de_progression { display: none; visibility: hidden; text-align: center; }
 #deposer { display: block; visibility: visible; }
 //-->
 </style>

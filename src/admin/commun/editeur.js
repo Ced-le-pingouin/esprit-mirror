@@ -86,7 +86,8 @@ function convertWord(type, content) {
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
 	content = content.replace(/\s?mso-[^\"]*/gi, ""); // on enlève les balises spéciales créées par IE
 	//content = content.replace(/<p\s?[^>]*>Version:[0-9.]*\s*Start[^<]*<\/p>/gi, ""); // supprime la ligne générée par Safari en collant depuis OpenOffice
-
+	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
+	
 	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
 	if (recherche_td)
 	{
