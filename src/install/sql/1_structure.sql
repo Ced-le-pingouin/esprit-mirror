@@ -631,6 +631,16 @@ CREATE TABLE `Personne` (
   `Email` varchar(80) collate utf8_unicode_ci default NULL,
   `UrlPerso` varchar(100) collate utf8_unicode_ci default NULL,
   `Mdp` varchar(80) collate utf8_unicode_ci default NULL,
+  `CreaSrc` ENUM( 'aucun', 'esprit', 'agalan' ) NOT NULL DEFAULT 'aucun' 
+    COMMENT 'référentiel source : esprit=reprise valeurs antérieures, agalan=annuaire Grenoble',
+  `CreaDate` DATETIME NULL 
+    COMMENT 'date de création',
+  `CreaResp` INT UNSIGNED NULL 
+    COMMENT 'id utilisateur responsable de la création',
+  `ModifDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    COMMENT 'date de dernière modification',
+  `ModifResp` INT UNSIGNED NULL 
+    COMMENT 'id utilisateur responsable de la modification',
   PRIMARY KEY  (`IdPers`),
   UNIQUE KEY `Pseudo` (`Pseudo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
