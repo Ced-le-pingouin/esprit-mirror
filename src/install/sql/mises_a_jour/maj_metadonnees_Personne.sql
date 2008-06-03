@@ -9,3 +9,6 @@ ADD ModifDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIM
     COMMENT 'date de dernière modification',
 ADD ModifResp INT UNSIGNED NULL 
     COMMENT 'id utilisateur responsable de la modification';
+
+UPDATE Personne SET CreaSrc='esprit', CreaDate=NOW() ;
+
