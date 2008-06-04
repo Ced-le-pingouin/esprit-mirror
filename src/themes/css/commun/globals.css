@@ -133,6 +133,16 @@ div.attention {
 width:90%;
 }
 
+textarea.editeur_texte {
+width: 100%;
+height: 100%; 
+}
+
+textarea.editeur_forum {
+width:100%;
+height:420px; 
+}
+
 .afficher_curseur_aide, #infos_utilisateur,span.sans_email,span.Attention,.participants {
 cursor:help;
 }

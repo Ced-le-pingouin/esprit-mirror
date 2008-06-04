@@ -126,7 +126,7 @@ text-align:right;
 vertical-align:middle;
 }
 
-.dialog_important textarea.editeur_texte {
+.dialog_important {
 width:100%;
 height:370px;
 }

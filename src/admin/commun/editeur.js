@@ -13,9 +13,9 @@ function initEditeur( Mode, Elements, tableauDeBord ) {
 	
 tinyMCE.init({
 	theme : "advanced",
-	plugins : "save,advhr,advimage,advlink,insertdatetime,searchreplace,contextmenu,directionality,paste,safari"
+	plugins : "advhr,advimage,advlink,contextmenu,directionality,inlinepopups,insertdatetime,paste,safari,save,searchreplace"
 		+(tableauDeBord?",tableaubord":""),
-
+	dialog_type : "modal",
 	theme_advanced_buttons1_add : "fontselect,fontsizeselect,forecolor,backcolor",
 	theme_advanced_buttons2_add_before: "cut,copy,pasteword,separator,search,replace,separator",
 	theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"

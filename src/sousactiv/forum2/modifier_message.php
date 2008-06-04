@@ -156,7 +156,7 @@ if ($oProjet->retStatutUtilisateur() < STATUT_PERS_ETUDIANT)
 else
 	$oTpl->remplacer("{tableau_de_bord->actif}","false");
 // }}}
-$oSetEditeur = '<textarea id="{editeur->nom}" name="{editeur->nom}" cols="84" rows="27">{message->texte}</textarea>';
+$oSetEditeur = '<textarea id="{editeur->nom}" name="{editeur->nom}" cols="84" rows="27" class="editeur_forum">{message->texte}</textarea>';
 // }}}
 
 $oBlockStyleSheetErreur = new TPL_Block("BLOCK_STYLESHEET_ERREUR",$oTpl);
