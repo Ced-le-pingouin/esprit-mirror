@@ -60,7 +60,7 @@ else if ($act == "modifier")
 	// Sauvegarder les modifications
 	$oActiv->redistNumsOrdre($iNumOrdre);
 	$oActiv->defNom($sNom);
-	$oActiv->defDescr($sDescription);
+	$oActiv->defDescr(enleverJavaScript($sDescription));
 	$oActiv->defModalite($iModalite);
 }
 

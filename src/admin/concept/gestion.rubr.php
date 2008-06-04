@@ -181,7 +181,7 @@ switch ($act)
 		else if (LIEN_TEXTE_FORMATTE == $url_iTypeRubrique)
 		{
 			$url_sTexteFormatte = (empty($_POST["DESCRIPTION"][LIEN_TEXTE_FORMATTE]) ? NULL : $_POST["DESCRIPTION"][LIEN_TEXTE_FORMATTE]);
-			$oRubrique->defDescr($url_sTexteFormatte);
+			$oRubrique->defDescr(enleverJavaScript($url_sTexteFormatte));
 		}
 		else if (LIEN_CHAT == $url_iTypeRubrique)
 		{
@@ -210,7 +210,7 @@ switch ($act)
 				$sStyleNonActivable = $sStyleDebut.$url_sNomRubrique.$sStyleFin;
 			}
 			else $sStyleNonActivable = $url_sNomRubrique;
-			$oRubrique->defDescr($sStyleNonActivable);
+			$oRubrique->defDescr(enleverJavaScript($sStyleNonActivable));
 			$oRubrique->defStatut("2"); // on force le statut à ouvert!
 		}
 		

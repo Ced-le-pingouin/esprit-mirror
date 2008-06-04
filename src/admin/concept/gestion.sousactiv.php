@@ -77,7 +77,7 @@ switch ($act)
 		$oSousActiv->defNom($url_sNomSousActiv);
 		$oSousActiv->redistNumsOrdre($url_iNumOrdreSousActiv);
 		$oSousActiv->defType($url_iTypeSousActiv);
-		$oSousActiv->defDescr($url_sDescriptionSousActiv);
+		$oSousActiv->defDescr(enleverJavaScript($url_sDescriptionSousActiv));
 		$oSousActiv->defPremierePage($url_bPremierePageSousActiv,$g_iRubrique);
 		
 		// ---------------------

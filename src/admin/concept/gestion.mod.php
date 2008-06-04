@@ -70,7 +70,7 @@ else if ($act == "modifier")
 	
 	$oModule->redistNumsOrdre($url_iOrdreMod);
 	$oModule->defNom($url_sNomMod);
-	$oModule->defDescr($url_sDescriptionMod);
+	$oModule->defDescr(enleverJavaScript($url_sDescriptionMod));
 	$oModule->defNumDepart($url_iNumDepart);
 	$oModule->defIdIntitule($iIdIntitule);
 	

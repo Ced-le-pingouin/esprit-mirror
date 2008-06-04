@@ -565,6 +565,19 @@ function enleverBaliseMeta ($v_sTexte)
 	return mb_convert_encoding(strip_tags($v_sTexte),"UTF-8","HTML-ENTITIES");
 }
 
+/**
+ * Cette fonction enlève toutes les balises du type <script ***>***</script>.
+ *
+ * @param v_sValeur
+ * @return la valeur de v_sValeur
+ */
+function enleverJavaScript($v_sValeur)
+{
+	//$v_sValeur = preg_replace('/script/', '\1', $v_sValeur);
+	$v_sValeur = preg_replace('/<script[^>]*>([^<]*)<\/script>/', '\1', $v_sValeur);
+	return $v_sValeur;
+}
+
 function emailValide ($v_sEmail) { return ereg('^[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+'.'@'.'[-!#$%&\'*+\\/0-9=?A-Z^_`a-z{|}~]+\.'.'[-!#$%&\'*+\\./0-9=?A-Z^_`a-z{|}~]+$',$v_sEmail); }
 
 function retDateFormatter ($v_sDate,$v_sFormatterDate="d/m/y")
