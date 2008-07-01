@@ -138,13 +138,14 @@ h3 select { color: black; font-weight: bold; width: 50%; }
 #cadrePressePapiers td { border-bottom: 1px solid rgb(180,180,180); }
 
 /* boutons/liens/renvois-notes bas de page */
-input[type=submit], input[type=button]
+input.lien, input.lienDesactive
 {
+	font-weight: bold;
 	margin: 0;
 	padding: 0.25em 0 0.25em 1em;
 	overflow: visible; /* hack débile pour qu'ie 6/7 accepte le padding */
 }
-input.lien, input.lienDesactive { font-weight: bold; }
+
 #supprimerColler, #supprimerElemPp, #viderPp
 {
 	color: rgb(125,63,65);
@@ -191,6 +192,8 @@ p.renvoi { margin: 3px 0 0; padding: 0; }
 				.niv6 em { color: rgb(171,197,82); }
 				.niv6 strong { color: black; }
 				.niv6 span { color: rgb(64,68,35); }
+
+.nivSel, .nivSel span { background-color: rgb(238,238,248); }
 
 /* pour le presse-papiers, pas de sous-listes, et des caractéristiques <> */
 #cadrePressePapiers li span

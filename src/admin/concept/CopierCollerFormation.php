@@ -45,7 +45,7 @@ class CopierCollerFormation extends AfficheurPage
 	var $iIdFormationDest;	///< Id de la formation cible sélectionnée, à afficher dans le panneau Coller
 	var $oFormationSrc;		///< Objet qui contient la formation source affichée
 	var $oFormationDest;	///< Objet qui contient la formation cible affichée
-	var $aBranchesSrcSel;	///< Branches (modules, rubriques, etc.) sélectionnées dans le panneau Copier
+	var $brancheSrcSel;	///< Branches (modules, rubriques, etc.) sélectionnées dans le panneau Copier
 	var $brancheDestSel;	///< Branche cible sélectionnée dans le panneau Coller
 	
 	var $oPressePapiers;	///< Objet qui représente le presse-papiers (contient des modules, rubriques, etc.)
@@ -74,8 +74,7 @@ class CopierCollerFormation extends AfficheurPage
 		$this->iIdFormationDest = $this->aDonneesForm['idFormationDest'] ? 
 		                          $this->aDonneesForm['idFormationDest'] : $this->aDonneesUrl['idFormationDest'];
 		
-		$this->aBranchesSrcSel = !empty($this->aDonneesForm['branchesSrcSel']) ? 
-		                         $this->aDonneesForm['branchesSrcSel'] : array();
+		$this->brancheSrcSel  = $this->aDonneesForm['brancheSrcSel'];
 		$this->brancheDestSel = $this->aDonneesForm['brancheDestSel'];
 		
 		// presse-papiers = variable de session
@@ -127,8 +126,8 @@ class CopierCollerFormation extends AfficheurPage
 		//// permission formations src/dest ???
 
 		// si Copier déclenché mais aucune branche source sélectionnée
-		if ($this->sAction == 'copier' && !count($this->aBranchesSrcSel))
-			$this->declarerErreurAction('erreurBranchesSrc', FALSE, 'Aucun élément source sélectionné pour la copie');
+		if ($this->sAction == 'copier' && empty($this->brancheSrcSel))
+			$this->declarerErreurAction('erreurBrancheSrc', FALSE, 'Aucun élément source sélectionné pour la copie');
 			
 		// si Coller déclenché mais...
 		if ($this->sAction == 'coller')
@@ -172,12 +171,9 @@ class CopierCollerFormation extends AfficheurPage
 		{
 			// copier une branche dans le press-papiers (le niveau Formation est "zappé")
 			case 'copier':
-				foreach ($this->aBranchesSrcSel as $elem)
-				{
-					list($iTypeBranche,) = explode('_', $elem);
-					if ($iTypeBranche > TYPE_FORMATION)
-						$this->oPressePapiers->ajouterElement(new PressePapiersElement($elem, 'copier'));
-				}
+				list($iTypeBranche,) = explode('_', $this->brancheSrcSel);
+				if ($iTypeBranche > TYPE_FORMATION)
+						$this->oPressePapiers->ajouterElement(new PressePapiersElement($this->brancheSrcSel, 'copier'));
 				break;
 			
 			// coller la branche à l'emplacement destination, soit en dernier élément d'un élément parent,
@@ -277,6 +273,8 @@ class CopierCollerFormation extends AfficheurPage
 				
 				if ($donnees[0] == 'Src' && $iNiv == 0)
 					$tplBranche->remplacer('<input ', '<input disabled="disabled" ');
+				if ($donnees[0] == 'Src' && $idCompose == $this->brancheSrcSel)
+					$tplBranche->remplacer('<input ', '<input checked="checked" ');
 				if ($donnees[0] == 'Dest' && $idCompose == $this->brancheDestSel)
 					$tplBranche->remplacer('<input ', '<input checked="checked" ');
 				

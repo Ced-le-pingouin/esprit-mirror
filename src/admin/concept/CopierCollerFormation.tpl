@@ -38,7 +38,7 @@
   [formSrc_branche_el+]<li class="niv{branche.numNiv}">
     <span>
     <em>{branche.symbole}</em>
-  	<input type="checkbox" name="branchesSrcSel[]" id="{branche.id}"
+  	<input type="radio" name="brancheSrcSel" id="{branche.id}"
      value="{branche.val}" />
       <label for="{branche.id}"><strong>{branche.intitule}</strong> {branche.titre}</label>
     </span>
