@@ -302,7 +302,9 @@ class CopierCollerFormation extends AfficheurPage
 
 			$tplPressePapiers->nextLoop();
 			$tplPressePapiers->remplacer('{pp.numNiv}', $elem->retTypeNiveau());
-			$tplPressePapiers->remplacer('{pp.symbole}', $elem->retSymbole());
+			$tplPressePapiers->remplacer('{pp.symbole}', $elem->retSymbole(TRUE));
+			if ($elem->estConteneur())
+				$tplPressePapiers->remplacer('<label', '<label class="conteneur"');
 			$tplPressePapiers->remplacer('{pp.id}', 'Pp_'.$idCompose);
 			$tplPressePapiers->remplacer('{pp.val}', $idCompose);
 			$tplPressePapiers->remplacer('{pp.intitule}', $elem->retTexteIntitule(TRUE, TRUE));

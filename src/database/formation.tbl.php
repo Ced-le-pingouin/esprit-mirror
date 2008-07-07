@@ -1538,6 +1538,16 @@ class CFormation
 	}
 	
 	/**
+	 * Indique si cet élément est susceptible de contenir d'autre éléments
+	 * 
+	 * @return	\c true si l'élément est un conteneur, càd que son rôle est 
+	 * 			uniquement de contenir des éléments de niveau inférieur, 
+	 * 			\c false sinon (dans ce cas il s'agit d'une "activité", par ex. 
+	 * 			forum, chat...)
+	 */
+	function estConteneur()	{ return TRUE; }
+	
+	/**
 	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants
 	 * de la formation, càd les modules
 	 */

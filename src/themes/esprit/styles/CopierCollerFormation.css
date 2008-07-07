@@ -209,3 +209,13 @@ p.renvoi { margin: 3px 0 0; padding: 0; }
 	float: left;
 	width: 1.5em;
 }
+
+#cadrePressePapiers li label
+{
+	background: url(../images/fichier.gif) no-repeat top left;
+	padding-left: 20px;
+}
+#cadrePressePapiers li label.conteneur
+{
+	background-image: url(../images/dossier.gif);
+}

@@ -377,9 +377,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Retourne un tableau contenant l'intitulé de la rubrique précedente
-	 * 
-	 * @return	un tableau contenant l'intitulé de la rubrique précedente
+	 * @return	un tableau contenant l'intitulé de la rubrique précédente
 	 */
 	function retInfosIntituleRubPrecedente ()
 	{
@@ -1006,10 +1004,22 @@ class CModule_Rubrique
 	}
 	
 	/**
+	 * @param	v_bDifferencierActions	si \c true, le symbole retourné tiendra
+	 * 									compte de la nature de la rubrique, càd
+	 * 									qu'une rubrique "non conteneur", qui 
+	 * 									contient une action, renverra un symbole
+	 * 									différent d'une rubrique/unité classique
+	 * 
 	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
-	 * 			une simple abréviation) 
+	 * 			une simple abréviation)
 	 */
-	function retSymbole() { return 'u'; }
+	function retSymbole($v_bDifferencierActions = FALSE)
+	{
+		if ($v_bDifferencierActions && !$this->estConteneur())
+			return 'a';
+		else
+			return 'u';
+	}
 	
 	/**
 	 * Réinitialise l'objet \c oEnregBdd avec la rubrique courante
@@ -1126,7 +1136,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Verifie si la personne qui a crée la rubrique est la même que celle passé en paramètre
+	 * Vérifie si la personne qui a crée la rubrique est la même que celle passé en paramètre
 	 * 
 	 * @param	v_iIdPers l'id de la personne
 	 * 
@@ -1283,6 +1293,15 @@ class CModule_Rubrique
 		$f = new FichierInfo(dir_rubriques($this->iIdForm));
 		return $f->retChemin();
 	}
+	
+	/**
+	 * Indique si cet élément est susceptible de contenir d'autre éléments
+	 * 
+	 * @return	\c true si l'élément est un conteneur (sont rôle est uniquement 
+	 * 			de contenir des éléments de niveau inférieur), \c false sinon
+	 * 			(dans ce cas il s'agit d'une "activité", par ex. forum, chat...)
+	 */
+	function estConteneur()	{ return ($this->retType() == LIEN_UNITE); }
 	
 	/**
 	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants

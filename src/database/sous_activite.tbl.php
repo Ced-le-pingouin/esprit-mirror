@@ -9,7 +9,7 @@
 // 
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of 
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
 // 
 // You should have received a copy of the GNU General Public License
@@ -1570,6 +1570,16 @@ class CSousActiv
 		$f = new FichierInfo(dir_cours($iIds->IdActiv, $iIds->IdForm));
 		return $f->retChemin();
 	}
+	
+	/**
+	 * Indique si cet élément est susceptible de contenir d'autre éléments
+	 * 
+	 * @return	\c true si l'élément est un conteneur, càd que son rôle est 
+	 * 			uniquement de contenir des éléments de niveau inférieur, 
+	 * 			\c false sinon (dans ce cas il s'agit d'une "activité", par ex. 
+	 * 			forum, chat...)
+	 */
+	function estConteneur()	{ return FALSE; }
 	
 	/**
 	 * Retourne les éléments enfants de la sous-activité, càd \c null
