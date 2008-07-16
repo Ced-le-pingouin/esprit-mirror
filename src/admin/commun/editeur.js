@@ -1,27 +1,28 @@
 function initEditeur( Mode, Elements, tableauDeBord ) {
-	var contentCallback, onchangeCallback;
+/*	var contentCallback, onchangeCallback;
 	if ('function' == typeof mySetContent) {
 		contentCallback = "mySetContent";
 	} else {
 		contentCallback = "";
 	}
+*/
 	if ('function' == typeof editeurOnChangeHandler) {
 		onchangeCallback = "editeurOnChangeHandler";
 	} else {
 		onchangeCallback = "";
 	}
-	
+
 tinyMCE.init({
 	theme : "advanced",
-	plugins : "advhr,advimage,advlink,contextmenu,directionality,inlinepopups,insertdatetime,paste,safari,save,searchreplace"
+	plugins : "advhr,advimage,advlink,contextmenu,directionality,flvplayer,insertdatetime,paste,safari,save,searchreplace"
 		+(tableauDeBord?",tableaubord":""),
-	dialog_type : "modal",
+	
 	theme_advanced_buttons1_add : "fontselect,fontsizeselect,forecolor,backcolor",
 	theme_advanced_buttons2_add_before: "cut,copy,pasteword,separator,search,replace,separator",
 	theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"
 		+(tableauDeBord?"tableaubordi,tableauborde,separator,":"")
-		+"iespell,hr,removeformat,sub,sup,charmap",
-	theme_advanced_disable : "image",
+		+"iespell,hr,removeformat,sub,sup,charmap,separator,image,flvplayer",
+	theme_advanced_disable : "",
 	theme_advanced_buttons3: "",
 	theme_advanced_toolbar_location : "top",
 	theme_advanced_toolbar_align : "left",
@@ -51,6 +52,9 @@ tinyMCE.init({
 	fix_table_elements : true,
 	fix_nesting : true,
 	preformatted : false,
+	convert_urls : false,
+	
+	file_browser_callback : "ajaxfilemanager",
 	
 	plugin_insertdate_dateFormat : "%d-%m-%Y",
 	plugin_insertdate_timeFormat : "%H:%M:%S",
@@ -58,7 +62,7 @@ tinyMCE.init({
 	invalid_elements : "p[style]",
 	mode : Mode,
 	elements : Elements,
-	setupcontent_callback : contentCallback,
+	//setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
 	save_callback : "nettoyage",
 	language : "fr",
@@ -106,4 +110,27 @@ function convertWord(type, content) {
 	}
 
 	return content;
+}
+function ajaxfilemanager(field_name, url, type, win) {
+	var ajaxfilemanagerurl = "../ajaxfilemanager/ajaxfilemanager.php";
+	switch (type) {
+		case "image":
+			ajaxfilemanagerurl+="?path=../../../../depot/Image"; // essayer avec +GLOBALS["rep_images"]
+			break;
+		case "media":
+			ajaxfilemanagerurl+="?path=../../../../depot/Media"; // essayer avec +GLOBALS["rep_medias"];
+			break;
+		default:
+			return false;
+	}
+	tinyMCE.activeEditor.windowManager.open({
+		url: ajaxfilemanagerurl,
+		width: 782,
+		height: 440,
+		inline : "yes",
+		close_previous : "no"
+		},{
+			window : win,
+			input : field_name
+			});
 }

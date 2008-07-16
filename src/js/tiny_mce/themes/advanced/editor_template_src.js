@@ -65,10 +65,12 @@
 			t.settings = s = extend({
 				theme_advanced_path : true,
 				theme_advanced_toolbar_location : 'bottom',
-				theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect",
-				theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code",
+				//theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect",
+				theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect",
+				theme_advanced_buttons2 : "bullist,numlist,|,outdent,indent,|,undo,redo,|,link,unlink,anchor,cleanup,help,code",
 				theme_advanced_buttons3 : "hr,removeformat,visualaid,|,sub,sup,|,charmap",
-				theme_advanced_blockformats : "p,address,pre,h1,h2,h3,h4,h5,h6",
+				//theme_advanced_blockformats : "p,address,pre,h1,h2,h3,h4,h5,h6",
+				theme_advanced_blockformats : "p,h1,h2,h3,h4,h5,h6",
 				theme_advanced_toolbar_align : "center",
 				theme_advanced_fonts : "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats",
 				theme_advanced_font_sizes : "1,2,3,4,5,6,7",
@@ -124,9 +126,9 @@
 				return c;
 
 			switch (n) {
-				case "styleselect":
+/*				case "styleselect":
 					return this._createStyleSelect();
-
+*/
 				case "formatselect":
 					return this._createBlockFormats();
 
@@ -168,7 +170,7 @@
 			}
 		},
 
-		_createStyleSelect : function(n) {
+/*		_createStyleSelect : function(n) {
 			var t = this, ed = t.editor, cf = ed.controlManager, c = cf.createListBox('styleselect', {
 				title : 'advanced.style_select',
 				onselect : function(v) {
@@ -195,7 +197,7 @@
 
 			return c;
 		},
-
+*/
 		_createFontSelect : function() {
 			var c, t = this, ed = t.editor;
 
@@ -233,8 +235,8 @@
 		_createBlockFormats : function() {
 			var c, fmts = {
 				p : 'advanced.paragraph',
-				address : 'advanced.address',
-				pre : 'advanced.pre',
+				//address : 'advanced.address',
+				//pre : 'advanced.pre',
 				h1 : 'advanced.h1',
 				h2 : 'advanced.h2',
 				h3 : 'advanced.h3',

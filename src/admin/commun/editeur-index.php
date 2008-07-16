@@ -43,7 +43,7 @@ function valider()
 		top.close();
 	}
 	else
-		alert("La fonction 'editeur_callback' n'a pas été trouvée");
+		alert("La fonction 'editeur_callback' n'a pas &eacute;t&eacute; trouv&eacute;e");
 }
 function exporter()
 {

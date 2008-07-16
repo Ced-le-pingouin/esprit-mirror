@@ -1,0 +1,5 @@
+.mceItemFlash, .mceItemFlashAudio, .mceItemYoutubeVideo, .mceItemGoogleVideo {border:1px dotted #cc0000; background-position:center; background-repeat:no-repeat; background-color:#ffffcc;}
+.mceItemFlash {background-image:url(../img/flash.gif);}
+.mceItemFlashAudio {background-image:url(../img/music.gif);}
+.mceItemYoutubeVideo {background-image:url(../img/youtube.gif);}
+.mceItemGoogleVideo {background-image:url(../img/google.gif);}

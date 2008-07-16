@@ -82,8 +82,16 @@ $sParamsUrl = "modifier_message.php"
 <title><?php echo emb_htmlentities($sTitrePrincipal)?></title>
 <script type="text/javascript" language="javascript">
 <!--
+var sElemDest = "<?php echo $url_iIdMessage ?>";
 function oPrincipale() { return top.frames["MESSAGE"]; }
 function oMenu() { return  top.frames["MENU"]; }
+
+// problème détecté avec le forum : depuis une des mises à jour, l'éditeur ne récupérait plus le contenu du message
+// ajout de cette fonction afin de lire le contenu et de le renvoyer dans l'éditeur
+// de la même manière que pour l'édition d'une description de cours
+function recuperer() {
+	return top.opener.top.oFrmMessages().document.getElementById(sElemDest).innerHTML;
+}
 //-->
 </script>
 </head>

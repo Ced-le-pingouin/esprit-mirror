@@ -1,0 +1,44 @@
+#id, #name, #hspace, #vspace, #class_name, #align {
+	width: 100px;
+}
+
+#flash_quality, #flash_align, #flash_scale, #flash_salign, #flash_wmode {
+	width: 100px;
+}
+
+#width, #height {
+	width: 40px;
+}
+
+#src, #media_type {
+	width: 250px;
+}
+
+#class {
+	width: 120px;
+}
+
+#preview, #nopreview {
+	margin: 0;
+	border: 1px solid black;
+	width: 99%;
+	height: 250px;
+	overflow: auto;
+}
+
+#nopreview {
+	text-align: center;
+}
+
+.panel_wrapper div.current {
+	height: 390px;
+	overflow: auto;
+}
+
+#flash_options, #mp3_options, #youtube_options, #googlevids_options, #preview {
+	display: none;
+}
+
+.mceAddSelectValue {
+	background-color: #DDDDDD;
+}

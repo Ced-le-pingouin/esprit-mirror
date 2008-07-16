@@ -81,7 +81,7 @@ function select_deselect_message(v_sElem)
 <td class="message_infos_auteur">&nbsp;{personne->email}&nbsp;{personne->pseudo}<img src="commun://espacer.gif" width="30" height="1" border="0"><span class="nb_messages_deposes_personne">{personne->nb_messages_deposes}&nbsp;message(s)</span>&nbsp;</td>
 <td class="message_infos_date"><img src="theme://espacer.gif" width="150" height="1"><br>{message->date}</td>
 </tr>
-<tr><td class="message_texte" colspan="3">{message->texte}{message->ressources}</td></tr>
+<tr><td id="{message->id}" class="message_texte" colspan="3">{message->texte}{message->ressources}</td></tr>
 </table>
 </td>
 <td valign="bottom">{message->bouton_selection}</td>

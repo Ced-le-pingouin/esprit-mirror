@@ -23,6 +23,8 @@ define("TXT_EQUIPES_DESCRIPTION","Pour créer des équipes et y affecter des ét
 define("TXT_EQUIPES_TITRE","Equipes");
 define("TXT_EXPORTER_INSCRITS_DESCRIPTION","Pour exporter sous forme csv ou html, une liste d’utilisateurs");
 define("TXT_EXPORTER_INSCRITS_TITRE","Exporter");
+define("TXT_FILE_MANAGER_DESCRIPTION","Pour gérer les fichiers multimédia de la plateforme (Images et vidéos)");
+define("TXT_FILE_MANAGER_TITRE","Gestionnaire de fichiers");
 define("TXT_FORMULAIRE_DESCRIPTION","Pour créer ou modifier des activités en ligne");
 define("TXT_FORMULAIRE_TITRE","Générateur d'activités en ligne");
 define("TXT_INSCRIPTION_DESCRIPTION","Pour inscrire les utilisateurs et leur donner un statut (étudiant, tuteur...)");

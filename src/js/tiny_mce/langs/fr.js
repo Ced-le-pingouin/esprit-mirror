@@ -129,6 +129,10 @@ media:{
 desc:"Ins\u00E9rer/\u00C9diter un fichier m\u00E9dia",
 edit:"\u00C9diter un fichier m\u00E9dia"
 },
+flvplayer:{
+desc:"Ins\u00E9rer/\u00C9diter un fichier m\u00E9dia",
+edit:"\u00C9diter un fichier m\u00E9dia"
+},
 fullpage:{
 desc:"Propri\u00E9t\u00E9s du document"
 },

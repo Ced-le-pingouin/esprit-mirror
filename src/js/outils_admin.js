@@ -231,3 +231,9 @@ function tableau_de_bord(v_oObj) {
 	return false;
 }
 
+function gestionnaire() {
+	var sUrl = GLOBALS["gestionnaire"] + "/ajaxfilemanager.php?path=racine&mode=racine&editor=form";
+	var sOptionsFenetre = ",status=no,resizable=no,scrollbars=no";
+	var oWin = PopupCenter(sUrl,"winAccueilLogin",700,440,sOptionsFenetre);
+	oWin.focus();
+}

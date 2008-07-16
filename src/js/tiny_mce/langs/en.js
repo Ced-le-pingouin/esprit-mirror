@@ -129,6 +129,10 @@ media:{
 desc:"Insert / edit embedded media",
 edit:"Edit embedded media"
 },
+flvplayer:{
+desc:"Insert / edit embedded media",
+edit:"Edit embedded media"
+},
 fullpage:{
 desc:"Document properties"
 },
