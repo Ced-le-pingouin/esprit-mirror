@@ -1,7 +1,6 @@
 <pre>Array
 (
     [currentFolderPath] => ../../../../depot/Image/
-    [new_folder] => bruno_de_lievre
 )
 </pre>
 

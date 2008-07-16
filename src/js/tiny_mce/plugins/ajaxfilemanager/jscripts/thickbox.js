@@ -262,7 +262,6 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 		}
 	} catch(e) {
 		//nothing here
-		alert('erreur');
 	}
 }
 
