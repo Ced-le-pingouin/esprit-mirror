@@ -39,8 +39,7 @@
 	define('LBL_MODIFIED', 'Modified At');
 		//File Information
 	define('LBL_FILE_INFO', 'File Information:');
-	define('LBL_FILE_NAME', 'Name:');
-	define('LBL_FILE_OWNER', "Owner :");	
+	define('LBL_FILE_NAME', 'Name:');	
 	define('LBL_FILE_CREATED', 'Created:');
 	define('LBL_FILE_MODIFIED', 'Modified:');
 	define('LBL_FILE_SIZE', 'File Size:');
@@ -194,8 +193,6 @@
 	define('ERR_FILE_NAME_FORMAT', 'Please give it a name which only contain letters, digits, space, hyphen and underscore.');
 	define('ERR_FILE_NOT_UPLOADED', 'No file has been selected for uploading.');
 	define('ERR_FILE_TYPE_NOT_ALLOWED', 'You are not allowed to upload such file type.');
-	define('ERR_FILE_NOT_IMG', 'The file is not an image.');
-	define('ERR_FILE_NOT_MEDIA', 'The file is not a valid media.');
 	define('ERR_FILE_MOVE_FAILED', 'Failed to move the file.');
 	define('ERR_FILE_NOT_AVAILABLE', 'The file is unavailable.');
 	define('ERROR_FILE_TOO_BID', 'File too large. (max: %s)');

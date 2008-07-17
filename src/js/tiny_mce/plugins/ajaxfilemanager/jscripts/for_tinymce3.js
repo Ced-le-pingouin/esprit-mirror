@@ -107,7 +107,7 @@ tinyMCEPopup = {
 	close : function() {
 		var t = this;
 
-		//t.dom = t.dom.doc = null; // Cleanup
+		t.dom = t.dom.doc = null; // Cleanup
 		t.editor.windowManager.close(window, t.id);
 	},
 

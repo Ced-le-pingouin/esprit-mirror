@@ -364,6 +364,7 @@ function initAfterListingLoaded()
 	
 	if(view != '')
 	{
+			
 		switch(view)
 		{
 
@@ -596,26 +597,22 @@ function getUrlVarValue(url, index)
 function parseCurrentFolder()
 {
 	var folders = currentFolder.friendly_path.split('/');
-	var sPrenomNom = commandes.utilisateur.replace(/ /g,'_');
-	var bUtilisateur;
 	var str = '';
 	var url = getUrl('view', true, true);
+
 	var parentPath = '';
 	for(var i = 0; i < folders.length; i++)
-	{	
-// on enlève le lien vers la racine
-// l'utilisateur n'a accès qu'au type de média passé depuis TinyMCE	
+	{
 		if(i == 0)
 		{
 			parentPath += paths.root;
-			//str += '/<a href="' + appendQueryString(url, 'path='+ parentPath, ['path']) + '"><span class="folderRoot">' + paths.root_title + '</span></a>'
-			str += '/<span class="folderRoot">' + paths.root_title + '</span>'
+			str += '/<a href="' + appendQueryString(url, 'path='+ parentPath, ['path']) + '"><span class="folderRoot">' + paths.root_title + '</span></a>'
 			
 		}else
-
 		{
 			if(folders[i] != '')
 			{
+				
 				parentPath += folders[i] + '/';
 				str += '/<a href="' + appendQueryString(url, 'path='+ parentPath , ['path']) + '"><span class="folderSub">' + folders[i] + '</span></a>';
 			}
@@ -628,30 +625,6 @@ function parseCurrentFolder()
 																	 doEnableFolderBrowsable(this, $(this).attr('href'));
 																 }
 																 );
-																 
-// On vérifie si la personne a droit de créer des répertoires à l'endroit où elle se trouve
-// l'admin a droit partout sauf à la racine, le tuteur seulement dans son répertoire
-
-/**
- * TODO : comparer le md5 du répertoire au md5 produit par php?
- * voir : http://pajhome.org.uk/crypt/md5/index.html pour le md5 en javascript
- */
-if (folders[2] == sPrenomNom) bUtilisateur = true;
-else if (!folders[1]) bUtilisateur = false; // si on se trouve à la racine
-else bUtilisateur = commandes.boolUeA;
-
-if (commandes.boolNF && bUtilisateur)
-{
-	$('#ajoutDossier').show();
-	$('#envoiFichier').show();
-	$('#suppression').show();
-}
-else
-{
-	$('#ajoutDossier').hide();
-	$('#envoiFichier').hide();
-	$('#suppression').hide();
-}
 }
 /**
 *	enable pagination as ajax function call
@@ -962,7 +935,7 @@ function enableContextMenu(jquerySelectors)
 																		{
 																			menusToRemove[menusToRemove.length] = '#menuPaste';
 																		} 
-																		if(!permits.rename || permits.view_only)
+																		if(permits.rename || permits.view_only)
 																		{
 																			menusToRemove[menusToRemove.length] = '#menuRename';
 																		} 
@@ -1036,6 +1009,7 @@ function cancelFileUpload(elementId)
 */
 function uploadFile(elementId)
 {
+
 		var ext = getFileExtension($('#' + elementId).val());
 		if(ext == '')
 		{
@@ -1073,7 +1047,7 @@ function uploadFile(elementId)
 				success: function (data, status)
 				{
 					
-					//if(typeof(data.error) != 'undefined')
+					if(typeof(data.error) != 'undefined')
 					{
 						if(data.error != '')
 						{
@@ -1094,8 +1068,6 @@ function uploadFile(elementId)
 								}
 							}
 							addDocumentHtml(numRows);
-							alert('upload reussi');
-							tb_remove();
 						}
 					}
 					
@@ -1103,10 +1075,11 @@ function uploadFile(elementId)
 				error: function (data, status, e)
 				{
 					$('#ajax' + elementId).hide();
-					alert('erreur lors de l\'upload :\n'+e);
+					alert(e);
 				}
 			}
 		)	
+	
 	return false;
 };
 /**
@@ -1161,7 +1134,7 @@ function showThickBox(linkElem, url)
 	var a = linkElem.href || linkElem.alt;
 	var g = linkElem.rel || false;
 	tb_show(t,a,g);
-	linkElem.blur();
+	linkElem.blur();	
 	return false;
 };
 /**
@@ -1170,6 +1143,7 @@ function showThickBox(linkElem, url)
 function uploadFileWin(linkElem)
 {
 	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=450' + '&inlineId=winUpload&modal=true'));
+
 };
 /**
 *	bring up a new folder window
@@ -1179,46 +1153,32 @@ function newFolderWin(linkElem)
 	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=100'  + '&width=250' + '&inlineId=winNewFolder&modal=true'));
 	return false;
 }
-
-/**
-*	Création d'un répertoire si aucun n'est présent avec le nom du tuteur.
-*	fonction ajoutée par Loïc pour la plateforme Esprit
-*/
-function newUserWin(linkElem)
-{
-var folders = currentFolder.friendly_path.split('/');
-	if (currentFolder.name == 'images' || currentFolder.name == 'medias') {	// on vérifie que la personne n'est pas dans un sous-répertoire
-		showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=250'+ '&inlineId=winNewUser&modal=true'));
-	}
-	return false;
-}
-
 /**
 *	ajax call to create a folder
 */
-function doCreateFolder(bNewUser)
+function doCreateFolder()
 {
 	$('#currentNewfolderPath').val(currentFolder.path);
 	var pattern=/^[A-Za-z0-9_ \-]+$/i;
 	
 	var folder = $('#new_folder');
 	
-/*	if(!pattern.test($(folder).val()))
+	if(!pattern.test($(folder).val()))
 	{
 		alert(msgInvalidFolderName);	
 	}else
-*/
 	{	
 			var options = 
-			{
+			{ 
 				dataType: 'json',
 				url:getUrl('create_folder'),
 				error: function (data, status, e) 
 				{
-					alert('erreur lors de la creation :\n'+e);
+
+					alert(e);
 				},				
 				success:   function(data) 
-				{
+				{ 
 					//remove those selected items
 					if(data.error != '')
 					{
@@ -1236,13 +1196,21 @@ function doCreateFolder(bNewUser)
 								}
 							}
 						addDocumentHtml(numRows);
-						alert('creation reussie');
+
 						tb_remove();
+						
+																
+
 					}
+										
+					
+
+
 				} 
 			}; 
-			$('#formNewFolder').ajaxSubmit(options);
-			if (bNewUser === true)	document.location.reload();
+			$('#formNewFolder').ajaxSubmit(options); 	
+						 				
+				
 	}
 	return false;	
 	
@@ -1406,7 +1374,9 @@ function doRename()
 					}
 				} 
 			}; 
-			$('#formRename').ajaxSubmit(options); 					
+			$('#formRename').ajaxSubmit(options); 	
+						 				
+				
 	}	
 }
 /**
@@ -1425,14 +1395,6 @@ function infoWin(linkElem)
 	
 	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=100' + '&width=350'+ '&inlineId=winInfo&modal=true'));
 
-}
-/**
-*	afficher le log des fichiers envoyés
-*	fonction ajoutée par Loïc pour la plateforme Esprit
-*/
-function infoLog(linkElem)
-{
-	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=650'+ '&inlineId=winLog&modal=true'));
 }
 /**
 *check all checkboxs and uncheck all checkbox
@@ -1722,6 +1684,7 @@ function enableShowDocInfo(num)
 	$('#cb' + num).click(
 		function()
 		{
+
 			setDocInfo('doc', num);
 		}
 	);	
@@ -1732,16 +1695,17 @@ function enableShowDocInfo(num)
 */
 function setDocInfo(type, num)
 {
+	
 
 	var info = {};
 	if(type == 'root')
 	{
 		info = currentFolder;
-	}
-	else
+	}else
 	{
 		info = files[num];
 	}
+	
 
 		if(info.type=="folder")
 		{
@@ -1771,7 +1735,6 @@ function setDocInfo(type, num)
 	
 
 			$('#fileName').text(info.name);
-			$('#fileOwner').text(info.owner);
 			$('#fileSize').text(info.size);
 			$('#fileType').text(info.fileType);
 			$('#fileCtime').text(info.ctime);

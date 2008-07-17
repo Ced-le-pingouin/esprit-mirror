@@ -34,12 +34,12 @@ error_reporting(E_ALL);
 	
 	//User Permissions
 	define('CONFIG_OPTIONS_DELETE', true);
-	define('CONFIG_OPTIONS_CUT', false);
-	define('CONFIG_OPTIONS_COPY', false);
+	define('CONFIG_OPTIONS_CUT', true);
+	define('CONFIG_OPTIONS_COPY', true);
 	define('CONFIG_OPTIONS_NEWFOLDER', true);
 	define('CONFIG_OPTIONS_RENAME', true);
 	define('CONFIG_OPTIONS_UPLOAD', true); //
-	define('CONFIG_OPTIONS_EDITABLE', false); //disable image editor and text editor
+	define('CONFIG_OPTIONS_EDITABLE', true); //disable image editor and text editor
 	//FILESYSTEM CONFIG
 		/*
 		* CONFIG_SYS_DEFAULT_PATH is the default folder where the files would be uploaded to
@@ -49,10 +49,6 @@ error_reporting(E_ALL);
 		
 	define('CONFIG_SYS_DEFAULT_PATH', '../../../../depot/'); //accept relative path only
 	define('CONFIG_SYS_ROOT_PATH', '../../../../depot/');	//accept relative path only
-	define('CONFIG_LOG_PATH', '../../../../depot/log_upload.csv'); // fichier log rempli à chaque envoi de fichier par l'utilisateur
-	define('CONFIG_LOGXML_PATH', '../../../../depot/log_upload.xml'); // fichier xml rempli à chaque envoi de fichier par l'utilisateur
-	define('CONFIG_IMAGE_PATH', '../../../../depot/images/');	//images path use for Esprit
-	define('CONFIG_MEDIA_PATH', '../../../../depot/medias/');	//medias path use for Esprit
 	define('CONFIG_SYS_FOLDER_SHOWN_ON_TOP', true); //show your folders on the top of list if true or order by name 
 	define("CONFIG_SYS_DIR_SESSION_PATH", 'session/');
 	define("CONFIG_SYS_PATTERN_FORMAT", 'reg'); //three options: reg ,csv, list, this option define the parttern format for the following patterns
@@ -64,24 +60,25 @@ error_reporting(E_ALL);
 		 */
 	//more details about regular expression please visit http://nz.php.net/manual/en/function.eregi.php
 	define('CONFIG_SYS_INC_DIR_PATTERN', ''); //force listing of folders with such pattern(s). separated by , if multiple
-	define('CONFIG_SYS_EXC_DIR_PATTERN', '\.[[:alpha:]|[:digit:]|[:space:]]+'); //will prevent listing of folders with such pattern(s). separated by , if multiple
+	define('CONFIG_SYS_EXC_DIR_PATTERN', ''); //will prevent listing of folders with such pattern(s). separated by , if multiple
 	define('CONFIG_SYS_INC_FILE_PATTERN', ''); //force listing of fiels with such pattern(s). separated by , if multiple
-	define('CONFIG_SYS_EXC_FILE_PATTERN', '[^.]*(.php|.csv|.xml|.htm|.html)'); //will prevent listing of files with such pattern(s). separated by , if multiple
+	define('CONFIG_SYS_EXC_FILE_PATTERN', ''); //will prevent listing of files with such pattern(s). separated by , if multiple
 	define('CONFIG_SYS_DELETE_RECURSIVE', 1); //delete all contents within a specific folder if set to be 1
 	
 	//UPLOAD OPTIONS CONFIG
-	define('CONFIG_UPLOAD_MAXSIZE', 2048 * 4096); //by bytes
+	define('CONFIG_UPLOAD_MAXSIZE', 50 * 1024 ); //by bytes
 	//define('CONFIG_UPLOAD_MAXSIZE', 2048); //by bytes
+	//define('CONFIG_UPLOAD_VALID_EXTS', 'txt');//
 
 	define('CONFIG_EDITABLE_VALID_EXTS', 'txt,htm,html,xml,js,css'); //make you include all these extension in CONFIG_UPLOAD_VALID_EXTS if you want all valid
 	
 	define('CONFIG_OVERWRITTEN', false); //overwirte when processing paste
-	define('CONFIG_UPLOAD_VALID_EXTS', 'gif,jpg,png,mov,mpg,avi,mpeg,wmv,wav,mp3,swf,flv'); // 
-	define('CONFIG_VIEWABLE_VALID_EXTS', 'gif,jpg,png,mov,mpg,avi,mpeg,wmv,wav,mp3,swf,flv');
+	define('CONFIG_UPLOAD_VALID_EXTS', 'gif,jpg,png,txt'); // 
+	//define('CONFIG_UPLOAD_VALID_EXTS', 'gif,jpg,png,bmp,tif,zip,sit,rar,gz,tar,htm,html,mov,mpg,avi,asf,mpeg,wmv,aif,aiff,wav,mp3,swf,ppt,rtf,doc,pdf,xls,txt,xml,xsl,dtd');//
+	define("CONFIG_VIEWABLE_VALID_EXTS", 'gif,bmp,txt,jpg,png,tif,html,htm,js,css,xml,xsl,dtd,mp3,wav,wmv,wma,rm,rmvb,mov,swf');
+	//define('CONFIG_UPLOAD_VALID_EXTS', 'gif,jpg,png,txt'); // 
 	define('CONFIG_UPLOAD_INVALID_EXTS', '');
-	define('CONFIG_UPLOAD_VALID_IMAGE', 'gif,jpg,png');
-	define('CONFIG_UPLOAD_VALID_MEDIA', 'mov,mpg,avi,mpeg,wmv,wav,mp3,swf,flv');
-	
+
 	//Preview
 	define('CONFIG_IMG_THUMBNAIL_MAX_X', 100);
 	define('CONFIG_IMG_THUMBNAIL_MAX_Y', 100);
@@ -116,14 +113,14 @@ error_reporting(E_ALL);
 			/*
 			*	options avaialbe for CONFIG_EDITOR_NAME are:
 					stand_alone
-					tinymce3
+					tinymce
 					fckeditor
 			*/
 	//CONFIG_EDITOR_NAME replaced CONFIG_THEME_MODE since @version 0.8			
 	define('CONFIG_EDITOR_NAME', (CONFIG_QUERY_STRING_ENABLE && !empty($_GET['editor'])?secureFileName($_GET['editor']):'tinymce3')); 
 	define('CONFIG_THEME_NAME', (CONFIG_QUERY_STRING_ENABLE && !empty($_GET['theme'])?secureFileName($_GET['theme']):'default'));  //change the theme to your custom theme rather than default
 	define('CONFIG_DEFAULT_VIEW', 'thumbnail'); //thumnail or detail
-	define('CONFIG_DEFAULT_PAGINATION_LIMIT', 5);
+	define('CONFIG_DEFAULT_PAGINATION_LIMIT', 10);
 	
 	//General Option Declarations
 	//LANGAUGAE DECLARATIONNS

@@ -78,7 +78,7 @@ margin-left: 50%;
 margin-top:100px;
 }
 #content{
-margin-left: 265px;
+  margin-left: 265px;
 overflow: auto;
 overflow-x: hidden;	
 max-height:380px;
@@ -105,20 +105,49 @@ max-height:380px;
 	height:17px;
 	vertical-align:bottom;
 }
-table.tableCSV{
+table.tableSearch{
 padding:0;
 margin:0;
 }
-.boxCSV{
+.boxSearch{
 padding:0;
 margin:0;
 }
-.boxCSV p{
+.boxSearchItems{
+margin:0;
+padding:0;
+}
+.boxSearchItems td{
+text-align:left;
 margin-left:5px;
 }
-.boxCSV ul li{
-display:list-item;
-margin-left:10px;
+.boxSearchItems dt{
+text-align:left;
+font-size:14px;
+margin:0;
+padding:0;
+margin-left:5px;
+}
+.boxSearchItems dd{
+display:block;
+margin:0;
+padding:0;
+margin-left:20px;
+}
+.boxSearchItems dd b{
+margin:0;
+display:block;
+}
+
+#linkSearch{
+float:right;
+padding-right:8px;
+}
+.tableSearch{
+margin:0;
+}
+p.searchButtons{
+padding-top:5px;
 }
 #linkClose{
 float:left;
@@ -205,7 +234,6 @@ top:36px;
 #actionUpload{background-image:url(../images/action/upload.png);}
 #actionNewFolder{background-image:url(../images/action/folder_add.png);}
 #actionNewFile{background-image:url(../images/action/page_add.png);}
-#actionClose{background-image:url(../images/close.png);}
 #tickAll{margin-left:5px;}
 a.action{
 text-decoration:none;};
@@ -466,9 +494,12 @@ width:100%;
 }
 /*thinkbox*/
 .jqmContainer{
+
+
 }
 
 .jqmHeader{
+
 height:15px;
 }
 .jqmHeader a{
@@ -476,7 +507,7 @@ float:right;
 margin-right:10px;
 margin-top:-5px;
 }
-.jqmBody table thead th, .Log{
+.jqmBody table thead th{
 font-size:16px;
 font-weight:bold;
 text-align:center;
@@ -487,20 +518,16 @@ text-align:right;
 padding: 2px 10px;
 }
 
-.jqmBody, .divLog{
+.jqmBody{
+
 	border:1px solid #a1a1a1;
 	background-image: url(../images/panel_bg.gif);
 	background-repeat: repeat-y;
 	background-position: left top;
 	background-color: #d9dbdc;
+
 }
-.tableLog, .tableLog td, .tableLog th
-{
-	border: 1px solid #a1a1a1;
-	border-collapse: collapse;
-	text-align:left;
-	padding: 2px 10px;
-}
+
 /*~~~~~~Global Low Priority Setting ~~~~~~~~*/
 .left, td.left, th.left, td.leftDisabled{text-align:left;}
 .right, td.right, th.right{text-align:right;}

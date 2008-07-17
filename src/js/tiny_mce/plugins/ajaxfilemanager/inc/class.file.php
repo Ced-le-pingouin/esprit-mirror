@@ -34,8 +34,7 @@
 					$this->fileInfo['ctime'] = $this->fileStat[10];	
 					$this->fileInfo['mtime'] = $this->fileStat[9];
 					$this->fileInfo['path'] = $path;
-					$this->fileInfo['name'] = basename($path);
-					//$this->fileInfo['owner'] = @fileowner($path);
+					$this->fileInfo['name'] = basename($path);	
 					$this->fileInfo['is_writable'] = $this->isWritable();
 					$this->fileInfo['is_readable'] = $this->isReadable();
 				}elseif(is_dir($this->filePath))

@@ -9,7 +9,7 @@
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");	
 	if(!isset($_POST['path']))
 	{
-		$_POST['path'] = "depot/Winter.jpg" .  "?" . makeQueryString(array('path'));
+		$_POST['path'] = "uploaded/Winter.jpg" .  "?" . makeQueryString(array('path'));
 		//for crop
 		$_POST['mode'] = "crop";
 		$_POST['x'] = 100;

@@ -10,14 +10,12 @@
 /*!!!!!!!!!!!!!!!!! edit below this line at your own risk !!!!!!!!!!!!!!!!!!!!!!!*/
 
 //on page load call tb_init
-// Mise en commentaire de cette fonction : ne marchait pas sous IE7/Windows Vista
-/*
 $(document).ready(function(){   
 	//tb_init('a.thickbox, area.thickbox, input.thickbox');//pass where to apply thickbox
 	imgLoader = new Image();// preload image
 	imgLoader.src = tb_pathToImage;
 });
-*/
+
 //add thickbox to href & area elements that have a class of .thickbox
 /*function tb_init(domChunk){
 	$(domChunk).click(function(){
@@ -31,8 +29,7 @@ $(document).ready(function(){
 }*/
 
 function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
-	imgLoader = new Image();// preload image
-	imgLoader.src = tb_pathToImage;
+
 	try {
 		if (typeof document.body.style.maxHeight === "undefined") {//if IE 6
 			$("body","html").css({height: "100%", width: "100%"});
@@ -47,24 +44,24 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				$("#TB_overlay").click(tb_remove);
 			}
 		}
-				
+		
 		if(tb_detectMacXFF()){
 			$("#TB_overlay").addClass("TB_overlayMacFFBGHack");//use png overlay so hide flash
 		}else{
 			$("#TB_overlay").addClass("TB_overlayBG");//use background and opacity
 		}
-			
+		
 		if(caption===null){caption="";}
 		$("body").append("<div id='TB_load'><img src='"+imgLoader.src+"' /></div>");//add loader to the page
 		$('#TB_load').show();//show loader
-				
+		
 		var baseURL;
-	   	if(url.indexOf("?")!==-1){ //ff there is a query string involved
+	   if(url.indexOf("?")!==-1){ //ff there is a query string involved
 			baseURL = url.substr(0, url.indexOf("?"));
-	   	}else{ 
+	   }else{ 
 	   		baseURL = url;
-	   	}
-	   	   
+	   }
+	   
 	   var urlString = /\.jpg$|\.jpeg$|\.png$|\.gif$|\.bmp$/;
 	   var urlType = baseURL.toLowerCase().match(urlString);
 
@@ -184,7 +181,8 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			};
 			
 			imgPreloader.src = url;
-		}else{//code to show html			
+		}else{//code to show html
+			
 			var queryString = url.replace(/^[^\?]+\??/,'');
 			var params = tb_parseQuery( queryString );
 
@@ -222,7 +220,8 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 					}
 			}
 					
-			$("#TB_closeWindowButton").click(tb_remove);			
+			$("#TB_closeWindowButton").click(tb_remove);
+			
 				if(url.indexOf('TB_inline') != -1){	
 					$("#TB_ajaxContent").append($('#' + params['inlineId']).children());
 					$("#TB_window").unload(function () {
@@ -260,6 +259,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 				}	
 			};
 		}
+		
 	} catch(e) {
 		//nothing here
 	}
@@ -272,7 +272,6 @@ function tb_showIframe(){
 }
 
 function tb_remove() {
-alert('debut fermeture');
  	$("#TB_imageOff").unbind("click");
 	$("#TB_closeWindowButton").unbind("click");
 	$("#TB_window").fadeOut("fast",function(){$('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();});
@@ -283,7 +282,6 @@ alert('debut fermeture');
 	}
 	document.onkeydown = "";
 	document.onkeyup = "";
-	alert('fermeture');
 	return false;
 }
 

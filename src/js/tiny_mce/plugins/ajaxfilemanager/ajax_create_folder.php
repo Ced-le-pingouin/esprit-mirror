@@ -15,29 +15,24 @@
 	$error = "";
 	$info = "";	
 /*	$_POST['new_folder'] = substr(md5(time()), 1, 5);
-	$_POST['currentFolderPath'] = "../../depot/";*/
+	$_POST['currentFolderPath'] = "../../uploaded/";*/
 	if(CONFIG_SYS_VIEW_ONLY || !CONFIG_OPTIONS_NEWFOLDER)
 	{
-		//$error = SYS_DISABLED;
-		$error = "fonction desactivee";
+		$error = SYS_DISABLED;
 	}
 	elseif(empty($_POST['new_folder']))
 	{
-		//$error  =  ERR_FOLDER_NAME_EMPTY;
-		$error = "le nom ne doit pas etre vide";
+		$error  =  ERR_FOLDER_NAME_EMPTY;
 	}elseif(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $_POST['new_folder']))
 	{
-		//$error  =  ERR_FOLDER_FORMAT;
-		$error = "le nom ne doit contenir que de lettres, chiffres, espace, tirets (haut et bas)";
+		$error  =  ERR_FOLDER_FORMAT;
 	}else if(empty($_POST['currentFolderPath']) || !isUnderRoot($_POST['currentFolderPath']))
 	{
-		//$error  =  ERR_FOLDER_PATH_NOT_ALLOWED;
-		$error = "vous n'avez pas le droit de depose ici.";
+		$error = ERR_FOLDER_PATH_NOT_ALLOWED;
 	}
 	elseif(file_exists(addTrailingSlash($_POST['currentFolderPath']) . $_POST['new_folder']))
 	{
-		//$error  =  ERR_FOLDER_EXISTS;
-		$error = "le r\u00E9pertoire existe d\u00E9ja!";
+		$error = ERR_FOLDER_EXISTS;
 	}else
 	{
 	include_once(CLASS_FILE);
@@ -51,6 +46,8 @@
 					{				
 						switch ($k)
 						{
+
+
 							case "ctime";								
 							case "mtime":
 							case "atime":
@@ -65,13 +62,6 @@
 						}							
 						$info .= sprintf(", %s:'%s'", $k, $v);
 					}
-					/*
-					 * crée un fichier index.php, pour que l'on ne puisse pas accéder directement au répertoire par l'url
-					 * 
-					 */
-					/*$sDonnees = "<?php header(\"HTTP/1.0 404 Not Found\"); ?>";
-					$sDonnees = "<?php header('location: '); ?>";*/
-					//file_put_contents(addTrailingSlash($_POST['currentFolderPath']).$_POST['new_folder'].'/index.php', '');
 		}else 
 		{
 			$error = ERR_FOLDER_CREATION_FAILED;

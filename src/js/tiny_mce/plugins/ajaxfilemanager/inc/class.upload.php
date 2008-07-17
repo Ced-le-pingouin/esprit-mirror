@@ -11,7 +11,6 @@ class Upload
 	var $fileType = ""; //the file type
 	var $originalFileName = "";
 	var $fileName = ""; //the file final name
-	var $fileOwner = ""; //propriétaire de l'image
 	var $fileExtension = "";
 	var $img_x = 0;
 	var $img_y = 0;
@@ -59,7 +58,7 @@ class Upload
 			$this->fileSize = @filesize($this->_value['tmp_name']);
 			$this->originalFileName = $this->_value['name'];
 			$this->fileType = $this->_value['type'];
-		
+			
 			return true;
 		}else 
 		{
@@ -109,10 +108,10 @@ class Upload
 		
 		if(sizeof($validFileExt))
 		{
-				if(array_search(strtolower($this->getFileExt()), $validFileExt) !== false)
-				{
-					return true;
-				}
+			if(array_search(strtolower($this->getFileExt()), $validFileExt) !== false)
+			{
+				return true;
+			}
 		}elseif(array_search(strtolower($this->getFileExt()), $this->invalidFileExt) === false)
 		{
 			return true;
