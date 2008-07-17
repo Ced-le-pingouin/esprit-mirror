@@ -201,7 +201,7 @@ alert('try submit');
 alert('entering upload data.\nr : '+r+'\ntype : '+type);
         var data = !type;
         data = type == "xml" || data ? r.responseXML : r.responseText;
-alert('data uploadhttp : '+data
+alert('data uploadhttp : '+data);
         // If the type is "script", eval it in global context
         if ( type == "script" )
             jQuery.globalEval( data );
