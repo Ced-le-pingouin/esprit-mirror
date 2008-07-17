@@ -8,7 +8,7 @@
 	 */
 	
 
-error_reporting(E_ALL);	
+//error_reporting(E_ALL);	
 //error_reporting(E_ALL ^ E_NOTICE);	
 	
 	
@@ -60,9 +60,9 @@ error_reporting(E_ALL);
 		 */
 	//more details about regular expression please visit http://nz.php.net/manual/en/function.eregi.php
 	define('CONFIG_SYS_INC_DIR_PATTERN', ''); //force listing of folders with such pattern(s). separated by , if multiple
-	define('CONFIG_SYS_EXC_DIR_PATTERN', ''); //will prevent listing of folders with such pattern(s). separated by , if multiple
+	define('CONFIG_SYS_EXC_DIR_PATTERN', '\.[[:alpha:]|[:digit:]|[:space:]]+'); //will prevent listing of folders with such pattern(s). separated by , if multiple
 	define('CONFIG_SYS_INC_FILE_PATTERN', ''); //force listing of fiels with such pattern(s). separated by , if multiple
-	define('CONFIG_SYS_EXC_FILE_PATTERN', ''); //will prevent listing of files with such pattern(s). separated by , if multiple
+	define('CONFIG_SYS_EXC_FILE_PATTERN', '[^.]*(.php|.csv|.xml|.htm|.html)'); //will prevent listing of files with such pattern(s). separated by , if multiple
 	define('CONFIG_SYS_DELETE_RECURSIVE', 1); //delete all contents within a specific folder if set to be 1
 	
 	//UPLOAD OPTIONS CONFIG

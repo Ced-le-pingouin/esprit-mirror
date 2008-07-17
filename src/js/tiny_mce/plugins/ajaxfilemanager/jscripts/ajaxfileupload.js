@@ -89,11 +89,14 @@ jQuery.extend({
 			{				
                 requestDone = true;
                 var status;
+alert("statut debut : "+status);
                 try {
+alert('entering try \ntimeout : '+isTimeout);
                     status = isTimeout != "timeout" ? "success" : "error";
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
 					{
+						alert('status : '+status);
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
@@ -103,10 +106,13 @@ jQuery.extend({
                         // Fire the global callback
                         if( s.global )
                             jQuery.event.trigger( "ajaxSuccess", [xml, s] );
-                    } else
+                    } else {
                         jQuery.handleError(s, xml, status);
+                        alert('status : '+status);
+                      }
                 } catch(e) 
 				{
+alert('entering exception');
                     status = "error";
                     jQuery.handleError(s, xml, status, e);
                 }
@@ -152,6 +158,7 @@ jQuery.extend({
         }
         try 
 		{
+alert('try submit');
            // var io = $('#' + frameId);
 			var form = $('#' + formId);
 			$(form).attr('action', s.url);
@@ -168,7 +175,8 @@ jQuery.extend({
             $(form).submit();
 
         } catch(e) 
-		{			
+		{	
+alert('exception submit');		
             jQuery.handleError(s, xml, null, e);
         }
         if(window.attachEvent){
