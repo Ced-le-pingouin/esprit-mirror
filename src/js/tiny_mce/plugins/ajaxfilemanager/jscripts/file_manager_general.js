@@ -1073,7 +1073,7 @@ function uploadFile(elementId)
 				success: function (data, status)
 				{
 					
-					if(typeof(data.error) != 'undefined')
+					//if(typeof(data.error) != 'undefined')
 					{
 						if(data.error != '')
 						{
@@ -1094,6 +1094,7 @@ function uploadFile(elementId)
 								}
 							}
 							addDocumentHtml(numRows);
+							alert('upload reussi');
 							tb_remove();
 						}
 					}

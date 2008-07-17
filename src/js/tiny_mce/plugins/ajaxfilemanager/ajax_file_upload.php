@@ -41,11 +41,13 @@
 	}elseif((strpos($_GET['folder'],CONFIG_IMAGE_PATH) !== false) && (!$upload->isPermittedFileExt(explode(",", CONFIG_UPLOAD_VALID_IMAGE))))
 	{		
 		// si on se trouve dans le répertoire IMAGE (configuré dans 'CONFIG_IMAGE_PATH'), on vérifie que le type de fichier est bien une image définie dans 'CONFIG_UPLOAD_VALID_IMAGE'
-		$error = ERR_FILE_NOT_IMG;
+		//$error = ERR_FILE_NOT_IMG;
+		$error = "le fichier n'est pas une image";
 	}elseif((strpos($_GET['folder'],CONFIG_MEDIA_PATH) !== false) && (!$upload->isPermittedFileExt(explode(",", CONFIG_UPLOAD_VALID_MEDIA))))
 	{		
 		// si on se trouve dans le répertoire MEDIA (configuré dans 'CONFIG_MEDIA_PATH'), on vérifie que le type de fichier est bien une video définie dans 'CONFIG_UPLOAD_VALID_MEDIA'
-		$error = ERR_FILE_NOT_MEDIA;
+		//$error = ERR_FILE_NOT_MEDIA;
+		$error = "le fichier n'est pas un media";
 	}elseif(defined('CONFIG_UPLOAD_MAXSIZE') && CONFIG_UPLOAD_MAXSIZE && $upload->isSizeTooBig(CONFIG_UPLOAD_MAXSIZE))
 	{		
 		 //$error = sprintf(ERROR_FILE_TOO_BID, transformFileSize(CONFIG_UPLOAD_MAXSIZE));

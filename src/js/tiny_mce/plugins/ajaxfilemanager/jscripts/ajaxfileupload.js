@@ -97,6 +97,7 @@ jQuery.extend({
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
+alert(s.success);
                         if ( s.success )
                             s.success( data, status );
     
@@ -110,7 +111,8 @@ jQuery.extend({
                     status = "error";
                     jQuery.handleError(s, xml, status, e);
                 }
-
+                
+alert('statut : '+status);
                 // The request was completed
                 if( s.global )
                     jQuery.event.trigger( "ajaxComplete", [xml, s] );

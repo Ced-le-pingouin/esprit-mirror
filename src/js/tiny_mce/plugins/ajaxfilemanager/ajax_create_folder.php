@@ -18,22 +18,26 @@
 	$_POST['currentFolderPath'] = "../../depot/";*/
 	if(CONFIG_SYS_VIEW_ONLY || !CONFIG_OPTIONS_NEWFOLDER)
 	{
-		$error = SYS_DISABLED;
+		//$error = SYS_DISABLED;
+		$error = "fonction desactivee";
 	}
 	elseif(empty($_POST['new_folder']))
 	{
-		$error  =  ERR_FOLDER_NAME_EMPTY;
+		//$error  =  ERR_FOLDER_NAME_EMPTY;
+		$error = "le nom ne doit pas etre vide";
 	}elseif(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $_POST['new_folder']))
 	{
-		$error  =  ERR_FOLDER_FORMAT;
+		//$error  =  ERR_FOLDER_FORMAT;
+		$error = "le nom ne doit contenir que de lettres, chiffres, espace, tirets (haut et bas)";
 	}else if(empty($_POST['currentFolderPath']) || !isUnderRoot($_POST['currentFolderPath']))
 	{
-		$error  =  ERR_FOLDER_PATH_NOT_ALLOWED;
+		//$error  =  ERR_FOLDER_PATH_NOT_ALLOWED;
+		$error = "vous n'avez pas le droit de depose ici.";
 	}
 	elseif(file_exists(addTrailingSlash($_POST['currentFolderPath']) . $_POST['new_folder']))
 	{
 		//$error  =  ERR_FOLDER_EXISTS;
-		$error = "le r\u00E9pertoire existe d\u00E9j&agrave;!";
+		$error = "le r\u00E9pertoire existe d\u00E9ja!";
 	}else
 	{
 	include_once(CLASS_FILE);
@@ -67,7 +71,7 @@
 					 */
 					/*$sDonnees = "<?php header(\"HTTP/1.0 404 Not Found\"); ?>";
 					$sDonnees = "<?php header('location: '); ?>";*/
-					file_put_contents(addTrailingSlash($_POST['currentFolderPath']).$_POST['new_folder'].'/index.php', '');
+					//file_put_contents(addTrailingSlash($_POST['currentFolderPath']).$_POST['new_folder'].'/index.php', '');
 		}else 
 		{
 			$error = ERR_FOLDER_CREATION_FAILED;
