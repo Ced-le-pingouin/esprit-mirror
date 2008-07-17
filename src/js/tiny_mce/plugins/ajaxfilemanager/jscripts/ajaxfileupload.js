@@ -96,25 +96,28 @@ alert('entering try \ntimeout : '+isTimeout);
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
 					{
-						alert('status : '+status);
+alert('status OK : '+status);
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
-                        if ( s.success )
+                        if ( s.success ) {
                             s.success( data, status );
-    
+alert('success OK \n'+s.success(data, status));
+    					}
                         // Fire the global callback
-                        if( s.global )
+                        if( s.global ) {
                             jQuery.event.trigger( "ajaxSuccess", [xml, s] );
+alert('global OK \n'+s.global);
+                        }
                     } else {
                         jQuery.handleError(s, xml, status);
-                        alert('status : '+status);
+alert('status erreur : '+status);
                       }
                 } catch(e) 
 				{
 alert('entering exception');
-                    status = "error";
-                    jQuery.handleError(s, xml, status, e);
+                    //status = "error";
+                    //jQuery.handleError(s, xml, status, e);
                 }
 
                 // The request was completed
@@ -190,6 +193,7 @@ alert('exception submit');
     },
 
     uploadHttpData: function( r, type ) {
+alert('entering upload data.\nr : '+r+'\ntype : '+type);
         var data = !type;
         data = type == "xml" || data ? r.responseXML : r.responseText;
         // If the type is "script", eval it in global context
@@ -202,6 +206,7 @@ alert('exception submit');
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();
 			//alert($('param', data).each(function(){alert($(this).attr('value'));}));
+alert('upload data : '+data);
         return data;
     }
 })
