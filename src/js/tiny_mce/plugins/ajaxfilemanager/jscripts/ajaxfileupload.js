@@ -58,13 +58,16 @@ jQuery.extend({
         // Watch for a new set of requests
         if ( s.global && ! jQuery.active++ )
 		{
+alert('ajaxstart \ns globals :'+s.global);
 			jQuery.event.trigger( "ajaxStart" );
 		}            
         var requestDone = false;
         // Create the request object
         var xml = {}   
-        if ( s.global )
+        if ( s.global ) {
             jQuery.event.trigger("ajaxSend", [xml, s]);
+alert('ajaxsend \ns globals :'+s.global);
+        }
         // Wait for a response to come back
         var uploadCallback = function(isTimeout)
 		{			
@@ -106,8 +109,9 @@ alert('success OK \n'+s.success(data, status));
     					}
                         // Fire the global callback
                         if( s.global ) {
+alert('ATTENTION : BUG ICI?');
                             jQuery.event.trigger( "ajaxSuccess", [xml, s] );
-alert('global OK \n'+s.global);
+alert('ajaxsuccess \ns globals :'+s.global);
                         }
                     } else {
                         jQuery.handleError(s, xml, status);
@@ -116,18 +120,20 @@ alert('status erreur : '+status);
                 } catch(e) 
 				{
 alert('entering exception');
-                    //status = "error";
-                    //jQuery.handleError(s, xml, status, e);
+                    status = "error";
+                    jQuery.handleError(s, xml, status, e);
                 }
 
                 // The request was completed
-                if( s.global )
+                if( s.global ) {
                     jQuery.event.trigger( "ajaxComplete", [xml, s] );
-
+alert('ajaxcomplete \ns globals :'+s.global);
+				}
                 // Handle the global AJAX counter
-                if ( s.global && ! --jQuery.active )
+                if ( s.global && ! --jQuery.active ) {
                     jQuery.event.trigger( "ajaxStop" );
-
+alert('ajaxstop \ns globals :'+s.global);
+				}
                 // Process result
                 if ( s.complete )
                     s.complete(xml, status);
