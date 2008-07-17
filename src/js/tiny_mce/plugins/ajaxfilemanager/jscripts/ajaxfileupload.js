@@ -184,8 +184,7 @@ alert('try submit');
             $(form).submit();
 
         } catch(e) 
-		{	
-alert('exception submit');		
+		{		
             jQuery.handleError(s, xml, null, e);
         }
         if(window.attachEvent){
@@ -202,12 +201,16 @@ alert('exception submit');
 alert('entering upload data.\nr : '+r+'\ntype : '+type);
         var data = !type;
         data = type == "xml" || data ? r.responseXML : r.responseText;
+alert('data uploadhttp : '+data
         // If the type is "script", eval it in global context
         if ( type == "script" )
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
-        if ( type == "json" )
+        if ( type == "json" ) {
+alert('entering type json');
             eval( "data = " + data );
+alert('exiting json.\ndata : '+data);
+        }
         // evaluate scripts within html
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();

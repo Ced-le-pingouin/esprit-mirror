@@ -11,7 +11,7 @@
 	echo "{";
 	$error = "";
 	$info = "";
-	
+
 	include_once(CLASS_UPLOAD);
 	$upload = new Upload();
 								

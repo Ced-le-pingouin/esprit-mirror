@@ -441,7 +441,7 @@ $(document).ready(
 		  	<table class="tableForm" cellpadding="0" cellspacing="0">
 		  		<thead>
 		  			<tr>
-		  				<th colspan="2"><?php echo FILE_FORM_TITLE; ?><a class="action" href="#" title="<?php echo FILE_LBL_MORE;  ?>" onclick="return addMoreFile();"><span class="addMore">&nbsp;</span></a></th>
+		  				<th colspan="2"><?php echo FILE_FORM_TITLE; ?></th>
 		  			</tr>
 		  		</thead>
 		  		<tbody id="fileUploadBody">
