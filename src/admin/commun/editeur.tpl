@@ -2,7 +2,6 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="css://commun/globals.css">
-<script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
 <script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
 <script type="text/javascript" language="javascript">
@@ -10,15 +9,13 @@
 
 initEditeur("exact", "id_{editeur->nom}", {tableau_de_bord->actif} );
 
-/*
 function mySetContent(editor_id, body, doc) {
 	if (top.recuperer) {
 		body.innerHTML = top.recuperer();
-		alert(top.recuperer)
 	}
 	return "";
 }
-*/
+
 function redimensionner() {
 	var elEd = document.getElementById("id_{editeur->nom}");
 	elEd.style.height = '100%';
