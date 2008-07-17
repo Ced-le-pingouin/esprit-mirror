@@ -84,7 +84,7 @@
     define('PAGINATION_ITEMS_PER_PAGE', 'Afficher %s &eacute;l&eacute;ments par page');
     define('PAGINATION_GO_PARENT', 'Dossier Parent');
     //System
-    define('SYS_DISABLED', 'Permission refus&eacute;e: Le syst&egrave;me est d&eacute;sactiv&eacute;.');
+    define('SYS_DISABLED', 'Permission refus\u00E9ee: Le syst\u00E8me est d\u00E9sactiv\u00E9.');
     	
     //Cut
     define('ERR_NOT_DOC_SELECTED_FOR_CUT', "Aucun document(s) selectionn&eacute; pour couper.");
@@ -194,11 +194,11 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
 	define('NEW_FILE_CREATE', 'Cr&eacute;er le Fichier');
         //file upload
     define('ERR_FILE_NAME_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, espaces, tirets et tirets-bas.");
-    define('ERR_FILE_NOT_UPLOADED', "Aucun fichier n'a &eacute;t&eacute; selectionn&eacute; pour &ecirc;tre envoy&eacute;.");
+    define('ERR_FILE_NOT_UPLOADED', "Aucun fichier n'a \u00E9t\u00E9 selectionn\u00E9 pour \u00EAtre envoy\u00E9.");
     define('ERR_FILE_TYPE_NOT_ALLOWED', "Vous n\'etes pas autoris&eacute; &agrave; d&eacute;poser ce type de fichier.");
     define('ERR_FILE_NOT_IMG', "Ceci n\'est pas une image");
-    define('ERR_FILE_NOT_MEDIA', "Ceci n\'est pas une vid&eacute;o");
-    define('ERR_FILE_MOVE_FAILED', "Le d&eacute;placement du fichier a &eacute;chou&eacute;.");
+    define('ERR_FILE_NOT_MEDIA', "Ceci n\'est pas une vid\u00E9o");
+    define('ERR_FILE_MOVE_FAILED', "Le d\u00E9placement du fichier a \u00E9chou\u00E9.");
     define('ERR_FILE_NOT_AVAILABLE', "Le fichier est indisponible.");
     define('ERROR_FILE_TOO_BID', "Le fichier est trop lourd. (max : %s)");
 	define('FILE_FORM_TITLE', 'D&eacute;poser un fichier sur le serveur');
@@ -208,7 +208,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
 	define('FILE_LBL_UPLOAD', 'D&eacute;poser');
 	define('FILE_DISCLAIMER', '<p>Ce fichier sera d&eacute;pos&eacute; &agrave; votre nom et pourra &ecirc;tre utilis&eacute; par<br />d\'autres enseignants, dans d\'autres cours !</p><p>Assurez-vous d\'en avoir les droits d\'utilisation.</p>');
     //file download
-    define('ERR_DOWNLOAD_FILE_NOT_FOUND', "Aucun fichier selectionn&eacute; pour &ecirc;tre t&eacute;l&eacute;charg&eacute;.");
+    define('ERR_DOWNLOAD_FILE_NOT_FOUND', "Aucun fichier selectionn\u00E9 pour \u00EAtre t\u00E9l\u00E9charg\u00E9.");
     	//Rename
 	define('RENAME_FORM_TITLE', 'Renommer');
 	define('RENAME_NEW_NAME', 'Nouveau Nom');
@@ -222,7 +222,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
     define('TIP_SELECT_ALL', "Tout selectionner");
     define('TIP_UNSELECT_ALL', "Tout d&eacute;selectionner");
     //WARNING
-    define('WARNING_DELETE', "Voulez-vous vraiment effacer les fichiers selectionn&eacute;s.");
+    define('WARNING_DELETE', "Voulez-vous vraiment effacer les fichiers selectionn\u00E9s.");
     define('WARNING_IMAGE_EDIT', "Merci de choisir une image &agrave; modifier.");
     define('WARNING_NOT_FILE_EDIT', "Merci de choisir un fichier &agrave; modifier.");
     define('WARING_WINDOW_CLOSE', "Voulez-vous vraiment fermer la fen&ecirc;tre ?");

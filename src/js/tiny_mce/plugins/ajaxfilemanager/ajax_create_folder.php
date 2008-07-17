@@ -47,8 +47,6 @@
 					{				
 						switch ($k)
 						{
-
-
 							case "ctime";								
 							case "mtime":
 							case "atime":
@@ -64,12 +62,11 @@
 						$info .= sprintf(", %s:'%s'", $k, $v);
 					}
 					/*
-					 * créé un fichier index.php, pour que l'on ne puisse pas accéder directement au répertoire par l'url
+					 * crée un fichier index.php, pour que l'on ne puisse pas accéder directement au répertoire par l'url
 					 * 
 					 */
-					//$error = $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-					/*$sDonnees = "<?php header(\"HTTP/1.0 404 Not Found\"); ?>";*/
-					$sDonnees = "<?php header('location: '); ?>";
+					/*$sDonnees = "<?php header(\"HTTP/1.0 404 Not Found\"); ?>";
+					$sDonnees = "<?php header('location: '); ?>";*/
 					file_put_contents(addTrailingSlash($_POST['currentFolderPath']).$_POST['new_folder'].'/index.php', '');
 		}else 
 		{

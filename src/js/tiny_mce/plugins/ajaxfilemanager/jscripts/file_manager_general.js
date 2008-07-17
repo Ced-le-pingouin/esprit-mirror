@@ -644,11 +644,13 @@ if (commandes.boolNF && bUtilisateur)
 {
 	$('#ajoutDossier').show();
 	$('#envoiFichier').show();
+	$('#suppression').show();
 }
 else
 {
 	$('#ajoutDossier').hide();
 	$('#envoiFichier').hide();
+	$('#suppression').hide();
 }
 }
 /**
@@ -1034,7 +1036,6 @@ function cancelFileUpload(elementId)
 */
 function uploadFile(elementId)
 {
-
 		var ext = getFileExtension($('#' + elementId).val());
 		if(ext == '')
 		{
@@ -1093,6 +1094,7 @@ function uploadFile(elementId)
 								}
 							}
 							addDocumentHtml(numRows);
+							tb_remove();
 						}
 					}
 					
@@ -1100,11 +1102,10 @@ function uploadFile(elementId)
 				error: function (data, status, e)
 				{
 					$('#ajax' + elementId).hide();
-					alert(e);
+					alert('erreur lors de l\'upload :\n'+e);
 				}
 			}
 		)	
-	
 	return false;
 };
 /**
@@ -1185,7 +1186,7 @@ function newFolderWin(linkElem)
 function newUserWin(linkElem)
 {
 var folders = currentFolder.friendly_path.split('/');
-	if (currentFolder.name == 'Image' || currentFolder.name == 'Media') {	// on vérifie que la personne n'est pas dans un sous-répertoire
+	if (currentFolder.name == 'images' || currentFolder.name == 'medias') {	// on vérifie que la personne n'est pas dans un sous-répertoire
 		showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=250'+ '&inlineId=winNewUser&modal=true'));
 	}
 	return false;
@@ -1213,10 +1214,10 @@ function doCreateFolder(bNewUser)
 				url:getUrl('create_folder'),
 				error: function (data, status, e) 
 				{
-					//alert(e);
+					alert('erreur lors de la creation :\n'+e);
 				},				
 				success:   function(data) 
-				{ 
+				{
 					//remove those selected items
 					if(data.error != '')
 					{
@@ -1234,7 +1235,7 @@ function doCreateFolder(bNewUser)
 								}
 							}
 						addDocumentHtml(numRows);
-
+						alert('creation reussie');
 						tb_remove();
 					}
 				} 

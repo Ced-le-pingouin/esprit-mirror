@@ -78,7 +78,6 @@
 			}
 		}	
 	}
-	echo $_SESSION['ajax_from_folder'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" debug="true">
@@ -246,10 +245,10 @@ else echo "<body>";
 					<li><a href="#" id="actionRefresh" onclick="return windowRefresh();"><span><?php echo LBL_ACTION_REFRESH; ?></span></a></li>
 					<li><a href="#" id="actionSelectAll" class="check_all" onclick="return checkAll(this);"><span><?php echo LBL_ACTION_SELECT_ALL; ?></span></a></li>
 					<?php 
-						if(CONFIG_OPTIONS_DELETE)
+						//if(CONFIG_OPTIONS_DELETE)
 						{
 							?>
-							<li><a href="#" id="actionDelete" onclick="return deleteDocuments();"><span><?php echo LBL_ACTION_DELETE; ?></span></a></li>
+							<li id="suppression"><a href="#" id="actionDelete" onclick="return deleteDocuments();"><span><?php echo LBL_ACTION_DELETE; ?></span></a></li>
 							<?php
 						}
 					?>
@@ -518,7 +517,7 @@ var fichierXML = 		x[i].getElementsByTagName("fichier")[0].childNodes[0].nodeVal
 var cheminXML = 		x[i].getElementsByTagName("chemin")[0].childNodes[0].nodeValue;
 var md5XML = 			x[i].getElementsByTagName("md5")[0].childNodes[0].nodeValue;
 md5XML = md5XML.substring(0, md5XML.length/2)+"\n"+md5XML.substring(md5XML.length/2); // on coupe le md5 en 2
-cheminXML = cheminXML.substring(0, cheminXML.search(/Image|Media/i)+6)+""+cheminXML.substring(cheminXML.search(/Image|Media\//i)+6);
+cheminXML = cheminXML.substring(0, cheminXML.search(/images|medias/i)+6)+""+cheminXML.substring(cheminXML.search(/images|medias\//i)+6);
 
 var trNode = document.createElement("tr");
 var tdNode = document.createElement("td");

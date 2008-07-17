@@ -8,8 +8,8 @@
 	 */
 	
 
-//error_reporting(E_ALL);	
-error_reporting(E_ALL ^ E_NOTICE);	
+error_reporting(E_ALL);	
+//error_reporting(E_ALL ^ E_NOTICE);	
 	
 	
 
@@ -33,7 +33,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 	define('CONFIG_SYS_VIEW_ONLY', false); //diabled the system, view only
 	
 	//User Permissions
-	define('CONFIG_OPTIONS_DELETE', false);
+	define('CONFIG_OPTIONS_DELETE', true);
 	define('CONFIG_OPTIONS_CUT', false);
 	define('CONFIG_OPTIONS_COPY', false);
 	define('CONFIG_OPTIONS_NEWFOLDER', true);
@@ -51,8 +51,8 @@ error_reporting(E_ALL ^ E_NOTICE);
 	define('CONFIG_SYS_ROOT_PATH', '../../../../depot/');	//accept relative path only
 	define('CONFIG_LOG_PATH', '../../../../depot/log_upload.csv'); // fichier log rempli à chaque envoi de fichier par l'utilisateur
 	define('CONFIG_LOGXML_PATH', '../../../../depot/log_upload.xml'); // fichier xml rempli à chaque envoi de fichier par l'utilisateur
-	define('CONFIG_IMAGE_PATH', '../../../../depot/Image/');	//images path use for Esprit
-	define('CONFIG_MEDIA_PATH', '../../../../depot/Media/');	//medias path use for Esprit
+	define('CONFIG_IMAGE_PATH', '../../../../depot/images/');	//images path use for Esprit
+	define('CONFIG_MEDIA_PATH', '../../../../depot/medias/');	//medias path use for Esprit
 	define('CONFIG_SYS_FOLDER_SHOWN_ON_TOP', true); //show your folders on the top of list if true or order by name 
 	define("CONFIG_SYS_DIR_SESSION_PATH", 'session/');
 	define("CONFIG_SYS_PATTERN_FORMAT", 'reg'); //three options: reg ,csv, list, this option define the parttern format for the following patterns
@@ -116,7 +116,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 			/*
 			*	options avaialbe for CONFIG_EDITOR_NAME are:
 					stand_alone
-					tinymce
+					tinymce3
 					fckeditor
 			*/
 	//CONFIG_EDITOR_NAME replaced CONFIG_THEME_MODE since @version 0.8			

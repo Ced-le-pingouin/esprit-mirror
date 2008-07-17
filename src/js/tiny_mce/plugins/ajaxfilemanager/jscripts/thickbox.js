@@ -272,6 +272,7 @@ function tb_showIframe(){
 }
 
 function tb_remove() {
+alert('debut fermeture');
  	$("#TB_imageOff").unbind("click");
 	$("#TB_closeWindowButton").unbind("click");
 	$("#TB_window").fadeOut("fast",function(){$('#TB_window,#TB_overlay,#TB_HideSelect').trigger("unload").unbind().remove();});
@@ -282,6 +283,7 @@ function tb_remove() {
 	}
 	document.onkeydown = "";
 	document.onkeyup = "";
+	alert('fermeture');
 	return false;
 }
 
