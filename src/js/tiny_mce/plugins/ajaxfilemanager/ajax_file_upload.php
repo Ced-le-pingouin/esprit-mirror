@@ -46,8 +46,9 @@
 							{	
 								include_once(CLASS_MANAGER);
 							
-								$manager = new manager($upload->getFilePath(), false);			
-															
+								//$manager = new manager($upload->getFilePath(), false);
+								$manager = new manager('', false);
+																			
 								$fileType = $manager->getFileType($upload->getFileName());
 
 								foreach($fileType as $k=>$v)
