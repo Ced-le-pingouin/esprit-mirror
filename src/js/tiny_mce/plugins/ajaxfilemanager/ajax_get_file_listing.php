@@ -63,9 +63,14 @@
 		$pagination->setLastText(PAGINATION_LAST);
 		$pagination->setLimit(!empty($_GET['limit'])?intval($_GET['limit']):CONFIG_DEFAULT_PAGINATION_LIMIT);
 		echo $pagination->getPaginationHTML();
-		echo "<script type=\"text/javascript\">\n";
 		
-        echo "parentFolder = {path:'" . getParentFolderPath($folderInfo['path']). "'};\n"; 
+		if (isset ($_GET['mode'])) $sManagerMode = $_GET['mode'];
+		else $sManagerMode = 'tuteur';
+		//	echo "\nmode : ".$sManagerMode."\n";
+
+		echo "<script type=\"text/javascript\">\n";
+// si le mode 'tuteur est actif, impossibilité de remonter à la racine		
+        echo "parentFolder = {path:'" . getParentFolderPath($folderInfo['path'],$sManagerMode). "'};\n"; 
 		echo 'currentFolder ={'; 
 		$count =1;
 		foreach($folderInfo as $k=>$v)

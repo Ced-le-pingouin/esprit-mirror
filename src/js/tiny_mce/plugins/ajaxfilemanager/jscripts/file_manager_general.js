@@ -602,17 +602,20 @@ function parseCurrentFolder()
 
 	var parentPath = '';
 	for(var i = 0; i < folders.length; i++)
-	{
+	{	
+// on enlève le lien vers la racine
+// l'utilisateur n'a accès qu'au type de média passé depuis TinyMCE	
 		if(i == 0)
 		{
 			parentPath += paths.root;
-			str += '/<a href="' + appendQueryString(url, 'path='+ parentPath, ['path']) + '"><span class="folderRoot">' + paths.root_title + '</span></a>'
+			//str += '/<a href="' + appendQueryString(url, 'path='+ parentPath, ['path']) + '"><span class="folderRoot">' + paths.root_title + '</span></a>'
+			str += '/<span class="folderRoot">' + paths.root_title + '</span>'
 			
 		}else
+
 		{
 			if(folders[i] != '')
 			{
-				
 				parentPath += folders[i] + '/';
 				str += '/<a href="' + appendQueryString(url, 'path='+ parentPath , ['path']) + '"><span class="folderSub">' + folders[i] + '</span></a>';
 			}

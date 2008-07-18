@@ -36,6 +36,9 @@
 		$view = CONFIG_DEFAULT_VIEW;
 	}
 
+	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
+	(isset($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" debug="true">
@@ -347,77 +350,20 @@ $(document).ready(
 
 					</tbody>
 				</table>
-		
-        <p class="searchButtons" id="returnCurrentUrl">
+<?php
+// si on passe par le menu outils,
+// le bouton pour envoyer dans l'éditeur est désactivé
+	if ($sManagerMode !== 'racine') {		
+        echo "<p class=\"searchButtons\" id=\"returnCurrentUrl\">
   
-        	<span class="right" id="linkSelect">
-        		<input type="button" value="<?php echo MENU_SELECT; ?>"  id="selectCurrentUrl" class="button">
+        	<span class=\"right\" id=\"linkSelect\">
+        		<input type=\"button\" value=\"".MENU_SELECT."\"  id=\"selectCurrentUrl\" class=\"button\">
         	</span>
         	
-        </p>				
+        </p>";
+	}
+?>							
 			</fieldset>
-			
-     
-      
-      	<fieldset class="boxSearch">
-      		<legend><?php echo LBL_SEARCH; ?></legend>
-
-
-
-          <table cellpadding="0" cellspacing="0" class="tableSearch">
-          	<tbody>
-	          <tr>
-	          	<td>
-	          		<b><?php echo LBL_SEARCH_NAME; ?></b> <br />
-	            	<input type="text" class="input inputSearch" name="search_name" id="search_name" />
-	          	</td>
-	         </tr>
-	          <tr>
-	          	<td>
-	          	<b><?php echo LBL_SEARCH_FOLDER; ?></b><br />
-	            <select class="input inputSearch" name="search_folder" id="search_folder">
-	            	<?php 
-									foreach(getFolderListing(CONFIG_SYS_ROOT_PATH) as $k=>$v)
-									{
-										?>
-	                  <option value="<?php echo $v; ?>" <?php echo (removeTrailingSlash(backslashToSlash(($folderInfo['path']))) == removeTrailingSlash(backslashToSlash(($v)))?' selected="selected"':''); ?>><?php echo shortenFileName($k, 30); ?></option>
-	                  <?php 
-									}
-								?>            	
-	            </select>
-	          </td>
-	         </tr>  
-        		<tr>
-        			<td>
-        		<b><?php echo LBL_SEARCH_MTIME; ?></b><br />
-        		<input type="text" class="input inputMtime" name="search_mtime_from" id="search_mtime_from" value="<?php echo (!empty($_GET['search_mtime_from'])?$_GET['search_mtime_from']:''); ?>" /> 
-        		<span class="leftToRightArrow">&nbsp;</span>
-        		<input type="text" class="input inputMtime" name="search_mtime_to" id="search_mtime_to" value="<?php echo (!empty($_GET['search_mtime_to'])?$_GET['search_mtime_to']:''); ?>" />
-        	</td></tr>
-
-			<tr>
-				<td>
-          	<b><?php echo LBL_SEARCH_RECURSIVELY; ?></b>&nbsp;&nbsp;
-          	<input type="radio" name="search_recursively" value="1" id="search_recursively_1" class="radio" <?php echo (!empty($_GET['search_recursively'])?'checked="checked"':''); ?> /> <?php echo LBL_RECURSIVELY_YES; ?>
-          	<input type="radio" name="search_recursively" value="0" id="search_recursively_0" class="radio" <?php echo (empty($_GET['search_recursively'])?'checked="checked"':''); ?> /> <?php echo LBL_RECURSIVELY_NO; ?>
-          	</td>
-          </tr>	                	
-          	</tbody>
-</table>
-
-
-
-       	
-        <p class="searchButtons">
-        	<span class="left" id="linkClose" style="display:none">
-        		<input  type="button" value="<?php echo LBL_ACTION_CLOSE; ?>" onclick="return cancelSelectFile();"  class="button">
-        	</span>
-        	<span class="right" id="linkSearch">
-        		<input type="button" value="<?php echo BTN_SEARCH; ?>" onclick="return search();" class="button">
-        	</span>
-        	
-        </p>
-        </fieldset>
   
       </div>
       
@@ -428,8 +374,6 @@ $(document).ready(
   </div>
   <div class="clear"></div>
 
-
-  
   <div id="ajaxLoading" style="display:none"><img class="ajaxLoadingImg" src="theme/<?php echo CONFIG_THEME_NAME; ?>/images/ajaxLoading.gif" /></div>
   <div id="winUpload" style="display:none">
   	<div class="jqmContainer">

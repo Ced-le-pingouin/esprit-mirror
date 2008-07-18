@@ -1055,7 +1055,7 @@ function getRootPath() {
    * @param string $path
    * @return string 
    */
-  function getParentFolderPath($path)
+  function getParentFolderPath($path, $mode='tuteur')
   {
   	$realPath = addTrailingSlash(backslashToSlash(getRealPath($path)));
   	$parentRealPath =  addTrailingSlash(backslashToSlash(dirname($realPath)));
@@ -1065,7 +1065,16 @@ function getRootPath() {
   	echo $parentRealPath . "<br>";
   	echo $differentPath . "<br>";
   	echo $parentPath . "<br>";*/
-  	if(isUnderRoot($parentPath))
+  	
+  	if ($path == CONFIG_IMAGE_PATH && $mode == 'tuteur') // on empêche l'utilisateur de remonter à la racine du répertoire d'upload
+  	{
+  		return CONFIG_IMAGE_PATH;
+  	}
+  	elseif ($path == CONFIG_MEDIA_PATH && $mode == 'tuteur') // on empêche l'utilisateur de remonter à la racine du répertoire d'upload
+  	{
+  		return CONFIG_MEDIA_PATH;
+  	}
+  	elseif(isUnderRoot($parentPath))
   	{
   		return $parentPath;
   	}else 
