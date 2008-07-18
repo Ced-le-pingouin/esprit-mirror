@@ -94,13 +94,11 @@ jQuery.extend({
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
 					{
-alert('status OK : '+status);
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
                         if ( s.success ) {
                             s.success( data, status );
-alert('success OK \n'+s.success(data, status));
     					}
                         // Fire the global callback
                         if( s.global ) {
@@ -188,10 +186,10 @@ alert('entering exception');
     },
 
     uploadHttpData: function( r, type ) {
-alert('entering upload data.\nr : '+r+'\ntype : '+type);
         var data = !type;
+alert('data : '+data);
         data = type == "xml" || data ? r.responseXML : r.responseText;
-alert('data uploadhttp : '+data);
+alert('data uploadhttp : '+data+'\n\nresponseText : '+r.responseText);
         // If the type is "script", eval it in global context
         if ( type == "script" )
             jQuery.globalEval( data );
