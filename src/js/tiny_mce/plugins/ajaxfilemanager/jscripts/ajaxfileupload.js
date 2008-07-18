@@ -58,7 +58,6 @@ jQuery.extend({
         // Watch for a new set of requests
         if ( s.global && ! jQuery.active++ )
 		{
-alert('ajaxstart \ns globals :'+s.global);
 			jQuery.event.trigger( "ajaxStart" );
 		}            
         var requestDone = false;
@@ -66,7 +65,6 @@ alert('ajaxstart \ns globals :'+s.global);
         var xml = {}   
         if ( s.global ) {
             jQuery.event.trigger("ajaxSend", [xml, s]);
-alert('ajaxsend \ns globals :'+s.global);
         }
         // Wait for a response to come back
         var uploadCallback = function(isTimeout)
@@ -77,12 +75,11 @@ alert('ajaxsend \ns globals :'+s.global);
 				if(io.contentWindow)
 				{
 					 xml.responseText = io.contentWindow.document.body?io.contentWindow.document.body.innerHTML:null;
-                	 xml.responseXML = io.contentWindow.document.XMLDocument?io.contentWindow.document.XMLDocument:io.contentWindow.document;
-					 
+                	 xml.responseXML = io.contentWindow.document.XMLDocument?io.contentWindow.document.XMLDocument:io.contentWindow.document;					 
 				}else if(io.contentDocument)
 				{
 					 xml.responseText = io.contentDocument.document.body?io.contentDocument.document.body.innerHTML:null;
-                	xml.responseXML = io.contentDocument.document.XMLDocument?io.contentDocument.document.XMLDocument:io.contentDocument.document;
+                	 xml.responseXML = io.contentDocument.document.XMLDocument?io.contentDocument.document.XMLDocument:io.contentDocument.document;
 				}						
             }catch(e)
 			{
@@ -92,9 +89,7 @@ alert('ajaxsend \ns globals :'+s.global);
 			{				
                 requestDone = true;
                 var status;
-alert("statut debut : "+status);
                 try {
-alert('entering try \ntimeout : '+isTimeout);
                     status = isTimeout != "timeout" ? "success" : "error";
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
@@ -109,13 +104,11 @@ alert('success OK \n'+s.success(data, status));
     					}
                         // Fire the global callback
                         if( s.global ) {
-alert('ATTENTION : BUG ICI?');
                             jQuery.event.trigger( "ajaxSuccess", [xml, s] );
 alert('ajaxsuccess \ns globals :'+s.global);
                         }
                     } else {
                         jQuery.handleError(s, xml, status);
-alert('status erreur : '+status);
                       }
                 } catch(e) 
 				{
@@ -127,12 +120,10 @@ alert('entering exception');
                 // The request was completed
                 if( s.global ) {
                     jQuery.event.trigger( "ajaxComplete", [xml, s] );
-alert('ajaxcomplete \ns globals :'+s.global);
 				}
                 // Handle the global AJAX counter
                 if ( s.global && ! --jQuery.active ) {
                     jQuery.event.trigger( "ajaxStop" );
-alert('ajaxstop \ns globals :'+s.global);
 				}
                 // Process result
                 if ( s.complete )
@@ -167,7 +158,6 @@ alert('ajaxstop \ns globals :'+s.global);
         }
         try 
 		{
-alert('try submit');
            // var io = $('#' + frameId);
 			var form = $('#' + formId);
 			$(form).attr('action', s.url);
@@ -207,7 +197,7 @@ alert('data uploadhttp : '+data);
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
         if ( type == "json" ) {
-alert('entering type json');
+alert('entering type json.\ndata '+data);
             eval( "data = " + data );
 alert('exiting json.\ndata : '+data);
         }
