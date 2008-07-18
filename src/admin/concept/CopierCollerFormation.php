@@ -63,16 +63,21 @@ class CopierCollerFormation extends AfficheurPage
 	 */
 	function recupererDonnees()
 	{
-		$sActionsReconnues = array('changerFormation', 'copier', 'coller', 'supprimerElemPp', 'viderPp');
-		$this->sAction = array_shift(array_intersect($sActionsReconnues, array_keys($this->aDonneesForm)));
+		$sActionsReconnues = array('changerFormation', 'copier', 'coller', 
+		                           'supprimerColler', 'supprimerElemPp',
+		                           'viderPp');
+		$this->sAction = array_shift(array_intersect($sActionsReconnues, 
+		                             array_keys($this->aDonneesForm)));
 		
 		$this->oProjet = new CProjet();
 		
 		$this->iIdFormationSrc = $this->aDonneesForm['idFormationSrc'] ? 
-		                         $this->aDonneesForm['idFormationSrc'] : $this->aDonneesUrl['idFormationSrc'];
+		                         $this->aDonneesForm['idFormationSrc'] : 
+		                         $this->aDonneesUrl['idFormationSrc'];
 		                         
 		$this->iIdFormationDest = $this->aDonneesForm['idFormationDest'] ? 
-		                          $this->aDonneesForm['idFormationDest'] : $this->aDonneesUrl['idFormationDest'];
+		                          $this->aDonneesForm['idFormationDest'] : 
+		                          $this->aDonneesUrl['idFormationDest'];
 		
 		$this->brancheSrcSel  = $this->aDonneesForm['brancheSrcSel'];
 		$this->brancheDestSel = $this->aDonneesForm['brancheDestSel'];
@@ -81,7 +86,7 @@ class CopierCollerFormation extends AfficheurPage
 		$this->oPressePapiers =& $this->aDonneesPersist['pressePapiersFormation'];
 		if (!isset($this->oPressePapiers))
 			$this->oPressePapiers = new PressePapiers();
-		
+
 		$this->elemPpSel = $this->aDonneesForm['elemPpSel'];
 		
 		$this->sOngletCourant = !empty($this->aDonneesForm['ongletCourant']) ?
@@ -124,11 +129,17 @@ class CopierCollerFormation extends AfficheurPage
                                   "Aucune formation n'est disponible comme cible de la copie");
 		
 		//// permission formations src/dest ???
-
+		
 		// si Copier déclenché mais aucune branche source sélectionnée
 		if ($this->sAction == 'copier' && empty($this->brancheSrcSel))
 			$this->declarerErreurAction('erreurBrancheSrc', FALSE, 'Aucun élément source sélectionné pour la copie');
-			
+		
+		// récupérer type et id de la sélection du Pp et de l'onglet Coller
+		if (!empty($this->elemPpSel))
+			list($this->iTypeElemAColler, $this->iIdElemAColler) = explode('_', $this->elemPpSel);
+		if (!empty($this->brancheDestSel))
+			list($this->iTypeElemDest, $this->iIdElemDest) = explode('_', $this->brancheDestSel);
+
 		// si Coller déclenché mais...
 		if ($this->sAction == 'coller')
 		{
@@ -147,8 +158,6 @@ class CopierCollerFormation extends AfficheurPage
 			// ...ou l'emplacement de destination n'est pas de même type ou de type parent
 			else
 			{
-				list($this->iTypeElemAColler, $this->iIdElemAColler) = explode('_', $this->elemPpSel);
-				list($this->iTypeElemDest, $this->iIdElemDest) = explode('_', $this->brancheDestSel);
 				if (!ElementFormation::typeEstFrereDe($this->iTypeElemAColler, $this->iTypeElemDest)
 				 && !ElementFormation::typeEstEnfantDe($this->iTypeElemAColler, $this->iTypeElemDest))
 					$this->declarerErreurAction('erreurDestCopie', FALSE,
@@ -156,6 +165,17 @@ class CopierCollerFormation extends AfficheurPage
 					                           .'inférieur à la branche de destination de la copie');
 			}
 		}
+
+		// si supprimer (onglet Coller) déclenché mais aucune branche sélectionnée
+		if ($this->sAction == 'supprimerColler')
+			if (empty($this->brancheDestSel))
+				$this->declarerErreurAction(
+					'erreurSupprimer', FALSE, 'Aucun élément sélectionné pour la suppression'
+				);
+			else if ($this->iTypeElemDest == TYPE_FORMATION)
+				$this->declarerErreurAction(
+					'erreurSupprimerFormation', FALSE, 'Pour supprimer une formation complète, eConcept doit être utilisé'
+				);
 		
 		// si supprimer élément de presse-papier mais aucun élément sélectionné
 		if ($this->sAction == 'supprimerElemPp' && empty($this->elemPpSel))
@@ -195,6 +215,14 @@ class CopierCollerFormation extends AfficheurPage
 				$oElemAColler->copierAvecNumOrdre($this->iIdElemDest, $iNumOrdre);
 				break;
 			
+			case 'supprimerColler':
+					$oElemASupprimer = ElementFormation::retElementFormation(
+						$this->oProjet->oBdd, $this->iTypeElemDest,
+						$this->iIdElemDest
+					);
+					$oElemASupprimer->effacer();
+					break;
+				
 			case 'supprimerElemPp':
 				$this->oPressePapiers->enleverElement(new PressePapiersElement($this->elemPpSel, 'copier'));
 				break;
@@ -290,6 +318,11 @@ class CopierCollerFormation extends AfficheurPage
 	 */
 	function afficherPressePapiers()
 	{
+		// si éléments du presse-papiers inexistants => les enlever
+		$this->oPressePapiers->enleverElementsInvalides(
+			array(&$this, '_elemPressePapiersEstValide')
+		);
+				
 		$itrPressePapiers = $this->oPressePapiers->retIterateur();
 		$tplPressePapiers = new TPL_Block('pp_element', $this->tpl);
 		$tplPressePapiers->beginLoop();
@@ -315,6 +348,24 @@ class CopierCollerFormation extends AfficheurPage
 		}
 		$tplPressePapiers->afficher();
 	}
+	
+	/**
+	 * Fonction utilitaire utilisée dans un "callback" pour déterminer si un 
+	 * élément du presse-papiers, càd son enreg dans la Db, existe toujours
+	 *
+	 * @param	$elemPp	l'élément à vérifier
+	 * @return	\c true si l'élément est valide, \c false sinon
+	 */
+	function _elemPressePapiersEstValide($elemPp)
+	{
+		$idCompose = $elemPp->retSujet();
+		list($iTypeElem, $iIdElem) = explode('_', $idCompose);
+		$elem = ElementFormation::retElementFormation(
+			$this->oProjet->oBdd, $iTypeElem, $iIdElem
+		);
+		
+		return (bool)$elem->oEnregBdd;
+	}
 }
 
 // il faut instancier la classe et demander l'affichage
@@ -323,5 +374,4 @@ $page->demarrer();
 
 //// - vérif que la formation cible est modifiable par l'utilisateur (quelle méthode? dans quelle classe? il y a 
 ////   verifModifierFormation() dans CProjet, mais c'est pour la formation courante, pas n'importe laquelle)
-//// ??? faire disparaître les boutons Choisir si JS activé (submit auto)
 ?>

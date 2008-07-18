@@ -602,7 +602,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Efface unne rubrique dans la DB	
+	 * Efface une rubrique dans la DB	
 	 * 
 	 * @param	v_iIdRubrique l'id de la rubrique à effacer
 	 */

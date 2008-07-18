@@ -220,10 +220,22 @@ function enleverBoutonsChoisir()
 	 { document.getElementsByName('changerFormationDest')[0].click(); };
 }
 
+function associerConfirmationBoutonSupprimer()
+{
+	document.getElementById('supprimerColler').onclick = function()
+	{
+		return confirm(
+			"Êtes-vous sûr(e) de vouloir supprimer cet élément ?\n"
+			+ "ATTENTION!!! Il s'agit d'une suppression définitive!!!"
+		);
+	}
+}
+
 function initPage()
 {
 	initOnglets();
 	enleverBoutonsChoisir();
+	associerConfirmationBoutonSupprimer();
 	new ListeChoix('brancheSrcSel');
 	new ListeChoix('brancheDestSel');
 }
