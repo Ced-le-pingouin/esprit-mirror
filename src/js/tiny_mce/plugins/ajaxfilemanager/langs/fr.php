@@ -181,7 +181,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
     define('ERR_RENAME_FILE_TYPE_NOT_PERMITED', "Vous n'&ecirc;tes pas autoris&eacute; &agrave; changer de la sorte l'extension du fichier.");
         //folder creation
     define('ERR_FOLDER_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, espaces, tirets et tirets-bas.");
-    define('ERR_FOLDER_EXISTS', "Il faut saisir un nom qui n'est pas pris dans ce dossier.");
+    define('ERR_FOLDER_EXISTS', "Il faut saisir un nom qui n\'est pas pris dans ce dossier.");
     define('ERR_FOLDER_CREATION_FAILED', "Impossible de cr\u00E9er un dossier, merci de recommencer.");
     define('ERR_FOLDER_NAME_EMPTY', "Il faut pr\u00E9ciser un nom.");
 	define('FOLDER_FORM_TITLE', 'Cr&eacute;er un Dossier');

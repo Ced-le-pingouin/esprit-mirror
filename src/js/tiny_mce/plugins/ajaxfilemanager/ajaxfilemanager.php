@@ -6,6 +6,7 @@
 	 * @since 22/May/2007
 	 *
 	 */
+	require_once("globals.inc.php");
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");
 	$session->gc();
 	require_once(CLASS_MANAGER);
@@ -39,15 +40,22 @@
 	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
 	(isset($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
 
+// récupération du prenom/nom de l'utilisateur
+	$oProjet = new CProjet();
+	$bEstAdmin = $oProjet->verifAdministrateur();
+	$sPrenom_Nom = $oProjet->oUtilisateur->retPrenom($bBool=TRUE)." ".$oProjet->oUtilisateur->retNom($bBool=TRUE);
+
+	//on enlève les accents
+	// problème avec les noms en arabe ou en cyrillique
+	$sPrenom_Nom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sPrenom_Nom);
+	$sPrenom_Nom = strtolower($sPrenom_Nom);
+	//echo $sPrenom_Nom;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" debug="true">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Ajax File Manager</title>
-<!--<script language="javascript" type="text/javascript" 
-            src="firebug/firebug.js"></script>-->
-
 <script type="text/javascript" src="jscripts/jquery.js"></script>
 <script type="text/javascript" src="jscripts/form.js"></script>
 <script type="text/javascript" src="jscripts/select.js"></script>
@@ -55,7 +63,6 @@
 <script type="text/javascript" src="jscripts/calendar.js"></script>
 <script type="text/javascript" src="jscripts/contextmenu.js"></script>
 <!--<script type="text/javascript" src="jscripts/jeditable.js"></script>
-
 <script type="text/javascript" src="jscripts/file_manager_general.js"></script>-->
 <script type="text/javascript" src="jscripts/media.js"></script>
 <script type="text/javascript" src="jscripts/ajaxfileupload.js"></script>
@@ -64,7 +71,7 @@
 <script type="text/javascript">
 
 	var queryString = '<?php echo makeQueryString(array('path')); ?>';
-	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SYS_ROOT_PATH)); ?>', 'root_title':'<?php echo LBL_FOLDER_ROOT; ?>'};
+	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SYS_ROOT_PATH))."', 'root_title':'".LBL_FOLDER_ROOT."'};\n";?>
 	var parentFolder = {};
 	var urls = {
 			'upload':'<?php echo CONFIG_URL_UPLOAD; ?>',
@@ -85,6 +92,13 @@
 		};
 	var permits = {'del':<?php echo (CONFIG_OPTIONS_DELETE?1:0); ?>, 'cut':<?php echo (CONFIG_OPTIONS_CUT?'1':'0'); ?>, 'copy':<?php echo (CONFIG_OPTIONS_COPY?1:0); ?>, 'newfolder':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0); ?>, 'rename':<?php echo (CONFIG_OPTIONS_RENAME?1:0); ?>, 'upload':<?php echo (CONFIG_OPTIONS_UPLOAD?1:0); ?>, 'edit':<?php echo (CONFIG_OPTIONS_EDITABLE?1:0); ?>, 'view_only':<?php echo (CONFIG_SYS_VIEW_ONLY?1:0); ?>};
 	var currentFolder = {};
+	var commandes = {'boolNF':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0) ?>, 'boolUeA':<?php echo ($bEstAdmin?'1':'0') ?>, 'utilisateur':'<?php echo $sPrenom_Nom ?>', 'trouve':'<?php echo $bTrouve ?>'};
+<?php
+/**
+ * @todo : passer la variable 'utilisateur' en md5 pour protéger?!
+ *  
+ */
+?>
 	var warningDelete = '<?php echo WARNING_DELETE; ?>';
 	var newFile = {'num':1, 'label':'<?php echo FILE_LABEL_SELECT; ?>', 'upload':'<?php echo FILE_LBL_UPLOAD; ?>'};
 	var counts = {'new_file':1};
@@ -161,7 +175,6 @@ $(document).ready(
 
 	} );
 
-	
 </script>
 <?php
 	if(file_exists(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'jscripts' . DIRECTORY_SEPARATOR . 'for_' . CONFIG_EDITOR_NAME . ".js")
@@ -184,8 +197,6 @@ $(document).ready(
   			<dd id="currentFolderPath"><?php echo $folderInfo['path']; ?></dd>
   		</dl>
     	<div id="viewList">
-    		
-    	
     			<label><?php echo LBL_BTN_VIEW_OPTIONS; ?></label>
 					<?php 
 						foreach($views as $k=>$v)
@@ -200,7 +211,7 @@ $(document).ready(
 					<li><a href="#" id="actionRefresh" onclick="return windowRefresh();"><span><?php echo LBL_ACTION_REFRESH; ?></span></a></li>
 					<li><a href="#" id="actionSelectAll" class="check_all" onclick="return checkAll(this);"><span><?php echo LBL_ACTION_SELECT_ALL; ?></span></a></li>
 					<?php 
-						if(CONFIG_OPTIONS_DELETE)
+						if(CONFIG_OPTIONS_DELETE && $bEstAdmin)
 						{
 							?>
 							<li><a href="#" id="actionDelete" onclick="return deleteDocuments();"><span><?php echo LBL_ACTION_DELETE; ?></span></a></li>
@@ -233,34 +244,23 @@ $(document).ready(
 					?>															
 					
 					<?php 
-						if(CONFIG_OPTIONS_NEWFOLDER)
+						//if(CONFIG_OPTIONS_NEWFOLDER || $bEstAdmin)
 						{
 							?>
-							<li><a  id="actionNewFolder" href="#" onclick="return newFolderWin(this);"><span><?php echo LBL_BTN_NEW_FOLDER; ?></span></a></li>
+							<li id="ajoutDossier"><a id="actionNewFolder" href="#" onclick="return newFolderWin(this);"><span><?php echo LBL_BTN_NEW_FOLDER; ?></span></a></li>
+							<?php
+						} 
+						//if(CONFIG_OPTIONS_UPLOAD)
+						{
+							?>
+							<li id="envoiFichier"><a  id="actionUpload" href="#" onclick="return uploadFileWin(this);"><span><?php echo LBL_BTN_UPLOAD; ?></span></a></li>
 							<?php
 						}
 					?>
-					<?php 
-						if(CONFIG_OPTIONS_UPLOAD)
-						{
-							?>
-							<li><a  id="actionUpload" href="#" onclick="return uploadFileWin(this);"><span><?php echo LBL_BTN_UPLOAD; ?></span></a></li>
-							<?php
-						}
-					?>
-																	
-					
-					
-					
-		
-					
-<!--					<li><a href="#" id="actionClose" onclick="closeWindow('<?php echo IMG_WARING_WIN_CLOSE; ?>');"><?php echo IMG_BTN_CLOSE; ?></a></li>-->
+					<li><a href="#" id="actionClose" onclick="closeWindow('<?php echo IMG_WARING_WIN_CLOSE; ?>');"><?php echo IMG_BTN_CLOSE; ?></a></li>
 					<li><a href="#" class="thickbox" id="actionInfo" onclick="return infoWin(this);"><span>Info</span></a></li>
-					<!-- thest functions will be added in the near future
- 					<li ><a href="#" id="actionZip"><span>Zip</span></a><li>
-					<li ><a href="#" id="actionUnzip"><span>Unzip</span></a><li>-->
 				</ul>    
-<form action="" method="POST" name="formAction" id="formAction"><input type="hidden" name="currentFolderPath" id="currentFolderPathVal" value="" /><select name="selectedDoc[]" id="selectedDoc" style="display:none;" multiple="multiple"></select><input type="hidden" name="action_value" value="" id="action_value" /></form>				  
+<form action="" method="post" name="formAction" id="formAction"><input type="hidden" name="currentFolderPath" id="currentFolderPathVal" value="" /><select name="selectedDoc[]" id="selectedDoc" style="display:none;" multiple="multiple"></select><input type="hidden" name="action_value" value="" id="action_value" /></form>				  
     </div>
     
     <div id="body">
@@ -381,23 +381,30 @@ $(document).ready(
   			<a href="#" onclick="tb_remove();"><?php echo LBL_ACTION_CLOSE; ?></a>
   		</div>
   		<div class="jqmBody">
-		  	<form id="formUpload" name="formUpload" method="POST" enctype="multipart/form-data" action="">
+		  	<form id="formUpload" name="formUpload" method="post" enctype="multipart/form-data" action="">
 		  	<table class="tableForm" cellpadding="0" cellspacing="0">
 		  		<thead>
 		  			<tr>
+		  				<span>&nbsp;</span>
 		  				<th colspan="2"><?php echo FILE_FORM_TITLE; ?></th>
+		  			</tr>
+		  			<tr>
+		  				<td>&nbsp;</td>
 		  			</tr>
 		  		</thead>
 		  		<tbody id="fileUploadBody">
 		  			<tr style="display:none">
 		  				<th><label><?php echo FILE_LABEL_SELECT; ?></label></th>
-		  				<td><input type="file" class="input" name="file"  /> <input type="button" class="button" value="<?php echo FILE_LBL_UPLOAD; ?>" /> <a href="#" class="action" title="Cancel" style="display:none" ><span class="cancel">&nbsp;</span></a>  <span class="uploadProcessing" style="display:none">&nbsp;<span></td>
+		  				<td><input type="file" class="input" name="file"  /> <input type="button" class="button" value="<?php echo FILE_LBL_UPLOAD; ?>" /> <a href="#" class="action" title="Annuler" style="display:none" ><span class="cancel">&nbsp;</span></a>  <span class="uploadProcessing" style="display:none">&nbsp;<span></td>
 		  			</tr>		
 		  		</tbody>
 		  		<tfoot>
 		  			<tr>
+		  				<td>&nbsp;</td>
+		  			</tr>
+		  			<tr style="text-align: left; color:red;">
 		  				<th>&nbsp;</th>
-		  				<td></td>
+		  				<td><?php echo FILE_DISCLAIMER; ?></td>
 		  			</tr>
 		  		</tfoot>
 		  	</table>

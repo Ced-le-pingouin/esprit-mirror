@@ -23,16 +23,24 @@
 	elseif(empty($_GET['folder']) || !isUnderRoot($_GET['folder']))
 	{
 		$error = ERR_FOLDER_PATH_NOT_ALLOWED;
-	}else	if(!$upload->isFileUploaded('file'))
+	}elseif(!$upload->isFileUploaded('file'))
 	{
 		$error = ERR_FILE_NOT_UPLOADED;
-	}else if(!$upload->moveUploadedFile($_GET['folder']))
+	}elseif(!$upload->moveUploadedFile($_GET['folder']))
 	{
 		$error = ERR_FILE_MOVE_FAILED;
 	}	
 	elseif(!$upload->isPermittedFileExt(explode(",", CONFIG_UPLOAD_VALID_EXTS)))
 	{		
 		$error = ERR_FILE_TYPE_NOT_ALLOWED;
+	}elseif((strpos($_GET['folder'],CONFIG_IMAGE_PATH) !== false) && (!$upload->isPermittedFileExt(explode(",", CONFIG_UPLOAD_VALID_IMAGE))))
+	{		
+		// si on se trouve dans le répertoire IMAGE (configuré dans 'CONFIG_IMAGE_PATH'), on vérifie que le type de fichier est bien une image définie dans 'CONFIG_UPLOAD_VALID_IMAGE'
+		$error = ERR_FILE_NOT_IMG;
+	}elseif((strpos($_GET['folder'],CONFIG_MEDIA_PATH) !== false) && (!$upload->isPermittedFileExt(explode(",", CONFIG_UPLOAD_VALID_MEDIA))))
+	{		
+		// si on se trouve dans le répertoire MEDIA (configuré dans 'CONFIG_MEDIA_PATH'), on vérifie que le type de fichier est bien une video définie dans 'CONFIG_UPLOAD_VALID_MEDIA'
+		$error = ERR_FILE_NOT_MEDIA;
 	}elseif(defined('CONFIG_UPLOAD_MAXSIZE') && CONFIG_UPLOAD_MAXSIZE && $upload->isSizeTooBig(CONFIG_UPLOAD_MAXSIZE))
 	{		
 		 $error = sprintf(ERROR_FILE_TOO_BID, transformFileSize(CONFIG_UPLOAD_MAXSIZE));
