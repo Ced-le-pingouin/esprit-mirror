@@ -1187,7 +1187,7 @@ function newFolderWin(linkElem)
 function newUserWin(linkElem)
 {
 var folders = currentFolder.friendly_path.split('/');
-	if (currentFolder.name == 'Image' || currentFolder.name == 'Media') {	// on vérifie que la personne n'est pas dans un sous-répertoire
+	if (currentFolder.name == 'images' || currentFolder.name == 'medias') {	// on vérifie que la personne n'est pas dans un sous-répertoire
 		showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=250'+ '&inlineId=winNewUser&modal=true'));
 	}
 	return false;

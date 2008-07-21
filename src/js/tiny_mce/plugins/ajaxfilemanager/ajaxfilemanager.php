@@ -50,6 +50,35 @@
 	$sPrenom_Nom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sPrenom_Nom);
 	$sPrenom_Nom = strtolower($sPrenom_Nom);
 	//echo $sPrenom_Nom;
+
+/**
+ *		on vérifie la liste complète des répertoires,
+ *		si aucun n'a le nom du tuteur, on le créé.
+ * 
+ * 		L'utilisation du rafaîchissement peut entrainer des erreurs (si on se trouve déjà dans un répertoire).
+ * 		On doit donc vérifier aussi si le nom du répertoire est présent dans l'url en mode 'GET'
+ * 
+ *		@author Loïc Tauleigne
+ */
+
+	$compteur = 0;
+	$bTrouve = false;
+	$sUtilisateur = str_replace(' ','_',$sPrenom_Nom);
+	
+	if (isset($_GET['path'])) {
+		(eregi($sUtilisateur, $_GET['path'])) ? $bTrouve = true : $bTrouve = false;
+	}
+
+	foreach($fileList as $file)
+	{
+		foreach($file as $k=>$v)
+		{
+			if($k == 'name' && $v == $sUtilisateur)
+			{
+				$bTrouve = true;
+			}
+		}	
+	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" debug="true">
@@ -93,12 +122,6 @@
 	var permits = {'del':<?php echo (CONFIG_OPTIONS_DELETE?1:0); ?>, 'cut':<?php echo (CONFIG_OPTIONS_CUT?'1':'0'); ?>, 'copy':<?php echo (CONFIG_OPTIONS_COPY?1:0); ?>, 'newfolder':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0); ?>, 'rename':<?php echo (CONFIG_OPTIONS_RENAME?1:0); ?>, 'upload':<?php echo (CONFIG_OPTIONS_UPLOAD?1:0); ?>, 'edit':<?php echo (CONFIG_OPTIONS_EDITABLE?1:0); ?>, 'view_only':<?php echo (CONFIG_SYS_VIEW_ONLY?1:0); ?>};
 	var currentFolder = {};
 	var commandes = {'boolNF':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0) ?>, 'boolUeA':<?php echo ($bEstAdmin?'1':'0') ?>, 'utilisateur':'<?php echo $sPrenom_Nom ?>', 'trouve':'<?php echo $bTrouve ?>'};
-<?php
-/**
- * @todo : passer la variable 'utilisateur' en md5 pour protéger?!
- *  
- */
-?>
 	var warningDelete = '<?php echo WARNING_DELETE; ?>';
 	var newFile = {'num':1, 'label':'<?php echo FILE_LABEL_SELECT; ?>', 'upload':'<?php echo FILE_LBL_UPLOAD; ?>'};
 	var counts = {'new_file':1};
@@ -189,7 +212,13 @@ $(document).ready(
 <link rel="stylesheet" href="theme/<?php echo CONFIG_THEME_NAME; ?>/css/thickbox.css" type="text/css" media="screen" />
 
 </head>
-<body>
+<?php 
+if (!$bTrouve && !$bEstAdmin) 	// Si le répertoire du tuteur n'est pas trouvé ou que la personne n'est pas admin,
+								// alors on crée le répertoire
+	echo "<body onload=\"return newUserWin(window.document.getElementById('actionNewFolder'));\"";
+	//echo "<body onload=\"return newUserWin(window.document.actionNewFolder);\"";
+else echo "<body>";
+?>
 	<div id="wrapper">
   	<div id="header">
   		<dl id="currentFolderInfo">
@@ -219,7 +248,7 @@ $(document).ready(
 						}
 					?>
 					<?php 
-						if(CONFIG_OPTIONS_CUT)
+						if(CONFIG_OPTIONS_CUT && $bEstAdmin)
 						{
 							?>
 							<li><a href="#" id="actionCut" onclick="return cutDocuments('<?php echo ERR_NOT_DOC_SELECTED_FOR_CUT; ?>');"><span><?php echo LBL_ACTION_CUT; ?></span></a></li>			
@@ -227,7 +256,7 @@ $(document).ready(
 						}
 					?>
 					<?php 
-						if(CONFIG_OPTIONS_COPY)
+						if(CONFIG_OPTIONS_COPY && $bEstAdmin)
 						{
 							?>
 							<li><a href="#" id="actionCopy" onclick="return copyDocuments('<?php echo ERR_NOT_DOC_SELECTED_FOR_COPY; ?>');"><span><?php echo LBL_ACTION_COPY; ?></span></a></li>
@@ -235,15 +264,12 @@ $(document).ready(
 						}
 					?>
 					<?php 
-						if(CONFIG_OPTIONS_CUT || CONFIG_OPTIONS_COPY)
+						if((CONFIG_OPTIONS_CUT || CONFIG_OPTIONS_COPY) && $bEstAdmin)
 						{
 							?>
 							<li><a href="#" id="actionPaste" onclick="return pasteDocuments('<?php echo ERR_NOT_DOC_SELECTED_FOR_PASTE; ?>');"><span><?php echo LBL_ACTION_PASTE; ?></span></a></li>
 							<?php
-						}
-					?>															
-					
-					<?php 
+						} 
 						//if(CONFIG_OPTIONS_NEWFOLDER || $bEstAdmin)
 						{
 							?>
@@ -364,13 +390,10 @@ $(document).ready(
 	}
 ?>							
 			</fieldset>
-  
       </div>
       
       <div class="clear"></div>
     </div>
-		
-  
   </div>
   <div class="clear"></div>
 
@@ -410,45 +433,97 @@ $(document).ready(
 		  	</table>
 		  	</form>  		
   		</div>
-
   	</div>
   </div> 
-  <div id="winNewFolder" style="display:none">
-  	<div class="jqmContainer">
-  		<div class="jqmHeader">
-  			<a href="#" onclick="tb_remove();"><?php echo LBL_ACTION_CLOSE; ?></a>
+  
+<?php
+/**
+ * Si il n'y a pas de répertoire au nom de la personne
+ * on ouvre un popup l'indiquant.
+ * Une fois validé, le répertoire est créé et on recharge la page
+ * 
+ * @date	2008/07/11
+ * 
+ * @author	Loïc TAULEIGNE
+ */
+if (!$bTrouve && !$bEstAdmin)
+{
+echo "
+  <div id=\"winNewUser\" style=\"display:none\">
+  	<div class=\"jqmContainer\">
+  		<div class=\"jqmHeader\">
   		</div>
-  		<div class="jqmBody">
-	    	<form id="formNewFolder" name="formNewFolder" method="POST" action="">
-	  	<input type="hidden" name="currentFolderPath" value="" id="currentNewfolderPath" />
-	  	<table class="tableForm" cellpadding="0" cellspacing="0">
+  		<div class=\"jqmBody\">
+	    	<form id=\"formNewFolder\" name=\"formNewFolder\" method=\"post\" action=\"\">
+	  	<input type=\"hidden\" name=\"currentFolderPath\" value=\"\" id=\"currentNewfolderPath\" />
+	  	<input type=\"hidden\" name=\"new_folder\" id=\"new_folder\" value=\"".$sUtilisateur."\" class=\"input\">
+	  	<table class=\"tableForm\" cellpadding=\"0\" cellspacing=\"0\">
 	  		<thead>
 	  			<tr>
-	  				<th colspan="2"><?php echo FOLDER_FORM_TITLE; ?></th>
+	  				<th colspan=\"2\">".FOLDER_FORM_TITLE."</th>
+	  			</tr>
+	  			<tr>
+	  				<td colspan=\"2\">".FOLDER_NEW_INFO."</td>
 	  			</tr>
 	  		</thead>
 	  		<tbody>
 	  			<tr>
-	  				<th><label><?php echo FOLDER_LBL_TITLE; ?></label></th>
-	  				<td><input type="text" name="new_folder" id="new_folder" value="" class="input"></td>
-	  			</tr>    		
-	
-				
+		  			<td>&nbsp;</td>
+		  		</tr>
+	  			<tr>
+	  				<th><label>".FOLDER_LBL_TITLE."</label></th>
+	  				<td>".$sUtilisateur."</td>
+	  			</tr> 
 	  		</tbody>
 	  		<tfoot>
 	  			<tr>
 	  				<th>&nbsp;</th>
-	  				<td><input type="button" value="<?php echo FOLDER_LBL_CREATE; ?>" class="button" onclick="return doCreateFolder();"  /></td>
+	  				<td><input type=\"button\" value=\"".FOLDER_LBL_CREATE."\" class=\"button\" onclick=\"return doCreateFolder(true);\"  /></td>
 	  			</tr>
 	  		</tfoot>
 	  	</table>	
 	  	</form>	
   		</div>
-
-  	
-  	
   	</div>
-  </div>   
+  </div>
+";
+}
+else
+echo "
+  <div id=\"winNewFolder\" style=\"display:none\">
+  	<div class=\"jqmContainer\">
+  		<div class=\"jqmHeader\">
+  			<a href=\"#\" onclick=\"tb_remove();\">".LBL_ACTION_CLOSE."</a>
+  		</div>
+  		<div class=\"jqmBody\">
+	    	<form id=\"formNewFolder\" name=\"formNewFolder\" method=\"post\" action=\"\">
+	  	<input type=\"hidden\" name=\"currentFolderPath\" value=\"\" id=\"currentNewfolderPath\" />
+	  	<table class=\"tableForm\" cellpadding=\"0\" cellspacing=\"0\">
+	  		<thead>
+	  			<tr>
+	  				<th colspan=\"2\">".FOLDER_FORM_TITLE."</th>
+	  			</tr>
+	  		</thead>
+	  		<tbody>
+	  			<tr>
+	  				<th><label>".FOLDER_LBL_TITLE."</label></th>
+	  				<td><input type=\"text\" name=\"new_folder\" id=\"new_folder\" value=\"\" class=\"input\"></td>
+	  			</tr>    			
+	  		</tbody>
+	  		<tfoot>
+	  			<tr>
+	  				<th>&nbsp;</th>
+	  				<td><input type=\"button\" value=\"".FOLDER_LBL_CREATE."\" class=\"button\" onclick=\"return doCreateFolder(false);\"  /></td>
+	  			</tr>
+	  		</tfoot>
+	  	</table>	
+	  	</form>	
+  		</div>
+  	</div>
+  </div>
+";
+?>
+  
   <div id="winPlay" style="display:none">
   	<div class="jqmContainer">
   		<div class="jqmHeader">
