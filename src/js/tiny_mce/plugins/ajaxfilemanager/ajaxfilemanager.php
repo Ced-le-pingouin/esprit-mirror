@@ -19,7 +19,7 @@
 	$folderInfo = $manager->getFolderInfo();
 	$views = array(
 		'detail'=>LBL_BTN_VIEW_DETAILS,
-		'thumbnail'=>LBL_BTN_VIEW_THUMBNAIL,
+		//'thumbnail'=>LBL_BTN_VIEW_THUMBNAIL,
 	);
 	if(!empty($_GET['view']))
 	{
@@ -390,6 +390,39 @@ else echo "<body>";
 	}
 ?>							
 			</fieldset>
+
+<?php
+/**
+ * Vérifie si la personne est 'reponsable de plateforme'.
+ * Permet : 
+ * soit de visualiser directement les logs
+ * soit de les télécharger au format csv ou xml.
+ * 
+ * @date	2008/06/29
+ * 
+ * @author	Loïc TAULEIGNE
+ */
+if ($bEstAdmin)
+{
+echo "
+<fieldset id=\"VoirLog\" class=\"boxCSV\">
+<legend>Historique des envois</legend>
+<p>
+	Vous pouvez t&eacute;l&eacute;charger les fichiers logs, ou les afficher directement.
+</p>
+<p>&nbsp;</p>
+<p class=\"center\"><a href=\"#\" id=\"actionVoirLogs\" onclick=\"return infoLog(this);\">Afficher les logs</a></p>
+<p>&nbsp;</p>
+<p>T&eacute;l&eacute;chargement du log :</p>
+
+<ul>
+	<li>Fichier csv : <a href=\"download.php?fichier=".CONFIG_LOG_PATH."\">CSV</a></li>
+	<li>Fichier xml : <a href=\"download.php?fichier=".CONFIG_LOGXML_PATH."\">XML</a></li>
+</ul>
+</fieldset>
+";
+}
+ ?>
       </div>
       
       <div class="clear"></div>
@@ -398,6 +431,113 @@ else echo "<body>";
   <div class="clear"></div>
 
   <div id="ajaxLoading" style="display:none"><img class="ajaxLoadingImg" src="theme/<?php echo CONFIG_THEME_NAME; ?>/images/ajaxLoading.gif" /></div>
+
+<?php
+/**
+ * Si la personne est 'reponsable de plateforme',
+ * elle a accès aux fichiers logs.
+ * 
+ * @date	2008/06/29
+ * 
+ * @author	Loïc TAULEIGNE
+ */
+if ($bEstAdmin)
+{ 
+?>
+  <div id="winLog" style="display:none">
+  	<div class="jqmContainer">
+  		<div class="jqmHeader">
+  			<a href="#" onclick="tb_remove();"><?php echo LBL_ACTION_CLOSE; ?></a>
+  		</div>
+  		<div class="divLog">
+  		<p class="Log">Historique des envois de fichiers sur la plateforme</p>
+   	<table id="tableVoirLog" class="tableLog" cellpadding="0" cellspacing="0">
+
+  	</table>
+  		</div>
+  	</div>
+  </div>
+<script type="text/javascript">
+var xmlDoc=null;
+var tempDonnees=null;
+if (window.ActiveXObject)
+{// code for IE
+xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+}
+else if (document.implementation.createDocument)
+{// code for Mozilla, Firefox, Opera, etc.
+xmlDoc=document.implementation.createDocument("","",null);
+}
+else
+{
+alert('Ce script ne fonctionne pas avec votre navigateur.\n Essayez de t\u00E9l\u00E9charger les fichiers log.');
+}
+if (xmlDoc!=null) 
+{
+xmlDoc.async=false;
+xmlDoc.load("<?php echo CONFIG_LOGXML_PATH; ?>");
+var x=xmlDoc.getElementsByTagName("entree");
+var table=document.getElementById("tableVoirLog");
+
+var bodyNode = document.createElement("tbody");
+var trNodeDebut = document.createElement("tr");
+var thNode = document.createElement("th");
+thNode.appendChild(document.createTextNode("Date"));
+trNodeDebut.appendChild(thNode);
+thNode = document.createElement("th");
+thNode.appendChild(document.createTextNode("Utilisateur"));
+trNodeDebut.appendChild(thNode);
+thNode = document.createElement("th");
+thNode.appendChild(document.createTextNode("Fichier"));
+trNodeDebut.appendChild(thNode);
+thNode = document.createElement("th");
+thNode.appendChild(document.createTextNode("Chemin"));
+trNodeDebut.appendChild(thNode);
+thNode = document.createElement("th");
+thNode.appendChild(document.createTextNode("Md5"));
+trNodeDebut.appendChild(thNode);
+bodyNode.appendChild(trNodeDebut);
+for (var i=0;i<x.length;i++)
+{
+var utilisateurXML =	x[i].getElementsByTagName("utilisateur")[0].childNodes[0].nodeValue;
+var fichierXML = 		x[i].getElementsByTagName("fichier")[0].childNodes[0].nodeValue;
+var cheminXML = 		x[i].getElementsByTagName("chemin")[0].childNodes[0].nodeValue;
+var md5XML = 			x[i].getElementsByTagName("md5")[0].childNodes[0].nodeValue;
+md5XML = md5XML.substring(0, md5XML.length/2)+"\n"+md5XML.substring(md5XML.length/2); // on coupe le md5 en 2
+cheminXML = cheminXML.substring(0, cheminXML.search(/images|medias/i)+6)+""+cheminXML.substring(cheminXML.search(/images|medias\//i)+6);
+
+var trNode = document.createElement("tr");
+var tdNode = document.createElement("td");
+tdNode.appendChild(document.createTextNode(x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue));
+trNode.appendChild(tdNode);
+
+tdNode = document.createElement("td");
+tdNode.appendChild(document.createTextNode(utilisateurXML));
+trNode.appendChild(tdNode);
+
+tdNode = document.createElement("td");
+tdNode.appendChild(document.createTextNode(fichierXML));
+trNode.appendChild(tdNode);
+
+tdNode = document.createElement("td");
+tdNode.appendChild(document.createTextNode(cheminXML));
+trNode.appendChild(tdNode);
+
+tdNode = document.createElement("td");
+tdNode.appendChild(document.createTextNode(md5XML));
+trNode.appendChild(tdNode);
+
+bodyNode.appendChild(trNode);
+}
+table.appendChild(bodyNode);
+}
+<?php
+echo"
+</script>
+";
+}
+?>
+ 
   <div id="winUpload" style="display:none">
   	<div class="jqmContainer">
   		<div class="jqmHeader">
