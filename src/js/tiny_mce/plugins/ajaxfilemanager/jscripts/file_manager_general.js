@@ -1095,6 +1095,7 @@ function uploadFile(elementId)
 								}
 							}
 							addDocumentHtml(numRows);
+							tb_remove();
 						}
 					}
 					
@@ -1195,7 +1196,7 @@ var folders = currentFolder.friendly_path.split('/');
 /**
 *	ajax call to create a folder
 */
-function doCreateFolder()
+function doCreateFolder(bNewUser)
 {
 	$('#currentNewfolderPath').val(currentFolder.path);
 	var pattern=/^[A-Za-z0-9_ \-]+$/i;
@@ -1222,7 +1223,7 @@ function doCreateFolder()
 					//remove those selected items
 					if(data.error != '')
 					{
-						alert(data.error);
+						alert('erreur : '+data.error);
 					}else
 					{
 						
@@ -1236,14 +1237,15 @@ function doCreateFolder()
 								}
 							}
 						addDocumentHtml(numRows);
-
 						tb_remove();
 					}
 				} 
 			}; 
-			$('#formNewFolder').ajaxSubmit(options); 	
-						 				
-				
+			$('#formNewFolder').ajaxSubmit(options); 
+			//alert('Votre r\u00E9pertoire a \u00E9t\u00E9 cr\u00E9e.');	
+			if (bNewUser == true) {
+				goReload = setTimeout(document.location.reload(),2000);
+			}				
 	}
 	return false;	
 	

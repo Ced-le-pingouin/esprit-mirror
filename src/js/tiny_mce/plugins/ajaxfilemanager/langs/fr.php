@@ -84,7 +84,7 @@
     define('PAGINATION_ITEMS_PER_PAGE', 'Afficher %s &eacute;l&eacute;ments par page');
     define('PAGINATION_GO_PARENT', 'Dossier Parent');
     //System
-    define('SYS_DISABLED', 'Permission refus\u00E9ee: Le syst\u00E8me est d\u00E9sactiv\u00E9.');
+    define('SYS_DISABLED', 'Permission refus\u00E9e: Le syst\u00E8me est d\u00E9sactiv\u00E9.');
     	
     //Cut
     define('ERR_NOT_DOC_SELECTED_FOR_CUT', "Aucun document(s) selectionn&eacute; pour couper.");
