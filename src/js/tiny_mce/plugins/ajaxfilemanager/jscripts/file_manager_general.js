@@ -1244,7 +1244,7 @@ function doCreateFolder(bNewUser)
 			$('#formNewFolder').ajaxSubmit(options); 
 			//alert('Votre r\u00E9pertoire a \u00E9t\u00E9 cr\u00E9e.');	
 			if (bNewUser == true) {
-				goReload = setTimeout(document.location.reload(),2000);
+				goReload = setTimeout("document.location.reload()",2000);
 			}				
 	}
 	return false;	
