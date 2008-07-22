@@ -402,7 +402,7 @@ else echo "<body>";
  * 
  * @author	Loïc TAULEIGNE
  */
-if ($bEstAdmin)
+/*if ($bEstAdmin)
 {
 echo "
 <fieldset id=\"VoirLog\" class=\"boxCSV\">
@@ -422,6 +422,7 @@ echo "
 </fieldset>
 ";
 }
+*/
  ?>
       </div>
       

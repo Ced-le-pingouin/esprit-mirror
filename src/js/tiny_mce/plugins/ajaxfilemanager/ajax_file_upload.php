@@ -7,6 +7,12 @@
 	 *
 	 */	
 	sleep(3);
+// on récupère les données à insérer dans le log
+	require_once("globals.inc.php");
+	$sUtilisateur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
+	$sFichierLog = CONFIG_LOG_PATH;
+	$sFichierXml = CONFIG_LOGXML_PATH;
+	
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");
 	echo "{";
 	$error = "";
@@ -47,7 +53,6 @@
 	}else
 	{
 							include_once(CLASS_FILE);
-							require_once("globals.inc.php");
 							$oProjet = new CProjet();
 							$path = $upload->getFilePath();
 							$obj = new file($path);
@@ -84,11 +89,8 @@
 								$info .= sprintf(", tipedit:'%s'",  TIP_DOC_RENAME);		
 
 								// insertion des informations dans le log
-								$sUtilisateur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
 								$sCheminFichier = str_replace('../', '', $tem['path']);
 								$sCheminFichier = preg_replace("/([[:alnum:]_\- ]+\/)[[:alnum:]_\- ]+\.[[:alpha:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
-								$sFichierLog = CONFIG_LOG_PATH;
-								$sFichierXml = CONFIG_LOGXML_PATH;
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
 								if (!file_exists($sFichierLog)) {
