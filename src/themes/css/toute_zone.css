@@ -171,7 +171,7 @@ font-size:9pt;
 
 /* -- block -- */
 .bloc_menu_titre {
-background:url("../esprit/menu-1x2.gif") repeat-x top center;
+background:#FBF9EE url("../esprit/menu-1x2.gif") repeat-x top center;
 border:#970623 none 1px;
 border-bottom-style:solid;
 color:#4d4b47;
@@ -182,11 +182,11 @@ padding:5px;
 }
 
 .bloc_menu_coins_haut {
-background:url("../esprit/menu-1x2.gif") repeat-x top left;
+background:#FBF9EE url("../esprit/menu-1x2.gif") repeat-x top left;
 }
 
 .bloc_menu_coins_bas {
-background:url("../esprit/menu-3x2.gif") repeat-x top left;
+background:#FBF9EE url("../esprit/menu-3x2.gif") repeat-x top left;
 }
 /* ----- */
 

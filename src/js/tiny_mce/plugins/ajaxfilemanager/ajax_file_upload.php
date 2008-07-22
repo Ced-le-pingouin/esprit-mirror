@@ -11,14 +11,10 @@
 	echo "{";
 	$error = "";
 	$info = "";
-	
-	require_once("globals.inc.php");
-	$oProjet = new CProjet();
-	$sUtilisateur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
-	
+
 	include_once(CLASS_UPLOAD);
 	$upload = new Upload();
-								
+							
 	$upload->setInvalidFileExt(explode(",", CONFIG_UPLOAD_INVALID_EXTS));
 	if(CONFIG_SYS_VIEW_ONLY || !CONFIG_OPTIONS_UPLOAD)
 	{
@@ -93,7 +89,7 @@
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
 								if (!file_exists($sFichierLog)) {
-									$sDonneesCSV = "Date;Utilisateur;Nom de l'image;Chemin;Md5\r\n";
+									$sDonneesCSV = "Date;Nom de l'image;Chemin;Md5\r\n";
 								}
 								$sDonneesCSV .= $tem['ctime'].";".$sUtilisateur.";".$tem['name'].";".$sCheminFichier.";".$sMd5Fichier."\r\n";
 								
@@ -105,7 +101,7 @@
 								}
 								$sDonneesXML = 		"	<entree>\r\n"
 													."		<date>".$tem["ctime"]."</date>\r\n"
-													."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
+								//					."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
 													."		<fichier>".$tem["name"]."</fichier>\r\n"
 													."		<chemin>".$sCheminFichier."</chemin>\r\n"
 													."		<md5>".$sMd5Fichier."</md5>\r\n"

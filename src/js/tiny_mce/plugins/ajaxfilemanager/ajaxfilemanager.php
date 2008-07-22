@@ -43,11 +43,11 @@
 // récupération du prenom/nom de l'utilisateur
 	$oProjet = new CProjet();
 	$bEstAdmin = $oProjet->verifAdministrateur();
-	$sPrenom_Nom = $oProjet->oUtilisateur->retPrenom($bBool=TRUE)." ".$oProjet->oUtilisateur->retNom($bBool=TRUE);
+	$sPrenom_NomBase = $oProjet->oUtilisateur->retPrenom($bBool=TRUE)." ".$oProjet->oUtilisateur->retNom($bBool=TRUE);
 
 	//on enlève les accents
 	// problème avec les noms en arabe ou en cyrillique
-	$sPrenom_Nom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sPrenom_Nom);
+	$sPrenom_Nom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sPrenom_NomBase);
 	$sPrenom_Nom = strtolower($sPrenom_Nom);
 	//echo $sPrenom_Nom;
 
@@ -484,20 +484,25 @@ var trNodeDebut = document.createElement("tr");
 var thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Date"));
 trNodeDebut.appendChild(thNode);
+
 /*
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Utilisateur"));
 trNodeDebut.appendChild(thNode);
 */
+
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Fichier"));
 trNodeDebut.appendChild(thNode);
+
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Chemin"));
 trNodeDebut.appendChild(thNode);
+
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Md5"));
 trNodeDebut.appendChild(thNode);
+
 bodyNode.appendChild(trNodeDebut);
 for (var i=0;i<x.length;i++)
 {
