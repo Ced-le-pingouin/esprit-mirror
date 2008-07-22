@@ -14,7 +14,7 @@
 	
 	class Image
 	{
-		var $_debug = false; 
+		var $_debug = true; 
 		var $_errors = array();
 		var $gdInfo = array(); //keep all information of GD extension
 		var $_imgOrig = null; //the hanlder of original image
