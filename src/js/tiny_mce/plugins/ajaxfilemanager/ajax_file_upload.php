@@ -12,10 +12,10 @@
 	$error = "";
 	$info = "";
 	
-/*	require_once("globals.inc.php");
+	require_once("globals.inc.php");
 	$oProjet = new CProjet();
 	$sUtilisateur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
-*/	
+	
 	include_once(CLASS_UPLOAD);
 	$upload = new Upload();
 								
@@ -105,7 +105,7 @@
 								}
 								$sDonneesXML = 		"	<entree>\r\n"
 													."		<date>".$tem["ctime"]."</date>\r\n"
-								//					."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
+													."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
 													."		<fichier>".$tem["name"]."</fichier>\r\n"
 													."		<chemin>".$sCheminFichier."</chemin>\r\n"
 													."		<md5>".$sMd5Fichier."</md5>\r\n"
