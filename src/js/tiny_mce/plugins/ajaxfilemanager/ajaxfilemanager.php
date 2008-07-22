@@ -484,9 +484,11 @@ var trNodeDebut = document.createElement("tr");
 var thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Date"));
 trNodeDebut.appendChild(thNode);
+/*
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Utilisateur"));
 trNodeDebut.appendChild(thNode);
+*/
 thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Fichier"));
 trNodeDebut.appendChild(thNode);
@@ -499,7 +501,7 @@ trNodeDebut.appendChild(thNode);
 bodyNode.appendChild(trNodeDebut);
 for (var i=0;i<x.length;i++)
 {
-var utilisateurXML =	x[i].getElementsByTagName("utilisateur")[0].childNodes[0].nodeValue;
+//var utilisateurXML =	x[i].getElementsByTagName("utilisateur")[0].childNodes[0].nodeValue;
 var fichierXML = 		x[i].getElementsByTagName("fichier")[0].childNodes[0].nodeValue;
 var cheminXML = 		x[i].getElementsByTagName("chemin")[0].childNodes[0].nodeValue;
 var md5XML = 			x[i].getElementsByTagName("md5")[0].childNodes[0].nodeValue;
@@ -511,9 +513,11 @@ var tdNode = document.createElement("td");
 tdNode.appendChild(document.createTextNode(x[i].getElementsByTagName("date")[0].childNodes[0].nodeValue));
 trNode.appendChild(tdNode);
 
+/*
 tdNode = document.createElement("td");
 tdNode.appendChild(document.createTextNode(utilisateurXML));
 trNode.appendChild(tdNode);
+*/
 
 tdNode = document.createElement("td");
 tdNode.appendChild(document.createTextNode(fichierXML));
