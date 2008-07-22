@@ -7,12 +7,6 @@
 	 *
 	 */	
 	sleep(3);
-// on récupère les données à insérer dans le log
-	require_once("globals.inc.php");
-	$sUtilisateur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
-	$sFichierLog = CONFIG_LOG_PATH;
-	$sFichierXml = CONFIG_LOGXML_PATH;
-	
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");
 	echo "{";
 	$error = "";
@@ -53,7 +47,6 @@
 	}else
 	{
 							include_once(CLASS_FILE);
-							$oProjet = new CProjet();
 							$path = $upload->getFilePath();
 							$obj = new file($path);
 							$tem = $obj->getFileInfo();							
@@ -88,43 +81,6 @@
 								$info .= sprintf(", url:'%s'",  getFileUrl($path));
 								$info .= sprintf(", tipedit:'%s'",  TIP_DOC_RENAME);		
 
-								// insertion des informations dans le log
-								$sCheminFichier = str_replace('../', '', $tem['path']);
-								$sCheminFichier = preg_replace("/([[:alnum:]_\- ]+\/)[[:alnum:]_\- ]+\.[[:alpha:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
-								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
-								$sDonneesCSV = $sDonneesXML = "";
-								if (!file_exists($sFichierLog)) {
-									$sDonneesCSV = "Date;Utilisateur;Nom de l'image;Chemin;Md5\r\n";
-								}
-								$sDonneesCSV .= $tem['ctime'].";".$sUtilisateur.";".$tem['name'].";".$sCheminFichier.";".$sMd5Fichier."\r\n";
-								
-								// si le fichier n'existe pas, on en crée un avec les balises <log>.
-								if (!file_exists($sFichierXml)) {
-									$fpxml = fopen($sFichierXml, 'w+');
-										fwrite($fpxml, "<log>\r\n</log>");
-									fclose($fpxml);
-								}
-								$sDonneesXML = 		"	<entree>\r\n"
-													."		<date>".$tem["ctime"]."</date>\r\n"
-													."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
-													."		<fichier>".$tem["name"]."</fichier>\r\n"
-													."		<chemin>".$sCheminFichier."</chemin>\r\n"
-													."		<md5>".$sMd5Fichier."</md5>\r\n"
-													."	</entree>\r\n"
-													."</log>";
-
-								/**
-								 * insertion de données dans un fichier csv et xml en tant que log :
-								 * date d'ajout du fichier, nom de la personne, nom du fichier, chemin, md5 du fichier
-								 */
-								$fp = fopen($sFichierLog, 'a');
-									fwrite($fp, $sDonneesCSV.'test');
-								fclose($fp);
-								
-								$fpxml = fopen($sFichierXml, 'r+');
-									fseek($fpxml, '-6', SEEK_END); // on se place à la fin du fichier, juste devant la balise de fin global.
-									fwrite($fpxml, $sDonneesXML); // on écrit les données en ajoutant la balise finale globale écrasée
-								fclose($fpxml);
 																				
 							}else 
 							{
