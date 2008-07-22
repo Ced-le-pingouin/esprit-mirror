@@ -90,27 +90,30 @@ jQuery.extend({
                 requestDone = true;
                 var status;
                 try {
+alert('entering try xml');
                     status = isTimeout != "timeout" ? "success" : "error";
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
 					{
+alert('statut != error');
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
                         if ( s.success ) {
                             s.success( data, status );
+alert('success callback');
     					}
                         // Fire the global callback
                         if( s.global ) {
                             jQuery.event.trigger( "ajaxSuccess", [xml, s] );
-//alert('ajaxsuccess \ns globals :'+s.global);
+alert('ajaxsuccess \ns globals :'+s.global);
                         }
                     } else {
                         jQuery.handleError(s, xml, status);
                       }
                 } catch(e) 
 				{
-//alert('entering exception');
+alert('entering exception');
                     status = "error";
                     jQuery.handleError(s, xml, status, e);
                 }
@@ -187,23 +190,23 @@ jQuery.extend({
 
     uploadHttpData: function( r, type ) {
         var data = !type;
-//alert('data : '+data);
+alert('data : '+data);
         data = type == "xml" || data ? r.responseXML : r.responseText;
-//alert('data uploadhttp : '+data+'\n\nresponseText : '+r.responseText);
+alert('data uploadhttp : '+data+'\n\nresponseText : '+r.responseText);
         // If the type is "script", eval it in global context
         if ( type == "script" )
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
         if ( type == "json" ) {
-//alert('entering type json.\ndata '+data);
+alert('entering type json.\ndata '+data);
             eval( "data = " + data );
-//alert('exiting json.\ndata : '+data);
+alert('exiting json.\ndata : '+data);
         }
         // evaluate scripts within html
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();
 			//alert($('param', data).each(function(){alert($(this).attr('value'));}));
-//alert('upload data : '+data);
+alert('upload data : '+data);
         return data;
     }
 })
