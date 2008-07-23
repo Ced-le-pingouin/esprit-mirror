@@ -3,7 +3,6 @@
 
 		$count = 1;
 		$thumbnailBaseUrl = appendQueryString(CONFIG_URL_IMG_THUMBNAIL, makeQueryString(array('path')));
-		echo appendQueryString($thumbnailBaseUrl, 'path=' . $file['path']);
 		foreach($fileList as $file)
 		
 		{
@@ -15,8 +14,8 @@
 					{
 						case 'filePicture':
 								echo '<a id="thumbUrl' . $count . '" rel="thumbPhotos" href="' . $file['path'] . '">';
-								echo '<img src="' . appendQueryString($thumbnailBaseUrl, 'path=' . $file['path']) . '" id="thumbImg' . $count . '"></a>' . "\n";
-								//echo '<img src="' . $file['path'] . '" id="thumbImg' . $count . '"></a>' . "\n";
+								//echo '<img src="' . appendQueryString($thumbnailBaseUrl, 'path=' . $file['path']) . '" id="thumbImg' . $count . '"></a>' . "\n";
+								echo '<img src="' . $file['path'] . '" id="thumbImg' . $count . '" height="'.CONFIG_IMG_THUMBNAIL_MAX_Y.'" width="'.CONFIG_IMG_THUMBNAIL_MAX_X.'"></a>' . "\n";
 								break;
 						case 'fileFlash':
 						case 'fileVideo':
