@@ -113,7 +113,7 @@ jQuery.extend({
                       }
                 } catch(e) 
 				{
-alert('entering exception');
+//alert('entering exception');
                     status = "error";
                     jQuery.handleError(s, xml, status, e);
                 }
@@ -198,7 +198,7 @@ alert('entering exception');
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
         if ( type == "json" ) {
-alert('entering type json.\ndata '+data);
+//alert('entering type json.\ndata '+data);
             eval( "data = " + data );
 //alert('exiting json.\ndata : '+data);
         }
@@ -206,7 +206,7 @@ alert('entering type json.\ndata '+data);
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();
 			//alert($('param', data).each(function(){alert($(this).attr('value'));}));
-alert('upload data : '+data);
+//alert('upload data : '+data);
         return data;
     }
 })
