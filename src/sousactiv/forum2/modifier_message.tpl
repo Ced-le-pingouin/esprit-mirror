@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 [BLOCK_STYLESHEET_ERREUR+]<link type="text/css" rel="stylesheet" href="css://sousactive/forum.css">[BLOCK_STYLESHEET_ERREUR-]
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
+<script type="text/javascript" language="javascript" src="editeur://editeur_forum.js"></script>
 <script type="text/javascript">
 initEditeur("textareas", "", {tableau_de_bord->actif} );
 </script>

@@ -90,7 +90,7 @@ var url;
 <td class="bloc_menu_coins_bas">&nbsp;</td>
 <td class="bloc_menu_coins_bas" align="right" valign="bottom"><img src="theme://menu-3x3.gif" width="5" height="28" border="0"></td>
 </tr>
-<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td  class="element_actif" colspan="3">&nbsp;</td></tr>
 </table>
 [BLOCK_FORMATION-]
 </td>
@@ -112,7 +112,7 @@ var url;
 [SET_DESCRIPTION_FORMATION-]
 
 [SET_SANS_DESCRIPTION_FORMATION+]
-<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td class="element_actif" colspan="3">&nbsp;</td></tr>
 [SET_SANS_DESCRIPTION_FORMATION-]
 
 [SET_COURS+]

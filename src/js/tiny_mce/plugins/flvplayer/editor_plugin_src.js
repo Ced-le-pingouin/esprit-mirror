@@ -81,7 +81,7 @@
 
 					return '<img class="mceItem' + b + '" title="' + ed.dom.encode(c) + '" src="' + url + '/img/trans.gif" width="' + o.width + '" height="' + o.height + '" />'
 				});
-
+				
 				h = h.replace(/<object([^>]*)>/gi, '<span class="mceItemObject" $1>');
 				h = h.replace(/<embed([^>]*)>/gi, '<span class="mceItemEmbed" $1>');
 				h = h.replace(/<\/(object|embed)([^>]*)>/gi, '</span>');
@@ -186,9 +186,18 @@
 				width : o.width,
 				height : o.height
 			});
-			
+
 			if (p.backcolor)
 				p.backcolor = p.backcolor.replace("#", "0x");
+
+			dom.add(ob, 'span', {
+				mce_name : 'param',
+				name : 'movie', '_value' : GLOBALS["lecteur"]+'?file='+p.src +
+					'&showstop=true&usefullscreen=false&autostart=' + p.autostart +
+					'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
+					'&shownavigation=' + p.shownavigation
+			});
+
 			dom.add(ob, 'span', {
 				mce_name : 'embed',
 				src : GLOBALS["lecteur"], // on récupère l'url du lecteur flash définit dans 'globals.js.php'
@@ -208,8 +217,7 @@
 		_spansToImgs : function(p) {
 			var t = this, dom = t.editor.dom, im, ci;
 
-			each(dom.select('span', p), function(n) {
-			
+			each(dom.select('span', p), function(n) {			
 				// Convert embed into image
 				if (dom.getAttrib(n, 'class') == 'mceItemEmbed') {
 					switch (dom.getAttrib(n, 'type')) {
