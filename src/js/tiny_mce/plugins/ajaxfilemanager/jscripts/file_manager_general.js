@@ -1662,7 +1662,7 @@ function addDocumentHtml(num)
 					switch(files[num].cssClass)
 					{
 						case 'filePicture':
-							$('<a id="thumbUrl' + num + '" rel="thumbPhotos" href="' + files[num].path + '"><img src="' + appendQueryString(getUrl('thumbnail', false, false), 'path=' + files[num].path, ['path']) + '" id="thumbImg' +  num + '"></a>').appendTo('#dt' + num);
+							$('<a id="thumbUrl' + num + '" rel="thumbPhotos" href="' + files[num].path + '"><img src="' + files[num].path + '" id="thumbImg' +  num + '" height="100" width="100"></a>').appendTo('#dt' + num);
 							break;
 						case 'fileFlash':
 							break;
