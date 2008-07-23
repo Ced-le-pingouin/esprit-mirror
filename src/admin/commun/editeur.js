@@ -22,7 +22,7 @@ tinyMCE.init({
 	theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"
 		+(tableauDeBord?"tableaubordi,tableauborde,separator,":"")
 		+"iespell,hr,removeformat,sub,sup,charmap,separator,image,flvplayer",
-	theme_advanced_disable : "",
+	theme_advanced_disable : "styleselect",
 	theme_advanced_buttons3: "",
 	theme_advanced_toolbar_location : "top",
 	theme_advanced_toolbar_align : "left",

@@ -1,5 +1,5 @@
 /**
- * $Id: editor_template_src.js 829 2008-04-30 14:35:32Z spocke $
+ * $Id: editor_template_src.js 852 2008-05-27 05:52:09Z spocke $
  *
  * @author Moxiecode
  * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
@@ -126,9 +126,9 @@
 				return c;
 
 			switch (n) {
-/*				case "styleselect":
+				case "styleselect":
 					return this._createStyleSelect();
-*/
+
 				case "formatselect":
 					return this._createBlockFormats();
 
@@ -160,7 +160,7 @@
 			return false;
 		},
 
-		_importClasses : function() {
+		_importClasses : function(e) {
 			var ed = this.editor, c = ed.controlManager.get('styleselect');
 
 			if (c.getLength() == 0) {
@@ -170,7 +170,7 @@
 			}
 		},
 
-/*		_createStyleSelect : function(n) {
+		_createStyleSelect : function(n) {
 			var t = this, ed = t.editor, cf = ed.controlManager, c = cf.createListBox('styleselect', {
 				title : 'advanced.style_select',
 				onselect : function(v) {
@@ -190,14 +190,14 @@
 				});
 
 				c.onPostRender.add(function(ed, n) {
-					Event.add(n, 'focus', t._importClasses, t);
-					Event.add(n, 'mousedown', t._importClasses, t);
+					Event.add(n.id + '_text', 'focus', t._importClasses, t);
+					Event.add(n.id + '_text', 'mousedown', t._importClasses, t);
 				});
 			}
 
 			return c;
 		},
-*/
+
 		_createFontSelect : function() {
 			var c, t = this, ed = t.editor;
 
