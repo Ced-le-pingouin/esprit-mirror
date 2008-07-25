@@ -146,14 +146,14 @@ var ImageDialog = {
 			width : nl.width.value,
 			height : nl.height.value,
 			alt : nl.alt.value,
-			title : nl.title.value,
+//			title : nl.title.value,
 			'class' : getSelectValue(f, 'class_list'),
 			style : nl.style.value,
-			id : nl.id.value,
-			dir : nl.dir.value,
-			lang : nl.lang.value,
-			usemap : nl.usemap.value,
-			longdesc : nl.longdesc.value
+//			id : nl.id.value,
+//			dir : nl.dir.value,
+//			lang : nl.lang.value,
+//			usemap : nl.usemap.value,
+//			longdesc : nl.longdesc.value
 		});
 
 		args.onmouseover = args.onmouseout = '';

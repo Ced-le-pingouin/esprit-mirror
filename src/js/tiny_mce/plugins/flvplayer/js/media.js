@@ -146,7 +146,7 @@ function insertMedia() {
 		h += ' title="' + serializeParameters() + '"';
 		h += ' width="' + f.width.value + '"';
 		h += ' height="' + f.height.value + '"';
-		h += ' align="' + f.align.options[f.align.selectedIndex].value + '"';
+//		h += ' align="' + f.align.options[f.align.selectedIndex].value + '"';
 
 		h += ' />';
 
@@ -361,9 +361,9 @@ function generatePreview(c) {
 
 	pl.width = !pl.width ? 300 : pl.width;
 	pl.height = (type == 'mp3') ? 20 : (!pl.height ? 200 : pl.height);
-	pl.id = !pl.id ? 'obj' : pl.id;
-	pl.name = !pl.name ? 'eobj' : pl.name;
-	pl.align = !pl.align ? '' : pl.align;
+//	pl.id = !pl.id ? 'obj' : pl.id;
+//	pl.name = !pl.name ? 'eobj' : pl.name;
+//	pl.align = !pl.align ? '' : pl.align;
 	pl.backcolor = !pl.backcolor ? '0xffffff' : pl.backcolor.replace("#", "0x");
 	pl.shownavigation = !pl.shownavigation ? 'true' : pl.shownavigation;
 

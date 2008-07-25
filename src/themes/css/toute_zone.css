@@ -100,6 +100,7 @@ font-size:8pt;
 }
 
 td.description_menu,td.sans_description {
+background_color:#FBF9EE;
 font-size:8pt;
 text-align:right;
 border-style:none;
