@@ -58,10 +58,10 @@ function init() {
 		setBool(pl, 'flash', 'shownavigation');
 
 		setStr(pl, null, 'src');
-		setStr(pl, null, 'id');
-		setStr(pl, null, 'name');
+//		setStr(pl, null, 'id');
+//		setStr(pl, null, 'name');
 		setStr(pl, null, 'backcolor');
-		setStr(pl, null, 'align');
+//		setStr(pl, null, 'align');
 		setStr(pl, null, 'width');
 		setStr(pl, null, 'height');
 
@@ -249,10 +249,10 @@ function serializeParameters() {
 	s += getBool('flash', 'autostart', true);
 	s += getBool('flash', 'repeat', true);
 	s += getBool('flash', 'shownavigation', true);
-	s += getStr(null, 'id');
-	s += getStr(null, 'name');
+//	s += getStr(null, 'id');
+//	s += getStr(null, 'name');
 	s += getStr(null, 'src');
-	s += getStr(null, 'align');
+//	s += getStr(null, 'align');
 	s += getStr(null, 'backcolor');
 	s += getStr(null, 'width');
 	s += getStr(null, 'height');

@@ -70,7 +70,7 @@ function supprimer() { return document.forms[0].submit(); }
 [SET_FICHIER_ATTACHE+]
 <fieldset>
 <legend>&nbsp;Fichier attach&eacute;&nbsp;</legend>
-<input type="file" name="fichierMessage" size="70" style="width: 100%;">
+<input type="file" name="fichierMessage" size="85">
 [BLOCK_EFFACER_FICHIER_ATTACHE+]
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>

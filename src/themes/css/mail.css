@@ -18,9 +18,11 @@ font-size:8pt;
 
 select[name=expediteurCourriel],input[name=sujetCourriel] {
 font-size:10pt;
-width:100%;
 }
 
+select[name=expediteurCourriel] {
+width:100%;
+}
 .destinataires_liste table {
 background-color:#c4cadc;
 }

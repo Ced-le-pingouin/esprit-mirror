@@ -186,7 +186,7 @@ function liste_connectes() { top.frames["AWARENESS"].voir_liste_connectes(); }
 function choix_courriel(v_sParamsUrl) {
 	var sUrl = GLOBALS["admin"] + "mail/choix_courriel-index.php"
 		+ (v_sParamsUrl ? v_sParamsUrl : "");
-	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=no";
+	var sOptionsFenetre = ",status=no,resizable=no,scrollbars=no";
 	var oWin = PopupCenter(sUrl,"winChoixCourriel",480,585,sOptionsFenetre);
 	oWin.focus();
 	return false;

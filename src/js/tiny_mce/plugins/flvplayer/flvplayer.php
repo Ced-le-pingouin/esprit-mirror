@@ -28,17 +28,6 @@
 
 					<table border="0" cellpadding="4" cellspacing="0">
 							<tr>
-								<td><label for="media_type">{#flvplayer_dlg.type}</label></td>
-								<td>
-									<select id="media_type" name="media_type" onchange="changedType(this.value);generatePreview();">
-										<option value="flash">Flash (swf, flv)</option>
-										<option value="mp3">Audio (mp3)</option>
-										<option value="youtube">Video YouTube</option>
-										<!-- <option value="google">Vid&eacute;os Google</option> -->
-									</select>
-								</td>
-							</tr>
-							<tr>
 							<td><label for="src">{#flvplayer_dlg.file}</label></td>
 							  <td>
 									<table border="0" cellspacing="0" cellpadding="0">
@@ -49,21 +38,20 @@
 									</table>
 								</td>
 							</tr>
+							<tr>
+								<td><label for="media_type">{#flvplayer_dlg.type}</label></td>
+								<td>
+									<select id="media_type" name="media_type" onchange="changedType(this.value);generatePreview();">
+										<option value="mp3">Audio</option>
+										<option value="flash">Vid&eacute;o</option>
+										<option value="youtube">YouTube</option>
+										<!-- <option value="google">Vid&eacute;os Google</option> -->
+									</select>
+								</td>
+							</tr>
 							<tr id="linklistrow">
 								<td><label for="linklist">{#flvplayer_dlg.list}</label></td>
 								<td id="linklistcontainer">&nbsp;</td>
-							</tr>
-							<tr>
-								<td><label for="width">{#flvplayer_dlg.size}</label></td>
-								<td>
-									<table border="0" cellpadding="0" cellspacing="0">
-										<tr>
-											<td><input type="text" id="width" name="width" value="" class="size" onchange="generatePreview('width');" /> x <input type="text" id="height" name="height" value="" class="size"  onchange="generatePreview('height');" /></td>
-											<td>&nbsp;&nbsp;<input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
-											<td><label id="constrainlabel" for="constrain">{#flvplayer_dlg.constrain_proportions}</label></td>
-										</tr>
-									</table>
-								</td>
 							</tr>
 					</table>
 				</fieldset>
@@ -77,28 +65,22 @@
 
 			<div id="advanced_panel" class="panel">
 				<fieldset>
-					<legend>{#flvplayer_dlg.advanced}</legend>
+					<legend>{#flvplayer_dlg.example_flv}</legend>
 
 					<table border="0" cellpadding="4" cellspacing="0" width="100%">
 						<tr>
-							<td><label for="id">{#flvplayer_dlg.id}</label></td>
-							<td><input type="text" id="id" name="id" onchange="generatePreview();" /></td>
-							<td><label for="name">{#flvplayer_dlg.name}</label></td>
-							<td><input type="text" id="name" name="name" onchange="generatePreview();" /></td>
-						</tr>
-
-						<tr>
-							<td><label for="align">{#flvplayer_dlg.align}</label></td>
+							<td><label for="width">{#flvplayer_dlg.size}</label></td>
 							<td>
-								<select id="align" name="align" onchange="generatePreview();">
-									<option value="">{#not_set}</option> 
-									<option value="top">{#flvplayer_dlg.align_top}</option>
-									<option value="right">{#flvplayer_dlg.align_right}</option>
-									<option value="bottom">{#flvplayer_dlg.align_bottom}</option>
-									<option value="left">{#flvplayer_dlg.align_left}</option>
-								</select>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><input type="text" id="width" name="width" value="" class="size" onchange="generatePreview('width');" /> x <input type="text" id="height" name="height" value="" class="size"  onchange="generatePreview('height');" /></td>
+										<td>&nbsp;&nbsp;<input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
+										<td><label id="constrainlabel" for="constrain">{#flvplayer_dlg.constrain_proportions}</label></td>
+									</tr>
+								</table>
 							</td>
-
+						</tr>
+						<tr>
 							<td><label for="backcolor">{#flvplayer_dlg.backcolor}</label></td>
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">

@@ -162,6 +162,7 @@ function popup_nouveau_message(v_iIdEquipeUtilisateur,v_bMessageEquipes)
 		v_iIdEquipeUtilisateur = top.g_iIdEquipe;
 	
 	var iIdSujet = top.oFrmMessages().ret_id_sujet();
+	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
 	top.page_message = new Array(iIdSujet,0,0);
 	/*return ouvrir_modifier_message(iIdSujet,0,"ajouter",v_bMessageEquipes);*/
 	var sUrl = "modifier_message-index.php"
@@ -171,7 +172,7 @@ function popup_nouveau_message(v_iIdEquipeUtilisateur,v_bMessageEquipes)
 		+ "&idNiveau=" + top.g_iIdNiveau
 		+ "&typeNiveau=" + top.g_iTypeNiveau
 		+ "&idEquipe=" + (v_bMessageEquipes ? "0" : v_iIdEquipeUtilisateur);
-	var oWinMessageSujet = PopupCenter(sUrl,"winMessageSujet",750,560,"");
+	var oWinMessageSujet = PopupCenter(sUrl,"winMessageSujet",750,560,sOptionsFenetre);
 	oWinMessageSujet.focus();
 	return false;
 }

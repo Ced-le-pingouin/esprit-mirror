@@ -324,6 +324,13 @@ body.modifier_formulaire {
 padding:45px 0 0;
 }
 
+.corps {
+position: absolute;
+overflow: auto;
+width: 99%;
+height: 85%;
+}
+
 #barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,
 #autocorrect a:link,#autocorrect a:active,#autocorrect a:visited,#autocorrect a:hover,
 #barreaction a:link,#barreaction a:visited,#barreaction a:hover {

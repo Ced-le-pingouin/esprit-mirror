@@ -85,7 +85,7 @@ function envoyer()
 <table border="0" cellspacing="1" cellpadding="2" width="100%">
 <tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">De&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><select name="expediteurCourriel">{html_options}</select></td><td>&nbsp;</td></tr>
 <tr><td>&nbsp;</td><td valign="top"><div class="intitule" style="text-align: right; padding-top: 5px;">A&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><iframe src="{iframe->src}" name="emails" width="100%" height="80" frameborder="0" marginwidth="0" marginheight="0" scrolling="yes"></iframe></td><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">Sujet&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><input type="text" name="sujetCourriel" value="{sujet_courriel}" onkeyup="changerTitreFenetre()"></td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td><div class="intitule" style="text-align: right;">Sujet&nbsp;:&nbsp;&nbsp;</div></td><td width="99%"><input type="text" name="sujetCourriel" value="{sujet_courriel}" onkeyup="changerTitreFenetre()" size="60%"></td><td>&nbsp;</td></tr>
 </table>
 <div id="id_emails" style="visibility: hidden; display: none;">
 <textarea name="messageCourriel">{message_courriel}</textarea>

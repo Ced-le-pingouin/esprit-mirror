@@ -30,6 +30,7 @@ form
 </head>
 <body class="modifier_formulaire">
 <div id="entete"><h3>{Nom_etudiant}{Info_ael}</h3></div>
+<div class="corps">
 <table {sEncadrer} align="center" class="titre">
 <tr>
 	<td>
@@ -54,6 +55,8 @@ form
 {input_ss_activ}
 {ListeObjetFormul}
 </form>
+</div>
+
 <div id="barremenu">
 {bouton_fermer}{bouton_valider}
 </div>

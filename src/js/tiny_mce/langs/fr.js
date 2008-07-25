@@ -6,7 +6,7 @@ insert:"Ins\u00E9rer",
 update:"Mettre \u00E0 jour",
 cancel:"Annuler",
 close:"Fermer",
-browse:"Naviguer",
+browse:"Parcourir",
 class_name:"Classe",
 not_set:"-- Non init. --",
 clipboard_msg:"Copier/Couper/Coller n'est pas disponible sous Mozilla et sous Firefox.\nVoulez-vous plus d'information sur ce probl\u00E8me\u00A0?",
@@ -71,7 +71,7 @@ search_desc:"Chercher",
 replace_desc:"Chercher/Remplacer"
 },
 advimage:{
-image_desc:"Ins\u00E9rer/\u00C9diter image"
+image_desc:"Ins\u00E9rer/D\u00E9poser une image"
 },
 advlink:{
 link_desc:"Ins\u00E9rer/\u00C9diter lien"
@@ -130,8 +130,8 @@ desc:"Ins\u00E9rer/\u00C9diter un fichier m\u00E9dia",
 edit:"\u00C9diter un fichier m\u00E9dia"
 },
 flvplayer:{
-desc:"Ins\u00E9rer/\u00C9diter un fichier m\u00E9dia",
-edit:"\u00C9diter un fichier m\u00E9dia"
+desc:"Ins\u00E9rer/D\u00E9poser vid\u00E9o/audio",
+edit:"\u00C9diter vid\u00E9o/audio"
 },
 fullpage:{
 desc:"Propri\u00E9t\u00E9s du document"
