@@ -1176,6 +1176,8 @@ class CFormation
 	{
 		return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->DescrForm) : $this->oEnregBdd->DescrForm);
 	}
+	
+	function retIdParent() { return 0; }
 	//@}
 
 	/**

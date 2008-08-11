@@ -50,7 +50,7 @@ class PressePapiers
 	 * 
 	 * @param	elem	l'élément à enlever du presse papier (objet 
 	 * 					PressePapiersElement)
-	 * @param	differe	si \true, l'élément est seulement "marqué" pour 
+	 * @param	differe	si \c true, l'élément est seulement "marqué" pour 
 	 * 					suppression, mais celle-ci n'est effective qu'à l'appel
 	 * 					de #enleverElementsDiffere(). Si \c false (défaut), 
 	 * 					l'élément est enlevé immédiatement

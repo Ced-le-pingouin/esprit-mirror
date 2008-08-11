@@ -45,7 +45,7 @@ class CopierCollerFormation extends AfficheurPage
 	var $iIdFormationDest;	///< Id de la formation cible sélectionnée, à afficher dans le panneau Coller
 	var $oFormationSrc;		///< Objet qui contient la formation source affichée
 	var $oFormationDest;	///< Objet qui contient la formation cible affichée
-	var $brancheSrcSel;	///< Branches (modules, rubriques, etc.) sélectionnées dans le panneau Copier
+	var $brancheSrcSel;		///< Branches (modules, rubriques, etc.) sélectionnées dans le panneau Copier
 	var $brancheDestSel;	///< Branche cible sélectionnée dans le panneau Coller
 	
 	var $oPressePapiers;	///< Objet qui représente le presse-papiers (contient des modules, rubriques, etc.)
@@ -55,6 +55,9 @@ class CopierCollerFormation extends AfficheurPage
 	var $iIdElemAColler;	///< Id de l'élément source de l'opération Coller
 	var $iTypeElemDest;		///< Type (niveau) de l'élément de destination de l'opération Coller
 	var $iIdElemDest;		///< Id de l'élément de destination de l'opération Coller
+	var $elemAColler;		///< Objet qui contient l'élément à copier
+	var $elemDest;			///< Objet qui contient l'élément de destination de la copie
+	var $positionCopie;		///< Position à laquelle sera copié l'élément à coller, dans l'élément destination
 	
 	var $sOngletCourant;	///< Utile seulement si Javascript est activé, retient l'onglet (Copier ou Coller) actif
 	
@@ -155,14 +158,26 @@ class CopierCollerFormation extends AfficheurPage
 				$this->declarerErreurAction('erreurBrancheDest', FALSE,
 			    	                        "Aucun emplacement cible sélectionné pour coller");
 			}
-			// ...ou l'emplacement de destination n'est pas de même type ou de type parent
+			// ...ou l'emplacement de destination n'est pas valide
 			else
 			{
-				if (!ElementFormation::typeEstFrereDe($this->iTypeElemAColler, $this->iTypeElemDest)
-				 && !ElementFormation::typeEstEnfantDe($this->iTypeElemAColler, $this->iTypeElemDest))
-					$this->declarerErreurAction('erreurDestCopie', FALSE,
-					                            'La branche copiée doit être de même niveau ou de niveau juste '
-					                           .'inférieur à la branche de destination de la copie');
+				// init élément source et destination sous forme d'objets
+				$this->elemAColler = ElementFormation::retElementFormation(
+					$this->oProjet->oBdd, $this->iTypeElemAColler, 
+				    $this->iIdElemAColler
+				);
+				$this->elemDest = ElementFormation::retElementFormation(
+					$this->oProjet->oBdd, $this->iTypeElemDest, 
+					$this->iIdElemDest
+				);
+				
+				// déduction "intelligente" de la destination de la copie
+				list($this->elemDest, $this->positionCopie) =
+				 ElementFormation::trouverCibleCopie($this->elemAColler,
+				                                     $this->elemDest);
+				
+				if (is_null($this->elemDest))
+					$this->declarerErreurAction('erreurDestCopie', FALSE, "Impossible de trouver une cible valide pour l'opération de copie");
 			}
 		}
 
@@ -196,23 +211,18 @@ class CopierCollerFormation extends AfficheurPage
 						$this->oPressePapiers->ajouterElement(new PressePapiersElement($this->brancheSrcSel, 'copier'));
 				break;
 			
-			// coller la branche à l'emplacement destination, soit en dernier élément d'un élément parent,
-			// ou devant un élément de même type
+			// coller la branche à l'emplacement destination, cette destination 
+			// a été "calculée" au stade de validation des données
 			case 'coller':
-				$oElemAColler = ElementFormation::retElementFormation($this->oProjet->oBdd, $this->iTypeElemAColler, 
-				                                                      $this->iIdElemAColler);
-				$oElemDest = ElementFormation::retElementFormation($this->oProjet->oBdd, $this->iTypeElemDest, 
-				                                                   $this->iIdElemDest);
-				if (ElementFormation::typeEstFrereDe($this->iTypeElemAColler, $this->iTypeElemDest))
-				{
-					$iNumOrdre = $oElemDest->retNumOrdre();
-					$this->iIdElemDest = $oElemDest->retIdParent();
-				}
+				if (is_null($this->elemDest))
+					echo "Copie impossible !";
 				else
-				{
-					$iNumOrdre = 0;
-				}
-				$oElemAColler->copierAvecNumOrdre($this->iIdElemDest, $iNumOrdre);
+					echo 'id = ' . $this->elemDest->retId() . ', '
+			        	     . $this->elemDest->retNom() . ', '
+			            	 . 'pos = ' . $this->positionCopie . '<br />';
+				
+//				$this->elemAColler->copierAvecNumOrdre($this->elemDest->retId(), 
+//				                                       $this->positionCopie);
 				break;
 			
 			case 'supprimerColler':
