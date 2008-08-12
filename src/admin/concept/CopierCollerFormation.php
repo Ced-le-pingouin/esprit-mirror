@@ -33,6 +33,18 @@ require_once dir_database('formation.tbl.php', TRUE);
 
 /**
  * Contrôleur pour l'outil de copier/coller de (bouts de) formations
+ * 
+ * @todo Après une copie dont la destination a été déduite, mais se trouve au 
+ *       final éloignée de celle choisie par l'utilisateur, il faudrait déplacer
+ *       automatiquement la barre de défilement vers l'élément copié
+ * 
+ * @todo Pas à faire dans ce fichier, mais la copie d'une "action", qu'elle se
+ *       trouve au niveau Rubrique ou au niveau Sous-activité (=Action), devrait
+ *       être copiable en tant que n'importe quel élément de l'un de ces 2 types
+ *       (ex: possible de copier une Rubrique "action" vers une véritable
+ *       Action, ce qui demande des copies de fichiers dans des dossiers
+ *       différents, mais aussi une transposition des champs de DB d'un table à
+ *       une autre)
  */
 class CopierCollerFormation extends AfficheurPage
 {
@@ -214,15 +226,8 @@ class CopierCollerFormation extends AfficheurPage
 			// coller la branche à l'emplacement destination, cette destination 
 			// a été "calculée" au stade de validation des données
 			case 'coller':
-				if (is_null($this->elemDest))
-					echo "Copie impossible !";
-				else
-					echo 'id = ' . $this->elemDest->retId() . ', '
-			        	     . $this->elemDest->retNom() . ', '
-			            	 . 'pos = ' . $this->positionCopie . '<br />';
-				
-//				$this->elemAColler->copierAvecNumOrdre($this->elemDest->retId(), 
-//				                                       $this->positionCopie);
+				$this->elemAColler->copierAvecNumOrdre($this->elemDest->retId(), 
+				                                       $this->positionCopie);
 				break;
 			
 			case 'supprimerColler':

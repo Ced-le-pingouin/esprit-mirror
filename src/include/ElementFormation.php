@@ -230,6 +230,7 @@ class ElementFormation
 		                                       $elemSrc->retTypeNiveau()))
         {
    			$cible = $elemDst;
+   			$a = LIEN_UNITE;
         	
    			$itr = new IterateurRecursif(new IterateurElementFormation($cible),
 			                             ITR_REC_PARENT_AVANT);
@@ -237,7 +238,7 @@ class ElementFormation
 			{
 				$cible = $itr->courant();
 				if (ElementFormation::typeEstParentDe($cible->retTypeNiveau(), $elemSrc->retTypeNiveau())
-				     && $cible->retNumOrdre() == 1)
+				     && $cible->estConteneur())
 					return array($cible, 1);
 			}
 		}

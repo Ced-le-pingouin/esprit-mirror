@@ -125,7 +125,7 @@ GroupeOnglets.prototype.ajouterObservateur = Onglet.prototype.ajouterObservateur
 GroupeOnglets.prototype._notifier = Onglet.prototype._notifier;
 
 
-function ListeChoix(nomRadios)
+function ListeChoix(nomRadios, miseEnEvidence)
 {
 	this._radios = document.getElementsByName(nomRadios);
 	this._cadreScroll = this._retElemParentParTag(this._radios[0], 'div');
@@ -134,27 +134,32 @@ function ListeChoix(nomRadios)
 	this._nouveauChoix = null;
 	
 	var that = this;
-	var gererMiseEnEvidenceSelection = function(e)
-	{
-		that._nouveauChoix = that._retSelectionRadios();
-		
-		var elemAncienChoix = that._retElemParentParTag(that._ancienChoix, 'li');
-		if (elemAncienChoix)
-			elemAncienChoix.className = elemAncienChoix.className.
-			                         replace(/\bnivSel\b/, '');
-		
-		elemNouveauChoix = that._retElemParentParTag(that._nouveauChoix, 'li');
-		if (elemNouveauChoix
-		    && elemNouveauChoix.className.search(/\bnivSel\b/) === -1)
-			elemNouveauChoix.className += ' nivSel';
-		
-		that._ancienChoix = that._nouveauChoix;
-	};
-			
-	for (var i = 0, l = this._radios.length; i < l; i++)
-		this._radios[i].onclick = gererMiseEnEvidenceSelection;
 	
-	gererMiseEnEvidenceSelection();
+	if (miseEnEvidence !== false)
+	{
+		var gererMiseEnEvidenceSelection = function(e)
+		{
+			that._nouveauChoix = that._retSelectionRadios();
+			
+			var elemAncienChoix = that._retElemParentParTag(that._ancienChoix, 'li');
+			if (elemAncienChoix)
+				elemAncienChoix.className = elemAncienChoix.className
+				                            .replace(/\bnivSel\b/, '');
+			
+			elemNouveauChoix = that._retElemParentParTag(that._nouveauChoix, 'li');
+			if (elemNouveauChoix
+			     && elemNouveauChoix.className.search(/\bnivSel\b/) === -1)
+				elemNouveauChoix.className += ' nivSel';
+			
+			that._ancienChoix = that._nouveauChoix;
+		};
+		
+		for (var i = 0, l = this._radios.length; i < l; i++)
+			this._radios[i].onclick = gererMiseEnEvidenceSelection;
+		
+		gererMiseEnEvidenceSelection();
+	}
+	
 	this.allerVersSelection();
 }
 
@@ -237,7 +242,7 @@ function initPage()
 	enleverBoutonsChoisir();
 	associerConfirmationBoutonSupprimer();
 	new ListeChoix('brancheSrcSel');
-	new ListeChoix('brancheDestSel');
+	new ListeChoix('brancheDestSel', false);
 }
 
 var ancienOnLoad = window.onload || function() {};
