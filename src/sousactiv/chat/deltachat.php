@@ -100,12 +100,12 @@ if ($bEnregConversation)
 	{
 		$iIdActiv = $oIds->retIdActiv();
 		$oRep = new CRepertoire(dir_chat_log($iIdActiv,$iIdForm,NULL,TRUE));
-		$sRepArchives = dir_chat_log($iIdActiv,$iIdForm);
+		$sRepArchives = str_replace($_SERVER['DOCUMENT_ROOT'], '', dir_chat_log($iIdActiv,$iIdForm,NULL,TRUE));
 	}
 	else if ($url_iTypeNiveau == TYPE_RUBRIQUE)
 	{
 		$oRep = new CRepertoire(dir_formation($iIdForm,"chatlog",TRUE));
-		$sRepArchives = dir_formation($iIdForm,"chatlog/",FALSE);
+		$sRepArchives = str_replace($_SERVER['DOCUMENT_ROOT'], '', dir_formation($iIdForm,"chatlog/",TRUE));
 	}
 	
 	if (isset($sRepArchives) &&
@@ -151,6 +151,7 @@ $oProjet->terminer();
 <param name="location" value="test">
 <param name="port_spy" value="0">
 </applet>
+<!--<?php echo $_SERVER['DOCUMENT_ROOT'] ?>-->
 </td>
 </tr>
 </table>
