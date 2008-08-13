@@ -242,7 +242,7 @@ function initPage()
 	enleverBoutonsChoisir();
 	associerConfirmationBoutonSupprimer();
 	new ListeChoix('brancheSrcSel');
-	new ListeChoix('brancheDestSel', false);
+	new ListeChoix('brancheDestSel');
 }
 
 var ancienOnLoad = window.onload || function() {};

@@ -34,10 +34,6 @@ require_once dir_database('formation.tbl.php', TRUE);
 /**
  * Contrôleur pour l'outil de copier/coller de (bouts de) formations
  * 
- * @todo Après une copie dont la destination a été déduite, mais se trouve au 
- *       final éloignée de celle choisie par l'utilisateur, il faudrait déplacer
- *       automatiquement la barre de défilement vers l'élément copié
- * 
  * @todo Pas à faire dans ce fichier, mais la copie d'une "action", qu'elle se
  *       trouve au niveau Rubrique ou au niveau Sous-activité (=Action), devrait
  *       être copiable en tant que n'importe quel élément de l'un de ces 2 types
@@ -226,8 +222,15 @@ class CopierCollerFormation extends AfficheurPage
 			// coller la branche à l'emplacement destination, cette destination 
 			// a été "calculée" au stade de validation des données
 			case 'coller':
-				$this->elemAColler->copierAvecNumOrdre($this->elemDest->retId(), 
-				                                       $this->positionCopie);
+				$idCopie = $this->elemAColler->copierAvecNumOrdre(
+					$this->elemDest->retId(),
+					$this->positionCopie
+				);
+				
+				// c'est mieux si on sélectionne automatiquement l'élément copié
+				$this->brancheDestSel = $this->elemAColler->retTypeNiveau()
+				                        .'_'.$idCopie;
+				echo $this->brancheDestSel;
 				break;
 			
 			case 'supprimerColler':
@@ -350,7 +353,7 @@ class CopierCollerFormation extends AfficheurPage
 
 			$tplPressePapiers->nextLoop();
 			$tplPressePapiers->remplacer('{pp.numNiv}', $elem->retTypeNiveau());
-			$tplPressePapiers->remplacer('{pp.symbole}', $elem->retSymbole(TRUE));
+			$tplPressePapiers->remplacer('{pp.symbole}', $elem->retSymbole());
 			if ($elem->estConteneur())
 				$tplPressePapiers->remplacer('<label', '<label class="conteneur"');
 			$tplPressePapiers->remplacer('{pp.id}', 'Pp_'.$idCompose);
