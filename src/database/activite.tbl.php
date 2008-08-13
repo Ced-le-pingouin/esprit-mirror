@@ -922,6 +922,33 @@ class CActiv
 	{
 		return INTITULE_ACTIV;
 	}
+
+	/**
+	 * @param	v_bAfficherNumOrdre	paramètre uniquement présent pour
+	 * 								compatibilité avec les appels de la méthode
+	 * 								de même nom des niveaux de formation
+	 * 								supérieurs, ici le n° sera toujours retourné
+	 * @param	v_bPonctuation		si \c true, ajoute un point après l'intitulé
+	 * 
+	 * @return	l'intitulé de l'activité, avec éventuellement un signe de 
+	 * 			ponctuation supplémentaire
+	 * 
+	 * @note	Tout niveau de formation inférieur aux rubriques a pour intitulé 
+	 * 			son n° d'ordre, et cette méthode est alors un simple appel à 
+	 * 			\c retNumOrdre(). Elle est présente pour une similitude
+	 * 			"d'interface" entre les niveaux de formation
+	 */
+	function retTexteIntitule($v_bAfficherNumOrdre = TRUE, $v_bPonctuation = FALSE)
+	{
+		$sPonctuation = $v_bPonctuation?'.':'';
+		return $this->retNumOrdre().$sPonctuation;
+	}
+	
+	/**
+	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
+	 * 			une simple abréviation) 
+	 */
+	function retSymbole() { return 'ga'; }
 	
 	/**
 	 * Retourne un tableau à 2 dimensions contenant les modalités d'une activité
@@ -943,6 +970,16 @@ class CActiv
 		$f = new FichierInfo(dir_cours($this->retId(), $this->retIdFormation()));
 		return $f->retChemin();
 	}
+	
+	/**
+	 * Indique si cet élément est susceptible de contenir d'autre éléments
+	 * 
+	 * @return	\c true si l'élément est un conteneur, càd que son rôle est 
+	 * 			uniquement de contenir des éléments de niveau inférieur, 
+	 * 			\c false sinon (dans ce cas il s'agit d'une "activité", par ex. 
+	 * 			forum, chat...)
+	 */
+	function estConteneur()	{ return TRUE; }
 	
 	/**
 	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants

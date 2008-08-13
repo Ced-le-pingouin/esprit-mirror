@@ -28,8 +28,6 @@ function formaterChaineCsv($v_sChaine)
 }
 
 $iIdSousActiv = $_GET["idSousActiv"];
-//$iIdFormulaire = ( isset($_GET["idformulaire"])?$_GET["idformulaire"]:118 );
-//$iIdFc = $_GET["idfc"]; // 3,4,49,52,54 = Form118 | 42 = Form2 | 59 = Form126
 
 $asTypes = array(1=>"Q texte long", "Q texte court", "Q nombre", "Q liste", "Q radio", "Q case", "texte", "séparateur");
 $iValeurNeutreMin = 0;
@@ -85,19 +83,13 @@ if ($iNbFormulairesAcceptes)
 	// !!! pour que l'exportation fonctionne
 	foreach ($oSousActiv->aoFormulairesCompletes as $oFc)
 	{
-		//$asColonnesExportees[$iIndexEtudiant] = NULL;
-		
 		$oFc->initAuteur();
 		$oFc->initFormulaireModele(unserialize($osFormulaire)); $oFc->oFormulaireModele->oBdd =& $oFc->oBdd;
-		//$oFc->oFormulaireModele->initAxes();
-		//$oFc->oFormulaireModele->initObjets(TRUE, TRUE);
-		//$oFc->oFormulaireModele->determinerDonneesAExporter($iValeurNeutreMin, $iValeurNeutreMax);
 		$oFc->initReponses();
 		
 		// on exporte les données AVEC AXE
 		if (count($oFc->oFormulaireModele->oExportation->abExporterAxeObjet))
 		{
-			//$asColonnesExportees[$iIndexEtudiant][] = '"'.$oFc->retId().'"';////
 			$asColonnesExportees[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retNom()).'"';
 			$asColonnesExportees[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retPrenom()).'"';
 			$asColonnesExportees[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retPseudo()).'"';
@@ -114,16 +106,6 @@ if ($iNbFormulairesAcceptes)
 						$iNbObjetsPourAxe++;
 						if (isset($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse))
 						{
-							/*print "FC: ".$oFc->retId();
-							print " - FM: ".$oFc->oFormulaireModele->retId();
-							print " - OBJ: ".$oFc->oFormulaireModele->aoObjets[$iObjetExporte]->retId();
-							print " - REPS POS: ";
-							foreach ($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->aoReponsesPossibles as $oReponsePossible)
-								print $oReponsePossible->retId().",";
-							print " - REP DONNEE: ";
-							print_r($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse);
-							print "<br>";*/
-							
 							$iIdReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse[0];
 							$iValeur = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->aoReponsesPossibles[$iIdReponse]->aiValeurAxe[$iAxeExporte];
 							$asColonnesExportees[$iIndexEtudiant][] = $iValeur;
@@ -148,7 +130,6 @@ if ($iNbFormulairesAcceptes)
 		// ensuite, on exporte les données SANS AXE
 		if (count($oFc->oFormulaireModele->oExportation->abExporterObjetSansAxe))
 		{
-			//$asColonnesExportees[$iIndexEtudiant][] = '"'.$oFc->retId().'"';////
 			$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retNom()).'"';
 			$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retPrenom()).'"';
 			$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($oFc->oAuteur->retPseudo()).'"';
@@ -168,13 +149,9 @@ if ($iNbFormulairesAcceptes)
 						{
 							foreach($oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse as $sReponseCourante)
 							{
-								//$iIdReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->sReponse[0];
-								
 								$iIdReponse = $sReponseCourante;
 								$sTexteReponse = $oFc->oFormulaireModele->aoObjets[$iObjetExporte]->aoReponsesPossibles[$iIdReponse]->retTexte();
 								$asReponseComplete[] = $sTexteReponse;
-								
-								//$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv($sTexteReponse).'"';
 							}
 							
 							$asColonnesExporteesSansAxe[$iIndexEtudiant][] = '" '.formaterChaineCsv(implode(', ', $asReponseComplete)).'"';
@@ -193,52 +170,48 @@ if ($iNbFormulairesAcceptes)
 		}
 		
 		$iIndexEtudiant++;
-		//print "<br>";
 	}
 }
 
-//header('Cache-Control: no-store, no-cache, must-revalidate');
+$sContenuAEnvoyer = '';
+
+$sContenuAEnvoyer .=
+	 "Formulaire: ".$oFormulaire->retTitre()
+	."\n"
+	."Nombre d'axes exportés: ".count($oFormulaire->oExportation->abExporterAxeObjet)
+	."\n"
+	."Nombre d'éléments/questions: ".count($oFormulaire->aoObjets)
+	."\n"
+	."Nombre de formulaires traités: ".$iNbFormulairesAcceptes
+	."\n"
+	."\n"
+	."\n"
+	."Les données ci-dessous proviennent des questions qui font usage des axes :"
+	."\n"
+	."\n"
+	;
+
+for ($i = 0, $c = count($asColonnesExportees); $i < $c; $i++)
+	$sContenuAEnvoyer .= implode(';', $asColonnesExportees[$i])."\n";
+
+$sContenuAEnvoyer .=
+	 "\n"
+	."\n"
+	."\n"
+	."Les données (réponses) ci-dessous proviennent des questions pour lesquelles les axes ne sont pas pris en compte"
+	." (le contenu/texte de la réponse est donc exporté) :"
+	."\n"
+	."\n"
+	;
+
+for ($i = 0, $c = count($asColonnesExporteesSansAxe); $i < $c; $i++)
+	$sContenuAEnvoyer .= implode(';', $asColonnesExporteesSansAxe[$i])."\n";
+	
 header("Content-type: application/force-download");
 header("Content-Type: application/octetstream");
 header("Content-Type: application/octet-stream");
 header('Content-Disposition: attachment; filename='.urlencode($oFormulaire->retTitre()).'.csv');
 
-//print "Sous-activité: ".$oSousActiv->retId();
-//print "<br>";
-
-print "Formulaire: ".$oFormulaire->retTitre();
-print "\n";
-
-print "Nombre d'axes exportés: ".count($oFormulaire->oExportation->abExporterAxeObjet);
-print "\n";
-
-print "Nombre d'éléments/questions: ".count($oFormulaire->aoObjets);
-print "\n";
-
-print "Nombre de formulaires traités: ".$iNbFormulairesAcceptes;
-print "\n";
-
-print "\n";
-print "\n";
-
-print "Les données ci-dessous proviennent des questions qui font usage des axes :";
-print "\n";
-print "\n";
-
-for ($i = 0; $i < count($asColonnesExportees); $i++)
-	print implode(';', $asColonnesExportees[$i])."\n";
-
-
-print "\n";
-print "\n";
-print "\n";
-
-print "Les données (réponses) ci-dessous proviennent des questions pour lesquelles les axes ne sont pas pris en compte"
-	." (le contenu/texte de la réponse est donc exporté) :"
-	;
-print "\n";
-print "\n";
-
-for ($i = 0; $i < count($asColonnesExporteesSansAxe); $i++)
-	print implode(';', $asColonnesExporteesSansAxe[$i])."\n";
+//echo mb_convert_encoding($sContenuAEnvoyer, "ISO-8859-1", "UTF-8");
+echo $sContenuAEnvoyer;
 ?>

@@ -50,7 +50,7 @@ class PressePapiers
 	 * 
 	 * @param	elem	l'élément à enlever du presse papier (objet 
 	 * 					PressePapiersElement)
-	 * @param	differe	si \true, l'élément est seulement "marqué" pour 
+	 * @param	differe	si \c true, l'élément est seulement "marqué" pour 
 	 * 					suppression, mais celle-ci n'est effective qu'à l'appel
 	 * 					de #enleverElementsDiffere(). Si \c false (défaut), 
 	 * 					l'élément est enlevé immédiatement
@@ -72,6 +72,33 @@ class PressePapiers
 	{
 		foreach ($this->_aElementsAEnlever as $indexElem)
 			unset($this->_aElements[$indexElem]);
+	}
+	
+	/**
+	 * Enlève les éléments considérés comme invalides (par ex. qui auraient été
+	 * supprimés depuis leur référencement dans le presse-papiers
+	 * 
+	 * @param	fctEstValide	fonction "callback" à appeler pour chaque 
+	 * 							élément, qui devra accepter un élément en 
+	 * 							paramètre, et retourner \c true si celui-ci est
+	 * 							considéré comme valide, \c false sinon 
+	 *
+	 * @return	\c true si des éléments invalides ont été trouvés (et enlevés)
+	 */
+	function enleverElementsInvalides($fctEstValide)
+	{
+		$elemsInvalidesTrouves = FALSE;
+		
+		foreach ($this->_aElements as $indexElem => $elem)
+		{
+			if (!call_user_func($fctEstValide, $elem))
+			{
+				unset($this->_aElements[$indexElem]);
+				$elemsInvalidesTrouves = TRUE;
+			}
+		}
+		
+		return $elemsInvalidesTrouves;
 	}
 	
 	/**

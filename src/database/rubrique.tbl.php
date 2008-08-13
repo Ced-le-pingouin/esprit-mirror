@@ -131,18 +131,23 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Retourne le texte de l'intitulé avec son numéro d'ordre(optionnel)
+	 * @param	v_bAfficherNumOrdre	si \c true, retourne aussi le  n° d'ordre
+	 * 								après l'intitulé
+	 * @param	v_bPonctuation		si \c true, ajoute deux points après 
+	 * 								l'intitulé (et n° d'ordre éventuel)
 	 * 
-	 * @param	v_bAfficherNumOrdre si \c true(défaut) retourne aussi le numéro d'ordre
-	 * 
-	 * @return	le texte de l'intitulé
+	 * @return	l'intitulé de la rubrique avec éventuellement des infos 
+	 * 			supplémentaires
 	 */
-	function retTexteIntitule ($v_bAfficherNumOrdre=TRUE)
+	function retTexteIntitule($v_bAfficherNumOrdre = TRUE, $v_bPonctuation = FALSE)
 	{
 		$sTexteIntitule = $this->oIntitule->retNom();
 		
 		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0)
 				$sTexteIntitule .= "&nbsp;{$this->oEnregBdd->NumDepartIntitule}";
+		
+		if (strlen($sTexteIntitule) && $v_bPonctuation)
+			$sTexteIntitule .= ' :';
 		
 		return $sTexteIntitule;
 	}
@@ -373,9 +378,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Retourne un tableau contenant l'intitulé de la rubrique précedente
-	 * 
-	 * @return	un tableau contenant l'intitulé de la rubrique précedente
+	 * @return	un tableau contenant l'intitulé de la rubrique précédente
 	 */
 	function retInfosIntituleRubPrecedente ()
 	{
@@ -600,7 +603,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Efface unne rubrique dans la DB	
+	 * Efface une rubrique dans la DB	
 	 * 
 	 * @param	v_iIdRubrique l'id de la rubrique à effacer
 	 */
@@ -1003,6 +1006,24 @@ class CModule_Rubrique
 	}
 	
 	/**
+	 * @param	v_bDifferencierActions	si \c true, le symbole retourné tiendra
+	 * 									compte de la nature de la rubrique, càd
+	 * 									qu'une rubrique "non conteneur", qui 
+	 * 									contient une action, renverra un symbole
+	 * 									différent d'une rubrique/unité classique
+	 * 
+	 * @return	le symbole qui représente ce niveau de formation (pour l'instant
+	 * 			une simple abréviation)
+	 */
+	function retSymbole($v_bDifferencierActions = FALSE)
+	{
+		if ($v_bDifferencierActions && !$this->estConteneur())
+			return 'a';
+		else
+			return 'u';
+	}
+	
+	/**
 	 * Réinitialise l'objet \c oEnregBdd avec la rubrique courante
 	 */
 	function rafraichir ()
@@ -1117,7 +1138,7 @@ class CModule_Rubrique
 	}
 	
 	/**
-	 * Verifie si la personne qui a crée la rubrique est la même que celle passé en paramètre
+	 * Vérifie si la personne qui a crée la rubrique est la même que celle passé en paramètre
 	 * 
 	 * @param	v_iIdPers l'id de la personne
 	 * 
@@ -1309,6 +1330,15 @@ class CModule_Rubrique
 		$f = new FichierInfo(dir_rubriques($this->iIdForm));
 		return $f->retChemin();
 	}
+	
+	/**
+	 * Indique si cet élément est susceptible de contenir d'autre éléments
+	 * 
+	 * @return	\c true si l'élément est un conteneur (sont rôle est uniquement 
+	 * 			de contenir des éléments de niveau inférieur), \c false sinon
+	 * 			(dans ce cas il s'agit d'une "activité", par ex. forum, chat...)
+	 */
+	function estConteneur()	{ return ($this->retType() == LIEN_UNITE); }
 	
 	/**
 	 * Retourne (après les avoir initialisés si nécessaire) les éléments enfants

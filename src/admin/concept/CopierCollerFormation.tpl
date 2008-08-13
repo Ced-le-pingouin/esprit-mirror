@@ -4,17 +4,17 @@
  id="fixes">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Copier/Coller dans les formations</title>
+<title>Copier/coller</title>
 <link rel="stylesheet" type="text/css" 
  href="theme://styles/CopierCollerFormation.css" />
+<script type="text/javascript" src="theme://scripts/fenetreErreurs.js"></script>
 <script type="text/javascript" src="theme://scripts/insFermer.js"></script>
 <script type="text/javascript" src="CopierCollerFormation.js"></script>
 </head>
 <body>
-
 <div id="contenuPrincipal">
 
-<div class="erreurs">[erreurs+][erreurs-]</div>
+<div class="erreurs" id="erreurs">[erreurs+][erreurs-]</div>
 
 [pasErreur+]
 <div id="cadreOnglets">
@@ -24,7 +24,7 @@
 
 <div id="cadreCopier">
 <h3>
-<label for="idFormationSrcId">Copier de la formation &lt;</label>
+<label for="idFormationSrcId">Copier de la formation&nbsp;:</label>
 <select name="idFormationSrc" id="idFormationSrcId">
   [formSrc_liste+]
   <option value="{formation.id}">{formation.titre}</option>
@@ -33,23 +33,31 @@
 <input type="submit" name="changerFormationSrc" value="Choisir" class="bouton"
  title="Choisir la formation source de la copie" />
 </h3>
-<table border="1">
-  [formSrc_branche+]<tr>
-  	<th>{branche.niv} {branche.type}</th>
-    <td class="niv{branche.numNiv}">
-      <input type="checkbox" name="branchesSrcSel[]" id="{branche.id}"
-       value="{branche.val}" />
-      <label for="{branche.id}">{branche.titre}</label>
-    </td>
-  </tr>[formSrc_branche-]
-</table>
-<input type="submit" name="copier" value="Copier" class="bouton"
+<div class="cadreScrollable">
+[formSrc_branche+]<ul>
+  [formSrc_branche_el+]<li class="niv{branche.numNiv}">
+    <span>
+    <em>{branche.symbole}</em>
+  	<input type="radio" name="brancheSrcSel" id="{branche.id}"
+     value="{branche.val}" />
+      <label for="{branche.id}"><strong>{branche.intitule}</strong> {branche.titre}</label>
+    </span>
+      [@formSrc_branche]
+  </li>[formSrc_branche_el-]
+</ul>[formSrc_branche-]
+</div><!--cadreScrollable-->
+<input type="submit" name="copier" id="copier" value="Copier" class="lien"
  title="copier les éléments cochés vers le presse-papiers" />
+<input type="submit" name="collerDesactive" id="collerDesactive"
+ value="Coller (après)" class="lienDesactive" disabled="disabled" />
+<sup class="renvoi">*</sup>
+<input type="submit" name="supprimerCopier" id="supprimerCopier"
+ value="Supprimer" class="lienDesactive" disabled="disabled" />
 </div><!--cadreCopier-->
 
 <div id="cadreColler">
 <h3>
-<label for="idFormationDestId">Coller dans la formation &gt;</label>
+<label for="idFormationDestId">Coller dans la formation&nbsp;:</label>
 <select name="idFormationDest" id="idFormationDestId">
   [formDest_liste+]
   <option value="{formation.id}">{formation.titre}</option>
@@ -58,36 +66,47 @@
 <input type="submit" name="changerFormationDest" value="Choisir" class="bouton"
  title="Choisir la formation cible de la copie" />
 </h3>
-<table border="1">
-  [formDest_branche+]<tr>
-  	<th>{branche.niv} {branche.type}</th>
-    <td class="niv{branche.numNiv}">
-      <input type="radio" name="brancheDestSel" id="{branche.id}"
-       value="{branche.val}" />
-      <label for="{branche.id}">{branche.titre}</label>
-    </td>
-  </tr>[formDest_branche-]
-</table>
-<input type="submit" name="coller" value="Coller" class="bouton"
+<div class="cadreScrollable">
+[formDest_branche+]<ul>
+  [formDest_branche_el+]<li class="niv{branche.numNiv}">
+    <span>
+    <em>{branche.symbole}</em>
+    <input type="radio" name="brancheDestSel" id="{branche.id}"
+     value="{branche.val}" />
+      <label for="{branche.id}"><strong>{branche.intitule}</strong> {branche.titre}</label>
+    </span>
+      [@formDest_branche]
+  </li>[formDest_branche_el-]
+</ul>[formDest_branche-]
+</div><!--cadreScrollable-->
+<input type="submit" name="copierDesactive" id="copierDesactive"
+ value="Copier" class="lienDesactive" disabled="disabled" />
+<input type="submit" name="coller" id="coller" value="Coller (après)" class="lien"
  title="coller les éléments sélectionnés du presse-papiers vers la formation cible" />
+<sup class="renvoi">*</sup>
+<input type="submit" name="supprimerColler" id="supprimerColler"
+ value="Supprimer" class="lien" title="Supprimer l'élément sélectionné" />
+<p class="renvoi">(*) Au niveau approprié (un cours après un cours, une unité 
+après une unité, etc.)</p>
 </div><!--cadreColler-->
 
 <div id="cadrePressePapiers">
-<h3>Contenu du presse-papiers</h3>
-<table border="1">
-  [pp_element+]<tr>
-    <th>{pp.niv} {pp.type}</th>
-    <td>
-      <input type="radio" name="elemPpSel" id="{pp.id}"
-       value="{pp.val}" />
-      <label for="{pp.id}">{pp.titre}</label>
-    </td>
-  </tr>[pp_element-]
-</table>
-<input type="submit" name="supprimerElemPp" value="Supprimer" class="bouton"
- title="supprimer les éléments cochés du presse-papiers" />
-<input type="submit" name="viderPp" value="Vider" class="bouton"
- title="vider complètement presse-papiers" />
+<h3>Presse-papiers</h3>
+<div class="cadreScrollable">
+<ul>
+  [pp_element+]<li class="niv{pp.numNiv}">
+    <span>
+    <em>{pp.symbole}</em>
+    <input type="radio" name="elemPpSel" id="{pp.id}" value="{pp.val}" />
+    <label for="{pp.id}"><strong>{pp.intitule}</strong> {pp.titre}</label>
+    </span>
+  </li>[pp_element-]
+</ul>
+</div><!--cadreScrollable-->
+<input type="submit" name="supprimerElemPp" id="supprimerElemPp" class="lien"
+ value="Supprimer" title="supprimer les éléments cochés du presse-papiers" />
+<input type="submit" name="viderPp" id="viderPp" value="Vider"
+ title="vider complètement presse-papiers" class="lien" />
 </div><!-- cadrePressePapiers -->
 
 </form>

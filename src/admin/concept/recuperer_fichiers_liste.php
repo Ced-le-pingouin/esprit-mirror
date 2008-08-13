@@ -32,6 +32,7 @@
 */
 
 require_once("globals.inc.php");
+require_once dir_lib('std/FichierInfo.php', true);
 
 if (!empty($_GET))
 {
@@ -45,6 +46,15 @@ else if (!empty($_POST))
 }
 
 $sRepCours = dir_cours($IdActiv,$IdForm);
+
+if (!empty($_GET['s']))
+{
+	$fichierAEffacer = new FichierInfo($sRepCours.$_GET['s']);
+	if ($fichierAEffacer->existe())
+		$fichierAEffacer->supprimer();
+	header("Location:".basename(__FILE__)."?FORM={$IdForm}&ACTIV={$IdActiv}");
+	
+}
 
 function listdir ($v_sRepertoire,$aoListDirs,$iNiveau=0)
 {
@@ -98,6 +108,15 @@ $aoListeFichiers = listdir($rep,$aoListeFichiers,0);
 
 function init()
 {
+	var fctConfirmation = function()
+	{
+		return confirm('Êtes-vous sûr(e) de vouloir supprimer ce fichier ?');
+	}
+
+	var liens = document.getElementsByTagName('a');
+	for (var i in liens)
+		if (liens[i].className == 'supprimer')
+			liens[i].onclick = fctConfirmation;
 }
 
 function Selectionner(v_bSelectionner)
@@ -124,6 +143,7 @@ body
 
 a, td {vertical-align: top;}
 
+.supprimer { color: rgb(74,92,158); font-style: normal; font-weight: bold; }
 //-->
 </style>
 
@@ -187,6 +207,8 @@ for ($i=0; $i<$tot; $i++)
 		
 		echo "<a href=\"{$sFichierDownload}?f=$rep\" style=\"white-space: nowrap;\" onfocus=\"blur()\">"
 			.stripslashes($fichier)."</a>";
+			
+		echo "&nbsp;<a href=\"".basename(__FILE__)."?FORM={$IdForm}&ACTIV={$IdActiv}&s=".rawurlencode($fichier)."\" class=\"supprimer\">(Supprimer)</a>";
 	}
 	else
 	{

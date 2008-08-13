@@ -42,6 +42,7 @@ class CForumCSV extends CCSV
 	var $oForum;
 	
 	var $aoEquipes;
+	var $sContenuAEnvoyer = "";
 	
 	function CForumCSV (&$v_oBdd,$v_iId=NULL)
 	{
@@ -68,7 +69,7 @@ class CForumCSV extends CCSV
 			? new CModule_Rubrique($this->oBdd,$this->oIds->retIdRubrique())
 			: NULL);
 			
-		echo "\""
+		$this->sContenuAEnvoyer .= "\""
 			.$this->doubler_guillemets($oFormation->retNom())
 			." / "
 			.$this->doubler_guillemets($oModule->retNom())
@@ -85,7 +86,7 @@ class CForumCSV extends CCSV
 	
 	function envoyerEntetes ()
 	{
-		echo "\n"
+		$this->sContenuAEnvoyer .= "\n"
 			."\"ID forum\""
 			.";\"Nom du forum (".$this->doubler_guillemets($this->oForum->retTexteModalite()).")\""
 			.";\"ID sujet\""
@@ -127,7 +128,7 @@ class CForumCSV extends CCSV
 				$oMessage->initAuteur();
 				$bTuteur = $oMessage->oAuteur->verifTuteur($iIdMod);
 				
-				echo "\"{$iIdForum}\""
+				$this->sContenuAEnvoyer .= "\"{$iIdForum}\""
 					.";\"".(isset($v_oEquipe) ? $this->doubler_guillemets($v_oEquipe->retNom()) : NULL)."\""
 					.";\"{$iIdSujet}\""
 					.";\"{$sNomSujet}\""
@@ -145,23 +146,10 @@ class CForumCSV extends CCSV
 					.";\"".$oMessage->retId()."\"";
 				
 				// {{{ Messages
-				/*foreach (preg_split("/\015\012|\015|\012/",$oMessage->retMessage()) as $iNbMessages => $sMessage)
-				{
-					$sMessage = enleverBaliseMeta($sMessage);
-					
-					if (strlen($sMessage))
-						echo ($iNbMessages > 0 ? "\"\";\"\";\"\";\"\";\"\"" : NULL)
-							.";\""
-							.$this->doubler_guillemets($sMessage)
-							."\"\n";
-				}*/
-				// }}}
-				
-				// {{{ Messages
 				$sMessage = enleverBaliseMeta(preg_replace("/\015\012|\015/","\012",$oMessage->retMessage()));
 				
 				if (strlen($sMessage))
-					echo ";\" "
+					$this->sContenuAEnvoyer .= ";\" "
 						.$this->doubler_guillemets($sMessage)
 						."\"\n";
 				// }}}
@@ -169,7 +157,7 @@ class CForumCSV extends CCSV
 		}
 	}
 	
-	function exporter ()
+	function exporter()
 	{
 		$bModaliteParEquipe = (MODALITE_POUR_TOUS != $this->oForum->retModalite());
 		
@@ -187,6 +175,9 @@ class CForumCSV extends CCSV
 		else
 			$this->envoyerSujets();
 		// }}}
+		
+		//echo mb_convert_encoding($this->sContenuAEnvoyer, "ISO-8859-1", "UTF-8");
+		echo $this->sContenuAEnvoyer; 
 	}
 }
 

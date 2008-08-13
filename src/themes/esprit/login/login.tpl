@@ -66,7 +66,7 @@ function GPL()
 		[BLOCK_LISTE_FORMATIONS+]
 		<p>Vous n'êtes pas inscrit ? Vous pouvez néanmoins vous faire une idée des possibilités d'Esprit en sélectionnant
 		une des formations proposées ci-dessous à titre d'exemple. Vous aurez la possibilité, en parcourant l'une ou l'autre 
-		de ces formations, de découvrir la manière dont est structurée un cours sur Esprit.</p>
+		de ces formations, de découvrir la manière dont un cours est structuré sur Esprit.</p>
 		<ul>
 		[BLOCK_FORMATION+]
 		<li>{formation->url}</li>

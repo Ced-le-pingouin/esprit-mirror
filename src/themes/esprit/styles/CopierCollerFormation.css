@@ -1,65 +1,221 @@
 @import url(esprit-base.css);
 
 body { background-color: white; }
-table { margin: 0.8em; width: 95%; }
+table { margin: 0.8em auto; width: 95%; }
 th { padding: 0.3em; text-align: right; width: 10em; }
+table { border-collapse: separate; }
+table, th, td { border: none; }
 
 h3
 {
-	background-color: rgb(104,108,71);
-	border: 1px solid black;
-	color: white;
 	font-size: 1em;
 	line-height: 1.5;
-	margin: 0.5em 0;
+	margin: 0;
 	padding: 0.3em;
 }
+
 
 /*** onglets et cadres rattachés ***/
 ul.onglets
 {
-	margin: 0.5em 0 -1px 2em;
-	overflow: hidden;
-	/*car les onglets (li) on une marge de -1px => bord du 1er invisible sinon*/
-	padding: 0 0 0 1px;
+	margin: 0.5em 0 -1px 3%; /* modifier marges par défaut des ul et -1 pour le faire descendre devant le panneau */
+	overflow: hidden; /* force l'élément à contenir entièrement les flottants */
+	padding: 0; /* annuler padding par défaut des ul */
+	position: relative; /* IE: onglets au-dessus du panneau et non derrière */
 }
 
 ul.onglets li
 {
-	background-color: rgb(179,165,138);
-	border: 1px solid black;
+	background: white url(../images/onglet-gauche.gif) no-repeat top left;
 	float: left;
 	list-style-type: none;
-	margin: 0.15em 0 -2px -1px;
-	padding: 0.2em 0.6em;
+	margin-right: 2px;
+	padding-left: 7px; /* taille minimum = largeur du bord gauche de l'onglet */
 }
 
-ul.onglets li.actif
+ul.onglets li a
 {
-	font-size: 1.1em;
-	font-weight: bold;
-	margin-top: 0;
-}
-
-ul.onglets a { color: rgb(200,200,200); }
-ul.onglets li.actif, ul.onglets li.actif a, #cadreOnglets
-{
-	background-color: rgb(238,234,221);
-	color: rgb(111,105,87);
+	background: url(../images/onglet-droit.gif) no-repeat top right;
+	display: block; /* pour que les padding/height/bg/etc. fonctionnent */
+	padding-right: 7px; /* taille minimum = largeur du bord droit de l'onglet */
 }
 
 #cadreOnglets
 {
-	border: 1px solid rgb(200,200,200);
+	border: 1px solid rgb(222,230,230);
 	margin: 0 auto;
-	padding: 0.5em;
+	padding: 0 0.5em;
 	width: 95%;
-	
-	padding-bottom: 2em; /* compenser barre inférieure */
 }
 
-/*** arbre de la formation ***/
-.niv2 { padding-left: 10px; }
-.niv3, .niv4 { padding-left: 20px; }
-.niv5 { padding-left: 30px; }
-.niv6 { padding-left: 40px; }
+/*
+Parties des onglets modifiées en fonction de l'onglet sélectionné ou pas.
+   
+la somme des valeurs pour les border/margin/padding verticaux des "li"/"a"
+"non sélectionnés" doit égaler la somme des paddings top/bottom du "a" 
+"sélectionné", sinon un des onglets sera décalé par rapport à l'autre
+(pour le moment, c'est 8: 1 + 5 + 1 + 1 = 4 + 4)
+*/
+/* non sélectionné */
+ul.onglets li
+{
+	border-bottom: 1px solid rgb(222,230,230);
+	margin-top: 5px;
+}
+ul.onglets li a
+{
+	padding-top: 1px; /* paddings modifiés séparément car right déjà défini */
+	padding-bottom: 1px;
+}
+/* sélectionné */
+ul.onglets li.actif
+{
+	margin-top: 0;
+	border-bottom: none;
+}
+ul.onglets li.actif a
+{
+	font-weight: bold;
+	padding-top: 4px; /* paddings modifiés séparément car right déjà défini */
+	padding-bottom: 4px;
+}
+
+
+/*** garder les zones/cadres de l'affichage à une taille relative, et toujours 
+     visibles, avec des barres de défilement pour chaque zone si nécessaire ***/
+/* tous les blocs parents doivent avoir une taille définie en hauteur */
+html, body, #contenuPrincipal { height: 99%; }
+#cadreOnglets { height: 90%; }
+#cadreOnglets form { height: 100%; }
+/* ensuite, on peut définir un taille en % pour chaque zone */
+#cadreCopier, #cadreColler { height: 58%; }
+#cadrePressePapiers { height: 38%; }
+.cadreScrollable { height: 75%; overflow: auto; }
+#cadrePressePapiers .cadreScrollable { height: 70%; } /* 75 trop gd pr pp */
+/* ce qui dépasse est caché pour certains panneaux (si fenêtre trop petite) */
+#cadreCopier, #cadreColler, #cadrePressePapiers { overflow: hidden; }
+
+
+/*** caractéristiques générales des différentes zones ***/
+/* titres, liens par défaut */
+#cadreCopier h3
+{
+	background: url(../images/copier_pp.gif) no-repeat center left;
+	padding-left: 32px;
+}
+#ongletCopier a, #cadreCopier h3, #copier { color: rgb(72,94,165); }
+h3 select { color: black; font-weight: bold; width: 50%; }
+
+#cadreColler h3
+{
+	background: url(../images/coller_pp.gif) no-repeat center left;
+	padding-left: 32px;
+}
+#ongletColler a, #cadreColler h3, #coller { color: rgb(71,130,68); }
+
+#cadrePressePapiers h3
+{
+	background: url(../images/presse_papiers.gif) no-repeat center left;
+	padding-left: 19px;
+	color: rgb(174,63,5);
+}
+
+/* fond, bordures */
+#cadreCopier, #cadreColler, #cadrePressePapiers, .cadreScrollable
+{
+	border: 1px solid rgb(222,230,230);
+}
+#cadreCopier, #cadreColler, #cadrePressePapiers
+{
+	margin-top: 0.5em;
+	padding: 0 1em;
+}
+#cadreCopier, #cadreColler { background: rgb(250,246,231); }
+#cadrePressePapiers { background: rgb(248,248,248); }
+.cadreScrollable { background: rgb(255,255,255); }
+
+#cadreCopier td, #cadreColler td { border-bottom: 1px dashed rgb(180,180,180); }
+#cadrePressePapiers td { border-bottom: 1px solid rgb(180,180,180); }
+
+/* boutons/liens/renvois-notes bas de page */
+input.lien, input.lienDesactive
+{
+	font-weight: bold;
+	margin: 0;
+	padding: 0.25em 0 0.25em 1em;
+	overflow: visible; /* hack débile pour qu'ie 6/7 accepte le padding */
+}
+
+#supprimerColler, #supprimerElemPp, #viderPp
+{
+	color: rgb(125,63,65);
+}
+
+.renvoi { color: rgb(99,117,178); }
+p.renvoi { margin: 3px 0 0; padding: 0; }
+#cadreCopier .renvoi { visibility: hidden; } /* renvoi invisible ds Copier */
+
+/*** arborescence formation: différenciation des niveaux ***/
+.cadreScrollable ul { padding: 0 0 0 20px; }
+.cadreScrollable li { list-style-type: none; }
+.cadreScrollable li span { display: block; padding: 5px 0.5em; }
+
+/* formation */
+.niv1 strong { color: black; font-style: italic; }
+.niv1 span
+{
+	color: rgb(93,96,65);
+	font-weight: bold;
+}
+	/* module/(par)cours */
+	.niv2 em { color: rgb(227,170,68); }
+	.niv2 strong { color: rgb(69,69,66); font-style: normal; }
+	.niv2 span
+	{
+		background-color: rgb(238,234,221);
+		border-bottom: 1px solid rgb(219,211,197);
+		font-weight: normal;
+	}
+		/* unité/rubrique */
+		.niv3 em { color: rgb(163,31,58); }
+		.niv3 strong { color: rgb(108,108,108); }
+		.niv3 span
+		{
+			background-color: transparent;
+			border-bottom: 1px dashed rgb(180,180,180);
+			color: rgb(126,129,107);
+		}
+			/* activité/groupe d'actions */
+			.niv5 em { color: rgb(160,160,160); }
+			.niv5 span { color: rgb(126,129,107); }
+				/* sous-activité/action */
+				.niv6 em { color: rgb(171,197,82); }
+				.niv6 strong { color: black; }
+				.niv6 span { color: rgb(64,68,35); }
+
+.nivSel, .nivSel span { background-color: rgb(238,238,248); }
+
+/* pour le presse-papiers, pas de sous-listes, et des caractéristiques <> */
+#cadrePressePapiers li span
+{
+	background-color: transparent;
+	border-bottom: 1px solid rgb(180,180,180);
+	padding-left: 0;
+}
+/* les "symboles" pour les cours (c), unités (u), groupes d'action (ga) etc. 
+   doivent avoir la même largeur */
+#cadrePressePapiers li em
+{
+	float: left;
+	width: 1.5em;
+}
+
+#cadrePressePapiers li label
+{
+	background: url(../images/fichier.gif) no-repeat top left;
+	padding-left: 20px;
+}
+#cadrePressePapiers li label.conteneur
+{
+	background-image: url(../images/dossier.gif);
+}
