@@ -39,6 +39,7 @@ function ajouterActionPressePapiers()
 
 function initPage()
 {
+	insererBoutonFermer(); // le fichier contenant cette fonction doit être inclus avant celui-ci
 	//ajouterActionPressePapiers();
 	document.getElementsByName('supprimer')[0].onclick = confirmerSuppression;
 }

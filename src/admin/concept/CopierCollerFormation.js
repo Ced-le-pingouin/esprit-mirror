@@ -238,6 +238,7 @@ function associerConfirmationBoutonSupprimer()
 
 function initPage()
 {
+	insererBoutonFermer(top.opener.frames['menu'].refresh); // le fichier contenant cette fonction doit être inclus avant celui-ci
 	initOnglets();
 	enleverBoutonsChoisir();
 	associerConfirmationBoutonSupprimer();
