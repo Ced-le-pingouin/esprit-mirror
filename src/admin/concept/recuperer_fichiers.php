@@ -40,24 +40,20 @@ else
 	$IdForm = $IdActiv = NULL;
 
 require_once ("globals.inc.php");
-
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
-
 <head>
-
 <title>Récupérer des fichiers relatifs à ce bloc</title>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 <?php echo inserer_feuille_style()?>
-
+<style type="text/css">
+p em { color: rgb(74,92,158); }
+</style>
 <script type="text/javascript" language="javascript">
 <!--
-
 function init(v_iLargeur,v_iHauteur)
 {
 	if (v_iHauteur <= 0)
@@ -73,20 +69,15 @@ function init(v_iLargeur,v_iHauteur)
 	self.resizeTo(v_iLargeur,v_iHauteur);
 	self.focus();
 }
-
 //-->
 </script>
-
 </head>
 
 <body>
-<?php 
-
-?>
 <form name="FRM_RECUPERER_FICHIERS" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-
-<p>Choisissez dans la liste ci-dessous, le fichier que vous désirez récupérer.</p>
-
+<p>Cliquez sur le nom du fichier que vous désirez récupérer. <br />
+Pour supprimer définitivement un fichier du serveur, cliquez sur 
+<em>(Supprimer)</em></p>
 <iframe src="recuperer_fichiers_liste.php<?php echo "?FORM=$IdForm&ACTIV=$IdActiv"; ?>" 
 	name="FRAME_LISTE"
 	frameborder="0"
@@ -99,13 +90,9 @@ function init(v_iLargeur,v_iHauteur)
 </iframe>
 <div style="text-align: right;">
 <hr>
-<!--<input type="button" value="Récupérer" onclick="frames[0].document.forms[0].submit()">-->
 <input type="button" value="Rafra&icirc;chir" onclick="top.frames['FRAME_LISTE'].location.reload(true)">
 <input type="button" value="Fermer" onclick="self.close()">
 </div>
-
 </form>
-
 </body>
-
 </html>

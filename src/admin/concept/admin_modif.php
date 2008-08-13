@@ -453,14 +453,14 @@ else if ($g_iActiv > 0)
 ?>
 	var sUrl     = "<?php echo $sDeposerFichier?>";
 	var iLargeur = 470;
-	var iHauteur = 190;
+	var iHauteur = 215;
 	var iGauche  = (screen.width-iLargeur)/2;
 	var iHaut    = (screen.height-iHauteur)/2;
 	var sFeatures = "left=" + iGauche
 		+ ",top=" + iHaut
 		+ ",width=" + iLargeur
 		+ ",height=" + iHauteur
-		+ ",location=0,menubar=0,scrollbars=0,resizable=0,status=0,toolbar=0";
+		+ ",location=0,menubar=0,scrollbars=0,resizable=1,status=1,toolbar=0";
 	
 	oWinDeposerFichiers = window.open(sUrl,"winDeposerFichiers",sFeatures);
 	oWinDeposerFichiers.focus();
@@ -482,12 +482,12 @@ function RecupererFichiers()
 	var wForm;
 	
 	var iLargeurFenetre = 400;
-	var iHauteurFenetre = 500;
+	var iHauteurFenetre = 525;
 	var iPositionGauche = (screen.width-iLargeurFenetre)/2;
 	var iPositionHaut   = (screen.height-iHauteurFenetre)/2;
 	
 	var sUrl = "recuperer_fichiers.php<?php echo "?FORM={$g_iFormation}&ACTIV={$g_iActiv}"; ?>";
-	var sFeatures = "top=" + iPositionHaut  + ",left=" + iPositionGauche + ",width=" + iLargeurFenetre + ",height=" + iHauteurFenetre + ",location=0,menubar=0,scrollbars=0,resizable=0,status=0,toolbar=0";
+	var sFeatures = "top=" + iPositionHaut  + ",left=" + iPositionGauche + ",width=" + iLargeurFenetre + ",height=" + iHauteurFenetre + ",location=0,menubar=0,scrollbars=0,resizable=1,status=1,toolbar=0";
 	
 	wForm = window.open(sUrl,"WIN_RECUPERER_FICHIERS",sFeatures);
 	wForm.focus();
