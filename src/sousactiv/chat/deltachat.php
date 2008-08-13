@@ -151,7 +151,6 @@ $oProjet->terminer();
 <param name="location" value="test">
 <param name="port_spy" value="0">
 </applet>
-<!--<?php echo $_SERVER['DOCUMENT_ROOT'] ?>-->
 </td>
 </tr>
 </table>
