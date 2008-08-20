@@ -230,7 +230,6 @@ class CopierCollerFormation extends AfficheurPage
 				// c'est mieux si on sélectionne automatiquement l'élément copié
 				$this->brancheDestSel = $this->elemAColler->retTypeNiveau()
 				                        .'_'.$idCopie;
-				echo $this->brancheDestSel;
 				break;
 			
 			case 'supprimerColler':

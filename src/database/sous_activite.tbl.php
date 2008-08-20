@@ -266,7 +266,7 @@ class CSousActiv
 		else
 			$iNumOrdre = $v_iNumOrdre;
 
-		$iIdNouv = $this->copier($v_iIdDest, TRUE);
+		$iIdNouv = $this->copier($v_iIdDest);
 		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
 		$oNouv->redistNumsOrdre($iNumOrdre);
 
