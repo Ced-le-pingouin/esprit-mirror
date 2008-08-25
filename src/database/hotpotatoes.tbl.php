@@ -185,7 +185,26 @@ class CHotpotatoes
 		$this->oBdd->executerRequete($sRequeteSql);
 		return ($this->oEnregBdd->IdHotpot = $this->oBdd->retDernierId());
 	}
-
+	
+	/**
+	 * Copie l'exercice actuel vers un nouvel exercice (mêmes données)
+	 *
+	 * @return int l'id du nouvel exercice
+	 */
+	function copier()
+	{
+		$sRequeteSql = 
+			 "INSERT INTO Hotpotatoes "
+			."SET Titre='".mysql_real_escape_string($this->oEnregBdd->Titre)."'"
+			."  , Fichier='".mysql_real_escape_string($this->oEnregBdd->Fichier)."'"
+			."  , Statut='".mysql_real_escape_string($this->oEnregBdd->Statut)."'"
+			."  , Type='".mysql_real_escape_string($this->oEnregBdd->Type)."'"
+			."  , IdPers={$this->oEnregBdd->IdPers}"
+		;
+		$this->oBdd->executerRequete($sRequeteSql);
+		return ($this->oEnregBdd->IdHotpot = $this->oBdd->retDernierId());
+	}
+	
 	/**
 	 * Enregistre les données de l'exercice courant dans la DB
 	 */
@@ -205,7 +224,7 @@ class CHotpotatoes
 	function effacer()
 	{
 		$this->oBdd->executerRequete(
-			"DELETE FROM Hotpotatoes WHERE IdHotpot=" . $this->oEnregBdd->IdHotpot
+			"DELETE FROM Hotpotatoes WHERE IdHotpot='" . $this->oEnregBdd->IdHotpot."'"
 			);
 	}
 

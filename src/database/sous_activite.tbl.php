@@ -258,7 +258,7 @@ class CSousActiv
 	{
 		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
 		$sRequeteSql = "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
-						." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE";
+						." Activ WRITE, SousActiv WRITE, Chat WRITE, Hotpotatoes WRITE, Intitule WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 
 		if (empty($v_iNumOrdre) || !is_int($v_iNumOrdre) || $v_iNumOrdre < 0)
@@ -293,8 +293,17 @@ class CSousActiv
 		{
 			switch ($this->retType())
 			{
-				case LIEN_FORUM: $this->copierForum($iIdSousActiv); break;
-				case LIEN_CHAT: $this->copierChats($iIdSousActiv); break;
+				case LIEN_FORUM:
+					$this->copierForum($iIdSousActiv);
+					break;
+					
+				case LIEN_CHAT:
+					$this->copierChats($iIdSousActiv);
+					break;
+					
+				case LIEN_HOTPOTATOES:
+					$this->copierHotpotatoes($iIdSousActiv);
+					break;
 			}
 		}
 
@@ -364,7 +373,21 @@ class CSousActiv
 
 		$this->aoChats = NULL;
 	}
-
+	
+	function copierHotpotatoes($v_iIdSousActiv)
+	{
+		static $posIdHotpot = 3;
+		
+		$aDonnees = explode(';', $this->retDonnees());
+		$iIdHotpot = $aDonnees[$posIdHotpot];
+		$oHotpot = new CHotpotatoes($this->oBdd, $iIdHotpot);
+		$iIdHotpotCopie = $oHotpot->copier();
+		
+		$aDonnees[$posIdHotpot] = $iIdHotpotCopie;
+		$aDonnees = array_slice($aDonnees, 0, $posIdHotpot + 1);
+		$this->mettre_a_jour('DonneesSousActiv', join(';', $aDonnees), $v_iIdSousActiv);
+	}
+	
 	/**
 	 * Réinitialise l'objet \c oEnregBdd avec l'activité courante
 	 */
@@ -868,25 +891,6 @@ class CSousActiv
 			$this->oHotpotatoes = new CHotpotatoes($this->oBdd,$iIdHotpot);
 			return TRUE;
 		}
-	}
-
-	/**
-	 * Ajoute un exercice Hotpotatoes
-	 */
-	function ajouterHotpotatoes ()
-	{
-		$oHotpotatoes = new CHotpotatoes($this->oBdd);
-		$oForum->ajouter(
-			$this->retNom()
-			,$this->retModalite()
-			,$this->retStatut()
-			,'1'
-			,0
-			,0
-			,$this->retId()
-			,0
-			,$this->retIdPers()
-		);
 	}
 
 	/**
