@@ -33,7 +33,7 @@
 */
 
 require_once("../../../globals.inc.php");
-require_once("hotpotatoes.inc.php");
+require_once dirname(__FILE__).'/hotpotatoes.inc.php';
 
 $oProjet = new CProjet();
 
