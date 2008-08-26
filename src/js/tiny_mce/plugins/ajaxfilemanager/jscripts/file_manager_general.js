@@ -641,8 +641,9 @@ function parseCurrentFolder()
  */
 folderFindId = folders[2].split("-"); 	// tableau qui contient les éléments séparés par '-' dans ses index.
 										// le dernier est donc l'ID.
-folderReverse = folderFindId.reverse()[0]; // inverse le tableau 'folderFindId'
-if (folderFindId.reverse()[0] == iIdentifiant) bUtilisateur = true;
+folderReverse = folderFindId.reverse(); // inverse le tableau 'folderFindId'
+
+if (folderReverse[0] == iIdentifiant) bUtilisateur = true;
 else if (!folders[1]) bUtilisateur = false; // si on se trouve à la racine
 else bUtilisateur = commandes.boolUeA;
 
