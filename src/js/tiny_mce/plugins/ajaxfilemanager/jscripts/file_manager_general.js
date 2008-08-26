@@ -639,9 +639,13 @@ function parseCurrentFolder()
  * TODO : comparer le md5 du répertoire au md5 produit par php?
  * voir : http://pajhome.org.uk/crypt/md5/index.html pour le md5 en javascript
  */
+
+if (folders[2]) {
 folderFindId = folders[2].split("-"); 	// tableau qui contient les éléments séparés par '-' dans ses index.
 										// le dernier est donc l'ID.
 folderReverse = folderFindId.reverse(); // inverse le tableau 'folderFindId'
+}
+else folderReverse = 0;
 
 if (folderReverse[0] == iIdentifiant) bUtilisateur = true;
 else if (!folders[1]) bUtilisateur = false; // si on se trouve à la racine
