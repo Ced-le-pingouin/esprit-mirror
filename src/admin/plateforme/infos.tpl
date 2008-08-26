@@ -8,13 +8,15 @@
 <!--<div id="logo"><img src="theme://infos-logo.gif" border="0" alt="logo"></div>-->
 <div id="informations">
 <h1><img src="theme://infos-logo.gif" border="0" alt="logo"><p><a id="courriel" href="mailto:{plateforme.courriel}" onfocus="blur()">{plateforme.courriel}</a></p></h1>
-<p>ESPRIT a été développé par l'Unité de Technologie de L'Education de l'Université de Mons-Hainaut (Belgique)</p>
+<p>ESPRIT a été développé par l'Unité de Technologie de L'Education de l'Université de Mons-Hainaut (Belgique).
+Depuis 2006, Grenoble Universités collabore au développement d'Esprit, notamment pour l'adaptation aux besoins des formations en langues.</p>
 <p>Ont participé à la conception et au développement d'Esprit :</p>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td>Filippo Porco</td><td>Développement informatique, design</td></tr>
 <tr><td>Cédric Floquet</td><td>Analyse et architecture informatique</td></tr>
-<tr><td>Jérôme Touzé</td><td>Développement du forum</td></tr>
+<tr><td>Filippo Porco</td><td>Développement informatique, design</td></tr>
 <tr><td>Jean-Jacques Quintin</td><td>Coordination, conception et design pédagogique</td></tr>
+<tr><td>Loïc Tauleigne</td><td>Développement informatique</td></tr>
+<tr><td>Jérôme Touzé</td><td>Développement du forum</td></tr>
 </table>
 <p>Grâce aux conseils et aux idées de Christian Depover, Bruno De Lièvre et Sandrine Decamps.</p>
 <p>Cette plateforme a bénéficié du soutien des programmes européens Interreg II et Interreg III.</p>

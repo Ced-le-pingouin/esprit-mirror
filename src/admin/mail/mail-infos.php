@@ -166,7 +166,7 @@ if (strlen($url_sTypeCourriel) > 0)
 			$asTplRemplacer[] = $oForum->retNom();
 			unset($iIdForum,$oForum);
 	}
-	else if (strstr($url_sTypeCourriel,"courriel-unite"))
+	else if (strstr($url_sTypeCourriel,"courriel-cours"))
 	{
 		$asTplRemplacer[] = $asVarEndroits[1];
 	}

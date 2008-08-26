@@ -1,6 +1,6 @@
 <?php
 require_once "globals.inc.php";
-$sTitrePrincipal = emb_htmlentities("Exporter une liste de la table des personnes");
+$sTitrePrincipal = emb_htmlentities("Exporter une liste d'inscrits à la formation");
 $sParamsURL = "?tp=".rawurlencode($sTitrePrincipal);
 ?>
 <html>

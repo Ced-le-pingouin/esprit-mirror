@@ -35,6 +35,7 @@ define("TXT_PERMISSIONS_TITRE","Permissions");
 define("TXT_PLATEFORME_DESCRIPTION","A propos d'Esprit");
 define("TXT_PLATEFORME_TITRE","");
 define("TXT_STATUTS_DESCRIPTION","Pour créer un fichier de statuts");
+define("TXT_EXPORT_DESCRIPTION","Pour exporter une liste d'inscrits");
 define("TXT_STATUTS_TITRE","Création du fichier des statuts");
 define("TXT_TRANSFERT_FORMATIONS_DESCRIPTION","Pour transférer des formations d’une autre base de données");
 define("TXT_TRANSFERT_FORMATIONS_TITRE","Transfert de formations");
