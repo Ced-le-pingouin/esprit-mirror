@@ -42,15 +42,15 @@
     define('LBL_FILE_INFO', "Information sur le fichier :");
     define('LBL_FILE_NAME', "Nom :");
     define('LBL_FILE_OWNER', "Propri&eacute;taire :");
-    define('LBL_FILE_CREATED', "Cr&eacute;&eacute; le :");
+    define('LBL_FILE_CREATED', "D&eacute;pos&eacute; le :");
     define('LBL_FILE_MODIFIED', "Modifi&eacute; le :");
-    define('LBL_FILE_SIZE', "Taille du fichier :");
-    define('LBL_FILE_TYPE', "Type du fichier :");
+    define('LBL_FILE_SIZE', "Taille :");
+    define('LBL_FILE_TYPE', "Type :");
     define('LBL_FILE_WRITABLE', "Modifiable ?");
     define('LBL_FILE_READABLE', "Lisible ?");
         //Folder Information
     define('LBL_FOLDER_INFO', "Information du dossier");
-    define('LBL_FOLDER_PATH', "Chemin :");
+    define('LBL_FOLDER_PATH', "Dossier :");
     define('LBL_CURRENT_FOLDER_PATH', 'Chemin actuel:');
     define('LBL_FOLDER_CREATED', "Cr&eacute;&eacute; Le :");
     define('LBL_FOLDER_MODIFIED', "Modifi&eacute; Le :");

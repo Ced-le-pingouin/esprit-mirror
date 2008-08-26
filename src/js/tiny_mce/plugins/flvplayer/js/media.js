@@ -123,7 +123,7 @@ function insertMedia() {
 		fe.height = f.height.value;
 		fe.style.width = f.width.value + (f.width.value.indexOf('%') == -1 ? 'px' : '');
 		fe.style.height = f.height.value + (f.height.value.indexOf('%') == -1 ? 'px' : '');
-		fe.align = f.align.options[f.align.selectedIndex].value;
+		//fe.align = f.align.options[f.align.selectedIndex].value;
 	} else {
 		h = '<img src="' + tinyMCEPopup.getWindowArg("plugin_url") + '/img/trans.gif"' ;
 
@@ -367,12 +367,17 @@ function generatePreview(c) {
 	pl.backcolor = !pl.backcolor ? '0xffffff' : pl.backcolor.replace("#", "0x");
 	pl.shownavigation = !pl.shownavigation ? 'true' : pl.shownavigation;
 
-	h += '<embed src="'+GLOBALS["lecteur"]+'"';
-	h += ' width="'+ pl.width +'" height="'+pl.height+'" allowscriptaccess="always" allowfullscreen="true"';
-	h += 'flashvars="width='+ pl.width +'&height='+pl.height+'&file='+pl.src+'&shownavigation='+pl.shownavigation;
-	h += '&searchbar=false&autostart=false';
-	h += '&repeat=false&backcolor='+pl.backcolor+'&showstop=true&usefullscreen=false"';
-	h += ' />';
+	data = 	GLOBALS["lecteur"]+'?file='+pl.src +
+			'&showstop=true&usefullscreen=false&autostart=' + pl.autostart +
+			'&repeat=' + pl.repeat + '&backcolor=' + pl.backcolor + 
+			'&shownavigation=' + pl.shownavigation;
+
+	h += '<object';
+	h += ' width="'+ pl.width +'" height="'+pl.height + '"';
+	h += ' data="' + data +'"';
+	h += ' type="application/x-shockwave-flash">';
+	h += '<param name="movie" value="' + data +'" />';
+	h += '</object>';
 	document.getElementById('preview').innerHTML = h ;
 }
 

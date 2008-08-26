@@ -43,12 +43,13 @@
 // récupération du prenom/nom de l'utilisateur
 	$oProjet = new CProjet();
 	$bEstAdmin = $oProjet->verifAdministrateur();
-	$sPrenom_NomBase = $oProjet->oUtilisateur->retPrenom($bBool=TRUE)." ".$oProjet->oUtilisateur->retNom($bBool=TRUE);
-
+	$sNom_PrenomBase = $oProjet->oUtilisateur->retNom($bBool=TRUE)." ".$oProjet->oUtilisateur->retPrenom($bBool=TRUE);
+	$iId = $oProjet->oUtilisateur->retId();
+	
 	//on enlève les accents
 	// problème avec les noms en arabe ou en cyrillique
-	$sPrenom_Nom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sPrenom_NomBase);
-	$sPrenom_Nom = strtolower($sPrenom_Nom);
+	$sNom_Prenom = preg_replace("/&(.)(acute|cedil|circ|grave|ring|tilde|uml);/", "$1", $sNom_PrenomBase);
+	$sNom_Prenom = strtolower($sNom_Prenom);
 	//echo $sPrenom_Nom;
 
 /**
@@ -63,17 +64,18 @@
 
 	$compteur = 0;
 	$bTrouve = false;
-	$sUtilisateur = str_replace(' ','_',$sPrenom_Nom);
-	
+	$sUtilisateur = str_replace(' ','_',$sNom_Prenom);
+	$sUtilisateur .= '-'.$iId;
+	$sRegExp = '-'.$iId;
 	if (isset($_GET['path'])) {
-		(eregi($sUtilisateur, $_GET['path'])) ? $bTrouve = true : $bTrouve = false;
+		(eregi($sRegExp, $_GET['path'])) ? $bTrouve = true : $bTrouve = false;
 	}
 
 	foreach($fileList as $file)
 	{
 		foreach($file as $k=>$v)
 		{
-			if($k == 'name' && $v == $sUtilisateur)
+			if($k == 'name' && (eregi($sRegExp, $v)))
 			{
 				$bTrouve = true;
 			}
@@ -121,7 +123,7 @@
 		};
 	var permits = {'del':<?php echo (CONFIG_OPTIONS_DELETE?1:0); ?>, 'cut':<?php echo (CONFIG_OPTIONS_CUT?'1':'0'); ?>, 'copy':<?php echo (CONFIG_OPTIONS_COPY?1:0); ?>, 'newfolder':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0); ?>, 'rename':<?php echo (CONFIG_OPTIONS_RENAME?1:0); ?>, 'upload':<?php echo (CONFIG_OPTIONS_UPLOAD?1:0); ?>, 'edit':<?php echo (CONFIG_OPTIONS_EDITABLE?1:0); ?>, 'view_only':<?php echo (CONFIG_SYS_VIEW_ONLY?1:0); ?>};
 	var currentFolder = {};
-	var commandes = {'boolNF':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0) ?>, 'boolUeA':<?php echo ($bEstAdmin?'1':'0') ?>, 'utilisateur':'<?php echo $sPrenom_Nom ?>', 'trouve':'<?php echo $bTrouve ?>'};
+	var commandes = {'boolNF':<?php echo (CONFIG_OPTIONS_NEWFOLDER?1:0) ?>, 'boolUeA':<?php echo ($bEstAdmin?'1':'0') ?>, 'utilisateur':'<?php echo $sNom_Prenom ?>', 'trouve':'<?php echo $bTrouve ?>', 'identifiant':'<?php echo $iId ?>'};
 	var warningDelete = '<?php echo WARNING_DELETE; ?>';
 	var newFile = {'num':1, 'label':'<?php echo FILE_LABEL_SELECT; ?>', 'upload':'<?php echo FILE_LBL_UPLOAD; ?>'};
 	var counts = {'new_file':1};
@@ -314,10 +316,12 @@ else echo "<body>";
 							<td colspan="3" id="folderCtime"><?php echo date(DATE_TIME_FORMAT,$folderInfo['ctime']); ?></td>
 
 						</tr>
+<!--
 						<tr>
 							<th><?php echo LBL_FOLDER_MODIFIED; ?></th>
 							<td colspan="3" id="folderMtime"><?php echo date(DATE_TIME_FORMAT,$folderInfo['mtime']); ?></td>
 						</tr>
+-->
 						<tr>
 							<th><?php echo LBL_FOLDER_SUDDIR; ?></th>
 							<td  colspan="3" id="folderSubdir"><?php echo $folderInfo['subdir']; ?></td>
@@ -327,15 +331,14 @@ else echo "<body>";
 							<th><?php echo LBL_FOLDER_FIELS; ?></th>
 							<td  colspan="3" id="folderFile"><?php echo $folderInfo['file']; ?></td>						
 						</tr>
-						
+<!--						
 						<tr>
 							<th><?php echo LBL_FOLDER_WRITABLE; ?></th>
 							<td id="folderWritable"><span class="<?php echo ($folderInfo['is_readable']?'flagYes':'flagNo'); ?>">&nbsp;</span></td>
 							<th><?php echo LBL_FOLDER_READABLE; ?></th>
 							<td  id="folderReadable"><span class="<?php echo ($folderInfo['is_writable']?'flagYes':'flagNo'); ?>">&nbsp;</span></td>						
-						
 						</tr>
-
+-->
 
 
 					</tbody>
@@ -354,10 +357,12 @@ else echo "<body>";
 							<td colspan="3" id="fileCtime"></td>
 
 						</tr>
+<!--
 						<tr>
 							<th><?php echo LBL_FILE_MODIFIED; ?></th>
 							<td colspan="3" id="fileMtime"></td>
 						</tr>
+-->
 						<tr>
 							<th><?php echo LBL_FILE_SIZE; ?></th>
 							<td  colspan="3" id="fileSize"></td>
@@ -367,13 +372,17 @@ else echo "<body>";
 							<th><?php echo LBL_FILE_TYPE; ?></th>
 							<td  colspan="3" id="fileType"></td>						
 						</tr>
+<!--
 						<tr>
 							<th><?php echo LBL_FILE_WRITABLE; ?></th>
 							<td id="fileWritable"><span class="flagYes">&nbsp;</span></td>
 							<th><?php echo LBL_FILE_READABLE; ?></th>
 							<td id="fileReadable"><span class="flagNo">&nbsp;</span></td>		
 						</tr>
-
+-->
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
 					</tbody>
 				</table>
 <?php
@@ -381,11 +390,9 @@ else echo "<body>";
 // le bouton pour envoyer dans l'éditeur est désactivé
 	if ($sManagerMode !== 'racine') {		
         echo "<p class=\"searchButtons\" id=\"returnCurrentUrl\">
-  
         	<span class=\"right\" id=\"linkSelect\">
         		<input type=\"button\" value=\"".MENU_SELECT."\"  id=\"selectCurrentUrl\" class=\"button\">
         	</span>
-        	
         </p>";
 	}
 ?>							
@@ -623,6 +630,9 @@ echo "
 	  				<th><label>".FOLDER_LBL_TITLE."</label></th>
 	  				<td>".$sUtilisateur."</td>
 	  			</tr> 
+				<tr>
+		  			<td>&nbsp;</td>
+		  		</tr>
 	  		</tbody>
 	  		<tfoot>
 	  			<tr>

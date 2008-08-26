@@ -596,7 +596,9 @@ function getUrlVarValue(url, index)
 function parseCurrentFolder()
 {
 	var folders = currentFolder.friendly_path.split('/');
-	var sPrenomNom = commandes.utilisateur.replace(/ /g,'_');
+	var sNomPrenom = commandes.utilisateur.replace(/ /g,'_');
+	var iIdentifiant = commandes.identifiant;
+	var sNomPrenomId = sNomPrenom + '-' + iIdentifiant;
 	var bUtilisateur;
 	var str = '';
 	var url = getUrl('view', true, true);
@@ -636,7 +638,7 @@ function parseCurrentFolder()
  * TODO : comparer le md5 du répertoire au md5 produit par php?
  * voir : http://pajhome.org.uk/crypt/md5/index.html pour le md5 en javascript
  */
-if (folders[2] == sPrenomNom) bUtilisateur = true;
+if (folders[2] == sNomPrenomId) bUtilisateur = true;
 else if (!folders[1]) bUtilisateur = false; // si on se trouve à la racine
 else bUtilisateur = commandes.boolUeA;
 

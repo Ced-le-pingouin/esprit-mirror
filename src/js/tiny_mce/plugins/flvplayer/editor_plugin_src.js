@@ -83,6 +83,7 @@
 				});
 				
 				h = h.replace(/<object([^>]*)>/gi, '<span class="mceItemObject" $1>');
+				h = h.replace(/<param ([^>]*)>/gi, '<span class="mceItemParam" $1>');
 				h = h.replace(/<embed([^>]*)>/gi, '<span class="mceItemEmbed" $1>');
 				h = h.replace(/<\/(object|embed)([^>]*)>/gi, '</span>');
 	
@@ -128,27 +129,32 @@
 								ci = 'd27cdb6e-ae6d-11cf-96b8-444553540000';
 								cb = 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0';
 								mt = 'flash';
+								ty = 'application/x-shockwave-flash';
 								break;
 							case 'mceItemFlashAudio':
 								ci = 'd27cdb6e-ae6d-11cf-96b8-444553540000';
 								cb = 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0';
 								mt = 'mp3';
+								ty = 'application/x-shockwave-flash';
 								break;
 							case 'mceItemYoutubeVideo':
 								ci = 'd27cdb6e-ae6d-11cf-96b8-444553540000';
 								cb = 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0';
 								mt = 'youtube';
+								ty = 'application/x-shockwave-flash';
 								break;
 							case 'mceItemGoogleVideo':
 								ci = 'd27cdb6e-ae6d-11cf-96b8-444553540000';
 								cb = 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0';
 								mt = 'google';
+								ty = 'application/x-shockwave-flash';
 								break;
 						}
-						
-						if (ci) {
+												
+						if (ty) {
 							dom.replace(t._buildObj({
 								classid : ci,
+								typeAppli : ty,
 								codebase : cb,
 								type : mt
 							}, n), n);
@@ -178,27 +184,31 @@
 			var ob, ed = this.editor, dom = ed.dom, p = this._parse(n.title);
 			p.width = o.width = dom.getAttrib(n, 'width') || 100;
 			p.height = o.height = dom.getAttrib(n, 'height') || 100;
-
+			if (p.backcolor)
+				p.backcolor = p.backcolor.replace("#", "0x");
+				
 			ob = dom.create('span', {
 				mce_name : 'object',
-				classid : "clsid:" + o.classid,
-				codebase : o.codebase,
+				//classid : "clsid:" + o.classid,
+				type : o.typeAppli,
+				data : 	GLOBALS["lecteur"]+'?file='+p.src +
+						'&showstop=true&usefullscreen=false&autostart=' + p.autostart +
+						'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
+						'&shownavigation=' + p.shownavigation,
+				//codebase : o.codebase,
 				width : o.width,
 				height : o.height
 			});
 
-			if (p.backcolor)
-				p.backcolor = p.backcolor.replace("#", "0x");
-
 			dom.add(ob, 'span', {
 				mce_name : 'param',
-				name : 'movie', '_value' : GLOBALS["lecteur"]+'?file='+p.src +
+				name : 'movie', 'value' : GLOBALS["lecteur"]+'?file='+p.src +
 					'&showstop=true&usefullscreen=false&autostart=' + p.autostart +
 					'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
 					'&shownavigation=' + p.shownavigation
 			});
 
-			dom.add(ob, 'span', {
+/*			dom.add(ob, 'span', {
 				mce_name : 'embed',
 				src : GLOBALS["lecteur"], // on récupère l'url du lecteur flash définit dans 'globals.js.php'
 				width : p.width,
@@ -211,6 +221,7 @@
 					'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
 					'&shownavigation=' + p.shownavigation
 			});
+*/
 			return ob;
 		},
 
@@ -218,8 +229,8 @@
 			var t = this, dom = t.editor.dom, im, ci;
 
 			each(dom.select('span', p), function(n) {			
-				// Convert embed into image
-				if (dom.getAttrib(n, 'class') == 'mceItemEmbed') {
+				// Convert embed or object into image
+				if ((dom.getAttrib(n, 'class') == 'mceItemEmbed') || (dom.getAttrib(n, 'class') == 'mceItemObject')) {
 					switch (dom.getAttrib(n, 'type')) {
 						case 'flash':
 							dom.replace(t._createImg('mceItemFlash', n), n);
@@ -252,12 +263,13 @@
 			});
 			im.title = '';
 			// Setup base parameters
-			each(['id', 'name', 'width', 'height', 'backcolor', 'align', 'flashvars'], function(na) {
+			each(['id', 'name', 'width', 'height', 'backcolor', 'align', 'data'], function(na) {
 				var v = dom.getAttrib(n, na);
 				if (v) {
-					if (na == 'flashvars')
+					if (na == 'data')
 					{
-						params = v.split('&');
+						filetemp = v.split('?');
+						params = filetemp[1].split('&');
 						for (i=0; i<params.length; i++) {
 							var reg1=new RegExp("file=([^,]*)", "g");
 							var reg2=new RegExp("backcolor=([^,]*)", "g");

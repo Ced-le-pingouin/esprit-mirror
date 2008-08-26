@@ -102,7 +102,7 @@
 							<td colspan="2">
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input type="checkbox" class="checkbox" id="flash_autostart" name="flash_play" checked="checked" onchange="generatePreview();" /></td>
+										<td><input type="checkbox" class="checkbox" id="flash_autostart" name="flash_play" onchange="generatePreview();" /></td>
 										<td><label for="flash_autostart">{#flvplayer_dlg.autostart}</label></td>
 									</tr>
 								</table>
@@ -111,7 +111,7 @@
 							<td colspan="2">
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input type="checkbox" class="checkbox" id="flash_repeat" name="flash_loop" checked="checked" onchange="generatePreview();" /></td>
+										<td><input type="checkbox" class="checkbox" id="flash_repeat" name="flash_loop" onchange="generatePreview();" /></td>
 										<td><label for="flash_repeat">{#flvplayer_dlg.repeat}</label></td>
 									</tr>
 								</table>
