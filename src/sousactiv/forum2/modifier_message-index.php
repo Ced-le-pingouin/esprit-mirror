@@ -86,8 +86,16 @@ var sElemDest = "<?php echo $url_iIdMessage ?>";
 function oPrincipale() { return top.frames["MESSAGE"]; }
 function oMenu() { return  top.frames["MENU"]; }
 
+// ajout d'une vérification avec expression régulière
+// empêche la duplication de l'image quand le message est modifié.
 function recuperer() {
-	return top.opener.top.oFrmMessages().document.getElementById(sElemDest).innerHTML;
+	var Expression = new RegExp("<img[^>]*><div[^>]*>.*(<img[^>]*>)?.*<a[^>]*>.*</a></div>", "gi");
+	if (top.opener.top.oFrmMessages().document.getElementById(sElemDest)) {
+		texte_message = top.opener.top.oFrmMessages().document.getElementById(sElemDest).innerHTML;
+		texte_message = texte_message.replace(Expression,"");
+		return texte_message;
+	}
+	else return "";
 }
 //-->
 </script>
