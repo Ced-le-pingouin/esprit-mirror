@@ -89,10 +89,11 @@ function oMenu() { return  top.frames["MENU"]; }
 // ajout d'une vérification avec expression régulière
 // empêche la duplication de l'image quand le message est modifié.
 function recuperer() {
-	var Expression = new RegExp("<img[^>]*><div[^>]*>.*(<img[^>]*>)?.*<a[^>]*>.*</a></div>", "gi");
+	var Expression = new RegExp("(<img[^>]*>[^<]*<div[^>]*>[^<]*(<img[^>]*>)?[^<]*<a[^>]*>[^<]*</a></div>)+", "gi");
 	if (top.opener.top.oFrmMessages().document.getElementById(sElemDest)) {
 		texte_message = top.opener.top.oFrmMessages().document.getElementById(sElemDest).innerHTML;
 		texte_message = texte_message.replace(Expression,"");
+		//alert(texte_message);
 		return texte_message;
 	}
 	else return "";
