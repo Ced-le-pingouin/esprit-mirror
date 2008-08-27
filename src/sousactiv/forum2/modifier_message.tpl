@@ -11,6 +11,12 @@ initEditeur("textareas", "", {tableau_de_bord->actif} );
 </script>
 <script type="text/javascript" language="javascript">
 <!--
+function mySetContent(editor_id, body, doc) {
+	if (top.recuperer) {
+		body.innerHTML = top.recuperer();
+	}
+	return "";
+}
 var g_oEditeur = null;
 function init()
 {

@@ -1,11 +1,8 @@
 function initEditeur( Mode, Elements, tableauDeBord ) {
-/*	var contentCallback, onchangeCallback;
-	if ('function' == typeof mySetContent) {
-		contentCallback = "mySetContent";
-	} else {
-		contentCallback = "";
-	}
-*/
+	var contentCallback, onchangeCallback;
+
+	contentCallback = "mySetContent";
+
 	if ('function' == typeof editeurOnChangeHandler) {
 		onchangeCallback = "editeurOnChangeHandler";
 	} else {
@@ -57,7 +54,7 @@ tinyMCE.init({
 	invalid_elements : "p[style]",
 	mode : Mode,
 	elements : Elements,
-	//setupcontent_callback : contentCallback,
+	setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
 	save_callback : "nettoyage",
 	language : "fr",

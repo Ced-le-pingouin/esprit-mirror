@@ -50,7 +50,10 @@ font-size:8pt;
 
 /* -- messages menu -- */
 body.changer_message {
-background-color:#f8f9fb;
+background-color:#CAC3B1;
+border-color:#706957;
+border-style:solid none none;
+border-width:1px;
 }
 
 td.nouveau_message_equipes {

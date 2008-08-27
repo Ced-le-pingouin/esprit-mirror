@@ -18,7 +18,7 @@
 	$fileList = $manager->getFileList();
 	$folderInfo = $manager->getFolderInfo();
 	$views = array(
-		'detail'=>LBL_BTN_VIEW_DETAILS,
+		//'detail'=>LBL_BTN_VIEW_DETAILS,
 		'thumbnail'=>LBL_BTN_VIEW_THUMBNAIL,
 	);
 	if(!empty($_GET['view']))
