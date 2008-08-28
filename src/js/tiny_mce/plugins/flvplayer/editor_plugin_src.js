@@ -122,7 +122,7 @@
 
 				if (o.get) {
 					each(dom.select('IMG', o.node), function(n) {
-						var ci, cb;
+						var ci, cb, ty;
 
 						switch (n.className) {
 							case 'mceItemFlash':
