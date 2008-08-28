@@ -207,7 +207,9 @@
 					'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
 					'&shownavigation=' + p.shownavigation
 			});
-
+			
+			dom.add(ob, 'span', '', 'Flash Player n\'est pas &agrave; jour.<br /><a href="http://www.macromedia.com/go/getflashplayer "target="_blank">Cliquez ici</a> pour t&eacute;l&eacutecharger la derni&egrave;re version.');
+            
 /*			dom.add(ob, 'span', {
 				mce_name : 'embed',
 				src : GLOBALS["lecteur"], // on récupère l'url du lecteur flash définit dans 'globals.js.php'
