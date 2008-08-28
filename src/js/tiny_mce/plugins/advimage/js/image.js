@@ -23,17 +23,17 @@ var ImageDialog = {
 			nl.width.value = dom.getAttrib(n, 'width');
 			nl.height.value = dom.getAttrib(n, 'height');
 			nl.alt.value = dom.getAttrib(n, 'alt');
-			nl.title.value = dom.getAttrib(n, 'title');
+//			nl.title.value = dom.getAttrib(n, 'title');
 			nl.vspace.value = this.getAttrib(n, 'vspace');
 			nl.hspace.value = this.getAttrib(n, 'hspace');
 			nl.border.value = this.getAttrib(n, 'border');
 			selectByValue(f, 'align', this.getAttrib(n, 'align'));
 			selectByValue(f, 'class_list', dom.getAttrib(n, 'class'), true, true);
 			nl.style.value = dom.getAttrib(n, 'style');
-			nl.id.value = dom.getAttrib(n, 'id');
-			nl.dir.value = dom.getAttrib(n, 'dir');
-			nl.lang.value = dom.getAttrib(n, 'lang');
-			nl.usemap.value = dom.getAttrib(n, 'usemap');
+//			nl.id.value = dom.getAttrib(n, 'id');
+//			nl.dir.value = dom.getAttrib(n, 'dir');
+//			nl.lang.value = dom.getAttrib(n, 'lang');
+//			nl.usemap.value = dom.getAttrib(n, 'usemap');
 			nl.longdesc.value = dom.getAttrib(n, 'longdesc');
 			nl.insert.value = ed.getLang('update');
 
@@ -153,7 +153,7 @@ var ImageDialog = {
 //			dir : nl.dir.value,
 //			lang : nl.lang.value,
 //			usemap : nl.usemap.value,
-//			longdesc : nl.longdesc.value
+			longdesc : nl.longdesc.value
 		});
 
 		args.onmouseover = args.onmouseout = '';

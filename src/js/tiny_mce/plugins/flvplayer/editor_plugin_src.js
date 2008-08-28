@@ -208,7 +208,7 @@
 					'&shownavigation=' + p.shownavigation
 			});
 			
-			dom.add(ob, 'span', '', 'Flash Player n\'est pas &agrave; jour.<br /><a href="http://www.macromedia.com/go/getflashplayer "target="_blank">Cliquez ici</a> pour t&eacute;l&eacutecharger la derni&egrave;re version.');
+			dom.add(ob, 'span', {style : 'border:#ccc dashed 1px;color:red;'}, 'Flash Player n\'est pas &agrave; jour.<br /><a href="http://www.macromedia.com/go/getflashplayer" class="attention" target="_blank">Cliquez ici</a> pour t&eacute;l&eacutecharger la derni&egrave;re version.');
             
 /*			dom.add(ob, 'span', {
 				mce_name : 'embed',
