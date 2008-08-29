@@ -40,7 +40,7 @@ function exporter()
 [SET_TYPE_FICHIER+]
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td colspan="3">Vers quel type de fichier voulez-vous exporter&nbsp;:</td></tr>
-<tr><td width="1%"><input type="radio" name="TYPE" value="csv" checked></td><td>Microsoft&copy; Excel (csv)</td><td>&nbsp;</td></tr>
-<tr><td width="1%"><input type="radio" name="TYPE" value="html"></td><td>html</td><td>&nbsp;</td></tr>
+<tr><td width="1%"><input type="radio" name="TYPE" id="csv" value="csv" checked></td><td><label for="csv">Microsoft&copy; Excel (csv)</label></td><td>&nbsp;</td></tr>
+<tr><td width="1%"><input type="radio" name="TYPE" id="html" value="html"></td><td><label for="html">html</label></td><td>&nbsp;</td></tr>
 </table>
 [SET_TYPE_FICHIER-]
