@@ -183,7 +183,7 @@ class CModule_Rubrique
 	{
 		// lock tables Formation, Module, Module_Rubrique, Forum, Activ, SousActiv, Chat, Intitule
 		$sRequeteSql = "LOCK TABLES Formation WRITE, Module WRITE, Module_Rubrique WRITE, Forum WRITE,"
-						." Activ WRITE, SousActiv WRITE, Chat WRITE, Intitule WRITE";
+						." Activ WRITE, SousActiv WRITE, Hotpotatoes WRITE, Chat WRITE, Intitule WRITE";
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		if (empty($v_iNumOrdre) || !is_int($v_iNumOrdre) || $v_iNumOrdre < 0)
@@ -193,7 +193,7 @@ class CModule_Rubrique
 		
 		$iIdNouv = $this->copier($v_iIdDest, TRUE);
 		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
-		$oNouv->redistNumsOrdre($iNumOrdre);
+		ElementFormation::defNumOrdre($oNouv, $iNumOrdre);
 		
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 		
@@ -369,6 +369,9 @@ class CModule_Rubrique
 	 */
 	function initIdForm ()
 	{
+		if (!$this->retIdParent())
+			return;
+		
 		$sRequeteSql = "SELECT Formation.IdForm FROM Formation"
 			." LEFT JOIN Module USING (IdForm)"
 			." WHERE Module.IdMod=".$this->retIdParent();

@@ -259,5 +259,70 @@ class ElementFormation
 		
 		return null;
 	}
+	
+	/**
+	 * Définit l'ordre d'un élément par rapport à ses "frères" du même parent.
+	 * Si un élément porte déjà ce n° d'ordre, il sera décalé (+1) car au final
+	 * l'élément passé en paramètre doit avoir le n° demandé
+	 *
+	 * @param mixed $elem l'élément qui va obtenir un n° d'ordre
+	 * @param int $numOrdre le n° d'ordre voulu pour l'élément
+	 * 
+	 * @todo Ne fonctionne pas pour les formations (pas de parent)
+	 */
+	function defNumOrdre($elem, $numOrdre)
+	{
+		static $infosTables = array(
+			TYPE_FORMATION     => array('Formation', 'Form'),
+			TYPE_MODULE        => array('Module', 'Mod'),
+			TYPE_RUBRIQUE      => array('Module_Rubrique', 'Rubrique'),
+			TYPE_ACTIVITE      => array('Activ', 'Activ'),
+			TYPE_SOUS_ACTIVITE => array('SousActiv', 'SousActiv')
+		);
+		
+		if ($elem->retTypeNiveau() == TYPE_FORMATION)
+			trigger_error(__CLASS__."::".__FUNCTION__."(): TYPE_FORMATION n'est pas supporté pour le moment");
+		
+		$type    = $elem->retTypeNiveau();
+		$table   = $infosTables[$type][0];
+		$suffixe = $infosTables[$type][1];
+		$id      = $elem->retId();
+		
+		$typeParent    = ElementFormation::retTypeParent($type);
+		$suffixeParent = $infosTables[$typeParent][1];
+		$champParent   = 'Id'.$suffixeParent;
+		$idParent      = $elem->retIdParent();
+		
+		$elem->oBdd->executerRequete("LOCK TABLES {$table} WRITE");
+		
+		$result = $elem->oBdd->executerRequete(
+			"SELECT MAX(Ordre{$suffixe}) FROM {$table}"
+		);
+		$numOrdreMax = $elem->oBdd->retEnregPrecis($result) + 1;
+		$elem->oBdd->libererResult($result);
+		
+		$numOrdre = (int)$numOrdre;
+		if ($numOrdre <= 0 || $numOrdre > $numOrdreMax)
+			$numOrdre = $numOrdreMax;
+		
+		$elem->oBdd->executerRequete(
+			 " UPDATE {$table} SET Ordre{$suffixe} = 0"
+			." WHERE Id{$suffixe} = {$id}"
+		);
+		
+		$elem->oBdd->executerRequete(
+			 " UPDATE {$table} SET Ordre{$suffixe} = Ordre{$suffixe}+1"
+			." WHERE Id{$suffixeParent} = {$idParent}"
+			."  AND Ordre{$suffixe} > 0"
+			."  AND Ordre{$suffixe} >= {$numOrdre}"
+		);
+		
+		$elem->oBdd->executerRequete(
+			 " UPDATE {$table} SET Ordre{$suffixe} = {$numOrdre}"
+			." WHERE Id{$suffixe} = {$id}"
+		);
+		
+		$elem->oBdd->executerRequete('UNLOCK TABLES');
+	}
 }
 ?>

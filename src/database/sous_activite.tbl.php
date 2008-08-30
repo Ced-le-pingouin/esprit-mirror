@@ -268,7 +268,7 @@ class CSousActiv
 
 		$iIdNouv = $this->copier($v_iIdDest);
 		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
-		$oNouv->redistNumsOrdre($iNumOrdre);
+		ElementFormation::defNumOrdre($oNouv, $iNumOrdre);
 
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 
