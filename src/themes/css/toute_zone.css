@@ -42,11 +42,6 @@ width:100%;
 text-align:right;
 }
 
-#utilisateur span {
-color:#000;
-font-size:8pt;
-}
-
 #prenom {
 text-transform:capitalize;
 }
@@ -115,6 +110,10 @@ color:#d4cbbb;
 body.menutitre {
 background:url('../esprit/zone_menu-fond.gif') repeat-x fixed top left;
 margin:0;
+}
+body.menutitre #utilisateur span {
+color:#fff;
+font-size:8pt;
 }
 /* ----- */
 
@@ -222,6 +221,11 @@ text-align:right;
 body.courstitre {
 background:transparent url('../esprit/zone_cours-fond.gif') repeat-x fixed top left;
 margin:0;
+}
+
+body.courstitre #utilisateur span {
+color:#000;
+font-size:8pt;
 }
 
 #titre span {
