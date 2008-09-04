@@ -55,9 +55,8 @@
 								include_once(CLASS_MANAGER);
 							
 								//$manager = new manager($upload->getFilePath(), false);
-								// si problèmes, utiliser '$upload->getFilePath()' mais en enlevant la fin (le nom de l'image).
 								$manager = new manager('', false);
-																			
+																		
 								$fileType = $manager->getFileType($upload->getFileName());
 
 								foreach($fileType as $k=>$v)
