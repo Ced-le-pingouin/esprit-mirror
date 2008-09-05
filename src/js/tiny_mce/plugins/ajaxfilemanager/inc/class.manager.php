@@ -79,7 +79,7 @@ class manager
 		}
 		
 		$this->currentFolderPath = (isUnderRoot($this->currentFolderPath)?backslashToSlash((addTrailingSlash($this->currentFolderPath))):CONFIG_SYS_DEFAULT_PATH);
-echo $this->currentFolderPath;
+
 		if($this->calculateSubdir)
 		{// keep track of this folder path in session 
 			$_SESSION[$this->lastVisitedFolderPathIndex] = $this->currentFolderPath;
