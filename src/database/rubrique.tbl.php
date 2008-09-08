@@ -143,8 +143,9 @@ class CModule_Rubrique
 	{
 		$sTexteIntitule = $this->oIntitule->retNom();
 		
-		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0)
-				$sTexteIntitule .= "&nbsp;{$this->oEnregBdd->NumDepartIntitule}";
+		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0
+		     && $this->retType() == LIEN_UNITE)
+			$sTexteIntitule .= "&nbsp;{$this->oEnregBdd->NumDepartIntitule}";
 		
 		if (strlen($sTexteIntitule) && $v_bPonctuation)
 			$sTexteIntitule .= ' :';
