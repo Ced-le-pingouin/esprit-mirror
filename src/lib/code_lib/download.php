@@ -19,7 +19,6 @@
 // Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
 //                          Universite de Mons-Hainaut, Belgium. 
 
-require_once("globals.inc.php");
 require_once (dirname (__FILE__)."/fichiers_permis.inc.php");
 
 /*************************************************************************
@@ -110,7 +109,7 @@ if (!(strpos($nomComplet, "..") === false))
 {
 	$sErreur = "Utilisation non autorisée de la chaine '..'";
 }
-else if (!is_readable(dir_root_plateform()."tmp/".$nomComplet))
+else if (!is_readable(dir_root_plateform().$nomComplet))
 {
 	$sErreur = "Lecture impossible";
 }
@@ -153,7 +152,7 @@ if (empty($sErreur))
 	//header ("Content-Length: ".filesize($nomComplet));
 	header ("Content-Disposition: attachment; filename=".str_replace(" ","_",$nomSimple));
 	//header("Content-Transfer-Encoding: binary"); 
-	readfile (dir_root_plateform()."tmp/".$nomComplet);
+	readfile (dir_root_plateform().$nomComplet);
 }
 else
 {
@@ -166,7 +165,7 @@ else
 		."<center>\n"
 		."<h4>\n"
 		."<br><br>ERREUR<br><br><br>"
-		."Fichier '".dir_root_plateform()."tmp/".$nomComplet."'<br><br>$sErreur"
+		."Fichier '$nomComplet'<br><br>$sErreur"
 		."</h4>\n"
 		."<a href=\"javascript: history.back();\">Retour</a>"
 		."</div>\n"

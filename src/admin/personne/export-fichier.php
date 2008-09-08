@@ -37,9 +37,7 @@ $asChampsValides = array("Nom","Prenom","Pseudo","DateNaiss","Sexe","Adresse","N
 $sRepRel = dir_tmp(NULL,FALSE);
 $sRepAbs = dir_tmp(NULL,TRUE);
 
-//$sNomFichier = "personne-".$oProjet->oUtilisateur->retPseudo();
-$date = date("d.m.y");
-$sNomFichier = "personne_-".$oProjet->oUtilisateur->retId().".".$date;
+$sNomFichier = "personne-".$oProjet->oUtilisateur->retPseudo();
 
 $sExtensionFichier = (isset($_POST["TYPE"]) ? $_POST["TYPE"] : "csv");
 
@@ -110,8 +108,8 @@ function exporter()
 <p>Exportation de la liste des inscrits termin&eacute;e.</p>
 <p>Veuillez fermer cette fen&ecirc;tre.</p>
 </div>
-<form action="<?php echo dir_code_lib('download.php',FALSE,FALSE)?>" method="get">
-<input type="hidden" name="f" value="<?php echo $sNomFichier?>">
+<form action="<?php echo dir_lib('download.php',FALSE,FALSE)?>" method="get">
+<input type="hidden" name="f" value="tmp/<?php echo $sNomFichier?>">
 </form>
 </body>
 </html>

@@ -87,6 +87,8 @@
 								$sFichierXml = CONFIG_LOGXML_PATH;
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
+
+/*
 								if (!file_exists($sFichierLog)) {
 									$sDonneesCSV = "Date;Nom de l'image;Chemin;Md5\r\n";
 								}
@@ -98,6 +100,8 @@
 										fwrite($fpxml, "<log>\r\n</log>");
 									fclose($fpxml);
 								}
+*/
+								
 								$sDonneesXML = 		"	<entree>\r\n"
 													."		<date>".$tem["ctime"]."</date>\r\n"
 								//					."		<utilisateur>".$sUtilisateur."</utilisateur>\r\n"
