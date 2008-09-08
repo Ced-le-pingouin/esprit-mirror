@@ -106,6 +106,12 @@ font-size:8pt;
 text-decoration:none;
 }
 
+a.lien_ext {
+color:blue;
+font-size:10pt;
+text-decoration:none;
+}
+
 a:hover {
 text-decoration:underline;
 }

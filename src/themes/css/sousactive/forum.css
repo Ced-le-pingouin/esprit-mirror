@@ -102,7 +102,8 @@ font-size:7pt;
 
 /* -- dialogue important -- */
 body.dialog_important {
-background-color:#fdf9ee;
+/*background-color:#fdf9ee;*/
+background-color:#fff;
 padding:5px;
 }
 
