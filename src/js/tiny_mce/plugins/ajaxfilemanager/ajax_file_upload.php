@@ -85,10 +85,10 @@
 								$sCheminFichier = str_replace('../', '', $tem['path']);
 								$sCheminFichier = preg_replace("/([[:alnum:]_\- ]+\/)[[:alnum:]_\- ]+\.[[:alpha:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
 								
-								//$sFichierLog = CONFIG_LOG_PATH;
-								//$sFichierXml = CONFIG_LOGXML_PATH;
-								$sFichierLog = dir_root_plateform().'/depot/log_upload.csv';
-								$sFichierXml = dir_root_plateform().'/depot/log_upload.xml';
+								$sFichierLog = CONFIG_LOG_PATH;
+								$sFichierXml = CONFIG_LOGXML_PATH;
+								//$sFichierLog = dir_root_plateform().'depot/log_upload.csv';
+								//$sFichierXml = dir_root_plateform().'depot/log_upload.xml';
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
 
