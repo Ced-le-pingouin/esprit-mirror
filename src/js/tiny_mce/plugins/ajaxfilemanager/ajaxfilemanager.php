@@ -423,8 +423,8 @@ echo "
 <p>T&eacute;l&eacute;chargement du log :</p>
 
 <ul>
-	<li>Fichier csv : <a href=\"download.php?fichier=".CONFIG_LOG_PATH."\">CSV</a></li>
-	<li>Fichier xml : <a href=\"download.php?fichier=".CONFIG_LOGXML_PATH."\">XML</a></li>
+	<li>Fichier csv : <a href=\"download.php?fichier=".dir_root_plateform().'depot/log_upload.csv'."\">CSV</a></li>
+	<li>Fichier xml : <a href=\"download.php?fichier=".dir_root_plateform().'depot/log_upload.xml'."\">XML</a></li>
 </ul>
 </fieldset>
 ";
