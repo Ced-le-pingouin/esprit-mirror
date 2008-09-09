@@ -55,6 +55,7 @@ class ElementFormation
 		static $aCorrespondances = array(TYPE_FORMATION     => 'CFormation', 
 	                                     TYPE_MODULE        => 'CModule', 
 	                                     TYPE_RUBRIQUE      => 'CModule_Rubrique',
+	                                     TYPE_UNITE         => 'CModule_Rubrique', // normalement TYPE_UNITE n'est plus utilisé mais bon...
 	                                     TYPE_ACTIVITE      => 'CActiv',
 	                                     TYPE_SOUS_ACTIVITE => 'CSousActiv'
 	                                    );

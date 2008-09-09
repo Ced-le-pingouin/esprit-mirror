@@ -172,8 +172,13 @@ if ($g_iModule > 0)
 {
 	$oProjet->defModuleCourant($g_iModule,TRUE);
 	
-	$type = TYPE_MODULE;
-	$asNoms[1] = $oProjet->oModuleCourant->retNom();
+	if (isset($oProjet->oModuleCourant))
+	{
+		$type = TYPE_MODULE;
+		$asNoms[1] = $oProjet->oModuleCourant->retNom();
+	}
+	else
+		$g_iModule = 0;
 }
 
 // ---------------------
@@ -183,8 +188,13 @@ if ($g_iRubrique > 0)
 {
 	$oProjet->defRubriqueCourante($g_iRubrique);
 	
-	$type = (($oProjet->oRubriqueCourante->retType() == LIEN_UNITE ) ? TYPE_UNITE : TYPE_RUBRIQUE);
-	$asNoms[2] = $oProjet->oRubriqueCourante->retNom();
+	if (isset($oProjet->oRubriqueCourante))
+	{
+		$type = (($oProjet->oRubriqueCourante->retType() == LIEN_UNITE ) ? TYPE_UNITE : TYPE_RUBRIQUE);
+		$asNoms[2] = $oProjet->oRubriqueCourante->retNom();
+	}
+	else
+		$g_iRubrique = 0;
 }
 
 // ---------------------
@@ -194,8 +204,13 @@ if ($g_iActiv > 0)
 {
 	$oProjet->defActivCourante($g_iActiv);
 	
-	$type      = TYPE_ACTIVITE;
-	$asNoms[3] = $oProjet->oActivCourante->retNom();
+	if (isset($oProjet->oActivCourante))
+	{
+		$type      = TYPE_ACTIVITE;
+		$asNoms[3] = $oProjet->oActivCourante->retNom();
+	}
+	else
+		$g_iActiv = 0;
 }
 
 // ---------------------
@@ -205,8 +220,13 @@ if ($g_iSousActiv > 0)
 {
 	$oProjet->defSousActivCourante($g_iSousActiv);
 	
-	$type = TYPE_SOUS_ACTIVITE;
-	$asNoms[4] = $oProjet->oSousActivCourante->retNom();
+	if (isset($oProjet->oSousActivCourante))
+	{
+		$type = TYPE_SOUS_ACTIVITE;
+		$asNoms[4] = $oProjet->oSousActivCourante->retNom();
+	}
+	else
+		$g_iSousActiv = 0;
 }
 
 // ---------------------
