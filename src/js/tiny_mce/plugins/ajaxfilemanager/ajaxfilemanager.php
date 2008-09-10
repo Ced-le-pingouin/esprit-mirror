@@ -17,6 +17,7 @@
 	$manager->setSessionAction($sessionAction);
 	$fileList = $manager->getFileList();
 	$folderInfo = $manager->getFolderInfo();
+
 	$views = array(
 		//'detail'=>LBL_BTN_VIEW_DETAILS,
 		'thumbnail'=>LBL_BTN_VIEW_THUMBNAIL,
@@ -575,15 +576,39 @@ echo"
 		  			<tr style="display:none">
 		  				<th><label><?php echo FILE_LABEL_SELECT; ?></label></th>
 		  				<td><input type="file" class="input" name="file"  /> <input type="button" class="button" value="<?php echo FILE_LBL_UPLOAD; ?>" /> <a href="#" class="action" title="Annuler" style="display:none" ><span class="cancel">&nbsp;</span></a>  <span class="uploadProcessing" style="display:none">&nbsp;<span></td>
-		  			</tr>		
+		  			</tr>
 		  		</tbody>
 		  		<tfoot>
+<?php
+// On affiche les extensions autorisées pour chacun des répertoires.
+// ATTENTION, comme l'admin peut naviguer entre les 2 répertoires (images et medias), il faudra penser à rafraîchir la page avant d'envoyer un fichier.
+if (strpos($folderInfo['path'],CONFIG_MEDIA_PATH) !== false)
+	echo "
 		  			<tr>
 		  				<td>&nbsp;</td>
 		  			</tr>
-		  			<tr style="text-align: left; color:red;">
+		  			<tr>
+		  				<td>&nbsp;</td>
+		  				<td>".MEDIA_UPLOAD_TIP."</td>
+		  			</tr>
+	";
+else if(strpos($folderInfo['path'],CONFIG_IMAGE_PATH) !== false)
+	echo "
+		  			<tr>
+		  				<td>&nbsp;</td>
+		  			</tr>
+		  			<tr>
+		  				<td>&nbsp;</td>
+		  				<td>".IMAGE_UPLOAD_TIP."</td>
+		  			</tr>
+	";
+?>
+		  			<tr>
+		  				<td>&nbsp;</td>
+		  			</tr>
+		  			<tr>
 		  				<th>&nbsp;</th>
-		  				<td><?php echo FILE_DISCLAIMER; ?></td>
+		  				<td style="text-align: left; color: red;"><?php echo FILE_DISCLAIMER; ?></td>
 		  			</tr>
 		  		</tfoot>
 		  	</table>

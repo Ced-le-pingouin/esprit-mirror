@@ -83,7 +83,7 @@
 	define('CONFIG_VIEWABLE_VALID_EXTS', 'gif,jpg,png,mov,mpg,avi,mpeg,wmv,wav,mp3,swf,flv');
 	define('CONFIG_UPLOAD_INVALID_EXTS', '');
 	define('CONFIG_UPLOAD_VALID_IMAGE', 'gif,jpg,png');
-	define('CONFIG_UPLOAD_VALID_MEDIA', 'mov,mpg,avi,mpeg,wmv,wav,mp3,swf,flv');
+	define('CONFIG_UPLOAD_VALID_MEDIA', 'mp3,swf,flv');
 
 	//Preview
 	define('CONFIG_IMG_THUMBNAIL_MAX_X', 100);

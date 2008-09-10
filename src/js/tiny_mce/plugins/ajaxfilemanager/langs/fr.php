@@ -197,7 +197,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
     define('ERR_FILE_NOT_UPLOADED', "Aucun fichier n'a \u00E9t\u00E9 selectionn\u00E9 pour \u00EAtre envoy\u00E9.");
     define('ERR_FILE_TYPE_NOT_ALLOWED', "Vous n\'etes pas autoris&eacute; &agrave; d&eacute;poser ce type de fichier.");
     define('ERR_FILE_NOT_IMG', "Ceci n\'est pas une image");
-    define('ERR_FILE_NOT_MEDIA', "Ceci n\'est pas une vid\u00E9o");
+    define('ERR_FILE_NOT_MEDIA', "Ceci n\'est pas un m\u00E9dia valide. \\nAudio : *.mp3 \\nVid\u00E9o : *.swf ou *.flv");
     define('ERR_FILE_MOVE_FAILED', "Le d\u00E9placement du fichier a \u00E9chou\u00E9.");
     define('ERR_FILE_NOT_AVAILABLE', "Le fichier est indisponible.");
     define('ERROR_FILE_TOO_BID', "Le fichier est trop lourd. (max : %s)");
@@ -207,6 +207,8 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
 	define('FILE_CANCEL_UPLOAD', 'Annuler l\'envoi de fichiers');
 	define('FILE_LBL_UPLOAD', 'D&eacute;poser');
 	define('FILE_DISCLAIMER', '<p>Ce fichier sera d&eacute;pos&eacute; &agrave; votre nom et pourra &ecirc;tre utilis&eacute; par<br />d\'autres enseignants, dans d\'autres cours !</p><p>Assurez-vous d\'en avoir les droits d\'utilisation.</p>');
+	define('MEDIA_UPLOAD_TIP', 'Les types de m&eacute;dias autoris&eacute;s : <br />*.swf et *.flv pour la vid&eacute;o, <br />*.mp3 pour l\'audio.');
+	define('IMAGE_UPLOAD_TIP', 'Les types d\'images autoris&eacute;s : <br />*.png, *.gif et *.jpg');
     //file download
     define('ERR_DOWNLOAD_FILE_NOT_FOUND', "Aucun fichier selectionn\u00E9 pour \u00EAtre t\u00E9l\u00E9charg\u00E9.");
     	//Rename

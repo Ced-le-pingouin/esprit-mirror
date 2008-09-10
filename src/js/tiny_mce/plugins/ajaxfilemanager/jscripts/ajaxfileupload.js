@@ -95,7 +95,7 @@ jQuery.extend({
                     // Make sure that the request was successful or notmodified
                     if ( status != "error" )
 					{
-alert('statut OK');
+//alert('statut OK');
                         // process the data (runs the xml through httpData regardless of callback)
                         var data = jQuery.uploadHttpData( xml, s.dataType );    
                         // If a local callback was specified, fire it and pass it the data
@@ -192,7 +192,7 @@ alert('statut OK');
         var data = !type;
 //alert('data : '+data);
         data = type == "xml" || data ? r.responseXML : r.responseText;
-alert('data uploadhttp : '+data+'\n\nresponseText : '+r.responseText);
+//alert('data uploadhttp : '+data+'\n\nresponseText : '+r.responseText);
         // If the type is "script", eval it in global context
         if ( type == "script" )
             jQuery.globalEval( data );
