@@ -264,6 +264,16 @@ class CModule
 		$asInfosIntituleModPrecedent = array("IdIntitule" => "1" // Cours
 			,"NumDepartIntitule" => "1");
 		
+		// en fait sur une nouvelle install, le 1er intitulé "cours" n'aura pas
+		// forcément l'id 1 (???)
+		$hResult = $this->oBdd->executerRequete(
+			 " SELECT IdIntitule FROM Intitule WHERE TypeIntitule=".TYPE_MODULE
+			." ORDER BY IdIntitule LIMIT 1"
+		);
+		if ($this->oBdd->retNbEnregsDsResult($hResult))
+			$asInfosIntituleModPrecedent["IdIntitule"] = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+		
 		$sRequeteSql = "SELECT IdIntitule, NumDepartIntitule FROM Module"
 			." WHERE IdForm='{$v_iIdForm}'"
 			." ORDER BY OrdreMod DESC"

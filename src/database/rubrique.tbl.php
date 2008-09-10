@@ -391,6 +391,16 @@ class CModule_Rubrique
 		$asInfosIntituleRubPrecedente = array("IdIntitule" => "2" // Unité
 			,"NumDepartIntitule" => "1");
 		
+		// en fait sur une nouvelle install, le 1er intitulé "unité" n'aura pas
+		// forcément l'id 2 (???)
+		$hResult = $this->oBdd->executerRequete(
+			 " SELECT IdIntitule FROM Intitule WHERE TypeIntitule=".TYPE_RUBRIQUE
+			." ORDER BY IdIntitule LIMIT 1"
+		);
+		if ($this->oBdd->retNbEnregsDsResult($hResult))
+			$asInfosIntituleRubPrecedente["IdIntitule"] = $this->oBdd->retEnregPrecis($hResult);
+		$this->oBdd->libererResult($hResult);
+			
 		$sRequeteSql = "SELECT IdIntitule, NumDepartIntitule"
 			." FROM Module_Rubrique"
 			." WHERE IdMod='".$this->retIdModule()."'"
