@@ -141,10 +141,12 @@ class CModule_Rubrique
 	 */
 	function retTexteIntitule($v_bAfficherNumOrdre = TRUE, $v_bPonctuation = FALSE)
 	{
+		if ($this->retType() != LIEN_UNITE)
+			return '';
+		
 		$sTexteIntitule = $this->oIntitule->retNom();
 		
-		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0
-		     && $this->retType() == LIEN_UNITE)
+		if ($v_bAfficherNumOrdre && $this->oEnregBdd->NumDepartIntitule > 0)
 			$sTexteIntitule .= "&nbsp;{$this->oEnregBdd->NumDepartIntitule}";
 		
 		if (strlen($sTexteIntitule) && $v_bPonctuation)
