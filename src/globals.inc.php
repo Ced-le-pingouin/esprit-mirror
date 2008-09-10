@@ -120,7 +120,7 @@ function dir_root_plateform ($v_sFichierAInclure=NULL,$v_bCheminAbsolu=TRUE)
 {
 	global $g_sCheminRacine, $g_sCheminRacineWeb;
 	if ($v_bCheminAbsolu) {
-		return $g_sCheminRacine.$v_sFichierAInclure;
+		return $g_sCheminRacine.ltrim($v_sFichierAInclure, '/\\');
 	} else {
 		// $v_bCheminAbsolu à FALSE voudrait dire le chemin relatif *à la racine web*.
 		return str_replace(dir_http(), '/', $g_sCheminRacineWeb).$v_sFichierAInclure;
@@ -566,7 +566,7 @@ function enleverBaliseMeta ($v_sTexte)
 }
 
 /**
- * Cette fonction enl�ve toutes les balises du type <script ***>***</script>.
+ * Cette fonction enl�ve toutes les balises du type <script ***>***</script>.
  *
  * @param v_sValeur
  * @return la valeur de v_sValeur

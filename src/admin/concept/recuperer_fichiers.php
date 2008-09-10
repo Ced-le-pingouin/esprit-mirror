@@ -50,7 +50,7 @@ require_once ("globals.inc.php");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?php echo inserer_feuille_style()?>
 <style type="text/css">
-p em { color: rgb(74,92,158); }
+p em { color: rgb(125,63,65); font-style: normal; font-weight: bold; }
 </style>
 <script type="text/javascript" language="javascript">
 <!--

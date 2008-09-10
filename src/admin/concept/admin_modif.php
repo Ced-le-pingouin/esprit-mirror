@@ -492,7 +492,7 @@ function RecupererFichiers()
 {
 	var wForm;
 	
-	var iLargeurFenetre = 400;
+	var iLargeurFenetre = 600;
 	var iHauteurFenetre = 525;
 	var iPositionGauche = (screen.width-iLargeurFenetre)/2;
 	var iPositionHaut   = (screen.height-iHauteurFenetre)/2;
@@ -555,7 +555,7 @@ function menu()
 function cacher(controleur, span_check)
 {
 	var objNomRubrique = document.forms['form_admin_modif'].elements['nom_rubrique'];
-	if (span_check == 'chkb_style') // si on coche AU MOINS UN des styles de police, alors on désactive les types de ligne
+	if (span_check == 'chkb_style') // si on coche AU MOINS UN des styles de police, alors on dï¿½sactive les types de ligne
 	{
 			var objControleur1 = document.getElementById("chkb_1");
 			var objControleur2 = document.getElementById("chkb_2");
@@ -571,7 +571,7 @@ function cacher(controleur, span_check)
 				document.form_admin_modif.ligne.disabled=false;
 			}
 	}
-	else // sinon, si on coche UN type de ligne, on désactive toutes les autres cases.
+	else // sinon, si on coche UN type de ligne, on dï¿½sactive toutes les autres cases.
 	{
 		var objControleur = document.getElementById(controleur);
 		for (var i=1; i<=5; i++)

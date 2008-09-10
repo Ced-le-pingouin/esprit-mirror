@@ -33,6 +33,7 @@
 
 require_once("globals.inc.php");
 require_once dir_lib('std/FichierInfo.php', true);
+require_once dir_include('FichierEsprit.php', true);
 
 if (!empty($_GET))
 {
@@ -49,9 +50,9 @@ $sRepCours = dir_cours($IdActiv,$IdForm);
 
 if (!empty($_GET['s']))
 {
-	$fichierAEffacer = new FichierInfo($sRepCours.$_GET['s']);
+	$fichierAEffacer = new FichierInfo(dir_root_plateform($_GET['s']));
 	if ($fichierAEffacer->existe())
-		$fichierAEffacer->supprimer();
+		$fichierAEffacer->supprimer(true);
 	header("Location:".basename(__FILE__)."?FORM={$IdForm}&ACTIV={$IdActiv}");
 	
 }
@@ -110,7 +111,7 @@ function init()
 {
 	var fctConfirmation = function()
 	{
-		return confirm('Êtes-vous sûr(e) de vouloir supprimer ce fichier ?');
+		return confirm('Êtes-vous sûr(e) de vouloir supprimer ce fichier/dossier ?');
 	}
 
 	var liens = document.getElementsByTagName('a');
@@ -141,9 +142,9 @@ body
 	background-color: #FFFFFF; 
 }
 
-a, td {vertical-align: top;}
+td, img { vertical-align: top; }
 
-.supprimer { color: rgb(74,92,158); font-style: normal; font-weight: bold; }
+.supprimer { color: rgb(125,63,65); font-style: normal; font-weight: bold; }
 //-->
 </style>
 
@@ -201,20 +202,22 @@ for ($i=0; $i<$tot; $i++)
 	echo "<tr><td height=\"10\">{$branche}&nbsp;"
 		.($bEstFichier ? NULL : "<img src=\"images/folderopen.gif\" hspace=\"0\" vspace=\"0\" border=\"0\">&nbsp;");
 	
+	$urlFichier = $sRepertoireActuel.'/'.$fichier;
 	if ($bEstFichier)
 	{
-		$rep = rawurlencode($sRepertoireActuel."/".$fichier);
-		
-		echo "<a href=\"{$sFichierDownload}?f=$rep\" style=\"white-space: nowrap;\" onfocus=\"blur()\">"
+		echo "<a href=\"{$sFichierDownload}?f=".rawurlencode($urlFichier)
+		    ."\" style=\"white-space: nowrap;\" onfocus=\"blur()\">"
 			.stripslashes($fichier)."</a>";
-			
-		echo "&nbsp;<a href=\"".basename(__FILE__)."?FORM={$IdForm}&ACTIV={$IdActiv}&s=".rawurlencode($fichier)."\" class=\"supprimer\">(Supprimer)</a>";
 	}
 	else
 	{
 		echo "{$fichier}";
 	}
-
+	
+	$fichierActu = new FichierEsprit(dir_root_plateform($urlFichier));
+	if (!$fichierActu->estSpecial())
+		echo "&nbsp;<a href=\"".basename(__FILE__)."?FORM={$IdForm}&ACTIV={$IdActiv}&s=".rawurlencode($urlFichier)."\" class=\"supprimer\">(Supprimer)</a>";
+	
 	echo "</td></tr>\n";
 }
 
