@@ -40,12 +40,16 @@ $oProjet->asInfosSession[SESSION_SOUSACTIV] = $g_iSousActiv;
 $oProjet->initSousActivCourante();
 
 // il faut qu'il existe bien un élément avec l'id voulu pour le $type demandé
-require_once dirname(__FILE__).'/../../include/ElementFormation.php';
-$idsElems = explode(':', $params);
-array_unshift($idsElems, 0); // le 1er type d'élément est 1, pas 0 => insertion élément bidon en position 0
-do {
-	$elem = ElementFormation::retElementFormation($oProjet->oBdd, $type, $idsElems[$type]); 
-} while (!$elem->oEnregBdd && --$type >= TYPE_FORMATION);
+// (mais si $type vaut 0, c'est qu'on devra afficher le "splash screen")
+if ($type >= TYPE_FORMATION)
+{
+	require_once dirname(__FILE__).'/../../include/ElementFormation.php';
+	$idsElems = explode(':', $params);
+	array_unshift($idsElems, 0); // le 1er type d'élément est 1, pas 0 => insertion élément bidon en position 0
+	do {
+		$elem = ElementFormation::retElementFormation($oProjet->oBdd, $type, $idsElems[$type]); 
+	} while (!$elem->oEnregBdd && --$type >= TYPE_FORMATION);
+}
 
 $oProjet->initStatutsUtilisateur();
 
