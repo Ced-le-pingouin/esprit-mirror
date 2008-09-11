@@ -234,6 +234,8 @@ margin:0 5px;
 /* -- formulaire modif -- */
 body.formulaire_modif {
 background:#e7e1d4 url('../../esprit/pixel_noir.gif') repeat-x fixed top left;
+height: 90%;
+overflow: auto;
 }
 
 .feedback_formmodif {
