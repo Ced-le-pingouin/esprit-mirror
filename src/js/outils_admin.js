@@ -234,6 +234,6 @@ function tableau_de_bord(v_oObj) {
 function gestionnaire() {
 	var sUrl = GLOBALS["gestionnaire"] + "/ajaxfilemanager.php?path=racine&mode=racine&editor=form";
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=no";
-	var oWin = PopupCenter(sUrl,"winAccueilLogin",700,440,sOptionsFenetre);
+	var oWin = PopupCenter(sUrl,"winAccueilLogin",950,600,sOptionsFenetre);
 	oWin.focus();
 }

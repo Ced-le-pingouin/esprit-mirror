@@ -1061,7 +1061,7 @@ function showThickBox(linkElem, url)
 */
 function uploadFileWin(linkElem)
 {
-	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=450' + '&inlineId=winUpload&modal=true'));
+	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=250' + '&width=450' + '&inlineId=winUpload&modal=true'));
 };
 
 /**
