@@ -172,7 +172,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
         //class manager
     define('ERR_FOLDER_NOT_FOUND', "Impossible de trouver le dossier sp&eacute;cifi&eacute; : ");
         //rename
-    define('ERR_RENAME_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, espaces, tirets et tirets-bas.");
+    define('ERR_RENAME_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, tirets et tirets-bas.");
     define('ERR_RENAME_EXISTS', "Il faut saisir un nom qui n'est pas d&eacute;j&agrave; pris dans ce dossier.");
     define('ERR_RENAME_FILE_NOT_EXISTS', "Le fichier/dossier n'existe pas.");
     define('ERR_RENAME_FAILED', "Impossible de le renommer, merci de recommencer.");
@@ -180,7 +180,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
     define('ERR_NO_CHANGES_MADE', "Aucun changement n'a &eacute;t&eacute effectu&eacute;.");
     define('ERR_RENAME_FILE_TYPE_NOT_PERMITED', "Vous n'&ecirc;tes pas autoris&eacute; &agrave; changer de la sorte l'extension du fichier.");
         //folder creation
-    define('ERR_FOLDER_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, espaces, tirets et tirets-bas.");
+    define('ERR_FOLDER_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, tirets et tirets-bas.");
     define('ERR_FOLDER_EXISTS', "Il faut saisir un nom qui n\'est pas pris dans ce dossier.");
     define('ERR_FOLDER_CREATION_FAILED', "Impossible de cr\u00E9er un dossier, merci de recommencer.");
     define('ERR_FOLDER_NAME_EMPTY', "Il faut pr\u00E9ciser un nom.");

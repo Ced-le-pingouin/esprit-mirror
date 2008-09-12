@@ -36,9 +36,10 @@ Array.prototype.inArray = function (value,caseSensitive)
  var savEvtTime=0;  // save time of click event.
  var savTO=null;    // handle of click setTimeOut
  var linkElem = null;
-
-function hadDoubleClick() 
-{
+ 
+ 
+ function hadDoubleClick() 
+ {
    var d = new Date();
    var now = d.getTime();
    if ((now - dcAt) < dcDelay) 
@@ -46,18 +47,22 @@ function hadDoubleClick()
      return true;
    }
    return false;
-};
+ };
 
+ 
 /**
 *	enable left click to preview certain files
 */
 function enablePreview(elem, num)
 {
+		
 		$(elem).each(
 				 function()
 				 {
+					 
 					 $(this).click(function ()
 					{
+						
 						//alert('single click');
 						var num = getNum(this.id);
 						var path = files[num].path;
@@ -69,7 +74,7 @@ function enablePreview(elem, num)
 						{
 							linkElem = $('#a' + num).get(0);
 						}	
-
+						
 				       d = new Date();
 						savEvtTime = d.getTime();
 						savTO = setTimeout(function()
@@ -77,6 +82,8 @@ function enablePreview(elem, num)
 						if (savEvtTime - dcAt > 0) 
 						{
 						//check if this file is previewable
+						
+						
 						var ext = getFileExtension(path);
 						var supportedExts = supporedPreviewExts.split(",");
 						var isSupportedExt = false;
@@ -89,6 +96,7 @@ function enablePreview(elem, num)
 								isSupportedExt = true;
 								break;
 							}
+						
 						}
 												
 						if(isSupportedExt)
@@ -97,20 +105,31 @@ function enablePreview(elem, num)
 							{
 								case 'fileVideo':
 								case 'fileMusic':
-								case 'fileFlash':																
+								case 'fileFlash':
+																											
 									$('#playGround').html('<a id="playGround' + num + '" href="' + files[num].path + '"><div id="player">&nbsp;this is mine</div></a> ');
+									
+									
 									$('#playGround' + num).html('');																		
 									$('#playGround' + num).media({ width: 255, height: 210,  autoplay: true  });		
 									//alert($('#playGround' + num).html());																	
 									showThickBox($('#a' + num).get(0), appendQueryString('#TB_inline', 'height=250'  + '&width=256' + '&inlineId=winPlay&modal=true'));
+						
 									break;
 								default:
-									showThickBox(linkElem, appendQueryString(path, 'KeepThis=true&TB_iframe=true&height=' + thickbox.height + '&width=' + thickbox.width));
+									showThickBox(linkElem, appendQueryString(path, 'KeepThis=true&TB_iframe=true&height=' + thickbox.height + '&width=' + thickbox.width));	
+									
 							}
+							
 						}
+						
 						}
-						return false;
-						}, dcTime);
+						
+						
+						return false;															
+						
+						}, dcTime);	
+																	 
 																	 return false;
 																	 
 																	 });
@@ -126,21 +145,25 @@ function enablePreview(elem, num)
 					  
 					   if(typeof(selectFile) != 'undefined')
 					   {
+					   	
 					   	 selectFile(files[num].url);
 					   }else
 							generateDownloadIframe(appendQueryString(getUrl('download'), 'path=' + files[num].path, ['path']));					   {
-					   }				
+					   	
+					   }
+					   						
 					}
 					);
+
 				 }
 				 );
 };
-
 /**
 * add over class to the specific table
 */
 function tableRuler(element)
 {
+	
     var rows = $(element);
 	
     $(rows).each(function(){
@@ -152,6 +175,12 @@ function tableRuler(element)
         });
     });
 };
+
+			
+
+
+
+
 
 function previewMedia(rowNum)
 {
@@ -183,6 +212,7 @@ function closeWindow()
 */
 function getUrl(index,limitNeeded , viewNeeded, searchNeeded)
 {
+
 	var queryStr = '';
 	var excluded = new Array();
 	
@@ -195,6 +225,7 @@ function getUrl(index,limitNeeded , viewNeeded, searchNeeded)
 			excluded[excluded.length] = 'limit';
 			queryStr += (queryStr == ''?'':'&') + 'limit=' + limit.options[limit.selectedIndex].value;				
 		}
+		
 	}
 	if(typeof(viewNeeded) == 'boolean' && viewNeeded)
 	{
@@ -223,18 +254,21 @@ function getUrl(index,limitNeeded , viewNeeded, searchNeeded)
 		excluded[excluded.length] = 'search';
 		
 	}
+	
+	
+
 	return appendQueryString(appendQueryString(urls[index], queryString), queryStr, excluded);
 }
-
 /**
 *	change view
 */
 function changeView()
 {
+
 		var url = getUrl('view', true, true);
 		$('#rightCol').empty();
 		ajaxStart('#rightCol');		
-
+		
 		$('#rightCol').load(url, 
 					{},
 					function(){
@@ -246,6 +280,7 @@ function changeView()
 
 function goParentFolder()
 {
+
 		searchRequired = false;
 		var url = appendQueryString(getUrl('view', true, true), 'path=' + parentFolder.path , ['path']);
 		$('#rightCol').empty();
@@ -258,6 +293,7 @@ function goParentFolder()
 							ajaxStop('#rightCol img.ajaxLoadingImg');
 							initAfterListingLoaded();
 						});
+
 }
 
 /**
@@ -268,6 +304,7 @@ function goParentFolder()
 */
 function appendQueryString(baseUrl, queryStr, excludedQueryStr)
 {
+	
 	if(typeof(excludedQueryStr) == 'object' && excludedQueryStr.length)
 	{
 		var isMatched = false;
@@ -295,6 +332,7 @@ function appendQueryString(baseUrl, queryStr, excludedQueryStr)
 				}
 			}
 		}
+
 	}
 	if(queryStr != '')
 	{
@@ -303,6 +341,10 @@ function appendQueryString(baseUrl, queryStr, excludedQueryStr)
 	{
 		return baseUrl;
 	}
+	
+	
+	
+	
 };
 
 
@@ -312,15 +354,20 @@ function appendQueryString(baseUrl, queryStr, excludedQueryStr)
 */
 function initAfterListingLoaded()
 {
+	
 	parsePagination();
+
 	parseCurrentFolder();
 	var view = getView();
+	
 	setDocInfo('root');
 	
 	if(view != '')
 	{
 		switch(view)
 		{
+
+				
 			case 'thumbnail':
 				//enableContextMenu('dl.thumbnailListing, dl.thumbnailListing dt, dl.thumbnailListing dd, dl.thumbnailListing a');
 				enableContextMenu('dl.thumbnailListing');
@@ -328,14 +375,17 @@ function initAfterListingLoaded()
 				{
 					if(files[i].type== 'folder')
 					{//this is foder item
+						
 						enableFolderBrowsable(i);
 					}else
 					{//this is file item
+						
 						switch(files[i].cssClass)
 						{
 							case 'filePicture':
 								//$('#a' + i).attr('rel', 'ajaxphotos');
 								//retrieveThumbnail(i);
+								
 								break;
 							case 'fileFlash':
 								break;
@@ -344,16 +394,21 @@ function initAfterListingLoaded()
 							case 'fileMusic':
 								break;
 							default:
+							
+								
 						}
 						enablePreview('#dt' + i, i);
 						enablePreview('#thumbUrl' + i, i);
 						enablePreview('#a' + i, i);
+
 					}
 					enableShowDocInfo( i);
+					
 				}
 				break;
 			case 'detail':
 			default:
+				
 				enableContextMenu('#fileList tr');
 				for(i in files)
 				{
@@ -373,19 +428,27 @@ function initAfterListingLoaded()
 								break;			
 							case 'fileMusic':
 								break;
-							default:
+							default:						
+								
 						};	
 						enablePreview('#row' + i + ' td a', i);
+						
 					}	
 					enableShowDocInfo(i);				
 				}				
 				break;
+
+			
 		}
 	}
+	
+	
+	
 };
 
 function enableFolderBrowsable(num, debug)
 {
+	
 	switch(getView())
 	{
 		case 'thumbnail':
@@ -402,12 +465,18 @@ function enableFolderBrowsable(num, debug)
 			break;
 		case 'detail':
 		default:
-		$('#row' + num + ' td[a]').each(function()																	 
+		$('#row' + num + ' td[a]').each(function()
+																						 
 				{		
 					doEnableFolderBrowsable(this, num );
 				}
 			);
+			
 	}
+	
+		
+		
+	
 };
 
 function doEnableFolderBrowsable(elem, num)
@@ -423,9 +492,12 @@ function doEnableFolderBrowsable(elem, num)
 									 	}else
 									 	{
 									 		var fpath = files[num].path;
-									 	}
+									 	}								 	
+									 	
 									 	
 										 var url = appendQueryString(getUrl('view', true, true), 'path=' + fpath, ['path']);
+										 
+										 
 										 $('#rightCol').empty();	
 										 ajaxStart('#rightCol');
 										$('#rightCol').load(url, 
@@ -436,7 +508,8 @@ function doEnableFolderBrowsable(elem, num)
 															initAfterListingLoaded();
 														});																									 
 									 };
-									 return false;
+									 return false;	
+
 								}
 								);									 
 }
@@ -454,12 +527,15 @@ function ajaxStart(destinationSelector, id, selectorOfAnimation)
 	if(typeof(id) != 'undefined')
 	{
 		$(selectorOfAnimation).clone().attr('id', id).appendTo(destinationSelector);
+
 	}else
 	{
 		$(selectorOfAnimation).clone(true).appendTo(destinationSelector);
+		
 	}
+	
+	
 };
-
 /**
 * remove the ajax animation 
 *	@param mixed selectorOfAnimation the jquery selector of the animation 
@@ -468,7 +544,6 @@ function ajaxStop(selectorOfAnimation)
 {
 	$(selectorOfAnimation).remove();
 };
-
 /**
 *	change pagination limit
 */
@@ -485,7 +560,6 @@ function changePaginationLimit(elem)
 							initAfterListingLoaded();
 						});	
 };
-
 /**
 *	get a query string variable value from an url
 * @param string index
@@ -493,6 +567,7 @@ function changePaginationLimit(elem)
 */
 function getUrlVarValue(url, index)
 {
+	
 	if(url != '' && index != '')
 	{
 		var urlParts = url.split("?");
@@ -513,8 +588,8 @@ function getUrlVarValue(url, index)
 		}		
 	}
 	return '';
-};
 
+};
 /**
 *	parse current folder
 */
@@ -540,6 +615,7 @@ function parseCurrentFolder()
 			str += '/<span class="folderRoot">' + paths.root_title + '</span>'
 			
 		}else
+
 		{
 			if(folders[i] != '')
 			{
@@ -558,6 +634,11 @@ function parseCurrentFolder()
 
 // On vérifie si la personne a droit de créer des répertoires à l'endroit où elle se trouve
 // l'admin a droit partout sauf à la racine, le tuteur seulement dans son répertoire
+
+/**
+ * TODO : comparer le md5 du répertoire au md5 produit par php?
+ * voir : http://pajhome.org.uk/crypt/md5/index.html pour le md5 en javascript
+ */
 
 if (folders[2]) {
 folderFindId = folders[2].split("-"); 	// tableau qui contient les éléments séparés par '-' dans ses index.
@@ -583,7 +664,6 @@ else
 	$('#suppression').hide();
 }
 }
-
 /**
 *	enable pagination as ajax function call
 */
@@ -594,6 +674,8 @@ function parsePagination()
 																			 $(this).click(
 																										 function()
 																										 {
+																													
+
 																											var page =  getUrlVarValue($(this).attr('href'), 'page');
 																											var url = appendQueryString(getUrl('view', true, true, searchRequired),'page=' + page, ['page']);
 																											$('#rightCol').empty();
@@ -607,11 +689,11 @@ function parsePagination()
 																															});	
 																											return false;
 																										 }
+																										 
 																										 );
 																		 }
 																		 );
 };
-
 /**
 *	get current view
 */
@@ -638,6 +720,7 @@ function getNum(elemId)
 			return r[0];
 		}		
 	}
+
 	return 0;
 }
 
@@ -650,7 +733,8 @@ function enableContextMenu(jquerySelectors)
 																 {
 																		'menuSelect':function(t)
 																		{
-																			var num = (getNum($(t).attr('id')));
+																			var num = (getNum($(t).attr('id')));	
+																			
 																			selectFile(files[num].url);
 																		},
 																		'menuPlay':function(t)
@@ -663,6 +747,9 @@ function enableContextMenu(jquerySelectors)
 																			$('#playGround' + num).media({ width: 255, height: 210,  autoplay: true  });		
 																			//alert($('#playGround' + num).html());																	
 																			showThickBox($('#a' + num).get(0), appendQueryString('#TB_inline', 'height=250'  + '&width=258' + '&inlineId=winPlay&modal=true'));
+
+																			
+																			
 																		},
 																		'menuPreview':function(t)
 																		{
@@ -705,7 +792,9 @@ function enableContextMenu(jquerySelectors)
 																					param += ",left = 0,top=0" ;
 																				}		 
 																				var newWindow = window.open(url + ((url.lastIndexOf("?") > - 1)?"&":"?") + "path="  + files[num].path,'', param);
-																				newWindow.focus( );
+																				newWindow.focus( );																						
+	
+																				
 																		},
 																		'menuCut':function(t)
 																		{
@@ -743,37 +832,48 @@ function enableContextMenu(jquerySelectors)
 																							case 'detail':
 																							default:
 																								$('#row' + num).remove();
+																								
 																						}
 																						files[num] = null;
 																					}
 																				}
-																				);			 				
+																				);
+																				
+																							 				
 																			}																			
 																		}
 																 },
 																 	onContextMenu:function(events)
 																	{
+																	
 																		return true;
 																	},
 																	onShowMenu:function(events, menu)
 																	{
+																		
 																		switch(getView())
 																		{
 																			case 'thumbnail':
 																				var num = getNum(events.target.id);
+																		
 																				break;
 																			case 'detail':
 																			default:
 																				switch(events.target.tagName.toLowerCase())
 																				{
 																					case 'span':
+																						
 																						if($(events.target).parent().get(0).tagName.toLowerCase()  == 'a')
 																						{
+																							
 																							var num = getNum($(events.target).parent().parent().parent().attr('id'));			
 																						}else
 																						{
 																							var num = getNum($(events.target).parent().parent().parent().parent().attr('id'));			
 																						}
+																						
+																						
+																					
 																						break;
 																					case 'td':
 																					var num = getNum($(events.target).parent().attr('id'));																				
@@ -808,6 +908,7 @@ function enableContextMenu(jquerySelectors)
 																				menusToRemove[menusToRemove.length] = '#menuEdit';		
 																				menusToRemove[menusToRemove.length] = '#menuPlay';
 																				menusToRemove[menusToRemove.length] = '#menuDownload';
+																				
 																				break;
 																			default:
 																			var isSupportedExt = false;
@@ -824,11 +925,14 @@ function enableContextMenu(jquerySelectors)
 																			break;
 																			}
 																			}
+																				
 																			}
 																			if(!isSupportedExt || permits.view_only)
 																			{
 																				menusToRemove[menusToRemove.length] = '#menuEdit';
 																			}
+	
+																																					
 																			switch(files[num].cssClass)
 																			{
 																				case 'filePicture':
@@ -846,9 +950,13 @@ function enableContextMenu(jquerySelectors)
 																				default:
 																					menusToRemove[menusToRemove.length] = '#menuPreview';
 																					menusToRemove[menusToRemove.length] = '#menuPlay';
+																					
+																					
+																					
 																			}
 																			menusToRemove[menusToRemove.length] = '#menuPaste';
 																		}
+																		
 																		if(!permits.del || permits.view_only)
 																		{
 																			menusToRemove[menusToRemove.length] = '#menuDelete';
@@ -868,16 +976,20 @@ function enableContextMenu(jquerySelectors)
 																		if(!permits.rename || permits.view_only)
 																		{
 																			menusToRemove[menusToRemove.length] = '#menuRename';
-																		}
+																		} 
+																																																																						
+																		
 																		$(menusToRemove.join(','), menu).parent().remove();																		
+																		
+																
 																		return menu;
 																	}
 																 }
 																 );	
 };
 
-var fileUploadElemIds = new Array(); //keep track of the file element ids
 
+var fileUploadElemIds = new Array(); //keep track of the file element ids
 /**
 *	add more file type of input file for multiple uploads
 */
@@ -892,6 +1004,7 @@ function addMoreFile()
 	
 	fileUploadElemIds[fileUploadElemIds.length] = elementId;	
 
+	
 	$(newFileUpload).appendTo('#fileUploadBody');
 	$('input[@type=file]', newFileUpload).attr('id', elementId);
 	$('span.uploadProcessing', newFileUpload).attr('id', 'ajax' + elementId);
@@ -907,10 +1020,12 @@ function addMoreFile()
 			cancelFileUpload(elementId);
 		}
 	);
+
+
 	$(newFileUpload).show();
+	
 	return false;
 };
-
 /**
 *	cancel uploading file
 *   remove hidden upload frame
@@ -927,12 +1042,12 @@ function cancelFileUpload(elementId)
 	}
 	return false;	
 };
-
 /**
 *	upload file
 */
 function uploadFile(elementId)
 {
+
 		var ext = getFileExtension($('#' + elementId).val());
 		if(ext == '')
 		{
@@ -969,6 +1084,7 @@ function uploadFile(elementId)
 				dataType: 'json',
 				success: function (data, status)
 				{
+					
 					if(typeof(data.error) != 'undefined')
 					{
 						if(data.error != '')
@@ -993,6 +1109,7 @@ function uploadFile(elementId)
 							tb_remove();
 						}
 					}
+					
 				},
 				error: function (data, status, e)
 				{
@@ -1000,10 +1117,10 @@ function uploadFile(elementId)
 					alert(e);
 				}
 			}
-		)
+		)	
+	
 	return false;
 };
-
 /**
 *	 generate unique id
 */
@@ -1016,6 +1133,7 @@ function generateUniqueId(leng)
    {
       id += chars.substr( Math.floor(Math.random() * 62), 1 );
    }
+   
    return (id );   
    
 };
@@ -1028,7 +1146,9 @@ function generateDownloadIframe(url)
 				var frameId = 'ajaxDownloadIframe';		
 				$('#' + frameId).remove();
 				if(window.ActiveXObject) {
-						var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');	
+						var io = document.createElement('<iframe id="' + frameId + '" name="' + frameId + '" />');
+						
+						
 				}
 				else {
 						var io = document.createElement('iframe');
@@ -1041,6 +1161,7 @@ function generateDownloadIframe(url)
 				io.src = url; 
 				document.body.appendChild(io);		
 };
+
 
 /**
 *	show the url content in thickbox
@@ -1055,15 +1176,13 @@ function showThickBox(linkElem, url)
 	linkElem.blur();
 	return false;
 };
-
 /**
 *	bring up a file upload window
 */
 function uploadFileWin(linkElem)
 {
-	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=250' + '&width=450' + '&inlineId=winUpload&modal=true'));
+	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=200' + '&width=450' + '&inlineId=winUpload&modal=true'));
 };
-
 /**
 *	bring up a new folder window
 */
@@ -1085,7 +1204,6 @@ var folders = currentFolder.friendly_path.split('/');
 	}
 	return false;
 }
-
 /**
 *	ajax call to create a folder
 */
@@ -1101,13 +1219,14 @@ function doCreateFolder(bNewUser)
 		alert(msgInvalidFolderName);	
 	}else
 */
-	{
+	{	
 			var options = 
-			{
+			{ 
 				dataType: 'json',
 				url:getUrl('create_folder'),
 				error: function (data, status, e) 
 				{
+
 					alert(e);
 				},				
 				success:   function(data) 
@@ -1118,6 +1237,7 @@ function doCreateFolder(bNewUser)
 						alert('erreur : '+data.error);
 					}else
 					{
+						
 							numRows++;
 							files[numRows] = {};
 							for(var i in data)
@@ -1138,9 +1258,9 @@ function doCreateFolder(bNewUser)
 				goReload = setTimeout("document.location.reload()",2000);
 			}				
 	}
-	return false;
+	return false;	
+	
 };
-
 /**
 * selecte documents and fire an ajax call to delete them
 */
@@ -1168,6 +1288,7 @@ function deleteDocuments(msgNoDocSelected, msgUnableToDelete, msgWarning, elemen
 	//remove all options
 	$(hiddenSelectedDoc).removeOption(/./);
 	$(selectedDoc).each(function(i){
+										
 										$(hiddenSelectedDoc).addOption($(this).val(), getNum($(this).attr('id')), true);
 										isSelected = true;
 										 });		
@@ -1183,6 +1304,7 @@ function deleteDocuments(msgNoDocSelected, msgUnableToDelete, msgWarning, elemen
 				url:getUrl('delete'),
 				error: function (data, status, e) 
 				{
+
 					alert(e);
 				},				
 				success:   function(data) 
@@ -1195,6 +1317,7 @@ function deleteDocuments(msgNoDocSelected, msgUnableToDelete, msgWarning, elemen
 						alert(data.error);
 					}else
 					{
+						
 						//remove all files
 						for(var i =0; i < hiddenSelectedDoc.options.length; i++)
 						{
@@ -1208,19 +1331,24 @@ function deleteDocuments(msgNoDocSelected, msgUnableToDelete, msgWarning, elemen
 									$('#row' + hiddenSelectedDoc.options[i].text).remove();
 							}
 						}											
+
 					}
 				} 
 			}; 
-			$('#formAction').ajaxSubmit(options);
+			$('#formAction').ajaxSubmit(options); 			
+
+			
+		
 	}
+	
 	return false;	
 };
-
 /**
-*	rename the specific file/folder
+*	renmae the specific file/folder
 */
 function doRename()
 {
+	
 	var num = $('#renameNum').val();
 	if(files[num].fileType == 'folder')
 	{
@@ -1238,7 +1366,8 @@ function doRename()
 		}else
 		{
 			alert(msgInvalidFileName);
-		}
+		}	
+			
 	}else
 	{	
 			var options = 
@@ -1247,6 +1376,7 @@ function doRename()
 				url:getUrl('rename'),
 				error: function (data, status, e) 
 				{
+
 					alert(e);
 				},				
 				success:   function(data) 
@@ -1257,6 +1387,7 @@ function doRename()
 						alert(data.error);
 					}else
 					{
+						
 						var info = '';
 						for(var i in data)
 						{
@@ -1264,6 +1395,7 @@ function doRename()
 							{
 								files[num][i] = data[i];
 							}
+							
 						}						
 						switch(getView())
 						{
@@ -1273,21 +1405,24 @@ function doRename()
 							 	$('#cb' + num).val(files[num].path);
 							 	$('#a' + num).attr('href', files[num].path).text(files[num].name);
 								break;
+	
 							case 'detail':
+
 							default:
 								$('#check' + num).val(files[num].path);								
 								$('#a' + num).attr('href', files[num].path);							
 								$('#tdnd' + num).text(files[num].name);
 								$('#tdth' + num).text(files[num].name);								
 						}
+						
 						tb_remove();											
+
 					}
 				} 
 			}; 
 			$('#formRename').ajaxSubmit(options); 					
 	}	
 }
-
 /**
 * reload the whole window 
 */
@@ -1296,13 +1431,14 @@ function windowRefresh()
 	document.location.href = urls.present;
 	//document.location.reload();
 };
-
 /**
 *	show the system information
 */
 function infoWin(linkElem)
 {
+	
 	showThickBox(linkElem, appendQueryString('#TB_inline', 'height=100' + '&width=350'+ '&inlineId=winInfo&modal=true'));
+
 }
 /**
 *	afficher le log des fichiers envoyés
@@ -1317,6 +1453,7 @@ function infoLog(linkElem)
 */
 function checkAll(checkbox)
 {
+
 	if($(checkbox).attr('class') == "check_all")
 	{
 		$('#tickAll, #actionSelectAll').attr('class', 'uncheck_all');
@@ -1335,6 +1472,8 @@ $("#fileList tr[@id^=row] input[@type=checkbox]").each(function(i){
 														   			$(this).attr("checked", 'checked');												 
 																	 })	;			
 		}
+				
+
 	}else
 	{
 		$('#tickAll, #actionSelectAll').attr('class', 'check_all');
@@ -1355,7 +1494,8 @@ $("#fileList tr[@id^=row] input[@type=checkbox]").each(function(i){
 		}		
 	}
 
-	return false;	
+	return false;
+		
 };		
 
 function cutDocuments(msgNoDocSelected)
@@ -1385,6 +1525,7 @@ function repositionDocuments(msgNoDocSelected, formActionUrl, actionVal)
 		default:
 			var selectedDoc = $('#fileList input[@type=checkbox][@checked]');
 	}
+	
 	var hiddenSelectedDoc = document.getElementById('selectedDoc');
 	var selectedOptions;
 	var isSelected = false;
@@ -1395,13 +1536,14 @@ function repositionDocuments(msgNoDocSelected, formActionUrl, actionVal)
 										
 										$(hiddenSelectedDoc).addOption($(this).val(), getNum($(this).attr('id')), true);
 										isSelected = true;
-	});		
+										 });		
 	if(!isSelected)
 	{
 		alert(msgNoDocSelected);
 	}
 	else
 	{
+		
 			var formAction =  document.formAction;
 			var actionElem = $('#action_value');
 			formAction.action = formActionUrl;
@@ -1439,11 +1581,16 @@ function repositionDocuments(msgNoDocSelected, formActionUrl, actionVal)
 											{
 												$('#flag' + hiddenSelectedDoc.options[i].text).attr('class', flag);
 											}
+
 										}
+										
 					} 
 			}; 
-			$(formAction).ajaxSubmit(options);
+			$(formAction).ajaxSubmit(options); 	
+						 				
+
 	}
+	
 	return false;	
 };
 
@@ -1451,6 +1598,7 @@ function pasteDocuments(msgNoDocSelected)
 {
 	if(numFiles)
 	{
+
 		var warningMsg = (action == 'copy'?warningCopyPaste:warningCutPaste);
 		if(window.confirm(warningMsg))
 		{
@@ -1462,10 +1610,12 @@ function pasteDocuments(msgNoDocSelected)
 						alert('Unexpected Error.');
 					}
 					{
+						
 						if(json.error != '')
 						{
 							alert(json.error);
 						}
+						
 						
 						for(var j in json.files)
 						{
@@ -1475,9 +1625,14 @@ function pasteDocuments(msgNoDocSelected)
 							{
 								files[numRows][i] = json.files[j][i];
 							}
-							addDocumentHtml(numRows);
+							addDocumentHtml(numRows);						
+							
 						}
 						numFiles = parseInt(json.unmoved_files);
+						
+						
+						
+						
 					}
 				}
 			);
@@ -1488,6 +1643,7 @@ function pasteDocuments(msgNoDocSelected)
 		alert(msgNoDocSelected);
 	}
 	return false;
+	
 };
 /**
 *	add document item html to the file listing body
@@ -1501,14 +1657,19 @@ function addDocumentHtml(num)
 		}	
 		switch(getView())
 		{
+			
 			case 'thumbnail':
 				$(
 				'<dl class="thumbnailListing" id="dl' + num + '" ><dt id="dt' + num + '" class="' + files[num].cssClass + '"></dt><dd id="dd' + num + '" class="thumbnailListing_info"><span id="flag' + num + '" class="' + files[num].flag + '">&nbsp;</span><input id="cb' + num + '" type="checkbox"  class="radio" ' + strDisabled +' name="check[]" class="input" value="' + files[num].path + '" /><a href="' + files[num].path + '" title="' + files[num].name + '" id="a' + num + '">' + (typeof(files[num].short_name) != 'undefined'?files[num].short_name:files[num].name) + '</a></dd></dl>').appendTo('#content');
+			
+
 				if(files[num].type== 'folder')
 				{//this is foder item
+					
 					enableFolderBrowsable(num);
 				}else
 				{//this is file item
+					
 					switch(files[num].cssClass)
 					{
 						case 'filePicture':
@@ -1521,8 +1682,11 @@ function addDocumentHtml(num)
 						case 'fileMusic':
 							break;
 						default:
+						
+							
 					}
-					enablePreview('#dl' + num + ' a', [num]);
+					enablePreview('#dl' + num + ' a', [num]);					
+				
 				}	
 				enableContextMenu('#dl' + num);	
 				enableShowDocInfo( num);									
@@ -1537,6 +1701,7 @@ function addDocumentHtml(num)
 					enableFolderBrowsable(num);
 				}else
 				{//this is file item
+					
 					switch(files[num].cssClass)
 					{
 						case 'filePicture':							
@@ -1548,17 +1713,26 @@ function addDocumentHtml(num)
 						case 'fileMusic':
 							break;
 						default:
+						
+							
 					}
-					enablePreview('#row' + num + ' td a', num);			
+					enablePreview('#row' + num + ' td a', num);		
+								
 				}	
 				enableContextMenu('#row' + num);
-				enableShowDocInfo(num);
-				break;
-		}
+				enableShowDocInfo(num);										
+				break;								
+			
+				
+		}	
+	
+	
+	
 };
 
 function enableShowDocInfo(num)
 {
+
 	$('#cb' + num).click(
 		function()
 		{
@@ -1582,6 +1756,7 @@ function setDocInfo(type, num)
 	{
 		info = files[num];
 	}
+
 		if(info.type=="folder")
 		{
 			$('#folderPath').text(info.name);
@@ -1607,6 +1782,8 @@ function setDocInfo(type, num)
 			$('#fileFieldSet').css('display', 'none');
 		}else
 		{
+	
+
 			$('#fileName').text(info.name);
 			$('#fileSize').text(info.size);
 			$('#fileType').text(info.fileType);
@@ -1633,10 +1810,12 @@ function setDocInfo(type, num)
 		   	$('#selectCurrentUrl').unbind('click').click( 
 		   		function()
 		   		{
+		   			
 		   			selectFile(info.url);
 		   		}
 		   	);
-		   	$('#returnCurrentUrl').show(); 	 
+		   	$('#returnCurrentUrl').show();
+		   	 
 		   }else
 		   {
 		   	$('#returnCurrentUrl').hide();
@@ -1644,6 +1823,11 @@ function setDocInfo(type, num)
 		   	
 			
 		}
+		
+
+		
+	
+	
 };
 		function search()
 		{
@@ -1678,4 +1862,6 @@ function setDocInfo(type, num)
 			{
 				return false;
 			}
+
+			
 		}

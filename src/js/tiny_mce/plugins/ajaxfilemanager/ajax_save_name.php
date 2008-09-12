@@ -16,7 +16,7 @@
 	elseif(empty($_POST['name']))
 	{
 		$error = ERR_RENAME_EMPTY;
-	}elseif(!preg_match("/^[a-zA-Z0-9 _\-.]+$/", $_POST['name']))
+	}elseif(!preg_match("/^[a-zA-Z0-9_\-.]+$/", $_POST['name']))
 	{
 		$error = ERR_RENAME_FORMAT;
 	}elseif(empty($_POST['original_path']) || !file_exists($_POST['original_path']))

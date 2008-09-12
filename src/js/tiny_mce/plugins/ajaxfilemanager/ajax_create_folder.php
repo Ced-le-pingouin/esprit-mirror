@@ -23,7 +23,7 @@
 	elseif(empty($_POST['new_folder']))
 	{
 		$error  =  ERR_FOLDER_NAME_EMPTY;
-	}elseif(!preg_match("/^[a-zA-Z0-9_\- ]+$/", $_POST['new_folder']))
+	}elseif(!preg_match("/^[a-zA-Z0-9_\-]+$/", $_POST['new_folder']))
 	{
 		$error  =  ERR_FOLDER_FORMAT;
 	}else if(empty($_POST['currentFolderPath']) || !isUnderRoot($_POST['currentFolderPath']))
