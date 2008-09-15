@@ -195,7 +195,7 @@ define('ERR_DEST_FOLDER_NOT_ALLOWED', 'Vous n\'&ecirc;tes pas autoris&eacute; &a
         //file upload
     define('ERR_FILE_NAME_FORMAT', "Il faut saisir un nom qui contient uniquement des lettres, chiffres, espaces, tirets et tirets-bas.");
     define('ERR_FILE_NOT_UPLOADED', "Aucun fichier n'a \u00E9t\u00E9 selectionn\u00E9 pour \u00EAtre envoy\u00E9.");
-    define('ERR_FILE_TYPE_NOT_ALLOWED', "Vous n\'etes pas autoris&eacute; &agrave; d&eacute;poser ce type de fichier.");
+    define('ERR_FILE_TYPE_NOT_ALLOWED', "Vous n\'&ecirc;tes pas autoris&eacute;s &agrave; d&eacute;poser ce type de fichier.");
     define('ERR_FILE_NOT_IMG', "Ceci n\'est pas une image");
     define('ERR_FILE_NOT_MEDIA', "Ceci n\'est pas un m\u00E9dia valide. \\nAudio : *.mp3 \\nVid\u00E9o : *.swf ou *.flv");
     define('ERR_FILE_MOVE_FAILED', "Le d\u00E9placement du fichier a \u00E9chou\u00E9.");
