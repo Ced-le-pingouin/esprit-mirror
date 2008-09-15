@@ -127,6 +127,11 @@ color:#b4733a;
 font-weight:bold;
 }
 
+a.normal {
+color:blue;
+font-size:10pt;
+text-decoration:none;
+}
 
 td.attention, div.attention {
 text-align:center;
