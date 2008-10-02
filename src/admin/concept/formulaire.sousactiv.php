@@ -196,7 +196,7 @@ for ($i=0; $i<count($asFichiers); $i++)
 <tr>
 <td><div class="intitule">Modalit&eacute; d'affichage&nbsp;:</div></td>
 <td>
-<select name="MODALITE_AFFICHAGE[<?php echo LIEN_DOCUMENT_TELECHARGER; ?>]"  onchange="javascript: MontrerCacher('div_description',this.selectedIndex);" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<select name="MODALITE_AFFICHAGE[<?php echo LIEN_DOCUMENT_TELECHARGER; ?>]"  onchange="javascript: MontrerCacher('div_description',this.options[this.selectedIndex].value);" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
 <option value="<?php echo FRAME_CENTRALE_DIRECT; ?>">Directe (téléchargement en 1 temps)</option>
 <option value="<?php echo FRAME_CENTRALE_INDIRECT; ?>"<?php echo ($url_iMode == FRAME_CENTRALE_INDIRECT ? " selected" : NULL); ?>>Indirecte (téléchargement en 2 temps)</option>
 </select>

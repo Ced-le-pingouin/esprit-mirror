@@ -65,9 +65,9 @@ function rechargerMenuBas(v_iIdFormActuelle, v_iIdModActuel)
 {
 var url;
 	if (v_iIdModActuel == 0)
-		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod=0&idUnite=0&idSousActiv=0&idActiv=0&idNiveau="+v_iIdFormActuelle+"&typeNiveau=1";		
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod=0&idNiveau="+v_iIdFormActuelle+"&typeNiveau=1";		
 	else
-		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod="+v_iIdModActuel+"&idUnite=0&idSousActiv=0&idActiv=0";
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod="+v_iIdModActuel;
 	oMenu().location = url;
 }
 //-->
@@ -90,7 +90,7 @@ var url;
 <td class="bloc_menu_coins_bas">&nbsp;</td>
 <td class="bloc_menu_coins_bas" align="right" valign="bottom"><img src="theme://menu-3x3.gif" width="5" height="28" border="0"></td>
 </tr>
-<tr><td  class="element_actif" colspan="3">&nbsp;</td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
 </table>
 [BLOCK_FORMATION-]
 </td>

@@ -82,6 +82,18 @@ function init()
 	[BLOCK_FONCTION_INIT+][BLOCK_FONCTION_INIT-]
 }
 
+function oMenu()
+{
+return parent.frames["Bas"];
+}
+function rechargerMenuBas(v_iIdActiv, v_iIdSousActiv)
+{
+var url;
+// on récupère toutes les variables avant idActiv pour éviter de se retrouver avec plusieurs variables idActiv et idSousActiv de suite.
+var_temp = oMenu().location.search.split("idActiv");
+url = "http://"+oMenu().location.hostname + oMenu().location.pathname + var_temp[0] + "idActiv="+v_iIdActiv+"&idSousActiv="+v_iIdSousActiv;
+oMenu().location = url;
+}
 //-->
 </script>
 </head>
@@ -135,7 +147,7 @@ function init()
 [SET_PAGE_HTML_FRAME_CENTRALE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_PAGE_HTML_FRAME_CENTRALE-]
@@ -143,7 +155,7 @@ function init()
 [SET_PAGE_HTML_NOUVELLE_FENETRE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="javascript: void(0);" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); window.open('{sousactiv.lien}','NFD','width=640,height=480,menubar=0,resizable=1,scrollbars=1');" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="javascript: void(0);" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas} window.open('{sousactiv.lien}','NFD','width=640,height=480,menubar=0,resizable=1,scrollbars=1');" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_PAGE_HTML_NOUVELLE_FENETRE-]
@@ -151,7 +163,7 @@ function init()
 [SET_COLLECTICIEL+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_COLLECTICIEL-]
@@ -159,7 +171,7 @@ function init()
 [SET_GALERIE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_GALERIE-]
@@ -167,7 +179,7 @@ function init()
 [SET_DOCUMENT_TELECHARGER+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="{sousactiv.lien.cible}" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="{sousactiv.lien.cible}" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); " onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_DOCUMENT_TELECHARGER-]
@@ -191,7 +203,7 @@ function init()
 [SET_SITE_INTERNET+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="{sousactiv.lien.cible}" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="{sousactiv.lien.cible}" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_SITE_INTERNET-]
@@ -199,7 +211,7 @@ function init()
 [SET_TEXTE_FORMATTE_FRAME_PRINCIPALE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_TEXTE_FORMATTE_FRAME_PRINCIPALE-]
@@ -207,7 +219,7 @@ function init()
 [SET_TEXTE_FORMATTE_NOUVELLE_FENETRE+]
 <tr>
 <td class="element_actif">&nbsp;</td>
-<td class="element_actif"><a href="javascript: void(0);" title="{sousactiv.infobulle}" onclick="texte_formatte('{sousactiv.id}','{sousactiv.niveau.id}'); return false;" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif"><a href="javascript: void(0);" title="{sousactiv.infobulle}" onclick="texte_formatte('{sousactiv.id}','{sousactiv.niveau.id}'); return false; {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_TEXTE_FORMATTE_NOUVELLE_FENETRE-]
@@ -215,7 +227,7 @@ function init()
 [SET_FORMULAIRE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif" width="99%"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_FORMULAIRE-]
@@ -223,7 +235,7 @@ function init()
 [SET_GLOSSAIRE+]
 <tr>
 <td class="element_actif" valign="top">&nbsp;<span id="{sousactiv.signet}">&nbsp;</span>&nbsp;</td>
-<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}')" onfocus="blur()">{sousactiv.nom}</a></td>
+<td class="element_actif"><a href="{sousactiv.lien}" target="Principal" title="{sousactiv.infobulle}" onclick="changerHistorique({sousactiv.ordre},'{sousactiv.signet}'); {sousactiv.rechargerBas}" onfocus="blur()">{sousactiv.nom}</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_GLOSSAIRE-]

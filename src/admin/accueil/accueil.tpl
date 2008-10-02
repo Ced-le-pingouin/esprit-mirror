@@ -6,7 +6,7 @@
 <link type="text/css" rel="stylesheet" href="css://accueil.css">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <script type="text/javascript" language="javascript" src="javascript://tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" language="javascript" src="editeur://editeur.js"></script>
+<script type="text/javascript" language="javascript" src="editeur://editeur_forum.js"></script>
 <script type="text/javascript">
 function getElementsByClassName(oElm, strTagName, strClassName){
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);

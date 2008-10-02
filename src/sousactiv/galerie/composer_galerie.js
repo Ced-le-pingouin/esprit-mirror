@@ -25,6 +25,8 @@ function init() {
 function sauvegarder() {
 	document.forms[0].elements["action"].value = "sauvegarder";
 	document.forms[0].submit();
+	top.opener.recharger();
+	top.close();
 }
 
 window.onload = init;

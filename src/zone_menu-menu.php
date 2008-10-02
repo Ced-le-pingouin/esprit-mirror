@@ -225,7 +225,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 			$oBlocModule->ajouter($oSet_Cours);
 			
 			if (STATUT_OUVERT == $iStatutFormation &&
-				STATUT_OUVERT == $iStatutModule && $bTuteurPeutVoirModule)
+				(STATUT_OUVERT == $iStatutModule or $bTuteurPeutVoirModule))
 			{
 				// Module ouvert
 				$oBlocModule->remplacer("{cours}",$oSet_Cours_Ouvert);

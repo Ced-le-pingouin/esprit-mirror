@@ -438,7 +438,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 			}
 			
 			$sNomSousActiv = $oSousActiv->retNom();
-			
+		
 			if (isset($sHref))
 			{
 				// {{{ Afficher la première page
@@ -497,6 +497,8 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				$oBlockSousActiv->remplacer("{sousactiv.signet}",$sSignet);
 				
 				$oBlockSousActiv->remplacer("{sousactiv.infobulle}",$sHrefTitle);
+
+				$oBlockSousActiv->remplacer("{sousactiv.rechargerBas}","rechargerMenuBas(".$iIdActiv.",".$iIdSousActiv.");");
 				
 				$sTableauHistoriques .= (isset($sTableauHistoriques) ? ", " : NULL)
 					."\"".phpString2js(str_replace(" ","&nbsp;",$sNomSousActiv))."\"\n";
