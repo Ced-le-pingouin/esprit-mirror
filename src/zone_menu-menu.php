@@ -36,6 +36,10 @@ require_once(dir_admin("awareness","awareness.inc.php",TRUE));
 
 $oProjet = new CProjet();
 
+$bVoirArchive = isset($_GET['sAffiche']) ? ($_GET['sAffiche']== "Archives" ? TRUE : FALSE) : FALSE;
+$bVoirArchive ? $sStatutFormation = "archives" : $sStatutFormation = NULL;
+$sTypeAffichageActuel = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : "en_cours";
+
 // --------------------------
 // Initialiser
 // --------------------------
@@ -43,7 +47,7 @@ $g_iIdPers = $oProjet->retIdUtilisateur();
 $g_iReelStatutUtilisateur = $oProjet->retReelStatutUtilisateur();
 
 // Tableau contenant les formations ainsi que leur cours
-$iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE);
+$iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE,TRUE,$bVoirArchive);
 
 $g_iIdFormCourante = 0;
 $g_iIdModCourant   = 0;
@@ -70,10 +74,13 @@ else
 	// Permissions, par défaut, des visiteurs
 	$bPeutVoirSessionFermee = $oProjet->verifPermission("PERM_VOIR_SESSION_FERMEE");
 	$bPeutVoirSessionInv    = $oProjet->verifPermission("PERM_VOIR_SESSION_INV");
-	
-	$bPeutModifTousMod = $oProjet->verifPermission("PERM_MOD_TOUS_COURS");
-	$bPeutVoirModFerme = $oProjet->verifPermission("PERM_VOIR_COURS_FERME");
-	$bPeutVoirModInv   = $oProjet->verifPermission("PERM_VOIR_COURS_INV");
+	$bPeutVoirArchives		= $oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES");
+	$bPeutUtiliserRecherche = $oProjet->verifPermission("PERM_UTILISER_RECHERCHE");
+
+	$bPeutModifTousMod		= $oProjet->verifPermission("PERM_MOD_TOUS_COURS");
+	$bPeutVoirModFerme		= $oProjet->verifPermission("PERM_VOIR_COURS_FERME");
+	$bPeutVoirModInv		= $oProjet->verifPermission("PERM_VOIR_COURS_INV");
+	//$bPeutVoirModArchive	= $oProjet->verifPermission("PERM_VOIR_COURS_ARCHIVE");
 }
 // }}}
 
@@ -110,6 +117,8 @@ foreach ($oProjet->aoFormations as $oFormation)
 		
 		$bPeutVoirSessionFermee = $oPermisUtilisateur->verifPermission("PERM_VOIR_SESSION_FERMEE");
 		$bPeutVoirSessionInv    = $oPermisUtilisateur->verifPermission("PERM_VOIR_SESSION_INV");
+		$bPeutVoirArchives		= $oPermisUtilisateur->verifPermission("PERM_VOIR_SESSION_ARCHIVES");
+		$bPeutUtiliserRecherche = $oPermisUtilisateur->verifPermission("PERM_UTILISER_RECHERCHE");
 		
 		// Cette variable est utilisée par la fonction initModules
 		$bPeutModifTousMod = $oPermisUtilisateur->verifPermission("PERM_MOD_TOUS_COURS");
@@ -121,6 +130,13 @@ foreach ($oProjet->aoFormations as $oFormation)
 	
 	if (STATUT_EFFACE == ($iStatutFormation = $oFormation->retStatut()))
 		continue;
+	else if (STATUT_ARCHIVE == $iStatutFormation)
+	{
+		if ($bPeutVoirArchives)
+			$iStatutFormation = STATUT_OUVERT;
+		else
+			continue;
+	}
 	else if (STATUT_INVISIBLE == $iStatutFormation)
 	{
 		if ($bPeutVoirSessionInv)
@@ -158,7 +174,8 @@ foreach ($oProjet->aoFormations as $oFormation)
 		$sUrlDescr = "description.php"
 			."?idForm={$iIdForm}&idMod=0&idUnite=0&idSousActiv=0&idActiv=0"
 			."&idNiveau={$iIdForm}"
-			."&typeNiveau=".TYPE_FORMATION;
+			."&typeNiveau=".TYPE_FORMATION
+			."&sAffiche=".$sTypeAffichageActuel;
 		
 		// Ajouter la description de la formation
 		$oBlocModule->ajouter($oSet_Description_Formation);
@@ -167,6 +184,7 @@ foreach ($oProjet->aoFormations as $oFormation)
 		$oBlocModule->remplacer("{id_formation}",$iIdForm);
 		$oBlocModule->remplacer("{href_description}",dir_sousactiv(LIEN_PAGE_HTML,$sUrlDescr));
 		$oBlocModule->remplacer("{idFormAct}",$iIdForm);
+		$oBlocModule->remplacer("{sTypeAffichage}",$sTypeAffichageActuel);
 		
 		unset($sUrlDescr);
 	}
@@ -196,9 +214,10 @@ foreach ($oProjet->aoFormations as $oFormation)
 				
 				// permet de vérifier à quel cours un tuteur est inscrit dans une formation et de l'afficher
 				// si le statut n'est pas tuteur, la personne peut tout voir
-				$bTuteurPeutVoirModule = $g_iReelStatutUtilisateur == '7' ? $oModule->verifTuteur($g_iIdPers): true;
-				$bPeutVoirModFerme = $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_FERME");
-				$bPeutVoirModInv   = $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_INV");
+				$bTuteurPeutVoirModule	= $g_iReelStatutUtilisateur == '7' ? $oModule->verifTuteur($g_iIdPers): true;
+				$bPeutVoirModFerme		= $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_FERME");
+				$bPeutVoirModInv		= $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_INV");
+				//$bPeutVoirModArchive	= $oPermisUtilisateur->verifPermission("PERM_VOIR_COURS_ARCHIVE");
 			}
 			// }}}
 			
@@ -209,6 +228,14 @@ foreach ($oProjet->aoFormations as $oFormation)
 				else
 					continue;
 			}
+/*			else if (STATUT_ARCHIVE == ($iStatutModule = $oModule->retStatut()))
+			{
+				if ($bPeutVoirModArchive)
+					$iStatutModule = STATUT_OUVERT;
+				else
+					continue;
+			}
+*/
 			else if (STATUT_FERME == $iStatutModule && $bPeutVoirModFerme)
 				$iStatutModule = STATUT_OUVERT;
 			
@@ -230,10 +257,11 @@ foreach ($oProjet->aoFormations as $oFormation)
 				// Module ouvert
 				$oBlocModule->remplacer("{cours}",$oSet_Cours_Ouvert);
 				$oBlocModule->remplacer("{id_cours}",$iIdMod);
-				$oBlocModule->remplacer("{href_cours}","zone_menu.php?idForm={$iIdForm}&idMod={$iIdMod}");
+				$oBlocModule->remplacer("{href_cours}","zone_menu.php?idForm={$iIdForm}&idMod={$iIdMod}&sAffiche={$sTypeAffichageActuel}");
 				$oBlocModule->remplacer("{index_formation}",$g_iIdxForm);
 				$oBlocModule->remplacer("{nom_cours_encoder}",phpString2js($sIntitulePlusNomMod));
 				$oBlocModule->remplacer("{idFormAct}",$iIdForm);
+				$oBlocModule->remplacer("{sTypeAffichage}",$sTypeAffichageActuel);
 				$oBlocModule->remplacer("{idModAct}",$iIdMod);
 			}
 			else

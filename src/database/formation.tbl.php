@@ -1533,11 +1533,11 @@ class CFormation
 	function retListeStatuts ()
 	{
 		return array(
-			array(STATUT_FERME,"Fermé"),
-			array(STATUT_OUVERT,"Ouvert"),
+			array(STATUT_FERME,"Ferm&eacute;e"),
+			array(STATUT_OUVERT,"Ouverte"),
 			array(STATUT_INVISIBLE,"Invisible"),
-			array(STATUT_LECTURE_SEULE,"Clôturé")
-			/*array(STATUT_ARCHIVE,"Archivé")*/);
+			array(STATUT_LECTURE_SEULE,"Cl&ocirc;tur&eacute;e"),
+			array(STATUT_ARCHIVE,"Archiv&eacute;e"));
 	}
 	
 	/**

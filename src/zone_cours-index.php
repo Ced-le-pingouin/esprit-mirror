@@ -42,6 +42,8 @@ $oProjet->initSousActivCourante();
 $url_iIdPers   = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 $url_iIdEquipe = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
+(isset($_GET['sAffiche']) ? $sAffichage = $_GET['sAffiche'] : $sAffichage = 'en_cours');
+
 // ---------------------
 // Initialiser
 // ---------------------
@@ -57,7 +59,7 @@ $sParamsUrlSupp = (empty($url_iIdEquipe)
 		? NULL
 		: "?idPers={$url_iIdPers}")
 	: "?idEquipe={$url_iIdEquipe}");
-
+	
 $sTitrePageHtml = ($iIdRubrique > 0 ? $oProjet->oRubriqueCourante->retNom() : NULL);
 
 // ---------------------
@@ -70,7 +72,7 @@ $oTpl->remplacer("{titre_page_html}",$sTitrePageHtml);
 $oTpl->remplacer("{src_frame_haut}","zone_cours-titre.php");
 $oTpl->remplacer("{src_frame_gauche}","zone_cours-menu.php{$sParamsUrlSupp}#premiere_page");
 $oTpl->remplacer("{src_frame_principal}",dir_theme("blank.htm",FALSE));
-$oTpl->remplacer("{src_frame_bas}","menu.php?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}");
+$oTpl->remplacer("{src_frame_bas}","menu.php?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sAffichage}");
 
 $oTpl->afficher();
 

@@ -91,14 +91,15 @@
 	 * 
 	 * @return	le nombe de permissions insérées dans le tableau
 	 */
-	function initPermissions ($v_sFiltre=NULL)
+	function initPermissions ($v_sFiltre=NULL, $v_bTriParNom)
 	{
+		$sConditionsTri = $v_bTriParNom ? " ORDER BY DescrPermis ASC" : " ORDER BY IdPermission ASC";
 		$iIdxPermis = 0;
 		$this->aoPermissions = array();
 		
 		$sRequeteSql = "SELECT * FROM Permission"
 			.(empty($v_sFiltre) ? NULL : " WHERE NomPermis LIKE '%{$v_sFiltre}%'")
-			." ORDER BY IdPermission ASC";
+			.$sConditionsTri;
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv($hResult))

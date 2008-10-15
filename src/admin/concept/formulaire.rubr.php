@@ -48,6 +48,10 @@ $bPeutModifier = $oProjet->verifModifierModule();
 $g_bModifier  = $oProjet->verifPermission("PERM_MOD_RUBRIQUE");
 $g_bModifier &= $bPeutModifier;
 
+// si la formation est archivée, on vérifie si l'utilisateur peut la modifier
+if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) && (!$oProjet->verifPermission("PERM_MOD_ARCHIVES")))
+	$g_bModifier = FALSE;
+
 $g_bModifierStatut  = $oProjet->verifPermission("PERM_MOD_STATUT_TOUS_COURS");
 $g_bModifierStatut |= $oProjet->verifPermission("PERM_MOD_STATUT_RUBRIQUE");
 $g_bModifierStatut &= $bPeutModifier;

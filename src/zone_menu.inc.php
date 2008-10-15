@@ -40,17 +40,21 @@ $iIdMod = (is_object($oProjet->oModuleCourant) ? $oProjet->oModuleCourant->retId
 $iIdPers                = $oProjet->retIdUtilisateur();
 $iReelStatutUtilisateur = $oProjet->retReelStatutUtilisateur(); // Statut que l'utilisateur a choisi
 
+$bVoirArchive = isset($_GET['sAffiche']) ? ($_GET['sAffiche']== "Archives" ? TRUE : FALSE) : FALSE;
+
 if ($iIdPers < 1 && $iIdForm < 1)
 	return;
 
 // {{{ Permissions
-$bPeutVoirToutesSessions = $oProjet->verifPermission("PERM_MOD_TOUTES_SESSIONS");
-$bPeutVoirSessionFermee  = ($bPeutVoirToutesSessions | $oProjet->verifPermission("PERM_VOIR_SESSION_FERMEE"));
-$bPeutVoirSessionInv     = ($bPeutVoirToutesSessions | $oProjet->verifPermission("PERM_VOIR_SESSION_INV"));
+$bPeutVoirToutesSessions 	= $oProjet->verifPermission("PERM_MOD_TOUTES_SESSIONS");
+$bPeutVoirSessionFermee  	= ($bPeutVoirToutesSessions | $oProjet->verifPermission("PERM_VOIR_SESSION_FERMEE"));
+$bPeutVoirSessionInv     	= ($bPeutVoirToutesSessions | $oProjet->verifPermission("PERM_VOIR_SESSION_INV"));
+$bPeutVoirSessionArchivee	= ($bPeutVoirToutesSessions | $oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES"));
 
-$bPeutVoirTousModules = $oProjet->verifPermission("PERM_MOD_TOUS_COURS");
-$bPeutVoirModuleFerme = ($bPeutVoirTousModules | $oProjet->verifPermission("PERM_VOIR_COURS_FERME"));
-$bPeutVoirModuleInv   = ($bPeutVoirTousModules | $oProjet->verifPermission("PERM_VOIR_COURS_INV"));
+$bPeutVoirTousModules	= $oProjet->verifPermission("PERM_MOD_TOUS_COURS");
+$bPeutVoirModuleFerme	= ($bPeutVoirTousModules | $oProjet->verifPermission("PERM_VOIR_COURS_FERME"));
+$bPeutVoirModuleInv		= ($bPeutVoirTousModules | $oProjet->verifPermission("PERM_VOIR_COURS_INV"));
+//$bPeutVoirModuleArchive	= ($bPeutVoirTousModules | $oProjet->verifPermission("PERM_VOIR_COURS_ARCHIVE"));
 // }}}
 
 // --------------------------
@@ -58,7 +62,7 @@ $bPeutVoirModuleInv   = ($bPeutVoirTousModules | $oProjet->verifPermission("PERM
 // --------------------------
 $bRechercher = TRUE;
 
-$oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE);
+$oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE,TRUE,$bVoirArchive);
 
 $iIdFormRech = 0;
 
@@ -71,8 +75,10 @@ if ($iIdFormRech > 0)
 	
 	if (STATUT_OUVERT == $iStatut
 		|| (STATUT_FERME == $iStatut && $bPeutVoirSessionFermee)
-		|| (STATUT_INVISIBLE == $iStatut && $bPeutVoirSessionInv))
+		|| (STATUT_INVISIBLE == $iStatut && $bPeutVoirSessionInv)
+		|| (STATUT_ARCHIVE == $iStatut && $bPeutVoirSessionArchivee))
 	{
+	
 		if ($iIdMod == 0)
 			$bRechercher = FALSE;
 		else if ($oProjet->oFormationCourante->initModules($iIdPers,$iReelStatutUtilisateur) > 0)
@@ -88,6 +94,8 @@ if ($iIdFormRech > 0)
 					continue;
 				else if (STATUT_INVISIBLE == $iStatut && !$bPeutVoirModuleInv)
 					continue;
+				//else if (STATUT_ARCHIVE == $iStatut && !$bPeutVoirModuleArchive)
+					//continue;
 				
 				$bRechercher = FALSE;
 				
@@ -119,10 +127,12 @@ if ($bRechercher)
 			continue;
 		
 		$iStatut = $oFormation->retStatut();
-		
+	
 		if (STATUT_FERME == $iStatut && !$bPeutVoirSessionFermee && $iLongueurDescr == 0)
 			continue;
 		else if (STATUT_INVISIBLE == $iStatut && !$bPeutVoirSessionInv)
+			continue;
+		else if (STATUT_ARCHIVE == $iStatut && !$bPeutVoirSessionArchivee)
 			continue;
 		
 		$iIdForm = $oFormation->retId();
@@ -141,6 +151,8 @@ if ($bRechercher)
 					continue;
 				else if (STATUT_INVISIBLE == $iStatut && !$bPeutVoirModuleInv)
 					continue;
+//				else if (STATUT_ARCHIVE == $iStatut && !$bPeutVoirModuleArchive)
+//					continue;
 				
 				$iIdMod = $oModule->retId();
 				

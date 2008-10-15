@@ -106,7 +106,7 @@ class CopierCollerFormation extends AfficheurPage
 		// init listes des formations pour onglets Copier et Coller
 		$this->oProjet->initFormations(NULL, FALSE);
 		$this->aoFormationsSrc = $this->oProjet->aoFormations;
-		$this->oProjet->initFormationsUtilisateur(FALSE, TRUE, FALSE, FALSE);
+		this->oProjet->initFormationsUtilisateur(FALSE, TRUE, FALSE, FALSE, TRUE);
 		$this->aoFormationsDest = $this->oProjet->aoFormations;
 	}
 	

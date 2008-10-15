@@ -69,7 +69,7 @@ if ("sauver" == $url_sEvent)
 // ---------------------
 // Initialiser
 // ---------------------
-$iNbFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE);
+$iNbFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE,FALSE,TRUE,FALSE);
 
 $aiIdForms = array();
 

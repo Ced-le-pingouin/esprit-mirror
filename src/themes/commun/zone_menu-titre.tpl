@@ -9,6 +9,7 @@
 <body class="menutitre">
 <div id="logo">&nbsp;</div>
 <div id="zone">Menu</div>
+<div id="statutFormation">{Statut.formation}</div>
 <div id="utilisateur"><span id="infos_utilisateur" title="{personne.prenom} {personne.nom}"><span id="pseudo">{personne.pseudo}</span>&nbsp;(<span id="statut">{personne.statut}</span>)</span>&nbsp;</div>
 <div id="titre">&nbsp;</div>
 <div id="sous_titre">&nbsp;</div>

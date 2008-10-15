@@ -33,11 +33,11 @@
 	define('CONFIG_SYS_VIEW_ONLY', false); //diabled the system, view only
 	
 	//User Permissions
-	define('CONFIG_OPTIONS_DELETE', true);
+	define('CONFIG_OPTIONS_DELETE', false);
 	define('CONFIG_OPTIONS_CUT', false);
 	define('CONFIG_OPTIONS_COPY', false);
 	define('CONFIG_OPTIONS_NEWFOLDER', true);
-	define('CONFIG_OPTIONS_RENAME', true);
+	define('CONFIG_OPTIONS_RENAME', false);
 	define('CONFIG_OPTIONS_UPLOAD', true); //
 	define('CONFIG_OPTIONS_EDITABLE', false); //disable image editor and text editor
 	//FILESYSTEM CONFIG

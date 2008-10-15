@@ -12,7 +12,7 @@
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr>
 [BLOCK_RETOUR_MENU+]
-<td>
+<td width="19%">
 <table border="0" cellspacing="0" cellpadding="1">
 <tr><td>&nbsp;</td><td style="background-color: rgb(0,0,0);">
 <table border="0" cellspacing="0" cellpadding="3">
@@ -21,6 +21,12 @@
 </td></tr></table>
 </td>
 [BLOCK_RETOUR_MENU-]
+
+[BLOCK_SELECTION_ARCHIVES+]
+<td>&nbsp;</td><td>&nbsp;</td>
+<td align="right" valign="bottom">{archives}</td>
+<!--<td width="11%" align="left" valign="bottom">{recherche}</td>-->
+[BLOCK_SELECTION_ARCHIVES-]
 <td align="center" valign="bottom" width="99%">&nbsp;{liste_outils}&nbsp;</td>
 <td align="right">
 <table border="0" cellspacing="0" cellpadding="1"><tr><td style="background-color: rgb(0,0,0);">

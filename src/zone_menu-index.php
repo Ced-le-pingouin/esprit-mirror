@@ -53,7 +53,9 @@ if ($iIdForm > 0 && $iIdMod == 0)
 // --------------------------
 // Initialiser
 // --------------------------
-$sParamsUrl = "?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idSousActiv=0&idActiv=0";
+(isset($_GET['sAffiche']) ? $sAffichage = $_GET['sAffiche'] : $sAffichage = 'en_cours');
+
+$sParamsUrl = "?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idSousActiv=0&idActiv=0&sAffiche={$sAffichage}";
 
 // Afficher la description ou le cours de la formation
 $sSrcFramePrincipale = ($iLongueurDescr > 0
@@ -72,7 +74,7 @@ $oTpl->remplacer("{titre_page_html}",$oProjet->retNom());
 // }}}
 
 // {{{ Frames
-$oTpl->remplacer("{src_frame_titre}","zone_menu-titre.php");
+$oTpl->remplacer("{src_frame_titre}","zone_menu-titre.php?sAffiche={$sAffichage}");
 $oTpl->remplacer("{src_frame_gauche}","zone_menu-menu.php{$sParamsUrl}");
 $oTpl->remplacer("{src_frame_principale}",$sSrcFramePrincipale);
 $oTpl->remplacer("{src_frame_menu}",$sSrcFrameMenu);

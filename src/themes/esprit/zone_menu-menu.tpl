@@ -61,13 +61,13 @@ function oMenu()
 {
 return parent.frames["Menu"];
 }
-function rechargerMenuBas(v_iIdFormActuelle, v_iIdModActuel)
+function rechargerMenuBas(v_iIdFormActuelle, v_iIdModActuel, v_sTypeAffichage)
 {
 var url;
 	if (v_iIdModActuel == 0)
-		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod=0&idNiveau="+v_iIdFormActuelle+"&typeNiveau=1";		
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod=0&idNiveau="+v_iIdFormActuelle+"&typeNiveau=1&sAffiche="+v_sTypeAffichage;		
 	else
-		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod="+v_iIdModActuel;
+		url = "http://"+oMenu().location.hostname + oMenu().location.pathname + "?idForm="+v_iIdFormActuelle+"&idMod="+v_iIdModActuel+"&sAffiche="+v_sTypeAffichage;
 	oMenu().location = url;
 }
 //-->
@@ -106,7 +106,7 @@ var url;
 [SET_DESCRIPTION_FORMATION+]
 <tr>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
-<td class="description_menu"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description'); rechargerMenuBas({idFormAct}, 0);" onfocus="blur()">Description</a></td>
+<td class="description_menu"><span id="descr_{id_formation}">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="{href_description}" target="Principal" onclick="changerTitres({index_formation},'descr_{id_formation}','Description'); rechargerMenuBas({idFormAct}, 0,'{sTypeAffichage}');" onfocus="blur()">Description</a></td>
 <td class="element_actif">&nbsp;&nbsp;&nbsp;</td>
 </tr>
 [SET_DESCRIPTION_FORMATION-]
@@ -124,7 +124,7 @@ var url;
 [SET_COURS-]
 
 [SET_COURS_OUVERT+]
-[BLOCK_COURS_INTITULE+]<span class="cours">{intitule_cours}</span>[BLOCK_COURS_INTITULE-]{separateur_intitule}<a href="{href_cours}" target="Principal" onclick="restorer_position_cours(); changerTitres({index_formation},'mod_{id_cours}','{nom_cours_encoder}');rechargerMenuBas({idFormAct}, {idModAct});" onfocus="blur()">{nom_cours}</a>
+[BLOCK_COURS_INTITULE+]<span class="cours">{intitule_cours}</span>[BLOCK_COURS_INTITULE-]{separateur_intitule}<a href="{href_cours}" target="Principal" onclick="restorer_position_cours(); changerTitres({index_formation},'mod_{id_cours}','{nom_cours_encoder}');rechargerMenuBas({idFormAct}, {idModAct},'{sTypeAffichage}');" onfocus="blur()">{nom_cours}</a>
 [SET_COURS_OUVERT-]
 
 [SET_SEPARATEUR_INTITULE+]&nbsp;:&nbsp;[SET_SEPARATEUR_INTITULE-]

@@ -118,8 +118,8 @@ define("TYPE_SOUS_ACTIVITE"	, 6);	/// Sous-activité		@enum TYPE_SOUS_ACTIVITE
 define("STATUT_FERME"			, 1);	/// Le lien est visible mais pas accessible															@enum STATUT_FERME
 define("STATUT_OUVERT"			, 2);	/// Le lien est visible et accessible																@enum STATUT_OUVERT
 define("STATUT_INVISIBLE"		, 3);	/// Le lien n'est pas affiché																		@enum STATUT_INVISIBLE
-define("STATUT_ARCHIVE"			, 4);	/// Pas certain que cette constante est utilisée actuellement										@enum STATUT_ARCHIVE	@todo Confirmer cette description
-define("STATUT_EFFACE"			, 5);	/// L'élément est effacé logiquement, un admin pourra le récupérer dans l'outil Corbeille			@enum STATUT_EFFACE
+define("STATUT_ARCHIVE"			, 4);	/// Permet l'archivage des formations																@enum STATUT_ARCHIVE
+define("STATUT_EFFACE"			, 5);	/// L'élément est effacé logiquement, un admin pourra le récupérer dans l'outil Corbeille		@enum STATUT_EFFACE
 define("STATUT_IDEM_PARENT"		, 6);	/// Reprend le statut ouvert/fermé/etc de la structure parente										@enum STATUT_IDEM_PARENT
 define("STATUT_LECTURE_SEULE"	, 7);	/// Le lien est visible, cliquable mais l'utilisateur ne pourra plus rien modifier					@enum STATUT_LECTURE_SEULE
 
@@ -778,14 +778,16 @@ class CProjet
 	 * @param	v_bDossierForms	si \c true, les formations sont celles du dossier de formations de l'utilisateur
 	 * @param	v_bOrdreNum		si \c true (défaut), les formations retournées sont classées par leur n°. Si \c false,
 	 * 							par ordre alphabétique selon leur nom
+	 * @param	v_bArchives		si \c true, n'affiche que les formations archiv�es.
 	 * 
 	 * @return	le nombre de formations trouvées
 	 * 
 	 * @see		CFormation
 	 */
-	function initFormationsUtilisateur($v_bRechStricte = FALSE, $v_bStatutActuel = TRUE, $v_bDossierForms = FALSE, $v_bOrdreNum = TRUE)
+	function initFormationsUtilisateur($v_bRechStricte = FALSE, $v_bStatutActuel = TRUE, $v_bDossierForms = FALSE, $v_bOrdreNum = TRUE, $v_bVoirArchives=FALSE)
 	{
 		$sOrdre = $v_bOrdreNum ? " ORDER BY Formation.OrdreForm" : " ORDER BY Formation.NomForm";
+		$sArchives = $v_bVoirArchives ? " Formation.StatutForm= ('".STATUT_ARCHIVE."')" : " Formation.StatutForm<> ('".STATUT_ARCHIVE."')";
 		
 		if (($iIdPers = $this->retIdUtilisateur()) > 0)
 		{
@@ -793,6 +795,7 @@ class CProjet
 			{
 				$sRequeteSql = "SELECT Formation.* FROM Formation"
 					." WHERE Formation.StatutForm<>'".STATUT_EFFACE."'"
+					." AND ({$sArchives})"
 					.$sOrdre;
 			}
 			else
@@ -848,7 +851,8 @@ class CProjet
 						.$sCondition;
 				
 				$sRequeteSql .= " WHERE Formation.StatutForm NOT IN ('".STATUT_EFFACE."'"
-					.") AND ({$sConditions})"
+					.") AND ({$sArchives})"
+					." AND ({$sConditions})"
 					." GROUP BY Formation.IdForm"
 					.$sOrdre;
 			}
@@ -2440,14 +2444,14 @@ function retListeStatuts($v_sGenre = "F")
 		return array(
 			array(STATUT_FERME,_("Fermé")),
 			array(STATUT_OUVERT,_("Ouvert")),
-			array(STATUT_INVISIBLE,_("Invisible")),
-			array(STATUT_ARCHIVE,_("Archivé")));
+			array(STATUT_INVISIBLE,_("Invisible")));
+			//array(STATUT_ARCHIVE,_("Archivé")));
 	else
 		return array(
 			array(STATUT_FERME,_("Fermée")),
 			array(STATUT_OUVERT,_("Ouverte")),
-			array(STATUT_INVISIBLE,_("Invisible")),
-			array(STATUT_ARCHIVE,_("Archivé")));
+			array(STATUT_INVISIBLE,_("Invisible")));
+			//array(STATUT_ARCHIVE,_("Archivé")));
 }
 
 ?>

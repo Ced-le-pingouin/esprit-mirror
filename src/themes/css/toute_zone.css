@@ -34,6 +34,17 @@ width:225px;
 text-align:center;
 }
 
+#statutFormation {
+color:red;
+font-size:13pt;
+position:absolute;
+left:0;
+top:90px;
+width:225px;
+text-align:center;
+}
+
+
 #utilisateur {
 position:absolute;
 left:0;

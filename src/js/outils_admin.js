@@ -1,4 +1,6 @@
-function recharger() { parent.location = parent.location.pathname + (arguments.length > 0 ? arguments[0] : ""); }
+function recharger() {
+parent.location = parent.location.pathname + (arguments.length > 0 ? arguments[0] : "");
+}
 
 function chat_archives(v_oThis) {
 	var sUrl = v_oThis.href;

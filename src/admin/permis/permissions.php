@@ -55,9 +55,9 @@ $url_aiIdsPerm = (empty($_POST["idPermis"]) ? array() : $_POST["idPermis"]);
 // Initialisation
 // ---------------------
 
-// Rechercher toutes les permissions
+// Rechercher toutes les permissions (on force le classement par ordre alphabétique)
 $oPermission = new CPermission($oProjet->oBdd);
-$oPermission->initPermissions($url_sFiltre);
+$oPermission->initPermissions($url_sFiltre, TRUE);
 
 // Permissions de l'utilisateur
 $oPermisUtilisateur = new CStatutPermission($oProjet->oBdd);

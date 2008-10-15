@@ -367,6 +367,13 @@ body.menu {
 background:#aea58a url('../../esprit/fond-menu.gif') repeat-x fixed top left;
 }
 
+body.menu span {font-size:8pt;}
+
+span.archives_encours{
+font-weight:bold;
+color:green;
+}
+
 td.retour_menu {
 background-color:#416e96;
 font-weight:bold;

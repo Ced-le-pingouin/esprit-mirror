@@ -47,6 +47,20 @@ $iIdRubrique  = (is_object($oProjet->oRubriqueCourante) ? $oProjet->oRubriqueCou
 $iIdActiv     = (is_object($oProjet->oActivCourante) ? $oProjet->oActivCourante->retId() : 0);
 $iIdSousActiv = (is_object($oProjet->oSousActivCourante) ? $oProjet->oSousActivCourante->retId() : 0);
 
+
+// Si on voit les formations 'en cours', alors quand on cliquera sur le bouton 'en cours/archives',
+// on affichera les formations archiv�es.
+// Et inversement.
+$sTypeAffichageActuel = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : "en_cours";
+switch ($sTypeAffichageActuel) {
+	case "Archives":
+		$sTypeAffichage = "en_cours";
+		break;
+	default:
+		$sTypeAffichage = "Archives";
+		break;
+}
+
 // ---------------------
 // Initialiser
 // ---------------------
@@ -110,7 +124,9 @@ $sMenu = ($bPersInscrite
 	.($bPersInscrite && ($iIdMod==0)
 		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idForm=".$iIdForm."&typeCourriel=courriel-formation@formation'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
 		: NULL)
-	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
+	.($iIdRubrique==0
+		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichageActuel}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>"
+		: "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>");
 
 // ---------------------
 // Template
@@ -124,13 +140,37 @@ $oTpl->remplacer("{liste_outils}",$sMenu);
 $oTpl->remplacer("{deconnexion}","deconnexion.php");
 
 // ---------------------
+// Afficher "Lien affichage des 'archives'/'en cours' et 'recherche'"
+// ---------------------
+$oRetourMenu = new TPL_Block("BLOCK_SELECTION_ARCHIVES",$oTpl);
+$sCssArchive = "class=\"archives_encours\"";
+if ($sTypeAffichageActuel == "Archives") 
+	$sTexteArchive = "<span>En&nbsp;cours</span><span>/</span><span ".$sCssArchive.">Archives</span>";
+else
+	$sTexteArchive = "<span ".$sCssArchive.">En&nbsp;cours</span><span>/</span><span>Archives</span>";
+
+$sFormationArchives = (($oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES"))
+		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichage}'); return false;\" onfocus=\"blur()\"".$sTexteArchive."</a>&nbsp;|&nbsp;"
+		: NULL);
+$sRechercheFormation = "<a href=\"javascript: void(0);\" onclick=\"return false;\" onfocus=\"blur()\"><span>Rechercher une formation</span></a>";
+					
+if ($iIdRubrique == 0)
+{
+	$oRetourMenu->remplacer("{archives}",$sFormationArchives);
+	//$oRetourMenu->remplacer("{recherche}",$sRechercheFormation);
+	$oRetourMenu->afficher();
+}
+else
+	$oRetourMenu->effacer();
+
+// ---------------------
 // Afficher "Retour menu" ?
 // ---------------------
 $oRetourMenu = new TPL_Block("BLOCK_RETOUR_MENU",$oTpl);
 
 if ($iIdRubrique > 0)
 {
-	$oRetourMenu->remplacer("{retour_menu}","zone_menu-index.php?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idActiv=0&idSousActiv=0");
+	$oRetourMenu->remplacer("{retour_menu}","zone_menu-index.php?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idActiv=0&idSousActiv=0&sAffiche={$sTypeAffichageActuel}");
 	$oRetourMenu->afficher();
 }
 else

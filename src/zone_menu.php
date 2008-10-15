@@ -62,6 +62,8 @@ $bPeutVoirRubrInv    = $oProjet->verifPermission("PERM_VOIR_RUBRIQUE_INV");
 
 $bAccederForumParEquipe = ($bPeutGererTousSujets | $oProjet->verifEquipe());
 
+$sTypeAffichageActuel = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : "en_cours";
+
 // ---------------------
 // Insérer ce bloc dans l'entête de la page html
 // ---------------------
@@ -255,7 +257,8 @@ if ($iIdMod > 0)
 						$sUrl = "{unite.url}"
 							."?idForm={$iIdForm}"
 							."&idMod={$iIdMod}"
-							."&idUnite={$iIdRub}";
+							."&idUnite={$iIdRub}"
+							."&sAffiche={$sTypeAffichageActuel}";
 						$oBlock_Cours->remplacer("{lien_unite}",$sVarUniteOuvert);
 						$oBlock_Cours->remplacer("{rubrique.url}",$sUrl);
 				}
