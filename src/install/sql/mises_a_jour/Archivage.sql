@@ -5,8 +5,8 @@ UPDATE `Permission` SET `DescrPermis` = 'Modère les forum de la session' WHERE `
 
 /* ajout des permissions pour les archives */
 INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_VOIR_SESSION_ARCHIVES', 'Peut voir et accéder aux formations archivées');
-INSERT INTO `Permission` (`IdPermission` ,`NomPermis` ,`DescrPermis`) VALUES (NULL, 'PERM_MOD_ARCHIVES', 'Peut modifier une formation archivée');
+INSERT INTO `Permission` (`IdPermission` ,`NomPermis` ,`DescrPermis`) VALUES (NULL, 'PERM_MOD_SESSION_ARCHIVES', 'Peut modifier une formation archivée');
 
 /* ajout des permissions pour les différents statuts */
-INSERT INTO `Statut_Permission` (`IdPermission`, `IdStatut`) VALUES ('106', '1'), ('106', '2'), ('106', '3'), ('106', '5'), ('106', '7'); /* voir les sessions archivées */
+/* INSERT INTO `Statut_Permission` (`IdPermission`, `IdStatut`) VALUES ('106', '1'), ('106', '2'), ('106', '3'), ('106', '5'), ('106', '7'); voir les sessions archivées */
 

@@ -37,9 +37,9 @@ function showOnly( id ) {
 </tr>
 [BLOCK_PERMISSION+]
 <tr>
-<td class="{permission.td.class}" width="99%"><span title="{permission.nom}" style="cursor: help;">{permission.description}</span></td>
-<td class="{permission.td.class}"><div style="text-align: center"><input type="radio" name="idPermis[{permission.input.name}]" value="1" onfocus="blur()"{permission.input.oui.checked}></div></td>
-<td class="{permission.td.class}"><div style="text-align: center"><input type="radio" name="idPermis[{permission.input.name}]" value="0" onfocus="blur()"{permission.input.non.checked}></div></td>
+<td class="{permission.td.class}" width="99%" style="text-align:left;padding-left: 15px;"><span title="{permission.nom}" style="cursor: help;">{permission.description}</span></td>
+<td class="{permission.td.class}"><input type="radio" name="idPermis[{permission.input.name}]" value="1" onfocus="blur()"{permission.input.oui.checked}></td>
+<td class="{permission.td.class}"><input type="radio" name="idPermis[{permission.input.name}]" value="0" onfocus="blur()"{permission.input.non.checked}></td>
 </tr>
 
 [BLOCK_PERMISSION-]

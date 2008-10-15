@@ -106,7 +106,7 @@ switch ($filtre)
 }
 
 if ($oProjet->verifPermission("PERM_MOD_TOUTES_SESSIONS"))
-	$iNbrFormations = $oFormation->initFormations();
+	$iNbrFormations = $oFormation->initFormations(TRUE);
 else if (is_object($oProjet->oUtilisateur))
 	$iNbrFormations = $oFormation->initFormationsPourCopie($oProjet->oUtilisateur->retId());
 else
@@ -129,10 +129,10 @@ for ($i=0; $i<$iNbrFormations; $i++)
 		.">\n"
 		."</td>\n"
 		//."<td class=\"$sClasseCss\" width=\"1%\" align=\"center\">&nbsp;".$oFormation->aoFormations[$i]->retType()."&nbsp;</td>\n"
-		."<td class=\"$sClasseCss\">"
+		."<td class=\"$sClasseCss\" style=\"text-align:left;padding-left: 15pt;\">"
 			.emb_htmlentities($oFormation->aoFormations[$i]->retNom())
 		."</td>\n"
-		."<td class=\"$sClasseCss\" align=\"center\">&#8212;</td>\n"
+		."<td class=\"$sClasseCss\">&#8212;</td>\n"
 		."</tr>\n";
 }
 
