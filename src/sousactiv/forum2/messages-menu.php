@@ -58,9 +58,16 @@ $bPeutGererTousMessages |= ($oProjet->verifPermission("PERM_MOD_MESSAGES_FORUM")
 
 $bPeutAjtMessage = FALSE;
 
+// si la formation est archivée et que l'utilisateur n'a pas les droits de modification
+if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) &&(!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
+{
+	$bPeutGererTousMessages = $bPeutAjtMessage = $bPeutModifierMessage = FALSE; 
+}
+else $bPeutAjtMessage = $oProjet->verifPermission("PERM_AJT_MESSAGE_FORUM");
+
 if (!$bPeutGererTousMessages)
 {
-	if (($bPeutAjtMessage = $oProjet->verifPermission("PERM_AJT_MESSAGE_FORUM")) &&
+	if (($bPeutAjtMessage) &&
 		$url_iIdEquipe > 0)
 	{
 		$oForum = new CForum($oProjet->oBdd,$oSujet->retIdParent());
@@ -105,7 +112,7 @@ if ($url_iIdSujet > 0)
 	if ($bPeutGererTousMessages || $bPeutAjtMessage)
 		$sMenuMessages .= $oSetAjtMessage;
 	
-	if ($url_iNbMessages > 0)
+	if ($url_iNbMessages > 0 && $bPeutGererTousMessages)
 	{
 		$sMenuMessages .= (isset($sMenuMessages) ? $oSetMenuSeparateur : NULL)
 			.$oSetMdfMessage;

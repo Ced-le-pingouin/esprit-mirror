@@ -98,8 +98,8 @@ if ($g_iFormation > 0)
 			include("perm.modif.mod.php");
 			// }}}
 			
-			if (!($g_bModifier | $g_bModifierStatut))
-				continue;
+			//if (!($g_bModifier | $g_bModifierStatut))
+				//continue;
 			
 			if ($tIdMod == 0 ||
 				(TYPE_MODULE == $url_iType && $g_iModule == $iIdMod))

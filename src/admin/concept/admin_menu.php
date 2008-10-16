@@ -272,6 +272,16 @@ $bPeutAjouterSousActiv &= $bPeutModifierMod;
 $bPeutSupprimerSousActiv  = $oProjet->verifPermission("PERM_SUP_ELEMENT_ACTIF");
 $bPeutSupprimerSousActiv &= $bPeutModifierMod;
 
+// Formation archivée, on ne peut modifier/ajouter/supprimer des éléments
+if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) &&(!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
+{
+	$bPeutModifierForm = $bPeutAjouterForm = $bPeutSupprimerForm = FALSE;
+	$bPeutModifierMod = $bPeutAjouterMod = $bPeutSupprimerMod = FALSE;
+	$bPeutAjouterRub = $bPeutSupprimerRub = FALSE;
+	$bPeutAjouterActiv = $bPeutSupprimerActiv = FALSE;
+	$bPeutAjouterSousActiv = $bPeutSupprimerSousActiv = FALSE;
+}
+
 // ---------------------
 // Mettre Ã  jour
 // ---------------------

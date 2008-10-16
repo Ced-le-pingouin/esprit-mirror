@@ -63,6 +63,8 @@ $url_iIdNiveau = (empty($_POST["ID_NIVEAU"]) ? $iId : $_POST["ID_NIVEAU"]);
 $url_iIdEquipe = (empty($_POST["ID_EQUIPE"]) ? 0 : $_POST["ID_EQUIPE"]);
 $url_iFiltre   = (empty($_POST["FILTRE_PERSONNES"]) ? PERSONNE_SANS_EQUIPE : $_POST["FILTRE_PERSONNES"]);
 
+$bPeutModifierArchive = $oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE ? FALSE : TRUE;
+
 // *************************************
 // Boite de sélection contenant toutes les équipes de la formation
 // *************************************
@@ -127,11 +129,11 @@ else if ($url_iIdEquipe <= 0)
 	$url_iIdEquipe = $oEquipe->aoEquipes[0]->retId();
 
 $sSelectEquipes .= "</select><br>"
-	."<a href=\"javascript: void(0);\" onclick=\"equipe('ajout',".($url_iNiveau == $iNiveau ? "false" : "true").")\" onfocus=\"blur()\" title=\"Ajouter une &eacute;quipe\">Ajouter</a>"
+	.($bPeutModifierArchive ? "<a href=\"javascript: void(0);\" onclick=\"equipe('ajout',".($url_iNiveau == $iNiveau ? "false" : "true").")\" onfocus=\"blur()\" title=\"Ajouter une &eacute;quipe\">Ajouter</a>" : "<span class=\"lien_passif\">Ajouter</span>")
 	."&nbsp;&nbsp;"
-	.($iIdxEquipe > 0 && $url_iNiveau == $iNiveau ? "<a href=\"javascript: void(0);\" onclick=\"equipe('modif',false)\" onfocus=\"blur()\">Modifier</a>" : "<span class=\"lien_passif\">Modifier</span>")
+	.($iIdxEquipe > 0 && $url_iNiveau == $iNiveau && $bPeutModifierArchive ? "<a href=\"javascript: void(0);\" onclick=\"equipe('modif',false)\" onfocus=\"blur()\">Modifier</a>" : "<span class=\"lien_passif\">Modifier</span>")
 	."&nbsp;&nbsp;"
-	.($iIdxEquipe > 0 && $url_iNiveau == $iNiveau ? "<a href=\"javascript: void(0);\" onclick=\"equipe('sup',false)\" onfocus=\"blur()\">Supprimer</a>" : "<span class=\"lien_passif\">Supprimer</span>")
+	.($iIdxEquipe > 0 && $url_iNiveau == $iNiveau && $bPeutModifierArchive ? "<a href=\"javascript: void(0);\" onclick=\"equipe('sup',false)\" onfocus=\"blur()\">Supprimer</a>" : "<span class=\"lien_passif\">Supprimer</span>")
 	."\n";
 
 // *************************************
@@ -344,9 +346,15 @@ select { width: 100%; }
 <div class="intitule" align="right">Rechercher&nbsp;:&nbsp;<input type="text" size="20" onkeyup="sePlacerPersonne(value,top.oEtudiants())"></div>
 </td>
 <td align="left">
-<input type="button" name="btnAjouter" onclick="top.oEtudiants().ajouter()" value="&nbsp;&raquo;&nbsp;" disabled>
+<?php 
+if ($bPeutModifierArchive)
+	echo "<input type=\"button\" name=\"btnAjouter\" onclick=\"top.oEtudiants().ajouter()\" value=\"&nbsp;&raquo;&nbsp;\" disabled>
 <br>
-<input type="button" name="btnRetirer" onclick="top.oMembres().enlever()" value="&nbsp;&laquo;&nbsp;" disabled>
+<input type=\"button\" name=\"btnRetirer\" onclick=\"top.oMembres().enlever()\" value=\"&nbsp;&laquo;&nbsp;\" disabled>";
+else
+echo "<input type=\"hidden\" name=\"btnAjouter\"><input type=\"hidden\" name=\"btnRetirer\">";
+?>
+
 </td>
 <td valign="top" width="50%">
 <iframe src="" name="MEMBRES" id="id_frame_membres" width="100%" height="420px" frameborder="0"></iframe>

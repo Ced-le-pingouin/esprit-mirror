@@ -86,12 +86,12 @@ function oMenu()
 {
 return parent.frames["Bas"];
 }
-function rechargerMenuBas(v_iIdActiv, v_iIdSousActiv)
+function rechargerMenuBas(v_iIdActiv, v_iIdSousActiv, v_sTypeAffichage)
 {
 var url;
 // on récupère toutes les variables avant idActiv pour éviter de se retrouver avec plusieurs variables idActiv et idSousActiv de suite.
 var_temp = oMenu().location.search.split("idActiv");
-url = "http://"+oMenu().location.hostname + oMenu().location.pathname + var_temp[0] + "idActiv="+v_iIdActiv+"&idSousActiv="+v_iIdSousActiv;
+url = "http://"+oMenu().location.hostname + oMenu().location.pathname + var_temp[0] + "idActiv="+v_iIdActiv+"&idSousActiv="+v_iIdSousActiv+"&sAffiche="+v_sTypeAffichage;
 oMenu().location = url;
 }
 //-->

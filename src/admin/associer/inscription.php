@@ -34,7 +34,17 @@
 require_once("globals.inc.php");
 
 $oProjet = new CProjet();
+
+// ---------------------
+// Permissions
+// ---------------------
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_INSCRIPTION");
+
+$bPeutInscrire = TRUE;
+if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
+{
+	$bPeutInscrire = FALSE;
+}
 
 // ---------------------
 // Récupérer les variables de l'url
@@ -151,7 +161,17 @@ function association_multiple()
 <iframe name="FRM_PERSONNE" src="liste_personnes.php?idform=<?php echo $url_iIdForm?>&FORMATION=1" width="99%" height="365" frameborder="0"></iframe><br>
 Rechercher&nbsp;:&nbsp;<input type="text" name="nomPersonneRech" onkeyup="rechPersonne(value,self.frames['FRM_PERSONNE'],'nom[]')" value="" size="30">
 </td>
-<td align="center" width="1%"><span title="<?php echo $asToolTip[0]?>"><input type="button" value="&nbsp;&raquo;&nbsp;" onclick="envoyerPersonnes()"></span><br><br><span title="<?php echo $asToolTip[1]?>"><input type="button" value="&nbsp;&laquo;&nbsp;" onclick="enleverPersonneInscrit()"></span></td>
+<td align="center" width="1%">
+<?php
+// si la formation est archiv�e, on ne peut mettre de nouvelles personnes dans la formation.
+if ($bPeutInscrire)
+{
+echo "
+<span title=\"".$asToolTip[0]."\"><input type=\"button\" value=\"&nbsp;&raquo;&nbsp;\" onclick=\"envoyerPersonnes()\"></span><br><br><span title=\"".$asToolTip[1]."\"><input type=\"button\" value=\"&nbsp;&laquo;&nbsp;\" onclick=\"enleverPersonneInscrit()\"></span>
+";
+}
+?>
+</td>
 <td valign="top">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">
 <tr><td><span class="intitule">&#8250;&nbsp;Liste des personnes inscrites&nbsp;:</span></td></tr>
@@ -171,9 +191,18 @@ Rechercher&nbsp;:&nbsp;<input type="text" name="nomPersonneRech" onkeyup="rechPe
 </tr>
 <tr>
 <td height="1%">
-<span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafraîchir</a>&nbsp;|&nbsp;</span>
-<span><a href="javascript: void(0);" onclick="profil('?nv=1&titre=<?php echo rawurlencode('Nouvel utilisateur')?>')" onfocus="blur()">Ajouter un utilisateur</a>&nbsp;|&nbsp;</span>
-<span><a href="javascript: void(0);" onclick="importer_liste_personnes()" onfocus="blur()">Importer une liste</a></span>
+<span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafraîchir</a>
+<?php
+// si la formation est archiv�e, on ne peut ajouter de nouveaux utilisateurs.
+if ($bPeutInscrire)
+{
+echo "
+&nbsp;|&nbsp;</span>
+<span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."')\" onfocus=\"blur()\">Ajouter un utilisateur</a>&nbsp;|&nbsp;</span>
+<span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer une liste</a></span>";
+}
+else echo "</span>";
+?>
 </td>
 <td>&nbsp;</td><td>&nbsp;</td>
 </tr>

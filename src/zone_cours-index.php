@@ -42,7 +42,7 @@ $oProjet->initSousActivCourante();
 $url_iIdPers   = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 $url_iIdEquipe = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 
-(isset($_GET['sAffiche']) ? $sAffichage = $_GET['sAffiche'] : $sAffichage = 'en_cours');
+$sAffichage = (isset($_GET['sAffiche']) ? $_GET['sAffiche'] : 'en_cours');
 
 // ---------------------
 // Initialiser
@@ -56,9 +56,9 @@ $iIdSousActiv = (is_object($oProjet->oSousActivCourante) ? $oProjet->oSousActivC
 
 $sParamsUrlSupp = (empty($url_iIdEquipe)
 	? (empty($url_iIdPers)
-		? NULL
-		: "?idPers={$url_iIdPers}")
-	: "?idEquipe={$url_iIdEquipe}");
+		? "?sAffiche={$sAffichage}"
+		: "?idPers={$url_iIdPers}&sAffiche={$sAffichage}")
+	: "?idEquipe={$url_iIdEquipe}&sAffiche={$sAffichage}");
 	
 $sTitrePageHtml = ($iIdRubrique > 0 ? $oProjet->oRubriqueCourante->retNom() : NULL);
 

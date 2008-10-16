@@ -61,14 +61,14 @@ $bPeutModifier = $oProjet->verifModifierModule();
 
 $g_bModifier  = $oProjet->verifPermission("PERM_MOD_ELEMENT_ACTIF");
 $g_bModifier &= $bPeutModifier;
-
-// si la formation est archivée, on vérifie si l'utilisateur peut la modifier
-if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) && (!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
-	$g_bModifier = FALSE;
 	
 $g_bModifierStatut  = $oProjet->verifPermission("PERM_MOD_STATUT_TOUS_COURS");
 $g_bModifierStatut |= $oProjet->verifPermission("PERM_MOD_STATUT_ELEMENT_ACTIF");
 $g_bModifierStatut &= $bPeutModifier;
+
+// si la formation est archivée, on vérifie si l'utilisateur peut la modifier
+if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) && (!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
+	$g_bModifier = $g_bModifierStatut = FALSE;
 
 unset($bPeutModifier);
 
@@ -447,7 +447,8 @@ echo str_replace(
 		, "{modalite_affichage.nouvelle_fenetre_direct.value}"
 		, "{modalite_affichage.nouvelle_fenetre_direct.selected}"
 		, "{description.disabled}"
-		, "{description.texte}")
+		, "{description.texte}"
+		, "{archives.disabled}")
 	, array(LIEN_TABLEAU_DE_BORD
 		, MODALITE_INDIVIDUEL
 		, ($amSousActiv["modalite"] == MODALITE_INDIVIDUEL ? " selected=\"selected\"" : NULL)
@@ -458,7 +459,8 @@ echo str_replace(
 		, NOUVELLE_FENETRE_DIRECT
 		, ($amSousActiv["modalite_affichage"] == NOUVELLE_FENETRE_DIRECT ? " selected=\"selected\"" : NULL)
 		, ($amSousActiv["modalite_affichage"] != FRAME_CENTRALE_DIRECT ? " disabled=\"disabled\"" : NULL)
-		, $descr)
+		, $descr
+		, $g_bModifier ? NULL : " disabled")
 	,$sTableauDeBord);
 // }}}
 ?>

@@ -57,6 +57,12 @@ $bPeutGererTousSujets |= ($oProjet->verifPermission("PERM_MOD_SUJETS_FORUM") && 
 $bPeutAjtSujet = $oProjet->verifPermission("PERM_AJT_SUJET_FORUM");
 $bPeutModSujet = $oProjet->verifPermission("PERM_MOD_SUJET_FORUM");
 $bPeutSupSujet = $oProjet->verifPermission("PERM_SUP_SUJET_FORUM");
+
+// si la formation est archivée et que l'utilisateur n'a pas les droits de modification
+if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) &&(!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
+{
+	$bPeutGererTousSujets = $bPeutAjtSujet = $bPeutModSujet = $bPeutSupSujet = FALSE; 
+}
 // }}}
 
 $bIdEquipeCorrect = TRUE;
