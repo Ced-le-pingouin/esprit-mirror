@@ -154,7 +154,7 @@ $sFormationArchives = (($oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES"))
 		: NULL);
 $sRechercheFormation = "<a href=\"javascript: void(0);\" onclick=\"return false;\" onfocus=\"blur()\"><span>Rechercher une formation</span></a>";
 					
-if ($iIdRubrique == 0)
+if ($iIdRubrique == 0 && ($iIdPers = $oProjet->retIdUtilisateur()) > 0)
 {
 	$oRetourMenu->remplacer("{archives}",$sFormationArchives);
 	//$oRetourMenu->remplacer("{recherche}",$sRechercheFormation);

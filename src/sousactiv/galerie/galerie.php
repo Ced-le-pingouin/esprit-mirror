@@ -49,6 +49,13 @@ $oGalerie = new CGalerie($oProjet->oBdd,$oProjet->oSousActivCourante->retId());
 $g_iIdPers = $oProjet->retIdUtilisateur();
 $g_iNbRessources = 0;
 
+$bFormationArchivee = FALSE;
+// si la formation est archivée et que l'utilisateur n'a pas les droits de modification
+if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
+{
+	$bFormationArchivee = TRUE; 
+}
+
 // Rechercher les collecticiels ainsi que les ressources
 $iNbCollecticiels = $oGalerie->initCollecticiels(TRUE);
 
@@ -84,7 +91,7 @@ $oBlocBarreOutils = new TPL_Block("BLOCK_BARRE_OUTILS",$oTpl);
 $sOutil = $oBlocBarreOutils->defVariable("SET_OUTIL_COMPOSER_GALERIE");
 
 $asReplBarreOutils = array(
-	($oProjet->verifPermission("PERM_COMPOSER_GALERIE") ? $sOutil : NULL)
+	(($oProjet->verifPermission("PERM_COMPOSER_GALERIE") && !$bFormationArchivee) ? $sOutil : NULL)
 );
 
 $oBlocBarreOutils->remplacer($asRechBarreOutils,$asReplBarreOutils);

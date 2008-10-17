@@ -32,6 +32,13 @@ $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST[
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
 $iIdFC = ( isset($_GET["idFC"])?$_GET["idFC"]:NULL );
 
+$bFormationArchivee = FALSE;
+// si la formation est archivée et que l'utilisateur n'a pas les droits de modification
+if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
+{
+	$bFormationArchivee = TRUE; 
+}
+
 $bFermer = false;
 
 if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
@@ -174,7 +181,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']))
+	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']) || $bFormationArchivee)
 	{	// si c'est pour Ã©valuer ou afficher les feedbacks de l'auto-correction, on ne voit pas le bouton valider
 		$oTpl->remplacer("{bouton_valider}","");
 		if(isset($_POST['idFormulaire']))

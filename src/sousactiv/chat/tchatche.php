@@ -76,6 +76,13 @@ $iIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() 
 // Les visiteurs n'ont pas le droit de participer au chat
 $bPeutAccederChat = ($iIdPers > 0);
 
+$bFormationArchivee = FALSE;
+// si la formation est archivée et que l'utilisateur n'a pas les droits de modification
+if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
+{
+	$bFormationArchivee = TRUE; 
+}
+
 // ---------------------
 // Equipes
 // ---------------------
@@ -202,7 +209,7 @@ $sListeChats = NULL;
 foreach ($aaChats as $aChat)
 {
 	// Ajouter un chat
-	$oBlocListeChats->ajouter(($bPeutAccederChat ? $sSetChatActif : $sSetChatPassif));
+	$oBlocListeChats->ajouter((($bPeutAccederChat && !$bFormationArchivee) ? $sSetChatActif : $sSetChatPassif));
 	
 	if ($aChat["archivesChat"])
 	{

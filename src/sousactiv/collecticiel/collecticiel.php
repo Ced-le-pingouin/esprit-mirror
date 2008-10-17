@@ -57,6 +57,13 @@ $g_bPeutEvaluer = $oProjet->verifPermission("PERM_EVALUER_COLLECTICIEL");
 $g_bResponsable = $g_bPeutEvaluer | $oProjet->verifPermission("PERM_VOIR_TOUS_COLLECTICIELS");
 $g_iIdEquipe = 0;
 
+$bFormationArchivee = FALSE;
+// si la formation est archiv�e et que l'utilisateur n'a pas les droits de modification
+if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
+{
+	$bFormationArchivee = TRUE; 
+}
+
 $g_iIdModalite = $oProjet->oSousActivCourante->retModalite(TRUE);
 
 $g_sRepRessources = $oProjet->dir_ressources(NULL,FALSE);
@@ -306,7 +313,7 @@ if (count($aaCollecticiels) > 0)
 				}
 				
 				// {{{ Accéder ou pas la fenêtre de l'évaluation
-				if ($oRessource->retEstSoumise())
+				if ($oRessource->retEstSoumise() && !$bFormationArchivee)
 				{
 					if ($oRessource->retEstEvaluee())
 						$sEvaluer = $asSetTpl["ressource_evaluation"];
@@ -399,7 +406,7 @@ if (count($aaCollecticiels) > 0)
 		$sVarSoumettre = $oBlocGestionDocuments->defVariable("VAR_SOUMETTRE_POUR_EVALUATION");
 		$sVarVoter     = $oBlocGestionDocuments->defVariable("VAR_VOTER_POUR_SOUMETTRE");
 		
-		if ($g_iIdPers > 0)
+		if (($g_iIdPers > 0) && (!$bFormationArchivee))
 		{
 			$oBlocDeposer   = new TPL_Block("BLOCK_DEPOSER",$oBlocGestionDocuments);
 			$oBlocSupprimer = new TPL_Block("BLOCK_SUPPRIMER",$oBlocGestionDocuments);

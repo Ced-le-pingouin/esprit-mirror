@@ -971,7 +971,7 @@ class CModule_Rubrique
 		$aaStatuts = array(
 				// array(identifiant,nom,statut séléctionné)
 				array(STATUT_OUVERT,"Ouvert",($iStatutRubrique == STATUT_OUVERT))
-				, array(STATUT_LECTURE_SEULE,"Consultable",($iStatutRubrique == STATUT_LECTURE_SEULE))
+				//, array(STATUT_LECTURE_SEULE,"Consultable",($iStatutRubrique == STATUT_LECTURE_SEULE))
 				, array(STATUT_FERME,"Fermé",($iStatutRubrique == STATUT_FERME))
 				, array(STATUT_INVISIBLE,"Invisible",($iStatutRubrique == STATUT_INVISIBLE))
 			);

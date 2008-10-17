@@ -866,7 +866,7 @@ class CProjet
 			// visiteur a le droit de consulter
 			$sRequeteSql = "SELECT Formation.* FROM Formation"
 				." WHERE"
-				.($iIdForm > 0 ? " Formation.IdForm='{$iIdForm}'" : " Formation.StatutForm='".STATUT_OUVERT."'")
+				.($iIdForm > 0 ? " Formation.IdForm='{$iIdForm}'" : " Formation.StatutForm='".STATUT_OUVERT."' OR '".STATUT_ARCHIVE."'")
 				." AND Formation.VisiteurAutoriser='1'"
 				.$sOrdre;
 		}
