@@ -145,9 +145,9 @@ $oTpl->remplacer("{deconnexion}","deconnexion.php");
 $oRetourMenu = new TPL_Block("BLOCK_SELECTION_ARCHIVES",$oTpl);
 $sCssArchive = "class=\"archives_encours\"";
 if ($sTypeAffichageActuel == "Archives") 
-	$sTexteArchive = "<span>En&nbsp;cours</span><span>/</span><span ".$sCssArchive.">Archives</span>";
+	$sTexteArchive = "<span>En&nbsp;cours</span><span>/</span><span ".$sCssArchive.">Archiv&eacute;es</span>";
 else
-	$sTexteArchive = "<span ".$sCssArchive.">En&nbsp;cours</span><span>/</span><span>Archives</span>";
+	$sTexteArchive = "<span ".$sCssArchive.">En&nbsp;cours</span><span>/</span><span>Archiv&eacute;es</span>";
 
 $sFormationArchives = (($oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES"))
 		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichage}'); return false;\" onfocus=\"blur()\"".$sTexteArchive."</a>&nbsp;|&nbsp;"

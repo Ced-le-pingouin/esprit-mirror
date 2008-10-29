@@ -36,6 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 $oProjet->initRubriqueCourante();
 
+if (isset($_GET['sAffiche']) && ($_GET['sAffiche'] == "Archives")) $sStatutFormation = "** Formation archiv&eacute;e **";
 // ---------------------
 // Initialiser
 // ---------------------
@@ -64,6 +65,7 @@ $amReplTpl = array(
 // ---------------------
 $oTpl = new Template(dir_theme_commun("zone_cours-titre.tpl",FALSE,TRUE));
 $oTpl->remplacer($asRechTpl,$amReplTpl);
+$oTpl->remplacer("{Statut.formation}",$sStatutFormation);
 $oTpl->afficher();
 
 $oProjet->terminer();

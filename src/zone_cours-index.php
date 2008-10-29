@@ -69,7 +69,7 @@ $oTpl = new Template(dir_theme("zone_cours-index.tpl",FALSE,TRUE));
 
 $oTpl->remplacer("{titre_page_html}",$sTitrePageHtml);
 
-$oTpl->remplacer("{src_frame_haut}","zone_cours-titre.php");
+$oTpl->remplacer("{src_frame_haut}","zone_cours-titre.php?sAffiche={$sAffichage}");
 $oTpl->remplacer("{src_frame_gauche}","zone_cours-menu.php{$sParamsUrlSupp}#premiere_page");
 $oTpl->remplacer("{src_frame_principal}",dir_theme("blank.htm",FALSE));
 $oTpl->remplacer("{src_frame_bas}","menu.php?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sAffichage}");

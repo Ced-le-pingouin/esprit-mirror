@@ -34,7 +34,7 @@
 require_once("globals.inc.php");
 
 $oProjet = new CProjet();
-if (isset($_GET['sAffiche']) && ($_GET['sAffiche'] == "Archives")) $sStatutFormation = "Archives";
+if (isset($_GET['sAffiche']) && ($_GET['sAffiche'] == "Archives")) $sStatutFormation = "** Formation archiv&eacute;e **";
 // ---------------------
 // Initialiser
 // ---------------------
