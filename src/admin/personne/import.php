@@ -60,7 +60,7 @@ function insererPersonne ($tab, $enreg=true)
 		
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 	{
-		$sMessage = "Le couple (<strong>{$oPersonne->retNom()}/{$oPersonne->retPrenom()}</strong>) n'est pas unique. L'&eacute;tudiant existe d&eacute;j&agrave;!<br/>";
+		$sMessage = "Le couple (<strong>".$oPersonne->retNom() $oPersonne->retPrenom()."</strong>) n'est pas unique. L'&eacute;tudiant existe d&eacute;j&agrave;!<br/>";
 		// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
 		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
 		return $sMessage;
