@@ -136,6 +136,7 @@ switch ($iStatutPers)
 				."</td>\n"
 				."<td class=\"personne\">"
 				.$oResp->aoPersonnes[$i]->retNomComplet(TRUE)
+				."&nbsp;<em>(".$oResp->aoPersonnes[$i]->retPseudo().")</em>"
 				."</td>\n"
 				."</tr>\n";
 		
@@ -188,6 +189,7 @@ switch ($iStatutPers)
 				."<td class=\"personne\">"
 				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">" : NULL)
 				.$aoConcepteurs[$i]->retNomComplet(TRUE)
+				."&nbsp;<em>(".$aoConcepteurs[$i]->retPseudo().")</em>"
 				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "</a >" : NULL)
 				."</td>\n"
 				."</tr>\n";
@@ -222,6 +224,7 @@ switch ($iStatutPers)
 				."<td class=\"personne\">"
 				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">"
 				.$aoTuteurs[$i]->retNomComplet(TRUE)
+				."&nbsp;<em>(".$aoTuteurs[$i]->retPseudo().")</em>"
 				."</a >"
 				."</td>\n"
 				."</tr>\n";
@@ -257,6 +260,7 @@ switch ($iStatutPers)
 				."<td class=\"personne\">"
 				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\">"
 				.$oFormation->aoInscrits[$i]->retNomComplet(TRUE)
+				."&nbsp;<em>(".$oFormation->aoInscrits[$i]->retPseudo().")</em>"
 				."</a >"
 				."</td>\n"
 				."</tr>\n";

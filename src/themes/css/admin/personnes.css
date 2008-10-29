@@ -3,6 +3,7 @@ INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
 
 profil
 exporter personnes
+importer personnes
 associer personnes
 liste cours
 
@@ -49,12 +50,31 @@ text-align:center;
 }
 /* ----- */
 
+/* -- importer personnes --*/
+hr { margin:5ex 0; }
+
+.importErreur, .importOK, ..importOK {font-weight:bold;}
+	
+.importErreur {
+color:red;
+}
+
+.importOK {
+color:green;
+}
+
+.importAvert {
+color:orange;
+}
+/* ----- */
+
 /* -- associer personnes -- */
+/*
 table.liste_personnes td {
 border:#EFEFEF none 1px;
 border-bottom-style:solid;
 }
-
+*/
 td.info {
 text-align:center;
 }

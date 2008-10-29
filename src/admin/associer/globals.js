@@ -34,6 +34,18 @@ function changerFiltre(v_iFiltre,v_iStatut,v_iIdForm,v_iIdMod,v_bCetteFormation)
 		+ '&idform=' + v_iIdForm
 		+ '&ID_MOD=' + v_iIdMod
 		+ '&FORMATION=' + (v_bCetteFormation ? 1 : 0);
+
+	if (oPrincipal().document.getElementById("enlever_personne"))
+	{	
+		if (!v_bCetteFormation)
+		{
+			oPrincipal().document.getElementById("enlever_personne").style.visibility='hidden';
+		}
+		else
+		{
+			oPrincipal().document.getElementById("enlever_personne").style.visibility='visible';		
+		}
+	}
 }
 
 function changerStatut(v_iStatut,v_iIdForm)

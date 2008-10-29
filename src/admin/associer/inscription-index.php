@@ -56,7 +56,7 @@ $sFramePrincipal = "<frame"
 	." marginwidth=\"0\""
 	." marginheight=\"0\""
 	." frameborder=\"0\""
-	." scrolling=\"no\""
+	." scrolling=\"yes\""
 	." noresize=\"noresize\">";
 
 $oTpl = new Template(dir_theme("dialog-index-2.tpl",FALSE,TRUE));

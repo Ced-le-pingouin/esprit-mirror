@@ -35,7 +35,7 @@ else
 	$sMenu = "<td"
 		." align=\"right\">"
 		."<a"
-		." href=\"javascript: top.frames['Principal'].document.forms[0].submit(); void(0);\""
+		." href=\"javascript: top.frames['Principal'].document.forms[0].submit(); top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true); void(0);\""
 		." onclick=\"blur()\""
 		.">Valider</a>"
 		."&nbsp;|&nbsp;"

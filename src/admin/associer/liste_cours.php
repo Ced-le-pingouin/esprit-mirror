@@ -214,7 +214,7 @@ function rechargerListeCours()
 </head>
 <body class="associer_personnes">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-<?php echo $sAppliquerChangements?>
+<?php //echo $sAppliquerChangements?>
 <table border="0" cellpadding="3" cellspacing="1" width="100%">
 <?php echo $sListeCours; ?>
 </table>

@@ -56,51 +56,8 @@ tinyMCE.init({
 	elements : Elements,
 	setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
-	save_callback : "nettoyage",
+	//save_callback : "nettoyage",
 	language : "fr",
 	docs_language : "fr"
 });
-}
-
-
-/* 	nettoyage des éléments du tableau au moment de la validation dans l'éditeur
-	ce qui permet d'enlever les <p...>&nbsp;</p> du tableau ajoutés après insertion par 'pasteword'
-	et évite les pertes des cadres du tableau causées par les paragraphes.
-*/
-function nettoyage(element_id, html, body) {
-	var recherche_p = /<td[^>]*>([^<]*(<br \/>[^<]*)*<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>\s?)*<\/td>/i;
-	bool = recherche_p.test(html);
-	while (bool)
-	{
-		html = html.replace(/<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>/i, "<br />");
-		bool = recherche_p.test(html);
-	}
-	return html;
-}
-
-function convertWord(type, content) {
-	content = content.replace(/-moz-use-text-color/gi, ""); // on enlève les balises spéciales créées par Mozilla/FireFox
-	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-	content = content.replace(/\s?mso-[^\"]*/gi, ""); // on enlève les balises spéciales créées par IE
-	//content = content.replace(/<p\s?[^>]*>Version:[0-9.]*\s*Start[^<]*<\/p>/gi, ""); // supprime la ligne générée par Safari en collant depuis OpenOffice
-	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
-	
-	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
-	if (recherche_td)
-	{
-		for(i=0;i<recherche_td.length;++i)
-		{
-			content = content.replace(/(border).{0,7}(:)[^;]*;\s?/gi, ""); // enleve les style 'border-color'... dans le td
-		}
-	}
-	recherche_tab = content.match(/(table).+(border).{0,7}(:)[a-z0-9\s]*(;\s?)/gi); // recherche des <table...> contenant un style border
-	if (recherche_tab)
-	{
-		for(i=0;i<recherche_tab.length;++i)
-		{
-			content = content.replace(/(border).{0,}(:)[a-z0-9\s]*((;)|(;\s?))/gi, ""); // enleve les style 'border-color'... dans la table
-		}
-	}
-
-	return content;
 }

@@ -269,21 +269,50 @@ class CPersonne
 			.($this->oEnregBdd->IdPers > 0 ? " WHERE IdPers='{$this->oEnregBdd->IdPers}'" : NULL);
 		
 		$this->oBdd->executerRequete($sRequeteSql);
-		
 		return TRUE;
 	}
 	
+	/**
+	 * Lie une personne a une formation dans la DB (table : formation_inscrit).
+	 * Si le couple formation/personne existe, il est mis a jour (evite l'erreur : "duplicate key x-x")
+	 * 
+	 * @return	\c message
+	 */
+	function lierPersForm($v_sIdFormation=0,$v_bNouvellePers=FALSE)
+	{
+		$v_sMessage = NULL;
+		if (!preg_match('/[0-9]/',$v_sIdFormation) && ($v_sIdFormation!=NULL))
+		{
+			return $v_sMessage = "Le num&eacute;ro de formation <em>$sIdFormation</em> doit &ecirc;tre num&eacute;rique.";
+		}
+		else if ($v_sIdFormation!=NULL)
+		{
+			$requeteIdPers = $this->oBdd->executerRequete(
+				"SELECT IdPers AS IdPersonne FROM Personne "
+				."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."'");
+			$oEnreg = $this->oBdd->retEnregSuiv($requeteIdPers);
+
+			$hResult = $this->oBdd->executerRequete(
+				"INSERT INTO Formation_inscrit SET"
+				." IdForm='".$v_sIdFormation."',"
+				." IdPers='".$oEnreg->IdPersonne."'"
+				." ON DUPLICATE KEY UPDATE IdForm='".$v_sIdFormation."'");
+				
+			$v_sMessage .= "<span class=\"importOK\">".$this->retPrenom()." ".$this->retNom()." a &eacute;t&eacute; ajout&eacute &agrave; la formation ".$v_sIdFormation."!</span>";
+			return $v_sMessage;
+		}
+	}
 	
 	/** @name Fonctions de définition des champs pour cette personne */
 	//@{
-	function defNom($v_sNom) { $this->oEnregBdd->Nom = trim($v_sNom); }
-	function defPrenom($v_sPrenom) { $this->oEnregBdd->Prenom = trim($v_sPrenom); }
-	function defPseudo($v_sPseudo) { $this->oEnregBdd->Pseudo = trim($v_sPseudo); }
+	function defNom($v_sNom) { $this->oEnregBdd->Nom = mysql_real_escape_string(trim($v_sNom)); }
+	function defPrenom($v_sPrenom) { $this->oEnregBdd->Prenom = mysql_real_escape_string(trim($v_sPrenom)); }
+	function defPseudo($v_sPseudo) { $this->oEnregBdd->Pseudo = mysql_real_escape_string(trim($v_sPseudo)); }
 	function defDateNaiss($v_sDateNaiss) { $this->oEnregBdd->DateNaiss = $v_sDateNaiss; }
 	function defSexe($v_cSexe) { $this->oEnregBdd->Sexe = $v_cSexe; }
 	function defEmail($v_sEmail) { $this->oEnregBdd->Email = trim($v_sEmail); }
 	function defMdp($v_sMdp) { $this->oEnregBdd->Mdp = $v_sMdp; }
-	function defAdresse($v_sAdresse) { $this->oEnregBdd->Adresse = $v_sAdresse; }
+	function defAdresse($v_sAdresse) { $this->oEnregBdd->Adresse = mysql_real_escape_string($v_sAdresse); }
 	function defNumTel($v_sNumTel) { $this->oEnregBdd->NumTel = $v_sNumTel; }
 	//@}
 	

@@ -112,7 +112,7 @@ function gestion_utilisateur(v_iIdForm) {
 	var sUrl = GLOBALS["admin"] + "associer/inscription-index.php"
 		+ "?idform=" + v_iIdForm;
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
-	var win = PopupCenter(sUrl,"winInscriptions",780,590,sOptionsFenetre);
+	var win = PopupCenter(sUrl,"winInscriptions",820,630,sOptionsFenetre);
 	win.location = sUrl; 	// NE PAS EFFACER CETTE LIGNE SVP
 	win.focus();
 }

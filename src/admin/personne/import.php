@@ -46,16 +46,25 @@ function formatTexteErreur ($v_sTexteErreur)
 function insererPersonne ($tab, $enreg=true)
 {
 	global $oProjet;
+	$sIdFormation = trim ($tab[7]);
 	// $tab[1..6] : nom, prénom, pseudo, mdp, sexe, email
 	$oPersonne = new CPersonne($oProjet->oBdd);
+	
 	if (empty($tab[1]))
 		return false;
 	$oPersonne->defNom(addslashes(mb_strtoupper($tab[1], "utf-8")));
+	
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
+		
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
-		return "Le couple (nom,prénom) n'est pas unique. L'étudiant existe déjà ?";
+	{
+		$sMessage = "Le couple (<strong>{$oPersonne->retNom()}/{$oPersonne->retPrenom()}</strong>) n'est pas unique. L'&eacute;tudiant existe d&eacute;j&agrave;!<br/>";
+		// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
+		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
+		return $sMessage;
+	}
 
 	if (empty($tab[3]))
 		return "Pas de pseudo.";
@@ -83,9 +92,10 @@ function insererPersonne ($tab, $enreg=true)
 	if (!$tab[6])
 		$sexe = "M";
 	$oPersonne->defSexe($tab[6]);
-
+	
 	if ($enreg) {
 		$oPersonne->enregistrer();
+		$oPersonne->lierPersForm($sIdFormation);
 	}
 	return true;
 }
@@ -107,13 +117,16 @@ if (!empty($_POST['importer'])) {
 	else {			
 		$data->read($_FILES['importFile']['tmp_name']);
 	}
-	echo '<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-'. inserer_feuille_style("commun/dialog.css; admin/personnes.css",false). '
-<script type="text/javascript" language="javascript" src="'. dir_javascript("window.js") .'"></script>
+	echo "<head>
+<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">
+". inserer_feuille_style("commun/dialog.css; admin/personnes.css",false). "
+<script type=\"text/javascript\" language=\"javascript\" src=\"". dir_javascript("window.js") ."\"></script>
+<script type=\"text/javascript\" language=\"javascript\">
+top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
+</script>
 </head>
-<body class="profil">
-<h1>Inscription groupée</h1>';
+<body class=\"profil\">
+<h1>Inscription groupée</h1>";
 	echo "\n<ol>";
 	$inscrits=0;
 	$total=0;
@@ -126,16 +139,32 @@ if (!empty($_POST['importer'])) {
 			continue;
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
+		$sIdFormation = "";
+		$sMessage = "";
+		
+		if ($data->sheets[0]['cells'][$nrow][7] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][7]))
+			$sIdFormation = $data->sheets[0]['cells'][$nrow][7];
+
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
+		
 		if ($res===true) {
 			// tout va bien
+			if ($sIdFormation!="")
+				$sMessage = " &agrave; la <em>formation ".$sIdFormation."</em>!</span>";
+			
 			$inscrits++;
-			echo "<li><li><strong>OK</strong> : <em>$prenom $nom</em> a été inscrit.</li>\n";
+			echo "<br/><li><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a été inscrit".$sMessage.".</li>\n";
 			// ...
-		} else {
+		}
+		elseif ($sIdFormation!="") {
+			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutee a une formation.
+			echo "<br/><li><span class=\"importAvert\">Avertissement</span> (<em>$prenom $nom</em>) : ".$res."</li>\n";
+			// ...
+		}
+		else {
 			// Un pb avec cette inscription
-			echo "<li><strong>ERREUR</strong> (<em>$prenom $nom</em>) : ".$res."</li>\n";
+			echo "<br/><li><span class=\"importErreur\">ERREUR</span> (<em>$prenom $nom</em>) : ".$res."</li>\n";
 			// ...
 		}
 	}
@@ -157,9 +186,6 @@ if (!empty($_POST['importer'])) {
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("commun/dialog.css; admin/personnes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
-<style type="text/css">
-hr { margin:5ex 0; }
-</style>
 </head>
 <body class="profil">
 <h1>Inscription groupée</h1>

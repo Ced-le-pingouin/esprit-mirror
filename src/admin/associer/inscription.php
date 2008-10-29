@@ -136,6 +136,13 @@ function association_multiple()
 	oWinAssMult.focus();
 }
 
+function rechargerListeCours()
+{
+	// Recharger la liste des cours
+	top.frames['Principal'].frames['FRM_COURS'].document.forms[0].elements["ENVOYER"].value = "2";
+	majListeCours();
+}
+
 //-->
 </script>
 </head>
@@ -154,12 +161,50 @@ function association_multiple()
 <td>&nbsp;</td>
 <td class="intitule" height="1%">Statut&nbsp;des&nbsp;personnes&nbsp;:<br>
 <select name="STATUT_PERS" onchange="changerStatut(value,<?php echo $url_iIdForm?>)">
-<?php echo $sOptionsStatut; ?></select></td>
+<?php echo $sOptionsStatut; ?></select>
+<span>&nbsp;</span>
+</td>
 </tr>
+
 <tr>
 <td rowspan="2" class="intitule" valign="top" align="right">
-<iframe name="FRM_PERSONNE" src="liste_personnes.php?idform=<?php echo $url_iIdForm?>&FORMATION=1" width="99%" height="365" frameborder="0"></iframe><br>
-Rechercher&nbsp;:&nbsp;<input type="text" name="nomPersonneRech" onkeyup="rechPersonne(value,self.frames['FRM_PERSONNE'],'nom[]')" value="" size="30">
+<table cellspacing="1" cellpadding="1" border="0">
+<tr>
+<td><table cellspacing="0" cellpadding="0" border="0"><tr>
+<?php
+// Liste alphabÈtique
+$sListeAlphabet = NULL;
+
+for ($a = 97; $a <= 122; $a++)
+	echo "<td style=\"width:4%\"><a"
+		." href=\"javascript: top.frames['Principal'].frames['FRM_PERSONNE'].location.hash = '#".chr($a)."'; void(0);\""
+		." target=\"Principal\""
+		." onfocus=\"blur()\""
+		.">".chr($a)."</a></td>";
+?>
+</tr>
+</table></td>
+</tr>
+<tr><td>
+<iframe name="FRM_PERSONNE" src="liste_personnes.php?idform=<?php echo $url_iIdForm?>&FORMATION=1" width="99%" height="395" frameborder="0"></iframe>
+</td></tr>
+<tr>
+<td height="1%">
+<!-- <span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafra√Æchir</a> -->
+<?php
+// si la formation est archivÈe, on ne peut ajouter de nouveaux utilisateurs.
+if ($bPeutInscrire)
+{
+echo "
+<span class=\"intitule\">Rechercher&nbsp;:&nbsp;<input type=\"text\" name=\"nomPersonneRech\" onkeyup=\"rechPersonne(value,self.frames['FRM_PERSONNE'],'nom[]')\" value=\"\" size=\"15\">&nbsp;</span>
+<span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."')\" onfocus=\"blur()\">Ajouter</a>&nbsp;|&nbsp;</span>
+<span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer</a></span>
+<span id=\"enlever_personne\">&nbsp;|&nbsp;<a href=\"javascript: void(0);\" onclick=\"enlever_personne()\" onfocus=\"blur()\">Enlever</a></span>";
+}
+?>
+</td>
+</tr>
+</table>
 </td>
 <td align="center" width="1%">
 <?php
@@ -175,8 +220,7 @@ echo "
 <td valign="top">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">
 <tr><td><span class="intitule">&#8250;&nbsp;Liste des personnes inscrites&nbsp;:</span></td></tr>
-<tr><td><iframe name="FRM_INSCRIT" src="liste_inscrits.php?idform=<?php echo $url_iIdForm?>" width="100%" height="180" frameborder="0"></iframe></td></tr>
-<tr><td align="right"><a href="javascript: association_multiple(); void(0);" onfocus="blur()">Associations&nbsp;multiples</a>&nbsp;</td></tr>
+<tr><td><iframe name="FRM_INSCRIT" src="liste_inscrits.php?idform=<?php echo $url_iIdForm?>" width="100%" height="218" frameborder="0"></iframe></td></tr>
 </table>
 </td>
 </tr>
@@ -185,27 +229,25 @@ echo "
 <td class="intitule" valign="top">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td><span class="intitule">&#8250;&nbsp;Liste des cours&nbsp;:</span></td></tr>
+
 <tr><td><iframe name="FRM_COURS" src="" width="100%" height="140" frameborder="0"></iframe></td></tr>
-</table>
-</td>
-</tr>
-<tr>
-<td height="1%">
-<span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafra√Æchir</a>
 <?php
 // si la formation est archivÈe, on ne peut ajouter de nouveaux utilisateurs.
 if ($bPeutInscrire)
 {
 echo "
-&nbsp;|&nbsp;</span>
-<span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."')\" onfocus=\"blur()\">Ajouter un utilisateur</a>&nbsp;|&nbsp;</span>
-<span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer une liste</a></span>";
+<tr><td height=\"1%\">
+<span><a href=\"javascript: association_multiple(); void(0);\" onfocus=\"blur()\">Associations&nbsp;multiples</a>&nbsp;</span>
+<span>&nbsp;</span>
+<span><a href=\"javascript: rechargerListeCours(); void(0);\" onfocus=\"blur()\">Appliquer les changements</a>&nbsp;</span>
+</td></tr>
+";
 }
-else echo "</span>";
 ?>
+</table>
 </td>
-<td>&nbsp;</td><td>&nbsp;</td>
 </tr>
+
 </table>
 <input type="hidden" name="idform" value="<?php echo $url_iIdForm?>">
 </form>

@@ -152,10 +152,13 @@ if (($iNbrPers = $oProjet->initPersonnes($iFiltre,$i)) < 1)
 <head>
 <?php inserer_feuille_style("admin/personnes.css"); ?>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>test</title>
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
 <script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('globals.js.php')?>" ></script>
 <script type="text/javascript" language="javascript" src="globals.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('window.js')?>"></script>
 <script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('outils_admin.js')?>" ></script>
+<script type="text/javascript" language="javascript"  src="<?php echo dir_javascript('selection_multiple.js')?>" ></script>
 <script language="javascript" type="text/javascript">
 <!--
 
@@ -173,33 +176,55 @@ function init()
 
 //-->
 </script>
+<style type="text/css">
+<!--
+td#id_table_entete_1 { width: 1%; }
+td#id_table_entete_2 { width: 99%; text-align: left; }
+-->
+</style>
 </head>
 <body onload="init()" class="associer_personnes">
 <a name="top"></a>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get" target="_self">
 <table border="0" cellspacing="1" cellpadding="1" width="100%" class="liste_personnes">
+<tr><td><input type="checkbox" name="Selectionner_tous" onclick="selectionner(this,'Selectionner_tous',-1,true,false)" onfocus="blur()" value="-1"></td>
+<td class="intitule" id="id_table_entete_2">&nbsp;<b>S&eacute;lectionner toutes les personnes</b></td></tr>
+<tr><td> </td><td>
+<div style="margin: 0px 0px 0pt; background-color: rgb(255, 255, 255);">
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tbody>
 <?php
-
+$lettre = 96;
 for ($i=0; $i<$iNbrPers; $i++)
+{
+	$sPremiereLettre = mb_strtolower(substr($oProjet->aoPersonnes[$i]->retNom(),0,1),"UTF-8");
+	if ($lettre < ord($sPremiereLettre))
+	{
+		$lettre = $sPremiereLettre;
+		$lien = "<a name=\"{$lettre}\"></a>";
+	}
 	echo "<tr>"
-		."<td>"
+		."<td>".$lien
 		."<input type=\"checkbox\" name=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
-		."<td width=\"98%\">"
+		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt\">"
 		."<a name=\"pos".($i+1)."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
 		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
-		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===FALSE)?
+		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===TRUE)?
 		  '&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>':'')
 		."</span>"
 		."</a>"
 		."</td>\n"
 		."<td>&nbsp;"._("Infos")."&nbsp;</td>"
 		."</tr>\n";
+}
 
 if ($i < 1)
 	echo "<tr><td class=\"Infos\">&#8250;&nbsp;$sErrPers</td></tr>\n";
 ?>
+</tbody></table>
+</div></td></tr>
 </table>
 <input type="hidden" name="FILTRE" value="<?php echo $iFiltre?>">
 <input type="hidden" name="STATUT_PERS" value="<?php echo $iStatutPers?>">

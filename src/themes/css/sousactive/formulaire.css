@@ -30,6 +30,8 @@ text-decoration:underline;
 }
 
 form {
+height:100%;
+overflow:auto;
 margin:0;
 padding:0;
 }

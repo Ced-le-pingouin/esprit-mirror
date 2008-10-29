@@ -92,6 +92,8 @@ function convertWord(type, content) {
 	content = content.replace(/(<!--*[^>]*>\s*.*<![^>]*>)*/gi, ""); // supprime les commentaires pouvant être ajoutés
 	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
 	
+	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.
+	
 	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
 	if (recherche_td)
 	{
