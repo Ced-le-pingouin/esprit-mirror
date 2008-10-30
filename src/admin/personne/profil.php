@@ -72,7 +72,7 @@ else if (isset($_POST["ID_PERS"]))
 {
 	if ($_POST["ID_PERS"] == 0)
 		$url_bSauver = TRUE;
-
+		
 	$iIdPers = $_POST["ID_PERS"];
 }
 else
@@ -189,6 +189,8 @@ if ($iIdPers >= 0)
 		{
 			// Il n'y a pas d'erreur on peut sauvegarder
 			$oPersonne->enregistrer();
+			// si l'utilisateur est un nouvel inscrit, on la lie a la formation actuelle
+			if (isset($_POST["ID_FORM"])) $oPersonne->lierPersForm($_POST["ID_FORM"]);
 			
 			if ($bModifierCookie)
 			{
@@ -324,12 +326,13 @@ function afficher_erreur(v_sErreur)
 
 <tr>
 <td><span id="id_erreur">&nbsp;</span></td>
-<td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;</td>
+<td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;<?php ?></td>
 <td class="champs_obligatoires">*</td>
 </tr>
 
 </table>
 <input type="hidden" name="ID_PERS" value="<?php echo $iIdPers; ?>">
+<?php if (isset($_GET["formId"])) echo "<input type=\"hidden\" name=\"ID_FORM\" value=\"".$_GET["formId"]."\">\n"?>
 <input type="hidden" name="SAUVER" value="1">
 </form>
 </body>

@@ -36,7 +36,7 @@ require_once("globals.inc.php");
 $oProjet = new CProjet();
 $oProjet->initRubriqueCourante();
 
-if (isset($_GET['sAffiche']) && ($_GET['sAffiche'] == "Archives")) $sStatutFormation = "** Formation archiv&eacute;e **";
+if (isset($_GET['sAffiche']) && ($_GET['sAffiche'] == "Archives")) $sStatutFormation = "** Formations archiv&eacute;es **";
 // ---------------------
 // Initialiser
 // ---------------------

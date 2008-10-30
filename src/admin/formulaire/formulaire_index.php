@@ -30,7 +30,7 @@ $oProjet = new CProjet();
 	<frameset cols="210,*" border="0" frameborder="0" framespacing="0">
 		<frame name="FORMFRAMEMENU" src="formulaire_menu.php?bMesForms=1" marginwidth="2" marginheight="2" frameborder="0" noresize="true" scrolling="no">
 		<frameset rows="*,50%,20" border="0" frameborder="0" framespacing="0">
-			<frame name="FORMFRAMELISTE" src="formulaire_liste.php" frameborder="0">
+			<frame name="FORMFRAMELISTE" src="formulaire_liste.php" frameborder="0" scrolling="yes">
 			<frame name="FORMFRAMEMODIF" src="formulaire_modif.php" frameborder="0" scrolling="yes" noresize="true">
 			<frame name="FORMFRAMEMODIFMENUBAS" src="formulaire_modif_menu_bas.php" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize>
 		</frameset>

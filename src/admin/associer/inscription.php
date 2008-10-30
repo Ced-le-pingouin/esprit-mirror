@@ -197,7 +197,7 @@ if ($bPeutInscrire)
 {
 echo "
 <span class=\"intitule\">Rechercher&nbsp;:&nbsp;<input type=\"text\" name=\"nomPersonneRech\" onkeyup=\"rechPersonne(value,self.frames['FRM_PERSONNE'],'nom[]')\" value=\"\" size=\"15\">&nbsp;</span>
-<span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."')\" onfocus=\"blur()\">Ajouter</a>&nbsp;|&nbsp;</span>
+<span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."&formId=".$url_iIdForm."')\" onfocus=\"blur()\">Ajouter</a>&nbsp;|&nbsp;</span>
 <span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer</a></span>
 <span id=\"enlever_personne\">&nbsp;|&nbsp;<a href=\"javascript: void(0);\" onclick=\"enlever_personne()\" onfocus=\"blur()\">Enlever</a></span>";
 }
