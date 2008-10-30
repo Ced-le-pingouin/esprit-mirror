@@ -293,7 +293,7 @@ class CPersonne
 			$oEnreg = $this->oBdd->retEnregSuiv($requeteIdPers);
 
 			$hResult = $this->oBdd->executerRequete(
-				"INSERT INTO Formation_inscrit SET"
+				"INSERT INTO Formation_Inscrit SET"
 				." IdForm='".$v_sIdFormation."',"
 				." IdPers='".$oEnreg->IdPersonne."'"
 				." ON DUPLICATE KEY UPDATE IdForm='".$v_sIdFormation."'");

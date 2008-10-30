@@ -326,7 +326,7 @@ function afficher_erreur(v_sErreur)
 
 <tr>
 <td><span id="id_erreur">&nbsp;</span></td>
-<td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;<?php ?></td>
+<td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;</td>
 <td class="champs_obligatoires">*</td>
 </tr>
 
