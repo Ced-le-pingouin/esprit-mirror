@@ -1,7 +1,7 @@
 <?php
 
 //require_once 'PEAR.php';
-require_once 'oleread.inc';
+require_once dirname(__FILE__).'/oleread.inc';
 
 //define('Spreadsheet_Excel_Reader_HAVE_ICONV', function_exists('iconv'));
 //define('Spreadsheet_Excel_Reader_HAVE_MB', function_exists('mb_convert_encoding'));
