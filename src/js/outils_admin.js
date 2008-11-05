@@ -100,6 +100,12 @@ function importer_liste_personnes() {
 	win.focus();
 }
 
+function enlever_personne() {
+	var sUrl = GLOBALS["admin"] + "personne/enlever_personne-index.php";
+	var win = PopupCenter(sUrl,"WinEnleverPersonne",300,150,"");
+	win.focus();
+}
+
 function choix_formation(v_sTitre) {
 	var sUrl = GLOBALS["admin"] + "commun/choix_formation-index.php"
 		+ (v_sTitre.length > 0 ? "?tp=" + v_sTitre : "");

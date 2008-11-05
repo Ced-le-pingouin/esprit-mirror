@@ -81,7 +81,7 @@ var url;
 <table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
 <tr>
 <td class="bloc_menu_coins_haut" align="left" valign="top"><img src="theme://menu-1x1.gif" width="5" height="28" border="0"></td>
-<td class="bloc_menu_titre" width="99%">{nom_formation}</td>
+<td class="bloc_menu_titre" width="99%">{nom_formation}{id_formation}</td>
 <td class="bloc_menu_coins_haut" align="right" valign="top"><img src="theme://menu-1x3.gif" width="5" height="28" border="0"></td>
 </tr>
 [BLOCK_COURS+][BLOCK_COURS-]

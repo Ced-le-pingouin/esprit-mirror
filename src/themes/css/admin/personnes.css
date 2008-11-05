@@ -53,17 +53,17 @@ text-align:center;
 /* -- importer personnes --*/
 hr { margin:5ex 0; }
 
-.importErreur, .importOK, ..importOK {font-weight:bold;}
+.importErreur, .importOK, .importAvert {font-weight:bold;}
 	
 .importErreur {
 color:red;
 }
 
-.importOK {
+.importOK, .importOKPetit {
 color:green;
 }
 
-.importAvert {
+.importAvert, .importAvertPetit {
 color:orange;
 }
 /* ----- */

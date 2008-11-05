@@ -190,6 +190,12 @@ text-align:center;
 padding:5px;
 }
 
+.numero_formation {
+color:#4d4b47;
+font-weight:normal;
+font-size:8pt;
+}
+
 .bloc_menu_coins_haut {
 background:#FBF9EE url("../esprit/menu-1x2.gif") repeat-x top left;
 }

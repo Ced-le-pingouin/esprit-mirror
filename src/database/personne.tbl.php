@@ -274,7 +274,9 @@ class CPersonne
 	
 	/**
 	 * Lie une personne a une formation dans la DB (table : formation_inscrit).
-	 * Si le couple formation/personne existe, il est mis a jour (evite l'erreur : "duplicate key x-x")
+	 * 
+	 * On prend l'ID de la personne correspondant au : nom + prenom + pseudo (eviter les doublons)
+	 * Si il n'y a pas d'ID, on ne fait pas de lien.
 	 * 
 	 * @return	\c message
 	 */
@@ -289,17 +291,28 @@ class CPersonne
 		{
 			$requeteIdPers = $this->oBdd->executerRequete(
 				"SELECT IdPers AS IdPersonne FROM Personne "
-				."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."'");
+				."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."' AND Pseudo='".$this->retPseudo()."'");
 			$oEnreg = $this->oBdd->retEnregSuiv($requeteIdPers);
-
+			
+			if ($oEnreg->IdPersonne) {
 			$hResult = $this->oBdd->executerRequete(
-				"INSERT INTO Formation_Inscrit SET"
+				"REPLACE INTO Formation_Inscrit SET"
 				." IdForm='".$v_sIdFormation."',"
-				." IdPers='".$oEnreg->IdPersonne."'"
-				." ON DUPLICATE KEY UPDATE IdForm='".$v_sIdFormation."'");
+				." IdPers='".$oEnreg->IdPersonne."'");
+			
+			// on cherche le nom de la formation.
+			$requeteNomForm = $this->oBdd->executerRequete(
+				"SELECT NomForm AS NomFormation FROM Formation "
+				."WHERE IdForm='".$v_sIdFormation."'");
+			$oEnreg = $this->oBdd->retEnregSuiv($requeteNomForm);
 				
-			$v_sMessage .= "<span class=\"importOK\">".$this->retPrenom()." ".$this->retNom()." a &eacute;t&eacute; ajout&eacute &agrave; la formation ".$v_sIdFormation."!</span>";
+			$v_sMessage .= "<span class=\"importOKPetit\">".$this->retPrenom()." ".$this->retNom()." (".$this->retPseudo().") a &eacute;t&eacute; ajout&eacute &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>";
 			return $v_sMessage;
+			}
+			else {
+				$v_sMessage .= "<span class=\"importAvertPetit\">".$this->retPrenom()." ".$this->retNom()." n'a pas le pseudo : ".$this->retPseudo()."!</span>";
+				return $v_sMessage;
+			}
 		}
 	}
 	

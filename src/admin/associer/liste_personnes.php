@@ -49,62 +49,93 @@ $sErrPers = NULL;
 $sMajListeInscrit = NULL;
 
 // ---------------------
-// Ajouter des personnes
+// Ajouter/enlever des personnes
 // ---------------------
 if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 {
-	$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
+	include_once(dir_database("module_tuteur.tbl.php"));
+	include_once(dir_database("module_concepteur.tbl.php"));
+	include_once(dir_database("projet_concepteur.tbl.php"));
+
+	// ---------------------
+	// Enlever des personnes de la formation, pas de la PF.
+	// ---------------------
+	if (isset($_GET["Action_Pers"]) && ($_GET["Action_Pers"] === "enlever")) {
+		$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
+		$oRespForm 	= new CFormation_Resp($oProjet->oBdd,$iIdFormCourante);
+		$oResp		= new CProjet_Resp($oProjet->oBdd);
 	
-	switch ($iStatutPers)
-	{
-		case STATUT_PERS_RESPONSABLE_POTENTIEL:
-		case STATUT_PERS_RESPONSABLE:
-			
-			if ($iStatutPers == STATUT_PERS_RESPONSABLE)
-				$oResp = new CFormation_Resp($oProjet->oBdd,$iIdFormCourante);
-			else
-				$oResp = new CProjet_Resp($oProjet->oBdd);
-			
-			foreach ($_GET["IDPERS"] as $iIdPers)
-				$oResp->ajouter($iIdPers);
-			
-			$oResp = NULL;
-			
-			break;
-			
-		case STATUT_PERS_CONCEPTEUR_POTENTIEL:
-		case STATUT_PERS_CONCEPTEUR:
-			
-			if ($iStatutPers == STATUT_PERS_CONCEPTEUR)
-			{
-				include_once(dir_database("module_concepteur.tbl.php"));
-				$oConcepteur = new CFormation_Concepteur($oProjet->oBdd,$iIdFormCourante);
-			}
-			else
-			{
-				include_once(dir_database("projet_concepteur.tbl.php"));
-				$oConcepteur = new CProjet_Concepteur($oProjet->oBdd);
-			}
-			$oConcepteur->ajouterConcepteurs($_GET["IDPERS"]);
-			break;
-			
-		case STATUT_PERS_TUTEUR:
-			
-			include_once(dir_database("module_tuteur.tbl.php"));
-			$oTuteur = new CFormation_Tuteur($oProjet->oBdd,$iIdFormCourante);
-			$oTuteur->ajouterTuteurs($_GET["IDPERS"]);
-			break;
-			
-		case STATUT_PERS_ETUDIANT:
-			
-			$oFormInscrit = new CFormation_Inscrit($oProjet->oBdd,$iIdFormCourante);
-			foreach ($_GET["IDPERS"] as $iIdPers)
-				$oFormInscrit->ajouter($iIdPers);
-			unset($oFormInscrit);
-			break;
+		foreach ($_GET["IDPERS"] as $iIdPers) {
+			$oConcepteurForm	= new CFormation_Concepteur($oProjet->oBdd,$iIdFormCourante,$iIdPers);
+			$oConcepteur		= new CProjet_Concepteur($oProjet->oBdd,$iIdPers);
+			$oTuteur			= new CFormation_Tuteur($oProjet->oBdd,$iIdFormCourante,$iIdPers);
+			$oFormInscrit		= new CFormation_Inscrit($oProjet->oBdd,$iIdFormCourante,$iIdPers);
+					
+			$oRespForm->effacer($iIdPers);
+			$oResp->effacer($iIdPers);
+			$oConcepteurForm->effacerConcepteur();$oConcepteurForm = NULL;
+			$oConcepteur->effacerConcepteur();$oConcepteur = NULL;
+			$oTuteur->effacerTuteur();$oTuteur = NULL;
+			$oFormInscrit->effacer();$oFormInscrit = NULL;
+		}
+		$oRespForm = $oResp = NULL;
+		$sMajListeInscrit .= "';";
 	}
+	// ---------------------
+	// Ajouter des personnes
+	// ---------------------
+	else {
+		$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
 	
-	$sMajListeInscrit .= "';";
+		switch ($iStatutPers)
+		{
+			case STATUT_PERS_RESPONSABLE_POTENTIEL:
+			case STATUT_PERS_RESPONSABLE:
+			
+				if ($iStatutPers == STATUT_PERS_RESPONSABLE)
+					$oResp = new CFormation_Resp($oProjet->oBdd,$iIdFormCourante);
+				else
+					$oResp = new CProjet_Resp($oProjet->oBdd);
+			
+				foreach ($_GET["IDPERS"] as $iIdPers)
+					$oResp->ajouter($iIdPers);
+			
+				$oResp = NULL;
+				break;
+			
+			case STATUT_PERS_CONCEPTEUR_POTENTIEL:
+			case STATUT_PERS_CONCEPTEUR:
+			
+				if ($iStatutPers == STATUT_PERS_CONCEPTEUR)
+				{
+					include_once(dir_database("module_concepteur.tbl.php"));
+					$oConcepteur = new CFormation_Concepteur($oProjet->oBdd,$iIdFormCourante);
+				}
+				else
+				{
+					include_once(dir_database("projet_concepteur.tbl.php"));
+					$oConcepteur = new CProjet_Concepteur($oProjet->oBdd);
+				}
+				$oConcepteur->ajouterConcepteurs($_GET["IDPERS"]);
+				break;
+			
+			case STATUT_PERS_TUTEUR:
+			
+				include_once(dir_database("module_tuteur.tbl.php"));
+				$oTuteur = new CFormation_Tuteur($oProjet->oBdd,$iIdFormCourante);
+				$oTuteur->ajouterTuteurs($_GET["IDPERS"]);
+				break;
+			
+			case STATUT_PERS_ETUDIANT:
+			
+				$oFormInscrit = new CFormation_Inscrit($oProjet->oBdd,$iIdFormCourante);
+				foreach ($_GET["IDPERS"] as $iIdPers)
+					$oFormInscrit->ajouter($iIdPers);
+				unset($oFormInscrit);
+				break;
+		}
+		$sMajListeInscrit .= "';";
+	}
 }
 
 // ---------------------
@@ -231,6 +262,7 @@ if ($i < 1)
 <input type="hidden" name="FORMATION" value="<?php echo $iIdForm?>">
 <input type="hidden" name="ID_MOD" value="<?php echo $iIdMod?>">
 <input type="hidden" name="idform" value="<?php echo $iIdFormCourante?>">
+<input type="hidden" name="Action_Pers" id="Action_Pers" value="aucune">
 </form>
 </body>
 </html>

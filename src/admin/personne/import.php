@@ -57,7 +57,11 @@ function insererPersonne ($tab, $enreg=true)
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
-		
+
+	if (empty($tab[3]))
+		return "Pas de pseudo.";
+	$oPersonne->defPseudo($tab[3]);
+	
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 	{
 		$sMessage = "Le couple (nom,prénom) n'est pas unique. L'étudiant existe déjà !<br/>";
@@ -66,9 +70,6 @@ function insererPersonne ($tab, $enreg=true)
 		return $sMessage;
 	}
 
-	if (empty($tab[3]))
-		return "Pas de pseudo.";
-	$oPersonne->defPseudo($tab[3]);
 	if (!$oPersonne->estPseudoUnique()) {
 		$a = '';
 		$hResult = $oProjet->oBdd->executerRequete(
@@ -79,6 +80,7 @@ function insererPersonne ($tab, $enreg=true)
 			$a = ' à "' . $oEnreg->NomC .'"';
 		return "Le pseudo '".$tab[3]."' est déjà attribué$a.";
 	}
+	
 	$sMdp = trim($tab[4]);
 	if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
 		return "Le mot de passe <em>$sMdp</em> doit être alpha-numérique.";

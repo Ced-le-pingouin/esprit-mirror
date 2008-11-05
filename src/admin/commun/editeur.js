@@ -45,7 +45,7 @@ tinyMCE.init({
 	force_p_newlines : true,
 	force_br_newlines : false,
 	forced_root_block : 'p',
-	convert_fonts_to_spans : false,
+	convert_fonts_to_spans : true,
 	font_size_style_values : "8pt,10pt,12pt,14pt,18pt,24pt,36pt",
 	fix_content_duplication : true,
 	fix_list_elements : true,

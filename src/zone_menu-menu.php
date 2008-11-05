@@ -105,8 +105,8 @@ $oBlocFormation->beginLoop();
 
 foreach ($oProjet->aoFormations as $oFormation)
 {
-	$iIdForm       = $oFormation->retId();
-	$sNomFormation = $oFormation->retNom();
+	$iIdForm		= $oFormation->retId();
+	$sNomFormation	= $oFormation->retNom();
 	
 	// {{{ Permissions par rapport à la formation et au statut que l'utilisateur a choisi
 	if ($g_iIdPers > 0)
@@ -122,6 +122,8 @@ foreach ($oProjet->aoFormations as $oFormation)
 		
 		// Cette variable est utilisée par la fonction initModules
 		$bPeutModifTousMod = $oPermisUtilisateur->verifPermission("PERM_MOD_TOUS_COURS");
+		
+		$bPeutInscrirePersonne	= $oProjet->verifPermission("PERM_OUTIL_INSCRIPTION");
 	}
 	// }}}
 	
@@ -151,6 +153,12 @@ foreach ($oProjet->aoFormations as $oFormation)
 	
 	// Remplacement général
 	$oBlocFormation->remplacer("{nom_formation}",$sNomFormation);
+	
+	// Si une personne peut inscrire un etudiant, alors on affiche le numero de la formation.
+	if ($bPeutInscrirePersonne)
+		$oBlocFormation->remplacer("{id_formation}","<br /><span class=\"numero_formation\">Num&eacute;ro de formation : ".$iIdForm."</span>");
+	else
+		$oBlocFormation->remplacer("{id_formation}","");
 	
 	$sTableauTitresFormation .= (isset($sTableauTitresFormation) ? "\n\t, " : NULL)
 	     ."\"".phpString2js(str_replace(" ","&nbsp;",$sNomFormation))."\"";
