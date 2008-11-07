@@ -280,7 +280,7 @@ class CPersonne
 	 * 
 	 * @return	\c message
 	 */
-	function lierPersForm($v_sIdFormation=0,$v_bNouvellePers=FALSE)
+	function lierPersForm($v_sIdFormation=0)
 	{
 		$v_sMessage = NULL;
 		if (!preg_match('/[0-9]/',$v_sIdFormation) && ($v_sIdFormation!=NULL))
@@ -306,14 +306,16 @@ class CPersonne
 				."WHERE IdForm='".$v_sIdFormation."'");
 			$oEnreg = $this->oBdd->retEnregSuiv($requeteNomForm);
 				
-			$v_sMessage .= "<span class=\"importOKPetit\">".$this->retPrenom()." ".$this->retNom()." (".$this->retPseudo().") a &eacute;t&eacute; ajout&eacute &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>";
+			$v_sMessage .= "<span class=\"importOKPetit\">Cet utilisateur a &eacute;t&eacute; affect&eacute &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>"
+						."<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation</small>";
 			return $v_sMessage;
 			}
 			else {
-				$v_sMessage .= "<span class=\"importAvertPetit\">".$this->retPrenom()." ".$this->retNom()." n'a pas le pseudo : ".$this->retPseudo()."!</span>";
+				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$this->retPseudo()."!</span>";
 				return $v_sMessage;
 			}
 		}
+		return $v_sMessage;
 	}
 	
 	/** @name Fonctions de définition des champs pour cette personne */
@@ -365,8 +367,8 @@ class CPersonne
 	{
 		$tmp = explode("-",$this->oEnregBdd->DateNaiss);
 		
-		$sJour  = (empty($tmp[2]) ? "00" : $tmp[2]);
-		$sMois  = (empty($tmp[1]) ? "00" : $tmp[1]);
+		$sJour  = (empty($tmp[2]) ? "01" : $tmp[2]);
+		$sMois  = (empty($tmp[1]) ? "Janvier" : $tmp[1]);
 		$sAnnee = (empty($tmp[0]) ? "0000" : $tmp[0]);
 		
 		return array("jour" => $sJour, "mois" => $sMois, "annee" => $sAnnee);

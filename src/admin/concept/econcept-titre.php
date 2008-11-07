@@ -34,6 +34,7 @@ $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlock_Head->ajouter($sLienCSS);
 $oBlock_Head->afficher();
 
+$oTpl->remplacer("{class_style}","dialog_titre_principal_econcept");
 $oTpl->remplacer("{titre_principal}","eConcept");
 $oTpl->remplacer("{sous_titre}","");
 $oTpl->afficher();

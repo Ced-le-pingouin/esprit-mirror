@@ -35,10 +35,18 @@ top:37px;
 height:20px;
 }
 
-div.dialog_titre_principal_2 {
-left:170px;
+div.dialog_titre_principal_2, div.dialog_titre_principal_econcept {
+position:absolute;
 top:46px;
 height:20px;
+}
+
+div.dialog_titre_principal_2 {
+left:170px;
+}
+
+div.dialog_titre_principal_econcept {
+left:215px;
 }
 
 div.dialog_titre_image_1,div.dialog_titre_image_2 {

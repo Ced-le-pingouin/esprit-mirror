@@ -154,12 +154,6 @@ foreach ($oProjet->aoFormations as $oFormation)
 	// Remplacement général
 	$oBlocFormation->remplacer("{nom_formation}",$sNomFormation);
 	
-	// Si une personne peut inscrire un etudiant, alors on affiche le numero de la formation.
-	if ($bPeutInscrirePersonne)
-		$oBlocFormation->remplacer("{id_formation}","<br /><span class=\"numero_formation\">Num&eacute;ro de formation : ".$iIdForm."</span>");
-	else
-		$oBlocFormation->remplacer("{id_formation}","");
-	
 	$sTableauTitresFormation .= (isset($sTableauTitresFormation) ? "\n\t, " : NULL)
 	     ."\"".phpString2js(str_replace(" ","&nbsp;",$sNomFormation))."\"";
 	

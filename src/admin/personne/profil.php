@@ -39,6 +39,9 @@ $oProjet = new CProjet();
 // Récupérer les variables de l'url
 // ---------------------
 $url_bSauver = (empty($_POST["SAUVER"]) ? FALSE : TRUE);
+$url_iIdForm = (empty($_GET["formId"]) ? 0 : $_GET["formId"]);
+
+if ($url_iIdForm > 0) $oProjet->defFormationCourante($url_iIdForm);
 
 // ---------------------
 // Déclaration des fonctions locales
@@ -49,15 +52,17 @@ function formatTexteErreur ($v_sTexteErreur)
 		."&nbsp;<span"
 		." class=\"erreur\""
 		." style=\"cursor: help;\""
-		." title=\"".emb_htmlentities($v_sTexteErreur)."\""
+		//." title=\"".emb_htmlentities($v_sTexteErreur)."\""
 		." onmouseover=\"afficher_erreur('".rawurlencode("&#8212;&nbsp;".$v_sTexteErreur."&nbsp;&#8212;")."')\""
-		." onmouseout=\"afficher_erreur()\""
+		." onmouseout=\"cacher_erreur()\""
 		."\">Erreur</span>";
 }
 
 // ---------------------
 // Initialisations
 // ---------------------
+$sNomForm	= $oProjet->oFormationCourante->retNom();
+$iIdForm	= $oProjet->oFormationCourante->retId();
 $iIdPers = 0;
 
 if (isset($_GET["nv"]))
@@ -94,7 +99,7 @@ if ($iIdPers >= 0)
 		$sTmp = $oPersonne->retNom();
 		
 		if (empty($sTmp))
-			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas être vide");
+			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas &ecirc;tre vide");
 		
 		// Prénom
 		$oPersonne->defPrenom($_POST["PRENOM_PERS"]);
@@ -102,7 +107,7 @@ if ($iIdPers >= 0)
 		$sTmp = $oPersonne->retPrenom();
 		
 		if (empty($sTmp))
-			$asErreurs["prenom"] = formatTexteErreur("Le prénom ne peut pas être vide");
+			$asErreurs["prenom"] = formatTexteErreur("Le pr&eacute;nom ne peut pas &ecirc;tre vide");
 		
 		// Vérifier que le nom + prénom est unique dans la table
 		if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
@@ -119,7 +124,7 @@ if ($iIdPers >= 0)
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
-					.emb_htmlentities("Inscription impossible: une personne portant ces nom et prénom est déjà inscrite.")
+					.emb_htmlentities("Inscription impossible: une personne portant ces nom et pr&eacute;nom est d&eacute;j&agrave;� inscrite.")
 					."</b>"
 				."</p>"
 				."<body>\n"
@@ -134,11 +139,11 @@ if ($iIdPers >= 0)
 		$sTmp = $oPersonne->retPseudo();
 		
 		if (empty($sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas être vide");
+			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas &ecirc;tre vide");
 		/*else if (ereg("[^a-zA-Z0-9$]",$sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Les caractères spéciaux ne sont pas acceptés (éêèà...)");*/
+			$asErreurs["pseudo"] = formatTexteErreur("Les caract&egrave;res sp&eacute;ciaux ne sont pas accept&eacute;s (&eacute;&ecirc;&egrave;&agrave;�...)");*/
 		else if (!$oPersonne->estPseudoUnique())
-			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a déjà été utilisé");
+			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d&eacute;j&agrave;� &eacute;t&eacute; utilis&eacute;");
 		
 		// Date de naissance (format: AAAA-MM-JJ)
 		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
@@ -161,7 +166,7 @@ if ($iIdPers >= 0)
 		
 		// Email
 		if (!empty($_POST["EMAIL_PERS"]) && !emailValide($_POST["EMAIL_PERS"]))
-			$asErreurs["email"] = formatTexteErreur("Cette adresse électronique n'est pas valable");
+			$asErreurs["email"] = formatTexteErreur("Cette adresse &eacute;lectronique n'est pas valable");
 		
 		$oPersonne->defEmail($_POST["EMAIL_PERS"]);
 		
@@ -178,7 +183,7 @@ if ($iIdPers >= 0)
 		else if (!empty($sMdp) || !empty($sMdpConfirm))
 		{
 			if (ereg("[^a-zA-Z0-9$]",$sMdp))
-				$asErreurs["mdp"] = formatTexteErreur("Les caractères spéciaux ne sont pas acceptés (éêèà...)");
+				$asErreurs["mdp"] = formatTexteErreur("Les caract&egrave;res sp&eacute;ciaux ne sont pas accept&eacute;s (&eacute;&ecirc;&egrave;&agrave;�...)");
 			else if ($sMdp !== $sMdpConfirm)
 				$asErreurs["mdp"] = formatTexteErreur("Mot de passe non identique");
 			else
@@ -190,7 +195,7 @@ if ($iIdPers >= 0)
 			// Il n'y a pas d'erreur on peut sauvegarder
 			$oPersonne->enregistrer();
 			// si l'utilisateur est un nouvel inscrit, on la lie a la formation actuelle
-			if (isset($_POST["ID_FORM"])) $oPersonne->lierPersForm($_POST["ID_FORM"]);
+			if (isset($_POST["ID_FORM"])) {$oPersonne->lierPersForm($_POST["ID_FORM"]);}
 			
 			if ($bModifierCookie)
 			{
@@ -230,7 +235,7 @@ for ($i=0; $i<=31; $i++)
 // Mois
 $sOptionsDateNaissMois = NULL;
 
-$asMois = array("00","Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
+$asMois = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
 
 for ($i=0; $i<count($asMois); $i++)
 {
@@ -253,10 +258,48 @@ $asMois = $sTexteOption = $sValeurOption = NULL;
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
+var i=false;
+function GetId(id)
+{
+return document.getElementById(id);
+}
+
+function move(e) {
+  if(i) {
+    if (navigator.appName!="Microsoft Internet Explorer") {
+    	GetId("id_erreur").style.left=e.pageX - 50 +"px";
+    	GetId("id_erreur").style.top=e.pageY + 10+"px";
+    }
+    else {
+    	if(document.documentElement.clientWidth>0) {
+			GetId("id_erreur").style.left=event.x-50+document.documentElement.scrollLeft+"px";
+			GetId("id_erreur").style.top=10+event.y+document.documentElement.scrollTop+"px";
+    	} else {
+			GetId("id_erreur").style.left=+event.x-50+document.body.scrollLeft+"px";
+			GetId("id_erreur").style.top=10+event.y+document.body.scrollTop+"px";
+		}
+    }
+  }
+}
+
 function afficher_erreur(v_sErreur)
 {
 	// document.getElementById('id_erreur').innerHTML = (v_sErreur != null && v_sErreur.length > 0 ? unescape(v_sErreur) : "&nbsp;");
+	if(i==false) {
+		GetId("id_erreur").style.visibility="visible";
+		GetId("id_erreur").innerHTML = unescape(v_sErreur);
+		i=true;
+	}
 }
+
+function cacher_erreur() {
+	if(i==true) {
+		GetId("id_erreur").style.visibility="hidden";
+		i=false;
+	}
+}
+
+document.onmousemove=move;
 //-->
 </script>
 </head>
@@ -265,72 +308,79 @@ function afficher_erreur(v_sErreur)
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
 
 <tr>
-<td><div class="intitule">Nom&nbsp;:</div></td>
-<td><input type="text" name="NOM_PERS" size="40" value="<?php echo $oPersonne->retNom(TRUE); ?>" class="largeur_fixe"></td>
-<td><span class="champs_obligatoires">*</span><?php echo (isset($asErreurs["nom"]) ? $asErreurs["nom"] : NULL); ?></td>
+<td class="intitule"><div>Formation&nbsp;:</div></td>
+<td class="largeur_fixe"><?php echo $sNomForm." (".$iIdForm.")"; ?></td>
+<td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><div class="intitule">Pr&eacute;nom&nbsp;:</div></td>
-<td><input type="text" name="PRENOM_PERS" size="40" value="<?php echo $oPersonne->retPrenom(TRUE); ?>" class="largeur_fixe"></td>
-<td><span class="champs_obligatoires">*</span><?php echo (isset($asErreurs["prenom"]) ? $asErreurs["prenom"] : NULL); ?></td>
+<td class="intitule"><div>Nom&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="NOM_PERS" size="40" value="<?php echo $oPersonne->retNom(TRUE); ?>"></td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["nom"]) ? $asErreurs["nom"] : NULL); ?></td>
 </tr>
 
 <tr>
-<td><div class="intitule">Pseudo&nbsp;:</div></td>
-<td><input type="text" name="PSEUDO_PERS" size="40" value="<?php echo $oPersonne->retPseudo(); ?>" class="largeur_fixe"></td>
-<td><span class="champs_obligatoires">*</span><?php echo (isset($asErreurs["pseudo"]) ? $asErreurs["pseudo"] : NULL); ?></td>
+<td class="intitule"><div>Pr&eacute;nom&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="PRENOM_PERS" size="40" value="<?php echo $oPersonne->retPrenom(TRUE); ?>"></td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["prenom"]) ? $asErreurs["prenom"] : NULL); ?></td>
 </tr>
 
 <tr>
-<td><div class="intitule">Date de naissance&nbsp;:</div></td>
+<td class="intitule"><div>Pseudo&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="PSEUDO_PERS" size="40" value="<?php echo $oPersonne->retPseudo(); ?>"></td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["pseudo"]) ? $asErreurs["pseudo"] : NULL); ?></td>
+</tr>
+
+<tr>
+<td class="intitule"><div>Date de naissance&nbsp;:</div></td>
 <td><select name="DATE_NAISS_JOUR_PERS"><?php echo $sOptionsDateNaissJour?></select>&nbsp;-&nbsp;<select name="DATE_NAISS_MOIS_PERS"><?php echo $sOptionsDateNaissMois?></select>&nbsp;-&nbsp;<input type="text" name="DATE_NAISS_ANNEE_PERS" value="<?php echo $asDateNaiss['annee']?>" size="5" maxlength="4"></td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><div class="intitule">Mot de passe&nbsp;:</div></td>
-<td><input type="password" name="MDP_PERS" size="40" value="" class="largeur_fixe"></td>
-<td><?php echo ($iIdPers > 0 ? "&nbsp;" : "<span class=\"champs_obligatoires\">*</span>"); echo (isset($asErreurs["mdp"]) ? $asErreurs["mdp"] : NULL); ?></td>
+<td class="intitule"><div>Mot de passe&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="password" name="MDP_PERS" size="40" value=""></td>
+<td class="champs_obligatoires"><?php echo ($iIdPers > 0 ? "&nbsp;" : "*"); echo (isset($asErreurs["mdp"]) ? $asErreurs["mdp"] : NULL); ?></td>
 </tr>
 
 <tr>
-<td><div class="intitule">Confirmation&nbsp;&nbsp;<br>du mot de passe&nbsp;:</div></td>
-<td><input type="password" name="MDP_CONFIRM_PERS" size="40" value="" class="largeur_fixe"></td>
-<td><?php echo ($iIdPers > 0 ? "&nbsp;" : "<span class=\"champs_obligatoires\">*</span>"); ?></td>
+<td class="intitule"><div>Confirmation&nbsp;&nbsp;<br>du mot de passe&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="password" name="MDP_CONFIRM_PERS" size="40" value=""></td>
+<td class="champs_obligatoires"><?php echo ($iIdPers > 0 ? "&nbsp;" : "*"); ?></td>
 </tr>
 
 <tr>
-<td><div class="intitule">Sexe&nbsp;:</div></td>
+<td class="intitule"><div>Sexe&nbsp;:</div></td>
 <td><input type="radio" name="SEXE_PERS" value="M"<?php echo ($oPersonne->retSexe() == "M" ? " checked" : NULL); ?> onfocus="blur()">M&nbsp;<input type="radio" name="SEXE_PERS" value="F"<?php echo ($oPersonne->retSexe() == "F" ? " checked" : NULL); ?> onfocus="blur()">F&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td class="intitule"><div class="intitule" style="padding-top: 10px;">Adresse&nbsp;:</div></td>
-<td><textarea name="ADRESSE_PERS" cols="40" rows="5" class="largeur_fixe"><?php echo $oPersonne->retAdresse(); ?></textarea></td>
+<td class="intitule"><div style="padding-top: 10px;">Adresse&nbsp;:</div></td>
+<td class="largeur_fixe"><textarea name="ADRESSE_PERS" cols="40" rows="5" class="largeur_fixe"><?php echo $oPersonne->retAdresse(); ?></textarea></td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><div class="intitule">Num&eacute;ro&nbsp;de&nbsp;t&eacute;l&eacute;phone&nbsp;:</div></td>
-<td><input type="text" name="TELEPHONE_PERS" size="40" value="<?php echo $oPersonne->retNumTel(); ?>" class="largeur_fixe"></td>
+<td class="intitule"><div>Num&eacute;ro&nbsp;de&nbsp;t&eacute;l&eacute;phone&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="TELEPHONE_PERS" size="40" value="<?php echo $oPersonne->retNumTel(); ?>"></td>
 <td>&nbsp;</td>
 </tr>
 
 <tr>
-<td><div class="intitule">Email&nbsp;:</div></td>
-<td><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>" class="largeur_fixe"></td>
+<td class="intitule"><div>Email&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>"></td>
 <td><?php echo (empty($asErreurs["email"]) ? "&nbsp;" : $asErreurs["email"]); ?></td>
 </tr>
 
 <tr>
-<td><span id="id_erreur">&nbsp;</span></td>
+<td>&nbsp;</td>
 <td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;</td>
 <td class="champs_obligatoires">*</td>
 </tr>
 
 </table>
+<div id="id_erreur" class="info_erreur"></div>
 <input type="hidden" name="ID_PERS" value="<?php echo $iIdPers; ?>">
 <?php if (isset($_GET["formId"])) echo "<input type=\"hidden\" name=\"ID_FORM\" value=\"".$_GET["formId"]."\">\n"?>
 <input type="hidden" name="SAUVER" value="1">

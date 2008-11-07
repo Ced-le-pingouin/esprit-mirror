@@ -29,6 +29,7 @@ $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
 $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlock_Head->effacer();
 
+$oTpl->remplacer("{class_style}","dialog_titre_principal_2");
 $oTpl->remplacer("{titre_principal}",$url_sNomFormation);
 $oTpl->remplacer("{sous_titre}",$url_sSousTitre);
 

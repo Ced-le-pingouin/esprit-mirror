@@ -47,7 +47,7 @@ function insererPersonne ($tab, $enreg=true)
 {
 	global $oProjet;
 	$sIdFormation = trim ($tab[7]);
-	// $tab[1..6] : nom, prénom, pseudo, mdp, sexe, email
+	// $tab[1..7] : nom, prénom, pseudo, mdp, email, sexe, date de naissance
 	$oPersonne = new CPersonne($oProjet->oBdd);
 	
 	if (empty($tab[1]))
@@ -64,7 +64,7 @@ function insererPersonne ($tab, $enreg=true)
 	
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 	{
-		$sMessage = "Le couple (nom,prénom) n'est pas unique. L'étudiant existe déjà !<br/>";
+		$sMessage = $oPersonne->retNom()." ".$oPersonne->retPrenom()." est d&eacute;j&agrave; inscrit sur Esprit!<br>";
 		// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
 		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
 		return $sMessage;
@@ -130,13 +130,13 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 <body class=\"profil\">
 <h1>Inscription groupée</h1>";
 	echo "\n<ol>";
-	$inscrits=0;
+	$inscrits = $affectes = $erreurs =0;
 	$total=0;
 
 // print_r($data->sheets);
 	for ($nrow=6; $nrow<$data->sheets[0]['numRows']; $nrow++) {
-		// colonnes 1 à 6, à partir de la ligne 6
-		// nom, prénom, pseudo, mdp, sexe, email
+		// colonnes 1 à 8, à partir de la ligne 6
+		// nom, prénom, pseudo, mdp, email, sexe, date de naissance, numero de formation
 		if (empty($data->sheets[0]['cells'][$nrow][1]) or empty($data->sheets[0]['cells'][$nrow][2]))
 			continue;
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
@@ -153,30 +153,29 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="")
-				$sMessage = " &agrave; la <em>formation ".$sIdFormation."</em>!</span>";
+				$sMessage = " et ajout&eacute; &agrave; la <em>formation ".$sIdFormation."</em>!</span>";
 			
 			$inscrits++;
+			$affectes++;
 			echo "<br/><li><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a été inscrit".$sMessage.".</li>\n";
 			// ...
 		}
-		elseif ($sIdFormation!="") {
+		elseif (($sIdFormation!="") && !preg_match('/Cette personne existe/', $res)) {
 			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutee a une formation.
-			echo "<br/><li><span class=\"importAvert\">Avertissement</span> (<em>$prenom $nom</em>) : ".$res."</li>\n";
+			echo "<br/><li><span class=\"importAvert\">Avertissement!</span> ".$res."</li>\n";
+			$affectes++;
 			// ...
 		}
 		else {
 			// Un pb avec cette inscription
-			echo "<br/><li><span class=\"importErreur\">ERREUR</span> (<em>$prenom $nom</em>) : ".$res."</li>\n";
+			echo "<br/><li><span class=\"importErreur\">Erreur!</span> ".$res."</li>\n";
+			$erreurs++;
 			// ...
 		}
 	}
 	echo "</ol>\n";
 	if ($total) {
-		if ($inscrits>0) {
-			echo "<p>Sur un total de $total étudiants, l'inscription s'est bien déroulé pour $inscrits personnes.</p>\n";
-		} else {
-			echo "<p>Sur un total de $total étudiants, aucun n'a été inscrit.</p>\n";
-		}
+			echo "<p>Sur un total de $total inscriptions : $inscrits nouvelle(s) inscription(s) sur Esprit; $affectes nouvelle(s) affectation(s) &agrave; des formations; $erreurs erreurs.</p>\n";
 	}
 	echo "<p><a href=\"$_SERVER[PHP_SELF]\">Revenir à la page précédente</a></p>\n</body>\n</html>\n";
 	exit();

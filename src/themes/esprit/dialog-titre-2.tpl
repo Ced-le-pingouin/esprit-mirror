@@ -14,7 +14,7 @@
 </tr>
 </table>
 <div class="dialog_titre_image_2"><img src="theme://dialog-titre-img_2.gif" width="96" height="44" border="0">&nbsp;</div>
-<div class="dialog_titre_principal_2"><span id="titre_principal">{titre_principal}</span>&nbsp;<span id="sous_titre">&nbsp;</span></div>
+<div class="{class_style}"><span id="titre_principal">{titre_principal}</span>&nbsp;<span id="sous_titre">»&nbsp;<strong>{sous_titre}</strong></span></div>
 <div class="dialog_sous_titre">&nbsp;</div>
 </body>
 </html>

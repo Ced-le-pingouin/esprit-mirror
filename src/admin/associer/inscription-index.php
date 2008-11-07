@@ -26,10 +26,8 @@ $url_iIdForm = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
 $sTitrePrincipal = "Inscription";
 
 $oProjet = new CProjet();
-$oFormation = new CFormation($oProjet->oBdd,$url_iIdForm);
-$sNomFormation = $oFormation->retNom();
-$oFormation = NULL;
-$oProjet->terminer();
+if ($url_iIdForm > 0) $oProjet->defFormationCourante($url_iIdForm);
+$sNomFormation = $oProjet->oFormationCourante->retNom();
 
 // ---------------------
 // Template

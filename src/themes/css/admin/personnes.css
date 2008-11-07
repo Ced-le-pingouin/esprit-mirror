@@ -11,13 +11,27 @@ equipes
 ------------------ */
 
 /* -- profil -- */
-body.profil .intitule {
+body.profil .intitule, body.profil .champs_obligatoires {
+width:20%;
+}
+
+body.profil .intitule div {
 text-align:right;
 width:165px;
 }
 
 body.profil .largeur_fixe {
+width:60%;
+}
+
+body.profil .largeur_fixe input, body.profil .largeur_fixe textarea {
 width:100%;
+}
+
+span#id_erreur,body.profil .erreur {
+color:#950623;
+font-size:7pt;
+height:100%;
 }
 
 body.profil .champs_obligatoires {
@@ -26,9 +40,14 @@ font-size:7pt;
 font-weight:bold;
 }
 
-span#id_erreur,body.profil .erreur {
-color:#950623;
-font-size:7pt;
+.info_erreur{
+position: absolute;	
+visibility : hidden;
+border: 1px solid Black;
+padding: 10px;
+font-family: Verdana, Arial;
+font-size: 10px;
+background-color: #AEA58A;
 }
 /* ----- */
 
