@@ -46,8 +46,8 @@ function formatTexteErreur ($v_sTexteErreur)
 function insererPersonne ($tab, $enreg=true)
 {
 	global $oProjet;
-	$sIdFormation = trim ($tab[7]);
-	// $tab[1..7] : nom, prénom, pseudo, mdp, email, sexe, date de naissance
+// $tab[1..8] : nom, prénom, pseudo, mdp, email, sexe, date de naissance, numero de formation
+	$sIdFormation = trim ($tab[8]);
 	$oPersonne = new CPersonne($oProjet->oBdd);
 	
 	if (empty($tab[1]))
@@ -94,6 +94,14 @@ function insererPersonne ($tab, $enreg=true)
 	if (!$tab[6])
 		$sexe = "M";
 	$oPersonne->defSexe($tab[6]);
+
+	// ajout de la date de naissance en colonne 7
+	// Date de naissance (format: AAAA-MM-JJ)
+	if (empty($tab[7]))
+		return "La date de naissance est obligatoire.";
+	$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
+	$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
+	$oPersonne->defDateNaiss($sDateNaissance);
 	
 	if ($enreg) {
 		$oPersonne->enregistrer();
@@ -132,7 +140,7 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 	echo "\n<ol>";
 	$inscrits = $affectes = $erreurs =0;
 	$total=0;
-
+	
 // print_r($data->sheets);
 	for ($nrow=6; $nrow<$data->sheets[0]['numRows']; $nrow++) {
 		// colonnes 1 à 8, à partir de la ligne 6
@@ -141,22 +149,26 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 			continue;
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
-		$sIdFormation = "";
+		$sIdFormation = $sNomFormation = "";
 		$sMessage = "";
-		
-		if ($data->sheets[0]['cells'][$nrow][7] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][7]))
-			$sIdFormation = $data->sheets[0]['cells'][$nrow][7];
+
+		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][9]))
+		{
+			$sIdFormation = $data->sheets[0]['cells'][$nrow][8];
+			$oFormation = new CFormation($oProjet->oBdd,$sIdFormation);
+			$sNomFormation = $oFormation->retNom();
+		}
 
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
 		if ($res===true) {
 			// tout va bien
-			if ($sIdFormation!="")
-				$sMessage = " et ajout&eacute; &agrave; la <em>formation ".$sIdFormation."</em>!</span>";
-			
+			if ($sIdFormation!="" && $sNomFormation!="") {
+				$sMessage = " et ajout&eacute; &agrave; la formation '<em>".$sNomFormation."</em>'!</span>";
+				$affectes++;
+			}
 			$inscrits++;
-			$affectes++;
 			echo "<br/><li><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a été inscrit".$sMessage.".</li>\n";
 			// ...
 		}
@@ -175,7 +187,10 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 	}
 	echo "</ol>\n";
 	if ($total) {
-			echo "<p>Sur un total de $total inscriptions : $inscrits nouvelle(s) inscription(s) sur Esprit; $affectes nouvelle(s) affectation(s) &agrave; des formations; $erreurs erreurs.</p>\n";
+			echo "<p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")
+				." :<br />$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit;"
+				."<br />$affectes ".($affectes>1 ? "nouvelles affectations" : "nouvelle affectation")." &agrave; des formations;"
+				."<br />$erreurs ".($erreurs>1 ? "erreurs" : "erreur").".</p>\n";
 	}
 	echo "<p><a href=\"$_SERVER[PHP_SELF]\">Revenir à la page précédente</a></p>\n</body>\n</html>\n";
 	exit();
@@ -204,11 +219,12 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 Télécharger le modèle de feuille de tableur
 <ul>
   <li>au format <a href="esprit_inscriptions.xls">Excel</a></li>
-  <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
-<?php /* BUGS IN PARSER <li>au format <a href="esprit_inscriptions.ods">ODS</a></li> */ ?>
+<?php /*
+       * <li>au format <a href="esprit_inscriptions.csv">CSV</a></li>
+       * BUGS IN PARSER <li>au format <a href="esprit_inscriptions.ods">ODS</a></li> */ ?>
 </ul>
 <p>Attention à ne pas modifier les <strong>5 premières lignes</strong> de ces modèles.</p>
-<p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p>
+<!-- <p>Le fichier CSV doit utiliser le jeu de caractères <em>UTF-8</em>. Si les accents des permières lignes s'affichent mal, ce n'est pas le cas.</p> -->
 </body>
 </html>
 

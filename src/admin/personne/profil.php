@@ -146,6 +146,9 @@ if ($iIdPers >= 0)
 			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d&eacute;j&agrave;  &eacute;t&eacute; utilis&eacute;");
 		
 		// Date de naissance (format: AAAA-MM-JJ)
+		if (empty($_POST["DATE_NAISS_ANNEE_PERS"]) || $_POST["DATE_NAISS_ANNEE_PERS"]=="0000")
+			$asErreurs["date_naissance"] = formatTexteErreur("La date de naissance doit &ecirc;tre valide et non nulle.");
+			
 		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
 			."-"
 			.$_POST["DATE_NAISS_MOIS_PERS"]
@@ -222,7 +225,7 @@ $asDateNaiss = $oPersonne->retTableauDateNaiss();
 // Jour
 $sOptionsDateNaissJour = NULL;
 
-for ($i=0; $i<=31; $i++)
+for ($i=1; $i<=31; $i++)
 {
 	$sTexteOption = $sValeurOption = ($i < 10 ? "0" : NULL).$i;
 	
@@ -235,9 +238,9 @@ for ($i=0; $i<=31; $i++)
 // Mois
 $sOptionsDateNaissMois = NULL;
 
-$asMois = array("Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
+$asMois = array("","Janvier","F&eacute;vrier","Mars","Avril","Mai","Juin","Juillet","Ao&ucirc;t","Septembre","Octobre","Novembre","D&eacute;cembre");
 
-for ($i=0; $i<count($asMois); $i++)
+for ($i=1; $i<count($asMois); $i++)
 {
 	$sTexteOption  = $asMois[$i];
 	$sValeurOption = ($i < 10 ? "0" : NULL).$i;
@@ -334,7 +337,7 @@ document.onmousemove=move;
 <tr>
 <td class="intitule"><div>Date de naissance&nbsp;:</div></td>
 <td><select name="DATE_NAISS_JOUR_PERS"><?php echo $sOptionsDateNaissJour?></select>&nbsp;-&nbsp;<select name="DATE_NAISS_MOIS_PERS"><?php echo $sOptionsDateNaissMois?></select>&nbsp;-&nbsp;<input type="text" name="DATE_NAISS_ANNEE_PERS" value="<?php echo $asDateNaiss['annee']?>" size="5" maxlength="4"></td>
-<td>&nbsp;</td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["date_naissance"]) ? $asErreurs["date_naissance"] : NULL); ?></td>
 </tr>
 
 <tr>
