@@ -55,11 +55,59 @@ function verif_checkbox_principal(v_oObj)
  */
 function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 { // DOM
-	if (!v_oObj.document.getElementsByTagName)
-		return;
-	
 	var obj = v_oObj.document;
-	var sRech = null;
+
+	if (!obj.getElementsByTagName || !obj.getElementsByName(v_sRech))
+		return;
+
+	if (v_sRech.length == 0)
+		v_oObj.g_asListeRech == null;
+	else if (v_sRech.length == 1)
+	{// on prend la première lettre entree et on crée un tableau
+		v_oObj.g_asListeRech = obj.getElementsByName(v_sRech);
+		sPremiereLettre = v_oObj.g_asListeRech.item(0).firstChild.nodeValue.substring(0,1).toLowerCase();
+	}
+
+	if (v_oObj.g_sRech!=null)
+		v_oObj.g_sRech.style.fontWeight = "normal";
+
+	if (self.document.getElementsByName('nomPersonneRech').item(0)!=null)
+		self.document.getElementsByName('nomPersonneRech').item(0).style.color = "";
+
+	if (v_sRech.length > 0)
+	{
+		v_sRech = v_sRech.toUpperCase();
+		for (var i=0; i<v_oObj.g_asListeRech.length; i++)
+		{
+			v_oObj.g_sRech = v_oObj.g_asListeRech.item(i);
+			sRech = v_oObj.g_asListeRech.item(i).firstChild.nodeValue;
+
+			if (sRech != null && sRech.indexOf(v_sRech) == 0)
+			{// la recherche est trouvée dans la liste
+				v_oObj.g_asListeRech.item(i).style.fontWeight = "bold";
+				
+				if (v_sRech.length < 2)
+					v_oObj.location.hash = sPremiereLettre;
+				else
+				{
+					g_iPosDernierePosition = v_oObj.location.hash = "pos" + sPremiereLettre + i;
+				}
+
+				//g_iPosDernierePosition = i;
+				g_iPosDernierelettre = v_sRech.length-1;
+				//alert('\nrecherche : '+v_sRech + '\nliste : ' + sRech+'\ni : '+i);
+				return;
+			}
+		}
+		v_oObj.location.hash = g_iPosDernierePosition;
+		self.document.getElementsByName('nomPersonneRech').item(0).style.color = "red";
+		//alert('derniere position : '+ v_oObj.location.hash);
+	}
+	else v_oObj.location.hash = "top";
+	
+	g_iPosDernierePosition = g_iPosDernierelettre = 0;
+
+/*	var sRech = null;
 	
 	if (v_oObj.g_sRech != null)
 		v_oObj.g_sRech.style.fontWeight = "normal";
@@ -67,25 +115,23 @@ function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 	if (v_sRech.length > 0)
 	{
 		v_sRech = v_sRech.toUpperCase();
-		
+						
 		if (v_oObj.g_asListeRech == null)
 			v_oObj.g_asListeRech = obj.getElementsByName(v_sElementsByName);
-		
+	
 		for (var i=v_oObj.g_iPosDerniereRech; i<v_oObj.g_asListeRech.length; i++)
 		{
-			if (i < 0 ||
-				!(v_oObj.g_sRech = obj.getElementsByName(v_sElementsByName).item(i)))
+			if (i < 0 || !(v_oObj.g_sRech = obj.getElementsByName(v_sElementsByName).item(i)))
 				continue;
 			
 			sRech = v_oObj.g_sRech.firstChild.nodeValue;
-			
-			if (v_oObj.g_iPosDerniereRech == -1 &&
-				sRech.indexOf(v_sRech.substring(0,1)) == 0)
+		
+			if (v_oObj.g_iPosDerniereRech == -1 && sRech.indexOf(v_sRech.substring(0,1)) == 0)
 				v_oObj.g_iPosDerniereRech = i;
-			else if (v_oObj.g_iPosDerniereRech > -1 &&
-				sRech.substring(0,1) > v_sRech.substring(0,1))
-				break;
-			
+			else if (v_oObj.g_iPosDerniereRech > -1 && sRech.substring(0,1) > v_sRech.substring(0,1))
+				{
+					break;
+				}
 			if (sRech != null && sRech.indexOf(v_sRech) == 0)
 			{
 				v_oObj.g_sRech.style.fontWeight = "bold";
@@ -98,6 +144,7 @@ function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 	v_oObj.location.hash = "top";
 	v_oObj.g_iPosDerniereRech = -1;
 	v_oObj.g_sRech = null;
+*/
 }
 
 function view_dom(v_oObj)

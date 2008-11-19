@@ -136,19 +136,35 @@ function init()
 <?php
 $sClassTR = (" style=\"border: #EFEFEF none 1px; border-bottom-style: solid;\"");
 
+$lettre = 96;
+$j=0;
 for ($i=0; $i<$iNbrPers; $i++)
+{
+	$sPremiereLettre = mb_strtolower(substr($oProjet->aoPersonnes[$i]->retNom(),0,1),"UTF-8");
+	if ($lettre < ord($sPremiereLettre))
+	{
+		$j=0;
+		$lettre = $sPremiereLettre;
+		$lien = "<a id=\"{$lettre}\"></a>";
+	}
+	else $j++;
+
+	$sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
+
 	echo "<tr>"
-		."<td{$sClassTR}>"
+		."<td{$sClassTR}>".$lien
 		."<input type=\"checkbox\" name=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
 		."<td width=\"98%\"{$sClassTR}>"
-		."<a name=\"pos".($i+1)."\"></a>"
+		//."<a name=\"pos".($i+1)."\"></a>"
+		."<a name=\"".$sPosition."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
-		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)."</span>"
+		."<span name=\"".$lettre."\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)."</span>"
 		."</a>"
 		."</td>\n"
 		."<td{$sClassTR}>&nbsp;"._("Infos")."&nbsp;</td>"
 		."</tr>\n";
+}
 
 if ($i < 1)
 	echo "<tr><td style=\"text-align: center;\">$sErrPers</td></tr>\n";

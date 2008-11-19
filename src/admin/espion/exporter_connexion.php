@@ -60,7 +60,7 @@ function envoyer() { return document.forms[0].submit(); }
 </script>
 </head>
 <body onload="envoyer()">
-<form action="<?php echo dir_code_lib('download.php',FALSE,FALSE)?>" method="get" target="_self">
+<form action="<?php echo dir_lib('download.php',FALSE,FALSE)?>" method="get" target="_self">
 <input type="hidden" name="f" value="<?php echo $sFichierExporter?>">
 </form>
 </body>

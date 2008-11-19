@@ -171,12 +171,15 @@ function rechargerListeCours()
 <table cellspacing="1" cellpadding="1" border="0">
 <tr>
 <td><table cellspacing="0" cellpadding="0" border="0"><tr>
+<td style="width:8%">
+<a href="javascript: top.frames['Principal'].frames['FRM_PERSONNE'].location.hash = 'top'; void(0);"target="Principal" onfocus="blur()">Haut</a>
+</td>
 <?php
 // Liste alphabétique
 $sListeAlphabet = NULL;
 
 for ($a = 97; $a <= 122; $a++)
-	echo "<td style=\"width:4%\"><a"
+	echo "<td style=\"width:3%;text-align:center\"><a"
 		." href=\"javascript: top.frames['Principal'].frames['FRM_PERSONNE'].location.hash = '#".chr($a)."'; void(0);\""
 		." target=\"Principal\""
 		." onfocus=\"blur()\""

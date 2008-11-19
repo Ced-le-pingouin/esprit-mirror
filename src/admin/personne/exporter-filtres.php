@@ -37,7 +37,7 @@ require_once(dir_database("typestatutpers.tbl.php"));
 $oProjet = new CProjet();
 $oProjet->verifPeutUtiliserOutils("PERM_OUTIL_EXPORT_TABLE_PERSONNE");
 
-$oProjet->initFormationsUtilisateur();
+$oProjet->initFormationsUtilisateur(FALSE, TRUE, FALSE, FALSE);
 
 $oTpl = new Template("exporter-filtres.tpl");
 

@@ -225,23 +225,30 @@ td#id_table_entete_2 { width: 99%; text-align: left; }
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
 <tbody>
 <?php
-$lettre = 96;
+$lettre = "";
+$j=0;
 for ($i=0; $i<$iNbrPers; $i++)
 {
 	$sPremiereLettre = mb_strtolower(substr($oProjet->aoPersonnes[$i]->retNom(),0,1),"UTF-8");
-	if ($lettre < ord($sPremiereLettre))
+	if ($lettre < $sPremiereLettre)
 	{
+		$j=0;
 		$lettre = $sPremiereLettre;
-		$lien = "<a name=\"{$lettre}\"></a>";
+		$lien = "<a id=\"{$lettre}\"></a>";
 	}
+	else $j++;
+	
+$sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
+
 	echo "<tr>"
 		."<td>".$lien
 		."<input type=\"checkbox\" name=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
 		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt\">"
-		."<a name=\"pos".($i+1)."\"></a>"
+		//."<a name=\"pos".($i+1)."\"></a>"
+		."<a name=\"".$sPosition."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
-		."<span name=\"nom[]\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
+		."<span name=\"".$lettre."\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
 		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===TRUE)?
 		  '&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>':'')
 		."</span>"
