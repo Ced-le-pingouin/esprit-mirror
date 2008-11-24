@@ -26,8 +26,10 @@
 */
 
 require_once("globals.inc.php");
+include_once(dir_code_lib("mail.class.php"));
 
-$oProjet = new CProjet();
+$oProjet	= new CProjet();
+$oPersonne	= new CPersonne($oProjet->oBdd);
 
 // ---------------------
 // D√©claration des fonctions locales
@@ -46,10 +48,11 @@ function formatTexteErreur ($v_sTexteErreur)
 function insererPersonne ($tab, $enreg=true)
 {
 	global $oProjet;
+	global $oPersonne;
+	$sMessage = null;
 // $tab[1..8] : nom, pr√©nom, pseudo, mdp, email, sexe, date de naissance, numero de formation
 	$sIdFormation = trim ($tab[8]);
-	$oPersonne = new CPersonne($oProjet->oBdd);
-	
+
 	if (empty($tab[1]))
 		return false;
 	$oPersonne->defNom(addslashes(mb_strtoupper($tab[1], "utf-8")));
@@ -59,53 +62,59 @@ function insererPersonne ($tab, $enreg=true)
 	$oPersonne->defPrenom($tab[2]);
 
 	if (empty($tab[3]))
-		return "Pas de pseudo.";
+		return "<span class=\"importErreur\">Erreur!</span> Pas de pseudo.";
 	$oPersonne->defPseudo($tab[3]);
-	
+
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 	{
-		$sMessage = $oPersonne->retNom()." ".$oPersonne->retPrenom()." est d&eacute;j&agrave; inscrit sur Esprit!<br>";
+		$sMessage = $oPersonne->retPrenom()." ".$oPersonne->retNom()." est d&eacute;j&agrave; inscrit sur Esprit!<br />";
 		// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
 		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
-		return $sMessage;
 	}
 
-	if (!$oPersonne->estPseudoUnique()) {
-		$a = '';
-		$hResult = $oProjet->oBdd->executerRequete(
-			"SELECT CONCAT(Nom,' ',Prenom) AS NomC FROM Personne "
-			. "WHERE Pseudo='". $tab[3] ."'"
-			);
-		if ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
-			$a = ' √† "' . $oEnreg->NomC .'"';
-		return "Le pseudo '".$tab[3]."' est d√©j√† attribu√©$a.";
+	if ($sMessage==null)
+	{
+		if (!$oPersonne->estPseudoUnique() && $sMessage==null) {
+			$a = '';
+			$hResult = $oProjet->oBdd->executerRequete(
+				"SELECT CONCAT(Nom,' ',Prenom) AS NomC FROM Personne "
+				. "WHERE Pseudo='". $tab[3] ."'"
+				);
+			if ($oEnreg = $oProjet->oBdd->retEnregSuiv($hResult))
+				$a = ' √† "' . $oEnreg->NomC .'"';
+			return "<span class=\"importErreur\">Erreur!</span> Le pseudo '".$tab[3]."' est d√©j√† attribu√©$a.";
+		}
+	
+		$sMdp = trim($tab[4]);
+		if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
+			return "<span class=\"importErreur\">Erreur!</span> Le mot de passe <em>$sMdp</em> doit √™tre alpha-num√©rique.";
+		else
+			$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
+
+		if (empty($tab[5]))
+			return "<span class=\"importErreur\">Erreur!</span> Pas d'adresse e-mail alors que ce champ est obligatoire.";
+		$oPersonne->defEmail($tab[5]);
+
+		if (!$tab[6])
+			$sexe = "M";
+		$oPersonne->defSexe($tab[6]);
+
+		// ajout de la date de naissance en colonne 7
+		// Date de naissance (format: AAAA-MM-JJ)
+		if (empty($tab[7]))
+			return "<span class=\"importErreur\">Erreur!</span> La date de naissance est obligatoire.";
+		$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
+		$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
+		$oPersonne->defDateNaiss($sDateNaissance);
 	}
-	
-	$sMdp = trim($tab[4]);
-	if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
-		return "Le mot de passe <em>$sMdp</em> doit √™tre alpha-num√©rique.";
-	else
-		$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
 
-	if (empty($tab[5]))
-		return "Pas d'adresse e-mail alors que ce champ est obligatoire.";
-	$oPersonne->defEmail($tab[5]);
-
-	if (!$tab[6])
-		$sexe = "M";
-	$oPersonne->defSexe($tab[6]);
-
-	// ajout de la date de naissance en colonne 7
-	// Date de naissance (format: AAAA-MM-JJ)
-	if (empty($tab[7]))
-		return "La date de naissance est obligatoire.";
-	$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
-	$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
-	$oPersonne->defDateNaiss($sDateNaissance);
-	
-	if ($enreg) {
+	if ($enreg && $sMessage==null) {
 		$oPersonne->enregistrer();
 		$oPersonne->lierPersForm($sIdFormation);
+	}
+	elseif ($sMessage!=null)
+	{
+		return $sMessage;
 	}
 	return true;
 }
@@ -133,13 +142,34 @@ if (!empty($_POST['importer'])) {
 <script type=\"text/javascript\" language=\"javascript\" src=\"". dir_javascript("window.js") ."\"></script>
 <script type=\"text/javascript\" language=\"javascript\">
 top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
+top.opener.top.frames['Principal'].frames['FRM_INSCRIT'].location.reload(true);
+function Cacher(element1, element2)
+{
+	if (self.document.getElementById(element1))
+	{
+		self.document.getElementById(element1).style.display = 'none';
+	}
+		
+	if (self.document.getElementById(element2))
+	{
+		self.document.getElementById(element2).style.display = 'none';
+	}
+}
+function Restaurer(element)
+{
+	if (self.document.getElementById(element))
+	{
+		self.document.getElementById(element).style.display = 'list-item';
+	}
+}
 </script>
 </head>
 <body class=\"profil\">
-<h1>Inscription group√©e</h1>";
-	echo "\n<ol>";
+<h1>Inscription group&eacute;e</h1>";
+	$sAfficherLog = "\n<ol>";
 	$inscrits = $affectes = $erreurs =0;
 	$total=0;
+	$sSujetCourriel = null;
 	
 // print_r($data->sheets);
 	for ($nrow=6; $nrow<$data->sheets[0]['numRows']; $nrow++) {
@@ -151,47 +181,69 @@ top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
 		$sIdFormation = $sNomFormation = "";
 		$sMessage = "";
-
-		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][9]))
+		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
 		{
 			$sIdFormation = $data->sheets[0]['cells'][$nrow][8];
 			$oFormation = new CFormation($oProjet->oBdd,$sIdFormation);
 			$sNomFormation = $oFormation->retNom();
+			$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
 		}
 
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
+		$sMessageCourriel = "Ce mail est envoyÈ par la plateforme Esprit pour vous signaler que vous venez d'Ítre inscrit ‡ la formation : \r\n"
+		.$sNomFormation."\r\n"
+		."avec les informations suivantes :\r\n"
+		."Pseudo : {$oPersonne->retPseudo()}\r\n"
+		."Mot de passe : {$sMdp}"
+		."\r\n\r\n"
+		."Merci de nous signaler les Èventuelles erreurs en rÈpondant ‡ ce mail.";
+
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
 				$sMessage = " et ajout&eacute; &agrave; la formation '<em>".$sNomFormation."</em>'!</span>";
+
+				// on envoie un mail aux personnes ajoutÈes ‡ la formation				
+				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom);
+				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+				$oMail->envoyer();
 				$affectes++;
 			}
 			$inscrits++;
-			echo "<br/><li><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a √©t√© inscrit".$sMessage.".</li>\n";
+			$sAfficherLog .= "<li id=\"importOK\"><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a √©t√© inscrit".$sMessage.".</li><br />";
 			// ...
 		}
-		elseif (($sIdFormation!="") && !preg_match('/Cette personne existe/', $res)) {
-			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutee a une formation.
-			echo "<br/><li><span class=\"importAvert\">Avertissement!</span> ".$res."</li>\n";
+		elseif (($sIdFormation!="") && !preg_match('/importErreur/',$res)) {
+			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutÈe ‡ une formation.
+			$sAfficherLog .= "<li id=\"importAvert\"><span class=\"importAvert\">Avertissement!</span> ".$res."</li><br />";
+
+			// on envoie un mail aux personnes ajoutÈes ‡ la formation
+			$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$oPersonne->retNomComplet());
+			$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+			$oMail->envoyer();
+
 			$affectes++;
 			// ...
 		}
 		else {
 			// Un pb avec cette inscription
-			echo "<br/><li><span class=\"importErreur\">Erreur!</span> ".$res."</li>\n";
+			$sAfficherLog .= "<li id=\"importErreur\">".$res."</li><br />";
 			$erreurs++;
 			// ...
 		}
 	}
-	echo "</ol>\n";
+	$sAfficherLog .= "</ol>\n";
 	if ($total) {
-			echo "<p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")
-				." :<br />$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit;"
-				."<br />$affectes ".($affectes>1 ? "nouvelles affectations" : "nouvelle affectation")." &agrave; des formations;"
-				."<br />$erreurs ".($erreurs>1 ? "erreurs" : "erreur").".</p>\n";
+			echo "<p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
+				."<p><a href=\"javascript: Restaurer('importOK');Restaurer('importAvert');Restaurer('importErreur');\">Tout afficher</a></p>"
+				."<p  class=\"typeA\">"
+				.($inscrits>0?"<a href=\"javascript: Cacher('importAvert', 'importErreur'); Restaurer('importOK');\">":null)."$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit".($inscrits>0?"</a>":null).","
+				."<br />".($affectes>0?"<a href=\"javascript: Cacher('importOK', 'importErreur'); Restaurer('importAvert');\">":null)."$affectes ".($affectes>1 ? "nouvelles affectations" : "nouvelle affectation")." &agrave; des formations".($affectes>0?"</a>":null).","
+				."<br />".($erreurs>0?"<a href=\"javascript: Cacher('importOK', 'importAvert'); Restaurer('importErreur');\">":null)."$erreurs ".($erreurs>1 ? "erreurs" : "erreur").($erreurs>0?"</a>":null).".</p>\n";
 	}
+	echo $sAfficherLog;
 	echo "<p><a href=\"$_SERVER[PHP_SELF]\">Revenir √† la page pr√©c√©dente</a></p>\n</body>\n</html>\n";
 	exit();
 }

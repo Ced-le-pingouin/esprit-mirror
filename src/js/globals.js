@@ -65,7 +65,8 @@ function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 	else if (v_sRech.length == 1)
 	{// on prend la première lettre entree et on crée un tableau
 		v_oObj.g_asListeRech = obj.getElementsByName(v_sRech);
-		sPremiereLettre = v_oObj.g_asListeRech.item(0).firstChild.nodeValue.substring(0,1).toLowerCase();
+		if (v_oObj.g_asListeRech.item(0))
+			sPremiereLettre = v_oObj.g_asListeRech.item(0).firstChild.nodeValue.substring(0,1).toLowerCase();
 	}
 
 	if (v_oObj.g_sRech!=null)

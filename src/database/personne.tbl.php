@@ -194,7 +194,7 @@ class CPersonne
 		else
 			return "<span class=\"sans_email\">{$sNom}</span>";
 	}
-	
+
 	/**
 	 * Vérifie que le couple nom+prénom de la personne n'existe pas encore dans la DB
 	 * 
@@ -307,7 +307,7 @@ class CPersonne
 			$oEnreg = $this->oBdd->retEnregSuiv($requeteNomForm);
 				
 			$v_sMessage .= "<span class=\"importOKPetit\">Cet utilisateur a &eacute;t&eacute; affect&eacute &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>"
-						."<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation</small>";
+						."<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";
 			return $v_sMessage;
 			}
 			else {

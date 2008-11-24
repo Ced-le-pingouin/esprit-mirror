@@ -32,6 +32,7 @@
 */
 
 require_once("globals.inc.php");
+include_once(dir_code_lib("mail.class.php"));
 
 $oProjet = new CProjet();
 
@@ -168,10 +169,14 @@ if ($iIdPers >= 0)
 		$oPersonne->defNumTel($_POST["TELEPHONE_PERS"]);
 		
 		// Email
-		if (!empty($_POST["EMAIL_PERS"]) && !emailValide($_POST["EMAIL_PERS"]))
+		$sEmail = $_POST["EMAIL_PERS"];
+		if ($iIdPers < 1 && empty($sEmail))
+			// Un nouvel utilisateur doit absolument entrer un email
+			$asErreurs["email"] = formatTexteErreur("l'adresse &eacute;lectronique ne doit pas être vide");
+		elseif (!empty($sEmail) && !emailValide($sEmail))
 			$asErreurs["email"] = formatTexteErreur("Cette adresse &eacute;lectronique n'est pas valable");
 		
-		$oPersonne->defEmail($_POST["EMAIL_PERS"]);
+		$oPersonne->defEmail($sEmail);
 		
 		// Mot de passe
 		$sMdp = trim($_POST["MDP_PERS"]);
@@ -197,8 +202,24 @@ if ($iIdPers >= 0)
 		{
 			// Il n'y a pas d'erreur on peut sauvegarder
 			$oPersonne->enregistrer();
-			// si l'utilisateur est un nouvel inscrit, on la lie a la formation actuelle
-			if (isset($_POST["ID_FORM"])) {$oPersonne->lierPersForm($_POST["ID_FORM"]);}
+			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
+			if (isset($_POST["ID_FORM"]))
+			{
+				$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
+				$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n"
+				.$sNomForm."\r\n"
+				."avec les informations suivantes :\r\n"
+				."Pseudo : {$oPersonne->retPseudo()}\r\n"
+				."Mot de passe : {$sMdp}"
+				."\r\n\r\n"
+				."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
+
+				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$oPersonne->retNomComplet());
+				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+				$oMail->envoyer();
+				
+				$oPersonne->lierPersForm($_POST["ID_FORM"]);
+			}
 			
 			if ($bModifierCookie)
 			{
@@ -341,6 +362,12 @@ document.onmousemove=move;
 </tr>
 
 <tr>
+<td class="intitule"><div>Email&nbsp;:</div></td>
+<td class="largeur_fixe"><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>"></td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["email"]) ? $asErreurs["email"] : NULL); ?></td>
+</tr>
+
+<tr>
 <td class="intitule"><div>Mot de passe&nbsp;:</div></td>
 <td class="largeur_fixe"><input type="password" name="MDP_PERS" size="40" value=""></td>
 <td class="champs_obligatoires"><?php echo ($iIdPers > 0 ? "&nbsp;" : "*"); echo (isset($asErreurs["mdp"]) ? $asErreurs["mdp"] : NULL); ?></td>
@@ -371,12 +398,6 @@ document.onmousemove=move;
 </tr>
 
 <tr>
-<td class="intitule"><div>Email&nbsp;:</div></td>
-<td class="largeur_fixe"><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>"></td>
-<td><?php echo (empty($asErreurs["email"]) ? "&nbsp;" : $asErreurs["email"]); ?></td>
-</tr>
-
-<tr>
 <td>&nbsp;</td>
 <td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;</td>
 <td class="champs_obligatoires">*</td>
@@ -385,7 +406,7 @@ document.onmousemove=move;
 </table>
 <div id="id_erreur" class="info_erreur"></div>
 <input type="hidden" name="ID_PERS" value="<?php echo $iIdPers; ?>">
-<?php if (isset($_GET["formId"])) echo "<input type=\"hidden\" name=\"ID_FORM\" value=\"".$_GET["formId"]."\">\n"?>
+<?php echo "<input type=\"hidden\" name=\"ID_FORM\" value=\"".$iIdForm."\">\n"?>
 <input type="hidden" name="SAUVER" value="1">
 </form>
 </body>
