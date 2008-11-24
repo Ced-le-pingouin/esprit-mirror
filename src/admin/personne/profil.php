@@ -202,6 +202,8 @@ if ($iIdPers >= 0)
 		{
 			// Il n'y a pas d'erreur on peut sauvegarder
 			$oPersonne->enregistrer();
+			$sPseudo = $oPersonne->retPseudo();
+			$sNomComplet = $oPersonne->retNomComplet();
 			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
 			if (isset($_POST["ID_FORM"]))
 			{
@@ -209,12 +211,12 @@ if ($iIdPers >= 0)
 				$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n"
 				.$sNomForm."\r\n"
 				."avec les informations suivantes :\r\n"
-				."Pseudo : {$oPersonne->retPseudo()}\r\n"
-				."Mot de passe : {$sMdp}"
+				."Pseudo : ".$sPseudo."\r\n"
+				."Mot de passe : ".$sMdp
 				."\r\n\r\n"
 				."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
 
-				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$oPersonne->retNomComplet());
+				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$sNomComplet);
 				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 				$oMail->envoyer();
 				

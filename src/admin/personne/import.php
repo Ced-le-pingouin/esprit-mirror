@@ -179,6 +179,7 @@ function Restaurer(element)
 			continue;
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
+		$sPseudo = $oPersonne->retPseudo();
 		$sIdFormation = $sNomFormation = "";
 		$sMessage = "";
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
@@ -195,8 +196,8 @@ function Restaurer(element)
 		$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n"
 		.$sNomFormation."\r\n"
 		."avec les informations suivantes :\r\n"
-		."Pseudo : {$oPersonne->retPseudo()}\r\n"
-		."Mot de passe : {$sMdp}"
+		."Pseudo : ".$sPseudo."\r\n"
+		."Mot de passe : ".$sMdp
 		."\r\n\r\n"
 		."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
 
