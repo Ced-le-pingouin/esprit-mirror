@@ -23,6 +23,7 @@ require_once("globals.inc.php");
 
 $url_sNomFormation = (isset($_GET["TP"]) ? $_GET["TP"] : "&nbsp;");
 $url_sSousTitre = (isset($_GET["ST"]) ? $_GET["ST"] : "");
+$url_iNumeroFormation = (isset($_GET["idform"]) ? $_GET["idform"] : "");
 
 $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
 
@@ -31,7 +32,7 @@ $oBlock_Head->effacer();
 
 $oTpl->remplacer("{class_style}","dialog_titre_principal_2");
 $oTpl->remplacer("{titre_principal}",$url_sNomFormation);
-$oTpl->remplacer("{sous_titre}",$url_sSousTitre);
+$oTpl->remplacer("{sous_titre}",$url_sSousTitre." <em>(n&deg; formation : ".$url_iNumeroFormation.")</em>");
 
 $oTpl->afficher();
 

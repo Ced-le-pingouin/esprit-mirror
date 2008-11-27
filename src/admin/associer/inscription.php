@@ -180,7 +180,7 @@ $sListeAlphabet = NULL;
 
 for ($a = 97; $a <= 122; $a++)
 	echo "<td style=\"width:3%;text-align:center\"><a"
-		." href=\"javascript: top.frames['Principal'].frames['FRM_PERSONNE'].location.hash = '#".chr($a)."'; void(0);\""
+		." href=\"javascript: top.frames['Principal'].frames['FRM_PERSONNE'].location.hash = '#lettre_".chr($a)."'; void(0);\""
 		." target=\"Principal\""
 		." onfocus=\"blur()\""
 		.">".chr($a)."</a></td>";
@@ -199,7 +199,7 @@ for ($a = 97; $a <= 122; $a++)
 if ($bPeutInscrire)
 {
 echo "
-<span class=\"intitule\">Rechercher&nbsp;:&nbsp;<input type=\"text\" name=\"nomPersonneRech\" onkeyup=\"rechPersonne(value,self.frames['FRM_PERSONNE'],'nom[]')\" value=\"\" size=\"15\">&nbsp;</span>
+<span class=\"intitule\">Rechercher&nbsp;:&nbsp;<input type=\"text\" name=\"nomPersonneRech\" onkeyup=\"rechPersonne(value,self.frames['FRM_PERSONNE'])\" value=\"\" size=\"15\">&nbsp;</span>
 <span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."&formId=".$url_iIdForm."')\" onfocus=\"blur()\">Ajouter</a>&nbsp;|&nbsp;</span>
 <span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer</a></span>
 <span id=\"enlever_personne\">&nbsp;|&nbsp;<a href=\"javascript: void(0);\" onclick=\"enlever_personne(".$url_iIdForm.")\" onfocus=\"blur()\">Enlever</a></span>";

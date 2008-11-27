@@ -283,18 +283,16 @@ class CPersonne
 	function lierPersForm($v_sIdFormation=0)
 	{
 		$v_sMessage = NULL;
-		if (!preg_match('/[0-9]/',$v_sIdFormation) && ($v_sIdFormation!=NULL))
-		{
-			return $v_sMessage = "Le num&eacute;ro de formation <em>$sIdFormation</em> doit &ecirc;tre num&eacute;rique.";
-		}
-		else if ($v_sIdFormation!=NULL)
+
+		if ($v_sIdFormation!=NULL)
 		{
 			$requeteIdPers = $this->oBdd->executerRequete(
 				"SELECT IdPers AS IdPersonne FROM Personne "
 				."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."' AND Pseudo='".$this->retPseudo()."'");
 			$oEnreg = $this->oBdd->retEnregSuiv($requeteIdPers);
 			
-			if ($oEnreg->IdPersonne) {
+			if ($oEnreg->IdPersonne)
+			{
 			$hResult = $this->oBdd->executerRequete(
 				"REPLACE INTO Formation_Inscrit SET"
 				." IdForm='".$v_sIdFormation."',"
@@ -310,7 +308,8 @@ class CPersonne
 						."<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";
 			return $v_sMessage;
 			}
-			else {
+			else
+			{
 				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$this->retPseudo()."!</span>";
 				return $v_sMessage;
 			}

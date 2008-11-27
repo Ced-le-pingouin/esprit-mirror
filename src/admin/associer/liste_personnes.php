@@ -234,7 +234,7 @@ for ($i=0; $i<$iNbrPers; $i++)
 	{
 		$j=0;
 		$lettre = $sPremiereLettre;
-		$lien = "<a id=\"{$lettre}\"></a>";
+		$lien = "<a id=\"lettre_{$lettre}\"></a>";
 	}
 	else $j++;
 	
@@ -242,13 +242,13 @@ $sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
 
 	echo "<tr>"
 		."<td>".$lien
-		."<input type=\"checkbox\" name=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
+		."<input type=\"checkbox\" name=\"IDPERS[$i]\" id=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
 		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt\">"
 		//."<a name=\"pos".($i+1)."\"></a>"
-		."<a name=\"".$sPosition."\"></a>"
+		."<a name=\"".$sPosition."\" id=\"".$sPosition."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
-		."<span name=\"".$lettre."\" id=\"nom[]\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
+		."<span name=\"".$lettre."\" id=\"".$lettre."\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
 		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===TRUE)?
 		  '&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>':'')
 		."</span>"

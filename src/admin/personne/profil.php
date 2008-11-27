@@ -39,8 +39,15 @@ $oProjet = new CProjet();
 // ---------------------
 // RÃ©cupÃ©rer les variables de l'url
 // ---------------------
-$url_bSauver = (empty($_POST["SAUVER"]) ? FALSE : TRUE);
-$url_iIdForm = (empty($_GET["formId"]) ? 0 : $_GET["formId"]);
+$url_bSauver			= (empty($_POST["SAUVER"]) ? FALSE : TRUE);
+$url_iIdForm			= (empty($_GET["formId"]) ? (empty($_POST["ID_FORM"]) ? 0 : $_POST["ID_FORM"]) : $_GET["formId"]);
+$url_iNouvellePersonne	= (empty($_GET["nv"]) ? (empty($_POST["nv"]) ? 0 : $_POST["nv"]) : $_GET["nv"]);
+$url_bCopieCourrier		= (empty($_POST["envoiMail"]) ? false : $_POST["envoiMail"]);
+
+// si on valide le formulaire avec des erreurs présentes, on le rétablit avec les mêmes paramètres d'url.
+$sFormAction =	$_SERVER['PHP_SELF']
+				."?nv=$url_iNouvellePersonne"
+				.(($url_iIdForm > 0) ? "&formId=$url_iIdForm" : null);
 
 if ($url_iIdForm > 0) $oProjet->defFormationCourante($url_iIdForm);
 
@@ -193,7 +200,7 @@ if ($iIdPers >= 0)
 			if (ereg("[^a-zA-Z0-9$]",$sMdp))
 				$asErreurs["mdp"] = formatTexteErreur("Les caract&egrave;res sp&eacute;ciaux ne sont pas accept&eacute;s (&eacute;&ecirc;&egrave;&agrave; ...)");
 			else if ($sMdp !== $sMdpConfirm)
-				$asErreurs["mdp"] = formatTexteErreur("Mot de passe non identique");
+				$asErreurs["mdpConfirm"] = formatTexteErreur("Mot de passe non identique");
 			else
 				$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
 		}
@@ -207,20 +214,25 @@ if ($iIdPers >= 0)
 			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
 			if (isset($_POST["ID_FORM"]))
 			{
-				$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
-				$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n"
-				.$sNomForm."\r\n"
-				."avec les informations suivantes :\r\n"
-				."Pseudo : ".$sPseudo."\r\n"
-				."Mot de passe : ".$sMdp
-				."\r\n\r\n"
-				."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
-
-				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$sNomComplet);
-				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
-				$oMail->envoyer();
-				
 				$oPersonne->lierPersForm($_POST["ID_FORM"]);
+				
+				// on envoie un mail si la case est cochée.
+				if ($url_bCopieCourrier)
+				{
+					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
+					$sMessageCourriel = "Ce mail est envoy&eacute; par la plateforme Esprit pour vous signaler que vous venez d'&circ;tre inscrit &agrave; la formation : \r\n'"
+					.$sNomForm."'\r\n\r\n"
+					."Vous pouvez vous connecter sur la plateforme Esprit avec les identifiants suivants :\r\n"
+					."Pseudo : ".$sPseudo."\r\n"
+					."Mot de passe : ".$sMdp
+					."\r\n\r\n"
+					."Merci de nous signaler les &eacute;ventuelles erreurs en r&eacute;pondant &agrave; ce mail.";
+
+					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$sNomComplet);
+					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retNom());
+					$oMail->envoyer();
+				}
 			}
 			
 			if ($bModifierCookie)
@@ -330,7 +342,7 @@ document.onmousemove=move;
 </script>
 </head>
 <body class="profil">
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+<form action="<?php echo $sFormAction; ?>" method="POST">
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
 
 <tr>
@@ -378,7 +390,7 @@ document.onmousemove=move;
 <tr>
 <td class="intitule"><div>Confirmation&nbsp;&nbsp;<br>du mot de passe&nbsp;:</div></td>
 <td class="largeur_fixe"><input type="password" name="MDP_CONFIRM_PERS" size="40" value=""></td>
-<td class="champs_obligatoires"><?php echo ($iIdPers > 0 ? "&nbsp;" : "*"); ?></td>
+<td class="champs_obligatoires"><?php echo ($iIdPers > 0 ? "&nbsp;" : "*"); echo (isset($asErreurs["mdpConfirm"]) ? $asErreurs["mdpConfirm"] : NULL); ?></td>
 </tr>
 
 <tr>
@@ -398,7 +410,14 @@ document.onmousemove=move;
 <td class="largeur_fixe"><input type="text" name="TELEPHONE_PERS" size="40" value="<?php echo $oPersonne->retNumTel(); ?>"></td>
 <td>&nbsp;</td>
 </tr>
-
+<?php
+// Pour une nouvelle personne inscrite, on peut faire un envoi de mail à la personne
+if ($url_iNouvellePersonne == 1)
+echo "<td>&nbsp;</td>"
+	."<td class=\"intitule\" align=\"left\" title=\"En cochant cette case, un courriel sera envoy&eacute; &agrave; la personne.\">"
+	."<input type=\"checkbox\" name=\"envoiMail\" id=\"copieCourriel\" value=\"1\" checked>"
+	."<label class=\"afficher_curseur_aide\" for=\"copieCourriel\">Envoyer un mail &agrave; la personne</label></td>";
+?>
 <tr>
 <td>&nbsp;</td>
 <td class="champs_obligatoires" align="right">Champs&nbsp;obligatoires&nbsp;</td>
@@ -408,8 +427,9 @@ document.onmousemove=move;
 </table>
 <div id="id_erreur" class="info_erreur"></div>
 <input type="hidden" name="ID_PERS" value="<?php echo $iIdPers; ?>">
-<?php echo "<input type=\"hidden\" name=\"ID_FORM\" value=\"".$iIdForm."\">\n"?>
+<input type="hidden" name="ID_FORM" value="<?php echo $iIdForm ?>">
 <input type="hidden" name="SAUVER" value="1">
+<input type="hidden" name="nv" value="<?php echo $url_iNouvellePersonne; ?>">
 </form>
 </body>
 </html>

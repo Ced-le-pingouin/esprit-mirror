@@ -390,6 +390,11 @@ background-color:#8d0623;
 font-weight:bold;
 }
 
+td.texteBlanc {
+color:#fff;
+font-size:8pt;
+}
+
 body.menu a {
 color:#fff;
 }
