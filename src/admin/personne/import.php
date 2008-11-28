@@ -225,7 +225,7 @@ function Restaurer(element)
 				if ($url_bCopieCourrier)
 				{
 					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom);
-					$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
 					$oMail->envoyer();
 				}
 				

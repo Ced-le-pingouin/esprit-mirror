@@ -25,6 +25,7 @@ require_once("globals.inc.php");
 // Récupérer les variables de l'url
 // ---------------------
 $url_sTitrePrincipal = (empty($_GET["tp"]) ? "Inscription" : stripslashes(rawurldecode($_GET["tp"])));
+$url_iIdFormation = (empty($_GET["formation"]) ? "Inscription" : stripslashes(rawurldecode($_GET["formation"])));
 
 // ---------------------
 // Initialiser
@@ -33,7 +34,7 @@ $sFramePrincipal = <<<BLOC_FRAME_PRINCIPALE
 <frameset rows="27,1,*">
 <frame src="choix_formation-filtre.php" name="Filtre" frameborder="0" marginwidth="5" marginheight="5" scrolling="no" noresize="noresize">
 <frame src="theme://frame_separation.htm" frameborder="0" scrolling="no" noresize="noresize">
-<frame src="choix_formation.php" name="Principal" frameborder="0" scrolling="auto" noresize="noresize">
+<frame src="choix_formation.php?idForm=$url_iIdFormation" name="Principal" frameborder="0" scrolling="auto" noresize="noresize">
 </frameset>
 BLOC_FRAME_PRINCIPALE;
 

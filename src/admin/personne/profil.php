@@ -125,7 +125,7 @@ if ($iIdPers >= 0)
 			        ."<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
 				.inserer_feuille_style("admin/personnes.css")
 				."<script type=\"text/javascript\" language=\"javascript\"><!--\n"
-				."function corriger() { top.frames[\"Bas\"].location = \"personne-bas.php?corriger=1\"; }\n"
+				."function corriger() { top.frames[\"Bas\"].location = \"profil-menu.php?corriger=1\"; }\n"
 				."</script>\n"
 				."</head>\n"
 				."<body onload=\"corriger()\" class=\"profil\">\n"
@@ -220,17 +220,17 @@ if ($iIdPers >= 0)
 				if ($url_bCopieCourrier)
 				{
 					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
-					$sMessageCourriel = "Ce mail est envoy&eacute; par la plateforme Esprit pour vous signaler que vous venez d'&circ;tre inscrit &agrave; la formation : \r\n'"
+					$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n'"
 					.$sNomForm."'\r\n\r\n"
 					."Vous pouvez vous connecter sur la plateforme Esprit avec les identifiants suivants :\r\n"
 					."Pseudo : ".$sPseudo."\r\n"
 					."Mot de passe : ".$sMdp
 					."\r\n\r\n"
-					."Merci de nous signaler les &eacute;ventuelles erreurs en r&eacute;pondant &agrave; ce mail.";
+					."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
 
 					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$sNomComplet);
 					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
-					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retNom());
+					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
 					$oMail->envoyer();
 				}
 			}

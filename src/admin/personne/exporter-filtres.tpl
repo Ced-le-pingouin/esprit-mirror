@@ -43,7 +43,7 @@ function rechercher() { document.forms[0].submit(); }
 <td width="99%" align="right">{liste_alphabet}</td>
 <td>&nbsp;</td>
 </tr>
-</table
+</table>
 </form>
 </body>
 </html>

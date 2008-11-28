@@ -107,9 +107,9 @@ function enlever_personne(v_iIdForm) {
 	win.focus();
 }
 
-function choix_formation(v_sTitre) {
+function choix_formation(v_sTitre, v_iIdFormation) {
 	var sUrl = GLOBALS["admin"] + "commun/choix_formation-index.php"
-		+ (v_sTitre.length > 0 ? "?tp=" + v_sTitre : "");
+		+ (v_sTitre.length > 0 ? "?tp=" + v_sTitre + (v_iIdFormation.length > 0 ? "&formation=" + v_iIdFormation : null) : "");
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
 	var win = PopupCenter(sUrl,"winChoixFormations",640,480,sOptionsFenetre);
 	win.focus();
