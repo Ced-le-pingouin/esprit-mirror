@@ -73,7 +73,11 @@ $sNomForm	= $oProjet->oFormationCourante->retNom();
 $iIdForm	= $oProjet->oFormationCourante->retId();
 $iIdPers = 0;
 
-if (isset($_GET["nv"]))
+/*
+ * la variable $_GET["nv"], si elle est = 1 dÈsigne une nouvelle inscription dans la formation
+ * $_GET["nv"] = 0 la personne est dÈj‡ inscrite, on modifie juste son profil.
+ */
+if (isset($_GET["nv"]) && $_GET["nv"]>0)
 {
 	$bModifierCookie = FALSE;
 }
@@ -90,6 +94,7 @@ else if (isset($_POST["ID_PERS"]))
 }
 else
 	$iIdPers = $oProjet->oUtilisateur->retId();
+
 
 $bModifierCookie = ($iIdPers == $oProjet->oUtilisateur->retId());
 
@@ -116,8 +121,11 @@ if ($iIdPers >= 0)
 		
 		if (empty($sTmp))
 			$asErreurs["prenom"] = formatTexteErreur("Le pr&eacute;nom ne peut pas &ecirc;tre vide");
-		
-		// V√©rifier que le nom + pr√©nom est unique dans la table
+echo "<br />personne unique?".$oPersonne->estUnique();
+		/*
+		 * V√©rifier que le nom + pr√©nom est unique dans la table
+		 * Si c'est une modification des infos de la personne
+		 */
 		if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 		{
 			echo "<html>\n"
