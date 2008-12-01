@@ -253,11 +253,12 @@ if ($iIdPers >= 0)
 						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
     					."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
-					$sFrontiereEntreTexteHTML = '-----=' . md5(uniqid(mt_rand()));
+					$sFrontiereEntreTexteHTML = '-----='.md5(uniqid(mt_rand()));
 
 					//on insere d'abord le message au format texte
- 					$sMessageFinal	= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
-     				$sMessageFinal .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\n\n";
+ 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
+     				$sMessageFinal .= 'Content-Type: text/plain; charset="iso-8859-1"'."\n";
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
      				$sMessageFinal .= $sMessageCourrielTexte."\n\n";
 					//on ajoute le texte HTML
