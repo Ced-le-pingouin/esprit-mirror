@@ -246,7 +246,7 @@ if ($iIdPers >= 0)
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien =E9t=E9 inscrit(e) =E0 la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : $sPseudo<br />Votre mot de passe est : $sMdp<br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
@@ -256,18 +256,18 @@ if ($iIdPers >= 0)
 					$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
 
 					//on insere d'abord le message au format texte
-					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\n";
- 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
-     				$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8'."\n";
-     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
-     				$sMessageFinal .= $sMessageCourrielTexte."\n\n";
+					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
+ 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+     				$sMessageFinal .= 'Content-Type: text/plain; charset=iso-8859-1'."\r\n";
+     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     				$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
 					//on ajoute le texte HTML
-					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
-     				$sMessageFinal .= 'Content-Type: text/html; charset=utf-8'."\n";
-     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
-     				$sMessageFinal .= $sMessageCourrielHtml."\n\n";
+					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+     				$sMessageFinal .= 'Content-Type: text/html; charset=iso-8859-1'."\r\n";
+     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     				$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
      				//on ferme le message
-     				$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n"; 
+     				$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n"; 
 
 					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sEmail,$sNomComplet,$sFrontiereEntreTexteHTML);
 					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
