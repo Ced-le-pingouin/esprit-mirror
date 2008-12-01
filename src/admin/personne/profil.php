@@ -246,7 +246,7 @@ if ($iIdPers >= 0)
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 					$sMessageCourrielHtml = "<html><head><title>Inscription sur Esprit</title></head><body>"
-						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : $sPseudo<br />Votre mot de passe est : $sMdp<br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"

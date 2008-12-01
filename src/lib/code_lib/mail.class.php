@@ -50,7 +50,7 @@ class CMail
 		
 		if ($v_sTypeEntete!=NULL) {// envoie d'un mail au format texte et HTML
 			$this->ajouterEntete('MIME-Version','1.0');
-			$this->ajouterEntete('Content-Type','multipart/alternative; boundary='.$v_sTypeEntete);
+			$this->ajouterEntete('Content-Type','multipart/alternative; boundary="'.$v_sTypeEntete.'"');
 		}
 		else $this->ajouterEntete('Content-Type','text/plain; charset=utf-8'); // charset par défaut
 		
