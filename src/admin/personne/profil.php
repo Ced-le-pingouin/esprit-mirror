@@ -232,7 +232,7 @@ if ($iIdPers >= 0)
 					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
 					$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
 						."'$sNomForm'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
-						."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+						."Pour acc&eacute;der à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
 						."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 						."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : $sMdp\r\n\r\n"
 						."Astuces :\r\n\r\n"
@@ -245,7 +245,7 @@ if ($iIdPers >= 0)
     					."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
-					$sMessageCourrielHtml = "<html><head><title>Inscription sur Esprit</title></head><body>"
+					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
 						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : $sPseudo<br />Votre mot de passe est : $sMdp<br /><br />"
@@ -253,17 +253,17 @@ if ($iIdPers >= 0)
 						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
     					."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
-					$sFrontiereEntreTexteHTML = '-----='.md5(uniqid(mt_rand()));
+					$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
 
 					//on insere d'abord le message au format texte
-					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\n\n";
+					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\n";
  					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
-     				$sMessageFinal .= 'Content-Type: text/plain; charset="iso-8859-1"'."\n";
+     				$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8'."\n";
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
      				$sMessageFinal .= $sMessageCourrielTexte."\n\n";
 					//on ajoute le texte HTML
 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
-     				$sMessageFinal .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
+     				$sMessageFinal .= 'Content-Type: text/html; charset=utf-8'."\n";
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
      				$sMessageFinal .= $sMessageCourrielHtml."\n\n";
      				//on ferme le message
