@@ -40,15 +40,19 @@ class CMail
 	var $aasDestinataires;
 	var $asEntetes;
 	
-	function CMail ($v_sSujet=NULL,$v_sMessage=NULL,$v_sDestinataire=NULL,$v_sNomComplet=NULL)
+	function CMail ($v_sSujet=NULL,$v_sMessage=NULL,$v_sDestinataire=NULL,$v_sNomComplet=NULL,$v_sTypeEntete=NULL)
 	{
 		$this->asEntetes = array();
 		$this->aasDestinataires = array();
 		
 		$this->defSujet($v_sSujet);
 		$this->defMessage($v_sMessage);
-
-		$this->ajouterEntete('Content-Type','text/plain; charset=utf-8'); // charset par défaut
+		
+		if ($v_sTypeEntete!=NULL) {// envoie d'un mail au format texte et HTML
+			$this->ajouterEntete('MIME-Version','1.0');
+			$this->ajouterEntete('Content-Type','multipart/alternative; boundary='.$v_sTypeEntete);
+		}
+		else $this->ajouterEntete('Content-Type','text/plain; charset=utf-8'); // charset par défaut
 		
 		if (isset($v_sDestinataire))
 			$this->ajouterDestinataire($v_sDestinataire,$v_sNomComplet);

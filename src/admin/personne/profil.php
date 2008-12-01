@@ -121,7 +121,7 @@ if ($iIdPers >= 0)
 		
 		if (empty($sTmp))
 			$asErreurs["prenom"] = formatTexteErreur("Le pr&eacute;nom ne peut pas &ecirc;tre vide");
-echo "<br />personne unique?".$oPersonne->estUnique();
+			
 		/*
 		 * VÃ©rifier que le nom + prÃ©nom est unique dans la table
 		 * Si c'est une modification des infos de la personne
@@ -219,6 +219,8 @@ echo "<br />personne unique?".$oPersonne->estUnique();
 			$oPersonne->enregistrer();
 			$sPseudo = $oPersonne->retPseudo();
 			$sNomComplet = $oPersonne->retNomComplet();
+			$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
+			$sNomExpediteur = $oProjet->oUtilisateur->retNom();
 			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
 			if (isset($_POST["ID_FORM"]))
 			{
@@ -228,15 +230,45 @@ echo "<br />personne unique?".$oPersonne->estUnique();
 				if ($url_bCopieCourrier)
 				{
 					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
-					$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n'"
-					.$sNomForm."'\r\n\r\n"
-					."Vous pouvez vous connecter sur la plateforme Esprit avec les identifiants suivants :\r\n"
-					."Pseudo : ".$sPseudo."\r\n"
-					."Mot de passe : ".$sMdp
-					."\r\n\r\n"
-					."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
+					$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
+						."'$sNomForm'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
+						."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+						."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
+						."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : $sMdp\r\n\r\n"
+						."Astuces :\r\n\r\n"
+						."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
+						."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
+    					."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
+    					."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
+    					."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
+    					."		(http://flodi.grenet.fr/esprit).\r\n"
+    					."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
+    					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
-					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sEmail,$sNomComplet);
+					$sMessageCourrielHtml = "<html><head><title>Inscription sur Esprit</title></head><body>"
+						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
+						."Votre pseudo est : $sPseudo<br />Votre mot de passe est : $sMdp<br /><br />"
+						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
+						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+    					."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
+
+					$sFrontiereEntreTexteHTML = '-----=' . md5(uniqid(mt_rand()));
+
+					//on insere d'abord le message au format texte
+ 					$sMessageFinal	= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
+     				$sMessageFinal .= 'Content-Type: text/plain; charset="utf-8"'."\n";
+     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+     				$sMessageFinal .= $sMessageCourrielTexte."\n\n";
+					//on ajoute le texte HTML
+					$sMessageFinal	= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
+     				$sMessageFinal .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
+     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
+     				$sMessageFinal .= $sMessageCourrielHtml."\n\n";
+     				//on ferme le message
+     				$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n"; 
+
+					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sEmail,$sNomComplet,$sFrontiereEntreTexteHTML);
 					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
 					$oMail->envoyer();

@@ -459,7 +459,7 @@ if ($bEstAdmin)
   		</div>
   		<div class="divLog">
   		<p class="Log">Historique des envois de fichiers sur la plateforme</p>
-   	<table id="tableVoirLog" class="tableLog" cellpadding="0" cellspacing="0">
+   	<table id="tableVoirLog" class="tableLog" cellpadding="0" cellspacing="0" style="width:100%;">
 
   	</table>
   		</div>
@@ -487,7 +487,7 @@ xmlDoc.load("<?php echo CONFIG_LOGXML_PATH; ?>");
 var x=xmlDoc.getElementsByTagName("entree");
 var table=document.getElementById("tableVoirLog");
 
-var bodyNode = document.createElement("tbody");
+var headNode = document.createElement("thead");
 var trNodeDebut = document.createElement("tr");
 var thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Date"));
@@ -511,7 +511,10 @@ thNode = document.createElement("th");
 thNode.appendChild(document.createTextNode("Md5"));
 trNodeDebut.appendChild(thNode);
 
-bodyNode.appendChild(trNodeDebut);
+headNode.appendChild(trNodeDebut);
+table.appendChild(headNode);
+
+var bodyNode = document.createElement("tbody");
 for (var i=0;i<x.length;i++)
 {
 //var utilisateurXML =	x[i].getElementsByTagName("utilisateur")[0].childNodes[0].nodeValue;

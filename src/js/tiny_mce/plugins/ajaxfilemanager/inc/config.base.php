@@ -126,7 +126,7 @@
 	define('CONFIG_EDITOR_NAME', (CONFIG_QUERY_STRING_ENABLE && !empty($_GET['editor'])?secureFileName($_GET['editor']):'tinymce3')); 
 	define('CONFIG_THEME_NAME', (CONFIG_QUERY_STRING_ENABLE && !empty($_GET['theme'])?secureFileName($_GET['theme']):'default'));  //change the theme to your custom theme rather than default
 	define('CONFIG_DEFAULT_VIEW', 'thumbnail'); //thumbnail or detail
-	define('CONFIG_DEFAULT_PAGINATION_LIMIT', 10);
+	define('CONFIG_DEFAULT_PAGINATION_LIMIT', 5);
 	
 	//General Option Declarations
 	//LANGAUGAE DECLARATIONNS

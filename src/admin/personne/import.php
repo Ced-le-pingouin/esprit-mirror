@@ -208,13 +208,25 @@ function Restaurer(element)
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
-		$sMessageCourriel = "Ce mail est envoyé par la plateforme Esprit pour vous signaler que vous venez d'être inscrit à la formation : \r\n"
-		.$sNomFormation."\r\n"
-		."avec les informations suivantes :\r\n"
-		."Pseudo : ".$sPseudo."\r\n"
-		."Mot de passe : ".$sMdp
-		."\r\n\r\n"
-		."Merci de nous signaler les éventuelles erreurs en répondant à ce mail.";
+		$sMessageCourrielTexte = "Bonjour,\r\n\r\n"
+			."Ce mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
+			."'$sNomFormation'\r\n"
+			."accessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
+			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\n"
+			."introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\n"
+			."cliquez sur Ok.\r\n\r\n"
+			."Votre pseudo est : $sPseudo\r\n"
+			."Votre mot de passe est : $sMdp\r\n\r\n"
+			."Astuces :\r\n\r\n"
+			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
+			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
+    		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
+    		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
+    		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
+    		."		(http://flodi.grenet.fr/esprit).\r\n"
+    		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
+    		."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$oProjet->oUtilisateur->retPrenom() $oProjet->oUtilisateur->retNom()";
 
 		if ($res===true) {
 			// tout va bien
