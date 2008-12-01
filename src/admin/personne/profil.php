@@ -262,7 +262,7 @@ if ($iIdPers >= 0)
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
      				$sMessageFinal .= $sMessageCourrielTexte."\n\n";
 					//on ajoute le texte HTML
-					$sMessageFinal	= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
+					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\n";
      				$sMessageFinal .= 'Content-Type: text/html; charset="iso-8859-1"'."\n";
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\n\n";
      				$sMessageFinal .= $sMessageCourrielHtml."\n\n";
