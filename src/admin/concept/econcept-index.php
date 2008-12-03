@@ -137,7 +137,7 @@ window.onerror = capturerErreursJS;
 <frame name="AdminModifMenu" src="admin_modif-menu.php" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize>
 </frameset>
 </frameset>
-<frame name="menu" src="econcept-menu.php?tp=<?php echo rawurlencode($sTitrePrincipal)?>" frameborder="0" marginwidth="0" marginheight="0" noresize scrolling="no">
+<frame name="menu" src="econcept-menu.php?tp=<?php echo rawurlencode($sTitrePrincipal)?>&idForm=<?php echo $iIdForm; ?>" frameborder="0" marginwidth="0" marginheight="0" noresize scrolling="no">
 </frameset>
 </html>
 

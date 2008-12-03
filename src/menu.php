@@ -150,7 +150,7 @@ else
 	$sTexteArchive = "<span ".$sCssArchive.">En&nbsp;cours</span><span>/</span><span>Archiv&eacute;es</span>";
 
 $sFormationArchives = (($oProjet->verifPermission("PERM_VOIR_SESSION_ARCHIVES"))
-		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichage}'); return false;\" onfocus=\"blur()\"".$sTexteArchive."</a>&nbsp;|&nbsp;"
+		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichage}'); return false;\" onfocus=\"blur()\"".$sTexteArchive."</a>"
 		: NULL);
 $sRechercheFormation = "<a href=\"javascript: void(0);\" onclick=\"return false;\" onfocus=\"blur()\"><span>Rechercher une formation</span></a>";
 					

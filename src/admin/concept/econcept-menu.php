@@ -21,9 +21,10 @@
 
 require_once("globals.inc.php");
 $url_sTitrePrincipal = (empty($_GET["tp"]) ? NULL : stripslashes($_GET["tp"]));
+$url_sIdFormation = (empty($_GET["idForm"]) ? NULL : stripslashes($_GET["idForm"]));
 $sBlockHead = NULL;
 $aMenus   = array();
-$aMenus[] = array("Changer de formation","top.choix_formation('{$url_sTitrePrincipal}')",1,"text-align: left;");
+$aMenus[] = array("Changer de formation","top.choix_formation('{$url_sTitrePrincipal}','{$url_sIdFormation}')",1,"text-align: left;");
 $aMenus[] = array("Copier/coller","top.PopupCenter('CopierCollerFormation.php', 'copierCollerForm', 800, 650, ',scrollbars=yes')",2,"text-align: left;");
 //$aMenus[] = array("Gérer les fichiers","top.PopupCenter('GererFichiersForm.php', 'gererFichiersForm', 750, 550, ',scrollbars=yes')",3,"text-align: left;");
 $aMenus[] = array("Exportation SCORM","self.location.href='../../include/traverseurs/export_scorm.php?idForm='+top.retIdForm()",3,"text-align: left;");

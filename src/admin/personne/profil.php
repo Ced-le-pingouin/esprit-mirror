@@ -162,8 +162,8 @@ if ($iIdPers >= 0)
 			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d&eacute;j&agrave;  &eacute;t&eacute; utilis&eacute;");
 		
 		// Date de naissance (format: AAAA-MM-JJ)
-		if (empty($_POST["DATE_NAISS_ANNEE_PERS"]) || $_POST["DATE_NAISS_ANNEE_PERS"]=="0000")
-			$asErreurs["date_naissance"] = formatTexteErreur("La date de naissance doit &ecirc;tre valide et non nulle.");
+		//if (empty($_POST["DATE_NAISS_ANNEE_PERS"]) || $_POST["DATE_NAISS_ANNEE_PERS"]=="0000")
+		//	$asErreurs["date_naissance"] = formatTexteErreur("La date de naissance doit &ecirc;tre valide et non nulle.");
 			
 		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
 			."-"
@@ -232,7 +232,7 @@ if ($iIdPers >= 0)
 					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
 					$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
 						."'$sNomForm'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
-						."Pour acc&eacute;der à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+						."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
 						."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 						."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : $sMdp\r\n\r\n"
 						."Astuces :\r\n\r\n"
@@ -246,7 +246,7 @@ if ($iIdPers >= 0)
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien =E9t=E9 inscrit(e) =E0 la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : $sPseudo<br />Votre mot de passe est : $sMdp<br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
@@ -419,7 +419,7 @@ document.onmousemove=move;
 <tr>
 <td class="intitule"><div>Email&nbsp;:</div></td>
 <td class="largeur_fixe"><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>"></td>
-<td class="champs_obligatoires">*<?php echo (isset($asErreurs["email"]) ? $asErreurs["email"] : NULL); ?></td>
+<td>&nbsp;</td>
 </tr>
 
 <tr>
