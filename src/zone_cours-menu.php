@@ -43,6 +43,7 @@ $oProjet->initSousActivCourante();
 $url_iIdPers   = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 $url_iIdEquipe = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 $sAffichage = (isset($_GET['sAffiche']) ? $_GET['sAffiche'] : 'en_cours');
+$bEstArchive = ($sAffichage = "Archives" ? TRUE : FALSE);
 
 // ---------------------
 // Définitions
@@ -502,7 +503,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 				$oBlockSousActiv->remplacer("{sousactiv.rechargerBas}","rechargerMenuBas(".$iIdActiv.",".$iIdSousActiv.",'".$sAffichage."');");
 				
 				$sTableauHistoriques .= (isset($sTableauHistoriques) ? ", " : NULL)
-					."\"".phpString2js(str_replace(" ","&nbsp;",$sNomSousActiv))."\"\n";
+					."\"".phpString2js(str_replace(" ","&nbsp;",$sNomSousActiv)).($bEstArchive ? " <small style=color:#990033>(Archive)</small>":NULL)."\"\n";
 				
 				$iOrdreHistorique++;
 			}

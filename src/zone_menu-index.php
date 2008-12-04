@@ -53,7 +53,9 @@ if ($iIdForm > 0 && $iIdMod == 0)
 // --------------------------
 // Initialiser
 // --------------------------
-(isset($_GET['sAffiche']) ? $sAffichage = $_GET['sAffiche'] : $sAffichage = 'en_cours');
+$bVoirArchive = isset($_GET['sAffiche']) ? ($_GET['sAffiche']== "Archives" ? TRUE : FALSE) : FALSE;
+$bVoirArchive ? $sStatutFormation = "archives" : $sStatutFormation = NULL;
+$sAffichage = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : 'en_cours';
 
 $sParamsUrl = "?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idSousActiv=0&idActiv=0&sAffiche={$sAffichage}";
 
@@ -63,6 +65,17 @@ $sSrcFramePrincipale = ($iLongueurDescr > 0
 	: "zone_menu.php{$sParamsUrl}");
 
 $sSrcFrameMenu = "menu.php{$sParamsUrl}";
+
+/**
+ * on initialise les formation de l'utilisateurs avec le paramètre $bVoirArchive
+ * Si on ne trouve pas de formation et que l'affichage est "en_cours",
+ * alors on redirige vers les archives.
+ * 
+ */
+$iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE,TRUE,$bVoirArchive);
+if ($iNbrFormations == 0 && $sAffichage == "en_cours") {
+	header("location: zone_menu-index.php?sAffiche=Archives");
+}
 
 // --------------------------
 // Template

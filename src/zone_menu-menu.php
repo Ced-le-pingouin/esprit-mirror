@@ -153,9 +153,9 @@ foreach ($oProjet->aoFormations as $oFormation)
 	
 	// Remplacement général
 	$oBlocFormation->remplacer("{nom_formation}",$sNomFormation);
-	
+
 	$sTableauTitresFormation .= (isset($sTableauTitresFormation) ? "\n\t, " : NULL)
-	     ."\"".phpString2js(str_replace(" ","&nbsp;",$sNomFormation))."\"";
+	     ."\"".phpString2js(str_replace(" ","&nbsp;",$sNomFormation)).(STATUT_ARCHIVE == $oFormation->retStatut() ? " <small style=color:#990033>(Archive)</small>":NULL)."\"";
 	
 	$oBlock_Description_Formation = new TPL_Block("BLOCK_DESCRIPTION_FORMATION",$oBlocFormation);
 	
