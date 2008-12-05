@@ -787,7 +787,7 @@ class CProjet
 	function initFormationsUtilisateur($v_bRechStricte = FALSE, $v_bStatutActuel = TRUE, $v_bDossierForms = FALSE, $v_bOrdreNum = TRUE, $v_bVoirArchives=FALSE)
 	{
 		$sOrdre = $v_bOrdreNum ? " ORDER BY Formation.OrdreForm" : " ORDER BY Formation.NomForm";
-		$sArchives = $v_bVoirArchives ? " Formation.StatutForm= ('".STATUT_ARCHIVE."')" : " Formation.StatutForm<> ('".STATUT_ARCHIVE."')";
+		$sArchives = $v_bVoirArchives ? " AND (Formation.StatutForm= ('".STATUT_ARCHIVE."'))" : " AND (Formation.StatutForm<> ('".STATUT_ARCHIVE."'))";
 		
 		if (($iIdPers = $this->retIdUtilisateur()) > 0)
 		{
@@ -795,7 +795,7 @@ class CProjet
 			{
 				$sRequeteSql = "SELECT Formation.* FROM Formation"
 					." WHERE Formation.StatutForm<>'".STATUT_EFFACE."'"
-					." AND ({$sArchives})"
+					.$sArchives
 					.$sOrdre;
 			}
 			else
@@ -851,7 +851,8 @@ class CProjet
 						.$sCondition;
 				
 				$sRequeteSql .= " WHERE Formation.StatutForm NOT IN ('".STATUT_EFFACE."'"
-					.") AND ({$sArchives})"
+					.")"
+					.$sArchives
 					." AND ({$sConditions})"
 					." GROUP BY Formation.IdForm"
 					.$sOrdre;

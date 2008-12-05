@@ -60,6 +60,49 @@ class CMail
 	
 	function defSujet ($v_sSujet) { $this->sSujet = trim(stripslashes($v_sSujet)); }
 	function defMessage ($v_sMessage) { $this->sMessage = trim(stripslashes($v_sMessage)); }
+	function defMessageMixte ($v_sNomForm,$v_sPseudo,$v_sMdp,$v_sPrenomNomExpediteur)
+	{
+		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
+			."'$v_sNomForm'\r\naccessible sur Esprit (".$_SERVER['PHP_SELF'].").\r\n\r\n"
+			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
+			."Votre pseudo est : $v_sPseudo\r\nVotre mot de passe est : $v_sMdp\r\n\r\n"
+			."Astuces :\r\n\r\n"
+			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
+			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
+    		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
+    		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
+    		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
+    		."		(http://flodi.grenet.fr/esprit).\r\n"
+    		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
+    		."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$v_sPrenomNomExpediteur";
+
+		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
+			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$v_sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
+			."Votre pseudo est : <strong>$v_sPseudo</strong><br />Votre mot de passe est : <strong>$v_sMdp</strong><br /><br />"
+			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
+			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"".$_SERVER['PHP_SELF']."\". Ceci vous permettra de récupérer ces informations par courriel.>Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+    		."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$v_sPrenomNomExpediteur</body></html>";
+    		
+    	$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
+
+		//on insere d'abord le message au format texte
+		$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
+ 		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+     	$sMessageFinal .= 'Content-Type: text/plain; charset=iso-8859-1'."\r\n";
+     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     	$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
+		//on ajoute le texte HTML
+		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+     	$sMessageFinal .= 'Content-Type: text/html; charset=iso-8859-1'."\r\n";
+     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     	$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
+     	//on ferme le message
+     	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n";
+     	
+     	$this->sMessageMixte = trim(stripslashes($sMessageFinal));
+	}
 	
 	function retFormatterAdresse ($v_sAdresseCourrielle,$v_sNomComplet=NULL)
 	{
@@ -127,14 +170,14 @@ class CMail
 		return $asListeDestinataires;
 	}
 	
-	function envoyer ()
+	function envoyer ($bMessageEstMixte=FALSE)
 	{
 		$sListeEntetes        = $this->retListeEntetes();
 		$asListeDestinataires = $this->retListeDestinataires();
 		$bCourrierEnvoye      = (count($asListeDestinataires) > 0);
 		
 		foreach ($asListeDestinataires as $sListeDestinataires)
-			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,$this->sMessage,$sListeEntetes);
+			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,($bMessageEstMixte? $this->sMessage : $this->sMessageMixte),$sListeEntetes);
 		
 		return $bCourrierEnvoye;
 	}

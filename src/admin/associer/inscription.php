@@ -83,7 +83,7 @@ unset($asFiltre,$url_iSelectFiltre);
 $asStatutPers = array(
 	array(STATUT_PERS_RESPONSABLE_POTENTIEL,"PERM_DESIGNE_RESPONSABLES_SESSION")
 	, array(STATUT_PERS_RESPONSABLE,"PERM_ASS_RESP_SESSION")
-	, array(STATUT_PERS_CONCEPTEUR_POTENTIEL,"PERM_DESIGNE_CONCEPTEURS")
+	//, array(STATUT_PERS_CONCEPTEUR_POTENTIEL,"PERM_DESIGNE_CONCEPTEURS")
 	, array(STATUT_PERS_CONCEPTEUR,"PERM_ASS_CONCEPT_COURS")
 	, array(STATUT_PERS_TUTEUR,"PERM_ASS_TUTEUR_COURS")
 	, array(STATUT_PERS_ETUDIANT,"PERM_ASS_ETUDIANT_COURS")
@@ -194,12 +194,12 @@ for ($a = 97; $a <= 122; $a++)
 <tr>
 <td height="1%">
 <!-- <span><a href="javascript: void(0);" onclick="oFrmPersonne().location.reload(true)" onfocus="blur()">Rafra√Æchir</a> -->
+<span class="intitule">Rechercher&nbsp;:&nbsp;<input type="text" name="nomPersonneRech" onkeyup="rechPersonne(value,self.frames['FRM_PERSONNE'])" value="" size="15">&nbsp;</span>
 <?php
 // si la formation est archivÈe, on ne peut ajouter de nouveaux utilisateurs.
 if ($bPeutInscrire)
 {
 echo "
-<span class=\"intitule\">Rechercher&nbsp;:&nbsp;<input type=\"text\" name=\"nomPersonneRech\" onkeyup=\"rechPersonne(value,self.frames['FRM_PERSONNE'])\" value=\"\" size=\"15\">&nbsp;</span>
 <span><a href=\"javascript: void(0);\" onclick=\"profil('?nv=1&titre=".rawurlencode('Nouvel utilisateur')."&formId=".$url_iIdForm."')\" onfocus=\"blur()\">Ajouter</a>&nbsp;|&nbsp;</span>
 <span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer</a></span>
 <span id=\"enlever_personne\">&nbsp;|&nbsp;<a href=\"javascript: void(0);\" onclick=\"enlever_personne(".$url_iIdForm.")\" onfocus=\"blur()\">Enlever</a></span>";

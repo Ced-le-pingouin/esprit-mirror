@@ -97,7 +97,7 @@ $sNomsInscrits = NULL;
 $sMajListeCours = NULL;
 $iNbrInscrits = 0;
 
-$strPas = _("Pas de %s trouvé");
+$strPas = _("Pas de %s trouv&eacute;");
 $asPasDePersonnesTrouvees = array(
 		NULL,
 		NULL,
@@ -108,7 +108,7 @@ $asPasDePersonnesTrouvees = array(
 		NULL,
 		sprintf($strPas,mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_TUTEUR,"M"),"UTF-8")),
 		NULL,
-		sprintf("Pas d'%s trouvé",mb_strtolower($oProjet->retTexteStatutUtilisateur(STATUT_PERS_ETUDIANT,"M"),"UTF-8")),
+		sprintf("Pas d'%s trouvé","&eacute;tudiant"),
 		NULL
 	);
 

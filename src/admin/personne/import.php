@@ -195,8 +195,7 @@ function Restaurer(element)
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom = $data->sheets[0]['cells'][$nrow][2];
 		$sPseudo = $oPersonne->retPseudo();
-		$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
-		$sNomExpediteur = $oProjet->oUtilisateur->retNom();
+		$sPrenomNomExpediteur = $oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom();
 		$sIdFormation = $sNomFormation = "";
 		$sMessage = "";
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
@@ -211,44 +210,44 @@ function Restaurer(element)
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
 		$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
-		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
-			."'$sNomFormation'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
-			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
-			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
-			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".trim($tab[4])."\r\n\r\n"
-			."Astuces :\r\n\r\n"
-			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
-			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
-    		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
-    		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
-    		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
-    		."		(http://flodi.grenet.fr/esprit).\r\n"
-    		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
-    		."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
+//		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
+//			."'$sNomFormation'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
+//			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement,\r\n"
+//			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
+//			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".trim($tab[4])."\r\n\r\n"
+//			."Astuces :\r\n\r\n"
+//			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
+//			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
+//    		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
+//    		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
+//    		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
+//    		."		(http://flodi.grenet.fr/esprit).\r\n"
+//    		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
+//    		."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
+//
+//		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
+//			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
+//			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
+//			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>$sMdp</strong><br /><br />"
+//			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
+//			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"".$_SERVER['PHP_SELF']."\". Ceci vous permettra de récupérer ces informations par courriel.>Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+//    		."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
-		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomFormation</strong>' accessible sur <a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br /><br />"
-			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (mdp) (en respectant scrupuleusement, les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.<br /><br />"
-			."Votre pseudo est : $sPseudo<br />Votre mot de passe est : ".trim($tab[4])."<br /><br />"
-			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
-			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
-    		."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
-
-		$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
-
-		//on insere d'abord le message au format texte
-		$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
- 		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     	$sMessageFinal .= 'Content-Type: text/plain; charset=iso-8859-1'."\r\n";
-     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
-     	$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
-		//on ajoute le texte HTML
-		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     	$sMessageFinal .= 'Content-Type: text/html; charset=iso-8859-1'."\r\n";
-     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
-     	$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
-     	//on ferme le message
-     	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n"; 
+//		$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
+//
+//		//on insere d'abord le message au format texte
+//		$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
+// 		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+//     	$sMessageFinal .= 'Content-Type: text/plain; charset=iso-8859-1'."\r\n";
+//     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+//     	$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
+//		//on ajoute le texte HTML
+//		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
+//     	$sMessageFinal .= 'Content-Type: text/html; charset=iso-8859-1'."\r\n";
+//     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+//     	$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
+//     	//on ferme le message
+//     	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n"; 
 
 		if ($res===true) {
 			// tout va bien
@@ -258,9 +257,10 @@ function Restaurer(element)
 				// on envoie un mail aux nouvelles personnes inscrites dans une formation
 				if ($url_bCopieCourrier)
 				{
-					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
+					$oMail = new CMail($sSujetCourriel,NULL,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
+					$oMail->defMessageMixte($sNomForm,$sPseudo,$sMdp,$sPrenomNomExpediteur);
 					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
-					$oMail->envoyer();
+					$oMail->envoyer(TRUE);
 				}
 				
 				$inscritsAffectes++;
@@ -277,8 +277,9 @@ function Restaurer(element)
 			if ($url_bCopieCourrier)
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
+				$oMail->defMessageMixte($sNomForm,$sPseudo,$sMdp,$sNomPrenomComplet);
 				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
-				$oMail->envoyer();
+				$oMail->envoyer(TRUE);
 			}
 
 			$avertissements++;

@@ -61,8 +61,18 @@ $sVarFormationActuelle = $oBlocListeFormations->defVariable("VAR_FORMATION_ACTUE
 // ---------------------
 $sMessage = NULL;
 $sListeFormations = NULL;
+$iNbrFormations = $oProjet->initFormationsUtilisateur();
+$bFormationEstArchivee = FALSE;
 
-if (($iNbrFormations = $oProjet->initFormationsUtilisateur()) > 0)
+// Si aucune formations non archivées n'est disponibles (toutes les formations sont archivées),
+// on affiche les formations archivées.
+if ($iNbrFormations == 0)
+{
+	$iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,TRUE,FALSE,TRUE,TRUE);
+	$bFormationEstArchivee = TRUE;
+}
+
+if ($iNbrFormations > 0)
 {
 	$asRechercher = array("{formation.id}","{formation.nom}");
 	
@@ -87,7 +97,7 @@ if (($iNbrFormations = $oProjet->initFormationsUtilisateur()) > 0)
 		
 		$amRemplacer = array(
 			$iIdForm
-			, $sNomFormation
+			, $sNomFormation.($bFormationEstArchivee ? " <small style=\"color: #990033;\">(Archiv&eacute;e)</small>" : NULL)
 				.($url_iIdForm == $iIdForm ? $sVarFormationActuelle : NULL));
 		
 		$sListeFormations .= str_replace($asRechercher,$amRemplacer,$sVarFormation);
