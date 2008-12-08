@@ -48,7 +48,7 @@ if (is_array($_POST) && count($_POST) > 0)
 	$url_sMessageCourriel    = (empty($_POST["messageCourriel"]) ? NULL : $_POST["messageCourriel"]);
 	$url_sSujetCourriel      = (empty($_POST["sujetCourriel"]) ? NULL : $_POST["sujetCourriel"]);
 	$url_sTypeCourriel       = (empty($_POST["typeCourriel"]) ? NULL : $_POST["typeCourriel"]);
-	
+
 	$oMail = new CMail($url_sSujetCourriel,$url_sMessageCourriel);
 	$oMail->defExpediteur($url_sExpediteurCourriel);
 	
