@@ -212,7 +212,7 @@ if ($iIdPers >= 0)
 			$sNomComplet = $oPersonne->retNomComplet();
 			$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
 			$sNomExpediteur = $oProjet->oUtilisateur->retNom();
-			$url_sAdresseServeurActuel = $_SERVER['PHP_SELF'];
+			$url_sAdresseServeurActuel = $_SERVER['SERVER_NAME'];
 			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
 			if (isset($_POST["ID_FORM"]))
 			{
@@ -242,7 +242,7 @@ if ($iIdPers >= 0)
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.</ins><br /><br />"
 						."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>$sMdp</strong><br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
-						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
     					."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
 					$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));

@@ -249,8 +249,7 @@ $sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
 		."<a name=\"".$sPosition."\" id=\"".$sPosition."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
 		."<span name=\"".$lettre."\" id=\"".$lettre."\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
-		.((defined('UNICITE_NOM_PRENOM') && UNICITE_NOM_PRENOM===TRUE)?
-		  '&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>':'')
+		.'&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>'
 		."</span>"
 		."</a>"
 		."</td>\n"

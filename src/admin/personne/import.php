@@ -207,7 +207,7 @@ function Restaurer(element)
 		$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
 		$sNomExpediteur = $oProjet->oUtilisateur->retNom();
 		$sIdFormation = $sNomFormation = "";
-		$url_sAdresseServeurActuel = $_SERVER['PHP_SELF'];
+		$url_sAdresseServeurActuel = $_SERVER['SERVER_NAME'];
 		$sMessage = "";
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
 		{
@@ -222,7 +222,7 @@ function Restaurer(element)
 		
 		$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
 		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
-			."'$sNomFormation'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
+			."'$sNomFormation'\r\naccessible sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
 			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
 			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".trim($tab[4])."\r\n\r\n"
@@ -241,7 +241,7 @@ function Restaurer(element)
 			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.</ins><br /><br />"
 			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>".trim($tab[4])."</strong><br /><br />"
 			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
-			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"http://flodi.grenet.fr/esprit\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
     		."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
 		$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
