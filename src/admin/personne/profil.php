@@ -273,10 +273,19 @@ if ($iIdPers >= 0)
 				$oProjet->modifierInfosSession(SESSION_PSEUDO,$oPersonne->retPseudo(),TRUE);
 				$oProjet->modifierInfosSession(SESSION_MDP,$oPersonne->retMdp(),TRUE);
 			}
-			
+
+			// Timer de 3 secondes avant de fermer la page automatiquement
 			echo "<html><body>"
+				."<p>&nbsp;</p>"
+				."<p>&nbsp;</p>"
+				."<div align=\"center\">"
+				."<p>"
+				."<img src=\"".dir_theme("barre-de-progression.gif")."\">"
+				."<br>Mise &agrave; jour"
+				."</p>"
+				."</div>"
 				."<script type=\"text/javascript\" language=\"javascript\">"
-				."<!--\n top.close(); \n//--></script>"
+				."<!--\n setTimeout('top.close()',3000); \n//--></script>"
 				."</body></html>";
 			
 			exit();
