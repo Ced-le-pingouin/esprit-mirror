@@ -43,7 +43,7 @@ $oProjet->initSousActivCourante();
 $url_iIdPers   = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 $url_iIdEquipe = (empty($_GET["idEquipe"]) ? 0 : $_GET["idEquipe"]);
 $sAffichage = (isset($_GET['sAffiche']) ? $_GET['sAffiche'] : 'en_cours');
-$bEstArchive = ($sAffichage = "Archives" ? TRUE : FALSE);
+$bEstArchive = ($sAffichage == "Archives" ? TRUE : FALSE);
 
 // ---------------------
 // Définitions
@@ -241,7 +241,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 						//   -----------------------
 							if (is_file($sRepCours))
 								$sHref = $oActiv->retRepCours("html.php",FALSE)
-									."?idActiv={$iIdActiv}"
+									."?{$url_sParamAffichage}&idActiv={$iIdActiv}"
 									."&idSousActiv={$iIdSousActiv}"
 									."&fi=".urlencode($sFichier)
 									.($oSousActiv->retType()==LIEN_HOTPOTATOES ?

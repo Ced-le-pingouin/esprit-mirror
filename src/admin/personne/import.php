@@ -53,21 +53,40 @@ function insererPersonne ($tab, $enreg=true)
 	global $oPersonne;
 	$sMessage = null;
 // $tab[1..8] : nom, prénom, pseudo, mdp, email, sexe, date de naissance, numero de formation
+
+	// Nom
 	if (empty($tab[1]))
 		return false;
 	$oPersonne->defNom(addslashes(mb_strtoupper($tab[1], "utf-8")));
-	
+
+	// Pr�nom
 	if (empty($tab[2]))
 		return false;
 	$oPersonne->defPrenom($tab[2]);
 
+	// Pseudo
 	if (empty($tab[3]))
 		return "<span class=\"importErreur\">Erreur!</span> Pas de pseudo.";
 	$oPersonne->defPseudo($tab[3]);
-	
+
+	// Num�ro de formation
 	$sIdFormation = trim ($tab[8]);
 	if (!empty($sIdFormation) && !preg_match('/[0-9]/',$sIdFormation))
 		return "<span class=\"importErreur\">Erreur!</span> Le num&eacute;ro de formation doit &ecirc;tre num&eacute;rique.";
+
+	// Email
+	if (empty($tab[5]))
+		return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". Pas d'adresse e-mail alors que ce champ est obligatoire.";
+	$oPersonne->defEmail($tab[5]);
+	
+	// Date de naissance (format: AAAA-MM-JJ)
+	if (!empty($tab[7]))
+	{
+	//	return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". La date de naissance est obligatoire.";
+		$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
+		$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
+		$oPersonne->defDateNaiss($sDateNaissance);
+	}
 
 	// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
@@ -93,28 +112,18 @@ $sPrenomNom = $oPersonne->retPrenom()." ".$oPersonne->retNom();
 				$a = ' à "' . $oEnreg->NomC .'"';
 			return "<span class=\"importErreur\">Erreur!</span> Le pseudo '".$tab[3]."' est déjà attribué$a.";
 		}
-	
+
+		// Mot de passe
 		$sMdp = trim($tab[4]);
 		if (preg_match('/[^a-zA-Z0-9]/',$sMdp))
 			return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". Le mot de passe <em>$sMdp</em> doit être alpha-numérique.";
 		else
 			$oPersonne->defMdp($oProjet->retMdpCrypte($sMdp));
 
-		if (empty($tab[5]))
-			return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". Pas d'adresse e-mail alors que ce champ est obligatoire.";
-		$oPersonne->defEmail($tab[5]);
-
+		// Sexe
 		if (!$tab[6])
 			$sexe = "M";
 		$oPersonne->defSexe($tab[6]);
-
-		// ajout de la date de naissance en colonne 7
-		// Date de naissance (format: AAAA-MM-JJ)
-		//if (empty($tab[7]))
-		//	return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". La date de naissance est obligatoire.";
-		$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
-		$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
-		$oPersonne->defDateNaiss($sDateNaissance);
 	}
 
 	if ($enreg && $sMessage==null) {

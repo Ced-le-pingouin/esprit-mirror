@@ -108,23 +108,48 @@ if ($iIdPers >= 0)
 	{
 		// Nom
 		$oPersonne->defNom($_POST["NOM_PERS"]);
-		
 		$sTmp = $oPersonne->retNom();
-		
 		if (empty($sTmp))
 			$asErreurs["nom"] = formatTexteErreur("Le nom ne peut pas &ecirc;tre vide");
 		
 		// PrÃ©nom
 		$oPersonne->defPrenom($_POST["PRENOM_PERS"]);
-		
 		$sTmp = $oPersonne->retPrenom();
-		
 		if (empty($sTmp))
 			$asErreurs["prenom"] = formatTexteErreur("Le pr&eacute;nom ne peut pas &ecirc;tre vide");
+
+		// Email
+		$sEmail = $_POST["EMAIL_PERS"];
+		if ($iIdPers < 1 && empty($sEmail))
+			// Un nouvel utilisateur doit absolument entrer un email
+			$asErreurs["email"] = formatTexteErreur("l'adresse &eacute;lectronique ne doit pas être vide");
+		elseif (!empty($sEmail) && !emailValide($sEmail))
+			$asErreurs["email"] = formatTexteErreur("Cette adresse &eacute;lectronique n'est pas valable");
+		$oPersonne->defEmail($sEmail);
+		
+		// Pseudo
+		$oPersonne->defPseudo($_POST["PSEUDO_PERS"]);
+		$sTmp = $oPersonne->retPseudo();
+		if (empty($sTmp))
+			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas &ecirc;tre vide");
+		/*else if (ereg("[^a-zA-Z0-9$]",$sTmp))
+			$asErreurs["pseudo"] = formatTexteErreur("Les caract&egrave;res sp&eacute;ciaux ne sont pas accept&eacute;s (&eacute;&ecirc;&egrave;&agrave; ...)");*/
+		else if (!$oPersonne->estPseudoUnique())
+			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d&eacute;j&agrave;  &eacute;t&eacute; utilis&eacute;");
+		
+		// Date de naissance (format: AAAA-MM-JJ)
+		//if (empty($_POST["DATE_NAISS_ANNEE_PERS"]) || $_POST["DATE_NAISS_ANNEE_PERS"]=="0000")
+		//	$asErreurs["date_naissance"] = formatTexteErreur("La date de naissance doit &ecirc;tre valide et non nulle.");
+		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
+			."-"
+			.$_POST["DATE_NAISS_MOIS_PERS"]
+			."-"
+			.$_POST["DATE_NAISS_JOUR_PERS"];
 			
+		$oPersonne->defDateNaiss($sDateNaiss);
+
 		/*
 		 * VÃ©rifier que le nom + prÃ©nom est unique dans la table
-		 * Si c'est une modification des infos de la personne
 		 */
 		if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
 		{
@@ -140,7 +165,7 @@ if ($iIdPers >= 0)
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
-					.emb_htmlentities("Inscription impossible: une personne portant ces nom et pr&eacute;nom est d&eacute;j&agrave;  inscrite.")
+					.emb_htmlentities("Inscription impossible: une personne portant ces nom et pr&eacute;nom est d&eacute;j&agrave;  inscrite")
 					."</b>"
 				."</p>"
 				."<body>\n"
@@ -148,31 +173,7 @@ if ($iIdPers >= 0)
 			
 			exit();
 		}
-		
-		// Pseudo
-		$oPersonne->defPseudo($_POST["PSEUDO_PERS"]);
-		
-		$sTmp = $oPersonne->retPseudo();
-		
-		if (empty($sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Le pseudo ne peut pas &ecirc;tre vide");
-		/*else if (ereg("[^a-zA-Z0-9$]",$sTmp))
-			$asErreurs["pseudo"] = formatTexteErreur("Les caract&egrave;res sp&eacute;ciaux ne sont pas accept&eacute;s (&eacute;&ecirc;&egrave;&agrave; ...)");*/
-		else if (!$oPersonne->estPseudoUnique())
-			$asErreurs["pseudo"] = formatTexteErreur("Ce pseudo a d&eacute;j&agrave;  &eacute;t&eacute; utilis&eacute;");
-		
-		// Date de naissance (format: AAAA-MM-JJ)
-		//if (empty($_POST["DATE_NAISS_ANNEE_PERS"]) || $_POST["DATE_NAISS_ANNEE_PERS"]=="0000")
-		//	$asErreurs["date_naissance"] = formatTexteErreur("La date de naissance doit &ecirc;tre valide et non nulle.");
-			
-		$sDateNaiss = (empty($_POST["DATE_NAISS_ANNEE_PERS"]) ? "0000" : $_POST["DATE_NAISS_ANNEE_PERS"])
-			."-"
-			.$_POST["DATE_NAISS_MOIS_PERS"]
-			."-"
-			.$_POST["DATE_NAISS_JOUR_PERS"];
-			
-		$oPersonne->defDateNaiss($sDateNaiss);
-		
+
 		// Sexe
 		if (isset($_POST["SEXE_PERS"]))
 			$oPersonne->defSexe($_POST["SEXE_PERS"]);
@@ -182,16 +183,6 @@ if ($iIdPers >= 0)
 		
 		// NumÃ©ro de tÃ©lÃ©phone
 		$oPersonne->defNumTel($_POST["TELEPHONE_PERS"]);
-		
-		// Email
-		$sEmail = $_POST["EMAIL_PERS"];
-		if ($iIdPers < 1 && empty($sEmail))
-			// Un nouvel utilisateur doit absolument entrer un email
-			$asErreurs["email"] = formatTexteErreur("l'adresse &eacute;lectronique ne doit pas être vide");
-		elseif (!empty($sEmail) && !emailValide($sEmail))
-			$asErreurs["email"] = formatTexteErreur("Cette adresse &eacute;lectronique n'est pas valable");
-		
-		$oPersonne->defEmail($sEmail);
 		
 		// Mot de passe
 		$sMdp = trim($_POST["MDP_PERS"]);
@@ -414,13 +405,13 @@ document.onmousemove=move;
 <tr>
 <td class="intitule"><div>Date de naissance&nbsp;:</div></td>
 <td><select name="DATE_NAISS_JOUR_PERS"><?php echo $sOptionsDateNaissJour?></select>&nbsp;-&nbsp;<select name="DATE_NAISS_MOIS_PERS"><?php echo $sOptionsDateNaissMois?></select>&nbsp;-&nbsp;<input type="text" name="DATE_NAISS_ANNEE_PERS" value="<?php echo $asDateNaiss['annee']?>" size="5" maxlength="4"></td>
-<td class="champs_obligatoires">*<?php echo (isset($asErreurs["date_naissance"]) ? $asErreurs["date_naissance"] : NULL); ?></td>
+<td>&nbsp;</td>
 </tr>
 
 <tr>
 <td class="intitule"><div>Email&nbsp;:</div></td>
 <td class="largeur_fixe"><input type="text" name="EMAIL_PERS" size="40" value="<?php echo $oPersonne->retEmail(); ?>"></td>
-<td>&nbsp;</td>
+<td class="champs_obligatoires">*<?php echo (isset($asErreurs["email"]) ? $asErreurs["email"] : NULL); ?></td>
 </tr>
 
 <tr>

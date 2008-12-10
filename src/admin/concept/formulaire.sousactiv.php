@@ -464,7 +464,7 @@ echo str_replace(
 	,$sTableauDeBord);
 // }}}
 ?>
-<p style="text-align: right; padding-right: 10px;"><a href="sousactiv_inv-index.php?idSousActiv=<?php echo $g_iSousActiv?>" onclick="return autorisation_action(this)" target="_blank">Acc&egrave;s</a></p>
+<p style="text-align: right; padding-right: 10px;"><a href="sousactiv_inv-index.php?idSousActiv=<?php echo $g_iSousActiv?>" onclick="return autorisation_action(this)" target="_blank">Gestion des acc&egrave;s</a></p>
 </td>
 </tr>
 </table>

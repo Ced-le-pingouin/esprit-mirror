@@ -178,7 +178,6 @@ body.formulaire_axe {
 background-color:#fdf9ee;
 color:#000;
 height:100%;
-overflow:hidden;
 width:100%;
 }
 
@@ -345,19 +344,8 @@ body.modifier_formulaire input,body.modifier_formulaire select {
 margin:0 5px;
 }
 
-.feedback, .feedback_titre {
-border:1px solid #d5ccbd;
-display:none;
-height:3.5em;
--moz-border-radius-topleft:3px;
--moz-border-radius-bottomleft:3px;
-}
-
 .feedback {
-background-color:#f8f4e7;
-margin:7px 0;
-overflow:auto;
-padding:0;
+margin : 10px 0 10px 93px;
 }
 
 .feedback p,.feedback_titre p {

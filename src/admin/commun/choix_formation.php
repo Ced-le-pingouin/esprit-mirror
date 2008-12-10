@@ -61,7 +61,7 @@ $sVarFormationActuelle = $oBlocListeFormations->defVariable("VAR_FORMATION_ACTUE
 // ---------------------
 $sMessage = NULL;
 $sListeFormations = NULL;
-$iNbrFormations = $oProjet->initFormationsUtilisateur();
+$iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,TRUE,FALSE,FALSE);
 $bFormationEstArchivee = FALSE;
 
 // Si aucune formations non archivées n'est disponibles (toutes les formations sont archivées),

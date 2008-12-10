@@ -124,9 +124,7 @@ $sMenu = ($bPersInscrite
 	.($bPersInscrite && ($iIdMod==0)
 		? "<a href=\"javascript: void(0);\" onclick=\"choix_courriel('?idForm=".$iIdForm."&typeCourriel=courriel-formation@formation'); return false;\" onfocus=\"blur()\">"._("Courriel")."</a>&nbsp;|&nbsp;"
 		: NULL)
-	.($iIdRubrique==0
-		? "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichageActuel}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>"
-		: "<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>");
+	."<a href=\"javascript: void(0);\" onclick=\"recharger('?idForm={$iIdForm}&idMod={$iIdMod}&idUnite={$iIdRubrique}&idActiv={$iIdActiv}&idSousActiv={$iIdSousActiv}&sAffiche={$sTypeAffichageActuel}'); return false;\" onfocus=\"blur()\">"._("Rafraîchir")."</a>";
 
 // ---------------------
 // Template

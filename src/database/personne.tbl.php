@@ -197,8 +197,9 @@ class CPersonne
 
 	/**
 	 * VÃ©rifie que le couple nom+prÃ©nom de la personne n'existe pas encore dans la DB
+	 * Si le couple nom+prénom existe, on vérifie l'unicité avec le pseudo, puis l'adresse mail et la date de naissance
 	 * 
-	 * @return	\c true si le couple nom+prÃ©nom de cette personne n'existe pas encore dans la DB
+	 * @return	\c true si l'ensemble                                                                                                                                                                                                       de cette personne n'existe pas encore dans la DB
 	 */
 	function estUnique()
 	{
@@ -207,17 +208,38 @@ class CPersonne
 			$currentId=0;
 		else
 			$currentId=$this->oEnregBdd->IdPers;
-		
+
 		$sRequeteSql = 
-			 " SELECT IdPers FROM Personne"
+			 " SELECT IdPers,Pseudo,DateNaiss,Email FROM Personne"
 			." WHERE Nom = '{$this->oEnregBdd->Nom}'"
 			." AND Prenom = '{$this->oEnregBdd->Prenom}'";
-		
+
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
-		
+
+		/**
+		* Si on trouve plusieurs personnes avec le même nom+prenom,
+		* on fait une recherche sur le pseudo, puis le mail et enfin la date de naissance.
+		*/
 		if ($oEnreg = $this->oBdd->retEnregSuiv($hResult))
-			$bEstUnique = ($oEnreg->IdPers == $currentId);
-		
+			//$bEstUnique = ($oEnreg->IdPers == $currentId);
+			if ($oEnreg->IdPers != $currentId) // plusieurs personnes avec le même nom+prénom (homonymes)
+			{
+				if ($oEnreg->Pseudo != $this->oEnregBdd->Pseudo) // le pseudo n'est pas le même, on vérifie ensuite l'adresse mail.
+				{
+					if (($oEnreg->Email != $this->oEnregBdd->Email) && ($oEnreg->Email != NULL)) // l'email n'est pas le même ET n'est pas vide, on vérifie ensuite la date de naissance.
+					{
+						if (($oEnreg->DateNaiss != $this->oEnregBdd->DateNaiss) && (strpos($oEnreg->DateNaiss,'0000')===FALSE)) // la date de naissance n'est pas la même ET n'est pas égale à 0000 (année) -> fin des vérifications -> la personne est différente de celle présente dans la DB
+						{
+							$bEstUnique = TRUE;
+						}
+						else $bEstUnique = FALSE; // une personne avec ce nom+prenom+datenaissance existe déjà dans la DB
+					}
+					else $bEstUnique = FALSE; // une personne avec ce nom+prenom+email existe déjà dans la DB
+				}
+				else $bEstUnique = FALSE; // une personne avec ce nom+prenom+pseudo existe déjà dans la DB
+			}
+			else $bEstUnique = TRUE;
+
 		$this->oBdd->libererResult($hResult);
 		
 		return $bEstUnique;
