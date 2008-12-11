@@ -120,8 +120,8 @@ if ($iIdPers >= 0)
 
 		// Email
 		$sEmail = $_POST["EMAIL_PERS"];
-		if ($iIdPers < 1 && empty($sEmail))
-			// Un nouvel utilisateur doit absolument entrer un email
+		if (empty($sEmail))
+			// Un  utilisateur doit absolument entrer un email
 			$asErreurs["email"] = formatTexteErreur("l'adresse &eacute;lectronique ne doit pas être vide");
 		elseif (!empty($sEmail) && !emailValide($sEmail))
 			$asErreurs["email"] = formatTexteErreur("Cette adresse &eacute;lectronique n'est pas valable");
@@ -165,7 +165,7 @@ if ($iIdPers >= 0)
 				."<br><br>"
 				."<p align=\"center\">"
 					."<b>"
-					.emb_htmlentities("Inscription impossible: une personne portant ces nom et pr&eacute;nom est d&eacute;j&agrave;  inscrite")
+					.emb_htmlentities("Inscription impossible: une personne avec ces informations est d&eacute;j&agrave;  inscrite")
 					."</b>"
 				."</p>"
 				."<body>\n"
