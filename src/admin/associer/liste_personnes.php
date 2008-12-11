@@ -247,7 +247,7 @@ $sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
 		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt\">"
 		//."<a name=\"pos".($i+1)."\"></a>"
 		."<a name=\"".$sPosition."\" id=\"".$sPosition."\"></a>"
-		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."'); void(0);\" onclick=\"blur()\">"
+		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."&formId=".$iIdFormCourante."'); void(0);\" onclick=\"blur()\">"
 		."<span name=\"".$lettre."\" id=\"".$lettre."\">".$oProjet->aoPersonnes[$i]->retNomComplet(TRUE)
 		.'&nbsp;<em>('.$oProjet->aoPersonnes[$i]->retPseudo().')</em>'
 		."</span>"

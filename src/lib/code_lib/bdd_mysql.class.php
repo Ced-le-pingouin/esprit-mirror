@@ -84,11 +84,12 @@ class CBddMySql
 	 * 
 	 * @param	v_sRequete	le texte de la requête, sans point-virgule final. Une seule requête à la fois donc
 	 * @param	v_bAfficher	si \c true, le texte de la requête est affiché dans la page (debug)
+	 * @param 	v_bRetourneErreur si \c true, on retourne le num�ro de l'erreur (utilis� seulement lors de l'inscription (par import) d'�tudiant)
 	 * 
 	 * @return	l'indice du handle de résultat dans le tableau \c ahResult en cas de réussite de la requête, \c false 
-	 * 			en cas d'échec (erreur de syntaxe ou autre)
+	 * 			en cas d'échec (erreur de syntaxe ou autre), ou \c iNumeroErreur lors de l'import d'�tudiant (inscription)
 	 */
-	function executerRequete($v_sRequete, $v_bAfficher = FALSE)
+	function executerRequete($v_sRequete, $v_bAfficher = FALSE,$v_bRetourneErreur = FALSE)
 	{
 		// si la requête n'est pas vide, on la copie dans la propriété ad hoc
 		if ($v_sRequete != "")
@@ -110,7 +111,10 @@ class CBddMySql
 		}
 		// requête invalide -> erreur, retourne FALSE
 		else
-			$this->traiterErreur();
+		{
+			$iNumeroErreur = $this->traiterErreur(TRUE,$v_bRetourneErreur);
+			if ($v_bRetourneErreur) return $iNumeroErreur;
+		}
 			
 		return FALSE;
 	}
@@ -240,11 +244,16 @@ class CBddMySql
 	 * 
 	 * @param	v_bEstFatale	si \c true (défaut), le script PHP est stoppé
 	 */
-	function traiterErreur($v_bEstFatale = TRUE)
+	function traiterErreur($v_bEstFatale = TRUE,$v_bRetourneNumeroErreur=FALSE)
 	{
-		// si on est connecté, affiche le dernier message d'erreur
+		// si on est connecté, affiche le dernier message d'erreur OU retourne le num�ro de l'erreur
 		if ($this->hLien)
-			print mysql_error($this->hLien);
+		{
+			if ($v_bRetourneNumeroErreur)
+				return mysql_errno($this->hLien);
+			else
+				print mysql_error($this->hLien);
+		}
 
 		// arrêt du script PHP si nécessaire
 		if ($v_bEstFatale)

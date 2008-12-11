@@ -56,7 +56,7 @@ function verif_checkbox_principal(v_oObj)
 function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 { // DOM
 	var obj = v_oObj.document;
-
+	
 	if (!obj.getElementsByTagName || !obj.getElementsByName(v_sRech))
 		return;
 
@@ -107,45 +107,6 @@ function rechPersonne(v_sRech,v_oObj,v_sElementsByName)
 	else v_oObj.location.hash = "top";
 	
 	g_iPosDernierePosition = g_iPosDernierelettre = 0;
-
-/*	var sRech = null;
-	
-	if (v_oObj.g_sRech != null)
-		v_oObj.g_sRech.style.fontWeight = "normal";
-	
-	if (v_sRech.length > 0)
-	{
-		v_sRech = v_sRech.toUpperCase();
-						
-		if (v_oObj.g_asListeRech == null)
-			v_oObj.g_asListeRech = obj.getElementsByName(v_sElementsByName);
-	
-		for (var i=v_oObj.g_iPosDerniereRech; i<v_oObj.g_asListeRech.length; i++)
-		{
-			if (i < 0 || !(v_oObj.g_sRech = obj.getElementsByName(v_sElementsByName).item(i)))
-				continue;
-			
-			sRech = v_oObj.g_sRech.firstChild.nodeValue;
-		
-			if (v_oObj.g_iPosDerniereRech == -1 && sRech.indexOf(v_sRech.substring(0,1)) == 0)
-				v_oObj.g_iPosDerniereRech = i;
-			else if (v_oObj.g_iPosDerniereRech > -1 && sRech.substring(0,1) > v_sRech.substring(0,1))
-				{
-					break;
-				}
-			if (sRech != null && sRech.indexOf(v_sRech) == 0)
-			{
-				v_oObj.g_sRech.style.fontWeight = "bold";
-				v_oObj.location.hash = "pos" + i;
-				return;
-			}
-		}
-	}
-	
-	v_oObj.location.hash = "top";
-	v_oObj.g_iPosDerniereRech = -1;
-	v_oObj.g_sRech = null;
-*/
 }
 
 function view_dom(v_oObj)

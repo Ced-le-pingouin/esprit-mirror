@@ -85,6 +85,10 @@ color:green;
 .importAvert, .importAvertPetit {
 color:orange;
 }
+
+li{
+border-bottom: thin solid #DFDFDF;
+}
 /* ----- */
 
 /* -- associer personnes -- */

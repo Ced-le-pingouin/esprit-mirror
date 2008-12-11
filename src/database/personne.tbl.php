@@ -315,24 +315,30 @@ class CPersonne
 			
 			if ($oEnreg->IdPersonne)
 			{
-			$hResult = $this->oBdd->executerRequete(
-				"REPLACE INTO Formation_Inscrit SET"
-				." IdForm='".$v_sIdFormation."',"
-				." IdPers='".$oEnreg->IdPersonne."'");
-			
-			// on cherche le nom de la formation.
-			$requeteNomForm = $this->oBdd->executerRequete(
-				"SELECT NomForm AS NomFormation FROM Formation "
-				."WHERE IdForm='".$v_sIdFormation."'");
-			$oEnreg = $this->oBdd->retEnregSuiv($requeteNomForm);
+				$hResult = $this->oBdd->executerRequete(
+					"INSERT INTO Formation_Inscrit(IdForm,IdPers)"
+					."VALUES('".$v_sIdFormation."','".$oEnreg->IdPersonne."')",FALSE,TRUE);
+
+				// on cherche le nom de la formation.
+				$requeteNomForm = $this->oBdd->executerRequete(
+					"SELECT NomForm AS NomFormation FROM Formation "
+					."WHERE IdForm='".$v_sIdFormation."'");
+				$oEnreg = $this->oBdd->retEnregSuiv($requeteNomForm);
 				
-			$v_sMessage .= "<span class=\"importOKPetit\">Cet utilisateur a &eacute;t&eacute; affect&eacute &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>"
-						."<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";
-			return $v_sMessage;
+				if ($hResult == '1062') // la personne est déjà inscrite à cette formation ("duplicate key x-x for key Y")
+					$v_sMessage .= "<span class=\"importOKPetit\">Cette personne est <strong>d&eacute;j&agrave; affect&eacute;e</strong> &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>";
+				else $v_sMessage .= "<span class=\"importOKPetit\">Cette personne &eacute;t&eacute; affect&eacute;e &agrave; la formation : '<strong>".$oEnreg->NomFormation."</strong>'!</span>";
+				
+				$v_sMessage .= "<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";
+				return $v_sMessage;
 			}
 			else
 			{
-				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$this->retPseudo()."!</span>";
+				$requetePseudoPers = $this->oBdd->executerRequete(
+					"SELECT Pseudo FROM Personne "
+					."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."'");
+				$oEnregPseudo = $this->oBdd->retEnregSuiv($requetePseudoPers);
+				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$oEnregPseudo->Pseudo."!</span>";
 				return $v_sMessage;
 			}
 		}

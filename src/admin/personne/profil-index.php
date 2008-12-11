@@ -40,7 +40,7 @@ if (isset($_GET["nv"])) {
 	$sParamUrl =  isset($_GET["formId"]) ? "?nv=".$_GET["nv"]."&formId=".$_GET["formId"] : "?nv=".$_GET["nv"];
 }
 else if (isset($_GET["idPers"]))
-	$sParamUrl = "?idPers=".$_GET["idPers"];
+	$sParamUrl = isset($_GET["formId"]) ? "?idPers=".$_GET["idPers"]."&formId=".$_GET["formId"] : "?idPers=".$_GET["idPers"];
 else
 	$sParamUrl = NULL;
 

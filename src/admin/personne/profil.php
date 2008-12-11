@@ -281,7 +281,7 @@ if ($iIdPers >= 0)
 				."<div align=\"center\">"
 				."<p>"
 				."<img src=\"".dir_theme("barre-de-progression.gif")."\">"
-				."<br>Mise &agrave; jour"
+				."<br>Veuillez patienter pendant l'op&eacute;ration d'inscription des utilisateurs dans Esprit."
 				."</p>"
 				."</div>"
 				."<script type=\"text/javascript\" language=\"javascript\">"
