@@ -1,7 +1,7 @@
 /* ajout d'un statut dans les session : 'archivée' */
-UPDATE `Permission` SET `DescrPermis` = 'Peut changer le statut de n''importe quelle session (ouverte,fermée,invisible,archivée)' WHERE `permission`.`IdPermission` =12 LIMIT 1 ;
-UPDATE `Permission` SET `DescrPermis` = 'Peut changer le statut de "sa" session (ouverte,fermée,invisible,archivée)' WHERE `permission`.`IdPermission` =13 LIMIT 1 ;
-UPDATE `Permission` SET `DescrPermis` = 'Modère les forum de la session' WHERE `permission`.`IdPermission` =62 LIMIT 1 ;
+UPDATE `Permission` SET `DescrPermis` = 'Peut changer le statut de n''importe quelle session (ouverte,fermée,invisible,archivée)' WHERE `Permission`.`IdPermission` =12 LIMIT 1 ;
+UPDATE `Permission` SET `DescrPermis` = 'Peut changer le statut de "sa" session (ouverte,fermée,invisible,archivée)' WHERE `Permission`.`IdPermission` =13 LIMIT 1 ;
+UPDATE `Permission` SET `DescrPermis` = 'Modère les forum de la session' WHERE `Permission`.`IdPermission` =62 LIMIT 1 ;
 
 /* ajout des permissions pour les archives */
 INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_VOIR_SESSION_ARCHIVES', 'Peut voir et accéder aux formations archivées');
