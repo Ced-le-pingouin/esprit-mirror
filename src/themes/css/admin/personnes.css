@@ -89,6 +89,14 @@ color:orange;
 li{
 border-bottom: thin solid #DFDFDF;
 }
+
+.progression_import {
+display : block;
+}
+
+.historique_import {
+display : none;
+}
 /* ----- */
 
 /* -- associer personnes -- */

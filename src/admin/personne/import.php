@@ -90,7 +90,7 @@ function insererPersonne ($tab, $enreg=true)
 
 	// le couple est deja dans la DB, on ajoute juste le numero de formation si le champs est rempli
 	if ((!defined('UNICITE_NOM_PRENOM') || UNICITE_NOM_PRENOM===TRUE) && !$oPersonne->estUnique())
-	{	
+	{
 		// le num�ro de formation est nul -> on affiche un message d'erreur, sinon juste un avertissement
 		if 	($sIdFormation == null) $sMessage = "<span class=\"importErreur\">Erreur!</span> ";
 		
@@ -186,6 +186,17 @@ function Restaurer(element)
 		listeElements[k].style.display = 'list-item';
 	}
 }
+function Temporisation()
+{
+	if (self.document.getElementById('progression_import'))
+	{
+		self.document.getElementById('progression_import').style.display='none';
+	}
+	if (self.document.getElementById('historique_import'))
+	{
+		self.document.getElementById('historique_import').style.display='block';
+	}
+}
 </script>
 </head>
 <body class=\"profil\">
@@ -207,7 +218,7 @@ function Restaurer(element)
 		$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
 		$sNomExpediteur = $oProjet->oUtilisateur->retNom();
 		$sIdFormation = $sNomFormation = "";
-		$url_sAdresseServeurActuel = $_SERVER['SERVER_NAME'];
+		$url_sAdresseServeurActuel = "http://".$_SERVER['SERVER_NAME'];
 		$sMessage = "";
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
 		{
@@ -303,7 +314,7 @@ function Restaurer(element)
 	}
 	$sAfficherLog .= "</ol>\n";
 	if ($total) {
-			echo "<p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
+			echo "<div class=\"historique_import\" id=\"historique_import\"><p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
 				."<p><a href=\"javascript: Restaurer('listeOK');Restaurer('listeAvert');Restaurer('listeErreur');\">Tout afficher</a></p>"
 				."<p  class=\"typeA\">"
 				.($inscrits>0?"<a href=\"javascript: Cacher('listeAvert', 'listeErreur'); Restaurer('listeOK');\">":null)."$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit".($inscrits>0?"</a>":null)
@@ -312,7 +323,16 @@ function Restaurer(element)
 				." (dont $avertissements ".($avertissements>1 ? "nouvelles affectations" : "nouvelle affectation")."),"
 				."<br />".($erreurs>0?"<a href=\"javascript: Cacher('listeOK', 'listeAvert'); Restaurer('listeErreur');\">":null)."$erreurs ".($erreurs>1 ? "erreurs" : "erreur").($erreurs>0?"</a>":null).".</p>\n";
 	}
-	echo $sAfficherLog;
+	echo $sAfficherLog."</div>";;
+	echo "<div align=\"center\" class=\"progression_import\" id=\"progression_import\">"
+		."<p>&nbsp;</p><p>&nbsp;</p>"
+		."<p>"
+		."<img src=\"".dir_theme("barre-de-progression.gif")."\">"
+		."<br>Veuillez patienter pendant l'op&eacute;ration d'inscription des utilisateurs dans Esprit."
+		."</p>"
+		."</div>"
+		."<script type=\"text/javascript\" language=\"javascript\">"
+		."<!--\n setTimeout('Temporisation()',3000); \n//--></script>";
 	echo "<p><a href=\"$_SERVER[PHP_SELF]\">Revenir à la page précédente</a></p>\n</body>\n</html>\n";
 	exit();
 }

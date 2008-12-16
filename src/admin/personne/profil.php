@@ -212,7 +212,7 @@ if ($iIdPers >= 0)
 			$sNomComplet = $oPersonne->retNomComplet();
 			$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
 			$sNomExpediteur = $oProjet->oUtilisateur->retNom();
-			$url_sAdresseServeurActuel = $_SERVER['SERVER_NAME'];
+			$url_sAdresseServeurActuel = "http://".$_SERVER['SERVER_NAME'];
 			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
 			if (isset($_POST["ID_FORM"]))
 			{
@@ -223,7 +223,7 @@ if ($iIdPers >= 0)
 				{
 					$sSujetCourriel = "Esprit-Inscription ('{$sNomForm}')";
 					$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
-						."'$sNomForm'\r\naccessible sur Esprit (http://flodi.grenet.fr/esprit).\r\n\r\n"
+						."'$sNomForm'\r\naccessible sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
 						."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 						."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : $sMdp\r\n\r\n"
