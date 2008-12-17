@@ -197,7 +197,7 @@ case 3:
 		$buffer .= "// {{{ Cookie\n"
 			 . '$g_sNomCookie = "{'.$g_sNomProprietaire.'}_{'.$g_sNomBdd.'}";	// Nom du cookie'."\n"
 			 . "// }}}\n\n"
-			 . "// Vérifier l'unicité du couple nom+prénom ?\n"
+			 . "// VÃ©rifier l'unicitÃ© du couple nom+prÃ©nom ?\n"
 			 . "define('UNICITE_NOM_PRENOM',TRUE);\n";
 
 		$buffer .= '// {{{ Adresse courrielle
