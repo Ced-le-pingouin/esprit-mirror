@@ -83,6 +83,10 @@ function insererPersonne ($tab, $enreg=true)
 	if (!empty($tab[7]))
 	{
 	//	return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". La date de naissance est obligatoire.";
+		/*
+		 * on récupère le champs date de naissance au format jj/mm/aaaa
+		 * et on le met au format aaaa-mm-jj
+		 */
 		$sDateNaissanceTemp = array_reverse(explode('/',$tab[7]));
 		$sDateNaissance = $sDateNaissanceTemp[0]."-".$sDateNaissanceTemp[1]."-".$sDateNaissanceTemp[2];
 		$oPersonne->defDateNaiss($sDateNaissance);
@@ -279,7 +283,7 @@ function Temporisation()
 				// on envoie un mail aux nouvelles personnes inscrites dans une formation
 				if ($url_bCopieCourrier)
 				{
-					$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
+					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
 					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
 					$oMail->envoyer();
 				}

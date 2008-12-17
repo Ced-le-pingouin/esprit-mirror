@@ -57,9 +57,9 @@ if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 	include_once(dir_database("module_concepteur.tbl.php"));
 	include_once(dir_database("projet_concepteur.tbl.php"));
 
-	// ---------------------
-	// Enlever des personnes de la formation, pas de la PF.
-	// ---------------------
+// ---------------------
+// Enlever des personnes de la formation, pas de la PF.
+// ---------------------
 	if (isset($_GET["Action_Pers"]) && ($_GET["Action_Pers"] === "enlever")) {
 		$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
 		$oRespForm 	= new CFormation_Resp($oProjet->oBdd,$iIdFormCourante);
@@ -71,8 +71,8 @@ if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 			$oTuteur			= new CFormation_Tuteur($oProjet->oBdd,$iIdFormCourante,$iIdPers);
 			$oFormInscrit		= new CFormation_Inscrit($oProjet->oBdd,$iIdFormCourante,$iIdPers);
 					
-			$oRespForm->effacer($iIdPers);
-			$oResp->effacer($iIdPers);
+			$oRespForm->effacer($iIdPers); // responsable associé == "formation_resp" dans la DB
+			//$oResp->effacer($iIdPers); // responsable de formation == "projet_resp" dans la DB
 			$oConcepteurForm->effacerConcepteur();$oConcepteurForm = NULL;
 			$oConcepteur->effacerConcepteur();$oConcepteur = NULL;
 			$oTuteur->effacerTuteur();$oTuteur = NULL;
@@ -81,9 +81,9 @@ if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 		$oRespForm = $oResp = NULL;
 		$sMajListeInscrit .= "';";
 	}
-	// ---------------------
-	// Ajouter des personnes
-	// ---------------------
+// ---------------------
+// Ajouter des personnes
+// ---------------------
 	else {
 		$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
 	

@@ -222,13 +222,6 @@ class CPersonne
 		*/
 		if ($oEnreg = $this->oBdd->retEnregSuiv($hResult)) {
 			//$bEstUnique = ($oEnreg->IdPers == $currentId);
-echo "Informations debugage <br />"
-	."Pseudo->formulaire: ".$this->oEnregBdd->Pseudo." --- "
-	."BDD: ".$oEnreg->Pseudo."<br />"
-	."Email->formulaire: ".$this->oEnregBdd->Email." --- "
-	."BDD: ".$oEnreg->Email."<br />"
-	."DateNaiss->formulaire: '".$this->oEnregBdd->DateNaiss."' --- "
-	."BDD: '".$oEnreg->DateNaiss."'<br />";
 			if ($oEnreg->IdPers != $currentId) // plusieurs personnes avec le même nom+prénom (homonymes)
 			{
 				if ($oEnreg->Pseudo != $this->oEnregBdd->Pseudo) // le pseudo n'est pas le même, on vérifie ensuite l'adresse mail.
