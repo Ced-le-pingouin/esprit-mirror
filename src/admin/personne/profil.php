@@ -145,7 +145,7 @@ if ($iIdPers >= 0)
 			.$_POST["DATE_NAISS_MOIS_PERS"]
 			."-"
 			.$_POST["DATE_NAISS_JOUR_PERS"];
-			
+
 		$oPersonne->defDateNaiss($sDateNaiss);
 
 		/*

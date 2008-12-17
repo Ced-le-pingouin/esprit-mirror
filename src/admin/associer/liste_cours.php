@@ -116,18 +116,21 @@ switch ($iIdStatut)
 		break;
 		
 	case STATUT_PERS_ETUDIANT:
-		
+
 		if ($iIdPers < 1)
 			break;
 		
 		$oModule = new CModule_Inscrit($oProjet->oBdd,0,$iIdPers);
-		
+
+		if (isset($_GET["IDCOURS"]) && count($_GET["IDCOURS"]) > 0)
+			$oModule->ajouterModules($_GET["IDCOURS"]);
+
 		if (isset($_GET["ENVOYER"]))
 		{
 			$oModule->effacerModules($iIdForm);
 			
-			if (isset($_GET["IDCOURS"]) && count($_GET["IDCOURS"]) > 0)
-				$oModule->ajouterModules($_GET["IDCOURS"]);
+//			if (isset($_GET["IDCOURS"]) && count($_GET["IDCOURS"]) > 0)
+//				$oModule->ajouterModules($_GET["IDCOURS"]);
 			
 			if ($_GET["ENVOYER"] == "1")
 				return;

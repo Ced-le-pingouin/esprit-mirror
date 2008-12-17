@@ -241,14 +241,27 @@ switch ($iStatutPers)
 	case STATUT_PERS_ETUDIANT:
 		$oFormation = new CFormation($oProjet->oBdd,$iIdForm);
 		$iNbrInscrits = $oFormation->initInscrits();
+		$bAutoInscription = $oFormation->retInscrAutoModules();
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
 		{
 			$sEvent = "majListeCours('liste_cours.php"
 				."?idform={$iIdForm}"
 				."&IDPERS=".$oFormation->aoInscrits[$i]->retId()
-				."&STATUT={$iStatutPers}')";
-			
+				."&STATUT={$iStatutPers}";
+
+			if ($bAutoInscription)
+			{
+				$oModule = new CModule_Inscrit($oProjet->oBdd,0,$oFormation->aoInscrits[$i]->retId());
+				$iNbrModules = $oModule->initModules(TRUE,$iIdForm);
+				$aoModules = &$oModule->aoModules;
+				for ($j=0; $j<$iNbrModules; $j++)
+				{
+					$sEvent .= "&IDCOURS%5B%5D=".$aoModules[$j]->retId();
+				}
+			}
+			$sEvent .= "')";
+
 			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\" name=\"IDPERS\" value=\"".$oFormation->aoInscrits[$i]->retId()."\""
@@ -265,10 +278,21 @@ switch ($iStatutPers)
 				."</td>\n"
 				."</tr>\n";
 		}
-		
+
+
 		$sMajListeCours = "oFrmCours().location = 'liste_cours.php"
-			.($i > 0 ? "?idform=$iIdForm&IDPERS=".$oFormation->aoInscrits[0]->retId()."&STATUT={$iStatutPers}" : NULL)
-			."';";
+			.($i > 0 ? "?idform=$iIdForm&IDPERS=".$oFormation->aoInscrits[0]->retId()."&STATUT={$iStatutPers}" : NULL);
+		if ($bAutoInscription && $iNbrInscrits>0)
+		{
+			$oModule = new CModule_Inscrit($oProjet->oBdd,0,$oFormation->aoInscrits[0]->retId());
+			$iNbrModules = $oModule->initModules(TRUE,$iIdForm);
+			$aoModules = &$oModule->aoModules;
+			for ($j=0; $j<$iNbrModules; $j++)
+			{
+				$sMajListeCours .= "&IDCOURS%5B%5D=".$aoModules[$j]->retId();
+			}
+		}
+		$sMajListeCours .= "';";
 		
 		break;
 }
