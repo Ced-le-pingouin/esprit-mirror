@@ -79,7 +79,8 @@ if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 			$oFormInscrit->effacer();$oFormInscrit = NULL;
 		}
 		$oRespForm = $oResp = NULL;
-		$sMajListeInscrit .= "';";
+		$sMajListeInscrit .= "';"
+							."oFrmPersonne().document.location ='liste_personnes.php?idform=$iIdFormCourante&FORMATION=$iIdForm';";
 	}
 // ---------------------
 // Ajouter des personnes
