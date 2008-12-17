@@ -1,0 +1,39 @@
+<?php
+// Fichier de configuration généré automatiquement par install.php
+
+// {{{ Fichiers
+$g_sCheminRacine = '';
+$g_sCheminRacineWeb = '';
+// }}}
+
+// {{{ Base de données
+$g_sNomBdd = ''; // Nom de la base de données
+$g_sNomServeur = 'localhost'; // Nom du serveur
+$g_sNomProprietaire = ''; // Nom du propriétaire de la base de données MySQL
+$g_sMotDePasse = ''; // Mot de passe de la base de données MySQL
+// }}}
+
+// {{{ Informations BdD nécessaires au transfert de formations entre deux plateformes
+$g_sNomServeurTransfert = 'localhost';
+$g_sNomProprietaireTransfert = "root";
+$g_sMotDePasseTransfert = "mot_de_passe_root";
+// }}}
+
+// {{{ Cookie
+$g_sNomCookie = "{}_{}";        // Nom du cookie
+// }}}
+
+// {{{ Adresse courrielle
+//     Cette adresse courriel sert, dans le cas d'un problème ou autre
+//     (forum), à envoyer un message aux administrateurs de la plate-forme
+define("GLOBAL_ESPRIT_ADRESSE_COURRIEL_ADMIN","");
+// }}}
+
+// {{{ Thèmes
+define("THEME","esprit");
+// }}}
+
+// nom+prenom unique dans une importation ?
+define('UNICITE_NOM_PRENOM',TRUE);
+
+?>
