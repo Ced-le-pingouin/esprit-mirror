@@ -53,7 +53,8 @@ if (!empty($_POST["idStatut"]))
 	foreach ($aamNiveaux as $amNiveau)
 		$sParamsRechargerFenParent .= (isset($sParamsRechargerFenParent) ? "&" : "?")
 			.$amNiveau[1]."=".(is_object($amNiveau[0]) ? $amNiveau[0]->retId() : 0);
-	
+
+	$sParamsRechargerFenParent .= "&sAffiche=".($oProjet->oFormationCourante->retStatut() == 4 ? "Archives" : "en_cours");
 	$oProjet->changerStatutUtilisateur($_POST["idStatut"],TRUE);
 	
 	// Nous devons mettre à jour la fenêtre parente

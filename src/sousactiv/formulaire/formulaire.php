@@ -54,6 +54,7 @@ $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId
 
 // Vérifier que cette personne a le droit d'évaluer les formulaires soumis
 $bPeutEvaluerFormulaires  = $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
+$bPeutModifierArchive		= $oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES");
 
 if ($bPeutEvaluerFormulaires)
 {
@@ -300,7 +301,7 @@ foreach ($aiIdPers as $iIdPers)
 			if (empty($sBoutonEvaluer) &&
 				($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
 				$sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
-			
+		
 			// Liste des éléments à remplacer
 			$amRemplacer = array(
 				  ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC ? $sVarButonSelectionnerFormulaire : "&nbsp;")
@@ -315,7 +316,7 @@ foreach ($aiIdPers as $iIdPers)
 		}
 		
 		$sListeTravauxSoumis .= $sVarListeDocuments;
-		$sListeTravauxSoumis = str_replace("{evaluer->bouton}",$sBoutonEvaluer,$sListeTravauxSoumis);
+		$sListeTravauxSoumis = str_replace("{evaluer->bouton}",$bPeutModifierArchive ? $sBoutonEvaluer : "",$sListeTravauxSoumis);
 		$sListeTravauxSoumis = str_replace("{liste_documents}",$sListeDocuments,$sListeTravauxSoumis);
 	}
 	else

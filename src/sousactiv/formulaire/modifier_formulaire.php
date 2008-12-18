@@ -183,7 +183,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
 	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']) || $bFormationArchivee)
 	{	// si c'est pour évaluer ou afficher les feedbacks de l'auto-correction, on ne voit pas le bouton valider
-		$oTpl->remplacer("{bouton_valider}","");
+		$oTpl->remplacer("{bouton_valider}","&nbsp;");
 		if(isset($_POST['idFormulaire']))
 			$oTpl->remplacer("{bouton_fermer}","<a id=\"fermer\" href=\"javascript: top.opener.location=top.opener.location; top.close();\">Fermer</a>");
 		else

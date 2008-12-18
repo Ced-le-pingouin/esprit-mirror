@@ -204,6 +204,11 @@ echo "
 <span><a href=\"javascript: void(0);\" onclick=\"importer_liste_personnes()\" onfocus=\"blur()\">Importer</a></span>
 <span id=\"enlever_personne\">&nbsp;|&nbsp;<a href=\"javascript: void(0);\" onclick=\"enlever_personne(".$url_iIdForm.")\" onfocus=\"blur()\">Enlever</a></span>";
 }
+else
+echo "
+<span class=\"typeA\"><del>Ajouter</del>&nbsp;|&nbsp;</span>
+<span class=\"typeA\"><del>Importer</del></span>
+<span class=\"typeA\">&nbsp;|&nbsp;<del>Enlever</del></span>";
 ?>
 </td>
 </tr>
@@ -212,12 +217,11 @@ echo "
 <td align="center" width="1%">
 <?php
 // si la formation est archivée, on ne peut mettre de nouvelles personnes dans la formation.
-if ($bPeutInscrire)
-{
+$sBoutonActif = $bPeutInscrire ? "" : "disabled";
 echo "
-<span title=\"".$asToolTip[0]."\"><input type=\"button\" value=\"&nbsp;&raquo;&nbsp;\" onclick=\"envoyerPersonnes()\"></span><br><br><span title=\"".$asToolTip[1]."\"><input type=\"button\" value=\"&nbsp;&laquo;&nbsp;\" onclick=\"enleverPersonneInscrit()\"></span>
+<span title=\"".$asToolTip[0]."\"><input type=\"button\" value=\"&nbsp;&raquo;&nbsp;\" onclick=\"envoyerPersonnes()\" $sBoutonActif></span><br><br><span title=\"".$asToolTip[1]."\"><input type=\"button\" value=\"&nbsp;&laquo;&nbsp;\" onclick=\"enleverPersonneInscrit()\" $sBoutonActif></span>
 ";
-}
+
 ?>
 </td>
 <td valign="top">

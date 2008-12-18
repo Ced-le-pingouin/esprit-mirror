@@ -31,8 +31,8 @@ $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlock_Head->effacer();
 
 $oTpl->remplacer("{class_style}","dialog_titre_principal_2");
-$oTpl->remplacer("{titre_principal}",$url_sNomFormation);
-$oTpl->remplacer("{sous_titre}",$url_sSousTitre." <em>(n&deg; formation : ".$url_iNumeroFormation.")</em>");
+$oTpl->remplacer("{titre_principal}",rawurldecode($url_sNomFormation));
+$oTpl->remplacer("{sous_titre}",rawurldecode($url_sSousTitre)." <em>(n&deg; formation : ".$url_iNumeroFormation.")</em>");
 
 $oTpl->afficher();
 

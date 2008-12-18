@@ -233,17 +233,17 @@ if ($iIdPers >= 0)
     					."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
     					."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
     					."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
-    					."		($url_sAdresseServeurActuel).\r\n"
+    					."		($url_sAdresseServeurActuel)."
     					."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
 						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
-						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.</ins><br /><br />"
+						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>$sMdp</strong><br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
-						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
-    					."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
+						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>. Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+    					."Bonne formation.<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
 					$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
 
@@ -386,13 +386,15 @@ document.onmousemove=move;
 <body class="profil">
 <form action="<?php echo $sFormAction; ?>" method="POST">
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
-
+<?php
+if ($url_iNouvellePersonne) 
+	echo "
 <tr>
-<td class="intitule"><div>Formation&nbsp;:</div></td>
-<td class="largeur_fixe"><?php echo $sNomForm." (".$iIdForm.")"; ?></td>
+<td class=\"intitule\"><div>Formation&nbsp;:</div></td>
+<td class=\"largeur_fixe\">$sNomForm ($iIdForm)</td>
 <td>&nbsp;</td>
-</tr>
-
+</tr>";
+?>
 <tr>
 <td class="intitule"><div>Nom&nbsp;:</div></td>
 <td class="largeur_fixe"><input type="text" name="NOM_PERS" size="40" value="<?php echo $oPersonne->retNom(TRUE); ?>"></td>

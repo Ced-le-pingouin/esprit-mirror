@@ -21,8 +21,16 @@
 	</form>
 </div>
 <div id="barreaction">
-	<a id="valider_global" href="#" onclick="document.forms['formajout'].submit();">Valider</a>
-	<a id="fermer_global" href="#" onclick="window.close ();">Fermer</a>
+<table>
+	<tr>
+		<td width="88%" align="center">
+			<a href="#" onclick="document.forms['formajout'].submit();">Valider</a>
+		</td>
+		<td align="right">
+			<a href="#" onclick="window.close ();">Fermer</a>
+		</td>
+	</tr>
+</table>
 </div>
 </body>
 </html>

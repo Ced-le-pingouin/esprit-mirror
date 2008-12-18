@@ -58,7 +58,12 @@ form
 </div>
 
 <div id="barremenu">
-{bouton_fermer}{bouton_valider}
+<table>
+<tr>
+<td width="99%" align="center">{bouton_valider}</td>
+<td align="right">{bouton_fermer}</td>
+</tr>
+</table>
 </div>
 [BLOCK_FORMULAIRE-]
 [BLOCK_FERMER+]

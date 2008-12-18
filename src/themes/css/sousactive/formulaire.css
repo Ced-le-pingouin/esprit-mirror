@@ -34,11 +34,15 @@ height:100%;
 margin:0;
 padding:0;
 }
+form.ascenseur {
+overflow:auto;
+}
 
 form.formFormulaire {
 background-color:#f9fbfb;
 border:#dce6e6 dotted 1px;
 line-height:1.2em;
+height:98%;
 padding:7px;
 -moz-border-radius:5px;
 }
@@ -327,7 +331,6 @@ padding:45px 0 0;
 
 .corps {
 position: absolute;
-overflow: auto;
 width: 99%;
 height: 85%;
 }
@@ -475,6 +478,7 @@ border-top:#000 solid 1px;
 bottom:0;
 height:22px;
 position:absolute;
+text-align:center;
 width:100%;
 }
 /* ----- */

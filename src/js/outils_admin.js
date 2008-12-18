@@ -103,7 +103,7 @@ function importer_liste_personnes() {
 function enlever_personne(v_iIdForm) {
 	var sUrl = GLOBALS["admin"] + "personne/enlever_personne-index.php"
 		+ "?idform=" + v_iIdForm;
-	var win = PopupCenter(sUrl,"WinEnleverPersonne",300,150,"");
+	var win = PopupCenter(sUrl,"WinEnleverPersonne",300,250,"");
 	win.focus();
 }
 

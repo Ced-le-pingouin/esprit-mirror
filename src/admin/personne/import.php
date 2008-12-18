@@ -72,7 +72,7 @@ function insererPersonne ($tab, $enreg=true)
 	// Numéro de formation
 	$sIdFormation = trim ($tab[8]);
 	if (!empty($sIdFormation) && !preg_match('/[0-9]/',$sIdFormation))
-		return "<span class=\"importErreur\">Erreur!</span> Le num&eacute;ro de formation doit &ecirc;tre num&eacute;rique.";
+		return "<span class=\"importErreur\">Erreur!</span> Le num&eacute;ro de formation doit &ecirc;tre num&eacute;rique.";		
 
 	// Email
 	if (empty($tab[5]))
@@ -98,7 +98,7 @@ function insererPersonne ($tab, $enreg=true)
 		// le numéro de formation est nul -> on affiche un message d'erreur, sinon juste un avertissement
 		if 	($sIdFormation == null) $sMessage = "<span class=\"importErreur\">Erreur!</span> ";
 		
-		$sMessage .= $oPersonne->retPrenom()." ".$oPersonne->retNom()." est d&eacute;j&agrave; inscrit sur Esprit!<br />";
+		$sMessage .= $oPersonne->retPrenom()." ".$oPersonne->retNom()." &eacute;tait d&eacute;j&agrave; inscrit sur Esprit!<br />";
 		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
 	}
 
@@ -132,7 +132,7 @@ $sPrenomNom = $oPersonne->retPrenom()." ".$oPersonne->retNom();
 
 	if ($enreg && $sMessage==null) {
 		$oPersonne->enregistrer();
-		$oPersonne->lierPersForm($sIdFormation);
+		$oPersonne->lierPersForm($sIdFormation,TRUE);
 	}
 	elseif ($sMessage!=null)
 	{
@@ -206,7 +206,7 @@ function Temporisation()
 <body class=\"profil\">
 <h1>Inscription group&eacute;e</h1>";
 	$sAfficherLog = "\n<ol>";
-	$inscrits = $avertissements = $erreurs = $inscritsAffectes = 0;
+	$inscrits = $avertissements = $erreurs = $inscritsAffectes = $avertissementsAffectes = 0;
 	$total=0;
 	$sSujetCourriel = null;
 	
@@ -231,13 +231,14 @@ function Temporisation()
 			$sNomFormation = $oFormation->retNom();
 			$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
 		}
+		else $sSujetCourriel = "Esprit-Inscription";
 
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
-		$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
-		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e) à la formation\r\n"
-			."'$sNomFormation'\r\naccessible sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
+		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e)"
+			.($sNomFormation!="") ? (" à la formation\r\n '$sNomFormation'\r\naccessible") : NULL
+			."sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
 			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
 			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".trim($tab[4])."\r\n\r\n"
@@ -247,17 +248,19 @@ function Temporisation()
     		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
     		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
     		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
-    		."		($url_sAdresseServeurActuel).\r\n"
+    		."		($url_sAdresseServeurActuel)."
     		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
-    		."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
+    		."Bonne formation.\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomFormation</strong>' accessible sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
-			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels) et cliquez sur Ok.</ins><br /><br />"
+			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e)"
+			.($sNomFormation!="") ? ("à la formation '<strong>$sNomFormation</strong>' accessible"): NULL
+			."sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
+			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
 			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>".trim($tab[4])."</strong><br /><br />"
 			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
-			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br />Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
-    		."Bonne formation,<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
+			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>. Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
+    		."Bonne formation.<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
 
 		$sFrontiereEntreTexteHTML = '-----'.md5(uniqid(mt_rand()));
 
@@ -278,26 +281,32 @@ function Temporisation()
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
-				$sMessage = " et ajout&eacute; &agrave; la formation '<em>".$sNomFormation."</em>'!</span>";
-
-				// on envoie un mail aux nouvelles personnes inscrites dans une formation
-				if ($url_bCopieCourrier)
-				{
-					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
-					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
-					$oMail->envoyer();
-				}
-				
+				$sMessage = " et ajout&eacute; &agrave; la formation '<em>".$sNomFormation."</em>'</span>";
 				$inscritsAffectes++;
 			}
+			else 
+				$sMessage = ".<br /><span class=\"importAvertPetit\">La formation n&deg; <em>$sIdFormation</em> n'existe pas</span>";
+
+			// on envoie un mail aux nouvelles personnes inscrites sur la PF
+			if ($url_bCopieCourrier)
+			{
+				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
+				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
+				$oMail->envoyer();
+			}
+				
 			$inscrits++;
-			$sAfficherLog .= "<li name=\"listeOK\" id=\"listeOK\"><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a Ã©tÃ© inscrit".$sMessage.".</li>";
+			$sAfficherLog .= "<li name=\"listeOK\" id=\"listeOK\"><span class=\"importOK\">OK</span> : <em>$prenom $nom</em> a Ã©tÃ© inscrit sur Esprit".$sMessage.".</li>";
 			// ...
 		}
 		elseif (($sIdFormation!="") && !preg_match('/importErreur/',$res)) {
 			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutée à une formation.
 			$sAfficherLog .= "<li name=\"listeAvert\" id=\"listeAvert\"><span class=\"importAvert\">Avertissement!</span> ".$res."</li>";
 
+			if ($sNomFormation!=""){
+				$avertissementsAffectes++;
+			}
+			
 			// on envoie un mail aux personnes ajoutées à la formation
 			if ($url_bCopieCourrier)
 			{
@@ -305,7 +314,6 @@ function Temporisation()
 				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 				$oMail->envoyer();
 			}
-
 			$avertissements++;
 			// ...
 		}
@@ -324,7 +332,7 @@ function Temporisation()
 				.($inscrits>0?"<a href=\"javascript: Cacher('listeAvert', 'listeErreur'); Restaurer('listeOK');\">":null)."$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit".($inscrits>0?"</a>":null)
 				." (dont $inscritsAffectes ".($inscritsAffectes>1 ? "nouvelles affectations" : "nouvelle affectation")."),"
 				."<br />".($avertissements>0?"<a href=\"javascript: Cacher('listeOK', 'listeErreur'); Restaurer('listeAvert');\">":null)."$avertissements ".($avertissements>1 ? "avertissements" : "avertissements").($avertissements>0?"</a>":null)
-				." (dont $avertissements ".($avertissements>1 ? "nouvelles affectations" : "nouvelle affectation")."),"
+				." (dont $avertissementsAffectes ".($avertissementsAffectes>1 ? "nouvelles affectations" : "nouvelle affectation")."),"
 				."<br />".($erreurs>0?"<a href=\"javascript: Cacher('listeOK', 'listeAvert'); Restaurer('listeErreur');\">":null)."$erreurs ".($erreurs>1 ? "erreurs" : "erreur").($erreurs>0?"</a>":null).".</p>\n";
 	}
 	echo $sAfficherLog."</div>";;
