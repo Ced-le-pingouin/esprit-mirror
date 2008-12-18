@@ -288,7 +288,8 @@ function Temporisation()
 				$sMessage = ".<br /><span class=\"importAvertPetit\">La formation n&deg; <em>$sIdFormation</em> n'existe pas</span>";
 
 			// on envoie un mail aux nouvelles personnes inscrites sur la PF
-			if ($url_bCopieCourrier)
+			$sDestinataire = $data->sheets[0]['cells'][$nrow][5];echo $sDestinataire;
+			if ($url_bCopieCourrier && $sDestinataire)
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
@@ -313,6 +314,7 @@ function Temporisation()
 				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$tab[5],$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 				$oMail->envoyer();
+				echo "mail envoyé?";
 			}
 			$avertissements++;
 			// ...

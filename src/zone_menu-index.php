@@ -38,24 +38,28 @@ $oProjet->initModuleCourant();
 include_once("zone_menu.inc.php");
 
 // ---------------------
-// Récupérer la description de la formation
+// Récupérer la description et le statut de la formation
 // ---------------------
-$iLongueurDescr = 0;
+$iLongueurDescr		= 0;
+$iStatutFormation	= 0;
 
 if ($iIdForm > 0 && $iIdMod == 0)
 {
 	$oFormation = new CFormation($oProjet->oBdd,$iIdForm);
 	
 	if (isset($oFormation) && is_object($oFormation))
-		$iLongueurDescr = strlen($oFormation->retDescr());
+	{
+		$iLongueurDescr		= strlen($oFormation->retDescr());
+		$iStatutFormation	= $oFormation->retStatut();
+	}
 }
 
 // --------------------------
 // Initialiser
 // --------------------------
-$bVoirArchive = isset($_GET['sAffiche']) ? ($_GET['sAffiche']== "Archives" ? TRUE : FALSE) : FALSE;
-$bVoirArchive ? $sStatutFormation = "archives" : $sStatutFormation = NULL;
-$sAffichage = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : 'en_cours';
+$sAffichage		= isset($_GET['sAffiche']) ? $_GET['sAffiche'] : ($iStatutFormation == 4 ? "Archives" : "en_cours");
+$bVoirArchive	= $sAffichage == "Archives" ? TRUE : FALSE;
+
 
 $sParamsUrl = "?idForm={$iIdForm}&idMod={$iIdMod}&idUnite=0&idSousActiv=0&idActiv=0&sAffiche={$sAffichage}";
 
