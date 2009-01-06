@@ -62,14 +62,16 @@ class CProjet_Resp
 		$this->oBdd->executerRequete ($sRequeteSql);
 	}
 	
-	function initResponsables ()
+	function initResponsables ($v_sModeTri="ASC")
 	{
 		$idx = 0;
 		
 		$this->aoPersonnes = array ();
 		
-		$sRequeteSql = "SELECT * FROM Projet_Resp";
-		
+		//$sRequeteSql = "SELECT * FROM Projet_Resp";
+		$sRequeteSql = "SELECT Personne.* FROM Projet_Resp"
+				." LEFT JOIN Personne USING(IdPers)"
+				." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom ASC";
 		$hResult = $this->oBdd->executerRequete ($sRequeteSql);
 		
 		while ($oEnreg = $this->oBdd->retEnregSuiv ($hResult))

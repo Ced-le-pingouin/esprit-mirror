@@ -73,14 +73,15 @@ class CProjet_Concepteur
 		$this->oBdd->executerRequete($sRequeteSql);
 	}
 
-	function initConcepteurs ()
+	function initConcepteurs ($v_sModeTri="ASC")
 	{
 		$idx = 0;
 
 		$this->aoConcepteurs = array();
 
 		$sRequeteSql = "SELECT Personne.* FROM Projet_Concepteur"
-			." LEFT JOIN Personne USING(IdPers)";
+			." LEFT JOIN Personne USING(IdPers)"
+			." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom ASC";
 
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 

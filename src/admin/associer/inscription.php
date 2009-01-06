@@ -49,9 +49,11 @@ if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
 // ---------------------
 // Récupérer les variables de l'url
 // ---------------------
-$url_iIdForm       = (isset($_GET["idform"]) ? $_GET["idform"] : 0);
-$url_iSelectFiltre = (!empty($_GET["FILTRE"]) ? $_GET["FILTRE"] : -1);
-$url_iSelectStatut = (!empty($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
+$url_iIdForm			= (isset($_GET["idform"]) ? $_GET["idform"] : 0);
+$url_iSelectFiltre		= (!empty($_GET["FILTRE"]) ? $_GET["FILTRE"] : -1);
+$url_iSelectStatut		= (!empty($_GET["STATUT_PERS"]) ? $_GET["STATUT_PERS"] : STATUT_PERS_ETUDIANT);
+$url_bCetteFormation	= (isset($_GET["FORMATION"]) ? $_GET["FORMATION"] : 1);
+$url_iIdMod				= (!empty($_GET["ID_MOD"]) ? $_GET["ID_MOD"] : 0);
 
 // ---------------------
 // Filtres
@@ -75,7 +77,7 @@ for ($i=0; $i<count($asFiltre); $i++)
 			: emb_htmlentities($oProjet->retTexteStatutUtilisateur($asFiltre[$i][0],"M")))
 		."</options>\n";
 	
-unset($asFiltre,$url_iSelectFiltre);
+unset($asFiltre);
 
 // ---------------------
 // Composer la liste des statuts
@@ -98,7 +100,7 @@ for ($iIdxStatut=0; $iIdxStatut<count($asStatutPers); $iIdxStatut++)
 			.($url_iSelectStatut == $asStatutPers[$iIdxStatut][0] ? " selected=\"selected\"" : NULL)
 			.">".emb_htmlentities($oProjet->retTexteStatutUtilisateur($asStatutPers[$iIdxStatut][0],"M"))."</options>\n";
 
-unset($asStatutPers,$url_iSelectStatut);
+unset($asStatutPers);
 
 // *************************************
 //
@@ -143,6 +145,29 @@ function rechargerListeCours()
 	majListeCours();
 }
 
+ 
+window.onload = function() {
+	var champs = document.getElementsByTagName('input');
+	for(var i=0;i<champs.length;i++) {	
+		if(champs[i].type=='text') { // on recherche les balises <input type=text>
+			champs[i].onkeypress = BloquerToucheEntree;
+		}
+	}
+}
+ 
+function BloquerToucheEntree(event) {
+	var event = event || window.event;
+	if(event.keyCode==13) {
+		if (event.preventDefault) {
+			event.preventDefault();
+			event.stopPropagation();
+		} else {
+			event.returnValue = false;
+			event.cancelBubble = true;
+		}		
+	}
+}
+
 //-->
 </script>
 </head>
@@ -156,7 +181,7 @@ function rechargerListeCours()
 <?php echo $sOptionsFiltre; ?>
 </select>
 &nbsp;&nbsp;
-<span><input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" checked>de cette session uniquement</span>
+<span><input type="checkbox" NAME="FORMATION" onchange="changerFiltre(FILTRE.value,STATUT_PERS.value,<?php echo $url_iIdForm?>,retIdModule(),checked)" onclick="blur()" <?php if ($url_bCetteFormation) echo "checked"; else echo ""; ?>>de cette session uniquement</span>
 </td>
 <td>&nbsp;</td>
 <td class="intitule" height="1%">Statut&nbsp;des&nbsp;personnes&nbsp;:<br>
@@ -189,7 +214,7 @@ for ($a = 97; $a <= 122; $a++)
 </table></td>
 </tr>
 <tr><td>
-<iframe name="FRM_PERSONNE" src="liste_personnes.php?idform=<?php echo $url_iIdForm?>&FORMATION=1" width="99%" height="395" frameborder="0"></iframe>
+<iframe name="FRM_PERSONNE" src="<?php echo "liste_personnes.php?idform=".$url_iIdForm."&ID_MOD=".$url_iIdMod."&FILTRE=".$url_iSelectFiltre."&STATUT_PERS=".$url_iSelectStatut."&FORMATION=".$url_bCetteFormation; ?>" width="99%" height="395" frameborder="0"></iframe>
 </td></tr>
 <tr>
 <td height="1%">
@@ -227,7 +252,7 @@ echo "
 <td valign="top">
 <table border="0" cellspacing="1" cellpadding="1" width="100%">
 <tr><td><span class="intitule">&#8250;&nbsp;Liste des personnes inscrites&nbsp;:</span></td></tr>
-<tr><td><iframe name="FRM_INSCRIT" src="liste_inscrits.php?idform=<?php echo $url_iIdForm?>" width="100%" height="218" frameborder="0"></iframe></td></tr>
+<tr><td><iframe name="FRM_INSCRIT" src="<?php echo "liste_inscrits.php?idform=".$url_iIdForm."&ID_MOD=".$url_iIdMod."&FILTRE=".$url_iSelectFiltre."&STATUT_PERS=".$url_iSelectStatut."&FORMATION=".$url_bCetteFormation; ?>" width="100%" height="218" frameborder="0"></iframe></td></tr>
 </table>
 </td>
 </tr>

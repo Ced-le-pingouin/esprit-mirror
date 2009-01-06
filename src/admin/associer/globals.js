@@ -28,12 +28,13 @@ function envoyerPersonnes()
 
 function changerFiltre(v_iFiltre,v_iStatut,v_iIdForm,v_iIdMod,v_bCetteFormation)
 {
-	oFrmPersonne().document.location = 'liste_personnes.php'
-		+ '?FILTRE=' + v_iFiltre
+	v_sParametres = '?FILTRE=' + v_iFiltre
 		+ '&STATUT_PERS=' + v_iStatut
 		+ '&idform=' + v_iIdForm
 		+ '&ID_MOD=' + v_iIdMod
 		+ '&FORMATION=' + (v_bCetteFormation ? 1 : 0);
+
+	oPrincipal().document.location = 'inscription.php' + v_sParametres;
 
 	if (oPrincipal().document.getElementById("enlever_personne"))
 	{	

@@ -25,7 +25,12 @@ $oTpl = new Template("modifier_formulaire.tpl");
 $oBlockFormulaire = new TPL_Block("BLOCK_FORMULAIRE",$oTpl);	// block afficher tous les questions de l'AEL
 $oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);			// block qui ferme la page
 $oBlockEvalEtat = new TPL_Block("BLOCK_EVAL_ETAT",$oTpl);		// block pour afficher l'Ã©valuation et l'Ã©tat de l'AEL
-$iIdUtilisateur = $oProjet->oUtilisateur->retId();
+
+/*
+ * On vérifie si la personne est visiteur ou connecté.
+ */
+if ($oProjet->retIdUtilisateur() > 0) $iIdUtilisateur = $oProjet->oUtilisateur->retId();
+else $iIdUtilisateur = -1;
 
 //	RÃ©cupÃ©ration des variables
 $v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
@@ -152,9 +157,21 @@ if(!$bFermer)
 		$oBlockEvalEtat->effacer();
 		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd);
-		$oTpl->remplacer("{Nom_etudiant}",$oProjet->oUtilisateur->retNom());
-		$iNumVersion = 1 + $oFormulaireComplete->retNbreFormulaireComplete($iIdSousActiv,$iIdUtilisateur);
-		$oTpl->remplacer("{Info_ael}"," (version $iNumVersion)");
+		/*
+		 * $iIdUtilisateur est égale à -1 si la personne est un visiteur.
+		 */
+		if ($iIdUtilisateur > -1)
+		{
+			$oTpl->remplacer("{Nom_etudiant}",$oProjet->oUtilisateur->retNom());
+			$iNumVersion = 1 + $oFormulaireComplete->retNbreFormulaireComplete($iIdSousActiv,$iIdUtilisateur);
+			$oTpl->remplacer("{Info_ael}"," (version $iNumVersion)");
+		}
+		else
+		{
+			$oTpl->remplacer("{Nom_etudiant}","visiteur");
+			$iNumVersion = 1;
+			$oTpl->remplacer("{Info_ael}"," (version $iNumVersion)");
+		}
 	}
 }
 if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL

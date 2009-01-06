@@ -53,7 +53,7 @@ $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
 // Vérifier que cette personne a le droit d'évaluer les formulaires soumis
-$bPeutEvaluerFormulaires  = $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
+$bPeutEvaluerFormulaires	= $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
 $bPeutModifierArchive		= $oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES");
 
 if ($bPeutEvaluerFormulaires)
@@ -245,7 +245,11 @@ foreach ($aiIdPers as $iIdPers)
 	// si celui-ci n'a pas soumis des documents
 	if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
 		break;
-	
+
+	// Si l'utilisateur est un visiteur, il ne peut voir les travaux d�pos�s.
+	if ($iMonIdPers == 0)
+		break;
+
 	if (empty($sListeTravauxSoumis))
 	{
 		// Ajouter une nouvelle liste de formulaires
@@ -281,7 +285,7 @@ foreach ($aiIdPers as $iIdPers)
 	}
 	
 	$sListeDocuments = NULL;
-	
+
 	if ($iNbrFormulairesCompletes > 0)
 	{
 		$sBoutonEvaluer = NULL;
@@ -294,14 +298,14 @@ foreach ($aiIdPers as $iIdPers)
 			
 			// Initialiser l'auteur du formulaire
 			$oFormulaireComplete->initAuteur();
-			
+
 			// Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
 			// il faut que la personne est un tuteur ou que l'étudiant a dans sa
 			// liste un document qui a été évalué par son tuteur
 			if (empty($sBoutonEvaluer) &&
 				($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
 				$sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
-		
+
 			// Liste des éléments à remplacer
 			$amRemplacer = array(
 				  ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC ? $sVarButonSelectionnerFormulaire : "&nbsp;")
@@ -316,7 +320,8 @@ foreach ($aiIdPers as $iIdPers)
 		}
 		
 		$sListeTravauxSoumis .= $sVarListeDocuments;
-		$sListeTravauxSoumis = str_replace("{evaluer->bouton}",$bPeutModifierArchive ? $sBoutonEvaluer : "",$sListeTravauxSoumis);
+		$iStatutFormation = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retStatut() : 0);
+		$sListeTravauxSoumis = str_replace("{evaluer->bouton}",(!$bPeutModifierArchive && $iStatutFormation == 4) ? "" : $sBoutonEvaluer,$sListeTravauxSoumis);
 		$sListeTravauxSoumis = str_replace("{liste_documents}",$sListeDocuments,$sListeTravauxSoumis);
 	}
 	else

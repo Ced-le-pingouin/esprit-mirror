@@ -331,7 +331,7 @@ class CPersonne
 					."VALUES('".$v_sIdFormation."','".$oEnreg->IdPersonne."')",FALSE,TRUE);
 				
 				if ($hResult == '1062') // la personne est déjà inscrite à cette formation ("duplicate key x-x for key Y")
-					$v_sMessage .= "<span class=\"importOKPetit1\">Cette personne est <strong>d&eacute;j&agrave; affect&eacute;e</strong> &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
+					$v_sMessage .= "<span class=\"importOKPetit1\">Cette personne &eacute;tait <strong>d&eacute;j&agrave; affect&eacute;e</strong> &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
 				else $v_sMessage .= "<span class=\"importOKPetit\">Cette personne a bien &eacute;t&eacute; affect&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
 				
 				$v_sMessage .= "<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";

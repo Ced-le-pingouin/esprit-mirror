@@ -250,13 +250,13 @@ if ($iIdPers >= 0)
 					//on insere d'abord le message au format texte
 					$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
  					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     				$sMessageFinal .= 'Content-Type: text/plain; charset=iso-8859-1'."\r\n";
-     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     				$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8'."\r\n";
+     				//$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
      				$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
 					//on ajoute le texte HTML
 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     				$sMessageFinal .= 'Content-Type: text/html; charset=iso-8859-1'."\r\n";
-     				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     				$sMessageFinal .= 'Content-Type: text/html; charset=utf-8'."\r\n";
+     				//$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
      				$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
      				//on ferme le message
      				$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n"; 

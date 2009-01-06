@@ -87,7 +87,7 @@ if (isset($_GET["IDPERS"]) && count($_GET["IDPERS"]) > 0)
 // ---------------------
 	else {
 		$sMajListeInscrit = "oFrmInscrit().document.location = 'liste_inscrits.php?idform=$iIdFormCourante&STATUT_PERS={$iStatutPers}";
-	
+
 		switch ($iStatutPers)
 		{
 			case STATUT_PERS_RESPONSABLE_POTENTIEL:

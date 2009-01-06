@@ -30,11 +30,11 @@ text-decoration:underline;
 }
 
 form {
-height:100%;
 margin:0;
 padding:0;
 }
 form.ascenseur {
+height:100%;
 overflow:auto;
 }
 
@@ -42,7 +42,6 @@ form.formFormulaire {
 background-color:#f9fbfb;
 border:#dce6e6 dotted 1px;
 line-height:1.2em;
-height:98%;
 padding:7px;
 -moz-border-radius:5px;
 }
@@ -226,7 +225,7 @@ body.liste .titre {
 font-size:1.4em;
 font-weight:bold;
 }
-body.liste table[name=encadrer] {
+body.liste td[name=encadrer] {
 border:1px solid black;
 }
 
@@ -332,7 +331,9 @@ padding:45px 0 0;
 .corps {
 position: absolute;
 width: 99%;
-height: 85%;
+height: 90%;
+left:0;
+overflow-y:auto;
 }
 
 #barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,
@@ -391,6 +392,7 @@ background-color:#aea58a;
 border-top:#000 solid 1px;
 bottom:0;
 margin:0;
+left:0;
 padding:4px 0;
 position:fixed;
 text-align:center;
@@ -476,6 +478,7 @@ text-align:center;
 background-color:#aea58a;
 border-top:#000 solid 1px;
 bottom:0;
+left:0;
 height:22px;
 position:absolute;
 text-align:center;

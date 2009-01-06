@@ -108,7 +108,7 @@ class CFormation_Tuteur
 		$this->oBdd->executerRequete("UNLOCK TABLES");
 	}
 	
-	function initTuteurs ()
+	function initTuteurs ($v_sModeTri="ASC")
 	{
 		$iIdxTuteurs = 0;
 		
@@ -117,7 +117,7 @@ class CFormation_Tuteur
 		$sRequeteSql = "SELECT Personne.* FROM Formation_Tuteur"
 			." LEFT JOIN Personne USING(IdPers)"
 			." WHERE Formation_Tuteur.IdForm=".$this->iIdForm
-			." ORDER BY Personne.Nom ASC, Personne.Prenom ASC";
+			." ORDER BY Personne.Nom {$v_sModeTri}, Personne.Prenom ASC";
 		
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		
