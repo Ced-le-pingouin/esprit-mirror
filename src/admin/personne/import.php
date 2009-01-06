@@ -276,8 +276,10 @@ function Temporisation()
      	//$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
      	$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
      	//on ferme le message
-     	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n"; 
+     	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n";
 
+		$sDestinataire = $data->sheets[0]['cells'][$nrow][5];
+		
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
