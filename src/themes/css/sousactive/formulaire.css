@@ -336,9 +336,13 @@ left:0;
 overflow-y:auto;
 }
 
-#barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,
-#autocorrect a:link,#autocorrect a:active,#autocorrect a:visited,#autocorrect a:hover,
 #barreaction a:link,#barreaction a:visited,#barreaction a:hover {
+color:#fff;
+font-size:8pt;
+font-weight:normal;
+}
+#barremenu a:link,#barremenu a:active,#barremenu a:visited,#barremenu a:hover,
+#autocorrect a:link,#autocorrect a:active,#autocorrect a:visited,#autocorrect a:hover {
 color:#fff;
 font-size:.85em;
 font-weight:bold;
@@ -482,6 +486,10 @@ left:0;
 height:22px;
 position:absolute;
 text-align:center;
+width:100%;
+}
+
+#barreaction table {
 width:100%;
 }
 /* ----- */

@@ -231,9 +231,9 @@ echo "
 }
 else
 echo "
-<span class=\"typeA\"><del>Ajouter</del>&nbsp;|&nbsp;</span>
-<span class=\"typeA\"><del>Importer</del></span>
-<span class=\"typeA\">&nbsp;|&nbsp;<del>Enlever</del></span>";
+<span class=\"typeA\">Ajouter&nbsp;|&nbsp;</span>
+<span class=\"typeA\">Importer</span>
+<span class=\"typeA\">&nbsp;|&nbsp;Enlever</span>";
 ?>
 </td>
 </tr>

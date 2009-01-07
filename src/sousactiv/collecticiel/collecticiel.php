@@ -103,6 +103,8 @@ else
 	}
 	else if ($oProjet->verifEtudiant())
 		$aaCollecticiels[] = array("id" => $g_iIdPers, "nom" => $oProjet->oUtilisateur->retNom()." ".$oProjet->oUtilisateur->retPrenom());
+	else if ($g_iIdPers == 0)
+		$aaCollecticiels[] = array("id" => $g_iIdPers, "nom" => "visiteur");
 	else
 	{
 		// Cette personne n'est pas inscrite dans cette formation
@@ -459,7 +461,7 @@ if (count($aaCollecticiels) > 0)
 	// }}}
 }
 
-if ($iNbCollecticielsReel > 0)
+if ($iNbCollecticielsReel > 0 || $g_iIdPers == 0)
 {
 	$oBlocCollecticiel->afficher();
 	$oBlocSansCollecticiel->effacer();

@@ -100,7 +100,9 @@ font-size:7pt;
 }
 
 /* Lien */
-span.typeA, p.typeA, a {
+span.typeA {visibility:hidden;}
+
+p.typeA, a {
 color:#3f4322;
 font-size:8pt;
 text-decoration:none;
