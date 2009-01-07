@@ -224,15 +224,15 @@ function Temporisation()
 		$sIdFormation = $sNomFormation = "";
 		$url_sAdresseServeurActuel = "http://".$_SERVER['SERVER_NAME'];
 		$sMessage = "";
+		$sSujetCourriel = "Esprit-Inscription";
 
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
 		{
 			$sIdFormation = $data->sheets[0]['cells'][$nrow][8];
 			$oFormation = new CFormation($oProjet->oBdd,$sIdFormation);
 			$sNomFormation = $oFormation->retNom();
-			$sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
+			if ($sNomFormation != "") $sSujetCourriel = "Esprit-Inscription ('{$sNomFormation}')";
 		}
-		else $sSujetCourriel = "Esprit-Inscription";
 
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
@@ -280,21 +280,21 @@ function Temporisation()
 			$sMotDePasse = $data->sheets[0]['cells'][$nrow][4];
 		}
 		
-		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e)";
-		if ($sNomFormation!="") $sMessageCourrielTexte .= " à la formation\r\n '$sNomFormation'\r\naccessible";
+		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e)";
+		if ($sNomFormation!="") $sMessageCourrielTexte .= " &agrave; la formation\r\n '$sNomFormation'\r\naccessible";
 		$sMessageCourrielTexte .= "sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
-			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
-			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
+			."Pour acc&eacute;der &agrave; l'espace r&eacute;serv&eacute; &agrave; votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
+			."les majuscules, minuscules, caract&egrave;res accentu&eacute;s et espaces &eacute;ventuels) et\r\ncliquez sur Ok.\r\n\r\n"
 			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".$sMotDePasse."\r\n\r\n"
 			."Astuces :\r\n\r\n"
-			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
-			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
+			."		* Apr&egrave;s connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
+			."		profil (cliquer sur le lien \"Profil\" en bas de l'&eacute;cran)\r\n\r\n"
     		."		* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe,\r\n"
-    		."		cliquez sur le lien \"Oublié ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
+    		."		cliquez sur le lien \"Oubli&eacute; ?\". Ce lien se trouve juste au-dessus de la zone\r\n"
     		."		\"Pseudo\", au niveau de la page d'accueil d'Esprit\r\n"
     		."		($url_sAdresseServeurActuel)."
-    		."		Ceci vous permettra de récupérer ces informations par courriel.\r\n\r\n"
-    		."Bonne formation.\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
+    		."		Ceci vous permettra de r&eacute;cup&eacute;rer ces informations par courriel.\r\n\r\n"
+    		."Bonne formation.\r\n\r\nPour l'&eacute;quipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
 			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e)";
@@ -324,7 +324,7 @@ function Temporisation()
      	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n";
 
 		$sDestinataire = $data->sheets[0]['cells'][$nrow][5];
-echo $sMessageFinal;
+
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
