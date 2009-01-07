@@ -238,7 +238,7 @@ if ($iIdPers >= 0)
     					."Bonne formation,\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
+						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;té inscrit(e) à la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
 						."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>$sMdp</strong><br /><br />"
 						."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
@@ -264,6 +264,7 @@ if ($iIdPers >= 0)
 					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sEmail,$sNomComplet,$sFrontiereEntreTexteHTML);
 					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
+					$oMail->defRetourMailInvalide($oProjet->retEmail());
 					$oMail->envoyer();
 				}
 			}

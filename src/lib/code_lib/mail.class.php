@@ -53,7 +53,7 @@ class CMail
 			$this->ajouterEntete('Content-Type','multipart/alternative; boundary="'.$v_sTypeEntete.'"');
 		}
 		else $this->ajouterEntete('Content-Type','text/plain; charset=utf-8'); // charset par dÃ©faut
-		
+
 		if (isset($v_sDestinataire))
 			$this->ajouterDestinataire($v_sDestinataire,$v_sNomComplet);
 	}
@@ -70,6 +70,9 @@ class CMail
 	function defExpediteur ($v_sAdresseCourrielle,$v_sNomComplet=NULL) { $this->ajouterEntete("From",$this->retFormatterAdresse($v_sAdresseCourrielle,$v_sNomComplet)); }
 	function defCopieCarbone ($v_sAdresseCourrielle,$v_sNomComplet=NULL) { $this->ajouterEntete("Cc",$this->retFormatterAdresse($v_sAdresseCourrielle,$v_sNomComplet)); }
 	function defCopieCarboneInvisible ($v_sAdresseCourrielle,$v_sNomComplet=NULL) { $this->ajouterEntete("Bcc",$this->retFormatterAdresse($v_sAdresseCourrielle,$v_sNomComplet)); }
+	
+	// definit le mail pour un éventuel retour "mailer daemon" (adresse mail 'introuvable')
+	function defRetourMailInvalide ($v_sAdresseCourrielle) { $this->ajouterEntete("Return-Path",$this->retFormatterAdresse($v_sAdresseCourrielle)); }
 	
 	function ajouterEntete ($v_sCle,$v_sValeur)
 	{

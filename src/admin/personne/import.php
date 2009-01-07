@@ -106,7 +106,8 @@ $sPrenomNom = $oPersonne->retPrenom()." ".$oPersonne->retNom();
 
 	if ($sMessage==null)
 	{
-		if (!$oPersonne->estPseudoUnique() && $sMessage==null) {
+		if (!$oPersonne->estPseudoUnique() && $sMessage==null)
+		{
 			$a = '';
 			$hResult = $oProjet->oBdd->executerRequete(
 				"SELECT CONCAT(Nom,' ',Prenom) AS NomC FROM Personne "
@@ -217,13 +218,13 @@ function Temporisation()
 		if (empty($data->sheets[0]['cells'][$nrow][1]) or empty($data->sheets[0]['cells'][$nrow][2]))
 			continue;
 		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
-		$prenom = $data->sheets[0]['cells'][$nrow][2];
-		$sPseudo = $oPersonne->retPseudo();
-		$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
-		$sNomExpediteur = $oProjet->oUtilisateur->retNom();
+		$prenom				= $data->sheets[0]['cells'][$nrow][2];
+		$sPrenomExpediteur	= $oProjet->oUtilisateur->retPrenom();
+		$sNomExpediteur		= $oProjet->oUtilisateur->retNom();
 		$sIdFormation = $sNomFormation = "";
 		$url_sAdresseServeurActuel = "http://".$_SERVER['SERVER_NAME'];
 		$sMessage = "";
+
 		if ($data->sheets[0]['cells'][$nrow][8] && preg_match('/[0-9]/',$data->sheets[0]['cells'][$nrow][8]))
 		{
 			$sIdFormation = $data->sheets[0]['cells'][$nrow][8];
@@ -236,12 +237,55 @@ function Temporisation()
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 		
-		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e)"
-			.($sNomFormation!="") ? (" à la formation\r\n '$sNomFormation'\r\naccessible") : NULL
-			."sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
+		if (preg_match('/importOKPetit/', $res))
+		{
+			$sPseudo	 = $oPersonne->retPseudo();
+			/*
+			 * on récupère l'ancien mot de passe dans le fichier 'mdpncpte'
+			 */			
+			$asLignesFichierMdp = array();
+			$sFichierMdp = dir_tmp("mdpncpte",TRUE);
+			
+			if (is_file($sFichierMdp))
+			{
+				if (!is_readable($sFichierMdp)) {
+					chmod($sFichierMdp,0600);
+					$asLignesFichierMdp = file($sFichierMdp);
+					chmod($sFichierMdp,0200);
+				} else {
+					$asLignesFichierMdp = file($sFichierMdp);
+				}
+			}
+			// }}}
+
+			for ($i=count($asLignesFichierMdp)-1; $i >= 0; $i--)
+				if (strstr($asLignesFichierMdp[$i],":{$sPeudo}:"))
+					break;
+
+			if ($i >= 0)
+			{
+				$sMdp = trim(substr(strrchr($asLignesFichierMdp[$i],":"),1));
+
+				if (strlen($sMdp) > 0)
+				{
+					$sMotDePasse = $sMdp;
+				}
+				
+			}
+			else $sMotDePasse = " (votre mot de passe n'a pas été changé)";
+		}
+		else
+		{
+			$sPseudo	 = $data->sheets[0]['cells'][$nrow][3];
+			$sMotDePasse = $data->sheets[0]['cells'][$nrow][4];
+		}
+		
+		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien été inscrit(e)";
+		if ($sNomFormation!="") $sMessageCourrielTexte .= " à la formation\r\n '$sNomFormation'\r\naccessible";
+		$sMessageCourrielTexte .= "sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
 			."Pour accéder à l'espace réservé à votre formation sur Esprit,\r\nintroduisez le pseudo et le mot de passe (en respectant scrupuleusement\r\n"
 			."les majuscules, minuscules, caractères accentués et espaces éventuels) et\r\ncliquez sur Ok.\r\n\r\n"
-			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".trim($tab[4])."\r\n\r\n"
+			."Votre pseudo est : $sPseudo\r\nVotre mot de passe est : ".$sMotDePasse."\r\n\r\n"
 			."Astuces :\r\n\r\n"
 			."		* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le\r\n"
 			."		profil (cliquer sur le lien \"Profil\" en bas de l'écran)\r\n\r\n"
@@ -253,11 +297,12 @@ function Temporisation()
     		."Bonne formation.\r\n\r\nPour l'équipe Esprit,\r\n\r\n$sPrenomExpediteur $sNomExpediteur";
 
 		$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
-			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e)"
-			.($sNomFormation!="") ? ("à la formation '<strong>$sNomFormation</strong>' accessible"): NULL
-			."sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
+			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien été inscrit(e)";
+		if ($sNomFormation!="") $sMessageCourrielHtml .= "à la formation '<strong>$sNomFormation</strong>' accessible";
+			//.($sNomFormation!="") ? ("à la formation '<strong>$sNomFormation</strong>' accessible"): NULL
+		$sMessageCourrielHtml .= "sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
 			."Pour accéder à l'espace réservé à votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caractères accentués et espaces éventuels</ins>) et cliquez sur Ok.<br /><br />"
-			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>".trim($tab[4])."</strong><br /><br />"
+			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>".$sMotDePasse."</strong><br /><br />"
 			."Astuces :<br /><br />* Après connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'écran)<br />"
 			."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oublié ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>. Ceci vous permettra de récupérer ces informations par courriel.<br /><br />"
     		."Bonne formation.<br /><br />Pour l'équipe Esprit,<br /><br />$sPrenomExpediteur $sNomExpediteur</body></html>";
@@ -267,19 +312,19 @@ function Temporisation()
 		//on insere d'abord le message au format texte
 		$sMessageFinal	= 'This is a multi-part message in MIME format.'."\r\n";
  		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     	$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8'."\r\n";
-     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     	$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8;'."\r\n";
+     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit;'."\r\n\r\n";
      	$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
 		//on ajoute le texte HTML
 		$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
-     	$sMessageFinal .= 'Content-Type: text/html; charset=utf-8'."\r\n";
-     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
+     	$sMessageFinal .= 'Content-Type: text/html; charset=utf-8;'."\r\n";
+     	$sMessageFinal .= 'Content-Transfer-Encoding: 8bit;'."\r\n\r\n";
      	$sMessageFinal .= $sMessageCourrielHtml."\r\n\r\n";
      	//on ferme le message
      	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n";
 
 		$sDestinataire = $data->sheets[0]['cells'][$nrow][5];
-		
+
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
@@ -294,6 +339,7 @@ function Temporisation()
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
+				$oMail->defRetourMailInvalide($oProjet->retEmail());
 				$oMail->envoyer();
 			}
 				
@@ -314,6 +360,7 @@ function Temporisation()
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageCourriel,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
+				$oMail->defRetourMailInvalide($oProjet->retEmail());
 				$oMail->envoyer();
 			}
 			$avertissements++;
