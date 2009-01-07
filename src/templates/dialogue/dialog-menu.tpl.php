@@ -68,9 +68,7 @@ if (isset($aMenus) && is_array($aMenus))
 		}
 		
 		$sTexteLien = (!isset($aMenu[4]) || $aMenu[4] ? emb_htmlentities($aMenu[0]) : $aMenu[0]);
-		// filtre pour enlever les deux liens en développement
-		if (($sTexteLien != "Copier/Coller &agrave; partir d'autres formations") && ($sTexteLien != "G&eacute;rer les fichiers"))
-		{
+
 		$sMenuColonne .= (isset($sMenuColonne) ? "&nbsp;|&nbsp;" : NULL)	
 			.(isset($aMenu[1])
 				? "<a"
@@ -79,7 +77,7 @@ if (isset($aMenus) && is_array($aMenus))
 					." onfocus=\"blur()\""
 					.">{$sTexteLien}</a>"
 				: $sTexteLien);
-		}
+
 		if (!empty($aMenu[3]))
 			$sStyleColonne = $aMenu[3];
 	}

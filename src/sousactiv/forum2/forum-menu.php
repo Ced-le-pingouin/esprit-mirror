@@ -71,13 +71,13 @@ BLOCK_HTML_HEAD;
 $aMenus = array();
 
 $aMenus[] = array(BTN_RAFRAICHIR,"top.oFrmListeSujets().rafraichir()",1,"text-align: left; width: 1%;");
-$aMenus[] = array("","",1,"text-align: left; width: 1%;");
 
 // {{{ Copie courriel
 if ($oProjet->verifPermission("PERM_COPIE_COURRIEL_FORUM"))
 {
 	$oForumPrefs = new CForumPrefs($oProjet->oBdd);
 	$bCopieCourriel = ($oForumPrefs->initForumPrefs($url_iIdForum,$iIdUtilisateur) & $oForumPrefs->retCopieCourriel());
+	$aMenus[] = array("","",1,"text-align: left; width: 1%;");
 	$aMenus[] = array("<input type=\"checkbox\"".($bCopieCourriel ? "checked=\"checked\"" : NULL)."disabled=\"disabled\">","copie_courriel()",10,"text-align: left; width: 1%;",FALSE);
 	$aMenus[] = array(str_replace(" ","&nbsp;",BTN_COPIE_COURRIEL),"copie_courriel()",20,"text-align: left; width: 1%;",FALSE);
 }
