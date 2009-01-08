@@ -26,7 +26,8 @@ $url_sSousTitre = (isset($_GET["ST"]) ? $_GET["ST"] : "");
 $url_iNumeroFormation = (isset($_GET["idform"]) ? $_GET["idform"] : "");
 
 $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
-
+echo "get : ".$_GET["ST"]."<br />";
+echo "ST decode : ".urldecode($url_sSousTitre);
 $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlock_Head->effacer();
 

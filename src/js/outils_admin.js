@@ -37,7 +37,7 @@ function eConcept() {
 function formulaire() {
 	var sUrl = GLOBALS["admin"] + "formulaire/formulaire_index.php";
 	var sOptionsFenetre = ",status=no,resizable=yes,scrollbars=yes";
-	var win = PopupCenter(sUrl,"winFormulaire",780,580,sOptionsFenetre);
+	var win = PopupCenter(sUrl,"winFormulaire",880,680,sOptionsFenetre);
 	win.focus();
 }
 

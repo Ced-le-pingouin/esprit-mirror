@@ -51,11 +51,17 @@ function allerAPos(v_iNpos)
 [BLOCK_INTRO-]
 [BLOCK_FORMULAIRE+]
 <form name="selection" class="formFormulaire" action="">
-{sSelectModifTitre}
-<table {sEncadrer} align="center" class="titre">
+
+<table class="titre">
 <tr>
-	<td>
+	<td name="radio">
+		{sSelectModifTitre}
+	</td>
+	<td {sEncadrer}>
 		{sTitre}
+	</td>
+	<td width="30">
+		&nbsp;
 	</td>
 </tr>
 </table>

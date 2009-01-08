@@ -224,9 +224,16 @@ margin-top:5px;
 body.liste .titre {
 font-size:1.4em;
 font-weight:bold;
+width:100%
 }
 body.liste td[name=encadrer] {
 border:1px solid black;
+text-align:center;
+}
+
+body.liste td[name=radio] {
+padding:2px;
+width:30%;
 }
 
 body.liste input,body.liste select {

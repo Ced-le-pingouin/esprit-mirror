@@ -183,7 +183,7 @@ if ($oProjet->verifPermission('PERM_MOD_FORMULAIRES')) // Verification de la per
 				$sCocher = "";
 			
 			if( ($oProjet->verifPermission('PERM_MOD_TOUS_FORMULAIRES')) || ($iIdPersForm == $iIdPers) )
-				$sHtmlListeObjForm .= "<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
+				$sHtmlListeObjForm .= "&nbsp;<input type=\"radio\" name=\"objet\" value=\"$iIdObjActuel\" onclick =\"selectionobj($v_iIdFormulaire,$iIdObjActuel,$bMesForms)\" $sCocher /><b>$iOrdreObjForm</b>";
 			
 			switch($oObjetFormulaire->retIdTypeObj())
 			{
