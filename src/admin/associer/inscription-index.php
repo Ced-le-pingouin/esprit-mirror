@@ -27,7 +27,7 @@ $sTitrePrincipal = "Inscription";
 
 $oProjet = new CProjet();
 if ($url_iIdForm > 0) $oProjet->defFormationCourante($url_iIdForm);
-$sNomFormation = $oProjet->oFormationCourante->retNom();
+$sNomFormation = $oProjet->oFormationCourante->retNom(true);
 
 // ---------------------
 // Template

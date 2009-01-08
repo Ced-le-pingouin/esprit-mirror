@@ -26,14 +26,13 @@ $url_sSousTitre = (isset($_GET["ST"]) ? $_GET["ST"] : "");
 $url_iNumeroFormation = (isset($_GET["idform"]) ? $_GET["idform"] : "");
 
 $oTpl = new Template(dir_theme("dialog-titre-2.tpl",FALSE,TRUE));
-echo "get : ".$_GET["ST"]."<br />";
-echo "ST decode : ".urldecode($url_sSousTitre);
+
 $oBlock_Head = new TPL_Block("BLOCK_HEAD",$oTpl);
 $oBlock_Head->effacer();
 
 $oTpl->remplacer("{class_style}","dialog_titre_principal_2");
-$oTpl->remplacer("{titre_principal}",urldecode($url_sNomFormation));
-$oTpl->remplacer("{sous_titre}",urldecode($url_sSousTitre)." <em>(n&deg; formation : ".$url_iNumeroFormation.")</em>");
+$oTpl->remplacer("{titre_principal}",rawurldecode($url_sNomFormation));
+$oTpl->remplacer("{sous_titre}",rawurldecode($url_sSousTitre)." <em>(n&deg; formation : ".$url_iNumeroFormation.")</em>");
 
 $oTpl->afficher();
 
