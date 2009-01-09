@@ -139,8 +139,9 @@ class CMail
 		$asListeDestinataires = $this->retListeDestinataires();
 		$bCourrierEnvoye      = (count($asListeDestinataires) > 0);
 		
+		if ($sParametresAdditionnels != NULL) $sParametres = "-f ".$sParametresAdditionnels;
 		foreach ($asListeDestinataires as $sListeDestinataires)
-			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,$this->sMessage,$sListeEntetes,$sParametresAdditionnels);
+			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,$this->sMessage,$sListeEntetes,$sParametres);
 		
 		return $bCourrierEnvoye;
 	}
