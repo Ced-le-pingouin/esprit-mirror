@@ -120,7 +120,7 @@ $oProjet->asInfosSession[SESSION_FORM] = 0;
 // }}}
 $sRepHttpPlateforme = dir_http_plateform();
 
-if ($oProjet->initFormationsUtilisateur() > 0)
+if ($oProjet->initFormationsUtilisateur(FALSE, TRUE, FALSE, FALSE) > 0)
 {
 	$oBlocFormation->beginLoop();
 	foreach ($oProjet->aoFormations as $oFormation)

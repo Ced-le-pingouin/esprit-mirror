@@ -239,7 +239,7 @@ if ($iIdPers >= 0)
 
 					$sMessageCourrielHtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Inscription sur Esprit</title></head><body>'
 						."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e) &agrave; la formation '<strong>$sNomForm</strong>' accessible sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
-						."Pour acc&eacute;der à l'espace r&eacute;serv&eacute; &agrave; votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caract&egrave;res accentu&eacute;s et espaces &eacute;ventuels</ins>) et cliquez sur Ok.<br /><br />"
+						."Pour acc&eacute;der &agrave; l'espace r&eacute;serv&eacute; &agrave; votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caract&egrave;res accentu&eacute;s et espaces &eacute;ventuels</ins>) et cliquez sur Ok.<br /><br />"
 						."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>$sMdp</strong><br /><br />"
 						."Astuces :<br /><br />* Apr&egrave;s connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'&eacute;cran)<br />"
 						."* Si, un jour, vous oubliez votre pseudo et/ou votre mot de passe, <ins>cliquez sur le lien \"Oubli&eacute; ?\"</ins>. Ce lien se trouve juste au-dessus de la zone	\"Pseudo\", au niveau de la page d'accueil d'<a href =\"$url_sAdresseServeurActuel\">Esprit</a>. Ceci vous permettra de r&eacute;cup&eacute;rer ces informations par courriel.<br /><br />"
@@ -264,8 +264,7 @@ if ($iIdPers >= 0)
 					$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sEmail,$sNomComplet,$sFrontiereEntreTexteHTML);
 					//$oMail->defExpediteur($oProjet->retEmail(), $oProjet->retNom());
 					$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
-					$oMail->defRetourMailInvalide($oProjet->oUtilisateur->retEmail());
-					$oMail->envoyer();
+					$oMail->envoyer($oProjet->oUtilisateur->retEmail());
 				}
 			}
 			

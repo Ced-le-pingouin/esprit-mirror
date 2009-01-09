@@ -130,14 +130,17 @@ class CMail
 		return $asListeDestinataires;
 	}
 	
-	function envoyer ()
+	/*
+	 * @param $sParametresAdditionnels définit qui recevra un mail en cas de "non remise de mail".
+	 */
+	function envoyer ($sParametresAdditionnels = NULL)
 	{
 		$sListeEntetes        = $this->retListeEntetes();
 		$asListeDestinataires = $this->retListeDestinataires();
 		$bCourrierEnvoye      = (count($asListeDestinataires) > 0);
 		
 		foreach ($asListeDestinataires as $sListeDestinataires)
-			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,$this->sMessage,$sListeEntetes);
+			$bCourrierEnvoye &= mail($sListeDestinataires,$this->sSujet,$this->sMessage,$sListeEntetes,$sParametresAdditionnels);
 		
 		return $bCourrierEnvoye;
 	}

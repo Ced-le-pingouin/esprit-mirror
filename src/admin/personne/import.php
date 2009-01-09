@@ -339,8 +339,7 @@ function Temporisation()
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
-				$oMail->defRetourMailInvalide($oProjet->oUtilisateur->retEmail());
-				$oMail->envoyer();
+				$oMail->envoyer($oProjet->oUtilisateur->retEmail());
 			}
 				
 			$inscrits++;
@@ -360,8 +359,7 @@ function Temporisation()
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
-				$oMail->defRetourMailInvalide($oProjet->oUtilisateur->retEmail());
-				$oMail->envoyer();
+				$oMail->envoyer($oProjet->oUtilisateur->retEmail());
 			}
 			$avertissements++;
 			// ...
