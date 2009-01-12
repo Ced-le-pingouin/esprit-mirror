@@ -97,6 +97,8 @@ $sNomsInscrits = NULL;
 $sMajListeCours = NULL;
 $iNbrInscrits = 0;
 
+$EvenementRadioSupp = " MiseEnGras(this.value);";
+
 $strPas = _("Pas de %s trouv&eacute;");
 $asPasDePersonnesTrouvees = array(
 		NULL,
@@ -125,36 +127,26 @@ switch ($iStatutPers)
 		$iNbrInscrits = $oResp->initResponsables();
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
-		{
-			$sAffichageGras = $sCaseCochee = NULL;
-			if ($oResp->aoPersonnes[$i]->retId() == $iIdPers || ($iIdPers == NULL && $i==0))
-			{
-				$sCaseCochee = " checked";
-				$sAffichageGras = " style =\"font-weight: bold;\"";
-			}
-
-			$sEvenementOnClick = "onclick=\"oFrmInscrit().location = 'liste_inscrits.php?"
-			."idform=$iIdForm&STATUT_PERS=$iStatutPers&IDPERS=".$oResp->aoPersonnes[$i]->retId()."'\"";
-
 			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\""
 				." name=\"IDPERS\""
-				.$sEvenementOnClick
+				." onclick =\"{$EvenementRadioSupp}\""
 				." onfocus=\"blur()\""
 				." value=\"".$oResp->aoPersonnes[$i]->retId()."\""
-				.($i < 1 ? " checked" : $sCaseCochee)
+				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
-				."<td class=\"personne\"".$sAffichageGras.">"
+				."<td class=\"personne\" id=\"PersNum".$oResp->aoPersonnes[$i]->retId()."\">"
 				.$oResp->aoPersonnes[$i]->retNomComplet(TRUE)
 				."&nbsp;<em>(".$oResp->aoPersonnes[$i]->retPseudo().")</em>"
 				."</td>\n"
 				."</tr>\n";
-		}
 		
 		$sMajListeCours = "oFrmCours().location = '".retPageVide()."';";
-		
+
+		$iIdPersDebutListe = $oResp->aoPersonnes[0]->retId();
+
 		break;
 		
 	case STATUT_PERS_CONCEPTEUR_POTENTIEL:
@@ -166,6 +158,9 @@ switch ($iStatutPers)
 			$oFormationConcepteur = new CFormation_Concepteur($oProjet->oBdd,$iIdForm);
 			$iNbrInscrits = $oFormationConcepteur->initConcepteurs();
 			$aoConcepteurs = &$oFormationConcepteur->aoConcepteurs;
+
+			$iIdPersDebutListe = $aoConcepteurs[0]->retId();
+
 			$sMajListeCours = "oFrmCours().location = 'liste_cours.php?idform={$iIdForm}"
 				.($iNbrInscrits > 0 ? "&IDPERS=".$aoConcepteurs[0]->retId() : NULL)
 				."&STATUT={$iStatutPers}"
@@ -184,33 +179,25 @@ switch ($iStatutPers)
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
 		{
-			$sRafraichirInscrits = " oFrmInscrit().location = 'liste_inscrits.php"
-			."?idform={$iIdForm}&STATUT_PERS={$iStatutPers}&IDPERS=".$aoConcepteurs[$i]->retId()."'";
-			
-			$sAffichageGras = $sCaseCochee = NULL;
-			if ($aoConcepteurs[$i]->retId() == $iIdPers || ($iIdPers == NULL && $i==0))
-			{
-				$sCaseCochee = " checked";
-				$sAffichageGras = " style =\"font-weight: bold;\"";
-			}
-
 			$sEvent = "majListeCours('liste_cours.php"
 				."?idform={$iIdForm}"
 				."&IDPERS=".$aoConcepteurs[$i]->retId()
 				."&STATUT={$iStatutPers}')";
 
-			$sNomsInscrits .= "<tr id=\"".$aoConcepteurs[$i]->retId()."\">\n"
+			$sAffichageProfil = "profil('?idPers=".$aoConcepteurs[$i]->retId()."&formId={$iIdForm}')";
+
+			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\""
 				." name=\"IDPERS\""
-				." onclick=\"{$sEvent};{$sRafraichirInscrits}\""
+				." onclick=\"{$sEvent}; {$EvenementRadioSupp}\""
 				." onfocus=\"blur()\""
 				." value=\"".$aoConcepteurs[$i]->retId()."\""
-				.($i < 1 ? " checked" : $sCaseCochee)
+				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
 				."<td class=\"personne\">"
-				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\"".$sAffichageGras.">" : NULL)
+				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "<a href=\"javascript: {$sAffichageProfil}; void(0);\" onclick=\"blur()\" id=\"PersNum".$aoConcepteurs[$i]->retId()."\">" : NULL)
 				.$aoConcepteurs[$i]->retNomComplet(TRUE)
 				."&nbsp;<em>(".$aoConcepteurs[$i]->retPseudo().")</em>"
 				.($iStatutPers == STATUT_PERS_CONCEPTEUR ? "</a >" : NULL)
@@ -231,31 +218,25 @@ switch ($iStatutPers)
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
 		{
-			$sRafraichirInscrits = " oFrmInscrit().location = 'liste_inscrits.php"
-			."?idform={$iIdForm}&STATUT_PERS={$iStatutPers}&IDPERS=".$aoTuteurs[$i]->retId()."'";
-			
-			$sAffichageGras = $sCaseCochee = NULL;
-			if ($aoTuteurs[$i]->retId() == $iIdPers || ($iIdPers == NULL && $i==0))
-			{
-				$sCaseCochee = " checked";
-				$sAffichageGras = " style =\"font-weight: bold;\"";
-			}
-			
 			$sEvent = "majListeCours('liste_cours.php"
 				."?idform={$iIdForm}"
 				."&IDPERS=".$aoTuteurs[$i]->retId()
 				."&STATUT={$iStatutPers}')";
-			
-			$sNomsInscrits .= "<tr id=\"".$aoTuteurs[$i]->retId()."\">\n"
+
+			$iIdPersDebutListe = $aoTuteurs[0]->retId();
+
+			$sAffichageProfil = "profil('?idPers=".$aoTuteurs[$i]->retId()."&formId={$iIdForm}')";
+
+			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\" name=\"IDPERS\" value=\"".$aoTuteurs[$i]->retId()."\""
-				." onclick=\"{$sEvent};{$sRafraichirInscrits}\""
+				." onclick=\"{$sEvent}; {$EvenementRadioSupp}\""
 				." onfocus=\"blur()\""
-				.($i < 1 ? " checked" : $sCaseCochee)
+				.($i < 1 ? " checked" : NULL)
 				.">"
 				."</td>\n"
 				."<td class=\"personne\">"
-				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\"".$sAffichageGras.">"
+				."<a href=\"javascript: {$sAffichageProfil}; void(0);\" onclick=\"blur()\" id=\"PersNum".$aoTuteurs[$i]->retId()."\">"
 				.$aoTuteurs[$i]->retNomComplet(TRUE)
 				."&nbsp;<em>(".$aoTuteurs[$i]->retPseudo().")</em>"
 				."</a >"
@@ -278,20 +259,14 @@ switch ($iStatutPers)
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
 		{
-			$sRafraichirInscrits = " oFrmInscrit().location = 'liste_inscrits.php"
-			."?idform={$iIdForm}&STATUT_PERS={$iStatutPers}&IDPERS=".$oFormation->aoInscrits[$i]->retId()."'";
-			
-			$sAffichageGras = $sCaseCochee = NULL;
-			if ($oFormation->aoInscrits[$i]->retId() == $iIdPers || ($iIdPers == NULL && $i==0))
-			{
-				$sCaseCochee = " checked";
-				$sAffichageGras = " style =\"font-weight: bold;\"";
-			}
-
 			$sEvent = "majListeCours('liste_cours.php"
 				."?idform={$iIdForm}"
 				."&IDPERS=".$oFormation->aoInscrits[$i]->retId()
 				."&STATUT={$iStatutPers}";
+
+			$iIdPersDebutListe = $oFormation->aoInscrits[0]->retId();
+
+			$sAffichageProfil = "profil('?idPers=".$oFormation->aoInscrits[$i]->retId()."&formId={$iIdForm}')";
 
 			if ($bAutoInscription)
 			{
@@ -309,16 +284,16 @@ switch ($iStatutPers)
 			$sNomsInscrits .= "<tr id=\"".$oFormation->aoInscrits[$i]->retId()."\">\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\" name=\"IDPERS\" value=\"".$oFormation->aoInscrits[$i]->retId()."\""
-				." onclick=\"{$sEvent};{$sRafraichirInscrits}\""
+				." onclick=\"{$sEvent}; {$EvenementRadioSupp}\""
 				." onfocus=\"blur()\""
-				.($i == 0 ? " checked" : $sCaseCochee)
+				.($i == 0 ? " checked" : NULL)
 				.">"
 				."</td>\n"
 				."<td class=\"personne\">"
-				."<a href=\"javascript: {$sEvent}; void(0);\" onclick=\"blur()\"".$sAffichageGras.">"
+				."<a href=\"javascript: {$sAffichageProfil}; void(0);\" onclick=\"blur()\" id=\"PersNum".$oFormation->aoInscrits[$i]->retId()."\">"
 				.$oFormation->aoInscrits[$i]->retNomComplet(TRUE)
 				."&nbsp;<em>(".$oFormation->aoInscrits[$i]->retPseudo().")</em>"
-				."</a >"
+				."</a>"
 				."</td>\n"
 				."</tr>\n";
 		}
@@ -362,7 +337,11 @@ if ($iNbrInscrits < 1)
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript('outils_admin.js')?>"></script>
 <script type="text/javascript" language="javascript">
 <!--
-function init() {<?php echo (isset($sMajListeCours) ? " {$sMajListeCours} " : NULL); ?>}
+var ancienIdPersonne = null;
+function init() {
+<?php echo (isset($sMajListeCours) ? " {$sMajListeCours} " : NULL); ?>
+<?php echo "MiseEnGras($iIdPersDebutListe)"; ?>
+}
 //-->
 </script>
 </head>
@@ -371,6 +350,19 @@ function init() {<?php echo (isset($sMajListeCours) ? " {$sMajListeCours} " : NU
 <table border="0" cellspacing="2" cellpadding="0" width="100%">
 <?php echo $sNomsInscrits; ?>
 </table>
+
+<script type="text/javascript" language="javascript">
+<!--
+function MiseEnGras(IdPers) {
+	var IdPersonne = "PersNum"+IdPers;
+	if (ancienIdPersonne != null)
+		document.getElementById(ancienIdPersonne).style.fontWeight = "normal";
+	document.getElementById(IdPersonne).style.fontWeight = "bold";
+	ancienIdPersonne = IdPersonne;
+}
+//-->
+</script>
+
 <input type="hidden" name="ACTIOND" value="effacer">
 <input type="hidden" name="STATUT_PERS" value="<?php echo $iStatutPers; ?>">
 <input type="hidden" name="ID_MOD" value="<?php echo $iIdMod; ?>">

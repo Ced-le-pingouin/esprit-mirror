@@ -5,6 +5,7 @@ profil
 exporter personnes
 importer personnes
 associer personnes
+Liste inscrits
 liste cours
 
 equipes
@@ -136,6 +137,15 @@ width:100%;
 color:#345A8B;
 font-weight:bold;
 text-align:center;
+}
+/* ----- */
+
+/* -- liste inscrits -- */
+.personne {
+border-style:none none dashed;
+border-color:rgb(180, 180, 180);
+border-width:1px;
+padding:2px;
 }
 /* ----- */
 

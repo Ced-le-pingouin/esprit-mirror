@@ -272,7 +272,7 @@ function Temporisation()
 				}
 				
 			}
-			else $sMotDePasse = " (votre mot de passe n'a pas été changé)";
+			else $sMotDePasse = " (votre mot de passe n'a pas &eacute;t&eacute; chang&eacute;)";
 		}
 		else
 		{
@@ -300,7 +300,7 @@ function Temporisation()
 			."Bonjour,<br /><br />Ce mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e)";
 		if ($sNomFormation!="") $sMessageCourrielHtml .= "&agrave; la formation '<strong>$sNomFormation</strong>' accessible";
 			//.($sNomFormation!="") ? ("à la formation '<strong>$sNomFormation</strong>' accessible"): NULL
-		$sMessageCourrielHtml .= "sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
+		$sMessageCourrielHtml .= " sur <a href =\"$url_sAdresseServeurActuel\">Esprit</a>.<br /><br />"
 			."Pour acc&eacute;der &agrave; l'espace r&eacute;serv&eacute; &agrave; votre formation sur Esprit, introduisez le pseudo et le mot de passe (<ins>en respectant scrupuleusement les majuscules, minuscules, caract&egrave;res accentu&eacute;s et espaces &eacute;ventuels</ins>) et cliquez sur Ok.<br /><br />"
 			."Votre pseudo est : <strong>$sPseudo</strong><br />Votre mot de passe est : <strong>".$sMotDePasse."</strong><br /><br />"
 			."Astuces :<br /><br />* Apr&egrave;s connexion, vous pouvez modifier votre pseudo et mot de passe dans le	profil (cliquer sur le lien \"Profil\" en bas de l'&eacute;cran)<br />"
@@ -353,7 +353,7 @@ function Temporisation()
 			if ($sNomFormation!=""){
 				$avertissementsAffectes++;
 			}
-			
+
 			// on envoie un mail aux personnes ajoutées à la formation
 			if ($url_bCopieCourrier && !preg_match('/importOKPetit1/', $res))
 			{

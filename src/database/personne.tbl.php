@@ -343,7 +343,8 @@ class CPersonne
 					"SELECT Pseudo FROM Personne "
 					."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."'");
 				$oEnregPseudo = $this->oBdd->retEnregSuiv($requetePseudoPers);
-				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$oEnregPseudo->Pseudo."!</span>";
+				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$oEnregPseudo->Pseudo."!"
+							."<br />Elle n'a pas &eacute;t&eacute; ajout&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'</span>";
 				return $v_sMessage;
 			}
 		}

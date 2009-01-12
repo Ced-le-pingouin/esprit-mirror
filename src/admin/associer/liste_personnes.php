@@ -245,7 +245,7 @@ $sPosition = ($j==0) ? "pos".$lettre : "pos".$lettre.$j;
 		."<td>".$lien
 		."<input type=\"checkbox\" name=\"IDPERS[$i]\" id=\"IDPERS[$i]\" onfocus=\"blur()\" value=\"".$oProjet->aoPersonnes[$i]->retId()."\">"
 		."</td>"
-		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt\">"
+		."<td style=\"border: rgb(180,180,180) none 1px; border-bottom-style: dashed; width: 98%; font-size: 9pt; padding:2px;\">"
 		//."<a name=\"pos".($i+1)."\"></a>"
 		."<a name=\"".$sPosition."\" id=\"".$sPosition."\"></a>"
 		."<a href=\"javascript: profil('?idPers=".$oProjet->aoPersonnes[$i]->retId()."&formId=".$iIdFormCourante."'); void(0);\" onclick=\"blur()\">"
