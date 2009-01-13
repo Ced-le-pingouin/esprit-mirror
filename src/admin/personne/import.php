@@ -164,8 +164,6 @@ if (!empty($_POST['importer'])) {
 ". inserer_feuille_style("commun/dialog.css; admin/personnes.css",false). "
 <script type=\"text/javascript\" language=\"javascript\" src=\"". dir_javascript("window.js") ."\"></script>
 <script type=\"text/javascript\" language=\"javascript\">
-top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
-top.opener.top.frames['Principal'].frames['FRM_INSCRIT'].location.reload(true);
 function Cacher(element1, element2)
 {
 	if (self.document.getElementsByName(element1))
@@ -256,7 +254,7 @@ function Temporisation()
 					$asLignesFichierMdp = file($sFichierMdp);
 				}
 			}
-			// }}}
+			// 
 
 			for ($i=count($asLignesFichierMdp)-1; $i >= 0; $i--)
 				if (strstr($asLignesFichierMdp[$i],":{$sPeudo}:"))
@@ -373,7 +371,11 @@ function Temporisation()
 	}
 	$sAfficherLog .= "</ol>\n";
 	if ($total) {
-			echo "<div class=\"historique_import\" id=\"historique_import\"><p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
+			echo "<script type=\"text/javascript\" language=\"javascript\">"
+				."top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);"
+				."top.opener.top.frames['Principal'].frames['FRM_INSCRIT'].location.reload(true);"
+				."</script>"
+				."<div class=\"historique_import\" id=\"historique_import\"><p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
 				."<p><a href=\"javascript: Restaurer('listeOK');Restaurer('listeAvert');Restaurer('listeErreur');\">Tout afficher</a></p>"
 				."<p  class=\"typeA\">"
 				.($inscrits>0?"<a href=\"javascript: Cacher('listeAvert', 'listeErreur'); Restaurer('listeOK');\">":null)."$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit".($inscrits>0?"</a>":null)

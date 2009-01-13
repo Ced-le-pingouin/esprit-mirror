@@ -127,6 +127,7 @@ switch ($iStatutPers)
 		$iNbrInscrits = $oResp->initResponsables();
 		
 		for ($i=0; $i<$iNbrInscrits; $i++)
+		{
 			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\""
@@ -142,11 +143,9 @@ switch ($iStatutPers)
 				."&nbsp;<em>(".$oResp->aoPersonnes[$i]->retPseudo().")</em>"
 				."</td>\n"
 				."</tr>\n";
-		
+			$iIdPersDebutListe = $oResp->aoPersonnes[0]->retId();
+		}
 		$sMajListeCours = "oFrmCours().location = '".retPageVide()."';";
-
-		$iIdPersDebutListe = $oResp->aoPersonnes[0]->retId();
-
 		break;
 		
 	case STATUT_PERS_CONCEPTEUR_POTENTIEL:
@@ -158,8 +157,6 @@ switch ($iStatutPers)
 			$oFormationConcepteur = new CFormation_Concepteur($oProjet->oBdd,$iIdForm);
 			$iNbrInscrits = $oFormationConcepteur->initConcepteurs();
 			$aoConcepteurs = &$oFormationConcepteur->aoConcepteurs;
-
-			$iIdPersDebutListe = $aoConcepteurs[0]->retId();
 
 			$sMajListeCours = "oFrmCours().location = 'liste_cours.php?idform={$iIdForm}"
 				.($iNbrInscrits > 0 ? "&IDPERS=".$aoConcepteurs[0]->retId() : NULL)
@@ -185,7 +182,9 @@ switch ($iStatutPers)
 				."&STATUT={$iStatutPers}')";
 
 			$sAffichageProfil = "profil('?idPers=".$aoConcepteurs[$i]->retId()."&formId={$iIdForm}')";
-
+			
+			$iIdPersDebutListe = $aoConcepteurs[0]->retId();
+			
 			$sNomsInscrits .= "<tr>\n"
 				."<td width=\"1%\">"
 				."<input type=\"radio\""

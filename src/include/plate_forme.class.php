@@ -2317,7 +2317,7 @@ class CProjet
 	{
 		$iIdxPers = 0;
 		$this->aoPersonnes = array();
-		
+
 		switch ($v_iIdStatutPers)
 		{
 			case STATUT_PERS_RESPONSABLE:
