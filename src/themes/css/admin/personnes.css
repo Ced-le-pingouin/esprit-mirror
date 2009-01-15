@@ -92,13 +92,14 @@ border-bottom: thin solid #DFDFDF;
 padding:2px;
 }
 
-.progression_import {
-display : block;
+#Block_Attente {
+display : none;
+text-align:center;
 }
 
-.historique_import {
-display : none;
-}
+#Block_Form {
+display : block;
+} 
 /* ----- */
 
 /* -- associer personnes -- */

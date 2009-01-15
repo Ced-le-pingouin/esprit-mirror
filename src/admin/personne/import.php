@@ -189,20 +189,14 @@ function Restaurer(element)
 		listeElements[k].style.display = 'list-item';
 	}
 }
-function Temporisation()
+function rafraichir_Parent()
 {
-	if (self.document.getElementById('progression_import'))
-	{
-		self.document.getElementById('progression_import').style.display='none';
-	}
-	if (self.document.getElementById('historique_import'))
-	{
-		self.document.getElementById('historique_import').style.display='block';
-	}
+	top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);
+	top.opener.top.frames['Principal'].frames['FRM_INSCRIT'].location.reload(true);
 }
 </script>
 </head>
-<body class=\"profil\">
+<body class=\"profil\" onload=\"rafraichir_Parent()\">
 <h1>Inscription group&eacute;e</h1>";
 	$sAfficherLog = "\n<ol>";
 	$inscrits = $avertissements = $erreurs = $inscritsAffectes = $avertissementsAffectes = 0;
@@ -371,11 +365,7 @@ function Temporisation()
 	}
 	$sAfficherLog .= "</ol>\n";
 	if ($total) {
-			echo "<script type=\"text/javascript\" language=\"javascript\">"
-				."top.opener.top.frames['Principal'].frames['FRM_PERSONNE'].location.reload(true);"
-				."top.opener.top.frames['Principal'].frames['FRM_INSCRIT'].location.reload(true);"
-				."</script>"
-				."<div class=\"historique_import\" id=\"historique_import\"><p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
+			echo "<div class=\"historique_import\" id=\"historique_import\"><p>Sur un total de $total ".($total>1 ? "inscriptions" : "inscription")." :</p>"
 				."<p><a href=\"javascript: Restaurer('listeOK');Restaurer('listeAvert');Restaurer('listeErreur');\">Tout afficher</a></p>"
 				."<p  class=\"typeA\">"
 				.($inscrits>0?"<a href=\"javascript: Cacher('listeAvert', 'listeErreur'); Restaurer('listeOK');\">":null)."$inscrits ".($inscrits>1 ? "nouvelles inscriptions" : "nouvelle inscription")." sur Esprit".($inscrits>0?"</a>":null)
@@ -384,17 +374,7 @@ function Temporisation()
 				." (dont $avertissementsAffectes ".($avertissementsAffectes>1 ? "nouvelles affectations" : "nouvelle affectation")."),"
 				."<br />".($erreurs>0?"<a href=\"javascript: Cacher('listeOK', 'listeAvert'); Restaurer('listeErreur');\">":null)."$erreurs ".($erreurs>1 ? "erreurs" : "erreur").($erreurs>0?"</a>":null).".</p>\n";
 	}
-	echo $sAfficherLog."</div>";;
-	echo "<div align=\"center\" class=\"progression_import\" id=\"progression_import\">"
-		."<p>&nbsp;</p><p>&nbsp;</p>"
-		."<p>"
-		."<img src=\"".dir_theme("barre-de-progression.gif")."\">"
-		."<br>Veuillez patienter pendant l'op&eacute;ration d'inscription des utilisateurs dans Esprit."
-		."</p>"
-		."</div>"
-		."<script type=\"text/javascript\" language=\"javascript\">"
-		."<!--\n setTimeout('Temporisation()',3000); \n//--></script>";
-	echo "<p><a href=\"$_SERVER[PHP_SELF]\">Revenir à la page précédente</a></p>\n</body>\n</html>\n";
+	echo $sAfficherLog."</div>";
 	exit();
 }
 
@@ -404,21 +384,42 @@ function Temporisation()
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <?php inserer_feuille_style("commun/dialog.css; admin/personnes.css"); ?>
 <script type="text/javascript" language="javascript" src="<?php echo dir_javascript("window.js"); ?>"></script>
+<script type="text/javascript" language="javascript">
+function Attente_pour_Envoi() {
+	if (self.document.getElementById('Block_Form'))
+	{
+		self.document.getElementById('Block_Form').style.display='none';
+	}
+	if (self.document.getElementById('Block_Attente'))
+	{
+		self.document.getElementById('Block_Attente').style.display='block';
+	}
+}
+</script>
 </head>
 <body class="profil">
 <h1>Inscription groupée</h1>
+<div id="Block_Form">
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="fichier" method="POST" enctype="multipart/form-data">
 <p>
 <label for="importFile">Sélectionner le fichier contenant la liste des étudiants à inscrire :</label><br />
 <input type="file" name="importFile" size="40" /><br />
-<div style="text-align:center"><button type="submit" name="importer" value="1">Importer</button></div>
+<div style="text-align:center"><button type="submit" name="importer" value="1" onclick="Attente_pour_Envoi()">Importer</button></div>
 <div>&nbsp;</div>
 <div>
 <input type="checkbox" name="envoiMail" id="copieCourriel" value="1" checked>
 <label class="afficher_curseur_aide" for="copieCourriel">Envoyer un mail &agrave; toutes les nouvelles personnes inscrites sur Esprit et &agrave; celles ajout&eacute;es dans une formation.</label></div>
 </p>
 </form>
+</div>
 
+<div id="Block_Attente">
+		<p>&nbsp;</p><p>&nbsp;</p>
+		<p>
+		<img src="<?php echo dir_theme("barre-de-progression.gif") ?>">
+		<br>Veuillez patienter pendant l'op&eacute;ration d'inscription des utilisateurs dans Esprit.
+		</p>
+</div>
 <hr>
 
 <h1>Fichier de modèle</h1>
