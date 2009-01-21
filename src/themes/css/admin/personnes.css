@@ -75,7 +75,7 @@ hr { margin:5ex 0; }
 
 .importErreur, .importOK, .importAvert {font-weight:bold;}
 	
-.importErreur {
+.importErreur, .importErreurPetit {
 color:red;
 }
 
@@ -148,6 +148,9 @@ border-style:none none dashed;
 border-color:rgb(180, 180, 180);
 border-width:1px;
 padding:2px;
+}
+.personne a {
+font-size:10pt;
 }
 /* ----- */
 

@@ -213,11 +213,32 @@ if ($iIdPers >= 0)
 			$sPrenomExpediteur = $oProjet->oUtilisateur->retPrenom();
 			$sNomExpediteur = $oProjet->oUtilisateur->retNom();
 			$url_sAdresseServeurActuel = "http://".$_SERVER['SERVER_NAME'];
-			// si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
+			
+			/*
+			 * si l'utilisateur est un nouvel inscrit, on le lie à la formation actuelle et on envoie un mail.
+			 * On l'ajoute aussi dans le fichier "mdpncpte".
+			 */ 
 			if (isset($_POST["ID_FORM"]))
 			{
 				$oPersonne->lierPersForm($_POST["ID_FORM"]);
-				
+
+				/*
+				 * On inscrit la personne dans le fichier "mdpncpte".
+				 * Celà permet de récupérer le mot de passe même si la personne ne s'est jamais connectée au site.
+				 */
+				$sNomFichier = dir_tmp("mdpncpte",TRUE);
+
+				$sLigne = date("Y-m-d H:i:s")
+						." -- ".$sNomComplet
+						.":".$sPseudo
+						.":{$sMdp}"
+						."\n\r";
+
+				$fp = fopen($sNomFichier,"a");
+				fwrite($fp,$sLigne,strlen($sLigne));
+				fclose($fp);
+				//chmod($sNomFichier,0200);
+
 				// on envoie un mail si la case est cochée.
 				if ($url_bCopieCourrier)
 				{
@@ -380,10 +401,22 @@ function cacher_erreur() {
 }
 
 document.onmousemove=move;
+
+function Attente_pour_Envoi() {
+	if (self.document.getElementById('Block_Form'))
+	{
+		self.document.getElementById('Block_Form').style.display='none';
+	}
+	if (self.document.getElementById('Block_Attente'))
+	{
+		self.document.getElementById('Block_Attente').style.display='block';
+	}
+}
 //-->
 </script>
 </head>
 <body class="profil">
+<div id="Block_Form">
 <form action="<?php echo $sFormAction; ?>" method="POST">
 <table border="0" cellspacing="0" cellpadding="2" width="100%" height="100%">
 <?php
@@ -475,6 +508,14 @@ echo "<td>&nbsp;</td>"
 <input type="hidden" name="SAUVER" value="1">
 <input type="hidden" name="nv" value="<?php echo $url_iNouvellePersonne; ?>">
 </form>
+</div>
+<div id="Block_Attente">
+		<p>&nbsp;</p><p>&nbsp;</p>
+		<p>
+		<img src="<?php echo dir_theme("barre-de-progression.gif") ?>">
+		<br>Veuillez patienter pendant l'op&eacute;ration d'inscription des utilisateurs dans Esprit.
+		</p>
+</div>
 </body>
 </html>
 

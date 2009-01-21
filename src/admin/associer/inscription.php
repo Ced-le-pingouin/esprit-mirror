@@ -192,7 +192,7 @@ function BloquerToucheEntree(event) {
 </tr>
 
 <tr>
-<td rowspan="2" class="intitule" valign="top" align="right">
+<td rowspan="2" valign="top" align="right">
 <table cellspacing="1" cellpadding="1" border="0">
 <tr>
 <td><table cellspacing="0" cellpadding="0" border="0"><tr>
@@ -258,7 +258,7 @@ echo "
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td class="intitule" valign="top">
+<td valign="top">
 <table border="0" cellspacing="0" cellpadding="2" width="100%">
 <tr><td><span class="intitule">&#8250;&nbsp;Liste des cours&nbsp;:</span></td></tr>
 
@@ -270,7 +270,7 @@ if ($bPeutInscrire)
 echo "
 <tr><td height=\"1%\">
 <span><a href=\"javascript: association_multiple(); void(0);\" onfocus=\"blur()\">Associations&nbsp;multiples</a>&nbsp;</span>
-<span>&nbsp;</span>
+<span>|</span>
 <span><a href=\"javascript: rechargerListeCours(); void(0);\" onfocus=\"blur()\">Appliquer les changements</a>&nbsp;</span>
 </td></tr>
 ";

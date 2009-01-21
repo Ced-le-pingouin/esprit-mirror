@@ -98,8 +98,12 @@ function insererPersonne ($tab, $enreg=true)
 		// le numéro de formation est nul -> on affiche un message d'erreur, sinon juste un avertissement
 		if 	($sIdFormation == null) $sMessage = "<span class=\"importErreur\">Erreur!</span> ";
 		
-		$sMessage .= $oPersonne->retPrenom()." ".$oPersonne->retNom()." &eacute;tait d&eacute;j&agrave; inscrit sur Esprit!<br />";
-		$sMessage .= $oPersonne->lierPersForm($sIdFormation);
+		$sMessageTemp .= $oPersonne->retPrenom()." ".$oPersonne->retNom()." &eacute;tait d&eacute;j&agrave; inscrit sur Esprit!<br />";
+		$sMessageTemp .= $oPersonne->lierPersForm($sIdFormation);
+
+		if 	($sIdFormation == null || preg_match('/importErreurPetit/',$sMessageTemp)) $sMessage = "<span class=\"importErreur\">Erreur!</span> ";
+		
+		$sMessage .= $sMessageTemp;
 	}
 
 $sPrenomNom = $oPersonne->retPrenom()." ".$oPersonne->retNom();
@@ -228,7 +232,27 @@ function rafraichir_Parent()
 
 		$total++;
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
-		
+
+		/*
+		 * On inscrit la personne dans le fichier "mdpncpte" lors de la première inscription
+		 * Celà permet de récupérer le mot de passe même si la personne ne s'est jamais connectée au site.
+		 */
+		if ($res == true)
+		{
+			$sNomFichier = dir_tmp("mdpncpte",TRUE);
+	
+			$sLigne = date("Y-m-d H:i:s")
+					." -- ".$nom." ".$prenom
+					.":".$data->sheets[0]['cells'][$nrow][3]
+					.":{$data->sheets[0]['cells'][$nrow][4]}"
+					."\n\r";
+
+			$fp = fopen($sNomFichier,"a");
+			fwrite($fp,$sLigne,strlen($sLigne));
+			fclose($fp);
+			//chmod($sNomFichier,0200);
+		}
+
 		if (preg_match('/importOKPetit/', $res))
 		{
 			$sPseudo	 = $oPersonne->retPseudo();
@@ -342,11 +366,12 @@ function rafraichir_Parent()
 			// Un avertissement lors de l'inscription : la personne est deja inscrite, mais ajoutée à une formation.
 			$sAfficherLog .= "<li name=\"listeAvert\" id=\"listeAvert\"><span class=\"importAvert\">Avertissement!</span> ".$res."</li>";
 
-			if ($sNomFormation!=""){
+			if ($sNomFormation!="" && !preg_match('/importOKPetit1/', $res)){
 				$avertissementsAffectes++;
 			}
 
 			// on envoie un mail aux personnes ajoutées à la formation
+			// mais pas à ceux qui étaient déjà inscrits à cette formation
 			if ($url_bCopieCourrier && !preg_match('/importOKPetit1/', $res))
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);

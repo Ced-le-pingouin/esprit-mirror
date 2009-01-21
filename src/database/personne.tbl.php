@@ -331,8 +331,8 @@ class CPersonne
 					."VALUES('".$v_sIdFormation."','".$oEnreg->IdPersonne."')",FALSE,TRUE);
 				
 				if ($hResult == '1062') // la personne est déjà inscrite à cette formation ("duplicate key x-x for key Y")
-					$v_sMessage .= "<span class=\"importOKPetit1\">Cette personne &eacute;tait <strong>d&eacute;j&agrave; affect&eacute;e</strong> &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
-				else $v_sMessage .= "<span class=\"importOKPetit\">Cette personne a bien &eacute;t&eacute; affect&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
+					$v_sMessage .= "<span class=\"importOKPetit1\">Cette personne &eacute;tait <strong>d&eacute;j&agrave;</strong> affect&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
+				else $v_sMessage .= "<span class=\"importOKPetit\">Cette personne <strong>a bien &eacute;t&eacute;</strong> affect&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'!</span>";
 				
 				$v_sMessage .= "<br /><small>Notez que ses informations personnelles (pseudo, mdp, email etc.) <ins>n'ont pas &eacute;t&eacute; modifi&eacute;es</ins> suite &agrave; cette importation.</small>";
 				return $v_sMessage;
@@ -343,7 +343,7 @@ class CPersonne
 					"SELECT Pseudo FROM Personne "
 					."WHERE Nom='".$this->retNom()."' AND Prenom='".$this->retPrenom()."'");
 				$oEnregPseudo = $this->oBdd->retEnregSuiv($requetePseudoPers);
-				$v_sMessage .= "<span class=\"importAvertPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$oEnregPseudo->Pseudo."!"
+				$v_sMessage .= "<span class=\"importErreurPetit\">Cette personne existe d&eacute;j&agrave; sur Esprit avec un autre pseudo  : ".$oEnregPseudo->Pseudo."!"
 							."<br />Elle n'a pas &eacute;t&eacute; ajout&eacute;e &agrave; la formation : '<strong>".$oEnregForm->NomFormation."</strong>'</span>";
 				return $v_sMessage;
 			}
