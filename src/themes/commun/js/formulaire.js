@@ -139,6 +139,7 @@ function GestionFeedback(idPropRep,aFermer)
 	{
 		document.getElementById("FB"+idPropRep).style.display = "none";
 		document.getElementById("FBT"+idPropRep).style.display = "none";
+		document.getElementById("saut_de_ligne_form").style.display = "none";
 	}
 	else
 	{
@@ -148,9 +149,11 @@ function GestionFeedback(idPropRep,aFermer)
 			{
 				document.getElementById("FB"+aFermer[i]).style.display = "none";
 				document.getElementById("FBT"+aFermer[i]).style.display = "none";
+				document.getElementById("saut_de_ligne_form").style.display = "none";
 			}
 		}
 		document.getElementById("FB"+idPropRep).style.display = "block";
 		document.getElementById("FBT"+idPropRep).style.display = "block";
+		document.getElementById("saut_de_ligne_form").style.display = "block";
 	}
 }
