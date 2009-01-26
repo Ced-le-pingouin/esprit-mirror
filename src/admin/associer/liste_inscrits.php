@@ -356,7 +356,7 @@ function MiseEnGras(IdPers) {
 	var IdPersonne = "PersNum"+IdPers;
 	if (ancienIdPersonne != null)
 		document.getElementById(ancienIdPersonne).style.fontWeight = "normal";
-	document.getElementById(IdPersonne).style.fontWeight = "bold";
+	if (document.getElementById(IdPersonne)) document.getElementById(IdPersonne).style.fontWeight = "bold";
 	ancienIdPersonne = IdPersonne;
 }
 //-->

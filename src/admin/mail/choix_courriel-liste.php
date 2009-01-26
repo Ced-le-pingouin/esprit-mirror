@@ -103,6 +103,7 @@ $url_iFormationId = (empty($_GET["idForm"]) ? NULL : $_GET["idForm"]);
 // Initialiser
 // ---------------------
 $iNbStatuts = (is_array($url_aiIdStatuts) ? count($url_aiIdStatuts) : 0);
+$bStatutExiste = false;
 
 // {{{ Rechercher les personnes inscrites dans des équipes
 $iNbEquipes = 0;
@@ -130,7 +131,7 @@ $iNbPersonnes = 0;
 if (is_array($url_aiIdPers))
 {
 	$oMembres = new CPersonnes($oProjet);
-	$iNbPersonnes = $oMembres->initGraceIdPers($url_aiIdPers);
+	$iNbPersonnes = $oMembres->initGraceIdPers($url_aiIdPers,$url_iFormationId);
 	$aoPersonnes = $oMembres->aoPersonnes;
 	unset($oMembres);
 }
@@ -231,7 +232,7 @@ if ($iNbStatuts > 0)
 	foreach ($url_aiIdStatuts as $iIdStatut)
 	{
 		$oMembres = new CPersonnes($oProjet);
-		
+
 		if (($iNbStatuts = $oMembres->initGraceIdStatut($iIdStatut)) > 0)
 		{
 			$oBlocStatut->nextLoop();
@@ -265,7 +266,7 @@ if ($iNbStatuts > 0)
 				$oBlocMembre->remplacer("{membre.checkbox.checked}",($bValidCourriel && $url_bSelectionnerPers ? " checked=\"checked\"" : NULL));
 				$oBlocMembre->remplacer("{parent}",($bValidCourriel ? "idStatuts{$iIdStatut}" : NULL));
 			}
-			
+			$bStatutExiste = true;
 			$oBlocMembre->afficher();
 		}
 	}
@@ -273,7 +274,7 @@ if ($iNbStatuts > 0)
 	$oBlocStatut->afficher();
 }
 
-if ($iNbStatuts > 0)
+if ($bStatutExiste)
 	$oBlocListeStatuts->afficher();
 else
 	$oBlocListeStatuts->effacer();
@@ -364,7 +365,7 @@ else
 // ---------------------
 $oBlocListePersonnes = new TPL_Block("BLOCK_LISTE_PERSONNES",$oTpl);
 
-if ($iNbPersonnes > 0)
+if ($iNbPersonnes > 0 && $url_iPersonneId!="tous")
 {
 	$oBlocPersonne = new TPL_Block("BLOCK_PERSONNE",$oBlocListePersonnes);
 	$oBlocPersonne->remplacer("{liste_membres}",$sSetListeMembres);
@@ -411,7 +412,7 @@ else
 
 $oBlocAucunInscrit = new TPL_Block("BLOCK_AUCUN_INSCRIT",$oTpl);
 
-if ($iNbPersonnes > 0 || $iNbEquipes > 0 || $iNbStatuts > 0 || $url_iFormationId >0)
+if ($iNbPersonnes > 0 || $iNbEquipes > 0 || $bStatutExiste || $url_iFormationId >0)
 	$oBlocAucunInscrit->effacer();
 else
 	$oBlocAucunInscrit->afficher();

@@ -61,11 +61,14 @@ class CHotpotatoes
 		}
 		else
 		{
+			// LOCK TABLES ici ??? pourquoi en avoir besoin alors qu'ailleurs ça marche sans ça?
+			//$hResult = $this->oBdd->executerRequete("LOCK TABLES Hotpotatoes WRITE");
 			$sRequeteSql = "SELECT * FROM Hotpotatoes"
 					." WHERE IdHotpot=".$this->iId;
 			$hResult = $this->oBdd->executerRequete($sRequeteSql);
 			$this->oEnregBdd = $this->oBdd->retEnregSuiv($hResult);
 			$this->oBdd->libererResult($hResult);
+			//$hResult = $this->oBdd->executerRequete("UNLOCK TABLES");
 		}
 		$this->iId = $this->oEnregBdd->IdHotpot;
 	}
