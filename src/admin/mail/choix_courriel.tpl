@@ -12,7 +12,7 @@ var g_oElem;
 
 function redimensionner()
 {
-	if (document.getElementById)
+	if (document.getElementById && g_oWin)
 	{
 		var oElem = new DOMElement("idChoisirDansListe");
 		var iHauteur = parseInt(g_oWin.innerHeight()) - parseInt(oElem.getHeight()) - 60;

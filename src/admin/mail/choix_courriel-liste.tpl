@@ -6,6 +6,27 @@
 <script type="text/javascript" language="javascript" src="javascript://window.js"></script>
 <script type="text/javascript" language="javascript" src="javascript://outils_admin.js.php"></script>
 <script type="text/javascript" language="javascript" src="javascript://selection_multiple.js"></script>
+<script type="text/javascript" language="javascript">
+<!--
+var Affichage = true;
+function Reduire(v_sNomBloc)
+{
+	if (document.getElementById(v_sNomBloc)) 
+	{
+		if (Affichage)
+		{
+			document.getElementById(v_sNomBloc).style.display = "none";
+			Affichage = false;
+		}
+		else
+		{
+			document.getElementById(v_sNomBloc).style.display = "table-row";
+			Affichage = true;
+		}
+	}
+}
+//-->
+</script>
 <style type="text/css">
 <!--
 td#id_table_entete_1 { width: 1%; }
@@ -20,8 +41,8 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [ARRAY_STATUTS+]Tous,,,Tous les responsables,,,,Tous les tuteurs,,Tous les &eacute;tudiants[ARRAY_STATUTS-]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 [BLOCK_STATUT+]
-<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2">&nbsp;<b>{statut.nom} {type.activite}</b></td></tr>
-<tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
+<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2" onclick="javascript:Reduire('liste_personne_{statut.id}');">&nbsp;<b>{statut.nom} {type.activite} </b><br /><small>(cliquez pour r&eacute;duire/afficher)</small></td></tr>
+<tr id="liste_personne_{statut.id}"><td>&nbsp;</td><td>{liste_membres}</td></tr>
 [BLOCK_STATUT-]
 </table>
 [BLOCK_LISTE_STATUTS-]
@@ -30,8 +51,8 @@ span.sans_adresse_courrielle { color: rgb(150,150,150); }
 [ARRAY_STATUTS_FORMATION+]Tous,,,<b>Tous les responsables de la formation</b>,,,,<b>Tous les tuteurs de la formation</b>,,<b>Tous les &eacute;tudiants de la formation</b>[ARRAY_STATUTS_FORMATION-]
 <table border="0" cellspacing="1" cellpadding="0" width="100%">
 [BLOCK_STATUT_FORMATION+]
-<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2">&nbsp;{statut.nom}</td></tr>
-<tr><td>&nbsp;</td><td>{liste_membres}</td></tr>
+<tr><td class="cellule_sous_titre"><input type="checkbox" name="idStatuts{statut.id}[]" onclick="selectionner(this,'idStatuts{statut.id}',-1,true)" onfocus="blur()" value="-1"></td><td class="cellule_sous_titre" id="id_table_entete_2" onclick="javascript:Reduire('liste_personne_{statut.id}');">&nbsp;{statut.nom} <br /><small>(cliquez pour r&eacute;duire/afficher)</small></td></tr>
+<tr id="liste_personne_{statut.id}"><td>&nbsp;</td><td>{liste_membres}</td></tr>
 [BLOCK_STATUT_FORMATION-]
 </table>
 [BLOCK_LISTE_STATUTS_FORMATION-]

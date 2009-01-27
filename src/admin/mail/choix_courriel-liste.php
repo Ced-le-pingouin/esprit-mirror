@@ -93,7 +93,7 @@ $url_aiIdPers = (empty($_GET["idPers"])
 $url_iPersonneId = (empty($_GET["idPers"]) ? NULL : $_GET["idPers"]);
 $url_iEquipeId = (empty($_GET["selectEquipe"]) ? NULL : $_GET["selectEquipe"]);
 
-$url_asTypeCourriel = (empty($_GET["typeCourriel"]) ? array("courriel-cours") : explode("@",$_GET["typeCourriel"]));
+$url_asTypeCourriel = (empty($_GET["typeCourriel"]) ? array("courriel-plateforme") : explode("@",$_GET["typeCourriel"]));
 
 // si on se situe au niveau de la description de la formation
 $url_iFormationId = (empty($_GET["idForm"]) ? NULL : $_GET["idForm"]);
@@ -131,7 +131,7 @@ $iNbPersonnes = 0;
 if (is_array($url_aiIdPers))
 {
 	$oMembres = new CPersonnes($oProjet);
-	$iNbPersonnes = $oMembres->initGraceIdPers($url_aiIdPers,$url_iFormationId);
+	$iNbPersonnes = $oMembres->initGraceIdPers($url_aiIdPers);
 	$aoPersonnes = $oMembres->aoPersonnes;
 	unset($oMembres);
 }
@@ -365,7 +365,7 @@ else
 // ---------------------
 $oBlocListePersonnes = new TPL_Block("BLOCK_LISTE_PERSONNES",$oTpl);
 
-if ($iNbPersonnes > 0 && $url_iPersonneId!="tous")
+if ($iNbPersonnes > 0)
 {
 	$oBlocPersonne = new TPL_Block("BLOCK_PERSONNE",$oBlocListePersonnes);
 	$oBlocPersonne->remplacer("{liste_membres}",$sSetListeMembres);

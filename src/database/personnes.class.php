@@ -179,12 +179,12 @@ class CPersonnes
 		return count($this->aoPersonnes);
 	}
 	
-	function initGraceIdPers ($v_miIdPers, $v_iIdFormation=NULL)
+	function initGraceIdPers ($v_miIdPers)
 	{
 		if (settype($v_miIdPers,"array"))
 		{
 			$sValeursRequete = NULL;
-			$sRequeteSupp = NULL;
+			
 			foreach ($v_miIdPers as $iIdPers)
 			{
 				if ($iIdPers > 0)
@@ -195,9 +195,6 @@ class CPersonnes
 				else if ("tous" == $iIdPers)
 				{
 					$sValeursRequete = $iIdPers;
-					if ($v_iIdFormation) $sRequeteSupp = " LEFT JOIN Formation_Inscrit ON Personne.IdPers=Formation_Inscrit.IdPers AND Formation_Inscrit.IdForm={$v_iIdFormation}"
-														." LEFT JOIN Formation_Tuteur ON Personne.IdPers=Formation_Tuteur.IdPers AND Formation_Tuteur.IdForm={$v_iIdFormation}"
-														." LEFT JOIN Formation_Resp ON Personne.IdPers=Formation_Resp.IdPers AND Formation_Resp.IdForm={$v_iIdFormation}";
 					break;
 				}
 			}
@@ -206,7 +203,6 @@ class CPersonnes
 			{
 				$sRequeteSql = "SELECT * FROM Personne"
 					.("tous" == $sValeursRequete ? NULL : " WHERE IdPers IN ({$sValeursRequete})")
-					.$sRequeteSupp
 					." ORDER BY Nom ASC, Prenom ASC";
 				$this->initPersonnes($sRequeteSql);
 			}

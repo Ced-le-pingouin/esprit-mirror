@@ -63,7 +63,7 @@ $aaOutils = array(
 	, array(TXT_EQUIPES_TITRE,"equipe.gif","equipes()",TXT_EQUIPES_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_EQUIPE"))
 	, array(TXT_STATUTS_TITRE,"fichier_statuts.gif","ouvrir_fich_statut()",TXT_STATUTS_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_STATUT"))
 	, array(TXT_EXPORTER_INSCRITS_TITRE,"export_liste_personnes.gif","exporter_liste_personnes()",TXT_EXPORT_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_EXPORT_TABLE_PERSONNE"))
-	, array(TXT_ENVOI_COURRIEL_TITRE,"courriel_envoye.gif","choix_courriel('?idPers=tous&idForm={$iIdForm}&typeCourriel=courriel-formation@formation')",TXT_ENVOI_COURRIEL_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_ENVOI_COURRIEL"))
+	, array(TXT_ENVOI_COURRIEL_TITRE,"courriel_envoye.gif","choix_courriel('?idPers=tous')",TXT_ENVOI_COURRIEL_DESCRIPTION,$oProjet->verifPermission("PERM_OUTIL_ENVOI_COURRIEL"))
 	, array(TXT_DOSSIERS_TITRE,"dossier_formations.gif","dossiers()",TXT_DOSSIERS_DESCRIPTION,$oProjet->verifPermission("PERM_CLASSER_FORMATIONS"))
 	, array(TXT_ACCUEIL_TITRE,"avertissement_login.gif","page_accueil()",TXT_ACCUEIL_DESCRIPTION,$oProjet->verifPermission("PERM_MOD_ACCUEIL"))
 	, array(TXT_FILE_MANAGER_TITRE,"formation.gif","gestionnaire()",TXT_FILE_MANAGER_DESCRIPTION,$oProjet->verifPermission("PERM_MOD_ACCUEIL"))
