@@ -61,7 +61,7 @@ function valider()
 <p><strong>Attention</strong></p>
 
 <p>Si votre messagerie est dotée d'un filtre destiné à contrer les courriels indésirables, il se peut que le courriel qui vous est transmis atterrisse 
-dans un dossier intitulé  "Spam" (Gmail, Yahoo) ou "courrier indésirable" (hotmail), ou soit directement versé dans la "corbeille". Il vous suffit dans 
+dans un dossier intitulé  "Spam" (Gmail, Yahoo) , "Courrier indésirable" (Hotmail) ou directement versé dans la "corbeille" (Thunderbird). Il vous suffit dans 
 ce cas de vous rendre dans ce dossier pour lire le message.</p>
 
 <p>Si le message ne se trouve dans aucun de vos dossiers, ajoutez l'adresse courriel suivante à votre liste des expéditeurs autorisés: <em>{esprit->email}</em>

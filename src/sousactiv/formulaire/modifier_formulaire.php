@@ -325,7 +325,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div><br id=\"saut_de_ligne_form\" style=\"clear: both; display: none;\" />";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p><br /></div>";
 								}
 							}
 							else
@@ -405,7 +405,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback = "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div>";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p><br /></div>";
 								}
 							}
 							else
@@ -497,7 +497,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 									}
 									$sFeedback .= "<div id=\"FBT".$oPropRep->retId()."\" class=\"feedback_titre\"><p>Feedback spécifique</p></div>"
 												."<div id=\"FB".$oPropRep->retId()."\" class=\"feedback\">"
-												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p></div><br id=\"saut_de_ligne_form\" style=\"clear: both; display: none;\" />\n";
+												."<p>".(strlen($oPropRep->retFeedbackPropRep())?convertBaliseMetaVersHtml($oPropRep->retFeedbackPropRep()):"Aucun feedback spécifique")."</p><br /></div>\n";
 								}
 							}
 							else

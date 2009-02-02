@@ -24,6 +24,9 @@ form
 	//clear:left;
 	margin-top: {iInterElem}px;
 }
+.feedback, .feedback_titre {
+display:none;
+}
 -->
 </style>
 <script src="javascript://globals.js" type="text/javascript"></script>

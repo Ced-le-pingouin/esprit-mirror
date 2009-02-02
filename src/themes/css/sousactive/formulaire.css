@@ -340,6 +340,7 @@ position: absolute;
 width: 99%;
 height: 90%;
 left:0;
+bottom:30px;
 overflow-y:auto;
 }
 
@@ -357,10 +358,6 @@ font-size:.85em;
 
 body.modifier_formulaire input,body.modifier_formulaire select {
 margin:0 5px;
-}
-
-.feedback, .feedback_titre {
-display:none;
 }
 
 .feedback {
