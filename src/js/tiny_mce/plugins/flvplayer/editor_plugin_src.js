@@ -186,11 +186,12 @@
 			p.height = o.height = dom.getAttrib(n, 'height') || 100;
 			if (p.backcolor)
 				p.backcolor = p.backcolor.replace("#", "0x");
-				
+
 			ob = dom.create('span', {
 				mce_name : 'object',
 				//classid : "clsid:" + o.classid,
 				type : o.typeAppli,
+				mt : o.type,
 				data : 	GLOBALS["lecteur"]+'?file='+p.src +
 						'&showstop=true&usefullscreen=false&autostart=' + p.autostart +
 						'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
@@ -236,7 +237,7 @@
 			each(dom.select('span', p), function(n) {			
 				// Convert embed or object into image
 				if ((dom.getAttrib(n, 'class') == 'mceItemEmbed') || (dom.getAttrib(n, 'class') == 'mceItemObject')) {
-					switch (dom.getAttrib(n, 'type')) {
+					switch (dom.getAttrib(n, 'mt')) {
 						case 'flash':
 							dom.replace(t._createImg('mceItemFlash', n), n);
 							break;
@@ -273,14 +274,16 @@
 				if (v) {
 					if (na == 'data')
 					{
-						filetemp = v.split('?');
+						filetemp = v.split('mediaplayer.swf?');
 						params = filetemp[1].split('&');
 						for (i=0; i<params.length; i++) {
 							var reg1=new RegExp("file=([^,]*)", "g");
 							var reg2=new RegExp("backcolor=([^,]*)", "g");
+							var reg3=new RegExp("src","g");
 							params[i] = params[i].replace(reg1, 'src:\'$1\'');
 							params[i] = params[i].replace(reg2, 'backcolor:\'$1\'');
-							params[i] = params[i].replace('=', ':');
+							if (!reg3.exec(params[i]))
+								params[i] = params[i].replace('=', ':');
 							if (i == 0) pa[na] = params[i];
 							else pa[na] += ','+params[i];
 						}
