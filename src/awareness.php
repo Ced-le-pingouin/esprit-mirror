@@ -73,9 +73,9 @@ if (isset($oProjet->oUtilisateur) &&
 		."<param name=\"mode\" value=\"client\">\n"
 		."<param name=\"hostname\" value=\"".$_SERVER["SERVER_ADDR"]."\">\n"
 		."<param name=\"port\" value=\"2501\">\n"
-		."<param name=\"nickname\" value=\"".($oProjet->oUtilisateur->retPseudo())."\">\n"
+		."<param name=\"nickname\" value=\"".urlencode($oProjet->oUtilisateur->retPseudo())."\">\n"
 		."<param name=\"username\" value=\""
-			.($oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom())
+			.urlencode($oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom())
 			."\">\n"
 		."<param name=\"sex\" value=\"".$oProjet->oUtilisateur->retSexe()."\">\n"
 		."<param name=\"team\" value=\"".urlencode($oProjet->retTexteStatutUtilisateur())."\">\n"
