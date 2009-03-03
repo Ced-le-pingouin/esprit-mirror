@@ -241,7 +241,7 @@ foreach ($oProjet->oRubriqueCourante->aoActivs as $oActiv)
 						//   -----------------------
 							if (is_file($sRepCours))
 								$sHref = $oActiv->retRepCours("html.php",FALSE)
-									."?{$url_sParamAffichage}&idActiv={$iIdActiv}"
+									."?idActiv={$iIdActiv}"
 									."&idSousActiv={$iIdSousActiv}"
 									."&fi=".urlencode($sFichier)
 									.($oSousActiv->retType()==LIEN_HOTPOTATOES ?
