@@ -241,19 +241,15 @@ function rafraichir_Parent()
 
 		/*
 		 * Avertissement, mais affectation à une formation
+		 * La personne existe déjà dans la DB
 		 */
-		$asInfosPers = array(
-		"Nom" => $nom
-		, "Prenom" => $prenom
-		, "Email" => $sDestinataire);
-
-		$iNbPersTrouvees = $oPersonne->initPersonne($asInfosPers);
-
 		if (preg_match('/importOKPetit/', $res))
 		{
 			$bNouvellePersonne = false;
-			
-			// {{{ RÃ©cupÃ©rer les mots de passe des utilisateurs
+			$sPseudo = $oPersonne->retPseudo();
+			/*
+			 * on récupère l'ancien mot de passe dans le fichier 'mdpncpte'
+			 */			
 			$asLignesFichierMdp = array();
 			$sFichierMdp = dir_tmp("mdpncpte",TRUE);
 			
@@ -267,12 +263,10 @@ function rafraichir_Parent()
 					$asLignesFichierMdp = file($sFichierMdp);
 				}
 			}
-			// }}}
-			
-			$sPeudo = $oPersonne->retPseudo();
-			
+			// 
+
 			for ($i=count($asLignesFichierMdp)-1; $i >= 0; $i--)
-				if (strstr($asLignesFichierMdp[$i],":{$sPeudo}:"))
+				if (strstr($asLignesFichierMdp[$i],":{$sPseudo}:"))
 					break;
 
 			if ($i >= 0)
@@ -287,25 +281,28 @@ function rafraichir_Parent()
 			}
 			else $sMotDePasse = " (votre mot de passe n'a pas &eacute;t&eacute; chang&eacute;)";
 		}
+		/*
+		 * Nouvelle personne, jamais inscrite dans la DB
+		 */
 		else
 		{
 			$sPseudo	 = $data->sheets[0]['cells'][$nrow][3];
 			$sMotDePasse = $data->sheets[0]['cells'][$nrow][4];
-			$bNouvellePersonne	= true;
+			$bNouvellePersonne = true;
 		}
 
 		/*
 		 * On inscrit la personne dans le fichier "mdpncpte" lors de la première inscription
 		 * Celà permet de récupérer le mot de passe même si la personne ne s'est jamais connectée au site.
 		 */
-		if ($res == true && $bNouvellePersonne)
+		if (($res == true) && ($bNouvellePersonne))
 		{
 			$sNomFichier = dir_tmp("mdpncpte",TRUE);
 	
 			$sLigne = date("Y-m-d H:i:s")
 					." -- ".$nom." ".$prenom
-					.":".$sPseudo
-					.":{$sMotDePasse}"
+					.":".$data->sheets[0]['cells'][$nrow][3]
+					.":{$data->sheets[0]['cells'][$nrow][4]}"
 					."\n\r";
 
 			$fp = fopen($sNomFichier,"a");
@@ -367,7 +364,7 @@ function rafraichir_Parent()
 				$sMessage = ".<br /><span class=\"importAvertPetit\">La formation n&deg; <em>$sIdFormation</em> n'existe pas</span>";
 
 			// on envoie un mail aux nouvelles personnes inscrites sur la PF
-			if ($url_bCopieCourrier && $sDestinataire != NULL)
+			if ($url_bCopieCourrier && ($sDestinataire!=NULL))
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
