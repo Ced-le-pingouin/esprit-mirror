@@ -33,6 +33,9 @@ $oPersonne	= new CPersonne($oProjet->oBdd);
 
 $url_bCopieCourrier		= (empty($_POST["envoiMail"]) ? false : $_POST["envoiMail"]);
 
+$bNouvellePersonne = false;
+
+
 // ---------------------
 // DÃ©claration des fonctions locales
 // ---------------------
@@ -77,6 +80,8 @@ function insererPersonne ($tab, $enreg=true)
 	// Email
 	if (empty($tab[5]))
 		return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". Pas d'adresse e-mail alors que ce champ est obligatoire.";
+	elseif (!empty($tab[5]) && !emailValide($tab[5]))
+		return "<span class=\"importErreur\">Erreur!</span> ".$sPrenomNom.". L'adresse mail n'est pas valable.";
 	$oPersonne->defEmail($tab[5]);
 	
 	// Date de naissance (format: AAAA-MM-JJ)
@@ -213,8 +218,9 @@ function rafraichir_Parent()
 		// nom, prÃ©nom, pseudo, mdp, email, sexe, date de naissance, numero de formation
 		if (empty($data->sheets[0]['cells'][$nrow][1]) or empty($data->sheets[0]['cells'][$nrow][2]))
 			continue;
-		$nom = mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
+		$nom				= mb_strtoupper($data->sheets[0]['cells'][$nrow][1], "utf-8");
 		$prenom				= $data->sheets[0]['cells'][$nrow][2];
+		$sDestinataire		= emailValide($data->sheets[0]['cells'][$nrow][5]) ? $data->sheets[0]['cells'][$nrow][5] : NULL ;
 		$sPrenomExpediteur	= $oProjet->oUtilisateur->retPrenom();
 		$sNomExpediteur		= $oProjet->oUtilisateur->retNom();
 		$sIdFormation = $sNomFormation = "";
@@ -234,31 +240,20 @@ function rafraichir_Parent()
 		$res = insererPersonne($data->sheets[0]['cells'][$nrow]);
 
 		/*
-		 * On inscrit la personne dans le fichier "mdpncpte" lors de la première inscription
-		 * Celà permet de récupérer le mot de passe même si la personne ne s'est jamais connectée au site.
+		 * Avertissement, mais affectation à une formation
 		 */
-		if ($res == true)
-		{
-			$sNomFichier = dir_tmp("mdpncpte",TRUE);
-	
-			$sLigne = date("Y-m-d H:i:s")
-					." -- ".$nom." ".$prenom
-					.":".$data->sheets[0]['cells'][$nrow][3]
-					.":{$data->sheets[0]['cells'][$nrow][4]}"
-					."\n\r";
+		$asInfosPers = array(
+		"Nom" => $nom
+		, "Prenom" => $prenom
+		, "Email" => $sDestinataire);
 
-			$fp = fopen($sNomFichier,"a");
-			fwrite($fp,$sLigne,strlen($sLigne));
-			fclose($fp);
-			//chmod($sNomFichier,0200);
-		}
+		$iNbPersTrouvees = $oPersonne->initPersonne($asInfosPers);
 
 		if (preg_match('/importOKPetit/', $res))
 		{
-			$sPseudo	 = $oPersonne->retPseudo();
-			/*
-			 * on récupère l'ancien mot de passe dans le fichier 'mdpncpte'
-			 */			
+			$bNouvellePersonne = false;
+			
+			// {{{ RÃ©cupÃ©rer les mots de passe des utilisateurs
 			$asLignesFichierMdp = array();
 			$sFichierMdp = dir_tmp("mdpncpte",TRUE);
 			
@@ -272,8 +267,10 @@ function rafraichir_Parent()
 					$asLignesFichierMdp = file($sFichierMdp);
 				}
 			}
-			// 
-
+			// }}}
+			
+			$sPeudo = $oPersonne->retPseudo();
+			
 			for ($i=count($asLignesFichierMdp)-1; $i >= 0; $i--)
 				if (strstr($asLignesFichierMdp[$i],":{$sPeudo}:"))
 					break;
@@ -294,8 +291,29 @@ function rafraichir_Parent()
 		{
 			$sPseudo	 = $data->sheets[0]['cells'][$nrow][3];
 			$sMotDePasse = $data->sheets[0]['cells'][$nrow][4];
+			$bNouvellePersonne	= true;
 		}
-		
+
+		/*
+		 * On inscrit la personne dans le fichier "mdpncpte" lors de la première inscription
+		 * Celà permet de récupérer le mot de passe même si la personne ne s'est jamais connectée au site.
+		 */
+		if ($res == true && $bNouvellePersonne)
+		{
+			$sNomFichier = dir_tmp("mdpncpte",TRUE);
+	
+			$sLigne = date("Y-m-d H:i:s")
+					." -- ".$nom." ".$prenom
+					.":".$sPseudo
+					.":{$sMotDePasse}"
+					."\n\r";
+
+			$fp = fopen($sNomFichier,"a");
+			fwrite($fp,$sLigne,strlen($sLigne));
+			fclose($fp);
+			//chmod($sNomFichier,0200);
+		}
+
 		$sMessageCourrielTexte = "Bonjour,\r\n\r\nCe mail vous informe que vous avez bien &eacute;t&eacute; inscrit(e)";
 		if ($sNomFormation!="") $sMessageCourrielTexte .= " &agrave; la formation\r\n '$sNomFormation'\r\naccessible";
 		$sMessageCourrielTexte .= "sur Esprit ($url_sAdresseServeurActuel).\r\n\r\n"
@@ -339,8 +357,6 @@ function rafraichir_Parent()
      	//on ferme le message
      	$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML.'--'."\r\n";
 
-		$sDestinataire = $data->sheets[0]['cells'][$nrow][5];
-
 		if ($res===true) {
 			// tout va bien
 			if ($sIdFormation!="" && $sNomFormation!="") {
@@ -351,7 +367,7 @@ function rafraichir_Parent()
 				$sMessage = ".<br /><span class=\"importAvertPetit\">La formation n&deg; <em>$sIdFormation</em> n'existe pas</span>";
 
 			// on envoie un mail aux nouvelles personnes inscrites sur la PF
-			if ($url_bCopieCourrier && $sDestinataire)
+			if ($url_bCopieCourrier && $sDestinataire != NULL)
 			{
 				$oMail = new CMail($sSujetCourriel,$sMessageFinal,$sDestinataire,$nom.$prenom,$sFrontiereEntreTexteHTML);
 				$oMail->defExpediteur($oProjet->oUtilisateur->retEmail(),$oProjet->oUtilisateur->retPrenom()." ".$oProjet->oUtilisateur->retNom());
