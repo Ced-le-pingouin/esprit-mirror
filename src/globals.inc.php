@@ -588,6 +588,14 @@ function retDateFormatter ($v_sDate,$v_sFormatterDate="d/m/y")
 	return date($v_sFormatterDate,mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]));
 }
 
+function retHeureFormatter ($v_sDate,$v_sFormatterDate="H:i:s")
+{
+	list($sDate,$sTime) = explode(" ",$v_sDate);
+	$asDate = explode("-",$sDate);
+	$asTime = explode(":",$sTime);
+	return date($v_sFormatterDate,mktime($asTime[0],$asTime[1],$asTime[2],$asDate[1],$asDate[2],$asDate[0]));
+}
+
 function retTitrePageHtml ($v_sFichierHtml)
 {
 	if (is_file($v_sFichierHtml))

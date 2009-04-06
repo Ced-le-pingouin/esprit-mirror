@@ -157,13 +157,13 @@ class CHotpotatoes
 	}
 
 	/**
-	 * Récupère le nombre max d'essais pour un exo
+	 * Récupère le nombre max d'essais pour un exo ayant un numero de session diff�rent
 	 *
 	 * @return	Entier
 	 */
 	function retMaxEssais( )
 	{
-		$sRequeteSql = "SELECT count(*) AS num FROM Hotpotatoes_Score"
+		$sRequeteSql = "SELECT count(DISTINCT IdSessionExercice) AS num FROM Hotpotatoes_Score"
 			 ." WHERE IdHotpot={$this->oEnregBdd->IdHotpot}"
 		     ." GROUP BY IdPers";
 		$max = 0;

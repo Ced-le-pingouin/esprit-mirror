@@ -674,13 +674,18 @@ foreach ($oModule->aoRubriques as $oRubrique)
 					continue;
 				}
 				$oBloc->nextLoop();
-				$oHotpotScore = $oHotpotatoes->der_score_par_etudiant($iIdInscrit);
+				$oHotpotScore		= $oHotpotatoes->der_score_par_etudiant($iIdInscrit);
+				$iCalculMoyenne		= $oHotpotScore->CalculMoyenne();
+				
+				if (!isset($iCalculMoyenne)) $iCalculMoyenne=NULL; // moyenne
+				
 				if (!$bEstEtudiant || $iIdInscrit == $g_iIdUtilisateur)
 					$oBloc->remplacer("{hotpotatoes}",$sSetHotpotatoes);
 				$oBloc->remplacer(
 						array("{hotpotatoes.td.id}", "{hotpotatoes}"),
 						array("u{$iIdRubr}l{$iLigne}c{$iCol}",
-							( $oHotpotScore->retScore()!==NULL ? '<div title="Non actif">'.$oHotpotScore->retScore().'&nbsp;%</div>' : '-' ))
+							( $iCalculMoyenne !==NULL ? '<div title="Non actif">'.$iCalculMoyenne.'&nbsp;%'
+									.'</div>' : '-' ))
 						);
 				$oBloc->remplacer(array("{formation.id}","{module.id}","{rubrique.id}","{activite.id}","{sous_activite.id}","{params.url}"),array($iIdForm,$iIdMod,$iIdRubr,$oSousActiv->retIdParent(),$oSousActiv->retId(),"&amp;idPers={$iIdInscrit}"));
 				$oBloc->remplacer("{hotpotatoes.date}", ($oHotpotScore->retDateModif() ? "<br><small class=\"date\">".retDateFormatter($oHotpotScore->retDateModif())."</small>" : ''));

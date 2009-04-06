@@ -6,9 +6,26 @@
  * @param $nomFichier nom du fichier Ã  modifier
  * @return      nom du fichier produit, ou FALSE en cas d'erreur
  */
-function hotpot_patch_file( $nomFichier, $IdHotpot ) {
+function hotpot_patch_file( $nomFichier, $IdHotpot, $IdActiv ,$IdSousActiv, $IdSessionExercice, $iNumeroPage) {
 	global $oProjet;
+
+	/**
+	 * 
+	 * On verifie que l'exercice n'a pas déjà été fait par l'étudiant sur cette "session d'exercice"
+	 * Si déjà fait, on n'enregistre pas le score, mais on affiche celui enregisté auparavant
+	 * 
+	 */
+	$oHotpotVerifScore	= new CHotpotatoesScore($oProjet->oBdd);
+	$iScoreExercice		= $oHotpotVerifScore->ExerciceFait($oProjet->oUtilisateur->retId(), $IdHotpot, $IdSessionExercice, $iNumeroPage);
+
+	/**
+	 * On enregistre les noms de fichiers de chaque page dans un cookie.
+	 */
+	setcookie("Page$iNumeroPage", $nomFichier);
+
 	$html = file_get_contents($nomFichier);
+
+	if ($iScoreExercice == NULL) { // exercice pas encore fait, on active Ajax pour l'insérer dans la DB
 	// Pas de gestions de "Detail" pour le moment (difficultÃ© AJAX + traitement XML)
 	// modification du source HotPot
 	$insertJS = <<<ENDOFTEXT
@@ -27,15 +44,69 @@ else if (window.ActiveXObject) { // Internet Explorer
 	xhr = false; 
 }
 
+// on ajoute un booléen pour éviter d'insérer plusieurs fois la même entrée.
+// La fonction Finish() est appelée toutes les 30 secondes même quand l'exercice est terminé.
+
+var ExerciceTermine = false;
+var QArray = new Array();
+
 function Finish(){
-	xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&Score="+Score+"&DateDebut="+HPNStartTime+"&DateFin="+(new Date()).getTime(),true);
+	if (!ExerciceTermine) { 
+			xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&IdSessionExercice=%s&NumeroPage=%d&NombreTotal="+QArray.length+"&Score="+Score+"&DateDebut="+HPNStartTime+"&DateFin="+(new Date()).getTime(),true);
 	xhr.send(null);
+	ExerciceTermine = true;
+	}
 // CODE ESPRIT : FIN
 ENDOFTEXT;
 	$html = str_replace(
 			"function Finish(){",
-			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId()),
+			sprintf($insertJS, dir_http_plateform('ajax.php'), $IdHotpot, $oProjet->oUtilisateur->retId(), $IdSessionExercice, $iNumeroPage),
 			$html );
+	}
+
+/*
+ * l'exercice est déjà fait, on affiche le score et la moyenne
+ */
+	else {
+		$iMoyenne = $oHotpotVerifScore->CalculMoyenne($IdSessionExercice);
+		$ModifieHtml = "
+<script type=\"text/javascript\">
+window.clearInterval(Interval);
+setTimeout('Finish()', SubmissionTimeout);
+WriteToInstructions(YourScoreIs + ' ' + $iScoreExercice + '%.<br />Moyenne : ' + $iMoyenne +'%.');
+
+</script>
+</body>";
+
+	$html = str_replace("</body>", $ModifieHtml, $html);
+	$html = str_replace("var TimeOver = false;", "var TimeOver = true;", $html);
+	$html = str_replace("var Locked = false;", "var Locked = true;", $html);
+	$html = str_replace("var Finished = false;", "var Finished = true;", $html);
+	$html = str_replace("onload=\"TimerStartUp()\"", "", $html);
+	}
+
+	/**
+	 * On modifie le bouton "=>" (quand il existe plusieurs fichiers html) afin qu'il passe par le fichier "html.php"
+	 * et non plus en ouvrant directement le "fichier.html" 
+ 	*/
+	$iNumeroPageSuivante = $iNumeroPage + 1;
+	$insertHTML = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%d&IdHotpot=%d&NumeroPage=%d&fi=";
+	$html = str_replace(
+					"onclick=\"location='",
+					sprintf($insertHTML, $IdActiv, $IdSousActiv, $IdSessionExercice, $IdHotpot, $iNumeroPageSuivante),
+					$html );
+	/**
+ 	* On modifie le bouton "<=" sinon il utilise la fonction history.back(), mais cela entraine une perte de l'id de la session pour cet exercice
+ 	* On prend le numero de page actuelle et on enlève 1.
+ 	*/
+	$iNumeroPagePrecedente = $iNumeroPage-1;
+	$sNomFichierPrecedent = $_COOKIE['Page'.$iNumeroPagePrecedente];
+	$ModifierReferrer = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%d&IdHotpot=%d&NumeroPage=%d&fi=%s'";
+	$html = str_replace(
+					"onclick=\"history.back()",
+				sprintf($ModifierReferrer, $IdActiv, $IdSousActiv, $IdSessionExercice, $IdHotpot, $iNumeroPagePrecedente,$sNomFichierPrecedent),
+					$html );
+
 	print $html;
 	exit();
 }

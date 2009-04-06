@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>AEL auto corrigé</title>
+<title>Exercice HotPotatoes</title>
 <style type="text/css">
 body
 {
@@ -40,7 +40,15 @@ table
 	background-color: rgb(240,240,240);
 	border: rgb(127,157,185) solid 1px;
 	padding: 1px;
-	margin: 35px 5px;
+	margin: 15px 5px;
+}
+p.information
+{
+	text-align:center;
+	background-color: rgb(240,240,240);
+	border: rgb(127,157,185) solid 1px;
+	padding: 3px;
+	margin: 35px 5px 0 0;
 }
 td
 {
@@ -63,6 +71,22 @@ td
 	bottom: 0;
 	width: 100%;
 }
+.div_details
+{
+	display:none;
+	position:absolute;
+	text-align:left;
+	z-index:1000;
+	background-color:#AEA58A;
+	opacity:.95;
+	filter:alpha(opacity=95);
+	border:1px solid black;
+	width:150px;
+}
+.Ancien_systemeHP {
+	background-color:#ffa9ab;
+}
+
 th
 {
     background-color: rgb(238, 234, 221);
@@ -79,6 +103,17 @@ th
 .titrenom
 {
 	text-align: right;
+}
+table.AucunEtudiant, th.AucunEtudiant
+{
+	border: rgb(202, 195, 177) none 1px;
+	width: 90%;
+	background-color: #EEEADD;
+	text-align: center;
+}
+th.AucunEtudiant
+{
+	color: red;
 }
 #csv
 {
@@ -129,27 +164,76 @@ table
 }
 </style>
 <![endif]-->
+<script type="text/javascript"><!--
+function Montrer_Details(evenement,numero)
+{
+	var IE=false;
+	if(navigator.appName == "Microsoft Internet Explorer")
+		IE = true;
+
+	if(IE)
+	{
+	//alert(document.body.scrollLeft);
+		
+		x = evenement.clientX + document.documentElement.scrollLeft;
+		y = evenement.clientY + document.documentElement.scrollTop;
+	}
+	else
+	{
+		x = evenement.pageX;
+		y = evenement.pageY;
+	}
+
+/*
+*	affichage du div près de la souris
+*	si on dépasse de l'écran, on affiche le div en haut
+*/
+
+	obj = document.getElementById("details"+numero);
+	obj.style.display = 'block';
+	document.body.style.cursor = 'help';
+	obj.style.left = (x + 25) + 'px';
+	obj.style.top = y + 'px';
+}
+
+function Cacher_Details(numero)
+{
+	document.getElementById("details"+numero).style.display="none";
+	document.body.style.cursor = 'auto';
+}
+--></script>
 </head>
 <body>
 <h1>{Titre}</h1>
 <div id="contenu">
-<table>
-<tr>
-	<th class="titrenom">Noms : </th>
+<p class="information">Déplacez le curseur sur un score pour afficher les infos</p>
+
+[BLOCK_TITRE+]
+	{TitreNom}
+[BLOCK_TITRE-]
 [BLOCK_NOMS+]
-	<th>{NOM}</th>
+	{NOM}
 [BLOCK_NOMS-]
 </tr>
 [BLOCK_ESSAIS+]
 <tr>
 	<td>Essai {EssaiNb}</td>
 [BLOCK_SCORES+]
-	<td>{Score}</td>
+	{Score}
 [BLOCK_SCORES-]
 </tr>
 [BLOCK_ESSAIS-]
 </table>
+<br />
 </div>
-<div id="barremenu"><a id="csv" href="tableau_scores_hotpot.php?IdHotpot={IdHotpot}&amp;action=exportation">Exporter</a><a href="javascript: top.close();">Fermer</a>&nbsp;</div>
+
+
+[BLOCK_DETAILS+]
+<div id="details{idexercice}" class="div_details">
+{nombre_exercice}
+</div>
+[BLOCK_DETAILS-]
+
+<div id="barremenu"><a id="csv" href="tableau_scores_hotpot.php?IdHotpot={IdHotpot}&amp;action=exportation&amp;fichier={NomFichierHP}">Exporter</a><a href="javascript: top.close();">Fermer</a>&nbsp;</div>
 </body>
 </html>

@@ -57,6 +57,24 @@ function hotpotScore( ) {
 		$DateFin = date('Y-m-d H:i:s',$_REQUEST['DateFin']/1000);
 	else
 		$DateFin = date('Y-m-d H:i:s');
+
+	if (empty($_REQUEST['IdSessionExercice']))
+		return false;
+	$IdSessionExercice = $_REQUEST['IdSessionExercice'];
+
+	if (empty($_REQUEST['NumeroPage']))
+		return false;
+	$iNumeroPage = $_REQUEST['NumeroPage'];
+
+	/**
+	 * Le nombre d'exercice est défini par une variable javascript utilisée dans le fichier HP.
+	 * Cette variable est présente en particulier dans les exercices de type Quizz (1 fichier HTML, mais plusieurs questions)
+	 * Si elle n'est pas définie (ou égale à 0), on insérera -1 comme valeur.
+	 */
+	if (empty($_REQUEST['NombreTotal']) || !ctype_digit($_REQUEST['NombreTotal']) || $_REQUEST['NombreTotal'] == 0)
+		$iNombreQuestions = -1;
+	else $iNombreQuestions = $_REQUEST['NombreTotal'];
+echo "test";
 	$IdPers = $_REQUEST['IdPers'];
 	$oHotpotScore = new CHotpotatoesScore($oProjet->oBdd);
 	$oHotpotScore->defIdHotpot($IdHotpot);
@@ -64,7 +82,11 @@ function hotpotScore( ) {
 	$oHotpotScore->defScore($Score);
 	$oHotpotScore->defDateDebut($DateDebut);
 	$oHotpotScore->defDateFin($DateFin);
-	$oHotpotScore->enregistrer();
+	$oHotpotScore->defIdSessionExercice($IdSessionExercice);
+	$oHotpotScore->defNombreQuestion($iNombreQuestions);
+	$oHotpotScore->defNumeroPage($iNumeroPage);
+	if ($oHotpotScore->ExerciceFait($IdPers,$IdHotpot,$IdSessionExercice,$iNumeroPage) == NULL)
+		$oHotpotScore->enregistrer();
 }
 
 ?>
