@@ -90,7 +90,7 @@ WriteToInstructions(YourScoreIs + ' ' + $iScoreExercice + '%.<br />Moyenne : ' +
 	 * et non plus en ouvrant directement le "fichier.html" 
  	*/
 	$iNumeroPageSuivante = $iNumeroPage + 1;
-	$insertHTML = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%d&IdHotpot=%d&NumeroPage=%d&fi=";
+	$insertHTML = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%s&IdHotpot=%d&NumeroPage=%d&fi=";
 	$html = str_replace(
 					"onclick=\"location='",
 					sprintf($insertHTML, $IdActiv, $IdSousActiv, $IdSessionExercice, $IdHotpot, $iNumeroPageSuivante),
@@ -101,7 +101,7 @@ WriteToInstructions(YourScoreIs + ' ' + $iScoreExercice + '%.<br />Moyenne : ' +
  	*/
 	$iNumeroPagePrecedente = $iNumeroPage-1;
 	$sNomFichierPrecedent = $_COOKIE['Page'.$iNumeroPagePrecedente];
-	$ModifierReferrer = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%d&IdHotpot=%d&NumeroPage=%d&fi=%s'";
+	$ModifierReferrer = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%s&IdHotpot=%d&NumeroPage=%d&fi=%s'";
 	$html = str_replace(
 					"onclick=\"history.back()",
 				sprintf($ModifierReferrer, $IdActiv, $IdSousActiv, $IdSessionExercice, $IdHotpot, $iNumeroPagePrecedente,$sNomFichierPrecedent),
