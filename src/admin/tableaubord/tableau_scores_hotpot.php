@@ -91,7 +91,7 @@ if ($NbrePers>0)
 		foreach ($aoPers as $oPers) {
 			$lignePersonne[$oPers->retId()] = $oPers->retNom()." ".$oPers->retPrenom();
 			$aoScores[$oPers->retId()] = $oHotpotatoes->scores_par_etudiant( $oPers->retId() );
-			$iEssaiReel = 1;
+			$iEssaiReel = 0;
 
 			for ($iEssaiExport=1; $iEssaiExport <= count($aoScores[$oPers->retId()]); $iEssaiExport++) {
 				//print "test$iNumeroEssai \n";

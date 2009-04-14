@@ -74,7 +74,7 @@ function hotpotScore( ) {
 	if (empty($_REQUEST['NombreTotal']) || !ctype_digit($_REQUEST['NombreTotal']) || $_REQUEST['NombreTotal'] == 0)
 		$iNombreQuestions = -1;
 	else $iNombreQuestions = $_REQUEST['NombreTotal'];
-echo "test";
+
 	$IdPers = $_REQUEST['IdPers'];
 	$oHotpotScore = new CHotpotatoesScore($oProjet->oBdd);
 	$oHotpotScore->defIdHotpot($IdHotpot);

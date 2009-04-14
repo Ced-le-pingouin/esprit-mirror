@@ -51,7 +51,7 @@ var ExerciceTermine = false;
 var QArray = new Array();
 
 function Finish(){
-	if (!ExerciceTermine) { 
+	if (!ExerciceTermine) {
 			xhr.open("GET","%s?action=hotpotScore&IdHotpot=%d&IdPers=%d&IdSessionExercice=%s&NumeroPage=%d&NombreTotal="+QArray.length+"&Score="+Score+"&DateDebut="+HPNStartTime+"&DateFin="+(new Date()).getTime(),true);
 	xhr.send(null);
 	ExerciceTermine = true;
@@ -71,18 +71,21 @@ ENDOFTEXT;
 		$iMoyenne = $oHotpotVerifScore->CalculMoyenne($IdSessionExercice);
 		$ModifieHtml = "
 <script type=\"text/javascript\">
-window.clearInterval(Interval);
 setTimeout('Finish()', SubmissionTimeout);
 WriteToInstructions(YourScoreIs + ' ' + $iScoreExercice + '%.<br />Moyenne : ' + $iMoyenne +'%.');
-
 </script>
 </body>";
 
-	$html = str_replace("</body>", $ModifieHtml, $html);
-	$html = str_replace("var TimeOver = false;", "var TimeOver = true;", $html);
-	$html = str_replace("var Locked = false;", "var Locked = true;", $html);
-	$html = str_replace("var Finished = false;", "var Finished = true;", $html);
-	$html = str_replace("onload=\"TimerStartUp()\"", "", $html);
+		$html = str_replace("</body>", $ModifieHtml, $html);
+		$html = str_replace("var TimeOver = false;", "var TimeOver = true;", $html);
+		$html = str_replace("var Locked = false;", "var Locked = true;", $html);
+		$html = str_replace("var Finished = false;", "var Finished = true;", $html);
+		$html = str_replace("onload=\"TimerStartUp()\"", "", $html);
+	
+		/*
+		 * On recherche et desactive les boutons (check, restart, indice, ...)
+		 */
+		$html = preg_replace('/<button(.*class="FuncButton"[^>]*)>(.*)<\/button>/i','<button $1 disabled="disabled"><del>$2</del></button>',$html);
 	}
 
 	/**
