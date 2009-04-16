@@ -69,6 +69,7 @@ ENDOFTEXT;
  */
 	else {
 		$iMoyenne = $oHotpotVerifScore->CalculMoyenne($IdSessionExercice);
+		$iMoyenne = str_replace(",", ".", $iMoyenne);
 		$ModifieHtml = "
 <script type=\"text/javascript\">
 setTimeout('Finish()', SubmissionTimeout);

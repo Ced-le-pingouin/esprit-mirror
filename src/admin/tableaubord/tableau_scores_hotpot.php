@@ -85,8 +85,8 @@ if ($NbrePers>0)
 
 	//@{ Début Exportation
 	if ($bExportation) {
-		print "nom : ".$sNomFichier."\n\n";
-		print "Nom-prénom (ordre alphabétique);N° essai (ordre n°);Score moyen (%);Nbre d'ex. réalisés;Dates;Heures\n";
+		print "Titre de l'exercice : ;".$sNomFichier."\n\n";
+		print "NOM; Prénom; N° essai; Score moyen (%); Nbre d'ex. réalisés; Dates; Heures\n";
 
 		foreach ($aoPers as $oPers) {
 			$lignePersonne[$oPers->retId()] = $oPers->retNom()." ".$oPers->retPrenom();
@@ -119,7 +119,6 @@ if ($NbrePers>0)
 							}
 							else $bScoreDejaInscrit = false;
 						}
-						//$iEssaiReel += $iNbScoreParId - 1;
 					}
 					else 
 					{
@@ -129,9 +128,10 @@ if ($NbrePers>0)
 					$iScore			= $aoScores[$oPers->retId()][$iEssaiExport-1]->CalculMoyenne();
 					$DateFormat		= retDateFormatter($aoScores[$oPers->retId()][$iEssaiExport-1]->retDateModif(), "d/m/Y");
 					$HeureFormat	= retHeureFormatter($aoScores[$oPers->retId()][$iEssaiExport-1]->retDateModif());
+					if ($iEssaiReel == 0) $iEssaiReel=1;
 
 					if (!$bScoreDejaInscrit) {
-						print "$sNomPersonne $sPrenomPersonne; $iEssaiReel; $iScore; $iNombreReelScore; $DateFormat; $HeureFormat; \n";
+						print "$sNomPersonne; $sPrenomPersonne; $iEssaiReel; $iScore; $iNombreReelScore; $DateFormat; $HeureFormat; \n";
 					}
 					//@}}
 				}
