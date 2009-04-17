@@ -1,8 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link type="text/css" rel="stylesheet" href="css://commun/globals.css">
+<link type="text/css" rel="stylesheet" href="css://commun/globals.css" />
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <title>Modification des activités en ligne</title>
 <script src="selectionobj.js" type="text/javascript"></script>

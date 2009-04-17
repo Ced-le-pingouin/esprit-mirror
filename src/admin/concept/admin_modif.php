@@ -256,7 +256,7 @@ function selectionnerModalAff ($v_aoModes,$v_iModeActuel=NULL,$v_sNomSelectHTML=
 {
 	global $g_bModifier;
 	echo "<tr>\n"
-		."<td><div class=\"intitule\">Modalit&eacute; d'affichage&nbsp;:&nbsp;</div></td>\n"
+		."<td><div class=\"intitule\">Modalit&eacute; d'affichage&nbsp;:</div></td>\n"
 		."<td>\n"
 		."<select name=\"{$v_sNomSelectHTML}\""
 		." onchange=\"MontrerCacher('{$v_sNomDivHTML}',this.options[this.selectedIndex].value)\""

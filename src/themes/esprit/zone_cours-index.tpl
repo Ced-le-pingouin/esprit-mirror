@@ -31,7 +31,7 @@ function premierePage(v_sPremierePage)
 <frameset cols="224,1,*" border="0" frameborder="0" framespacing="0">
 <frame name="Gauche" src="{src_frame_gauche}" marginwidth="5" marginheight="15" frameborder="0" scrolling="auto" noresize="noresize">
 <frame name="Sep1" src="theme://frame_separation.htm" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize="noresize">
-<frame name="Principal" src="{src_frame_principal}" frameborder="0" scrolling="auto" noresize="noresize">
+<frame name="Principal" src="{src_frame_principal}" frameborder="0" scrolling="yes" noresize="noresize">
 </frameset>
 <frame name="Bas" src="{src_frame_bas}" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" noresize="noresize">
 </frameset>
