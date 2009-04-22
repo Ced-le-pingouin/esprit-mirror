@@ -82,22 +82,22 @@
 								$info .= sprintf(", tipedit:'%s'",  TIP_DOC_RENAME);		
 
 								// insertion des informations dans le log
-								$sCheminFichier = str_replace('../', '', $tem['path']);
-								$sCheminFichier = preg_replace("/([[:alnum:]_\- ]+\/)[[:alnum:]_\- ]+\.[[:alpha:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
-								
-								$sFichierLog = CONFIG_LOG_PATH;
+								$sCheminFichier = $tem['path'];
+								$sCheminFichier = preg_replace("/([[:alnum:]_\-\s]+\/)[[:alnum:]_\-\s]+\.[[:alpha:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
+								$sCheminFichier = preg_replace("/.*\/(depot\/(images|medias){1}\/)([[:alnum:]_\-\s]*)/", "$1$3", $sCheminFichier); // on garde juste la fin du chemin : depot/images|medias/xxx
+
+								$sFichierLog = CONFIG_LOGCSV_PATH;
 								$sFichierXml = CONFIG_LOGXML_PATH;
-								//$sFichierLog = dir_root_plateform().'depot/log_upload.csv';
-								//$sFichierXml = dir_root_plateform().'depot/log_upload.xml';
+//								//$sFichierLog = dir_root_plateform().'depot/log_upload.csv';
+//								//$sFichierXml = dir_root_plateform().'depot/log_upload.xml';
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
-
 
 								if (!file_exists($sFichierLog)) {
 									$sDonneesCSV = "Date;Nom de l'image;Chemin;Md5\r\n";
 								}
 								$sDonneesCSV .= $tem['ctime'].";".$sUtilisateur.";".$tem['name'].";".$sCheminFichier.";".$sMd5Fichier."\r\n";
-								
+
 								// si le fichier n'existe pas, on en crée un avec les balises <log>.
 								if (!file_exists($sFichierXml)) {
 									$fpxml = fopen($sFichierXml, 'w+');

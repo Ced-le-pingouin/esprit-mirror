@@ -13,7 +13,16 @@
 	require_once(CLASS_SESSION_ACTION);
 	$sessionAction = new SessionAction();
 
-	$manager = new manager();
+	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
+	(isset($_GET['mode']) && !empty($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
+	if (isset($_GET['path']) && !empty($_GET['path'])) {
+		if ($_GET['path'] == 'images') $path = CONFIG_IMAGE_PATH;
+		elseif ($_GET['path'] == 'medias') $path = CONFIG_MEDIA_PATH;
+		else $path = $_GET['path'];
+	}
+	else $path = NULL;
+	
+	$manager = new manager($path);
 	$manager->setSessionAction($sessionAction);
 	$fileList = $manager->getFileList();
 	$folderInfo = $manager->getFolderInfo();
@@ -37,9 +46,6 @@
 	{
 		$view = CONFIG_DEFAULT_VIEW;
 	}
-
-	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
-	(isset($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
 
 // récupération du prenom/nom de l'utilisateur
 	$oProjet = new CProjet();
@@ -103,7 +109,7 @@
 <script type="text/javascript">
 
 	var queryString = '<?php echo makeQueryString(array('path')); ?>';
-	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SYS_ROOT_PATH))."', 'root_title':'".LBL_FOLDER_ROOT."'};\n";?>
+	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SERVER_FILE))."', 'root_title':'".LBL_FOLDER_ROOT."'};\n";?>
 	var parentFolder = {};
 	var urls = {
 			'upload':'<?php echo CONFIG_URL_UPLOAD; ?>',
@@ -234,7 +240,7 @@ else echo "<body>";
 						foreach($views as $k=>$v)
 						{
 							?>
-							<input type="radio" name="view"  class="radio" onclick="changeView(this);" value="<?php echo $k; ?>" <?php echo ($k==$view?'checked':''); ?>> <?php echo $v; ?> &nbsp;&nbsp;
+							<input type="radio" name="view"  class="radio" value="<?php echo $k; ?>" <?php echo ($k==$view?'checked':''); ?>> <?php echo $v; ?> &nbsp;&nbsp;
 							
 							<?php
 						}
@@ -424,7 +430,7 @@ echo "
 <p>T&eacute;l&eacute;chargement du log :</p>
 
 <ul>
-	<li>Fichier csv : <a href=\"download.php?fichier=".CONFIG_LOG_PATH."\">CSV</a></li>
+	<li>Fichier csv : <a href=\"download.php?fichier=".CONFIG_LOGCSV_PATH."\">CSV</a></li>
 	<li>Fichier xml : <a href=\"download.php?fichier=".CONFIG_LOGXML_PATH."\">XML</a></li>
 </ul>
 </fieldset>
@@ -483,13 +489,14 @@ alert('Ce script ne fonctionne pas avec votre navigateur.\n Essayez de t\u00E9l\
 if (xmlDoc!=null) 
 {
 xmlDoc.async=false;
-xmlDoc.load("<?php echo CONFIG_LOGXML_PATH; ?>");
+xmlDoc.load("<?php echo CONFIG_LOGXML_WEB; ?>");
 var x=xmlDoc.getElementsByTagName("entree");
 var table=document.getElementById("tableVoirLog");
 
 var headNode = document.createElement("thead");
 var trNodeDebut = document.createElement("tr");
 var thNode = document.createElement("th");
+thNode.setAttribute("class", "DateFichier");
 thNode.appendChild(document.createTextNode("Date"));
 trNodeDebut.appendChild(thNode);
 
@@ -508,6 +515,7 @@ thNode.appendChild(document.createTextNode("Chemin"));
 trNodeDebut.appendChild(thNode);
 
 thNode = document.createElement("th");
+thNode.setAttribute("class", "Md5Fichier");
 thNode.appendChild(document.createTextNode("Md5"));
 trNodeDebut.appendChild(thNode);
 
@@ -518,11 +526,16 @@ var bodyNode = document.createElement("tbody");
 for (var i=0;i<x.length;i++)
 {
 //var utilisateurXML =	x[i].getElementsByTagName("utilisateur")[0].childNodes[0].nodeValue;
-var fichierXML = 		x[i].getElementsByTagName("fichier")[0].childNodes[0].nodeValue;
-var cheminXML = 		x[i].getElementsByTagName("chemin")[0].childNodes[0].nodeValue;
-var md5XML = 			x[i].getElementsByTagName("md5")[0].childNodes[0].nodeValue;
-md5XML = md5XML.substring(0, md5XML.length/2)+"\n"+md5XML.substring(md5XML.length/2); // on coupe le md5 en 2
-cheminXML = cheminXML.substring(0, cheminXML.search(/images|medias/i)+6)+""+cheminXML.substring(cheminXML.search(/images|medias\//i)+6);
+var fichierXML		= x[i].getElementsByTagName("fichier")[0].childNodes[0].nodeValue;
+var cheminXML		= x[i].getElementsByTagName("chemin")[0].childNodes[0].nodeValue;
+var md5XML			= x[i].getElementsByTagName("md5")[0].childNodes[0].nodeValue;
+var longueurFichier	= fichierXML.length;
+var longueurChemin	= cheminXML.length;
+
+if (longueurFichier > 35)
+	fichierXML	= fichierXML.substring(0, longueurFichier/2)+"\n"+fichierXML.substring(longueurFichier/2);
+
+md5XML = md5XML.substring(0, md5XML.length/2)+" "+md5XML.substring(md5XML.length/2); // on coupe le md5 en 2
 
 var trNode = document.createElement("tr");
 var tdNode = document.createElement("td");
@@ -585,6 +598,7 @@ echo"
 <?php
 // On affiche les extensions autorisées pour chacun des répertoires.
 // ATTENTION, comme l'admin peut naviguer entre les 2 répertoires (images et medias), il faudra penser à rafraîchir la page avant d'envoyer un fichier.
+
 if (strpos($folderInfo['path'],CONFIG_MEDIA_PATH) !== false)
 	echo "
 		  			<tr>
@@ -812,7 +826,7 @@ echo "
   		<li><a href="#" id="menuCut"><?php echo MENU_CUT; ?></a></li>
   		<li><a href="#" id="menuCopy"><?php echo MENU_COPY; ?></a></li>
   		<li><a href="#" id="menuPaste"><?php echo MENU_PASTE; ?></a></li>
-  		<li><a href="#" id="menuDelete"><?php echo MENU_DELETE; ?></a></li>
+  		<!-- <li><a href="#" id="menuDelete"><?php echo MENU_DELETE; ?></a></li> -->
   		<li><a href="#" id="menuPlay"><?php echo MENU_PLAY; ?></a></li>
   	</ul>
   </div>

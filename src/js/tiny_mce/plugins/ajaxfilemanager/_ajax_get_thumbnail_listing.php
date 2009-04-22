@@ -13,9 +13,9 @@
 					switch($file['cssClass'])
 					{
 						case 'filePicture':
-								echo '<a id="thumbUrl' . $count . '" rel="thumbPhotos" href="' . $file['path'] . '">';
+								echo '<a id="thumbUrl' . $count . '" rel="thumbPhotos" href="' . getFileUrl($file['path']) . '">';
 								//echo '<img src="' . appendQueryString($thumbnailBaseUrl, 'path=' . $file['path']) . '" id="thumbImg' . $count . '"></a>' . "\n";
-								echo '<img src="' . $file['path'] . '" id="thumbImg' . $count . '" height="'.CONFIG_IMG_THUMBNAIL_MAX_Y.'" width="'.CONFIG_IMG_THUMBNAIL_MAX_X.'"></a>' . "\n";
+								echo '<img src="' . getFileUrl($file['path']) . '" id="thumbImg' . $count . '" height="'.CONFIG_IMG_THUMBNAIL_MAX_Y.'" width="'.CONFIG_IMG_THUMBNAIL_MAX_X.'"></a>' . "\n";
 								break;
 						case 'fileFlash':
 						case 'fileVideo':
@@ -27,8 +27,8 @@
 				?>
 				
 				</dt>
-				<dd id="dd<?php echo $count; ?>" class="thumbnailListing_info"><span id="flag<?php echo $count; ?>" class="<?php echo $file['flag']; ?>">&nbsp;</span><input id="cb<?php echo $count; ?>" type="checkbox" name="check[]" <?php echo ($file['is_writable']?'':'disabled'); ?> class="radio" value="<?php echo $file['path']; ?>" />
-				<a <?php echo ($file['cssClass']== 'filePicture'?'rel="orgImg"':''); ?> href="<?php echo $file['path']; ?>" title="<?php echo $file['name']; ?>" id="a<?php echo $count; ?>"><?php echo shortenFileName($file['name']); ?></a></dd>
+				<dd id="dd<?php echo $count; ?>" class="thumbnailListing_info"><span id="flag<?php echo $count; ?>" class="<?php echo $file['flag']; ?>">&nbsp;</span><input id="cb<?php echo $count; ?>" type="checkbox" name="check[]" <?php echo ($file['is_writable']?'':'disabled'); ?> class="radio" value="<?php echo getFileUrl($file['path']); ?>" />
+				<a <?php echo ($file['cssClass']== 'filePicture'?'rel="orgImg"':''); ?> href="<?php echo getFileUrl($file['path']); ?>" title="<?php echo $file['name']; ?>" id="a<?php echo $count; ?>"><?php echo shortenFileName($file['name']); ?></a></dd>
 				
 			</dl>
 			<?php

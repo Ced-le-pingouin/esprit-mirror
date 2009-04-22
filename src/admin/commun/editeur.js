@@ -87,10 +87,11 @@ function nettoyage(element_id, html, body) {
 }
 
 function convertWord(type, content) {
-	content = content.replace(/-moz-use-text-color/gi, ""); // on enlève les balises spéciales créées par Mozilla/FireFox
+	content = content.replace(/-moz-use-text-color/gi, "");				// on enlève les balises spéciales créées par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-	content = content.replace(/\s?mso-[^\"]*/gi, ""); // on enlève les balises spéciales créées par IE
-	content = content.replace(/(<!--*[^>]*>\s*.*<![^>]*>)*/gi, ""); // supprime les commentaires pouvant être ajoutés
+	content = content.replace(/\s?mso-[^\"]*/gi, "");					// on enlève les balises spéciales créées par IE
+	content = content.replace(/<!--\[if([\s\S]*?)\[endif\]-->/gi, "");	// supprime les commentaires de type <!-- [if mso...]>...<!--[endif]--> et leur contenu
+	content = content.replace(/<!--([\s\S]*?)-->/gi, "$1");				// on enlève les caractères de commentaire <!-- et --> en conservant le contenu
 	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
 	
 	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.
@@ -98,7 +99,7 @@ function convertWord(type, content) {
 	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
 	if (recherche_td)
 	{
-		for(i=0;i<recherche_td.length;++i)
+		for(i=0;i < recherche_td.length;++i)
 		{
 			content = content.replace(/(border).{0,7}(:)[^;]*;\s?/gi, ""); // enleve les style 'border-color'... dans le td
 		}
@@ -106,7 +107,7 @@ function convertWord(type, content) {
 	recherche_tab = content.match(/(table).+(border).{0,7}(:)[a-z0-9\s]*(;\s?)/gi); // recherche des <table...> contenant un style border
 	if (recherche_tab)
 	{
-		for(i=0;i<recherche_tab.length;++i)
+		for(i=0;i < recherche_tab.length;++i)
 		{
 			content = content.replace(/(border).{0,}(:)[a-z0-9\s]*((;)|(;\s?))/gi, ""); // enleve les style 'border-color'... dans la table
 		}
@@ -118,10 +119,10 @@ function ajaxfilemanager(field_name, url, type, win) {
 	var ajaxfilemanagerurl = "../ajaxfilemanager/ajaxfilemanager.php";
 	switch (type) {
 		case "image":
-			ajaxfilemanagerurl+="?path=../../../../depot/images"; // essayer avec +GLOBALS["rep_images"]
+			ajaxfilemanagerurl+="?path=images";
 			break;
 		case "media":
-			ajaxfilemanagerurl+="?path=../../../../depot/medias"; // essayer avec +GLOBALS["rep_medias"];
+			ajaxfilemanagerurl+="?path=medias";
 			break;
 		default:
 			return false;

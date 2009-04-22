@@ -314,10 +314,10 @@ function jsEncode(s) {
 }
 
 function generatePreview(c) {
-	var f = document.forms[0], p = document.getElementById('nopreview'), h = '', cls, pl, n, type, codebase, wp, hp, nw, nh;
+	var f = document.forms[0], p = document.getElementById('nopreview'), h = '',ObjetSWF = '', cls, pl, n, type, codebase, wp, hp, nw, nh;
 	var type_media = document.forms[0].elements['media_type'];
 	type = type_media.options[type_media.selectedIndex].value;
-	
+
 	nw = parseInt(f.width.value);
 	nh = parseInt(f.height.value);
 
@@ -343,9 +343,11 @@ function generatePreview(c) {
 
 	// After constrain
 	pl = serializeParameters();
-	
+
 	if (pl == '') {
 		p.innerHTML = '<img src="img/fr-nopreview.gif" alt="pas d\'aper&ccedil;u disponible" />';
+		p.style.display = 'block';
+		document.getElementById('preview').style.display = 'none';
 		return;
 	}
 
@@ -353,9 +355,11 @@ function generatePreview(c) {
 
 	if (!pl.src) {
 		p.innerHTML = '<img src="img/fr-nopreview.gif" alt="pas d\'aper&ccedil;u disponible" /></p>';
+		p.style.display = 'block';
+		document.getElementById('preview').style.display = 'none';
 		return;
 	}
-	
+
 	p.style.display = 'none';
 	document.getElementById('preview').style.display = 'block';
 
@@ -366,6 +370,14 @@ function generatePreview(c) {
 //	pl.align = !pl.align ? '' : pl.align;
 	pl.backcolor = !pl.backcolor ? '0xffffff' : pl.backcolor.replace("#", "0x");
 	pl.shownavigation = !pl.shownavigation ? 'true' : pl.shownavigation;
+
+	if (type == "flashNonVideo") {
+		ObjetSWF += '<object type="application/x-shockwave-flash" data="'+pl.src+'" width="'+ pl.width +'" height="'+pl.height + '">';
+		ObjetSWF += '<param name="movie" value="'+pl.src+'">';
+		ObjetSWF += '</object>';
+		document.getElementById('preview').innerHTML = ObjetSWF;
+		return;
+	}
 
 	data = 	GLOBALS["lecteur"]+'?file='+pl.src +
 			'&showstop=true&usefullscreen=false&autostart=' + pl.autostart +
@@ -379,6 +391,7 @@ function generatePreview(c) {
 	h += '<param name="movie" value="' + data +'" />';
 	h += '</object>';
 	document.getElementById('preview').innerHTML = h ;
+
 }
 
 tinyMCEPopup.onInit.add(init);

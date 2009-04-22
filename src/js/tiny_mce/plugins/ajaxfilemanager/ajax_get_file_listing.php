@@ -66,7 +66,6 @@
 		
 		if (isset ($_GET['mode'])) $sManagerMode = $_GET['mode'];
 		else $sManagerMode = 'tuteur';
-		//	echo "\nmode : ".$sManagerMode."\n";
 
 		echo "<script type=\"text/javascript\">\n";
 // si le mode 'tuteur est actif, impossibilité de remonter à la racine		

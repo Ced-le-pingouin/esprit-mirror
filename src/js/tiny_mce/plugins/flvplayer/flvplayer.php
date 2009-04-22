@@ -45,6 +45,7 @@
 										<option value="mp3">Audio</option>
 										<option value="flash">Vid&eacute;o</option>
 										<option value="youtube">YouTube</option>
+										<!-- <option value="flashNonVideo">Fichier SWF (non vid&eacute;o)</option> -->
 										<!-- <option value="google">Vid&eacute;os Google</option> -->
 									</select>
 								</td>

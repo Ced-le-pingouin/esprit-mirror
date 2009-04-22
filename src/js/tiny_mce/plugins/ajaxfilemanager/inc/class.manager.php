@@ -70,15 +70,17 @@ class manager
 		{
 			$this->currentFolderPath = $_GET[$this->folderPathIndex];
 		}
-		elseif(isset($_SESSION[$this->lastVisitedFolderPathIndex]) && file_exists($_SESSION[$this->lastVisitedFolderPathIndex]) && !is_file($_SESSION[$this->lastVisitedFolderPathIndex]))
+//		elseif(isset($_SESSION[$this->lastVisitedFolderPathIndex]) && file_exists($_SESSION[$this->lastVisitedFolderPathIndex]) && !is_file($_SESSION[$this->lastVisitedFolderPathIndex]))
+//		{
+//			$this->currentFolderPath = $_SESSION[$this->lastVisitedFolderPathIndex];
+//		}
+		else
 		{
-			$this->currentFolderPath = $_SESSION[$this->lastVisitedFolderPathIndex];
-		}else
-		{
-			$this->currentFolderPath = CONFIG_SYS_DEFAULT_PATH;
+			//$this->currentFolderPath = CONFIG_SYS_DEFAULT_PATH;
+			$this->currentFolderPath = CONFIG_SERVER_FILE;
 		}
 		
-		$this->currentFolderPath = (isUnderRoot($this->currentFolderPath)?backslashToSlash((addTrailingSlash($this->currentFolderPath))):CONFIG_SYS_DEFAULT_PATH);
+		$this->currentFolderPath = (isUnderRoot($this->currentFolderPath)?backslashToSlash((addTrailingSlash($this->currentFolderPath))):CONFIG_SERVER_FILE);
 
 		if($this->calculateSubdir)
 		{// keep track of this folder path in session 

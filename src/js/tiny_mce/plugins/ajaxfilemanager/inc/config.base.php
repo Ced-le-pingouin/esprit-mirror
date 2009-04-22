@@ -12,7 +12,7 @@
 //error_reporting(E_ALL ^ E_NOTICE);	
 	
 	
-
+	require_once("globals.inc.php");
 	//Access Control Setting
 	/**
 	 * turn off => false
@@ -47,13 +47,17 @@
 			these two paths accept relative path only, don't use absolute path
 		*/
 		
+	define('CONFIG_SERVER_WEB', $g_sCheminRacineWeb."depot/");	// http://loclahost/esprit/src
+	define('CONFIG_SERVER_FILE', $g_sCheminRacine."depot/");		// 		C:/wamp/www/esprit/src/
+
 	define('CONFIG_SYS_DEFAULT_PATH', '../../../../depot/'); //accept relative path only
 	define('CONFIG_SYS_ROOT_PATH', '../../../../depot/');	//accept relative path only
-	
-	define('CONFIG_LOG_PATH', '../../../../depot/log_upload.csv'); // fichier log rempli à chaque envoi de fichier par l'utilisateur
-	define('CONFIG_LOGXML_PATH', '../../../../depot/log_upload.xml'); // fichier xml rempli à chaque envoi de fichier par l'utilisateur
-	define('CONFIG_IMAGE_PATH', '../../../../depot/images/');	//images path use for Esprit
-	define('CONFIG_MEDIA_PATH', '../../../../depot/medias/');	//medias path use for Esprit
+
+	define('CONFIG_LOGCSV_PATH', $g_sCheminRacine.'depot/log_upload.csv'); // fichier log rempli à chaque envoi de fichier par l'utilisateur
+	define('CONFIG_LOGXML_PATH', $g_sCheminRacine.'depot/log_upload.xml'); // fichier xml rempli à chaque envoi de fichier par l'utilisateur
+	define('CONFIG_LOGXML_WEB', $g_sCheminRacineWeb.'depot/log_upload.xml'); // fichier xml rempli à chaque envoi de fichier par l'utilisateur (chemin web)
+	define('CONFIG_IMAGE_PATH', $g_sCheminRacine.'depot/images/');	//images path use for Esprit
+	define('CONFIG_MEDIA_PATH', $g_sCheminRacine.'depot/medias/');	//medias path use for Esprit
 	
 	define('CONFIG_SYS_FOLDER_SHOWN_ON_TOP', true); //show your folders on the top of list if true or order by name 
 	define("CONFIG_SYS_DIR_SESSION_PATH", 'session/');

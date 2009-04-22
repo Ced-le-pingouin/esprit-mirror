@@ -500,6 +500,9 @@ padding: 2px 10px;
 	text-align:left;
 	padding: 2px 10px;
 }
+th.Md5Fichier, th.DateFichier {
+	width: 10%;
+}
 /*~~~~~~Global Low Priority Setting ~~~~~~~~*/
 .left, td.left, th.left, td.leftDisabled{text-align:left;}
 .right, td.right, th.right{text-align:right;}
