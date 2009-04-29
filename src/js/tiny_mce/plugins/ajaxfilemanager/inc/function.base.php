@@ -843,11 +843,7 @@ function getRootPath() {
          {
          	$file = basename($path);
          	if(CONFIG_SYS_PATTERN_FORMAT == 'list')
-         	{// comma delimited vague file/folder name
-
-
-
-			    		
+         	{// comma delimited vague file/folder name	
       			if(is_dir($path))
       			{
  				$includeDir = trimlrm(CONFIG_SYS_INC_DIR_PATTERN);
@@ -877,16 +873,13 @@ function getRootPath() {
       			}
          	}elseif(CONFIG_SYS_PATTERN_FORMAT == 'csv')
          	{//comma delimited file/folder name
-         		
          		if(is_dir($path))
          		{
-         		
 	 				$includeDir = trimlrm(CONFIG_SYS_INC_DIR_PATTERN);
 					$excludeDir = trimlrm(CONFIG_SYS_EXC_DIR_PATTERN);
-					        
+
 					if(!empty($includeDir) && !empty($excludeDir))
 					{
-						
 						$validDir = explode(',', $includeDir);
 						
 						$invalidDir = explode(",", $excludeDir);

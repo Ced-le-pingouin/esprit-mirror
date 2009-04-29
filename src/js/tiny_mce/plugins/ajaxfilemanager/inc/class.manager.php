@@ -169,26 +169,25 @@ class manager
 						}
 					}					
 					$path=$this->currentFolderPath.$file;
+echo "*is listing?".isListingDocument($path)."! is file?".is_file($path)."! is dir?".is_dir($path)."!";
 					if(is_dir($path) && isListingDocument($path) )
 					{
+echo $path." est un repertoire<br />";
 						$this->currentFolderInfo['subdir']++;
 						if(!$this->calculateSubdir)
 						{			
 						}else 
 						{
-							
 								$folder = $this->getFolderInfo($path);
 								$folder['flag'] = $flag;
 								$folders[$file] = $folder;
 								$outputs[$file] = $folders[$file];							
 						}
-
-						
 					}elseif(is_file($path) && isListingDocument($path))
 					{
-
 							$obj = new file($path);
 							$tem = $obj->getFileInfo();
+echo $path." est un fichier, poids : ".sizeof($tem)."<br />";
 							if(sizeof($tem))
 							{
 								$fileType = $this->getFileType($file);
