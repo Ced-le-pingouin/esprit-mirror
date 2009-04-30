@@ -968,14 +968,13 @@ function getRootPath() {
 	         	
 	         	}elseif(is_file($path))
 	         	{
-//	         		if(isValidPattern(CONFIG_SYS_INC_FILE_PATTERN, $path) && !isInvalidPattern(CONFIG_SYS_EXC_FILE_PATTERN, $path)  )
-//	         		{
-//	         			return true;
-//	         		}else 
-//	         		{
-//	         			return false;
-//	         		}
-					return true; // vérification que TOUS les fichiers sont bien listés
+	         		if(isValidPattern(CONFIG_SYS_INC_FILE_PATTERN, $path) && !isInvalidPattern(CONFIG_SYS_EXC_FILE_PATTERN, $path)  )
+	         		{
+	         			return true;
+	         		}else 
+	         		{
+	         			return false;
+	         		}
 	         	}
          	}
          	return false;

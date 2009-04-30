@@ -152,7 +152,6 @@ class manager
 			{
 				if($file != '.' && $file != '..')
 				{
-					echo $file." ";
 					$flag = $this->flags['no'];
 				
 					if($this->sessionAction->getFolder() == $this->currentFolderPath)
@@ -170,6 +169,10 @@ class manager
 						}
 					}					
 					$path=$this->currentFolderPath.$file;
+if (is_file($path)) echo " ce fichier : ".$path." est ";
+elseif (is_dir($path)) echo " ce dossier : ".$path." est ";
+if (isListingDocument($path)) echo "list&eacute; <br />";
+else echo "non list&eacute; <br />";
 					if(is_dir($path) && isListingDocument($path) )
 					{
 						$this->currentFolderInfo['subdir']++;
