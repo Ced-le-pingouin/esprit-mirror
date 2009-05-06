@@ -70,17 +70,15 @@ class manager
 		{
 			$this->currentFolderPath = $_GET[$this->folderPathIndex];
 		}
-//		elseif(isset($_SESSION[$this->lastVisitedFolderPathIndex]) && file_exists($_SESSION[$this->lastVisitedFolderPathIndex]) && !is_file($_SESSION[$this->lastVisitedFolderPathIndex]))
-//		{
-//			$this->currentFolderPath = $_SESSION[$this->lastVisitedFolderPathIndex];
-//		}
-		else
+		elseif(isset($_SESSION[$this->lastVisitedFolderPathIndex]) && file_exists($_SESSION[$this->lastVisitedFolderPathIndex]) && !is_file($_SESSION[$this->lastVisitedFolderPathIndex]))
 		{
-			//$this->currentFolderPath = CONFIG_SYS_DEFAULT_PATH;
-			$this->currentFolderPath = CONFIG_SERVER_FILE;
+			$this->currentFolderPath = $_SESSION[$this->lastVisitedFolderPathIndex];
+		}else
+		{
+			$this->currentFolderPath = CONFIG_SYS_DEFAULT_PATH;
 		}
 		
-		$this->currentFolderPath = (isUnderRoot($this->currentFolderPath)?backslashToSlash((addTrailingSlash($this->currentFolderPath))):CONFIG_SERVER_FILE);
+		$this->currentFolderPath = (isUnderRoot($this->currentFolderPath)?backslashToSlash((addTrailingSlash($this->currentFolderPath))):CONFIG_SYS_DEFAULT_PATH);
 
 		if($this->calculateSubdir)
 		{// keep track of this folder path in session 
@@ -169,10 +167,6 @@ class manager
 						}
 					}					
 					$path=$this->currentFolderPath.$file;
-if (is_file($path)) echo " ce fichier : ".$path." est ";
-elseif (is_dir($path)) echo " ce dossier : ".$path." est ";
-if (isListingDocument($path)) echo "list&eacute; <br />";
-else echo "non list&eacute; <br />";
 					if(is_dir($path) && isListingDocument($path) )
 					{
 						$this->currentFolderInfo['subdir']++;

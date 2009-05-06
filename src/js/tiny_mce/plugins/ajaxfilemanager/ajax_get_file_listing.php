@@ -101,7 +101,7 @@
 				}
 				echo (($j++ > 1)?",":'') . "'" . $k . "':'" . $v . "'";
 			}
-			echo (($j++ > 1)?",":'') . "'url':'" . getFileUrl($file['path']) . "'";
+			echo (($j++ > 1)?",":'') . "'url':'" . getRelativeFileUrl($file['path']) ."'";
 			echo "}\n";				
 		}
 		echo  "};</script>\n";

@@ -2,7 +2,7 @@
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");
 	echo '{';
 	$count = 1;
-	foreach(getFolderListing(CONFIG_SERVER_FILE) as $k=>$v)
+	foreach(getFolderListing(CONFIG_SYS_ROOT_PATH) as $k=>$v)
 	{
 		
 

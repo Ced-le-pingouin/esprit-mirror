@@ -13,16 +13,7 @@
 	require_once(CLASS_SESSION_ACTION);
 	$sessionAction = new SessionAction();
 
-	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
-	(isset($_GET['mode']) && !empty($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
-	if (isset($_GET['path']) && !empty($_GET['path'])) {
-		if ($_GET['path'] == 'images') $path = CONFIG_IMAGE_PATH;
-		elseif ($_GET['path'] == 'medias') $path = CONFIG_MEDIA_PATH;
-		else $path = $_GET['path'];
-	}
-	else $path = NULL;
-	
-	$manager = new manager($path);
+	$manager = new manager();
 	$manager->setSessionAction($sessionAction);
 	$fileList = $manager->getFileList();
 	$folderInfo = $manager->getFolderInfo();
@@ -46,6 +37,9 @@
 	{
 		$view = CONFIG_DEFAULT_VIEW;
 	}
+
+	// ajout de la fonction pour vérifier sur quel lien on a cliqué depuis TinyMCE
+	(isset($_GET['mode'])) ? $sManagerMode = $_GET['mode'] : $sManagerMode = '';
 
 // récupération du prenom/nom de l'utilisateur
 	$oProjet = new CProjet();
@@ -109,7 +103,7 @@
 <script type="text/javascript">
 
 	var queryString = '<?php echo makeQueryString(array('path')); ?>';
-	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SERVER_FILE))."', 'root_title':'".LBL_FOLDER_ROOT."'};\n";?>
+	var paths = {'root':'<?php echo addTrailingSlash(backslashToSlash(CONFIG_SYS_ROOT_PATH))."', 'root_title':'".LBL_FOLDER_ROOT."'};\n";?>
 	var parentFolder = {};
 	var urls = {
 			'upload':'<?php echo CONFIG_URL_UPLOAD; ?>',
@@ -489,7 +483,7 @@ alert('Ce script ne fonctionne pas avec votre navigateur.\n Essayez de t\u00E9l\
 if (xmlDoc!=null) 
 {
 xmlDoc.async=false;
-xmlDoc.load("<?php echo CONFIG_LOGXML_WEB; ?>");
+xmlDoc.load("<?php echo CONFIG_LOGXML_PATH; ?>");
 var x=xmlDoc.getElementsByTagName("entree");
 var table=document.getElementById("tableVoirLog");
 

@@ -61,7 +61,6 @@ function enablePreview(elem, num)
 						//alert('single click');
 						var num = getNum(this.id);
 						var path = files[num].path;
-						var url = files[num].url;
 						//alert('now: ' + now + '; dcat: ' + dcAt + '; dcDelay: ' + dcDelay);
 						if (hadDoubleClick())
 						{
@@ -99,14 +98,14 @@ function enablePreview(elem, num)
 								case 'fileVideo':
 								case 'fileMusic':
 								case 'fileFlash':																
-									$('#playGround').html('<a id="playGround' + num + '" href="' + files[num].url + '"><div id="player">&nbsp;this is mine</div></a> ');
+									$('#playGround').html('<a id="playGround' + num + '" href="' + files[num].path + '"><div id="player">&nbsp;this is mine</div></a> ');
 									$('#playGround' + num).html('');																		
 									$('#playGround' + num).media({ width: 255, height: 210,  autoplay: true  });		
 									//alert($('#playGround' + num).html());																	
 									showThickBox($('#a' + num).get(0), appendQueryString('#TB_inline', 'height=250'  + '&width=256' + '&inlineId=winPlay&modal=true'));
 									break;
 								default:
-									showThickBox(linkElem, appendQueryString(url, 'KeepThis=true&TB_iframe=true&height=' + thickbox.height + '&width=' + thickbox.width));
+									showThickBox(linkElem, appendQueryString(path, 'KeepThis=true&TB_iframe=true&height=' + thickbox.height + '&width=' + thickbox.width));
 							}
 						}
 						}
@@ -129,7 +128,7 @@ function enablePreview(elem, num)
 					   {
 					   	 selectFile(files[num].url);
 					   }else
-							generateDownloadIframe(appendQueryString(getUrl('download'), 'path=' + files[num].url, ['path']));					   {
+							generateDownloadIframe(appendQueryString(getUrl('download'), 'path=' + files[num].path, ['path']));					   {
 					   }				
 					}
 					);
@@ -1502,9 +1501,10 @@ function addDocumentHtml(num)
 		}	
 		switch(getView())
 		{
+			default:
 			case 'thumbnail':
 				$(
-				'<dl class="thumbnailListing" id="dl' + num + '" ><dt id="dt' + num + '" class="' + files[num].cssClass + '"></dt><dd id="dd' + num + '" class="thumbnailListing_info"><span id="flag' + num + '" class="' + files[num].flag + '">&nbsp;</span><input id="cb' + num + '" type="checkbox"  class="radio" ' + strDisabled +' name="check[]" class="input" value="' + files[num].url + '" /><a href="' + files[num].path + '" title="' + files[num].name + '" id="a' + num + '">' + (typeof(files[num].short_name) != 'undefined'?files[num].short_name:files[num].name) + '</a></dd></dl>').appendTo('#content');
+				'<dl class="thumbnailListing" id="dl' + num + '" ><dt id="dt' + num + '" class="' + files[num].cssClass + '"></dt><dd id="dd' + num + '" class="thumbnailListing_info"><span id="flag' + num + '" class="' + files[num].flag + '">&nbsp;</span><input id="cb' + num + '" type="radio"  class="radio" ' + strDisabled +' name="check[]" class="input" value="' + files[num].path + '" /><a href="' + files[num].path + '" title="' + files[num].name + '" id="a' + num + '">' + (typeof(files[num].short_name) != 'undefined'?files[num].short_name:files[num].name) + '</a></dd></dl>').appendTo('#content');
 				if(files[num].type== 'folder')
 				{//this is foder item
 					enableFolderBrowsable(num);
@@ -1513,7 +1513,7 @@ function addDocumentHtml(num)
 					switch(files[num].cssClass)
 					{
 						case 'filePicture':
-							$('<a id="thumbUrl' + num + '" rel="thumbPhotos" href="' + files[num].url + '"><img src="' + files[num].url + '" id="thumbImg' +  num + '" height="100" width="100"></a>').appendTo('#dt' + num);
+							$('<a id="thumbUrl' + num + '" rel="thumbPhotos" href="' + files[num].path + '"><img src="' + files[num].path + '" id="thumbImg' +  num + '" height="100" width="100"></a>').appendTo('#dt' + num);
 							break;
 						case 'fileFlash':
 							break;
@@ -1529,7 +1529,6 @@ function addDocumentHtml(num)
 				enableShowDocInfo( num);									
 				break;
 			case 'detail':
-			default:
 				var cssRow = (num % 2?"even":"odd");
 				$('<tr class="' + cssRow + '" id="row' + num + '"><td id="tdz' + num +'" align="center"><span id="flag' + num +'" class="' + files[num].flag +'">&nbsp;</span><input type="checkbox" class="radio" name="check[]" id="cb' + num +'" value="' + files[num].path +'" ' + strDisabled + ' /></td><td align="center" class="fileColumns"   id="tdst1">&nbsp;<a id="a' + num +'" href="' + files[num].path +'"><span class="' + files[num].cssClass + '">&nbsp;</span></a></td><td class="left docName" id="tdnd' + num +'">'  + (typeof(files[num].short_name) != 'undefined'?files[num].short_name:files[num].name) + '</td><td class="docInfo" id="tdrd' + num +'">' + files[num].size +'</td><td class="docInfo" id="tdth' + num +'">' + files[num].mtime +'</td></tr>').appendTo('#fileList');
 		
@@ -1573,7 +1572,6 @@ function enableShowDocInfo(num)
 */
 function setDocInfo(type, num)
 {
-
 	var info = {};
 	if(type == 'root')
 	{
@@ -1629,12 +1627,14 @@ function setDocInfo(type, num)
 			}	
 			$('#folderFieldSet').css('display', 'none');
 			$('#fileFieldSet').css('display', '');
+
 		   if(typeof(selectFile) != 'undefined')
 		   {
 		   	$('#selectCurrentUrl').unbind('click').click( 
 		   		function()
 		   		{
-		   			selectFile(info.url);
+		   			alert(info.url+ "\ntype :" + type);
+		   			//selectFile(info.url);
 		   		}
 		   	);
 		   	$('#returnCurrentUrl').show(); 	 

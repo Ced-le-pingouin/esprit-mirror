@@ -78,18 +78,18 @@
 										$info .= sprintf(", %s:'%s'", $k, $v);									
 								}
 
-								$info .= sprintf(", url:'%s'",  getFileUrl($path));
+								$info .= sprintf(", url:'%s'",  getRelativeFileUrl($path));
 								$info .= sprintf(", tipedit:'%s'",  TIP_DOC_RENAME);		
 
 								// insertion des informations dans le log
-								$sCheminFichier = $tem['path'];
+								$sCheminFichier = str_replace('../', '', $tem['path']);
 								$sCheminFichier = preg_replace("/([[:alnum:]_\-\s]+\/)[[:alnum:]_\-\s]+\.[[:alnum:]]{3,4}/", "$1", $sCheminFichier); // on enlève le nom du fichier
 								$sCheminFichier = preg_replace("/.*\/(depot\/(images|medias){1}\/)([[:alnum:]_\-\s]*)/", "$1$3", $sCheminFichier); // on garde juste la fin du chemin : depot/images|medias/xxx
 
 								$sFichierLog = CONFIG_LOGCSV_PATH;
 								$sFichierXml = CONFIG_LOGXML_PATH;
-//								//$sFichierLog = dir_root_plateform().'depot/log_upload.csv';
-//								//$sFichierXml = dir_root_plateform().'depot/log_upload.xml';
+								//$sFichierLog = dir_root_plateform().'depot/log_upload.csv';
+								//$sFichierXml = dir_root_plateform().'depot/log_upload.xml';
 								$sMd5Fichier = md5_file($tem['path']); // md5 du fichier
 								$sDonneesCSV = $sDonneesXML = "";
 

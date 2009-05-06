@@ -117,9 +117,6 @@ function displayArray($array, $comments="")
 	}
 
 
-
-
-
 /**
  *  transform file relative path to absolute path
  * @param  string $value the path to the file
@@ -131,19 +128,20 @@ function relToAbs($value)
 
 }
 
-	function getRelativeFileUrl($value, $relativeTo)
-	{
-		$output = '';
-		$wwwroot = removeTrailingSlash(backslashToSlash(getRootPath()));
-		$urlprefix = "";
-		$urlsuffix = "";
-		$value = backslashToSlash(getRealPath($value));
-		$pos = strpos($value, $wwwroot);
-		if ($pos !== false && $pos == 0)
-		{
-			$output  = $urlprefix . substr($value, strlen($wwwroot)) . $urlsuffix;
-		}
-	}
+function getRelativeFileUrl($value)
+{
+	$output = '';
+//	$wwwroot = removeTrailingSlash(backslashToSlash(getRootPath()));
+	$valueTemp = str_replace("../", "", $value);
+//	$value = backslashToSlash(getRealPath($value));
+	$output = CONFIG_SYS_WEB_PATH.$valueTemp;
+//	$pos = strpos($value, $wwwroot);
+//	if ($pos !== false && $pos == 0)
+//	{
+//		$output  = CONFIG_SYS_WEB_PATH.$urlprefix . substr($value, strlen($wwwroot)) . $urlsuffix;
+//	}
+	return $output;
+}
 /**
  * replace slash with backslash
  *
@@ -200,7 +198,7 @@ function addTrailingSlash($value)
  * @return string
  */
 function transformFilePath($value) {
-	$rootPath = addTrailingSlash(backslashToSlash(getRealPath(CONFIG_SERVER_FILE)));
+	$rootPath = addTrailingSlash(backslashToSlash(getRealPath(CONFIG_SYS_ROOT_PATH)));
 	$value = addTrailingSlash(backslashToSlash(getRealPath($value)));
 	if(!empty($rootPath) && ($i = strpos($value, $rootPath)) !== false)
 	{
@@ -314,7 +312,7 @@ function addNoCacheHeaders() {
 	 */
 	function isUnderRoot($value)
 	{
-		$roorPath = strtolower(addTrailingSlash(backslashToSlash(getRealPath(CONFIG_SERVER_FILE))));
+		$roorPath = strtolower(addTrailingSlash(backslashToSlash(getRealPath(CONFIG_SYS_ROOT_PATH))));
 		if(file_exists($value) && @strpos(strtolower(addTrailingSlash(backslashToSlash(getRealPath($value)))), $roorPath) === 0 )
 		{
 			return true;
@@ -478,7 +476,6 @@ function myRealPath($path) {
 		$urlsuffix = "";
 
 	$value = backslashToSlash(getRealPath($value));
-		
 
 		$pos = stripos($value, $wwwroot);
 		if ($pos !== false && $pos == 0)
@@ -488,6 +485,7 @@ function myRealPath($path) {
 		{
 			$output = $value;
 		}
+		
 		return "http://" .  addTrailingSlash(backslashToSlash($_SERVER['HTTP_HOST'])) . removeBeginingSlash(backslashToSlash($output));
 	}
 	
@@ -1062,22 +1060,18 @@ function getRootPath() {
   	
   	if ($path == CONFIG_IMAGE_PATH && $mode == 'tuteur') // on empêche l'utilisateur de remonter à la racine du répertoire d'upload
   	{
-  		//echo "image tuteur";
   		return CONFIG_IMAGE_PATH;
   	}
   	elseif ($path == CONFIG_MEDIA_PATH && $mode == 'tuteur') // on empêche l'utilisateur de remonter à la racine du répertoire d'upload
   	{
-  		//echo "media tuteur";
   		return CONFIG_MEDIA_PATH;
   	}
   	elseif(isUnderRoot($parentPath))
   	{
-  		//echo "isunderroot";
   		return $parentPath;
   	}else 
   	{
-  		//echo "config server file";
-  		return CONFIG_SERVER_FILE;
+  		return CONFIG_SYS_DEFAULT_PATH;
   	}
   }
 ?>

@@ -144,7 +144,7 @@ class Session
 			if(CONFIG_SYS_DEMO_ENABLE)
 			{
 				//remove expired files from uploaded folder
-		 		$dirHandler = @opendir(CONFIG_SERVER_FILE);
+		 		$dirHandler = @opendir(CONFIG_SYS_ROOT_PATH);
 		 		$output = '';
 		 		$output .= "gc start at " . date('d/M/Y H:i:s') . "\n";
 		 		$fo = new file();
@@ -154,7 +154,7 @@ class Session
 					{
 						if($file != '.' && $file != '..')
 						{						
-							$path=CONFIG_SERVER_FILE.$file;
+							$path=CONFIG_SYS_ROOT_PATH.$file;
 							$output .= $path ;
 							//check if this is a expired session file
 							if(filemtime($path) + $this->lifeTime < time())
