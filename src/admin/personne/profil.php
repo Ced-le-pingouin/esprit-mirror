@@ -273,7 +273,7 @@ if ($iIdPers >= 0)
  					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
      				$sMessageFinal .= 'Content-Type: text/plain; charset=utf-8'."\r\n";
      				$sMessageFinal .= 'Content-Transfer-Encoding: 8bit'."\r\n\r\n";
-     				$sMessageFinal .= $sMessageCourrielTexte."\r\n\r\n";
+     				$sMessageFinal .= utf8_encode($sMessageCourrielTexte)."\r\n\r\n";
 					//on ajoute le texte HTML
 					$sMessageFinal .= '--'.$sFrontiereEntreTexteHTML."\r\n";
      				$sMessageFinal .= 'Content-Type: text/html; charset=utf-8'."\r\n";
