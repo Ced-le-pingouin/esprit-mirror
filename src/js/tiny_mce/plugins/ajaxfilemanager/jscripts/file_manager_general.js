@@ -1633,8 +1633,8 @@ function setDocInfo(type, num)
 		   	$('#selectCurrentUrl').unbind('click').click( 
 		   		function()
 		   		{
-		   			alert(info.url+ "\ntype :" + type);
-		   			//selectFile(info.url);
+		   			//alert(info.url+ "\ntype :" + type);
+		   			selectFile(info.url);
 		   		}
 		   	);
 		   	$('#returnCurrentUrl').show(); 	 

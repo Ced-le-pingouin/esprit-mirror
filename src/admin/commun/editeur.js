@@ -119,10 +119,10 @@ function ajaxfilemanager(field_name, url, type, win) {
 	var ajaxfilemanagerurl = "../ajaxfilemanager/ajaxfilemanager.php";
 	switch (type) {
 		case "image":
-			ajaxfilemanagerurl+="?path=images";
+			ajaxfilemanagerurl+="?path=../../../../depot/images";
 			break;
 		case "media":
-			ajaxfilemanagerurl+="?path=medias";
+			ajaxfilemanagerurl+="?path=../../../../depot/medias";
 			break;
 		default:
 			return false;
