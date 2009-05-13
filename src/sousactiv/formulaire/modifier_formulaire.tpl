@@ -20,8 +20,6 @@ form
 }
 .InterObj
 {
-	//border-bottom:thin solid #000000;
-	//clear:left;
 	margin-top: {iInterElem}px;
 }
 .feedback, .feedback_titre {

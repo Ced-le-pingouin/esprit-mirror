@@ -12,7 +12,7 @@
 <script type="text/javascript" language="javascript" src="formulaire.js"></script>
 </head>
 <body>
-<form class="ascenseur">
+<form>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
 [BLOCK_FORMULAIRE+]
 <tr><td align="center">{formulaire->element}</td></tr>
