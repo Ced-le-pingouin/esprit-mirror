@@ -2,26 +2,26 @@
 
 // This file is part of Esprit, a web Learning Management System, developped
 // by the Unite de Technologie de l'Education, Universite de Mons, Belgium.
-// 
+//
 // Esprit is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License version 2, 
+// it under the terms of the GNU General Public License version 2,
 // as published by the Free Software Foundation.
-// 
+//
 // This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of 
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, you can get one from the web page
 // http://www.gnu.org/licenses/gpl.html
-// 
-// Copyright (C) 2001-2006  Unite de Technologie de l'Education, 
-//                          Universite de Mons-Hainaut, Belgium. 
+//
+// Copyright (C) 2001-2006  Unite de Technologie de l'Education,
+//                          Universite de Mons-Hainaut, Belgium.
 
 /*
 ** Fichier ................: formulaire.sousactiv.php
-** Description ............: 
+** Description ............:
 ** Date de création .......: 01/03/2002
 ** Dernière modification ..: 25/11/2005
 ** Auteurs ................: Filippo PORCO <filippo.porco@umh.ac.be>
@@ -61,7 +61,7 @@ $bPeutModifier = $oProjet->verifModifierModule();
 
 $g_bModifier  = $oProjet->verifPermission("PERM_MOD_ELEMENT_ACTIF");
 $g_bModifier &= $bPeutModifier;
-	
+
 $g_bModifierStatut  = $oProjet->verifPermission("PERM_MOD_STATUT_TOUS_COURS");
 $g_bModifierStatut |= $oProjet->verifPermission("PERM_MOD_STATUT_ELEMENT_ACTIF");
 $g_bModifierStatut &= $bPeutModifier;
@@ -305,7 +305,7 @@ $oBloc_Chat = new TPL_Block("BLOCK_CHAT",$oTpl);
 if (($oProjet->oSousActivCourante->initChats()) > 0)
 {
 	$oBloc_Chat->beginLoop();
-	
+
 	foreach ($oProjet->oSousActivCourante->aoChats as $oChat)
 	{
 		$oBloc_Chat->nextLoop();
@@ -396,13 +396,19 @@ for ($i=0; $i<count($asFichiers); $i++)
 </select>&nbsp;<?php echo boutonDeposer()?>
 </td>
 </tr>
-<?php selectionnerModalAff($aoModalitesAffichage,$url_iMode,"MODALITE_AFFICHAGE[".LIEN_HOTPOTATOES."]","div_description"); ?>
+<tr>
+<td><div class="intitule">Modalit&eacute; d'affichage :</div></td>
+<td>
+<input name="MODALITE_AFFICHAGE[13]" type="hidden" value="1" /><div>Zone de cours (1 temps)</div>
+</td>
+</tr>
+<?php //selectionnerModalAff($aoModalitesAffichage,$url_iMode,"MODALITE_AFFICHAGE[".LIEN_HOTPOTATOES."]","div_description"); ?>
 </table>
 </fieldset>
 </div>
 <!-- Exercice Hotpotatoes ]]-->
 
-<?php 
+<?php
 
 $sClassDescription = "Cacher";
 
