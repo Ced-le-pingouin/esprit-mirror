@@ -42,9 +42,9 @@ tinyMCE.init({
 	paste_strip_class_attributes : 'mso',
 	paste_insert_word_content_callback : "convertWord",
 	
-	force_p_newlines : true,
-	force_br_newlines : false,
-	forced_root_block : 'p',
+	force_p_newlines : false,
+	force_br_newlines : true,
+	forced_root_block : '',
 	convert_fonts_to_spans : true,
 	font_size_style_values : "8pt,10pt,12pt,14pt,18pt,24pt,36pt",
 	fix_content_duplication : true,
@@ -71,9 +71,9 @@ tinyMCE.init({
 });
 }
 
-/* 	nettoyage des éléments du tableau au moment de la validation dans l'éditeur
-	ce qui permet d'enlever les <p...>&nbsp;</p> du tableau ajoutés après insertion par 'pasteword'
-	et évite les pertes des cadres du tableau causées par les paragraphes.
+/* 	nettoyage des ï¿½lï¿½ments du tableau au moment de la validation dans l'ï¿½diteur
+	ce qui permet d'enlever les <p...>&nbsp;</p> du tableau ajoutï¿½s aprï¿½s insertion par 'pasteword'
+	et ï¿½vite les pertes des cadres du tableau causï¿½es par les paragraphes.
 */
 function nettoyage(element_id, html, body) {
 	var recherche_p = /<td[^>]*>([^<]*(<br \/>[^<]*)*<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>\s?)*<\/td>/i;
@@ -87,11 +87,11 @@ function nettoyage(element_id, html, body) {
 }
 
 function convertWord(type, content) {
-	content = content.replace(/-moz-use-text-color/gi, "");				// on enlève les balises spéciales créées par Mozilla/FireFox
+	content = content.replace(/-moz-use-text-color/gi, "");				// on enlï¿½ve les balises spï¿½ciales crï¿½ï¿½es par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-	content = content.replace(/\s?mso-[^\"]*/gi, "");					// on enlève les balises spéciales créées par IE
+	content = content.replace(/\s?mso-[^\"]*/gi, "");					// on enlï¿½ve les balises spï¿½ciales crï¿½ï¿½es par IE
 	content = content.replace(/<!--\[if([\s\S]*?)\[endif\]-->/gi, "");	// supprime les commentaires de type <!-- [if mso...]>...<!--[endif]--> et leur contenu
-	content = content.replace(/<!--([\s\S]*?)-->/gi, "$1");				// on enlève les caractères de commentaire <!-- et --> en conservant le contenu
+	content = content.replace(/<!--([\s\S]*?)-->/gi, "$1");				// on enlï¿½ve les caractï¿½res de commentaire <!-- et --> en conservant le contenu
 	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
 	
 	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.

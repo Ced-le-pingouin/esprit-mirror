@@ -62,17 +62,17 @@ var ImageDialog = {
 		// Setup browse button
 		document.getElementById('srcbrowsercontainer').innerHTML = getBrowserHTML('srcbrowser','src','image','theme_advanced_image');
 		if (isVisible('srcbrowser'))
-			document.getElementById('src').style.width = '260px';
+			document.getElementById('src').style.width = '280px';
 
 		// Setup browse button
 		document.getElementById('onmouseoversrccontainer').innerHTML = getBrowserHTML('overbrowser','onmouseoversrc','image','theme_advanced_image');
 		if (isVisible('overbrowser'))
-			document.getElementById('onmouseoversrc').style.width = '260px';
+			document.getElementById('onmouseoversrc').style.width = '280px';
 
 		// Setup browse button
 		document.getElementById('onmouseoutsrccontainer').innerHTML = getBrowserHTML('outbrowser','onmouseoutsrc','image','theme_advanced_image');
 		if (isVisible('outbrowser'))
-			document.getElementById('onmouseoutsrc').style.width = '260px';
+			document.getElementById('onmouseoutsrc').style.width = '280px';
 
 		// If option enabled default contrain proportions to checked
 		if (ed.getParam("advimage_constrain_proportions", true))

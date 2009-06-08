@@ -47,7 +47,7 @@ function init() {
 
 	// Resize some elements
 	if (isVisible('filebrowser'))
-		document.getElementById('src').style.width = '230px';
+		document.getElementById('src').style.width = '250px';
 
 	// Setup form
 	if (pl != "") {

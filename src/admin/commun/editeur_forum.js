@@ -36,9 +36,9 @@ tinyMCE.init({
 	paste_convert_headers_to_strong : false,
 	paste_strip_class_attributes : 'mso',
 	
-	force_p_newlines : true,
-	force_br_newlines : false,
-	forced_root_block : 'p',
+	force_p_newlines : false,
+	force_br_newlines : true,
+	forced_root_block : '',
 	convert_fonts_to_spans : true,
 	font_size_style_values : "8pt,10pt,12pt,14pt,18pt,24pt,36pt",
 	fix_content_duplication : true,
