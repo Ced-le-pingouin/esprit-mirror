@@ -14,7 +14,7 @@ tinyMCE.init({
 	plugins : "advhr,advlink,contextmenu,directionality,insertdatetime,paste,safari,save,searchreplace",
 	
 	theme_advanced_buttons1_add : "forecolor,backcolor,",
-	theme_advanced_buttons2_add_before: "cut,copy,pasteword,separator",
+	theme_advanced_buttons2_add_before: "cut,copy,separator",
 	theme_advanced_buttons2_add : "separator,ltr,rtl,separator,"
 		+"iespell,hr,removeformat,sub,sup,charmap",
 	theme_advanced_disable : "formatselect,anchor",
@@ -57,7 +57,6 @@ tinyMCE.init({
 	elements : Elements,
 	setupcontent_callback : contentCallback,
 	onchange_callback : onchangeCallback,
-	//save_callback : "nettoyage",
 	language : "fr",
 	docs_language : "fr"
 });

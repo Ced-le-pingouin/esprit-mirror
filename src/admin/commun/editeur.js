@@ -30,8 +30,8 @@ tinyMCE.init({
 	theme_advanced_resizing_use_cookie : false,
 	theme_advanced_resizing : true,
 
-	paste_create_paragraphs : true,
-	paste_create_linebreaks : false,
+	paste_create_paragraphs : false,
+	paste_create_linebreaks : true,
 	paste_remove_styles: false,
 	paste_remove_spans: false,
 	paste_use_dialog : true,
@@ -89,9 +89,8 @@ function nettoyage(element_id, html, body) {
 function convertWord(type, content) {
 	content = content.replace(/-moz-use-text-color/gi, "");				// on enl�ve les balises sp�ciales cr��es par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-	content = content.replace(/\s?mso-[^\"]*/gi, "");					// on enl�ve les balises sp�ciales cr��es par IE
-	content = content.replace(/<!--\[if([\s\S]*?)\[endif\]-->/gi, "");	// supprime les commentaires de type <!-- [if mso...]>...<!--[endif]--> et leur contenu
-	content = content.replace(/<!--([\s\S]*?)-->/gi, "$1");				// on enl�ve les caract�res de commentaire <!-- et --> en conservant le contenu
+
+	content = content.replace(/<!--([\s\S]*?)-->/gi, "");				// on enl�ve les caract�res de commentaire <!-- et --> en conservant le contenu
 	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
 	
 	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.
