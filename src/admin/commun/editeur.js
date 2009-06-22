@@ -30,20 +30,15 @@ tinyMCE.init({
 	theme_advanced_resizing_use_cookie : false,
 	theme_advanced_resizing : true,
 
-	paste_auto_cleanup_on_paste : false,
+	paste_auto_cleanup_on_paste : true,
 	paste_convert_middot_lists : true,
 	paste_retain_style_properties : "font-size,color",
 	paste_strip_class_attributes : 'mso',
 	paste_remove_spans: false,
-
-	
-//	paste_create_paragraphs : true,
-//	paste_create_linebreaks : false,
-//	paste_remove_styles: false,
-//	paste_use_dialog : true,
-//	paste_unindented_list_class : "unindentedList",
-//	paste_convert_headers_to_strong : false,
-//	paste_insert_word_content_callback : "convertWord",
+    paste_preprocess : function(pl, o) {
+		// transformation des liens : on les affichera de base en 'liens externes'.
+        o.content = o.content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\"");
+    },
 	
 	force_p_newlines : true,
 	force_br_newlines : false,
@@ -87,16 +82,6 @@ function nettoyage(element_id, html, body) {
 	return html;
 }
 
-function convertWord(type, content) {
-	content = content.replace(/-moz-use-text-color/gi, "");				// on enl�ve les balises sp�ciales cr��es par Mozilla/FireFox
-	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-	content = content.replace(/<(li [^>]*) text-indent:([^;])*;([^>]*)/gi, "<$1$3");				// suppression des indentation pour les listes à puce
-	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
-	
-	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.
-
-	return content;
-}
 function ajaxfilemanager(field_name, url, type, win) {
 	var ajaxfilemanagerurl = "../ajaxfilemanager/ajaxfilemanager.php";
 	switch (type) {

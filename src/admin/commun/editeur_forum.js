@@ -26,18 +26,11 @@ tinyMCE.init({
 	theme_advanced_resizing : false,
 
 	
-	paste_auto_cleanup_on_paste : false,
+	paste_auto_cleanup_on_paste : true,
 	paste_convert_middot_lists : true,
 	paste_retain_style_properties : "font-size,color",
 	paste_strip_class_attributes : 'mso',
 	paste_remove_spans: false,
-	
-//	paste_create_paragraphs : true,
-//	paste_create_linebreaks : false,
-//	paste_remove_styles: false,
-//	paste_use_dialog : true,
-//	paste_unindented_list_class : "unindentedList",
-//	paste_convert_headers_to_strong : false,
 	
 	force_p_newlines : true,
 	force_br_newlines : false,
