@@ -23,17 +23,17 @@ var ImageDialog = {
 			nl.width.value = dom.getAttrib(n, 'width');
 			nl.height.value = dom.getAttrib(n, 'height');
 			nl.alt.value = dom.getAttrib(n, 'alt');
-//			nl.title.value = dom.getAttrib(n, 'title');
+			nl.title.value = dom.getAttrib(n, 'title');
 			nl.vspace.value = this.getAttrib(n, 'vspace');
 			nl.hspace.value = this.getAttrib(n, 'hspace');
 			nl.border.value = this.getAttrib(n, 'border');
 			selectByValue(f, 'align', this.getAttrib(n, 'align'));
 			selectByValue(f, 'class_list', dom.getAttrib(n, 'class'), true, true);
 			nl.style.value = dom.getAttrib(n, 'style');
-//			nl.id.value = dom.getAttrib(n, 'id');
-//			nl.dir.value = dom.getAttrib(n, 'dir');
-//			nl.lang.value = dom.getAttrib(n, 'lang');
-//			nl.usemap.value = dom.getAttrib(n, 'usemap');
+			nl.id.value = dom.getAttrib(n, 'id');
+			nl.dir.value = dom.getAttrib(n, 'dir');
+			nl.lang.value = dom.getAttrib(n, 'lang');
+			nl.usemap.value = dom.getAttrib(n, 'usemap');
 			nl.longdesc.value = dom.getAttrib(n, 'longdesc');
 			nl.insert.value = ed.getLang('update');
 
@@ -62,17 +62,17 @@ var ImageDialog = {
 		// Setup browse button
 		document.getElementById('srcbrowsercontainer').innerHTML = getBrowserHTML('srcbrowser','src','image','theme_advanced_image');
 		if (isVisible('srcbrowser'))
-			document.getElementById('src').style.width = '280px';
+			document.getElementById('src').style.width = '260px';
 
 		// Setup browse button
 		document.getElementById('onmouseoversrccontainer').innerHTML = getBrowserHTML('overbrowser','onmouseoversrc','image','theme_advanced_image');
 		if (isVisible('overbrowser'))
-			document.getElementById('onmouseoversrc').style.width = '280px';
+			document.getElementById('onmouseoversrc').style.width = '260px';
 
 		// Setup browse button
 		document.getElementById('onmouseoutsrccontainer').innerHTML = getBrowserHTML('outbrowser','onmouseoutsrc','image','theme_advanced_image');
 		if (isVisible('outbrowser'))
-			document.getElementById('onmouseoutsrc').style.width = '280px';
+			document.getElementById('onmouseoutsrc').style.width = '260px';
 
 		// If option enabled default contrain proportions to checked
 		if (ed.getParam("advimage_constrain_proportions", true))
@@ -103,7 +103,7 @@ var ImageDialog = {
 
 		if (tinyMCEPopup.getParam("accessibility_warnings", 1)) {
 			if (!f.alt.value) {
-				tinyMCEPopup.editor.windowManager.confirm(tinyMCEPopup.getLang('advimage_dlg.missing_alt'), function(s) {
+				tinyMCEPopup.confirm(tinyMCEPopup.getLang('advimage_dlg.missing_alt'), function(s) {
 					if (s)
 						t.insertAndClose();
 				});
@@ -146,13 +146,13 @@ var ImageDialog = {
 			width : nl.width.value,
 			height : nl.height.value,
 			alt : nl.alt.value,
-//			title : nl.title.value,
+			title : nl.title.value,
 			'class' : getSelectValue(f, 'class_list'),
 			style : nl.style.value,
-//			id : nl.id.value,
-//			dir : nl.dir.value,
-//			lang : nl.lang.value,
-//			usemap : nl.usemap.value,
+			id : nl.id.value,
+			dir : nl.dir.value,
+			lang : nl.lang.value,
+			usemap : nl.usemap.value,
 			longdesc : nl.longdesc.value
 		});
 
@@ -272,6 +272,7 @@ var ImageDialog = {
 			cl = tinyMCEPopup.editor.dom.getClasses();
 
 		if (cl.length > 0) {
+			lst.options.length = 0;
 			lst.options[lst.options.length] = new Option(tinyMCEPopup.getLang('not_set'), '');
 
 			tinymce.each(cl, function(o) {
@@ -285,6 +286,7 @@ var ImageDialog = {
 		var dom = tinyMCEPopup.dom, lst = dom.get(id), v, cl;
 
 		l = window[l];
+		lst.options.length = 0;
 
 		if (l && l.length > 0) {
 			lst.options[lst.options.length] = new Option('', '');

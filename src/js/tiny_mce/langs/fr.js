@@ -6,7 +6,7 @@ insert:"Ins\u00E9rer",
 update:"Mettre \u00E0 jour",
 cancel:"Annuler",
 close:"Fermer",
-browse:"Parcourir",
+browse:"Naviguer",
 class_name:"Classe",
 not_set:"-- Non init. --",
 clipboard_msg:"Copier/Couper/Coller n'est pas disponible sous Mozilla et sous Firefox.\nVoulez-vous plus d'information sur ce probl\u00E8me\u00A0?",
@@ -71,7 +71,7 @@ search_desc:"Chercher",
 replace_desc:"Chercher/Remplacer"
 },
 advimage:{
-image_desc:"Ins\u00E9rer/D\u00E9poser une image"
+image_desc:"Ins\u00E9rer/\u00C9diter image"
 },
 advlink:{
 link_desc:"Ins\u00E9rer/\u00C9diter lien"
@@ -89,8 +89,8 @@ desc:"\u00C9diter la feuille de style CSS"
 },
 paste:{
 paste_text_desc:"Coller en tant que texte brut",
-paste_word_desc:"Coller",
-selectall_desc:"Selectioner tout"
+paste_word_desc:"Coller \u00E0 partir d'un texte cr\u00E9\u00E9 sous Word",
+selectall_desc:"S\u00E9lectioner tout"
 },
 paste_dlg:{
 text_title:"Utilisez CTRL+V sur votre clavier pour coller le texte dans la fen\u00EAtre.",

@@ -6,5 +6,3 @@
 #popupwidth, #popupheight, #popupleft, #popuptop {width:30px;vertical-align:middle;text-align:center;}
 #id, #style, #classes, #target, #dir, #hreflang, #lang, #charset, #type, #rel, #rev, #tabindex, #accesskey {width:200px;}
 #events_panel input {width:200px;}
-.lien_int {color:#3F4322;font-size:8pt;font-weight:normal;text-decoration:none;}
-.lien_ext {color:blue;font-size:10pt;font-weight:normal;text-decoration:none;}
