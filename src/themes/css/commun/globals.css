@@ -99,6 +99,10 @@ small {
 font-size:7pt;
 }
 
+p.paragraph_editeur {
+margin: 0px;
+}
+
 /* Lien */
 span.typeA {visibility:hidden;}
 

@@ -30,21 +30,24 @@ tinyMCE.init({
 	theme_advanced_resizing_use_cookie : false,
 	theme_advanced_resizing : true,
 
-	paste_create_paragraphs : false,
-	paste_create_linebreaks : true,
-	paste_remove_styles: false,
-	paste_remove_spans: false,
-	paste_use_dialog : true,
 	paste_auto_cleanup_on_paste : false,
 	paste_convert_middot_lists : true,
-	paste_unindented_list_class : "unindentedList",
-	paste_convert_headers_to_strong : false,
+	paste_retain_style_properties : "font-size,color",
 	paste_strip_class_attributes : 'mso',
-	paste_insert_word_content_callback : "convertWord",
+	paste_remove_spans: false,
+
 	
-	force_p_newlines : false,
-	force_br_newlines : true,
-	forced_root_block : '',
+//	paste_create_paragraphs : true,
+//	paste_create_linebreaks : false,
+//	paste_remove_styles: false,
+//	paste_use_dialog : true,
+//	paste_unindented_list_class : "unindentedList",
+//	paste_convert_headers_to_strong : false,
+//	paste_insert_word_content_callback : "convertWord",
+	
+	force_p_newlines : true,
+	force_br_newlines : false,
+	forced_root_block : 'p',
 	convert_fonts_to_spans : true,
 	font_size_style_values : "8pt,10pt,12pt,14pt,18pt,24pt,36pt",
 	fix_content_duplication : true,
@@ -71,46 +74,26 @@ tinyMCE.init({
 });
 }
 
-/* 	nettoyage des �l�ments du tableau au moment de la validation dans l'�diteur
-	ce qui permet d'enlever les <p...>&nbsp;</p> du tableau ajout�s apr�s insertion par 'pasteword'
-	et �vite les pertes des cadres du tableau caus�es par les paragraphes.
+/* 	
+ * ajout d'une classe aux paragraphe afin qu'ils n'aient plus de marges (haute et basse)
 */
 function nettoyage(element_id, html, body) {
-	var recherche_p = /<td[^>]*>([^<]*(<br \/>[^<]*)*<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>\s?)*<\/td>/i;
-	bool = recherche_p.test(html);
-	while (bool)
-	{
-		html = html.replace(/<p\s?[^>]*>(<[^>]*>)*(\&nbsp\;)*((<\/[^>]*>)*)<\/p>/i, "<br />");
-		bool = recherche_p.test(html);
-	}
+	var recherche_paragraph_simple = /<p>/gi;
+	html = html.replace(recherche_paragraph_simple, '<p class="paragraph_editeur">');
+	
+	var rechercher_paragraphe_style = /<p( style="[^"]*")>/gi;
+	html = html.replace(rechercher_paragraphe_style, '<p class="paragraph_editeur"$1>');
+
 	return html;
 }
 
 function convertWord(type, content) {
 	content = content.replace(/-moz-use-text-color/gi, "");				// on enl�ve les balises sp�ciales cr��es par Mozilla/FireFox
 	content = content.replace(/( line-height: )[a-z]*(;){1,}/gi, "");
-
-	content = content.replace(/<!--([\s\S]*?)-->/gi, "");				// on enl�ve les caract�res de commentaire <!-- et --> en conservant le contenu
+	content = content.replace(/<(li [^>]*) text-indent:([^;])*;([^>]*)/gi, "<$1$3");				// suppression des indentation pour les listes à puce
 	content = content.replace(/(<table\s*.*)(border-collapse.\s[^;]*;)([^>]*>)/gi, "$1$3");
 	
 	content = content.replace(/(<a href[^>]*)/gi, "$1 class=\"lien_ext\""); // transformation des liens : on les affichera de base en 'liens externes'.
-	
-	recherche_td = content.match(/(td).+(border).{0,7}(:)[^;]*;\s?/gi); // recherche des <td...></td>
-	if (recherche_td)
-	{
-		for(i=0;i < recherche_td.length;++i)
-		{
-			content = content.replace(/(border).{0,7}(:)[^;]*;\s?/gi, ""); // enleve les style 'border-color'... dans le td
-		}
-	}
-	recherche_tab = content.match(/(table).+(border).{0,7}(:)[a-z0-9\s]*(;\s?)/gi); // recherche des <table...> contenant un style border
-	if (recherche_tab)
-	{
-		for(i=0;i < recherche_tab.length;++i)
-		{
-			content = content.replace(/(border).{0,}(:)[a-z0-9\s]*((;)|(;\s?))/gi, ""); // enleve les style 'border-color'... dans la table
-		}
-	}
 
 	return content;
 }
