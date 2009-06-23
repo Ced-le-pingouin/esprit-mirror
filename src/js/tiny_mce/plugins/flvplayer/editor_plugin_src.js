@@ -1,9 +1,7 @@
 /**
- * $Id: basé sur le plugin media
  *
- * @author Moxiecode
- * @info Plugin media modifié par Loïc
- * @copyright Copyright © 2004-2008, Moxiecode Systems AB, All rights reserved.
+ * @author LoÃ¯c
+ * @info Plugin FlvPlayer
  */
 
 (function() {
@@ -47,6 +45,16 @@
 					mceItemGoogleVideo : 'google'
 				};
 
+				if (top.recuperer) {
+					ed.setContent(top.recuperer());
+				}
+
+				ed.selection.onBeforeSetContent.add(t._objectsToSpans, t);
+
+				ed.selection.onSetContent.add(function() {
+					t._spansToImgs(ed.getBody());
+				});
+
 				if (ed.settings.content_css !== false)
 					ed.dom.loadCSS(url + "/css/content.css");
 
@@ -73,32 +81,8 @@
 				}
 			});
 
-			ed.onBeforeSetContent.add(function(ed, o) {
-				var h = o.content;
+			ed.onBeforeSetContent.add(t._objectsToSpans, t);
 
-				h = h.replace(/<script[^>]*>\s*write(Flash|FlashAudio|YoutubeVideo|GoogleVideo)\(\{([^\)]*)\}\);\s*<\/script>/gi, function(a, b, c) {
-					var o = t._parse(c);
-
-					return '<img class="mceItem' + b + '" title="' + ed.dom.encode(c) + '" src="' + url + '/img/trans.gif" width="' + o.width + '" height="' + o.height + '" />'
-				});
-				
-				h = h.replace(/<object([^>]*)>/gi, '<span class="mceItemObject" $1>');
-				h = h.replace(/<param ([^>]*)>/gi, '<span class="mceItemParam" $1>');
-				h = h.replace(/<embed([^>]*)>/gi, '<span class="mceItemEmbed" $1>');
-				h = h.replace(/<\/(object|embed)([^>]*)>/gi, '</span>');
-	
-				o.content = h;
-			});
-
-// solution pour afficher correctement le contenu video en ouvrant l'editeur.
-// on récupère directement le contenu de Econcept sans passer par la fonction 'mySetContent'
-			ed.onInit.add(function(ed) {
-				if (top.recuperer) {
-					ed.setContent(top.recuperer());
-					}
-				else alert('Une erreur est survenue.\nMerci de contacter l\'administrateur du site!');
-			});
-		
 			ed.onSetContent.add(function(ed) {
 				t._spansToImgs(ed.getBody());
 			});
@@ -111,7 +95,6 @@
 
 					each(dom.select('IMG', o.node), function(n) {
 						var p = {};
-
 						if (isMediaElm(n)) {
 							p = t._parse(n.title);
 							dom.setAttrib(n, 'width', dom.getAttrib(n, 'width', p.width || 100));
@@ -179,6 +162,16 @@
 		},
 
 		// Private methods
+		_objectsToSpans : function(ed, o) {
+			var t = this, h = o.content;
+
+			h = h.replace(/<object([^>]*)>/gi, '<span class="mceItemObject" $1>');
+			h = h.replace(/<param([^>]*)>/gi, function(a, b) {return '<span ' + b.replace(/value=/gi, '_mce_value=') + ' class="mceItemParam"></span>'});
+			h = h.replace(/<embed([^>]*)>/gi, '<span class="mceItemEmbed" $1>');
+			h = h.replace(/<\/(object)([^>]*)>/gi, '</span>');
+
+			o.content = h;
+		},
 
 		_buildObj : function(o, n) {
 			var ob, ed = this.editor, dom = ed.dom, p = this._parse(n.title);
@@ -189,14 +182,12 @@
 
 			ob = dom.create('span', {
 				mce_name : 'object',
-				//classid : "clsid:" + o.classid,
 				type : o.typeAppli,
 				mt : o.type,
 				data : 	GLOBALS["lecteur"]+'?file='+p.src +
 						'&showstop=true&usefullscreen=false&autostart=' + p.autostart +
 						'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
 						'&shownavigation=' + p.shownavigation,
-				//codebase : o.codebase,
 				width : o.width,
 				height : o.height
 			});
@@ -210,24 +201,10 @@
 			});
 			
 			dom.add(ob, 'span', {style : 'border:#ccc dashed 1px;'},
-				'L\'objet vid&eacute;o ou audio n\a pas pu &ecirc;tre affich&eacute;e<br />'
-				+ 'Le lecteur Flash n\est pas &agrave; jour<br />'
+				'L\'objet vid&eacute;o ou audio n\'a pas pu &ecirc;tre affich&eacute;e<br />'
+				+ 'Le lecteur Flash n\'est pas &agrave; jour<br />'
 				+ 'Pour t&eacute;l&eacute;charger et installer la derni&eagrave;re version, <a href="http://www.macromedia.com/go/getflashplayer" class="" target="_blank">Cliquez ici</a>.');
-            
-/*			dom.add(ob, 'span', {
-				mce_name : 'embed',
-				src : GLOBALS["lecteur"], // on récupère l'url du lecteur flash définit dans 'globals.js.php'
-				width : p.width,
-				type : o.type,
-				height : p.height,
-				allowfullscreen : 'true',
-				allowscriptaccess : 'always',
-				flashvars : 'file=' + p.src +
-					'&showstop=true&usefullscreen=false&autostart=' + p.autostart + 
-					'&repeat=' + p.repeat + '&backcolor=' + p.backcolor + 
-					'&shownavigation=' + p.shownavigation
-			});
-*/
+
 			return ob;
 		},
 
@@ -236,7 +213,7 @@
 
 			each(dom.select('span', p), function(n) {			
 				// Convert embed or object into image
-				if ((dom.getAttrib(n, 'class') == 'mceItemEmbed') || (dom.getAttrib(n, 'class') == 'mceItemObject')) {
+				if (dom.getAttrib(n, 'class') == 'mceItemObject') {
 					switch (dom.getAttrib(n, 'mt')) {
 						case 'flash':
 							dom.replace(t._createImg('mceItemFlash', n), n);
@@ -254,7 +231,7 @@
 							dom.replace(t._createImg('mceItemFlash', n), n);
 							break;						
 					}
-				}			
+				}
 			});
 		},
 
