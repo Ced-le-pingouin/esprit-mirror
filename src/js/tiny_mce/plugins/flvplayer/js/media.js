@@ -53,6 +53,8 @@ function init() {
 	if (pl != "") {
 		pl = tinyMCEPopup.editor.plugins.flvplayer._parse(pl);
 
+		pl.backcolor = !pl.backcolor ? '#ffffff' : pl.backcolor.replace("0x", "#");
+
 		setBool(pl, 'flash', 'autostart');
 		setBool(pl, 'flash', 'repeat');
 		setBool(pl, 'flash', 'shownavigation');

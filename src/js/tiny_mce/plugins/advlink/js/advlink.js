@@ -28,8 +28,8 @@ function init() {
 	var action = "insert";
 	var html;
 
-	document.getElementById('hrefbrowsercontainer').innerHTML = getBrowserHTML('hrefbrowser','href','file','advlink');
-	document.getElementById('popupurlbrowsercontainer').innerHTML = getBrowserHTML('popupurlbrowser','popupurl','file','advlink');
+//	document.getElementById('hrefbrowsercontainer').innerHTML = getBrowserHTML('hrefbrowser','href','file','advlink');
+//	document.getElementById('popupurlbrowsercontainer').innerHTML = getBrowserHTML('popupurlbrowser','popupurl','file','advlink');
 	document.getElementById('linklisthrefcontainer').innerHTML = getLinkListHTML('linklisthref','href');
 	document.getElementById('anchorlistcontainer').innerHTML = getAnchorListHTML('anchorlist','href');
 	document.getElementById('targetlistcontainer').innerHTML = getTargetListHTML('targetlist','target');
@@ -43,10 +43,10 @@ function init() {
 
 	// Resize some elements
 	if (isVisible('hrefbrowser'))
-		document.getElementById('href').style.width = '260px';
+		document.getElementById('href').style.width = '280px';
 
 	if (isVisible('popupurlbrowser'))
-		document.getElementById('popupurl').style.width = '180px';
+		document.getElementById('popupurl').style.width = '200px';
 
 	elm = inst.dom.getParent(elm, "A");
 	if (elm != null && elm.nodeName == "A")
