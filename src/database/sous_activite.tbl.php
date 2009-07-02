@@ -266,7 +266,7 @@ class CSousActiv
 		else
 			$iNumOrdre = $v_iNumOrdre;
 
-		$iIdNouv = $this->copier($v_iIdDest);
+		$iIdNouv = $this->copier($v_iIdDest, NULL, TRUE);
 		$oNouv = ElementFormation::retElementFormation($this->oBdd, $this->retTypeNiveau(), $iIdNouv);
 		ElementFormation::defNumOrdre($oNouv, $iNumOrdre);
 
@@ -282,8 +282,10 @@ class CSousActiv
 	 *
 	 * @return	l'id de la nouvelle sous-activité
 	 */
-	function copier($v_iIdActiv, $v_sExportation = NULL)
+	function copier($v_iIdActiv, $v_sExportation = NULL, $v_bCopieFichier = FALSE)
 	{
+		global $oArchiveExport;
+
 		$iIdSousActiv = $this->copierSousActiv($v_iIdActiv, $v_sExportation);
 
 		if ($iIdSousActiv < 1 && !$v_sExportation)
@@ -304,6 +306,22 @@ class CSousActiv
 				case LIEN_HOTPOTATOES:
 					$this->copierHotpotatoes($iIdSousActiv);
 					break;
+			}
+
+			/*
+			 * On copie aussi les fichiers de l'activité vers la nouvelle activité
+			 * 
+			 */
+			if ($v_bCopieFichier)
+			{
+				$this->initIdsParents();
+				$oActiv = new CActiv($this->oBdd,$v_iIdActiv);
+				$sRepSrc = dir_cours($this->retIdParent(),$this->oIdsParents->IdForm);
+				$sRepDst = dir_cours($oActiv->retId(),$oActiv->retIdFormation());
+//				echo "répertoire source : " . $sRepSrc ."<br/>";
+//				echo "répertoire destination : " . $sRepDst . "<br/>";
+				if ($this->retIdParent() != $oActiv->retId())
+				    copyTree($sRepSrc, $sRepDst, $v_sExportation, &$oArchiveExport);
 			}
 		}
 
