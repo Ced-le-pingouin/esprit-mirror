@@ -206,7 +206,7 @@ function Cacher_Details(numero)
 <body>
 <h1>{Titre}</h1>
 <div id="contenu">
-<p class="information">Déplacez le curseur sur un score pour afficher les infos</p>
+<p class="information">Placez le curseur sur un score pour afficher le nombre d'exercices réalisés</p>
 
 [BLOCK_TITRE+]
 	{TitreNom}
