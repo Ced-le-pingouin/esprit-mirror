@@ -27,7 +27,7 @@ $aMenus   = array();
 $aMenus[] = array("Changer de formation","top.choix_formation('{$url_sTitrePrincipal}','{$url_sIdFormation}')",1,"text-align: left;");
 $aMenus[] = array("Copier/coller","top.PopupCenter('CopierCollerFormation.php', 'copierCollerForm', 800, 650, ',scrollbars=yes')",2,"text-align: left;");
 //$aMenus[] = array("Gérer les fichiers","top.PopupCenter('GererFichiersForm.php', 'gererFichiersForm', 750, 550, ',scrollbars=yes')",3,"text-align: left;");
-$aMenus[] = array("Exportation SCORM","self.location.href='../../include/traverseurs/export_scorm.php?idForm='+top.retIdForm()",3,"text-align: left;");
+//$aMenus[] = array("Exportation SCORM","self.location.href='../../include/traverseurs/export_scorm.php?idForm='+top.retIdForm()",3,"text-align: left;");
 $aMenus[] = array("Rafraîchir","refresh()",4,"text-align: center;");
 $aMenus[] = array("Fermer","top.close()",5);
 include_once(dir_template("dialogue","dialog-menu.tpl.php"));
