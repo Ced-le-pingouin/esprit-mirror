@@ -27,7 +27,7 @@ $oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);			// block qui ferme la pag
 $oBlockEvalEtat = new TPL_Block("BLOCK_EVAL_ETAT",$oTpl);		// block pour afficher l'évaluation et l'état de l'AEL
 
 /*
- * On v�rifie si la personne est visiteur ou connect�.
+ * On v�rifie si la personne est visiteur ou connect�.
  */
 if ($oProjet->retIdUtilisateur() > 0) $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 else $iIdUtilisateur = -1;
@@ -38,7 +38,7 @@ $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSo
 $iIdFC = ( isset($_GET["idFC"])?$_GET["idFC"]:NULL );
 
 $bFormationArchivee = FALSE;
-// si la formation est archiv�e et que l'utilisateur n'a pas les droits de modification
+// si la formation est archiv�e et que l'utilisateur n'a pas les droits de modification
 if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
 {
 	$bFormationArchivee = TRUE; 
@@ -158,7 +158,7 @@ if(!$bFermer)
 		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd);
 		/*
-		 * $iIdUtilisateur est �gale � -1 si la personne est un visiteur.
+		 * $iIdUtilisateur est �gale � -1 si la personne est un visiteur.
 		 */
 		if ($iIdUtilisateur > -1)
 		{
@@ -200,7 +200,14 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
 	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']) || $bFormationArchivee)
 	{	// si c'est pour évaluer ou afficher les feedbacks de l'auto-correction, on ne voit pas le bouton valider
-		$oTpl->remplacer("{bouton_valider}","&nbsp;");
+	    /*
+         * Le bouton est affiché pour toute personne autorisée à valider le formulaire,
+         * excepté si le questionnaire a déjà été complété et validé
+	     */
+	    if ($iIdFC || !$oProjet->verifPermission("PERM_VALIDER_FORMULAIRE"))
+            $oTpl->remplacer("{bouton_valider}","&nbsp;");
+        else
+            $oTpl->remplacer("{bouton_valider}","<a id=\"soumettre\" href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
 		if(isset($_POST['idFormulaire']))
 			$oTpl->remplacer("{bouton_fermer}","<a id=\"fermer\" href=\"javascript: top.opener.location=top.opener.location; top.close();\">Fermer</a>");
 		else

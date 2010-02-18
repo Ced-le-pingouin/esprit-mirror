@@ -53,11 +53,14 @@ else if ($act == "modifier")
 	if (!$url_bModifier)
 		return;
 	
-	$oFormation->redistNumsOrdre($_POST["ordre_formation"]);
+    // on empêche un utilisateur de changer le numéro d'ordre
+    if ($g_bModifierNumeroOrdre)
+        $oFormation->redistNumsOrdre($_POST["ordre_formation"]);
 	$oFormation->defNom($_POST["nom_formation"]);
 	$oFormation->defdescr(enleverJavaScript($_POST["descr_formation"]));
 	$oFormation->defInscrAutoModules($_POST["INSCR_AUTO_MODULES"]);
-	$oFormation->defVisiteurAutoriser((isset($_POST["VISITEUR_AUTORISER"]) && $_POST["VISITEUR_AUTORISER"] == "on" ? '1' : '0'));
+	if ($g_bAutoriserVisiteur)
+	    $oFormation->defVisiteurAutoriser((isset($_POST["VISITEUR_AUTORISER"]) && $_POST["VISITEUR_AUTORISER"] == "on" ? '1' : '0'));
 }
 
 ?>

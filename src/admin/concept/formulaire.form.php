@@ -39,11 +39,12 @@ include_once("perm.modif.form.php");
 // ---------------------
 // Initialisations
 // ---------------------
-$iNumeroOrdre      = $oProjet->oFormationCourante->retNumOrdre();
-$sNom              = $oProjet->oFormationCourante->retNom(TRUE);
-$sDescription      = $oProjet->oFormationCourante->retdescr();
-$iStatut           = $oProjet->oFormationCourante->retStatut();
-$bInscrAutoModules = $oProjet->oFormationCourante->retInscrAutoModules();
+$iNumeroOrdre       = $oProjet->oFormationCourante->retNumOrdre();
+$sNom               = $oProjet->oFormationCourante->retNom(TRUE);
+$sDescription       = $oProjet->oFormationCourante->retdescr();
+$iStatut            = $oProjet->oFormationCourante->retStatut();
+$bInscrAutoModules  = $oProjet->oFormationCourante->retInscrAutoModules();
+$bAutoriserVisiteur = $oProjet->verifPermission("PERM_SESSION_AUTH_VISITEUR");
 
 afficherTitre(NULL,$sNom);
 
@@ -90,10 +91,14 @@ selectionnerStatut("statut_formation",$oProjet->oFormationCourante->retListeStat
 </td>
 </tr>
 <?php entrerDescription("descr_formation",$sDescription,NULL,urlencode(addslashes($sNom))); ?>
+
+<?php if ($bAutoriserVisiteur) :?>
 <tr>
 <td>&nbsp;</td>
 <td align="right"><input name="VISITEUR_AUTORISER" type="checkbox"<?php echo $sVisiteurAutoriser.($g_bModifier ? NULL : " disabled")?>>&nbsp;&nbsp;Accessible aux visiteurs</td>
 </tr>
+<?php endif; ?>
+
 </table>
 </fieldset>
 <?php
