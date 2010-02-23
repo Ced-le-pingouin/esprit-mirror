@@ -1,7 +1,7 @@
 /* ------------------
-INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+INDEX (copier/coller et recherche permet d'arriver ï¿½ l'endroit dï¿½sirï¿½)
 
-général
+gï¿½nï¿½ral
 formulaire menu
 formulaire axe
 formulaire liste
@@ -11,7 +11,7 @@ modif ajout
 ZDC
 ------------------ */
 
-/* -- général -- */
+/* -- gï¿½nï¿½ral -- */
 body.menumodifbas {
 background-color:#cac3b1;
 border-top:#000 solid 1px;
@@ -283,6 +283,19 @@ margin:15px 0;
 
 #zoneenonce label {
 vertical-align:top;
+}
+
+#zoneenonce p {
+margin:2px;
+float:left;
+position:relative;
+height:90px;
+}
+
+#zoneenonce p span {
+bottom:0;
+left:3px;
+position:absolute;
 }
 
 #zonereponse ul,#zoneproposition ul {

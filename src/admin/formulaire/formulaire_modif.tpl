@@ -5,6 +5,9 @@
 <link type="text/css" rel="stylesheet" href="css://sousactive/formulaire.css" />
 <title>Modification des activités en ligne</title>
 <script src="selectionobj.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="javascript://globals.js.php"></script>
+<script type="text/javascript" language="javascript" src="javascript://window.js"></script>
+<script type="text/javascript" language="javascript" src="javascript://outils_admin.js"></script>
 <script type="text/javascript">
 <!--
 // tableau qui contiendra les objets SELECT permettant de modifier l'ordre
@@ -63,6 +66,12 @@ function soumettre(TypeAct,Parametre)
 	
 	document.forms['formmodif'].submit();
 }
+
+function editeur_callback(v_sForm,v_sElem,v_sTexte)
+{
+document.forms[v_sForm].elements[v_sElem].value = v_sTexte;
+document.forms[v_sForm].submit();
+} 
 //-->
 </script>
 </head>
@@ -87,7 +96,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
-	<label for="idenonce">{sMessageErreur1} Enoncé :</label>
+	<p>
+	<label for="idenonce">{sMessageErreur1} Enoncé : </label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTL}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -129,7 +141,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idenonce">Enoncé :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTC}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -178,7 +193,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idenonce">Enoncé :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQN}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -231,7 +249,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idenonce">Enoncé :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQLD}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -276,7 +297,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idenonce">Enoncé :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQR}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -325,7 +349,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="AlignEnon" id="idAEcenter" value="center" {ae3} /><label for="idAEcenter">Centrer</label></li>
 		<li><input type="radio" name="AlignEnon" id="idAEjustify" value="justify" {ae4} /><label for="idAEjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idenonce">{sMessageErreur1} Enoncé :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQC}</textarea>
 	</fieldset>
 	<fieldset id="zonereponse">
@@ -379,7 +406,10 @@ function soumettre(TypeAct,Parametre)
 		<li><input type="radio" name="Align" id="idAcenter" value="center" {ae3} /><label for="idAcenter">Centrer</label></li>
 		<li><input type="radio" name="Align" id="idAjustify" value="justify" {ae4} /><label for="idAjustify">Justifier</label></li>
 	</ul>
+	<p>
 	<label for="idtexte">{sMessageErreur1} Texte :</label>
+	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	</p>
 	<textarea name="Texte" id="idtexte" rows="8" cols="70">{TexteMPT}</textarea>
 	</fieldset>
 <input type="hidden" name="envoyer" value="1" />
