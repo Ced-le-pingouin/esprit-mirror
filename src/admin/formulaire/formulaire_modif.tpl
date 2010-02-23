@@ -98,7 +98,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">{sMessageErreur1} Enoncé : </label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTL}</textarea>
 	</fieldset>
@@ -143,7 +143,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">Enoncé :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQTC}</textarea>
 	</fieldset>
@@ -195,7 +195,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">Enoncé :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQN}</textarea>
 	</fieldset>
@@ -251,7 +251,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">Enoncé :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQLD}</textarea>
 	</fieldset>
@@ -299,7 +299,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">Enoncé :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQR}</textarea>
 	</fieldset>
@@ -351,7 +351,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idenonce">{sMessageErreur1} Enoncé :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Enonce" id="idenonce" rows="5" cols="70">{EnonQC}</textarea>
 	</fieldset>
@@ -408,7 +408,7 @@ document.forms[v_sForm].submit();
 	</ul>
 	<p>
 	<label for="idtexte">{sMessageErreur1} Texte :</label>
-	<span><a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a></span>
+	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
 	<textarea name="Texte" id="idtexte" rows="8" cols="70">{TexteMPT}</textarea>
 	</fieldset>

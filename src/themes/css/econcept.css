@@ -1,5 +1,5 @@
 /* ------------------
-INDEX (copier/coller et recherche permet d'arriver à l'endroit désiré)
+INDEX (copier/coller et recherche permet d'arriver ï¿½ l'endroit dï¿½sirï¿½)
 
 admin liste
 ajouter formation
@@ -189,6 +189,17 @@ text-align:center;
 
 .intitule {
 text-align:right;
+}
+#Titre_intitule{
+height:95px;
+position:relative;
+}
+#Span_intitule{
+font-weight:normal;
+color:black;
+bottom:0;
+right:5px;
+position:absolute;
 }
 
 .lien_passif {

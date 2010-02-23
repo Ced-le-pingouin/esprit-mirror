@@ -419,7 +419,10 @@ function entrerDescription ($v_sNom,$v_mValeur,$v_sTitre=NULL,$v_sNomFichierExpo
 	
 	$sConteneur = "\n<!-- Description -->\n\n"
 		."<tr>\n"
-		."<td class=\"intitule\">{$v_sTitre}&nbsp;:&nbsp;</td>\n"
+		."<td class=\"intitule\"><p id=\"Titre_intitule\">{$v_sTitre}&nbsp;:&nbsp;"
+		."<span id=\"Span_intitule\">"
+		.($g_bModifier ? "&nbsp;&nbsp;[&nbsp;<a href=\"javascript: editeur('form_admin_modif','{$v_sNom}','$v_sNomFichierExport'); void(0);\" onfocus=\"blur()\">Editeur</a>&nbsp;]" : NULL)
+		."</span></p></td>\n"
 		."<td>"
 		."<span style=\"text-align: right;\">"
 		."<textarea name=\"{$v_sNom}\""
@@ -427,7 +430,6 @@ function entrerDescription ($v_sNom,$v_mValeur,$v_sTitre=NULL,$v_sNomFichierExpo
 		." rows=\"5\""
 		.($g_bModifier ? NULL : " disabled")
 		.">".$v_mValeur."</textarea>"
-		.($g_bModifier ? "&nbsp;&nbsp;[&nbsp;<a href=\"javascript: editeur('form_admin_modif','{$v_sNom}','$v_sNomFichierExport'); void(0);\" onfocus=\"blur()\">Editeur</a>&nbsp;]" : NULL)
 		."</span>"
 		."</td>\n"
 		."</tr>\n\n";

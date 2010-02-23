@@ -66,7 +66,7 @@ $g_bModifierStatut  = $oProjet->verifPermission("PERM_MOD_STATUT_TOUS_COURS");
 $g_bModifierStatut |= $oProjet->verifPermission("PERM_MOD_STATUT_ELEMENT_ACTIF");
 $g_bModifierStatut &= $bPeutModifier;
 
-// si la formation est archiv�e, on v�rifie si l'utilisateur peut la modifier
+// si la formation est archiv�e, on v�rifie si l'utilisateur peut la modifier
 if (($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE) && (!$oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES")))
 	$g_bModifier = $g_bModifierStatut = FALSE;
 
@@ -358,7 +358,7 @@ foreach($aoFormulairesVisibles as $oFormulaireCourant)
 	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleFormulaire = emb_htmlentities("Questionnaire de base à compléter");
+	$sIntituleFormulaire = emb_htmlentities("Activité de base");
 else
 	$sIntituleFormulaire = $sIntitule;
 ?>
@@ -369,7 +369,7 @@ else
 <td><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
 <td><input type="text" size="50" name="INTITULE[<?php echo LIEN_FORMULAIRE; ?>]" value="<?php echo $sIntituleFormulaire; ?>" <?php echo ($g_bModifier ? NULL : " disabled"); ?>></td>
 </tr>
-<?php entrerDescription(("DESCRIPTION[".LIEN_FORMULAIRE."]"),$descr,"Consignes"); ?>
+<?php entrerDescription(("DESCRIPTION[".LIEN_FORMULAIRE."]"),$descr,"Consignes/texte initial"); ?>
 </table>
 </fieldset>
 </div>
