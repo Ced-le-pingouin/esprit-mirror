@@ -45,6 +45,7 @@ $sTypeAffichageActuel = isset($_GET['sAffiche']) ? $_GET['sAffiche'] : "en_cours
 // --------------------------
 $g_iIdPers					= $oProjet->retIdUtilisateur();
 $g_iReelStatutUtilisateur	= $oProjet->retReelStatutUtilisateur();
+$iHautStatutUtilisateurForm = STATUT_PERS_VISITEUR;
 
 // Tableau contenant les formations ainsi que leur cours
 $iNbrFormations = $oProjet->initFormationsUtilisateur(FALSE,FALSE,TRUE,TRUE,$bVoirArchive);
