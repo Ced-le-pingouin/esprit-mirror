@@ -43,6 +43,7 @@ $url_iMode = (empty($_POST["mode"]) ? NULL : $_POST["mode"]);
 $ordre                = $oProjet->oSousActivCourante->retNumOrdre();
 $sNomSousActiv        = $oProjet->oSousActivCourante->retNom(TRUE);
 $descr                = $oProjet->oSousActivCourante->retDescr();
+$affichageEtudiant    = $oProjet->oSousActivCourante->retAffichageEtudiant();
 $dateDeb              = $oProjet->oSousActivCourante->retDateDeb();
 $dateFin              = $oProjet->oSousActivCourante->retDateFin();
 $aoModalitesAffichage = $oProjet->oSousActivCourante->retListeModes();
@@ -342,6 +343,17 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 <td><div class="intitule">D&eacute;roulement&nbsp;:&nbsp;</div></td>
 <td><?php echo selectionner_modalite($oProjet->oSousActivCourante->retListeDeroulements(),"DEROULEMENT[".LIEN_FORMULAIRE."]",$url_iMode); ?></td>
 </tr>
+
+<tr>
+<td><div class="intitule">Modalit&eacute; d'affichage &eacute;tudiant</div></td>
+<td>
+<select name="ETUDIANT[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<option value="inline" <?php echo ($affichageEtudiant == "inline" ? " selected" : NULL); ?>>Zone principale</option>
+<option value="popup" <?php echo ($affichageEtudiant == "popup" ? " selected" : NULL); ?>>Nouvelle fen&ecirc;tre</option>
+</select>
+</td>
+</tr>
+
 <tr>
 <td><div class="intitule">Questionnaire de base&nbsp;:&nbsp;</div></td>
 <td>

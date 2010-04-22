@@ -578,7 +578,8 @@ class CSousActiv
 			.", PremierePageSousActiv='0'"
 			.", IdActiv='{$v_iIdActiv}'"
 			.", OrdreSousActiv='".($this->retNombreLignes($v_iIdActiv)+1)."'"
-			.", ModaliteSousActiv='".MODALITE_IDEM_PARENT."'";
+			.", ModaliteSousActiv='".MODALITE_IDEM_PARENT."'"
+			.", AffichageEtudiantAEL='inline'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		$this->iId = $this->oBdd->retDernierId();
 		$this->init();
@@ -1218,6 +1219,11 @@ class CSousActiv
 
 		return $iIdModalite;
 	}
+	
+	function retAffichageEtudiant()
+	{
+	    return $this->oEnregBdd->AffichageEtudiantAEL;
+	}
 	//@}
 
 	/** @name Fonctions de définition des champs pour cette sous-activité */
@@ -1321,6 +1327,11 @@ class CSousActiv
 
 		if ($v_bPremierePage > 0)
 			$this->mettre_a_jour("PremierePageSousActiv",1);
+	}
+	
+	function defAffichageEtudiant($v_sTypeAffichage)
+	{
+	    $this->mettre_a_jour("AffichageEtudiantAEL",$v_sTypeAffichage);
 	}
 	//@}
 

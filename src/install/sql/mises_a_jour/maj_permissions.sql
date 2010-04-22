@@ -1,4 +1,4 @@
-INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_MOD_SESSION_ORDRE_FORMATION', 'Peut modifier le numéro d ordre des formations');
+INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_MOD_SESSION_ORDRE_FORMATION', 'Peut modifier le numéro d''ordre des formations');
 INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_VALIDER_FORMULAIRE', 'Peut valider les formulaires');
 INSERT INTO `Permission` (`IdPermission`, `NomPermis`, `DescrPermis`) VALUES (NULL, 'PERM_SESSION_AUTH_VISITEUR', 'Peut permettre aux visiteurs de visiter une formation');
 

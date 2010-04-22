@@ -63,6 +63,7 @@ switch ($act)
 		$url_bPremierePageSousActiv = (empty($_POST["PREMIERE_PAGE"]) ? FALSE : $_POST["PREMIERE_PAGE"] == "on");
 		$url_sIntitule              = (empty($_POST["INTITULE"][$url_iTypeSousActiv]) ? NULL : $_POST["INTITULE"][$url_iTypeSousActiv]);
 		$url_sDescriptionSousActiv  = (empty($_POST["DESCRIPTION"][$url_iTypeSousActiv]) ? NULL : $_POST["DESCRIPTION"][$url_iTypeSousActiv]);
+		$url_sAffichageEtudiant     = (empty($_POST["ETUDIANT"][$url_iTypeSousActiv]) ? NULL : $_POST["ETUDIANT"][$url_iTypeSousActiv]);
 		$fichier_telecharger        = NULL;
 		$fichier_telecharger_tmp    = NULL;
 		
@@ -79,6 +80,7 @@ switch ($act)
 		$oSousActiv->defType($url_iTypeSousActiv);
 		$oSousActiv->defDescr(enleverJavaScript($url_sDescriptionSousActiv));
 		$oSousActiv->defPremierePage($url_bPremierePageSousActiv,$g_iRubrique);
+		$oSousActiv->defAffichageEtudiant($url_sAffichageEtudiant);
 		
 		// ---------------------
 		// Sauvegarder les modifications par type
