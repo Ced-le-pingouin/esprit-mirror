@@ -13,13 +13,88 @@
 </head>
 <body>
 <form>
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
 [BLOCK_FORMULAIRE+]
+{formulaire->listeIcones}
+{formulaire->description}
+
+<div id="formulaire_liste" style="width:100%">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%" style="/*margin-right: auto;margin-left: auto;*/">
+        <tr>
+            <td>&nbsp;</td>
+            <td><img border="0" src="theme://onglet/onglet_tab-1x1.gif"></td>
+            <td nowrap="nowrap" class="onglet_tab_1x2">&nbsp;Activit&eacute;s {utilisateur->nomComplet}&nbsp;</td>
+            <td><img border="0" src="theme://onglet/onglet_tab-1x3.gif"></td>
+            <td width="99%" style="border-bottom: 1px solid #DEE6E6;">&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><img border="0" width="10" height="10" src="theme://onglet/onglet_tab_rect-1x1.gif"></td>
+            <td colspan="4"><img border="0" width="1" height="1" src="theme://espacer.gif"></td>
+            <td><img border="0" width="10" height="10" src="theme://onglet/onglet_tab_rect-1x3.gif"></td>
+        </tr>
+        <tr>
+            <td style="background-image: url('theme://onglet/onglet_tab_rect-2x1.gif'); background-repeat: repeat-y;">&nbsp;</td>
+            <td colspan="4">
+                <p id="docbase">{formulaire->docBase}</p>
+                <p id="encours">{formulaire->travauxEnCours}</p>
+                <p>{formulaire->travauxSoumis}</p>
+            </td>
+            <td style="background-image: url('theme://onglet/onglet_tab_rect-2x3.gif'); background-repeat: repeat-y;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td><img border="0" width="10" height="10" src="theme://onglet/onglet_tab_rect-3x1.gif"></td>
+            <td colspan="4" style="border-bottom: 1px solid #DEE6E6;"><img border="0" width="1" height="1" src="theme://espacer.gif"></td>
+            <td><img border="0" width="10" height="10" src="theme://onglet/onglet_tab_rect-3x3.gif"></td>
+        </tr>
+    </table>
+</div>
+
+<!--<table border="0" cellspacing="0" cellpadding="0" width="100%">
 <tr><td align="center">{formulaire->element}</td></tr>
 <tr><td>&nbsp;</td></tr>
+</table>-->
 [BLOCK_FORMULAIRE-]
-</table>
 </form>
+<a name="FormulaireInline" ></a>
+[BLOCK_FORM_INLINE+]
+
+<div id="formulaire_inline">
+<p id="titre_formulaire_inline">{Nom_etudiant}{Info_ael}</p>
+<p>{intitule_activite}</p>
+<!--
+<table {sEncadrer} align="center" class="titre">
+<tr>
+    <td>
+        {sTitre}
+    </td>
+</tr>
+</table>
+-->
+[BLOCK_EVAL_ETAT+]
+<div id="Eval">
+<h3>{Eval_Globale}</h3>
+<p>{txt_eval}</p>
+</div>
+<div id="Etat">
+<h3>Etat de l'activité : </h3>
+{txt_etat}
+</div>
+[BLOCK_EVAL_ETAT-]
+<br style="clear: both;" />
+<form name="questionnaire" action="formulaire.php?idActiv={url_idActiv}&idSousActiv={url_idSousActiv}#FormulaireInline" method="post" enctype="text/html" id="form_Formulaire_Inline">
+[BLOCK_FORMULAIRE_MODIFIER+]
+<input type="hidden" name="idFormulaire" value="{iIdFormulaire}" />
+{input_ss_activ}
+{ListeObjetFormul}
+</form>
+
+<p class="valider_form_inline">
+{bouton_valider}
+</p>
+</div>
+[BLOCK_FORMULAIRE_MODIFIER-]
+[BLOCK_FORM_INLINE-]
+
 <p>&nbsp;</p>
 </body>
 </html>
@@ -29,22 +104,24 @@
 <a href="{a.exporter.href}" class="exporter_donnees" onfocus="blur()" target="_self">Exporter les données</a>&nbsp;#@#
 <a href="javascript: void(0);" onclick="{a.choix_courriel.href}; return false;" onfocus="blur()" title="Cliquer ici pour envoyer un courriel"><img src="commun://icones/24x24/courriel_envoye.gif" width="24" height="24" border="0"></a>&nbsp;
 [ARRAY_LISTE_ICONES-]
-<div style="width: 90%; height: 25px; text-align: right;">{liste_icones}</div>
+<p style="width: 90%; height: 25px; text-align: right;">{liste_icones}</p>
 [SET_LISTE_ICONES-]
 
 [SET_DESCRIPTION+]
-<table border="0" cellspacing="0" cellpadding="0" width="90%">
-<tr><td class="description_zdc">{description->texte}</td></tr>
-<tr><td>&nbsp;</td></tr>
-</table>
+<p class="description_zdc">{description->texte}</p>
 [SET_DESCRIPTION-]
+
 
 [SET_DOCUMENT_DE_BASE+]
 [VAR_TITRE+]Pour commencer[VAR_TITRE-]
-[VAR_DOCUMENT_URL+]<img scr="commun://espacer.gif" width="15" height="1" border="0"><a class="formulaire_base" href="javascript: void(0);" onclick="{a->href}" onfocus="blur()">{a->label}</a><br>[VAR_DOCUMENT_URL-]
-[VAR_CONSIGNE+]<br><div class="consigne">D&eacute;marrer une activit&eacute;&nbsp;? Cliquez sur l'intitul&eacute; rouge</div>[VAR_CONSIGNE-]
-<table border="0" cellspacing="0" cellpadding="0" width="90%"><tr><td>{document_de_base}</td></tr></table>
+[VAR_DOCUMENT_URL+]
+<img src="commun://espacer.gif" width="15" height="1" border="0">
+<a class="formulaire_base" href="{a->href}" onclick="{a->onclick}" onfocus="blur()" target="{a->target}">{a->label}</a>
+[VAR_DOCUMENT_URL-]
+[VAR_CONSIGNE+]<span class="formulaire_consigne">D&eacute;marrer une activit&eacute;&nbsp;? Cliquez sur l'intitul&eacute; rouge</span>[VAR_CONSIGNE-]
+{document_de_base}
 [SET_DOCUMENT_DE_BASE-]
+
 
 [SET_TRAVAUX_EN_COURS+]
 <!--[[ Travaux en cours -->
@@ -56,7 +133,7 @@
 [VAR_LISTE_DOCUMENTS-]
 [VAR_LIGNE_DOCUMENT+]
 <tr>
-<td><img scr="commun://espacer.gif" width="10" height="1" border="0"></td>
+<td><img src="commun://espacer.gif" width="10" height="1" border="0"></td>
 <td>{document->selectionner}&nbsp;</td>
 <td><b>Version&nbsp;{document->titre}</b> d&eacute;pos&eacute; par {document->personne_complet} le {document->date}</td>
 </tr>
@@ -68,44 +145,48 @@
 Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrave;; soumettre et cliquez sur &laquo;&nbsp;Soumettre&nbsp;&raquo;
 </div>
 [VAR_CONSIGNE-]
+<p style="display:block; color:#485EA5;font-size:8pt;">{titreTravauxEnCours}</p>
 <table border="0" cellspacing="0" cellpadding="0" width="90%">
 <tr><td>{onglet}</td></tr>
 </table>
 <!-- ]]-->
 [SET_TRAVAUX_EN_COURS-]
 
+
 [SET_TRAVAUX_SOUMIS+]
 <!--[[ Travaux soumis -->
 [VAR_TITRE+]Travaux soumis pour &eacute;valuation[VAR_TITRE-]
 [VAR_LISTE_DOCUMENTS+]
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-{liste_documents}
-<tr><td>&nbsp;</td><td colspan="2" style="text-align: right;">{evaluer->bouton}</td></tr>
-<tr><td style="background-color: rgb(255,255,255);" colspan="3">&nbsp;</td></tr>
-</table>
+<ul>{liste_documents}</ul>
+<p style="text-align:right;margin-top:0;">{evaluer->bouton}</p>
 [VAR_LISTE_DOCUMENTS-]
 [VAR_BOUTON_EVALUER+]
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir l'&eacute;valuation</a>###
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Evaluer</a>
 [VAR_BOUTON_EVALUER-]
-[VAR_BOUTON_SELECTIONNER_FORMULAIRE+]<input type="radio" name="{radio->name}" onclick="surbrillance('id_soumettre_{personne->id}')" value="{radio->value}" onfocus="blur()">[VAR_BOUTON_SELECTIONNER_FORMULAIRE-]
+[VAR_BOUTON_SELECTIONNER_FORMULAIRE+]
+<input style="vertical-align:bottom;margin:0" type="radio" name="{radio->name}" onclick="surbrillance('id_soumettre_{personne->id}')" value="{radio->value}" onfocus="blur()">
+[VAR_BOUTON_SELECTIONNER_FORMULAIRE-]
 [VAR_LIGNE_DOCUMENT+]
-<tr>
-<td><img scr="commun://espacer.gif" width="20" height="1" border="0"></td>
-<td>{document->selectionner}</td>
-<td width="99%">&nbsp;&nbsp;<a href="javascript: void(0);" onclick="{a->href}" onfocus="blur()"><b>Version&nbsp;{document->titre}</b> soumis pour &eacute;valuation le {document->date}</a><span style="font-size: 8pt;">{document->evalue}</span></td>
-</tr>
+<li style="list-style-type:none; margin:8px 0 0;">
+    <span style="display:inline-block;width:20px;">{document->selectionner}</span>
+    <span style="display:inline-block;vertical-align:top;width:275px;">
+        <a href="{a->href}" onclick="{a->onclick}" onfocus="blur()" target="{a->target}"><b>Version&nbsp;{document->titre}</b> soumis pour &eacute;valuation le {document->date}</a>
+    </span>
+    <span style="display:inline-block;font-size: 8pt;width:200px;">{document->evalue}</span>
+    <span style="display:inline-block;font-size: 8pt;">{evaluer->bouton}</span>
+</li>
 [VAR_LIGNE_DOCUMENT-]
 [VAR_PAS_DOCUMENT_TROUVE+]
-<table border="0" cellspacing="0" cellpadding="0" width="100%">
-<tr><td style="text-align: center; font-size: 7pt;">Pas de document trouv&eacute;</td></tr>
-<tr><td>&nbsp;</td></tr>
-</table>
+<p style="text-align: center; font-size: 7pt;">Pas de document trouv&eacute;</p>
 [VAR_PAS_DOCUMENT_TROUVE-]
 [VAR_CONSIGNE+]
-<div class="consigne">Acc&eacute;der &agrave; l'&eacute;valuation&nbsp;? S&eacute;lectionnez la version et cliquez sur &laquo;&nbsp;Obtenir l'&eacute;valuation&nbsp;&raquo;</div>###
-<div class="consigne">Evaluer&nbsp;? S&eacute;lectionner une version et cliquez sur &laquo;&nbsp;Evaluer&nbsp;&raquo;</div>
+ - Acc&eacute;der &agrave; l'&eacute;valuation&nbsp;? &gt;&gt; S&eacute;lectionnez la version et cliquez sur &laquo;&nbsp;Obtenir l'&eacute;valuation&nbsp;&raquo;###
+ - Evaluer&nbsp;? &gt;&gt; S&eacute;lectionner une version et cliquez sur &laquo;&nbsp;Evaluer&nbsp;&raquo;
 [VAR_CONSIGNE-]
+[VAR_CONSIGNE_GLOBALE+]
+D&eacute;marrer une activit&eacute;&nbsp;? &gt;&gt; Cliquez sur l'intitul&eacute; rouge
+[VAR_CONSIGNE_GLOBALE-]
 [VAR_FORMULAIRE_EVALUATION+]
 ###
 ###
@@ -114,9 +195,9 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
 &nbsp;&nbsp;<img src="theme://formulaire/res_a_poursuivre.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: &agrave; poursuivre)###
 &nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: activit&eacute; termin&eacute;e)
 [VAR_FORMULAIRE_EVALUATION-]
-<table border="0" cellspacing="0" cellpadding="0" width="90%">
-<tr><td>{onglet}</td></tr>
-</table>
+<hr class="hr1">
+<!-- <p style="color:#485EA5;font-size:8pt;">{titreTravauxFinis}</p> -->
+<div style="">{onglet}<span class="formulaire_consigne">{consigne}</span></div>
 <!-- Travaux soumis ]]-->
 [SET_TRAVAUX_SOUMIS-]
 

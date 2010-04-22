@@ -34,13 +34,39 @@ margin:0;
 padding:0;
 }
 
-form.formFormulaire {
+form.formFormulaire, #formulaire_inline {
 background-color:#f9fbfb;
 border:#dce6e6 dotted 1px;
 line-height:1.2em;
 padding:7px;
 -moz-border-radius:5px;
 }
+#formulaire_inline {
+background-color:#FFF;
+padding:0;
+border:2px solid #DCE6E6;
+margin:15px 0 0;
+}
+
+#titre_formulaire_inline, .valider_form_inline {
+margin:0;
+background-color:#DCE6E6;
+padding:10px 7px;
+color:#485EA5;
+font-weight:bold;
+}
+#form_Formulaire_Inline {
+padding:7px;
+}
+.valider_form_inline {
+text-align:center;
+}
+.valider_form_inline a {
+color:#485EA5;
+font-weight:bold;
+font-size:9pt;
+}
+
 * html form.formFormulaire {
 width:100%;
 }
@@ -515,24 +541,36 @@ width:100%;
 /* ----- */
 
 /* -- ZDC -- */
-td.description_zdc {
+p.description_zdc, td.description_zdc {
 background-color:#f9fbfb;
 border:#dce6e6 none 2px;
 border-top-style:solid;
 border-bottom-style:solid;
+/*margin: 0 5% 10px;*/
+/*width:90%;*/
 }
 
-div.consigne {
+.formulaire_consigne {
 border:#cbcbcb none 1px;
 border-top-style:dotted;
 font-size:7pt;
 font-style:italic;
-margin:5px 0 0;
+margin:5px 0;
+display:block;
+width:100%;
+}
+
+hr.hr1 {
+color:#f00;
+background-color:#dce6e6;
+border: 0px solid #dce6e6;
+height:1px;
 }
 
 a.formulaire_base {
 font-size:8pt;
 color:#882525;
+font-weight:bold;
 }
 
 a.soumettre_passif {

@@ -20,11 +20,28 @@
 //                          Universite de Mons-Hainaut, Belgium. 
 
 require_once("globals.inc.php");
-$oProjet = new CProjet();
-$oTpl = new Template("modifier_formulaire.tpl");
-$oBlockFormulaire = new TPL_Block("BLOCK_FORMULAIRE",$oTpl);	// block afficher tous les questions de l'AEL
-$oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);			// block qui ferme la page
-$oBlockEvalEtat = new TPL_Block("BLOCK_EVAL_ETAT",$oTpl);		// block pour afficher l'évaluation et l'état de l'AEL
+
+
+/*
+ * si l'étudiant ouvre un formulaire en popup, on initialise le template
+ */
+
+if (empty($sAffichageFormulaire) || $sAffichageFormulaire != "inline")
+{
+    $sAffichageFormulaire = "popup";
+    $oProjet = new CProjet();
+    $oTpl = new Template("modifier_formulaire.tpl");
+    $oBlockFermer = new TPL_Block("BLOCK_FERMER",$oTpl);            // block qui ferme la page
+}
+
+    $oBlockFormulaire = new TPL_Block("BLOCK_FORMULAIRE_MODIFIER",$oTpl);    // block afficher tous les questions de l'AEL
+    $oBlockEvalEtat = new TPL_Block("BLOCK_EVAL_ETAT",$oTpl);       // block pour afficher l'évaluation et l'état de l'AEL
+
+if ($sAffichageFormulaire == "inline")
+{
+    $oTpl->remplacer("{url_idActiv}", $url_iIdActiv);
+    $oTpl->remplacer("{url_idSousActiv}", $url_iIdSousActiv);
+}
 
 /*
  * On v�rifie si la personne est visiteur ou connect�.
@@ -32,8 +49,10 @@ $oBlockEvalEtat = new TPL_Block("BLOCK_EVAL_ETAT",$oTpl);		// block pour affiche
 if ($oProjet->retIdUtilisateur() > 0) $iIdUtilisateur = $oProjet->oUtilisateur->retId();
 else $iIdUtilisateur = -1;
 
-//	Récupération des variables
-$v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:NULL) );
+/*
+ * Si le formulaire n'est pas en popup, on récupère l'id du formulaire depuis formulaire.php ($iIdFormulaire)
+ */
+$v_iIdFormulaire = ( isset($_GET["idFormulaire"])?$_GET["idFormulaire"]:($_POST["idFormulaire"]?$_POST["idFormulaire"]:(!empty($iIdFormulaire)?$iIdFormulaire:NULL)) );
 $iIdSousActiv = ( isset($_GET["idSousActiv"])?$_GET["idSousActiv"]:($_POST["idSousActiv"]?$_POST["idSousActiv"]:NULL) );
 $iIdFC = ( isset($_GET["idFC"])?$_GET["idFC"]:NULL );
 
@@ -69,7 +88,7 @@ if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
 		}
 	}
 	$aoObjetFormulaire = $oFormulaire->retListeObjetFormulaire();
-	if(!$oFormulaire->retAutoCorrection())
+	if(!$oFormulaire->retAutoCorrection() && $sAffichageFormulaire !="inline")
 		$bFermer = true;
 	// Enregistrer les réponses pour chaque éléments de l'AEL
 	foreach($aoObjetFormulaire as $oObjetFormulaire)
@@ -101,10 +120,13 @@ if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
 		}
 	}
 }
+//var_dump('test1');
 if(!$bFermer)
 {
+//var_dump('test2');
 	if($iIdFC) // si l'AEL à déjà été complété
 	{
+//var_dump('test3');
 		$oBlockEvalEtat->afficher();
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd,$iIdFC);
 		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
@@ -115,6 +137,8 @@ if(!$bFermer)
 		$sInfoAEL = " (version ".$oFormulaireComplete->retTitre().")";
 		if(isset($iIdSousActiv))
 		{
+//var_dump('test4');
+//var_dump($oFormulaire->retNbreObjetFormulaireNonAutoCorrige());
 			$bFullAutoCorr = false;
 			$oFormulaireComplete_SousActiv = new CFormulaireComplete_SousActiv($oProjet->oBdd);
 			$oFormulaireComplete_SousActiv->initParFcEtSsActiv($iIdFC,$iIdSousActiv);
@@ -174,10 +198,14 @@ if(!$bFermer)
 		}
 	}
 }
+
 if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 {
 	$oBlockFormulaire->afficher();
-	$oBlockFermer->effacer();
+
+	if ($sAffichageFormulaire != "inline")
+	    $oBlockFermer->effacer();
+
 	$bAutoCorrection = ( $oFormulaire->retAutoCorrection()?true:false );
 	// Lecture de la table formulaire pour y récupérer les données de mise en page
 	$sTitre = convertBaliseMetaVersHtml($oFormulaire->retTitre());
@@ -198,16 +226,9 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 	$oTpl->remplacer("{sLargeur}",$sLargeur);
 	$oTpl->remplacer("{iInterEnonRep}",$iInterEnonRep);
 	$oTpl->remplacer("{iInterElem}",$iInterElem);
-	if($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']) || $bFormationArchivee)
+	if(($oProjet->verifPermission("PERM_EVALUER_FORMULAIRE") || isset($_POST['idFormulaire']) || $bFormationArchivee) && $iIdFC)
 	{	// si c'est pour évaluer ou afficher les feedbacks de l'auto-correction, on ne voit pas le bouton valider
-	    /*
-         * Le bouton est affiché pour toute personne autorisée à valider le formulaire,
-         * excepté si le questionnaire a déjà été complété et validé
-	     */
-	    if ($iIdFC || !$oProjet->verifPermission("PERM_VALIDER_FORMULAIRE"))
-            $oTpl->remplacer("{bouton_valider}","&nbsp;");
-        else
-            $oTpl->remplacer("{bouton_valider}","<a id=\"soumettre\" href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
+		$oTpl->remplacer("{bouton_valider}","&nbsp;");
 		if(isset($_POST['idFormulaire']))
 			$oTpl->remplacer("{bouton_fermer}","<a id=\"fermer\" href=\"javascript: top.opener.location=top.opener.location; top.close();\">Fermer</a>");
 		else
@@ -215,7 +236,11 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 	}
 	else
 	{
-		$oTpl->remplacer("{bouton_valider}","<a id=\"soumettre\" href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
+	    // si la personne peut valider le formulaire, on affiche le bouton "valider"
+	    if ($oProjet->verifPermission("PERM_VALIDER_FORMULAIRE"))
+		    $oTpl->remplacer("{bouton_valider}","<a id=\"soumettre\" href=\"javascript: validerFormulaire($iRemplirTout);\">Valider</a>");
+		else
+		    $oTpl->remplacer("{bouton_valider}","&nbsp;");
 		$oTpl->remplacer("{bouton_fermer}","<a id=\"fermer\" href=\"javascript: top.close();\">Fermer</a>");
 	}
 	$oTpl->remplacer("{general_js_php}",dir_code_lib_ced("general.js.php", FALSE, FALSE));
@@ -642,8 +667,12 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 else
 {
 	$oBlockFormulaire->effacer();
-	$oBlockFermer->afficher();
+	
+	if ($sAffichageFormulaire != "inline")
+	    $oBlockFermer->afficher();
 }
 
-$oTpl->afficher(); 
+// on vérifie que l'affichage ne doit pas se faire dans la page
+if ($sAffichageFormulaire != "inline")
+    $oTpl->afficher(); 
 ?>

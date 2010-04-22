@@ -53,7 +53,7 @@ display:none;
 [BLOCK_EVAL_ETAT-]
 <br style="clear: both;" />
 <form name="questionnaire" class="formFormulaire" action="modifier_formulaire.php" method="post" enctype="text/html">
-[BLOCK_FORMULAIRE+]
+[BLOCK_FORMULAIRE_MODIFIER+]
 <input type="hidden" name="idFormulaire" value="{iIdFormulaire}" />
 {input_ss_activ}
 {ListeObjetFormul}
@@ -68,7 +68,7 @@ display:none;
 </tr>
 </table>
 </div>
-[BLOCK_FORMULAIRE-]
+[BLOCK_FORMULAIRE_MODIFIER-]
 [BLOCK_FERMER+]
 <script language="javascript" type="text/javascript">
 	top.opener.location = top.opener.location;

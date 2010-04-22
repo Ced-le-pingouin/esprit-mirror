@@ -22,6 +22,6 @@ function init() {
 	var oWindow = new DOMWindow(self);
 	oWindow.scrollTo(0,top.g_iPosYPagePrincipale);
 }
-
-window.onload = init;
+// utilisation d'ancre pour défiler vers le formulaire inline -> désactivation de la position de page
+//window.onload = init;
 

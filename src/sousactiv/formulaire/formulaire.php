@@ -41,7 +41,8 @@ $oProjet->initModuleCourant();
 // ---------------------
 $url_iIdActiv     = (empty($_GET["idActiv"]) ? 0 : $_GET["idActiv"]);
 $url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
-
+$url_iIdFC        = (empty($_GET["idFC"]) ? 0 : $_GET["idFC"]);
+//var_dump($url_iIdFC);
 // Variable url facultative
 $url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
@@ -50,28 +51,38 @@ $url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 // ---------------------
 $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 
+/*
+ * On vérifie si le formulaire doit être affiché dans la page ou en popup
+ */
+$sAffichageFormulaire = "inline";
+
+if ($oProjet->retReelStatutUtilisateur() == STATUT_PERS_ETUDIANT)
+    $sAffichageFormulaire = $oSousActiv->retAffichageEtudiant();
+else
+    $sAffichageFormulaire = "popup";
+
 $iMonIdPers = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
 // Vérifier que cette personne a le droit d'évaluer les formulaires soumis
-$bPeutEvaluerFormulaires	= $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
-$bPeutModifierArchive		= $oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES");
+$bPeutEvaluerFormulaires    = $oProjet->verifModifierModule() && $oProjet->verifPermission("PERM_EVALUER_FORMULAIRE");
+$bPeutModifierArchive       = $oProjet->verifPermission("PERM_MOD_SESSION_ARCHIVES");
 
 if ($bPeutEvaluerFormulaires)
 {
-	// Obtenir la liste des étudiants de ce module
-	$oProjet->initInscritsModule();
-	
-	$aiIdPers = array();
-	
-	foreach ($oProjet->aoInscrits as $oInscrit)
-		$aiIdPers[] = $oInscrit->retId();
-	
-	unset($oProjet->aoInscrits);
+    // Obtenir la liste des étudiants de ce module
+    $oProjet->initInscritsModule();
+    
+    $aiIdPers = array();
+    
+    foreach ($oProjet->aoInscrits as $oInscrit)
+        $aiIdPers[] = $oInscrit->retId();
+    
+    unset($oProjet->aoInscrits);
 }
 else
 {
-	// Afficher les formulaires de cette personne
-	$aiIdPers = array($iMonIdPers);
+    // Afficher les formulaires de cette personne
+    $aiIdPers = array($iMonIdPers);
 }
 
 // ---------------------
@@ -80,13 +91,13 @@ else
 $oTpl = new Template(dir_theme("globals.inc.tpl",FALSE,TRUE));
 
 $asTplGlobale = array(
-	  "personne_infos" => $oTpl->defVariable("SET_PERSONNE_INFOS")
-	, "personne->sexe->m" => $oTpl->defVariable("SET_SEXE_MASCULIN")
-	, "personne->sexe->f" => $oTpl->defVariable("SET_SEXE_FEMININ")
-	, "mail->actif" => $oTpl->defVariable("SET_MAIL_ACTIF")
-	, "mail->passif" => $oTpl->defVariable("SET_MAIL_PASSIF")
-	, "icone->favori" => $oTpl->defVariable("SET_ICONE_FAVORI")
-	, "input->radio" => $oTpl->defVariable("SET_INPUT_RADIO")
+      "personne_infos" => $oTpl->defVariable("SET_PERSONNE_INFOS")
+    , "personne->sexe->m" => $oTpl->defVariable("SET_SEXE_MASCULIN")
+    , "personne->sexe->f" => $oTpl->defVariable("SET_SEXE_FEMININ")
+    , "mail->actif" => $oTpl->defVariable("SET_MAIL_ACTIF")
+    , "mail->passif" => $oTpl->defVariable("SET_MAIL_PASSIF")
+    , "icone->favori" => $oTpl->defVariable("SET_ICONE_FAVORI")
+    , "input->radio" => $oTpl->defVariable("SET_INPUT_RADIO")
 );
 
 // ---------------------
@@ -101,13 +112,19 @@ $sSetOnglet = $oTpl->defVariable("SET_ONGLET");
 $oTpl = new Template("formulaire.tpl");
 
 $oBlocFormulaire = new TPL_Block("BLOCK_FORMULAIRE",$oTpl);
-$oBlocFormulaire->beginLoop();
+//$oBlocFormulaire->beginLoop();
+
+($oProjet->retReelStatutUtilisateur() == STATUT_PERS_ETUDIANT) ? 
+    $oBlocFormulaire->remplacer("{utilisateur->nomComplet}", "(" . $oProjet->oUtilisateur->retNomComplet() . ")") :
+    $oBlocFormulaire->remplacer("{utilisateur->nomComplet}", "");
+
+$oBlocFormulaireInline = new TPL_Block("BLOCK_FORM_INLINE", $oTpl);
 
 // {{{ Liste des icônes
 $sSetListeIcones = $oTpl->defVariable("SET_LISTE_ICONES");
 
-$oBlocFormulaire->nextLoop();
-$oBlocFormulaire->remplacer("{formulaire->element}",$sSetListeIcones);
+//$oBlocFormulaire->nextLoop();
+$oBlocFormulaire->remplacer("{formulaire->listeIcones}",$sSetListeIcones);
 
 // Exporter
 $oBlocFormulaire->remplacer("{a.exporter.href}","formulaire_export.php?idSousActiv={$url_iIdSousActiv}");
@@ -118,17 +135,17 @@ $oBlocFormulaire->remplacer("{a.choix_courriel.href}","choix_courriel('?typeCour
 $asListeIcones = $oBlocFormulaire->defTableau("ARRAY_LISTE_ICONES","#@#");
 
 if (!$bPeutEvaluerFormulaires)
-	$asListeIcones[0] = NULL;
+    $asListeIcones[0] = NULL;
 
 $sListeIcones = NULL;
 
 foreach ($asListeIcones as $sIcone)
-	$sListeIcones .= $sIcone;
+    $sListeIcones .= $sIcone;
 
 $oBlocFormulaire->remplacer("{liste_icones}",$sListeIcones);
 
 unset($sSetListeIcones);
-// }}}
+// fin Liste des icônes }}}
 
 
 // {{{ Description
@@ -138,93 +155,121 @@ $sDescription = $oSousActiv->retDescr();
 
 if (strlen($sDescription) > 0)
 {
-	$oBlocFormulaire->nextLoop();
-	$oBlocFormulaire->remplacer("{formulaire->element}",$oSetDescription);
-	$oBlocFormulaire->remplacer("{description->texte}",convertBaliseMetaVersHtml($sDescription));
+//    $oBlocFormulaire->nextLoop();
+//    $oBlocFormulaire->remplacer("{formulaire->element}",$oSetDescription);
+    $oBlocFormulaire->remplacer("{formulaire->description}",$oSetDescription);
+    $oBlocFormulaire->remplacer("{description->texte}",convertBaliseMetaVersHtml($sDescription));
+}
+else {
+    $oBlocFormulaire->remplacer("{formulaire->description}", "");
 }
 
 unset($oSetDescription,$sDescription);
-// }}}
+// fin Description }}}
 
 // {{{ Document de base
 list($iIdFormulaire,$iDeroulement,$sIntituleLien) = explode(";",$oSousActiv->retDonnees());
 
 $sSetDocBase = $oTpl->defVariable("SET_DOCUMENT_DE_BASE");
 
-$oBlocFormulaire->nextLoop();
-$oBlocFormulaire->remplacer("{formulaire->element}",$sSetDocBase);
+//$oBlocFormulaire->nextLoop();
+//$oBlocFormulaire->remplacer("{formulaire->element}",$sSetDocBase);
+$oBlocFormulaire->remplacer("{formulaire->docBase}",$sSetDocBase);
 
-$oBlocFormulaire->remplacer("{document_de_base}",$sSetOnglet);
-$oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
-$sOngletTexte = $oBlocFormulaire->defVariable("VAR_DOCUMENT_URL")
-	.$oBlocFormulaire->defVariable("VAR_CONSIGNE");
-$oBlocFormulaire->remplacer("{onglet->texte}",$sOngletTexte);
+//$oBlocFormulaire->remplacer("{document_de_base}",$sSetOnglet);
+//$oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
+$oBlocFormulaire->defVariable("VAR_TITRE");
+$sOngletTexte = $oBlocFormulaire->defVariable("VAR_DOCUMENT_URL");
+$oBlocFormulaire->defVariable("VAR_CONSIGNE");
+//$oBlocFormulaire->remplacer("{onglet->texte}",$sOngletTexte);
+$oBlocFormulaire->remplacer("{document_de_base}",$sOngletTexte);
 
 $oBlocFormulaire->remplacer("{a->label}",$sIntituleLien);
-$oBlocFormulaire->remplacer("{a->href}","return formulaire('?idSousActiv={$url_iIdSousActiv}&idFormulaire={$iIdFormulaire}','winFormulaire')");
+
+if ($sAffichageFormulaire != "inline")
+{
+    $oBlocFormulaire->remplacer("{a->onclick}","return formulaire('?idSousActiv={$url_iIdSousActiv}&idFormulaire={$iIdFormulaire}','winFormulaire')");
+    $oBlocFormulaire->remplacer("{a->href}", "javascript: void(0);");
+    $oBlocFormulaire->remplacer("{a->target}", "");
+}
+else
+{
+    $oBlocFormulaire->remplacer("{a->href}",dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}#FormulaireInline");
+    $oBlocFormulaire->remplacer("{a->onclick}","");
+    $oBlocFormulaire->remplacer("{a->target}", "Principal");
+}
+
+if ($url_iIdFC == 0)
+    $s_gIntituleLien = $sIntituleLien;
 
 unset($sSetDocBase);
-// }}}
+// fin Document de base }}}
 
 // {{{ Travaux en cours
 $sSetTravauxEnCours = $oTpl->defVariable("SET_TRAVAUX_EN_COURS");
 
 if (empty($iDeroulement) || $iDeroulement != SOUMISSION_AUTOMATIQUE)
 {
-	foreach ($aiIdPers as $iIdPers)
-	{
-		$iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,STATUT_RES_EN_COURS);
-		
-		// Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
-		// si celui-ci n'a pas soumis des documents
-		if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
-			break;
-		
-		$oBlocFormulaire->nextLoop();
-		
-		$oBlocFormulaire->remplacer("{formulaire->element}",$sSetTravauxEnCours);
-		
-		$oBlocFormulaire->remplacer("{onglet}",$sSetOnglet);
-		$oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
-		
-		$oBlocFormulaire->remplacer("{onglet->texte}",
-			$oBlocFormulaire->defVariable("VAR_LISTE_DOCUMENTS")
-			.$oBlocFormulaire->defVariable("VAR_CONSIGNE"));
-		
-		// Ligne d'une table pour un document
-		$sVarLigneDocument = $oBlocFormulaire->defVariable("VAR_LIGNE_DOCUMENT");
-		
-		// Composer la liste des documents
-		$asRechercher = array(
-			"{document->selectionner}"
-			, "{document->titre}"
-			, "{document->personne_complet}"
-			, "{document->date}"
-			, "{input->name}");
-		
-		$sListeDocuments = NULL;
-		
-		foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
-		{
-			$oFormulaireComplete->initAuteur();
-			
-			$amRemplacer = array(
-				($oFormulaireComplete->retStatut() == STATUT_RES_EN_COURS ? $asTplGlobale["input->radio"] : NULL)
-				, $oFormulaireComplete->retTitre()
-				, $oFormulaireComplete->oAuteur->retNomComplet()
-				, $oFormulaireComplete->retDate()
-				, "idFC");
-			
-			$sListeDocuments .= str_replace($asRechercher,$amRemplacer,$sVarLigneDocument);
-		}
-		
-		// Ajouter dans le template la liste des documents trouvés
-		$oBlocFormulaire->remplacer("{liste_documents}",$sListeDocuments);
-	}
+    foreach ($aiIdPers as $iIdPers)
+    {
+        $iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,STATUT_RES_EN_COURS);
+        
+        // Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
+        // si celui-ci n'a pas soumis des documents
+        if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
+            break;
+
+//        $oBlocFormulaire->nextLoop();
+        
+//        $oBlocFormulaire->remplacer("{formulaire->element}",$sSetTravauxEnCours);
+        $oBlocFormulaire->remplacer("{formulaire->travauxEnCours}",$sSetTravauxSoumis);
+        
+//        $oBlocFormulaire->remplacer("{onglet}",$sSetOnglet);
+//        $oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
+        
+        $oBlocFormulaire->remplacer("{onglet->texte}",
+            $oBlocFormulaire->defVariable("VAR_LISTE_DOCUMENTS")
+            .$oBlocFormulaire->defVariable("VAR_CONSIGNE"));
+        
+        // Ligne d'une table pour un document
+        $sVarLigneDocument = $oBlocFormulaire->defVariable("VAR_LIGNE_DOCUMENT");
+        
+        // Composer la liste des documents
+        $asRechercher = array(
+            "{document->selectionner}"
+            , "{document->titre}"
+            , "{document->personne_complet}"
+            , "{document->date}"
+            , "{input->name}");
+        
+        $sListeDocuments = NULL;
+        
+        foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
+        {
+            $oFormulaireComplete->initAuteur();
+            
+            $amRemplacer = array(
+                ($oFormulaireComplete->retStatut() == STATUT_RES_EN_COURS ? $asTplGlobale["input->radio"] : NULL)
+                , $oFormulaireComplete->retTitre()
+                , $oFormulaireComplete->oAuteur->retNomComplet()
+                , $oFormulaireComplete->retDate()
+                , "idFC");
+            
+            $sListeDocuments .= str_replace($asRechercher,$amRemplacer,$sVarLigneDocument);
+        }
+        
+        // Ajouter dans le template la liste des documents trouvés
+//        $oBlocFormulaire->remplacer("{liste_documents}",$sListeDocuments);
+        $oBlocFormulaire->remplacer("{onglet}", $sListeDocuments);
+    }
+}
+else {
+    $oBlocFormulaire->remplacer("{formulaire->travauxEnCours}", "");
 }
 
+
 unset($sSetTravauxEnCours,$sListeDocuments);
-// }}}
+// fin Travaux en cours }}}
 
 // {{{ Travaux soumis
 $sSetTravauxSoumis = $oTpl->defVariable("SET_TRAVAUX_SOUMIS");
@@ -232,115 +277,155 @@ $sSetTravauxSoumis = $oTpl->defVariable("SET_TRAVAUX_SOUMIS");
 $sListeTravauxSoumis = NULL;
 
 $asInfosPersonne = array("{personne_infos.id}","{personne_infos.sexe}","{personne_infos.nom_complet}","{personne_infos.pseudo}","{personne_infos.email}","{personne->email}");
-$asFormationComplete = array("{document->selectionner}","{document->titre}","{document->personne_complet}","{document->date}","{document->evalue}","{a->href}","{radio->name}","{radio->value}");
+$asFormationComplete = array("{document->selectionner}","{document->titre}","{document->personne_complet}","{document->date}","{document->evalue}","{a->onclick}","{a->href}","{a->target}","{radio->name}","{radio->value}", "{evaluer->bouton}");
 
 foreach ($aiIdPers as $iIdPers)
 {
-	if ($url_iIdPers > 0 && $url_iIdPers != $iIdPers)
-		continue;
-	
-	$iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,array(STATUT_RES_SOUMISE,STATUT_RES_APPROF,STATUT_RES_ACCEPTEE));
-	
-	// Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
-	// si celui-ci n'a pas soumis des documents
-	if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
-		break;
+    if ($url_iIdPers > 0 && $url_iIdPers != $iIdPers)
+        continue;
+    
+    $iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,array(STATUT_RES_SOUMISE,STATUT_RES_APPROF,STATUT_RES_ACCEPTEE));
+    
+    // Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
+    // si celui-ci n'a pas soumis des documents
+    // [EDIT] il faut quand même afficher qu'il n'y a pas de document trouvés ainsi que la consigne
+//    if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
+//        break;
 
-	// Si l'utilisateur est un visiteur, il ne peut voir les travaux d�pos�s.
-	if ($iMonIdPers == 0)
-		break;
+    // Si l'utilisateur est un visiteur, il ne peut voir les travaux d�pos�s.
+    if ($iMonIdPers == 0)
+        break;
 
-	if (empty($sListeTravauxSoumis))
-	{
-		// Ajouter une nouvelle liste de formulaires
-		$oBlocFormulaire->nextLoop();
-		
-		$oBlocFormulaire->remplacer("{formulaire->element}",$sSetTravauxSoumis);
-		
-		$oBlocFormulaire->remplacer("{onglet}",$sSetOnglet);
-		$oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
-		
-		$sVarListeDocuments = $oBlocFormulaire->defVariable("VAR_LISTE_DOCUMENTS");
-		$sVarLigneDocument = $oBlocFormulaire->defVariable("VAR_LIGNE_DOCUMENT");
-		$asVarBoutonEvaluer = $oBlocFormulaire->defVariable("VAR_BOUTON_EVALUER",TRUE);
-		$sVarPasDocumentTrouve = $oBlocFormulaire->defVariable("VAR_PAS_DOCUMENT_TROUVE");
-		$asVarConsignes = $oBlocFormulaire->defVariable("VAR_CONSIGNE",TRUE);
-		$asVarFormulaireEvaluer = $oBlocFormulaire->defVariable("VAR_FORMULAIRE_EVALUATION",TRUE);
-		$sVarButonSelectionnerFormulaire = $oBlocFormulaire->defVariable("VAR_BOUTON_SELECTIONNER_FORMULAIRE");
-	}
-	
-	if ($bPeutEvaluerFormulaires)
-	{
-		$oPersonne = new CPersonne($oProjet->oBdd,$iIdPers);
-		$amRemplacer = array(
-			"id_pers_{$iIdPers}"
-			, $asTplGlobale[($oPersonne->retSexe() == "F" ? "personne->sexe->f" : "personne->sexe->m")]
-			, emb_htmlentities($oPersonne->retNomComplet()).($iIdPers == $iMonIdPers ? $asTplGlobale["icone->favori"] : NULL)
-			, emb_htmlentities($oPersonne->retPseudo())
-			, $asTplGlobale[(strlen($oPersonne->retEmail()) ? "mail->actif" : "mail->passif")]
-			, "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$oPersonne->retId()."&select=".$oPersonne->retId()."&typeCourriel=courriel-Activit&eacute;%20en%20ligne"
-		);
-		
-		$sListeTravauxSoumis .= str_replace($asInfosPersonne,$amRemplacer,$asTplGlobale["personne_infos"]);
-	}
-	
-	$sListeDocuments = NULL;
+    if (empty($sListeTravauxSoumis))
+    {
+        // Ajouter une nouvelle liste de formulaires
 
-	if ($iNbrFormulairesCompletes > 0)
-	{
-		$sBoutonEvaluer = NULL;
-		
-		foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
-		{
-			$iIdFCSA   = $oFormulaireComplete->retIdFCSA();
-			$iStatutFC = $oFormulaireComplete->retStatut();
-			$iIdFC     = $oFormulaireComplete->retId();
-			
-			// Initialiser l'auteur du formulaire
-			$oFormulaireComplete->initAuteur();
+//        $oBlocFormulaire->nextLoop();
 
-			// Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
-			// il faut que la personne est un tuteur ou que l'étudiant a dans sa
-			// liste un document qui a été évalué par son tuteur
-			if (empty($sBoutonEvaluer) &&
-				($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
-				$sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
+//        $oBlocFormulaire->remplacer("{formulaire->element}",$sSetTravauxSoumis);
+        $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}",$sSetTravauxSoumis);
 
-			// Liste des éléments à remplacer
-			$amRemplacer = array(
-				  ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC ? $sVarButonSelectionnerFormulaire : "&nbsp;")
-				, $oFormulaireComplete->retTitre()
-				, $oFormulaireComplete->oAuteur->retNomComplet()
-				, $oFormulaireComplete->retDate()
-				, $asVarFormulaireEvaluer[$iStatutFC]
-				, "return formulaire('?idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}','winFormulaire{$iIdFC}')"
-				, "idFCSousActiv", $iIdFCSA);
-			
-			$sListeDocuments .= str_replace($asFormationComplete,$amRemplacer,$sVarLigneDocument);
-		}
-		
-		$sListeTravauxSoumis .= $sVarListeDocuments;
-		$iStatutFormation = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retStatut() : 0);
-		$sListeTravauxSoumis = str_replace("{evaluer->bouton}",(!$bPeutModifierArchive && $iStatutFormation == 4) ? "" : $sBoutonEvaluer,$sListeTravauxSoumis);
-		$sListeTravauxSoumis = str_replace("{liste_documents}",$sListeDocuments,$sListeTravauxSoumis);
-	}
-	else
-		$sListeTravauxSoumis .= $sVarPasDocumentTrouve;
-	
-	$sListeTravauxSoumis = str_replace("{personne->id}",$iIdPers,$sListeTravauxSoumis);
-	
-	if ($url_iIdPers > 0 && $url_iIdPers == $iIdPers)
-		break;
+//        $oBlocFormulaire->remplacer("{onglet}",$sSetOnglet);
+//        $oBlocFormulaire->remplacer("{onglet->titre}",$oBlocFormulaire->defVariable("VAR_TITRE"));
+//        $oBlocFormulaire->remplacer("{titreTravauxFinis}",$oBlocFormulaire->defVariable("VAR_TITRE"));
+        $oBlocFormulaire->defVariable("VAR_TITRE");
+
+        $sVarListeDocuments = $oBlocFormulaire->defVariable("VAR_LISTE_DOCUMENTS");
+        $sVarLigneDocument = $oBlocFormulaire->defVariable("VAR_LIGNE_DOCUMENT");
+        $asVarBoutonEvaluer = $oBlocFormulaire->defVariable("VAR_BOUTON_EVALUER",TRUE);
+        $sVarPasDocumentTrouve = $oBlocFormulaire->defVariable("VAR_PAS_DOCUMENT_TROUVE");
+        $asVarConsignes = $oBlocFormulaire->defVariable("VAR_CONSIGNE",TRUE);
+        $asVarConsigneGlobale = $oBlocFormulaire->defVariable("VAR_CONSIGNE_GLOBALE");
+        $asVarFormulaireEvaluer = $oBlocFormulaire->defVariable("VAR_FORMULAIRE_EVALUATION",TRUE);
+        $sVarButonSelectionnerFormulaire = $oBlocFormulaire->defVariable("VAR_BOUTON_SELECTIONNER_FORMULAIRE");
+    }
+
+    if ($bPeutEvaluerFormulaires)
+    {
+        $oPersonne = new CPersonne($oProjet->oBdd,$iIdPers);
+        $amRemplacer = array(
+            "id_pers_{$iIdPers}"
+            , $asTplGlobale[($oPersonne->retSexe() == "F" ? "personne->sexe->f" : "personne->sexe->m")]
+            , emb_htmlentities($oPersonne->retNomComplet()).($iIdPers == $iMonIdPers ? $asTplGlobale["icone->favori"] : NULL)
+            , emb_htmlentities($oPersonne->retPseudo())
+            , $asTplGlobale[(strlen($oPersonne->retEmail()) ? "mail->actif" : "mail->passif")]
+            , "?idStatuts=".STATUT_PERS_TUTEUR."&idPers=".$oPersonne->retId()."&select=".$oPersonne->retId()."&typeCourriel=courriel-Activit&eacute;%20en%20ligne"
+        );
+        
+        $sListeTravauxSoumis .= str_replace($asInfosPersonne,$amRemplacer,$asTplGlobale["personne_infos"]);
+    }
+
+    $sListeDocuments = NULL;
+
+    if ($iNbrFormulairesCompletes > 0)
+    {
+        $sBoutonEvaluer = NULL;
+
+        foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
+        {
+            $iIdFCSA   = $oFormulaireComplete->retIdFCSA();
+            $iStatutFC = $oFormulaireComplete->retStatut();
+            $iIdFC     = $oFormulaireComplete->retId();
+
+            if ($url_iIdFC == $iIdFC)
+                $s_gIntituleLien = "test";
+
+            if ($sAffichageFormulaire != "inline")
+            {
+                $sAOnclick = "return formulaire('?idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}','winFormulaire')";
+                $sAHref = "javascript: void(0);";
+                $sATarget = "";
+            }
+            else
+            {
+                $sAOnclick = "";
+                $sAHref = dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline";
+                $sATarget = "Principal";
+            }
+
+            // Initialiser l'auteur du formulaire
+            $oFormulaireComplete->initAuteur();
+
+            // Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
+            // il faut que la personne est un tuteur ou que l'étudiant a dans sa
+            // liste un document qui a été évalué par son tuteur
+            if (empty($sBoutonEvaluer) &&
+                ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
+                $sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
+
+            // Liste des éléments à remplacer
+            $amRemplacer = array(
+//                (($bPeutEvaluerFormulaires || (STATUT_RES_SOUMISE != $iStatutFC && $sAffichageFormulaire != "inline")) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
+                (($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
+                , $oFormulaireComplete->retTitre()
+                , $oFormulaireComplete->oAuteur->retNomComplet()
+                , $oFormulaireComplete->retDate()
+                , $asVarFormulaireEvaluer[$iStatutFC]
+//                , "return formulaire('?idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}','winFormulaire{$iIdFC}')"
+                , $sAOnclick
+                , $sAHref
+                , $sATarget
+                , "idFCSousActiv"
+                , $iIdFCSA
+//                , $sBoutonEvaluer);
+                );
+            
+            $sListeDocuments .= str_replace($asFormationComplete,$amRemplacer,$sVarLigneDocument);
+        }
+
+        $sListeTravauxSoumis .= $sVarListeDocuments;
+        $iStatutFormation = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retStatut() : 0);
+        $sListeTravauxSoumis = str_replace("{evaluer->bouton}",(!$bPeutModifierArchive && $iStatutFormation == 4) ? "" : $sBoutonEvaluer,$sListeTravauxSoumis);
+        $sListeTravauxSoumis = str_replace("{liste_documents}",$sListeDocuments,$sListeTravauxSoumis);
+    }
+    else
+        $sListeTravauxSoumis .= $sVarPasDocumentTrouve;
+
+    $sListeTravauxSoumis = str_replace("{personne->id}",$iIdPers,$sListeTravauxSoumis);
+
+    if ($url_iIdPers > 0 && $url_iIdPers == $iIdPers)
+        break;
 }
 
 if (isset($sListeTravauxSoumis))
-	$oBlocFormulaire->remplacer("{onglet->texte}",$sListeTravauxSoumis
-		.(isset($iIdFC) && $iIdFC > 0 ? $asVarConsignes[$bPeutEvaluerFormulaires] : NULL));
+{
+//    $oBlocFormulaire->remplacer("{onglet->texte}",$sListeTravauxSoumis
+    $oBlocFormulaire->remplacer("{onglet}", $sListeTravauxSoumis);
+    $oBlocFormulaire->remplacer("{consigne}",$asVarConsigneGlobale . (isset($iIdFC) && $iIdFC > 0 ? $asVarConsignes[$bPeutEvaluerFormulaires] : NULL));
+}
 
 unset($sSetTravauxSoumis,$sListeTravauxSoumis);
-// }}}
+// fin Travaux soumis }}}
 
 $oBlocFormulaire->afficher();
+
+if ($sAffichageFormulaire == "inline")
+{
+    $oBlocFormulaireInline->afficher();
+    include("modifier_formulaire.php");
+}
+else
+    $oBlocFormulaireInline->effacer();
 
 $oTpl->afficher();
 
