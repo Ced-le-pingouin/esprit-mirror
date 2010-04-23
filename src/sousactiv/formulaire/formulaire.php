@@ -281,6 +281,8 @@ $asFormationComplete = array("{document->selectionner}","{document->titre}","{do
 
 foreach ($aiIdPers as $iIdPers)
 {
+    $oBlocFormulaire->remplacer("{formulaire->aucunEtudiant}", NULL);
+
     if ($url_iIdPers > 0 && $url_iIdPers != $iIdPers)
         continue;
     
@@ -359,7 +361,7 @@ foreach ($aiIdPers as $iIdPers)
             else
             {
                 $sAOnclick = "";
-                $sAHref = dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline";
+                $sAHref = dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline".$iIdFC;
                 $sATarget = "Principal";
             }
 
@@ -406,6 +408,11 @@ foreach ($aiIdPers as $iIdPers)
     if ($url_iIdPers > 0 && $url_iIdPers == $iIdPers)
         break;
 }
+if (empty($aiIdPers))
+{
+    $oBlocFormulaire->remplacer("{formulaire->aucunEtudiant}", "Aucun étudiant inscrit à ce cours");
+    $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", NULL);
+}
 
 if (isset($sListeTravauxSoumis))
 {
@@ -421,6 +428,7 @@ $oBlocFormulaire->afficher();
 
 if ($sAffichageFormulaire == "inline")
 {
+    $url_iIdFC != 0 ? $oTpl->remplacer("{document->titre}", $url_iIdFC) : $oTpl->remplacer("{document->titre}", NULL);
     $oBlocFormulaireInline->afficher();
     include("modifier_formulaire.php");
 }

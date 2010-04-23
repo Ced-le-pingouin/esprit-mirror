@@ -12,8 +12,8 @@
 <script type="text/javascript" language="javascript" src="formulaire.js"></script>
 </head>
 <body>
-<form>
 [BLOCK_FORMULAIRE+]
+<form>
 {formulaire->listeIcones}
 {formulaire->description}
 
@@ -37,7 +37,9 @@
             <td colspan="4">
                 <p id="docbase">{formulaire->docBase}</p>
                 <p id="encours">{formulaire->travauxEnCours}</p>
+                <hr class="hr1">
                 <p>{formulaire->travauxSoumis}</p>
+                <p style="text-align: center; font-size: 7pt;">{formulaire->aucunEtudiant}</p>
             </td>
             <td style="background-image: url('theme://onglet/onglet_tab_rect-2x3.gif'); background-repeat: repeat-y;">&nbsp;</td>
         </tr>
@@ -53,14 +55,15 @@
 <tr><td align="center">{formulaire->element}</td></tr>
 <tr><td>&nbsp;</td></tr>
 </table>-->
-[BLOCK_FORMULAIRE-]
+
 </form>
-<a name="FormulaireInline" ></a>
+<a name="FormulaireInline{document->titre}"></a>
+[BLOCK_FORMULAIRE-]
 [BLOCK_FORM_INLINE+]
 
 <div id="formulaire_inline">
 <p id="titre_formulaire_inline">{Nom_etudiant}{Info_ael}</p>
-<p>{intitule_activite}</p>
+<!-- <p>{document->titre}</p> -->
 <!--
 <table {sEncadrer} align="center" class="titre">
 <tr>
@@ -195,7 +198,7 @@ D&eacute;marrer une activit&eacute;&nbsp;? &gt;&gt; Cliquez sur l'intitul&eacute
 &nbsp;&nbsp;<img src="theme://formulaire/res_a_poursuivre.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: &agrave; poursuivre)###
 &nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: activit&eacute; termin&eacute;e)
 [VAR_FORMULAIRE_EVALUATION-]
-<hr class="hr1">
+<!-- <hr class="hr1"> -->
 <!-- <p style="color:#485EA5;font-size:8pt;">{titreTravauxFinis}</p> -->
 <div style="">{onglet}<span class="formulaire_consigne">{consigne}</span></div>
 <!-- Travaux soumis ]]-->
