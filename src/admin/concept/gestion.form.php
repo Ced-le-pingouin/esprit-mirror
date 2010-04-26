@@ -54,7 +54,7 @@ else if ($act == "modifier")
 		return;
 	
     // on empêche un utilisateur de changer le numéro d'ordre
-    if ($g_bModifierNumeroOrdre)
+    if ($g_bModifierNumeroOrdreFormation)
         $oFormation->redistNumsOrdre($_POST["ordre_formation"]);
 	$oFormation->defNom($_POST["nom_formation"]);
 	$oFormation->defdescr(enleverJavaScript($_POST["descr_formation"]));

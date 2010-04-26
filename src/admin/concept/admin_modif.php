@@ -48,7 +48,7 @@ $type = $params = $rafraichir = $act = NULL;
 
 $g_iIdUtilisateur = (is_object($oProjet->oUtilisateur) ? $oProjet->oUtilisateur->retId() : 0);
 
-$g_bModifier = $g_bModifierStatut = $g_bModifierNumeroOrdre = $g_bAutoriserVisiteur = FALSE;
+$g_bModifier = $g_bModifierStatut = $g_bModifierNumeroOrdreFormation = $g_bAutoriserVisiteur = FALSE;
 
 if (!empty($_POST))
 {
@@ -71,7 +71,7 @@ $g_sParams = $params;
 
 $g_iFormation = $g_iModule = $g_iRubrique = $g_iUnite = $g_iActiv = $g_iSousActiv = 0;
 
-$g_bModifierNumeroOrdre  = $oProjet->verifPermission("PERM_MOD_SESSION_ORDRE_FORMATION");
+$g_bModifierNumeroOrdreFormation  = $oProjet->verifPermission("PERM_MOD_SESSION_ORDRE_FORMATION");
 $g_bAutoriserVisiteur    = $oProjet->verifPermission("PERM_SESSION_AUTH_VISITEUR");
 
 if (!empty($params))
@@ -277,7 +277,18 @@ function selectionnerModalAff ($v_aoModes,$v_iModeActuel=NULL,$v_sNomSelectHTML=
 function selectionnerNumeroOrdre ($v_sNomSelect,$v_iNbrNumOrdre,$v_iNumOrdreCourant,$v_iNumDepart=1)
 {
 	global $g_bModifier;
-	global $g_bModifierNumeroOrdre;
+	global $g_bModifierNumeroOrdreFormation;
+	global $g_iType;
+	$bModifierOrdre = false;
+
+if ($g_bModifierNumeroOrdreFormation && $g_iType == TYPE_FORMATION)
+{
+    $bModifierOrdre = true;
+}
+if ($g_iType != TYPE_FORMATION)
+{
+    $bModifierOrdre = true;
+}
 
 	echo "<!-- Numéro d'ordre -->\n\n"
 		."<tr>\n"
@@ -285,7 +296,7 @@ function selectionnerNumeroOrdre ($v_sNomSelect,$v_iNbrNumOrdre,$v_iNumOrdreCour
 		."<td>\n";
 	
 	echo "<select name=\"{$v_sNomSelect}\""
-		.(($g_bModifier && $g_bModifierNumeroOrdre) ? NULL : " disabled")
+		.(($g_bModifier && $bModifierOrdre) ? NULL : " disabled")
 		.">\n";
 	
 	for ($i=$v_iNumDepart; $i<=$v_iNbrNumOrdre; $i++)
