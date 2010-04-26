@@ -10,6 +10,21 @@
 <script type="text/javascript" language="javascript" src="javascript://sous_activ.js"></script>
 <script type="text/javascript" language="javascript" src="commun://js/formulaire.js"></script>
 <script type="text/javascript" language="javascript" src="formulaire.js"></script>
+<style type="text/css">
+<!--
+.InterER
+{
+    margin-top: {iInterEnonRep}px;
+}
+.InterObj
+{
+    margin-top: {iInterElem}px;
+}
+.feedback, .feedback_titre {
+display:none;
+}
+-->
+</style>
 </head>
 <body>
 [BLOCK_FORMULAIRE+]

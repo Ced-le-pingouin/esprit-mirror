@@ -120,13 +120,11 @@ if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
 		}
 	}
 }
-//var_dump('test1');
+
 if(!$bFermer)
 {
-//var_dump('test2');
 	if($iIdFC) // si l'AEL à déjà été complété
 	{
-//var_dump('test3');
 		$oBlockEvalEtat->afficher();
 		$oFormulaireComplete = new CFormulaireComplete($oProjet->oBdd,$iIdFC);
 		$v_iIdFormulaire = $oFormulaireComplete->retIdFormul();
@@ -137,8 +135,6 @@ if(!$bFermer)
 		$sInfoAEL = " (version ".$oFormulaireComplete->retTitre().")";
 		if(isset($iIdSousActiv))
 		{
-//var_dump('test4');
-//var_dump($oFormulaire->retNbreObjetFormulaireNonAutoCorrige());
 			$bFullAutoCorr = false;
 			$oFormulaireComplete_SousActiv = new CFormulaireComplete_SousActiv($oProjet->oBdd);
 			$oFormulaireComplete_SousActiv->initParFcEtSsActiv($iIdFC,$iIdSousActiv);
