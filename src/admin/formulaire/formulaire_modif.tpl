@@ -410,7 +410,7 @@ document.forms[v_sForm].submit();
 	<label for="idtexte">{sMessageErreur1} Texte :</label>
 	<span>[<a onfocus="blur()" href="javascript: editeur('formmodif','Enonce','Exemple'); void(0);">Editeur</a>]</span>
 	</p>
-	<textarea name="Texte" id="idtexte" rows="8" cols="70">{TexteMPT}</textarea>
+	<textarea name="Enonce" id="idtexte" rows="8" cols="70">{TexteMPT}</textarea>
 	</fieldset>
 <input type="hidden" name="envoyer" value="1" />
 </form>
