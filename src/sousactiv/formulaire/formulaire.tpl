@@ -72,7 +72,7 @@ display:none;
 </table>-->
 
 </form>
-<a name="FormulaireInline{document->titre}"></a>
+<a name="FormulaireInline"></a>
 [BLOCK_FORMULAIRE-]
 [BLOCK_FORM_INLINE+]
 
@@ -191,7 +191,7 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
     <span style="display:inline-block;vertical-align:top;width:275px;">
         <a href="{a->href}" onclick="{a->onclick}" onfocus="blur()" target="{a->target}"><b>Version&nbsp;{document->titre}</b> soumis pour &eacute;valuation le {document->date}</a>
     </span>
-    <span style="display:inline-block;font-size: 8pt;width:200px;">{document->evalue}</span>
+    <span style="display:inline-block;font-size: 8pt;vertical-align:top;width:200px;">{document->evalue}</span>
     <span style="display:inline-block;font-size: 8pt;">{evaluer->bouton}</span>
 </li>
 [VAR_LIGNE_DOCUMENT-]

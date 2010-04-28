@@ -119,6 +119,16 @@ if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
 					break;
 		}
 	}
+
+    /*
+     * dans la cas d'un formulaire affiché dans la page, on recharge la page juste après la validation du formulaire avec le paramètre $iIdFC
+     * Sinon, dans la liste des activités soumises, il manque celle que l'on vient de faire :
+     *     l'insertion dans la DB se fait après l'affichage de la page
+     */
+    if ($sAffichageFormulaire == "inline")
+    {
+        header('Location:' . dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline");
+    }
 }
 
 if(!$bFermer)

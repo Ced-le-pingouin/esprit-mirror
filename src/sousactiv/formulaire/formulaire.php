@@ -361,7 +361,7 @@ foreach ($aiIdPers as $iIdPers)
             else
             {
                 $sAOnclick = "";
-                $sAHref = dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline".$iIdFC;
+                $sAHref = dir_sousactiv() . "formulaire/formulaire.php?idActiv={$url_iIdActiv}&amp;idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}#FormulaireInline";
                 $sATarget = "Principal";
             }
 
@@ -428,7 +428,7 @@ $oBlocFormulaire->afficher();
 
 if ($sAffichageFormulaire == "inline")
 {
-    $url_iIdFC != 0 ? $oTpl->remplacer("{document->titre}", $url_iIdFC) : $oTpl->remplacer("{document->titre}", NULL);
+//    $url_iIdFC != 0 ? $oTpl->remplacer("{document->titre}", $url_iIdFC) : $oTpl->remplacer("{document->titre}", NULL);
     $oBlocFormulaireInline->afficher();
     include("modifier_formulaire.php");
 }
