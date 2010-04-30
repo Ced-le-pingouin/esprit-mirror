@@ -53,8 +53,9 @@ $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 
 /*
  * On vérifie si le formulaire doit être affiché dans la page ou en popup
+ * par défaut : popup (comportement habituel)
  */
-$sAffichageFormulaire = "inline";
+$sAffichageFormulaire = "popup";
 
 if ($oProjet->retReelStatutUtilisateur() == STATUT_PERS_ETUDIANT)
     $sAffichageFormulaire = $oSousActiv->retAffichageEtudiant();
