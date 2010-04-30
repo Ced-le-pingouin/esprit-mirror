@@ -217,6 +217,12 @@ display:none;
 float:top;
 visibility:hidden;
 }
+
+.sousMenuDroite
+{
+color:#6F6957;
+text-align:right;
+}
 /* ----- */
 
 /* -- sousactive inv -- */

@@ -336,26 +336,7 @@ unset($oTpl,$oBloc_Chat,$oSet_LienChatActif,$oSet_LienChatPassif);
 <legend>&nbsp;Activités en ligne&nbsp;</legend>
 <table border="0" cellspacing="4" cellpadding="0">
 <tr>
-<td><div class="intitule">Modalit&eacute;&nbsp;:&nbsp;</div></td>
-<td><?php echo selectionner_modalite($oProjet->oSousActivCourante->retListeModalites(),"MODALITE[".LIEN_FORMULAIRE."]",$oProjet->oSousActivCourante->retModalite()); ?></td>
-</tr>
-<tr>
-<td><div class="intitule">D&eacute;roulement&nbsp;:&nbsp;</div></td>
-<td><?php echo selectionner_modalite($oProjet->oSousActivCourante->retListeDeroulements(),"DEROULEMENT[".LIEN_FORMULAIRE."]",$url_iMode); ?></td>
-</tr>
-
-<tr>
-<td><div class="intitule">Modalit&eacute; d'affichage &eacute;tudiant</div></td>
-<td>
-<select name="ETUDIANT[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
-<option value="inline" <?php echo ($affichageEtudiant == "inline" ? " selected" : NULL); ?>>Zone principale</option>
-<option value="popup" <?php echo ($affichageEtudiant == "popup" ? " selected" : NULL); ?>>Nouvelle fen&ecirc;tre</option>
-</select>
-</td>
-</tr>
-
-<tr>
-<td><div class="intitule">Questionnaire de base&nbsp;:&nbsp;</div></td>
+<td><div class="intitule">Activité en ligne&nbsp;:&nbsp;</div></td>
 <td>
 <select name="DONNEES[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
 <option value="">Pas de questionnaire actuellement</option>
@@ -365,22 +346,66 @@ $oFormulaire = new CFormulaire($oProjet->oBdd);
 // retourne les formulaires de l'utilisateur, et ceux dont le statut est 'public'
 $aoFormulairesVisibles = $oFormulaire->retListeFormulairesVisibles($g_iIdUtilisateur, 'public', NULL); // , 1);
 foreach($aoFormulairesVisibles as $oFormulaireCourant)
-	echo "<option value=\"".$oFormulaireCourant->retId()."\""
-	  .(($oFormulaireCourant->retId() == $sDonnee) ? " class=\"selected\" selected" : NULL)
-	  .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
+    echo "<option value=\"".$oFormulaireCourant->retId()."\""
+      .(($oFormulaireCourant->retId() == $sDonnee) ? " class=\"selected\" selected" : NULL)
+      .">".convertBaliseMetaVersHtml($oFormulaireCourant->retTitre())."</option>\n";
 
 if (empty($sIntitule))
-	$sIntituleFormulaire = emb_htmlentities("Activité de base");
+    $sIntituleFormulaire = emb_htmlentities("Activité de base");
 else
-	$sIntituleFormulaire = $sIntitule;
+    $sIntituleFormulaire = $sIntitule;
 ?>
 </select>
 </td>
 </tr>
 <tr>
-<td><div class="intitule">Intitulé&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
+<td><div class="intitule">Intitulé&nbsp;affich&eacute;&nbsp;du&nbsp;lien&nbsp;:&nbsp;</div></td>
 <td><input type="text" size="50" name="INTITULE[<?php echo LIEN_FORMULAIRE; ?>]" value="<?php echo $sIntituleFormulaire; ?>" <?php echo ($g_bModifier ? NULL : " disabled"); ?>></td>
 </tr>
+<!--
+<tr>
+<td><div class="intitule">Modalit&eacute;&nbsp;:&nbsp;</div></td>
+<td><?php echo selectionner_modalite($oProjet->oSousActivCourante->retListeModalites(),"MODALITE[".LIEN_FORMULAIRE."]",$oProjet->oSousActivCourante->retModalite()); ?></td>
+</tr>
+<tr>
+<td><div class="intitule">D&eacute;roulement&nbsp;:&nbsp;</div></td>
+<td><?php echo selectionner_modalite($oProjet->oSousActivCourante->retListeDeroulements(),"DEROULEMENT[".LIEN_FORMULAIRE."]",$url_iMode); ?></td>
+</tr>
+-->
+
+<tr>
+<td><div class="intitule">Modalit&eacute; d'affichage&nbsp;</div></td><td>&nbsp;</td>
+</tr>
+<tr>
+<td><div class="sousMenuDroite">Version &laquo;&eacute;tudiant&raquo; : </div></td>
+<td>
+<select name="ETUDIANT[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<option value="inline" <?php echo ($affichageEtudiant == "inline" ? " selected" : NULL); ?>>Zone principale</option>
+<option value="popup" <?php echo ($affichageEtudiant == "popup" ? " selected" : NULL); ?>>Nouvelle fen&ecirc;tre</option>
+</select>
+</td>
+</tr>
+<tr>
+<td><div class="sousMenuDroite">Version &laquo;tuteur&raquo; : </div></td>
+<td>
+<select name="TUTEUR[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<option value="popup" "selected">Nouvelle fen&ecirc;tre</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td><div class="intitule">Mode d'&eacute;valuation : </div></td>
+<td>
+<select name="EVALUATIONAEL[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<option value="evalAutoEtTuteur" "selected">Auto & tuteur</option>
+<option value="evalAuto">Auto</option>
+<option value="evalTuteur">Tuteur</option>
+<option value="sansEval">Sans</option>
+</select>
+</td>
+</tr>
+
 <?php entrerDescription(("DESCRIPTION[".LIEN_FORMULAIRE."]"),$descr,"Consignes/texte initial"); ?>
 </table>
 </fieldset>
