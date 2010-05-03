@@ -397,7 +397,7 @@ else
 <tr>
 <td><div class="intitule">Mode d'&eacute;valuation : </div></td>
 <td>
-<select name="EVALUATIONAEL[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo ($g_bModifier ? NULL : " disabled"); ?>>
+<select name="EVALUATIONAEL[<?php echo LIEN_FORMULAIRE; ?>]" <?php echo "disabled" // pour le moment, on empêche les modifications echo ($g_bModifier ? NULL : " disabled"); ?>>
 <option value="evalAutoEtTuteur" "selected">Auto & tuteur</option>
 <option value="evalAuto">Auto</option>
 <option value="evalTuteur">Tuteur</option>

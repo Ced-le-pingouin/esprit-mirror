@@ -204,7 +204,9 @@ switch ($act)
 			case LIEN_FORMULAIRE:
 			//   ---------------
 				$url_sDonnees     = $_POST["DONNEES"][LIEN_FORMULAIRE];
-				$url_iDeroulement = (empty($_POST["DEROULEMENT"][LIEN_FORMULAIRE]) ? SOUMISSION_MANUELLE : $_POST["DEROULEMENT"][LIEN_FORMULAIRE]);
+//				$url_iDeroulement = (empty($_POST["DEROULEMENT"][LIEN_FORMULAIRE]) ? SOUMISSION_MANUELLE : $_POST["DEROULEMENT"][LIEN_FORMULAIRE]);
+// par défaut le formulaire est soumis automatiquement.
+                $url_iDeroulement = (empty($_POST["DEROULEMENT"][LIEN_FORMULAIRE]) ? SOUMISSION_AUTOMATIQUE : $_POST["DEROULEMENT"][LIEN_FORMULAIRE]);
 				$url_sIntitule    = $_POST["INTITULE"][LIEN_FORMULAIRE];
 				$url_iModalite    = $_POST["MODALITE"][LIEN_FORMULAIRE];
 				
