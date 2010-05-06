@@ -578,8 +578,7 @@ class CSousActiv
 			.", PremierePageSousActiv='0'"
 			.", IdActiv='{$v_iIdActiv}'"
 			.", OrdreSousActiv='".($this->retNombreLignes($v_iIdActiv)+1)."'"
-			.", ModaliteSousActiv='".MODALITE_IDEM_PARENT."'"
-			.", AffichageEtudiantAEL='inline'";
+			.", ModaliteSousActiv='".MODALITE_IDEM_PARENT."'";
 		$this->oBdd->executerRequete($sRequeteSql);
 		$this->iId = $this->oBdd->retDernierId();
 		$this->init();

@@ -328,7 +328,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 						$iIdReponseEtu = retReponseEntier($oProjet->oBdd,$iIdFC,$iIdObjActuel);
 					else
 						$iIdReponseEtu[0] = 0;
-					$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\">\n";
+					$sHtmlListeObjForm .= "<select name=\"$iIdObjActuel\" id=\"autocorrect\">\n";
 					$sAutoCorr = "";
 					$oPropositionReponse = new CPropositionReponse($oProjet->oBdd);
 					$aoListePropRep = $oPropositionReponse->retListePropRep($iIdObjActuel);
@@ -389,7 +389,7 @@ if($v_iIdFormulaire && !$bFermer) // s'il y a une AEL
 						$fScore += CalculerScore(1,$iNbrePropRepFausse,$iNbreRepCorrecte,$iNbreRepFausse,$oFormulaire->retMethodeCorrection());
 						$fScoreMax += 1;
 					}
-					$sHtmlListeObjForm .= "</select id=\"autocorrect\">\n".$sAutoCorr;
+					$sHtmlListeObjForm .= "</select>\n".$sAutoCorr;
 					$sHtmlListeObjForm .= convertBaliseMetaVersHtml($oQListeDeroul->retTxtApQLD())
 										."</div>\n".$sFeedback."\n";
 					break;
