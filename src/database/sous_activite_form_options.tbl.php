@@ -112,6 +112,10 @@ class CSousActivFormulOptions
         return TRUE;
     }
 
+    /** @name Fonctions de lecture des champs pour cette sous-activité */
+    //@{
+    function retId () { return (is_numeric($this->iId) ? $this->iId : 0); }
+
     /**
      * Récupère le type d'affichage pour l'étudiant.
      * par défaut en "nouvelle fenêtre"
@@ -138,6 +142,8 @@ class CSousActivFormulOptions
     }
     //@}
 
+    /** @name Fonctions de définition des champs pour cette sous-activité */
+    //@{
     /**
      * Ajoute ou met à jour le type d'affichage des Sous-Activités si celles ci sont des formulaires
      * 
