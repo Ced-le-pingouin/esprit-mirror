@@ -96,6 +96,7 @@ if (isset($act))
 		.", Activ WRITE"
 		.", SousActiv WRITE"
 		.", SousActiv_SousActiv WRITE"
+		.", SousActiv_Formulaire_Options WRITE"
 		//.", SousActiv_Glossaire WRITE"
 		.", Forum WRITE"
 		.", SujetForum WRITE"

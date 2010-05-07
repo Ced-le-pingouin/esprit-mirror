@@ -30,6 +30,7 @@
  * @author	Filippo PORCO
  */
 
+require_once(dir_database("sous_activite_form_options.tbl.php"));
 require_once(dir_database("sous_activite.tbl.php"));
 require_once(dir_database("equipe.tbl.php"));
 require_once(dir_lib("std/FichierInfo.php", TRUE));

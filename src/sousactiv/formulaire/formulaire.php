@@ -42,7 +42,7 @@ $oProjet->initModuleCourant();
 $url_iIdActiv     = (empty($_GET["idActiv"]) ? 0 : $_GET["idActiv"]);
 $url_iIdSousActiv = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
 $url_iIdFC        = (empty($_GET["idFC"]) ? 0 : $_GET["idFC"]);
-//var_dump($url_iIdFC);
+
 // Variable url facultative
 $url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 
@@ -50,6 +50,7 @@ $url_iIdPers = (empty($_GET["idPers"]) ? 0 : $_GET["idPers"]);
 // Initialiser
 // ---------------------
 $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
+$oOptionsFormulaire = new CSousActivFormulOptions($oProjet->oBdd, $url_iIdSousActiv);
 
 /*
  * On vérifie si le formulaire doit être affiché dans la page ou en popup
@@ -58,7 +59,7 @@ $oSousActiv = new CSousActiv($oProjet->oBdd,$url_iIdSousActiv);
 $sAffichageFormulaire = "popup";
 
 if ($oProjet->retReelStatutUtilisateur() == STATUT_PERS_ETUDIANT)
-    $sAffichageFormulaire = $oSousActiv->retAffichageEtudiant();
+    $sAffichageFormulaire = $oOptionsFormulaire->retAffichageEtudiant();
 else
     $sAffichageFormulaire = "popup";
 

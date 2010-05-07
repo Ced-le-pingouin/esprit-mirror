@@ -47,6 +47,7 @@ switch ($act)
 		
 	case "modifier":
 		$oSousActiv = new CSousActiv($oProjet->oBdd,$g_iSousActiv);
+		$oOptionsFormulaire = new CSousActivFormulOptions($oProjet->oBdd,$g_iSousActiv);
 		
 		if ($url_bModifierStatut)
 			$oSousActiv->defStatut($_POST["STATUT"]);
@@ -80,7 +81,7 @@ switch ($act)
 		$oSousActiv->defType($url_iTypeSousActiv);
 		$oSousActiv->defDescr(enleverJavaScript($url_sDescriptionSousActiv));
 		$oSousActiv->defPremierePage($url_bPremierePageSousActiv,$g_iRubrique);
-		$oSousActiv->defAffichageEtudiant($url_sAffichageEtudiant);
+		$oOptionsFormulaire->defAffichageEtudiant($url_sAffichageEtudiant);
 		
 		// ---------------------
 		// Sauvegarder les modifications par type

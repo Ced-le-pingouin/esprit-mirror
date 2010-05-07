@@ -1218,11 +1218,7 @@ class CSousActiv
 
 		return $iIdModalite;
 	}
-	
-	function retAffichageEtudiant()
-	{
-	    return $this->oEnregBdd->AffichageEtudiantAEL;
-	}
+
 	//@}
 
 	/** @name Fonctions de définition des champs pour cette sous-activité */
@@ -1326,11 +1322,6 @@ class CSousActiv
 
 		if ($v_bPremierePage > 0)
 			$this->mettre_a_jour("PremierePageSousActiv",1);
-	}
-	
-	function defAffichageEtudiant($v_sTypeAffichage)
-	{
-	    $this->mettre_a_jour("AffichageEtudiantAEL",$v_sTypeAffichage);
 	}
 	//@}
 

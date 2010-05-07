@@ -34,21 +34,25 @@
 
 require_once("formulaire.sousactiv.inc.php");
 require_once(dir_database("formulaire.tbl.php"));
+require_once(dir_database("sous_activite_form_options.tbl.php"));
 
 $url_iMode = (empty($_POST["mode"]) ? NULL : $_POST["mode"]);
 
 // ---------------------
 // Initialisations
 // ---------------------
+$iIdSousActivCourante = $oProjet->oSousActivCourante->retId();
 $ordre                = $oProjet->oSousActivCourante->retNumOrdre();
 $sNomSousActiv        = $oProjet->oSousActivCourante->retNom(TRUE);
 $descr                = $oProjet->oSousActivCourante->retDescr();
-$affichageEtudiant    = $oProjet->oSousActivCourante->retAffichageEtudiant();
 $dateDeb              = $oProjet->oSousActivCourante->retDateDeb();
 $dateFin              = $oProjet->oSousActivCourante->retDateFin();
 $aoModalitesAffichage = $oProjet->oSousActivCourante->retListeModes();
 $sInfoBulle           = $oProjet->oSousActivCourante->retInfoBulle();
 list($sDonnee,$url_iMode,$sIntitule) = explode(";",$oProjet->oSousActivCourante->retDonnees());
+
+$oOptionsFOrmulaire = new CSousActivFormulOptions($oProjet->oBdd, $iIdSousActivCourante);
+$affichageEtudiant    = $oOptionsFOrmulaire->retAffichageEtudiant();
 
 $amSousActiv = array();
 $amSousActiv["type"]               = $oProjet->oSousActivCourante->retType();
