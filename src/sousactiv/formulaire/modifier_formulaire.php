@@ -76,9 +76,17 @@ if(isset($_POST['idFormulaire'])) // si le formulaire est soumis
 		$oSousActiv = new CSousActiv($oProjet->oBdd, $iIdSousActiv);
 		list($sLien, $iMode, $sIntitule) = explode(";",$oSousActiv->retDonnees());
 		if ($iMode == SOUMISSION_AUTOMATIQUE)
-		{	// si full auto-corrigé, le statut sera directement ACCEPTEE
+		{
+		    /* 
+		     * si full auto-corrigé, le formulaire sera accepté mais avec le statut AUTOCORRIGEE sans commentaire (STATUT_RES_AUTOCORRIGEE_NOCOMMENT)
+             * -> correction de texte d'affichage :
+             * "(évalué : activité terminée)" devient "(activité terminée)"
+             * Un auto-corrigé n'est pas évalué, mais plutôt "commenté"
+		     */
 			if($oFormulaire->retAutoCorrection() && $oFormulaire->retNbreObjetFormulaireNonAutoCorrige()==0)
-				$oFormulaireComplete->deposerDansSousActiv($iIdSousActiv, STATUT_RES_ACCEPTEE);
+			{
+                $oFormulaireComplete->deposerDansSousActiv($iIdSousActiv, STATUT_RES_AUTOCORRIGEE_NOCOMMENT);
+			}
 			else
 				$oFormulaireComplete->deposerDansSousActiv($iIdSousActiv, STATUT_RES_SOUMISE);
 		}
@@ -154,7 +162,10 @@ if(!$bFermer)
 				$sEvalGlobale = "Evaluation globale de l'activité :";
 				$oTpl->remplacer("{txt_eval}","L'activité n'a pas encore été évaluée par votre tuteur");
 			}
-			elseif($oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_APPROF || $oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_ACCEPTEE)
+			elseif($oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_APPROF
+			         || $oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_ACCEPTEE
+			         || $oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_AUTOCORRIGEE
+			         || $oFormulaireComplete_SousActiv->retStatut() == STATUT_RES_AUTOCORRIGEE_NOCOMMENT)
 			{
 				$oFCE = new CFormulaireComplete_Evaluation($oProjet->oBdd);
 				// initialisation de la dernière évaluation

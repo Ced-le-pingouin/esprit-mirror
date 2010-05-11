@@ -33,6 +33,11 @@
 
 require_once("globals.inc.php");
 
+define("LIRE_EVALUATION", 0);
+define("AJOUTER_EVALUATION", 1);
+define("LIRE_COMMENTAIRE", 2);
+define("AJOUTER_COMMENTAIRE", 3);
+
 $oProjet = new CProjet();
 $oProjet->initModuleCourant();
 
@@ -287,14 +292,20 @@ foreach ($aiIdPers as $iIdPers)
 
     if ($url_iIdPers > 0 && $url_iIdPers != $iIdPers)
         continue;
-    
-    $iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,array(STATUT_RES_SOUMISE,STATUT_RES_APPROF,STATUT_RES_ACCEPTEE));
+
+    $iNbrFormulairesCompletes = $oSousActiv->initFormulairesCompletes($iIdPers,array(STATUT_RES_SOUMISE,STATUT_RES_APPROF,STATUT_RES_ACCEPTEE,STATUT_RES_AUTOCORRIGEE_NOCOMMENT,STATUT_RES_AUTOCORRIGEE));
     
     // Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
     // si celui-ci n'a pas soumis des documents
     // [EDIT] il faut quand même afficher qu'il n'y a pas de document trouvés ainsi que la consigne
-//    if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
-//        break;
+    $sSetPasActivite = $oTpl->defVariable("SET_PAS_ACTIVITE_REALISEE");
+    if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
+    {
+        $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", $sSetPasActivite);
+        break;
+    }
+    unset($sSetPasActivite);
+
 
     // Si l'utilisateur est un visiteur, il ne peut voir les travaux d�pos�s.
     if ($iMonIdPers == 0)
@@ -344,12 +355,16 @@ foreach ($aiIdPers as $iIdPers)
     if ($iNbrFormulairesCompletes > 0)
     {
         $sBoutonEvaluer = NULL;
+        $iPlusHautStatut = 0;
 
         foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
         {
             $iIdFCSA   = $oFormulaireComplete->retIdFCSA();
             $iStatutFC = $oFormulaireComplete->retStatut();
             $iIdFC     = $oFormulaireComplete->retId();
+
+            // on récupère le statut le plus élevé
+            if ($iStatutFC > $iPlusHautStatut) $iPlusHautStatut = $iStatutFC;
 
             if ($url_iIdFC == $iIdFC)
                 $s_gIntituleLien = "test";
@@ -370,22 +385,16 @@ foreach ($aiIdPers as $iIdPers)
             // Initialiser l'auteur du formulaire
             $oFormulaireComplete->initAuteur();
 
-            // Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
-            // il faut que la personne est un tuteur ou que l'étudiant a dans sa
-            // liste un document qui a été évalué par son tuteur
-            if (empty($sBoutonEvaluer) &&
-                ($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC))
-                $sBoutonEvaluer = $asVarBoutonEvaluer[$bPeutEvaluerFormulaires];
-
+/*
+ * @TODO : enlever l'affichage des puces pour les formulaires non commentés
+ */
             // Liste des éléments à remplacer
             $amRemplacer = array(
-//                (($bPeutEvaluerFormulaires || (STATUT_RES_SOUMISE != $iStatutFC && $sAffichageFormulaire != "inline")) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
-                (($bPeutEvaluerFormulaires || STATUT_RES_SOUMISE != $iStatutFC) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
+                (($bPeutEvaluerFormulaires || (STATUT_RES_SOUMISE != $iStatutFC && STATUT_RES_AUTOCORRIGEE_NOCOMMENT != $iStatutFC)) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
                 , $oFormulaireComplete->retTitre()
                 , $oFormulaireComplete->oAuteur->retNomComplet()
                 , $oFormulaireComplete->retDate()
                 , $asVarFormulaireEvaluer[$iStatutFC]
-//                , "return formulaire('?idSousActiv={$url_iIdSousActiv}&idFC={$iIdFC}','winFormulaire{$iIdFC}')"
                 , $sAOnclick
                 , $sAHref
                 , $sATarget
@@ -393,13 +402,35 @@ foreach ($aiIdPers as $iIdPers)
                 , $iIdFCSA
 //                , $sBoutonEvaluer);
                 );
-            
             $sListeDocuments .= str_replace($asFormationComplete,$amRemplacer,$sVarLigneDocument);
         }
 
+            // Pour pouvoir afficher le bouton "Evaluer/Obtenir l'évaluation"
+            // il faut que la personne est un tuteur ou que l'étudiant a dans sa
+            // liste un document qui a été évalué par son tuteur
+            // On ajoute le texte "commenter" ou "obtenir un commentaire" pour les formulaires autocorrigés
+            if (empty($sBoutonEvaluer) &&
+                ($bPeutEvaluerFormulaires || $iPlusHautStatut != STATUT_RES_SOUMISE))
+            {
+                switch($iPlusHautStatut)
+                {
+                    case STATUT_RES_AUTOCORRIGEE:
+                    case STATUT_RES_AUTOCORRIGEE_NOCOMMENT:
+                        $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_COMMENTAIRE] : $asVarBoutonEvaluer[LIRE_COMMENTAIRE];
+                        break;
+                    case STATUT_RES_ACCEPTEE:
+                    case STATUT_RES_APPROF:
+                        $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_EVALUATION] : $asVarBoutonEvaluer[LIRE_EVALUATION];
+                        break;
+                    default:
+                        $sBoutonEvaluer = "&nbsp;";
+                        break;
+                }
+            }
+
         $sListeTravauxSoumis .= $sVarListeDocuments;
         $iStatutFormation = (is_object($oProjet->oFormationCourante) ? $oProjet->oFormationCourante->retStatut() : 0);
-        $sListeTravauxSoumis = str_replace("{evaluer->bouton}",(!$bPeutModifierArchive && $iStatutFormation == 4) ? "" : $sBoutonEvaluer,$sListeTravauxSoumis);
+        $sListeTravauxSoumis = str_replace("{evaluer->bouton}",(!$bPeutModifierArchive && $iStatutFormation ==STATUT_ARCHIVE) ? "" : $sBoutonEvaluer,$sListeTravauxSoumis);
         $sListeTravauxSoumis = str_replace("{liste_documents}",$sListeDocuments,$sListeTravauxSoumis);
     }
     else

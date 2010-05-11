@@ -233,6 +233,7 @@ class CFormulaireComplete
 			case STATUT_RES_SOUMISE: return "soumis";
 			case STATUT_RES_APPROF: return "à approfondir";
 			case STATUT_RES_ACCEPTEE: return "accepter";
+			case STATUT_RES_AUTOCORRIGEE: return "commentaire";
 		}
 	}
 	

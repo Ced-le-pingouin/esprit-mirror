@@ -46,6 +46,9 @@ define("STATUT_RES_ACCEPTEE",5);
 define("STATUT_RES_EVALUEE",6);			// STATUT_RES_ACCEPTEE + STATUT_RES_APPROF
 define("STATUT_RES_TRANSFERE",7);		// Le fichier a été transféré vers un autre collecticiel/formulaire
 
+define("STATUT_RES_AUTOCORRIGEE_NOCOMMENT", 8);   // formulaires à questions fermées, aucun commentaire
+define("STATUT_RES_AUTOCORRIGEE", 9);   // formulaires à questions fermées, avec commentaires
+
 define("TRANSFERT_FICHIERS",255);		// STATUT_RES_ACCEPTEE + STATUT_RES_TRANSFERE
 
 // ---------------------

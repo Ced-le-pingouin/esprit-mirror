@@ -389,6 +389,7 @@ class CRessourceSousActiv
 			case STATUT_RES_SOUMISE: $r_sTexteStatut = "soumis"; break;
 			case STATUT_RES_APPROF: $r_sTexteStatut = "à approfondir"; break;
 			case STATUT_RES_ACCEPTEE: $r_sTexteStatut = "accepté"; break;
+			case STATUT_RES_AUTOCORRIGEE : $r_sTexteStatut = "commentaire"; break;
 			case STATUT_RES_TRANSFERE: $r_sTexteStatut = "transféré"; break;
 			default: $r_sTexteStatut = "-";
 		}

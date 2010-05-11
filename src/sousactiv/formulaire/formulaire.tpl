@@ -129,6 +129,9 @@ display:none;
 <p class="description_zdc">{description->texte}</p>
 [SET_DESCRIPTION-]
 
+[SET_PAS_ACTIVITE_REALISEE+]
+<p style="text-align: center; font-size: 7pt;">Vous n'avez pas encore r&eacute;alis&eacute; d'activit&eacute;. Cliquez sur le lien rouge pour commencer.</p>
+[SET_PAS_ACTIVITE_REALISEE-]
 
 [SET_DOCUMENT_DE_BASE+]
 [VAR_TITRE+]Pour commencer[VAR_TITRE-]
@@ -180,7 +183,9 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
 [VAR_LISTE_DOCUMENTS-]
 [VAR_BOUTON_EVALUER+]
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir l'&eacute;valuation</a>###
-<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Evaluer</a>
+<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Evaluer</a>###
+<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir les commentaires</a>###
+<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Commenter</a>
 [VAR_BOUTON_EVALUER-]
 [VAR_BOUTON_SELECTIONNER_FORMULAIRE+]
 <input style="vertical-align:bottom;margin:0" type="radio" name="{radio->name}" onclick="surbrillance('id_soumettre_{personne->id}')" value="{radio->value}" onfocus="blur()">
@@ -211,7 +216,11 @@ D&eacute;marrer une activit&eacute;&nbsp;? &gt;&gt; Cliquez sur l'intitul&eacute
 ###
 &nbsp;&nbsp;<img src="theme://formulaire/res_non_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(non &eacute;valu&eacute;)###
 &nbsp;&nbsp;<img src="theme://formulaire/res_a_poursuivre.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: &agrave; poursuivre)###
-&nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: activit&eacute; termin&eacute;e)
+&nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(&eacute;valu&eacute;&nbsp;: activit&eacute; termin&eacute;e)###
+###
+###
+&nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(activit&eacute; termin&eacute;e)###
+&nbsp;&nbsp;<img src="theme://formulaire/res_eval.gif" width="8" height="8" border="0">&nbsp;&nbsp;(comment&eacute; : activit&eacute; termin&eacute;e)
 [VAR_FORMULAIRE_EVALUATION-]
 <!-- <hr class="hr1"> -->
 <!-- <p style="color:#485EA5;font-size:8pt;">{titreTravauxFinis}</p> -->

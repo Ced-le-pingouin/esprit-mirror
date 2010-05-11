@@ -132,11 +132,22 @@ else if ($url_bEvalFC)
 	// Composer la liste des statuts du formulaire
 	if (STATUT_RES_SOUMISE == ($iStatutFCE = $oFCE->retStatut()))
 		$iStatutFCE = STATUT_RES_ACCEPTEE;
-	
-	$sListeEtats = "<select name=\"statutFCE\">"
-		."<option value=\"".STATUT_RES_APPROF."\"".(STATUT_RES_APPROF == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_APPROF))."</option>"
-		."<option value=\"".STATUT_RES_ACCEPTEE."\"".(STATUT_RES_ACCEPTEE == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_ACCEPTEE))."</option>"
-		."</select>\n";
+
+    /*
+     * Si le formulaire est auto-corrigé entièrement (pas de questions ouvertes),
+     * 
+     */
+    if ($iStatutFCE == STATUT_RES_AUTOCORRIGEE || $iStatutFCE == STATUT_RES_AUTOCORRIGEE_NOCOMMENT)
+    {
+        $sListeEtats = "<select name=\"statutFCE\">"
+            ."<option value=\"".STATUT_RES_AUTOCORRIGEE."\"".(STATUT_RES_AUTOCORRIGEE == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_AUTOCORRIGEE))."</option>"
+            ."</select>\n";
+    }
+    else
+        $sListeEtats = "<select name=\"statutFCE\">"
+            ."<option value=\"".STATUT_RES_APPROF."\"".(STATUT_RES_APPROF == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_APPROF))."</option>"
+            ."<option value=\"".STATUT_RES_ACCEPTEE."\"".(STATUT_RES_ACCEPTEE == $iStatutFCE ? " selected" : NULL).">".emb_htmlentities($oFC->retTexteStatut(STATUT_RES_ACCEPTEE))."</option>"
+            ."</select>\n";
 	$oTpl->remplacer("{etat->liste}",$sListeEtats);
 	
 	// Informations à propos de l'évaluateur
