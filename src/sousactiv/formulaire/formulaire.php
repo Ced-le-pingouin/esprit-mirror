@@ -280,6 +280,8 @@ unset($sSetTravauxEnCours,$sListeDocuments);
 
 // {{{ Travaux soumis
 $sSetTravauxSoumis = $oTpl->defVariable("SET_TRAVAUX_SOUMIS");
+$sSetPasActivite = $oTpl->defVariable("SET_PAS_ACTIVITE_REALISEE");
+$sVarPasEtudiantTrouve = $oTpl->defVariable("SET_PAS_ETUDIANT_TROUVE");
 
 $sListeTravauxSoumis = NULL;
 
@@ -289,8 +291,6 @@ $asFormationComplete = array("{document->selectionner}","{document->titre}","{do
 
 foreach ($aiIdPers as $iIdPers)
 {
-    $oBlocFormulaire->remplacer("{formulaire->aucunEtudiant}", NULL);
-
     if ($url_iIdPers > 0 && $url_iIdPers != $iIdPers)
         continue;
 
@@ -300,15 +300,12 @@ foreach ($aiIdPers as $iIdPers)
     // si celui-ci n'a pas soumis des documents
     // [EDIT] il faut quand même afficher qu'il n'y a pas de document trouvés ainsi que la consigne
     $sAucuneActiviteParams = $sAffichageFormulaire == "inline" ? null : "Cliquez sur le lien rouge pour commencer.";
-    $sSetPasActivite = $oTpl->defVariable("SET_PAS_ACTIVITE_REALISEE");
     if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
     {
         $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", $sSetPasActivite);
         $oBlocFormulaire->remplacer("{activite->params}", $sAucuneActiviteParams);
         break;
     }
-    unset($sSetPasActivite);
-
 
     // Si l'utilisateur est un visiteur, il ne peut voir les travaux d�pos�s.
     if ($iMonIdPers == 0)
@@ -423,14 +420,17 @@ foreach ($aiIdPers as $iIdPers)
                     case STATUT_RES_AUTOCORRIGEE:
                     case STATUT_RES_AUTOCORRIGEE_NOCOMMENT:
                         $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_COMMENTAIRE] : $asVarBoutonEvaluer[LIRE_COMMENTAIRE];
+                        $sVarConsignes = $bPeutEvaluerFormulaires ? $asVarConsignes[AJOUTER_COMMENTAIRE] : $asVarConsignes[LIRE_COMMENTAIRE];
                         break;
                     case STATUT_RES_SOUMISE:
                     case STATUT_RES_ACCEPTEE:
                     case STATUT_RES_APPROF:
                         $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_EVALUATION] : $asVarBoutonEvaluer[LIRE_EVALUATION];
+                        $sVarConsignes = $bPeutEvaluerFormulaires ? $asVarConsignes[AJOUTER_EVALUATION] : $asVarConsignes[LIRE_EVALUATION];
                         break;
                     default:
                         $sBoutonEvaluer = "&nbsp;";
+                        $sVarConsignes = NULL;
                         break;
                 }
             }
@@ -448,20 +448,21 @@ foreach ($aiIdPers as $iIdPers)
     if ($url_iIdPers > 0 && $url_iIdPers == $iIdPers)
         break;
 }
+
 if (empty($aiIdPers))
 {
-    $oBlocFormulaire->remplacer("{formulaire->aucunEtudiant}", "Aucun étudiant inscrit à ce cours");
-    $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", NULL);
+    $sListeTravauxSoumis .= $sVarPasEtudiantTrouve;
+    $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", $sListeTravauxSoumis);
 }
 
 if (isset($sListeTravauxSoumis))
 {
 //    $oBlocFormulaire->remplacer("{onglet->texte}",$sListeTravauxSoumis
     $oBlocFormulaire->remplacer("{onglet}", $sListeTravauxSoumis);
-    $oBlocFormulaire->remplacer("{consigne}",$asVarConsigneGlobale . (isset($iIdFC) && $iIdFC > 0 ? $asVarConsignes[$bPeutEvaluerFormulaires] : NULL));
+    $oBlocFormulaire->remplacer("{consigne}",$asVarConsigneGlobale . (isset($iIdFC) && $iIdFC > 0 ? $sVarConsignes : NULL));
 }
 
-unset($sSetTravauxSoumis,$sListeTravauxSoumis);
+unset($sSetTravauxSoumis,$sListeTravauxSoumis,$sSetPasActivite,$sVarPasEtudiantTrouve);
 // fin Travaux soumis }}}
 
 $oBlocFormulaire->afficher();

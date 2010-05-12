@@ -173,7 +173,7 @@ if(!$bFermer)
 				if($oFormulaire->retAutoCorrection() && $oFormulaire->retNbreObjetFormulaireNonAutoCorrige()==0)
 				{
 					$sInfoAEL .= ", activité réalisée le ".$oFormulaireComplete_SousActiv->retDate();
-					$sEvalGlobale = "Remarques éventuelles du tuteur :";
+					$sEvalGlobale = "Commentaire (éventuel) du tuteur :";
 					$bFullAutoCorr = true;
 				}
 				else

@@ -53,8 +53,7 @@ display:none;
                 <p id="docbase">{formulaire->docBase}</p>
                 <p id="encours">{formulaire->travauxEnCours}</p>
                 <hr class="hr1">
-                <p>{formulaire->travauxSoumis}</p>
-                <p style="text-align: center; font-size: 7pt;">{formulaire->aucunEtudiant}</p>
+                {formulaire->travauxSoumis}
             </td>
             <td style="background-image: url('theme://onglet/onglet_tab_rect-2x3.gif'); background-repeat: repeat-y;">&nbsp;</td>
         </tr>
@@ -131,6 +130,9 @@ display:none;
 [SET_PAS_ACTIVITE_REALISEE+]
 <p style="text-align: center; font-size: 7pt;">Vous n'avez pas encore r&eacute;alis&eacute; d'activit&eacute;. {activite->params}</p>
 [SET_PAS_ACTIVITE_REALISEE-]
+[SET_PAS_ETUDIANT_TROUVE+]
+<p style="text-align: center; font-size: 7pt;">Aucun étudiant inscrit à ce cours</p>
+[SET_PAS_ETUDIANT_TROUVE-]
 
 [SET_DOCUMENT_DE_BASE+]
 [VAR_TITRE+]Pour commencer[VAR_TITRE-]
@@ -203,11 +205,13 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
 <p style="text-align: center; font-size: 7pt;">Pas de document trouv&eacute;</p>
 [VAR_PAS_DOCUMENT_TROUVE-]
 [VAR_CONSIGNE+]
- - Acc&eacute;der &agrave; l'&eacute;valuation&nbsp;? &gt;&gt; S&eacute;lectionnez la version et cliquez sur &laquo;&nbsp;Obtenir l'&eacute;valuation&nbsp;&raquo;###
- - Evaluer&nbsp;? &gt;&gt; S&eacute;lectionner une version et cliquez sur &laquo;&nbsp;Evaluer&nbsp;&raquo;
+<br/>Une &eacute;valuation de votre tuteur est disponible? &gt;&gt; S&eacute;lectionnez une version et cliquez sur &laquo;&nbsp;Obtenir l'&eacute;valuation&nbsp;&raquo;###
+<br/>Evaluer&nbsp;? &gt;&gt; S&eacute;lectionner une version et cliquez sur &laquo;&nbsp;Evaluer&nbsp;&raquo;###
+<br/>Un commentaire de votre tuteur est disponible? &gt;&gt; S&eacute;lectionnez une version et cliquez sur &laquo;&nbsp;Obtenir le commentaire &raquo;###
+<br/>Commenter&nbsp;? &gt;&gt; S&eacute;lectionner une version et cliquez sur &laquo;&nbsp;Commenter&nbsp;&raquo;###
 [VAR_CONSIGNE-]
 [VAR_CONSIGNE_GLOBALE+]
-D&eacute;marrer une activit&eacute;&nbsp;? &gt;&gt; Cliquez sur l'intitul&eacute; rouge
+Pour d&eacute;marrer une nouvelle activit&eacute;&nbsp;, cliquez sur l'intitul&eacute; rouge
 [VAR_CONSIGNE_GLOBALE-]
 [VAR_FORMULAIRE_EVALUATION+]
 ###
