@@ -32,7 +32,7 @@ display:none;
 <script src="{general_js_php}" type="text/javascript"></script>
 </head>
 <body class="modifier_formulaire">
-<div id="entete"><h3>{Nom_etudiant}{Info_ael}</h3></div>
+<div id="entete"><h3>{NomComplet_etudiant}{Info_ael}</h3></div>
 <div class="corps">
 <table {sEncadrer} align="center" class="titre">
 <tr>

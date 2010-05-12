@@ -77,7 +77,7 @@ display:none;
 [BLOCK_FORM_INLINE+]
 
 <div id="formulaire_inline">
-<p id="titre_formulaire_inline">{Nom_etudiant}{Info_ael}</p>
+<p id="titre_formulaire_inline">{NomComplet_etudiant}{Info_ael}</p>
 <!-- <p>{document->titre}</p> -->
 <!--
 <table {sEncadrer} align="center" class="titre">
@@ -98,7 +98,6 @@ display:none;
 {txt_etat}
 </div>
 [BLOCK_EVAL_ETAT-]
-<br style="clear: both;" />
 <form name="questionnaire" action="formulaire.php?idActiv={url_idActiv}&idSousActiv={url_idSousActiv}#FormulaireInline" method="post" enctype="text/html" id="form_Formulaire_Inline">
 [BLOCK_FORMULAIRE_MODIFIER+]
 <input type="hidden" name="idFormulaire" value="{iIdFormulaire}" />
@@ -130,7 +129,7 @@ display:none;
 [SET_DESCRIPTION-]
 
 [SET_PAS_ACTIVITE_REALISEE+]
-<p style="text-align: center; font-size: 7pt;">Vous n'avez pas encore r&eacute;alis&eacute; d'activit&eacute;. Cliquez sur le lien rouge pour commencer.</p>
+<p style="text-align: center; font-size: 7pt;">Vous n'avez pas encore r&eacute;alis&eacute; d'activit&eacute;. {activite->params}</p>
 [SET_PAS_ACTIVITE_REALISEE-]
 
 [SET_DOCUMENT_DE_BASE+]
@@ -184,7 +183,7 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
 [VAR_BOUTON_EVALUER+]
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir l'&eacute;valuation</a>###
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Evaluer</a>###
-<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir les commentaires</a>###
+<a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Obtenir le commentaire</a>###
 <a id="id_soumettre_{personne->id}" class="soumettre_passif" href="javascript: void(0);" onclick="sauverPosYPage(); return formulaire_eval('','winFormulaireEval')" onfocus="blur()">Commenter</a>
 [VAR_BOUTON_EVALUER-]
 [VAR_BOUTON_SELECTIONNER_FORMULAIRE+]
@@ -194,7 +193,7 @@ Pour soumettre le travail au tuteur&nbsp;? S&eacute;lectionner la version &agrav
 <li style="list-style-type:none; margin:8px 0 0;">
     <span style="display:inline-block;width:20px;">{document->selectionner}</span>
     <span style="display:inline-block;vertical-align:top;width:275px;">
-        <a href="{a->href}" onclick="{a->onclick}" onfocus="blur()" target="{a->target}"><b>Version&nbsp;{document->titre}</b> soumis pour &eacute;valuation le {document->date}</a>
+        <a href="{a->href}" onclick="{a->onclick}" onfocus="blur()" target="{a->target}"><b>Version&nbsp;{document->titre}</b> {document->fini} {document->date}</a>
     </span>
     <span style="display:inline-block;font-size: 8pt;vertical-align:top;width:200px;">{document->evalue}</span>
     <span style="display:inline-block;font-size: 8pt;">{evaluer->bouton}</span>

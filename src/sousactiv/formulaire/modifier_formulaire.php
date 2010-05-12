@@ -149,7 +149,7 @@ if(!$bFermer)
 		$oFormulaire = new CFormulaire($oProjet->oBdd,$v_iIdFormulaire);
 		$iIdPersEtudiant = $oFormulaireComplete->retIdPers();
 		$oPersEtudiant = new CPersonne($oProjet->oBdd,$iIdPersEtudiant);
-		$oTpl->remplacer("{Nom_etudiant}",$oPersEtudiant->retNom());
+		$oTpl->remplacer("{NomComplet_etudiant}",$oPersEtudiant->retPrenom() . " " . $oPersEtudiant->retNom());
 		$sInfoAEL = " (version ".$oFormulaireComplete->retTitre().")";
 		if(isset($iIdSousActiv))
 		{
@@ -203,13 +203,13 @@ if(!$bFermer)
 		 */
 		if ($iIdUtilisateur > -1)
 		{
-			$oTpl->remplacer("{Nom_etudiant}",$oProjet->oUtilisateur->retNom());
+			$oTpl->remplacer("{NomComplet_etudiant}",$oProjet->oUtilisateur->retPrenom() . " " .$oProjet->oUtilisateur->retNom());
 			$iNumVersion = 1 + $oFormulaireComplete->retNbreFormulaireComplete($iIdSousActiv,$iIdUtilisateur);
 			$oTpl->remplacer("{Info_ael}"," (version $iNumVersion)");
 		}
 		else
 		{
-			$oTpl->remplacer("{Nom_etudiant}","visiteur");
+			$oTpl->remplacer("{NomComplet_etudiant}","visiteur");
 			$iNumVersion = 1;
 			$oTpl->remplacer("{Info_ael}"," (version $iNumVersion)");
 		}

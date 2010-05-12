@@ -284,7 +284,8 @@ $sSetTravauxSoumis = $oTpl->defVariable("SET_TRAVAUX_SOUMIS");
 $sListeTravauxSoumis = NULL;
 
 $asInfosPersonne = array("{personne_infos.id}","{personne_infos.sexe}","{personne_infos.nom_complet}","{personne_infos.pseudo}","{personne_infos.email}","{personne->email}");
-$asFormationComplete = array("{document->selectionner}","{document->titre}","{document->personne_complet}","{document->date}","{document->evalue}","{a->onclick}","{a->href}","{a->target}","{radio->name}","{radio->value}", "{evaluer->bouton}");
+$asFormationComplete = array("{document->selectionner}","{document->titre}","{document->personne_complet}","{document->date}","{document->evalue}","{document->fini}",
+                             "{a->onclick}","{a->href}","{a->target}","{radio->name}","{radio->value}", "{evaluer->bouton}");
 
 foreach ($aiIdPers as $iIdPers)
 {
@@ -298,10 +299,12 @@ foreach ($aiIdPers as $iIdPers)
     // Si l'utilisateur est un étudiant alors il ne faut pas afficher l'onglet
     // si celui-ci n'a pas soumis des documents
     // [EDIT] il faut quand même afficher qu'il n'y a pas de document trouvés ainsi que la consigne
+    $sAucuneActiviteParams = $sAffichageFormulaire == "inline" ? null : "Cliquez sur le lien rouge pour commencer.";
     $sSetPasActivite = $oTpl->defVariable("SET_PAS_ACTIVITE_REALISEE");
     if ($iNbrFormulairesCompletes < 1 && !$bPeutEvaluerFormulaires)
     {
         $oBlocFormulaire->remplacer("{formulaire->travauxSoumis}", $sSetPasActivite);
+        $oBlocFormulaire->remplacer("{activite->params}", $sAucuneActiviteParams);
         break;
     }
     unset($sSetPasActivite);
@@ -356,12 +359,17 @@ foreach ($aiIdPers as $iIdPers)
     {
         $sBoutonEvaluer = NULL;
         $iPlusHautStatut = 0;
+        $sDocumentFini = null;
 
         foreach ($oSousActiv->aoFormulairesCompletes as $oFormulaireComplete)
         {
             $iIdFCSA   = $oFormulaireComplete->retIdFCSA();
             $iStatutFC = $oFormulaireComplete->retStatut();
             $iIdFC     = $oFormulaireComplete->retId();
+
+            $sDocumentFini = ($iStatutFC == STATUT_RES_AUTOCORRIGEE_NOCOMMENT || $iStatutFC == STATUT_RES_AUTOCORRIGEE)
+                                ? "r&eacute;alis&eacute;e le"
+                                : "soumise pour &eacute;valuation le";
 
             // on récupère le statut le plus élevé
             if ($iStatutFC > $iPlusHautStatut) $iPlusHautStatut = $iStatutFC;
@@ -385,9 +393,6 @@ foreach ($aiIdPers as $iIdPers)
             // Initialiser l'auteur du formulaire
             $oFormulaireComplete->initAuteur();
 
-/*
- * @TODO : enlever l'affichage des puces pour les formulaires non commentés
- */
             // Liste des éléments à remplacer
             $amRemplacer = array(
                 (($bPeutEvaluerFormulaires || (STATUT_RES_SOUMISE != $iStatutFC && STATUT_RES_AUTOCORRIGEE_NOCOMMENT != $iStatutFC)) ? $sVarButonSelectionnerFormulaire : "&nbsp;")
@@ -395,6 +400,7 @@ foreach ($aiIdPers as $iIdPers)
                 , $oFormulaireComplete->oAuteur->retNomComplet()
                 , $oFormulaireComplete->retDate()
                 , $asVarFormulaireEvaluer[$iStatutFC]
+                , $sDocumentFini
                 , $sAOnclick
                 , $sAHref
                 , $sATarget
@@ -418,6 +424,7 @@ foreach ($aiIdPers as $iIdPers)
                     case STATUT_RES_AUTOCORRIGEE_NOCOMMENT:
                         $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_COMMENTAIRE] : $asVarBoutonEvaluer[LIRE_COMMENTAIRE];
                         break;
+                    case STATUT_RES_SOUMISE:
                     case STATUT_RES_ACCEPTEE:
                     case STATUT_RES_APPROF:
                         $sBoutonEvaluer = $bPeutEvaluerFormulaires ? $asVarBoutonEvaluer[AJOUTER_EVALUATION] : $asVarBoutonEvaluer[LIRE_EVALUATION];
