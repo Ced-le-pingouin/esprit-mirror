@@ -35,13 +35,18 @@ $iValeurNeutreMax = 0;
 
 $oSousActiv = new CSousActiv($oProjet->oBdd, $iIdSousActiv);
 list($iIdFormulaire,$iDeroulement,$sIntituleLien) = explode(";",$oSousActiv->retDonnees());
-$iNbFormulairesAcceptes = $oSousActiv->initFormulairesCompletes(NULL, STATUT_RES_ACCEPTEE);
+//$iNbFormulairesAcceptes = $oSousActiv->initFormulairesCompletes(NULL, STATUT_RES_ACCEPTEE);
 
 $oFormulaire = new CFormulaire($oProjet->oBdd, $iIdFormulaire); // init objet Formulaire
 $oFormulaire->initAxes(); // quels axes pour le formulaire
 $oFormulaire->initObjets(TRUE, TRUE); // on init aussi les questions, les réponses possibles si choix multiples, et les valeurs de réponses (par axe)
 $oFormulaire->determinerDonneesAExporter($iValeurNeutreMin, $iValeurNeutreMax);
 $osFormulaire = serialize($oFormulaire);
+
+if($oFormulaire->retAutoCorrection() && $oFormulaire->retNbreObjetFormulaireNonAutoCorrige()==0)
+    $iNbFormulairesAcceptes = $oSousActiv->initFormulairesCompletes(NULL, NULL);
+else
+    $iNbFormulairesAcceptes = $oSousActiv->initFormulairesCompletes(NULL, STATUT_RES_ACCEPTEE);
 
 // préparation des en-têtes de données exportées PAR AXE
 $asColonnesExportees[0][] = '"Nom"';
