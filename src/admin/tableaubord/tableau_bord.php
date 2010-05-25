@@ -640,7 +640,7 @@ foreach ($oModule->aoRubriques as $oRubrique)
 				
 				$aiStatutPlusHautFormulaire = $oFormulaire->retStatutPlusHautFormulaire($iIdInscrit);
 				$iStatutPlusHautFormulaire = $aiStatutPlusHautFormulaire[0];
-				$sStatutPlusHautFormulaire  = $oResSousActiv->retTexteStatut($iStatutPlusHautFormulaire)
+				$sStatutPlusHautFormulaire  = $oResSousActiv->retTexteStatut($iStatutPlusHautFormulaire);
 					/*.($iStatutPlusHautFormulaire > STATUT_RES_EN_COURS && $aiStatutPlusHautFormulaire[1] > 1 ? "&nbsp;(".$aiStatutPlusHautFormulaire[1].")" : NULL)*/;
 				$oBloc->nextLoop();
 				

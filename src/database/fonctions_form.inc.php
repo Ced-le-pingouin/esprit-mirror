@@ -394,6 +394,8 @@ function CalculerScore($v_iNbrePropRepCorrecte,$v_iNbrePropRepFausse,$v_iNbreRep
 		$fScore = (($v_iNbreRepCorrecte/$v_iNbrePropRepCorrecte)-($v_iNbreRepFausse/$v_iNbrePropRepFausse))*$v_iPoids;
 	else
 		$fScore = ($v_iNbreRepCorrecte/$v_iNbrePropRepCorrecte)*$v_iPoids;
+
+	if ($fScore < 0) $fScore = 0;
 	return $fScore;
 }
 ?>
