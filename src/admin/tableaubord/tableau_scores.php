@@ -226,7 +226,7 @@ if($NbrePers>0)
 		for($i=0;$i<$NbrePers;$i++)
 		{
 			$oBlocScores->nextLoop();
-			$iPourcentage = round(($aiScorePers[$i]/$iScoreMax)*100);
+			$iPourcentage = ($iScoreMax != 0) ? round(($aiScorePers[$i]/$iScoreMax)*100) : "0";
 			$oBlocScores->remplacer("{Score}",round($aiScorePers[$i],2)."/$iScoreMax ($iPourcentage%)");
 			$oBlocScores->remplacer("{ClassScore}","");
 		}
