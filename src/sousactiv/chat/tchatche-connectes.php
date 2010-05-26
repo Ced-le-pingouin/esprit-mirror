@@ -52,6 +52,7 @@ if ($url_iIdNiveau < 1 || $url_iTypeNiveau < 1)
 // ---------------------
 $bHautStatut = retHautStatut($oProjet->retStatutUtilisateur());
 $sMonEquipe = NULL;
+$sNomEquipe = NULL;
 
 if (!$bHautStatut)
 {

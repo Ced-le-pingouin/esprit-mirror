@@ -40,7 +40,7 @@ $sRepTmp = dir_tmp(NULL,TRUE);
 
 if (is_dir($sRepTmp))
 {
-	$sPseudoFichier = "-".$oProjet->oUtilisateur->retPseudo().".";
+	$sPseudoFichier = isset($oProjet->oUtilisateur) ? "-".$oProjet->oUtilisateur->retPseudo()."." : "-visiteur.";
 	
 	if ($hReps = opendir($sRepTmp))
 	{

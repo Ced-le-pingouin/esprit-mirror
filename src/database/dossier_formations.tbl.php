@@ -63,7 +63,8 @@ class CDossierForms
 	
 	function init ($v_oEnregExistant=NULL)
 	{
-		if (isset($v_oEnregExistant))
+		if (isset($v_oEnregExistant) && is_object($v_oEnregExistant))
+//		if (isset($v_oEnregExistant))
 		{
 			$this->oEnregBdd = $v_oEnregExistant;
 			$this->iId = $this->oEnregBdd->IdDossierForms;

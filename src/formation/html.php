@@ -40,28 +40,29 @@ $oProjet = new CProjet();
 // ---------------------
 // Initialisations
 // ---------------------
-$url_sNomFichier	= (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
-$url_iIdActiv		= (empty($_GET["idActiv"]) ? 0 : $_GET["idActiv"]);
-$url_iIdSousActiv	= (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
-$url_iIdHotpot  	= (empty($_GET["IdHotpot"]) ? FALSE : $_GET["IdHotpot"]);
-$url_iNumeroPage	= (empty($_GET["NumeroPage"]) ? 1 : $_GET["NumeroPage"]);
+$url_sNomFichier        = (empty($_GET["fi"]) ? NULL : $_GET["fi"]);
+$url_iIdActiv           = (empty($_GET["idActiv"]) ? 0 : $_GET["idActiv"]);
+$url_iIdSousActiv       = (empty($_GET["idSousActiv"]) ? 0 : $_GET["idSousActiv"]);
+$url_iIdHotpot          = (empty($_GET["IdHotpot"]) ? 0 : $_GET["IdHotpot"]);
+$url_iNumeroPage        = (empty($_GET["NumeroPage"]) ? 1 : $_GET["NumeroPage"]);
+$url_iIdSessionExercice = (empty($_GET["IdExercice"]) ? 0 : $_GET["IdExercice"]);
 
 $iIdStatutUtilisateur = $oProjet->retStatutUtilisateur();
 $iIdUtilisateur = $oProjet->retIdUtilisateur();
 
-if (empty($_GET["IdExercice"]))
+if (($url_iIdSessionExercice == 0))
 {
 //	list($usec, $sec) = explode(' ', microtime());
-//	$iGraine = mt_srand((float) $sec + ((float) $usec * 1000000)); // initialisation de la variable aléatoire versions < php 4.2.0
+//	$iGraine = mt_srand((float) $sec + ((float) $usec * 1000000)); // initialisation de la variable alï¿½atoire versions < php 4.2.0
 //	$iNbAleatoire = mt_rand(1,10000000);
 //	$url_iIdSessionExercice = $iNbAleatoire;
-	$url_iIdSessionExercice = $iIdUtilisateur."_".$_GET["IdHotpot"]."_".time();
+	$url_iIdSessionExercice = $iIdUtilisateur."_" . $url_iIdHotpot . "_".time();
 	$sUrl = $_SERVER["REQUEST_URI"]."&IdExercice=$url_iIdSessionExercice";
 	
-	// on recharge la page si elle n'a pas le paramètre "IdExercice".
-	header('location:'.$sUrl);
+	// on recharge la page si elle n'a pas le paramï¿½tre "IdExercice" et qu'on se trouve dans un exercice HP
+	if ($url_iIdHotpot != 0)
+	    header('location:'.$sUrl);
 }
-else $url_iIdSessionExercice = $_GET["IdExercice"];
 
 $bOk = FALSE;
 
@@ -83,7 +84,7 @@ if (!empty($url_sNomFichier))
 	}
 }
 
-if ($bOk && $url_iIdHotpot && ($ext == ".htm" || $ext == ".html") && $url_iIdActiv && $url_iIdSousActiv && ($iIdStatutUtilisateur != STATUT_PERS_VISITEUR)) {
+if ($bOk && ($url_iIdHotpot != 0) && ($ext == ".htm" || $ext == ".html") && $url_iIdActiv && $url_iIdSousActiv && ($iIdStatutUtilisateur != STATUT_PERS_VISITEUR)) {
 	hotpot_patch_file($sNomFichier,$url_iIdHotpot,$url_iIdActiv,$url_iIdSousActiv, $url_iIdSessionExercice, $url_iNumeroPage); // on affiche et on s'arrÃªte
 	exit();
 }

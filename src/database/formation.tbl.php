@@ -1170,7 +1170,11 @@ class CFormation
 	function retInscrSpontEquipe () { return $this->oEnregBdd->InscrSpontEquipeF; }
 	function retNbMaxDsEquipe () { return $this->oEnregBdd->NbMaxDsEquipeF; }
 	function retNumOrdre () { return $this->oEnregBdd->OrdreForm; }
-	function retNom ($v_bHtmlEntities=FALSE) { return ($v_bHtmlEntities ? emb_htmlentities($this->oEnregBdd->NomForm) : $this->oEnregBdd->NomForm); }
+	function retNom ($v_bHtmlEntities=FALSE)
+	{
+	    $NomFormation = is_object($this->oEnregBdd) ? $this->oEnregBdd->NomForm : "aucune formation";
+	    return ($v_bHtmlEntities ? emb_htmlentities($NomFormation) : $NomFormation);
+	}
 	function retIdPers () { return $this->oEnregBdd->IdPers; }
 	
 	function retDescr ($v_bHtmlEntities=FALSE)

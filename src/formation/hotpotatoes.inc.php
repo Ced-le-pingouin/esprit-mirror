@@ -11,8 +11,8 @@ function hotpot_patch_file( $nomFichier, $IdHotpot, $IdActiv ,$IdSousActiv, $IdS
 
 	/**
 	 * 
-	 * On verifie que l'exercice n'a pas déjà été fait par l'étudiant sur cette "session d'exercice"
-	 * Si déjà fait, on n'enregistre pas le score, mais on affiche celui enregisté auparavant
+	 * On verifie que l'exercice n'a pas dï¿½jï¿½ ï¿½tï¿½ fait par l'ï¿½tudiant sur cette "session d'exercice"
+	 * Si dï¿½jï¿½ fait, on n'enregistre pas le score, mais on affiche celui enregistï¿½ auparavant
 	 * 
 	 */
 	$oHotpotVerifScore	= new CHotpotatoesScore($oProjet->oBdd);
@@ -25,7 +25,7 @@ function hotpot_patch_file( $nomFichier, $IdHotpot, $IdActiv ,$IdSousActiv, $IdS
 
 	$html = file_get_contents($nomFichier);
 
-	if ($iScoreExercice == NULL) { // exercice pas encore fait, on active Ajax pour l'insérer dans la DB
+	if ($iScoreExercice == NULL) { // exercice pas encore fait, on active Ajax pour l'insï¿½rer dans la DB
 	// Pas de gestions de "Detail" pour le moment (difficultÃ© AJAX + traitement XML)
 	// modification du source HotPot
 	$insertJS = <<<ENDOFTEXT
@@ -44,8 +44,8 @@ else if (window.ActiveXObject) { // Internet Explorer
 	xhr = false; 
 }
 
-// on ajoute un booléen pour éviter d'insérer plusieurs fois la même entrée.
-// La fonction Finish() est appelée toutes les 30 secondes même quand l'exercice est terminé.
+// on ajoute un boolï¿½en pour ï¿½viter d'insï¿½rer plusieurs fois la mï¿½me entrï¿½e.
+// La fonction Finish() est appelï¿½e toutes les 30 secondes mï¿½me quand l'exercice est terminï¿½.
 
 var ExerciceTermine = false;
 var QArray = new Array();
@@ -65,7 +65,7 @@ ENDOFTEXT;
 	}
 
 /*
- * l'exercice est déjà fait, on affiche le score et la moyenne
+ * l'exercice est dï¿½jï¿½ fait, on affiche le score et la moyenne
  */
 	else {
 		$iMoyenne = $oHotpotVerifScore->CalculMoyenne($IdSessionExercice);
@@ -101,10 +101,10 @@ WriteToInstructions(YourScoreIs + ' ' + $iScoreExercice + '%.<br />Moyenne : ' +
 					$html );
 	/**
  	* On modifie le bouton "<=" sinon il utilise la fonction history.back(), mais cela entraine une perte de l'id de la session pour cet exercice
- 	* On prend le numero de page actuelle et on enlève 1.
+ 	* On prend le numero de page actuelle et on enlï¿½ve 1.
  	*/
 	$iNumeroPagePrecedente = $iNumeroPage-1;
-	$sNomFichierPrecedent = $_COOKIE['Page'.$iNumeroPagePrecedente];
+	$sNomFichierPrecedent = isset($_COOKIE['Page'.$iNumeroPagePrecedente]) ? $_COOKIE['Page'.$iNumeroPagePrecedente] : 0;
 	$ModifierReferrer = "onclick=\"location='html.php?idActiv=%d&idSousActiv=%d&IdExercice=%s&IdHotpot=%d&NumeroPage=%d&fi=%s'";
 	$html = str_replace(
 					"onclick=\"history.back()",
