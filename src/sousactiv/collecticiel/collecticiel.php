@@ -407,7 +407,7 @@ if (count($aaCollecticiels) > 0)
 		else
 			$oBlocBarreOutils->effacer();
 		// }}}
-var_dump($bPeutAjouterDocuments);
+		
 		// {{{ Gestion des documents
 		$oBlocGestionDocuments = new TPL_Block("BLOCK_GESTION_DOCUMENTS",$oBlocCollecticiel);
 		
