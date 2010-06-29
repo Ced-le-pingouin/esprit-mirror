@@ -108,6 +108,7 @@ function envoyer(v_iIdStatut)
 <select name="filtre" onchange="envoyer()">
 <option value="">Tout</option>
 <option value="BLOC">Bloc</option>
+<option value="COLLECTICIEL">Collecticiel</option>
 <option value="CONCEPT">Concepteur</option>
 <option value="COTUTEUR">Co-tuteur</option>
 <option value="COURRIEL">Courriel</option>

@@ -55,10 +55,17 @@ $url_iTypeTri            = (empty($_GET["typeTri"]) ? TRI_DECROISSANT : $_GET["t
 $g_iIdPers = $oProjet->retIdUtilisateur();
 $g_bPeutEvaluer = $oProjet->verifPermission("PERM_EVALUER_COLLECTICIEL");
 $g_bResponsable = $g_bPeutEvaluer | $oProjet->verifPermission("PERM_VOIR_TOUS_COLLECTICIELS");
+
+// permission de déposer un fichier sur un collecticiel autre que le sien (utile pour les tuteurs)
+$g_bPeutDeposerFichier = $oProjet->verifPermission("PERM_DEPOSER_FICHIER_COLLECTICIEL");
+
+// permission d'évaluer les documents que que soit leur statut (accepté, soumis ou en cours)
+$g_bPeutEvaluerTousDoc = $oProjet->verifPermission("PERM_PEUT_EVALUER_TOUS_DOCS_COLLECTICIEL");
+
 $g_iIdEquipe = 0;
 
 $bFormationArchivee = FALSE;
-// si la formation est archiv�e et que l'utilisateur n'a pas les droits de modification
+// si la formation est archiv�e et que l'utilisateur n'a pas les droits de modification
 if ($oProjet->oFormationCourante->retStatut()== STATUT_ARCHIVE)
 {
 	$bFormationArchivee = TRUE; 
@@ -315,7 +322,8 @@ if (count($aaCollecticiels) > 0)
 				}
 				
 				// {{{ Accéder ou pas la fenêtre de l'évaluation
-				if ($oRessource->retEstSoumise() && !$bFormationArchivee)
+//				if ($oRessource->retEstSoumise() && !$bFormationArchivee)
+                if (($oRessource->retEstSoumise() || $g_bPeutEvaluerTousDoc) && !$bFormationArchivee)
 				{
 					if ($oRessource->retEstEvaluee())
 						$sEvaluer = $asSetTpl["ressource_evaluation"];
@@ -327,7 +335,7 @@ if (count($aaCollecticiels) > 0)
 				else
 					$sEvaluer = $asSetTpl["ressource_en_cours"];
 				// }}}
-				
+
 				$amReplTplDocument = array(
 					emb_htmlentities($oRessource->retNom())
 					, "{$g_sFichierTelecharger}?f=".rawurlencode($g_sRepRessources.$oRessource->retUrl())
@@ -399,7 +407,7 @@ if (count($aaCollecticiels) > 0)
 		else
 			$oBlocBarreOutils->effacer();
 		// }}}
-		
+var_dump($bPeutAjouterDocuments);
 		// {{{ Gestion des documents
 		$oBlocGestionDocuments = new TPL_Block("BLOCK_GESTION_DOCUMENTS",$oBlocCollecticiel);
 		
@@ -420,7 +428,7 @@ if (count($aaCollecticiels) > 0)
 			
 			$oBlocSupprimer->afficher();
 			
-			if ($bPeutAjouterDocuments)
+			if ($bPeutAjouterDocuments || $g_bPeutDeposerFichier)
 			{
 				$oBlocDeposer->defDonnees($sVarDeposer);
 				$oBlocDeposer->afficher();
