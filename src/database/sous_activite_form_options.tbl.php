@@ -96,7 +96,7 @@ class CSousActivFormulOptions
      *
      * @return  \c true si il a mis à jour le champ dans la DB
      */
-    function MàJ_OptionsFormulaire ($v_sNomChamp,$v_mValeurChamp,$v_iIdSousActiv=0)
+    function MaJ_OptionsFormulaire ($v_sNomChamp,$v_mValeurChamp,$v_iIdSousActiv=0)
     {
         if ($v_iIdSousActiv < 1)
             $v_iIdSousActiv = $this->retId();
@@ -155,7 +155,7 @@ class CSousActivFormulOptions
         if ($v_iIdSousActiv < 1)
             return FALSE;
 
-        $this->MàJ_OptionsFormulaire("AffichageEtudiant", $v_sTypeAffichage);
+        $this->MaJ_OptionsFormulaire("AffichageEtudiant", $v_sTypeAffichage);
     }
     //@}
 }
