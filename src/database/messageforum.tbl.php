@@ -259,6 +259,7 @@ class CMessageForum
 			.", AuteurRes=''"
 			.", UrlRes='".MySQLEscapeString($v_sUrlRes)."'"
 			.", IdPers='{$v_iIdPers}'"
+			.", IdDeposeur='{$v_iIdPers}'"
 			.", IdFormat='0'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		

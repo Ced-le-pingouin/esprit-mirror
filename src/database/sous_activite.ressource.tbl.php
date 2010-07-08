@@ -429,6 +429,16 @@ class CRessourceSousActiv
 	function retIdRes () { return $this->oEnregBdd->IdRes; }
 	function retStatut () { return $this->oEnregBdd->StatutResSousActiv; }
 	function retIdResSousActivSource () { return $this->oEnregBdd->IdResSousActivSource; }
+    function retIdDeposeur() {
+        $sRequeteSql = "SELECT Nom, Prenom"
+            ." FROM Personne"
+            ." WHERE IdPers='".$this->oEnregBdd->IdDeposeur."'";
+        $hResult = $this->oBdd->executerRequete($sRequeteSql);
+        $oEnregPers = $this->oBdd->retEnregSuiv($hResult);
+        $this->oBdd->libererResult($hResult);
+        $sNomComplet = $oEnregPers->Nom . " " . $oEnregPers->Prenom;
+        return $sNomComplet;
+    }
 	
 	function initExpediteur ()
 	{

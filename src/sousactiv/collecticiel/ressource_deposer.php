@@ -45,6 +45,8 @@ $oProjet = new CProjet();
 // *************************************
 // Initialisations
 // *************************************
+$iIdDest = isset($_GET['idDest']) ? $_GET['idDest'] : NULL;
+$sParamsUrl = ($iIdDest != NULL) ? "?idDest=".$iIdDest : NULL;
 
 $oProjet->initSousActivCourante();
 
@@ -93,7 +95,7 @@ body {background-image: none; }
 </head>
 <body>
 <div id="idForm" class="divForm">
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo $_SERVER['PHP_SELF'].$sParamsUrl; ?>" method="post" enctype="multipart/form-data">
 <span class="intitule">Titre du fichier&nbsp;:</span><br>
 <input name="TITRE_FICHIER" type="text" size="70" maxlength="81" value="" style="width: 100%">
 <span class="intitule">Texte associ&eacute;&nbsp;:</span><br><textarea name="DESCRIPTION_FICHIER" cols="67" rows="12" style="width: 100%"></textarea>

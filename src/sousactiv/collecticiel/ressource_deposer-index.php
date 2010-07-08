@@ -25,7 +25,7 @@ require_once("globals.inc.php");
 // Initialisation
 // ---------------------
 
-$sParamUrl = NULL;
+$sParamUrl = isset($_GET['idDest']) ? "?idDest=" . $_GET['idDest'] : NULL;
 
 // ---------------------
 // Frame du Titre

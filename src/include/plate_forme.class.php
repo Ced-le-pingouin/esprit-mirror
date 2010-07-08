@@ -778,7 +778,7 @@ class CProjet
 	 * @param	v_bDossierForms	si \c true, les formations sont celles du dossier de formations de l'utilisateur
 	 * @param	v_bOrdreNum		si \c true (défaut), les formations retournées sont classées par leur n°. Si \c false,
 	 * 							par ordre alphabétique selon leur nom
-	 * @param	v_bArchives		si \c true, n'affiche que les formations archiv�es.
+	 * @param	v_bArchives		si \c true, n'affiche que les formations archiv�es.
 	 * 
 	 * @return	le nombre de formations trouvées
 	 * 
@@ -1531,7 +1531,7 @@ class CProjet
 	 * 			ou s'il ne se trouve pas dans une sous-activité (aucune initialisée), ou encore si un problème est 
 	 * 			survenu à l'insertion SQL
 	 */
-	function insererRessource($v_sNom, $v_sDescr, $v_sAuteur, $v_sUrl)
+	function insererRessource($v_sNom, $v_sDescr, $v_sAuteur, $v_sUrl, $v_iIdPersDest=NULL)
 	{
 		$iIdDepos = NULL;
 		$iIdSousActiv = NULL;
@@ -1551,7 +1551,7 @@ class CProjet
 		$this->oBdd->executerRequete($sRequeteSql);
 		
 		$sRequeteSql = "INSERT INTO Ressource"
-			." (IdRes,NomRes,DescrRes,DateRes,AuteurRes,UrlRes,IdPers,IdFormat)"
+			." (IdRes,NomRes,DescrRes,DateRes,AuteurRes,UrlRes,IdPers,IdDeposeur,IdFormat)"
 			." VALUES"
 			." (null"
 			.", '".MySQLEscapeString($v_sNom)."'"
@@ -1561,6 +1561,7 @@ class CProjet
 			.", '".MySQLEscapeString($v_sUrl)."'"
 			//.", '{$v_sAuteur'}"
 			//.",\"$v_sUrl\""
+			.", '{$v_iIdPersDest}'"
 			.", '{$iIdDepos}'"
 			.", '1')";
 		

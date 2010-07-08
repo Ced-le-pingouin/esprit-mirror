@@ -81,6 +81,7 @@ class CRessource
 			.", AuteurRes='".MySQLEscapeString($this->retAuteur())."'"
 			.", UrlRes='".MySQLEscapeString($this->retUrl())."'"
 			.", IdPers='".$this->retIdExped()."'"
+			.", IdDeposeur='".$this->retIdExped()."'"
 			.", IdFormat='".$this->retIdFormat()."'";
 		$hResult = $this->oBdd->executerRequete($sRequeteSql);
 		$this->iId = $this->oBdd->retDernierId($hResult);

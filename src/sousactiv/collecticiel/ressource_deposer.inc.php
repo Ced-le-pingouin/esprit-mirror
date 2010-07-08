@@ -107,7 +107,7 @@ if ($sFichierTmp != "none")
 			$sAuteurRes = "auteur inconnu";													// Auteur
 			$sUrlRes = basename($dir_ressources);											// Dans quel répertoire se touve le document
 			
-			$bOk = $oProjet->insererRessource($sNomRes,$sDescrRes,$sAuteurRes,stripslashes($sUrlRes));
+			$bOk = $oProjet->insererRessource($sNomRes,$sDescrRes,$sAuteurRes,stripslashes($sUrlRes), $iIdDest);
 			
 			if ($bOk)
 				echo "<html>"

@@ -53,7 +53,11 @@ function ressource_votants(v_iIdResSA,v_iIdEquipe)
 	return false;
 }
 
-function ressource_deposer() { return PopupCenter("ressource_deposer-index.php","wAjouterRessource",550,380,",toolbar=0,scrollbars=0,resizable=0"); }
+function ressource_deposer(v_iIdTarget) {
+	var sParamUrl = "";
+	if (typeof(v_iIdTarget) != "undefined") sParamUrl = "?idDest=" + v_iIdTarget
+	return PopupCenter("ressource_deposer-index.php" + sParamUrl,"wAjouterRessource",550,380,",toolbar=0,scrollbars=0,resizable=0");
+}
 
 function ressource_transfert() {
 	var sParamsUrl = "";
