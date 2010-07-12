@@ -107,7 +107,7 @@ function init()
 </table>
 [BLOCK_GESTION_DOCUMENTS+]
 [VAR_SUPPRIMER+]<a href="javascript: void(0);" onclick="return ressource_supprimer('{collecticiel.id}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','ressource_supprimer')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')">Supprimer</a>[VAR_SUPPRIMER-]
-[VAR_DEPOSER+]<a href="javascript: void(0);" onclick="return ressource_deposer({personne.id})" onmouseover="aide_en_ligne(this,'{collecticiel.id}','ressource_deposer')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')">D&eacute;poser</a>[VAR_DEPOSER-]
+[VAR_DEPOSER+]<a href="javascript: void(0);" onclick="return ressource_deposer({personneCible.id})" onmouseover="aide_en_ligne(this,'{collecticiel.id}','ressource_deposer')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')">D&eacute;poser</a>[VAR_DEPOSER-]
 [VAR_SOUMETTRE_POUR_EVALUATION+]&nbsp;|&nbsp;<a href="javascript: void(0);" onclick="return ressource_vote('{collecticiel.id}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','ressource_vote')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')">Soumettre pour &eacute;valuation</a>[VAR_SOUMETTRE_POUR_EVALUATION-]
 [VAR_VOTER_POUR_SOUMETTRE+]&nbsp;|&nbsp;<a href="javascript: void(0);" onclick="return ressource_vote('{collecticiel.id}')" onmouseover="aide_en_ligne(this,'{collecticiel.id}','ressource_vote')" onmouseout="aide_en_ligne(this,'{collecticiel.id}')">Voter pour soumettre</a>[VAR_VOTER_POUR_SOUMETTRE-]
 <div class="gestion_documents_gauche">[BLOCK_DEPOSER+]D&eacute;poser[BLOCK_DEPOSER-]</div>

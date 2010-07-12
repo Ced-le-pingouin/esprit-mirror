@@ -465,6 +465,14 @@ if (count($aaCollecticiels) > 0)
 			$oBlocGestionDocuments->effacer();
 		// }}}
 		
+		if (MODALITE_PAR_EQUIPE == $g_iIdModalite)
+		{
+		    $oBlocCollecticiel->remplacer("{personneCible.id}", $g_iIdPers);
+		}
+		else
+		{
+		    $oBlocCollecticiel->remplacer("{personneCible.id}", $amCollecticiel["id"]);
+		}
 		$oBlocCollecticiel->remplacer(array("{collecticiel.id}","{equipe.id}","{personne.id}"),$amCollecticiel["id"]);
 	}
 	// }}}
