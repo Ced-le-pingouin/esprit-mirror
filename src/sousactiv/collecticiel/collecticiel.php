@@ -429,7 +429,7 @@ if (count($aaCollecticiels) > 0)
 			
 			$oBlocSupprimer->afficher();
 			
-			if ($bPeutAjouterDocuments || $g_bPeutDeposerFichier)
+			if ($bPeutAjouterDocuments || ($g_bPeutDeposerFichier && MODALITE_PAR_EQUIPE != $g_iIdModalite))
 			{
 				$oBlocDeposer->defDonnees($sVarDeposer);
 				$oBlocDeposer->afficher();
