@@ -23,6 +23,7 @@
  */
  
 require_once(dirname(__FILE__).'/OO.php');
+require_once(dirname(__FILE__).'/../../include/template.inc.php');
 
 /**
  * Contrôleur sommaire pour le système de templates. Prend en charge les erreurs
