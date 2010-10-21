@@ -31,6 +31,8 @@
  * @author	Filippo PORCO
  */
 
+require_once dirname(__FILE__).'/../globals.inc.php';
+
 /**
  * Gestion de templates, avec possibilité de remplacements de variables, de répétition et masquage de blocs
  */
