@@ -9,7 +9,9 @@ require_once dirname(__FILE__).'/TemplateBlocEtendu.php';
  */
 class AfficheurPageEtendu extends AfficheurPage
 {
-	protected $action = 'index';
+	const ACTION_PAR_DEFAUT = 'index';
+	
+	protected $action = self::ACTION_PAR_DEFAUT;
 	protected $variablesTemplate = array();
 	
 	/**
@@ -75,9 +77,27 @@ class AfficheurPageEtendu extends AfficheurPage
     public function defTpl($fichierTpl)
     {
     	parent::defTpl($fichierTpl);
+        
+    	if (empty($fichierTpl)) {
+    		$this->reconstruireNomFichierTemplateSurBaseActionCourante();
+    	}
     	
     	unset($this->tpl);
     	$this->tpl = new TemplateEtendu($this->fichierTpl);
+    }
+    
+    protected function reconstruireNomFichierTemplateSurBaseActionCourante()
+    {
+    	if ($this->action == self::ACTION_PAR_DEFAUT
+    	 && is_readable($this->fichierTpl)) {
+    		return;
+    	}
+    	
+    	$this->fichierTpl = preg_replace(
+    	    '/(.*)(\\.\\w+)$/',
+    	    '\\1.'.$this->action.'\\2',
+    	    $this->fichierTpl
+    	);
     }
     
     public function afficher()
