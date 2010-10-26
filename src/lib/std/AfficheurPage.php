@@ -65,9 +65,9 @@ class AfficheurPage
 		// les différentes étapes importantes pour l'affichage de la page sont appelées
 		$this->recupererDonnees();
 		$this->validerDonnees();
+		$this->defTpl($fichierTpl);
 		if ($this->retNbErreursFatales() == 0)
 			$this->gererActions();
-		$this->defTpl($fichierTpl);
 		$this->detecterErreursPossibles();
 		$this->afficher();
 	}
