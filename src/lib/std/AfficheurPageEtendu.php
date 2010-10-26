@@ -55,6 +55,33 @@ class AfficheurPageEtendu extends AfficheurPage
     }
     
     /**
+     * @param string $nomVariable
+     * @return string
+     */
+    protected function get($nomVariable)
+    {
+    	return $this->aDonneesUrl[$nomVariable];
+    }
+    
+    /**
+     * @param string $nomVariable
+     * @return string
+     */
+    protected function post($nomVariable)
+    {
+        return $this->aDonneesForm[$nomVariable];
+    }
+    
+    /**
+     * @param string $nomVariable
+     * @return string
+     */
+    protected function session($nomVariable)
+    {
+    	return $this->aDonneesPersist[$nomVariable];
+    }
+    
+    /**
      * Définition vide qui empêche de provoquer une erreur si on en a pas besoin
      * 
      * @see src/lib/std/AfficheurPage::validerDonnees()
