@@ -33,6 +33,11 @@ class NettoyageFormations extends AfficheurPageEtendu
     	$this->definirVariablesTemplate('formations');
     }
     
+    protected function actionVoir()
+    {
+    	
+    }
+    
     protected function trouverFormationsAPartirDesDossiers()
     {
     	$this->trouverDossiersFormations();
