@@ -11,8 +11,25 @@ class AfficheurPageEtendu extends AfficheurPage
 {
 	const ACTION_PAR_DEFAUT = 'index';
 	
+	const TPL_MODE_UN_SEUL = 1;
+	const TPL_MODE_UN_PAR_ACTION = 2;
+	
+	/**	@var string */
 	protected $action = self::ACTION_PAR_DEFAUT;
+	/** @var int */
+	protected $gestionTemplates = self::TPL_MODE_UN_SEUL;
+	/** @var array[string]mixed */
 	protected $variablesTemplate = array();
+	
+	/**
+	 * @param int $mode
+	 * @return AfficheurPageEtendu
+	 */
+	public function defGestionTemplates($mode) {
+		$this->gestionTemplates = $mode;
+		
+		return $this;
+	}
 	
 	/**
 	 * @param string $fichierTpl
@@ -78,26 +95,32 @@ class AfficheurPageEtendu extends AfficheurPage
     {
     	parent::defTpl($fichierTpl);
         
-    	if (empty($fichierTpl)) {
+    	if (empty($fichierTpl)
+    	 && $this->gestionTemplates == self::TPL_MODE_UN_PAR_ACTION) {
     		$this->reconstruireNomFichierTemplateSurBaseActionCourante();
     	}
     	
     	unset($this->tpl);
-    	$this->tpl = new TemplateEtendu($this->fichierTpl);
+    	$this->tpl = new TemplateEtendu($this->fichierTpl, false);
+    	
+    	$this->inclureSousTemplatesParAction();
     }
     
     protected function reconstruireNomFichierTemplateSurBaseActionCourante()
     {
-    	if ($this->action == self::ACTION_PAR_DEFAUT
-    	 && is_readable($this->fichierTpl)) {
-    		return;
-    	}
-    	
     	$this->fichierTpl = preg_replace(
     	    '/(.*)(\\.\\w+)$/',
     	    '\\1.'.$this->action.'\\2',
     	    $this->fichierTpl
     	);
+    }
+    
+    protected function inclureSousTemplatesParAction()
+    {
+    	$nomSousTemplateAction = get_class($this).'.'.$this->action;
+    	
+    	$this->tpl->remplacer('[sub:action]', "[sub:{$nomSousTemplateAction}]");
+    	$this->tpl->inclureSousTemplates();
     }
     
     public function afficher()
