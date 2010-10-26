@@ -1,0 +1,13 @@
+<h2>{formation.retNom}</h2>
+    <!--[modules+]-->
+    <h3>{module.retNom}</h3>
+        <!--[rubriques+]-->
+        <h4>{rubrique.retNom}</h4>
+            <!--[activites+]-->
+            <h5>{activite.retNom}</h5>
+                <!--[sousActivites+]-->
+                <h6>{sousActivite.retNom}</h6>
+                <!--[sousActivites-]-->
+            <!--[activites-]-->
+        <!--[rubriques-]-->
+    <!--[modules-]-->

@@ -1,6 +1,7 @@
 <?php
 // inclure globals => plate_forme/CProjet => CBdd, CFormation, ...
 require_once dirname(__FILE__).'/../../globals.inc.php';
+require_once dirname(__FILE__).'/../../include/ElementFormation.php';
 require_once dirname(__FILE__).'/../../lib/std/AfficheurPageEtendu.php';
 require_once dirname(__FILE__).'/../../lib/std/FichierInfoEtendu.php';
 
@@ -11,6 +12,9 @@ class NettoyageFormations extends AfficheurPageEtendu
     /** @var CBdd */
     protected $db;
 	
+    /** @var string */
+    protected $titre = '';
+    
 	/** @var array[int]string */
 	protected $dossiersFormations = array();
 	/** @var array[int]int */
@@ -26,16 +30,13 @@ class NettoyageFormations extends AfficheurPageEtendu
 	
     protected function actionIndex()
     {
+    	$this->titre = 'Espace occupé par les formations';
+    	
     	$this->trouverFormationsAPartirDesDossiers();
     	$this->calculerEspaceOccupeParFormations();
     	$this->trierFormationsParEspaceOccupeDesc();
     	
     	$this->definirVariablesTemplate('formations');
-    }
-    
-    protected function actionVoir()
-    {
-    	
     }
     
     protected function trouverFormationsAPartirDesDossiers()
@@ -111,6 +112,63 @@ class NettoyageFormations extends AfficheurPageEtendu
     	// le tri déconne
     	$diff = $f2->espaceOccupe - $f1->espaceOccupe;
     	return $diff > 0 ? 1 : -1;
+    }
+    
+    protected function actionVoir()
+    {
+        $formation = ElementFormation::retElementFormation(
+            $this->db, TYPE_FORMATION, $this->get('id')
+        );
+        
+        // TODO: modifier le système de remplacement automatique des boucles et
+        // variables dans AfficheurEtendu, de manière à ne pas devoir créer 
+        // soi-même le code ci-dessous quand on veut des boucles dans des 
+        // boucles, avec des ensemble de variables différents pour chaque 
+        // itération
+        $modules = $formation->retElementsEnfants();
+        $blocModule = new TemplateBlocEtendu('modules', $this->tpl);
+        $blocModule->beginLoop();
+        foreach ($modules as $module) {
+        	$blocModule->nextLoop();
+        	$blocModule->remplacer('{module.retNom}', $module->retNom());        	
+        	
+        	$rubriques = $module->retElementsEnfants();
+        	$blocRubrique = new TemplateBlocEtendu('rubriques', $blocModule);
+            $blocRubrique->beginLoop();
+        	foreach ($rubriques as $rubrique) {
+        		$blocRubrique->nextLoop();
+        		$blocRubrique->remplacer('{rubrique.retNom}', $rubrique->retNom());
+        		
+        		$activites = $rubrique->retElementsEnfants();
+        		$blocActivite = new TemplateBlocEtendu('activites', $blocRubrique);
+                $blocActivite->beginLoop();
+        		foreach ($activites as $activite) {
+        			$blocActivite->nextLoop();
+        			$blocActivite->remplacer('{activite.retNom}', $activite->retNom());
+        			
+        			$sousActivites = $activite->retElementsEnfants();
+        			$blocSousActivite = new TemplateBlocEtendu('sousActivites', $blocActivite);
+                    $blocSousActivite->beginLoop();
+        			foreach ($sousActivites as $sousActivite) {
+        				$blocSousActivite->nextLoop();
+        				$blocSousActivite->remplacer('{sousActivite.retNom}', $sousActivite->retNom());
+        			}
+        			$blocSousActivite->afficher();
+        		}
+        		$blocActivite->afficher();
+        	}
+        	$blocRubrique->afficher();
+        }
+        $blocModule->afficher();
+        
+        $this->titre = "Détail pour la formation {$formation->retId()}";
+        
+        $this->definirVariableTemplate('formation', $formation);
+    }
+    
+    protected function apresAction()
+    {
+        $this->definirVariablesTemplate('titre');
     }
 }
 
