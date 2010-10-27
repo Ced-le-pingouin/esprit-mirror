@@ -26,6 +26,10 @@ class NettoyageFormations extends AfficheurPageEtendu
 	{
 		$this->projet = new CProjet();
 		$this->db = $this->projet->oBdd;
+		
+		if (!$this->projet->verifAdministrateur()) {
+			throw new Exception("Droits insuffisants pour accéder à cette page");
+		}
 	}
 	
     protected function actionIndex()
