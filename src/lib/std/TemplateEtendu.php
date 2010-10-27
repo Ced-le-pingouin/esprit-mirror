@@ -18,7 +18,7 @@ class TemplateEtendu extends Template
 		parent::Template($fichierTemplate);
 		
 		if ($inclureSousTemplatesAuto) {
-		  $this->inclureSousTemplates();
+            $this->inclureSousTemplates();
 		}
 	}
 	
