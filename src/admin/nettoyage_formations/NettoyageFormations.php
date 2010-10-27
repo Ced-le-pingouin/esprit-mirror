@@ -142,8 +142,10 @@ class NettoyageFormations extends AfficheurPageEtendu
         	}
         }
         
-        $this->definirVariableTemplate('formation', $formation);
-        $this->definirVariableTemplate('modules', $modules);
+        $this->definirVariablesTemplate(
+            array('formation', $formation),
+            array('modules', $modules)
+        );
     }
     
     protected function apresAction()
