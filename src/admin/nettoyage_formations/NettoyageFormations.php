@@ -124,50 +124,26 @@ class NettoyageFormations extends AfficheurPageEtendu
             $this->db, TYPE_FORMATION, $this->get('id')
         );
         
+        $this->titre = "Détail pour la formation {$formation->retId()}";
+        
         // TODO: modifier le système de remplacement automatique des boucles et
         // variables dans AfficheurEtendu, de manière à ne pas devoir créer 
         // soi-même le code ci-dessous quand on veut des boucles dans des 
         // boucles, avec des ensemble de variables différents pour chaque 
         // itération
         $modules = $formation->retElementsEnfants();
-        $blocModule = new TemplateBlocEtendu('modules', $this->tpl);
-        $blocModule->beginLoop();
         foreach ($modules as $module) {
-        	$blocModule->nextLoop();
-        	$blocModule->remplacer('{module.retNom}', $module->retNom());        	
-        	
-        	$rubriques = $module->retElementsEnfants();
-        	$blocRubrique = new TemplateBlocEtendu('rubriques', $blocModule);
-            $blocRubrique->beginLoop();
-        	foreach ($rubriques as $rubrique) {
-        		$blocRubrique->nextLoop();
-        		$blocRubrique->remplacer('{rubrique.retNom}', $rubrique->retNom());
-        		
-        		$activites = $rubrique->retElementsEnfants();
-        		$blocActivite = new TemplateBlocEtendu('activites', $blocRubrique);
-                $blocActivite->beginLoop();
-        		foreach ($activites as $activite) {
-        			$blocActivite->nextLoop();
-        			$blocActivite->remplacer('{activite.retNom}', $activite->retNom());
-        			
-        			$sousActivites = $activite->retElementsEnfants();
-        			$blocSousActivite = new TemplateBlocEtendu('sousActivites', $blocActivite);
-                    $blocSousActivite->beginLoop();
-        			foreach ($sousActivites as $sousActivite) {
-        				$blocSousActivite->nextLoop();
-        				$blocSousActivite->remplacer('{sousActivite.retNom}', $sousActivite->retNom());
-        			}
-        			$blocSousActivite->afficher();
+         	$module->rubriques = $module->retElementsEnfants();
+          	foreach ($module->rubriques as $rubrique) {
+        		$rubrique->activites = $rubrique->retElementsEnfants();
+        		foreach ($rubrique->activites as $activite) {
+        			$activite->sousActivites = $activite->retElementsEnfants();
         		}
-        		$blocActivite->afficher();
         	}
-        	$blocRubrique->afficher();
         }
-        $blocModule->afficher();
-        
-        $this->titre = "Détail pour la formation {$formation->retId()}";
         
         $this->definirVariableTemplate('formation', $formation);
+        $this->definirVariableTemplate('modules', $modules);
     }
     
     protected function apresAction()
