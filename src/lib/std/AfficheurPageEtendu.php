@@ -302,7 +302,9 @@ class AfficheurPageEtendu extends AfficheurPage
     	$variables = func_get_args();
     	
     	foreach ($variables as $variable) {
-    		$this->definirVariableTemplate($variable);
+    		@list($nomVariable, $valeurVariable) = (array)$variable;
+    		
+    		$this->definirVariableTemplate($nomVariable, $valeurVariable);
     	}
     }
     
