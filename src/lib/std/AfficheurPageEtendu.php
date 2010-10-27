@@ -6,6 +6,13 @@ require_once dirname(__FILE__).'/TemplateBlocEtendu.php';
 /**
  * Ajoute des fonctions d'aide à la gestion de actions, par rapport à 
  * la classe de base AfficheurPage
+ * 
+ * @todo Cette classe agit beaucoup trop sur les templates/blocs, par exemple 
+ *       pour les remplacement de variables ou déroulements de boucles 
+ *       automatiques. Il faudrait déplacer ces fonctionnalités dans les classes
+ *       des templates/blocs. Cela pourrait nécessiter que les données 
+ *       nécessaires aux déroulements/remplacements soit passées aux templates/
+ *       blocs 
  */
 class AfficheurPageEtendu extends AfficheurPage
 {
@@ -18,10 +25,16 @@ class AfficheurPageEtendu extends AfficheurPage
 	protected $action = self::ACTION_PAR_DEFAUT;
 	/** @var int */
 	protected $gestionTemplates = self::TPL_MODE_UN_SEUL;
-	/** @var array[string]mixed */
-	protected $variablesTemplate = array();
+	/** @var stdClass */
+	protected $variablesTemplate;
+	/** @var array[]array */
 	
-	/**
+    public function __construct()
+    {
+    	$this->variablesTemplate = new stdClass();
+    }
+    
+    /**
 	 * @param int $mode
 	 * @return AfficheurPageEtendu
 	 */
@@ -152,89 +165,49 @@ class AfficheurPageEtendu extends AfficheurPage
     
     public function afficher()
     {
-    	$this->remplacerVariablesTemplateAutomatiquement();
+    	$this->traiterBouclesEtVariablesTemplateAutomatiquement($this->tpl);
     	
     	parent::afficher();
     }
     
-    protected function remplacerVariablesTemplateAutomatiquement()
+    /**
+     * @param TemplateEtendu $template
+     */
+    protected function traiterBouclesEtVariablesTemplateAutomatiquement($template)
     {
-    	foreach ($this->variablesTemplate as $nom => $valeur) {
-    		$estBoucle = $this->afficherBoucleTemplateSiExistante($this->tpl, $nom);
-    		
-    		if (!$estBoucle) {
-    			$this->remplacerVariableTemplate($this->tpl, $nom);
-    		}
-    	}
+        $this->remplacerVariablesTemplate($template);
+        $this->deroulerBouclesTemplate($template);
     }
     
     /**
      * @param TemplateEtendu $template
-     * @param string $nomBoucle
-     * @return boolean
      */
-    protected function afficherBoucleTemplateSiExistante($template, $nomBoucle)
+    protected function remplacerVariablesTemplate($template)
     {
-    	if (!is_array($this->variablesTemplate[$nomBoucle])) {
-    		return false;
-    	}
-    	
-    	if (strpos($template->retDonnees(), "[{$nomBoucle}+]") === false) {
-    		return false;
-    	}
-    	
-    	$nomVariableBoucle = $this->retVariableDeBoucleAPartirDuNomDeBoucle($nomBoucle);
-    	if ($this->variableTemplateExiste($nomVariableBoucle)) {
-    		throw new Exception("La boucle '{$nomBoucle}' ne peut être utilisée, car elle aurait une variable de boucle du nom de '{$nomVariableBoucle}', qui est déjà utilisé");
-    	}
-    	
-    	$blocTemplate = new TemplateBlocEtendu($nomBoucle, $template);
-    	$blocTemplate->beginLoop();
-    	
-    	foreach ($this->variablesTemplate[$nomBoucle] as $elementBoucle) {
-    		$blocTemplate->nextLoop();
-    		$this->definirVariableTemplate($nomVariableBoucle, $elementBoucle);
-    		$this->remplacerVariableTemplate($blocTemplate, $nomVariableBoucle);
-    	}
-    	$blocTemplate->afficher();
-    	
-    	$this->effacerVariableTemplate($nomVariableBoucle);
-    	
-    	return true;
-    }
-    
-    /**
-     * @param TemplateEtendu $template
-     * @param string $nomVariable
-     */
-    protected function remplacerVariableTemplate($template, $nomVariable)
-    {
-    	$variable = $this->variablesTemplate[$nomVariable];
-    	
-    	if (is_scalar($variable)) {
-    	    $template->remplacer('{'.$nomVariable.'}', $variable);
-    	} else if (is_object($variable)) {
-    	    $template->remplacerParMotifEtCallback(
-    	        '/{('.$nomVariable.')\\.(\\w+)}/',
-    	        array($this, 'remplacerVariablesComplexesTemplate')
-    	    );
-    	}
+    	$template->remplacerParMotifEtCallback(
+            '/{(\\w+)(?:\\.(\\w+))?}/',
+            array($this, 'callbackRemplacerVariablesTemplate')
+        );
     }
     
     /**
      * @param array[int]string $correspondances
      */
-    public function remplacerVariablesComplexesTemplate($correspondances)
+    public function callbackRemplacerVariablesTemplate($correspondances)
     {
     	// on doit utiliser l'opérateur @ car on peut obtenir une notice 
     	// indiquant que les parenthèses sont absentes (groupe facultatif dans
     	// le motif preg)
     	@list($tout, $nomVariable, $attribut) = $correspondances;
     	
-    	$variable = $this->variablesTemplate[$nomVariable];
-    	
-    	if (isset($variable)) {
-    		if (is_callable(array($variable, $attribut))) {
+    	if ($this->variableTemplateExiste($nomVariable)) {
+    		$variable = $this->retVariableTemplate($nomVariable);
+    		
+    		if (!isset($attribut)) {
+    			if (is_scalar($variable)) {
+    			    return (string)$variable;
+    			}
+    		} else if (is_callable(array($variable, $attribut))) {
     			$remplacement = call_user_func(array($variable, $attribut));
                 return $remplacement;
     		} else if (isset($variable->{$attribut})
@@ -244,6 +217,59 @@ class AfficheurPageEtendu extends AfficheurPage
     	}
     	
     	return $tout;
+    }
+    
+    /*
+     * @param TemplateEtendu $template
+     */
+    protected function deroulerBouclesTemplate($template)
+    {
+    	$positionRecherche = 0;
+    	
+    	do {
+    		$boucleTrouvee = (boolean)preg_match(
+    		    '/\\[(\\w+)\\+\\]/',
+    		    $template->retDonnees(),
+    		    $correspondances,
+    		    PREG_OFFSET_CAPTURE,
+    		    $positionRecherche
+    		);
+    		
+    		if ($boucleTrouvee) {
+    	        list($tout, $boucle) = $correspondances;
+                list($nomBoucle, $positionBoucle) = $boucle;
+                // permet de continuer + loin si la boucle n'est finalement pas
+                // déroulée. Sans ça, on retrouverait la même boucle 
+                // indéfiniment
+                $positionRecherche = $positionBoucle + 1;
+    			
+                // si aucun tableau dispo au nom de la boucle dans les 
+                // variables du template, on ne déroule pas la boucle
+    			if (!$this->variableTemplateExiste($nomBoucle)
+    			 || !is_array($this->retVariableTemplate($nomBoucle))) {
+    			 	continue;
+    			}
+    			
+    			$elementsBoucle = $this->retVariableTemplate($nomBoucle);
+    			
+                $nomVariableBoucle = $this->retVariableDeBoucleAPartirDuNomDeBoucle($nomBoucle);
+                if ($this->variableTemplateExiste($nomVariableBoucle)) {
+                    throw new Exception("La boucle '{$nomBoucle}' ne peut être utilisée, car elle aurait une variable de boucle du nom de '{$nomVariableBoucle}', qui est déjà utilisé");
+                }
+    			
+                $boucle = new TemplateBlocEtendu($nomBoucle, $template);
+    			$boucle->beginLoop();
+    			
+    			foreach ($elementsBoucle as $elementBoucle) {
+                    $boucle->nextLoop();
+                    $this->definirVariableTemplate($nomVariableBoucle, $elementBoucle);
+                    $this->traiterBouclesEtVariablesTemplateAutomatiquement($boucle);
+    			}
+                $boucle->afficher();
+                
+                $this->effacerVariableTemplate($nomVariableBoucle);
+    		}
+    	} while ($boucleTrouvee);
     }
     
     /**
@@ -278,7 +304,7 @@ class AfficheurPageEtendu extends AfficheurPage
             $valeurVariable = $this->{$nomVariable};
     	}
     	
-    	$this->variablesTemplate[$nomVariable] = $valeurVariable;
+    	$this->variablesTemplate->{$nomVariable} = $valeurVariable;
     }
     
     /**
@@ -286,7 +312,7 @@ class AfficheurPageEtendu extends AfficheurPage
      */
     protected function effacerVariableTemplate($nomVariable)
     {
-    	unset($this->variablesTemplate[$nomVariable]);
+    	unset($this->variablesTemplate->{$nomVariable});
     }
     
     /**
@@ -294,7 +320,12 @@ class AfficheurPageEtendu extends AfficheurPage
      */
     protected function variableTemplateExiste($nomVariable)
     {
-    	return isset($this->variablesTemplate[$nomVariable]);
+    	return isset($this->variablesTemplate->{$nomVariable});
+    }
+    
+    protected function retVariableTemplate($nomVariable)
+    {
+    	return $this->variablesTemplate->{$nomVariable};
     }
     
     /**
