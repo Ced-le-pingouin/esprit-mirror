@@ -27,7 +27,8 @@ class AfficheurPageEtendu extends AfficheurPage
 	protected $gestionTemplates = self::TPL_MODE_UN_SEUL;
 	/** @var stdClass */
 	protected $variablesTemplate;
-	/** @var array[]array */
+    /** @var array[int]string */
+	protected $prefixesRechercheVariables = array();
 	
     public function __construct()
     {
@@ -200,9 +201,9 @@ class AfficheurPageEtendu extends AfficheurPage
     	// le motif preg)
     	@list($tout, $nomVariable, $attribut) = $correspondances;
     	
-    	if ($this->variableTemplateExiste($nomVariable)) {
-    		$variable = $this->retVariableTemplate($nomVariable);
-    		
+    	$variable = $this->retVariableTemplate($nomVariable);
+    	
+    	if (!is_null($variable)) {
     		if (!isset($attribut)) {
     			if (is_scalar($variable)) {
     			    return (string)$variable;
@@ -243,22 +244,23 @@ class AfficheurPageEtendu extends AfficheurPage
                 // indéfiniment
                 $positionRecherche = $positionBoucle + 1;
     			
+                $elementsBoucle = $this->retVariableTemplateEnUtilisantPrefixes($nomBoucle);
+                
                 // si aucun tableau dispo au nom de la boucle dans les 
                 // variables du template, on ne déroule pas la boucle
-    			if (!$this->variableTemplateExiste($nomBoucle)
-    			 || !is_array($this->retVariableTemplate($nomBoucle))) {
+    			if (!is_array($elementsBoucle)) {
     			 	continue;
     			}
     			
-    			$elementsBoucle = $this->retVariableTemplate($nomBoucle);
-    			
                 $nomVariableBoucle = $this->retVariableDeBoucleAPartirDuNomDeBoucle($nomBoucle);
-                if ($this->variableTemplateExiste($nomVariableBoucle)) {
+                if (!is_null($this->retVariableTemplate($nomVariableBoucle))) {
                     throw new Exception("La boucle '{$nomBoucle}' ne peut être utilisée, car elle aurait une variable de boucle du nom de '{$nomVariableBoucle}', qui est déjà utilisé");
                 }
     			
                 $boucle = new TemplateBlocEtendu($nomBoucle, $template);
     			$boucle->beginLoop();
+    			
+    			$this->ajouterPrefixeRechercheVariables($nomVariableBoucle);
     			
     			foreach ($elementsBoucle as $elementBoucle) {
                     $boucle->nextLoop();
@@ -267,6 +269,7 @@ class AfficheurPageEtendu extends AfficheurPage
     			}
                 $boucle->afficher();
                 
+                $this->supprimerPrefixeRechercheVariables();                
                 $this->effacerVariableTemplate($nomVariableBoucle);
     		}
     	} while ($boucleTrouvee);
@@ -279,6 +282,19 @@ class AfficheurPageEtendu extends AfficheurPage
      */
     public function afficherParties()
     {
+    }
+    
+    /**
+     * @param string $prefixe
+     */
+    protected function ajouterPrefixeRechercheVariables($prefixe)
+    {
+    	array_unshift($this->prefixesRechercheVariables, $prefixe);
+    }
+    
+    protected function supprimerPrefixeRechercheVariables()
+    {
+    	array_shift($this->prefixesRechercheVariables);
     }
     
     protected function definirVariablesTemplate()
@@ -317,15 +333,31 @@ class AfficheurPageEtendu extends AfficheurPage
     
     /**
      * @param string $nomVariable
+     * @return mixed
      */
-    protected function variableTemplateExiste($nomVariable)
-    {
-    	return isset($this->variablesTemplate->{$nomVariable});
-    }
-    
     protected function retVariableTemplate($nomVariable)
     {
-    	return $this->variablesTemplate->{$nomVariable};
+        if (isset($this->variablesTemplate->{$nomVariable})) {
+            return $this->variablesTemplate->{$nomVariable};
+        }
+        
+        return null;
+    }
+    
+    /**
+     * @param string $nomVariable
+     * @return mixed
+     */
+    protected function retVariableTemplateEnUtilisantPrefixes($nomVariable)
+    {
+    	foreach ($this->prefixesRechercheVariables as $prefixe) {
+    	    if (isset($this->variablesTemplate->{$prefixe})
+    		 && isset($this->variablesTemplate->{$prefixe}->{$nomVariable})) {
+    		    return $this->variablesTemplate->{$prefixe}->{$nomVariable};
+    	    }
+    	}
+    	
+    	return $this->retVariableTemplate($nomVariable);
     }
     
     /**
