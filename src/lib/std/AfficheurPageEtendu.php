@@ -206,14 +206,14 @@ class AfficheurPageEtendu extends AfficheurPage
     	if (!is_null($variable)) {
     		if (!isset($attribut)) {
     			if (is_scalar($variable)) {
-    			    return (string)$variable;
+    			    return $this->encoderVariable((string)$variable);
     			}
     		} else if (is_callable(array($variable, $attribut))) {
     			$remplacement = call_user_func(array($variable, $attribut));
-                return $remplacement;
+                return $this->encoderVariable((string)$remplacement);
     		} else if (isset($variable->{$attribut})
     		        && is_scalar($variable->{$attribut})) {
-    			return (string)$variable->{$attribut};
+    			return $this->encoderVariable((string)$variable->{$attribut});
     		}
     	}
     	
@@ -360,6 +360,11 @@ class AfficheurPageEtendu extends AfficheurPage
     	}
     	
     	return $this->retVariableTemplate($nomVariable);
+    }
+    
+    protected function encoderVariable($valeurVariable)
+    {
+    	return htmlentities($valeurVariable, ENT_COMPAT, 'UTF-8');
     }
     
     /**
