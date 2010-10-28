@@ -62,7 +62,7 @@ class IterateurDossier extends IterateurTableau
 	function IterateurDossier($v_sChemin, $v_sFiltrePre = '*', $v_bTrier = FALSE, $v_bDossiersSeulement = FALSE)
 	{
 		if (!is_dir($v_sChemin) || !is_readable($v_sChemin))
-			Erreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible",
+			Erreur::provoquer("Le chemin fourni ne représente pas un dossier valide, ou le dossier est inaccessible ($v_sChemin)",
 			                   ERREUR_AVERT);
 
 		$this->sFiltrePre = $v_sFiltrePre;
