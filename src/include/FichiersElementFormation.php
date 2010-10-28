@@ -49,7 +49,7 @@ class FichiersElementFormation
     			$cheminFichier = $itr->courant()->retCheminReel();
     			$index = md5($cheminFichier);
     			
-    			$fichiers[$index] = $itr->courant();
+    			$fichiers[$index] = clone($itr->courant());
     		}
     		
     		$this->fichiersForumsTous = $fichiers;
