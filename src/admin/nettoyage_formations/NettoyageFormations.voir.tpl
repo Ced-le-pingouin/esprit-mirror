@@ -1,6 +1,7 @@
 <h2>{formation.retNom}</h2>
 <p><strong>Nb total fichiers inutiles: {formation.nbTotalFichiersInutiles}</strong></p>
 <p><strong>Taille totale fichiers inutiles: {formation.tailleTotaleFichiersInutilesFormatee}</strong></p>
+<p><a href="?action=confirmerEffacement&id={formation.retId}">Voir les fichiers qui seront supprimés</a></p>
     <ul>
     <!--[modules+]-->
     <li>{module.retNom}

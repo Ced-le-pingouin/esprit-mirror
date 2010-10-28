@@ -25,7 +25,7 @@ class NettoyageFormations extends AfficheurPageEtendu
 	
 	/** @var CFormation */
 	protected $formationCourante;
-	/** @var array[]FichierInfo */
+	/** @var array[string]FichierInfo */
 	protected $fichiersInutiles = array();
 	
 	protected function avantAction()
@@ -126,7 +126,6 @@ class NettoyageFormations extends AfficheurPageEtendu
     
     protected function actionVoir()
     {
-        $this->initFormationCouranteEtTousSesDescendants();
         $this->trouverFichiersInutilesDansActivites();
         
         $this->titre = "Détail pour la formation {$this->formationCourante->retId()}";
@@ -134,6 +133,15 @@ class NettoyageFormations extends AfficheurPageEtendu
         $this->definirVariablesTemplate(
             array('formation', $this->formationCourante),
             array('modules', $this->formationCourante->modules)
+        );
+    }
+    
+    protected function actionConfirmerEffacement()
+    {
+        $this->trouverFichiersInutilesDansActivites();
+        
+        $this->definirVariablesTemplate(
+            array('fichiers', $this->fichiersInutiles)
         );
     }
     
@@ -159,6 +167,10 @@ class NettoyageFormations extends AfficheurPageEtendu
     
     protected function trouverFichiersInutilesDansActivites()
     {
+    	if (!isset($this->formationCourante)) {
+    		$this->initFormationCouranteEtTousSesDescendants();
+    	}
+    	
     	$nbTotalFichiersInutiles = 0;
     	$tailleTotaleFichiersInutiles = 0;
     	
@@ -183,6 +195,8 @@ class NettoyageFormations extends AfficheurPageEtendu
     				    
     				$tailleTotaleFichiersInutiles += $tailleFichiersInutiles;
     				$nbTotalFichiersInutiles += $nbFichiersInutiles;
+    				
+    				$this->fichiersInutiles += $fichiersInutiles;
     			}
     		}
     	}
