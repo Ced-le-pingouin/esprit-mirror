@@ -1,13 +1,24 @@
 <h2>{formation.retNom}</h2>
+    <ul>
     <!--[modules+]-->
-    <h3>{module.retNom}</h3>
+    <li>{module.retNom}
+        <ul>
         <!--[rubriques+]-->
-        <h4>{rubrique.retNom}</h4>
+        <li>{rubrique.retNom}
+            <ul>
             <!--[activites+]-->
-            <h5>{activite.retNom}</h5>
+            <li>{activite.retNom}
+                <ul>
                 <!--[sousActivites+]-->
-                <h6>{sousActivite.retNom}</h6>
+                <li>{sousActivite.retNom}</li>
                 <!--[sousActivites-]-->
+                </ul>
+            </li>
             <!--[activites-]-->
+            </ul>
+        </li>
         <!--[rubriques-]-->
+        </ul>
+    </li>
     <!--[modules-]-->
+    </ul>
