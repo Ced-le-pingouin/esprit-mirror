@@ -4,6 +4,7 @@ require_once dirname(__FILE__).'/../../globals.inc.php';
 require_once dirname(__FILE__).'/../../include/ElementFormation.php';
 require_once dirname(__FILE__).'/../../lib/std/AfficheurPageEtendu.php';
 require_once dirname(__FILE__).'/../../lib/std/FichierInfoEtendu.php';
+require_once dirname(__FILE__).'/../../include/FichiersElementFormation.php';
 
 class NettoyageFormations extends AfficheurPageEtendu
 {
@@ -21,6 +22,9 @@ class NettoyageFormations extends AfficheurPageEtendu
 	protected $idsFormations = array();
 	/** @var array[int]CFormation */
 	protected $formations = array();
+	
+	/** @var CFormation */
+	protected $formationCourante;
 	
 	protected function avantAction()
 	{
@@ -120,32 +124,34 @@ class NettoyageFormations extends AfficheurPageEtendu
     
     protected function actionVoir()
     {
+        $this->initFormationCouranteEtTousSesDescendants();
+        
+        $this->titre = "Détail pour la formation {$this->formationCourante->retId()}";
+        
+        $this->definirVariablesTemplate(
+            array('formation', $this->formationCourante),
+            array('modules', $this->formationCourante->modules)
+        );
+    }
+    
+    protected function initFormationCouranteEtTousSesDescendants()
+    {
         $formation = ElementFormation::retElementFormation(
             $this->db, TYPE_FORMATION, $this->get('id')
         );
         
-        $this->titre = "Détail pour la formation {$formation->retId()}";
-        
-        // TODO: modifier le système de remplacement automatique des boucles et
-        // variables dans AfficheurEtendu, de manière à ne pas devoir créer 
-        // soi-même le code ci-dessous quand on veut des boucles dans des 
-        // boucles, avec des ensemble de variables différents pour chaque 
-        // itération
-        $modules = $formation->retElementsEnfants();
-        foreach ($modules as $module) {
-         	$module->rubriques = $module->retElementsEnfants();
-          	foreach ($module->rubriques as $rubrique) {
-        		$rubrique->activites = $rubrique->retElementsEnfants();
-        		foreach ($rubrique->activites as $activite) {
-        			$activite->sousActivites = $activite->retElementsEnfants();
-        		}
-        	}
+        $formation->modules = $formation->retElementsEnfants();
+        foreach ($formation->modules as $module) {
+            $module->rubriques = $module->retElementsEnfants();
+            foreach ($module->rubriques as $rubrique) {
+                $rubrique->activites = $rubrique->retElementsEnfants();
+                foreach ($rubrique->activites as $activite) {
+                    $activite->sousActivites = $activite->retElementsEnfants();
+                }
+            }
         }
         
-        $this->definirVariablesTemplate(
-            array('formation', $formation),
-            array('modules', $modules)
-        );
+        $this->formationCourante = $formation;
     }
     
     protected function apresAction()
