@@ -43,13 +43,16 @@ class FichiersElementFormation
     {
     	if (is_null($this->fichiersForumsTous)) {
     		$dossierForum = $this->element->retDossier().'/'.self::DIR_FORUM;
-    		$itr = new IterateurDossier($dossierForum);
+    		$fichiers = array();
     		
-    		for ($fichiers = array(); $itr->estValide(); $itr->suiv()) {
-    			$cheminFichier = $itr->courant()->retCheminReel();
-    			$index = md5($cheminFichier);
-    			
-    			$fichiers[$index] = clone($itr->courant());
+    		if (is_dir($dossierForum) && is_readable($dossierForum)) {
+        		$itr = new IterateurDossier($dossierForum);
+        		for (; $itr->estValide(); $itr->suiv()) {
+        			$cheminFichier = $itr->courant()->retCheminReel();
+        			$index = md5($cheminFichier);
+        			
+        			$fichiers[$index] = clone($itr->courant());
+        		}
     		}
     		
     		$this->fichiersForumsTous = $fichiers;
@@ -61,6 +64,9 @@ class FichiersElementFormation
 	public function trouverFichiersForumsNecessaires()
 	{
 		if (is_null($this->fichiersForumsNecessaires)) {
+			$dossierForum = $this->element->retDossier().'/'.self::DIR_FORUM;
+			$fichiers = array();
+			
 			// TODO: tout est encodé en dur dans la requête (type forum, 
 			// type niveau)
     		$sql = "
@@ -80,7 +86,6 @@ class FichiersElementFormation
     		
     		$this->db->executerRequete($sql);
     		
-    		$dossierForum = $this->element->retDossier().'/'.self::DIR_FORUM;
     		while($enreg = $this->db->retEnregSuiv()) {
     			$cheminFichier = $dossierForum.'/'.$enreg->UrlRes;
     			$index = md5($cheminFichier);
