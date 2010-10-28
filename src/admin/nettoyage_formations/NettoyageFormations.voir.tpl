@@ -1,4 +1,6 @@
 <h2>{formation.retNom}</h2>
+<p><strong>Nb total fichiers inutiles: {formation.nbTotalFichiersInutiles}</strong></p>
+<p><strong>Taille totale fichiers inutiles: {formation.tailleTotaleFichiersInutilesFormatee}</strong></p>
     <ul>
     <!--[modules+]-->
     <li>{module.retNom}
@@ -8,6 +10,8 @@
             <ul>
             <!--[activites+]-->
             <li>{activite.retNom}
+                (fichiers inutiles: {activite.nbFichiersInutiles} - 
+                 taille: {activite.tailleFichiersInutilesFormatee})
                 <ul>
                 <!--[sousActivites+]-->
                 <li>{sousActivite.retNom}</li>

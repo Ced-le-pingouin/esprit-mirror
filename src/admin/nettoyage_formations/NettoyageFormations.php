@@ -25,6 +25,8 @@ class NettoyageFormations extends AfficheurPageEtendu
 	
 	/** @var CFormation */
 	protected $formationCourante;
+	/** @var array[]FichierInfo */
+	protected $fichiersInutiles = array();
 	
 	protected function avantAction()
 	{
@@ -125,6 +127,7 @@ class NettoyageFormations extends AfficheurPageEtendu
     protected function actionVoir()
     {
         $this->initFormationCouranteEtTousSesDescendants();
+        $this->trouverFichiersInutilesDansActivites();
         
         $this->titre = "Détail pour la formation {$this->formationCourante->retId()}";
         
@@ -152,6 +155,59 @@ class NettoyageFormations extends AfficheurPageEtendu
         }
         
         $this->formationCourante = $formation;
+    }
+    
+    protected function trouverFichiersInutilesDansActivites()
+    {
+    	$nbTotalFichiersInutiles = 0;
+    	$tailleTotaleFichiersInutiles = 0;
+    	
+    	foreach ($this->formationCourante->modules as $module) {
+    		foreach ($module->rubriques as $rubrique) {
+    			foreach ($rubrique->activites as $activite) {
+    				$fichiersActivite = new FichiersElementFormation($activite);
+    				$fichiersInutiles = $fichiersActivite->trouverFichiersForumsInutiles();
+    				
+    				$nbFichiersInutiles = count($fichiersInutiles);
+    				$tailleFichiersInutiles = $this->retTailleTotaleFichiers(
+    				    $fichiersInutiles
+    				);
+    				
+    				$activite->fichiersInutiles = $fichiersInutiles;
+    				$activite->nbFichiersInutiles = $nbFichiersInutiles;
+    				$activite->tailleFichiersInutiles = $tailleFichiersInutiles;
+    				$activite->tailleFichiersInutilesFormatee = 
+    				    FichierInfoEtendu::tailleEnOctetsVersTailleFormatee(
+    				        $tailleFichiersInutiles
+    				    );
+    				    
+    				$tailleTotaleFichiersInutiles += $tailleFichiersInutiles;
+    				$nbTotalFichiersInutiles += $nbFichiersInutiles;
+    			}
+    		}
+    	}
+    	
+    	$this->formationCourante->nbTotalFichiersInutiles = $nbTotalFichiersInutiles;
+    	$this->formationCourante->tailleTotaleFichiersInutiles = $tailleTotaleFichiersInutiles;
+    	$this->formationCourante->tailleTotaleFichiersInutilesFormatee = 
+    	    FichierInfoEtendu::tailleEnOctetsVersTailleFormatee(
+    	        $tailleTotaleFichiersInutiles
+    	    );
+    }
+    
+    /**
+     * @param array[]FichierInfo $fichiers
+     * @return int
+     */
+    protected function retTailleTotaleFichiers($fichiers)
+    {
+    	$tailleTotale = 0;
+    	
+    	foreach ($fichiers as $fichier) {
+    		$tailleTotale += $fichier->retTaille();
+    	}
+    	
+    	return $tailleTotale;
     }
     
     protected function apresAction()
