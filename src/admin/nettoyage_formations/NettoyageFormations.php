@@ -141,7 +141,20 @@ class NettoyageFormations extends AfficheurPageEtendu
         $this->trouverFichiersInutilesDansActivites();
         
         $this->definirVariablesTemplate(
+            array('formation', $this->formationCourante),
             array('fichiers', $this->fichiersInutiles)
+        );
+    }
+    
+    protected function actionNettoyer()
+    {
+    	$this->trouverFichiersInutilesDansActivites();
+    	
+    	$nbFichiersEffaces = $this->supprimerFichiersInutiles();
+        
+        $this->definirVariablesTemplate(
+            array('formation', $this->formationCourante),
+            array('nbFichiersEffaces', $nbFichiersEffaces)
         );
     }
     
@@ -207,6 +220,22 @@ class NettoyageFormations extends AfficheurPageEtendu
     	    FichierInfoEtendu::tailleEnOctetsVersTailleFormatee(
     	        $tailleTotaleFichiersInutiles
     	    );
+    }
+    
+    /**
+     * @return int
+     */
+    protected function supprimerFichiersInutiles()
+    {
+    	$nbEffaces = 0;
+    	
+    	foreach ($this->fichiersInutiles as $fichier) {
+    		$ok = $fichier->supprimerFichier();
+    		
+    		if ($ok) $nbEffaces++;
+    	}
+    	
+    	return $nbEffaces;
     }
     
     /**
