@@ -166,12 +166,6 @@ class ValidateurAutomatiqueCollecticiel extends ValidateurAutomatiqueSousActivit
 		
 		$sqlFinal = vsprintf($sqlIntermediaire, $variablesSql);
 		
-		//$this->sousActivite->oBdd->executerRequete($sqlFinal);
+		$this->sousActivite->oBdd->executerRequete($sqlFinal);
 	}
 }
-
-$projet = new CProjet();
-$sousActivite = new CSousActiv($projet->oBdd, 13980);
-
-$validateur = ValidateurAutomatiqueSousActivite::creer($sousActivite);
-echo PHP_EOL . $validateur->validerXDerniers(1) . PHP_EOL;
