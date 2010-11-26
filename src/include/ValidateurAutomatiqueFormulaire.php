@@ -1,8 +1,8 @@
 <?php
 /*
  * TODO:
- *   - supprimer les echos
  *   - implémenter la sélection des X *premiers* éléments
+ *   - pour les X premiers ou derniers éléments, accepter un X > 1
  */
 
 require_once dirname(__FILE__).'/ValidateurAutomatiqueSousActivite.php';
@@ -24,6 +24,16 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
         $this->validerFormulairesParIds($ids);
         
         return count($ids);
+    }
+    
+    /**
+     * @param int $combien
+     * 
+     * @return int
+     */
+    public function validerXPremiers($combien = 1)
+    {
+        throw new Exception("ValidateurAutomatiqueFormulaire::validerXPremiers() pas encore implémenté");
     }
     
     /**

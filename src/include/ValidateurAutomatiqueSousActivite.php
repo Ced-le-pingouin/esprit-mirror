@@ -43,6 +43,13 @@ abstract class ValidateurAutomatiqueSousActivite
      * @return int
      */
     abstract public function validerAPartirDeDate($jour, $mois, $annee);
+
+    /**
+     * @param int $combien
+     * 
+     * @return int
+     */
+    abstract public function validerXPremiers($combien = 1);
     
     /**
      * @param int $combien

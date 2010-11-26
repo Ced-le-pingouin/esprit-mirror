@@ -21,6 +21,16 @@ class ValidateurAutomatiqueCollecticiel extends ValidateurAutomatiqueSousActivit
 	}
 	
 	/**
+     * @param int $combien
+     * 
+     * @return int
+     */
+    public function validerXPremiers($combien = 1)
+    {
+    	throw new Exception("ValidateurAutomatiqueCollecticiel::validerXPremiers() pas encore implémenté");
+    }
+	
+	/**
 	 * @param int $combien
 	 * 
 	 * @return int
