@@ -3,6 +3,9 @@ require_once dirname(__FILE__).'/../globals.inc.php';
 
 abstract class ValidateurAutomatiqueSousActivite
 {
+	const PREMIERS = 1;
+	const DERNIERS = 2;
+	
 	/** @var CSousActiv */
 	protected $sousActivite;
 	

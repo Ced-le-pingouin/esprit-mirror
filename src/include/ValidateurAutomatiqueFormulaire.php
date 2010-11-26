@@ -1,8 +1,7 @@
 <?php
 /*
  * TODO:
- *   - implémenter la sélection des X *premiers* éléments
- *   - pour les X premiers ou derniers éléments, accepter un X > 1
+ *   - accepter un X > 1 pour la validation des X premiers ou derniers éléments
  */
 
 require_once dirname(__FILE__).'/ValidateurAutomatiqueSousActivite.php';
@@ -33,7 +32,12 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
      */
     public function validerXPremiers($combien = 1)
     {
-        throw new Exception("ValidateurAutomatiqueFormulaire::validerXPremiers() pas encore implémenté");
+        $ids = $this->trouverIdsXPremiersOuDerniersFormulairesSoumisParPersonne(
+            $combien, self::PREMIERS
+        );
+        $this->validerFormulairesParIds($ids);
+        
+        return count($ids);
     }
     
     /**
@@ -43,8 +47,8 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
      */
     public function validerXDerniers($combien = 1)
     {
-        $ids = $this->trouverIdsXDerniersFormulairesSoumisParPersonne(
-            $combien
+        $ids = $this->trouverIdsXPremiersOuDerniersFormulairesSoumisParPersonne(
+            $combien, self::DERNIERS
         );
         $this->validerFormulairesParIds($ids);
         
@@ -63,7 +67,6 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
         $sqlIntermediaire = "
             SELECT
               FormulaireComplete_SousActiv.IdFCSousActiv AS id,
-              FormulaireComplete.TitreFC AS nom
             FROM
               FormulaireComplete_SousActiv
               INNER JOIN FormulaireComplete USING (IdFC)
@@ -86,19 +89,21 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
     
     /**
      * @param int $combien
+     * @param int $premiersOuDerniers
      * 
      * @return array[int]int 
      */
-    private function trouverIdsXDerniersFormulairesSoumisParPersonne($combien)
+    private function trouverIdsXPremiersOuDerniersFormulairesSoumisParPersonne($combien, $premiersOuDerniers = self::DERNIERS)
     {
     	if ($combien != 1) {
-    		throw new Exception("Le validateur automatique de formulaire n'accepte que '1' comme nombre de derniers formulaires à valider par personne");
+    		throw new Exception("Le validateur automatique de formulaire n'accepte que '1' comme nombre de premiers/derniers formulaires à valider par personne");
     	}
+    	
+    	$minOuMax = ( $premiersOuDerniers == self::PREMIERS ? 'MIN' : 'MAX' );
     	
         $sqlIntermediaire = "
             SELECT
               fcsa2.IdFCSousActiv AS id,
-              fc2.TitreFC AS nom
             FROM
               FormulaireComplete_SousActiv AS fcsa2
               INNER JOIN FormulaireComplete AS fc2 USING (IdFC)
@@ -106,20 +111,22 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
               (
                 SELECT
                   fc.IdPers as subIdPers,
-                  MAX(fc.DateFC) AS subDateFC
+                  /* ici, on aura MIN ou MAX selon qu'on veut le 1er ou le dernier */
+                  %s(fc.DateFC) AS subDateFC
                 FROM
                   FormulaireComplete_SousActiv AS fcsa
                   INNER JOIN FormulaireComplete AS fc USING (IdFC)
                 WHERE
-                  fcsa.IdSousActiv = '%1\$d'
+                  fcsa.IdSousActiv = '%2\$d'
                 GROUP BY
                   fc.IdPers
               ) AS sub ON (fc2.IdPers=sub.subIdPers AND fc2.DateFC=sub.subDateFC)
             WHERE
-              fcsa2.IdSousActiv = '%1\$d'
+              fcsa2.IdSousActiv = '%2\$d'
         ";
         
         $variablesSql = array(
+            $minOuMax,
             $this->sousActivite->retId()
         );
         
