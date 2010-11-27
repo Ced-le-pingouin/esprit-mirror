@@ -1,5 +1,7 @@
 <?php
 require_once dirname(__FILE__).'/../globals.inc.php';
+require_once dirname(__FILE__).'/ValidateurAutomatiqueCollecticiel.php';
+require_once dirname(__FILE__).'/ValidateurAutomatiqueFormulaire.php';
 
 abstract class ValidateurAutomatiqueSousActivite
 {
