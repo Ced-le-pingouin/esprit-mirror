@@ -66,7 +66,7 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
     {
         $sqlIntermediaire = "
             SELECT
-              FormulaireComplete_SousActiv.IdFCSousActiv AS id,
+              FormulaireComplete_SousActiv.IdFCSousActiv AS id
             FROM
               FormulaireComplete_SousActiv
               INNER JOIN FormulaireComplete USING (IdFC)
@@ -103,7 +103,7 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
     	
         $sqlIntermediaire = "
             SELECT
-              fcsa2.IdFCSousActiv AS id,
+              fcsa2.IdFCSousActiv AS id
             FROM
               FormulaireComplete_SousActiv AS fcsa2
               INNER JOIN FormulaireComplete AS fc2 USING (IdFC)
@@ -112,7 +112,7 @@ class ValidateurAutomatiqueFormulaire extends ValidateurAutomatiqueSousActivite
                 SELECT
                   fc.IdPers as subIdPers,
                   /* ici, on aura MIN ou MAX selon qu'on veut le 1er ou le dernier */
-                  %s(fc.DateFC) AS subDateFC
+                  %1\$s(fc.DateFC) AS subDateFC
                 FROM
                   FormulaireComplete_SousActiv AS fcsa
                   INNER JOIN FormulaireComplete AS fc USING (IdFC)
